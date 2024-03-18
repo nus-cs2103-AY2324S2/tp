@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -90,6 +91,24 @@ public class NoteTest {
                     description);
 
             assertEquals(expected, note.toString());
+        }
+    }
+
+    @Nested
+    class GetDateTimeAsStringTests {
+        @Test
+        public void getDateTimeAsString_correctFormat() {
+            // Setup - choose a date-time where day and month values are distinct to avoid confusion
+            LocalDateTime dateTime = LocalDateTime.of(2023, 4, 20, 15, 30);
+            Description description = new Description("Some description");
+            Note note = new Note(dateTime, description);
+
+            // Expected format
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+            String expected = dateTime.format(formatter);
+
+            // Assertion
+            assertEquals(expected, note.getDateTimeAsString());
         }
     }
 }

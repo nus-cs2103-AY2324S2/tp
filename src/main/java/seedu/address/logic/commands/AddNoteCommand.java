@@ -66,7 +66,7 @@ public class AddNoteCommand extends Command {
         model.setPerson(person, builder.build());
         // TODO: Show notes for a given person.
         model.addNote(note);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, note.getDescription()));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(note)));
     }
 
     @Override

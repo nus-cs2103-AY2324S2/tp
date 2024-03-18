@@ -41,19 +41,6 @@ public class Note {
         return dateTime.format(formatter);
     }
 
-    /**
-     * Returns true if both notes have the same dateTime.
-     * This defines a weaker notion of equality between two notes.
-     */
-    public boolean isSameNote(Note otherNote) {
-        if (otherNote == this) {
-            return true;
-        }
-
-        return otherNote != null
-                && otherNote.getDateTime().equals(this.getDateTime());
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {

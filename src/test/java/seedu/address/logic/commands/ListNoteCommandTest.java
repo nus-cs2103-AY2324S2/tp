@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showNotesAtIndex;
@@ -53,6 +54,18 @@ class ListNoteCommandTest {
         ListNoteCommand listNoteCommand = new ListNoteCommand(outOfBoundIndex);
 
         assertCommandFailure(listNoteCommand, model, Messages.MESSAGE_INVALID_INDEX);
+    }
+
+    @Test
+    public void getCommandWord() {
+        Command command = new ListNoteCommand();
+        assertEquals(ListNoteCommand.COMMAND_WORD, command.getCommandWord());
+    }
+
+    @Test
+    public void getMessageUsage() {
+        Command command = new ListNoteCommand();
+        assertEquals(ListNoteCommand.MESSAGE_USAGE, command.getMessageUsage());
     }
 
 }

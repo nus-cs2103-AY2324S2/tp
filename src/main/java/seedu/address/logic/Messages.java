@@ -55,11 +55,10 @@ public class Messages {
      */
     public static String format(Note note) {
         final StringBuilder builder = new StringBuilder();
-        builder.append(note.getDateTime())
-                .append("; Date: ")
-                .append(note.getDescription())
-                .append("; Description: ");
+        builder.append("; Date: ")
+                .append(note.getDateTime())
+                .append("; Description: ")
+                .append(note.getDescription());
         return builder.toString();
     }
-
 }

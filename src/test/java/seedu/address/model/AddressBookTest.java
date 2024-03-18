@@ -9,6 +9,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -20,6 +21,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.model.person.note.Description;
 import seedu.address.model.person.note.Note;
 import seedu.address.testutil.PersonBuilder;
 
@@ -107,6 +109,25 @@ public class AddressBookTest {
         ObservableList<Note> notesToDelete = ALICE.getNotes();
         newData.removePerson(ALICE);
         assertFalse(newData.getNoteList().contains(notesToDelete));
+    }
+
+    @Test
+    public void addNote_singleNote_addedSuccessfully() {
+        AddressBook ab = new AddressBook();
+        ab.addNote(new Note(LocalDateTime.now(), new Description("Test Note")));
+        assertEquals(1, ab.getNoteList().size());
+    }
+
+    @Test
+    public void addNote_multipleNotes_addedSuccessfully() {
+        AddressBook ab = new AddressBook();
+        Note firstNote = new Note(LocalDateTime.now(), new Description("First Test Note"));
+        Note secondNote = new Note(LocalDateTime.now().plusDays(1), new Description("Second Test Note"));
+        ab.addNote(firstNote);
+        ab.addNote(secondNote);
+        assertEquals(2, ab.getNoteList().size());
+        assertEquals(firstNote, ab.getNoteList().get(0));
+        assertEquals(secondNote, ab.getNoteList().get(1));
     }
 
     @Test

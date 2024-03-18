@@ -10,12 +10,15 @@ import static seedu.address.testutil.TypicalPersons.BENSON;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.note.Description;
+import seedu.address.model.person.note.Note;
 import seedu.address.testutil.AddressBookBuilder;
 
 public class ModelManagerTest {
@@ -128,5 +131,35 @@ public class ModelManagerTest {
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
         assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs)));
+    }
+
+    @Test
+    public void addNote_noteAdded_noteListSizeIncreases() {
+        int initialNoteListSize = modelManager.getFilteredNoteList().size();
+        Note newNote = new Note(LocalDateTime.now(), new Description("Test Note"));
+
+        modelManager.addNote(newNote);
+
+        assertEquals(initialNoteListSize + 1, modelManager.getFilteredNoteList().size());
+    }
+
+    @Test
+    public void addNote_noteAdded_addedNoteIsInList() {
+        Note newNote = new Note(LocalDateTime.now(), new Description("Unique Test Note"));
+
+        modelManager.addNote(newNote);
+
+        assertTrue(modelManager.getFilteredNoteList().contains(newNote));
+    }
+
+    @Test
+    public void addNote_noteAdded_filteredNoteListShowsAllNotes() {
+        int totalNotesCount = modelManager.getAddressBook().getNoteList().size();
+        Note newNote = new Note(LocalDateTime.now(), new Description("Another Test Note"));
+
+        modelManager.addNote(newNote);
+        modelManager.updateFilteredNoteList(Model.PREDICATE_SHOW_ALL_NOTES);
+
+        assertEquals(totalNotesCount + 1, modelManager.getFilteredNoteList().size());
     }
 }
