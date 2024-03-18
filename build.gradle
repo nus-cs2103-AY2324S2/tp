@@ -62,6 +62,7 @@ dependencies {
 
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: jUnitVersion
     testImplementation "org.mockito:mockito-core:3.+"
+    testImplementation "org.mockito:mockito-junit-jupiter:5.+"
 
     testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: jUnitVersion
 }

@@ -1,14 +1,35 @@
 {
   "persons": [ {
-    "name": "Alice Pauline",
-    "phone": "94351253",
-    "email": "alice@example.com",
-    "address": "123, Jurong West Ave 6, #08-111",
-    "tags": [ "friends" ]
+    "nric": "S1234567A",
+    "name" : "Alice Pauline",
+    "gender": "F",
+    "birthdate": "01-02-2000",
+    "phone" : "94351253",
+    "email" : "alice@example.com",
+    "drugAllergy": "No allergy",
+    "illnesses" : [ "Infectious Disease" ],
+    "notes" : [ {
+      "dateTime" : "2024-02-19T21:30:00",
+      "description" : "General Flu"
+    }, {
+      "dateTime" : "2024-02-28T08:30:00",
+      "description" : "Headache"
+    } ]
   }, {
-    "name": "Alice Pauline",
-    "phone": "94351253",
-    "email": "pauline@example.com",
-    "address": "4th street"
+    "nric": "S1234567A",
+    "name" : "Alice Pauline",
+    "gender": "F",
+    "birthdate": "01-02-2000",
+    "phone" : "94351253",
+    "email" : "alice@example.com",
+    "drugAllergy": "No allergy",
+    "illnesses" : [ "Infectious Disease" ],
+    "notes" : [ {
+      "dateTime" : "2024-02-19T21:30:00",
+      "description" : "General Flu"
+    }, {
+      "dateTime" : "2024-02-28T08:30:00",
+      "description" : "Headache"
+    } ]
   } ]
 }

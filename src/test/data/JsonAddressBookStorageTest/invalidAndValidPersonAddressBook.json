@@ -1,13 +1,19 @@
 {
   "persons": [ {
+    "nric": "S1234567X",
     "name": "Valid Person",
+    "gender": "M",
+    "birthDate": "01-02-1999",
     "phone": "9482424",
     "email": "hans@example.com",
-    "address": "4th street"
+    "drugAllergy": "Penicillin"
   }, {
+    "nric": "S1234567Z",
     "name": "Person With Invalid Phone Field",
+    "gender": "M",
+    "birthDate": "01-02-1999",
     "phone": "948asdf2424",
     "email": "hans@example.com",
-    "address": "4th street"
+    "drugAllergy": "No allergy"
   } ]
 }
