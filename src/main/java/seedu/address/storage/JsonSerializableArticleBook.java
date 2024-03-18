@@ -23,7 +23,7 @@ public class JsonSerializableArticleBook {
     private final List<JsonAdaptedArticle> articles = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given persons.
+     * Constructs a {@code JsonSerializableArticleBook} with the given articles.
      */
     @JsonCreator
     public JsonSerializableArticleBook(@JsonProperty("articles") List<JsonAdaptedArticle> articles) {
@@ -31,9 +31,9 @@ public class JsonSerializableArticleBook {
     }
 
     /**
-     * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
+     * Converts a given {@code ReadOnlyArticleBook} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
+     * @param source future changes to this will not affect the created {@code JsonSerializableArticleBook}.
      */
     public JsonSerializableArticleBook(ReadOnlyArticleBook source) {
         articles.addAll(source.getArticleList().stream().map(JsonAdaptedArticle::new).collect(Collectors.toList()));
@@ -42,7 +42,7 @@ public class JsonSerializableArticleBook {
 
 
     /**
-     * Converts this address book into the model's {@code AddressBook} object.
+     * Converts this article book into the model's {@code ArticleBook} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
