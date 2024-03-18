@@ -21,7 +21,7 @@ import staffconnect.model.person.Person;
 public class PersonCard extends UiPart<Region> {
 
     private static final String FXML = "PersonListCard.fxml";
-    private static final int ROW_HEIGHT = 43; //row height of each meeting
+    private static final int ROW_HEIGHT = 33; //row height of each meeting
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -87,7 +87,7 @@ public class PersonCard extends UiPart<Region> {
 
         //This is probably only feasible workaround for now without messing or revamping UI.
         //To set the correct height
-        meetingListView.setPrefHeight(meetingsList.size() * ROW_HEIGHT);
+        meetingListView.setPrefHeight((meetingsList.size() * ROW_HEIGHT) + 10);
 
         meetingListView.setItems(meetingsList);
         meetingListView.setCellFactory(listView -> new MeetingsListViewCell());
