@@ -27,8 +27,7 @@ public class ViewCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        int totalPerson = model.getTotalPersons();
-        return new CommandResult("The total number of Students is " + totalPerson);
+        return new CommandResult(MESSAGE_SUCCESS, false, false, true);
     }
 
 
