@@ -23,4 +23,14 @@ public class Id {
         return this.id;
     }
 
+    @Override
+    public boolean equals(Object other) {
+        if (other instanceof Id) {
+            Id otherId = (Id) other;
+            return id.equals(otherId.id);
+        } else {
+            return false;
+        }
+    }
+
 }

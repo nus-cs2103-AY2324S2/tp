@@ -6,15 +6,13 @@ import static seedu.address.logic.parser.CliSyntax.*;
 import java.util.Arrays;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Id;
+import seedu.address.model.person.IsSameIdPredicate;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
-
-import javax.swing.text.View;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -41,7 +39,7 @@ public class ViewCommandParser implements Parser<ViewCommand> {
                 name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
             }
         } catch (ParseException e) {
-            System.out.println("aftername");
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
         }
 
         Id id = null;
@@ -50,7 +48,7 @@ public class ViewCommandParser implements Parser<ViewCommand> {
                 id = ParserUtil.parseId(argMultimap.getValue(PREFIX_ID).get());
             }
         } catch (ParseException e) {
-            System.out.println("after id");
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
         }
         String trimmedArgs = args.trim();
         if (trimmedArgs.isEmpty()) {
@@ -62,10 +60,10 @@ public class ViewCommandParser implements Parser<ViewCommand> {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         } else if (id == null) {
-            return new ViewCommand(id);
-        } else {
             String[] nameKeywords = trimmedArgs.split("\\s+");
             return new ViewCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        } else {
+            return new ViewCommand(new IsSameIdPredicate(id));
         }
     }
 
