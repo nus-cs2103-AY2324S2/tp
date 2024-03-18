@@ -1,9 +1,10 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENTID;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTEND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_DESCRIPTION;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -20,13 +21,14 @@ public class AddAppointmentCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an appointment to the address book. "
             + "Parameters: "
-            + PREFIX_STUDENTID + "STUDENTID "
+            + PREFIX_STUDENT_ID + "STUDENTID "
             + PREFIX_DATETIME + "DATETIME "
             + PREFIX_ATTEND + "ATTEND\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_STUDENTID + "1 "
+            + PREFIX_STUDENT_ID + "1 "
             + PREFIX_DATETIME + "2024-03-18 09:00 "
-            + PREFIX_ATTEND + "false";
+            + PREFIX_ATTEND + "false "
+            + PREFIX_APPOINTMENT_DESCRIPTION + "This is a new appointment"; //TODO: remove after case log is implemented
 
     public static final String MESSAGE_SUCCESS = "New appointment added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This appointment already exists in the CogniCare address book";
@@ -50,7 +52,7 @@ public class AddAppointmentCommand extends Command {
         }
 
         model.addAppointment(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.formatAppointment(toAdd)));
     }
 
     @Override

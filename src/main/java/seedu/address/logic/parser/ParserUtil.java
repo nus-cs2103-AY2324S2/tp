@@ -2,11 +2,9 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
-import java.text.DateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Collection;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -179,5 +177,16 @@ public class ParserUtil {
 //            throw new ParseException(Appointment.MESSAGE_CONSTRAINTS);
 //        }
         return att;
+    /**
+     * Parses a {@code Collection<String> description} into a {@code String}.
+     * Leading and trailing whitespaces will be trimmed.
+     * TODO: remove after case log is implemented
+     */
+    public static String parseDescription(Collection<String> description) {
+        requireNonNull(description);
+        if (description.isEmpty()) {
+            return "";
+        }
+        return description.iterator().next().trim();
     }
 }

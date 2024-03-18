@@ -12,8 +12,10 @@ public class CliSyntax {
     // TODO: Change and remove this
     public static final Prefix PREFIX_ADDRESS = new Prefix("t/");
     public static final Prefix PREFIX_ALIAS = new Prefix("a/");
-    public static final Prefix PREFIX_STUDENTID = new Prefix("sid/");
+    public static final Prefix PREFIX_STUDENT_ID = new Prefix("sid/");
     public static final Prefix PREFIX_DATETIME = new Prefix("d/");
     public static final Prefix PREFIX_ATTEND = new Prefix("at/");
+    //TODO: remove after case log is implemented
+    public static final Prefix PREFIX_APPOINTMENT_DESCRIPTION = new Prefix("ad/");
 
 }

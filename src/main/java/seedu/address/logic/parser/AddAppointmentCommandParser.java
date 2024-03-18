@@ -1,9 +1,10 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENTID;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTEND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_DESCRIPTION;
 
 import java.time.LocalDateTime;
 import java.util.stream.Stream;
@@ -24,21 +25,24 @@ public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand
      */
     public AddAppointmentCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_STUDENTID, PREFIX_DATETIME, PREFIX_ATTEND);
+                ArgumentTokenizer.tokenize(args, PREFIX_STUDENT_ID, PREFIX_DATETIME,
+                        PREFIX_ATTEND, PREFIX_APPOINTMENT_DESCRIPTION);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_STUDENTID, PREFIX_DATETIME)
+        if (!arePrefixesPresent(argMultimap, PREFIX_STUDENT_ID, PREFIX_DATETIME)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddAppointmentCommand.MESSAGE_USAGE));
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_STUDENTID, PREFIX_DATETIME, PREFIX_ATTEND);
-        int studentId = ParserUtil.parseStudentId(argMultimap.getValue(PREFIX_STUDENTID).get());
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_STUDENT_ID, PREFIX_DATETIME, PREFIX_ATTEND,
+                PREFIX_APPOINTMENT_DESCRIPTION);
+        int studentId = ParserUtil.parseStudentId(argMultimap.getValue(PREFIX_STUDENT_ID).get());
         LocalDateTime dateTime = ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_DATETIME).get());
         boolean attend = ParserUtil.parseAttend(argMultimap.getValue(PREFIX_ATTEND).get());
+        //TODO: remove after case log is implemented
+        String description = ParserUtil.parseDescription(argMultimap.getAllValues(PREFIX_APPOINTMENT_DESCRIPTION));
 
-
-        Appointment appointment = new Appointment(dateTime, studentId, "", attend);
+        Appointment appointment = new Appointment(dateTime, studentId, description, attend);
         return new AddAppointmentCommand(appointment);
     }
 

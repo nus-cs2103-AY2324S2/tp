@@ -140,4 +140,9 @@ public class Appointment implements Comparable<Appointment> {
     public int getAppointmentId() {
         return appointmentId;
     }
+
+    //TODO: remove after case log is implemented
+    public String getAppointmentDescription() {
+        return appointmentDescription;
+    }
 }

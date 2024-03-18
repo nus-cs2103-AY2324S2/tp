@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Person;
 
 /**
@@ -111,18 +112,6 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
-    //=========== AppointmentBook ================================================================================
-    @Override
-    public boolean hasAppointment(Appointment appointment) {
-        requireNonNull(appointment);
-//        return appointmentBook.hasPerson(appointment);
-        return false;
-    }
-    @Override
-    public void addAppointment(Appointment appointment) {
-//        appoinmentBook.addAppointment(appointment);
-//        updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENT);
-    }
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -157,4 +146,17 @@ public class ModelManager implements Model {
                 && filteredPersons.equals(otherModelManager.filteredPersons);
     }
 
+    //=========== AppointmentBook ================================================================================
+
+    @Override
+    public boolean hasAppointment(Appointment appointment) {
+        requireNonNull(appointment);
+//        return appointmentBook.hasPerson(appointment);
+        return false;
+    }
+    @Override
+    public void addAppointment(Appointment appointment) {
+//        appoinmentBook.addAppointment(appointment);
+//        updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENT);
+    }
 }

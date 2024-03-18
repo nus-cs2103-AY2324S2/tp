@@ -48,9 +48,9 @@ public class Messages {
     }
 
     /**
-     * Formats the {@code person} for display to the user.
+     * Formats the {@code appointment} for display to the user.
      */
-    public static String format(Appointment appointment) {
+    public static String formatAppointment(Appointment appointment) {
         final StringBuilder builder = new StringBuilder();
         builder.append(appointment.getAppointmentId())
                 .append("; StudentId: ")
@@ -58,7 +58,10 @@ public class Messages {
                 .append("; DateTime: ")
                 .append(appointment.getAppointmentDateTime())
                 .append("; Attend: ")
-                .append((appointment.getAttendedStatus()));
+                .append((appointment.getAttendedStatus()))
+                //TODO: remove after case log is implemented
+                .append("; Description: ")
+                .append((appointment.getAppointmentDescription()));
         return builder.toString();
     }
 }
