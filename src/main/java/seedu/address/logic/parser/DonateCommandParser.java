@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BOOKLIST;
 
+import java.util.NoSuchElementException;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.DonateCommand;
@@ -24,13 +26,15 @@ public class DonateCommandParser implements Parser<DonateCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_BOOKLIST);
 
         Index index;
+        String bookTitle;
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
+            bookTitle = argMultimap.getValue(PREFIX_BOOKLIST).get();
         } catch (IllegalValueException ive) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DonateCommand.MESSAGE_USAGE), ive);
+        } catch (NoSuchElementException nee) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DonateCommand.MESSAGE_USAGE), nee);
         }
-
-        String bookTitle = argMultimap.getValue(PREFIX_BOOKLIST).orElse("");
 
         return new DonateCommand(index, new BookList(bookTitle));
     }
