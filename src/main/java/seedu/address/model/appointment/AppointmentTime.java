@@ -3,9 +3,10 @@ package seedu.address.model.appointment;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 /**
- * Represents an Appointment's time in the address book.
+ * Represents an Appointment's Date, startTime and endTime in the address book.
  * ASSUMPTION: An Appointment CANNOT SPAN MULTIPLE DAYS!!!
  * Guarantees: none at the moment.
  */
@@ -32,21 +33,15 @@ public class AppointmentTime {
     }
 
     private LocalTime parseRawTiming(String rawTime) {
-        int length = rawTime.length();
-        if (length == 4) {
-            int num = Integer.parseInt(rawTime.substring(0, 2));
-            if (rawTime.charAt(2) == 'A') { // AM
-                return LocalTime.of(num, 0);
-            } else { // PM
-                return LocalTime.of(12 + num, 0);
-            }
+        int hour = Integer.parseInt(rawTime.substring(0, rawTime.length() - 2));
+        String amPm = rawTime.substring(rawTime.length() - 2).toUpperCase();
+
+        if (amPm.equals("AM")) {
+            return LocalTime.of(hour == 12 ? 0 : hour, 0);
+        } else if (amPm.equals("PM")) {
+            return LocalTime.of(hour == 12 ? 12 : 12 + hour, 0);
         } else {
-            int num = Integer.parseInt(rawTime.substring(0, 1));
-            if (rawTime.charAt(1) == 'A') { // AM
-                return LocalTime.of(num, 0);
-            } else { // PM
-                return LocalTime.of(12 + num, 0);
-            }
+            throw new IllegalArgumentException("Invalid time format: " + rawTime);
         }
     }
 
@@ -60,6 +55,17 @@ public class AppointmentTime {
 
     public LocalTime getEndTime() {
         return endTime;
+    }
+
+    public String getFormattedDateTime() {
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("ha").withLocale(Locale.ENGLISH);
+
+        String dateStr = appointmentDate.format(dateFormatter);
+        String startTimeStr = startTime.format(timeFormatter).toLowerCase();
+        String endTimeStr = endTime.format(timeFormatter).toLowerCase();
+
+        return dateStr + " " + startTimeStr + "-" + endTimeStr;
     }
 
     @Override
