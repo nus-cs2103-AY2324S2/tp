@@ -274,13 +274,15 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* NUS CS2103T Tutors
+* has a need to manage a significant number of contact
+* manages student's profile such as attendance, grade, etc
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: Central platform for managing students' profiles such as attendance, grades, assessments, etc. 
 
 
 ### User stories
@@ -289,14 +291,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
 |----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
+| `* * *`  | user                                       | add a new student to my class             | keep track of my students' profiles                                                                        |
+| `* * *`  | new user who enters the program for the first time                                       | select the class that I want       | view all the students in that selected class                 |
+| `* * *`  | user                                       | remove a student from the class              | keep an updated record of students in the class                                   |
+| `* * *`  | new user                                       | create new class        | separate students into their respective classes |
+| `* *`    | user                                       | write descriptions for each student | take note of certain students based on the description                |
+| `***`      | user | create an attendance sheet for my students         | record a student's attendance                                                 |
+| `*`      | user | edit the attendance sheet of students         | conveniently make changes to attendance when necessary                                                 |
+| `***`      | user | record attendance status for my students (PRESENT, ABSENT, VALID REASON)        | acknowledge their attendance                                                 |
+| `***`      | user | delete an attendance sheet         | remove any unnecessary attendance sheet                                                  |
+| `*`      | organised user | browse my contacts in the default alphabetical setting         | easily scroll to find a particular contact                                                 |
+| `*`      | forgetful user | schedule reminders for important events or follow-ups associated with a specific contact         | don't miss important dates or tasks                                                 |
 
-*{More to be added}*
 
 ### Use cases
 
