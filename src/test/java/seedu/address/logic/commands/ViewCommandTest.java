@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -83,6 +84,27 @@ public class ViewCommandTest {
 
         // different person -> returns false
         assertNotEquals(viewFirstCommand, viewSecondCommand);
+    }
+
+    @Test
+    public void execute_emptyAddressBook_throwsCommandException() {
+        // Empty the address book
+        model = new ModelManager();
+        ViewCommand viewCommand = new ViewCommand(Index.fromOneBased(1));
+
+        assertCommandFailure(viewCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void equals_otherObjectNotInstanceOfViewCommand_returnsFalse() {
+        // Create a ViewCommand object
+        ViewCommand viewCommand = new ViewCommand(Index.fromOneBased(1));
+
+        // Create another object of a different class
+        Object otherObject = new Object();
+
+        // Check if they are equal
+        assertFalse(viewCommand.equals(otherObject));
     }
 
     @Test
