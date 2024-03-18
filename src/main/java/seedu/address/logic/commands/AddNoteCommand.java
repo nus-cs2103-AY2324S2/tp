@@ -23,14 +23,15 @@ public class AddNoteCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the note of the person whose profile matches "
             + "the specified IC (case-insensitive). "
-            + "Existing remark will be appended by default. To replace the original note, add -replace at "
-            + "the end of your command. E.g. addnote i/S0123456Q n/Diabetes -replace\n"
+            + "Existing remark will be appended by default. "
+            + "To replace the original note, add -replace at the end of your command. "
+            + "E.g. addnote i/S0123456Q n/Diabetes -replace\n"
             + "Parameters: "
             + PREFIX_IC + "IC "
             + PREFIX_NOTE + "NOTE \n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_IC + " S0123456Q "
-            + PREFIX_NOTE + "Healthy.";
+            + PREFIX_IC + "S0123456Q "
+            + PREFIX_NOTE + "Diabetes";
 
 
     public static final String MESSAGE_MODIFY_NOTE_SUCCESS = "%1$s's note modified successfully!";
@@ -62,7 +63,7 @@ public class AddNoteCommand extends Command {
         Person personToEdit = lastShownList.get(0);
         Person editedPerson;
 
-        if (isReplace) {
+        if (isReplace || personToEdit.getNote().equals(Note.DEFAULT)) {
             editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
                     personToEdit.getIdentityCardNumber(), personToEdit.getAge(), personToEdit.getSex(),
                     personToEdit.getAddress(), note, personToEdit.getTags());
