@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-import seedu.address.commons.util.StringUtil;
 import seedu.address.commons.util.ToStringBuilder;
 
 /**
@@ -21,22 +20,16 @@ public class NameContainsKeywordsPredicate implements Predicate<Person> {
     @Override
     public boolean test(Person person) {
         Predicate<String> personName = keyword ->
-                StringUtil.containsWordIgnoreCase(person.getName().toString(), keyword);
+                person.getName().toString().toLowerCase().contains(keyword.toLowerCase());
         Predicate<String> personNumber = keyword ->
-                StringUtil.containsWordIgnoreCase(person.getPhone().toString(), keyword);
+                person.getPhone().toString().toLowerCase().contains(keyword.toLowerCase());
         Predicate<String> personAddress = keyword ->
-                StringUtil.containsWordIgnoreCase(person.getAddress().toString(), keyword);
+                person.getAddress().toString().toLowerCase().contains(keyword.toLowerCase());
         Predicate<String> personEmail = keyword ->
-                StringUtil.containsWordIgnoreCase(person.getEmail().toString(), keyword);
-        Predicate<String> personTag = keyword -> StringUtil.containsWordIgnoreCase(person.getTags().stream()
-                .map(tag -> tag.tagName).collect(Collectors.joining()), keyword);
-        //System.out.println(person.getName());
-        //Set<Tag> tags = person.getTags();
-        //for (Tag tag : tags) {
-        //    System.out.println(tag.tagName);
-        //}
-        //System.out.println();
-        //System.out.println(person.getTags().stream().map(tag -> tag.tagName));
+                person.getEmail().toString().toLowerCase().contains(keyword.toLowerCase());
+        Predicate<String> personTag = keyword -> person.getTags().stream()
+                .map(tag -> tag.tagName).collect(Collectors.joining()).toLowerCase().contains(keyword.toLowerCase());
+
         Predicate<String> combinedCondition = personName.or(personNumber)
                 .or(personAddress).or(personEmail).or(personTag);
         return keywords.stream()
