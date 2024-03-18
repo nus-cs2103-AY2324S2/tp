@@ -7,8 +7,10 @@ import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_MATRIC_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_STUDIO_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.MATRIC_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.MATRIC_DESC_BOB;
@@ -18,6 +20,8 @@ import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.address.logic.commands.CommandTestUtil.STUDIO_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.STUDIO_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
@@ -26,12 +30,15 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_MATRIC_NUMBER_A
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MATRIC_NUMBER_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_STUDIO_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MATRIC_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDIO;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalPersons.AMY;
@@ -46,6 +53,8 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.student.Matric;
+import seedu.address.model.student.Studio;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.PersonBuilder;
 
@@ -55,26 +64,29 @@ public class AddCommandParserTest {
     @Test
     public void parse_allFieldsPresent_success() {
         Person expectedPerson = new PersonBuilder(BOB)
-                .withTags(VALID_TAG_FRIEND).withMatric(VALID_MATRIC_NUMBER_BOB).build();
+                .withTags(VALID_TAG_FRIEND).withMatric(VALID_MATRIC_NUMBER_BOB)
+                .withStudio(VALID_STUDIO_BOB).build();
 
         // whitespace only preamble
-        assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + MATRIC_DESC_BOB, new AddCommand(expectedPerson));
+        assertParseSuccess(parser,
+                           PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+                           + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + MATRIC_DESC_BOB + STUDIO_DESC_BOB,
+                           new AddCommand(expectedPerson));
 
 
         // multiple tags - all accepted
         Person expectedPersonMultipleTags = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
         assertParseSuccess(parser,
-                NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                        + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + MATRIC_DESC_BOB,
-                new AddCommand(expectedPersonMultipleTags));
+                           NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
+                           + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + MATRIC_DESC_BOB + STUDIO_DESC_BOB,
+                           new AddCommand(expectedPersonMultipleTags));
     }
 
     @Test
     public void parse_repeatedNonTagValue_failure() {
         String validExpectedPersonString = NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND;
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + MATRIC_DESC_BOB + STUDIO_DESC_BOB;
 
         // multiple names
         assertParseFailure(parser, NAME_DESC_AMY + validExpectedPersonString,
@@ -92,11 +104,19 @@ public class AddCommandParserTest {
         assertParseFailure(parser, ADDRESS_DESC_AMY + validExpectedPersonString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_ADDRESS));
 
+        // multiple matric numbers
+        assertParseFailure(parser, MATRIC_DESC_AMY + validExpectedPersonString,
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_MATRIC_NUMBER));
+
+        // multiple studios
+        assertParseFailure(parser, STUDIO_DESC_AMY + validExpectedPersonString,
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_STUDIO));
+
         // multiple fields repeated
-        assertParseFailure(parser,
-                validExpectedPersonString + PHONE_DESC_AMY + EMAIL_DESC_AMY + NAME_DESC_AMY + ADDRESS_DESC_AMY
-                        + validExpectedPersonString,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NAME, PREFIX_ADDRESS, PREFIX_EMAIL, PREFIX_PHONE));
+        assertParseFailure(parser, PHONE_DESC_AMY + EMAIL_DESC_AMY
+                + NAME_DESC_AMY + ADDRESS_DESC_AMY + validExpectedPersonString,
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NAME, PREFIX_ADDRESS,
+                                                             PREFIX_EMAIL, PREFIX_PHONE));
 
         // invalid value followed by valid value
 
@@ -116,6 +136,14 @@ public class AddCommandParserTest {
         assertParseFailure(parser, INVALID_ADDRESS_DESC + validExpectedPersonString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_ADDRESS));
 
+        // invalid matric number
+        assertParseFailure(parser, INVALID_MATRIC_DESC + validExpectedPersonString,
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_MATRIC_NUMBER));
+
+        // invalid studio
+        assertParseFailure(parser, INVALID_STUDIO_DESC + validExpectedPersonString,
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_STUDIO));
+
         // valid value followed by invalid value
 
         // invalid name
@@ -133,6 +161,14 @@ public class AddCommandParserTest {
         // invalid address
         assertParseFailure(parser, validExpectedPersonString + INVALID_ADDRESS_DESC,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_ADDRESS));
+
+        // invalid matric number
+        assertParseFailure(parser, validExpectedPersonString + INVALID_MATRIC_DESC,
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_MATRIC_NUMBER));
+
+        // invalid studio
+        assertParseFailure(parser, validExpectedPersonString + INVALID_STUDIO_DESC,
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_STUDIO));
     }
 
     @Test
@@ -140,15 +176,36 @@ public class AddCommandParserTest {
         // zero tags
         Person expectedPerson = new PersonBuilder(AMY).withTags().withMatric(VALID_MATRIC_NUMBER_AMY).build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY
-                        + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + MATRIC_DESC_AMY,
+                        + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + MATRIC_DESC_AMY + STUDIO_DESC_AMY,
                 new AddCommand(expectedPerson));
     }
+
     @Test
     public void parse_matricMissing_success() {
         // no matric number
         Person expectedPerson = new PersonBuilder(AMY).withTags(VALID_TAG_FRIEND).withMatric("").build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY
-                        + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + TAG_DESC_FRIEND,
+                        + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + TAG_DESC_FRIEND + STUDIO_DESC_AMY,
+                new AddCommand(expectedPerson));
+    }
+
+    @Test
+    public void parse_studioMissing_success() {
+        // no studio
+        Person expectedPerson = new PersonBuilder(AMY).withTags(VALID_TAG_FRIEND).withMatric(VALID_MATRIC_NUMBER_AMY)
+                                                        .withStudio("").build();
+        assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY
+                        + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + TAG_DESC_FRIEND + MATRIC_DESC_AMY,
+                new AddCommand(expectedPerson));
+    }
+
+    @Test
+    public void parse_tagAndStudioMissing_success() {
+        // zero tags; no studio
+        Person expectedPerson = new PersonBuilder(AMY).withTags().withMatric(VALID_MATRIC_NUMBER_AMY)
+                                                      .withStudio("").build();
+        assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY
+                        + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + MATRIC_DESC_AMY,
                 new AddCommand(expectedPerson));
     }
 
@@ -157,9 +214,20 @@ public class AddCommandParserTest {
         // zero tags; no matric number
         Person expectedPerson = new PersonBuilder(AMY).withTags().withMatric("").build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY
-                        + EMAIL_DESC_AMY + ADDRESS_DESC_AMY,
+                        + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + STUDIO_DESC_AMY,
                 new AddCommand(expectedPerson));
     }
+
+    @Test
+    public void parse_tagAndMatricAndStudioMissing_success() {
+        // zero tags; no matric number; no studio
+        Person expectedPerson = new PersonBuilder(AMY).withTags()
+                                                      .withMatric("").withStudio("").build();
+        assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY
+                           + EMAIL_DESC_AMY + ADDRESS_DESC_AMY,
+                           new AddCommand(expectedPerson));
+    }
+
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
@@ -207,6 +275,14 @@ public class AddCommandParserTest {
         // invalid tag
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + INVALID_TAG_DESC + VALID_TAG_FRIEND, Tag.MESSAGE_CONSTRAINTS);
+
+        // invalid matric number
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + INVALID_MATRIC_DESC, Matric.MESSAGE_CONSTRAINTS);
+
+        // invalid studio
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + INVALID_STUDIO_DESC, Studio.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC,

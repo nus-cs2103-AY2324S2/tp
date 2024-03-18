@@ -3,12 +3,13 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.matric.Matric;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.student.Matric;
+import seedu.address.model.student.Studio;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -22,6 +23,7 @@ public class PersonBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_MATRIC = "A1234567X";
+    public static final String DEFAULT_STUDIO = "S2";
 
     private Name name;
     private Phone phone;
@@ -29,6 +31,7 @@ public class PersonBuilder {
     private Address address;
     private Set<Tag> tags;
     private Matric matric;
+    private Studio studio;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -40,6 +43,7 @@ public class PersonBuilder {
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
         matric = new Matric(DEFAULT_MATRIC);
+        studio = new Studio(DEFAULT_STUDIO);
     }
 
     /**
@@ -52,6 +56,7 @@ public class PersonBuilder {
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
         matric = personToCopy.getMatric();
+        studio = personToCopy.getStudio();
     }
 
     /**
@@ -104,8 +109,18 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Studio} of the {@code Person} that we are building.
+     * @param studio studio number
+     * @return PersonBuilder
+     */
+    public PersonBuilder withStudio(String studio) {
+        this.studio = new Studio(studio);
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, phone, email, address, tags, matric);
+        return new Person(name, phone, email, address, tags, matric, studio);
     }
 
 }
