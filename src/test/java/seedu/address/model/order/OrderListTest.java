@@ -7,12 +7,9 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalOrders.CUPCAKES_ONLY;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 
-import java.util.ArrayList;
-
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.exceptions.OrderNotFoundException;
-import seedu.address.model.person.Person;
 import seedu.address.testutil.OrderBuilder;
 
 public class OrderListTest {
