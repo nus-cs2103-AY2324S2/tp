@@ -47,4 +47,14 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    /**
+     * Returns the client to be displayed in ClientViewPanel.
+     */
+    Person getDisplayClient();
+
+    /**
+     * Returns true if there is a client in the display.
+     */
+    boolean hasDisplayClient();
 }

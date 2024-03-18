@@ -70,6 +70,7 @@ public class LastMetCommand extends Command {
 
         model.setPerson(personToMeet, metPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.setDisplayClient(metPerson);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, personToMeet.getName()));
     }
