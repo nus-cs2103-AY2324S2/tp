@@ -149,6 +149,14 @@ public class Order implements Comparable<Order> {
     }
 
     /**
+     * Sets the {@code Person} ordering the order
+     * @param person the customer that the order belongs to
+     */
+    public void setCustomer(Person person) {
+        this.customer = person;
+    }
+
+    /**
      * Compares the other Order Object with this Object based on the OrderID
      * @param otherOrder the object to be compared.
      * @return negative integer, zero, or a positive integer as this object is less than,
@@ -169,13 +177,13 @@ public class Order implements Comparable<Order> {
      * @return A boolean value of whether the two orders are the same.
      */
     public boolean isSameOrder(Order otherOrder) {
-        if (otherOrder == this) {
+        if (otherOrder.equals(this)) {
             return true;
         }
 
         return otherOrder != null
                 && otherOrder.id == this.id
-                && otherOrder.customer == this.customer;
+                && otherOrder.customer.equals(this.customer);
     }
 
     @Override
