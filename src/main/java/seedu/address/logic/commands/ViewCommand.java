@@ -14,6 +14,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
+import java.util.List;
+
 
 public class ViewCommand extends Command {
     public static final String COMMAND_WORD = "view";
@@ -23,17 +25,24 @@ public class ViewCommand extends Command {
             + "index - Index shown in the corresponding contact list\n"
             + "Example: " + COMMAND_WORD + " 2";
 
-    private Index ClientIndex;
+    private final Index clientIndex;
 
-    public static final String MESSAGE_SUCCESS = "You are now viewing Client with index: " + ;
+    public static final String MESSAGE_SUCCESS = "You are now viewing Client with index: ";
 
-    public ViewCommand(Index ClientIndex) {
-        this.ClientIndex = ClientIndex;
+
+    public ViewCommand(Index clientIndex) {
+        this.clientIndex = clientIndex;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        requireNonNull(model);
+        List<Person> lastShownList = model.getFilteredPersonList();
 
-        return null;
+        if (this.clientIndex.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        }
+        Person selectedClient = lastShownList.get(this.clientIndex.getZeroBased());
+        return new CommandResult(MESSAGE_SUCCESS + this.clientIndex.getOneBased());
     }
 }

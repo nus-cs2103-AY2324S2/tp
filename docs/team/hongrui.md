@@ -11,6 +11,7 @@ The user interacts with it using a CLI, and it has a GUI created with JavaFX. It
 Given below are my contributions to the project.
 
 * **New Feature**:
+    * Added the view specific person command  
 
 
 * **Project management**:
