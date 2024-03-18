@@ -18,7 +18,7 @@ public class Messages {
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid";
     public static final String MESSAGE_PERSON_NOT_IN_LIST = "The person you are looking for is not on the list";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
-
+    public static final String MESSAGE_INVALID_END_TIME = "The end time is before the start time!";
     public static final String MESSAGE_INTERVIEW_NOT_IN_LIST = "The interview you are looking for is not on the list";
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";

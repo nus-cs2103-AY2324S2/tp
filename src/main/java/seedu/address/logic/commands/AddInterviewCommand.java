@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_END_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPLICANT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
@@ -58,6 +59,7 @@ public class AddInterviewCommand extends Command {
     private LocalTime startTime;
     private LocalTime endTime;
 
+    private Interview interview;
 
     /**
      * Creates an AddInterviewCommand to add the specified {@code Person}
@@ -99,11 +101,15 @@ public class AddInterviewCommand extends Command {
             }
         }
 
+        if (startTime.isAfter(endTime)) {
+            throw new CommandException(MESSAGE_INVALID_END_TIME);
+        }
+
         if (!isFoundApplicant || !isFoundInterviewer) {
             throw new CommandException(Messages.MESSAGE_PERSON_NOT_IN_LIST);
         }
 
-        Interview interview = new Interview(applicantSearch, interviewerSearch, date, startTime, endTime, description);
+        this.interview = new Interview(applicantSearch, interviewerSearch, date, startTime, endTime, description);
 
         if (model.hasInterview(interview)) {
             throw new CommandException(MESSAGE_DUPLICATE_INTERVIEW);
@@ -125,8 +131,8 @@ public class AddInterviewCommand extends Command {
             return false;
         }
 
-        AddInterviewCommand otherCommmand = (AddInterviewCommand) other;
-        return false;
+        AddInterviewCommand otherInterviewCommmand = (AddInterviewCommand) other;
+        return interview.equals(otherInterviewCommmand.interview);
     }
 
     @Override

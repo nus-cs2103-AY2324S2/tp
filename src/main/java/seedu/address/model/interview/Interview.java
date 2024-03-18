@@ -49,6 +49,10 @@ public class Interview {
         return endTime;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
     /**
      * Returns true if both interviews of the same name have at least one other identity field that is the same.
      * This defines a weaker notion of equality between two interviews.
