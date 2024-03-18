@@ -95,7 +95,7 @@ public class OrderListTest {
         orderList.editOrder(1, editedOrder);
         OrderList expectedOrderList = new OrderList();
         expectedOrderList.addOrder(CUPCAKES_AND_COOKIES, ALICE);
-        assertEquals(expectedOrderList,orderList);
+        assertEquals(expectedOrderList, orderList);
     }
 
     @Test
