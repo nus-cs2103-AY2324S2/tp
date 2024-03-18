@@ -105,6 +105,7 @@ public class ModelManager implements Model {
     public void addPerson(Person person) {
         addressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        System.out.println("test");
     }
 
     @Override
@@ -127,6 +128,7 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+        System.out.println("test");
     }
 
     @Override
@@ -139,6 +141,7 @@ public class ModelManager implements Model {
     public void addNote(Note note) {
         addressBook.addNote(note);
         updateFilteredNoteList(PREDICATE_SHOW_ALL_NOTES);
+        System.out.println("test");
     }
 
     /**

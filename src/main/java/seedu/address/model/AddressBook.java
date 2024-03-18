@@ -29,7 +29,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
-        notes = this.getNoteList();
+        notes = this.initialiseNoteList();
     }
 
     public AddressBook() {}
@@ -40,6 +40,19 @@ public class AddressBook implements ReadOnlyAddressBook {
     public AddressBook(ReadOnlyAddressBook toBeCopied) {
         this();
         resetData(toBeCopied);
+    }
+
+    /**
+     * Initialises a complete appointment note list for the  {@code AddressBook}
+     * @return appointment note list
+     */
+    public ObservableList<Note> initialiseNoteList() {
+        ObservableList<Note> notes = FXCollections.observableArrayList();
+        ObservableList<Person> persons = this.getPersonList();
+        for (Person person : persons) {
+            notes.addAll(person.getNotes());
+        }
+        return notes;
     }
 
     //// list overwrite operations
@@ -133,11 +146,6 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     @Override
     public ObservableList<Note> getNoteList() {
-        ObservableList<Note> notes = FXCollections.observableArrayList();
-        ObservableList<Person> persons = this.getPersonList();
-        for (Person person : persons) {
-            notes.addAll(person.getNotes());
-        }
         return notes;
     }
 
