@@ -14,7 +14,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/jaejayrome.png" width="200px">
 
 [[github](https://github.com/jaejayrome)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/timothy)]
 
 - Role: Developer
 - Responsibilities: Model
@@ -24,7 +24,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/timothysashimi.png" width="200px">
 
 [[github](http://github.com/timothysashimi)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/timothy)]
 
 - Role: Developer
 - Responsibilities: UI
@@ -53,7 +53,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/chewbum.png" width="200px">
 
 [[github](http://github.com/chewbum)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/timothy)]
 
 - Role: Developer
 - Responsibilities: Model
