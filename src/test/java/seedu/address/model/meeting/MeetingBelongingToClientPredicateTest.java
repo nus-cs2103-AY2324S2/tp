@@ -1,14 +1,17 @@
 package seedu.address.model.meeting;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.testutil.MeetingBuilder;
-import seedu.address.testutil.PersonBuilder;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.address.testutil.TypicalPersons.CHAD;
+import static seedu.address.testutil.TypicalPersons.JAMAL;
 
-import static seedu.address.testutil.TypicalPersons.*;
+import org.junit.jupiter.api.Test;
+
+import seedu.address.testutil.MeetingBuilder;
+import seedu.address.testutil.PersonBuilder;
 
 public class MeetingBelongingToClientPredicateTest {
     @Test

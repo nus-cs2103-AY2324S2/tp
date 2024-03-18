@@ -1,5 +1,8 @@
 package seedu.address.testutil;
 
+import static seedu.address.testutil.TypicalPersons.CHAD;
+import static seedu.address.testutil.TypicalPersons.JAMAL;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
@@ -12,8 +15,6 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
-
-import static seedu.address.testutil.TypicalPersons.*;
 
 /**
  * A utility class to help with building Person objects.
@@ -96,6 +97,9 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Meeting} of the {@code Person} that we are building.
+     */
     public PersonBuilder withDefaultMeetingA() {
         this.meetings.add(new MeetingBuilder()
                 .withClient(JAMAL)
@@ -104,6 +108,9 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Meeting} of the {@code Person} that we are building.
+     */
     public PersonBuilder withDefaultMeetingB() {
         this.meetings.add(new MeetingBuilder()
                 .withClient(CHAD)
