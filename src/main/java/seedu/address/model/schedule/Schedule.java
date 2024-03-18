@@ -19,7 +19,7 @@ public class Schedule {
 
     public static final String MESSAGE_CONSTRAINTS = "Schedule names should be alphanumeric";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
-    public static int SCHED_ID_COUNTER = 0;
+    private static int SCHED_ID_COUNTER = 0;
     // !! to EDIT as a metadata for Json storage
 
     public static final DateTimeFormatter CUSTOM_DATETIME = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
@@ -69,6 +69,11 @@ public class Schedule {
         return personList;
     }
 
+    /**
+     * Add new person(s) into personList if they are not added yet
+     *
+     * @param newParticipants
+     */
     public void addParticipants(ArrayList<Person> newParticipants) {
         for (Person p: newParticipants) {
             for (Person existingP: personList) {
