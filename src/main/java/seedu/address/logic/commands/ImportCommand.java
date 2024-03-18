@@ -111,16 +111,21 @@ public class ImportCommand extends Command {
 
     public String convertToAddCommandInput(Map<String, String> personData) {
         StringBuilder sb = new StringBuilder();
-        sb.append("add ");
+        sb.append(" ");
         for (String key : header) {
             // Maybe in the future, I can add a check to see if the value is empty
             // Maybe in the future, I make CliSyntax an enum class?
-            sb.append(prefixMap.get(key).getPrefix());
             if (key.equals("tags")) {
                 // tag is a special case, it can have multiple values
                 String tags = personData.get(key);
-                sb.append(tags.replace(";", ","));
+                String[] tagArray = tags.split(";");
+                for (String tag : tagArray) {
+                    sb.append(prefixMap.get(key).getPrefix());
+                    sb.append(tag);
+                    sb.append(" ");
+                }
             } else {
+                sb.append(prefixMap.get(key).getPrefix());
                 sb.append(personData.get(key));
             }
             sb.append(" ");
