@@ -75,12 +75,5 @@ public class Task {
         return taskName.equals(other.taskName);
     }
 
-    boolean hasTask(Task task) {
-        for(Task t : taskList) {
-            if(t.equals(task)) {
-                return true;
-            }
-        }
-        return false;
-    }
+    
 }
