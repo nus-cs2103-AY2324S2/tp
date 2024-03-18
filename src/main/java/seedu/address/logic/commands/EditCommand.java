@@ -40,11 +40,11 @@ public class EditCommand extends Command {
             + "[" + PREFIX_FIELD + "FIELD] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
+            + "[" + PREFIX_EMAIL + "EMAIL] \n"
             + "Example: " + COMMAND_WORD
             + PREFIX_NAME + "John Doe Others "
             + PREFIX_FIELD + "{ "
-            + PREFIX_NAME + "John Deed "
+            + "phone : " + "99820550 "
             + PREFIX_ADDRESS + "NUS College Avenue"
             + " }";
 

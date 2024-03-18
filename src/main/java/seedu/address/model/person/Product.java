@@ -15,17 +15,17 @@ public class Product {
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
-    public final String product;
+    public final String value;
 
     /**
      * Constructs an {@code Product}.
      *
-     * @param product A valid product.
+     * @param value A valid product.
      */
-    public Product(String product) {
-        requireNonNull(product);
-        checkArgument(isValidProduct(product), MESSAGE_CONSTRAINTS);
-        this.product = product;
+    public Product(String value) {
+        requireNonNull(value);
+        checkArgument(isValidProduct(value), MESSAGE_CONSTRAINTS);
+        this.value = value;
     }
 
     /**
@@ -37,7 +37,7 @@ public class Product {
 
     @Override
     public String toString() {
-        return product;
+        return value;
     }
 
     @Override
@@ -52,11 +52,11 @@ public class Product {
         }
 
         Product otherProduct = (Product) other;
-        return product.equals(otherProduct.product);
+        return value.equals(otherProduct.value);
     }
 
     @Override
     public int hashCode() {
-        return product.hashCode();
+        return value.hashCode();
     }
 }
