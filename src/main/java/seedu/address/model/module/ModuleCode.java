@@ -8,12 +8,17 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; is valid as declared in {@link #isValidCode(String)}
  */
 public class ModuleCode {
-    private final String code;
-
-    public static final String MESSAGE_CONSTRAINTS = "Module code %s should follow the module format, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS =
+            "Module code %s should follow the module format, and it should not be blank";
 
     public static final String VALIDATION_REGEX = "[a-zA-Z]{2,4}[0-9]{4}[a-zA-Z0-9]{0,5}";
+    private final String code;
 
+
+    /**
+     * Constructs a {@code ModuleCode}.
+     * @param code
+     */
     public ModuleCode(String code) {
         requireNonNull(code);
         checkArgument(isValidCode(code), String.format(MESSAGE_CONSTRAINTS, code));
@@ -30,10 +35,12 @@ public class ModuleCode {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o)
+        if (this == o) {
             return true;
-        if (o == null || getClass() != o.getClass())
+        }
+        if (o == null || getClass() != o.getClass()) {
             return false;
+        }
 
         ModuleCode code1 = (ModuleCode) o;
 

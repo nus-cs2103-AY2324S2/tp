@@ -26,7 +26,10 @@ public class StorageManager implements Storage {
     /**
      * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage, ModuleMapStorage moduleMapStorage) {
+    public StorageManager(
+            AddressBookStorage addressBookStorage,
+            UserPrefsStorage userPrefsStorage,
+            ModuleMapStorage moduleMapStorage) {
         this.addressBookStorage = addressBookStorage;
         this.userPrefsStorage = userPrefsStorage;
         this.moduleMapStorage = moduleMapStorage;
@@ -74,6 +77,12 @@ public class StorageManager implements Storage {
     }
 
     @Override
+    public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        addressBookStorage.saveAddressBook(addressBook, filePath);
+    }
+
+    @Override
     public Path getModuleFilePath() {
         return moduleMapStorage.getModuleFilePath();
     }
@@ -82,11 +91,5 @@ public class StorageManager implements Storage {
     public ModuleMap readModuleMap() {
         logger.fine("Attempting to read data from file: " + moduleMapStorage.getModuleFilePath());
         return moduleMapStorage.readModuleMap();
-    }
-
-    @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
-        logger.fine("Attempting to write to data file: " + filePath);
-        addressBookStorage.saveAddressBook(addressBook, filePath);
     }
 }

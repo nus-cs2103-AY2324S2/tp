@@ -14,6 +14,9 @@ import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleMap;
 
+/**
+ * A class to access ModuleMap data stored as a json file in the embedded jar
+ */
 public class JsonModuleMapStorage implements ModuleMapStorage {
 
     private static final Logger logger = LogsCenter.getLogger(JsonModuleMapStorage.class);

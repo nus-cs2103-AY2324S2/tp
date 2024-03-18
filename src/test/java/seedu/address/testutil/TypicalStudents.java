@@ -80,17 +80,20 @@ public class TypicalStudents {
         moduleMap.addModule(new Module(
                 new ModuleCode("CS2103T"),
                 new Title("Software Engineering"),
-                new Description("This course introduces the necessary conceptual and analytical tools for systematic and rigorous development of software systems")
+                new Description("This course introduces the necessary conceptual and analytical tools "
+                        + "for systematic and rigorous development of software systems")
                 ));
         moduleMap.addModule(new Module(
                 new ModuleCode("CS2040S"),
                 new Title("Data Structures and Algorithms"),
-                new Description("This course introduces students to the design and implementation of fundamental data structures and algorithms.")
+                new Description("This course introduces students to the design and implementation of fundamental "
+                        + "data structures and algorithms.")
         ));
         moduleMap.addModule(new Module(
                 new ModuleCode("CS2109S"),
                 new Title("Introduction to AI and Machine Learning"),
-                new Description("This course introduces basic concepts in Artificial Intelligence (AI) and Machine Learning (ML)")
+                new Description("This course introduces basic concepts in "
+                        + "Artificial Intelligence (AI) and Machine Learning (ML)")
         ));
         return moduleMap;
     }

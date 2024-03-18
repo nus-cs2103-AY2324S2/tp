@@ -6,7 +6,6 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.module.ModuleMap;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.UniqueStudentList;
 

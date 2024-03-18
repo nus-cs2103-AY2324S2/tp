@@ -11,6 +11,11 @@ public class Title {
     public static final String MESSAGE_CONSTRAINTS = "";
     private final String title;
 
+    /**
+     * Constructs a {@code Title}.
+     *
+     * @param title A valid title.
+     */
     public Title(String title) {
         requireNonNull(title);
         checkArgument(isValidTitle(title), MESSAGE_CONSTRAINTS);

@@ -1,8 +1,6 @@
 package seedu.address.model.module;
 
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Wrapper for a hashmap that stores all Module objects
