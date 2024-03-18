@@ -70,8 +70,22 @@ public class House {
         return false;
     }
 
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof House)) {
+            return false;
+        }
+
+        House otherStreet = (House) other;
+        return this.toString().equals(other.toString());
+    }
+
     public String toString() {
-        return "HOMELESS";
+        return "House";
     }
 
 

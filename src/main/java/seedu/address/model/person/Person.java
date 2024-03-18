@@ -23,21 +23,19 @@ public class Person {
     private final Phone phone;
     private final Email email;
 
-    // Data fields
-    private final House house;
-    private final PostalCode postalCode;
+    // critically, this refers to what type the buyer WANTS, and what type the seller HAS
+    private final String housingtype;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, House house, PostalCode postalCode, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Email email, String house, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, house, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.house = house;
-        this.postalCode = postalCode;
+        this.housingtype = house;
         this.tags.addAll(tags);
     }
 
@@ -53,13 +51,10 @@ public class Person {
         return email;
     }
 
-    public House getHouse() {
-        return house;
+    public String getHouse() {
+        return housingtype;
     }
 
-    public PostalCode getPostalCode() {
-        return postalCode;
-    }
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
@@ -101,15 +96,14 @@ public class Person {
         return name.equals(otherPerson.name)
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
-                && house.equals(otherPerson.house)
-                && postalCode.equals(otherPerson.postalCode)
+                && housingtype.equals(otherPerson.housingtype)
                 && tags.equals(otherPerson.tags);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, house, postalCode, tags);
+        return Objects.hash(name, phone, email, housingtype, tags);
     }
 
     @Override
@@ -118,8 +112,7 @@ public class Person {
                 .add("name", name)
                 .add("phone", phone)
                 .add("email", email)
-                .add("address", house)
-                .add("postal code", postalCode)
+                .add("address", housingtype)
                 .add("tags", tags)
                 .toString();
     }

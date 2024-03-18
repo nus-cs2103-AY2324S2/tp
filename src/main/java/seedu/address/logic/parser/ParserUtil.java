@@ -137,12 +137,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code street} is invalid.
      */
-    public static void parseHousing(String name) throws ParseException {
+    public static String parseHousing(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
         if (!House.isValidName(trimmedName.toLowerCase())) {
             throw new ParseException(House.MESSAGE_CONSTRAINTS);
         }
+        return trimmedName;
     }
 
     /**
