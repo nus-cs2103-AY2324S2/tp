@@ -106,25 +106,39 @@ Constraints :
 * `Salary and commission must be in format ${Number}/hr`
 * `Price must be in format ${Number}/{quantity}`
 
-### Editing a person : `Edit`
+### Editing a contact : `Edit`
 
-Edit the fields of the specified person in the Pooch Planner.
+Edit the fields of the specified **person / staff / supplier / maintainer** in the Pooch Planner.
 
-Format: `/edit ; name : [name] ; field { [field] : [value] }`
+
+#### Edits a person
+Format: `/edit ; name : [name] ; field : { phone : [phone] ; address : [address] ; email : [email] }`
+
+
+#### Edits a staff
+Format: `/edit-staff ; name : [name] ; field : { phone : [phone] ; address : [address] ; email : [email] ; salary : [salary]  ; employment : [part/full] }`
+
+
+#### Edits a supplier
+Format: `/edit-supplier ; name : [name] ; field : { phone : [phone] ; address : [address] ; email : [email] ; product : [product] ; price : [price] }`
+
+
+#### Edits a maintainer
+Format: `/edit-maintainer ; name : [name] ; field : { phone : [phone] ; address : [address] ; email : [email] ; skill : [skill] ; commission : [commission] }`
 
 * Edits the specified `field`(s) of the person with the specified `name`. Note that the specified person must first exist in Pooch Contact Book.
 * The name is a compulsory field that is case-insensitive but space-sensitive.
 * At least one field must be provided.
 * More than one field can be updated at the same time.
-* The field(s) to be edited must be a valid field within their contact type, i.e. Pooch Staff, Pooch Supplier, Pooch Maintenance).
-* **_Caution_** : Editing `name` field to another name that already exists in Pooch Contact Book is strictly **not** allowed.
+* The field(s) to be edited must be a valid field within their contact type, i.e. Pooch Staff, Pooch Supplier, Pooch Maintenance.
+* **_Caution_** : Editing `name` field is strictly **not** allowed and **will** be ignored.
 
 Examples:
 * `/edit ; name : Poochie ; field : { name : Mochie }`
 
   The above command edits the name of the person, from **_Poochie_** to **_Mochie_**, given that there are no other persons with the name, **_Mochie_**, in the Pooch Contact Book.
 
-* `/edit ; name : Thomas ; field : { address : Poochie Street 25 ; employment : full-time }`
+* `/edit-staff ; name : Thomas ; field : { address : Poochie Street 25 ; employment : full-time }`
 
   The above command edits the address of **_Thomas_** to **_Poochie Street 25_**.
   The above command also edits the employment of **_Thomas_**, which **must** be a **_Pooch Staff_**, to **_full-time_**.

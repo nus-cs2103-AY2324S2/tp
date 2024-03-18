@@ -34,7 +34,7 @@ import seedu.address.model.tag.Tag;
  * Edits the details of an existing maintainer in the address book.
  */
 public class EditMaintainerCommand extends Command {
-    public static final String COMMAND_WORD = "/edit-maintenance";
+    public static final String COMMAND_WORD = "/edit-maintainer";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the maintainer identified "
             + "by the name used in the displayed person list.\n"
@@ -45,11 +45,11 @@ public class EditMaintainerCommand extends Command {
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_SKILL + "SKILL] "
-            + "[" + PREFIX_COMMISSION + "COMMISSION] "
+            + "[" + PREFIX_COMMISSION + "COMMISSION] \n"
             + "Example: " + COMMAND_WORD
-            + PREFIX_NAME + "John Doe Others "
+            + PREFIX_NAME + "John Doe Maintainer "
             + PREFIX_FIELD + "{ "
-            + PREFIX_NAME + "John Deed "
+            + "phone : " + "99820550 "
             + PREFIX_ADDRESS + "NUS College Avenue"
             + " }";
 

@@ -16,12 +16,20 @@ import seedu.address.model.person.Supplier;
 public class Messages {
 
     public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command";
-    public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format!";
+    public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_NAME = "The name provided is invalid";
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
-                "Multiple values specified for the following single-valued field(s): ";
+            "Multiple values specified for the following single-valued field(s): ";
+    public static final String MESSAGE_INVALID_EDIT_PERSON = "The name provided is invalid. \n "
+            + " Make sure that you are attempting to edit OTHERS.";
+    public static final String MESSAGE_INVALID_EDIT_STAFF = "The name provided is invalid. \n "
+            + "Make sure that you are attempting to edit STAFF.";
+    public static final String MESSAGE_INVALID_EDIT_MAINTAINER = "The name provided is invalid. \n "
+            + " Make sure that you are attempting to edit MAINTAINER.";
+    public static final String MESSAGE_INVALID_EDIT_SUPPLIER = "The name provided is invalid. \n "
+            + " Make sure that you are attempting to edit SUPPLIER.";
 
     /**
      * Returns an error message indicating the duplicate prefixes.
