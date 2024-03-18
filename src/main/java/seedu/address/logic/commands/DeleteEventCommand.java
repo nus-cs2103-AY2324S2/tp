@@ -78,7 +78,7 @@ public class DeleteEventCommand extends Command {
 
         Set<Event> currEventSet = new HashSet<>(patientToDeleteEvent.getEvents());
         List<Event> currEventList = new ArrayList<>(currEventSet);
-        Event eventToDelete = currEventList.get(targetPatientIndex.getZeroBased());
+        Event eventToDelete = currEventList.get(targetEventIndex.getZeroBased());
         currEventList.remove(targetEventIndex.getZeroBased());
         Set<Event> newEventSet = new HashSet<>(currEventList);
         Logger logger = LogsCenter.getLogger(DeleteEventCommandParser.class);
