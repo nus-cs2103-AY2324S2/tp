@@ -29,15 +29,17 @@ public class GetCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
+    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+
     @Test
     public void execute_getPersonAtIndex_success() {
         String expectedMessage = String.format(GetCommand.MESSAGE_GET_PERSON_SUCCESS, 1);
         GetCommand command = new GetCommand(INDEX_FIRST_PERSON);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Person> lastShownList = expectedModel.getFilteredPersonList();
         Person personToGet = lastShownList.get(INDEX_FIRST_PERSON.getZeroBased());
         Predicate<Person> predicate = x -> personToGet.equals(x);
-        model.updateFilteredPersonList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, model);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
     }
 
     @Test
