@@ -10,8 +10,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Major;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -30,8 +30,8 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String year;
+    private final String major;
     private final String telegram;
-    private final String address;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
     /**
@@ -40,14 +40,14 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("year") String year,
-            @JsonProperty("telegram") String telegram, @JsonProperty("address") String address,
+            @JsonProperty("telegram") String telegram, @JsonProperty("major") String major,
             @JsonProperty("tags") List<JsonAdaptedTag> tags) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.year = year;
+        this.major = major;
         this.telegram = telegram;
-        this.address = address;
         if (tags != null) {
             this.tags.addAll(tags);
         }
@@ -61,8 +61,8 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         year = source.getYear().value;
+        major = source.getMajor().value;
         telegram = source.getTelegram().value;
-        address = source.getAddress().value;
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -120,16 +120,17 @@ class JsonAdaptedPerson {
         }
         final Telegram modelTelegram = new Telegram(telegram);
 
-        if (address == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
+        if (major == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Major.class.getSimpleName()));
         }
-        if (!Address.isValidAddress(address)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+        if (!Major.isValidMajor(major)) {
+            throw new IllegalValueException(Major.MESSAGE_CONSTRAINTS);
         }
-        final Address modelAddress = new Address(address);
+        final Major modelMajor = new Major(major);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelYear, modelTelegram, modelAddress, modelTags);
+
+        return new Person(modelName, modelPhone, modelEmail, modelYear, modelTelegram, modelMajor, modelTags);
     }
 
 }
