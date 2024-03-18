@@ -27,7 +27,8 @@ public class ViewCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        return new CommandResult("Skeleton code for ViewCommand");
+        int totalPerson = model.getTotalPersons();
+        return new CommandResult("The total number of Students is " + totalPerson);
     }
 
 
