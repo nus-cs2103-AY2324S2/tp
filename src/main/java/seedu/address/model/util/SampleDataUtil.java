@@ -6,8 +6,8 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Major;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -23,22 +23,28 @@ public class SampleDataUtil {
         return new Person[] {
             new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                 new Year("1"), new Telegram("alexyeoh1"),
-                new Address("Blk 30 Geylang Street 29, #06-40"), getTagSet("friends")),
+                new Major("Computer Science"),
+                getTagSet("friends")),
             new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                 new Year("1"), new Telegram("berniceyu123"),
-                new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"), getTagSet("colleagues", "friends")),
+                new Major("Computer Science"),
+                getTagSet("colleagues", "friends")),
             new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
                 new Year("2"), new Telegram("charlotte7"),
-                new Address("Blk 11 Ang Mo Kio Street 74, #11-04"), getTagSet("neighbours")),
+                new Major("Computer Science"),
+                getTagSet("neighbours")),
             new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
                 new Year("4"), new Telegram("davidli456"),
-                new Address("Blk 436 Serangoon Gardens Street 26, #16-43"), getTagSet("family")),
+                new Major("Business Analytics"),
+                getTagSet("family")),
             new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
                 new Year("3"), new Telegram("irfan123"),
-                new Address("Blk 47 Tampines Street 20, #17-35"), getTagSet("classmates")),
+                new Major("Computer Engineering"),
+                getTagSet("classmates")),
             new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
                 new Year("5"), new Telegram("roy5"),
-                new Address("Blk 45 Aljunied Street 85, #11-31"), getTagSet("colleagues"))
+                new Major("Computer Engineering"),
+                getTagSet("colleagues"))
         };
     }
 

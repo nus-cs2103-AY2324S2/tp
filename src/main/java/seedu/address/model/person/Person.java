@@ -11,7 +11,7 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Person in the address book.
+ * Represents a Person in the major book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Person {
@@ -24,20 +24,22 @@ public class Person {
     private final Telegram telegram;
 
     // Data fields
-    private final Address address;
+    private final Major major;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Year year, Telegram telegram, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+
+    public Person(Name name, Phone phone, Email email, Year year, Telegram telegram, Major major, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, major, tags);
+
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.year = year;
+        this.major = major;
         this.telegram = telegram;
-        this.address = address;
         this.tags.addAll(tags);
     }
 
@@ -53,8 +55,8 @@ public class Person {
         return email;
     }
 
-    public Address getAddress() {
-        return address;
+    public Major getMajor() {
+        return major;
     }
     public Year getYear() {
         return year;
@@ -103,14 +105,14 @@ public class Person {
         return name.equals(otherPerson.name)
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
-                && address.equals(otherPerson.address)
+                && major.equals(otherPerson.major)
                 && tags.equals(otherPerson.tags);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, major, tags);
     }
 
     @Override
@@ -120,8 +122,8 @@ public class Person {
                 .add("phone", phone)
                 .add("email", email)
                 .add("year", year)
+                .add("major", major)
                 .add("telegram", telegram)
-                .add("address", address)
                 .add("tags", tags)
                 .toString();
     }
