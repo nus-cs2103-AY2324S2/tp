@@ -27,10 +27,9 @@ public class DeleteTagsCommand extends Command {
 
     public static final String COMMAND_WORD = "deletet";
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the specified tag to the patient identified "
+            + ": Deletes the specified tags to the patient identified "
             + "by the index number used in the last patient listing. "
             + "Parameters: INDEX (must be a positive integer) "
-            // + PREFIX_TAG + "TAG \n"
             + PREFIX_TAG + "[TAG]+ \n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_TAG + "fallRisk";

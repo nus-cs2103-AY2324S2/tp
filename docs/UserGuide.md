@@ -70,6 +70,8 @@ PatientSync is a **desktop app made for nurses to manage patient, optimized for 
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </box>
 
+--------------------------------------------------------------------------------------------------------------------
+
 ### Viewing help : `help`
 
 Shows a message explaning how to access the help page.
@@ -78,6 +80,7 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
+--------------------------------------------------------------------------------------------------------------------
 
 ### Adding a patient: `add`
 
@@ -98,12 +101,15 @@ Examples:
 * `add /id 12345 n/ Alex Yeoh Jia Jun p/ Alex f/ Curry chicken c/ Stable, Has 2 sons visit him regularly h/ Singing karaoke t/ Diabetes`
 * `add /id 12347 n/ Mary Jane p/ Mary f/ Korean c/ Lives with only daughter, quarrels regularly with daughter h/ Watching Drama`
 
+--------------------------------------------------------------------------------------------------------------------
 
 ### Listing all patients : `list`
 
 Shows a list of all patients in the address book.
 
 Format: `list`
+
+--------------------------------------------------------------------------------------------------------------------
 
 ### Editing a patient : `edit`
 
@@ -123,6 +129,8 @@ Examples:
 *  `edit 1 p/Alex f/Fried rice` Edits the preferred name and food preference of the 1st patient to be `Alex` and `Fried rice` respectively.
 *  `edit 2 f/Children moved away t/` Edits the family condition of the 2nd patient to be `Children moved away` and clears all existing tags.
 
+--------------------------------------------------------------------------------------------------------------------
+
 ### Locating patients by name: `find`
 
 Finds patients whose names contain any of the given keywords.
@@ -141,6 +149,8 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
+--------------------------------------------------------------------------------------------------------------------
+
 ### Deleting a patient : `delete`
 
 Deletes the specified patient from the address book.
@@ -154,6 +164,8 @@ Format: `delete INDEX`
 Examples:
 * `list` followed by `delete 2` deletes the 2nd patient in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st patient in the results of the `find` command.
+
+--------------------------------------------------------------------------------------------------------------------
 
 ### Adding Tags to a Patient : `addt`
 
@@ -180,6 +192,9 @@ Examples:
 
 --------------------------------------------------------------------------------------------------------------------
 
+
+--------------------------------------------------------------------------------------------------------------------
+
 ### Adding Important Dates to a Patient : `adde`
 
 Adds an Important Date to a patient in the address book.
@@ -195,6 +210,8 @@ Format: `adde INDEX [n/NAME_OF_EVENT_ON_THAT_DATE] [d/DATE_OR_DATETIME_OF_EVENT_
 Examples:
 * `adde 1 n/Birthday d/20-01-2022`
 * `adde 2 n/Family Visit d/30-09-2024, 12:00 - 15:00`
+
+--------------------------------------------------------------------------------------------------------------------
 
 ### Deleting an Important Date from a Patient : `deletee`
 
@@ -214,11 +231,15 @@ Examples:
 * `deletee 1 e/1`
 * `deletee 3 e/4`
 
+--------------------------------------------------------------------------------------------------------------------
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
 
 Format: `clear`
+
+--------------------------------------------------------------------------------------------------------------------
 
 ### Exiting the program : `exit`
 
@@ -226,9 +247,13 @@ Exits the program.
 
 Format: `exit`
 
+--------------------------------------------------------------------------------------------------------------------
+
 ### Saving the data
 
 AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+--------------------------------------------------------------------------------------------------------------------
 
 ### Editing the data file
 
@@ -265,6 +290,7 @@ Action     | Format, Examples
 **Delete** | `delete INDEX`<br> e.g. `delete 3`
 **Edit**   | `edit INDEX [id/PATIENT_HOSPITAL_ID] [n/NAME] [p/PREFERRED_NAME] [f/FOOD_PREFERENCE] [c/FAMILY_CONDITION] [h/HOBBY] [t/TAG]…​`<br> e.g.`edit 2 p/James t/HighCholesterol`
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g. `find James Jake`
-**AddTags**   | `addt INDEX [t/TAG]+`<br> e.g. `addt 2 t/critical`
+**Add Tags**   | `addt INDEX [t/TAG]+`<br> e.g. `addt 2 t/critical`
+**Delete Tags**   | `deletet INDEX [t/TAG]+`<br> e.g. `deletet 2 t/critical`
 **List**   | `list`
 **Help**   | `help`
