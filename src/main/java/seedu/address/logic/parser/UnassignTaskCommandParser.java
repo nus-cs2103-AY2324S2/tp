@@ -27,7 +27,7 @@ public class UnassignTaskCommandParser implements Parser<UnassignTaskCommand> {
             int arg2 = Integer.parseInt(parts[1]);
 
             return new UnassignTaskCommand(arg1, arg2);
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnassignTaskCommand.MESSAGE_USAGE));
         }
