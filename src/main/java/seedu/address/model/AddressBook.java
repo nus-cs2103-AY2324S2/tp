@@ -2,12 +2,15 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.meeting.Meeting;
+import seedu.address.model.meeting.UniqueMeetingList;
 
 /**
  * Wraps all data at the address-book level
@@ -16,6 +19,7 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    private final UniqueMeetingList meetings;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -26,6 +30,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
+        meetings = new UniqueMeetingList();
     }
 
     public AddressBook() {}
@@ -55,6 +60,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
+        setMeetings(newData.getMeetingList());
     }
 
     //// person-level operations
@@ -108,6 +114,37 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.asUnmodifiableObservableList();
     }
 
+    @Override
+    public ObservableList<Meeting> getMeetingList() {
+        return meetings.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public boolean hasMeeting(Meeting meeting) {
+        requireNonNull(meeting);
+        return meetings.contains(meeting);
+    }
+
+    public void addMeeting(Meeting meeting) {
+        meetings.add(meeting);
+    }
+    public void addMeetingAsList(List<Meeting> meetings) {
+        this.meetings.addAll(meetings);
+    }
+
+    public void setMeeting(Meeting target, Meeting editedMeeting) {
+        requireNonNull(editedMeeting);
+        meetings.setMeeting(target, editedMeeting);
+    }
+
+    public void setMeetings(List<Meeting> meetings) {
+        this.meetings.setMeetings(meetings);
+    }
+
+
+    public void deleteMeeting(Meeting meeting) {
+        meetings.delete(meeting);
+    }
     @Override
     public boolean equals(Object other) {
         if (other == this) {

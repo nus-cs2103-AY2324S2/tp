@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
+import seedu.address.model.meeting.Meeting;
 
 /**
  * Unmodifiable view of an address book
@@ -13,5 +14,20 @@ public interface ReadOnlyAddressBook {
      * This list will not contain any duplicate persons.
      */
     ObservableList<Person> getPersonList();
+
+    /**
+     * Returns a list of meetings.
+     *
+     * @return List of meetings.
+     */
+    ObservableList<Meeting> getMeetingList();
+
+    /**
+     * Returns true if the meeting list contains an equivalent meeting as the given argument.
+     *
+     * @param meeting Meeting to check.
+     * @return True if the meeting list contains an equivalent meeting as the given argument.
+     */
+    boolean hasMeeting(Meeting meeting);
 
 }
