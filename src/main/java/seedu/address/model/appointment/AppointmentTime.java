@@ -32,21 +32,15 @@ public class AppointmentTime {
     }
 
     private LocalTime parseRawTiming(String rawTime) {
-        int length = rawTime.length();
-        if (length == 4) {
-            int num = Integer.parseInt(rawTime.substring(0, 2));
-            if (rawTime.charAt(2) == 'A') { // AM
-                return LocalTime.of(num, 0);
-            } else { // PM
-                return LocalTime.of(12 + num, 0);
-            }
+        int hour = Integer.parseInt(rawTime.substring(0, rawTime.length() - 2));
+        String amPm = rawTime.substring(rawTime.length() - 2).toUpperCase();
+
+        if (amPm.equals("AM")) {
+            return LocalTime.of(hour == 12 ? 0 : hour, 0);
+        } else if (amPm.equals("PM")) {
+            return LocalTime.of(hour == 12 ? 12 : 12 + hour, 0);
         } else {
-            int num = Integer.parseInt(rawTime.substring(0, 1));
-            if (rawTime.charAt(1) == 'A') { // AM
-                return LocalTime.of(num, 0);
-            } else { // PM
-                return LocalTime.of(12 + num, 0);
-            }
+            throw new IllegalArgumentException("Invalid time format: " + rawTime);
         }
     }
 
