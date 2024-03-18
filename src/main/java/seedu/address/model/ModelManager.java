@@ -151,7 +151,7 @@ public class ModelManager implements Model {
     @Override
     public boolean hasAppointment(Appointment appointment) {
         requireNonNull(appointment);
-//        return appointmentBook.hasPerson(appointment);
+//        return appointmentBook.hasAppointment(appointment);
         return false;
     }
     @Override

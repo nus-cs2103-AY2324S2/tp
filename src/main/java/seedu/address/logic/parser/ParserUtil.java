@@ -127,24 +127,21 @@ public class ParserUtil {
 
     /**
      * Parses a {@code String studentId} into an {@code int}.
-     * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code studentId} is invalid.
      */
-    public static int parseStudentId(String sid) throws ParseException {
-        requireNonNull(sid);
-        String trimmedStudentId = sid.trim();
-        int studentId = Integer.parseInt(trimmedStudentId);
-        if (!(studentId > 0)) {
-            System.out.println("constraint 1");
+    public static int parseStudentId(String studentId) throws ParseException {
+        requireNonNull(studentId);
+        String trimmedStudentId = studentId.trim();
+        int sid = Integer.parseInt(trimmedStudentId);
+        if (sid < 0) {
             throw new ParseException(Appointment.MESSAGE_CONSTRAINTS);
         }
-        return studentId;
+        return sid;
     }
 
     /**
      * Parses a {@code String dateTime} into an {@code LocalDateTime}.
-     * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code dateTime} is invalid.
      */
@@ -157,25 +154,24 @@ public class ParserUtil {
         try {
             dt = LocalDateTime.parse(trimmedDateTime, format);
         } catch (Exception e) {
-            System.out.println("exception 2");
             throw new ParseException(Appointment.MESSAGE_CONSTRAINTS);
         }
         return dt;
     }
 
     /**
-     * Parses a {@code Collection<String> att} into a {@code boolean}.
-     * By default, false will be returned id {@code att} is empty.
+     * Parses a {@code Collection<String> attend} into a {@code boolean}.
+     * By default, false will be returned if {@code attend} is empty.
      *
-     * @throws ParseException if the given {@code att} is invalid.
+     * @throws ParseException if the given {@code attend} is invalid.
      */
-    public static boolean parseAttend(Collection<String> att) throws ParseException {
-        requireNonNull(att);
-        if (att.isEmpty()) {
+    public static boolean parseAttend(Collection<String> attend) throws ParseException {
+        requireNonNull(attend);
+        if (attend.isEmpty()) {
             return false;
         }
 
-        String trimmedAttend = att.iterator().next().trim();
+        String trimmedAttend = attend.iterator().next().trim();
         if (!trimmedAttend.equalsIgnoreCase("true") &&
                 !trimmedAttend.equalsIgnoreCase("false")) {
             throw new ParseException(Appointment.MESSAGE_CONSTRAINTS);
@@ -186,6 +182,7 @@ public class ParserUtil {
     /**
      * Parses a {@code Collection<String> description} into a {@code String}.
      * Leading and trailing whitespaces will be trimmed.
+     * By default, an empty string will be returned if {@code description} is empty.
      * TODO: remove after case log is implemented
      */
     public static String parseDescription(Collection<String> description) {

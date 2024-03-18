@@ -87,12 +87,13 @@ public interface Model {
     void updateFilteredPersonList(Predicate<Person> predicate);
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if an appointment with the same details as {@code appointment} exists in the address book.
      */
     boolean hasAppointment(Appointment appointment);
+
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * Adds the given appointment.
+     * {@code appointment} must not already exist in the address book.
      */
     void addAppointment(Appointment appointment);
 }
