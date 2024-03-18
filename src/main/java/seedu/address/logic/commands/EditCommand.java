@@ -3,7 +3,6 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
@@ -40,13 +39,14 @@ public class EditCommand extends Command {
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_CATEGORY + "Clan "
-            + PREFIX_EMAIL + "Kingdom";
+            + PREFIX_DESCRIPTION + "Kingdom";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_CATEGORY_DOESNT_EXIST = "Category doesnt exist!";
+    public static final String MESSAGE_TAG_NOT_EDITED = "Invalid tag edit, please specify new tag to edit!";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
-
+    public static final String MESSAGE_EMPTY_DESCRIPTION = "Invalid edit, please provide a description!";
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
 
@@ -83,16 +83,20 @@ public class EditCommand extends Command {
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson)));
     }
-
     /**
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
+    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor
+            editPersonDescriptor) throws CommandException {
         assert personToEdit != null;
         if (editPersonDescriptor.getCategory() != null) {
             Entry personToEditEntry = personToEdit.getEntry(editPersonDescriptor.getCategory());
-            personToEditEntry.setDescription(editPersonDescriptor.getDescription());
+            if (personToEditEntry == null) {
+                throw new CommandException(MESSAGE_CATEGORY_DOESNT_EXIST);
+            } else {
+                personToEditEntry.setDescription(editPersonDescriptor.getDescription());
+            }
         }
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         personToEdit.setTags(updatedTags);
@@ -163,13 +167,9 @@ public class EditCommand extends Command {
         }
         /**
          * Returns true if at least one field is edited.
-         * Todo change this when implementation done
          */
         public boolean isAnyTagEdited() {
             return CollectionUtil.isAnyNonNull(tags);
-        }
-        public EntryList getEntryList() {
-            return this.entryList;
         }
         public void set(String category, Entry entry) {
             Entry e = entryList.get(category);
@@ -203,6 +203,9 @@ public class EditCommand extends Command {
          */
         public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        }
+        public int getTagSize() {
+            return tags.size();
         }
 
         @Override

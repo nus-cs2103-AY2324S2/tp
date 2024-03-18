@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.parser.Prefix;
+import seedu.address.model.person.Entry;
 import seedu.address.model.person.Person;
 
 /**
@@ -18,6 +19,7 @@ public class Messages {
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
+    public static final String MESSAGE_CANNOT_DELETE_NAME = "You can not delete the name of the person.";
 
     /**
      * Returns an error message indicating the duplicate prefixes.
@@ -36,14 +38,14 @@ public class Messages {
      */
     public static String format(Person person) {
         final StringBuilder builder = new StringBuilder();
-        builder.append(person.getEntry("Name"))
-//                .append("; Phone: ")
-//                .append(person.getEntry("Phone"))
-//                .append("; Email: ")
-//                .append(person.getEntry("Email"))
-//                .append("; Address: ")
-//                .append(person.getEntry("Address"))
-                .append("; Tags: ");
+        for (int i = 0; i < person.getList().size(); i++) {
+            Entry e = person.getList().get(i);
+            builder.append(e.getCategory());
+            builder.append(": ");
+            builder.append(e.getDescription());
+            builder.append("; ");
+        }
+        builder.append("Tags: ");
         person.getTags().forEach(builder::append);
         return builder.toString();
     }

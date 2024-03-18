@@ -37,6 +37,10 @@ public class Person {
         return entryList.get(category);
     }
 
+    public void deleteEntry(String category) {
+        entryList.delete(category);
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -88,11 +92,6 @@ public class Person {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-//                .add("name", getEntry("Name"))
-//                .add("phone", getEntry("Phone"))
-//                .add("email", getEntry("Email"))
-//                .add("address", getEntry("Address"))
-//                .add("tags", tags)
                 .toString();
     }
     public EntryList getList() {
