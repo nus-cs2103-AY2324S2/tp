@@ -29,8 +29,10 @@ import scm.address.logic.commands.HelpCommand;
 import scm.address.logic.commands.ImportCommand;
 import scm.address.logic.commands.ListCommand;
 import scm.address.logic.parser.exceptions.ParseException;
+import scm.address.model.person.AddressContainsKeywordsPredicate;
 import scm.address.model.person.NameContainsKeywordsPredicate;
 import scm.address.model.person.Person;
+import scm.address.model.person.TagsContainKeywordsPredicate;
 import scm.address.testutil.EditPersonDescriptorBuilder;
 import scm.address.testutil.PersonBuilder;
 import scm.address.testutil.PersonUtil;
@@ -76,10 +78,19 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_find() throws Exception {
-        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        List<String> nameKeywords = Arrays.asList("foo", "bar", "baz");
+        List<String> addressKeywords = Arrays.asList("Street", "Rd", "Ln");
+        List<String> tagKeywords = Arrays.asList("friend", "workmate");
+
         FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+                FindCommand.COMMAND_WORD + " "
+                        + PREFIX_NAME + nameKeywords.stream().collect(Collectors.joining(" ")) + " "
+                        + PREFIX_ADDRESS + addressKeywords.stream().collect(Collectors.joining(" ")) + " "
+                        + PREFIX_TAG + tagKeywords.stream().collect(Collectors.joining(" ")));
+
+        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(nameKeywords),
+                                        new AddressContainsKeywordsPredicate(addressKeywords),
+                                        new TagsContainKeywordsPredicate(tagKeywords)), command);
     }
 
     @Test
