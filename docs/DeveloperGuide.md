@@ -235,9 +235,7 @@ The `AddTagsCommand` class is responsible for adding one or more tags to a patie
 #### Specifications
 
 * Tags, as defined by the `Tag` class, are alphanumeric, single-word identifiers without spaces, and repeated tags in the command are added as a single tag.
-
 * The addition of tags is cumulative, and new tags will be added to the existing set of tags for the patient, preserving the previously assigned tags.
-
 * If the patient already has a particular tag, it will not be added again.
 
 #### Example Usage Scenario
@@ -295,7 +293,77 @@ The following sequence diagram shows how the Add Tags operation works:
 
 --------------------------------------------------------------------------------------------------------------------
 
-### 3.3 Adding Important Dates to a Patient
+### 3.3 Deleting Tags From a Patient
+
+#### Introduction
+
+The `DeleteTagsCommand` class enables the removal of one or more tags from a patient in the address book.
+
+#### Specifications
+
+* Tags, as defined by the `Tag` class, are alphanumeric, single-word identifiers without spaces.
+* The deletion of tags is performed by specifying the tags to be removed for a particular patient.
+* Tags should match exactly with the existing tags of the patient.
+* If a patient has the tag(s) provided in the command, they will be removed. This operation is counted as a successful deletion.
+* When deleting tags, if a tag is repeated in the command, it will be treated as a single tag to delete. E.g. `t/friend t/friend` will be considered as a single `friend` tag for deletion.
+* If the patient does not have a tag provided in the command, it will be logged and shown to the user as an unsuccessful deletion of that tag.
+
+#### Example Usage Scenario
+
+Below is an example scenario of how the tag deletion process works within the PatientSync application:
+
+Step 1: The user accesses the PatientSync application.
+
+Step 2: The user executes the `deletet 1 t/fallRisk` command to delete the `fallRisk` tag from patient 1 in the displayed patient list. The `DeleteTagsCommandParser` validates the input, ensuring that the index is valid and at least one tag is provided. Upon successful validation, an `DeleteTagsCommand` instance is created.
+
+<box type="info" seamless>
+<b>Note</b>: Since multiple inputs are allowed, a set of tags to be deleted is passed, each of which will be removed if found associated with the patient.
+</box>
+
+The following sequence diagram illustrates the steps involved in the Delete Tags operation:
+<puml src="diagrams/DeleteTagsSequenceDiagram.puml" alt="DeleteTagsSequence" />
+
+<box type="info" seamless>
+
+**Note:** The lifeline for `DeleteTagCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</box>
+
+#### Design Considerations
+
+**Aspect: Bulk Tag Deletion**
+
+* **Alternative 1 (current choice)**: Bulk deletion of specified tags.
+    * Pros: Allows removal of multiple tags in one command, preserves existing tags if not specified for deletion.
+    * Cons: Requires additional memory for handling tag sets, potentially slower performance for large tag sets.
+      <br></br>
+* **Alternative 2**: Explicitly specify tags to delete, ignoring any non-existent tags.
+    * Pros: Simplifies command execution, faster performance for small tag sets.
+    * Cons: Requires multiple commands for each tag deletion, less flexible in bulk operations.
+
+**Aspect: Handling Missing Tags**
+
+* **Alternative 1 (current choice)**: Log output for non-existent tags to inform user, proceed with deleting the valid tags.
+    * Pros: Simplifies user interaction, allows bulk deletion without worrying about non-existent tags, users are informed about the tags that are not present, Users do not need to correct the command.
+    * Cons: Adds complexity to the command execution, requiring additional logic to differentiate between existing and non-existing tags.
+
+* **Alternative 2**: Return an error message for non-existent tags, ask users to correct the command.
+    * Pros: Ensures user awareness of non-existent tags, avoids accidental deletions, prompts users to provide valid tag inputs.
+    * Cons: Requires users to fix the command before proceeding, potential interruption to workflow, may increase user frustration if multiple tags are missing.
+
+**Aspect: Feedback for Deletion Operation**
+
+* **Alternative 1 (current choice)**: Provide a success message for each tag successfully deleted.
+    * Pros: Clear indication of which tags were removed, better user understanding of command execution.
+    * Cons: May clutter output for multiple tag deletions.
+      <br></br>
+* **Alternative 2**: Return a single success message for all successful tag deletions.
+    * Pros: Cleaner output for multiple deletions, reduces command feedback clutter.
+    * Cons: Users might not have a clear understanding of individual deletions, less granular feedback.
+
+--------------------------------------------------------------------------------------------------------------------
+
+### 3.4 Adding Important Dates to a Patient
 
 #### Introduction
 
@@ -320,7 +388,7 @@ Step 2: The user executes the `adde 1 n/ Birthday d/ 20-01-2022` command to add 
 
 --------------------------------------------------------------------------------------------------------------------
 
-### 3.4 Editing a Patient
+### 3.5 Editing a Patient
 
 #### Introduction
 
@@ -364,7 +432,7 @@ Step 4: The Patient with specified index will be updated in the list, shown in t
   
 --------------------------------------------------------------------------------------------------------------------
 
-### 3.5 Deleting Important Date from a Patient
+### 3.6 Deleting Important Date from a Patient
 
 #### Introduction
 
@@ -405,7 +473,7 @@ date.
     * Cons: User might confuse ID as Patient ID and also inconsistency with `adde` command, further confusing user.
 
 --------------------------------------------------------------------------------------------------------------------
-### 3.6 Deleting a Patient
+### 3.7 Deleting a Patient
 
 #### Introduction
 
