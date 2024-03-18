@@ -103,4 +103,13 @@ public class UniqueClassListTest {
         assertEquals(uniqueClassList.asUnmodifiableObservableList().toString(), uniqueClassList.toString());
     }
 
+    @Test
+    public void add_validClass_success() {
+        Classes sampleClass = new Classes(new CourseCode("CS101"));
+        UniqueClassList uniqueClassList = new UniqueClassList();
+        uniqueClassList.add(sampleClass);
+        assertTrue(uniqueClassList.contains(sampleClass));
+    }
+
+
 }

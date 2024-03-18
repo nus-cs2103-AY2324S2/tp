@@ -11,6 +11,9 @@ import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.person.Classes;
+import seedu.address.model.person.CourseCode;
+
 public class ClassBookTest {
 
 
@@ -53,5 +56,13 @@ public class ClassBookTest {
     public void toStringMethod() {
         String expected = ClassBook.class.getCanonicalName() + "{classes=" + classBook.getClassList() + "}";
         assertEquals(expected, classBook.toString());
+    }
+
+    @Test
+    public void createClass_newClass_success() {
+        Classes sampleClass = new Classes(new CourseCode("CS101"));
+        ClassBook classBook = new ClassBook();
+        classBook.createClass(sampleClass);
+        assertTrue(classBook.hasClass(sampleClass));
     }
 }
