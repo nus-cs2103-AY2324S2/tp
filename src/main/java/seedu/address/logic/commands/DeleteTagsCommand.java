@@ -105,25 +105,7 @@ public class DeleteTagsCommand extends Command {
     public Pair<Set<Tag>, String> deleteTagsFromPatient(Patient patient, Set<Tag> tagSet,
                                                        Set<Tag> toDeleteTags) throws CommandException {
         requireAllNonNull(tagSet, toDeleteTags);
-        try {
-            return updateDeleteTagSetAndOutcome(patient, tagSet, toDeleteTags);
-        } catch (CommandException e) {
-            throw new CommandException(e.getMessage());
-        }
-    }
 
-    /**
-     * Updates the given patient's tag set and returns a String outcome for users.
-     *
-     * @param patient       The patient whose tags are being modified.
-     * @param tagSet        The current set of tags for the patient.
-     * @param toDeleteTags  The Tags to be deleted.
-     * @return A Pair containing the updated tag set and a string describing the outcome of the deletion.
-     * @throws CommandException if tag does not exist.
-     */
-    public Pair<Set<Tag>, String> updateDeleteTagSetAndOutcome(Patient patient, Set<Tag> tagSet,
-                                                               Set<Tag> toDeleteTags) throws CommandException {
-        requireAllNonNull(tagSet, toDeleteTags);
         StringBuilder commandOutcome = new StringBuilder();
 
         for (Tag tag : toDeleteTags) {
