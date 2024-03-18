@@ -39,10 +39,9 @@ public class OrderListTest {
 
     @Test
     public void contains_orderWithSameIdentityFieldsInList_returnsTrue() {
-        //orderList.addOrder(CUPCAKES_ONLY, ALICE);
-        //Order editedCupcakesAlice = new OrderBuilder(CUPCAKES_ONLY).withPerson(ALICE)
-        //        .build();
-        //assertTrue(orderList.contains(editedCupcakesAlice));
+        orderList.addOrder(CUPCAKES_ONLY, ALICE);
+        Order editedCupcakesAlice = new OrderBuilder(CUPCAKES_ONLY).withPerson(ALICE).build();
+        assertTrue(orderList.contains(editedCupcakesAlice));
     }
 
     @Test

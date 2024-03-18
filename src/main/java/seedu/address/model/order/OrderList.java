@@ -205,7 +205,7 @@ public class OrderList implements Iterable<Order> {
         }
 
         OrderList otherOrderList = (OrderList) other;
-        return internalList.equals(otherOrderList.internalList);
+        return orderList.equals(otherOrderList.orderList);
     }
 
     /**
