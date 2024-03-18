@@ -7,6 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -46,6 +47,15 @@ public class EditCommandTest {
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
 
+        // Written by Jin Han, can delete if not used
+        // System.out.println("Edited person:");
+        // System.out.println(editedPerson);
+        // System.out.println("EditCommand:");
+        // System.out.println(editCommand);
+        // System.out.println("Expected Model");
+        // System.out.println(expectedModel);
+        // System.out.println("model");
+        // System.out.println(model);
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
@@ -55,17 +65,35 @@ public class EditCommandTest {
         Person lastPerson = model.getFilteredPersonList().get(indexLastPerson.getZeroBased());
 
         PersonBuilder personInList = new PersonBuilder(lastPerson);
-        Person editedPerson = personInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
+        Person editedPerson = personInList
+                .withName(VALID_NAME_BOB)
+                .withPhone(VALID_PHONE_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
 
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder()
+                .withName(VALID_NAME_BOB)
+                .withPhone(VALID_PHONE_BOB)
+                .withTags(VALID_TAG_HUSBAND).build();
         EditCommand editCommand = new EditCommand(indexLastPerson, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(lastPerson, editedPerson);
+
+        // Written by Jin Han, can delete if want
+        // System.out.println("expected message:");
+        // System.out.println(expectedMessage);
+        // System.out.println("Edited person:");
+        // System.out.println(editedPerson);
+        // System.out.println("EditCommand:");
+        // System.out.println(editCommand);
+        // System.out.println("edit person descriptor:");
+        // System.out.println(descriptor);
+        // System.out.println("Expected Model");
+        // System.out.println(expectedModel);
+        // System.out.println("model");
+        // System.out.println(model);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }

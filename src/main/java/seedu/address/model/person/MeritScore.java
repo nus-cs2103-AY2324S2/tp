@@ -48,7 +48,8 @@ public class MeritScore {
     }
 
     /**
-     * Instead of Stirng, convert merit score into int and return it. This function also checks whether merit score is able to parse as int.
+     * Instead of Stirng, convert merit score into int and return it.
+     * This function also checks whether merit score is able to parse as int.
      * @return int version of merit score
      */
     public int getMeritScoreInt() {
