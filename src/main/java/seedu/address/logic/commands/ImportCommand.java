@@ -62,6 +62,8 @@ public class ImportCommand extends Command {
                     addCommand.execute(model);
                 } catch (ParseException e) {
                     throw new CommandException(String.format(MESSAGE_PARSE_ERROR, personData));
+                } catch (CommandException e) {
+                    throw new CommandException(e.getMessage());
                 }
             }
         } catch (DataLoadingException e) {
@@ -94,7 +96,7 @@ public class ImportCommand extends Command {
     /**
      * Represents the order of the data that should be parsed into the addCommandParser
      */
-    private final String[] header = {"name", "phone", "email", "address", "tag"};
+    private final String[] header = {"name", "phone", "email", "address", "tags"};
 
     /**
      * Represents a mapping of String to prefix of the data that should be parsed into the addCommandParser.
@@ -104,23 +106,26 @@ public class ImportCommand extends Command {
             "phone", PREFIX_PHONE,
             "email", PREFIX_EMAIL,
             "address", PREFIX_ADDRESS,
-            "tag", PREFIX_TAG
+            "tags", PREFIX_TAG
     );
 
     public String convertToAddCommandInput(Map<String, String> personData) {
         StringBuilder sb = new StringBuilder();
+        sb.append("add ");
         for (String key : header) {
             // Maybe in the future, I can add a check to see if the value is empty
             // Maybe in the future, I make CliSyntax an enum class?
             sb.append(prefixMap.get(key).getPrefix());
-            sb.append(personData.get(key));
+            if (key.equals("tags")) {
+                // tag is a special case, it can have multiple values
+                String tags = personData.get(key);
+                sb.append(tags.replace(";", ","));
+            } else {
+                sb.append(personData.get(key));
+            }
             sb.append(" ");
             // tag is a special case, it can have multiple values
-            if (key.equals("tag")) {
-                String tags = personData.get(key);
-                String[] tagArray = tags.split(";");
 
-            }
         }
         return sb.toString();
     }
