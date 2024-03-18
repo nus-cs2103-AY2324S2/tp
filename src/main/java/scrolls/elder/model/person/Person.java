@@ -25,6 +25,7 @@ public abstract class Person {
     // Data fields
     protected final Address address;
     protected final Set<Tag> tags = new HashSet<>();
+    protected Person pairedWith;
 
     /**
      * Every field must be present and not null.
@@ -37,6 +38,7 @@ public abstract class Person {
         this.address = address;
         this.tags.addAll(tags);
         this.role = role;
+        this.pairedWith = null;
     }
 
     public int getId() {
@@ -71,6 +73,14 @@ public abstract class Person {
         return Collections.unmodifiableSet(tags);
     }
 
+    public Person getPairedWith() {
+        return pairedWith;
+    }
+
+    public void setPairedWith(Person pairedWith) {
+        this.pairedWith = pairedWith;
+    }
+
     /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
@@ -88,6 +98,21 @@ public abstract class Person {
     */
     public abstract boolean isVolunteer();
     public abstract Role getRole();
+
+    /**
+     * Returns true if both persons have the same pairing, and false otherwise.
+     */
+    public boolean hasSamePairing(Person otherPerson) {
+        if (otherPerson == this || (pairedWith == null && otherPerson.pairedWith == null)) {
+            return true;
+        }
+
+        if ((pairedWith == null) ^ (otherPerson.pairedWith == null)) {
+            return false;
+        }
+
+        return pairedWith.equals(otherPerson.pairedWith);
+    }
 
     /**
      * Returns true if both persons have the same identity and data fields.
@@ -111,13 +136,14 @@ public abstract class Person {
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
                 && tags.equals(otherPerson.tags)
-                && role.equals(otherPerson.role);
+                && role.equals(otherPerson.role)
+                && hasSamePairing(otherPerson);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(id, name, phone, email, address, tags, role);
+        return Objects.hash(id, name, phone, email, address, tags, role, pairedWith);
     }
 
     @Override
@@ -130,6 +156,7 @@ public abstract class Person {
                 .add("address", address)
                 .add("tags", tags)
                 .add("role", role)
+                .add("pairedWith", pairedWith == null ? "None" : pairedWith.getName())
                 .toString();
     }
 
