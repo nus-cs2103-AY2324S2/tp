@@ -82,6 +82,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Deletes if a person with the same nric as {@code nric} exists in the address book.
+     */
+    public void deletePersonWithNric(Nric nric) {
+        requireNonNull(nric);
+        persons.deletePersonWithNric(nric);
+    }
+
+    /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
     public boolean hasPerson(Person person) {

@@ -67,6 +67,11 @@ public interface Model {
     Person getPersonWithNric(Nric nric);
 
     /**
+     * Deletes person with the same nric as {@code nric}.
+     */
+    void deletePersonWithNric(Nric nric);
+
+    /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
     boolean hasPerson(Person person);

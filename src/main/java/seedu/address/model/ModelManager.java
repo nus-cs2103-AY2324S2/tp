@@ -105,6 +105,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deletePersonWithNric(Nric nric) {
+        requireNonNull(nric);
+        addressBook.deletePersonWithNric(nric);
+    }
+
+    @Override
     public boolean hasPerson(Person person) {
         requireNonNull(person);
         return addressBook.hasPerson(person);
