@@ -19,7 +19,8 @@ public class AddInterviewerPersonCommand extends AddPersonCommand {
             + AddPersonCommand.MESSAGE_USAGE;
 
     public static final String MESSAGE_SUCCESS = "New interviewer added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This interviewer already exists in the talent tracker";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This interviewer already exists in the talent tracker."
+            + " Do ensure phone number is unique";
 
     /**
      * Creates an AddInterviewerCommand to add the specified {@code Person}

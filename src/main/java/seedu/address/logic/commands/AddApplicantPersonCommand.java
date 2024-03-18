@@ -20,7 +20,8 @@ public class AddApplicantPersonCommand extends AddPersonCommand {
 
 
     public static final String MESSAGE_SUCCESS = "New applicant added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This applicant already exists in the talent tracker";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This applicant already exists in the talent tracker."
+            + " Do ensure phone number is unique";
 
 
     /**
