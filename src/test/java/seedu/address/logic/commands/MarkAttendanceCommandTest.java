@@ -51,9 +51,7 @@ public class MarkAttendanceCommandTest {
     @Test
     public void execute_validNusNetValidWeekNumber_markSuccess() {
         HashSet<WeekNumber> aliceAttendanceUpdated = new HashSet<>(ALICE.getAttendance());
-
         aliceAttendanceUpdated.add(testValidWeekNo6);
-
         Person aliceChanged = new Person(ALICE.getName(), ALICE.getPhone(), ALICE.getEmail(), ALICE.getNusNet(),
                 ALICE.getAddress(), aliceAttendanceUpdated, ALICE.getTags());
 
@@ -63,7 +61,6 @@ public class MarkAttendanceCommandTest {
         MarkAttendanceCommand command = new MarkAttendanceCommand(testValidNusNet, testValidWeekNo6);
 
         Model expectedModel1 = expectedModel;
-
         expectedModel1.setPerson(ALICE, aliceChanged);
 
         assertCommandSuccess(command, model, expectedCommandResult, expectedModel1);

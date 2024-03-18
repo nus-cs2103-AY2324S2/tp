@@ -35,12 +35,14 @@ public class UnmarkAttendanceCommandTest {
 
     @Test
     public void equals() {
+        NusNet notAliceNusNet = new NusNet("E0123457");
+
         UnmarkAttendanceCommand unmarkAttendanceCommand1 = new UnmarkAttendanceCommand(testValidNusNet,
                 testValidWeekNo6);
         UnmarkAttendanceCommand unmarkAttendanceCommand2 =
                 new UnmarkAttendanceCommand(ALICE.getNusNet(), testValidWeekNo6);
         UnmarkAttendanceCommand unmarkAttendanceCommand3 =
-                new UnmarkAttendanceCommand(new NusNet("E0123457"), testValidWeekNo6);
+                new UnmarkAttendanceCommand(notAliceNusNet, testValidWeekNo6);
 
         // same object -> passes
         assertEquals(unmarkAttendanceCommand1, unmarkAttendanceCommand2);

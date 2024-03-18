@@ -433,7 +433,7 @@ students.
 
    1. Command 1: `addstu n/John Doe p/98765432 e/johndoe@example.com nn/e0123456 a/311, Clementi Ave 2, #02-25 
       t/friends t/owesMoney`
-   2. Command 2: `addstu n/Mary Jane p/91234911 e/janemary@example.com nn/e0123457 a/312, Clementi St 1, #03-25
+   1. Command 2: `addstu n/Mary Jane p/91234911 e/janemary@example.com nn/e0123457 a/312, Clementi St 1, #03-25
       t/friends t/owesTutorial2` 
 
 
