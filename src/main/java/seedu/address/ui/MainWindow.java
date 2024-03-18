@@ -3,7 +3,6 @@ package seedu.address.ui;
 import java.util.Optional;
 import java.util.logging.Logger;
 
-
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -34,20 +33,14 @@ public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
 
+    protected Storage storage;
+
     private final Logger logger = LogsCenter.getLogger(getClass());
+
+
 
     private Stage primaryStage;
     private Logic logic;
-
-    protected Storage storage;
-
-    private Model model;
-
-
-
-
-
-    // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
@@ -67,6 +60,9 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane statusbarPlaceholder;
 
+
+
+
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
@@ -76,7 +72,6 @@ public class MainWindow extends UiPart<Stage> {
         // Set dependencies
         this.primaryStage = primaryStage;
         this.logic = logic;
-        this.model = model;
         this.storage = storage;
 
         this.loadInitialCourseNameAndSetTitle();
@@ -121,7 +116,8 @@ public class MainWindow extends UiPart<Stage> {
             Optional<ReadOnlyCourseName> courseNameOptional = storage.readCourse();
 
             if (!courseNameOptional.isPresent()) {
-                logger.info("Creating a new course data file " + storage.getCourseNameFilePath() + " populated with a course.");
+                logger.info("Creating a new course data file " + storage.getCourseNameFilePath()
+                        + " populated with a course.");
             }
 
             initialCourseNameData = courseNameOptional.orElseGet(SampleDataUtil::getSampleCourseName);

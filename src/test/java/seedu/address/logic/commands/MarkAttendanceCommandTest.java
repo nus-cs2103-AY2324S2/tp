@@ -7,6 +7,7 @@ import static seedu.address.logic.Messages.MESSAGE_MARK_EXISTING_ATTENDANCE_SUCC
 import static seedu.address.logic.Messages.MESSAGE_MISSING_NUSNET;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.TypicalCourse.getTypicalCourseName;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
@@ -25,8 +26,8 @@ import seedu.address.model.weeknumber.WeekNumber;
  * Contains integration tests (interaction with the Model) for {@code MarkAttendanceCommand}.
  */
 public class MarkAttendanceCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalCourseName());
+    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalCourseName());
     private final NusNet testValidNusNet = new NusNet("e0000001");
     private final NusNet testMissingNusNet = new NusNet("e0000000");
     private final WeekNumber testValidWeekNo6 = new WeekNumber("6");

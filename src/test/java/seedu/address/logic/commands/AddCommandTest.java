@@ -13,21 +13,23 @@ import java.util.Arrays;
 import java.util.Optional;
 import java.util.function.Predicate;
 
-import javafx.beans.property.ReadOnlyStringProperty;
 import org.junit.jupiter.api.Test;
 
+import javafx.beans.property.ReadOnlyStringProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.*;
 import seedu.address.model.AddressBook;
+import seedu.address.model.CourseName;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyCourseName;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.NusNet;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
+
 
 public class AddCommandTest {
 
@@ -189,7 +191,9 @@ public class AddCommandTest {
         }
 
         @Override
-        public CourseName getCourseName() {throw new AssertionError("This method should not be called.");}
+        public CourseName getCourseName() {
+            throw new AssertionError("This method should not be called.");
+        }
 
 
         public Optional<Person> getPersonByNusNet(NusNet nusNet) {

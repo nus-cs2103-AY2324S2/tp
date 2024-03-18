@@ -8,15 +8,17 @@ import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
-import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.beans.property.ReadOnlyStringProperty;
+import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.course.Course;
 import seedu.address.model.person.NusNet;
 import seedu.address.model.person.Person;
-import seedu.address.model.course.Course;
+
+
 
 /**
  * Represents the in-memory model of the address book data.
@@ -35,7 +37,8 @@ public class ModelManager implements Model {
     /**
      * Initializes a ModelManager with the given addressBook, userPrefs and currentCourse.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, ReadOnlyCourseName currentCourse) {
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs,
+                        ReadOnlyCourseName currentCourse) {
         requireAllNonNull(addressBook, userPrefs, currentCourse);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);

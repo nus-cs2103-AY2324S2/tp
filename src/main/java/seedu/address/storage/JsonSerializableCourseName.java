@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.CourseName;
 import seedu.address.model.ReadOnlyCourseName;
+import seedu.address.model.course.Course;
 
 /**
  * An Immutable Course that is serializable to JSON format.
@@ -30,7 +31,7 @@ public class JsonSerializableCourseName {
      * @param source future changes to this will not affect the created {@code JsonSerializableCourse}.
      */
     public JsonSerializableCourseName(ReadOnlyCourseName source) {
-        course = new JsonAdaptedCourse(source.getCourse().toString());
+        course = new JsonAdaptedCourse(new Course("X1234Y"));
     }
 
     /**

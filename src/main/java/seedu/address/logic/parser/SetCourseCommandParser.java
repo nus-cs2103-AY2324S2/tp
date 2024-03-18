@@ -2,7 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import seedu.address.commons.core.index.Index;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.SetCourseCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -24,7 +24,8 @@ public class SetCourseCommandParser implements Parser<SetCourseCommand> {
         try {
             course = ParserUtil.parseCourse(args);
         } catch (IllegalValueException ive) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SetCourseCommand.MESSAGE_CONSTRAINTS), ive);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    SetCourseCommand.MESSAGE_CONSTRAINTS), ive);
         }
 
         return new SetCourseCommand(course);

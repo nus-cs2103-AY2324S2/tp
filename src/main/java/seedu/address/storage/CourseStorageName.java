@@ -6,6 +6,12 @@ import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataLoadingException;
 import seedu.address.model.ReadOnlyCourseName;
+
+/**
+ * The interface for objects that can store and retrieve course name data.
+ * Implementations of this interface are responsible for providing the mechanism
+ * to access course name information from a persistent storage, such as a file.
+ */
 public interface CourseStorageName {
 
     /**

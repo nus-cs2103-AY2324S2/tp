@@ -16,10 +16,13 @@ import seedu.address.logic.commands.EditPersonCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindPersonCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.SetCourseCommand;
 import seedu.address.logic.commands.ListPersonCommand;
 import seedu.address.logic.commands.MarkAttendanceCommand;
+import seedu.address.logic.commands.SetCourseCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+
+
+
 
 /**
  * Parses user input.
@@ -78,9 +81,8 @@ public class AddressBookParser {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
-
         case SetCourseCommand.COMMAND_WORD:
-                return new SetCourseCommandParser().parse(arguments);
+            return new SetCourseCommandParser().parse(arguments);
 
         case MarkAttendanceCommand.COMMAND_WORD:
             return new MarkAttendanceCommandParser().parse(arguments);

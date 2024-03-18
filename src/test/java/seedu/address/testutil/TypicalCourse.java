@@ -1,6 +1,5 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.commands.CommandTestUtil.VALID_COURSE_CODE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_COURSE_CODE_BOB;
 
 import seedu.address.model.CourseName;

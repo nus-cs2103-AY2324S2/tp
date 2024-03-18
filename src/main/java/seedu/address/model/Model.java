@@ -4,11 +4,13 @@ import java.nio.file.Path;
 import java.util.Optional;
 import java.util.function.Predicate;
 
-import javafx.collections.ObservableList;
 import javafx.beans.property.ReadOnlyStringProperty;
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.NusNet;
 import seedu.address.model.person.Person;
+
+
 
 /**
  * The API of the Model component.
