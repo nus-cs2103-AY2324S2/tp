@@ -77,11 +77,11 @@ public class DeleteEventCommandTest {
         Index validIndex = Index.fromZeroBased(1);
         DeleteEventCommand deleteEventCommand = new DeleteEventCommand(validIndex,
                 INDEX_FIRST_EVENT);
-        CommandResult result = deleteEventCommand.execute(model);
 
         Patient editedPatient = model.getFilteredPatientList().get(validIndex.getZeroBased());
         List<Event> currEventList = new ArrayList<>(editedPatient.getEvents());
         Event eventToDelete = currEventList.get(INDEX_FIRST_EVENT.getZeroBased());
+        CommandResult result = deleteEventCommand.execute(model);
         String expected = String.format(MESSAGE_DELETE_EVENT_SUCCESS,
                 Messages.format(editedPatient),
                 eventToDelete);
