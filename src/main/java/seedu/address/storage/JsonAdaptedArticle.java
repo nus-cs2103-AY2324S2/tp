@@ -68,7 +68,5 @@ public class JsonAdaptedArticle {
             throw new IllegalValueException("The categories are invalid");
         }
         return new Article(title, authors, publicationDate, source, category, status);
-
-
     }
 }
