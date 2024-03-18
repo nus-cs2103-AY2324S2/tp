@@ -1,7 +1,7 @@
 {
   "baseUrl": "",
   "titlePrefix": "EffiTrack",
-  "titleSuffix": "EffiTrack",
+  "titleSuffix": "Efficiency Tracker",
   "faviconPath": "images/ET_logo.jpeg",
   "style": {
     "codeTheme": "light"
