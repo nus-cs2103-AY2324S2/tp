@@ -27,7 +27,8 @@ public class AddStudentToClassCommandParser implements Parser<AddStudentToClassC
 
     /**
      * Parses the given {@code String} of arguments in the context of the
-     * AddStudentToClass and returns an AddStudentToClassCommand object for execution.
+     * AddStudentToClass and returns an AddStudentToClassCommand object for
+     * execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddStudentToClassCommand parse(String args) throws ParseException {
@@ -36,8 +37,8 @@ public class AddStudentToClassCommandParser implements Parser<AddStudentToClassC
         boolean isIndexPresent = argMultimap.getValue(PREFIX_INDEX).isPresent();
         boolean isEmailPresent = argMultimap.getValue(PREFIX_EMAIL).isPresent();
         boolean isStudentIdPresent = argMultimap.getValue(PREFIX_STUDENTID).isPresent();
-        if (!arePrefixesPresent(argMultimap, PREFIX_MODULECODE, PREFIX_TUTORIALCLASS) || !isIndexPresent
-                && !isEmailPresent && !isStudentIdPresent
+        if (!arePrefixesPresent(argMultimap, PREFIX_MODULECODE, PREFIX_TUTORIALCLASS) || (!isIndexPresent
+                && !isEmailPresent && !isStudentIdPresent)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddStudentToClassCommand.MESSAGE_USAGE));

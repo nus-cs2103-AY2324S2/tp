@@ -39,6 +39,7 @@ import seedu.address.model.person.StudentId;
 public class AddStudentToClassCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private TutorialClass tutorialClass;
 
     @BeforeEach
     public void setUp() {
@@ -46,6 +47,7 @@ public class AddStudentToClassCommandTest {
         model.addModule(newModule);
         TutorialClass newTutorialClass = new TutorialClass(VALID_TUTORIAL_AMY);
         newModule.addTutorialClass(newTutorialClass);
+        tutorialClass = newTutorialClass;
     }
 
     @Test
@@ -60,8 +62,23 @@ public class AddStudentToClassCommandTest {
                 String.format(PersonMessages.MESSAGE_PERSON_EMAIL_NOT_FOUND, INVALID_EMAIL));
         assertCommandFailure(addStudentToClassByIdCommand, model,
                 String.format(PersonMessages.MESSAGE_PERSON_EMAIL_NOT_FOUND, INVALID_STUDENT_ID));
-
     }
+
+    /* @Test
+    public void execute_duplicateStudent_fail() {
+        Person person = new PersonBuilder().build();
+        model.addPerson(person);
+        tutorialClass.addStudent(person);
+        AddStudentToClassByEmailCommand addStudentToClassByEmailCommand = new AddStudentToClassByEmailCommand(
+                person.getEmail(), new ModuleCode(VALID_MODULE_AMY), new TutorialClass(VALID_TUTORIAL_AMY));
+        AddStudentToClassByIdCommand addStudentToClassByIdCommand = new AddStudentToClassByIdCommand(
+                person.getStudentId(), new ModuleCode(VALID_MODULE_AMY),
+                new TutorialClass(VALID_TUTORIAL_AMY));
+        assertCommandFailure(addStudentToClassByIdCommand, model,
+                String.format(PersonMessages.MESSAGE_DUPLICATE_STUDENT_IN_CLASS, person, tutorialClass));
+        assertCommandFailure(addStudentToClassByEmailCommand, model,
+                String.format(PersonMessages.MESSAGE_DUPLICATE_STUDENT_IN_CLASS, person, tutorialClass));
+    } */
 
     @Test
     public void equals() {
