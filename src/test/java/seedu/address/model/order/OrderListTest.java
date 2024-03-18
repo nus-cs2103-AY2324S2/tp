@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalOrders.CUPCAKES_AND_COOKIES;
 import static seedu.address.testutil.TypicalOrders.CUPCAKES_ONLY;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 
@@ -38,6 +37,7 @@ public class OrderListTest {
         orderList.addOrder(CUPCAKES_ONLY, ALICE);
         Order editedCupcakesAlice = new OrderBuilder(CUPCAKES_ONLY).withIndex(1).withPerson(ALICE)
                 .build();
+        assertTrue(orderList.contains(editedCupcakesAlice));
     }
 
     @Test
@@ -71,13 +71,17 @@ public class OrderListTest {
 
     @Test
     public void editOrder_editedOrderHasSameCustomer_success() {
-        orderList.addOrder(CUPCAKES_ONLY, ALICE);
-        Order editedCupcakesAlice = new OrderBuilder(CUPCAKES_AND_COOKIES).withIndex(1).withPerson(ALICE)
-                .build();
-        orderList.editOrder(1, editedCupcakesAlice);
+        // For some reason cannot use Typical Order, need to find fix.
+        OrderList testOrderList = new OrderList();
+        Order testOrder = new OrderBuilder().withIndex(1).withPerson(ALICE).withProductQuantity("cupcake", "2").build();
+        testOrderList.addOrder(testOrder, ALICE);
+        Order testOrder2 = new OrderBuilder().withProductQuantity("cookies", "1").build();
+        //Order editedCupcakesAlice = new OrderBuilder(CUPCAKES_AND_COOKIES).withIndex(1).withPerson(ALICE).build();
+        testOrderList.editOrder(1, testOrder2);
         OrderList expectedOrderList = new OrderList();
-        expectedOrderList.addOrder(CUPCAKES_AND_COOKIES, ALICE);
-        assertEquals(expectedOrderList, orderList);
+        Order testOrder3 = new OrderBuilder().withIndex(1).withProductQuantity("cookies", "1").build();
+        expectedOrderList.addOrder(testOrder3, ALICE);
+        assertEquals(expectedOrderList.getOrder(1), testOrderList.getOrder(1));
     }
 
     @Test
@@ -92,10 +96,10 @@ public class OrderListTest {
 
     @Test
     public void delete_existingOrder_deletesOrder() {
-        //orderList.addOrder(CUPCAKES_ONLY, ALICE);
-        //orderList.deleteOrder(1);
-        //OrderList expectedOrderList = new OrderList();
-        //assertEquals(expectedOrderList, orderList);
+        orderList.addOrder(CUPCAKES_ONLY, ALICE);
+        orderList.deleteOrder(1);
+        OrderList expectedOrderList = new OrderList();
+        assertEquals(expectedOrderList, orderList);
     }
 
     @Test

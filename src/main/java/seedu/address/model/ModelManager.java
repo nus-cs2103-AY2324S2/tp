@@ -112,6 +112,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void addOrder(Order newOrder, Person person) {
+        addressBook.addOrder(newOrder, person);
+        updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS);
+    }
+
+    @Override
     public void deleteOrder(int id) {
         addressBook.removeOrder(id);
     }

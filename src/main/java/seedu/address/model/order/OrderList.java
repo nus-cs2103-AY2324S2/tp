@@ -63,9 +63,8 @@ public class OrderList implements Iterable<Order> {
      */
     public void addOrder(Order toAdd, Person person) {
         requireAllNonNull(toAdd);
-        //make sure that our addordercommand has a means to set the OrderID
+
         orderList.put(toAdd.getId(), toAdd);
-        toAdd.setID(orderIdCounter);
         internalList.add(toAdd);
         person.addOrder(toAdd);
         orderIdCounter++;
@@ -99,9 +98,8 @@ public class OrderList implements Iterable<Order> {
         if (oldOrder == null) {
             throw new OrderNotFoundException();
         }
-        Integer oldOrderIndex = internalList.indexOf(oldOrder);
         orderList.remove(toDelete);
-        internalList.remove(oldOrderIndex);
+        internalList.remove(oldOrder);
     }
 
     /**
@@ -118,12 +116,9 @@ public class OrderList implements Iterable<Order> {
         if (currOrder == null) {
             throw new OrderNotFoundException();
         }
-        if (!currOrder.isSameOrder(toEdit)) {
-            Order oldOrder = orderList.get(orderId);
-            int oldOrderIndex = internalList.indexOf(oldOrder);
-            orderList.put(orderId, toEdit);
-            internalList.set(oldOrderIndex, toEdit);
-        }
+        int oldOrderIndex = internalList.indexOf(currOrder);
+        internalList.set(oldOrderIndex, toEdit);
+        orderList.put(orderId, toEdit);
     }
 
     /**
@@ -165,6 +160,14 @@ public class OrderList implements Iterable<Order> {
         }
 
         return order;
+    }
+
+    public void setOrders(List<Order> orders) {
+        requireAllNonNull(orders);
+        for (Order d: orders) {
+            orderList.put(d.getId(), d);
+        }
+        internalList.setAll(orders);
     }
 
     /**
