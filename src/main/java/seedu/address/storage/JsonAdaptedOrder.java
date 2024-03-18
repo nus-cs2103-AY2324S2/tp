@@ -6,11 +6,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.order.Amount;
 import seedu.address.model.order.Deadline;
-import seedu.address.model.order.Discount;
+//import seedu.address.model.order.Discount;
 import seedu.address.model.order.Order;
-import seedu.address.model.order.OrderId;
 import seedu.address.model.order.OrderDate;
-import seedu.address.model.order.Remarks;
+import seedu.address.model.order.OrderId;
+import seedu.address.model.order.Remark;
 import seedu.address.model.order.Status;
 
 
@@ -24,39 +24,38 @@ public class JsonAdaptedOrder {
     private final String orderId;
     private final String orderDate;
     private final String deadline;
-    private final Double amount;
-    private final String remarks;
+    private final String amount;
+    private final String remark;
     private final String status;
-    private final Double discount;
+    //private final Double discount;
 
     /**
      * Constructs a {@code JsonAdaptedOrder} with the given order details
      */
     @JsonCreator
     public JsonAdaptedOrder(@JsonProperty("orderId") String orderId, @JsonProperty("orderDate") String orderDate,
-                            @JsonProperty("deadline") String deadline, @JsonProperty("amount") Double amount,
-                            @JsonProperty("remarks") String remarks, @JsonProperty("status") String status,
-                            @JsonProperty("discount") Double discount) {
+                            @JsonProperty("deadline") String deadline, @JsonProperty("amount") String amount,
+                            @JsonProperty("remark") String remark, @JsonProperty("status") String status) {
         this.orderId = orderId;
         this.orderDate = orderDate;
         this.deadline = deadline;
         this.amount = amount;
-        this.remarks = remarks;
+        this.remark = remark;
         this.status = status;
-        this.discount = discount;
+        //this.discount = discount;
     }
 
     /**
      * Converts a given {code Order} into this class for Jackson use.
      */
     public JsonAdaptedOrder(Order source) {
-        orderId = source.getOrderId().value;
-        orderDate = source.getOrderDate().value;
-        deadline = source.getDeadline().value;
-        amount = source.getAmount().value;
-        remarks = source.getRemarks().value;
-        status = source.getStatus().value;
-        discount = source.getDiscount().value;
+        orderId = source.getOrderId().toString();
+        orderDate = source.getOrderDate().toString();
+        deadline = source.getDeadline().toString();
+        amount = source.getAmount().toString();
+        remark = source.getRemark().toString();
+        status = source.getStatus().toString();
+        //discount = source.getDiscount().value;
     }
 
     /**
@@ -69,14 +68,11 @@ public class JsonAdaptedOrder {
         if (orderId == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, OrderId.class.getSimpleName()));
         }
-
-        if (!OrderId.isValidOrderId(orderId)) {
-            throw new IllegalValueException(OrderId.MESSAGE_CONSTRAINTS);
-        }
         final OrderId modelOrderId = new OrderId(orderId);
 
         if (orderDate == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, OrderDate.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    OrderDate.class.getSimpleName()));
         }
 
         if (!OrderDate.isValidOrderDate(orderId)) {
@@ -85,7 +81,8 @@ public class JsonAdaptedOrder {
         final OrderDate modelOrderDate = new OrderDate(orderDate);
 
         if (deadline == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Deadline.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Deadline.class.getSimpleName()));
         }
 
         if (!Deadline.isValidDeadline(deadline)) {
@@ -97,19 +94,19 @@ public class JsonAdaptedOrder {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Amount.class.getSimpleName()));
         }
 
-        if (!Amount.isValidAmount(amount)) {
+        if (!Amount.isValidAmount(String.valueOf(amount))) {
             throw new IllegalValueException(Amount.MESSAGE_CONSTRAINTS);
         }
-        final Amount modelAmount = new Amount(amount);
+        final Amount modelAmount = new Amount(String.valueOf(amount));
 
-        if (remarks == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Remarks.class.getSimpleName()));
+        if (remark == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Remark.class.getSimpleName()));
         }
 
-        if (!Remarks.isValidRemarks(remarks)) {
-            throw new IllegalValueException(Remarks.MESSAGE_CONSTRAINTS);
+        if (!Remark.isValidRemark(remark)) {
+            throw new IllegalValueException(Remark.MESSAGE_CONSTRAINTS);
         }
-        final Remarks modelRemarks = new Remarks(remarks);
+        final Remark modelRemarks = new Remark(remark);
 
         if (status == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Status.class.getSimpleName()));
@@ -120,15 +117,16 @@ public class JsonAdaptedOrder {
         }
         final Status modelStatus = new Status(status);
 
-        if (discount == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Discount.class.getSimpleName()));
+        /*if (discount == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+            Discount.class.getSimpleName()));
         }
 
         if (!Discount.isValidDiscount(discount)) {
             throw new IllegalValueException(Discount.MESSAGE_CONSTRAINTS);
         }
-        final Discount modelDiscount = new Discount(discount);
+        final Discount modelDiscount = new Discount(discount);*/
 
-        return new Order(modelOrderId, modelOrderDate, modelDeadline, modelAmount, modelRemarks, modelStatus, modelDiscount);
+        return new Order(modelOrderId, modelOrderDate, modelDeadline, modelAmount, modelRemarks, modelStatus);
     }
 }

@@ -11,7 +11,7 @@ import seedu.address.commons.util.DateTimeUtil;
  * Represents the date an order was placed.
  */
 public class OrderDate {
-    private static final String MESSAGE_CONSTRAINTS =
+    public static final String MESSAGE_CONSTRAINTS =
             "Order date should be in the format of DD-MM-YYYY HH:MM, e.g. 01-01-2024 23:59";
 
     public final LocalDateTime orderDate;

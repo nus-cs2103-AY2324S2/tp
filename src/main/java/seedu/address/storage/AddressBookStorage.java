@@ -33,12 +33,25 @@ public interface AddressBookStorage {
      */
     Optional<ReadOnlyAddressBook> readAddressBook() throws DataLoadingException;
 
-
     /**
      * @see #getAddressBookFilePath()
      */
     Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataLoadingException;
 
+    Optional<ReadOnlyOrderBook> readOrderBook() throws DataLoadingException;
+
+    /**
+     * @see #getOrderBookFilePath()
+     */
+    Optional<ReadOnlyOrderBook> readOrderBook(Path filePath) throws DataLoadingException;
+
+    /**
+     * Returns order data as a {@link ReadOnlyOrderBook}.
+     * Returns {@code Optional.empty()} if order data file is not found.
+     *
+     * @throws DataLoadingException if loading the order data from storage failed.
+     */
+    Optional<ReadOnlyOrderBook> readOrders() throws DataLoadingException;
 
     /**
      * Saves the given {@link ReadOnlyAddressBook} to the storage.
@@ -46,7 +59,6 @@ public interface AddressBookStorage {
      * @throws IOException if there was any problem writing to the file.
      */
     void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException;
-
 
     /**
      * @see #saveAddressBook(ReadOnlyAddressBook)
@@ -57,27 +69,11 @@ public interface AddressBookStorage {
     // ================ OrderBook methods ==============================
 
     /**
-     * Returns order data as a {@link ReadOnlyOrderBook}.
-     * Returns {@code Optional.empty()} if order data file is not found.
-     *
-     * @throws DataLoadingException if loading the order data from storage failed.
-     */
-    Optional<ReadOnlyOrderBook> readOrders() throws DataLoadingException;
-
-
-    /**
-     * @see #getOrderBookFilePath()
-     */
-    Optional<ReadOnlyOrderBook> readOrderBook(Path filePath) throws DataLoadingException;
-
-
-    /**
      * Saves the given {@link ReadOnlyOrderBook} to the storage.
      * @param orderBook cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
     void saveOrderBook(ReadOnlyOrderBook orderBook) throws IOException;
-
 
     /**
      * @see #saveOrderBook(ReadOnlyOrderBook)

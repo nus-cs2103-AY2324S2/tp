@@ -26,6 +26,21 @@ public class JsonAddressBookStorage implements AddressBookStorage {
 
     //private Path filePath;
 
+    /**
+     * Constructs a {@code JsonAddressBookStorage} with the specified file paths.
+     *
+     * @param addressBookFilePath The file path for the address book data.
+     */
+    public JsonAddressBookStorage(Path addressBookFilePath) {
+        this.addressBookFilePath = addressBookFilePath;
+    }
+
+    /**
+     * Constructs a {@code JsonAddressBookStorage} with the specified file paths.
+     *
+     * @param addressBookFilePath The file path for the address book data.
+     * @param orderFilePath The file path for the order book data.
+     */
     public JsonAddressBookStorage(Path addressBookFilePath, Path orderFilePath) {
         this.addressBookFilePath = addressBookFilePath;
         this.orderFilePath = orderFilePath;
@@ -35,7 +50,7 @@ public class JsonAddressBookStorage implements AddressBookStorage {
         return addressBookFilePath;
     }
 
-    public Path getOrderFilePath() {
+    public Path getOrderBookFilePath() {
         return orderFilePath;
     }
 
@@ -71,28 +86,8 @@ public class JsonAddressBookStorage implements AddressBookStorage {
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException {
-        saveAddressBook(addressBook, addressBookFilePath);
-    }
-
-    /**
-     * Similar to {@link #saveAddressBook(ReadOnlyAddressBook)}.
-     *
-     * @param filePath location of the data. Cannot be null.
-     */
-    public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
-        requireNonNull(addressBook);
-        requireNonNull(filePath);
-
-        FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableAddressBook(addressBook), filePath);
-    }
-
-    // ================ OrderBook methods ==============================
-
-    @Override
-    public Optional<ReadOnlyOrderBook> readOrders() throws DataLoadingException {
-        return readOrderBook(orderFilePath);
+    public Optional<ReadOnlyOrderBook> readOrderBook() throws DataLoadingException {
+        return Optional.empty();
     }
 
     /**
@@ -116,6 +111,31 @@ public class JsonAddressBookStorage implements AddressBookStorage {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataLoadingException(ive);
         }
+    }
+
+    @Override
+    public void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException {
+        saveAddressBook(addressBook, addressBookFilePath);
+    }
+
+    /**
+     * Similar to {@link #saveAddressBook(ReadOnlyAddressBook)}.
+     *
+     * @param filePath location of the data. Cannot be null.
+     */
+    public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+        requireNonNull(addressBook);
+        requireNonNull(filePath);
+
+        FileUtil.createIfMissing(filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableAddressBook(addressBook), filePath);
+    }
+
+    // ================ OrderBook methods ==============================
+
+    @Override
+    public Optional<ReadOnlyOrderBook> readOrders() throws DataLoadingException {
+        return readOrderBook(orderFilePath);
     }
 
     @Override

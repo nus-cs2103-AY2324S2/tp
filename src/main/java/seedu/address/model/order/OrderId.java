@@ -7,7 +7,8 @@ import java.util.UUID;
  * Guarantees: immutable.
  */
 public class OrderId {
-    private final UUID id;
+
+    public final UUID id;
 
     /**
      * Constructs an {@code OrderId}.
@@ -25,6 +26,16 @@ public class OrderId {
         this.id = UUID.fromString(id);
     }
 
+    /**
+     * Checks if the given order ID string is in a valid format.
+     *
+     * @param orderIdStr The order ID string to check.
+     * @return True if the order ID string is in a valid format, false otherwise.
+     */
+    public static boolean isValidOrderId(String orderIdStr) {
+
+        return !orderIdStr.isEmpty();
+    }
 
     @Override
     public String toString() {

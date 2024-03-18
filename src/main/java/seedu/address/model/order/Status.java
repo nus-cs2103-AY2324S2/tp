@@ -15,7 +15,7 @@ public class Status {
     public static final String MESSAGE_CONSTRAINTS =
             "Status can only be either 'pending', 'completed' or 'canceled'";
 
-    private final StatusEnum status;
+    public final StatusEnum status;
 
     /**
      * Constructs a {@code Status}.

@@ -76,6 +76,11 @@ public class StorageManager implements Storage {
         addressBookStorage.saveAddressBook(addressBook, filePath);
     }
 
+    @Override
+    public Optional<ReadOnlyOrderBook> readOrders() throws DataLoadingException {
+        return Optional.empty();
+    }
+
     // ================ OrderBook methods ==============================
     @Override
     public Path getOrderBookFilePath() {
