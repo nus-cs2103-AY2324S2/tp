@@ -74,7 +74,7 @@ public class Internship {
 
     /**
      * Returns true if both internships have the same company name, location, role and description.
-     * This defines the same notion of equality between two internships.
+     * This defines the same notion of equality between two internships. (Identity fields)
      */
     public boolean isSameInternship(Internship otherInternship) {
         if (otherInternship == this) {
