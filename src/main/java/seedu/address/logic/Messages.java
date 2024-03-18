@@ -20,8 +20,6 @@ public class Messages {
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
-    public static final String MESSAGE_MISSING_NUSNET =
-            "There is no student with this NUSNet ID!";
     public static final String MESSAGE_MARKED_ATTENDANCE_SUCCESS = "Marked attendance for student: ";
     public static final String MESSAGE_MARK_EXISTING_ATTENDANCE_SUCCESS =
             "Re-marked Attendance for student: ";
