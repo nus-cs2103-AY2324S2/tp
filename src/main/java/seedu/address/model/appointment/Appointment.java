@@ -71,10 +71,9 @@ public class Appointment {
         }
 
         Appointment otherAppointment = (Appointment) other;
-        boolean sameID = id.equals(otherAppointment.getId());
         boolean samePersonId = personId.equals(otherAppointment.getPersonId());
         boolean sameDate = appointmentTime.equals(otherAppointment.getAppointmentTime());
-        return (sameID && samePersonId && sameDate);
+        return (samePersonId && sameDate);
     }
 
 }
