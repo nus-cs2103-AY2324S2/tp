@@ -30,8 +30,8 @@ public class AddTagsCommand extends Command {
     public static final String COMMAND_WORD = "addt";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Adds one or more tags (single word) to a person identified "
-            + "by the index number used in the last person listing. "
+            + ": Adds one or more tags (single word) to the patient identified "
+            + "by the index number used in the last patient listing. "
             + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_TAG + "[TAG]+ \n"
             + "Example: " + COMMAND_WORD + " 1 "
@@ -45,7 +45,7 @@ public class AddTagsCommand extends Command {
 
     /**
      * @param index of the patient in the filtered patient list to add the tags
-     * @param tags   to be added to the patient
+     * @param tags  to be added to the patient
      */
     public AddTagsCommand(Index index, Set<Tag> tags) {
         requireAllNonNull(index, tags);
@@ -75,10 +75,10 @@ public class AddTagsCommand extends Command {
         Patient patientToEdit = lastShownList.get(index.getZeroBased());
 
         // Create new Hashset to add in new tags as Patient.getTags() return unmodifiableSet
-        Set<Tag> newTagList = new HashSet<>(patientToEdit.getTags());
-        newTagList.addAll(tags);
+        Set<Tag> newTagSet = new HashSet<>(patientToEdit.getTags());
+        newTagSet.addAll(tags);
 
-        editPatientDescriptor.setTags(newTagList);
+        editPatientDescriptor.setTags(newTagSet);
 
         Patient editedPatient = createEditedPatient(patientToEdit, editPatientDescriptor);
 

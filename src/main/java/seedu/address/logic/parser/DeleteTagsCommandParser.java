@@ -10,26 +10,27 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.AddTagsCommand;
+import seedu.address.logic.commands.DeleteTagsCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
 
 /**
- * Parses input arguments and creates a new AddTagsCommand object
+ * Parses the user's input arguments and creates a new DeleteTagsCommand object
  */
-public class AddTagsCommandParser implements Parser<AddTagsCommand> {
+public class DeleteTagsCommandParser implements Parser<DeleteTagsCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddTagsCommand
-     * and returns an AddTagsCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the DeleteTagsCommand
+     * and returns an DeleteTagsCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public AddTagsCommand parse(String args) throws ParseException {
+    public DeleteTagsCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_TAG) || argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    AddTagsCommand.MESSAGE_USAGE));
+                    DeleteTagsCommand.MESSAGE_USAGE));
         }
 
         Index index;
@@ -41,6 +42,6 @@ public class AddTagsCommandParser implements Parser<AddTagsCommand> {
 
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        return new AddTagsCommand(index, tagList);
+        return new DeleteTagsCommand(index, tagList);
     }
 }
