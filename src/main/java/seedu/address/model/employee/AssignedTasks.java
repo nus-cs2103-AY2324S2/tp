@@ -120,6 +120,20 @@ public class AssignedTasks {
         return this;
     }
 
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof AssignedTasks)) {
+            return false;
+        }
+
+        AssignedTasks otherAssignedTasks = (AssignedTasks) other;
+        return tasks.equals(otherAssignedTasks.tasks);
+    }
 
     @Override
     public String toString() {
