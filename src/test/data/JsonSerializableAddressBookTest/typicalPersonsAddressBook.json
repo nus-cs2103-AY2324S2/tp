@@ -5,7 +5,7 @@
     "phone" : "94351253",
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
-    "meritScore": "1",
+    "meritScore": "0",
     "bookTitle" : "",
     "tags" : [ "friends" ]
   }, {
@@ -72,21 +72,5 @@
     "meritScore": "1",
     "bookTitle" : "How To Become a Better Reader?",
     "tags" : [ "teachers" ]
-  }, {
-    "name" : "Hoon Meier",
-    "phone" : "8482424",
-    "email" : "stefan@example.com",
-    "address" : "little india",
-    "meritScore": "1",
-    "bookTitle" : "",
-    "tags" : [ ]
-  }, {
-    "name" : "Ida Mueller",
-    "phone" : "8482131",
-    "email" : "hans@example.com",
-    "address" : "chicago ave",
-    "meritScore": "1",
-    "bookTitle" : "",
-    "tags" : [ ]
-  } ]
+  }]
 }
