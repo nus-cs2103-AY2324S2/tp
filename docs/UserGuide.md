@@ -293,6 +293,7 @@ _Details coming soon ..._
 | **Edit**      | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
 | **Find**      | `find KEYWORD/ [KEYWORD]`<br> e.g., `find n/ James n/ T t/ friend t/ rich`                                                                                            |
 | **Add Order** | `addorder INDEX d/DATE r/REMARK`<br> e.g., `addorder 1 d/ 2020-01-01 r/ 100 chicken wings`                                                                            |
+| **List Order**| `listorder INDEX`<br> e.g., `listorder 1`                                                                                                                               |
 | **Add Favourite** | `addfav [i/INDICES]` |
 | **List**      | `list`                                                                                                                                                                |
 | **Help**      | `help`                                                                                                                                                                |

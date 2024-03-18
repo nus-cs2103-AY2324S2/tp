@@ -6,6 +6,9 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.ListOrderCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+/**
+ * Parses input arguments and creates a new ListOrderCommand object
+ */
 public class ListOrderCommandParser implements Parser<ListOrderCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the ListOrderCommand

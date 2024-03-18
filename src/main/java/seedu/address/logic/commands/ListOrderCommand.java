@@ -14,6 +14,9 @@ import seedu.address.model.Model;
 import seedu.address.model.order.Order;
 import seedu.address.model.person.Person;
 
+/**
+ * Lists all orders of the person identified using it's displayed index from the address book.
+ */
 public class ListOrderCommand extends Command {
 
     public static final String COMMAND_WORD = "listorder";
@@ -79,7 +82,7 @@ public class ListOrderCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AddOrderCommand)) {
+        if (!(other instanceof ListOrderCommand)) {
             return false;
         }
 
