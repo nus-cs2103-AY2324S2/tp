@@ -52,9 +52,11 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_delete() throws Exception {
+        String args = "s1234567a";
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
+                DeleteCommand.COMMAND_WORD + " " + args);
+        assertEquals(new DeleteCommand(new IdentityCardNumberMatchesPredicate(
+                new IdentityCardNumber(args))), command);
     }
 
     @Test

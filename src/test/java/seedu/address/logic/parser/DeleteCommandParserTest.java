@@ -3,11 +3,12 @@ package seedu.address.logic.parser;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.model.person.IdentityCardNumber;
+import seedu.address.model.person.IdentityCardNumberMatchesPredicate;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations
@@ -22,11 +23,22 @@ public class DeleteCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsDeleteCommand() {
-        assertParseSuccess(parser, "1", new DeleteCommand(INDEX_FIRST_PERSON));
+        DeleteCommand expectedDeleteCommand = new DeleteCommand(new IdentityCardNumberMatchesPredicate(
+                new IdentityCardNumber("S1234567A")));
+        assertParseSuccess(parser, "S1234567A", expectedDeleteCommand);
     }
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
-        assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+        // IC with incorrect format
+        assertParseFailure(parser, "S1234", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+
+        // IC with incorrect format and additional arguments
+        assertParseFailure(parser, "S1234 extra", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                DeleteCommand.MESSAGE_USAGE));
+
+        // IC with correct format but contains non-alphanumeric characters
+        assertParseFailure(parser, "S1234$%^", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                DeleteCommand.MESSAGE_USAGE));
     }
 }
