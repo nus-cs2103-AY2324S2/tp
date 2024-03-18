@@ -1,69 +1,78 @@
 package vitalconnect.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static vitalconnect.testutil.Assert.assertThrows;
+import static vitalconnect.testutil.TypicalPersons.getTypicalClinic;
 
 import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import vitalconnect.commons.core.GuiSettings;
+import vitalconnect.logic.Messages;
 import vitalconnect.logic.commands.exceptions.CommandException;
 import vitalconnect.model.Appointment;
+import vitalconnect.model.Clinic;
 import vitalconnect.model.Model;
+import vitalconnect.model.ModelManager;
 import vitalconnect.model.ReadOnlyClinic;
 import vitalconnect.model.ReadOnlyUserPrefs;
+import vitalconnect.model.UserPrefs;
 import vitalconnect.model.person.Person;
 import vitalconnect.model.person.contactinformation.ContactInformation;
 import vitalconnect.model.person.identificationinformation.Nric;
+import vitalconnect.testutil.PersonBuilder;
 
 
-public class CreateAptCommandTest {
+public class DeleteContactCommandTest {
+    private Model model = new ModelManager(getTypicalClinic(), new UserPrefs());
 
     @Test
-    public void execute_patientNotExist_throwsCommandException() {
-        ModelStub modelStub = new ModelStubWithoutPerson();
-        String patientName = "NonExisting";
-        String dateTimeStr = "02/02/2024 1330";
-        CreateAptCommand createAptCommand = new CreateAptCommand(patientName, dateTimeStr);
-
-        assertThrows(CommandException.class, "OOPS! The appointment cannot be created as the patient "
-                + "does not exist.", () -> createAptCommand.execute(modelStub));
+    public void constructor_nullContactInformation_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new DeleteContactCommand(null));
     }
 
     @Test
-    public void execute_invalidDateTimeFormat_throwsCommandException() {
-        ModelStub modelStub = new ModelStubAcceptingPersonAdded();
-        String patientName = "John Doe";
-        String dateTimeStr = "invalidDateTime";
-        CreateAptCommand createAptCommand = new CreateAptCommand(patientName, dateTimeStr);
-
-        assertThrows(CommandException.class, "OOPS! The appointment cannot be created as the time is "
-                + "empty or not in the correct format.", () -> createAptCommand.execute(modelStub));
+    public void execute_personNotFind_failure() {
+        assertThrows(CommandException.class, Messages.MESSAGE_PERSON_NOT_FOUND, () ->
+          new DeleteContactCommand(new Nric("S2519229Z")).execute(model));
     }
 
-    /*@Test
-    public void execute_appointmentCreatedSuccessfully() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        String patientName = "John Doe";
-        String dateTimeStr = "02/02/2024 1330";
-        CreateAptCommand createAptCommand = new CreateAptCommand(patientName, dateTimeStr);
+    @Test
+    public void execute_deleteContactInformation_success() throws CommandException {
+        ModelStubHasOnePersonWithNoneEmptyCI modelStub = new ModelStubHasOnePersonWithNoneEmptyCI();
+        Person validPerson = modelStub.findPersonByNric(new Nric("S2519229Z"));
+        CommandResult commandResult = new DeleteContactCommand(validPerson.getIdentificationInformation().getNric())
+            .execute(modelStub);
 
-        CommandResult commandResult = createAptCommand.execute(modelStub);
+        assertEquals(DeleteContactCommand.MESSAGE_SUCCESS,
+            commandResult.getFeedbackToUser());
+    }
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
-        LocalDateTime dateTime = LocalDateTime.parse(dateTimeStr, formatter);
+    @Test
+    public void equalsTest() {
+        Nric nric = new Nric("S2519229Z");
+        DeleteContactCommand command = new DeleteContactCommand(nric);
+        // same object, equal
+        assertTrue(command.equals(command));
 
-        assertEquals("Created an appointment successfully!\nName: John Doe\nTime: 2 Feb. 2024 13:30",
-                commandResult.getFeedbackToUser());
-        assertTrue(modelStub.appointmentsAdded.stream().anyMatch(appointment ->
-                appointment.getPatientName().equals(patientName)
-                        && appointment.getDateTime().equals(dateTime)));
-    }*/
+        // same nric, same command
+        assertTrue(command.equals(new DeleteContactCommand(new Nric("S2519229Z"))));
 
+        // different type, not same command
+        assertFalse(command.equals("abc"));
 
+        // null, not same command
+        assertFalse(command.equals(null));
+    }
+
+    /**
+     * A default model stub that have all of the methods failing.
+     */
     private class ModelStub implements Model {
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
@@ -158,41 +167,39 @@ public class CreateAptCommandTest {
 
         @Override
         public Person findPersonByNric(Nric nric) {
-            return null;
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void updatePersonContactInformation(Nric nric, ContactInformation contactInformation) {
-
+            throw new AssertionError("This method should not be called.");
         }
 
-    }
-
-
-    private class ModelStubWithoutPerson extends ModelStub {
-        @Override
-        public boolean doesPersonExist(String name) {
-            return false;
-        }
     }
 
     /**
-     * A Model stub that always accept the appointment being added.
+     * A Model stub that always accept the person being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Appointment> appointmentsAdded = new ArrayList<>();
+    private class ModelStubHasOnePersonWithNoneEmptyCI extends ModelStub {
+        final Person person = new PersonBuilder().withEmail("abc@email.com").build();
 
         @Override
-        public boolean doesPersonExist(String name) {
-            return true;
+        public Person findPersonByNric(Nric nric) {
+            return this.person;
         }
 
         @Override
-        public void addAppointment(Appointment appointment) {
-            appointmentsAdded.add(appointment);
+        public ReadOnlyClinic getClinic() {
+            return new Clinic();
+        }
+
+        @Override
+        public void updateFilteredPersonList(Predicate<Person> predicate) {
+        }
+
+        @Override
+        public void updatePersonContactInformation(Nric nric, ContactInformation contactInformation) {
+            this.person.setContactInformation(contactInformation);
         }
     }
 }
-
-
-

@@ -1,6 +1,7 @@
 # vitalconnect
 
 [![CI Status](https://github.com/AY2324S2-CS2103T-W08-2/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2324S2-CS2103T-W08-2/tp/actions)
+[![codecov](https://codecov.io/gh/AY2324S2-CS2103T-W08-2/tp/graph/badge.svg?token=HOLIQIUTEE)](https://codecov.io/gh/AY2324S2-CS2103T-W08-2/tp)
 
 This product is for clinic assistants that have to keep track of a lot of patient information and requires 
 the information at a fast pace, thus preferring to have a simple UI such as a CLI instead of a complex GUI, 

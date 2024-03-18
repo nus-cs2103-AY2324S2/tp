@@ -49,6 +49,12 @@ public class PersonTest {
     }
 
     @Test
+    public void copyPerson_success() {
+        Person p = new PersonBuilder().build();
+        assertEquals(p, p.copyPerson());
+    }
+
+    @Test
     public void equals() {
         // same values -> returns true
         Person aliceCopy = new PersonBuilder(ALICE).build();
@@ -83,7 +89,8 @@ public class PersonTest {
     public void toStringMethod() {
         String expected = Person.class.getCanonicalName()
                 + "{identification=[name=" + ALICE.getIdentificationInformation().getName()
-                + ", nric=" + ALICE.getIdentificationInformation().getNric() + "], tags=" + ALICE.getTags() + "}";
+                + ", nric=" + ALICE.getIdentificationInformation().getNric()
+                + "], contact=" + ALICE.getContactInformation() + ", tags=" + ALICE.getTags() + "}";
         assertEquals(expected, ALICE.toString());
     }
 }

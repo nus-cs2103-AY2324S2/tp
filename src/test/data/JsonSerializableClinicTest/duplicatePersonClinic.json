@@ -2,9 +2,15 @@
   "persons": [ {
     "name": "Alice Pauline",
     "nric": "S1234567D",
-    "tags": [ "friends" ]
+    "tags": [ "friends" ],
+    "email": "",
+    "phone": "",
+    "address": ""
   }, {
     "name": "Alice Pauline",
-    "nric": "S1234567D"
+    "nric": "S1234567D",
+    "email": "",
+    "phone": "",
+    "address": ""
   } ]
 }

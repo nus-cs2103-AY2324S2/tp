@@ -45,12 +45,22 @@ public class Email {
     }
 
     /**
+     * Default initializer
+     */
+    public Email() {
+        value = "";
+    }
+
+    /**
      * Returns if a given string is a valid email.
      */
     public static boolean isValidEmail(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.matches(VALIDATION_REGEX) || test.equals("");
     }
 
+    public boolean isEmpty() {
+        return value.equals("");
+    }
     @Override
     public String toString() {
         return value;

@@ -15,7 +15,7 @@ public class Address {
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[^\\s].*";
+    public static final String VALIDATION_REGEX = "^[^/]*$";
 
     public final String value;
 
@@ -30,11 +30,19 @@ public class Address {
         value = address;
     }
 
+    public Address() {
+        value = "";
+    }
+
+    public boolean isEmpty() {
+        return value.equals("");
+    }
+
     /**
      * Returns true if a given string is a valid email.
      */
     public static boolean isValidAddress(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.matches(VALIDATION_REGEX) || test.equals("");
     }
 
     @Override

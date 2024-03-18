@@ -3,30 +3,51 @@
   "persons" : [ {
     "name" : "Alice Pauline",
     "nric" : "S1234567D",
-    "tags" : [ "friends" ]
+    "tags" : [ "friends" ],
+    "email": "email@e.com",
+    "phone": "",
+    "address": ""
   }, {
     "name" : "Benson Meier",
     "nric" : "S1234568B",
-    "tags" : [ "owesMoney", "friends" ]
+    "tags" : [ "owesMoney", "friends" ],
+    "email": "",
+    "phone": "",
+    "address": ""
   }, {
     "name" : "Carl Kurz",
     "nric" : "T1234567J",
-    "tags" : [ ]
+    "tags" : [ ],
+    "email": "",
+    "phone": "",
+    "address": ""
   }, {
     "name" : "Daniel Meier",
     "nric" : "F1234567N",
-    "tags" : [ "friends" ]
+    "tags" : [ "friends" ],
+    "email": "",
+    "phone": "",
+    "address": ""
   }, {
     "name" : "Elle Meyer",
     "nric" : "G1234567X",
-    "tags" : [ ]
+    "tags" : [ ],
+    "email": "",
+    "phone": "",
+    "address": ""
   }, {
     "name" : "Fiona Kunz",
     "nric" : "M1234567K",
-    "tags" : [ ]
+    "tags" : [ ],
+    "email": "",
+    "phone": "",
+    "address": ""
   }, {
     "name" : "George Best",
     "nric" : "F1234560R",
-    "tags" : [ ]
+    "tags" : [ ],
+    "email": "",
+    "phone": "",
+    "address": ""
   } ]
 }

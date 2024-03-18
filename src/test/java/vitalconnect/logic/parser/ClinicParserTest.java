@@ -14,10 +14,12 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import vitalconnect.logic.commands.AddCommand;
+import vitalconnect.logic.commands.AddContactCommand;
 import vitalconnect.logic.commands.ClearCommand;
 import vitalconnect.logic.commands.CreateAptCommand;
 import vitalconnect.logic.commands.DeleteAptCommand;
 import vitalconnect.logic.commands.DeleteCommand;
+import vitalconnect.logic.commands.DeleteContactCommand;
 import vitalconnect.logic.commands.EditCommand;
 import vitalconnect.logic.commands.EditCommand.EditPersonDescriptor;
 import vitalconnect.logic.commands.ExitCommand;
@@ -130,5 +132,17 @@ public class ClinicParserTest {
         String resName = command.getPatientName();
         assertEquals(1, resIndex);
         assertEquals("John Doe", resName);
+    }
+
+    @Test
+    public void parseCommand_addContact() throws ParseException {
+        assertTrue(parser.parseCommand(AddContactCommand.COMMAND_WORD
+            + " ic/S7898305A p/12345678") instanceof AddContactCommand);
+    }
+
+    @Test
+    public void parseCommand_deleteContact() throws ParseException {
+        assertTrue(parser.parseCommand(DeleteContactCommand.COMMAND_WORD
+            + " ic/S7898305A") instanceof DeleteContactCommand);
     }
 }
