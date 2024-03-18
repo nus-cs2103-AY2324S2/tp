@@ -10,6 +10,11 @@ public class Rating {
         this.rating = 0; // Initialize with 0 stars
     }
 
+    /**
+     * Constructs an {@code Rating}.
+     *
+     * @param rating A valid rating.
+     */
     public Rating(int rating) {
         if (rating >= 0 && rating <= 5) {
             this.rating = rating;
