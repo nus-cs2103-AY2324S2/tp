@@ -19,6 +19,9 @@ public class ClassBuilder {
         cc = classes.getCourseCode();
     }
 
+    /**
+     * Sets the {@code cc} of the {@code Classes} that we are building.
+     */
     public ClassBuilder withCC(String cc) {
         this.cc = new CourseCode(cc);
         return this;
