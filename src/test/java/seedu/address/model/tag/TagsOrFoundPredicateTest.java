@@ -35,15 +35,12 @@ public class TagsOrFoundPredicateTest {
         TagsOrFoundPredicate predicate = preparePredicate(List.of("car"));
         assertTrue(predicate.test(new PersonBuilder().withTags("car").build()));
 
-        // Multiple keywords
         predicate = preparePredicate(List.of("car", "health"));
         assertTrue(predicate.test(new PersonBuilder().withTags("health").build()));
 
-        // Only one matching keyword
         predicate = preparePredicate(List.of("car", "health"));
         assertTrue(predicate.test(new PersonBuilder().withTags("car", "covid").build()));
 
-        // Mixed-case keywords
         predicate = preparePredicate(List.of("car", "health"));
         assertTrue(predicate.test(new PersonBuilder().withTags("car", "health").build()));
     }

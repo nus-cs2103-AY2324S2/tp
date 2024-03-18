@@ -20,6 +20,7 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.FindTagsAndCommand;
 import seedu.address.logic.commands.FindTagsOrCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.LastContactCommand;
@@ -29,6 +30,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.LastContact;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.TagsAndFoundPredicate;
 import seedu.address.model.tag.TagsOrFoundPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
@@ -95,6 +97,14 @@ public class AddressBookParserTest {
         FindTagsOrCommand command = (FindTagsOrCommand) parser.parseCommand(
                 FindTagsOrCommand.COMMAND_WORD + " " + String.join(" ", tags));
         assertEquals(new FindTagsOrCommand(new TagsOrFoundPredicate(TagBuilder.build(tags))), command);
+    }
+
+    @Test
+    public void parseCommand_findTagsAnd() throws Exception {
+        List<String> tags = List.of("foo", "bar", "baz");
+        FindTagsAndCommand command = (FindTagsAndCommand) parser.parseCommand(
+                FindTagsAndCommand.COMMAND_WORD + " " + String.join(" ", tags));
+        assertEquals(new FindTagsAndCommand(new TagsAndFoundPredicate(TagBuilder.build(tags))), command);
     }
 
     @Test
