@@ -1,20 +1,22 @@
 package seedu.address.logic.commands;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.Messages;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
-import seedu.address.model.task.Task;
-
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalTasks.getTypicalTaskList;
 
 import org.junit.jupiter.api.Test;
+
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.Messages;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.TaskList;
+import seedu.address.model.UserPrefs;
+import seedu.address.model.task.Task;
 
 public class DeleteTaskCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), getTypicalTaskList(), new UserPrefs());
@@ -41,4 +43,11 @@ public class DeleteTaskCommandTest {
         assertCommandFailure(deleteTaskCommand, model, DeleteTaskCommand.MESSAGE_INDEX_TOO_LARGE);
     }
 
+    @Test
+    public void toStringMethod() {
+        Index targetIndex = Index.fromOneBased(1);
+        DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(targetIndex);
+        String expected = DeleteTaskCommand.class.getCanonicalName() + "{toDelete=" + targetIndex.getOneBased() + "}";
+        assertEquals(expected, deleteTaskCommand.toString());
+    }
 }
