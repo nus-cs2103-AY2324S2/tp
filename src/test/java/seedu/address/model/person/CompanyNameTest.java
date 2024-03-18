@@ -27,8 +27,8 @@ public class CompanyNameTest {
         // invalid name
         assertFalse(CompanyName.isValidName("")); // empty string
         assertFalse(CompanyName.isValidName(" ")); // spaces only
-        assertFalse(CompanyName.isValidName("123456789 123456789 123456789 123456789 123456789 123456789 123456789 " +
-                "123456789 123456789 123456789 1")); // contains more than 100 chracters
+        assertFalse(CompanyName.isValidName("123456789 123456789 123456789 123456789 123456789 123456789 123456789 "
+                + "123456789 123456789 123456789 1")); // contains more than 100 chracters
 
 
         // valid name
