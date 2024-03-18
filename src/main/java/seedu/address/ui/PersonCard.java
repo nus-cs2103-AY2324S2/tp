@@ -7,8 +7,10 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
+
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.logic.MailApp;
 import seedu.address.model.person.Person;
 import java.io.IOException;
 import java.io.InputStream;
@@ -43,6 +45,8 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label address;
     @FXML
+    private Label emailLabel;
+    @FXML
     private Label email;
     @FXML
     private Label githubUsername;
@@ -64,7 +68,9 @@ public class PersonCard extends UiPart<Region> {
         name.setText(person.getName().fullName);
         phone.setText("Phone: " + person.getPhone().value);
         address.setText("Address: " + person.getAddress().value);
-        email.setText("Email: " + person.getEmail().value);
+        emailLabel.setText("Email: ");
+        email.setText(person.getEmail().value);
+        //email.setText("Email: " + person.getEmail().value);
         githubUsername.setText("@"+person.getGitHubUsername().username);
         person.getTechStack().stream()
                 .sorted(Comparator.comparing(techStack -> techStack.techStackName))
@@ -73,6 +79,11 @@ public class PersonCard extends UiPart<Region> {
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag-> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+
+        email.setOnMouseClicked(event -> {
+            MailApp mailApp = new MailApp(person);
+            mailApp.handleEmailClicked();
+        });
     }
 
     private Image loadImage(String imageUrl) {
@@ -89,3 +100,4 @@ public class PersonCard extends UiPart<Region> {
     }
 
 }
+
