@@ -21,6 +21,7 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.MarkCommand;
+import seedu.address.logic.commands.UnassignTaskCommand;
 import seedu.address.logic.commands.UnmarkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -57,6 +58,9 @@ public class TaskMasterProParser {
         logger.fine("Command word: " + commandWord + "; Arguments: " + arguments);
 
         switch (commandWord) {
+
+        case UnassignTaskCommand.COMMAND_WORD:
+            return new UnassignTaskCommandParser().parse(arguments);
 
         case AssignTaskCommand.COMMAND_WORD:
             return new AssignTaskCommandParser().parse(arguments);

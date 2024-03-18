@@ -26,7 +26,7 @@ public class Employee {
 
     // Data fields
     private final Address address;
-    private AssignedTasks tasks;
+    private final AssignedTasks tasks;
 
     private final Set<Tag> tags = new HashSet<>();
 
@@ -105,8 +105,20 @@ public class Employee {
      * @throws CommandException If the task ID is already present in the employee's task list.
      */
     public Employee assignTask(int taskID) throws CommandException {
-        tasks = tasks.updateTask(taskID);
-        return this;
+        return new Employee(
+                employeeId, name, phone, email, address, tasks.updateTask(taskID), tags);
+    }
+
+    /**
+     * Removes a task from the employee's assigned tasks.
+     *
+     * @param taskID the ID of the task to be removed
+     * @return a new Employee object with the specified task removed from its assigned tasks
+     * @throws CommandException if the specified task ID is invalid or the task cannot be removed
+     */
+    public Employee removeTask(int taskID) throws CommandException {
+        return new Employee(
+                employeeId, name, phone, email, address, tasks.deleteTask(taskID), tags);
     }
 
     /**
@@ -162,6 +174,4 @@ public class Employee {
                 .add("tags", tags)
                 .toString();
     }
-
-
 }

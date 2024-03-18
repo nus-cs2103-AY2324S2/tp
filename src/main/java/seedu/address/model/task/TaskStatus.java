@@ -12,11 +12,9 @@ public class TaskStatus {
     public void setTaskDone() {
         status = true;
     }
-
     public void setTaskNotDone() {
         status = false;
     }
-
     public boolean getStatus() {
         return status;
     }
