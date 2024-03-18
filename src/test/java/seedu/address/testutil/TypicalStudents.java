@@ -16,6 +16,11 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.module.Description;
+import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleCode;
+import seedu.address.model.module.ModuleMap;
+import seedu.address.model.module.Title;
 import seedu.address.model.student.Student;
 
 /**
@@ -68,6 +73,26 @@ public class TypicalStudents {
             ab.addStudent(student);
         }
         return ab;
+    }
+
+    public static ModuleMap getTypicalModuleMap() {
+        ModuleMap moduleMap = new ModuleMap();
+        moduleMap.addModule(new Module(
+                new ModuleCode("CS2103T"),
+                new Title("Software Engineering"),
+                new Description("This course introduces the necessary conceptual and analytical tools for systematic and rigorous development of software systems")
+                ));
+        moduleMap.addModule(new Module(
+                new ModuleCode("CS2040S"),
+                new Title("Data Structures and Algorithms"),
+                new Description("This course introduces students to the design and implementation of fundamental data structures and algorithms.")
+        ));
+        moduleMap.addModule(new Module(
+                new ModuleCode("CS2109S"),
+                new Title("Introduction to AI and Machine Learning"),
+                new Description("This course introduces basic concepts in Artificial Intelligence (AI) and Machine Learning (ML)")
+        ));
+        return moduleMap;
     }
 
     public static List<Student> getTypicalStudents() {
