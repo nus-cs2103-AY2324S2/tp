@@ -103,7 +103,7 @@ public class DeleteCommandTest {
     }
 
     @Test
-    public void equals() {
+    public void equalsIndex() {
         DeleteCommand deleteFirstCommand = new DeleteCommand(INDEX_FIRST_PERSON);
         DeleteCommand deleteSecondCommand = new DeleteCommand(INDEX_SECOND_PERSON);
 
@@ -122,6 +122,41 @@ public class DeleteCommandTest {
 
         // different person -> returns false
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
+    }
+
+    @Test
+    public void equalsName() {
+        DeleteCommand deleteUdhayaCommand = new DeleteCommand(
+                new PersonBuilder().withName("Udhaya").build().getName());
+        DeleteCommand deleteNotUdhayaCommand = new DeleteCommand(
+                new PersonBuilder().withName("not Udhaya").build().getName());
+        DeleteCommand deleteUdhayaShanugamCommand = new DeleteCommand(
+                new PersonBuilder().withName("Udhaya Shanugam").build().getName());
+        DeleteCommand deleteAddressCommand = new DeleteCommand(
+                new PersonBuilder().withAddress("Udhaya").build().getName());
+
+        // same object -> returns true
+        assertTrue(deleteUdhayaCommand.equals(deleteUdhayaCommand));
+
+        // same values -> returns true
+        DeleteCommand deleteUdhayaCommandCopy = new DeleteCommand(
+                new PersonBuilder().withName("Udhaya").build().getName());
+        assertTrue(deleteUdhayaCommand.equals(deleteUdhayaCommandCopy));
+
+        // different types -> returns false
+        assertFalse(deleteUdhayaCommand.equals(1));
+
+        // null -> returns false
+        assertFalse(deleteUdhayaCommand.equals(null));
+
+        // different person -> returns false
+        assertFalse(deleteUdhayaCommand.equals(deleteNotUdhayaCommand));
+
+        // delete udhaya should not delete someone with address udhaya
+        assertFalse(deleteUdhayaCommand.equals(deleteAddressCommand));
+
+        //delete Udhaya should not delete someone with name Udhaya Shanugam
+        assertFalse(deleteUdhayaCommand.equals(deleteUdhayaShanugamCommand));
     }
 
     @Test

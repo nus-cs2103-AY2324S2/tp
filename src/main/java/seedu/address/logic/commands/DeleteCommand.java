@@ -8,11 +8,11 @@ import java.util.List;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
+import seedu.address.logic.commands.delete.DeleteCommandExecutor;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
-import seedu.address.logic.commands.delete.DeleteCommandExecutor;
 
 /**
  * Deletes a person identified using it's displayed index from the address book.
@@ -79,7 +79,11 @@ public class DeleteCommand extends Command {
         }
 
         DeleteCommand otherDeleteCommand = (DeleteCommand) other;
-        return targetIndex.equals(otherDeleteCommand.targetIndex);
+        if (targetIndex != null) {
+            return targetIndex.equals(otherDeleteCommand.targetIndex);
+        } else {
+            return targetName.equals(otherDeleteCommand.targetName);
+        }
     }
 
     @Override
