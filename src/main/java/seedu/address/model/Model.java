@@ -85,9 +85,6 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
-<<<<<<< HEAD
-    /** Returns the next unique id for a person. */
-=======
     /**
      * Returns the total number of persons in the address book.
      */
@@ -96,7 +93,6 @@ public interface Model {
     /*
      * Returns the next unique ID for a person.
      */
->>>>>>> upstream/master
     String getNextUniqueId();
 
     /**

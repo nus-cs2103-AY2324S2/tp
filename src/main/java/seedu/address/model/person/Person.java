@@ -76,10 +76,14 @@ public class Person {
 
 
     /** Returns the uniqueId of the person */
-    public String getUniqueId() { return uniqueId; }
+    public String getUniqueId() {
+        return uniqueId;
+    }
 
     /** Sets the uniqueId of the person */
-    public String setUniqueId(String uniqueId) { return this.uniqueId = uniqueId; }
+    public String setUniqueId(String uniqueId) {
+        return this.uniqueId = uniqueId;
+    }
 
 
     /**
