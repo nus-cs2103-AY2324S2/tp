@@ -23,6 +23,8 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.AddSkillCommand;
+import seedu.address.logic.commands.DeleteSkillCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -86,6 +88,12 @@ public class MatchMateParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case AddSkillCommand.COMMAND_WORD:
+            return new AddSkillCommand().parse(arguments);
+
+        case DeleteSkillCommand.COMMAND_WORD:
+            return new DeleteSkillCommand().parse(arguments);
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);
