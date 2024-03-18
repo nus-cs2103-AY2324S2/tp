@@ -50,7 +50,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Testing
 
-### James Doe
+### Jin Xunze
 
 <img src="images/jxunze.png" width="200px">
 

@@ -23,6 +23,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -88,6 +89,14 @@ public class AddCommandTest {
      * A default model stub that have all of the methods failing.
      */
     private class ModelStub implements Model {
+        @Override
+        public void updatePerson(Person personToUpdate) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public Person getPersonByPhoneNumber(Phone phoneNumber) {
+            throw new AssertionError("This method should not be called.");
+        }
         @Override
         public ReadOnlyUserPrefs getUserPrefs() {
             throw new AssertionError("This method should not be called.");

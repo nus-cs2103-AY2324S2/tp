@@ -7,7 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_FIRSTNAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LASTNAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_WAITER;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
@@ -34,7 +34,7 @@ public class PersonTest {
 
         // same name, all other attributes different -> returns true
         Person editedAlice = new PersonBuilder(ALICE)
-            .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
+            .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_WAITER).build();
         assertTrue(ALICE.isSamePerson(editedAlice));
 
         // different first name, all other attributes same -> returns false
@@ -86,7 +86,7 @@ public class PersonTest {
         assertFalse(ALICE.equals(editedAlice));
 
         // different tags -> returns false
-        editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
+        editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_WAITER).build();
         assertFalse(ALICE.equals(editedAlice));
     }
 

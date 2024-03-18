@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -143,6 +144,23 @@ public class ModelManager implements Model {
         return addressBook.equals(otherModelManager.addressBook)
                 && userPrefs.equals(otherModelManager.userPrefs)
                 && filteredPersons.equals(otherModelManager.filteredPersons);
+    }
+
+    @Override
+    public Person getPersonByPhoneNumber(Phone phoneNumber) {
+        requireNonNull(phoneNumber);
+        for (Person person : addressBook.getPersonList()) {
+            if (person.getPhone().equals(phoneNumber)) {
+                return person;
+            }
+        }
+        return null; // Return null if the person is not found
+    }
+
+    @Override
+    public void updatePerson(Person personToUpdate) {
+        requireNonNull(personToUpdate);
+        addressBook.setPerson(personToUpdate, personToUpdate);
     }
 
 }
