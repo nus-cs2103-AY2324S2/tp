@@ -16,9 +16,13 @@ Class UniquePersonList
 Class Person
 Class Address
 Class Email
-Class Name
+Class CompanyName
 Class Phone
 Class Tag
+Class InternDuration
+Class InterviewDate
+Class JobDescription
+Class Salary
 
 Class I #FFFFFF
 }
@@ -37,11 +41,15 @@ UserPrefs .up.|> ReadOnlyUserPrefs
 
 AddressBook *--> "1" UniquePersonList
 UniquePersonList --> "~* all" Person
-Person *--> Name
+Person *--> CompanyName
 Person *--> Phone
 Person *--> Email
 Person *--> Address
-Person *--> "*" Tag
+Person *--> Tag
+Person *--> InternDuration
+Person *--> InterviewDate
+Person *--> JobDescription
+Person *--> Salary
 
 Person -[hidden]up--> I
 UniquePersonList -[hidden]right-> I
