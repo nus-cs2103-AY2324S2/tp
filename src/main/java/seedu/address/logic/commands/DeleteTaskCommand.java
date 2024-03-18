@@ -59,17 +59,12 @@ public class DeleteTaskCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AddCommand)) {
+        if (!(other instanceof DeleteTaskCommand)) {
             return false;
         }
 
-        DeleteTaskCommand otherDeleteTaskCommand = (DeleteTaskCommand) other;
-        return taskIndexToDelete.equals(otherDeleteTaskCommand.taskIndexToDelete);
-    }
-
-    @Override
-    public int hashCode() {
-        return taskIndexToDelete.hashCode();
+        DeleteTaskCommand otherDeleteCommand = (DeleteTaskCommand) other;
+        return taskIndexToDelete.equals(otherDeleteCommand.taskIndexToDelete);
     }
 
     @Override
