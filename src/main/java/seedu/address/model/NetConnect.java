@@ -106,7 +106,7 @@ public class NetConnect implements ReadOnlyNetConnect {
      *
      * @return {@code true} if the export operation is successful, {@code false} otherwise.
      */
-    public boolean exportCSV(String filename) {
+    public boolean exportCsv(String filename) {
         CsvExporter exporter = new CsvExporter(persons, filename);
         exporter.execute();
         return exporter.getIsSuccessful();

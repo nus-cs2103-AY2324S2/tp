@@ -99,5 +99,5 @@ public interface Model {
      * Exports the data from the address book as a CSV file with the specified filename.
      * Returns {@code true} if the export operation is successful, {@code false} otherwise.
      */
-    boolean exportCSV(String filename);
+    boolean exportCsv(String filename);
 }

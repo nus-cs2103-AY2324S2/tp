@@ -3,8 +3,8 @@ package seedu.address.logic.utils;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
@@ -21,11 +21,21 @@ public class CsvExporter {
 
     private final UniquePersonList persons;
 
+    /**
+     * Constructs a CSVExporter object with the specified list of persons and filename.
+     *
+     * @param persons  The list of persons to be exported to CSV.
+     * @param filename The filename for the CSV file to be created.
+     */
     public CsvExporter(UniquePersonList persons, String filename) {
         this.persons = persons;
         this.filename = filename;
     }
 
+    /**
+     * Executes the CSV export process by creating a CSV file with the data from the list of contacts.
+     * If the export process is successful, sets the {@code isSuccessful} flag to true; otherwise, sets it to false.
+     */
     public void execute() {
         List<String[]> data = createDataList();
         try (Writer writer = new FileWriter(this.filename)) {
@@ -64,7 +74,7 @@ public class CsvExporter {
      * @return A string array representing the data of the Person object.
      */
     public String[] convertPersonToStringArray(Person person) {
-        String[] personStringArray = new String[6]; // To be checked
+        String[] personStringArray = new String[6];
 
         personStringArray[0] = person.getName().toString();
         personStringArray[1] = person.getPhone().toString();
