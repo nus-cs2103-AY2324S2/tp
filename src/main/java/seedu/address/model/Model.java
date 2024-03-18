@@ -96,4 +96,7 @@ public interface Model {
      * {@code appointment} must not already exist in the address book.
      */
     void addAppointment(Appointment appointment);
+
+    /** Returns an unmodifiable view of the filtered person list */
+    ObservableList<Appointment> getFilteredAppointmentList();
 }

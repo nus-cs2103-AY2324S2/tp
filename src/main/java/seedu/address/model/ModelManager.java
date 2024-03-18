@@ -7,6 +7,7 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
@@ -23,6 +24,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Appointment> filteredAppointments;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -35,6 +37,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredAppointments = new FilteredList<>(FXCollections.observableArrayList());
     }
 
     public ModelManager() {
@@ -158,5 +161,14 @@ public class ModelManager implements Model {
     public void addAppointment(Appointment appointment) {
 //        appoinmentBook.addAppointment(appointment);
 //        updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENT);
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Appointment> getFilteredAppointmentList() {
+        return filteredAppointments;
     }
 }
