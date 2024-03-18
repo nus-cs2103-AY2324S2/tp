@@ -105,26 +105,26 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseAddress_null_throwsNullPointerException() {
+    public void parseMajor_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseMajor((String) null));
     }
 
     @Test
-    public void parseAddress_invalidValue_throwsParseException() {
+    public void parseMajor_invalidValue_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseMajor(INVALID_MAJOR));
     }
 
     @Test
-    public void parseAddress_validValueWithoutWhitespace_returnsAddress() throws Exception {
+    public void parseMajor_validValueWithoutWhitespace_returnsMajor() throws Exception {
         Major expectedMajor = new Major(VALID_MAJOR);
         assertEquals(expectedMajor, ParserUtil.parseMajor(VALID_MAJOR));
     }
 
     @Test
-    public void parseAddress_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
-        String addressWithWhitespace = WHITESPACE + VALID_MAJOR + WHITESPACE;
+    public void parseMajor_validValueWithWhitespace_returnsTrimmedMajor() throws Exception {
+        String majorWithWhitespace = WHITESPACE + VALID_MAJOR + WHITESPACE;
         Major expectedMajor = new Major(VALID_MAJOR);
-        assertEquals(expectedMajor, ParserUtil.parseMajor(addressWithWhitespace));
+        assertEquals(expectedMajor, ParserUtil.parseMajor(majorWithWhitespace));
     }
 
     @Test

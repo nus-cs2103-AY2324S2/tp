@@ -92,7 +92,7 @@ public class AddCommandParserTest {
         assertParseFailure(parser, YEAR_DESC_AMY + validExpectedPersonString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_YEAR));
 
-        // multiple addresses
+        // multiple majors
         assertParseFailure(parser, MAJOR_DESC_AMY + validExpectedPersonString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_MAJOR));
 

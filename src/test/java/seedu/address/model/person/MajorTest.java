@@ -14,24 +14,27 @@ public class MajorTest {
     }
 
     @Test
-    public void constructor_invalidAddress_throwsIllegalArgumentException() {
-        String invalidAddress = "";
-        assertThrows(IllegalArgumentException.class, () -> new Major(invalidAddress));
+    public void constructor_invalidMajor_throwsIllegalArgumentException() {
+        String invalidMajor = "";
+        assertThrows(IllegalArgumentException.class, () -> new Major(invalidMajor));
     }
 
     @Test
-    public void isValidAddress() {
-        // null address
+    public void isValidMajor() {
+        // null major
         assertThrows(NullPointerException.class, () -> Major.isValidMajor(null));
 
-        // invalid addresses
+        // invalid majors
         assertFalse(Major.isValidMajor("")); // empty string
         assertFalse(Major.isValidMajor(" ")); // spaces only
 
-        // valid addresses
-        assertTrue(Major.isValidMajor("Business"));
+        // valid majors (Computing majors)
         assertTrue(Major.isValidMajor("-")); // one character
-        assertTrue(Major.isValidMajor("Computer Science")); // long major
+        assertTrue(Major.isValidMajor("Business Analytics"));
+        assertTrue(Major.isValidMajor("Computer Science"));
+        assertTrue(Major.isValidMajor("Computer Engineering"));
+        assertTrue(Major.isValidMajor("Information Systems"));
+        assertTrue(Major.isValidMajor("Information Security"));
     }
 
     @Test
