@@ -3,6 +3,7 @@ package seedu.address.storage;
 import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.article.Article;
@@ -32,8 +33,10 @@ public class JsonAdaptedArticle {
      * @param status
      */
     @JsonCreator
-    public JsonAdaptedArticle(String title, String[] authors, LocalDateTime publicationDate,
-                              String[] source, String category, Article.Status status) {
+    public JsonAdaptedArticle(@JsonProperty("title") String title, @JsonProperty("authors") String[] authors,
+                              @JsonProperty("publicationDate") LocalDateTime publicationDate,
+                              @JsonProperty("source") String[] source, @JsonProperty("category") String category,
+                              @JsonProperty("status") Article.Status status) {
         this.title = title;
         this.authors = authors;
         this.publicationDate = publicationDate;
