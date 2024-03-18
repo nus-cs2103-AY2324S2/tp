@@ -61,8 +61,9 @@ Address -[hidden]right-> Email
 
 AddressBook *--> "1" OrderList
 
+
 OrderList --> "~* all" Order
-Order *--> OrderId
+Order -[hidden]up->Name
 Order *--> OrderId
 Order *--> OrderDate
 Order *--> Deadline
