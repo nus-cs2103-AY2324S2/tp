@@ -2,7 +2,8 @@ package seedu.address.model.person;
 
 /**
  * Represents a Person's unique id in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidId(int)}
+ * Guarantees: immutable; is always valid; each instance has
+ * a unique value; only at most one instance for each unique value.
  */
 public class Id {
 

@@ -17,6 +17,9 @@ import seedu.address.model.tag.Tag;
  */
 public class Person {
 
+    // Unique id
+    private final Id id;
+
     // Identity fields
     private final Name name;
     private final Phone phone;
@@ -32,12 +35,17 @@ public class Person {
      */
     public Person(Name name, Phone phone, Email email, Address address, Remark remark, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
+        this.id = Id.generateId();
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.remark = remark;
         this.tags.addAll(tags);
+    }
+
+    public Id getId() {
+        return id;
     }
 
     public Name getName() {
@@ -114,6 +122,7 @@ public class Person {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
+                .add("id", id)
                 .add("name", name)
                 .add("phone", phone)
                 .add("email", email)
