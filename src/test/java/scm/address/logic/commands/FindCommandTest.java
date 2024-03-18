@@ -66,8 +66,8 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_zeroKeywords_noPersonFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+    public void execute_zeroKeywords_allPersonsFound() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 7);
         NameContainsKeywordsPredicate namePredicate = prepareNamePredicate(" ");
         AddressContainsKeywordsPredicate addressPredicate = prepareAddressPredicate(" ");
         TagsContainKeywordsPredicate tagsPredicate = prepareTagsPredicate(" ");
@@ -75,7 +75,7 @@ public class FindCommandTest {
         FindCommand command = new FindCommand(namePredicate, addressPredicate, tagsPredicate);
         expectedModel.updateFilteredPersonList(namePredicate.and(addressPredicate.and(tagsPredicate)));
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+        assertEquals(expectedModel.getFilteredPersonList(), model.getFilteredPersonList());
     }
 
     @Test
@@ -95,12 +95,12 @@ public class FindCommandTest {
     public void toStringMethod() {
         NameContainsKeywordsPredicate namePredicate = new NameContainsKeywordsPredicate(Arrays.asList("keyword"));
         AddressContainsKeywordsPredicate addressPredicate = new AddressContainsKeywordsPredicate(Arrays.asList("keyword"));
-        TagsContainKeywordsPredicate tagPredicate = new TagsContainKeywordsPredicate(Arrays.asList("keyword"));
+        TagsContainKeywordsPredicate tagsPredicate = new TagsContainKeywordsPredicate(Arrays.asList("keyword"));
 
-        FindCommand findCommand = new FindCommand(namePredicate, addressPredicate, tagPredicate);
+        FindCommand findCommand = new FindCommand(namePredicate, addressPredicate, tagsPredicate);
         String expected = FindCommand.class.getCanonicalName() + "{namePredicate=" + namePredicate + ", "
-            + addressPredicate + "addressPredicate=" + addressPredicate + ", "
-            + tagPredicate + "tagPredicate=" + tagPredicate + "}";
+            + "addressPredicate=" + addressPredicate + ", "
+            + "tagsPredicate=" + tagsPredicate + "}";
         assertEquals(expected, findCommand.toString());
     }
 
