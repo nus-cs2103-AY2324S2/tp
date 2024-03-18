@@ -141,7 +141,7 @@ public class EditCommand extends Command {
         private Name name;
         private Phone phone;
         private Email email;
-        private String housingtype;
+        private String housingType;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {
@@ -155,7 +155,7 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
-            setHousingType(toCopy.housingtype);
+            setHousingType(toCopy.housingType);
             setTags(toCopy.tags);
         }
 
@@ -164,7 +164,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, housingtype, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, housingType, tags);
         }
 
         public void setName(Name name) {
@@ -191,12 +191,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(email);
         }
 
-        public void setHousingType(String housingtype) {
-            this.housingtype = housingtype;
+        public void setHousingType(String housingType) {
+            this.housingType = housingType;
         }
 
         public Optional<String> getHousingType() {
-            return Optional.ofNullable(housingtype);
+            return Optional.ofNullable(housingType);
         }
 
         /**
@@ -231,7 +231,7 @@ public class EditCommand extends Command {
             return Objects.equals(name, otherEditPersonDescriptor.name)
                     && Objects.equals(phone, otherEditPersonDescriptor.phone)
                     && Objects.equals(email, otherEditPersonDescriptor.email)
-                    && Objects.equals(housingtype, otherEditPersonDescriptor.housingtype)
+                    && Objects.equals(housingType, otherEditPersonDescriptor.housingType)
                     && Objects.equals(tags, otherEditPersonDescriptor.tags);
         }
 
@@ -241,7 +241,7 @@ public class EditCommand extends Command {
                     .add("name", name)
                     .add("phone", phone)
                     .add("email", email)
-                    .add("housingtype", housingtype)
+                    .add("housingType", housingType)
                     .add("tags", tags)
                     .toString();
         }
