@@ -57,7 +57,7 @@ public class CommentCommand extends Command {
         Person personToEdit = lastShownList.get(index.getZeroBased());
         Person editedPerson = new Person(
                 personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), personToEdit.getStatus(),
+                personToEdit.getCountry(), personToEdit.getStatus(),
                 comment, personToEdit.getTags());
 
         model.setPerson(personToEdit, editedPerson);

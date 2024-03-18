@@ -11,8 +11,8 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Address;
 import seedu.address.model.person.Comment;
+import seedu.address.model.person.Country;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -86,12 +86,11 @@ public class StatusCommand extends Command {
         Name updatedName = personToUpdateStatus.getName();
         Phone updatedPhone = personToUpdateStatus.getPhone();
         Email updatedEmail = personToUpdateStatus.getEmail();
-        Address updatedAddress = personToUpdateStatus.getAddress();
-        Status updatedStatus = status;
+        Country updatedCountry = personToUpdateStatus.getCountry();
         Comment updatedComment = personToUpdateStatus.getComment();
         Set<Tag> updatedTags = personToUpdateStatus.getTags();
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedStatus,
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedCountry, status,
                 updatedComment, updatedTags);
     }
 
