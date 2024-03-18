@@ -99,7 +99,7 @@ public class EditCommandTest {
 //        expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
 //
 //        assertCommandSuccess(editCommand, model, commandHistory, expectedMessage, expectedModel);
-//        }
+    //    }
 
     @Test
     public void execute_duplicatePersonUnfilteredList_failure() {

@@ -39,7 +39,7 @@ public class DeleteCommandTest {
 //        expectedModel.deletePerson(personToDelete);
 //
 //        assertCommandSuccess(deleteCommand, model, commandHistory, expectedMessage, expectedModel);
-//        }
+    //    }
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
@@ -64,7 +64,7 @@ public class DeleteCommandTest {
 //        showNoPerson(expectedModel);
 //
 //        assertCommandSuccess(deleteCommand, model, commandHistory, expectedMessage, expectedModel);
-//        }
+    //    }
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
