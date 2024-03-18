@@ -1,15 +1,16 @@
 package seedu.address.model;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
-import seedu.address.commons.core.GuiSettings;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import seedu.address.commons.core.GuiSettings;
+
 
 public class UserPrefsTest {
 
@@ -82,9 +83,9 @@ public class UserPrefsTest {
     @Test
     public void toString_correctFormat_success() {
         UserPrefs userPrefs = new UserPrefs();
-        String expectedString = "Gui Settings : " + userPrefs.getGuiSettings() + "\n" +
-                "Local data file location : " + userPrefs.getAddressBookFilePath() + "\n" +
-                "Local data file location: " + userPrefs.getClassBookFilePath();
+        String expectedString = "Gui Settings : " + userPrefs.getGuiSettings() + "\n"
+                + "Local data file location : " + userPrefs.getAddressBookFilePath() + "\n"
+                + "Local data file location: " + userPrefs.getClassBookFilePath();
         assertEquals(expectedString, userPrefs.toString());
     }
 }
