@@ -51,6 +51,7 @@ public class CancelAppCommand extends Command {
         this.nricToMatch = nricToMatch;
         this.dateToMatch = dateToMatch;
         this.timePeriodToMatch  = timePeriodToMatch;
+        this.apptToCancel = null;
     }
 
     @Override
