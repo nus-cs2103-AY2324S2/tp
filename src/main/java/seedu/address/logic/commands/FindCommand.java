@@ -19,9 +19,9 @@ public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose <Attribute> contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: <Prefix/> KEYWORD [MORE_KEYWORDS]...\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all volunteers whose <Attribute> contain "
+            + "the specified keywords (case-insensitive) and displays them as a indexed list.\n"
+            + "Parameters: <Attribute_Prefix/> KEYWORD [MORE_KEYWORDS]...\n"
             + "Example(find by name): " + COMMAND_WORD + " " + PREFIX_NAME + " alice bob charlie\n"
             + "Example(find by availability): " + COMMAND_WORD + " " + PREFIX_AVAIL + " 01/01/2024 12/12/2024\n"
             + "Example(find by name and availability): " + COMMAND_WORD + " "
