@@ -19,9 +19,6 @@ public class DeleteTaskCommandParser implements Parser<DeleteTaskCommand> {
      */
     @Override
     public DeleteTaskCommand parse(String userInput) throws ParseException {
-        if (userInput.isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteTaskCommand.MESSAGE_USAGE));
-        }
         try {
             Index taskIndexToDelete = ParserUtil.parseIndex(userInput.trim());
             return new DeleteTaskCommand(taskIndexToDelete);
