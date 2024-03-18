@@ -163,7 +163,7 @@ public class UniquePersonListTest {
     }
 
     @Test
-    public void getPersonWithNric_existingPerson_person() {
+    public void getPersonWithNric_existingPerson_personReturned() {
         uniquePersonList.add(ALICE);
         assertEquals(ALICE, uniquePersonList.getPersonWithNric(ALICE.getNric()));
     }
