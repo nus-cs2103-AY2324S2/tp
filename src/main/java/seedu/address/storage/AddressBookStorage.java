@@ -18,6 +18,8 @@ public interface AddressBookStorage {
      */
     Path getAddressBookFilePath();
 
+    Path getAppointmentListFilePath();
+
     /**
      * Returns AddressBook data as a {@link ReadOnlyAddressBook}.
      * Returns {@code Optional.empty()} if storage file is not found.
@@ -30,6 +32,19 @@ public interface AddressBookStorage {
      * @see #getAddressBookFilePath()
      */
     Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataLoadingException;
+
+    /**
+     * Returns AppointmentList data as a {@link ReadOnlyAddressBook}.
+     * Returns {@code Optional.empty()} if storage file is not found.
+     *
+     * @throws DataLoadingException if loading the data from storage failed.
+     */
+    Optional<ReadOnlyAppointmentList> readAppointmentList() throws DataLoadingException;
+
+    /**
+     * @see #getAppointmentListFilePath()
+     */
+    Optional<ReadOnlyAppointmentList> readAppointmentList(Path filePath) throws DataLoadingException;
 
     /**
      * Saves the given {@link ReadOnlyAddressBook} to the storage.

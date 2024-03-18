@@ -55,6 +55,11 @@ public class StorageManager implements Storage {
     }
 
     @Override
+    public Path getAppointmentListFilePath() {
+        return addressBookStorage.getAppointmentListFilePath();
+    }
+
+    @Override
     public Optional<ReadOnlyAddressBook> readAddressBook() throws DataLoadingException {
         return readAddressBook(addressBookStorage.getAddressBookFilePath());
     }
@@ -63,6 +68,17 @@ public class StorageManager implements Storage {
     public Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataLoadingException {
         logger.fine("Attempting to read data from file: " + filePath);
         return addressBookStorage.readAddressBook(filePath);
+    }
+
+    @Override
+    public Optional<ReadOnlyAppointmentList> readAppointmentList() throws DataLoadingException {
+        return readAppointmentList(addressBookStorage.getAppointmentListFilePath());
+    }
+
+    @Override
+    public Optional<ReadOnlyAppointmentList> readAppointmentList(Path filePath) throws DataLoadingException {
+        logger.fine("Attempting to read appointments data from file: " + filePath);
+        return addressBookStorage.readAppointmentList(filePath);
     }
 
     @Override

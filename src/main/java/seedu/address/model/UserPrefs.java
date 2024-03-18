@@ -54,7 +54,6 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         return addressBookFilePath;
     }
 
-    @Override
     public Path getAppointmentListFilePath() {
         return appointmentListFilePath;
     }

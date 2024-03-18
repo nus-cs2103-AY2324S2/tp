@@ -45,6 +45,10 @@ public class JsonAddressBookStorage implements AddressBookStorage {
         return personsFilePath;
     }
 
+    public Path getAppointmentListFilePath() {
+        return appointmentFilePath;
+    }
+
     @Override
     public Optional<ReadOnlyAddressBook> readAddressBook() throws DataLoadingException {
         return readAddressBook(personsFilePath);
@@ -72,6 +76,35 @@ public class JsonAddressBookStorage implements AddressBookStorage {
             throw new DataLoadingException(ive);
         }
     }
+
+    @Override
+    public Optional<ReadOnlyAppointmentList> readAppointmentList() throws DataLoadingException {
+        return readAppointmentList(appointmentFilePath);
+    }
+
+    /**
+     * Similar to {@link #readAppointmentList()}.
+     *
+     * @param filePath location of the data. Cannot be null.
+     * @throws DataLoadingException if loading the data from storage failed.
+     */
+    public Optional<ReadOnlyAppointmentList> readAppointmentList(Path filePath) throws DataLoadingException {
+        requireNonNull(filePath);
+
+        Optional<JsonSerializableAppointmentList> jsonAppointmentList = JsonUtil.readJsonFile(
+                filePath, JsonSerializableAppointmentList.class);
+        if (!jsonAppointmentList.isPresent()) {
+            return Optional.empty();
+        }
+
+        try {
+            return Optional.of(jsonAppointmentList.get().toModelType());
+        } catch (IllegalValueException ive) {
+            logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
+            throw new DataLoadingException(ive);
+        }
+    }
+
 
     @Override
     public void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException {

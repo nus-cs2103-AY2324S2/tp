@@ -42,6 +42,11 @@ public class TypicalAppointments {
             .withStudentId(3)
             .withAppointmentDescription("Second Appointment")
             .withHasAttended(false).build();
+    public static final Appointment FIFTH_APPOINTMENT = new AppointmentBuilder().withAppointmentId(5)
+            .withAppointmentDateTime(LocalDateTime.of(2022, 12, 12, 12, 12))
+            .withStudentId(5)
+            .withAppointmentDescription("Final Appointment")
+            .withHasAttended(false).build();
 
     /**
      * Returns an {@code AppointmentList} with all the typical persons.
