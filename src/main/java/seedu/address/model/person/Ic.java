@@ -10,18 +10,18 @@ public class Ic {
     public static final String MESSAGE_CONSTRAINTS = "ICs can take integer values only, and it should not be blank";
 
     // singapore regex for ic
-    public static final String VALIDATION_REGEX = "^[STFG]\\d{7}[A-Z]$";
-    public final String ic;
+    public static final String VALIDATION_REGEX = "^[A-Z]\\d{7}[A-Z]$";
+    public final String value;
 
     /**
      * Constructs a {@code Ic}.
      *
-     * @param ic A valid IC.
+     * @param value A valid IC.
      */
-    public Ic(String ic) {
-        requireNonNull(ic);
-        checkArgument(isValidIc(ic), MESSAGE_CONSTRAINTS);
-        this.ic = ic;
+    public Ic(String value) {
+        requireNonNull(value);
+        checkArgument(isValidIc(value), MESSAGE_CONSTRAINTS);
+        this.value = value;
     }
     public static boolean isValidIc(String ic) {
         return ic.matches(VALIDATION_REGEX);
@@ -29,7 +29,7 @@ public class Ic {
 
     @Override
     public String toString() {
-        return ic;
+        return value;
     }
 
     @Override
@@ -43,12 +43,12 @@ public class Ic {
         }
 
         Ic otherIc = (Ic) other;
-        return ic.equals(otherIc.ic);
+        return value.equals(otherIc.value);
     }
 
     @Override
     public int hashCode() {
-        return ic.hashCode();
+        return value.hashCode();
     }
 
     // Todo: isValidIc

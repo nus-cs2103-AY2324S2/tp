@@ -10,17 +10,17 @@ public class Dob {
     public static final String MESSAGE_CONSTRAINTS = "Dates of birth takes in a date";
     public static final String VALIDATION_REGEX = "^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/[0-9]{4}$";
 
-    public final String dob;
+    public final String value;
 
     /**
      * Constructs a {@code Dob}.
      *
-     * @param dob A valid date of birth.
+     * @param value A valid date of birth.
      */
-    public Dob(String dob) {
-        requireNonNull(dob);
-        checkArgument(isValidDob(dob), MESSAGE_CONSTRAINTS);
-        this.dob = dob;
+    public Dob(String value) {
+        requireNonNull(value);
+        checkArgument(isValidDob(value), MESSAGE_CONSTRAINTS);
+        this.value = value;
     }
 
     public static boolean isValidDob(String dob) {
@@ -29,7 +29,7 @@ public class Dob {
 
     @Override
     public String toString() {
-        return dob;
+        return value;
     }
 
     @Override
@@ -43,12 +43,12 @@ public class Dob {
         }
 
         Dob otherDob = (Dob) other;
-        return dob.equals(otherDob.dob);
+        return value.equals(otherDob.value);
     }
 
     @Override
     public int hashCode() {
-        return dob.hashCode();
+        return value.hashCode();
     }
 
     // Todo: isValidDob

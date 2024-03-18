@@ -11,17 +11,17 @@ public class AdmissionDate {
             "Admission dates can take any date, and it should be in DD/MM/YYYY";
     public static final String VALIDATION_REGEX = "^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/[0-9]{4}$";
 
-    public final String admissionDate;
+    public final String value;
 
     /**
      * Constructs a {@code AdmissionDate}.
      *
-     * @param admissionDate A valid admission date.
+     * @param value A valid admission date.
      */
-    public AdmissionDate(String admissionDate) {
-        requireNonNull(admissionDate);
-        checkArgument(isValidAdmissionDate(admissionDate), MESSAGE_CONSTRAINTS);
-        this.admissionDate = admissionDate;
+    public AdmissionDate(String value) {
+        requireNonNull(value);
+        checkArgument(isValidAdmissionDate(value), MESSAGE_CONSTRAINTS);
+        this.value = value;
     }
     public static boolean isValidAdmissionDate(String admissionDate) {
         return admissionDate.matches(VALIDATION_REGEX);
@@ -29,7 +29,7 @@ public class AdmissionDate {
 
     @Override
     public String toString() {
-        return admissionDate.toString();
+        return value.toString();
     }
 
     @Override
@@ -43,11 +43,11 @@ public class AdmissionDate {
         }
 
         AdmissionDate otherAdmissionDate = (AdmissionDate) other;
-        return admissionDate.equals(otherAdmissionDate.admissionDate);
+        return value.equals(otherAdmissionDate.value);
     }
 
     @Override
     public int hashCode() {
-        return admissionDate.hashCode();
+        return value.hashCode();
     }
 }

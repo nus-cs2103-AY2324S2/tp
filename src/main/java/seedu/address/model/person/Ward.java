@@ -7,21 +7,21 @@ import static java.util.Objects.requireNonNull;
 public class Ward {
     public static final String MESSAGE_CONSTRAINTS = "Ward addresses can take any values, and it should not be blank";
 
-    public final String ward;
+    public final String value;
 
     /**
     * Constructs a {@code Ward}.
     *
-    * @param ward A valid ward address.
+    * @param value A valid ward address.
     */
-    public Ward(String ward) {
-        requireNonNull(ward);
-        this.ward = ward;
+    public Ward(String value) {
+        requireNonNull(value);
+        this.value = value;
     }
 
     @Override
     public String toString() {
-        return ward;
+        return value;
     }
 
     @Override
@@ -35,11 +35,11 @@ public class Ward {
         }
 
         Ward otherWard = (Ward) other;
-        return ward.equals(otherWard.ward);
+        return value.equals(otherWard.value);
     }
 
     @Override
     public int hashCode() {
-        return ward.hashCode();
+        return value.hashCode();
     }
 }
