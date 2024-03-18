@@ -12,6 +12,7 @@ import java.util.logging.Logger;
 
 import seedu.address.MainApp;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.exceptions.DataLoadingException;
 
 /**
  * Represents the database to store the previous state of command before the application is closed.
@@ -90,8 +91,9 @@ public class StateStorage {
      * Retrieves the past state of the command box if found, else it will return an empty command.
      *
      * @return The last input in the command box, or and empty string if not found.
+     * @throws DataLoadingException If the file is not found or cannot be read.
      */
-    public static String loadState() throws IOException {
+    public static String loadState() throws DataLoadingException {
         logger.info("Loading state from " + FILE_PATH + "...");
 
         String lastCommand = "";
@@ -102,6 +104,8 @@ public class StateStorage {
                 lastCommand = lastCommand + data;
                 data = reader.readLine();
             }
+        } catch (IOException e) {
+            throw new DataLoadingException(e);
         }
         return lastCommand;
     }

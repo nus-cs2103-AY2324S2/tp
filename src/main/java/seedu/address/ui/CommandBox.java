@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import static seedu.address.storage.StateStorage.getFilePath;
+
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -8,14 +10,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
 import seedu.address.MainApp;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.exceptions.DataLoadingException;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.storage.StateStorage;
-
-import java.io.IOException;
-
-import static seedu.address.storage.StateStorage.getFilePath;
 
 
 /**
@@ -23,9 +22,9 @@ import static seedu.address.storage.StateStorage.getFilePath;
  */
 public class CommandBox extends UiPart<Region> {
 
-    private static final Logger logger = LogsCenter.getLogger(MainApp.class);
     public static final String ERROR_STYLE_CLASS = "error";
     private static final String FXML = "CommandBox.fxml";
+    private static final Logger logger = LogsCenter.getLogger(MainApp.class);
     private final CommandExecutor commandExecutor;
 
     @FXML
@@ -42,7 +41,7 @@ public class CommandBox extends UiPart<Region> {
         try {
             String lastCommand = StateStorage.loadState();
             commandTextField.setText(lastCommand);
-        } catch (IOException e) {
+        } catch (DataLoadingException e) {
             logger.warning("State file at " + getFilePath() + " could not be loaded."
                     + " Starting with an empty command box.");
         }

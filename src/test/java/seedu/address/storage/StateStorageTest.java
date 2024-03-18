@@ -1,7 +1,5 @@
 package seedu.address.storage;
 
-import java.io.IOException;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static seedu.address.storage.StateStorage.clearState;
@@ -13,6 +11,8 @@ import static seedu.address.testutil.Assert.assertThrows;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import seedu.address.commons.exceptions.DataLoadingException;
 
 public class StateStorageTest {
 
@@ -38,7 +38,7 @@ public class StateStorageTest {
     }
 
     @Test
-    public void loadState_emptyFile_successfullyLoaded() throws IOException {
+    public void loadState_emptyFile_successfullyLoaded() throws DataLoadingException {
         clearState();
         String expected = "";
         String actual = loadState();
@@ -46,7 +46,7 @@ public class StateStorageTest {
     }
 
     @Test
-    public void writeState_successfullyWritten() throws IOException {
+    public void writeState_successfullyWritten() throws DataLoadingException {
         String expected = "test123abc cba321tset";
         writeState(expected);
         String actual = loadState();
@@ -54,7 +54,7 @@ public class StateStorageTest {
     }
 
     @Test
-    public void overWriteState_successfullyOverWritten() throws IOException {
+    public void overWriteState_successfullyOverWritten() throws DataLoadingException {
         String expected = "test123abc cba321tset";
         writeState(expected);
         String actual = loadState();
@@ -67,9 +67,9 @@ public class StateStorageTest {
     }
 
     @Test
-    public void loadFromFile_fileDoesNotExist_HandlesIOException() {
+    public void loadFromFile_fileDoesNotExist_handlesDataLoadingException() {
         deleteStateStorage();
-        assertThrows(IOException.class, () -> loadState());
+        assertThrows(DataLoadingException.class, () -> loadState());
     }
 
 }
