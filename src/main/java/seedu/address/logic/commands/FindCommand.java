@@ -7,14 +7,14 @@ import java.util.function.Predicate;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.person.FundingStageContainsKeywordsPredicate;
-import seedu.address.model.person.IndustryContainsKeywordsPredicate;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.person.Person;
+import seedu.address.model.startup.FundingStageContainsKeywordsPredicate;
+import seedu.address.model.startup.IndustryContainsKeywordsPredicate;
+import seedu.address.model.startup.NameContainsKeywordsPredicate;
+import seedu.address.model.startup.Startup;
 
 
 /**
- * Finds and lists all persons in address book whose name contains any of the argument keywords.
+ * Finds and lists all startups in address book whose name contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
 public class FindCommand extends Command {
@@ -29,7 +29,7 @@ public class FindCommand extends Command {
             + "Example: " + COMMAND_WORD + " f/ Funding Stages \n"
             + "Example: " + COMMAND_WORD + " f/ B C";;
 
-    private final Predicate<Person> predicate;
+    private final Predicate<Startup> predicate;
 
     public FindCommand(NameContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
@@ -45,9 +45,9 @@ public class FindCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredPersonList(predicate);
+        model.updateFilteredStartupList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+                String.format(Messages.MESSAGE_STARTUPS_LISTED_OVERVIEW, model.getFilteredStartupList().size()));
     }
 
     @Override

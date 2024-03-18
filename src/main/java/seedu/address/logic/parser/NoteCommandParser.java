@@ -6,7 +6,7 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.NoteCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Note;
+import seedu.address.model.startup.Note;
 
 /**
  * Parses input arguments and creates a new NoteCommand object
@@ -20,7 +20,7 @@ public class NoteCommandParser implements Parser<NoteCommand> {
      */
     public NoteCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        NoteCommand.EditPersonDescriptor editPersonDescriptor = new NoteCommand.EditPersonDescriptor();
+        NoteCommand.EditStartupDescriptor editStartupDescriptor = new NoteCommand.EditStartupDescriptor();
         String[] argParts = args.trim().split("\\s+", 2); // Split into index and note description
 
         if (argParts.length != 2 || !argParts[0].matches("\\d+")) {
@@ -31,11 +31,11 @@ public class NoteCommandParser implements Parser<NoteCommand> {
         try {
             index = ParserUtil.parseIndex(argParts[0]);
             Note newNote = new Note(argParts[1]);
-            editPersonDescriptor.setNote(newNote);
+            editStartupDescriptor.setNote(newNote);
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, NoteCommand.MESSAGE_USAGE), pe);
         }
-        return new NoteCommand(index, new NoteCommand.EditPersonDescriptor(editPersonDescriptor));
+        return new NoteCommand(index, new NoteCommand.EditStartupDescriptor(editStartupDescriptor));
     }
 }
 

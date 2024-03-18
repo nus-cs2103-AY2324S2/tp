@@ -13,16 +13,16 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
+import seedu.address.model.startup.Startup;
 
 /**
- * Adds a person to the address book.
+ * Adds a startup to the address book.
  */
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a startup to the address book. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_INDUSTRY + "INDUSTRY "
@@ -41,28 +41,28 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "competitive "
             + PREFIX_TAG + "owesMoney";
 
-    public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
+    public static final String MESSAGE_SUCCESS = "New startup added: %1$s";
+    public static final String MESSAGE_DUPLICATE_STARTUP = "This startup already exists in the address book";
 
-    private final Person toAdd;
+    private final Startup toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddCommand to add the specified {@code Startup}
      */
-    public AddCommand(Person person) {
-        requireNonNull(person);
-        toAdd = person;
+    public AddCommand(Startup startup) {
+        requireNonNull(startup);
+        toAdd = startup;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasPerson(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        if (model.hasStartup(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_STARTUP);
         }
 
-        model.addPerson(toAdd);
+        model.addStartup(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
     }
 
