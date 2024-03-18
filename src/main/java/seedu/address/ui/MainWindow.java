@@ -67,7 +67,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
-        summaryStatsWindow = new SummaryStatsWindow();
+        summaryStatsWindow = new SummaryStatsWindow(logic);
     }
 
     public Stage getPrimaryStage() {
@@ -154,10 +154,10 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleSummaryStats() {
-        if (!helpWindow.isShowing()) {
-            helpWindow.show();
+        if (!summaryStatsWindow.isShowing()) {
+            summaryStatsWindow.show();
         } else {
-            helpWindow.focus();
+            summaryStatsWindow.focus();
         }
     }
 

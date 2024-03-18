@@ -9,14 +9,14 @@ import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.Logic;
 
 /**
  * Controller for a help page
  */
 public class SummaryStatsWindow extends UiPart<Stage> {
 
-    public static final String USERGUIDE_URL = "https://se-education.org/addressbook-level3/UserGuide.html";
-    public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
+    public static final String SUMMARYSTATS_MESSAGE = "The Total Student Count is";
 
     private static final Logger logger = LogsCenter.getLogger(SummaryStatsWindow.class);
     private static final String FXML = "SummaryStatsWindow.fxml";
@@ -25,7 +25,10 @@ public class SummaryStatsWindow extends UiPart<Stage> {
     private Button copyButton;
 
     @FXML
-    private Label helpMessage;
+    private Label summaryMessage;
+
+    private Logic logic;
+    private int totalPerson;
 
     /**
      * Creates a new SummaryStatsWindow.
@@ -34,14 +37,17 @@ public class SummaryStatsWindow extends UiPart<Stage> {
      */
     public SummaryStatsWindow(Stage root) {
         super(FXML, root);
-        helpMessage.setText(HELP_MESSAGE);
     }
 
     /**
      * Creates a new SummaryStatsWindow.
      */
-    public SummaryStatsWindow() {
+    public SummaryStatsWindow(Logic logic) {
         this(new Stage());
+        this.logic = logic;
+        totalPerson = logic.getTotalPersons();
+        String output = SUMMARYSTATS_MESSAGE + " " + Integer.toString(totalPerson);
+        summaryMessage.setText(output);
     }
 
     /**
@@ -63,7 +69,7 @@ public class SummaryStatsWindow extends UiPart<Stage> {
      *     </ul>
      */
     public void show() {
-        logger.fine("Showing help page about the application.");
+        logger.fine("Showing total Student Count about the application.");
         getRoot().show();
         getRoot().centerOnScreen();
     }
@@ -96,7 +102,6 @@ public class SummaryStatsWindow extends UiPart<Stage> {
     private void copyUrl() {
         final Clipboard clipboard = Clipboard.getSystemClipboard();
         final ClipboardContent url = new ClipboardContent();
-        url.putString(USERGUIDE_URL);
         clipboard.setContent(url);
     }
 }
