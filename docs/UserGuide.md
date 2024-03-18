@@ -138,8 +138,7 @@ Deletes the specified person (identified by NRIC) from the address book.
 Format: `delete NRIC`
 
 * Deletes the person with specified `NRIC`.
-* The index refers to the NRIC shown in the displayed person list.
-* The index **must exist within database**.
+* The NRIC **must exist within database**.
 
 Examples:
 * `list` followed by `delete S1234567A` deletes the person with NRIC S1234567A in the address book.
