@@ -23,6 +23,8 @@ public class Student {
     private final TelegramHandle telegramHandle;
     private final Email email;
 
+    private final Link link;
+
     // Data fields
     private final Set<Tag> tags = new HashSet<>();
     private final Timetable timetable;
@@ -37,6 +39,18 @@ public class Student {
         this.studentId = studentId;
         this.email = email;
         this.telegramHandle = telegramHandle;
+        this.link = new Link("");
+        this.tags.addAll(tags);
+        this.timetable = timetable;
+    }
+
+    public Student(Name name, StudentId studentId, Email email, TelegramHandle telegramHandle, Link link, Set<Tag> tags, Timetable timetable) {
+        requireAllNonNull(name, studentId, email, telegramHandle, tags);
+        this.name = name;
+        this.studentId = studentId;
+        this.email = email;
+        this.telegramHandle = telegramHandle;
+        this.link = link;
         this.tags.addAll(tags);
         this.timetable = timetable;
     }
@@ -57,6 +71,7 @@ public class Student {
         return telegramHandle;
     }
 
+    public Link getLink() { return link; }
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -195,6 +210,7 @@ public class Student {
                 .add("email", email)
                 .add("telegram handle", telegramHandle)
                 .add("tags", tags)
+                .add("link", link)
                 .toString();
     }
 

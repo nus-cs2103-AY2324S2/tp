@@ -9,6 +9,7 @@ import educonnect.model.student.Student;
 import educonnect.model.student.StudentId;
 import educonnect.model.student.TelegramHandle;
 import educonnect.model.student.timetable.Timetable;
+import educonnect.model.student.*;
 import educonnect.model.tag.Tag;
 import educonnect.model.util.SampleDataUtil;
 
@@ -23,18 +24,21 @@ public class StudentBuilder {
     public static final String DEFAULT_TELEGRAM_HANDLE = "@Beeam";
     public static final Timetable DEFAULT_TIMETABLE = TypicalTimetableAndValues.DEFAULT_EMPTY_TIMETABLE;
 
+    public static final String DEFAULT_LINK = "https://www.google.com/";
     public static final String ALTERNATE_NAME = "Bob Builder";
     public static final String ALTERNATE_STUDENT_ID = "A9876543U";
     public static final String ALTERNATE_EMAIL = "builderbob@gmail.com";
     public static final String ALTERNATE_TELEGRAM_HANDLE = "@bobthebuilder";
     public static final Timetable ALTERNATE_TIMETABLE = TypicalTimetableAndValues.VALID_TIMETABLE_1;
 
+    public static final String ALTERNATIVE_LINK = "https://www.youtube.com/";
     private Name name;
     private StudentId studentId;
     private Email email;
     private TelegramHandle telegramHandle;
     private Set<Tag> tags;
     private Timetable timetable;
+    private Link link;
 
     /**
      * Creates a {@code StudentBuilder} with the default details.
@@ -48,6 +52,8 @@ public class StudentBuilder {
         timetable = DEFAULT_TIMETABLE;
     }
 
+
+
     /**
      * Initializes the StudentBuilder with the data of {@code studentToCopy}.
      */
@@ -57,6 +63,7 @@ public class StudentBuilder {
         email = studentToCopy.getEmail();
         telegramHandle = studentToCopy.getTelegramHandle();
         tags = new HashSet<>(studentToCopy.getTags());
+        link = studentToCopy.getLink();
         timetable = studentToCopy.getTimetable();
     }
 
@@ -69,6 +76,7 @@ public class StudentBuilder {
                 .withTelegramHandle(ALTERNATE_TELEGRAM_HANDLE)
                 .withEmail(ALTERNATE_EMAIL)
                 .withStudentId(ALTERNATE_STUDENT_ID)
+                .withLink(ALTERNATIVE_LINK)
                 .withTimetable(ALTERNATE_TIMETABLE);
     }
 
@@ -113,6 +121,14 @@ public class StudentBuilder {
     }
 
     /**
+     * Sets the {@code Email} of the {@code Student} that we are building.
+     */
+    public StudentBuilder withLink(String l) {
+        this.link = new Link(l);
+        return this;
+    }
+
+    /**
      * Sets the {@code Timetable} of the {@code Student} that we are building.
      */
     public StudentBuilder withTimetable(Timetable timetable) {
@@ -121,7 +137,9 @@ public class StudentBuilder {
     }
 
     public Student build() {
-        return new Student(name, studentId, email, telegramHandle, tags, timetable);
+        return new Student(name, studentId, email, telegramHandle, tags, link, timetable);
     }
+    public Student buildNoLink() {
+        return new Student(name, studentId, email, telegramHandle, tags, timetable);}
 
 }

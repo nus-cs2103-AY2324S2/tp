@@ -16,6 +16,7 @@ import educonnect.model.student.Email;
 import educonnect.model.student.Name;
 import educonnect.model.student.StudentId;
 import educonnect.model.student.TelegramHandle;
+import educonnect.model.student.Link;
 import educonnect.model.student.timetable.Period;
 import educonnect.model.student.timetable.Timetable;
 import educonnect.model.student.timetable.exceptions.NumberOfDaysException;
@@ -228,5 +229,14 @@ public class ParserUtil {
             throw new ParseException(Period.PERIOD_CONSTRAINTS);
         }
         return new Period("period", trimmedPeriod);
+    }
+
+    public static Link parseLink(String s) throws ParseException {
+        requireNonNull(s);
+        String trimmedLink = s.trim();
+        if (!Link.isValidLink(trimmedLink)) {
+            throw new ParseException(Link.MESSAGE_CONSTRAINTS);
+        }
+        return new Link(trimmedLink);
     }
 }

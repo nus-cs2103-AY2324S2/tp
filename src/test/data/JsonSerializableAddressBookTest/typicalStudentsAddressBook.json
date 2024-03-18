@@ -40,7 +40,8 @@
         "periods" : [ ]
       } ],
       "numOfDays" : 5
-    }
+    },
+    "link": "https://github.com/tanjiajiajun/tp"
   }, {
     "name" : "Benson Meier",
     "studentId" : "A1235678J",
@@ -65,7 +66,8 @@
         "periods" : [ ]
       } ],
       "numOfDays" : 5
-    }
+    },
+    "link": "https://github.com/tanjiajiajun/tp"
   }, {
     "name" : "Carl Kurz",
     "studentId" : "A9876543N",
@@ -106,7 +108,8 @@
         "periods" : [ ]
       } ],
       "numOfDays" : 5
-    }
+    },
+    "link": "https://github.com/tanjiajiajun/tp"
   }, {
     "name" : "Daniel Meier",
     "studentId" : "A1357924D",
@@ -131,7 +134,8 @@
         "periods" : [ ]
       } ],
       "numOfDays" : 5
-    }
+    },
+    "link": "https://github.com/tanjiajiajun/tp"
   }, {
     "name" : "Elle Meyer",
     "studentId" : "A9482224Y",
@@ -172,7 +176,8 @@
         "periods" : [ ]
       } ],
       "numOfDays" : 5
-    }
+    },
+    "link": "https://github.com/tanjiajiajun/tp"
   }, {
     "name" : "Fiona Kunz",
     "studentId" : "A9482427K",
@@ -197,7 +202,8 @@
         "periods" : [ ]
       } ],
       "numOfDays" : 5
-    }
+    },
+    "link": "https://github.com/tanjiajiajun/tp"
   }, {
     "name" : "George Best",
     "studentId" : "A6482442L",
@@ -238,6 +244,7 @@
         "periods" : [ ]
       } ],
       "numOfDays" : 5
-    }
+    },
+    "link": "https://github.com/tanjiajiajun/tp"
   } ]
 }

@@ -1,13 +1,19 @@
 package educonnect.ui;
 
+import java.awt.*;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Comparator;
 
 import educonnect.model.student.Student;
 import javafx.fxml.FXML;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.event.ActionEvent;
 
 /**
  * An UI component that displays information of a {@code Student}.
@@ -42,7 +48,20 @@ public class StudentCard extends UiPart<Region> {
     private FlowPane tags;
     @FXML
     private Label timetable;
+    @FXML
+    private Hyperlink hyperlink;
 
+    @FXML
+    void openLink(ActionEvent action) throws URISyntaxException, IOException {
+        String url = student.getLink().toString();
+        if (url != null || !url.isEmpty()) {
+
+            Desktop.getDesktop().browse(new URI(url));
+
+        } else {
+            System.out.println("No Link has been added yet");
+        }
+    }
     /**
      * Creates a {@code StudentCard} with the given {@code Student} and index to display.
      */
@@ -53,6 +72,12 @@ public class StudentCard extends UiPart<Region> {
         studentID.setText(student.getStudentId().value);
         email.setText(student.getEmail().value);
         telegram.setText(student.getTelegramHandle().value);
+        hyperlink.setText("Project Link");
+        // Set the visibility of the hyperlink based on whether the student has a non-empty URL
+        String url = student.getLink().url; // Assuming getLink().url returns a String
+        boolean isUrlPresent = url != null && !url.isEmpty();
+        hyperlink.setVisible(isUrlPresent);
+
         student.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

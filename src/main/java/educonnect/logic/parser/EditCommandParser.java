@@ -14,6 +14,7 @@ import static educonnect.logic.parser.CliSyntax.PREFIX_TIMETABLE_SUNDAY;
 import static educonnect.logic.parser.CliSyntax.PREFIX_TIMETABLE_THURSDAY;
 import static educonnect.logic.parser.CliSyntax.PREFIX_TIMETABLE_TUESDAY;
 import static educonnect.logic.parser.CliSyntax.PREFIX_TIMETABLE_WEDNESDAY;
+import static educonnect.logic.parser.CliSyntax.PREFIX_LINK;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
@@ -26,6 +27,7 @@ import educonnect.commons.core.index.Index;
 import educonnect.logic.commands.EditCommand;
 import educonnect.logic.parser.exceptions.ParseException;
 import educonnect.model.student.timetable.Timetable;
+
 import educonnect.model.tag.Tag;
 
 /**
@@ -42,7 +44,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_STUDENT_ID,
-                        PREFIX_EMAIL, PREFIX_TELEGRAM_HANDLE, PREFIX_TAG, PREFIX_TIMETABLE);
+                        PREFIX_EMAIL, PREFIX_TELEGRAM_HANDLE, PREFIX_LINK, PREFIX_TAG, PREFIX_TIMETABLE);
 
         Index index;
 
@@ -73,6 +75,9 @@ public class EditCommandParser implements Parser<EditCommand> {
                         PREFIX_TELEGRAM_HANDLE).get()));
         }
 
+        if (argMultimap.getValue(PREFIX_LINK).isPresent()) {
+            editPersonDescriptor.setLink(ParserUtil.parseLink(argMultimap.getValue(PREFIX_LINK).get()));
+        }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 
         if (argMultimap.getValue(PREFIX_TIMETABLE).isPresent()) {

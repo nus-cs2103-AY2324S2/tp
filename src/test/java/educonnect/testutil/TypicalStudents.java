@@ -28,43 +28,91 @@ public class TypicalStudents {
     public static final Student ALICE = new StudentBuilder().withName("Alice Pauline")
             .withTelegramHandle("@Paulice").withEmail("alice@example.com")
             .withStudentId("A0077493U")
+            .withLink("https://en.wikipedia.org/wiki/LeBron_James")
             .withTags("tutorial-1")
             .withTimetable(VALID_TIMETABLE_1).build();
+
     public static final Student BENSON = new StudentBuilder().withName("Benson Meier")
             .withTelegramHandle("@benmeier")
             .withEmail("johnd@example.com").withStudentId("A1235678J")
-            .withTags("tutorial-2", "strong-student").build();
-    public static final Student CARL = new StudentBuilder().withName("Carl Kurz").withStudentId("A9876543N")
-            .withEmail("heinz@example.com").withTelegramHandle("@wallstreet").withTimetable(VALID_TIMETABLE_1).build();
-    public static final Student DANIEL = new StudentBuilder().withName("Daniel Meier").withStudentId("A1357924D")
-            .withEmail("cornelia@example.com").withTelegramHandle("@danelia").withTags("tutorial-3").build();
-    public static final Student ELLE = new StudentBuilder().withName("Elle Meyer").withStudentId("A9482224Y")
-            .withEmail("werner@example.com").withTelegramHandle("@michegan").withTimetable(VALID_TIMETABLE_2).build();
-    public static final Student FIONA = new StudentBuilder().withName("Fiona Kunz").withStudentId("A9482427K")
-            .withEmail("lydia@example.com").withTelegramHandle("@littletokyo").build();
-    public static final Student GEORGE = new StudentBuilder().withName("George Best").withStudentId("A6482442L")
-            .withEmail("anna@example.com").withTelegramHandle("@georgie").withTimetable(VALID_TIMETABLE_2).build();
+            .withLink("https://www.google.com/")
+            .withTags("tutorial-2", "strong-student")
+            .withTimetable(VALID_TIMETABLE_1).build();
+
+    public static final Student CARL = new StudentBuilder()
+            .withName("Carl Kurz")
+            .withStudentId("A9876543N")
+            .withEmail("heinz@example.com")
+            .withTelegramHandle("@wallstreet")
+            .withLink("https://en.wikipedia.org/wiki/LeBron_James")
+            .withTimetable(VALID_TIMETABLE_1).build();
+
+    public static final Student DANIEL = new StudentBuilder()
+            .withName("Daniel Meier")
+            .withStudentId("A1357924D")
+            .withEmail("cornelia@example.com")
+            .withTelegramHandle("@danelia")
+            .withLink("https://en.wikipedia.org/wiki/LeBron_James")
+            .withTags("tutorial-3").build();
+
+    public static final Student ELLE = new StudentBuilder()
+            .withName("Elle Meyer")
+            .withStudentId("A9482224Y")
+            .withEmail("werner@example.com")
+            .withTelegramHandle("@michegan")
+            .withLink("https://en.wikipedia.org/wiki/LeBron_James")
+            .withTimetable(VALID_TIMETABLE_2).build();
+
+    public static final Student FIONA = new StudentBuilder()
+            .withName("Fiona Kunz")
+            .withStudentId("A9482427K")
+            .withLink("https://en.wikipedia.org/wiki/LeBron_James")
+            .withEmail("lydia@example.com")
+            .withTelegramHandle("@littletokyo").build();
+
+    public static final Student GEORGE = new StudentBuilder()
+            .withName("George Best")
+            .withStudentId("A6482442L")
+            .withEmail("anna@example.com")
+            .withTelegramHandle("@georgie")
+            .withLink("https://en.wikipedia.org/wiki/LeBron_James")
+            .withTimetable(VALID_TIMETABLE_2).build();
 
     // Manually added
-    public static final Student HOON = new StudentBuilder().withName("Hoon Meier").withStudentId("A8482424W")
-            .withEmail("stefan@example.com").withTelegramHandle("@hoon").build();
-    public static final Student IDA = new StudentBuilder().withName("Ida Mueller").withStudentId("A8482131M")
-            .withEmail("hans@example.com").withTelegramHandle("@idaho").withTimetable(VALID_TIMETABLE_1).build();
+    public static final Student HOON = new StudentBuilder()
+            .withName("Hoon Meier")
+            .withStudentId("A8482424W")
+            .withLink("https://en.wikipedia.org/wiki/LeBron_James")
+            .withEmail("stefan@example.com")
+            .withTelegramHandle("@hoon").build();
+
+    public static final Student IDA = new StudentBuilder()
+            .withName("Ida Mueller")
+            .withStudentId("A8482131M")
+            .withEmail("hans@example.com")
+            .withTelegramHandle("@idaho")
+            .withLink("https://en.wikipedia.org/wiki/LeBron_James")
+            .withTimetable(VALID_TIMETABLE_1).build();
 
     // Manually added - Student's details found in {@code CommandTestUtil}
     public static final Student AMY = new StudentBuilder()
-            .withName(VALID_NAME_AMY).withStudentId(VALID_STUDENT_ID_AMY)
-            .withEmail(VALID_EMAIL_AMY).withTelegramHandle(VALID_TELEGRAM_HANDLE_AMY)
+            .withName(VALID_NAME_AMY)
+            .withStudentId(VALID_STUDENT_ID_AMY)
+            .withEmail(VALID_EMAIL_AMY)
+            .withTelegramHandle(VALID_TELEGRAM_HANDLE_AMY)
             .withTags(VALID_TAG_FRIEND).build();
+
     public static final Student BOB = new StudentBuilder()
-            .withName(VALID_NAME_BOB).withStudentId(VALID_STUDENT_ID_BOB)
-            .withEmail(VALID_EMAIL_BOB).withTelegramHandle(VALID_TELEGRAM_HANDLE_BOB)
-            .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
-            .build();
+            .withName(VALID_NAME_BOB)
+            .withStudentId(VALID_STUDENT_ID_BOB)
+            .withLink("https://en.wikipedia.org/wiki/LeBron_James")
+            .withTags(VALID_TAG_FRIEND).build();
+
 
     // Not added to address
     public static final Student JOHHNY = new StudentBuilder().withName("Johnny Jenson").withStudentId("A9345680M")
-            .withEmail("johnhojmjogn@example.com").withTelegramHandle("@johnnyjjohnny").build();
+            .withEmail("johnhojmjogn@example.com").withTelegramHandle("@johnnyjjohnny")
+            .withLink("https://en.wikipedia.org/wiki/LeBron_James").build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
