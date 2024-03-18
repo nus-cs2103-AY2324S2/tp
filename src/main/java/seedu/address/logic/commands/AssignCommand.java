@@ -3,9 +3,7 @@ package seedu.address.logic.commands;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
@@ -61,27 +59,15 @@ public class AssignCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToEdit = lastShownPersonList.get(personIndex.getZeroBased());
+        Person personToBeAssigned = lastShownPersonList.get(personIndex.getZeroBased());
         Task taskToAssign = lastShownTaskList.get(taskIndex.getZeroBased());
-        Person editedPerson = createEditedPerson(personToEdit, taskToAssign);
+        Person assignedPerson = personToBeAssigned.addTask(taskToAssign);
 
-        model.setPerson(personToEdit, editedPerson);
+        model.setPerson(personToBeAssigned, assignedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.formatTask(taskToAssign),
-                Messages.format(editedPerson)));
-    }
-
-    /**
-     * Creates and returns a {@code Person} with {@code taskToAssign}
-     * assigned to {@code personToEdit}.
-     */
-    private static Person createEditedPerson(Person personToEdit, Task taskToAssign) {
-        Set<Task> editedTasks = new HashSet<>(personToEdit.getTasks());
-        editedTasks.add(taskToAssign);
-        return new Person(
-                personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), editedTasks);
+                Messages.format(assignedPerson)));
     }
 
     @Override

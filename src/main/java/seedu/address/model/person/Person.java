@@ -62,6 +62,26 @@ public class Person {
     }
 
     /**
+     * @param task to be assigned to {@code this}
+     * @return a new {@code Person} as a result of assigning {@code task} to {@code this}
+     */
+    public Person addTask(Task task) {
+        Set<Task> editedTasks = new HashSet<>(tasks);
+        editedTasks.add(task);
+        return new Person(name, phone, email, address, editedTasks);
+    }
+
+    /**
+     * @param task to be unassigned from {@code this}
+     * @return a new {@code Person} as a result of unassigning {@code task} to {@code this}
+     */
+    public Person deleteTask(Task task) {
+        Set<Task> editedTasks = new HashSet<>(tasks);
+        editedTasks.remove(task);
+        return new Person(name, phone, email, address, editedTasks);
+    }
+
+    /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      */
