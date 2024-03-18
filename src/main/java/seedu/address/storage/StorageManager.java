@@ -13,7 +13,7 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 
 /**
- * Manages storage of AddressBook data in local storage.
+ * Manages storage of AddressBook and ArticleBook data in local storage.
  */
 public class StorageManager implements Storage {
 
@@ -24,7 +24,8 @@ public class StorageManager implements Storage {
     private ArticleBookStorage articleBookStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}
+     * and {@code ArticleBookStorage}.
      */
     public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage,
                           ArticleBookStorage articleBookStorage) {
