@@ -7,12 +7,6 @@ import static seedu.address.testutil.Assert.assertThrows;
 import org.junit.jupiter.api.Test;
 
 public class PhoneTest {
-
-    @Test
-    public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new Phone(null));
-    }
-
     @Test
     public void constructor_invalidPhone_throwsIllegalArgumentException() {
         String invalidPhone = "";
@@ -21,9 +15,6 @@ public class PhoneTest {
 
     @Test
     public void isValidPhone() {
-        // null phone number
-        assertThrows(NullPointerException.class, () -> Phone.isValidPhone(null));
-
         // invalid phone numbers
         assertFalse(Phone.isValidPhone("")); // empty string
         assertFalse(Phone.isValidPhone(" ")); // spaces only

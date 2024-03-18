@@ -20,7 +20,7 @@ public class Tag {
      * @param tagName A valid tag name.
      */
     public Tag(String tagName) {
-//        requireNonNull(tagName);
+        requireNonNull(tagName);
         checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
         this.tagName = tagName;
     }

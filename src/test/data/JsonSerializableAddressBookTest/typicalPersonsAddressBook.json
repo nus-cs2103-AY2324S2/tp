@@ -5,7 +5,7 @@
     "phone" : "94351253",
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
-    "tags" : [ "friends" ]
+    "tags" : [ ]
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
@@ -43,9 +43,5 @@
     "address" : "4th street",
     "tags" : [ ]
   } ],
-  "bookings" : [ {
-    "description" : "First booking",
-    "start" : "2023-12-31 19:00",
-    "end" : "2023-12-31 23:00"
-  } ]
+  "bookings" : [ ]
 }

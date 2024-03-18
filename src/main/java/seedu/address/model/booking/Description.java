@@ -1,7 +1,6 @@
 package seedu.address.model.booking;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Booking's description in the address book.
