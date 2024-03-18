@@ -30,7 +30,7 @@ class JsonAdaptedAppointment {
     }
 
     @JsonValue
-    public String getappointment() {
+    public String getAppointment() {
         return appointment;
     }
 
