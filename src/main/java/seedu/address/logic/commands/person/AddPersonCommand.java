@@ -12,6 +12,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Person;
 
 /**
@@ -36,8 +37,10 @@ public class AddPersonCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_APPOINTMENT = "This appointment already exists in the address book";
 
     private final Person toAdd;
+    private Appointment appointmentToAdd;
 
     /**
      * Creates an AddCommand to add the specified {@code Person}
@@ -47,6 +50,15 @@ public class AddPersonCommand extends Command {
         toAdd = person;
     }
 
+    /**
+     * Creates an AddCommand to add the specified {@code Person}
+     */
+    public AddPersonCommand(Person person, Appointment appointment) {
+        requireNonNull(person);
+        toAdd = person;
+        appointmentToAdd = appointment;
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -54,8 +66,15 @@ public class AddPersonCommand extends Command {
         if (model.hasPerson(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
-
         model.addPerson(toAdd);
+
+        if (appointmentToAdd != null) {
+            if (model.hasAppointment(appointmentToAdd)) {
+                throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
+            }
+            model.addAppointment(appointmentToAdd);
+        }
+
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.formatPerson(toAdd)));
     }
 
