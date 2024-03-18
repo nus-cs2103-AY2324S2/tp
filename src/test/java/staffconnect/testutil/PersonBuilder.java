@@ -35,6 +35,7 @@ public class PersonBuilder {
     private Set<Tag> tags;
     private Set<Availability> availabilities;
 
+
     /**
      * Creates a {@code PersonBuilder} with the default details.
      */

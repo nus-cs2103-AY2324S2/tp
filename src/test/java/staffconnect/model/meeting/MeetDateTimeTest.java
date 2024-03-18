@@ -39,6 +39,9 @@ class MeetDateTimeTest {
         assertFalse(MeetDateTime.isValidMeetDateTime("12/04/23 12:00")); // wrong digits for year
         assertFalse(MeetDateTime.isValidMeetDateTime("12/4/2023 12:00")); // wrong number digits for month
         assertFalse(MeetDateTime.isValidMeetDateTime("1/04/2023 12:00")); // wrong number digits for day
+        assertFalse(MeetDateTime.isValidMeetDateTime("99/04/2023 12:00")); // wrong date values
+        assertFalse(MeetDateTime.isValidMeetDateTime("01/04/2023 99:00")); // wrong time values
+
 
         // valid meeting Date
         assertTrue(MeetDateTime.isValidMeetDateTime("12/04/2023 12:00")); // dd/MM/yyyy HH:mm

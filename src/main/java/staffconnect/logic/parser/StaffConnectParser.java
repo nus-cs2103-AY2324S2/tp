@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 
 import staffconnect.commons.core.LogsCenter;
 import staffconnect.logic.commands.AddCommand;
+import staffconnect.logic.commands.AddMeetingCommand;
 import staffconnect.logic.commands.ClearCommand;
 import staffconnect.logic.commands.Command;
 import staffconnect.logic.commands.DeleteCommand;
@@ -84,6 +85,9 @@ public class StaffConnectParser {
 
         case SortCommand.COMMAND_WORD:
             return new SortCommandParser().parse(arguments);
+
+        case AddMeetingCommand.COMMAND_WORD:
+            return new AddMeetingCommandParser().parse(arguments);
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);
