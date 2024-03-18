@@ -20,8 +20,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.InternshipModel;
 import seedu.address.model.InternshipModelManager;
+import seedu.address.model.InternshipUserPrefs;
 import seedu.address.model.ReadOnlyInternshipData;
-import seedu.address.model.UserPrefs;
 import seedu.address.model.internship.Internship;
 import seedu.address.storage.JsonInternshipDataStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
@@ -119,7 +119,8 @@ public class InternshipLogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        InternshipModel expectedModel = new InternshipModelManager(model.getInternshipData(), new UserPrefs());
+        InternshipModel expectedModel = new InternshipModelManager(model.getInternshipData(),
+                new InternshipUserPrefs());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 
@@ -143,7 +144,7 @@ public class InternshipLogicManagerTest {
      * @param expectedMessage the message expected inside exception thrown by the InternshipLogic component
      */
     private void assertCommandFailureForExceptionFromStorage(IOException e, String expectedMessage) {
-        Path prefPath = temporaryFolder.resolve("ExceptionUserPrefs.json");
+        Path prefPath = temporaryFolder.resolve("ExceptionInternshipUserPrefs.json");
 
         // Inject InternshipLogicManager with an InternshipDataStorage that throws the IOException e when saving
         JsonInternshipDataStorage internshipDataStorage = new JsonInternshipDataStorage(prefPath) {
@@ -155,7 +156,7 @@ public class InternshipLogicManagerTest {
         };
 
         JsonUserPrefsStorage userPrefsStorage =
-                new JsonUserPrefsStorage(temporaryFolder.resolve("ExceptionUserPrefs.json"));
+                new JsonUserPrefsStorage(temporaryFolder.resolve("ExceptionInternshipUserPrefs.json"));
         StorageManager storage = new StorageManager(internshipDataStorage, userPrefsStorage);
 
         logic = new InternshipLogicManager(model, storage);
