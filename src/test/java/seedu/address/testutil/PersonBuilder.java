@@ -49,7 +49,7 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code Person} that we are building.
+     * Sets the {@code CompanyName} of the {@code Person} that we are building.
      */
     public PersonBuilder withCompanyName(String name) {
         this.companyName = new CompanyName(name);
