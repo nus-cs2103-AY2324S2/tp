@@ -21,11 +21,9 @@ public class FindTechStackCommand extends Command {
             + "Example: " + COMMAND_WORD + " java python ";
 
     private final TechStackContainsKeywordsPredicate predicate;
-
     public FindTechStackCommand(TechStackContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
-
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
