@@ -27,7 +27,7 @@ import seedu.address.model.person.NameContainsKeywordsPredicate;
 public class FindCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    CommandHistory commandHistory = new CommandHistory();
+    private CommandHistory commandHistory = new CommandHistory();
 
     @Test
     public void equals() {

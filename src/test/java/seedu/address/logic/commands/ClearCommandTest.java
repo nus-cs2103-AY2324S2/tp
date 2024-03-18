@@ -12,7 +12,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 
 public class ClearCommandTest {
-    CommandHistory commandHistory = new CommandHistory();
+    private CommandHistory commandHistory = new CommandHistory();
 
     @Test
     public void execute_emptyAddressBook_success() {

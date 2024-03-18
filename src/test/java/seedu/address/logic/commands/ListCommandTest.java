@@ -20,7 +20,7 @@ public class ListCommandTest {
 
     private Model model;
     private Model expectedModel;
-    CommandHistory commandHistory = new CommandHistory();
+    private CommandHistory commandHistory = new CommandHistory();
 
     @BeforeEach
     public void setUp() {

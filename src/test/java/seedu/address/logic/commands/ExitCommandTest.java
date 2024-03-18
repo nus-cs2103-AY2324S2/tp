@@ -12,7 +12,7 @@ import seedu.address.model.ModelManager;
 public class ExitCommandTest {
     private Model model = new ModelManager();
     private Model expectedModel = new ModelManager();
-    CommandHistory commandHistory = new CommandHistory();
+    private CommandHistory commandHistory = new CommandHistory();
 
     @Test
     public void execute_exit_success() {

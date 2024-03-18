@@ -75,8 +75,8 @@ public class CommandTestUtil {
      * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
      * - the {@code actualModel} matches {@code expectedModel}
      */
-    public static void assertCommandSuccess(Command command, Model actualModel, CommandHistory history, CommandResult expectedCommandResult,
-                                            Model expectedModel) {
+    public static void assertCommandSuccess(Command command, Model actualModel, CommandHistory history,
+                                            CommandResult expectedCommandResult, Model expectedModel) {
         CommandHistory expectedCommandHistory = new CommandHistory(history);
         try {
             CommandResult result = command.execute(actualModel, history);
@@ -92,10 +92,10 @@ public class CommandTestUtil {
      * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandHistory, CommandResult, Model)}
      * that takes a string {@code expectedMessage}.
      */
-    public static void assertCommandSuccess(Command command, Model actualModel, CommandHistory history,String expectedMessage,
-            Model expectedModel) {
+    public static void assertCommandSuccess(Command command, Model actualModel,
+                                            CommandHistory history, String expectedMessage, Model expectedModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
-        assertCommandSuccess(command, actualModel, history,expectedCommandResult, expectedModel);
+        assertCommandSuccess(command, actualModel, history, expectedCommandResult, expectedModel);
     }
 
     /**
@@ -104,7 +104,8 @@ public class CommandTestUtil {
      * - the CommandException message matches {@code expectedMessage} <br>
      * - the address book, filtered person list and selected person in {@code actualModel} remain unchanged
      */
-    public static void assertCommandFailure(Command command, Model actualModel, CommandHistory history,String expectedMessage) {
+    public static void assertCommandFailure(Command command, Model actualModel,
+                                            CommandHistory history, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
