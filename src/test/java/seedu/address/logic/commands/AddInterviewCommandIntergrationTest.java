@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
@@ -38,5 +39,13 @@ public class AddInterviewCommandIntergrationTest {
 
     @Test
     public void execute_duplicateInterview_throwsCommandException() {
+        Interview validInterview = new InterviewBuilder().buildInterview();
+        model.addInterview(validInterview);
+        Interview interviewInList = model.getAddressBook().getInterviewList().get(0);
+        System.out.println(interviewInList.equals(validInterview));
+        assertCommandFailure(new AddInterviewCommand(interviewInList.getDescription(),
+                interviewInList.getApplicant().getPhone(), interviewInList.getInterviewer().getPhone(),
+                interviewInList.getDate(), interviewInList.getStartTime(), interviewInList.getEndTime()), model,
+                AddInterviewCommand.MESSAGE_DUPLICATE_INTERVIEW);
     }
 }
