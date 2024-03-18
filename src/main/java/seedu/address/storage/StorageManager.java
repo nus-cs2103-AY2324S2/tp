@@ -2,6 +2,7 @@ package seedu.address.storage;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -10,6 +11,7 @@ import seedu.address.commons.exceptions.DataLoadingException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.appointment.Appointment;
 
 /**
  * Manages storage of AddressBook data in local storage.
@@ -71,8 +73,19 @@ public class StorageManager implements Storage {
 
     @Override
     public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
-        logger.fine("Attempting to write to data file: " + filePath);
+        logger.fine("Attempting to write persons to data file: " + filePath);
         addressBookStorage.saveAddressBook(addressBook, filePath);
+    }
+
+    @Override
+    public void saveAppointmentList(List<Appointment> appointments) throws IOException {
+        saveAppointmentList(appointments, addressBookStorage.getAddressBookFilePath());
+    }
+
+    @Override
+    public void saveAppointmentList(List<Appointment> appointments, Path filePath) throws IOException {
+        logger.fine("Attempting to write appointments to data file: " + filePath);
+        addressBookStorage.saveAppointmentList(appointments, filePath);
     }
 
 }

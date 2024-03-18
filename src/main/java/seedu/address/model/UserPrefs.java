@@ -16,6 +16,8 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     private GuiSettings guiSettings = new GuiSettings();
     private Path addressBookFilePath = Paths.get("data" , "addressbook.json");
 
+    private Path appointmentListFilePath = Paths.get("data", "appointmentList.json");
+
     /**
      * Creates a {@code UserPrefs} with default values.
      */
@@ -36,6 +38,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
         setAddressBookFilePath(newUserPrefs.getAddressBookFilePath());
+        setAppointmentListFilePath(newUserPrefs.getAppointmentListFilePath());
     }
 
     public GuiSettings getGuiSettings() {
@@ -51,9 +54,19 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         return addressBookFilePath;
     }
 
+    @Override
+    public Path getAppointmentListFilePath() {
+        return appointmentListFilePath;
+    }
+
     public void setAddressBookFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
         this.addressBookFilePath = addressBookFilePath;
+    }
+
+    public void setAppointmentListFilePath(Path appointmentListFilePath) {
+        requireNonNull(appointmentListFilePath);
+        this.appointmentListFilePath = appointmentListFilePath;
     }
 
     @Override
@@ -69,12 +82,13 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
         UserPrefs otherUserPrefs = (UserPrefs) other;
         return guiSettings.equals(otherUserPrefs.guiSettings)
-                && addressBookFilePath.equals(otherUserPrefs.addressBookFilePath);
+                && addressBookFilePath.equals(otherUserPrefs.addressBookFilePath)
+                && appointmentListFilePath.equals(otherUserPrefs.appointmentListFilePath);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, addressBookFilePath);
+        return Objects.hash(guiSettings, addressBookFilePath, appointmentListFilePath);
     }
 
     @Override
@@ -82,6 +96,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);
         sb.append("\nLocal data file location : " + addressBookFilePath);
+        sb.append("\nLocal appointment list file location : " + appointmentListFilePath);
         return sb.toString();
     }
 

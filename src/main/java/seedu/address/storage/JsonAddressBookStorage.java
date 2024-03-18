@@ -13,6 +13,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyAppointmentList;
 
 /**
  * A class to access AddressBook data stored as a json file on the hard disk.
@@ -21,19 +22,26 @@ public class JsonAddressBookStorage implements AddressBookStorage {
 
     private static final Logger logger = LogsCenter.getLogger(JsonAddressBookStorage.class);
 
-    private Path filePath;
+    private Path personsFilePath;
 
-    public JsonAddressBookStorage(Path filePath) {
-        this.filePath = filePath;
+    private Path AppointmentFilePath;
+
+    public JsonAddressBookStorage(Path personsFilePath, Path AppointmentFilePath) {
+        this.personsFilePath = personsFilePath;
+        this.AppointmentFilePath = AppointmentFilePath;
+    }
+
+    public JsonAddressBookStorage(Path personsFilePath) {
+        this.personsFilePath = personsFilePath;
     }
 
     public Path getAddressBookFilePath() {
-        return filePath;
+        return personsFilePath;
     }
 
     @Override
     public Optional<ReadOnlyAddressBook> readAddressBook() throws DataLoadingException {
-        return readAddressBook(filePath);
+        return readAddressBook(personsFilePath);
     }
 
     /**
@@ -61,7 +69,7 @@ public class JsonAddressBookStorage implements AddressBookStorage {
 
     @Override
     public void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException {
-        saveAddressBook(addressBook, filePath);
+        saveAddressBook(addressBook, personsFilePath);
     }
 
     /**
@@ -76,5 +84,30 @@ public class JsonAddressBookStorage implements AddressBookStorage {
         FileUtil.createIfMissing(filePath);
         JsonUtil.saveJsonFile(new JsonSerializableAddressBook(addressBook), filePath);
     }
+
+    /**
+     * Saves the given {@link ReadOnlyAppointmentList} to the storage.
+     *
+     * @param appointmentList cannot be null.
+     * @throws IOException if there was any problem writing to the file.
+     */
+    @Override
+    public void saveAppointmentList(ReadOnlyAppointmentList appointmentList) throws IOException {
+        saveAppointmentList(appointmentList, personsFilePath);
+    }
+
+    /**
+     * @see #saveAppointmentList(ReadOnlyAppointmentList)
+     */
+    @Override
+    public void saveAppointmentList(ReadOnlyAppointmentList appointmentList, Path filePath) throws IOException {
+        requireNonNull(appointmentList);
+        requireNonNull(filePath);
+
+        FileUtil.createIfMissing(filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableAppointmentList(appointmentList), filePath);
+    }
+
+
 
 }
