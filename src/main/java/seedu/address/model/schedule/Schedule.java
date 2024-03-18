@@ -3,13 +3,11 @@ package seedu.address.model.schedule;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import java.time.DateTimeException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Objects;
 
-import com.sun.scenario.animation.shared.SingleLoopClipEnvelope;
 import seedu.address.model.person.Person;
 
 /**
@@ -24,15 +22,11 @@ public class Schedule {
     public static int schedId_counter = 0;
     // !! to EDIT as a metadata for Json storage
 
-    public static final String MESSAGE_CONSTRAINTS_DATETIMEFORMAT =
-            "Dates should be formatted in YYYY-MM-DD HH:mm";
     public static final DateTimeFormatter CUSTOM_DATETIME = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-    public static DateTimeFormatter dateTimeString = DateTimeFormatter.ofPattern("MMM dd yyyy hh:mma");
-    // !! TO EDIT for Json storage
 
 
 
-    private int schedId;
+    private final int schedId;
     private final String schedName;
     private final LocalDateTime startTime;
     private final LocalDateTime endTime;
