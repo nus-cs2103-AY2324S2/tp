@@ -1,13 +1,21 @@
 package staffconnect.ui;
 
 import java.util.Comparator;
+import java.util.stream.Collectors;
 
+import javafx.beans.binding.Bindings;
+import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import staffconnect.model.meeting.Meeting;
 import staffconnect.model.person.Person;
 
 /**
@@ -26,6 +34,8 @@ public class PersonCard extends UiPart<Region> {
      */
 
     public final Person person;
+
+    private static final int ROW_HEIGHT = 43; //row height of each meeting
 
     @FXML
     private HBox cardPane;
@@ -49,7 +59,7 @@ public class PersonCard extends UiPart<Region> {
     private FlowPane availabilities;
 
     @FXML
-    private VBox meetingsContainer;
+    private ListView<Meeting> meetingListView;
 
 
     /**
@@ -75,8 +85,36 @@ public class PersonCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(availability -> availability.value))
                 .forEach(availability -> availabilities.getChildren().add(new Label(availability.value)));
 
-        person.getMeetings().stream()
+        ObservableList<Meeting> meetingsList = person.getMeetings().stream()
                 .sorted(Comparator.comparing(meeting -> meeting.getStartDate().getDateTime()))
-                .forEach(meeting -> meetingsContainer.getChildren().add(new MeetingsCard(meeting).getRoot()));
+                .collect(Collectors.toCollection(FXCollections::observableArrayList));
+
+        //This is probably only feasible workaround for now without messing or revamping UI.
+        //To set the correct height
+        meetingListView.setPrefHeight(meetingsList.size() * ROW_HEIGHT);
+
+        meetingListView.setItems(meetingsList);
+        meetingListView.setCellFactory(listView -> new MeetingsListViewCell());
+
     }
+
+    /**
+     * Custom {@code ListCell} that displays the graphics of a {@code Meetings} using a {@code MeetingsCard}.
+     */
+    private static class MeetingsListViewCell extends ListCell<Meeting> {
+        @Override
+        protected void updateItem(Meeting meeting, boolean empty) {
+            super.updateItem(meeting, empty);
+            //Set the ID here to overwrite the default styling in the main personListViewCell
+            setId("meetingListCell");
+            if (empty || meeting == null) {
+                setGraphic(null);
+                setText(null);
+                setPrefHeight(0);
+            } else {
+                setGraphic(new MeetingsCard(meeting, getIndex() + 1).getRoot());
+            }
+        }
+    }
+
 }

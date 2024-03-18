@@ -351,22 +351,6 @@
     -fx-font-size: 11;
 }
 
-#meetingPane{
-    -fx-border-radius: 20 20 20 20;
-    -fx-background-radius: 20 20 20 20;
-    -fx-background-color: #3d549d;
-    -fx-border-width: 0;
-    -fx-background-insets: 0 0 0 0;
-    -fx-background-padding: 50 100 0 0;
-    -fx-text-fill: white;
-    -fx-effect: dropshadow(gaussian, rgba(62,84,158,0.8), 13, 0, 0, 0);
-
- }
- #meetingsContainer {
-    -fx-padding: 10 0 0 0;
-    -fx-spacing : 7;
- }
-
 #availabilities {
     -fx-hgap: 7;
     -fx-vgap: 3;
@@ -380,3 +364,27 @@
     -fx-background-radius: 2;
     -fx-font-size: 11;
 }
+
+#meetingPane{
+    -fx-border-radius: 20 20 20 20;
+    -fx-background-radius: 20 20 20 20;
+    -fx-background-color: #3d549d;
+    -fx-border-width: 0;
+    -fx-background-insets: 0 0 0 0;
+    -fx-background-padding: 50 100 0 0;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(gaussian, rgba(62,84,158,0.8), 13, 0, 0, 0);
+ }
+
+ #meetingListView {
+    -fx-background-color: transparent;
+    -fx-padding: 7 0 0 0;
+ }
+
+ #meetingListCell {
+     -fx-background-color: transparent;
+     -fx-padding: 5 0 0 0;
+ }
+
+
+

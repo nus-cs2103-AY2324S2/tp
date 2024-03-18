@@ -13,6 +13,8 @@ public class MeetingsCard extends UiPart<Region> {
 
     private static final String FXML = "MeetingsListCard.fxml";
     @FXML
+    private Label id;
+    @FXML
     private Label description;
     @FXML
     private Label date;
@@ -20,8 +22,10 @@ public class MeetingsCard extends UiPart<Region> {
     /**
      * Creates a {@code MeetingCode} with the given {@code Meeting} and index to display.
      */
-    public MeetingsCard(Meeting meeting) {
+    public MeetingsCard(Meeting meeting,int index) {
+
         super(FXML);
+        id.setText(index + ".  ");
         description.setText(meeting.getDescription().toString());
         date.setText(meeting.getStartDate().toString());
     }
