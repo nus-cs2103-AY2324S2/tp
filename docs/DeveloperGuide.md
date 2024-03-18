@@ -320,8 +320,8 @@ Step 2: The user executes the `deletet 1 t/fallRisk` command to delete the `fall
 <b>Note</b>: Since multiple inputs are allowed, a set of tags to be deleted is passed, each of which will be removed if found associated with the patient.
 </box>
 
-The following sequence diagram illustrates the steps involved in the Delete Tags operation:
-<puml src="diagrams/DeleteTagsSequenceDiagram.puml" alt="DeleteTagsSequence" />
+The following sequence diagram summarizes what happens when a user executes a Delete Tags operation:
+<puml src="diagrams/DeleteTagsTimeDiagram.puml" alt="DeleteTagsSequenceTimeDiagram" />
 
 <box type="info" seamless>
 
