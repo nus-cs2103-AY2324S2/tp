@@ -131,4 +131,16 @@ public class HelpCommandTest {
         assertEquals(true, commandResult.getFeedbackToUser().contains(ExitCommand.COMMAND_WORD));
         assertEquals(true, commandResult.getFeedbackToUser().contains(ExitCommand.MESSAGE_USAGE));
     }
+
+    @Test
+    public void getCommandWord() {
+        HelpCommand helpCommand = new HelpCommand("");
+        assertEquals(HelpCommand.COMMAND_WORD, helpCommand.getCommandWord());
+    }
+
+    @Test
+    public void getMessageUsage() {
+        HelpCommand helpCommand = new HelpCommand("");
+        assertEquals(HelpCommand.MESSAGE_USAGE, helpCommand.getMessageUsage());
+    }
 }

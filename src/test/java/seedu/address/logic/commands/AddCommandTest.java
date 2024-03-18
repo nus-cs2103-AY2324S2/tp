@@ -84,6 +84,18 @@ public class AddCommandTest {
         assertEquals(expected, addCommand.toString());
     }
 
+    @Test
+    public void getCommandWord() {
+        AddCommand addCommand = new AddCommand(ALICE);
+        assertEquals(AddCommand.COMMAND_WORD, addCommand.getCommandWord());
+    }
+
+    @Test
+    public void getMessageUsage() {
+        AddCommand addCommand = new AddCommand(ALICE);
+        assertEquals(AddCommand.MESSAGE_USAGE, addCommand.getMessageUsage());
+    }
+
     /**
      * A default model stub that have all of the methods failing.
      */

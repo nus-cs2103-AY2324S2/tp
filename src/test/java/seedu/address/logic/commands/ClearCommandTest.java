@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
@@ -27,6 +28,19 @@ public class ClearCommandTest {
         expectedModel.setAddressBook(new AddressBook());
 
         assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+    }
+
+    @Test
+    public void getCommandWord() {
+        Command command = new ClearCommand();
+        assertEquals("clear", command.getCommandWord());
+    }
+
+    @Test
+    public void getMessageUsage() {
+        Command command = new ClearCommand();
+        assertEquals("clear: Clears the address book.\n"
+                + "Example: clear", command.getMessageUsage());
     }
 
 }
