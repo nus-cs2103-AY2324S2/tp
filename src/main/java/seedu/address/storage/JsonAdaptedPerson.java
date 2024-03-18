@@ -75,7 +75,7 @@ class JsonAdaptedPerson {
             personTags.add(tag.toModelType());
         }
 
-        if (id < 1) {
+        if (!Id.isValidId(id)) {
             throw new IllegalValueException(Id.MESSAGE_CONSTRAINTS);
         }
         final Id modelId = new Id(id);

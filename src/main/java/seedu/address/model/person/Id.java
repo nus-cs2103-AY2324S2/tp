@@ -1,5 +1,7 @@
 package seedu.address.model.person;
 
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
 /**
  * Represents a Person's unique id in the address book, smallest id is 1.
  * Guarantees: immutable; is always valid; each instance has
@@ -7,8 +9,7 @@ package seedu.address.model.person;
  */
 public class Id {
 
-    public static final String MESSAGE_CONSTRAINTS =
-            "Ids should only be any integer value larger than 0";
+    public static final String MESSAGE_CONSTRAINTS = "Ids should only be any integer value larger than 0";
 
     private static int nextId = 1;
 
@@ -25,6 +26,7 @@ public class Id {
      * Constructs an {@code Id} with the given id, and sets the next available id.
      */
     public Id(int id) {
+        checkArgument(isValidId(id), MESSAGE_CONSTRAINTS);
         value = id;
         if (id >= nextId) {
             nextId = id + 1;
@@ -37,6 +39,13 @@ public class Id {
      */
     public static Id generateId() {
         return new Id();
+    }
+
+    /**
+     * Returns true if a given int is a valid id.
+     */
+    public static boolean isValidId(int test) {
+        return test > 0;
     }
 
     @Override
