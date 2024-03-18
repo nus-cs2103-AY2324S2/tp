@@ -52,8 +52,14 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
+        Label departmentLabel = new Label(person.getDepartment().department);
+        departmentLabel.setStyle("-fx-background-color: #3e7b91;");
+        tags.getChildren().add(departmentLabel);
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+                .forEach(tag -> {
+                    Label tagLabel = new Label(tag.tagName);
+                    tags.getChildren().add(tagLabel);
+                });
     }
 }
