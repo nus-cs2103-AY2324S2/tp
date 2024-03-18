@@ -69,6 +69,19 @@ public class Person {
         return Collections.unmodifiableSet(tags);
     }
 
+    public String getTagsAsString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Tag tag : tags) {
+            stringBuilder.append(tag.toString()).append(", ");
+        }
+        // Remove the last comma and space if there are any tags
+        if (stringBuilder.length() > 0) {
+            stringBuilder.delete(stringBuilder.length() - 2, stringBuilder.length());
+        }
+        return stringBuilder.toString();
+    }
+
+
     /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.

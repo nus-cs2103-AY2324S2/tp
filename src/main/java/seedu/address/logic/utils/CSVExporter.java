@@ -34,6 +34,8 @@ public class CSVExporter {
 
     private List<String[]> createDataList() {
         List<String[]> dataList = new ArrayList<>();
+        String[] fieldNames = {"Name","Phone","Email","Address","Remark","Tags"};
+        dataList.add(fieldNames);
 
         for (Person person : this.persons) {
             String[] personStringArray = convertPersonToStringArray(person);
@@ -50,9 +52,9 @@ public class CSVExporter {
         personStringArray[0] = person.getName().toString();
         personStringArray[1] = person.getPhone().toString();
         personStringArray[2] = person.getEmail().toString();
-        personStringArray[3] = person.getAddress().toString();
+        personStringArray[3] = "\"" + person.getAddress().toString() + "\"" ;
         personStringArray[4] = person.getRemark().toString();
-        personStringArray[5] = person.getTags().toString();
+        personStringArray[5] = "\"" + person.getTagsAsString() + "\"";
 
         return personStringArray;
     }

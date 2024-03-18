@@ -11,7 +11,7 @@ public class ExportCommand extends Command {
 
     public static final String COMMAND_WORD = "export";
 
-    public static final String MESSAGE_SUCCESS = "Success! Your contact has been exported as ((filename.csv)) ";
+    public static final String MESSAGE_SUCCESS = "Success! Your contact has been exported as ";
 
     public static final String MESSAGE_FAILURE_EMPTY_LIST = "Failed to export contacts. The contact list is empty.";
     public static final String MESSAGE_FAILURE_FILE_WRITE = "Failed to export contacts due to file write error.";
