@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
@@ -64,6 +65,20 @@ public class ParserUtil {
             throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
         }
         return new Phone(trimmedPhone);
+    }
+
+    /**
+     * Parses a {@code String phone} into a {@code Optional<Phone>}, allowing empty input.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code phone} is invalid.
+     */
+    public static Optional<Phone> parseOptionalPhone(String phone) throws ParseException {
+        requireNonNull(phone);
+        if (phone.trim().isEmpty()) {
+            return Optional.empty();
+        }
+        return Optional.of(parsePhone(phone));
     }
 
     /**
