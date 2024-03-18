@@ -17,6 +17,8 @@ import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.address.logic.commands.CommandTestUtil.SEX_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.SEX_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
@@ -26,6 +28,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DATEOFBIRTH;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SEX;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalPersons.AMY;
@@ -51,21 +54,22 @@ public class AddCommandParserTest {
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + DATEOFBIRTH_DESC_BOB, new AddCommand(expectedPerson));
+                + ADDRESS_DESC_BOB + DATEOFBIRTH_DESC_BOB + SEX_DESC_BOB, new AddCommand(expectedPerson));
 
 
         // multiple tags - all accepted
         Person expectedPersonMultipleTags = new PersonBuilder(BOB)
                 .build();
         assertParseSuccess(parser,
-                NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + DATEOFBIRTH_DESC_BOB,
+                NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + DATEOFBIRTH_DESC_BOB
+                + SEX_DESC_BOB,
                 new AddCommand(expectedPersonMultipleTags));
     }
 
     @Test
     public void parse_repeatedNonTagValue_failure() {
         String validExpectedPersonString = NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + DATEOFBIRTH_DESC_BOB;
+                + ADDRESS_DESC_BOB + DATEOFBIRTH_DESC_BOB + SEX_DESC_BOB;
 
         // multiple names
         assertParseFailure(parser, NAME_DESC_AMY + validExpectedPersonString,
@@ -86,9 +90,9 @@ public class AddCommandParserTest {
         // multiple fields repeated
         assertParseFailure(parser,
                 validExpectedPersonString + PHONE_DESC_AMY + EMAIL_DESC_AMY + NAME_DESC_AMY + ADDRESS_DESC_AMY
-                        + DATEOFBIRTH_DESC_AMY + validExpectedPersonString,
+                        + DATEOFBIRTH_DESC_AMY + SEX_DESC_AMY + validExpectedPersonString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NAME, PREFIX_ADDRESS, PREFIX_EMAIL, PREFIX_PHONE,
-                        PREFIX_DATEOFBIRTH));
+                        PREFIX_DATEOFBIRTH, PREFIX_SEX));
 
         // invalid value followed by valid value
 
@@ -132,6 +136,7 @@ public class AddCommandParserTest {
         // zero tags
         Person expectedPerson = new PersonBuilder(AMY).build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY
+                        + SEX_DESC_AMY
                 + DATEOFBIRTH_DESC_AMY,
                 new AddCommand(expectedPerson));
     }
@@ -165,32 +170,32 @@ public class AddCommandParserTest {
     public void parse_invalidValue_failure() {
         // invalid name
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + DATEOFBIRTH_DESC_BOB,
+                + DATEOFBIRTH_DESC_BOB + SEX_DESC_BOB,
                 Name.MESSAGE_CONSTRAINTS);
 
         // invalid phone
         assertParseFailure(parser, NAME_DESC_BOB + INVALID_PHONE_DESC + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + DATEOFBIRTH_DESC_BOB,
+                + DATEOFBIRTH_DESC_BOB + SEX_DESC_BOB,
                 Phone.MESSAGE_CONSTRAINTS);
 
         // invalid email
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC + ADDRESS_DESC_BOB
-                + DATEOFBIRTH_DESC_BOB,
+                + DATEOFBIRTH_DESC_BOB + SEX_DESC_BOB,
                 Email.MESSAGE_CONSTRAINTS);
 
         // invalid address
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC
-                + DATEOFBIRTH_DESC_BOB,
+                + DATEOFBIRTH_DESC_BOB + SEX_DESC_BOB,
                 Address.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC
-                + DATEOFBIRTH_DESC_BOB,
+                + DATEOFBIRTH_DESC_BOB + SEX_DESC_BOB,
                 Name.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + DATEOFBIRTH_DESC_BOB,
+                + ADDRESS_DESC_BOB + DATEOFBIRTH_DESC_BOB + SEX_DESC_BOB,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
 }

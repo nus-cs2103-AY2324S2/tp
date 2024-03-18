@@ -21,6 +21,8 @@ public class EditPersonDescriptorTest {
     public void equals() {
         // same values -> returns true
         EditPersonDescriptor descriptorWithSameValues = new EditPersonDescriptor(DESC_AMY);
+        System.out.println(DESC_AMY);
+        System.out.println(descriptorWithSameValues);
         assertTrue(DESC_AMY.equals(descriptorWithSameValues));
 
         // same object -> returns true
@@ -60,7 +62,8 @@ public class EditPersonDescriptorTest {
                 + editPersonDescriptor.getPhone().orElse(null) + ", email="
                 + editPersonDescriptor.getEmail().orElse(null) + ", address="
                 + editPersonDescriptor.getAddress().orElse(null) + ", date of birth="
-                + editPersonDescriptor.getDateOfBirth().orElse(null) + "}";
+                + editPersonDescriptor.getDateOfBirth().orElse(null)  + ", sex="
+                + editPersonDescriptor.getSex().orElse(null)+ "}";
         assertEquals(expected, editPersonDescriptor.toString());
     }
 }

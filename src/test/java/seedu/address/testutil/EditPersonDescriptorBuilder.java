@@ -7,6 +7,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Sex;
 
 /**
  * A utility class to help with building EditPersonDescriptor objects.
@@ -72,6 +73,14 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withDateOfBirth(String dateOfBirth) {
         descriptor.setDateOfBirth(new DateOfBirth(dateOfBirth));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Sex} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withSex(String sex) {
+        descriptor.setSex(new Sex(sex));
         return this;
     }
 

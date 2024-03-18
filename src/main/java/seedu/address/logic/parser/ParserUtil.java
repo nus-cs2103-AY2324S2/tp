@@ -10,6 +10,7 @@ import seedu.address.model.person.DateOfBirth;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Sex;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -103,6 +104,21 @@ public class ParserUtil {
         if (!DateOfBirth.isValidDateOfBirth(trimmedDateOfBirth)) {
             throw new ParseException(DateOfBirth.MESSAGE_CONSTRAINTS);
         }
-        return new DateOfBirth(dateOfBirth);
+        return new DateOfBirth(trimmedDateOfBirth);
+    }
+
+    /**
+     * Parses a {@code String sex} into an {@code Sex}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code Sex} is invalid.
+     */
+    public static Sex parseSex(String sex) throws ParseException {
+        requireNonNull(sex);
+        String trimmedSex = sex.trim();
+        if (!Sex.isValidSex(trimmedSex)) {
+            throw new ParseException(Sex.MESSAGE_CONSTRAINTS);
+        }
+        return new Sex(trimmedSex);
     }
 }

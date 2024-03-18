@@ -6,6 +6,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Sex;
 
 /**
  * A utility class to help with building Person objects.
@@ -17,13 +18,14 @@ public class PersonBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_DATEOFBIRTH = "25/2/2025";
+    public static final String DEFAULT_SEX = "Female";
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
-
     private DateOfBirth dateOfBirth;
+    private Sex sex;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -34,6 +36,7 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         dateOfBirth = new DateOfBirth(DEFAULT_DATEOFBIRTH);
+        sex = new Sex(DEFAULT_SEX);
     }
 
     /**
@@ -45,6 +48,7 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         dateOfBirth = personToCopy.getDateOfBirth();
+        sex = personToCopy.getSex();
     }
 
     /**
@@ -80,15 +84,22 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code DateOfBirth} of the {@Code Person} that we are buidling.
+     * Sets the {@code DateOfBirth} of the {@Code Person} that we are building.
      */
     public PersonBuilder withDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = new DateOfBirth(dateOfBirth);
         return this;
     }
 
-    public Person build() {
-        return new Person(name, phone, email, address, dateOfBirth);
+    /**
+     * Sets the {@code Sex} of the {@Cose Person} that we are building.
+     */
+    public PersonBuilder withSex(String sex) {
+        this.sex = new Sex(sex);
+        return this;
     }
 
+    public Person build() {
+        return new Person(name, phone, email, address, dateOfBirth, sex);
+    }
 }
