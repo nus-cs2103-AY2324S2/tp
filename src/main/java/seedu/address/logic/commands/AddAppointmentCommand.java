@@ -32,7 +32,8 @@ public class AddAppointmentCommand extends Command {
             + PREFIX_APPOINTMENT_DESCRIPTION + "This is a new appointment"; //TODO: remove after case log is implemented
 
     public static final String MESSAGE_SUCCESS = "New appointment added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This appointment already exists in the CogniCare address book";
+    public static final String MESSAGE_DUPLICATE_APPOINTMENT =
+            "This appointment already exists in the CogniCare address book";
 
     private final Appointment toAdd;
 
@@ -49,7 +50,7 @@ public class AddAppointmentCommand extends Command {
         requireNonNull(model);
 
         if (model.hasAppointment(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
         }
 
         model.addAppointment(toAdd);

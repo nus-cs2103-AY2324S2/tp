@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.person.Person;
 
 /**
  * Represents an Appointment attached to a Person in AddressBook
@@ -129,6 +130,21 @@ public class Appointment implements Comparable<Appointment> {
     public int compareTo(Appointment other) {
         return this.appointmentId - other.appointmentId;
     }
+
+    /**
+     * Returns true if both appointments have the same studentId and appointmentDateTime.
+     * This defines a weaker notion of equality between two appointments.
+     */
+    public boolean isSameAppointment(Appointment otherAppointment) {
+        if (otherAppointment == this) {
+            return true;
+        }
+
+        return otherAppointment != null
+                && otherAppointment.getStudentId() == getStudentId()
+                && otherAppointment.getAppointmentDateTime().equals(getAppointmentDateTime());
+    }
+
     public int getStudentId() {
         return studentId;
     }
