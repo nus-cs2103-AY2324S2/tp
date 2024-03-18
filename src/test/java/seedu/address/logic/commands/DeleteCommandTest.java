@@ -12,13 +12,16 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.messages.DeleteMessages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.testutil.MaintainerBuilder;
+import seedu.address.testutil.StaffBuilder;
+import seedu.address.testutil.SupplierBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -33,8 +36,8 @@ public class DeleteCommandTest {
         Person personToDelete = ALICE;
         DeleteCommand deleteCommand = new DeleteCommand(ALICE.getName());
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
-                Messages.format(personToDelete));
+        String expectedMessage = String.format(DeleteMessages.MESSAGE_DELETE_PERSON_SUCCESS,
+                DeleteMessages.format(personToDelete));
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deletePerson(personToDelete);
@@ -51,8 +54,8 @@ public class DeleteCommandTest {
             personToDelete = model.findByName(ALICE.getName());
             DeleteCommand deleteCommand = new DeleteCommand(ALICE.getName());
 
-            String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
-                    Messages.format(personToDelete));
+            String expectedMessage = String.format(DeleteMessages.MESSAGE_DELETE_PERSON_SUCCESS,
+                    DeleteMessages.format(personToDelete));
 
             Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
             expectedModel.deletePerson(personToDelete);
@@ -75,7 +78,7 @@ public class DeleteCommandTest {
 
         DeleteCommand deleteCommand = new DeleteCommand(invalidName);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model, DeleteMessages.MESSAGE_DELETE_NAME_NOT_FOUND);
     }
 
     @Test
@@ -106,6 +109,32 @@ public class DeleteCommandTest {
         DeleteCommand deleteCommand = new DeleteCommand(targetName);
         String expected = DeleteCommand.class.getCanonicalName() + "{targetName=" + targetName + "}";
         assertEquals(expected, deleteCommand.toString());
+    }
+
+    @Test
+    public void deleteFormat() {
+        // Normal Person
+        String testNormalString = DeleteMessages.format(ALICE);
+        String expectedNormalString = "Other Contact Alice Pauline";
+        assertEquals(testNormalString, expectedNormalString);
+
+        // Staff
+        Person testStaff = new StaffBuilder().withName("Alice Pauline").build();
+        String testStaffString = DeleteMessages.format(testStaff);
+        String expectedStaffString = "Pooch Staff Alice Pauline";
+        assertEquals(testStaffString, expectedStaffString);
+
+        // Maintainer
+        Person testMaintainer = new MaintainerBuilder().withName("Alice Pauline").build();
+        String testMaintainerString = DeleteMessages.format(testMaintainer);
+        String expectedMaintainerString = "Maintenance Crew Alice Pauline";
+        assertEquals(testMaintainerString, expectedMaintainerString);
+
+        // Supplier
+        Person testSupplier = new SupplierBuilder().withName("Alice Pauline").build();
+        String testSupplierString = DeleteMessages.format(testSupplier);
+        String expectedSupplierString = "Supplier Alice Pauline";
+        assertEquals(testSupplierString, expectedSupplierString);
     }
 
     /**
