@@ -3,12 +3,12 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
+import static seedu.address.logic.Messages.MESSAGE_STARTUPS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPersons.CARL;
-import static seedu.address.testutil.TypicalPersons.ELLE;
-import static seedu.address.testutil.TypicalPersons.FIONA;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalStartups.CARL;
+import static seedu.address.testutil.TypicalStartups.ELLE;
+import static seedu.address.testutil.TypicalStartups.FIONA;
+import static seedu.address.testutil.TypicalStartups.getTypicalAddressBook;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.IndustryContainsKeywordsPredicate;
+import seedu.address.model.startup.IndustryContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindByIndustryCommand}.
@@ -51,28 +51,28 @@ public class FindByIndustryCommandTest {
         // null -> returns false
         assertFalse(findFirstIndustryCommand.equals(null));
 
-        // different person -> returns false
+        // different startup -> returns false
         assertFalse(findFirstIndustryCommand.equals(findSecondIndustryCommand));
     }
 
     @Test
-    public void execute_zeroKeywords_noPersonFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+    public void execute_zeroKeywords_noStartupFound() {
+        String expectedMessage = String.format(MESSAGE_STARTUPS_LISTED_OVERVIEW, 0);
         IndustryContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredStartupList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+        assertEquals(Collections.emptyList(), model.getFilteredStartupList());
     }
 
     @Test
-    public void execute_multipleKeywords_multiplePersonsFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
+    public void execute_multipleKeywords_multipleStartupsFound() {
+        String expectedMessage = String.format(MESSAGE_STARTUPS_LISTED_OVERVIEW, 3);
         IndustryContainsKeywordsPredicate predicate = preparePredicate("web3");
         FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredStartupList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredStartupList());
     }
 
     @Test

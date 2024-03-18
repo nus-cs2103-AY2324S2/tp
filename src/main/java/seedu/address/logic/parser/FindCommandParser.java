@@ -7,9 +7,9 @@ import java.util.Arrays;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.FundingStageContainsKeywordsPredicate;
-import seedu.address.model.person.IndustryContainsKeywordsPredicate;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.startup.FundingStageContainsKeywordsPredicate;
+import seedu.address.model.startup.IndustryContainsKeywordsPredicate;
+import seedu.address.model.startup.NameContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object

@@ -8,7 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_INDUSTRY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STARTUPS;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -23,24 +23,24 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.FundingStage;
-import seedu.address.model.person.Industry;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
+import seedu.address.model.startup.Address;
+import seedu.address.model.startup.Email;
+import seedu.address.model.startup.FundingStage;
+import seedu.address.model.startup.Industry;
+import seedu.address.model.startup.Name;
+import seedu.address.model.startup.Phone;
+import seedu.address.model.startup.Startup;
 import seedu.address.model.tag.Tag;
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing startup in the address book.
  */
 public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the index number used in the displayed person list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the startup identified "
+            + "by the index number used in the displayed startup list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
@@ -54,63 +54,63 @@ public class EditCommand extends Command {
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_EDIT_STARTUP_SUCCESS = "Edited Startup: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_STARTUP = "This startup already exists in the address book.";
 
     private final Index index;
-    private final EditPersonDescriptor editPersonDescriptor;
+    private final EditStartupDescriptor editStartupDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
-     * @param editPersonDescriptor details to edit the person with
+     * @param index of the startup in the filtered startup list to edit
+     * @param editStartupDescriptor details to edit the startup with
      */
-    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
+    public EditCommand(Index index, EditStartupDescriptor editStartupDescriptor) {
         requireNonNull(index);
-        requireNonNull(editPersonDescriptor);
+        requireNonNull(editStartupDescriptor);
 
         this.index = index;
-        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this.editStartupDescriptor = new EditStartupDescriptor(editStartupDescriptor);
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Startup> lastShownList = model.getFilteredStartupList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_STARTUP_DISPLAYED_INDEX);
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+        Startup startupToEdit = lastShownList.get(index.getZeroBased());
+        Startup editedStartup = createEditedStartup(startupToEdit, editStartupDescriptor);
 
-        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        if (!startupToEdit.isSameStartup(editedStartup) && model.hasStartup(editedStartup)) {
+            throw new CommandException(MESSAGE_DUPLICATE_STARTUP);
         }
 
-        model.setPerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson)));
+        model.setStartup(startupToEdit, editedStartup);
+        model.updateFilteredStartupList(PREDICATE_SHOW_ALL_STARTUPS);
+        return new CommandResult(String.format(MESSAGE_EDIT_STARTUP_SUCCESS, Messages.format(editedStartup)));
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * Creates and returns a {@code Startup} with the details of {@code startupToEdit}
+     * edited with {@code editStartupDescriptor}.
      */
-    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
-        assert personToEdit != null;
+    private static Startup createEditedStartup(Startup startupToEdit, EditStartupDescriptor editStartupDescriptor) {
+        assert startupToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
-        FundingStage updatedFundingStage = editPersonDescriptor.getFundingStage().orElse(
-            personToEdit.getFundingStage());
-        Industry updatedIndustry = editPersonDescriptor.getIndustry().orElse(personToEdit.getIndustry());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Name updatedName = editStartupDescriptor.getName().orElse(startupToEdit.getName());
+        Phone updatedPhone = editStartupDescriptor.getPhone().orElse(startupToEdit.getPhone());
+        FundingStage updatedFundingStage = editStartupDescriptor.getFundingStage().orElse(
+            startupToEdit.getFundingStage());
+        Industry updatedIndustry = editStartupDescriptor.getIndustry().orElse(startupToEdit.getIndustry());
+        Email updatedEmail = editStartupDescriptor.getEmail().orElse(startupToEdit.getEmail());
+        Address updatedAddress = editStartupDescriptor.getAddress().orElse(startupToEdit.getAddress());
+        Set<Tag> updatedTags = editStartupDescriptor.getTags().orElse(startupToEdit.getTags());
 
-        return new Person(updatedName, updatedFundingStage, updatedIndustry,
+        return new Startup(updatedName, updatedFundingStage, updatedIndustry,
             updatedPhone, updatedEmail, updatedAddress, updatedTags);
     }
 
@@ -127,22 +127,22 @@ public class EditCommand extends Command {
 
         EditCommand otherEditCommand = (EditCommand) other;
         return index.equals(otherEditCommand.index)
-                && editPersonDescriptor.equals(otherEditCommand.editPersonDescriptor);
+                && editStartupDescriptor.equals(otherEditCommand.editStartupDescriptor);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .add("index", index)
-                .add("editPersonDescriptor", editPersonDescriptor)
+                .add("editStartupDescriptor", editStartupDescriptor)
                 .toString();
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the startup with. Each non-empty field value will replace the
+     * corresponding field value of the startup.
      */
-    public static class EditPersonDescriptor {
+    public static class EditStartupDescriptor {
         private Name name;
 
         private Industry industry;
@@ -154,13 +154,13 @@ public class EditCommand extends Command {
         private Address address;
         private Set<Tag> tags;
 
-        public EditPersonDescriptor() {}
+        public EditStartupDescriptor() {}
 
         /**
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
-        public EditPersonDescriptor(EditPersonDescriptor toCopy) {
+        public EditStartupDescriptor(EditStartupDescriptor toCopy) {
             setName(toCopy.name);
             setFundingStage(toCopy.fundingStage);
             setIndustry(toCopy.industry);
@@ -249,18 +249,18 @@ public class EditCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditPersonDescriptor)) {
+            if (!(other instanceof EditStartupDescriptor)) {
                 return false;
             }
 
-            EditPersonDescriptor otherEditPersonDescriptor = (EditPersonDescriptor) other;
-            return Objects.equals(name, otherEditPersonDescriptor.name)
-                    && Objects.equals(phone, otherEditPersonDescriptor.phone)
-                    && Objects.equals(fundingStage, otherEditPersonDescriptor.fundingStage)
-                    && Objects.equals(industry, otherEditPersonDescriptor.industry)
-                    && Objects.equals(email, otherEditPersonDescriptor.email)
-                    && Objects.equals(address, otherEditPersonDescriptor.address)
-                    && Objects.equals(tags, otherEditPersonDescriptor.tags);
+            EditStartupDescriptor otherEditStartupDescriptor = (EditStartupDescriptor) other;
+            return Objects.equals(name, otherEditStartupDescriptor.name)
+                    && Objects.equals(phone, otherEditStartupDescriptor.phone)
+                    && Objects.equals(fundingStage, otherEditStartupDescriptor.fundingStage)
+                    && Objects.equals(industry, otherEditStartupDescriptor.industry)
+                    && Objects.equals(email, otherEditStartupDescriptor.email)
+                    && Objects.equals(address, otherEditStartupDescriptor.address)
+                    && Objects.equals(tags, otherEditStartupDescriptor.tags);
         }
 
         @Override

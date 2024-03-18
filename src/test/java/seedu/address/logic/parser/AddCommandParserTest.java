@@ -3,30 +3,30 @@ package seedu.address.logic.parser;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalPersons.AMY;
-import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.address.testutil.TypicalStartups.AMY;
+import static seedu.address.testutil.TypicalStartups.BOB;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CommandTestUtil;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.FundingStage;
-import seedu.address.model.person.Industry;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
+import seedu.address.model.startup.Address;
+import seedu.address.model.startup.Email;
+import seedu.address.model.startup.FundingStage;
+import seedu.address.model.startup.Industry;
+import seedu.address.model.startup.Name;
+import seedu.address.model.startup.Phone;
+import seedu.address.model.startup.Startup;
 import seedu.address.model.tag.Tag;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.StartupBuilder;
 
 public class AddCommandParserTest {
     private AddCommandParser parser = new AddCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Person expectedPerson = new PersonBuilder(BOB).withTags(CommandTestUtil.VALID_TAG_FRIEND).build();
+        Startup expectedStartup = new StartupBuilder(BOB).withTags(CommandTestUtil.VALID_TAG_FRIEND).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, CommandTestUtil.PREAMBLE_WHITESPACE
@@ -34,11 +34,11 @@ public class AddCommandParserTest {
                 + CommandTestUtil.EMAIL_DESC_BOB
                 + CommandTestUtil.INDUSTRY_DESC_BOB + CommandTestUtil.FUNDING_DESC_BOB
                 + CommandTestUtil.ADDRESS_DESC_BOB
-                + CommandTestUtil.TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+                + CommandTestUtil.TAG_DESC_FRIEND, new AddCommand(expectedStartup));
 
 
         // multiple tags - all accepted
-        Person expectedPersonMultipleTags = new PersonBuilder(BOB).withTags(
+        Startup expectedStartupMultipleTags = new StartupBuilder(BOB).withTags(
             CommandTestUtil.VALID_TAG_FRIEND, CommandTestUtil.VALID_TAG_HUSBAND)
                 .build();
         assertParseSuccess(parser,
@@ -46,43 +46,43 @@ public class AddCommandParserTest {
                 + CommandTestUtil.EMAIL_DESC_BOB + CommandTestUtil.ADDRESS_DESC_BOB
                 + CommandTestUtil.INDUSTRY_DESC_BOB + CommandTestUtil.FUNDING_DESC_BOB
                 + CommandTestUtil.TAG_DESC_HUSBAND + CommandTestUtil.TAG_DESC_FRIEND,
-                new AddCommand(expectedPersonMultipleTags));
+                new AddCommand(expectedStartupMultipleTags));
     }
 
     @Test
     public void parse_repeatedNonTagValue_failure() {
-        String validExpectedPersonString = CommandTestUtil.NAME_DESC_BOB
+        String validExpectedStartupString = CommandTestUtil.NAME_DESC_BOB
                 + CommandTestUtil.INDUSTRY_DESC_BOB + CommandTestUtil.FUNDING_DESC_BOB
                 + CommandTestUtil.PHONE_DESC_BOB + CommandTestUtil.EMAIL_DESC_BOB
                 + CommandTestUtil.ADDRESS_DESC_BOB + CommandTestUtil.TAG_DESC_FRIEND;
 
         // multiple names
-        assertParseFailure(parser, CommandTestUtil.NAME_DESC_AMY + validExpectedPersonString,
+        assertParseFailure(parser, CommandTestUtil.NAME_DESC_AMY + validExpectedStartupString,
                 Messages.getErrorMessageForDuplicatePrefixes(CliSyntax.PREFIX_NAME));
 
         // multiple phones
-        assertParseFailure(parser, CommandTestUtil.PHONE_DESC_AMY + validExpectedPersonString,
+        assertParseFailure(parser, CommandTestUtil.PHONE_DESC_AMY + validExpectedStartupString,
                 Messages.getErrorMessageForDuplicatePrefixes(CliSyntax.PREFIX_PHONE));
 
         // multiple emails
-        assertParseFailure(parser, CommandTestUtil.EMAIL_DESC_AMY + validExpectedPersonString,
+        assertParseFailure(parser, CommandTestUtil.EMAIL_DESC_AMY + validExpectedStartupString,
                 Messages.getErrorMessageForDuplicatePrefixes(CliSyntax.PREFIX_EMAIL));
 
         // multiple addresses
-        assertParseFailure(parser, CommandTestUtil.ADDRESS_DESC_AMY + validExpectedPersonString,
+        assertParseFailure(parser, CommandTestUtil.ADDRESS_DESC_AMY + validExpectedStartupString,
                 Messages.getErrorMessageForDuplicatePrefixes(CliSyntax.PREFIX_ADDRESS));
 
         // multiple funding stage
-        assertParseFailure(parser, CommandTestUtil.FUNDING_DESC_AMY + validExpectedPersonString,
+        assertParseFailure(parser, CommandTestUtil.FUNDING_DESC_AMY + validExpectedStartupString,
                 Messages.getErrorMessageForDuplicatePrefixes(CliSyntax.PREFIX_FUNDING_STAGE));
 
         // multiple industry
-        assertParseFailure(parser, CommandTestUtil.INDUSTRY_DESC_AMY + validExpectedPersonString,
+        assertParseFailure(parser, CommandTestUtil.INDUSTRY_DESC_AMY + validExpectedStartupString,
                 Messages.getErrorMessageForDuplicatePrefixes(CliSyntax.PREFIX_INDUSTRY));
 
         // multiple fields repeated
         assertParseFailure(parser,
-                validExpectedPersonString + CommandTestUtil.PHONE_DESC_AMY
+                validExpectedStartupString + CommandTestUtil.PHONE_DESC_AMY
                         + CommandTestUtil.EMAIL_DESC_AMY + CommandTestUtil.NAME_DESC_AMY
                         + CommandTestUtil.ADDRESS_DESC_AMY,
                 Messages.getErrorMessageForDuplicatePrefixes(CliSyntax.PREFIX_NAME,
@@ -91,65 +91,65 @@ public class AddCommandParserTest {
         // invalid value followed by valid value
 
         // invalid name
-        assertParseFailure(parser, CommandTestUtil.INVALID_NAME_DESC + validExpectedPersonString,
+        assertParseFailure(parser, CommandTestUtil.INVALID_NAME_DESC + validExpectedStartupString,
                 Messages.getErrorMessageForDuplicatePrefixes(CliSyntax.PREFIX_NAME));
 
         // invalid email
-        assertParseFailure(parser, CommandTestUtil.INVALID_EMAIL_DESC + validExpectedPersonString,
+        assertParseFailure(parser, CommandTestUtil.INVALID_EMAIL_DESC + validExpectedStartupString,
                 Messages.getErrorMessageForDuplicatePrefixes(CliSyntax.PREFIX_EMAIL));
 
         // invalid phone
-        assertParseFailure(parser, CommandTestUtil.INVALID_PHONE_DESC + validExpectedPersonString,
+        assertParseFailure(parser, CommandTestUtil.INVALID_PHONE_DESC + validExpectedStartupString,
                 Messages.getErrorMessageForDuplicatePrefixes(CliSyntax.PREFIX_PHONE));
 
         // invalid address
-        assertParseFailure(parser, CommandTestUtil.INVALID_ADDRESS_DESC + validExpectedPersonString,
+        assertParseFailure(parser, CommandTestUtil.INVALID_ADDRESS_DESC + validExpectedStartupString,
                 Messages.getErrorMessageForDuplicatePrefixes(CliSyntax.PREFIX_ADDRESS));
 
         // invalid industry
-        assertParseFailure(parser, CommandTestUtil.INVALID_INDUSTRY_DESC + validExpectedPersonString,
+        assertParseFailure(parser, CommandTestUtil.INVALID_INDUSTRY_DESC + validExpectedStartupString,
                 Messages.getErrorMessageForDuplicatePrefixes(CliSyntax.PREFIX_INDUSTRY));
 
         // invalid funding stage
-        assertParseFailure(parser, CommandTestUtil.INVALID_FUNDING_DESC + validExpectedPersonString,
+        assertParseFailure(parser, CommandTestUtil.INVALID_FUNDING_DESC + validExpectedStartupString,
                 Messages.getErrorMessageForDuplicatePrefixes(CliSyntax.PREFIX_FUNDING_STAGE));
 
         // valid value followed by invalid value
 
         // invalid name
-        assertParseFailure(parser, validExpectedPersonString + CommandTestUtil.INVALID_NAME_DESC,
+        assertParseFailure(parser, validExpectedStartupString + CommandTestUtil.INVALID_NAME_DESC,
                 Messages.getErrorMessageForDuplicatePrefixes(CliSyntax.PREFIX_NAME));
 
         // invalid email
-        assertParseFailure(parser, validExpectedPersonString + CommandTestUtil.INVALID_EMAIL_DESC,
+        assertParseFailure(parser, validExpectedStartupString + CommandTestUtil.INVALID_EMAIL_DESC,
                 Messages.getErrorMessageForDuplicatePrefixes(CliSyntax.PREFIX_EMAIL));
 
         // invalid phone
-        assertParseFailure(parser, validExpectedPersonString + CommandTestUtil.INVALID_PHONE_DESC,
+        assertParseFailure(parser, validExpectedStartupString + CommandTestUtil.INVALID_PHONE_DESC,
                 Messages.getErrorMessageForDuplicatePrefixes(CliSyntax.PREFIX_PHONE));
 
         // invalid address
-        assertParseFailure(parser, validExpectedPersonString + CommandTestUtil.INVALID_ADDRESS_DESC,
+        assertParseFailure(parser, validExpectedStartupString + CommandTestUtil.INVALID_ADDRESS_DESC,
                 Messages.getErrorMessageForDuplicatePrefixes(CliSyntax.PREFIX_ADDRESS));
 
         // invalid industry
-        assertParseFailure(parser, validExpectedPersonString + CommandTestUtil.INVALID_INDUSTRY_DESC,
+        assertParseFailure(parser, validExpectedStartupString + CommandTestUtil.INVALID_INDUSTRY_DESC,
                 Messages.getErrorMessageForDuplicatePrefixes(CliSyntax.PREFIX_INDUSTRY));
 
         // invalid funding stage
-        assertParseFailure(parser, validExpectedPersonString + CommandTestUtil.INVALID_FUNDING_DESC,
+        assertParseFailure(parser, validExpectedStartupString + CommandTestUtil.INVALID_FUNDING_DESC,
                 Messages.getErrorMessageForDuplicatePrefixes(CliSyntax.PREFIX_FUNDING_STAGE));
     }
 
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
-        Person expectedPerson = new PersonBuilder(AMY).withTags().build();
+        Startup expectedStartup = new StartupBuilder(AMY).withTags().build();
         assertParseSuccess(parser, CommandTestUtil.NAME_DESC_AMY
                 + CommandTestUtil.INDUSTRY_DESC_AMY
                 + CommandTestUtil.FUNDING_DESC_AMY + CommandTestUtil.PHONE_DESC_AMY
                 + CommandTestUtil.EMAIL_DESC_AMY + CommandTestUtil.ADDRESS_DESC_AMY,
-                new AddCommand(expectedPerson));
+                new AddCommand(expectedStartup));
     }
 
     @Test
