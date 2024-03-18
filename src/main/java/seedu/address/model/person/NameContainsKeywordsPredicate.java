@@ -21,22 +21,19 @@ public class NameContainsKeywordsPredicate implements Predicate<Person> {
     @Override
     public boolean test(Person person) {
         Predicate<String> personName = keyword ->
-                StringUtil.containsWordIgnoreCase(person.getName().toString(), keyword);
+                keyword.regionMatches(true, 0, person.getName().toString(),
+                        0, keyword.length());
         Predicate<String> personNumber = keyword ->
-                StringUtil.containsWordIgnoreCase(person.getPhone().toString(), keyword);
+                keyword.regionMatches(true, 0, person.getPhone().toString(),
+                        0, keyword.length());
         Predicate<String> personAddress = keyword ->
-                StringUtil.containsWordIgnoreCase(person.getAddress().toString(), keyword);
+                keyword.regionMatches(true, 0, person.getAddress().toString(),
+                        0, keyword.length());
         Predicate<String> personEmail = keyword ->
-                StringUtil.containsWordIgnoreCase(person.getEmail().toString(), keyword);
-        Predicate<String> personTag = keyword -> StringUtil.containsWordIgnoreCase(person.getTags().stream()
-                .map(tag -> tag.tagName).collect(Collectors.joining()), keyword);
-        //System.out.println(person.getName());
-        //Set<Tag> tags = person.getTags();
-        //for (Tag tag : tags) {
-        //    System.out.println(tag.tagName);
-        //}
-        //System.out.println();
-        //System.out.println(person.getTags().stream().map(tag -> tag.tagName));
+                keyword.regionMatches(true, 0, person.getEmail().toString(),
+                        0, keyword.length());
+        Predicate<String> personTag = keyword -> keyword.regionMatches(true, 0, person.getTags().stream()
+                .map(tag -> tag.tagName).collect(Collectors.joining()), 0, keyword.length());
         Predicate<String> combinedCondition = personName.or(personNumber)
                 .or(personAddress).or(personEmail).or(personTag);
         return keywords.stream()
