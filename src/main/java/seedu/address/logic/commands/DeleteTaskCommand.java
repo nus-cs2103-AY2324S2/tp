@@ -53,6 +53,26 @@ public class DeleteTaskCommand extends Command {
     }
 
     @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof AddCommand)) {
+            return false;
+        }
+
+        DeleteTaskCommand otherDeleteTaskCommand = (DeleteTaskCommand) other;
+        return taskIndexToDelete.equals(otherDeleteTaskCommand.taskIndexToDelete);
+    }
+
+    @Override
+    public int hashCode() {
+        return taskIndexToDelete.hashCode();
+    }
+
+    @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .add("toDelete", taskIndexToDelete.getOneBased())
