@@ -27,7 +27,7 @@ public class CreateGroupCommand extends Command {
             + PREFIX_COURSEMATE + "#1 "
             + PREFIX_COURSEMATE + "John Doe.";
 
-    private Group toAdd;
+    private final Group toAdd;
 
     /**
      * Basic constructor for CreteGroupCommand. Creates a group with specified details.
