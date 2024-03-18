@@ -64,6 +64,4 @@ public class Name {
         return fullName.hashCode();
     }
 
-    public static class Rating {
-    }
 }
