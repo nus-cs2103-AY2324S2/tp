@@ -69,7 +69,7 @@ public class MatricTest {
     @Test
     public void equals_differentMatric_returnsFalse() {
         Matric matric1 = new Matric("A1234567Z");
-        Matric matric2 = new Matric("B7654321Y");
+        Matric matric2 = new Matric("A7654321Y");
         assertFalse(matric1.equals(matric2));
     }
 
