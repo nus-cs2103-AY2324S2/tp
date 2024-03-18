@@ -1,4 +1,5 @@
 package seedu.address.logic.utils;
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
@@ -15,8 +16,10 @@ import seedu.address.model.person.UniquePersonList;
 public class CsvExporter {
 
     private final String filename;
+
+    private boolean isSuccessful = false;
+
     private final UniquePersonList persons;
-    public boolean isSuccessful = false;
 
     public CsvExporter(UniquePersonList persons, String filename) {
         this.persons = persons;
@@ -43,7 +46,7 @@ public class CsvExporter {
      */
     private List<String[]> createDataList() {
         List<String[]> dataList = new ArrayList<>();
-        String[] fieldNames = {"Name","Phone","Email","Address","Remark","Tags"};
+        String[] fieldNames = {"Name", "Phone", "Email", "Address", "Remark", "Tags"};
         dataList.add(fieldNames);
 
         for (Person person : this.persons) {
@@ -71,5 +74,9 @@ public class CsvExporter {
         personStringArray[5] = "\"" + person.getTagsAsString() + "\"";
 
         return personStringArray;
+    }
+
+    public boolean getIsSuccessful() {
+        return isSuccessful;
     }
 }
