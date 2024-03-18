@@ -16,12 +16,14 @@ import seedu.address.ui.UiPart;
  * person.
  */
 public class AppointmentListPanel extends UiPart<Region> {
+
     private static final String FXML = "appointmentView/AppointmentListPanel.fxml";
+
+    private final Logic logic;
 
     @FXML
     private ListView<Appointment> appointmentListView;
 
-    Logic logic;
 
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
