@@ -33,12 +33,11 @@ public class DeleteTaskCommandTest {
         assertCommandSuccess(deleteTaskCommand, model, expectedMessage, expectedModel);
     }
 
-
     @Test
     public void execute_invalidTaskIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getTaskList().getSerializeTaskList().size() + 1);
         DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(outOfBoundIndex);
-        
+
         assertCommandFailure(deleteTaskCommand, model, DeleteTaskCommand.MESSAGE_INDEX_TOO_LARGE);
     }
 
