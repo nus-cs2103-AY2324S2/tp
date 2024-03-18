@@ -110,5 +110,4 @@ public class QueryDoctorCommandTest {
     private DoctorNameContainsKeywordsPredicate preparePredicate(String userInput) {
         return new DoctorNameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
     }
-
 }

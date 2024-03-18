@@ -56,4 +56,5 @@ public class QueryPatientCommand extends Command {
                 .add("predicate", predicate)
                 .toString();
     }
+
 }
