@@ -210,6 +210,7 @@ public class SearchCommand extends Command {
                     && Objects.equals(phone, otherSearchPersonDescriptor.phone)
                     && Objects.equals(email, otherSearchPersonDescriptor.email)
                     && Objects.equals(country, otherSearchPersonDescriptor.country)
+                    && Objects.equals(status, otherSearchPersonDescriptor.status)
                     && Objects.equals(comment, otherSearchPersonDescriptor.comment)
                     && Objects.equals(tags, otherSearchPersonDescriptor.tags);
         }
@@ -221,6 +222,7 @@ public class SearchCommand extends Command {
                     .add("phone", phone)
                     .add("email", email)
                     .add("country", country)
+                    .add("status", status)
                     .add("comment", comment)
                     .add("tags", tags)
                     .toString();
