@@ -41,8 +41,8 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_CELINE = "Block 776, Cel Street 5";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
-    public static final String VALID_APPOINTMENT_FRIDAY = "23:59 FRI";
-    public static final String VALID_APPOINTMENT_SUNDAY = "08:00 SUN";
+    public static final String VALID_APPOINTMENT_FRIDAY = "18:00-20:00 FRI";
+    public static final String VALID_APPOINTMENT_SUNDAY = "08:00-10:00 SUN";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;

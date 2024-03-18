@@ -40,14 +40,13 @@ public class AppointmentTest {
         assertFalse(Appointment.isValidAppointment("25:61-26:20 MON")); // invalid range for HH and mm
         assertFalse(Appointment.isValidAppointment("22:30-26:70 MON")); // invalid range for HH and mm
         assertFalse(Appointment.isValidAppointment("23:00-22:00 MON")); // start time not before end time
+        assertFalse(Appointment.isValidAppointment("23:59-23:59 MON")); // start time equals end time
 
         // valid Appointments
-        assertTrue(Appointment.isValidAppointment("23:59-23:59 MON")); // matches HH:mm DAY
         assertTrue(Appointment.isValidAppointment("13:59-14:00 TUE")); // matches HH:mm DAY
         assertTrue(Appointment.isValidAppointment("03:59-04:59 WED")); // matches HH:mm DAY
         assertTrue(Appointment.isValidAppointment("02:00-03:00 THU")); // matches HH:mm DAY
         assertTrue(Appointment.isValidAppointment("12:00-13:00 FRI")); // matches HH:mm DAY
-        assertTrue(Appointment.isValidAppointment("23:59-23:59 SAT")); // matches HH:mm DAY
         assertTrue(Appointment.isValidAppointment("13:30-14:00 SUN")); // matches HH:mm DAY
 
     }
@@ -70,6 +69,7 @@ public class AppointmentTest {
 
         // different values -> returns false
         assertFalse(appointment.equals(new Appointment("13:30-14:30 FRI")));
+
         // different values -> returns false
         assertFalse(appointment.equals(new Appointment("13:30-14:30 SAT")));
     }

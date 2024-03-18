@@ -72,6 +72,10 @@ public class Appointment {
         boolean isStartTimeValid = isValidTime(extractStartTime(test));
         boolean isEndTimeValid = isValidTime(extractEndTime(test));
 
+        if (!isStartTimeValid || !isEndTimeValid) {
+            return false;
+        }
+
         LocalTime startTime = LocalTime.parse(extractStartTime(test));
         LocalTime endTime = LocalTime.parse(extractEndTime(test));
         boolean isStartTimeBeforeEndTime = startTime.isBefore(endTime);
@@ -79,7 +83,7 @@ public class Appointment {
         String day = extractDay(test);
         boolean isDayValid = dayToDayOfWeek.containsKey(day);
 
-        return isStartTimeValid && isEndTimeValid && isStartTimeBeforeEndTime && isDayValid;
+        return isStartTimeBeforeEndTime && isDayValid;
     }
 
     private static boolean isValidTime(String appointment) {
@@ -95,11 +99,11 @@ public class Appointment {
     }
 
     private static String extractStartTime(String appointment) {
-        return appointment.substring(6, 11);
+        return appointment.substring(0, 5);
     }
 
     private static String extractEndTime(String appointment) {
-        return appointment.substring(0, 5);
+        return appointment.substring(6, 11);
     }
 
     private static String extractDay(String appointment) {
