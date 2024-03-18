@@ -22,7 +22,7 @@ public class SampleDataUtil {
         return new Patient[] {
             new Patient(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                 new Address("Blk 30 Geylang Street 29, #06-40"),
-                getTagSet("friends"),getEventSet(new String[] {"Birthday"}, new String[] {"20-01-2022"})),
+                getTagSet("friends"), getEventSet(new String[] {"Birthday"}, new String[] {"20-01-2022"})),
             new Patient(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"), getTagSet("colleagues", "friends"),
                 getEventSet(new String[] {"Family Visit"}, new String[] {"30-03-2022, 15:00 - 18:00"})),
