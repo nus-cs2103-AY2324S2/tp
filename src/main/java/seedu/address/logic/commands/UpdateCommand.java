@@ -60,7 +60,6 @@ public class UpdateCommand extends Command {
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
 
     private final Name name;
-    private final Name lowerCaseName;
     private final UpdatePersonDescriptor updatePersonDescriptor;
 
     /**
@@ -72,7 +71,6 @@ public class UpdateCommand extends Command {
         requireNonNull(updatePersonDescriptor);
 
         this.name = name;
-        this.lowerCaseName = new Name(name.fullName.toLowerCase());
         this.updatePersonDescriptor = new UpdatePersonDescriptor(updatePersonDescriptor);
     }
 
@@ -81,12 +79,17 @@ public class UpdateCommand extends Command {
         requireNonNull(model);
         List<Person> lastShownList = model.getAddressBook().getPersonList();
 
+        Name lowerCaseName = new Name(name.fullName.toLowerCase());
         List<Person> sameNamePeople = lastShownList.stream()
                 .filter(person -> person.getLowerCaseName().equals(lowerCaseName))
                 .collect(Collectors.toList());
 
-        if (sameNamePeople.size() != 1) {
+        if (sameNamePeople.isEmpty()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_NAME);
+        }
+
+        if (sameNamePeople.size() > 1) {
+            throw new CommandException(Messages.MESSAGE_DUPLICATE_NAMES);
         }
 
         Person personToUpdate = sameNamePeople.get(0);
