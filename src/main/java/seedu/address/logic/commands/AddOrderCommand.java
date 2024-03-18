@@ -10,7 +10,7 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.order.Date;
+import seedu.address.model.order.Order;
 import seedu.address.model.person.Person;
 
 /**
@@ -30,20 +30,17 @@ public class AddOrderCommand extends Command {
             + "d/ 2024-01-01 r/ 100 chicken wings.";
 
     private final Index index;
-    private final Date arrivalDate;
-    private final String remark;
+    private final Order order;
 
     /**
      * Creates an AddOrderCommand to add the specified {@code Person}
      */
-    public AddOrderCommand(Index index, Date arrivalDate, String remark) {
+    public AddOrderCommand(Index index, Order order) {
         requireNonNull(index);
-        requireNonNull(arrivalDate);
-        requireNonNull(remark);
+        requireNonNull(order);
 
         this.index = index;
-        this.arrivalDate = arrivalDate;
-        this.remark = remark;
+        this.order = order;
     }
 
     @Override
@@ -56,8 +53,7 @@ public class AddOrderCommand extends Command {
 
         Person person = lastShownList.get(index.getZeroBased());
 
-        // TODO
-        person.addOrder(this.arrivalDate, this.remark);
+        person.addOrder(this.order);
 
         model.setPerson(person, person);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
@@ -76,17 +72,14 @@ public class AddOrderCommand extends Command {
         }
 
         AddOrderCommand otherAddOrderCommand = (AddOrderCommand) other;
-        return index.equals(otherAddOrderCommand.index)
-                && arrivalDate.equals(otherAddOrderCommand.arrivalDate)
-                && remark.equals(otherAddOrderCommand.remark);
+        return order.equals(otherAddOrderCommand.order) && index.equals(otherAddOrderCommand.index);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .add("index", index)
-                .add("arrivalDate", arrivalDate)
-                .add("remark", remark)
+                .add("order", order)
                 .toString();
     }
 }
