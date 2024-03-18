@@ -40,7 +40,8 @@ public class AddAppCommand extends Command {
             + PREFIX_TAG + "Medical Check-up "
             + PREFIX_NOTE + "May come earlier ";
 
-    public static final String MESSAGE_SUCCESS = "New appointment added: %1$s";
+
+    public static final String MESSAGE_ADD_APPOINTMENT_SUCCESS = "New appointment added: %1$s";
 
     public static final String MESSAGE_DUPLICATE_APPOINTMENT = "This appointment already exists in CLInic";
 
@@ -70,7 +71,7 @@ public class AddAppCommand extends Command {
         }
 
         model.addAppointment(apptToAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(apptToAdd)));
+        return new CommandResult(String.format(MESSAGE_ADD_APPOINTMENT_SUCCESS, Messages.format(apptToAdd)));
     }
 
     @Override
@@ -94,4 +95,6 @@ public class AddAppCommand extends Command {
                 .add("appointment", apptToAdd)
                 .toString();
     }
+
 }
+

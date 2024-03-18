@@ -206,3 +206,4 @@ public class AppointmentListTest {
         assertEquals(appointmentList.asUnmodifiableObservableList().toString(), appointmentList.toString());
     }
 }
+

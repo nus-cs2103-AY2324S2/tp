@@ -14,6 +14,7 @@ import seedu.address.model.appointment.exceptions.DuplicateAppointmentException;
 import seedu.address.model.person.Nric;
 
 
+
 /**
  * A list of appointments that enforces uniqueness between its elements and does not allow nulls.
  * An appointment is considered unique by comparing using {@code Appointment#isSameAppointment(Appointment)}.
@@ -46,7 +47,6 @@ public class AppointmentList implements Iterable<Appointment> {
      */
     public void add(Appointment toAdd) {
         requireNonNull(toAdd);
-
         if (contains(toAdd)) {
             throw new DuplicateAppointmentException();
         }
@@ -62,7 +62,6 @@ public class AppointmentList implements Iterable<Appointment> {
         requireAllNonNull(target, editedAppointment);
 
         int index = internalList.indexOf(target);
-
         if (index == -1) {
             throw new AppointmentNotFoundException();
         }
@@ -139,7 +138,6 @@ public class AppointmentList implements Iterable<Appointment> {
     public boolean equals(Object other) {
         if (other == this) {
             return true;
-
         }
 
         // instanceof handles nulls

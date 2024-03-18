@@ -19,7 +19,7 @@ import seedu.address.model.util.SampleDataUtil;
 public class PersonBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
-    public static final String DEFAULT_NRIC = "T0123456A";
+    public static final String DEFAULT_NRIC = "T0123456I";
     public static final String DEFAULT_DOB = "2001-01-01";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";

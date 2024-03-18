@@ -19,10 +19,12 @@ import seedu.address.model.appointment.Note;
 import seedu.address.model.appointment.TimePeriod;
 import seedu.address.model.person.Nric;
 
+
 /**
  * Parses input arguments and creates a new AddCommand object
  */
 public class AddAppCommandParser implements Parser<AddAppCommand> {
+
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
      * and returns an AddCommand object for execution.
@@ -49,7 +51,9 @@ public class AddAppCommandParser implements Parser<AddAppCommand> {
         Note note = ParserUtil.parseNote(argMultimap.getValue(PREFIX_NOTE).get());
         AppointmentType appointmentType = ParserUtil.parseAppointmentType(
                 argMultimap.getValue(PREFIX_TAG).get());
+
         Appointment appToAdd = new Appointment(nric, date, timePeriod, appointmentType, note);
+
         return new AddAppCommand(appToAdd);
     }
 

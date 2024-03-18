@@ -12,6 +12,7 @@ import java.time.format.DateTimeFormatter;
  * Represents a date
  */
 public class Date {
+
     private static final String DATE_FORMAT = "yyyy-MM-dd";
     public static final String MESSAGE_CONSTRAINTS =
             "Date should be in the format " + DATE_FORMAT;
@@ -65,11 +66,11 @@ public class Date {
         }
 
         Date otherDate = (Date) other;
-        return value.equals(otherDate.value);
+        return this.value.equals(otherDate.value);
     }
 
     @Override
     public int hashCode() {
-        return value.hashCode();
+        return this.value.hashCode();
     }
 }

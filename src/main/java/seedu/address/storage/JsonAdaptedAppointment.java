@@ -1,6 +1,5 @@
 package seedu.address.storage;
 
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -31,8 +30,8 @@ public class JsonAdaptedAppointment {
      */
     @JsonCreator
     public JsonAdaptedAppointment(@JsonProperty("nric") String nric, @JsonProperty("date") String date,
-                                  @JsonProperty("startTime") String startTime, @JsonProperty("endTime") String endTime,
-                                  @JsonProperty("appointmentType") String appointmentType,
+                             @JsonProperty("startTime") String startTime, @JsonProperty("endTime") String endTime,
+                             @JsonProperty("appointmentType") String appointmentType,
                                   @JsonProperty("note") String note) {
         this.nric = nric;
         this.date = date;
@@ -75,6 +74,7 @@ public class JsonAdaptedAppointment {
             throw new IllegalValueException(Date.MESSAGE_CONSTRAINTS);
         }
         final Date modelDate = new Date(date);
+      
         if (startTime == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Time.class.getSimpleName()));
         }
@@ -82,6 +82,7 @@ public class JsonAdaptedAppointment {
             throw new IllegalValueException(Time.MESSAGE_CONSTRAINTS);
         }
         final Time modelStartTime = new Time(startTime);
+
         if (endTime == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Time.class.getSimpleName()));
         }
@@ -89,10 +90,12 @@ public class JsonAdaptedAppointment {
             throw new IllegalValueException(Time.MESSAGE_CONSTRAINTS);
         }
         final Time modelEndTime = new Time(endTime);
+
         if (!TimePeriod.isValidTimePeriod(modelStartTime, modelEndTime)) {
             throw new IllegalValueException(TimePeriod.MESSAGE_CONSTRAINTS);
         }
         final TimePeriod modelTimePeriod = new TimePeriod(modelStartTime, modelEndTime);
+
         if (appointmentType == null) {
             throw new IllegalValueException(String.format(
                     MISSING_FIELD_MESSAGE_FORMAT, AppointmentType.class.getSimpleName()));
@@ -101,6 +104,7 @@ public class JsonAdaptedAppointment {
             throw new IllegalValueException(AppointmentType.MESSAGE_CONSTRAINTS);
         }
         final AppointmentType modelAppointmentType = new AppointmentType(appointmentType);
+
         if (note == null) {
             throw new IllegalValueException(String.format(
                     MISSING_FIELD_MESSAGE_FORMAT, Note.class.getSimpleName()));
@@ -109,6 +113,7 @@ public class JsonAdaptedAppointment {
             throw new IllegalValueException(Note.MESSAGE_CONSTRAINTS);
         }
         final Note modelNote = new Note(note);
+
         return new Appointment(modelNric, modelDate, modelTimePeriod,
                 modelAppointmentType, modelNote);
     }
