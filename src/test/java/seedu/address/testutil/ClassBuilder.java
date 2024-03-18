@@ -3,6 +3,9 @@ package seedu.address.testutil;
 import seedu.address.model.person.Classes;
 import seedu.address.model.person.CourseCode;
 
+/**
+ * A utility class to help with building Classes objects.
+ */
 public class ClassBuilder {
 
     public static final String DEFAULT_CC = "cs1101s";

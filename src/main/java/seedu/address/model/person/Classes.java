@@ -9,7 +9,7 @@ import seedu.address.commons.util.ToStringBuilder;
  */
 public class Classes {
 
-    private CourseCode courseCode;
+    private CourseCode courseCode; //tutorial grp
 
     /**
      * Constructor for Classes.

@@ -11,6 +11,7 @@ public class CourseCode {
     public static final String MESSAGE_CONSTRAINTS = "Course codes should only contain alphanumeric characters "
             + "and no spaces, and it should not be blank";
     private String courseCode;
+    // private AddressBook studentlist = arrays(students(arrays());
 
     /**
      * Constructor for CourseCode.

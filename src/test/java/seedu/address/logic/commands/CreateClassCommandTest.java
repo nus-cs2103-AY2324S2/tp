@@ -18,7 +18,11 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.*;
+import seedu.address.model.ClassBook;
+import seedu.address.model.Model;
+import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyClassBook;
+import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Classes;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.ClassBuilder;
@@ -47,8 +51,8 @@ public class CreateClassCommandTest {
         CreateClassCommand createClassCommand = new CreateClassCommand(validClass);
         ModelStub modelStub = new ModelStubWithClass(validClass);
 
-        assertThrows(CommandException.class, CreateClassCommand.MESSAGE_DUPLICATE_CLASS,
-                () -> createClassCommand.execute(modelStub));
+        assertThrows(CommandException.class, CreateClassCommand.MESSAGE_DUPLICATE_CLASS, () ->
+                createClassCommand.execute(modelStub));
     }
 
     @Test

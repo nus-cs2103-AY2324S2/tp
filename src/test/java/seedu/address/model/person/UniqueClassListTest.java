@@ -1,16 +1,16 @@
 package seedu.address.model.person;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_CC;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.TYPICAL_CLASS_1;
 import static seedu.address.testutil.TypicalPersons.TYPICAL_CLASS_2;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.testutil.ClassBuilder;
-
 import java.util.Collections;
 import java.util.List;
+
+import org.junit.jupiter.api.Test;
 
 public class UniqueClassListTest {
 
@@ -89,7 +89,7 @@ public class UniqueClassListTest {
     }
 
     @Test
-    public void setClasses_list_replaces () {
+    public void setClasses_list_replaces() {
         uniqueClassList.add(TYPICAL_CLASS_1);
         List<Classes> classList = Collections.singletonList(TYPICAL_CLASS_2);
         uniqueClassList.setClasses(classList);
