@@ -60,6 +60,6 @@ public class PersonCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         upcoming.setText(person.getUpcoming().toString());
-        lastcontact.setText("Last contacted: " + person.getLastcontact().getDateTimeString());
+        lastcontact.setText("Last contacted: " + person.getLastcontact().toString());
     }
 }

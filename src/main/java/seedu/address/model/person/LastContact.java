@@ -46,7 +46,8 @@ public class LastContact {
         }
     }
 
-    public String getDateTimeString() {
+    @Override
+    public String toString() {
         return this.dateTime;
     }
 

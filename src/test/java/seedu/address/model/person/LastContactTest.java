@@ -24,7 +24,7 @@ class LastContactTest {
     void constructor_validDateTime_createsLastContact() {
         String validDateTime = "05-03-2024 0600";
         LastContact lastContact = new LastContact(validDateTime);
-        assertEquals(validDateTime, lastContact.getDateTimeString());
+        assertEquals(validDateTime, lastContact.toString());
     }
 
     @Test
@@ -42,7 +42,7 @@ class LastContactTest {
     void getDateTimeString() {
         String validDateTime = "05-03-2024 0600";
         LastContact lastContact = new LastContact(validDateTime);
-        assertEquals(validDateTime, lastContact.getDateTimeString());
+        assertEquals(validDateTime, lastContact.toString());
     }
 
     @Test
