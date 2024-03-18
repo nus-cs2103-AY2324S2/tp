@@ -10,7 +10,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 /**
  * Parses input arguments and creates a new ViewCommand object
  */
-public class ViewCommandParser {
+public class ViewCommandParser implements Parser<ViewCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteCommand
@@ -23,7 +23,7 @@ public class ViewCommandParser {
             return new ViewCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE), pe);
         }
     }
 }
