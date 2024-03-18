@@ -27,20 +27,6 @@ public class DeleteCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private CommandHistory commandHistory = new CommandHistory();
 
-//    @Test
-//    public void execute_validIndexUnfilteredList_success() {
-//        Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-//        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
-//
-//        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
-//                Messages.format(personToDelete));
-//
-//        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-//        expectedModel.deletePerson(personToDelete);
-//
-//        assertCommandSuccess(deleteCommand, model, commandHistory, expectedMessage, expectedModel);
-    //    }
-
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
@@ -49,22 +35,6 @@ public class DeleteCommandTest {
         assertCommandFailure(deleteCommand, model, commandHistory, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
-//    @Test
-//    public void execute_validIndexFilteredList_success() {
-//        showPersonAtIndex(model, INDEX_FIRST_PERSON);
-//
-//        Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-//        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
-//
-//        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
-//                Messages.format(personToDelete));
-//
-//        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-//        expectedModel.deletePerson(personToDelete);
-//        showNoPerson(expectedModel);
-//
-//        assertCommandSuccess(deleteCommand, model, commandHistory, expectedMessage, expectedModel);
-    //    }
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
