@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.person.Client;
 import seedu.address.model.person.Person;
 
 /**
@@ -58,10 +59,21 @@ public interface Model {
     boolean hasPerson(Person person);
 
     /**
+     * Returns true if a client with the same identity as {@code client} exists in InsureBook.
+     */
+    boolean hasClient(Client client);
+
+    /**
      * Deletes the given person.
      * The person must exist in the address book.
      */
     void deletePerson(Person target);
+
+    /**
+     * Deletes the given client.
+     * The client must exist in InsureBook.
+     */
+    void deleteClient(Client target);
 
     /**
      * Adds the given person.
@@ -70,11 +82,24 @@ public interface Model {
     void addPerson(Person person);
 
     /**
+     * Adds the given Client.
+     * {@code Client} must not already exist in InsureBook.
+     */
+    void addClient(Client client);
+
+    /**
      * Replaces the given person {@code target} with {@code editedPerson}.
      * {@code target} must exist in the address book.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
      */
     void setPerson(Person target, Person editedPerson);
+
+    /**
+     * Replaces the given client {@code target} with {@code editedClient}.
+     * {@code target} must exist in InsureBook.
+     * The client identity of {@code editedClient} must not be the same as another existing client in InsureBook.
+     */
+    void setClient(Client target, Client editedClient);
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
@@ -84,4 +109,13 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    //    /** Returns an unmodifiable view of the filtered client list */
+    //    ObservableList<Client> getFilteredClientList();
+    //
+    //    /**
+    //     * Updates the filter of the filtered client list to filter by the given {@code predicate}.
+    //     * @throws NullPointerException if {@code predicate} is null.
+    //     */
+    //    void updateFilteredClientList(Predicate<Client> predicate);
 }
