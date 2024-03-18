@@ -125,6 +125,19 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
+### Viewing a person : `view`
+
+View the specified person from the TA Toolkit.
+
+Format: `view INDEX`
+
+* View the person at the specified `INDEX`.
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list` followed by `view 2` views the 2nd person in the TA Toolkit.
+
 ### Deleting a person : `dc`
 
 Deletes the specified person from the TA Toolkit.
