@@ -62,12 +62,12 @@ public class SampleDataUtil {
      * Returns a set of Events containing the list of strings given.
      */
     public static Set<Event> getEventSet(String[] names, String[] dates) {
-        Event[] importantDates = new Event[names.length];
+        Event[] events = new Event[names.length];
         for (int i = 0; i < names.length; i++) {
-            importantDates[i] = new Event(names[i], dates[i]);
+            events[i] = new Event(names[i], dates[i]);
         }
 
-        return Arrays.stream(importantDates).collect(Collectors.toSet());
+        return Arrays.stream(events).collect(Collectors.toSet());
     }
 
 }

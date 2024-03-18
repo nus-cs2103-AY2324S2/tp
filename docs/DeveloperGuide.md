@@ -256,11 +256,11 @@ The following sequence diagram shows how the Add Tags operation works:
 
 #### Introduction
 
-The `AddImportantDate` class is responsible for adding an Important Date to a patient in the address book. I
+The `AddEvent` class is responsible for adding an Important Date to a patient in the address book. I
 
 #### Specifications
 
-* ImportantDates, as defined by the `ImportantDate` class, contain both the Name of the Event that falls on that date, as well as the Date of the Event and optionally, the Time Period for which the Event is happening.
+* Events, as defined by the `Event` class, contain both the Name of the Event that falls on that date, as well as the Date of the Event and optionally, the Time Period for which the Event is happening.
 
 * The addition of Important Dates is cumulative, and new Important Dates will be added to the existing set of Important Dates for the patient, preserving the previously assigned Important Dates.
 
@@ -273,7 +273,7 @@ Given below is an example usage scenario and how the group creation mechanism be
 Step 1: The user accesses the PatientSync application.
 
 Step 2: The user executes the `adde 1 n/ Birthday d/ 20-01-2022` command to add the Important Date, Birthday, which falls on the 20th January.
-* Upon successful validation, it creates an `AddImportantDatesCommand` instance.
+* Upon successful validation, it creates an `AddEventsCommand` instance.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -281,11 +281,11 @@ Step 2: The user executes the `adde 1 n/ Birthday d/ 20-01-2022` command to add 
 
 #### Introduction
 
-The `DeleteImportantDateCommand` class is responsible for deleting an Important Date from a patient in the address book. I
+The `DeleteEventCommand` class is responsible for deleting an Important Date from a patient in the address book. I
 
 #### Specifications
 
-* DeleteImportantDateCommand takes in two parameters: `PATIENT_INDEX` and `EVENT_INDEX` which are Indexes of patients
+* DeleteEventCommand takes in two parameters: `PATIENT_INDEX` and `EVENT_INDEX` which are Indexes of patients
 shown on the UI after using the `list` or `find` command and Indexes of the specified Patient's events as defined in
 the `Index` class.
 
@@ -299,11 +299,11 @@ Step 1: The user accesses the PatientSync application.
 
 Step 2: The user executes the `adde 1 n/ Birthday d/ 20-01-2022` command to add the Important Date, Birthday,
 which falls on the 20th January.
-* Upon successful validation, it creates an `AddImportantDatesCommand` instance.
+* Upon successful validation, it creates an `AddEventsCommand` instance.
 
 Step 3: The use executes the `deletee 1 e/1 command` to delete the Important Date as he realised he keyed in the wrong
 date.
-* Upon successful validation,  an `DeleteImportantDateCommand` instance is created.
+* Upon successful validation,  an `DeleteEventCommand` instance is created.
 
 #### Design Considerations
 

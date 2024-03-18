@@ -8,7 +8,7 @@ import java.util.stream.Stream;
 import seedu.address.model.patient.Address;
 import seedu.address.model.patient.EditPatientDescriptor;
 import seedu.address.model.patient.Email;
-import seedu.address.model.patient.ImportantDate;
+import seedu.address.model.patient.Event;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.Phone;
@@ -84,13 +84,13 @@ public class EditPatientDescriptorBuilder {
     }
 
     /**
-     * Parses the name and important date into a {@code Set<ImportantDate>} and set it to the
+     * Parses the name and dateTimeStr into a {@code Set<Event>} and set it to the
      * {@code EditPatientDescriptor} that we are building.
      */
-    public EditPatientDescriptorBuilder withImportantDate(String name, String date) {
-        Set<ImportantDate> importantDates = new HashSet<>();
-        importantDates.add(new ImportantDate(name, date));
-        descriptor.setImportantDate(importantDates);
+    public EditPatientDescriptorBuilder withEvent(String name, String dateTimeStr) {
+        Set<Event> events = new HashSet<>();
+        events.add(new Event(name, dateTimeStr));
+        descriptor.setEvents(events);
         return this;
     }
 

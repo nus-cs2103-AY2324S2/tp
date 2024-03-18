@@ -6,14 +6,14 @@
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
     "tags" : [ "friends" ],
-    "importantDates" : []
+    "events" : []
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
     "tags" : [ "owesMoney", "friends" ],
-    "importantDates" : [ {
+    "events" : [ {
       "name": "Birthday",
       "dateTime": "20-02-2022"
     }, {
@@ -26,34 +26,34 @@
     "email" : "heinz@example.com",
     "address" : "wall street",
     "tags" : [ ],
-    "importantDates" : []
+    "events" : []
   }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",
     "email" : "cornelia@example.com",
     "address" : "10th street",
     "tags" : [ "friends" ],
-    "importantDates" : []
+    "events" : []
   }, {
     "name" : "Elle Meyer",
     "phone" : "9482224",
     "email" : "werner@example.com",
     "address" : "michegan ave",
     "tags" : [ ],
-    "importantDates" : []
+    "events" : []
   }, {
     "name" : "Fiona Kunz",
     "phone" : "9482427",
     "email" : "lydia@example.com",
     "address" : "little tokyo",
     "tags" : [ ],
-    "importantDates" : []
+    "events" : []
   }, {
     "name" : "George Best",
     "phone" : "9482442",
     "email" : "anna@example.com",
     "address" : "4th street",
     "tags" : [ ],
-    "importantDates" : []
+    "events" : []
   } ]
 }

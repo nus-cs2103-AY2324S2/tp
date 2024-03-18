@@ -9,7 +9,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import seedu.address.model.patient.ImportantDate;
+import seedu.address.model.patient.Event;
 import seedu.address.model.patient.Patient;
 
 /**
@@ -44,7 +44,7 @@ public class PatientCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
     @FXML
-    private VBox importantDates;
+    private VBox events;
 
     /**
      * Creates a {@code PatientCode} with the given {@code Patient} and index to display.
@@ -61,13 +61,13 @@ public class PatientCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
 
-        if (patient.getImportantDates().size() >= 1) {
-            importantDates.getChildren().add(new Label("Upcoming:\n"));
+        if (patient.getEvents().size() >= 1) {
+            events.getChildren().add(new Label("Upcoming:\n"));
 
-            ArrayList<ImportantDate> allImportantDates = new ArrayList<>(patient.getImportantDates());
-            for (int i = 1; i <= allImportantDates.size(); i++) {
-                importantDates.getChildren().add(new Label((i) + ". "
-                        + allImportantDates.get(i - 1).toString() + "\n"));
+            ArrayList<Event> allEvents = new ArrayList<>(patient.getEvents());
+            for (int i = 1; i <= allEvents.size(); i++) {
+                events.getChildren().add(new Label((i) + ". "
+                        + allEvents.get(i - 1).toString() + "\n"));
             }
         }
     }

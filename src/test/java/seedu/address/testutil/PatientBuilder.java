@@ -5,7 +5,7 @@ import java.util.Set;
 
 import seedu.address.model.patient.Address;
 import seedu.address.model.patient.Email;
-import seedu.address.model.patient.ImportantDate;
+import seedu.address.model.patient.Event;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.Phone;
@@ -27,7 +27,7 @@ public class PatientBuilder {
     private Email email;
     private Address address;
     private Set<Tag> tags;
-    private Set<ImportantDate> importantDates;
+    private Set<Event> events;
 
     /**
      * Creates a {@code PatientBuilder} with the default details.
@@ -38,7 +38,7 @@ public class PatientBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
-        importantDates = new HashSet<>();
+        events = new HashSet<>();
     }
 
     /**
@@ -50,7 +50,7 @@ public class PatientBuilder {
         email = patientToCopy.getEmail();
         address = patientToCopy.getAddress();
         tags = new HashSet<>(patientToCopy.getTags());
-        importantDates = new HashSet<>(patientToCopy.getImportantDates());
+        events = new HashSet<>(patientToCopy.getEvents());
     }
 
     /**
@@ -94,20 +94,20 @@ public class PatientBuilder {
     }
 
     /**
-     * Sets the ImportantDate of the {@code Patient} that we are building,
+     * Sets the Event of the {@code Patient} that we are building,
      * with the name and date/datetime of the event
      *
      * @param names
-     * @param importantDates
+     * @param events
      * @return
      */
-    public PatientBuilder withImportantDates(String[] names, String[] importantDates) {
-        this.importantDates = SampleDataUtil.getImportantDateSet(names, importantDates);
+    public PatientBuilder withEvents(String[] names, String[] events) {
+        this.events = SampleDataUtil.getEventSet(names, events);
         return this;
     }
 
     public Patient build() {
-        return new Patient(name, phone, email, address, tags, importantDates);
+        return new Patient(name, phone, email, address, tags, events);
     }
 
 }

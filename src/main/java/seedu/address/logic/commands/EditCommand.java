@@ -19,7 +19,7 @@ import seedu.address.model.Model;
 import seedu.address.model.patient.Address;
 import seedu.address.model.patient.EditPatientDescriptor;
 import seedu.address.model.patient.Email;
-import seedu.address.model.patient.ImportantDate;
+import seedu.address.model.patient.Event;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.Phone;
@@ -98,10 +98,10 @@ public class EditCommand extends Command {
         Email updatedEmail = editPatientDescriptor.getEmail().orElse(patientToEdit.getEmail());
         Address updatedAddress = editPatientDescriptor.getAddress().orElse(patientToEdit.getAddress());
         Set<Tag> updatedTags = editPatientDescriptor.getTags().orElse(patientToEdit.getTags());
-        Set<ImportantDate> updatedImportantDates = editPatientDescriptor.getImportantDates()
-                .orElse(patientToEdit.getImportantDates());
+        Set<Event> updatedEvents = editPatientDescriptor.getEvents()
+                .orElse(patientToEdit.getEvents());
 
-        return new Patient(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedImportantDates);
+        return new Patient(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedEvents);
     }
 
     @Override

@@ -7,9 +7,9 @@ import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_IMPORTANT_DATE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_IMPORTANT_DATETIME;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_IMPORTANT_DATE_NAME;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_DATE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_DATETIME;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_NAME;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
@@ -60,12 +60,12 @@ public class EditPatientDescriptorTest {
         editedAmy = new EditPatientDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
-        editedAmy = new EditPatientDescriptorBuilder(DESC_AMY).withImportantDate(VALID_IMPORTANT_DATE_NAME,
-                VALID_IMPORTANT_DATE).build();
+        editedAmy = new EditPatientDescriptorBuilder(DESC_AMY).withEvent(VALID_EVENT_NAME,
+                VALID_EVENT_DATE).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
-        editedAmy = new EditPatientDescriptorBuilder(DESC_AMY).withImportantDate(VALID_IMPORTANT_DATE_NAME,
-                VALID_IMPORTANT_DATETIME).build();
+        editedAmy = new EditPatientDescriptorBuilder(DESC_AMY).withEvent(VALID_EVENT_NAME,
+                VALID_EVENT_DATETIME).build();
         assertFalse(DESC_AMY.equals(editedAmy));
     }
 
@@ -77,8 +77,8 @@ public class EditPatientDescriptorTest {
                 + editPatientDescriptor.getPhone().orElse(null) + ", email="
                 + editPatientDescriptor.getEmail().orElse(null) + ", address="
                 + editPatientDescriptor.getAddress().orElse(null) + ", tags="
-                + editPatientDescriptor.getTags().orElse(null) + ", importantDate="
-                + editPatientDescriptor.getImportantDates().orElse(null) + "}";
+                + editPatientDescriptor.getTags().orElse(null) + ", events="
+                + editPatientDescriptor.getEvents().orElse(null) + "}";
         assertEquals(expected, editPatientDescriptor.toString());
     }
 }

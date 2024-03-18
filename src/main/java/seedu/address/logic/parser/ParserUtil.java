@@ -13,7 +13,7 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.patient.Address;
 import seedu.address.model.patient.Email;
-import seedu.address.model.patient.ImportantDate;
+import seedu.address.model.patient.Event;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Phone;
 import seedu.address.model.tag.Tag;
@@ -127,21 +127,21 @@ public class ParserUtil {
 
 
     /**
-     * Parses a {@param String importantDate} into a {@code ImportantDate}.
+     * Parses a {@param String event} into a {@code Event}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code importantDate} is invalid.
+     * @throws ParseException if the given {@code event} is invalid.
      */
-    public static ImportantDate parseImportantDate(String name, String importantDate) throws ParseException {
+    public static Event parseEvent(String name, String event) throws ParseException {
         String trimmedName = name.trim();
-        String trimmedImportantDate = importantDate.trim();
-        requireAllNonNull(name, importantDate);
+        String trimmedEventDateTimeStr = event.trim();
+        requireAllNonNull(name, event);
 
-        if (!ImportantDate.isValidImportantDate(trimmedImportantDate)) {
-            throw new ParseException(ImportantDate.MESSAGE_CONSTRAINTS);
+        if (!Event.isValidEvent(trimmedEventDateTimeStr)) {
+            throw new ParseException(Event.MESSAGE_CONSTRAINTS);
         }
 
-        return new ImportantDate(trimmedName, trimmedImportantDate);
+        return new Event(trimmedName, trimmedEventDateTimeStr);
     }
 
 

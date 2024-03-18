@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.patient.Address;
 import seedu.address.model.patient.Email;
-import seedu.address.model.patient.ImportantDate;
+import seedu.address.model.patient.Event;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.Phone;
@@ -30,7 +30,7 @@ class JsonAdaptedPatient {
     private final String email;
     private final String address;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
-    private final List<JsonAdaptedImportantDate> importantDates = new ArrayList<>();
+    private final List<JsonAdaptedEvent> events = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPatient} with the given patient details.
@@ -39,7 +39,7 @@ class JsonAdaptedPatient {
     public JsonAdaptedPatient(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                               @JsonProperty("email") String email, @JsonProperty("address") String address,
                               @JsonProperty("tags") List<JsonAdaptedTag> tags,
-                              @JsonProperty("importantDates") List<JsonAdaptedImportantDate> importantDates) {
+                              @JsonProperty("events") List<JsonAdaptedEvent> events) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -47,8 +47,8 @@ class JsonAdaptedPatient {
         if (tags != null) {
             this.tags.addAll(tags);
         }
-        if (importantDates != null) {
-            this.importantDates.addAll(importantDates);
+        if (events != null) {
+            this.events.addAll(events);
         }
     }
 
@@ -63,8 +63,8 @@ class JsonAdaptedPatient {
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
-        importantDates.addAll(source.getImportantDates().stream()
-                .map(JsonAdaptedImportantDate::new)
+        events.addAll(source.getEvents().stream()
+                .map(JsonAdaptedEvent::new)
                 .collect(Collectors.toList()));
     }
 
@@ -79,9 +79,9 @@ class JsonAdaptedPatient {
             patientTags.add(tag.toModelType());
         }
 
-        final List<ImportantDate> patientImportantDates = new ArrayList<>();
-        for (JsonAdaptedImportantDate date : importantDates) {
-            patientImportantDates.add(date.toModelType());
+        final List<Event> patientEvents = new ArrayList<>();
+        for (JsonAdaptedEvent date : events) {
+            patientEvents.add(date.toModelType());
         }
 
         if (name == null) {
@@ -117,9 +117,9 @@ class JsonAdaptedPatient {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(patientTags);
-        final Set<ImportantDate> modelImportantDates = new HashSet<>(patientImportantDates);
+        final Set<Event> modelEvents = new HashSet<>(patientEvents);
 
-        return new Patient(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelImportantDates);
+        return new Patient(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelEvents);
     }
 
 }
