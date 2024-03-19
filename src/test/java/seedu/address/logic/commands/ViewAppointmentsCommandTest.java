@@ -29,7 +29,7 @@ public class ViewAppointmentsCommandTest {
     @Test
     public void execute_viewAppointments_success() {
         String expectedMessage = "Appointments:\n"
-                + "23:59 SUN";
+                + "12:00-13:00 SUN";
         assertCommandSuccess(new ViewAppointmentsCommand(), model, expectedMessage, expectedModel);
     }
 
