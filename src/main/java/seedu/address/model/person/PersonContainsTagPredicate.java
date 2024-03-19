@@ -21,7 +21,7 @@ public class PersonContainsTagPredicate implements Predicate<Person> {
     public boolean test(Person person) {
         Set<Tag> tags = person.getTags();
         return keywords.stream()
-                .anyMatch(keyword -> 
+                .anyMatch(keyword ->
                     tags.stream()
                         .anyMatch(tag -> StringUtil.containsWordIgnoreCase(tag.tagName, keyword))
                 );

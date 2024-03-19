@@ -3,9 +3,9 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.logic.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.person.PersonContainsTagPredicate;
-import seedu.address.logic.Messages;
 
 /**
  * Filters and lists all persons in address book whose tags contain any of the argument keywords.
