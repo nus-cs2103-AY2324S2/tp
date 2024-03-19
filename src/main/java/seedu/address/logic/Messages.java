@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.parser.Prefix;
+import seedu.address.model.order.Order;
 import seedu.address.model.person.Person;
 
 /**
@@ -18,6 +19,7 @@ public class Messages {
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
+    public static final String MESSAGE_INVALID_ORDER_DISPLAYED_INDEX = "The order index provided is invalid";
 
     /**
      * Returns an error message indicating the duplicate prefixes.
@@ -45,6 +47,21 @@ public class Messages {
                 .append(person.getAddress())
                 .append("; Tags: ");
         person.getTags().forEach(builder::append);
+        return builder.toString();
+    }
+
+    /**
+     * Formats the {@code Order} for display to the user.
+     */
+    public static String format(Order order) {
+        final StringBuilder builder = new StringBuilder();
+        builder.append(order.getOrderId())
+                .append("; Deadline: ")
+                .append(order.getDeadline())
+                .append("; Date Received: ")
+                .append(order.getOrderDate())
+                .append("; Details: ")
+                .append(order.getRemark());
         return builder.toString();
     }
 
