@@ -69,5 +69,8 @@ public class AddressTest {
 
         // Substring mismatch
         assertFalse(address.isMatch("street"));
+
+        // Different type
+        assertFalse(address.isMatch(1));
     }
 }

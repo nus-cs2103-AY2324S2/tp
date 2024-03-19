@@ -73,5 +73,8 @@ public class PhoneTest {
 
         // Substring mismatch
         assertFalse(phone.isMatch("invalid"));
+
+        // Different type
+        assertFalse(phone.isMatch(1));
     }
 }

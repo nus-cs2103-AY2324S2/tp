@@ -40,6 +40,9 @@ public class TagTest {
 
         // Substring mismatch
         assertFalse(tag.isMatch("invalid"));
+
+        // Different type
+        assertFalse(tag.isMatch(1));
     }
 
 }

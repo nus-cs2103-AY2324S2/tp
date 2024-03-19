@@ -98,5 +98,8 @@ public class EmailTest {
 
         // Substring mismatch
         assertFalse(email.isMatch("invalid"));
+
+        // Different type
+        assertFalse(email.isMatch(1));
     }
 }
