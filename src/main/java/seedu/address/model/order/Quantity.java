@@ -27,13 +27,6 @@ public class Quantity {
         this.value = value;
     }
 
-    /**
-     * Returns true if a given string is a valid phone number.
-     */
-    public static boolean isValidQuantity(String test) {
-        return test.matches(VALIDATION_REGEX);
-    }
-
     @Override
     public String toString() {
         return Integer.toString(this.value);
