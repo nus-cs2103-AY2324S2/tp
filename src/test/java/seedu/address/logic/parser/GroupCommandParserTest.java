@@ -24,7 +24,6 @@ class GroupCommandParserTest {
     private GroupCommandParser parser = new GroupCommandParser();
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, GroupCommand.MESSAGE_USAGE);
-    
     @Test
     public void parse_invalidPreamble_failure() {
 
