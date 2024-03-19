@@ -28,13 +28,5 @@ public interface ReadOnlyAddressBook {
      * @return {@code true} if the address book contains the specified module code, {@code false} otherwise.
      */
     boolean hasModule(ModuleCode moduleCode);
-
-    /**
-     * Adds a module code to the address book.
-     *
-     * @param moduleCode The module code to add.
-     */
-    ObservableList<ModuleCode> getModuleList();
-    boolean hasModule(ModuleCode moduleCode);
     void addModule(ModuleCode moduleCode);
 }

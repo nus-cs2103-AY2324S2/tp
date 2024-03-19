@@ -133,22 +133,6 @@ public class MainWindow extends UiPart<Stage> {
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
 
-    private boolean initiallyDisplayModuleListPanel() {
-        return logic.isInitialModuleListPanelDisplayed();
-    }
-
-    private void switchToPersonListPanel() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
-    }
-
-    private void switchToModuleListPanel() {
-        ObservableList<ModuleCode> moduleObservableList = FXCollections
-            .observableList(logic.getAddressBook().getModuleList());
-        moduleListPanel = new ModuleListPanel(moduleObservableList);
-        moduleListPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
-    }
-
     /**
      * Determines whether to initially display the module list panel.
      *

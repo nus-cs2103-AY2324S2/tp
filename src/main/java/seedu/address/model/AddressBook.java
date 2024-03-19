@@ -52,12 +52,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void setPersons(List<Person> persons) {
         this.persons.setPersons(persons);
     }
-
-    public void setModules(List<ModuleCode> modules) {
-        requireNonNull(modules);
-        this.modules.clear();
-        this.modules.addAll(modules);
-    }
     /**
      * Replaces the contents of the module list with {@code modules}.
      */
