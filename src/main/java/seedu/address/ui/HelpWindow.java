@@ -16,7 +16,18 @@ import seedu.address.commons.core.LogsCenter;
 public class HelpWindow extends UiPart<Stage> {
 
     public static final String USERGUIDE_URL = "https://se-education.org/addressbook-level3/UserGuide.html";
-    public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
+    public static final String COMMON_COMMANDS = "\n\nFor quick help, here are some common commands "
+            + "(omit the [] when using!): "
+            + "\n1. Quick add an applicant/interviewer: add_[applicant/interviewer] n/[name] p/[phone] e/[email] "
+            + "\n2. Add an interview: add_interview desc/[description] date/[date] st/[starting time] et/[ending time] "
+            + "a/[applicant phone] i/[interviewer phone]"
+            + "\n3. Delete an applicant/interviewer: delete_persons [phone]"
+            + "\n4. Delete an interview: delete_interview [interview index]"
+            + "\n5. List applicants/interviewers: list_persons"
+            + "\n6. List interviews: list_interviews"
+            + "\n7. Edit applicants/interviewers: edit [applicant/interviewer index] n/[newName]...";
+    public static final String HELP_MESSAGE = "Refer to our user guide at " + USERGUIDE_URL + " for detailed info "
+            + "on how to use Tether." + COMMON_COMMANDS;
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
