@@ -3,6 +3,7 @@
     "type" : "stu",
     "name": "Alice Pauline",
     "phone": "94351253",
+    "id" : "A0111111A",
     "email": "alice@example.com",
     "address": "123, Jurong West Ave 6, #08-111",
     "tags" : [ {
@@ -11,7 +12,8 @@
     } ]
   }, {
     "type" : "stu",
-    "name": "Alice Pauline",
+    "name": "Alicia Pauline",
+    "id" : "A0111111A",
     "phone": "94351253",
     "email": "pauline@example.com",
     "address": "4th street"

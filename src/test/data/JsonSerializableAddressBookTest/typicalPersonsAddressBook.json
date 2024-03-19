@@ -3,6 +3,7 @@
   "persons" : [ {
     "type" : "stu",
     "name" : "Alice Pauline",
+    "id" : "A0111111A",
     "phone" : "94351253",
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
@@ -13,6 +14,7 @@
   }, {
     "type" : "stu",
     "name" : "Benson Meier",
+    "id" : "A0111111C",
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
@@ -26,6 +28,7 @@
   }, {
     "type" : "stu",
     "name" : "Carl Kurz",
+    "id" : "A2222222D",
     "phone" : "95352563",
     "email" : "heinz@example.com",
     "address" : "wall street",
@@ -33,6 +36,7 @@
   }, {
     "type" : "stu",
     "name" : "Daniel Meier",
+    "id" : "B3334444E",
     "phone" : "87652533",
     "email" : "cornelia@example.com",
     "address" : "10th street",
@@ -43,6 +47,7 @@
   }, {
     "type" : "stu",
     "name" : "Elle Meyer",
+    "id" : "B3334444F",
     "phone" : "9482224",
     "email" : "werner@example.com",
     "address" : "michegan ave",
@@ -50,6 +55,7 @@
   }, {
     "type" : "stu",
     "name" : "Fiona Kunz",
+    "id" : "B5678012F",
     "phone" : "9482427",
     "email" : "lydia@example.com",
     "address" : "little tokyo",
@@ -57,6 +63,7 @@
   }, {
     "type" : "stu",
     "name" : "George Best",
+    "id" : "A0000000X",
     "phone" : "9482442",
     "email" : "anna@example.com",
     "address" : "4th street",

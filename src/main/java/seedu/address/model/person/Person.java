@@ -19,6 +19,7 @@ public class Person {
     // Identity fields
     private final PersonType type;
     private final Name name;
+    private final Id id;
     private final Phone phone;
     private final Email email;
 
@@ -29,11 +30,12 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(PersonType type, Name name, Phone phone, Email email, Address address,
+    public Person(PersonType type, Name name, Id id, Phone phone, Email email, Address address,
                   Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.type = type;
         this.name = name;
+        this.id = id;
         this.phone = phone;
         this.email = email;
         this.address = address;
@@ -45,6 +47,9 @@ public class Person {
     }
     public Name getName() {
         return name;
+    }
+    public Id getId() {
+        return id;
     }
 
     public Phone getPhone() {
@@ -68,7 +73,7 @@ public class Person {
     }
 
     /**
-     * Returns true if both persons have the same name.
+     * Returns true if both persons have the same id.
      * This defines a weaker notion of equality between two persons.
      */
     public boolean isSamePerson(Person otherPerson) {
@@ -77,7 +82,7 @@ public class Person {
         }
 
         return otherPerson != null
-                && otherPerson.getName().equals(getName());
+                && otherPerson.getId().equals(getId());
     }
 
     /**
@@ -98,6 +103,7 @@ public class Person {
         Person otherPerson = (Person) other;
         return name.equals(otherPerson.name)
                 && type.equals(otherPerson.type)
+                && id.equals(otherPerson.id)
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
@@ -115,6 +121,7 @@ public class Person {
         return new ToStringBuilder(this)
                 .add("type", type)
                 .add("name", name)
+                .add("id", id)
                 .add("phone", phone)
                 .add("email", email)
                 .add("address", address)
