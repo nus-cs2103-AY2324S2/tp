@@ -91,6 +91,33 @@ public class PersonTest {
     }
 
     @Test
+    public void hashCodeMethod() {
+        // same values -> returns same hashcode
+        Person aliceCopy = new PersonBuilder(ALICE).build();
+        assertEquals(ALICE.hashCode(), aliceCopy.hashCode());
+
+        // different name -> returns different hashcode
+        Person editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).build();
+        assertFalse(ALICE.hashCode() == editedAlice.hashCode());
+
+        // different phone -> returns different hashcode
+        editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).build();
+        assertFalse(ALICE.hashCode() == editedAlice.hashCode());
+
+        // different email -> returns different hashcode
+        editedAlice = new PersonBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
+        assertFalse(ALICE.hashCode() == editedAlice.hashCode());
+
+        // different major -> returns different hashcode
+        editedAlice = new PersonBuilder(ALICE).withMajor(VALID_MAJOR_BOB).build();
+        assertFalse(ALICE.hashCode() == editedAlice.hashCode());
+
+        // different tags -> returns different hashcode
+        editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
+        assertFalse(ALICE.hashCode() == editedAlice.hashCode());
+    }
+
+    @Test
     public void toStringMethod() {
         String expected = Person.class.getCanonicalName() + "{name=" + ALICE.getName() + ", phone=" + ALICE.getPhone()
                 + ", email=" + ALICE.getEmail() + ", year=" + ALICE.getYear() + ", telegram=" + ALICE.getTelegram()
