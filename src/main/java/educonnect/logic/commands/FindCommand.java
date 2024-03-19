@@ -20,7 +20,7 @@ public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all students whose attributes match the "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all students whose attributes match "
             + "the specified attributed keywords (case-insensitive) and displays them as a list.\n"
             + "Parameters: [n/NAME] [s/STUDENT_ID] [h/TELEGRAM_HANDLE] [t/TAG]...\n"
             + "Example: " + COMMAND_WORD + " n/alice t/tutorial-1";

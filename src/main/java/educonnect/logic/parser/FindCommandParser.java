@@ -7,7 +7,6 @@ import educonnect.model.student.*;
 
 import static educonnect.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static educonnect.logic.parser.CliSyntax.*;
-import static java.util.Objects.requireNonNull;
 import educonnect.model.student.predicates.*;
 
 import java.util.HashSet;
@@ -26,12 +25,19 @@ public class FindCommandParser implements Parser<FindCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public FindCommand parse(String args) throws ParseException {
-
+        String trimmedArgs = args.trim();
+        if (trimmedArgs.isEmpty()) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        }
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_STUDENT_ID, PREFIX_EMAIL,
                         PREFIX_TELEGRAM_HANDLE, PREFIX_TAG);
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_STUDENT_ID,
+                PREFIX_EMAIL, PREFIX_TELEGRAM_HANDLE);
+
         if (!argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
         Set<Predicate<Student>> predicates = new HashSet<>();
