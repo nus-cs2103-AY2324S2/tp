@@ -23,7 +23,7 @@ If you can type fast, RDX can get your contact management tasks done faster than
 
 1. Copy the file to the folder you want to use as the _home folder_ for your Realodex.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar realodex.jar` 
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar realodex.jar`
 command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
@@ -53,7 +53,7 @@ command to run the application.<br>
 
 ### Adding a client: `add`
 
-Adds a client to the Realodex. Note that `TAG` is optional, and that you may input the parameters in any order (e.g. if 
+Adds a client to the Realodex. Note that `TAG` is optional, and that you may input the parameters in any order (e.g. if
 the command specifies `n/NAME a/ADDRESS`, `a/ADDRESS n/NAME` is also acceptable). You may
 also have multiple tags per client.
 

@@ -335,30 +335,30 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. Name exceeds the length constraints.
   * 1a1. Realodex throws an error and requests shorter name representation.
-  * 1a2. User enters new data. 
+  * 1a2. User enters new data.
   * Use case resumes from step 1.
 
 * 1b. Name Length is not fully English.
     * 1b1. Realodex throws an error and requests for only English input.
-    * 1b2. User enters new data. 
+    * 1b2. User enters new data.
       * Use case resumes from step 1.
 
 * 1c. Name contains erraneous whitespace.
-    * 1c1. Realodex throws a warning and fixes this for user. 
+    * 1c1. Realodex throws a warning and fixes this for user.
     * Use case ends.
 
 * 1d. Name is not capitalized.
-    * 1d1. Realodex throws a warning and fixes this for user. 
+    * 1d1. Realodex throws a warning and fixes this for user.
     * Use case ends.
 
 * 1e. Name is not in expected format.
     * 1e1. Realodex throws an error and highlights the format to user.
-    * 1e2. User enters new data. 
+    * 1e2. User enters new data.
     * Use case resumes from step 1.
 
-* 1f. Address is not fully English  
+* 1f. Address is not fully English
     * 1f1. Realodex throws an error and requests for only English input.
-    * 1f2. User enters new data. 
+    * 1f2. User enters new data.
     * Use case resumes from step 1.
 
 * 1g. Address exceeds the length constraints
@@ -367,7 +367,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * Use case resumes from step 1.
 
 * 1h. Address is not capitalized for each part.
-    * 1h1. Realodex throws a warning and fixes this for user. 
+    * 1h1. Realodex throws a warning and fixes this for user.
     * Use case ends.
 
 * 1i. Income is not in SGD
@@ -377,12 +377,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1j. Income is negative
     * 1j1. Realodex throws an error and requests a positive income value.
-    * 1j2. User enters new data. 
+    * 1j2. User enters new data.
     * Use case ends.
 
 * 1k. Additonal notes exceed length constraints.
     * 1k1. Realodex throws an error and requests a shorter input.
-    * 1k2. User enters new data. 
+    * 1k2. User enters new data.
     * Use case ends.
 
 **Use case: Delete a person**
@@ -397,7 +397,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 2a. The input name is not found
- * 2a1. Realodex shows an error message "<Name> is not found". 
+ * 2a1. Realodex shows an error message "<Name> is not found".
  * Use case ends.
 **Use case: List**
 
@@ -411,7 +411,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 2a. The list is empty
-  * 2a1. Realodex shows an empty list. 
+  * 2a1. Realodex shows an empty list.
   * Use case ends.
 
 **Use case: Filter**
@@ -426,7 +426,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 2a. No contact found with a name including the name input
-  * 2a1. Realodex shows an empty list. 
+  * 2a1. Realodex shows an empty list.
   * Use case ends.
 
 
