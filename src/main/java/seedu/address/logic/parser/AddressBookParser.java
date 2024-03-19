@@ -8,6 +8,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.autocomplete.AutoComplete;
+import seedu.address.logic.autocomplete.AutoCompleteCommand;
 import seedu.address.logic.commands.AddPersonCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
@@ -94,4 +96,25 @@ public class AddressBookParser {
         }
     }
 
+    /**
+     * Parses the full input text and dispatches the appropriate autocomplete.
+     */
+    public String parseAutoComplete(String userInput) {
+        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
+        if (!matcher.matches()) {
+            logger.finer("Unable to parse user input for autocomplete: " + userInput);
+            return "";
+        }
+
+        final String commandWord = matcher.group("commandWord");
+        final String arguments = matcher.group("arguments");
+
+        // no arguments, return autocomplete for command word
+        if (arguments.isEmpty()) {
+            AutoComplete autoComplete = new AutoCompleteCommand();
+            return autoComplete.getAutoComplete(commandWord);
+        }
+
+        return "";
+    }
 }

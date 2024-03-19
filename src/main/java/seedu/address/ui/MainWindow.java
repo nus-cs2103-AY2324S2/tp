@@ -173,7 +173,7 @@ public class MainWindow extends UiPart<Stage> {
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
-        CommandBox commandBox = new CommandBox(this::executeCommand);
+        CommandBox commandBox = new CommandBox(this::executeCommand, this::autoComplete);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
 
@@ -246,5 +246,12 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }
+    }
+
+    /**
+     * Auto completes the command and returns the text to append to the input.
+     */
+    private String autoComplete(String commandText) {
+        return logic.autoComplete(commandText);
     }
 }

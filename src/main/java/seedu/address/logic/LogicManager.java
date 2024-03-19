@@ -8,8 +8,18 @@ import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.autocomplete.AutoCompleteCommand;
+import seedu.address.logic.commands.AddPersonCommand;
+import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.DeletePersonCommand;
+import seedu.address.logic.commands.EditPersonCommand;
+import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FindPersonCommand;
+import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ListPersonCommand;
+import seedu.address.logic.commands.MarkAttendanceCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -41,6 +51,7 @@ public class LogicManager implements Logic {
         this.model = model;
         this.storage = storage;
         addressBookParser = new AddressBookParser();
+        this.initialize();
     }
 
     @Override
@@ -61,6 +72,29 @@ public class LogicManager implements Logic {
         }
 
         return commandResult;
+    }
+
+    @Override
+    public String autoComplete(String commandText) {
+        return addressBookParser.parseAutoComplete(commandText);
+    }
+
+    /**
+     * Various miscellaneous initializations for the logic manager.
+     */
+    private void initialize() {
+        // Initialize the autocomplete for the commands
+        AutoCompleteCommand.initialize(
+                AddPersonCommand.COMMAND_WORD,
+                EditPersonCommand.COMMAND_WORD,
+                DeletePersonCommand.COMMAND_WORD,
+                ClearCommand.COMMAND_WORD,
+                FindPersonCommand.COMMAND_WORD,
+                ListPersonCommand.COMMAND_WORD,
+                MarkAttendanceCommand.COMMAND_WORD,
+                ExitCommand.COMMAND_WORD,
+                HelpCommand.COMMAND_WORD
+        );
     }
 
     @Override
