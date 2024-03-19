@@ -20,11 +20,13 @@ public class DeleteAttributeCommandTest {
     public void execute_pass() {
         ALICE.deleteAttribute("Name");
         assertFalse(ALICE.hasAttribute("Name"));
+        ALICE.setAttribute("Name", "Alice Pauline");
     }
 
     @Test
     public void execute_null() {
         DeleteAttributeCommand deleteAttributeCommand = new DeleteAttributeCommand(ALICE.getUuidString(), "Name");
         assertThrows(NullPointerException.class, () -> deleteAttributeCommand.execute(null));
+        ALICE.setAttribute("Name", "Alice Pauline");
     }
 }
