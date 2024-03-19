@@ -72,6 +72,9 @@ public class AddProductCommand extends Command {
             lastOrder.addProduct(product, quantity);
         }
 
+        model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredOrderList(Model.PREDICATE_SHOW_ALL_ORDERS);
+
         return new CommandResult(generateSuccessMessage());
     }
     private String generateSuccessMessage() {
