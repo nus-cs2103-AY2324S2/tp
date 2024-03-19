@@ -193,17 +193,17 @@ public class EditCommandTest {
         assertFalse(DESC_AMY.equals(editedDescriptor));
 
         // different lastcontact -> return false
-        assertFalse(DESC_AMY.equals(editedDescriptor_lastcontact));
+        assertFalse(DESC_AMY.equals(editedDescriptorForLastcontact));
 
         // different lastcontact, same other fields -> return false
-        editedDescriptor_lastcontact = new EditPersonDescriptorBuilder(DESC_AMY)
+        editedDescriptorForLastcontact = new EditPersonDescriptorBuilder(DESC_AMY)
                 .withLastContact(VALID_LAST_CONTACT_BOB).build();
-        assertFalse(DESC_AMY.equals(editedDescriptor_lastcontact));
+        assertFalse(DESC_AMY.equals(editedDescriptorForLastcontact));
 
         // same lastcontact -> return true
-        editedDescriptor_lastcontact = new EditPersonDescriptorBuilder(DESC_AMY)
+        editedDescriptorForLastcontact = new EditPersonDescriptorBuilder(DESC_AMY)
                 .withLastContact(VALID_LAST_CONTACT_AMY).build();
-        assertTrue(DESC_AMY.equals(editedDescriptor_lastcontact));
+        assertTrue(DESC_AMY.equals(editedDescriptorForLastcontact));
 
     }
 
