@@ -22,7 +22,7 @@ public class EmployeeBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-    public static final String DEFAULT_TASKS = "1 3";
+    public static final String DEFAULT_TASKS = "";
 
     private Name name;
     private Phone phone;
