@@ -5,65 +5,179 @@ skinparam ArrowFontStyle plain
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
-participant ":DeleteCommandParser" as DeleteCommandParser LOGIC_COLOR
-participant "d:DeleteCommand" as DeleteCommand LOGIC_COLOR
+participant "e:ExportCommand" as ExportCommand LOGIC_COLOR
 participant "r:CommandResult" as CommandResult LOGIC_COLOR
+participant "e:CommandException" as CommandException LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
 participant "m:Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("delete 1")
+box java.nio.file
+participant ":Path" as Path
+end box
+
+box java.io
+participant "csvFile:File" as csvFile
+participant "csvParentDirectory:File" as csvParentDirectory
+end box
+
+box com.fasterxml.jackson.databind
+participant ":ObjectMapper" as ObjectMapper
+participant "jsonTree:JsonNode" as JsonTree
+participant "personsArray:JsonNode" as PersonsArray
+end box
+
+box com.fasterxml.jackson.dataformat.csv
+participant ":CsvSchema" as CsvSchema
+participant "csvSchemaBuilder:Builder" as Builder
+end box
+
+[-> LogicManager : execute("export")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("delete 1")
+LogicManager -> AddressBookParser : parseCommand("export")
 activate AddressBookParser
 
-create DeleteCommandParser
-AddressBookParser -> DeleteCommandParser
-activate DeleteCommandParser
+create ExportCommand
+AddressBookParser -> ExportCommand
+activate ExportCommand
 
-DeleteCommandParser --> AddressBookParser
-deactivate DeleteCommandParser
+ExportCommand --> AddressBookParser : e
+deactivate ExportCommand
 
-AddressBookParser -> DeleteCommandParser : parse("1")
-activate DeleteCommandParser
-
-create DeleteCommand
-DeleteCommandParser -> DeleteCommand
-activate DeleteCommand
-
-DeleteCommand --> DeleteCommandParser :
-deactivate DeleteCommand
-
-DeleteCommandParser --> AddressBookParser : d
-deactivate DeleteCommandParser
-'Hidden arrow to position the destroy marker below the end of the activation bar.
-DeleteCommandParser -[hidden]-> AddressBookParser
-destroy DeleteCommandParser
-
-AddressBookParser --> LogicManager : d
+AddressBookParser --> LogicManager : e
 deactivate AddressBookParser
 
-LogicManager -> DeleteCommand : execute(m)
-activate DeleteCommand
+LogicManager -> ExportCommand : execute(m)
+activate ExportCommand
 
-DeleteCommand -> Model : deletePerson(1)
+ExportCommand -> Model : getAddressBookFilePath()
 activate Model
 
-Model --> DeleteCommand
+Model --> ExportCommand : jsonFilePath
 deactivate Model
 
-create CommandResult
-DeleteCommand -> CommandResult
-activate CommandResult
+ExportCommand -> Path : toFile()
+activate Path
 
-CommandResult --> DeleteCommand
-deactivate CommandResult
+Path --> ExportCommand : jsonFile
+deactivate Path
 
-DeleteCommand --> LogicManager : r
-deactivate DeleteCommand
+create csvFile
+ExportCommand -> csvFile : new File(csvFilePath)
+activate csvFile
+
+csvFile --> ExportCommand : csvFile
+deactivate csvFile
+
+'createCsvDirectory method
+ExportCommand -> ExportCommand : createCsvDirectory(csvFile)
+activate ExportCommand
+
+create csvParentDirectory
+ExportCommand -> csvParentDirectory : getParentFile()
+activate csvParentDirectory
+
+csvParentDirectory --> ExportCommand : csvParentDirectory
+deactivate csvParentDirectory
+
+ExportCommand -> csvParentDirectory : exists()
+activate csvParentDirectory
+
+csvParentDirectory --> ExportCommand : existsResult
+deactivate csvParentDirectory
+
+alt !existsResult
+    ExportCommand -> csvParentDirectory : mkdir()
+    activate csvParentDirectory
+
+    csvParentDirectory --> ExportCommand : isCreated
+    deactivate csvParentDirectory
+
+    alt !isCreated
+        create CommandException
+        ExportCommand -> CommandException : CommandException("Could not create directory for CSV file.")
+        activate CommandException
+
+        CommandException --> ExportCommand : e
+        deactivate CommandException
+
+        ExportCommand --> LogicManager : e
+
+        destroy CommandException
+    end
+end
+
+ExportCommand --> ExportCommand
+deactivate ExportCommand
+
+'readJsonFile method
+ExportCommand -> ExportCommand : readJsonFile(jsonFile)
+activate ExportCommand
+
+create ObjectMapper
+ExportCommand -> ObjectMapper : new ObjectMapper()
+activate ObjectMapper
+
+ObjectMapper --> ExportCommand
+deactivate ObjectMapper
+
+ExportCommand -> ObjectMapper : readTree(jsonFile)
+activate ObjectMapper
+
+create JsonTree
+ObjectMapper -> JsonTree : ObjectMapper.readTree(jsonFile)
+activate JsonTree
+
+JsonTree --> ObjectMapper : jsonTree
+deactivate JsonTree
+
+ObjectMapper --> ExportCommand : jsonTree
+deactivate ObjectMapper
+
+ExportCommand --> ExportCommand : jsonTree
+deactivate ExportCommand
+
+'readPersonsArray method
+ExportCommand -> ExportCommand : readPersonsArray(jsonTree)
+activate ExportCommand
+
+ExportCommand -> JsonTree : get("persons")
+activate JsonTree
+
+create PersonsArray
+JsonTree -> PersonsArray : jsonTree.get("persons")
+activate PersonsArray
+
+PersonsArray --> JsonTree : personsArray
+deactivate PersonsArray
+
+JsonTree --> ExportCommand : personsArray
+deactivate JsonTree
+
+ExportCommand --> ExportCommand : personsArray
+deactivate ExportCommand
+
+'writeToCsvFile method
+ExportCommand -> ExportCommand : writeToCsvFile(csvFile, personsArray)
+activate ExportCommand
+
+
+
+ExportCommand --> ExportCommand
+deactivate ExportCommand
+
+'create CommandResult
+'ExportCommand -> CommandResult
+'activate CommandResult
+'
+'CommandResult --> ExportCommand
+'deactivate CommandResult
+'
+'ExportCommand --> LogicManager : r
+'deactivate ExportCommand
 
 [<--LogicManager
 deactivate LogicManager
