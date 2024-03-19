@@ -15,7 +15,7 @@ import seedu.address.commons.core.LogsCenter;
  */
 public class HelpWindow extends UiPart<Stage> {
 
-    public static final String USERGUIDE_URL = "https://se-education.org/addressbook-level3/UserGuide.html";
+    public static final String USERGUIDE_URL = "https://ay2324s2-cs2103t-f11-3.github.io/tp/UserGuide.html";
     public static final String COMMON_COMMANDS = "\n\nFor quick help, here are some common commands "
             + "(omit the [] when using!): "
             + "\n1. Quick add an applicant/interviewer: add_[applicant/interviewer] n/[name] p/[phone] e/[email] "

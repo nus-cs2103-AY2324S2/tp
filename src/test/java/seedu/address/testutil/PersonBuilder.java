@@ -10,6 +10,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
+import seedu.address.model.person.Type;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -28,6 +29,7 @@ public class PersonBuilder {
     private Email email;
     private Remark remark;
     private Set<Tag> tags;
+    private String type;
 
     /**
      * Initializes the PersonBuilder.
@@ -38,6 +40,7 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         remark = new Remark(DEFAULT_REMARK);
         tags = new HashSet<>();
+        type = Type.PERSON.toString();
     }
 
     /**
@@ -48,7 +51,14 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         remark = personToCopy.getRemark();
+        type = personToCopy.getPersonType();
         tags = new HashSet<>(personToCopy.getTags());
+        if (type.equals("APPLICANT")) {
+            tags.add(new Tag("Applicant"));
+        } else if (type.equals("INTERVIEWER")) {
+            tags.add(new Tag("Interviewer"));
+        }
+
     }
 
     /**
@@ -99,11 +109,11 @@ public class PersonBuilder {
         return new Person(name, phone, email, remark, tags);
     }
 
-    public Applicant applicantBuilder() {
+    public Applicant build_applicant() {
         return new Applicant(name, phone, email, remark, tags);
     }
 
-    public Interviewer interviewerBuilder() {
+    public Interviewer build_interviewer() {
         return new Interviewer(name, phone, email, remark, tags);
     }
 }

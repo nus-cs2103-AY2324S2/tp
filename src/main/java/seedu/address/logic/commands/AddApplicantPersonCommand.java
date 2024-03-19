@@ -9,18 +9,18 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
 /**
- * Adds an applicant to the talent tracker.
+ * Adds an applicant to Tether.
  */
 public class AddApplicantPersonCommand extends AddPersonCommand {
 
     public static final String COMMAND_WORD = AddPersonCommand.COMMAND_WORD + "_applicant";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an applicant to the talent tracker. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an applicant to Tether. "
             + AddPersonCommand.MESSAGE_USAGE;
 
 
     public static final String MESSAGE_SUCCESS = "New applicant added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This applicant already exists in the talent tracker."
+    public static final String MESSAGE_DUPLICATE_PERSON = "This applicant already exists in Tether."
             + " Do ensure phone number is unique";
 
 

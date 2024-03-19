@@ -15,6 +15,7 @@ import seedu.address.model.tag.Tag;
  */
 public class Person {
 
+    protected Set<Tag> tags = new HashSet<>();
     // Identity fields
     private final Name name;
     private final Phone phone;
@@ -22,10 +23,10 @@ public class Person {
 
     // Data fields
     private final Remark remark;
-    private final Set<Tag> tags = new HashSet<>();
 
     // Type field
     private Type type = Type.PERSON;
+
 
     /**
      * Every field must be present and not null.

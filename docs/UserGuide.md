@@ -19,14 +19,15 @@ If you can type fast, Tether can get your hiring management tasks done faster th
 1. Copy the file to the folder you want to use as the _home folder_ for your Tether.
 
 1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar tether.jar`
-   command to run the application.<br>
+   command to run the application.<br><br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+   ![Ui](images/UpdatedUi.png)
 
-1. Type the command in the command box and press Enter to execute it.
-2. Refer to the [Features](#features) below for details of each command.
 
- 
+5. Type the command in the command box and press Enter to execute it.
+6. Refer to the [Features](#features) below for details of each command.
+
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -54,7 +55,7 @@ If you can type fast, Tether can get your hiring management tasks done faster th
 
 ## Adding an applicant: `add_applicant`
 
-Adds an applicant to the hiring tracker.
+Adds an applicant to Tether.
 
 Format: `add_applicant n/NAME p/PHONE e/EMAIL [t/TAG]`
 
@@ -66,7 +67,7 @@ Examples:
 
 ## Adding a interviewer: `add_interviewer`
 
-Adds an interviewer to the hiring tracker.
+Adds an interviewer to the Tether.
 
 Format: `add_interviewer n/NAME p/PHONE e/EMAIL [t/TAG]`
 
@@ -79,9 +80,9 @@ Examples:
 
 ## Adding a interview: `add_interview`
 
-Adds an interview to the hiring tracker.
+Adds an interview to the Tether.
 
-Format: `add_interview desc/DESCRIPTION date/DATE st/START TIME et/END TIME a/APPLICANT'S 
+Format: `add_interview desc/DESCRIPTION date/DATE st/START TIME et/END TIME a/APPLICANT'S
     PHONE NUMBER i/INTERVIEWER'S PHONE NUMBER`
 
 Examples:
@@ -90,13 +91,13 @@ Examples:
 
 ## Listing all the interviews: `list_interviews`
 
-Lists all the interviews in the tracker.
+Lists all the interviews in Tether.
 
 Example: `list_interviews` would list all existing interviews.
 
 ## Deleting an applicant/interviewer : `delete_person`
 
-Deletes the specified applicant/interviewer based on their phone number from the hiring tracker.
+Deletes the specified applicant/interviewer based on their phone number from Tether.
 
 Format: `delete_person <phone number>`
 
@@ -109,13 +110,13 @@ Examples:
 
 ## Deleting an interview : `delete_interview`
 
-Deletes the specified interview from the hiring tracker based on **index**.
+Deletes the specified interview from Tether based on **index**.
 
 Format: `delete_interview <interview index>`
 
 Examples:
 
-* `delete_interview 1` would delete the first interview in the hiring tracker.
+* `delete_interview 1` would delete the first interview in Tether.
 
 ## Exiting the program : `exit`
 

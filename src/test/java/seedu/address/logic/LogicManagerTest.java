@@ -27,7 +27,8 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Applicant;
+import seedu.address.model.person.Interviewer;
 import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
@@ -179,7 +180,7 @@ public class LogicManagerTest {
         // Triggers the saveAddressBook method by executing an add command
         String addApplicantCommand = AddApplicantPersonCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY
                 + EMAIL_DESC_AMY;
-        Person expectedPerson = new PersonBuilder(AMY).withTags().build();
+        Applicant expectedPerson = new PersonBuilder(AMY).withTags().build_applicant();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addPerson(expectedPerson);
         assertCommandFailure(addApplicantCommand, CommandException.class, expectedMessage, expectedModel);
@@ -206,7 +207,7 @@ public class LogicManagerTest {
         // Triggers the saveAddressBook method by executing an add command
         String addInterviewerCommand = AddInterviewerPersonCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY
                 + EMAIL_DESC_AMY;
-        Person expectedPerson = new PersonBuilder(AMY).withTags().build();
+        Interviewer expectedPerson = new PersonBuilder(AMY).withTags().build_interviewer();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addPerson(expectedPerson);
         assertCommandFailure(addInterviewerCommand, CommandException.class, expectedMessage, expectedModel);
