@@ -61,8 +61,14 @@ public class JsonAdaptedOrder {
      */
 
     public Order toModelType() throws IllegalValueException {
-        if (orderId == null || !OrderId.isValidOrderId(orderId)) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, OrderId.class.getSimpleName()));
+
+        if (orderId == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    OrderId.class.getSimpleName()));
+        }
+
+        if (!OrderId.isValidOrderId(orderId)) {
+            throw new IllegalValueException(OrderId.MESSAGE_CONSTRAINTS);
         }
         final OrderId modelOrderId = new OrderId(orderId);
 
@@ -71,7 +77,7 @@ public class JsonAdaptedOrder {
                     OrderDate.class.getSimpleName()));
         }
 
-        if (!OrderDate.isValidOrderDate(orderId)) {
+        if (!OrderDate.isValidOrderDate(orderDate)) {
             throw new IllegalValueException(OrderDate.MESSAGE_CONSTRAINTS);
         }
         final OrderDate modelOrderDate = new OrderDate(orderDate);
