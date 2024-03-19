@@ -21,6 +21,11 @@ public class FilterCommand extends Command {
 
     private final PersonHasTagPredicate predicate;
 
+    /**
+     * Returns a new FilterCommand object that takes in a PersonHasTagPredicate
+     * to update the filtered list
+     * @param predicate
+     */
     public FilterCommand(PersonHasTagPredicate predicate) {
         this.predicate = predicate;
     }
