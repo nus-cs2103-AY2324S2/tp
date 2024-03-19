@@ -19,7 +19,7 @@ public class DeleteAttributeCommand extends Command {
 
     public static final String COMMAND_WORD = "deleteAttribute";
     private static final String MESSAGE_SUCCESS = "Attribute deleted from person: %1$s";
-    private final String toAdd;
+    private final String toDelete;
     private final String attributeName;
 
     /**
@@ -29,7 +29,7 @@ public class DeleteAttributeCommand extends Command {
      * @param attributeName The name of the attribute to be deleted.
      */
     public DeleteAttributeCommand(String person, String attributeName) {
-        this.toAdd = person;
+        this.toDelete = person;
         this.attributeName = attributeName;
     }
 
@@ -44,7 +44,7 @@ public class DeleteAttributeCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        UUID fullUuid = model.getFullUuid(toAdd);
+        UUID fullUuid = model.getFullUuid(toDelete);
         Person personToDelete = model.getPersonByUuid(fullUuid);
         if (personToDelete == null) {
             throw new CommandException("Person not found.");

@@ -8,6 +8,7 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.attributes.AddAttributeCommand;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -24,9 +25,11 @@ public class AddAttributeCommandTest {
     }
 
     @Test
-    public void execute_pass() {
+    public void execute_pass() throws CommandException {
         ALICE.deleteAttribute("Name");
-        ALICE.setAttribute("Name", "Alice Pauline");
+        AddAttributeCommand addAttributeCommand =
+                new AddAttributeCommand(ALICE.getUuidString().substring(36 - 4), "Name", "Alice");
+        addAttributeCommand.execute(model);
         assertNotNull(ALICE.getAttribute("Name"));
     }
 
