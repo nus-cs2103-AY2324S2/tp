@@ -41,11 +41,33 @@ class TrieNodeTest {
     @Test
     void testEquals() {
         TrieNode trieNode = new TrieNode('a');
+
+        assertEquals(trieNode, trieNode);
+        assertNotEquals(trieNode, null);
+        assertNotEquals(trieNode, "a");
+
         TrieNode trieNode2 = new TrieNode('a');
 
         assertEquals(trieNode, trieNode2);
 
         trieNode.setEndOfWord(true);
         assertNotEquals(trieNode, trieNode2);
+    }
+
+    @Test
+    void testHashCode() {
+        TrieNode trieNode = new TrieNode('a');
+        TrieNode trieNode2 = new TrieNode('a');
+
+        assertEquals(trieNode.hashCode(), trieNode2.hashCode());
+    }
+
+    @Test
+    void testToString() {
+        TrieNode trieNode = new TrieNode('a');
+        assertEquals("TrieNode: a", trieNode.toString());
+
+        trieNode.setEndOfWord(true);
+        assertEquals("TrieNode: a\0", trieNode.toString());
     }
 }

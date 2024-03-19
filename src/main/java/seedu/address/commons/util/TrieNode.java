@@ -88,6 +88,9 @@ public class TrieNode {
 
     @Override
     public String toString() {
-        return String.format("TrieNode: %s", this.character);
+        return String.format("TrieNode: %s%s",
+            this.character,
+            this.isEndOfWord ? "\0" : ""
+        );
     }
 }
