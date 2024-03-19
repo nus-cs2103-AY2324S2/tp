@@ -179,6 +179,9 @@ public class EditCommand extends Command {
                 e.setDescription(entry.getDescription());
             }
         }
+        public EntryList getEntryList() {
+            return entryList;
+        }
 
         /**
          * Gets category from the entry
@@ -220,20 +223,15 @@ public class EditCommand extends Command {
             }
 
             EditPersonDescriptor otherEditPersonDescriptor = (EditPersonDescriptor) other;
-            return Objects.equals(get("Name"), otherEditPersonDescriptor.get("Name"))
-                    && Objects.equals(get("Phone"), otherEditPersonDescriptor.get("Phone"))
-                    && Objects.equals(get("Email"), otherEditPersonDescriptor.get("Email"))
-                    && Objects.equals(get("Address"), otherEditPersonDescriptor.get("Address"))
+            return Objects.equals(entryList, otherEditPersonDescriptor.getEntryList())
                     && Objects.equals(tags, otherEditPersonDescriptor.tags);
         }
 
         @Override
         public String toString() {
             return new ToStringBuilder(this)
-                    .add("name", get("Name"))
-                    .add("phone", get("Phone"))
-                    .add("email", get("Email"))
-                    .add("address", get("Address"))
+                    .add("Category", category)
+                    .add("Description", description)
                     .add("tags", tags)
                     .toString();
         }
