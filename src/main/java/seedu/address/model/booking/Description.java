@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 /**
  * Represents a Booking's description in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidDescription(String)}
  */
 public class Description {
 
@@ -28,7 +28,7 @@ public class Description {
      *
      * Must not be empty or made of spaces.
      */
-    public static boolean isValidName(String test) {
+    public static boolean isValidDescription(String test) {
         return !test.isEmpty();
     }
 
