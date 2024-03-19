@@ -150,7 +150,7 @@ class JsonAdaptedEmployee {
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, UniqueId.class.getSimpleName()));
         }
 
-        if (UniqueId.isValidUid(uid)) {
+        if (!UniqueId.isValidUid(uid)) {
             throw new IllegalValueException(
                     String.format(INVALID_FIELD_MESSAGE_FORMAT, UniqueId.class.getSimpleName()));
         }

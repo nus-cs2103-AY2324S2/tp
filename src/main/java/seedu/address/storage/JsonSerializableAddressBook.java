@@ -59,7 +59,6 @@ class JsonSerializableAddressBook {
     }
 
     public int getMaxUid() {
-        System.out.println("Reached max ID gen");
         return employees.stream()
                 .mapToInt(JsonAdaptedEmployee::getUid)
                 .max()
