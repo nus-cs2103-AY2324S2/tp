@@ -1,0 +1,143 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":AddCommandParser" as AddCommandParser LOGIC_COLOR
+participant ":ArgumentTokenizer" as ArgumentTokenizer LOGIC_COLOR
+participant "multi:ArgumentMultimap" as ArgumentMultimap LOGIC_COLOR
+participant ":ParserUtil" as ParserUtil LOGIC_COLOR
+participant "a:AddCommand" as AddCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+
+
+box Model MODEL_COLOR_T1
+participant "p:Person" as Person MODEL_COLOR
+participant "m:Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("add n/Dohn Joe p/98765432 a/123 e/dohn@gm.com m/A1234567X s/S1 r/R1")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("add n/Dohn Joe p/98765432 a/123 e/dohn@gm.com m/A1234567X s/S1 r/R1")
+activate AddressBookParser
+
+create AddCommandParser
+AddressBookParser -> AddCommandParser
+activate AddCommandParser
+
+AddCommandParser --> AddressBookParser
+deactivate AddCommandParser
+
+AddressBookParser -> AddCommandParser : parse("n/Dohn Joe p/98765432 a/123 e/dohn@gm.com m/A1234567X s/S1 r/R1")
+activate AddCommandParser
+
+'Tokenizer and ParserUtil dont have constructors, how?
+
+AddCommandParser -> ArgumentTokenizer : tokenize("n/Dohn Joe p/98765432 a/123 e/dohn@gm.com m/A1234567X s/S1 r/R1", "/n", "/p", "/a", "/e", "/m", "/s", "/r")
+activate ArgumentTokenizer
+
+create ArgumentMultimap
+ArgumentTokenizer -> ArgumentMultimap
+activate ArgumentMultimap
+ArgumentMultimap --> ArgumentTokenizer
+
+deactivate ArgumentMultimap
+
+ArgumentTokenizer --> AddCommandParser
+deactivate ArgumentTokenizer
+
+AddCommandParser -> AddCommandParser : arePrefixesPresent(multi, "/n", "/a", "/p", "/e")
+activate AddCommandParser
+AddCommandParser --> AddCommandParser
+deactivate AddCommandParser
+
+AddCommandParser -> ArgumentMultimap : getPreamble()
+activate ArgumentMultimap
+ArgumentMultimap --> AddCommandParser
+deactivate ArgumentMultimap
+
+AddCommandParser -> ArgumentMultimap : verifyNoDuplicatePrefixesFor("/n", "p", "e", "a", "m", "r", "s")
+activate ArgumentMultimap
+ArgumentMultimap --> AddCommandParser
+
+deactivate ArgumentMultimap
+
+ArgumentTokenizer --> AddCommandParser
+deactivate ArgumentTokenizer
+
+AddCommandParser -> ParserUtil : parseName("Dohn Joe")
+activate ParserUtil
+ParserUtil --> AddCommandParser
+AddCommandParser -> ParserUtil : parsePhone("98765432")
+ParserUtil --> AddCommandParser
+AddCommandParser -> ParserUtil : parseEmail("dohn@gm.com")
+ParserUtil --> AddCommandParser
+AddCommandParser -> ParserUtil : parseAddress("123")
+ParserUtil --> AddCommandParser
+AddCommandParser -> ParserUtil : parseTags(null)
+ParserUtil --> AddCommandParser
+deactivate ParserUtil
+
+' Callback
+AddCommandParser -> AddCommandParser : handleOptionalMatric(multi)
+activate AddCommandParser
+AddCommandParser --> AddCommandParser
+deactivate AddCommandParser
+AddCommandParser -> AddCommandParser : handleOptionalReflection(multi)
+activate AddCommandParser
+AddCommandParser --> AddCommandParser
+deactivate AddCommandParser
+AddCommandParser -> AddCommandParser : handleOptionalStudio(multi)
+activate AddCommandParser
+AddCommandParser --> AddCommandParser
+deactivate AddCommandParser
+
+create Person
+AddCommandParser -> Person
+activate Person
+Person --> AddCommandParser
+deactivate Person
+
+create AddCommand
+AddCommandParser -> AddCommand
+activate AddCommand
+
+AddCommand --> AddCommandParser :
+
+AddCommandParser --> AddressBookParser : a
+deactivate AddCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddCommandParser -[hidden]-> AddressBookParser
+destroy AddCommandParser
+
+AddressBookParser --> LogicManager : a
+deactivate AddressBookParser
+
+LogicManager -> AddCommand : execute(m)
+
+AddCommand -> Model : addPerson(p)
+activate Model
+
+Model --> AddCommand
+deactivate Model
+
+create CommandResult
+AddCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddCommand
+deactivate CommandResult
+
+AddCommand --> LogicManager : r
+deactivate AddCommand
+AddCommand -[hidden]-> LogicManager
+destroy AddCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
