@@ -28,6 +28,7 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListOrderCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.order.Date;
+import seedu.address.model.order.Order;
 import seedu.address.model.person.NameAndTagContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -69,9 +70,10 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_addOrder() throws Exception {
+        Order order = new Order(new Date("2020-01-01"), "100 chicken wings");
         AddOrderCommand command = (AddOrderCommand) parser.parseCommand(AddOrderCommand.COMMAND_WORD + " "
                         + INDEX_FIRST_PERSON.getOneBased() + " d/2020-01-01 r/100 chicken wings");
-        assertEquals(new AddOrderCommand(INDEX_FIRST_PERSON, new Date("2020-01-01"), "100 chicken wings"), command);
+        assertEquals(new AddOrderCommand(INDEX_FIRST_PERSON, order), command);
     }
 
     @Test
