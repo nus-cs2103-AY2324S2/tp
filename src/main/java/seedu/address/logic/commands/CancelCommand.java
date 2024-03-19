@@ -36,7 +36,7 @@ public class CancelCommand extends Command{
         List<Booking> lastShownList = model.getFilteredBookingList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_BOOKING_DISPLAYED_INDEX);
         }
 
         Booking bookingToDelete = lastShownList.get(targetIndex.getZeroBased());
