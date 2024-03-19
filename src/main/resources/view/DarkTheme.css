@@ -151,7 +151,7 @@
     -fx-font-size: 13px;
     -fx-text-fill: #010504;
     -fx-background-radius: 3px;
-    -fx-padding: 2px;
+    -fx-padding: 1 3 1 3;
 }
 
 .stack-pane {
