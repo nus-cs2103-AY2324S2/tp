@@ -15,10 +15,10 @@ import seedu.realodex.commons.util.ConfigUtil;
 import seedu.realodex.commons.util.StringUtil;
 import seedu.realodex.logic.Logic;
 import seedu.realodex.logic.LogicManager;
-import seedu.realodex.model.AddressBook;
+import seedu.realodex.model.Realodex;
 import seedu.realodex.model.Model;
 import seedu.realodex.model.ModelManager;
-import seedu.realodex.model.ReadOnlyAddressBook;
+import seedu.realodex.model.ReadOnlyRealodex;
 import seedu.realodex.model.ReadOnlyUserPrefs;
 import seedu.realodex.model.UserPrefs;
 import seedu.realodex.model.util.SampleDataUtil;
@@ -48,7 +48,7 @@ public class MainApp extends Application {
 
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing AddressBook ]===========================");
+        logger.info("=============================[ Initializing Realodex ]===========================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
@@ -75,8 +75,8 @@ public class MainApp extends Application {
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         logger.info("Using data file : " + storage.getAddressBookFilePath());
 
-        Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialData;
+        Optional<ReadOnlyRealodex> addressBookOptional;
+        ReadOnlyRealodex initialData;
         try {
             addressBookOptional = storage.readAddressBook();
             if (!addressBookOptional.isPresent()) {
@@ -87,7 +87,7 @@ public class MainApp extends Application {
         } catch (DataLoadingException e) {
             logger.warning("Data file at " + storage.getAddressBookFilePath() + " could not be loaded."
                     + " Will be starting with an empty Realodex.");
-            initialData = new AddressBook();
+            initialData = new Realodex();
         }
 
         return new ModelManager(initialData, userPrefs);

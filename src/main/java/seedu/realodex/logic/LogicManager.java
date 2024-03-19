@@ -14,7 +14,7 @@ import seedu.realodex.logic.commands.exceptions.CommandException;
 import seedu.realodex.logic.parser.RealodexParser;
 import seedu.realodex.logic.parser.exceptions.ParseException;
 import seedu.realodex.model.Model;
-import seedu.realodex.model.ReadOnlyAddressBook;
+import seedu.realodex.model.ReadOnlyRealodex;
 import seedu.realodex.model.person.Person;
 import seedu.realodex.storage.Storage;
 
@@ -62,7 +62,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
+    public ReadOnlyRealodex getAddressBook() {
         return model.getAddressBook();
     }
 
@@ -73,7 +73,7 @@ public class LogicManager implements Logic {
 
     @Override
     public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+        return model.getRealodexFilePath();
     }
 
     @Override

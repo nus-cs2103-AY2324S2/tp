@@ -7,7 +7,7 @@ import seedu.realodex.commons.core.GuiSettings;
 import seedu.realodex.logic.commands.CommandResult;
 import seedu.realodex.logic.commands.exceptions.CommandException;
 import seedu.realodex.logic.parser.exceptions.ParseException;
-import seedu.realodex.model.ReadOnlyAddressBook;
+import seedu.realodex.model.ReadOnlyRealodex;
 import seedu.realodex.model.person.Person;
 
 /**
@@ -24,11 +24,11 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the Realodex.
      *
      * @see seedu.realodex.model.Model#getAddressBook()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyRealodex getAddressBook();
 
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Person> getFilteredPersonList();

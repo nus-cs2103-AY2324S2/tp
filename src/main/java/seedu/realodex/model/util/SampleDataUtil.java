@@ -4,8 +4,8 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.realodex.model.AddressBook;
-import seedu.realodex.model.ReadOnlyAddressBook;
+import seedu.realodex.model.ReadOnlyRealodex;
+import seedu.realodex.model.Realodex;
 import seedu.realodex.model.person.Address;
 import seedu.realodex.model.person.Email;
 import seedu.realodex.model.person.Family;
@@ -17,7 +17,7 @@ import seedu.realodex.model.remark.Remark;
 import seedu.realodex.model.tag.Tag;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code Realodex} with sample data.
  */
 public class SampleDataUtil {
     public static Person[] getSamplePersons() {
@@ -73,8 +73,8 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
+    public static ReadOnlyRealodex getSampleAddressBook() {
+        Realodex sampleAb = new Realodex();
         for (Person samplePerson : getSamplePersons()) {
             sampleAb.addPerson(samplePerson);
         }

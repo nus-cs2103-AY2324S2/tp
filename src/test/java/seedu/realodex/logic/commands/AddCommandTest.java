@@ -18,9 +18,9 @@ import javafx.collections.ObservableList;
 import seedu.realodex.commons.core.GuiSettings;
 import seedu.realodex.logic.Messages;
 import seedu.realodex.logic.commands.exceptions.CommandException;
-import seedu.realodex.model.AddressBook;
+import seedu.realodex.model.ReadOnlyRealodex;
+import seedu.realodex.model.Realodex;
 import seedu.realodex.model.Model;
-import seedu.realodex.model.ReadOnlyAddressBook;
 import seedu.realodex.model.ReadOnlyUserPrefs;
 import seedu.realodex.model.person.Person;
 import seedu.realodex.testutil.PersonBuilder;
@@ -109,12 +109,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getRealodexFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setRealodexFilePath(Path addressBookFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -124,12 +124,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void setRealodex(ReadOnlyRealodex newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyRealodex getAddressBook() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -196,8 +196,8 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public ReadOnlyRealodex getAddressBook() {
+            return new Realodex();
         }
     }
 

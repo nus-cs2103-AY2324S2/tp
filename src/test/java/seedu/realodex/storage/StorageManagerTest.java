@@ -11,8 +11,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.realodex.commons.core.GuiSettings;
-import seedu.realodex.model.AddressBook;
-import seedu.realodex.model.ReadOnlyAddressBook;
+import seedu.realodex.model.Realodex;
+import seedu.realodex.model.ReadOnlyRealodex;
 import seedu.realodex.model.UserPrefs;
 
 public class StorageManagerTest {
@@ -54,10 +54,10 @@ public class StorageManagerTest {
          * {@link JsonAddressBookStorage} class.
          * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
          */
-        AddressBook original = getTypicalAddressBook();
+        Realodex original = getTypicalAddressBook();
         storageManager.saveAddressBook(original);
-        ReadOnlyAddressBook retrieved = storageManager.readAddressBook().get();
-        assertEquals(original, new AddressBook(retrieved));
+        ReadOnlyRealodex retrieved = storageManager.readAddressBook().get();
+        assertEquals(original, new Realodex(retrieved));
     }
 
     @Test

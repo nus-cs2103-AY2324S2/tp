@@ -2,7 +2,7 @@ package seedu.realodex.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.realodex.model.AddressBook;
+import seedu.realodex.model.Realodex;
 import seedu.realodex.model.Model;
 
 /**
@@ -19,7 +19,7 @@ public class ClearCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.setAddressBook(new AddressBook());
+        model.setRealodex(new Realodex());
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

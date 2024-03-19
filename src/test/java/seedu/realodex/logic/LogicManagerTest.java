@@ -29,7 +29,7 @@ import seedu.realodex.logic.commands.exceptions.CommandException;
 import seedu.realodex.logic.parser.exceptions.ParseException;
 import seedu.realodex.model.Model;
 import seedu.realodex.model.ModelManager;
-import seedu.realodex.model.ReadOnlyAddressBook;
+import seedu.realodex.model.ReadOnlyRealodex;
 import seedu.realodex.model.UserPrefs;
 import seedu.realodex.model.person.Person;
 import seedu.realodex.storage.JsonAddressBookStorage;
@@ -156,7 +156,7 @@ public class LogicManagerTest {
         // Inject LogicManager with an AddressBookStorage that throws the IOException e when saving
         JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(prefPath) {
             @Override
-            public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath)
+            public void saveAddressBook(ReadOnlyRealodex addressBook, Path filePath)
                     throws IOException {
                 throw e;
             }

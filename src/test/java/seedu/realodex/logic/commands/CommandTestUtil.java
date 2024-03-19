@@ -17,7 +17,7 @@ import java.util.List;
 
 import seedu.realodex.commons.core.index.Index;
 import seedu.realodex.logic.commands.exceptions.CommandException;
-import seedu.realodex.model.AddressBook;
+import seedu.realodex.model.Realodex;
 import seedu.realodex.model.Model;
 import seedu.realodex.model.person.NameContainsKeyphrasePredicate;
 import seedu.realodex.model.person.Person;
@@ -126,11 +126,11 @@ public class CommandTestUtil {
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
+        Realodex expectedRealodex = new Realodex(actualModel.getAddressBook());
         List<Person> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedAddressBook, actualModel.getAddressBook());
+        assertEquals(expectedRealodex, actualModel.getAddressBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
     }
     /**

@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.realodex.commons.exceptions.IllegalValueException;
 import seedu.realodex.commons.util.JsonUtil;
-import seedu.realodex.model.AddressBook;
+import seedu.realodex.model.Realodex;
 import seedu.realodex.testutil.TypicalPersons;
 
 public class JsonSerializableAddressBookTest {
@@ -24,9 +24,9 @@ public class JsonSerializableAddressBookTest {
     public void toModelType_typicalPersonsFile_success() throws Exception {
         JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_PERSONS_FILE,
                 JsonSerializableAddressBook.class).get();
-        AddressBook addressBookFromFile = dataFromFile.toModelType();
-        AddressBook typicalPersonsAddressBook = TypicalPersons.getTypicalAddressBook();
-        assertEquals(addressBookFromFile, typicalPersonsAddressBook);
+        Realodex realodexFromFile = dataFromFile.toModelType();
+        Realodex typicalPersonsRealodex = TypicalPersons.getTypicalAddressBook();
+        assertEquals(realodexFromFile, typicalPersonsRealodex);
     }
 
     @Test
