@@ -68,7 +68,7 @@ public class Person {
     }
 
     public boolean isBusy() {
-        return (this.task == null);
+        return this.task != null;
     }
 
     /**

@@ -1,7 +1,6 @@
 package seedu.address.model.task;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -9,33 +8,30 @@ import java.time.format.DateTimeParseException;
 
 /**
  * Represents a Task's deadline in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidDeadline(LocalDateTime)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidDeadline(String)}
  */
 public class Deadline {
 
     public static final String MESSAGE_CONSTRAINTS = "Deadline should be in the format: dd-MM-yyyy HHmm";
-    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm");
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm");
     public final LocalDateTime dateTime;
 
     /**
-     * Constructs a {@code Deadline}
-     *
-     * @param deadline A valid deadline.
+     * Constructs a {@code Deadline} using Local Date Time
+     * @param dateTime A valid deadline.
      */
-    public Deadline(LocalDateTime deadline) {
-        requireNonNull(deadline);
-        checkArgument(isValidDeadline(deadline), MESSAGE_CONSTRAINTS);
-        this.dateTime = deadline;
+    public Deadline(LocalDateTime dateTime) {
+        requireNonNull(dateTime);
+        this.dateTime = dateTime;
     }
 
     /**
      * Returns true if the deadline is in the correct format.
      */
-    public static boolean isValidDeadline(LocalDateTime deadline) {
+    public static boolean isValidDeadline(String deadline) {
         try {
-            String formattedDeadline = deadline.format(formatter);
-            LocalDateTime parsedDeadline = LocalDateTime.parse(formattedDeadline, formatter);
-            return deadline.equals(parsedDeadline);
+            LocalDateTime.parse(deadline, FORMATTER);
+            return true;
         } catch (DateTimeParseException e) {
             return false;
         }
@@ -43,7 +39,7 @@ public class Deadline {
 
     @Override
     public String toString() {
-        return dateTime.format(formatter);
+        return dateTime.format(FORMATTER);
     }
 
     @Override

@@ -34,6 +34,7 @@ public class ParserTaskUtil {
      * @throws ParseException if the given {@code deadline} is invalid.
      */
     public static Deadline parseDeadline(String deadline) throws ParseException {
+        requireNonNull(deadline);
         String trimmedDeadline = deadline.trim();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm");
         try {

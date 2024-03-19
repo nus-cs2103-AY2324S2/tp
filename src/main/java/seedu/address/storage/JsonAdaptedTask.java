@@ -1,6 +1,7 @@
 package seedu.address.storage;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -18,13 +19,13 @@ public class JsonAdaptedTask {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Task's %s field is missing!";
 
     private final String title;
-    private final LocalDateTime deadline;
+    private final String deadline;
 
     /**
      * Constructs a {@code JsonAdaptedTask} with the given task details.
      */
     @JsonCreator
-    public JsonAdaptedTask(@JsonProperty("title") String title, @JsonProperty("deadline") LocalDateTime deadline) {
+    public JsonAdaptedTask(@JsonProperty("title") String title, @JsonProperty("deadline") String deadline) {
         this.title = title;
         this.deadline = deadline;
     }
@@ -34,7 +35,7 @@ public class JsonAdaptedTask {
      */
     public JsonAdaptedTask(Task source) {
         title = source.getTaskTitle();
-        deadline = source.getDeadline().dateTime;
+        deadline = source.getDeadline().dateTime.toString();
     }
 
     /**
@@ -51,10 +52,8 @@ public class JsonAdaptedTask {
         if (deadline == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "deadline"));
         }
-        if (!Deadline.isValidDeadline(deadline)) {
-            throw new IllegalValueException(Deadline.MESSAGE_CONSTRAINTS);
-        }
-        final Deadline modelDeadline = new Deadline(deadline);
+        LocalDateTime parsedDeadline = LocalDateTime.parse(deadline);
+        final Deadline modelDeadline = new Deadline(parsedDeadline);
 
         return new Task(modelTaskTitle, modelDeadline);
     }
