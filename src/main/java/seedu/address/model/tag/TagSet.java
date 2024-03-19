@@ -65,6 +65,12 @@ public class TagSet extends Attribute<Set<Tag>> {
         return otherTags.stream().allMatch(tag -> this.contains(tag));
     }
 
+    /**
+     * Determine if the tagset contains the specified tag
+     *
+     * @param otherValue Tag to check against
+     * @return True if tagset contains the specified tag, False otherwise
+     */
     public boolean contains(Object otherValue) {
         if (!(otherValue instanceof Tag)) {
             return false;

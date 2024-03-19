@@ -26,34 +26,44 @@ import seedu.address.model.person.predicates.TagSetContainsAllTagsPredicate;
 import seedu.address.model.tag.Tag;
 
 public class FindCommandParserTest {
-    private final String NAME = "Alice";
-    private final String PHONE = "11111111";
-    private final String EMAIL = "test@example.com";
-    private final String ADDRESS = "street";
-    private final String NOTE = "best";
-    private final String TAG = "friends";
+    private static final String NAME = "Alice";
+    private static final String PHONE = "11111111";
+    private static final String EMAIL = "test@example.com";
+    private static final String ADDRESS = "street";
+    private static final String NOTE = "best";
+    private static final String TAG = "friends";
 
-    private final NameContainsSubstringPredicate NAME_PREDICATE = new NameContainsSubstringPredicate(NAME);
-    private final PhoneContainsSubstringPredicate PHONE_PREDICATE = new PhoneContainsSubstringPredicate(PHONE);
-    private final EmailContainsSubstringPredicate EMAIL_PREDICATE = new EmailContainsSubstringPredicate(EMAIL);
-    private final AddressContainsSubstringPredicate ADDRESS_PREDICATE = new AddressContainsSubstringPredicate(ADDRESS);
-    private final NoteContainsSubstringPredicate NOTE_PREDICATE = new NoteContainsSubstringPredicate(NOTE);
-    private final TagSetContainsAllTagsPredicate TAGS_PREDICATE = new TagSetContainsAllTagsPredicate(
+    private static final NameContainsSubstringPredicate NAME_PREDICATE = new NameContainsSubstringPredicate(NAME);
+    private static final PhoneContainsSubstringPredicate PHONE_PREDICATE = new PhoneContainsSubstringPredicate(
+            PHONE);
+    private static final EmailContainsSubstringPredicate EMAIL_PREDICATE = new EmailContainsSubstringPredicate(
+            EMAIL);
+    private static final AddressContainsSubstringPredicate ADDRESS_PREDICATE = new AddressContainsSubstringPredicate(
+            ADDRESS);
+    private static final NoteContainsSubstringPredicate NOTE_PREDICATE = new NoteContainsSubstringPredicate(NOTE);
+    private static final TagSetContainsAllTagsPredicate TAGS_PREDICATE = new TagSetContainsAllTagsPredicate(
             new HashSet<Tag>(Arrays.asList(new Tag(TAG))));
 
-    private final NameContainsSubstringPredicate NAME_PREDICATE_EMPTY = new NameContainsSubstringPredicate("");
-    private final PhoneContainsSubstringPredicate PHONE_PREDICATE_EMPTY = new PhoneContainsSubstringPredicate("");
-    private final EmailContainsSubstringPredicate EMAIL_PREDICATE_EMPTY = new EmailContainsSubstringPredicate("");
-    private final AddressContainsSubstringPredicate ADDRESS_PREDICATE_EMPTY = new AddressContainsSubstringPredicate("");
-    private final NoteContainsSubstringPredicate NOTE_PREDICATE_EMPTY = new NoteContainsSubstringPredicate("");
-    private final TagSetContainsAllTagsPredicate TAGS_PREDICATE_EMPTY = new TagSetContainsAllTagsPredicate(
+    private static final NameContainsSubstringPredicate NAME_PREDICATE_EMPTY = new NameContainsSubstringPredicate(
+            "");
+    private static final PhoneContainsSubstringPredicate PHONE_PREDICATE_EMPTY = new PhoneContainsSubstringPredicate(
+            "");
+    private static final EmailContainsSubstringPredicate EMAIL_PREDICATE_EMPTY = new EmailContainsSubstringPredicate(
+            "");
+    private static final AddressContainsSubstringPredicate ADDRESS_PREDICATE_EMPTY =
+
+            new AddressContainsSubstringPredicate("");
+    private static final NoteContainsSubstringPredicate NOTE_PREDICATE_EMPTY = new NoteContainsSubstringPredicate(
+            "");
+    private static final TagSetContainsAllTagsPredicate TAGS_PREDICATE_EMPTY = new TagSetContainsAllTagsPredicate(
             new HashSet<>());
 
     private FindCommandParser parser = new FindCommandParser();
 
     @Test
     public void parse_emptyArg_throwsParseException() {
-        assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "     ",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
     }
 
     @Test
@@ -107,7 +117,8 @@ public class FindCommandParserTest {
     @Test
     public void parse_noteFieldPresent_returnsFindCommand() {
         FindCommand expectedCommand = new FindCommand(new CombinedPredicates(
-                NAME_PREDICATE_EMPTY, PHONE_PREDICATE_EMPTY, EMAIL_PREDICATE_EMPTY, ADDRESS_PREDICATE_EMPTY,
+                NAME_PREDICATE_EMPTY, PHONE_PREDICATE_EMPTY, EMAIL_PREDICATE_EMPTY,
+                ADDRESS_PREDICATE_EMPTY,
                 NOTE_PREDICATE, TAGS_PREDICATE_EMPTY));
 
         assertParseSuccess(parser, String.format(" %s%s", PREFIX_NOTE, NOTE), expectedCommand);
@@ -119,7 +130,8 @@ public class FindCommandParserTest {
     @Test
     public void parse_tagFieldPresent_returnsFindCommand() {
         FindCommand expectedCommand = new FindCommand(new CombinedPredicates(
-                NAME_PREDICATE_EMPTY, PHONE_PREDICATE_EMPTY, EMAIL_PREDICATE_EMPTY, ADDRESS_PREDICATE_EMPTY,
+                NAME_PREDICATE_EMPTY, PHONE_PREDICATE_EMPTY, EMAIL_PREDICATE_EMPTY,
+                ADDRESS_PREDICATE_EMPTY,
                 NOTE_PREDICATE_EMPTY, TAGS_PREDICATE));
 
         assertParseSuccess(parser, String.format(" %s%s", PREFIX_TAG, TAG), expectedCommand);
