@@ -12,7 +12,10 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.*;
+import seedu.address.model.tag.Tag;
+
+import java.util.Set;
 
 /**
  * Adds a person to the address book.
@@ -37,7 +40,7 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 
-    public static final String MESSAGE_SUCCESS = "New person added: %1$s";
+    public static final String MESSAGE_SUCCESS = "New client added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
     private final Person toAdd;
 
@@ -58,7 +61,43 @@ public class AddCommand extends Command {
         }
 
         model.addPerson(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, addPersonMessageGenerator(toAdd)));
+    }
+
+    /**
+     * Takes a person object and only returns non-null fields
+     * @param person
+     * @return a String of non-null fields
+     */
+    public static String addPersonMessageGenerator(Person person) {
+        StringBuilder sb = new StringBuilder();
+        Name name = person.getName();
+        Phone phone = person.getPhone();
+        Email email = person.getEmail();
+        Address address = person.getAddress();
+        Note note = person.getNote();
+        Set<Tag> tags = person.getTags();
+
+        sb.append(name);
+        sb.append("; Phone: ").append(phone);
+
+        if (!email.value.isEmpty()) {
+            sb.append("; Email: ").append(email);
+        }
+
+        if (!address.value.isEmpty()) {
+            sb.append("; Address: ").append(address);
+        }
+
+        if (!note.value.isEmpty()) {
+            sb.append("; Note: ").append(note);
+        }
+
+        if (!tags.isEmpty()) {
+            sb.append("; Tags: ").append(tags);
+        }
+
+        return sb.toString();
     }
 
     @Override
