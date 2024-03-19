@@ -1,17 +1,22 @@
 package seedu.address.model.person;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
-
+/**
+ * Represents a dateTime in the address book.
+ * Guarantees: immutable; dateTime is valid as declared in {@link #isValidDateTime(String)}
+ */
 public class DateTime {
-    public static final String MESSAGE_CONSTRAINTS = "DateTime should be in the format yyyy-mm-dd hhmm and after current day and time";
+    public static final String MESSAGE_CONSTRAINTS = "DateTime should be in the format yyyy-mm-dd hhmm "
+            + "and after current day and time";
     public static final String VALIDATION_REGEX = "\\d{4}-\\d{2}-\\d{2} \\d{4}";
-    public static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-MM-dd HHmm")
+    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("uuuu-MM-dd HHmm")
             .withResolverStyle(ResolverStyle.STRICT);
 
     public final String value;
@@ -33,7 +38,7 @@ public class DateTime {
 
     private static boolean isValidDateTimeFormat(String test) {
         try {
-            formatter.parse(test);
+            FORMATTER.parse(test);
             return true;
         } catch (DateTimeParseException e) {
             return false;

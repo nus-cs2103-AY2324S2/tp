@@ -155,6 +155,12 @@ public class ParserUtil {
         return new Subject(trimmedSubject);
     }
 
+    /**
+     * Parses a {@code String dateTime} into a {@code dateTime}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code dateTime} is invalid.
+     */
     public static DateTime parseDateTime(String dateTime) throws ParseException {
         requireNonNull(dateTime);
         String trimmedDateTime = dateTime.trim();
@@ -164,6 +170,9 @@ public class ParserUtil {
         return new DateTime(trimmedDateTime);
     }
 
+    /**
+     * Parses {@code Collection<String> dateTimes} into a {@code Set<DateTime>}.
+     */
     public static Set<DateTime> parseDateTimes(Collection<String> dateTimes) throws ParseException {
         requireNonNull(dateTimes);
         final Set<DateTime> dateTimeSet = new HashSet<>();
