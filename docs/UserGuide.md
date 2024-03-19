@@ -225,9 +225,9 @@ Clears all entries from the client list.
 
 Format: `clear`
 
-<box>
+<box type="warning" theme="danger" icon=":warning:">
 
-<span style="color: red;"> :warning:**Caution:** </span>>
+<span style="color: red;"> **CAUTION:** </span>
 Clearing is irreversible and will NOT have a confirmation screen 
 </box>
 
@@ -245,9 +245,12 @@ ClientCare data are saved in the hard disk automatically after any command that 
 
 ClientCare data is automatically saved as a JSON file `[JAR file location]/data/clientcare.json`. Advanced users are welcome to update data directly by editing that data file.
 
->[!CAUTION]
->If your changes to the data file makes its format invalid, ClientCare will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
+<box type="warning" theme="danger" icon=":warning:">
+
+<span style="color: red;"> **CAUTION:** </span>
+If your changes to the data file makes its format invalid, ClientCare will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
 Furthermore, certain edits can cause the ClientCare to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
+</box>
 
 
 
