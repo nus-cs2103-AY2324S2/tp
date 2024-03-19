@@ -15,6 +15,21 @@ public class PolicyTest {
     private static final Policy policy = new Policy(VALID_NAME, VALID_ID);
 
     @Test
+    public void getPolicyId() {
+        assertEquals(policy.getPolicyId(), VALID_ID);
+    }
+
+    @Test
+    public void getPolicyName() {
+        assertEquals(policy.getPolicyName(), VALID_NAME);
+    }
+
+    @Test
+    public void getPolicyType() {
+        assertEquals(policy.getPolicyType(), PolicyType.DEFAULT);
+    }
+
+    @Test
     public void isIdTestTrue() {
         assertTrue(policy.isID(VALID_ID));
     }
