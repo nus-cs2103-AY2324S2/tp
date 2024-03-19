@@ -28,3 +28,6 @@ docs/_site/
 # Local settings
 .settings/
 .prettierignore
+
+# Binary files
+bin

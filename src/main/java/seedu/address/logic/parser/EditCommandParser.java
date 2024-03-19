@@ -37,7 +37,6 @@ public class EditCommandParser implements Parser<EditCommand> {
                         PREFIX_ADDRESS, PREFIX_NOTE, PREFIX_TAG);
 
         Index index;
-
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {

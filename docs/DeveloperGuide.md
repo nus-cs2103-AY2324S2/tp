@@ -196,6 +196,14 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### QR Code Generation
+
+The following activity diagram summarizes what happens when a QR Code is generated for any `Person`.
+
+![QRGenerationActivityDiagram](images/QRGenerationActivityDiagram.png)
+
+_vCard_ is a data format for contact information. Detailed information can be found in [RFC 6350](https://datatracker.ietf.org/doc/html/rfc6350).
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
