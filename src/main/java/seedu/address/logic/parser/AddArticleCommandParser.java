@@ -1,20 +1,20 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SOURCE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AUTHOR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PUBLICATION_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_METRIC;
 
-import java.util.Set;
+import java.time.LocalDateTime;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.articlecommands.AddArticleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.article.Article;
 
 /**
  * Parses input arguments and creates a new AddArticleCommand object
@@ -28,24 +28,23 @@ public class AddArticleCommandParser implements Parser<AddArticleCommand> {
      */
     public AddArticleCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_AUTHOR, PREFIX_PUBLICATION_DATE, PREFIX_CATEGORY,
-                        PREFIX_STATUS, PREFIX_TAG, PREFIX_METRIC);
+                ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_AUTHOR, PREFIX_PUBLICATION_DATE, PREFIX_SOURCE,
+                        PREFIX_CATEGORY, PREFIX_STATUS);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_TITLE, PREFIX_AUTHOR, PREFIX_PUBLICATION_DATE, PREFIX_CATEGORY,
-                PREFIX_STATUS, PREFIX_TAG, PREFIX_METRIC) || !argMultimap.getPreamble().isEmpty()) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_TITLE, PREFIX_AUTHOR, PREFIX_PUBLICATION_DATE, PREFIX_SOURCE,
+                PREFIX_CATEGORY, PREFIX_STATUS) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddArticleCommand.MESSAGE_USAGE));
         }
 
-        Title title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TITLE).get());
-        Set<Author> authorList = ParserUtil.parseAuthors(argMultimap.getAllValues(PREFIX_AUTHOR));
-        PublicationDate publicationDate = ParserUtil.parsePublicationDate(argMultimap.getValue(PREFIX_PUBLICATION_DATE)
+        String title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TITLE).get());
+        String[] authorList = ParserUtil.parseAuthors(argMultimap.getAllValues(PREFIX_AUTHOR));
+        LocalDateTime publicationDate = ParserUtil.parsePublicationDate(argMultimap.getValue(PREFIX_PUBLICATION_DATE)
                 .get());
-        Category category = ParserUtil.parseCategory(argMultimap.getValue(PREFIX_CATEGORY).get());
-        Status status = ParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).get());
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        Metric metric = ParserUtil.parseMetric(argMultimap.getValue(PREFIX_METRIC).get());
+        String[] sourceList = ParserUtil.parseSources(argMultimap.getAllValues(PREFIX_TAG));
+        String category = ParserUtil.parseCategory(argMultimap.getValue(PREFIX_CATEGORY).get());
+        Article.Status status = (Article.Status) ParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).get());
 
-        Article article = new Article();
+        Article article = new Article(title, authorList, publicationDate, sourceList, category, status);
 
         return new AddArticleCommand(article);
     }

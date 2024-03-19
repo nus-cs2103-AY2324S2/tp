@@ -1,14 +1,20 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.article.Article.Status.ARCHIVED;
+import static seedu.address.model.article.Article.Status.DRAFT;
+import static seedu.address.model.article.Article.Status.PUBLISHED;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.article.Article;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -120,5 +126,76 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    public static String parseTitle(String title) throws ParseException {
+        requireNonNull(title);
+        String trimmedTitle = title.trim();
+        //removed the check for author validity
+        return trimmedTitle;
+    }
+
+    public static String parseAuthor(String author) throws ParseException {
+        requireNonNull(author);
+        String trimmedAuthor = author.trim();
+        //removed the check for author validity
+        return trimmedAuthor;
+    }
+
+
+    public static String[] parseAuthors(List<String> authors) throws ParseException {
+        requireNonNull(authors);
+        final String[] authorSet = new String[authors.size()];
+        for (int i = 0; i < authors.size(); i++) {
+            authorSet[i] = parseAuthor(authors.get(i));
+        }
+        return authorSet;
+    }
+
+    public static LocalDateTime parsePublicationDate(String publicationDate) throws ParseException {
+        requireNonNull(publicationDate);
+        String trimmedPublicationDate = publicationDate.trim();
+        LocalDateTime parsedDate = LocalDateTime.parse(trimmedPublicationDate);
+        //removed the check for publication date validity
+        return parsedDate;
+    }
+
+    public static String parseSource(String source) throws ParseException {
+        requireNonNull(source);
+        String trimmedSource = source.trim();
+        //removed the check for Source validity
+        return trimmedSource;
+    }
+
+
+    public static String[] parseSources(List<String> sources) throws ParseException {
+        requireNonNull(sources);
+        final String[] SourceSet = new String[sources.size()];
+        for (int i = 0; i < sources.size(); i++) {
+            SourceSet[i] = parseSource(sources.get(i));
+        }
+        return SourceSet;
+    }
+
+    public static String parseCategory(String category) throws ParseException {
+        requireNonNull(category);
+        String trimmedCategory = category.trim();
+        //removed the check for category validity
+        return trimmedCategory;
+    }
+
+    public static Enum<Article.Status> parseStatus(String status) throws ParseException {
+        requireNonNull(status);
+        String trimmedStatus = status.trim();
+        switch (trimmedStatus) {
+        case "DRAFT":
+            return DRAFT;
+        case "PUBLISHED":
+            return PUBLISHED;
+        case "ARCHIVED":
+            return ARCHIVED;
+        default:
+            throw new ParseException("Invalid status");
+        }
     }
 }

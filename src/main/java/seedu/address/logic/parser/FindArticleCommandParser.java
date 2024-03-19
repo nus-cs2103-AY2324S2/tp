@@ -4,9 +4,9 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.Arrays;
 
-import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.articlecommands.FindArticleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.article.TitleContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindArticleCommand object
@@ -27,7 +27,7 @@ public class FindArticleCommandParser {
 
         String[] nameKeywords = trimmedArgs.split("\\s+");
 
-        return new FindArticleCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        return new FindArticleCommand(new TitleContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
     }
 
 }
