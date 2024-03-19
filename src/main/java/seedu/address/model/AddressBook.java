@@ -86,6 +86,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(tag);
         return tagList.contains(tag);
     }
+    public boolean hasTag(String tagName) {
+        requireNonNull(tagName);
+        return tagList.contains(tagName);
+    }
 
     /**
      * Adds a person to the address book.
@@ -138,6 +142,9 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code key} must exist in the address book.
      */
     public void removeTag(Tag key) {
+        tagList.remove(key);
+    }
+    public void removeTag(String key) {
         tagList.remove(key);
     }
 

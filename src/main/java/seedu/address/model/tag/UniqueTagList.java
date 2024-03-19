@@ -41,6 +41,10 @@ public class UniqueTagList implements Iterable<Tag> {
         requireNonNull(toCheck);
         return internalSet.stream().anyMatch(toCheck::isSameTag);
     }
+    public boolean contains(String toCheck) {
+        requireNonNull(toCheck);
+        return internalSet.stream().anyMatch(tag -> tag.tagName.equals(toCheck));
+    }
 
     /**
      * Adds a tag to the list.
@@ -85,6 +89,12 @@ public class UniqueTagList implements Iterable<Tag> {
         }
     }
 
+    public void remove(String toRemove) {
+        requireNonNull(toRemove);
+        if (!internalSet.removeIf(tag -> tag.tagName.equals(toRemove))) {
+            throw new TagNotFoundException();
+        }
+    }
     /**
      * Replaces all tags in this list with the tags from the replacement list.
      * @param replacement The replacement UniqueTagList.
