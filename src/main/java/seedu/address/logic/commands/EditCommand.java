@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PARENT_PHONES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
@@ -42,13 +42,13 @@ public class EditCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PHONE + "PHONE] "
+            + "[" + PREFIX_PARENT_PHONES + "PHONE, WHICH PHONE NUMBER TO EDIT] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_STUDENT_ID + "STUDENT_ID] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 "
+            + PREFIX_PARENT_PHONES + "91234567, 2"
             + PREFIX_EMAIL + "johndoe@example.com";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
@@ -99,13 +99,17 @@ public class EditCommand extends Command {
         assert personToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
+        Phone updatedParentPhoneOne =
+                editPersonDescriptor.getFirstParentPhone().orElse(personToEdit.getParentPhoneOne());
+        Phone updatedParentPhoneTwo =
+                editPersonDescriptor.getSecondParentPhone().orElse(personToEdit.getParentPhoneTwo());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         StudentId updatedStudentId = editPersonDescriptor.getStudentId().orElse(personToEdit.getStudentId());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedStudentId, updatedTags);
+        return new Person(updatedName, updatedParentPhoneOne, updatedParentPhoneTwo, updatedEmail, updatedAddress,
+                updatedStudentId, updatedTags);
     }
 
     @Override
@@ -138,7 +142,8 @@ public class EditCommand extends Command {
      */
     public static class EditPersonDescriptor {
         private Name name;
-        private Phone phone;
+        private Phone firstParentPhone;
+        private Phone secondParentPhone;
         private Email email;
         private Address address;
         private StudentId studentId;
@@ -152,7 +157,8 @@ public class EditCommand extends Command {
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
-            setPhone(toCopy.phone);
+            setFirstParentPhone(toCopy.firstParentPhone);
+            setSecondParentPhone(toCopy.secondParentPhone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setStudentId(toCopy.studentId);
@@ -163,7 +169,8 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, studentId, tags);
+            return CollectionUtil.isAnyNonNull(name, firstParentPhone, secondParentPhone, email, address, studentId,
+                    tags);
         }
 
         public void setName(Name name) {
@@ -174,12 +181,34 @@ public class EditCommand extends Command {
             return Optional.ofNullable(name);
         }
 
-        public void setPhone(Phone phone) {
-            this.phone = phone;
+        public void setPhone(Phone phone, String numberToEdit) {
+            if ("1".equals(numberToEdit)) {
+                setFirstParentPhone(phone);
+            } else if ("2".equals(numberToEdit)) {
+                setSecondParentPhone(phone);
+            }
         }
 
-        public Optional<Phone> getPhone() {
-            return Optional.ofNullable(phone);
+        public void setFirstParentPhone(Phone phone) {
+            this.firstParentPhone = phone;
+        }
+
+        public void setSecondParentPhone(Phone phone) {
+            this.secondParentPhone = phone;
+        }
+
+        public Optional<Phone> getFirstParentPhone() {
+            return Optional.ofNullable(firstParentPhone);
+        }
+
+        public Optional<Phone> getSecondParentPhone() { return Optional.ofNullable(secondParentPhone); }
+
+        public Optional<Phone> getEditedPhone() {
+            if (firstParentPhone != null) {
+                return Optional.ofNullable(firstParentPhone);
+            } else {
+                return Optional.ofNullable(secondParentPhone);
+            }
         }
 
         public void setEmail(Email email) {
@@ -235,24 +264,44 @@ public class EditCommand extends Command {
             }
 
             EditPersonDescriptor otherEditPersonDescriptor = (EditPersonDescriptor) other;
-            return Objects.equals(name, otherEditPersonDescriptor.name)
-                    && Objects.equals(phone, otherEditPersonDescriptor.phone)
-                    && Objects.equals(email, otherEditPersonDescriptor.email)
-                    && Objects.equals(address, otherEditPersonDescriptor.address)
-                    && Objects.equals(studentId, otherEditPersonDescriptor.studentId)
-                    && Objects.equals(tags, otherEditPersonDescriptor.tags);
+            if (firstParentPhone != null) {
+                return Objects.equals(name, otherEditPersonDescriptor.name)
+                        && Objects.equals(firstParentPhone, otherEditPersonDescriptor.firstParentPhone)
+                        && Objects.equals(email, otherEditPersonDescriptor.email)
+                        && Objects.equals(address, otherEditPersonDescriptor.address)
+                        && Objects.equals(studentId, otherEditPersonDescriptor.studentId)
+                        && Objects.equals(tags, otherEditPersonDescriptor.tags);
+            } else {
+                return Objects.equals(name, otherEditPersonDescriptor.name)
+                        && Objects.equals(secondParentPhone, otherEditPersonDescriptor.secondParentPhone)
+                        && Objects.equals(email, otherEditPersonDescriptor.email)
+                        && Objects.equals(address, otherEditPersonDescriptor.address)
+                        && Objects.equals(studentId, otherEditPersonDescriptor.studentId)
+                        && Objects.equals(tags, otherEditPersonDescriptor.tags);
+            }
         }
 
         @Override
         public String toString() {
-            return new ToStringBuilder(this)
-                    .add("name", name)
-                    .add("phone", phone)
-                    .add("email", email)
-                    .add("address", address)
-                    .add("student id", studentId)
-                    .add("tags", tags)
-                    .toString();
+            if (firstParentPhone != null) {
+                return new ToStringBuilder(this)
+                        .add("name", name)
+                        .add("edited phone", firstParentPhone)
+                        .add("email", email)
+                        .add("address", address)
+                        .add("student id", studentId)
+                        .add("tags", tags)
+                        .toString();
+            } else {
+                return new ToStringBuilder(this)
+                        .add("name", name)
+                        .add("edited phone", secondParentPhone)
+                        .add("email", email)
+                        .add("address", address)
+                        .add("student id", studentId)
+                        .add("tags", tags)
+                        .toString();
+            }
         }
     }
 }

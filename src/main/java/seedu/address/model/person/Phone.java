@@ -4,15 +4,19 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Person's phone number in the address book.
+ * Represents a student's parents' phone numbers in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidPhone(String)}
  */
 public class Phone {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Phone numbers should only contain numbers, and it should be at least 3 digits long";
-    public static final String VALIDATION_REGEX = "\\d{8,8}";
+            "Phone numbers should be an 8 digits positive number with a non-zero number as the first digit.";
+    public static final String INVALID_NUMBER_OF_PHONES =
+            "Two parent phone numbers need to be provided.";
+    public static final String INVALID_EDIT_INPUT =
+            "The valid input for an edit phone input is: {new phone number}, {number of phone number to edit}.";
+    public static final String VALIDATION_REGEX = "^[1-9]\\d{7}$";
     public final String value;
 
     /**

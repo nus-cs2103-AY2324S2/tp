@@ -18,13 +18,15 @@ import seedu.address.model.util.SampleDataUtil;
 public class PersonBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
-    public static final String DEFAULT_PHONE = "85355255";
+    public static final String DEFAULT_FIRST_PARENT_PHONE = "85355255";
+    public static final String DEFAULT_SECOND_PARENT_PHONE = "91234544";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_STUDENT_ID = "10001";
 
     private Name name;
-    private Phone phone;
+    private Phone firstParentPhone;
+    private Phone secondParentPhone;
     private Email email;
     private Address address;
     private StudentId studentId;
@@ -35,7 +37,8 @@ public class PersonBuilder {
      */
     public PersonBuilder() {
         name = new Name(DEFAULT_NAME);
-        phone = new Phone(DEFAULT_PHONE);
+        firstParentPhone = new Phone(DEFAULT_FIRST_PARENT_PHONE);
+        secondParentPhone = new Phone(DEFAULT_SECOND_PARENT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         studentId = new StudentId(DEFAULT_STUDENT_ID);
@@ -47,7 +50,8 @@ public class PersonBuilder {
      */
     public PersonBuilder(Person personToCopy) {
         name = personToCopy.getName();
-        phone = personToCopy.getPhone();
+        firstParentPhone = personToCopy.getParentPhoneOne();
+        secondParentPhone = personToCopy.getParentPhoneTwo();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         studentId = personToCopy.getStudentId();
@@ -79,10 +83,18 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code Person} that we are building.
+     * Sets the {@code First parent phone} of the {@code Person} that we are building.
      */
-    public PersonBuilder withPhone(String phone) {
-        this.phone = new Phone(phone);
+    public PersonBuilder withFirstParentPhone(String firstParentPhone) {
+        this.firstParentPhone = new Phone(firstParentPhone);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Second parent phone} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withSecondParentPhone(String secondParentPhone) {
+        this.secondParentPhone = new Phone(secondParentPhone);
         return this;
     }
 
@@ -102,8 +114,13 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Builds the person as designated by the PersonBuilder.
+     * @returns A person based on the fields of the PersonBuilder.
+     */
     public Person build() {
-        return new Person(name, phone, email, address, studentId, tags);
+
+        return new Person(name, firstParentPhone, secondParentPhone, email, address, studentId, tags);
     }
 
 }
