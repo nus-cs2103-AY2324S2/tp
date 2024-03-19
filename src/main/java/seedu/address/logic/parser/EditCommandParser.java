@@ -79,7 +79,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         try {
             return new EditCommand(new IdentityCardNumberMatchesPredicate(ic), editPersonDescriptor);
         } catch (IllegalArgumentException pe) {
-            throw new ParseException (
+            throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
         }
     }
