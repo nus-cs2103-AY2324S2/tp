@@ -34,26 +34,27 @@ public class DeleteMeetingCommandTest {
 
     @Test
     public void execute_validClientIndexValidMeetingIndex() {
-        int clientIndex = model.getAddressBook().getPersonList().indexOf(JAMAL);
         JAMAL.getMeetings().add(testMeeting);
+        model.addPerson(JAMAL);
+        int clientIndex = model.getAddressBook().getPersonList().indexOf(JAMAL);
 
         Index testClientIndex = Index.fromOneBased(Index.fromZeroBased(clientIndex).getOneBased());
         Index testMeetingIndex = Index.fromOneBased(Index.fromZeroBased(JAMAL.getMeetings().size() - 1).getOneBased());
         DeleteMeetingCommand deleteMeetingCommand = new DeleteMeetingCommand(testClientIndex,
                 testMeetingIndex);
 
-        String expectedMessage = String.format(DeleteMeetingCommand.MESSAGE_DELETE_PERSON_SUCCESS, testMeetingIndex);
+         String expectedMessage = "Meeting 1 deleted successfully ";
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.deleteSpecificMeetingForClient(testClientIndex, testMeetingIndex);
 
         assertCommandSuccess(deleteMeetingCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidClientIndexValidMeetingIndex_throwsCommandException() {
-        int invalidClientIndex = model.getAddressBook().getPersonList().size();
         JAMAL.getMeetings().add(testMeeting);
+        model.addPerson(JAMAL);
+        int invalidClientIndex = model.getAddressBook().getPersonList().size();
 
         Index testClientIndex = Index.fromOneBased(Index.fromZeroBased(invalidClientIndex).getOneBased());
         Index testMeetingIndex = Index.fromOneBased(Index.fromZeroBased(JAMAL.getMeetings().size() - 1).getOneBased());
@@ -62,10 +63,12 @@ public class DeleteMeetingCommandTest {
 
         String expectedMessage = Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
         assertCommandFailure(deleteMeetingCommand, model, expectedMessage);
+        model.deletePerson(JAMAL);
     }
 
     @Test
     public void execute_validClientIndexInvalidMeetingIndex_throwsCommandException() {
+        model.addPerson(JAMAL);
         // Do not add any meeting to JAMAL to ensure the meeting index is invalid
         int clientIndex = model.getAddressBook().getPersonList().indexOf(JAMAL);
     
@@ -74,12 +77,14 @@ public class DeleteMeetingCommandTest {
     
         DeleteMeetingCommand deleteMeetingCommand = new DeleteMeetingCommand(testClientIndex, testMeetingIndex);
 
-        String expectedMessage = Messages.MESSAGE_INVALID_MEETING_DISPLAYED_INDEX;
+        String expectedMessage = "Error: Meeting 2 not found";
         assertCommandFailure(deleteMeetingCommand, model, expectedMessage);
+        model.deletePerson(JAMAL);
     }
 
     @Test
     public void execute_invalidClientIndexInvalidMeetingIndex_throwsCommandException() {
+        model.addPerson(JAMAL);
         // No meeting added to ensure meeting index is also invalid
         int invalidClientIndex = model.getAddressBook().getPersonList().size();
     
@@ -91,6 +96,7 @@ public class DeleteMeetingCommandTest {
         // invalid client index should be caught before invalid meeting index
         String expectedMessage = Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
         assertCommandFailure(deleteMeetingCommand, model, expectedMessage);
+        model.deletePerson(JAMAL);
     }
 
 
@@ -121,7 +127,7 @@ public class DeleteMeetingCommandTest {
         Index targetClientIndex = Index.fromOneBased(1);
         Index targetMeetingIndex = Index.fromOneBased(1);
         DeleteMeetingCommand deleteMeetingCommand = new DeleteMeetingCommand(targetClientIndex, targetMeetingIndex);
-        String expected = DeleteMeetingCommand.class.getCanonicalName() + "{targetClientIndex=" + targetClientIndex + "}";
+        String expected = DeleteMeetingCommand.class.getCanonicalName() + "{clientIndex=" + targetClientIndex + ", meetingIndex=" + targetMeetingIndex +"}";
         assertEquals(expected, deleteMeetingCommand.toString());
     }
 }
