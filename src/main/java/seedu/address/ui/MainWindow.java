@@ -241,11 +241,6 @@ public class MainWindow extends UiPart<Stage> {
             throw e;
         }
     }
-
-    /**
-     * Clears the placeholders for the person list panel and module list panel, removing all UI components
-     * currently displayed in these placeholders.
-     */
     private void clearPanels() {
         personListPanelPlaceholder.getChildren().clear();
         moduleListPanelPlaceholder.getChildren().clear();
