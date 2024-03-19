@@ -9,6 +9,7 @@ import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -35,6 +36,9 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private TaskListPanel taskListPanel;
+
+    @FXML
+    private VBox employeeList;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -129,6 +133,8 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        taskListPanel.hide();
     }
 
     /**
@@ -152,6 +158,28 @@ public class MainWindow extends UiPart<Stage> {
             helpWindow.show();
         } else {
             helpWindow.focus();
+        }
+    }
+
+    /**
+     * Shows the list of employees.
+     */
+    @FXML
+    public void handleShowEmployees() {
+        if (!employeeListPanel.getRoot().isVisible()) {
+            employeeListPanel.getRoot().setVisible(true);
+            taskListPanel.getRoot().setVisible(false);
+        }
+    }
+
+    /**
+     * Shows the list of tasks.
+     */
+    @FXML
+    public void handleShowTasks() {
+        if (!taskListPanel.getRoot().isVisible()) {
+            employeeListPanel.getRoot().setVisible(false);
+            taskListPanel.getRoot().setVisible(true);
         }
     }
 
@@ -188,6 +216,14 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
+            }
+
+            if (commandResult.isShowEmployees()) {
+                handleShowEmployees();
+            }
+
+            if (commandResult.isShowTasks()) {
+                handleShowTasks();
             }
 
             if (commandResult.isExit()) {
