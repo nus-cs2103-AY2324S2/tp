@@ -22,11 +22,19 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Client;
+import seedu.address.model.person.Department;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Employee;
+import seedu.address.model.person.JobTitle;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Products;
 import seedu.address.model.person.Remark;
+import seedu.address.model.person.Skills;
+import seedu.address.model.person.Supplier;
+import seedu.address.model.person.TermsOfService;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -100,10 +108,35 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Remark updatedRemark = personToEdit.getRemark();
+        Remark updatedRemark = editPersonDescriptor.getRemark().orElse(personToEdit.getRemark());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRemark, updatedTags);
+        if (personToEdit instanceof Client) {
+            String updatedPreferences = editPersonDescriptor.getPreferences()
+                    .orElse(((Client) personToEdit).getPreferences());
+            Products updatedProducts = editPersonDescriptor.getProducts().orElse(((Client) personToEdit).getProducts());
+            return new Client(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRemark, updatedTags,
+                    updatedProducts, updatedPreferences);
+        } else if (personToEdit instanceof Employee) {
+            // Assuming Employee has a Department and JobTitle
+            Department updatedDepartment = editPersonDescriptor.getDepartment()
+                    .orElse(((Employee) personToEdit).getDepartment());
+            JobTitle updatedJobTitle = editPersonDescriptor.getJobTitle()
+                    .orElse(((Employee) personToEdit).getJobTitle());
+            Skills updatedSkills = editPersonDescriptor.getSkills().orElse(((Employee) personToEdit).getSkills());
+            return new Employee(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRemark, updatedTags,
+                    updatedDepartment, updatedJobTitle, updatedSkills);
+        } else if (personToEdit instanceof Supplier) {
+            // Assuming Supplier has TermsOfService
+            TermsOfService updatedTermsOfService = editPersonDescriptor.getTermsOfService()
+                    .orElse(((Supplier) personToEdit).getTermsOfService());
+            Products updatedProducts = editPersonDescriptor.getProducts()
+                    .orElse(((Client) personToEdit).getProducts());
+            return new Supplier(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRemark, updatedTags,
+                    updatedProducts, updatedTermsOfService);
+        }
+
+        return personToEdit;
     }
 
     @Override
@@ -141,6 +174,13 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private Set<Tag> tags;
+        private Remark remark;
+        private Products products;
+        private String preferences;
+        private Department department;
+        private JobTitle jobTitle;
+        private TermsOfService termsOfService;
+        private Skills skills;
 
         public EditPersonDescriptor() {
         }
@@ -155,13 +195,15 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
+
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, products, preferences, department,
+                    jobTitle, termsOfService);
         }
 
         public void setName(Name name) {
@@ -214,6 +256,62 @@ public class EditCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
+        public void setRemark(Remark remark) {
+            this.remark = remark;
+        }
+
+        public Optional<Remark> getRemark() {
+            return Optional.ofNullable(remark);
+        }
+
+        public void setProducts(Products products) {
+            this.products = products;
+        }
+
+        public Optional<Products> getProducts() {
+            return Optional.ofNullable(products);
+        }
+
+        public void setPreferences(String preferences) {
+            this.preferences = preferences;
+        }
+
+        public Optional<String> getPreferences() {
+            return Optional.ofNullable(preferences);
+        }
+
+        public void setDepartment(Department department) {
+            this.department = department;
+        }
+
+        public Optional<Department> getDepartment() {
+            return Optional.ofNullable(department);
+        }
+
+        public void setJobTitle(JobTitle jobTitle) {
+            this.jobTitle = jobTitle;
+        }
+
+        public Optional<JobTitle> getJobTitle() {
+            return Optional.ofNullable(jobTitle);
+        }
+
+        public void setTermsOfService(TermsOfService termsOfService) {
+            this.termsOfService = termsOfService;
+        }
+
+        public Optional<TermsOfService> getTermsOfService() {
+            return Optional.ofNullable(termsOfService);
+        }
+
+        public void setSkills(Skills skills) {
+            this.skills = skills;
+        }
+
+        public Optional<Skills> getSkills() {
+            return Optional.ofNullable(skills);
+        }
+
         @Override
         public boolean equals(Object other) {
             if (other == this) {
@@ -230,18 +328,50 @@ public class EditCommand extends Command {
                     && Objects.equals(phone, otherEditPersonDescriptor.phone)
                     && Objects.equals(email, otherEditPersonDescriptor.email)
                     && Objects.equals(address, otherEditPersonDescriptor.address)
-                    && Objects.equals(tags, otherEditPersonDescriptor.tags);
+                    && Objects.equals(tags, otherEditPersonDescriptor.tags)
+                    && Objects.equals(products, otherEditPersonDescriptor.products)
+                    && Objects.equals(preferences, otherEditPersonDescriptor.preferences)
+                    && Objects.equals(department, otherEditPersonDescriptor.department)
+                    && Objects.equals(jobTitle, otherEditPersonDescriptor.jobTitle)
+                    && Objects.equals(termsOfService, otherEditPersonDescriptor.termsOfService);
         }
 
         @Override
         public String toString() {
-            return new ToStringBuilder(this)
-                    .add("name", name)
-                    .add("phone", phone)
-                    .add("email", email)
-                    .add("address", address)
-                    .add("tags", tags)
-                    .toString();
+            ToStringBuilder builder = new ToStringBuilder(this);
+
+            if (name != null) {
+                builder.add("name", name);
+            }
+            if (phone != null) {
+                builder.add("phone", phone);
+            }
+            if (email != null) {
+                builder.add("email", email);
+            }
+            if (address != null) {
+                builder.add("address", address);
+            }
+            if (tags != null && !tags.isEmpty()) {
+                builder.add("tags", tags);
+            }
+            if (products != null && !products.isEmpty()) {
+                builder.add("products", products);
+            }
+            if (preferences != null && !preferences.isEmpty()) {
+                builder.add("preferences", preferences);
+            }
+            if (department != null) {
+                builder.add("department", department);
+            }
+            if (jobTitle != null) {
+                builder.add("jobTitle", jobTitle);
+            }
+            if (termsOfService != null) {
+                builder.add("termsOfService", termsOfService);
+            }
+
+            return builder.toString();
         }
     }
 }
