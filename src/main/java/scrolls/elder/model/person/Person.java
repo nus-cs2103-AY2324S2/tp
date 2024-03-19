@@ -3,6 +3,7 @@ package scrolls.elder.model.person;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 import scrolls.elder.commons.util.CollectionUtil;
@@ -25,7 +26,7 @@ public abstract class Person {
     // Data fields
     protected final Address address;
     protected final Set<Tag> tags = new HashSet<>();
-    protected Person pairedWith;
+    protected Optional<Integer> pairedWith;
 
     /**
      * Every field must be present and not null.
@@ -38,7 +39,7 @@ public abstract class Person {
         this.address = address;
         this.tags.addAll(tags);
         this.role = role;
-        this.pairedWith = null;
+        this.pairedWith = Optional.empty();
     }
 
     public int getId() {
@@ -73,11 +74,11 @@ public abstract class Person {
         return Collections.unmodifiableSet(tags);
     }
 
-    public Person getPairedWith() {
+    public Optional<Integer> getPairedWith() {
         return pairedWith;
     }
 
-    public void setPairedWith(Person pairedWith) {
+    public void setPairedWith(Optional<Integer> pairedWith) {
         this.pairedWith = pairedWith;
     }
 
@@ -98,21 +99,6 @@ public abstract class Person {
     */
     public abstract boolean isVolunteer();
     public abstract Role getRole();
-
-    /**
-     * Returns true if both persons have the same pairing, and false otherwise.
-     */
-    public boolean hasSamePairing(Person otherPerson) {
-        if (otherPerson == this || (pairedWith == null && otherPerson.pairedWith == null)) {
-            return true;
-        }
-
-        if ((pairedWith == null) ^ (otherPerson.pairedWith == null)) {
-            return false;
-        }
-
-        return pairedWith.equals(otherPerson.pairedWith);
-    }
 
     /**
      * Returns true if both persons have the same identity and data fields.
@@ -137,7 +123,7 @@ public abstract class Person {
                 && address.equals(otherPerson.address)
                 && tags.equals(otherPerson.tags)
                 && role.equals(otherPerson.role)
-                && hasSamePairing(otherPerson);
+                && pairedWith.equals(otherPerson.pairedWith);
     }
 
     @Override
@@ -156,7 +142,7 @@ public abstract class Person {
                 .add("address", address)
                 .add("tags", tags)
                 .add("role", role)
-                .add("pairedWith", pairedWith == null ? "None" : pairedWith.getName())
+                .add("pairedWith", pairedWith.orElse(-1))
                 .toString();
     }
 

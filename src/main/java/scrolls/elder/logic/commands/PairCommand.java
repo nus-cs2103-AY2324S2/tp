@@ -3,6 +3,7 @@ package scrolls.elder.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Optional;
 
 import scrolls.elder.commons.core.index.Index;
 import scrolls.elder.commons.util.ToStringBuilder;
@@ -70,8 +71,8 @@ public class PairCommand extends Command {
         }
 
         // Set the pairedWith attribute of the befriendee and volunteer
-        personToPair1.setPairedWith(personToPair2);
-        personToPair2.setPairedWith(personToPair1);
+        personToPair1.setPairedWith(Optional.of(personToPair2.getId()));
+        personToPair2.setPairedWith(Optional.of(personToPair1.getId()));
 
         model.setPerson(lastShownList.get(index1.getZeroBased()), personToPair1);
         model.setPerson(lastShownList.get(index2.getZeroBased()), personToPair2);

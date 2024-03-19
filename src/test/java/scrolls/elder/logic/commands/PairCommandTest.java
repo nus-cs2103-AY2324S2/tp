@@ -3,24 +3,20 @@ package scrolls.elder.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static scrolls.elder.logic.commands.CommandTestUtil.assertCommandSuccess;
 
 import org.junit.jupiter.api.Test;
 
-import scrolls.elder.logic.Messages;
 import scrolls.elder.logic.commands.exceptions.CommandException;
 import scrolls.elder.model.Model;
 import scrolls.elder.model.ModelManager;
 import scrolls.elder.model.UserPrefs;
-import scrolls.elder.model.person.Person;
 import scrolls.elder.testutil.Assert;
-import scrolls.elder.testutil.PersonBuilder;
 import scrolls.elder.testutil.TypicalIndexes;
 import scrolls.elder.testutil.TypicalPersons;
 
 class PairCommandTest {
 
-    /* To fix test case so that it does not polllute JSON data
+    /* To fix test case so that it does not pollute JSON data
     @Test
     void execute_pairFilteredPersonList_pairSuccessful() {
         Model model = new ModelManager(TypicalPersons.getTypicalAddressBook(), new UserPrefs());
@@ -35,9 +31,9 @@ class PairCommandTest {
         Person afterPairingPerson2 = new PersonBuilder(personToPair2).withPairedWith(personToPair1).build();
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.setPerson(expectedModel.getFilteredPersonList().get(TypicalIndexes.INDEX_FIRST_PERSON.getZeroBased()),
+        expectedModel.setPerson(model.getFilteredPersonList().get(TypicalIndexes.INDEX_FIRST_PERSON.getZeroBased()),
                 afterPairingPerson1);
-        expectedModel.setPerson(expectedModel.getFilteredPersonList().get(TypicalIndexes.INDEX_FIFTH_PERSON.getZeroBased()),
+        expectedModel.setPerson(model.getFilteredPersonList().get(TypicalIndexes.INDEX_FIFTH_PERSON.getZeroBased()),
                 afterPairingPerson2);
 
         assertCommandSuccess(pairCommand, model, expectedMessage, expectedModel);
