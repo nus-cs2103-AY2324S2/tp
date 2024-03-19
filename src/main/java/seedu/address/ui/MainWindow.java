@@ -205,6 +205,17 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+    /**
+     * Returns true if the command requires module view and
+     * false if the command does not.
+     *
+     * @return true if command requires module view
+     */
+    public static boolean useModuleView(String commandText) {
+        return commandText.equals(ListClassesCommand.COMMAND_WORD)
+                || commandText.split(" ")[0].equals(AddClassCommand.COMMAND_WORD)
+                || commandText.split(" ")[0].equals(DeleteClassCommand.COMMAND_WORD);
+    }
     public PersonListPanel getPersonListPanel() {
         return personListPanel;
     }
@@ -230,9 +241,7 @@ public class MainWindow extends UiPart<Stage> {
 
             clearPanels();
 
-            if (commandText.equals(ListClassesCommand.COMMAND_WORD)
-                    || commandText.split(" ")[0].equals(AddClassCommand.COMMAND_WORD)
-                    || commandText.split(" ")[0].equals(DeleteClassCommand.COMMAND_WORD)) {
+            if (useModuleView(commandText)) {
                 switchToModuleListPanel();
             } else {
                 switchToPersonListPanel();
