@@ -24,7 +24,8 @@ public class FilterCommandParser implements Parser<FilterCommand> {
         String trimmedArgs = args.trim();
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, seedu.address.logic.commands.FilterCommand.MESSAGE_USAGE));
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                            seedu.address.logic.commands.FilterCommand.MESSAGE_USAGE));
         }
 
         Set<Tag> sortKeywords = ParserUtil.parseTags(Arrays.asList(trimmedArgs.split("\\s+")));
