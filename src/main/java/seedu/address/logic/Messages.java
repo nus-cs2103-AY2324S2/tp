@@ -21,7 +21,6 @@ public class Messages {
                 "Multiple values specified for the following single-valued field(s): ";
     public static final String MESSAGE_INVALID_EVENT_DISPLAYED_INDEX = "The event index provided is invalid";
     public static final String MESSAGE_SELECT_EVENT = "No event is selected!";
-    public static final String MESSAGE_INVALID_DELETE_EVENT = "No event can be deleted when it is selected";
 
     /**
      * Returns an error message indicating the duplicate prefixes.
