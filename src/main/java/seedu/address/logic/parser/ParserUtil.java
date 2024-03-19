@@ -2,9 +2,12 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
@@ -14,6 +17,8 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
+
+import seedu.address.model.meeting.Meeting;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -121,4 +126,23 @@ public class ParserUtil {
         }
         return tagSet;
     }
+    public static LocalDateTime parseDateTime(String dateTime) throws ParseException {
+        requireNonNull(dateTime);
+        String trimmedDateTime = dateTime.trim();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+        if (!Meeting.isValidDateTime(trimmedDateTime)) {
+            throw new ParseException(Meeting.MESSAGE_INVALID_DATE_TIME);
+        }
+        LocalDateTime parsedDateTime = LocalDateTime.parse(trimmedDateTime, formatter);
+        return parsedDateTime;
+    }
+    public static String parseDescription(String description) throws ParseException {
+        requireNonNull(description);
+        String trimmedDescription = description.trim();
+        if (!Meeting.isValidDescription(trimmedDescription)) {
+            throw new ParseException(Meeting.MESSAGE_CONSTRAINTS);
+        }
+        return trimmedDescription;
+    }
+
 }

@@ -2,24 +2,21 @@ package seedu.address.logic.parser;
 
 import seedu.address.logic.commands.AddMeetingCommand;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CLIENT_INDEX;
 
+
+import java.time.LocalDateTime;
 import java.util.Set;
 import java.util.stream.Stream;
 
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.meeting.Meeting;
 
+import seedu.address.commons.core.index.Index;
 
 public class AddMeetingParser implements Parser<AddMeetingCommand> {
 
@@ -30,22 +27,20 @@ public class AddMeetingParser implements Parser<AddMeetingCommand> {
     */
     public AddMeetingCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_DATE, PREFIX_TIME, PREFIX_LOCATION, PREFIX_DESCRIPTION);
+                ArgumentTokenizer.tokenize(args, PREFIX_CLIENT_INDEX,PREFIX_DATETIME, PREFIX_DESCRIPTION);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_DATE, PREFIX_TIME, PREFIX_LOCATION, PREFIX_DESCRIPTION)
+        if (!arePrefixesPresent(argMultimap, PREFIX_CLIENT_INDEX,PREFIX_DATETIME, PREFIX_DESCRIPTION)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddMeetingCommand.MESSAGE_USAGE));
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_DATE, PREFIX_TIME, PREFIX_LOCATION, PREFIX_DESCRIPTION);
-        Location location = ParserUtil.parseName(argMultimap.getValue(PREFIX_LOCATION).get());
-        Time time = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_TIME).get());
-        Date date = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_DATE).get());
-        Description description = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_DESCRIPTION).get());
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_CLIENT_INDEX,PREFIX_DATETIME, PREFIX_DESCRIPTION);
+        Index clientIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_CLIENT_INDEX).get());
+        LocalDateTime dateTime = ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_DATETIME).get());
+        String description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
 
-        Meeting meeting = new Meeting(date, time, location, description);
 
-        return new AddMeetingCommand(meeting);
+        return new AddMeetingCommand(dateTime, description, clientIndex);
     }
 
     /**
