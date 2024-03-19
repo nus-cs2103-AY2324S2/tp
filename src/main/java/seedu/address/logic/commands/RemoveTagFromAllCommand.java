@@ -71,8 +71,12 @@ public class RemoveTagFromAllCommand extends Command {
         if (!hasTag) {
             throw new CommandException(MESSAGE_TAG_DOES_NOT_EXIST);
         }
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        if (model.shouldPurgeAddressBook()) {
+            model.purgeAddressBook();
+        }
+        model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_REMOVE_TAG_SUCCESS,
             formatRemovedTags(removedTagList)));
     }
