@@ -16,6 +16,9 @@ public class CommandResult {
     /** Help information should be shown to the user. */
     private final boolean showHelp;
 
+    /** Profile panel should be updated. */
+    private final boolean updateProfile;
+
     /** The application should exit. */
     private final boolean exit;
 
@@ -26,6 +29,17 @@ public class CommandResult {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
+        this.updateProfile = false;
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified fields.
+     */
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean updateProfile) {
+        this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.showHelp = showHelp;
+        this.exit = exit;
+        this.updateProfile = updateProfile;
     }
 
     /**
