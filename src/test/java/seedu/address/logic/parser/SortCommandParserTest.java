@@ -31,4 +31,15 @@ public class SortCommandParserTest {
         assertParseSuccess(parser, " \n friends \n \t TAs  \t", expectedSortCommand);
     }
 
+    @Test
+    public void parse_caseInsensitiveArgs_returnsSortCommand() throws Exception {
+        // no leading and trailing whitespaces
+        SortCommand expectedSortCommand =
+                new SortCommand(new PersonHasTagPredicate(TestUtil.stringsToTags(Arrays.asList("friends", "TAs"))));
+        assertParseSuccess(parser, "friends TAs", expectedSortCommand);
+
+        // multiple whitespaces between keywords
+        assertParseSuccess(parser, " \n frieNDS \n \t TAs  \t", expectedSortCommand);
+    }
+
 }
