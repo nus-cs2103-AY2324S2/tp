@@ -154,7 +154,6 @@ public class ModelManager implements Model {
         versionedAddressBook.commitInitial(addressBook);
     }
 
-
     @Override
     public void commitAddressBook() {
         versionedAddressBook.commit(addressBook);
@@ -171,6 +170,24 @@ public class ModelManager implements Model {
         setAddressBook(undoneState);
     }
 
+    @Override
+    public boolean canRedoAddressBook() {
+        return versionedAddressBook.canRedo();
+    }
 
+    @Override
+    public void redoAddressBook() {
+        AddressBook redoneState = versionedAddressBook.redo();
+        setAddressBook(redoneState);
+    }
 
+    @Override
+    public boolean shouldPurgeAddressBook() {
+        return versionedAddressBook.shouldPurge();
+    }
+
+    @Override
+    public void purgeAddressBook() {
+        versionedAddressBook.purge();
+    }
 }

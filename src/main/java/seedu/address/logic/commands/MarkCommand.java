@@ -78,6 +78,9 @@ public class MarkCommand extends Command {
 
         model.setPerson(personToMark, updatedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        if (model.shouldPurgeAddressBook()) {
+            model.purgeAddressBook();
+        }
         model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_MARK_PERSON_SUCCESS, Messages.format(personToMark)));
     }
