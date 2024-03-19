@@ -7,6 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.MISSING_NRIC;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.TypicalAppointments.AMY_APPT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
@@ -40,6 +41,36 @@ public class DeleteCommandTest {
         expectedModel.deletePerson(personToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_validNricNoAppointments_success() {
+        Person personToDelete = model.getPersonWithNric(new Nric(VALID_NRIC_AMY));
+        DeleteCommand deleteCommand = new DeleteCommand(personToDelete.getNric());
+
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
+                Messages.format(personToDelete));
+
+        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel.deletePerson(personToDelete);
+
+        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_validNricWithAppointments_success() {
+        Person personToDelete = model.getPersonWithNric(new Nric(VALID_NRIC_AMY));
+        model.addAppointment(AMY_APPT);
+        DeleteCommand deleteCommand = new DeleteCommand(personToDelete.getNric());
+
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
+                Messages.format(personToDelete));
+
+        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel.deletePerson(personToDelete);
+
+        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        assertTrue(model.getFilteredAppointmentList().isEmpty());
     }
 
     @Test
