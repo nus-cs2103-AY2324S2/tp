@@ -1,11 +1,10 @@
 package seedu.address.model.person;
-import seedu.address.commons.util.StringUtil;
-import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.tag.Tag;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.function.Predicate;
+
+import seedu.address.commons.util.StringUtil;
+import seedu.address.commons.util.ToStringBuilder;
 
 /**
  * Tests that a {@code Person}'s {@code tag} matches any of the keywords given.
@@ -21,7 +20,7 @@ public class TagContainsKeywordsPredicate implements Predicate<Person> {
     public boolean test(Person person) {
         return person.getTags().stream() // Stream over the tags of the person
                 .anyMatch(personTag -> tags.stream() // Stream over the given tags to check
-                        .anyMatch(tagKeyword -> StringUtil.containsWordIgnoreCase(personTag.getTagName(), tagKeyword))); // Check if any tag matches any keyword
+                        .anyMatch(tagKeyword -> StringUtil.containsWordIgnoreCase(personTag.getTagName(), tagKeyword))); 
     }
 
 
