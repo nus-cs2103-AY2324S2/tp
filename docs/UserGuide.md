@@ -197,13 +197,14 @@ Examples:
 
 ### Adding a note : `note`
 
-Deletes the specified person from the Pooch Planner.
+Adds a note to a specified person from the Pooch Planner.
 
 Format: `/note ; name : [name] ; note : [note message]`
 
 * Adds a note to the contact with the specified `name`. 
 * Note that the specified person must first exist in Pooch Contact Book.
 * The name and note is a compulsory field that is case-insensitive but space-sensitive.
+* Note command can only be done on general persons classes. (eg. not Maintainer, Staff, Supplier)
 
 Examples:
 * `/note ; name : Poochie ; note : meet poochie tonight to get kibble`
