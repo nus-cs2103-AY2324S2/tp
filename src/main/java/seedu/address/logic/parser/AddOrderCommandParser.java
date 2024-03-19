@@ -1,14 +1,15 @@
 package seedu.address.logic.parser;
 
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.logic.commands.AddOrderCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Phone;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 
 import java.util.stream.Stream;
+
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.logic.commands.AddOrderCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Phone;
 
 /**
  * Parses input for AddOrderCommand

@@ -1,5 +1,11 @@
 package seedu.address.logic.parser;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRODUCT_QUANTITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRODUCT_NAME;
+
+import java.util.stream.Stream;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.AddOrderCommand;
@@ -7,12 +13,6 @@ import seedu.address.logic.commands.AddProductCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.order.Product;
 import seedu.address.model.order.Quantity;
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PRODUCT_QUANTITY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PRODUCT_NAME;
-
-import java.util.stream.Stream;
 
 /**
  * Parses input for AddProductCommand

@@ -6,8 +6,8 @@ import seedu.address.model.Model;
 import seedu.address.model.order.Order;
 import seedu.address.model.order.Product;
 import seedu.address.model.order.Quantity;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PRODUCT_QUANTITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRODUCT_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRODUCT_QUANTITY;
 
 /**
  * Adds a product to the order.
@@ -28,6 +28,11 @@ public class AddProductCommand extends Command {
     private final Product product;
     private final Quantity quantity;
 
+    /**
+     * Class constructor for AddProductCommand.
+     * @param product the product to be added
+     * @param quantity the quantity of the product to be added
+     */
     public AddProductCommand(Product product, Quantity quantity) {
         this.product = product;
         this.quantity = quantity;
