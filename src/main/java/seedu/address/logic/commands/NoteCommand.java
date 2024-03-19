@@ -9,9 +9,12 @@ import java.util.List;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.Maintainer;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Note;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Staff;
+import seedu.address.model.person.Supplier;
 
 /**
  * Adds a note of an existing person in the address book.
@@ -46,6 +49,10 @@ public class NoteCommand extends Command {
         List<Person> lastShownList = model.getFilteredPersonList();
 
         Person personToEdit = findByName(lastShownList, name);
+        if (personToEdit instanceof Maintainer || personToEdit instanceof Staff
+                || personToEdit instanceof Supplier) {
+            throw new CommandException("Person is not of general person class");
+        }
         Person editedPerson = new Person(
                 personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
                 personToEdit.getAddress(), note, personToEdit.getTags());
