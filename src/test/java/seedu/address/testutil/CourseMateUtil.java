@@ -29,11 +29,11 @@ public class CourseMateUtil {
      */
     public static String getCourseMateDetails(CourseMate courseMate) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_NAME + courseMate.getName().fullName + " ");
-        sb.append(PREFIX_PHONE + courseMate.getPhone().value + " ");
-        sb.append(PREFIX_EMAIL + courseMate.getEmail().value + " ");
+        sb.append(courseMate.getName().fullName + " ");
+        sb.append(PREFIX_PHONE + " " + courseMate.getPhone().value + " ");
+        sb.append(PREFIX_EMAIL + " " + courseMate.getEmail().value + " ");
         courseMate.getSkills().stream().forEach(
-            s -> sb.append(PREFIX_SKILL + s.skillName + " ")
+            s -> sb.append(PREFIX_SKILL + " " + s.skillName + " ")
         );
         return sb.toString();
     }
@@ -43,15 +43,15 @@ public class CourseMateUtil {
      */
     public static String getEditCourseMateDescriptorDetails(EditCommand.EditCourseMateDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
-        descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
-        descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
-        descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
+        descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(" ").append(name.fullName).append(" "));
+        descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(" ").append(phone.value).append(" "));
+        descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(" ").append(email.value).append(" "));
         if (descriptor.getSkills().isPresent()) {
             Set<Skill> skills = descriptor.getSkills().get();
             if (skills.isEmpty()) {
                 sb.append(PREFIX_SKILL);
             } else {
-                skills.forEach(s -> sb.append(PREFIX_SKILL).append(s.skillName).append(" "));
+                skills.forEach(s -> sb.append(PREFIX_SKILL).append(" ").append(s.skillName).append(" "));
             }
         }
         return sb.toString();
