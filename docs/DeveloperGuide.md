@@ -13,6 +13,7 @@
 
 ## **Acknowledgements**
 
+* Trie implementation is reused from [eugenp's tutorials](https://github.com/eugenp/tutorials) with minor modifications.
 _{ list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well }_
 
 --------------------------------------------------------------------------------------------------------------------
