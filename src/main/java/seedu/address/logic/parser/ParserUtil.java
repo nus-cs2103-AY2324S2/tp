@@ -76,20 +76,28 @@ public class ParserUtil {
         requireNonNull(phones);
         String[] splitPhones = phones.split(",");
 
-        if (splitPhones.length != 2) {
-            throw new ParseException(Phone.INVALID_NUMBER_OF_PHONES);
-        }
-
         Phone[] phoneArray = new Phone[2];
-        for (int i = 0; i < splitPhones.length; i++) {
-            String trimmedPhone = splitPhones[i].trim();
+        if (splitPhones.length == 2) {
+            for (int i = 0; i < splitPhones.length; i++) {
+                String trimmedPhone = splitPhones[i].trim();
+                if (!Phone.isValidPhone(trimmedPhone)) {
+                    throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+                }
+                phoneArray[i] = new Phone(trimmedPhone);
+            }
+            return phoneArray;
+        } else if (splitPhones.length == 1) {
+            String trimmedPhone = splitPhones[0].trim();
             if (!Phone.isValidPhone(trimmedPhone)) {
                 throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
             }
-            phoneArray[i] = new Phone(trimmedPhone);
+            phoneArray[0] = new Phone(trimmedPhone);
+            phoneArray[1] = new Phone(trimmedPhone);
+            return phoneArray;
+        } else {
+            throw new ParseException(Phone.INVALID_NUMBER_OF_PHONES);
         }
 
-        return phoneArray;
     }
 
     /**
