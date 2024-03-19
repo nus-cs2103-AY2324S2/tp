@@ -34,6 +34,8 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+
+        initQrCodes();
     }
 
     public ModelManager() {
@@ -114,6 +116,15 @@ public class ModelManager implements Model {
         editedPerson.generateQrCode();
 
         addressBook.setPerson(target, editedPerson);
+    }
+
+    /**
+     * Initialize QR codes for all persons in the address book.
+     */
+    public void initQrCodes() {
+        for (Person person : this.addressBook.getPersonList()) {
+            person.generateQrCode();
+        }
     }
 
     //=========== Filtered Person List Accessors =============================================================
