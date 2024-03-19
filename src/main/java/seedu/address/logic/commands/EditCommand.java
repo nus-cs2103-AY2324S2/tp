@@ -110,7 +110,6 @@ public class EditCommand extends Command {
             return true;
         }
 
-        // instanceof handles nulls
         if (!(other instanceof EditCommand)) {
             return false;
         }
@@ -215,14 +214,12 @@ public class EditCommand extends Command {
                 return true;
             }
 
-            // instanceof handles nulls
             if (!(other instanceof EditPersonDescriptor)) {
                 return false;
             }
 
             EditPersonDescriptor otherEditPersonDescriptor = (EditPersonDescriptor) other;
 
-            // Compare each field individually
             boolean phoneEquals = Objects.equals(phone, otherEditPersonDescriptor.phone);
             boolean emailEquals = Objects.equals(email, otherEditPersonDescriptor.email);
             boolean addressEquals = Objects.equals(address, otherEditPersonDescriptor.address);
