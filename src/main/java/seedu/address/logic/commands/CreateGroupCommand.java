@@ -40,7 +40,7 @@ public class CreateGroupCommand extends Command {
     private final Set<QueryableCourseMate> queryableCourseMateSet;
 
     /**
-     * Basic constructor for CreateGroupCommand.
+     * Basic constructor for {@code CreateGroupCommand}.
      * Creates the details or a group to be created.
      * @param groupName name of the group
      * @param queryableCourseMateSet set containing the queryableCourseMate in the group
@@ -54,22 +54,23 @@ public class CreateGroupCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        Set<CourseMate> courseMateList;
         try {
-            Set<CourseMate> courseMateList = queryableCourseMateSet
+            courseMateList = queryableCourseMateSet
                     .stream()
                     .map(model::findCourseMate)
                     .collect(Collectors.toSet());
-            Group toAdd = new Group(groupName, courseMateList);
-
-            if (model.hasGroup(toAdd)) {
-                throw new CommandException(MESSAGE_DUPLICATE_GROUP);
-            }
-
-            model.addGroup(toAdd);
-            return new CommandResult(String.format(MESSAGE_GROUP_CREATED, groupName));
         } catch (CourseMateNotFoundException e) {
             throw new CommandException(MESSAGE_MEMBERS_DONT_EXIST);
         }
+
+        Group toAdd = new Group(groupName, courseMateList);
+        if (model.hasGroup(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_GROUP);
+        }
+        model.addGroup(toAdd);
+
+        return new CommandResult(String.format(MESSAGE_GROUP_CREATED, groupName));
     }
 
     @Override

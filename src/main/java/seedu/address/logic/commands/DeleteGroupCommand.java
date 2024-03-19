@@ -22,7 +22,7 @@ public class DeleteGroupCommand extends Command {
     private final Name toDelete;
 
     /**
-     * Basic constructor for DeleteGroupCommand. Deletes a specified group.
+     * Basic constructor for {@code DeleteGroupCommand}. Deletes a specified group.
      * @param toDelete group to be deleted
      */
     public DeleteGroupCommand(Name toDelete) {
