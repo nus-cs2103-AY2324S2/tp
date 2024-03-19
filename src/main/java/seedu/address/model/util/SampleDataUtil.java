@@ -21,36 +21,34 @@ import seedu.address.model.person.Tag;
  */
 public class SampleDataUtil {
 
-    public static final NusId SAMPLE_NUSID = new NusId("E1234567");
-    public static final Schedule SAMPLE_SCHEDULE = new Schedule("21-12-2024");
     public static Person[] getSamplePersons() {
         return new Person[] {
-            new Person(SAMPLE_NUSID, new Name("Alex Yeoh"),
+            new Person(new NusId("E1234567"), new Name("Alex Yeoh"),
                 new Phone("87438807"), new Email("alexyeoh@example.com"),
                 new Tag("Student"),
                 getGroupSet("friends"),
                 new Schedule("21-12-2024"), new Remark("Consultation with Alex")),
-            new Person(SAMPLE_NUSID, new Name("Bernice Yu"),
+            new Person(new NusId("E2345678"), new Name("Bernice Yu"),
                 new Phone("99272758"), new Email("berniceyu@example.com"),
                 new Tag("Student"),
                 getGroupSet("colleagues", "friends"),
                 new Schedule("22-12-2024"), new Remark("Consultation with Bernice")),
-            new Person(SAMPLE_NUSID, new Name("Charlotte Oliveiro"),
+            new Person(new NusId("E0987654"), new Name("Charlotte Oliveiro"),
                 new Phone("93210283"), new Email("charlotte@example.com"),
                 new Tag("TA"),
                 getGroupSet("neighbours"),
-                SAMPLE_SCHEDULE, new Remark("Consultation with Charlotte")),
-            new Person(SAMPLE_NUSID, new Name("David Li"),
+                new Schedule("21-12-2024"), new Remark("Consultation with Charlotte")),
+            new Person(new NusId("E9876543"), new Name("David Li"),
                 new Phone("91031282"), new Email("lidavid@example.com"),
                 new Tag("Professor"),
                 getGroupSet("family"),
                 new Schedule("23-12-2024"), new Remark("Consultation with David")),
-            new Person(SAMPLE_NUSID, new Name("Irfan Ibrahim"),
+            new Person(new NusId("E0123456"), new Name("Irfan Ibrahim"),
                 new Phone("92492021"), new Email("irfan@example.com"),
                 new Tag("TA"),
                 getGroupSet("classmates"),
                 new Schedule("24-12-2024"), new Remark("Consultation with Irfan")),
-            new Person(SAMPLE_NUSID, new Name("Roy Balakrishnan"),
+            new Person(new NusId("E1029384"), new Name("Roy Balakrishnan"),
                 new Phone("92624417"), new Email("royb@example.com"),
                 new Tag("None"),
                 getGroupSet("colleagues"),
