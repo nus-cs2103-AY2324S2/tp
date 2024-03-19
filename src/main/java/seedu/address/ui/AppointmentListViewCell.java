@@ -15,7 +15,7 @@ public class AppointmentListViewCell extends ListCell<Appointment> {
             setGraphic(null);
             setText(null);
         } else {
-            setGraphic(new AppointmentCard(appointment, getIndex() + 1).getRoot());
+            setGraphic(new AppointmentCard(appointment).getRoot());
         }
     }
 }

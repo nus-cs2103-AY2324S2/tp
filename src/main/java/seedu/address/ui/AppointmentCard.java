@@ -28,8 +28,6 @@ public class AppointmentCard extends UiPart<Region> {
     @FXML
     private Label name;
     @FXML
-    private Label studentId;
-    @FXML
     private Label appointmentId;
     @FXML
     private Label appointmentDateTime;
@@ -41,13 +39,15 @@ public class AppointmentCard extends UiPart<Region> {
     /**
      * Creates a {@code AppointmentCode} with the given {@code Appointment} and index to display.
      */
-    public AppointmentCard(Appointment appointment, int displayedIndex) {
+    public AppointmentCard(Appointment appointment) {
         super(FXML);
         this.appointment = appointment;
 
         appointmentId.setText(appointment.getAppointmentId() + ". ");
-        studentId.setText(Integer.toString(appointment.getStudentId()));
-        appointmentDateTime.setText(appointment.getAppointmentDateTime().toString());
+        //TODO: replace student id with student name
+        name.setText("StudentId: " + Integer.toString(appointment.getStudentId()));
+        appointmentDateTime.setText(appointment.getAppointmentDateTime().toString().replace("T", " "));
         hasAttended.setText(Boolean.toString(appointment.getAttendedStatus()));
+        appointmentDescription.setText(appointment.getAppointmentDescription());
     }
 }
