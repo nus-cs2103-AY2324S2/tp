@@ -138,7 +138,7 @@ The `Model` component,
 
 Here are the other classes in `Model` (omitted from the class diagram above) that are used for filtering the list which is exposed to outsiders:
 
-<puml src="diagrams/ParserClasses.puml" width="600"/>
+<puml src="diagrams/PredicateClasses.puml" width="600"/>
 
 How the filtering works:
 * When filtering is needed, the `XYZCommand` class (`XYZ` is a placeholder for the specific command name e.g., `SelectCommand`) passes a `Predicate` object (e.g., `IsSamePersonCommand`) to the `Model` component.
