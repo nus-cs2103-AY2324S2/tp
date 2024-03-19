@@ -8,7 +8,6 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -235,7 +234,8 @@ public class ParserUtilTest {
 
     @Test
     public void parseDateTimes_collectionWithInvalidDateTimes_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseDateTimes(Arrays.asList(VALID_DATETIME_1, INVALID_DATETIME)));
+        assertThrows(ParseException.class, () -> ParserUtil.parseDateTimes(Arrays.asList(VALID_DATETIME_1,
+                INVALID_DATETIME)));
     }
 
     @Test
@@ -246,7 +246,8 @@ public class ParserUtilTest {
     @Test
     public void parseDateTimes_collectionWithValidDateTimes_returnsDateTimeSet() throws Exception {
         Set<DateTime> actualDateTimeSet = ParserUtil.parseDateTimes(Arrays.asList(VALID_DATETIME_1, VALID_DATETIME_2));
-        Set<DateTime> expectedDateTimeSet = new HashSet<DateTime>(Arrays.asList(new DateTime(VALID_DATETIME_1), new DateTime(VALID_DATETIME_2)));
+        Set<DateTime> expectedDateTimeSet = new HashSet<DateTime>(Arrays.asList(new DateTime(VALID_DATETIME_1),
+                new DateTime(VALID_DATETIME_2)));
 
         assertEquals(expectedDateTimeSet, actualDateTimeSet);
     }
