@@ -6,8 +6,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SKILL_CPP;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SKILL_JAVA;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_SKILL_REACT;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -47,9 +47,9 @@ public class TypicalCourseMates {
 
     // Manually added - CourseMate's details found in {@code CommandTestUtil}
     public static final CourseMate AMY = new CourseMateBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
-            .withEmail(VALID_EMAIL_AMY).withSkills(VALID_SKILL_REACT).build();
+            .withEmail(VALID_EMAIL_AMY).withSkills(VALID_SKILL_CPP).build();
     public static final CourseMate BOB = new CourseMateBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-            .withEmail(VALID_EMAIL_BOB).withSkills(VALID_SKILL_JAVA, VALID_SKILL_REACT)
+            .withEmail(VALID_EMAIL_BOB).withSkills(VALID_SKILL_JAVA, VALID_SKILL_CPP)
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER

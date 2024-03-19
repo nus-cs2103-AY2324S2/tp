@@ -39,9 +39,6 @@ class JsonAdaptedSkill {
      * @throws IllegalValueException if there were any data constraints violated in the adapted skill.
      */
     public Skill toModelType() throws IllegalValueException {
-        if (!Skill.isValidSkillName(skillName)) {
-            throw new IllegalValueException(Skill.MESSAGE_CONSTRAINTS);
-        }
         return new Skill(skillName);
     }
 

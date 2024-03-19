@@ -23,11 +23,11 @@ import seedu.address.model.skill.Skill;
 /**
  * Adds a courseMate to the contact list.
  */
-public class AddSkillCommand extends Command {
+public class DeleteSkillCommand extends Command {
 
-    public static final String COMMAND_WORD = "add-skill";
+    public static final String COMMAND_WORD = "delete-skill";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds skills to a coursemate. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes skills of a coursemate. "
             + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_SKILL + " SKILL "
             + "[" + PREFIX_SKILL + " SKILL]...\n"
@@ -35,22 +35,23 @@ public class AddSkillCommand extends Command {
             + PREFIX_SKILL + " Python "
             + PREFIX_SKILL + " Java";
 
-    public static final String MESSAGE_SUCCESS = "New skills added";
+    public static final String MESSAGE_SUCCESS = "Skills are successfully deleted";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_COURSE_MATE = "This courseMate already exists in the contact list";
+    public static final String MESSAGE_SKILL_NOT_PRESENT = "This courseMate does not have one of the skills provided.";
 
     private final Index index;
-    private final AddSkillDescriptor addSkillDescriptor;
+    private final DeleteSkillDescriptor deleteSkillDescriptor;
     /**
      * @param index of the courseMate in the filtered courseMate list to edit
-     * @param addSkillDescriptor list of skills to edit the courseMate with
+     * @param deleteSkillDescriptor list of skills to edit the courseMate with
      */
-    public AddSkillCommand(Index index, AddSkillDescriptor addSkillDescriptor) {
+    public DeleteSkillCommand(Index index, DeleteSkillDescriptor deleteSkillDescriptor) {
         requireNonNull(index);
-        requireNonNull(addSkillDescriptor);
+        requireNonNull(deleteSkillDescriptor);
 
         this.index = index;
-        this.addSkillDescriptor = new AddSkillDescriptor(addSkillDescriptor);
+        this.deleteSkillDescriptor = new DeleteSkillDescriptor(deleteSkillDescriptor);
     }
 
     @Override
@@ -63,7 +64,11 @@ public class AddSkillCommand extends Command {
         }
 
         CourseMate courseMateToEdit = lastShownList.get(index.getZeroBased());
-        CourseMate editedCourseMate = addSkillToCourseMate(courseMateToEdit, addSkillDescriptor);
+        if (!validSkillsToDelete(courseMateToEdit, deleteSkillDescriptor)) {
+            throw new CommandException(MESSAGE_SKILL_NOT_PRESENT);
+        }
+        assert(validSkillsToDelete(courseMateToEdit, deleteSkillDescriptor));
+        CourseMate editedCourseMate = deleteCourseMateSkills(courseMateToEdit, deleteSkillDescriptor);
 
         if (!courseMateToEdit.isSameCourseMate(editedCourseMate) && model.hasCourseMate(editedCourseMate)) {
             throw new CommandException(MESSAGE_DUPLICATE_COURSE_MATE);
@@ -76,15 +81,31 @@ public class AddSkillCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code CourseMate} with the details of {@code courseMateToEdit}
-     * edited with {@code addSkillDescriptor}.
+     * Checks if the {@code CourseMate} to be edited has all the skills listed in {@code deleteSkillDescriptor}.
      */
-    private static CourseMate addSkillToCourseMate(CourseMate courseMateToEdit,
-                                                     AddSkillDescriptor addSkillDescriptor) {
+    private static boolean validSkillsToDelete(CourseMate courseMateToEdit,
+                                               DeleteSkillDescriptor deleteSkillDescriptor) {
+        Set<Skill> courseMateSkills = courseMateToEdit.getSkills();
+        Set<Skill> commandSkills = deleteSkillDescriptor.getSkills().orElse(Collections.emptySet());
+
+        for (Skill skill : commandSkills) {
+            if (!courseMateSkills.contains(skill)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Creates and returns a {@code CourseMate} with the details of {@code courseMateToEdit}
+     * edited with {@code deleteSkillDescriptor}.
+     */
+    private static CourseMate deleteCourseMateSkills(CourseMate courseMateToEdit,
+                                                     DeleteSkillDescriptor deleteSkillDescriptor) {
         assert courseMateToEdit != null;
 
-        addSkillDescriptor.mergeSkills(courseMateToEdit.getSkills());
-        Set<Skill> updatedSkills = addSkillDescriptor.getSkills().orElse(courseMateToEdit.getSkills());
+        deleteSkillDescriptor.deleteSkills(courseMateToEdit.getSkills());
+        Set<Skill> updatedSkills = deleteSkillDescriptor.getSkills().orElse(courseMateToEdit.getSkills());
 
         return new CourseMate(courseMateToEdit.getName(), courseMateToEdit.getPhone(),
                 courseMateToEdit.getEmail(), updatedSkills);
@@ -97,36 +118,36 @@ public class AddSkillCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AddSkillCommand)) {
+        if (!(other instanceof DeleteSkillCommand)) {
             return false;
         }
 
-        AddSkillCommand otherAddSkillCommand = (AddSkillCommand) other;
-        return index.equals(otherAddSkillCommand.index)
-                && addSkillDescriptor.equals(otherAddSkillCommand.addSkillDescriptor);
+        DeleteSkillCommand otherDeleteSkillCommand = (DeleteSkillCommand) other;
+        return index.equals(otherDeleteSkillCommand.index)
+                && deleteSkillDescriptor.equals(otherDeleteSkillCommand.deleteSkillDescriptor);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .add("index", index)
-                .add("addSkillDescriptor", addSkillDescriptor)
+                .add("deleteSkillDescriptor", deleteSkillDescriptor)
                 .toString();
     }
 
     /**
-     * Stores the list of skills to add to the courseMate.
+     * Stores the list of skills to delete from the courseMate.
      */
-    public static class AddSkillDescriptor {
+    public static class DeleteSkillDescriptor {
         private Set<Skill> skills;
 
-        public AddSkillDescriptor() {}
+        public DeleteSkillDescriptor() {}
 
         /**
          * Copy constructor.
          * A defensive copy of {@code skills} is used internally.
          */
-        public AddSkillDescriptor(AddSkillDescriptor toCopy) {
+        public DeleteSkillDescriptor(DeleteSkillDescriptor toCopy) {
             setSkills(toCopy.skills);
         }
 
@@ -155,12 +176,17 @@ public class AddSkillCommand extends Command {
         }
 
         /**
-         * Merges the set of skills in the object with the set of skills in the argument
+         * Deletes the set of skills in the object with the set of skills in the argument
          */
-        public void mergeSkills(Set<Skill> argSkills) {
+        public void deleteSkills(Set<Skill> argSkills) {
+            Set<Skill> newSet = new HashSet<Skill>();
             for (Skill skill : argSkills) {
-                this.skills.add(skill);
+                newSet.add(skill);
             }
+            for (Skill skill : this.skills) {
+                newSet.remove(skill);
+            }
+            setSkills(newSet);
         }
 
         @Override
@@ -170,12 +196,12 @@ public class AddSkillCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof AddSkillDescriptor)) {
+            if (!(other instanceof DeleteSkillDescriptor)) {
                 return false;
             }
 
-            AddSkillDescriptor otherAddSkillDescriptor = (AddSkillDescriptor) other;
-            return Objects.equals(skills, otherAddSkillDescriptor.skills);
+            DeleteSkillDescriptor otherDeleteSkillDescriptor = (DeleteSkillDescriptor) other;
+            return Objects.equals(skills, otherDeleteSkillDescriptor.skills);
         }
 
         @Override

@@ -10,17 +10,4 @@ public class SkillTest {
     public void constructor_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new Skill(null));
     }
-
-    @Test
-    public void constructor_invalidSkillName_throwsIllegalArgumentException() {
-        String invalidSkillName = "";
-        assertThrows(IllegalArgumentException.class, () -> new Skill(invalidSkillName));
-    }
-
-    @Test
-    public void isValidSKillName() {
-        // null skill name
-        assertThrows(NullPointerException.class, () -> Skill.isValidSkillName(null));
-    }
-
 }

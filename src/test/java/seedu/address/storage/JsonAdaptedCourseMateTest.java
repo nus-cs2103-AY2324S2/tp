@@ -5,7 +5,6 @@ import static seedu.address.storage.JsonAdaptedCourseMate.MISSING_FIELD_MESSAGE_
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalCourseMates.BENSON;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,7 +19,6 @@ public class JsonAdaptedCourseMateTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_EMAIL = "example.com";
-    private static final String INVALID_SKILL = "#friend";
 
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_PHONE = BENSON.getPhone().toString();
@@ -81,15 +79,6 @@ public class JsonAdaptedCourseMateTest {
                 new JsonAdaptedCourseMate(VALID_NAME, VALID_PHONE, null, VALID_SKILLS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, courseMate::toModelType);
-    }
-
-    @Test
-    public void toModelType_invalidSkills_throwsIllegalValueException() {
-        List<JsonAdaptedSkill> invalidSkills = new ArrayList<>(VALID_SKILLS);
-        invalidSkills.add(new JsonAdaptedSkill(INVALID_SKILL));
-        JsonAdaptedCourseMate courseMate =
-                new JsonAdaptedCourseMate(VALID_NAME, VALID_PHONE, VALID_EMAIL, invalidSkills);
-        assertThrows(IllegalValueException.class, courseMate::toModelType);
     }
 
 }

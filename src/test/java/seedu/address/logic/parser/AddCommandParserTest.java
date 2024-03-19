@@ -6,20 +6,19 @@ import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_AMPERSAND;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_SKILL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.address.logic.commands.CommandTestUtil.SKILL_DESC_CPP;
+import static seedu.address.logic.commands.CommandTestUtil.SKILL_DESC_CSHARP;
 import static seedu.address.logic.commands.CommandTestUtil.SKILL_DESC_JAVA;
-import static seedu.address.logic.commands.CommandTestUtil.SKILL_DESC_REACT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_SKILL_JAVA;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_SKILL_REACT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SKILL_CPP;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SKILL_CSHARP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -35,7 +34,6 @@ import seedu.address.model.coursemate.CourseMate;
 import seedu.address.model.coursemate.Email;
 import seedu.address.model.coursemate.Name;
 import seedu.address.model.coursemate.Phone;
-import seedu.address.model.skill.Skill;
 import seedu.address.testutil.CourseMateBuilder;
 
 public class AddCommandParserTest {
@@ -43,26 +41,26 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        CourseMate expectedCourseMate = new CourseMateBuilder(BOB).withSkills(VALID_SKILL_REACT).build();
+        CourseMate expectedCourseMate = new CourseMateBuilder(BOB).withSkills(VALID_SKILL_CPP).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + VALID_NAME_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + SKILL_DESC_REACT, new AddCommand(expectedCourseMate));
+                + SKILL_DESC_CPP, new AddCommand(expectedCourseMate));
 
 
         // multiple skills - all accepted
         CourseMate expectedCourseMateMultipleSkills =
-                new CourseMateBuilder(BOB).withSkills(VALID_SKILL_REACT, VALID_SKILL_JAVA).build();
+                new CourseMateBuilder(BOB).withSkills(VALID_SKILL_CPP, VALID_SKILL_CSHARP).build();
         assertParseSuccess(parser,
                 VALID_NAME_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                        + SKILL_DESC_JAVA + SKILL_DESC_REACT,
+                        + SKILL_DESC_CSHARP + SKILL_DESC_CPP,
                 new AddCommand(expectedCourseMateMultipleSkills));
     }
 
     @Test
     public void parse_repeatedNonSkillValue_failure() {
         String validExpectedCourseMateString = VALID_NAME_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + SKILL_DESC_REACT;
+                + SKILL_DESC_CPP;
 
         // multiple phones
         assertParseFailure(parser, validExpectedCourseMateString + PHONE_DESC_AMY,
@@ -82,24 +80,24 @@ public class AddCommandParserTest {
 
         // invalid email
         assertParseFailure(parser, VALID_NAME_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC
-                        + EMAIL_DESC_BOB + SKILL_DESC_REACT,
+                        + EMAIL_DESC_BOB + SKILL_DESC_CPP,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_EMAIL));
 
         // invalid phone
         assertParseFailure(parser, VALID_NAME_BOB + INVALID_PHONE_DESC + PHONE_DESC_BOB
-                        + EMAIL_DESC_BOB + SKILL_DESC_REACT,
+                        + EMAIL_DESC_BOB + SKILL_DESC_CPP,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PHONE));
 
         // valid value followed by invalid value
 
         // invalid email
         assertParseFailure(parser, VALID_NAME_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                        + INVALID_EMAIL_DESC + SKILL_DESC_REACT,
+                        + INVALID_EMAIL_DESC + SKILL_DESC_CPP,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_EMAIL));
 
         // invalid phone
         assertParseFailure(parser, VALID_NAME_BOB + PHONE_DESC_BOB + INVALID_PHONE_DESC
-                        + EMAIL_DESC_BOB + SKILL_DESC_REACT,
+                        + EMAIL_DESC_BOB + SKILL_DESC_CPP,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PHONE));
     }
 
@@ -116,16 +114,16 @@ public class AddCommandParserTest {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
 
         // missing phone prefix
-        assertParseFailure(parser, NAME_DESC_BOB + VALID_PHONE_BOB + EMAIL_DESC_BOB,
+        assertParseFailure(parser, VALID_NAME_BOB + EMAIL_DESC_BOB + VALID_PHONE_BOB,
                 expectedMessage);
 
         // missing email prefix
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + VALID_EMAIL_BOB,
+        assertParseFailure(parser, VALID_NAME_BOB + PHONE_DESC_BOB + VALID_EMAIL_BOB,
                 expectedMessage);
 
-        // all prefixes missing
+        // all prefixes missing, all counted as name
         assertParseFailure(parser, VALID_NAME_BOB + VALID_PHONE_BOB + VALID_EMAIL_BOB,
-                expectedMessage);
+                Name.MESSAGE_CONSTRAINTS);
     }
 
     @Test
@@ -136,19 +134,15 @@ public class AddCommandParserTest {
 
         // invalid name
         assertParseFailure(parser, INVALID_NAME_AMPERSAND + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + SKILL_DESC_JAVA + SKILL_DESC_REACT, Name.MESSAGE_CONSTRAINTS);
+                + SKILL_DESC_JAVA + SKILL_DESC_CPP, Name.MESSAGE_CONSTRAINTS);
 
         // invalid phone
         assertParseFailure(parser, VALID_NAME_BOB + INVALID_PHONE_DESC + EMAIL_DESC_BOB
-                + SKILL_DESC_JAVA + SKILL_DESC_REACT, Phone.MESSAGE_CONSTRAINTS);
+                + SKILL_DESC_JAVA + SKILL_DESC_CPP, Phone.MESSAGE_CONSTRAINTS);
 
         // invalid email
         assertParseFailure(parser, VALID_NAME_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC
-                + SKILL_DESC_JAVA + SKILL_DESC_REACT, Email.MESSAGE_CONSTRAINTS);
-
-        // invalid skill
-        assertParseFailure(parser, VALID_NAME_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + INVALID_SKILL_DESC + VALID_SKILL_REACT, Skill.MESSAGE_CONSTRAINTS);
+                + SKILL_DESC_JAVA + SKILL_DESC_CPP, Email.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_AMPERSAND + PHONE_DESC_BOB + INVALID_EMAIL_DESC,

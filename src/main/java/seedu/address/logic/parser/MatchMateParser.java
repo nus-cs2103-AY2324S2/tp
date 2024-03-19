@@ -15,16 +15,16 @@ import java.util.regex.Pattern;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddSkillCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteSkillCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.AddSkillCommand;
-import seedu.address.logic.commands.DeleteSkillCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -90,10 +90,10 @@ public class MatchMateParser {
             return new HelpCommand();
 
         case AddSkillCommand.COMMAND_WORD:
-            return new AddSkillCommand().parse(arguments);
+            return new AddSkillCommandParser().parse(arguments);
 
         case DeleteSkillCommand.COMMAND_WORD:
-            return new DeleteSkillCommand().parse(arguments);
+            return new DeleteSkillCommandParser().parse(arguments);
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);
@@ -105,8 +105,8 @@ public class MatchMateParser {
      * Checks for prefixes if they are valid with the currently supported prefix codes. The argument is valid
      * if every prefix occurence in {@code argsString} is lead and trailed by a whitespace.
      *
-     * @param argsString      Arguments string of the form: {@code preamble <prefix> value <prefix> value ...}
-     * @return                Boolean object that indicates whether {@code argsString} is valid.
+     * @param argsString Arguments string of the form: {@code preamble <prefix> value <prefix> value ...}
+     * @return Boolean object that indicates whether {@code argsString} is valid.
      */
     private boolean isValidArgument(String argsString) {
         // Iterate through the list of valid prefixes
