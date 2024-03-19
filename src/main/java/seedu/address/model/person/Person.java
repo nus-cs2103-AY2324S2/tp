@@ -37,7 +37,7 @@ public class Person {
     private Diagnosis diagnosis = null;
     private Symptom symptom = null;
     /**
-     * Every field must be present and not null.
+     * Every mandatory field must be present and not null.
      */
     public Person(Nric nric, Name name, Phone phone, Address address, DateOfBirth dateOfBirth, Sex sex, Status status) {
         //Only the fields that are mandatory are included down here

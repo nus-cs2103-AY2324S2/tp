@@ -10,20 +10,27 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Allergies;
 import seedu.address.model.person.BloodType;
+import seedu.address.model.person.Condition;
+import seedu.address.model.person.Country;
+import seedu.address.model.person.DateOfAdmission;
 import seedu.address.model.person.DateOfBirth;
+import seedu.address.model.person.Diagnosis;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Sex;
 import seedu.address.model.person.Status;
+import seedu.address.model.person.Symptom;
 import seedu.address.model.tag.Tag;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
  */
 public class ParserUtil {
+    //TODO: add parser for new fields
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
 
@@ -145,17 +152,96 @@ public class ParserUtil {
         }
         return new Status(status);
     }
+    /**
+     * Parses a {@code String country} into an {@code Country country}.
+     * Leading and trailing whitespaces will be trimmed.
+     * @throws ParseException if the given {@code country} is invalid.
+     */
+    public static Country parseCountry(String country) throws ParseException {
+        requireNonNull(country);
+        //TODO: Implement country validation & standardisation
+        String trimmedCountry = country.trim();
+        return new Country(trimmedCountry);
+    }
+    /**
+     * Parses a {@code String dateOfAdmission} into an {@code DateOfAdmission dateOfAdmission}.
+     * Leading and trailing whitespaces will be trimmed.
+     * @throws ParseException if the given {@code dateOfAdmission} is invalid.
+     */
+    public static DateOfAdmission parseDateOfAdmission(String dateOfAdmission) throws ParseException {
+        requireNonNull(dateOfAdmission);
+        String trimmedDateOfAdmission = dateOfAdmission.trim();
+        if (!DateOfAdmission.isValidDateOfAdmission(trimmedDateOfAdmission)) {
+            throw new ParseException(DateOfBirth.MESSAGE_CONSTRAINTS);
+        }
+        return new DateOfAdmission(trimmedDateOfAdmission);
+    }
 
     /**
      * Parses a {@code String status} into an {@code Status status}.
      * Leading and trailing whitespaces will be trimmed.
+     *
      * @throws ParseException if the given {@code sex} is invalid.
      */
     public static BloodType parseBloodType(String bloodType) throws ParseException {
         requireNonNull(bloodType);
-        String formattedStatus = bloodType.trim();
-        return new BloodType("A", "POSITIVE");
+        String trimmedBloodType = bloodType.trim();
+        String type = trimmedBloodType.substring(0, 1);
+        String rh = trimmedBloodType.substring(1);
+        if (!BloodType.isValidBloodType(type, rh)) {
+            throw new ParseException(BloodType.MESSAGE_CONSTRAINTS);
+        }
+        rh = rh.equals("+") ? "POSITIVE" : "NEGATIVE";
+        return new BloodType(type, rh);
     }
+    /**
+     * Parses a {@code String allergies} into an {@code Set<Allergies>}.
+     * Leading and trailing whitespaces will be trimmed.
+     * @throws ParseException if the given {@code allergies} is invalid.
+     */
+    public static Allergies parseAllergies(String allergies) throws ParseException {
+        requireNonNull(allergies);
+        String trimmedAllergies = allergies.trim();
+        if (!Address.isValidAddress(trimmedAllergies)) {
+            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+        }
+        return new Allergies(trimmedAllergies);
+    }
+    /**
+     * Parses a {@code String condition} into an {@code Condition}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code condition} is invalid.
+     */
+    public static Condition parseCondition(String condition) throws ParseException {
+        requireNonNull(condition);
+        String trimmedCondition = condition.trim();
+        //TODO: Implement condition validation & standardisation
+        return new Condition(trimmedCondition);
+    }
+    /**
+     * Parses a {@code String symptom} into an {@code Symptom}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code symptom} is invalid.
+     */
+    public static Symptom parseSymptom(String symptom) throws ParseException {
+        requireNonNull(symptom);
+        String trimmedSymptom = symptom.trim();
+        return new Symptom(trimmedSymptom);
+    }
+    /**
+     * Parses a {@code String diagnosis} into an {@code Diagnosis}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code diagnosis} is invalid.
+     */
+    public static Diagnosis parseDiagnosis(String diagnosis) throws ParseException {
+        requireNonNull(diagnosis);
+        String trimmedDiagnosis = diagnosis.trim();
+        return new Diagnosis(trimmedDiagnosis);
+    }
+
 
     /**
      * Parses a {@code String email} into an {@code Email}.
