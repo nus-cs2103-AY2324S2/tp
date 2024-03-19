@@ -1,7 +1,8 @@
 package vitalconnect.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static vitalconnect.logic.Messages.*;
+import static vitalconnect.logic.Messages.MESSAGE_MEDICAL_INFO_ALREADY_EXIST;
+import static vitalconnect.logic.Messages.MESSAGE_PERSON_NOT_FOUND;
 import static vitalconnect.logic.parser.CliSyntax.PREFIX_ALLERGYTAG;
 import static vitalconnect.logic.parser.CliSyntax.PREFIX_HEIGHT;
 import static vitalconnect.logic.parser.CliSyntax.PREFIX_NRIC;

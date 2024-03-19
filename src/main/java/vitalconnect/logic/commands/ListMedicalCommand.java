@@ -1,12 +1,14 @@
 package vitalconnect.logic.commands;
 
-import vitalconnect.logic.commands.exceptions.CommandException;
-import vitalconnect.model.Model;
-
 import static java.util.Objects.requireNonNull;
 import static vitalconnect.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-public class ListMedicalCommand extends Command{
+import vitalconnect.model.Model;
+
+/**
+ * List all the medical information of a person with their name
+ */
+public class ListMedicalCommand extends Command {
     public static final String COMMAND_WORD = "listmi";
 
     public static final String MESSAGE_SUCCESS = "Listed all persons medical information";
