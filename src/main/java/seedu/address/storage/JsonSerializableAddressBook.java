@@ -1,5 +1,7 @@
 package seedu.address.storage;
 
+import static seedu.address.logic.commands.AddInterviewCommand.MESSAGE_DUPLICATE_INTERVIEW;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,7 +16,6 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.interview.Interview;
 import seedu.address.model.person.Person;
 
-import static seedu.address.logic.commands.AddInterviewCommand.MESSAGE_DUPLICATE_INTERVIEW;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
@@ -37,6 +38,7 @@ class JsonSerializableAddressBook {
         if (interviews != null) {
             this.interviews.addAll(interviews);
         }
+
     }
 
     /**
@@ -46,7 +48,8 @@ class JsonSerializableAddressBook {
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
-        interviews.addAll(source.getInterviewList().stream().map(JsonAdaptedInterview::new).collect(Collectors.toList()));
+        interviews.addAll(source.getInterviewList().stream()
+                .map(JsonAdaptedInterview::new).collect(Collectors.toList()));
 
     }
 

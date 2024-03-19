@@ -1,19 +1,19 @@
 package seedu.address.storage;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.interview.Interview;
-import seedu.address.model.person.Applicant;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
-import java.util.stream.Collectors;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.interview.Interview;
+import seedu.address.model.person.Person;
+
+
+
+
 
 /**
  * Jackson-friendly version of {@link Interview}.
@@ -37,8 +37,7 @@ public class JsonAdaptedInterview {
                                 @JsonProperty("startTime") String startTime,
                                 @JsonProperty("endTime") String endTime,
                                 @JsonProperty("applicant") JsonAdaptedPerson applicant,
-                                @JsonProperty("interviewer") JsonAdaptedPerson interviewer)
-    {
+                                @JsonProperty("interviewer") JsonAdaptedPerson interviewer) {
         this.description = description;
         this.date = date;
         this.startTime = startTime;
@@ -70,15 +69,18 @@ public class JsonAdaptedInterview {
     public Interview toModelType() throws IllegalValueException {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         if (this.date == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, LocalDate.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    LocalDate.class.getSimpleName()));
         }
         final LocalDate date = LocalDate.parse(this.date, formatter);
         if (this.startTime == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, LocalTime.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    LocalTime.class.getSimpleName()));
         }
         final LocalTime start = LocalTime.parse(startTime);
         if (this.endTime == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, LocalTime.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    LocalTime.class.getSimpleName()));
         }
         final LocalTime end = LocalTime.parse(endTime);
         final Person app = applicant.toModelType();
