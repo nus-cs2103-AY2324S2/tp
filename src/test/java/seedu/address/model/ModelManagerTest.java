@@ -19,6 +19,9 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.testutil.AddressBookBuilder;
 
+/**
+ * Contains unit tests for the ModelManager class.
+ */
 public class ModelManagerTest {
 
     private ModelManager modelManager = new ModelManager();

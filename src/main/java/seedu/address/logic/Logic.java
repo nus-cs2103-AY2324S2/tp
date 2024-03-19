@@ -46,5 +46,8 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+    /**
+     * Checks if the initial module list panel is displayed.
+     */
     boolean isInitialModuleListPanelDisplayed();
 }

@@ -30,7 +30,8 @@ public class DeleteClassCommand extends Command {
     private final TutorialClass tutorialString;
 
     /**
-     * Constructs a DeleteClassCommand to delete the specified {@code TutorialClass} from the specified {@code ModuleCode}.
+     * Constructs a DeleteClassCommand to delete the specified {@code TutorialClass}
+     * from the specified {@code ModuleCode}.
      * @param module The module code of the tutorial class to be deleted.
      * @param tutorialClass The tutorial class to be deleted.
      */
