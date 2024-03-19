@@ -26,12 +26,12 @@ public class ModelManager implements Model {
     /**
      * Initializes a ModelManager with the given realodex and userPrefs.
      */
-    public ModelManager(ReadOnlyRealodex addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
+    public ModelManager(ReadOnlyRealodex realodex, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(realodex, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + realodex + " and user prefs " + userPrefs);
 
-        this.realodex = new Realodex(addressBook);
+        this.realodex = new Realodex(realodex);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.realodex.getPersonList());
     }
