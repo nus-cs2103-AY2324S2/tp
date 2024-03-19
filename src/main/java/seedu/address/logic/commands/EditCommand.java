@@ -28,6 +28,7 @@ import seedu.address.model.person.Housekeeper;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Type;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -102,11 +103,12 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Type updatedType = editPersonDescriptor.getType().orElse(personToEdit.getType());
 
         if (personToEdit.isClient()) {
-            return new Client(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+            return new Client(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedType);
         } else {
-            return new Housekeeper(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+            return new Housekeeper(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedType);
         }
     }
 
@@ -144,6 +146,7 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private Set<Tag> tags;
+        private Type type;
 
         public EditPersonDescriptor() {}
 
@@ -157,13 +160,14 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
+            setType(toCopy.type);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, type);
         }
 
         public void setName(Name name) {
@@ -215,6 +219,15 @@ public class EditCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
+        public void setType(Type type) {
+            this.type = type;
+        }
+
+        public Optional<Type> getType() {
+            return Optional.ofNullable(type);
+        }
+
+
         @Override
         public boolean equals(Object other) {
             if (other == this) {
@@ -231,7 +244,8 @@ public class EditCommand extends Command {
                     && Objects.equals(phone, otherEditPersonDescriptor.phone)
                     && Objects.equals(email, otherEditPersonDescriptor.email)
                     && Objects.equals(address, otherEditPersonDescriptor.address)
-                    && Objects.equals(tags, otherEditPersonDescriptor.tags);
+                    && Objects.equals(tags, otherEditPersonDescriptor.tags)
+                    && Objects.equals(type, otherEditPersonDescriptor.type);
         }
 
         @Override
@@ -242,6 +256,7 @@ public class EditCommand extends Command {
                     .add("email", email)
                     .add("address", address)
                     .add("tags", tags)
+                    .add("type", type)
                     .toString();
         }
     }
