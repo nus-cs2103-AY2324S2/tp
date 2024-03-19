@@ -8,7 +8,6 @@ import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
@@ -41,7 +40,7 @@ public class ModelManager implements Model {
         //this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(versionedAddressBook.getPersonList());
-        filteredPersons.addListener(this::ensureSelectedPersonIsValid);
+        //filteredPersons.addListener(this::ensureSelectedPersonIsValid);
     }
 
     public ModelManager() {
@@ -162,35 +161,6 @@ public class ModelManager implements Model {
     @Override
     public void commitAddressBook() {
         versionedAddressBook.commit();
-    }
-
-    /**
-     * Ensures {@code selectedPerson} is a valid person in {@code filteredPersons}.
-     */
-    private void ensureSelectedPersonIsValid(ListChangeListener.Change<? extends Person> change) {
-        while (change.next()) {
-            if (selectedPerson.getValue() == null) {
-                // null is always a valid selected person, so we do not need to check that it is valid anymore.
-                return;
-            }
-
-            boolean wasSelectedPersonReplaced = change.wasReplaced() && change.getAddedSize() == change.getRemovedSize()
-                    && change.getRemoved().contains(selectedPerson.getValue());
-            if (wasSelectedPersonReplaced) {
-                // Update selectedPerson to its new value.
-                int index = change.getRemoved().indexOf(selectedPerson.getValue());
-                selectedPerson.setValue(change.getAddedSubList().get(index));
-                continue;
-            }
-
-            boolean wasSelectedPersonRemoved = change.getRemoved().stream()
-                    .anyMatch(removedPerson -> selectedPerson.getValue().isSamePerson(removedPerson));
-            if (wasSelectedPersonRemoved) {
-                // Select the person that came before it in the list,
-                // or clear the selection if there is no such person.
-                selectedPerson.setValue(change.getFrom() > 0 ? change.getList().get(change.getFrom() - 1) : null);
-            }
-        }
     }
 
     @Override
