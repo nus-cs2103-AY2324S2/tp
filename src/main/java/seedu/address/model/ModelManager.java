@@ -22,8 +22,11 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final AddressBook addressBook;
+
+    private final AppointmentList appointmentList;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -34,12 +37,29 @@ public class ModelManager implements Model {
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
+        this.appointmentList = new AppointmentList();
+        this.userPrefs = new UserPrefs(userPrefs);
+        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+    }
+
+    /**
+     * Initializes a ModelManager with the given addressBook, appointmentList and userPrefs.
+     */
+    public ModelManager(ReadOnlyAddressBook addressBook,
+                        ReadOnlyAppointmentList appointmentList, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(addressBook, appointmentList, userPrefs);
+
+        logger.fine("Initializing with address book: " + addressBook
+                + ", appointment list: " + appointmentList + " and user prefs " + userPrefs);
+
+        this.addressBook = new AddressBook(addressBook);
+        this.appointmentList = new AppointmentList(appointmentList);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new AddressBook(), new AppointmentList(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -131,12 +151,11 @@ public class ModelManager implements Model {
     }
 
     /**
-     * Get appointments from inside person list
-     * TODO: Implement this method
+     * Get appointments from inside appointment list
      */
     @Override
     public ReadOnlyAppointmentList getAppointmentList() {
-        return new AppointmentList();
+        return appointmentList;
     }
 
     @Override

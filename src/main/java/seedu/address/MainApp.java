@@ -21,6 +21,8 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.appointment.AppointmentList;
+import seedu.address.model.appointment.ReadOnlyAppointmentList;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
 import seedu.address.storage.JsonAddressBookStorage;
@@ -58,7 +60,7 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath(),
-                userPrefs.getAddressBookFilePath());
+                userPrefs.getAppointmentListFilePath());
         storage = new StorageManager(addressBookStorage, userPrefsStorage);
 
         // TODO: Probably can inject the tracking of ID here
@@ -92,7 +94,22 @@ public class MainApp extends Application {
             initialData = new AddressBook();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        Optional<ReadOnlyAppointmentList> appointmentListOptional;
+        ReadOnlyAppointmentList initialAppointmentListData;
+        try {
+            appointmentListOptional = storage.readAppointmentList();
+            if (!appointmentListOptional.isPresent()) {
+                logger.info("Creating a new data file " + storage.getAppointmentListFilePath()
+                        + " populated with a sample AddressBook.");
+            }
+            initialAppointmentListData = appointmentListOptional.orElseGet(SampleDataUtil::getSampleAppointmentList);
+        } catch (DataLoadingException e) {
+            logger.warning("Data file at " + storage.getAppointmentListFilePath() + " could not be loaded."
+                    + " Will be starting with an empty AddressBook.");
+            initialAppointmentListData = new AppointmentList();
+        }
+
+        return new ModelManager(initialData, initialAppointmentListData, userPrefs);
     }
 
     private void initLogging(Config config) {
