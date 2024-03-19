@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 import seedu.address.logic.commands.FindTechStackCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.TechStackContainsKeywordsPredicate;
+import seedu.address.model.person.TsContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindTechStackCommand object
@@ -27,7 +27,7 @@ public class FindTechStackCommandParser  implements Parser<FindTechStackCommand>
 
         String[] nameKeywords = trimmedArgs.split("\\s+");
 
-        return new FindTechStackCommand(new TechStackContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        return new FindTechStackCommand(new TsContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
     }
 
 }

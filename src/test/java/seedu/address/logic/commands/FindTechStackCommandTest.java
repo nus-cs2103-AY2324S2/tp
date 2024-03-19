@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.TechStackContainsKeywordsPredicate;
+import seedu.address.model.person.TsContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindTechStackCommand}.
@@ -29,10 +29,10 @@ public class FindTechStackCommandTest {
 
     @Test
     public void equals() {
-        TechStackContainsKeywordsPredicate firstPredicate =
-                new TechStackContainsKeywordsPredicate(Collections.singletonList("first"));
-        TechStackContainsKeywordsPredicate secondPredicate =
-                new TechStackContainsKeywordsPredicate(Collections.singletonList("second"));
+        TsContainsKeywordsPredicate firstPredicate =
+                new TsContainsKeywordsPredicate(Collections.singletonList("first"));
+        TsContainsKeywordsPredicate secondPredicate =
+                new TsContainsKeywordsPredicate(Collections.singletonList("second"));
 
         FindTechStackCommand findFirstCommand = new FindTechStackCommand(firstPredicate);
         FindTechStackCommand findSecondCommand = new FindTechStackCommand(secondPredicate);
@@ -57,7 +57,7 @@ public class FindTechStackCommandTest {
     @Test
     public void execute_zeroKeywords_noContactFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
-        TechStackContainsKeywordsPredicate predicate = preparePredicate(" ");
+        TsContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindTechStackCommand command = new FindTechStackCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -67,7 +67,7 @@ public class FindTechStackCommandTest {
     @Test
     public void execute_multipleKeywords_multipleContactsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
-        TechStackContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
+        TsContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
         FindTechStackCommand command = new FindTechStackCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -76,7 +76,7 @@ public class FindTechStackCommandTest {
 
     @Test
     public void toStringMethod() {
-        TechStackContainsKeywordsPredicate predicate = new TechStackContainsKeywordsPredicate(Arrays.asList("keyword"));
+        TsContainsKeywordsPredicate predicate = new TsContainsKeywordsPredicate(Arrays.asList("keyword"));
         FindTechStackCommand findTechStackCommand = new FindTechStackCommand(predicate);
         String expected = FindTechStackCommand.class.getCanonicalName() + "{predicate=" + predicate + "}";
         assertEquals(expected, findTechStackCommand.toString());
@@ -85,7 +85,7 @@ public class FindTechStackCommandTest {
     /**
      * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
      */
-    private TechStackContainsKeywordsPredicate preparePredicate(String userInput) {
-        return new TechStackContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    private TsContainsKeywordsPredicate preparePredicate(String userInput) {
+        return new TsContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
     }
 }

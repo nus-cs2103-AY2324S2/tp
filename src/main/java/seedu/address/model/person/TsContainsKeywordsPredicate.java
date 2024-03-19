@@ -9,10 +9,10 @@ import seedu.address.commons.util.ToStringBuilder;
 /**
  * Tests that a {@code Person}'s {@code TechStack} matches any of the keywords given.
  */
-public class TechStackContainsKeywordsPredicate implements Predicate<Person> {
+public class TsContainsKeywordsPredicate implements Predicate<Person> {
     private final List<String> techKeywords;
 
-    public TechStackContainsKeywordsPredicate(List<String> techKeywords) {
+    public TsContainsKeywordsPredicate(List<String> techKeywords) {
         this.techKeywords = techKeywords;
     }
 
@@ -38,7 +38,7 @@ public class TechStackContainsKeywordsPredicate implements Predicate<Person> {
             return false;
         }
 
-        TechStackContainsKeywordsPredicate otherContainsTechStackKeywordsPredicate = (TechStackContainsKeywordsPredicate) other;
+        TsContainsKeywordsPredicate otherContainsTechStackKeywordsPredicate = (TsContainsKeywordsPredicate) other;
         return techKeywords.equals(otherContainsTechStackKeywordsPredicate.techKeywords);
     }
 

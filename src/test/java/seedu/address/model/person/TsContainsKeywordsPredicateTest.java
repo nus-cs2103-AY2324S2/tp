@@ -12,20 +12,20 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.PersonBuilder;
 
-public class TechStackContainsKeywordsPredicateTest {
+public class TsContainsKeywordsPredicateTest {
     @Test
     public void equals() {
         List<String> firstPredicateKeywordList = Collections.singletonList("first");
         List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
 
-        TechStackContainsKeywordsPredicate firstPredicate = new TechStackContainsKeywordsPredicate(firstPredicateKeywordList);
-        TechStackContainsKeywordsPredicate secondPredicate = new TechStackContainsKeywordsPredicate(secondPredicateKeywordList);
+        TsContainsKeywordsPredicate firstPredicate = new TsContainsKeywordsPredicate(firstPredicateKeywordList);
+        TsContainsKeywordsPredicate secondPredicate = new TsContainsKeywordsPredicate(secondPredicateKeywordList);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        TechStackContainsKeywordsPredicate firstPredicateCopy = new TechStackContainsKeywordsPredicate(firstPredicateKeywordList);
+        TsContainsKeywordsPredicate firstPredicateCopy = new TsContainsKeywordsPredicate(firstPredicateKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -41,34 +41,34 @@ public class TechStackContainsKeywordsPredicateTest {
     @Test
     public void test_techStackContainsKeywords_returnsTrue() {
         // One keyword
-        TechStackContainsKeywordsPredicate predicate = new TechStackContainsKeywordsPredicate(Collections.singletonList("Java"));
+        TsContainsKeywordsPredicate predicate = new TsContainsKeywordsPredicate(Collections.singletonList("Java"));
         assertTrue(predicate.test(new PersonBuilder().withTechStack("Java Python").build()));
 
         // Multiple keywords
-        predicate = new TechStackContainsKeywordsPredicate(Arrays.asList("Java", "Python"));
+        predicate = new TsContainsKeywordsPredicate(Arrays.asList("Java", "Python"));
         assertTrue(predicate.test(new PersonBuilder().withTechStack("Java Python").build()));
 
         // Only one matching keyword
-        predicate = new TechStackContainsKeywordsPredicate(Arrays.asList("Python", "C++"));
+        predicate = new TsContainsKeywordsPredicate(Arrays.asList("Python", "C++"));
         assertTrue(predicate.test(new PersonBuilder().withTechStack("Java C++").build()));
 
         // Mixed-case keywords
-        predicate = new TechStackContainsKeywordsPredicate(Arrays.asList("jAvA", "pyTHON"));
+        predicate = new TsContainsKeywordsPredicate(Arrays.asList("jAvA", "pyTHON"));
         assertTrue(predicate.test(new PersonBuilder().withTechStack("Java Python").build()));
     }
 
     @Test
     public void test_techStackDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
-        TechStackContainsKeywordsPredicate predicate = new TechStackContainsKeywordsPredicate(Collections.emptyList());
+        TsContainsKeywordsPredicate predicate = new TsContainsKeywordsPredicate(Collections.emptyList());
         assertFalse(predicate.test(new PersonBuilder().withTechStack("Java").build()));
 
         // Non-matching keyword
-        predicate = new TechStackContainsKeywordsPredicate(Arrays.asList("C++"));
+        predicate = new TsContainsKeywordsPredicate(Arrays.asList("C++"));
         assertFalse(predicate.test(new PersonBuilder().withTechStack("Java Python").build()));
 
         // Keywords match phone, email and address, but does not match name
-        predicate = new TechStackContainsKeywordsPredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street"));
+        predicate = new TsContainsKeywordsPredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street"));
         assertFalse(predicate.test(new PersonBuilder().withName("Alice").withPhone("12345")
                 .withEmail("alice@email.com").withAddress("Main Street").build()));
     }
@@ -76,9 +76,9 @@ public class TechStackContainsKeywordsPredicateTest {
     @Test
     public void toStringMethod() {
         List<String> keywords = List.of("keyword1", "keyword2");
-        TechStackContainsKeywordsPredicate predicate = new TechStackContainsKeywordsPredicate(keywords);
+        TsContainsKeywordsPredicate predicate = new TsContainsKeywordsPredicate(keywords);
 
-        String expected = TechStackContainsKeywordsPredicate.class.getCanonicalName() + "{keywords=" + keywords + "}";
+        String expected = TsContainsKeywordsPredicate.class.getCanonicalName() + "{keywords=" + keywords + "}";
         assertEquals(expected, predicate.toString());
     }
 }

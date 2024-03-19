@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.person.TechStackContainsKeywordsPredicate;
+import seedu.address.model.person.TsContainsKeywordsPredicate;
 
 /**
  * Finds and lists all contacts in address book whose tech stack contains any of the argument keywords.
@@ -20,10 +20,12 @@ public class FindTechStackCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " java python ";
 
-    private final TechStackContainsKeywordsPredicate predicate;
-    public FindTechStackCommand(TechStackContainsKeywordsPredicate predicate) {
+    private final TsContainsKeywordsPredicate predicate;
+
+    public FindTechStackCommand(TsContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
+
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
