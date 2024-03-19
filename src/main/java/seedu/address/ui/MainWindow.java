@@ -212,9 +212,10 @@ public class MainWindow extends UiPart<Stage> {
      * @return true if command requires module view
      */
     public static boolean useModuleView(String commandText) {
-        return commandText.equals(ListClassesCommand.COMMAND_WORD)
+        boolean result = commandText.equals(ListClassesCommand.COMMAND_WORD)
                 || commandText.split(" ")[0].equals(AddClassCommand.COMMAND_WORD)
                 || commandText.split(" ")[0].equals(DeleteClassCommand.COMMAND_WORD);
+        return result;
     }
     public PersonListPanel getPersonListPanel() {
         return personListPanel;
