@@ -22,6 +22,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private Person selectedPerson = null;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -126,6 +127,19 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    //=========== Selected Person Accessors =============================================================
+
+    @Override
+    public Person getSelectedPerson() {
+        return selectedPerson;
+    }
+
+    @Override
+    public void updateSelectedPerson(Person person) {
+        requireNonNull(person);
+        this.selectedPerson = person;
     }
 
     @Override
