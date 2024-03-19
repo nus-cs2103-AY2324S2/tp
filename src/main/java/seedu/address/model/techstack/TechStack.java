@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Tech Stack in the address book.
+ * Represents a Tech Stack in CodeConnect.
  * Guarantees: immutable; name is valid as declared in {@link #isValidTechStackName(String)}
  */
 public class TechStack {
