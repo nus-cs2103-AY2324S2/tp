@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 
@@ -30,7 +31,8 @@ public class InternshipEditCommandParser implements InternshipParser<InternshipE
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_COMPANY, PREFIX_CONTACT_NAME, PREFIX_CONTACT_EMAIL,
-                        PREFIX_CONTACT_NUMBER, PREFIX_LOCATION, PREFIX_STATUS, PREFIX_DESCRIPTION, PREFIX_ROLE);
+                        PREFIX_CONTACT_NUMBER, PREFIX_LOCATION, PREFIX_STATUS, PREFIX_DESCRIPTION, PREFIX_ROLE,
+                        PREFIX_REMARK);
 
         Index index;
 
@@ -42,7 +44,7 @@ public class InternshipEditCommandParser implements InternshipParser<InternshipE
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_COMPANY, PREFIX_CONTACT_NAME, PREFIX_CONTACT_EMAIL,
-                PREFIX_CONTACT_NUMBER, PREFIX_LOCATION, PREFIX_STATUS, PREFIX_DESCRIPTION, PREFIX_ROLE);
+                PREFIX_CONTACT_NUMBER, PREFIX_LOCATION, PREFIX_STATUS, PREFIX_DESCRIPTION, PREFIX_ROLE, PREFIX_REMARK);
 
         EditInternshipDescriptor editPersonDescriptor = new EditInternshipDescriptor();
 
@@ -77,6 +79,10 @@ public class InternshipEditCommandParser implements InternshipParser<InternshipE
         if (argMultimap.getValue(PREFIX_ROLE).isPresent()) {
             editPersonDescriptor.setRole(InternshipParserUtil.parseRole(argMultimap
                     .getValue(PREFIX_ROLE).get()));
+        }
+        if (argMultimap.getValue(PREFIX_REMARK).isPresent()) {
+            editPersonDescriptor.setRemark(InternshipParserUtil.parseRemark(argMultimap
+                    .getValue(PREFIX_REMARK).get()));
         }
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {

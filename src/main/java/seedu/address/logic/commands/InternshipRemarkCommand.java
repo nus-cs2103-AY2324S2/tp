@@ -18,13 +18,13 @@ import seedu.address.model.internship.Remark;
  */
 public class InternshipRemarkCommand extends InternshipCommand {
 
-    public static final String COMMAND_WORD = "remark";
+    public static final String COMMAND_WORD = "addremark";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the remark of the internship identified "
             + "by the index number used in the last internship listing. "
             + "Existing remark will be overwritten by the input.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + PREFIX_REMARK + "[REMARK]\n"
+            + PREFIX_REMARK + " [REMARK]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_REMARK + "Has a behavioural interview.";
 
