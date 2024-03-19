@@ -20,7 +20,6 @@ public class ModuleCard extends UiPart<Region> {
     protected Label tutorialClassLabel;
     @FXML
     private HBox cardPane;
-
     /**
      * Creates a {@code ModuleCard} with the given {@code Module}.
      */
