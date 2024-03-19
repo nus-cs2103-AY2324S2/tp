@@ -7,6 +7,7 @@
     "year": "1",
     "major": "Computer Science",
     "telegram": "alicepauline",
+    "remark": "shy",
     "tags" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
@@ -15,6 +16,7 @@
     "year": "1",
     "major": "Computer Science",
     "telegram": "bensonmeier",
+    "remark": "always skip tutorials",
     "tags" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Carl Kurz",
@@ -23,6 +25,7 @@
     "year": "1",
     "major": "Computer Science",
     "telegram": "carlkurz",
+    "remark": "",
     "tags" : [ ]
   }, {
     "name" : "Daniel Meier",
@@ -31,6 +34,7 @@
     "year": "1",
     "major": "Computer Engineering",
     "telegram": "danielmeier",
+    "remark": "hardworking",
     "tags" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
@@ -39,6 +43,7 @@
     "year": "2",
     "major": "Computer Engineering",
     "telegram": "ellemeyer",
+    "remark": "strong foundations",
     "tags" : [ ]
   }, {
     "name" : "Fiona Kunz",
@@ -47,6 +52,7 @@
     "year": "2",
     "major": "Business Analytics",
     "telegram": "fionakunz1",
+    "remark": "Always ask questions in class",
     "tags" : [ ]
   }, {
     "name" : "George Best",
@@ -55,6 +61,7 @@
     "year": "2",
     "major": "Business Analytics",
     "telegram": "georgebest1",
+    "remark": "",
     "tags" : [ ]
   } ]
 }

@@ -25,14 +25,16 @@ public class Person {
 
     // Data fields
     private final Major major;
+    private final Remark remark;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
 
-    public Person(Name name, Phone phone, Email email, Year year, Telegram telegram, Major major, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, major, tags);
+    public Person(Name name, Phone phone, Email email, Year year, Telegram telegram, Major major, Remark remark,
+                  Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, major, remark, tags);
 
         this.name = name;
         this.phone = phone;
@@ -40,6 +42,7 @@ public class Person {
         this.year = year;
         this.major = major;
         this.telegram = telegram;
+        this.remark = remark;
         this.tags.addAll(tags);
     }
 
@@ -63,6 +66,9 @@ public class Person {
     }
     public Telegram getTelegram() {
         return telegram;
+    }
+    public Remark getRemark() {
+        return remark;
     }
 
     /**
@@ -108,13 +114,14 @@ public class Person {
                 && year.equals(otherPerson.year)
                 && telegram.equals(otherPerson.telegram)
                 && major.equals(otherPerson.major)
+                && remark.equals(otherPerson.remark)
                 && tags.equals(otherPerson.tags);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, year, telegram, major, tags);
+        return Objects.hash(name, phone, email, year, telegram, major, remark, tags);
     }
 
     @Override
@@ -126,6 +133,7 @@ public class Person {
                 .add("year", year)
                 .add("telegram", telegram)
                 .add("major", major)
+                .add("remark", remark)
                 .add("tags", tags)
                 .toString();
     }

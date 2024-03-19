@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MAJOR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
@@ -19,6 +20,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Remark;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -34,7 +36,7 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
-                PREFIX_YEAR, PREFIX_TELEGRAM, PREFIX_MAJOR, PREFIX_TAG);
+                PREFIX_YEAR, PREFIX_TELEGRAM, PREFIX_MAJOR, PREFIX_REMARK, PREFIX_TAG);
 
         Index index;
 
@@ -46,7 +48,7 @@ public class EditCommandParser implements Parser<EditCommand> {
 
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_YEAR,
-                PREFIX_TELEGRAM, PREFIX_MAJOR);
+                PREFIX_TELEGRAM, PREFIX_MAJOR, PREFIX_REMARK);
 
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
 
@@ -71,6 +73,7 @@ public class EditCommandParser implements Parser<EditCommand> {
             editPersonDescriptor.setTelegram(ParserUtil.parseTelegram(argMultimap.getValue(PREFIX_TELEGRAM).get()));
         }
 
+        parseRemarkForEdit(argMultimap.getValue(PREFIX_REMARK)).ifPresent(editPersonDescriptor::setRemark);
 
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 
@@ -94,6 +97,20 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
         return Optional.of(ParserUtil.parseTags(tagSet));
+    }
+
+    /**
+     * Parses {@code Optional<String> remark} into a {@code Optional<Remark>}.
+     * If {@code remark} is empty, it will return an empty {@code Optional<Remark>}.
+     * If {@code remark} is present, it will parse it into a {@code Remark} object.
+     */
+    private Optional<Remark> parseRemarkForEdit(Optional<String> remark) throws ParseException {
+        requireNonNull(remark);
+
+        if (remark.isEmpty()) {
+            return Optional.empty();
+        }
+        return Optional.of(ParserUtil.parseRemark(remark.get()));
     }
 
 }
