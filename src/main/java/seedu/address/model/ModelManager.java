@@ -177,4 +177,9 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredAppointments.setPredicate(predicate);
     }
+
+    @Override
+    public void deleteAppointment(Appointment target) {
+//        addressBook.removePerson(target);
+    }
 }
