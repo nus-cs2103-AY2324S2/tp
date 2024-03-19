@@ -23,6 +23,10 @@ public class IdContainsQueryIdPredicateTest {
         // Mixed-case keywords
         predicate = new IdContainsQueryIdPredicate("a1234567x");
         assertTrue(predicate.test(new PersonBuilder().withId("A1234567X").build()));
+
+        // Contains
+        predicate = new IdContainsQueryIdPredicate("1234");
+        assertTrue(predicate.test(new PersonBuilder().withId("B1234567X").build()));
     }
 
     @Test
@@ -30,10 +34,6 @@ public class IdContainsQueryIdPredicateTest {
         // Not matching
         IdContainsQueryIdPredicate predicate = new IdContainsQueryIdPredicate("A1234567X");
         assertFalse(predicate.test(new PersonBuilder().withId("B9876543Y").build()));
-
-        // Matching substring but not in chronological order
-        predicate = new IdContainsQueryIdPredicate("1234");
-        assertFalse(predicate.test(new PersonBuilder().withId("B1234567X").build()));
     }
 
     @Test

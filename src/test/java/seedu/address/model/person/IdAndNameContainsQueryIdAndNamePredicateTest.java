@@ -24,6 +24,9 @@ public class IdAndNameContainsQueryIdAndNamePredicateTest {
         // Mixed-case keywords
         predicate = new IdAndNameContainsQueryIdAndNamePredicate("a1234567x", "JoHn dOe");
         assertTrue(predicate.test(new PersonBuilder().withId("A1234567X").withName("John Doe").build()));
+
+        predicate = new IdAndNameContainsQueryIdAndNamePredicate("34567X", "John Doe");
+        assertTrue(predicate.test(new PersonBuilder().withId("A1234567X").withName("John Doe").build()));
     }
 
     @Test
@@ -41,8 +44,6 @@ public class IdAndNameContainsQueryIdAndNamePredicateTest {
         predicate = new IdAndNameContainsQueryIdAndNamePredicate("A123", "n Doe");
         assertFalse(predicate.test(new PersonBuilder().withId("A1234567X").withName("John Doe").build()));
 
-        predicate = new IdAndNameContainsQueryIdAndNamePredicate("34567X", "John Doe");
-        assertFalse(predicate.test(new PersonBuilder().withId("A1234567X").withName("John Doe").build()));
     }
     @Test
     public void equals_sameObject_returnsTrue() {
