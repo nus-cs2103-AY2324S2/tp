@@ -27,15 +27,17 @@ public class WardTest {
         assertFalse(Ward.isValidWard("")); // empty string
         assertFalse(Ward.isValidWard(" ")); // spaces only
 
+        // invalid ward address
+        assertFalse(Ward.isValidWard("A_1234_X")); // underscore
+        assertFalse(Ward.isValidWard("A.1234X")); // period
+        assertFalse(Ward.isValidWard("A1234X+")); // '+' symbol
+        assertFalse(Ward.isValidWard("A-1234X")); // hyphen
+        assertFalse(Ward.isValidWard("a1+be.d")); // mixture of alphanumeric and special characters
+
         // valid Ward
         assertTrue(Ward.isValidWard("A1234X"));
-        assertTrue(Ward.isValidWard("A_1234_X")); // underscore
-        assertTrue(Ward.isValidWard("A.1234X")); // period in local part
-        assertTrue(Ward.isValidWard("A1234X+")); // '+' symbol in local part
-        assertTrue(Ward.isValidWard("A-1234X")); // hyphen in local part
         assertTrue(Ward.isValidWard("abcd")); // alphabets only
         assertTrue(Ward.isValidWard("1233")); // numeric only
-        assertTrue(Ward.isValidWard("a1+be.d")); // mixture of alphanumeric and special characters
     }
 
     @Test
