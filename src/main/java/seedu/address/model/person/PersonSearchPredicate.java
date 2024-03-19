@@ -20,10 +20,17 @@ public class PersonSearchPredicate implements Predicate<Person> {
     @Override
     public boolean test(Person person) {
         return keywords.stream()
-                       .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getName().toString(), keyword)
-                               || person.getTags()
-                                        .stream()
-                                        .anyMatch(tag -> StringUtil.containsWordIgnoreCase(tag.get(), keyword)));
+                       .anyMatch(keyword -> {
+                           boolean nameContainsKeyword =
+                               StringUtil.containsWordIgnoreCase(person.getName().toString(), keyword);
+                           boolean tagsContainKeyword = person.getTags()
+                                .stream()
+                                .anyMatch(tag -> StringUtil.containsWordIgnoreCase(tag.get(), keyword));
+                           boolean assetsContainKeyword = person.getAssets()
+                                .stream()
+                                .anyMatch(asset -> StringUtil.containsWordIgnoreCase(asset.get(), keyword));
+                           return nameContainsKeyword || tagsContainKeyword || assetsContainKeyword;
+                       });
     }
 
     @Override
