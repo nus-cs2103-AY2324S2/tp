@@ -1,6 +1,8 @@
 package seedu.findvisor.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.findvisor.commons.util.DateTimeUtil.parseDateTimeString;
 import static seedu.findvisor.logic.commands.CommandTestUtil.INVALID_MEETING_END_STR;
 import static seedu.findvisor.logic.commands.CommandTestUtil.INVALID_MEETING_REMARK;
@@ -90,6 +92,33 @@ public class JsonAdaptedMeetingTest {
         JsonAdaptedMeeting expectedJsonMeeting = new JsonAdaptedMeeting(VALID_MEETING_START_STR,
                 VALID_MEETING_END_STR, VALID_MEETING_REMARK);
         assertEquals(jsonMeeting, expectedJsonMeeting);
+    }
+
+    @Test
+    public void equals() {
+        JsonAdaptedMeeting meeting = new JsonAdaptedMeeting(VALID_MEETING_START_STR,
+                VALID_MEETING_END_STR, VALID_MEETING_REMARK);
+
+        // same values -> returns true
+        assertTrue(meeting.equals(new JsonAdaptedMeeting(VALID_MEETING_START_STR,
+                VALID_MEETING_END_STR, VALID_MEETING_REMARK)));
+
+        // same object -> returns true
+        assertTrue(meeting.equals(meeting));
+
+        // null -> returns false
+        assertFalse(meeting.equals(null));
+
+        // different types -> returns false
+        assertFalse(meeting.equals(1));
+
+        // different values -> returns false
+        assertFalse(meeting.equals(new JsonAdaptedMeeting("12-02-2025T12:00",
+                "12-02-2025T13:00", VALID_MEETING_REMARK)));
+
+        // different remark -> returns false
+        assertFalse(meeting.equals(new JsonAdaptedMeeting(VALID_MEETING_START_STR,
+                VALID_MEETING_END_STR, "Different remark")));
     }
 
 }
