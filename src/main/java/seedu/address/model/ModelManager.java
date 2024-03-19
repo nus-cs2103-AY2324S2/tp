@@ -130,9 +130,10 @@ public class ModelManager implements Model {
     @Override
     public void addInterview(Interview interview) {
         addressBook.addInterview(interview);
-        // TODO:
-        // updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredInterviewList(PREDICATE_SHOW_ALL_INTERVIEWS);
     }
+
+
 
     @Override
     public void deleteInterview(Interview interview) {
@@ -154,6 +155,10 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+    private void updateFilteredInterviewList(Predicate<Interview> predicate) {
+        requireNonNull(predicate);
+        filteredInterviews.setPredicate(predicate);
     }
 
     //=========== Filtered Interview List Accessors =============================================================
