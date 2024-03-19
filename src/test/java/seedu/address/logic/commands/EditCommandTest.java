@@ -13,7 +13,6 @@ import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_ASSET_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
@@ -219,7 +218,6 @@ public class EditCommandTest {
         assertParseFailure(EditCommand::of, "1" + INVALID_EMAIL_DESC); // invalid email
         assertParseFailure(EditCommand::of, "1" + INVALID_ADDRESS_DESC); // invalid address
         assertParseFailure(EditCommand::of, "1" + INVALID_TAG_DESC); // invalid tag
-        assertParseFailure(EditCommand::of, "1" + INVALID_ASSET_DESC); // invalid asset
 
         // invalid phone followed by valid email
         assertParseFailure(EditCommand::of, "1" + INVALID_PHONE_DESC + EMAIL_DESC_AMY);
@@ -336,7 +334,7 @@ public class EditCommandTest {
 
         // multiple invalid values
         userInput = targetIndex.getOneBased() + INVALID_PHONE_DESC + INVALID_ADDRESS_DESC + INVALID_EMAIL_DESC
-                + INVALID_PHONE_DESC + INVALID_ADDRESS_DESC + INVALID_EMAIL_DESC + INVALID_ASSET_DESC;
+                + INVALID_PHONE_DESC + INVALID_ADDRESS_DESC + INVALID_EMAIL_DESC;
 
         assertParseFailure(EditCommand::of, userInput,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS));
