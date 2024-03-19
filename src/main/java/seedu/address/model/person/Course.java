@@ -8,8 +8,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; is valid as declared in {@link #isValidCourse(String)}
  */
 public class Course {
-    
-    public static final String MESSAGE_CONSTRAINTS = 
+
+    public static final String MESSAGE_CONSTRAINTS =
             "Course code should adhere to the following constraints:\n"
             + "1. It should start with 2 or 3 letters, followed by exactly 4 digits.\n"
             + "2. (Optional) You can also add a letter as a postfix.\n"
