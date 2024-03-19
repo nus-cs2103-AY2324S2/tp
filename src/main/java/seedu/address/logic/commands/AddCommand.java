@@ -35,7 +35,7 @@ public class AddCommand extends Command {
             + PREFIX_DOB + "1/1/2000 "
             + PREFIX_ADMISSION_DATE + "15/03/2024 "
             + PREFIX_WARD + "3"
-            + PREFIX_TAG + "Fall risk "
+            + PREFIX_TAG + "Fall risk ";
 
     public static final String MESSAGE_SUCCESS = "New patient added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This patient already exists in the address book";
