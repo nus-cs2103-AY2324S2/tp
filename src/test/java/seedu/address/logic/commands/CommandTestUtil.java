@@ -42,7 +42,7 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_CELINE = "Block 776, Cel Street 5";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
-    public static final String VALID_NOTE_AMY = "Like skiing.";
+    public static final String VALID_NOTE_AMY = "She likes aardvarks.";
     public static final String VALID_NOTE_BOB = "Favourite pastime: Eating";
     public static final String VALID_NOTE_CELINE = "Sleepy";
     public static final String VALID_APPOINTMENT_FRIDAY = "23:59 FRI";
