@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -36,7 +37,7 @@ public class AddCommandParser implements Parser<AddCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
                                            PREFIX_ROLE, PREFIX_ADDRESS, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ROLE)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ROLE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
@@ -46,7 +47,23 @@ public class AddCommandParser implements Parser<AddCommand> {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Role role = ParserUtil.parseRole(argMultimap.getValue(PREFIX_ROLE).get());
-        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+
+        Optional<String> addressString = argMultimap.getValue(PREFIX_ADDRESS);
+        Optional<Address> address;
+        if (role.getRoleType() == Role.RoleType.PROFESSOR) {
+            if (addressString.isPresent()) {
+                address = Optional.of(ParserUtil.parseAddress(addressString.get()));
+            } else {
+                throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+            }
+        } else {
+            // address is optional for other RoleTypes
+            if (addressString.isPresent()) {
+                address = Optional.of(ParserUtil.parseAddress(addressString.get()));
+            } else {
+                address = Optional.empty();
+            }
+        }
 
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 

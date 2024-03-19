@@ -102,7 +102,7 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Role updatedRole = editPersonDescriptor.getRole().orElse(personToEdit.getRole());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
+        Optional<Address> updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedRole, updatedAddress, updatedTags);
@@ -141,7 +141,7 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Role role;
-        private Address address;
+        private Optional<Address> address;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -198,11 +198,19 @@ public class EditCommand extends Command {
             return Optional.ofNullable(role);
         }
 
-        public void setAddress(Address address) {
+        public void setAddress(Optional<Address> address) {
             this.address = address;
         }
 
-        public Optional<Address> getAddress() {
+        /**
+         * Gets the address information of this optional.
+         * <p>
+         * The result is {@code Optional.empty()} if {@code a/} field is not specified,
+         * {@code Optional.of(Optional.empty())} if {@code a/} field is specified but left empty
+         * (which means the user wants to delete the address),
+         * and an actual value if the user wants to update the address.
+         */
+        public Optional<Optional<Address>> getAddress() {
             return Optional.ofNullable(address);
         }
 
