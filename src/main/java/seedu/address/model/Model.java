@@ -5,8 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.logic.commands.exceptions.InvalidClientException;
-import seedu.address.logic.commands.exceptions.InvalidMeetingException;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 
@@ -103,18 +102,12 @@ public interface Model {
     /**
      * Deletes all meetings for a givne client.
      * The client must exist in the address book.
-     * 
-     * @throws InvalidClientException if {@code clientIndex} is an invalid index.
      */
-    void deleteAllMeetingsForClient(int clientIndex) throws InvalidClientException;
+    void deleteAllMeetingsForClient(Index clientIndex);
 
     /**
      * Deletes a specific meeting of a specific client.
      * The client and meeting must exist in the address book.
-     * 
-     * @throws InvalidClientException  if {@code clientIndex} is an invalid index.
-     * @throws InvalidMeetingException if {@code meetingIndex} is an invalid index.
      */
-    void deleteSpecificMeetingForClient(int clientIndex, int meetingIndex)
-            throws InvalidClientException, InvalidMeetingException;
+    void deleteSpecificMeetingForClient(Index clientIndex, Index meetingIndex);
 }

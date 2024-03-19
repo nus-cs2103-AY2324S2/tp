@@ -11,9 +11,8 @@ import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.commands.exceptions.InvalidClientException;
-import seedu.address.logic.commands.exceptions.InvalidMeetingException;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 
@@ -46,8 +45,7 @@ public class ModelManager implements Model {
         this(new AddressBook(), new UserPrefs());
     }
 
-    // =========== UserPrefs
-    // ==================================================================================
+    // =========== UserPrefs ==================================================================================
 
     @Override
     public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
@@ -82,8 +80,7 @@ public class ModelManager implements Model {
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
-    // =========== AddressBook
-    // ================================================================================
+    // =========== AddressBook ================================================================================
 
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
@@ -119,8 +116,7 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
-    // =========== Filtered Person List Accessors
-    // =============================================================
+    // =========== Filtered Person List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the
@@ -168,27 +164,16 @@ public class ModelManager implements Model {
 
     // =========== Meeting Instance Accessors =============================================================
     @Override
-    public void deleteAllMeetingsForClient(int clientIndex) throws InvalidClientException {
-        try {
-            Person targetClient = filteredPersons.get(clientIndex);
+    public void deleteAllMeetingsForClient(Index clientIndex) {
+            Person targetClient = filteredPersons.get(clientIndex.getZeroBased());
             targetClient.setMeetings(new ArrayList<Meeting>());
-        } catch (IndexOutOfBoundsException indexOutOfBoundsException) {
-            throw new InvalidClientException("This client cannot be found!");
-        }
     }
 
     @Override
-    public void deleteSpecificMeetingForClient(int clientIndex, int meetingIndex)
-            throws InvalidClientException, InvalidMeetingException {
-        try {
-            if (clientIndex >= filteredPersons.size()) throw new InvalidClientException("This client cannot be found!");
-
-            Person targetClient = filteredPersons.get(clientIndex);
-            ArrayList<Meeting> targetClientMeetings = targetClient.getMeetings();
-            targetClientMeetings.remove(meetingIndex);
-        } catch (IndexOutOfBoundsException indexOutOfBoundsException) {
-            throw new InvalidMeetingException("This meeting cannot be found!");
-        }
+    public void deleteSpecificMeetingForClient(Index clientIndex, Index meetingIndex) {
+        Person targetClient = filteredPersons.get(clientIndex.getZeroBased());
+        ArrayList<Meeting> targetClientMeetings = targetClient.getMeetings();
+        targetClientMeetings.remove(meetingIndex.getZeroBased());
     }
 
 }
