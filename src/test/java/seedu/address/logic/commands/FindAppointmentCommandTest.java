@@ -24,9 +24,9 @@ import seedu.address.model.appointment.FindAppointmentPredicate;
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindAppointmentCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), getTypicalAppointmentList(),new UserPrefs());
+    private Model model = new ModelManager(getTypicalAddressBook(), getTypicalAppointmentList(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalAddressBook(),
-            getTypicalAppointmentList(),new UserPrefs());
+            getTypicalAppointmentList(), new UserPrefs());
 
     @Test
     public void equals() {

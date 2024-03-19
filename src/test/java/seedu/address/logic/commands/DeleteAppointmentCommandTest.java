@@ -4,10 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalAppointments.getTypicalAppointmentList;
-import static seedu.address.testutil.TypicalIndexes.*;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_APPOINTMENT;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_APPOINTMENT;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
@@ -56,7 +56,7 @@ public class DeleteAppointmentCommandTest {
         model.updateFilteredAppointmentList(
                 new AppointmentIdContainsIndexPredicate(INDEX_FIRST_APPOINTMENT.getOneBased()));
         Appointment appointmentToDelete = model.getFilteredAppointmentList().get(0);
-        DeleteAppointmentCommand deleteAppointmentCommand = new DeleteAppointmentCommand(INDEX_FIRST_PERSON);
+        DeleteAppointmentCommand deleteAppointmentCommand = new DeleteAppointmentCommand(INDEX_FIRST_APPOINTMENT);
 
         String expectedMessage = String.format(DeleteAppointmentCommand.MESSAGE_DELETE_APPOINTMENT_SUCCESS,
                 Messages.formatAppointment(appointmentToDelete));
@@ -70,8 +70,8 @@ public class DeleteAppointmentCommandTest {
 
     @Test
     public void execute_invalidAppointmentIndex_success() {
-        Index invalid_index = Index.fromOneBased(model.getAddressBook().getPersonList().size() + 1);
-        DeleteAppointmentCommand deleteAppointmentCommand = new DeleteAppointmentCommand(invalid_index);
+        Index invalidIndex = Index.fromOneBased(model.getAddressBook().getPersonList().size() + 1);
+        DeleteAppointmentCommand deleteAppointmentCommand = new DeleteAppointmentCommand(invalidIndex);
 
         assertCommandFailure(deleteAppointmentCommand, model, Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
     }
@@ -97,13 +97,13 @@ public class DeleteAppointmentCommandTest {
         // different person -> returns false
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
     }
-//
+
     @Test
     public void toStringMethod() {
         Index targetIndex = Index.fromOneBased(1);
         DeleteAppointmentCommand deleteAppointmentCommand = new DeleteAppointmentCommand(targetIndex);
         String expected = DeleteAppointmentCommand.class.getCanonicalName()
-                +"{targetAppointmentIndex=" + targetIndex + "}";
+                + "{targetAppointmentIndex=" + targetIndex + "}";
         assertEquals(expected, deleteAppointmentCommand.toString());
     }
 

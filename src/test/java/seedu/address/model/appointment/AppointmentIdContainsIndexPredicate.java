@@ -1,7 +1,5 @@
 package seedu.address.model.appointment;
 
-import seedu.address.model.appointment.Appointment;
-
 import java.util.function.Predicate;
 
 /**
