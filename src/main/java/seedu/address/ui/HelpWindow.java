@@ -9,14 +9,16 @@ import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.Clipboard;
+import javafx.scene.input.ClipboardContent;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.util.AppUtil.OS;
 
 /**
  * Controller for a help page
  */
 public class HelpWindow extends UiPart<Stage> {
-
     public static final String USERGUIDE_URL = "https://ay2324s2-cs2103t-t17-3.github.io/tp/UserGuide.html";
     public static final String HELP_MESSAGE = "Available commands:\n"
             + "help \t- Shows this window.\n"
@@ -28,6 +30,22 @@ public class HelpWindow extends UiPart<Stage> {
             + "delete \t- Deletes the specified client from FitBook.\n"
             + "clear \t- Clears all entries from FitBook. USE WITH CAUTION.\n"
             + "exit \t- Exits FitBook.\n"
+            + "\n"
+            + "To view more information about a specific command, enter the command into the input box and press "
+            + "<Enter>.\n"
+            + "\n"
+            + "Need more help? Refer to the user guide at " + USERGUIDE_URL;
+
+    public static final String HELP_MESSAGE_ALTERNATE = "Available commands:\n"
+            + "help \t- Shows this window.\n"
+            + "add \t\t- Adds a client to FitBook.\n"
+            + "list \t\t- Shows a list of all clients saved in FitBook.\n"
+            + "edit \t\t- Edits an existing client in FitBook.\n"
+            + "note \t- Adds a new note to a client.\n"
+            + "find \t- Finds all clients whose specified attribute contains the specified keyword.\n"
+            + "delete \t- Deletes the specified client from FitBook.\n"
+            + "clear \t- Clears all entries from FitBook. USE WITH CAUTION.\n"
+            + "exit \t\t- Exits FitBook.\n"
             + "\n"
             + "To view more information about a specific command, enter the command into the input box and press "
             + "<Enter>.\n"
@@ -50,7 +68,16 @@ public class HelpWindow extends UiPart<Stage> {
      */
     public HelpWindow(Stage root) {
         super(FXML, root);
-        helpMessage.setText(HELP_MESSAGE);
+
+        if (OS.isLinux()) {
+            copyButton.setText("Copy URL");
+        }
+
+        if (OS.isLinux() || OS.isWindows()) {
+            helpMessage.setText(HELP_MESSAGE_ALTERNATE);
+        } else {
+            helpMessage.setText(HELP_MESSAGE);
+        }
     }
 
     /**
@@ -83,6 +110,7 @@ public class HelpWindow extends UiPart<Stage> {
      */
     public void show() {
         logger.fine("Showing help page about the application.");
+
         getRoot().show();
         getRoot().centerOnScreen();
     }
@@ -114,7 +142,14 @@ public class HelpWindow extends UiPart<Stage> {
     @FXML
     private void openUrl() {
         try {
-            Desktop.getDesktop().browse(new URI(USERGUIDE_URL));
+            if (System.getProperty("os.name").trim().toLowerCase().contains(OS.LINUX.toString().toLowerCase())) {
+                final Clipboard clipboard = Clipboard.getSystemClipboard();
+                final ClipboardContent url = new ClipboardContent();
+                url.putString(USERGUIDE_URL);
+                clipboard.setContent(url);
+            } else {
+                Desktop.getDesktop().browse(new URI(USERGUIDE_URL));
+            }
         } catch (URISyntaxException | IOException e) {
             logger.warning("Something went wrong when opening user guide URL.");
         }
