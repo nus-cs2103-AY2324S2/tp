@@ -55,9 +55,7 @@ public class JsonAddressBookStorage implements AddressBookStorage {
         try {
             JsonSerializableAddressBook addressBook = jsonAddressBook.get();
             Integer maxUid = addressBook.getMaxUid();
-            System.out.println("Max UID: " + maxUid);
             UniqueId.setLastUsedIndex(maxUid);
-            System.out.println("Last used index: " + UniqueId.lastUsedIndex);
             return Optional.of(jsonAddressBook.get().toModelType());
         } catch (IllegalValueException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());

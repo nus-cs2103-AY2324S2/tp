@@ -108,6 +108,7 @@ public class DeleteCommand extends Command {
 
     /**
      * Deletes an employee by unique id
+     * TODO: Implement the functionality to delete by ID using this function
      *
      * @param model the model to execute the command
      * @return the result of the command
@@ -116,6 +117,7 @@ public class DeleteCommand extends Command {
     private CommandResult deleteByUid(Model model) throws CommandException {
         List<Employee> lastShownList = model.getFilteredEmployeeList();
         for (Employee employee : lastShownList) {
+            assert uid != null;
             if (employee.getUid().getUidValue().equals(uid.getUidValue())) {
                 model.deleteEmployee(employee);
                 return new CommandResult(String.format(MESSAGE_DELETE_EMPLOYEE_SUCCESS, Messages.format(employee)));

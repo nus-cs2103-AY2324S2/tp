@@ -38,6 +38,8 @@ public class Messages {
     public static String format(Employee employee) {
         final StringBuilder builder = new StringBuilder();
         builder.append(employee.getName())
+                .append("; ID: ")
+                .append(employee.getUid())
                 .append("; Phone: ")
                 .append(employee.getPhone())
                 .append("; Email: ")

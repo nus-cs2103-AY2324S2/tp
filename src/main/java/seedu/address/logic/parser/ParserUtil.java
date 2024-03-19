@@ -15,7 +15,6 @@ import seedu.address.model.employee.Name;
 import seedu.address.model.employee.Phone;
 import seedu.address.model.employee.Role;
 import seedu.address.model.employee.Team;
-import seedu.address.model.employee.UniqueId;
 import seedu.address.model.tag.Tag;
 
 
@@ -26,7 +25,6 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-    public static final String MESSAGE_INVALID_INTEGER = "Value is not a non-zero unsigned integer.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading
@@ -158,22 +156,5 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
-    }
-
-    /**
-     * Parses a {@code String uid} into a {@code UniqueId}.
-     *
-     * @param uid Unique Id as a string
-     * @return UniqueId object made from the string
-     * @throws ParseException if uid string is corrupted
-     */
-    public static UniqueId parseUid(String uid) throws ParseException {
-        requireNonNull(uid);
-        String trimmedUid = uid.trim();
-        UniqueId newUid = new UniqueId(Integer.parseInt(trimmedUid));
-        if (!(newUid.isValidUid(trimmedUid))) {
-            throw new ParseException(MESSAGE_INVALID_INTEGER);
-        }
-        return newUid;
     }
 }
