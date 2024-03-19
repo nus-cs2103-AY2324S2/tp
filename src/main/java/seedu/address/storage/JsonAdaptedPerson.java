@@ -17,6 +17,7 @@ import seedu.address.model.person.Housekeeper;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Type;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -110,12 +111,17 @@ class JsonAdaptedPerson {
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
         if (type == null) {
-            throw new IllegalValueException("Type field is missing!");
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Type.class.getSimpleName()));
         }
+        if (!Type.isValidType(type)) {
+            throw new IllegalValueException(Type.MESSAGE_CONSTRAINTS);
+        }
+        final Type modelType = new Type(type);
+
         if (type.equals("client")) {
-            return new Client(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+            return new Client(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelType);
         } else {
-            return new Housekeeper(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+            return new Housekeeper(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelType);
         }
     }
 

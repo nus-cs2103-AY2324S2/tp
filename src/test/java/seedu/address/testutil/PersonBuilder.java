@@ -3,11 +3,7 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
+import seedu.address.model.person.*;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -20,12 +16,14 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_TYPE = "client";
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
     private Set<Tag> tags;
+    private Type type;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -36,6 +34,7 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
+        type = new Type(DEFAULT_TYPE);
     }
 
     /**
@@ -47,6 +46,7 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
+        type = personToCopy.getType();
     }
 
     /**
@@ -89,8 +89,24 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Type} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withType(String type) {
+        this.type = new Type(type);
+        return this;
+    }
+
+
     public Person build() {
-        return new Person(name, phone, email, address, tags);
+        switch (type.toString()) {
+        case "client":
+            return new Client(name, phone, email, address, tags, type);
+        case "housekeeper":
+            return new Housekeeper(name, phone, email, address, tags, type);
+        default:
+            return null;
+        }
     }
 
 }
