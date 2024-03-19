@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import org.junit.jupiter.api.Test;
-import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -16,11 +15,13 @@ import static seedu.address.testutil.TypicalPersons.JAMAL;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.model.ModelManager;
 import seedu.address.logic.Messages;
-import seedu.address.model.meeting.Meeting;
+import seedu.address.model.ModelManager;
 import seedu.address.model.Model;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.meeting.Meeting;
+
+import java.time.LocalDateTime;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -127,8 +128,8 @@ public class DeleteMeetingCommandTest {
         Index targetClientIndex = Index.fromOneBased(1);
         Index targetMeetingIndex = Index.fromOneBased(1);
         DeleteMeetingCommand deleteMeetingCommand = new DeleteMeetingCommand(targetClientIndex, targetMeetingIndex);
-        String expected = DeleteMeetingCommand.class.getCanonicalName() +
-            "{clientIndex=" + targetClientIndex + ", meetingIndex=" + targetMeetingIndex + "}";
+        String expected = DeleteMeetingCommand.class.getCanonicalName()
+            + "{clientIndex=" + targetClientIndex + ", meetingIndex=" + targetMeetingIndex + "}";
         assertEquals(expected, deleteMeetingCommand.toString());
     }
 }
