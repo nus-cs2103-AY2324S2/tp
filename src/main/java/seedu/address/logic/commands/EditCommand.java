@@ -106,7 +106,8 @@ public class EditCommand extends Command {
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Remark updatedRemark = personToEdit.getRemark();
         Subject updatedSubject = editPersonDescriptor.getSubject().orElse(personToEdit.getSubject());
-        Lesson updatedUpcomingLesson = editPersonDescriptor.getUpcomingLesson().orElse(personToEdit.getUpcomingLesson());
+        Lesson updatedUpcomingLesson = editPersonDescriptor.getUpcomingLesson()
+                .orElse(personToEdit.getUpcomingLesson());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
                 updatedSubject, updatedUpcomingLesson, updatedRemark, updatedTags);
