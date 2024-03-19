@@ -105,8 +105,11 @@ public class ModelManager implements Model {
 
     @Override
     public TutorialClass findTutorialClassFromList(TutorialClass tutorialClass, ModuleCode moduleCode) {
-        requireAllNonNull(tutorialClass, moduleCode);
-        return addressBook.findTutorialClassFromList(tutorialClass, moduleCode);
+        try {
+            return addressBook.findTutorialClassFromList(tutorialClass, moduleCode);
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     @Override

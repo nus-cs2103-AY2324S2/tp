@@ -27,7 +27,6 @@ public class AddStudentToClassByEmailCommand extends AddStudentToClassCommand {
 
     /**
      * Adds a student to a class by email.
-     * 
      * @param email
      * @param module
      * @param tutorialClass
@@ -50,20 +49,21 @@ public class AddStudentToClassByEmailCommand extends AddStudentToClassCommand {
         if (personToAdd == null) {
             throw new CommandException(String.format(PersonMessages.MESSAGE_PERSON_EMAIL_NOT_FOUND, email));
         }
-        System.out.println(tutorialClass.getStudents());
         if (tutorialClass.hasStudent(personToAdd)) {
             throw new CommandException(
-                    String.format(TutorialClassMessages.MESSAGE_DUPLICATE_STUDENT_IN_CLASS, personToAdd,
-                            tutorialClass));
+                    String.format(TutorialClassMessages.MESSAGE_DUPLICATE_STUDENT_IN_CLASS,
+                            Messages.format(personToAdd), tutorialClass));
         } else {
-            model.addPersonToTutorialClass(personToAdd, module, tutorialClass); 
+            model.addPersonToTutorialClass(personToAdd, module, tutorialClass);
             return new CommandResult(
                     String.format(TutorialClassMessages.MESSAGE_ADD_STUDENT_TO_CLASS_SUCCESS,
-                            Messages.format(personToAdd), module,
-                            tutorialClass));
+                            Messages.format(personToAdd), module, tutorialClass));
         }
     }
 
+    /**
+     * Returns true if both AddStudentToClassByEmailCommand have the same email.
+     */
     @Override
     public boolean equals(Object other) {
         if (other == this) {

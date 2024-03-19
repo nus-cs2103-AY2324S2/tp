@@ -25,9 +25,11 @@ public class TutorialClass {
 
     public final String tutorialName;
     private final ArrayList<Person> students;
+
     /**
      * Constructs a {@code TutorialClass} with default values.
-     * Initializes the {@code value} field to an empty string and creates an empty list for {@code students}.
+     * Initializes the {@code value} field to an empty string and creates an empty
+     * list for {@code students}.
      */
     public TutorialClass() {
         this.tutorialName = "";
@@ -35,18 +37,9 @@ public class TutorialClass {
     }
 
     /**
-     * Set students to the tutorial class
-     * @param students
-     */
-    public void setStudents(ArrayList<Person> students) {
-        this.students.addAll(students);
-    }
-
-
-    /**
      * A constructor for TutorialClass. Creates an empty tutorial class with no
      * students.
-     * @param name of tutorial to be added
+     * @param tutorialClass to be added
      */
     public TutorialClass(String tutorialClass) {
         requireAllNonNull(tutorialClass);
@@ -56,10 +49,9 @@ public class TutorialClass {
     }
 
     /**
-     * A constructor for TutorialClass. Creates a tutorial with the list of students
-     * specified.
-     * @param name     of tutorial to be added
-     * @param students to be in the added tutorial
+     * A constructor for TutorialClass. Creates a tutorial class with students.
+     * @param tutorialClass to be added
+     * @param students in the tutorial class
      */
     public TutorialClass(String tutorialClass, ArrayList<Person> students) {
         requireAllNonNull(tutorialClass);
@@ -67,23 +59,32 @@ public class TutorialClass {
         this.tutorialName = tutorialClass;
         this.students = students;
     }
+
+    /**
+     * Set students to the tutorial class.
+     * @param students
+     */
+    public void setStudents(ArrayList<Person> students) {
+        this.students.addAll(students);
+    }
+
     /**
      * Returns true if a given string is a valid tutorial class code.
      */
     public static boolean isValidTutorialClass(String test) {
         return test.matches(VALIDATION_REGEX);
     }
+
     /**
      * Retrieves the tutorial class.
-     *
      * @return The tutorial class.
      */
     public TutorialClass getTutorialClass() {
         return this;
     }
+
     /**
      * Retrieves the list of students in the tutorial class.
-     *
      * @return The list of students in the tutorial class.
      */
     public ArrayList<Person> getStudents() {
@@ -123,7 +124,7 @@ public class TutorialClass {
         }
 
         TutorialClass otherTutorialClass = (TutorialClass) other;
-        return tutorialName.equals(otherTutorialClass.tutorialName) && students.equals(otherTutorialClass.students);
+        return tutorialName.equals(otherTutorialClass.tutorialName);
     }
 
     @Override

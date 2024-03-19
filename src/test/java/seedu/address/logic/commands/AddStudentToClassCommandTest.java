@@ -20,6 +20,7 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.Messages;
 import seedu.address.logic.commands.addstudenttoclasscommands.AddStudentToClassByEmailCommand;
 import seedu.address.logic.commands.addstudenttoclasscommands.AddStudentToClassByIdCommand;
 import seedu.address.logic.commands.addstudenttoclasscommands.AddStudentToClassByIndexCommand;
@@ -63,9 +64,8 @@ public class AddStudentToClassCommandTest {
         assertCommandFailure(addStudentToClassByEmailCommand, model,
                 String.format(PersonMessages.MESSAGE_PERSON_EMAIL_NOT_FOUND, INVALID_EMAIL));
         assertCommandFailure(addStudentToClassByIdCommand, model,
-                String.format(PersonMessages.MESSAGE_PERSON_EMAIL_NOT_FOUND, INVALID_STUDENT_ID));
+                String.format(PersonMessages.MESSAGE_PERSON_STUDENT_ID_NOT_FOUND, INVALID_STUDENT_ID));
     }
-
 
     @Test
     public void execute_duplicateStudent_fail() {
@@ -78,9 +78,11 @@ public class AddStudentToClassCommandTest {
                 person.getStudentId(), new ModuleCode(VALID_MODULE_AMY),
                 new TutorialClass(VALID_TUTORIAL_AMY));
         assertCommandFailure(addStudentToClassByIdCommand, model,
-                String.format(PersonMessages.MESSAGE_DUPLICATE_STUDENT_IN_CLASS, person, tutorialClass));
+                String.format(PersonMessages.MESSAGE_DUPLICATE_STUDENT_IN_CLASS, Messages.format(person),
+                        tutorialClass));
         assertCommandFailure(addStudentToClassByEmailCommand, model,
-                String.format(PersonMessages.MESSAGE_DUPLICATE_STUDENT_IN_CLASS, person, tutorialClass));
+                String.format(PersonMessages.MESSAGE_DUPLICATE_STUDENT_IN_CLASS, Messages.format(person),
+                        tutorialClass));
     }
 
     @Test

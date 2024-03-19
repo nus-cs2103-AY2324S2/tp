@@ -45,18 +45,21 @@ public class AddStudentToClassByIdCommand extends AddStudentToClassCommand {
         Person personToAdd;
         personToAdd = model.searchPersonByPredicate(predicate);
         if (personToAdd == null) {
-            throw new CommandException(String.format(PersonMessages.MESSAGE_PERSON_EMAIL_NOT_FOUND, studentId));
+            throw new CommandException(String.format(PersonMessages.MESSAGE_PERSON_STUDENT_ID_NOT_FOUND, studentId));
         }
         if (tutorialClass.hasStudent(personToAdd)) {
-            throw new CommandException(String.format(PersonMessages.MESSAGE_DUPLICATE_STUDENT_IN_CLASS, personToAdd,
-                    tutorialClass));
+            throw new CommandException(String.format(PersonMessages.MESSAGE_DUPLICATE_STUDENT_IN_CLASS,
+                    Messages.format(personToAdd), tutorialClass));
         } else {
-           model.addPersonToTutorialClass(personToAdd, module, tutorialClass); 
+            model.addPersonToTutorialClass(personToAdd, module, tutorialClass);
             return new CommandResult(String.format(PersonMessages.MESSAGE_ADD_STUDENT_TO_CLASS_SUCCESS,
                     Messages.format(personToAdd), module, tutorialClass));
         }
     }
 
+    /**
+     * Returns true if both AddStudentToClassByIdCommand have the same studentId.
+     */
     @Override
     public boolean equals(Object other) {
         if (other == this) {

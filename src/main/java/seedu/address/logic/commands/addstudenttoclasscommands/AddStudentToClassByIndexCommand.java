@@ -46,8 +46,8 @@ public class AddStudentToClassByIndexCommand extends AddStudentToClassCommand {
         }
 
         if (tutorialClass.hasStudent(personToAdd)) {
-            throw new CommandException(String.format(PersonMessages.MESSAGE_DUPLICATE_STUDENT_IN_CLASS, personToAdd,
-                    tutorialClass));
+            throw new CommandException(String.format(PersonMessages.MESSAGE_DUPLICATE_STUDENT_IN_CLASS,
+                    Messages.format(personToAdd), tutorialClass));
         } else {
             model.addPersonToTutorialClass(personToAdd, module, tutorialClass);
             return new CommandResult(
@@ -56,6 +56,9 @@ public class AddStudentToClassByIndexCommand extends AddStudentToClassCommand {
         }
     }
 
+    /**
+     * Returns true if both AddStudentToClassByIndexCommand have the same index.
+     */
     @Override
     public boolean equals(Object other) {
         if (other == this) {

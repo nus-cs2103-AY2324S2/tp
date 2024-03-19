@@ -8,6 +8,8 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.messages.ModuleMessages;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.TutorialClass;
 import seedu.address.model.person.Person;
@@ -23,18 +25,22 @@ public class AddressBook implements ReadOnlyAddressBook {
     private final ArrayList<ModuleCode> modules;
 
     /*
-     * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
-     * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
+     * The 'unusual' code block below is a non-static initialization block,
+     * sometimes used to avoid duplication
+     * between constructors. See
+     * https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
      *
-     * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
-     *   among constructors.
+     * Note that non-static init blocks are not recommended to use. There are other
+     * ways to avoid duplication
+     * among constructors.
      */
     {
         persons = new UniquePersonList();
         modules = new ArrayList<>();
     }
 
-    public AddressBook() {}
+    public AddressBook() {
+    }
 
     /**
      * Creates an AddressBook using the Persons in the {@code toBeCopied}
@@ -53,6 +59,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void setPersons(List<Person> persons) {
         this.persons.setPersons(persons);
     }
+
     /**
      * Replaces the contents of the module list with {@code modules}.
      */
@@ -75,7 +82,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// person-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a person with the same identity as {@code person} exists in
+     * the address book.
      */
     public boolean hasPerson(Person person) {
         requireNonNull(person);
@@ -91,7 +99,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Returns true if a module with the same identity as {@code module} exists in the address book.
+     * Returns true if a module with the same identity as {@code module} exists in
+     * the address book.
      */
     @Override
     public boolean hasModule(ModuleCode module) {
@@ -118,19 +127,25 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Returns the tutorial object from the tutorial list if it exists.
      */
-    public TutorialClass findTutorialClassFromList(TutorialClass tutorialClass, ModuleCode moduleCode) {
+    public TutorialClass findTutorialClassFromList(TutorialClass tutorialClass, ModuleCode moduleCode)
+                throws CommandException {
         requireNonNull(tutorialClass);
         requireNonNull(moduleCode);
         ModuleCode moduleInList = findModuleFromList(moduleCode);
         if (moduleInList == null) {
-            throw new IllegalArgumentException("Module does not exist in the address book.");
+            throw new CommandException(String.format(ModuleMessages.MESSAGE_MODULE_NOT_FOUND, moduleCode));
         }
-        return moduleInList.getTutorialClasses().stream()
+        TutorialClass tutorialClassInList = moduleInList.getTutorialClasses().stream()
                 .filter(tutorial -> tutorial.equals(tutorialClass))
                 .findFirst()
                 .orElse(null);
+        if (tutorialClassInList == null) {
+            throw new CommandException(String.format(ModuleMessages.MESSAGE_TUTORIAL_DOES_NOT_BELONG_TO_MODULE,
+                    tutorialClass, moduleCode));
+        }
+        return tutorialClassInList;
     }
-    
+
     /**
      * Adds a module to the address book.
      * The module must not already exist in the address book. (TODO)
@@ -141,7 +156,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Adds a person to the students list of a specific tutorial class within a module.
+     * Adds a person to the students list of a specific tutorial class within a
+     * module.
      */
     public void addPersonToTutorialClass(Person person, ModuleCode module, TutorialClass tutorialClass) {
         requireNonNull(person);
@@ -160,9 +176,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
+     * Replaces the given person {@code target} in the list with
+     * {@code editedPerson}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The person identity of {@code editedPerson} must not be the same as another
+     * existing person in the address book.
      */
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
@@ -183,8 +201,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-            .add("persons", persons)
-            .toString();
+                .add("persons", persons)
+                .toString();
     }
 
     @Override
