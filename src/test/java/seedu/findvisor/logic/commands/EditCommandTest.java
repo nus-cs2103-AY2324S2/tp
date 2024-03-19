@@ -13,6 +13,7 @@ import static seedu.findvisor.logic.commands.CommandTestUtil.assertCommandSucces
 import static seedu.findvisor.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.findvisor.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.findvisor.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.findvisor.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
 import static seedu.findvisor.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
@@ -144,6 +145,26 @@ public class EditCommandTest {
                 new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    }
+
+    /**
+     * Ensure that the meeting details are copied over when a person is edited.
+     */
+    @Test
+    public void execute_copyMeetingDetails_success() {
+        Person personWithMeeting = model.getFilteredPersonList().get(INDEX_THIRD_PERSON.getZeroBased());
+        PersonBuilder personInList = new PersonBuilder(personWithMeeting);
+        Person editedPerson = personInList.withName(VALID_NAME_BOB).build();
+
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build();
+        EditCommand editCommand = new EditCommand(INDEX_THIRD_PERSON, descriptor);
+
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson));
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        expectedModel.setPerson(personWithMeeting, editedPerson);
+
+        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
