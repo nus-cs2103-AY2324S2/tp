@@ -22,8 +22,6 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ViewClassesCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
-import javax.swing.text.View;
-
 /**
  * Parses user input.
  */
