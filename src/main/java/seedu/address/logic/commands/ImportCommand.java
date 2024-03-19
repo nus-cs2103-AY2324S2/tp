@@ -1,11 +1,14 @@
 package seedu.address.logic.commands;
 
+import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.nio.file.Path;
 import java.util.*;
 
 import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
+import com.opencsv.exceptions.CsvException;
 import seedu.address.commons.exceptions.DataLoadingException;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.AddCommandParser;
@@ -84,7 +87,7 @@ public class ImportCommand extends Command {
                 data.add(map);
             }
             return data;
-        } catch (Exception e) {
+        } catch (IOException | CsvException e) {
             throw new DataLoadingException(e);
         }
     }
@@ -114,6 +117,10 @@ public class ImportCommand extends Command {
         for (String key : header) {
             // Maybe in the future, I can add a check to see if the value is empty
             // Maybe in the future, I make CliSyntax an enum class?
+            if (personData.get(key).isEmpty()) {
+                // skip empty values
+                continue;
+            }
             if (key.equals("tags")) {
                 // tag is a special case, it can have multiple values
                 String tags = personData.get(key);
