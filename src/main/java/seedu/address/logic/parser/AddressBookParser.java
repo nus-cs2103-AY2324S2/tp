@@ -13,6 +13,7 @@ import seedu.address.logic.commands.AddTaskCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteProjectCommand;
+import seedu.address.logic.commands.DeleteTaskCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
@@ -63,15 +64,13 @@ public class AddressBookParser {
                 return new AddProjectCommandParser().parse(arguments);
 
             case AddTaskCommand.COMMAND_WORD:
-                String args = arguments.trim();
-                return new AddTaskCommandParser().parse(args);
+                return new AddTaskCommandParser().parse(arguments.trim());
 
             case DeleteProjectCommand.COMMAND_WORD:
                 return new DeleteProjectCommandParser().parse(arguments);
 
             case DeleteTaskCommand.COMMAND_WORD:
-                String args = arguments.trim();
-                return new DeleteTaskCommandParser().parse(args);
+                return new DeleteTaskCommandParser().parse(arguments.trim());
 
             case EditCommand.COMMAND_WORD:
                 return new EditCommandParser().parse(arguments);

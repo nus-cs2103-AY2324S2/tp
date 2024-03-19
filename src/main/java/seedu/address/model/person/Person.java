@@ -55,8 +55,6 @@ public class Person {
         return name;
     }
 
-
-
     /**
      * Returns true if both projects have the same name.
      * This defines a weaker notion of equality between two persons.
@@ -100,9 +98,10 @@ public class Person {
         return new ToStringBuilder(this)
                 .add("name", name).toString();
     }
-    
+
     public boolean hasTask(Task task) {
         for(Task t : taskList) {
+            System.out.println(task.getName().fullName);
             if(t.equals(task)) {
                 return true;
             }

@@ -75,5 +75,5 @@ public class Task {
         return taskName.equals(other.taskName);
     }
 
-    
+
 }

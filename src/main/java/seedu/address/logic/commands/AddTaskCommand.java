@@ -7,7 +7,6 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
-import seedu.address.model.project.Project;
 import seedu.address.model.project.Task;
 
 /**
@@ -40,10 +39,14 @@ public class AddTaskCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {    requireNonNull(model);
+    public CommandResult execute(Model model) throws CommandException {
+        requireNonNull(model);
         if (!model.hasPerson(taskProject)) {
             throw new CommandException(String.format(MESSAGE_PROJECT_NOT_FOUND, Messages.format(toAdd), Messages.format(taskProject)));    }
         Person combineTask = model.findPerson(taskProject.getName());
+        if (combineTask.hasTask(toAdd)) {
+            throw new CommandException(String.format(MESSAGE_DUPLICATE_TASK, Messages.format(toAdd), Messages.format(taskProject)));
+        }
         combineTask.addTask(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd), Messages.format(combineTask)));
     }

@@ -13,24 +13,24 @@ import seedu.address.model.project.Task;
 /**
  * Parses input arguments and creates a new AddCommand object
  */
-public class AddTaskCommandParser implements Parser<AddTaskCommand> {
+public class DeleteTaskCommandParser implements Parser<DeleteTaskCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
      * and returns an AddCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public AddTaskCommand parse(String args) throws ParseException {
+    public DeleteTaskCommand parse(String args) throws ParseException {
         try {
-            String taskName = args.split(" /to")[0];
-            String projectName = args.split("/to ")[1];
+            String taskName = args.split(" /in")[0];
+            String projectName = args.split("/in ")[1];
             Task task = new Task(taskName);
             if (taskName.length() == 0) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteTaskCommand.MESSAGE_USAGE));
             }
             Name name = ParserUtil.parseName(projectName);
             Person person = new Person(name);
-            return new AddTaskCommand(task, person);
+            return new DeleteTaskCommand(task, person);
         }
         catch (ArrayIndexOutOfBoundsException e) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE));
