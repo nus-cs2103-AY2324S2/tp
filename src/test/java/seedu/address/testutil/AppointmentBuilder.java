@@ -1,9 +1,9 @@
 package seedu.address.testutil;
 
-import seedu.address.model.appointment.Appointment;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+
+import seedu.address.model.appointment.Appointment;
 
 /**
  * A utility class to help with building Person objects.
@@ -11,7 +11,7 @@ import java.time.format.DateTimeFormatter;
 public class AppointmentBuilder {
 
     public static final int DEFAULT_STUDENT_ID = 1;
-    public static final LocalDateTime DEFAULT_DATETIME= LocalDateTime.parse("2024-03-18 09:00",
+    public static final LocalDateTime DEFAULT_DATETIME = LocalDateTime.parse("2024-03-18 09:00",
             DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
     public static final boolean DEFAULT_ATTENDED = false;
     public static final String DEFAULT_APPOINTMENT_DESCRIPTION = "This is a dummy appointment";
@@ -63,7 +63,7 @@ public class AppointmentBuilder {
     /**
      * Sets the {@code hasAttended} of the {@code Appointment} that we are building.
      */
-    public AppointmentBuilder withHasAttended (Boolean hasAttended) {
+    public AppointmentBuilder withHasAttended(Boolean hasAttended) {
         this.hasAttended = hasAttended;
         return this;
     }
