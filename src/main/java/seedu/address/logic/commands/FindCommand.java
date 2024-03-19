@@ -35,6 +35,10 @@ public class FindCommand extends Command {
 
     private final Predicate<Patient> phonePredicate;
 
+    /**
+     * @param namePredicate condition patient name must meet
+     * @param phonePredicate condition patient phone must meet
+     */
     public FindCommand(Predicate<Patient> namePredicate, Predicate<Patient> phonePredicate) {
         this.namePredicate = namePredicate;
         this.phonePredicate = phonePredicate;
