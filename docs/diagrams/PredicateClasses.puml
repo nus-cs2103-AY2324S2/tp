@@ -8,13 +8,21 @@ package "Predicate classes" {
 Class "<<interface>>\nPredicate" as Predicate
 Class "IsSamePersonPredicate"
 Class "NameContainsKeywordsPredicate"
+Class "TagsOrFoundPredicate"
+Class "TagsAndFoundPredicate"
 }
 
 Class "SelectCommand"
 Class "FindCommand"
+Class "FindTagsOrCommand"
+Class "FindTagsAndCommand"
 
 SelectCommand ..> IsSamePersonPredicate : <<create>>
 FindCommand --> NameContainsKeywordsPredicate
 IsSamePersonPredicate .up.|> Predicate
 NameContainsKeywordsPredicate .up.|> Predicate
+FindTagsOrCommand --> TagsOrFoundPredicate
+FindTagsAndCommand --> TagsAndFoundPredicate
+TagsOrFoundPredicate ..|> Predicate
+TagsAndFoundPredicate ..|> Predicate
 @enduml

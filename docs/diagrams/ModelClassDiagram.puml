@@ -56,7 +56,7 @@ Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
 Email -[hidden]right-> Tag
 Tag -[hidden]right-> Upcoming
-Tag -[hidden]right-> LastContact
+Upcoming -[hidden]right-> LastContact
 
 ModelManager --> "~* filtered" Person
 @enduml
