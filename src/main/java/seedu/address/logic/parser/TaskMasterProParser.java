@@ -8,7 +8,22 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.commands.*;
+import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddTaskCommand;
+import seedu.address.logic.commands.AssignTaskCommand;
+import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteTaskCommand;
+import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ListTasksCommand;
+import seedu.address.logic.commands.MarkCommand;
+import seedu.address.logic.commands.UnassignTaskCommand;
+import seedu.address.logic.commands.UnmarkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -75,8 +90,8 @@ public class TaskMasterProParser {
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
 
-        case ListTaskCommand.COMMAND_WORD:
-            return new ListTaskCommand();
+        case ListTasksCommand.COMMAND_WORD:
+            return new ListTasksCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

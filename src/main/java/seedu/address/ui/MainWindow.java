@@ -135,7 +135,6 @@ public class MainWindow extends UiPart<Stage> {
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
         taskListPanel.hide();
-//        employeeList.setVisible(false);
     }
 
     /**

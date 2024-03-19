@@ -6,7 +6,6 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
-import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.task.Task;
 

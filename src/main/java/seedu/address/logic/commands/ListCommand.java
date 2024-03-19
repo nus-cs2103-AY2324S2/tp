@@ -6,7 +6,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EMPLOYEES;
 import seedu.address.model.Model;
 
 /**
- * Lists all employees in the address book to the user.
+ * Lists all employees in TaskMasterPro to the user.
  */
 public class ListCommand extends Command {
 
