@@ -86,7 +86,9 @@ public class AddressBookTest {
     }
 
     @Test
-    public void hasTag_tagNotInAddressBookString_returnsFalse() { assertFalse(addressBook.hasTag("FRIEND")); }
+    public void hasTag_tagNotInAddressBookString_returnsFalse() {
+        assertFalse(addressBook.hasTag("FRIEND"));
+    }
 
     @Test
     public void hasPerson_personInAddressBook_returnsTrue() {

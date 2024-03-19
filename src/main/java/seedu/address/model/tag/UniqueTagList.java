@@ -35,12 +35,16 @@ public class UniqueTagList implements Iterable<Tag> {
     }
 
     /**
-     * Returns true if the list contains an equivalent tag as the given argument.
+     * Returns true if the list contains an equivalent tag as the given argument of type Tag.
      */
     public boolean contains(Tag toCheck) {
         requireNonNull(toCheck);
         return internalSet.stream().anyMatch(toCheck::isSameTag);
     }
+
+    /**
+     * Returns true if the list contains an equivalent tag as the given argument of type String.
+     */
     public boolean contains(String toCheck) {
         requireNonNull(toCheck);
         return internalSet.stream().anyMatch(tag -> tag.tagName.equals(toCheck));
@@ -80,7 +84,7 @@ public class UniqueTagList implements Iterable<Tag> {
 
     /**
      * Removes the equivalent tag from the list.
-     * The tag must exist in the list.
+     * The argument of type Tag must exist in the list.
      */
     public void remove(Tag toRemove) {
         requireNonNull(toRemove);
@@ -89,6 +93,10 @@ public class UniqueTagList implements Iterable<Tag> {
         }
     }
 
+    /**
+     * Removes the equivalent tag from the list.
+     * The argument of type String must exist in the list.
+     */
     public void remove(String toRemove) {
         requireNonNull(toRemove);
         if (!internalSet.removeIf(tag -> tag.tagName.equals(toRemove))) {

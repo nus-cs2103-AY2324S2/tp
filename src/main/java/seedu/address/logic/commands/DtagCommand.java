@@ -1,15 +1,13 @@
 package seedu.address.logic.commands;
 
-import seedu.address.commons.core.index.Index;
+import static java.util.Objects.requireNonNull;
+
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
 
-import java.util.List;
 
-import static java.util.Objects.requireNonNull;
 
 /**
  * Deletes a tag from the address book.

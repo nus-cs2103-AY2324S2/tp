@@ -86,6 +86,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(tag);
         return tagList.contains(tag);
     }
+
+    /**
+     * Returns true if a tag with name {@code tagName} exists in the address book.
+     */
     public boolean hasTag(String tagName) {
         requireNonNull(tagName);
         return tagList.contains(tagName);
