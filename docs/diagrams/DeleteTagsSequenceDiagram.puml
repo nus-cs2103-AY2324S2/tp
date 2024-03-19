@@ -1,0 +1,80 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":DeleteTagsCommandParser" as DeleteTagsCommandParser LOGIC_COLOR
+participant "a:DeleteTagsCommand" as DeleteTagsCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute(deletet 1 t/christian ...)
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand(deletet 1 t/christian ...)
+activate AddressBookParser
+
+create DeleteTagsCommandParser
+AddressBookParser -> DeleteTagsCommandParser
+activate DeleteTagsCommandParser
+
+DeleteTagsCommandParser --> AddressBookParser
+deactivate DeleteTagsCommandParser
+
+AddressBookParser -> DeleteTagsCommandParser : parse(deletet 1 t/christian ...)
+activate DeleteTagsCommandParser
+
+Create DeleteTagsCommand
+DeleteTagsCommandParser -> DeleteTagsCommand
+activate DeleteTagsCommand
+
+DeleteTagsCommand --> DeleteTagsCommandParser : a
+deactivate DeleteTagsCommand
+
+DeleteTagsCommandParser --> AddressBookParser : a
+deactivate DeleteTagsCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.'
+DeleteTagsCommandParser -[hidden]-> AddressBookParser
+destroy DeleteTagsCommandParser
+
+AddressBookParser --> LogicManager : a
+deactivate AddressBookParser
+
+LogicManager -> DeleteTagsCommand : execute()
+activate DeleteTagsCommand
+
+DeleteTagsCommand -> Model : setPatient(args)
+activate Model
+
+Model --> DeleteTagsCommand
+deactivate Model
+
+DeleteTagsCommand -> Model : updateFilteredPatientList(predicate)
+activate Model
+
+Model -> DeleteTagsCommand
+deactivate Model
+
+create CommandResult
+DeleteTagsCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> DeleteTagsCommand
+deactivate CommandResult
+
+DeleteTagsCommand --> LogicManager : result
+deactivate DeleteTagsCommand
+
+DeleteTagsCommand -[hidden]-> AddressBookParser
+destroy DeleteTagsCommand
+
+[<--LogicManager
+deactivate LogicManager
+
+@enduml

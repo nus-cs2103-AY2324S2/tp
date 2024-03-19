@@ -324,6 +324,16 @@ Step 2: The user executes the `deletet 1 t/fallRisk` command to delete the `fall
 <b>Note</b>: Since multiple inputs are allowed, a set of tags to be deleted is passed, each of which will be removed if found associated with the patient.
 </box>
 
+The following sequence diagram shows how the Delete Tags operation works:
+<puml src="diagrams/DeleteTagsSequenceDiagram.puml" alt="DeleteTagsSequence" />
+
+<box type="info" seamless>
+
+**Note:** The lifeline for `DeleteTagCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</box>
+
+
 <!---
 The following sequence diagram summarizes what happens when a user executes a Delete Tags operation:
 <puml src="diagrams/DeleteTagsTimeDiagram.puml" alt="DeleteTagsSequenceTimeDiagram" />

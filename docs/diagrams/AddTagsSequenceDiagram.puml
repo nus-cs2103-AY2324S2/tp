@@ -55,6 +55,12 @@ activate Model
 Model --> AddTagsCommand
 deactivate Model
 
+AddTagsCommand -> Model : updateFilteredPatientList(predicate)
+activate Model
+
+Model -> AddTagsCommand
+deactivate Model
+
 create CommandResult
 AddTagsCommand -> CommandResult
 activate CommandResult
