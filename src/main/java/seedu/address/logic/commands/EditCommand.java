@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_COURSE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
@@ -28,6 +29,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Role;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -44,6 +46,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
+            + "[" + PREFIX_ROLE + "ROLE] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_COURSE + "COURSE] "
             + "[" + PREFIX_TAG + "TAG]...\n"
@@ -99,13 +102,14 @@ public class EditCommand extends Command {
         assert personToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
+        Optional<Phone> updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
+        Role updatedRole = editPersonDescriptor.getRole().orElse(personToEdit.getRole());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Course updatedCourse = editPersonDescriptor.getCourse().orElse(personToEdit.getCourse());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedCourse, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedRole, updatedAddress, updatedCourse, updatedTags);
     }
 
     @Override
@@ -138,8 +142,9 @@ public class EditCommand extends Command {
      */
     public static class EditPersonDescriptor {
         private Name name;
-        private Phone phone;
+        private Optional<Phone> phone;
         private Email email;
+        private Role role;
         private Address address;
         private Course course;
         private Set<Tag> tags;
@@ -154,6 +159,7 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
+            setRole(toCopy.role);
             setAddress(toCopy.address);
             setCourse(toCopy.course);
             setTags(toCopy.tags);
@@ -163,7 +169,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, role, address, tags);
         }
 
         public void setName(Name name) {
@@ -174,11 +180,19 @@ public class EditCommand extends Command {
             return Optional.ofNullable(name);
         }
 
-        public void setPhone(Phone phone) {
+        public void setPhone(Optional<Phone> phone) {
             this.phone = phone;
         }
 
-        public Optional<Phone> getPhone() {
+        /**
+         * Gets the phone number information of this optional.
+         * <p>
+         * The result is {@code Optional.empty()} if {@code p/} field is not specified,
+         * {@code Optional.of(Optional.empty())} if {@code p/} field is specified but left empty
+         * (which means the user wants to delete the phone number),
+         * and an actual value if the user wants to update the phone number.
+         */
+        public Optional<Optional<Phone>> getPhone() {
             return Optional.ofNullable(phone);
         }
 
@@ -188,6 +202,14 @@ public class EditCommand extends Command {
 
         public Optional<Email> getEmail() {
             return Optional.ofNullable(email);
+        }
+
+        public void setRole(Role role) {
+            this.role = role;
+        }
+
+        public Optional<Role> getRole() {
+            return Optional.ofNullable(role);
         }
 
         public void setAddress(Address address) {
@@ -238,6 +260,7 @@ public class EditCommand extends Command {
             return Objects.equals(name, otherEditPersonDescriptor.name)
                     && Objects.equals(phone, otherEditPersonDescriptor.phone)
                     && Objects.equals(email, otherEditPersonDescriptor.email)
+                    && Objects.equals(role, otherEditPersonDescriptor.role)
                     && Objects.equals(address, otherEditPersonDescriptor.address)
                     && Objects.equals(course, otherEditPersonDescriptor.course)
                     && Objects.equals(tags, otherEditPersonDescriptor.tags);
@@ -249,6 +272,7 @@ public class EditCommand extends Command {
                     .add("name", name)
                     .add("phone", phone)
                     .add("email", email)
+                    .add("role", role)
                     .add("address", address)
                     .add("course", course)
                     .add("tags", tags)

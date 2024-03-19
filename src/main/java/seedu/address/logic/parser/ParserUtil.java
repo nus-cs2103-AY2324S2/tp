@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
@@ -14,6 +15,7 @@ import seedu.address.model.person.Course;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Role;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -67,6 +69,20 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String phone} into a {@code Optional<Phone>}, allowing empty input.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code phone} is invalid.
+     */
+    public static Optional<Phone> parseOptionalPhone(String phone) throws ParseException {
+        requireNonNull(phone);
+        if (phone.trim().isEmpty()) {
+            return Optional.empty();
+        }
+        return Optional.of(parsePhone(phone));
+    }
+
+    /**
      * Parses a {@code String address} into an {@code Address}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -97,10 +113,10 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String course} into an {@code Email}.
+     * Parses a {@code String course} into an {@code Course}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code email} is invalid.
+     * @throws ParseException if the given {@code course} is invalid.
      */
     public static Course parseCourse(String course) throws ParseException {
         requireNonNull(course);
@@ -109,6 +125,21 @@ public class ParserUtil {
             throw new ParseException(Course.MESSAGE_CONSTRAINTS);
         }
         return new Course(trimmedCourse);
+    }
+
+    /**
+     * Parses a {@code String role} into a {@code Role}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code role} is invalid.
+     */
+    public static Role parseRole(String role) throws ParseException {
+        requireNonNull(role);
+        String trimmedRole = role.trim();
+        if (!Role.isValidRole(trimmedRole)) {
+            throw new ParseException(Role.MESSAGE_CONSTRAINTS);
+        }
+        return new Role(trimmedRole);
     }
 
     /**

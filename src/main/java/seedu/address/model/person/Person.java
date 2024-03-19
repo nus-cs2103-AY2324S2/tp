@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
@@ -18,9 +19,10 @@ public class Person {
 
     // Identity fields
     private final Name name;
-    private final Phone phone;
+    private final Optional<Phone> phone;
     private final Email email;
     private final Course course;
+    private final Role role;
 
     // Data fields
     private final Address address;
@@ -29,11 +31,13 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Course course, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, course, tags);
+    public Person(Name name, Optional<Phone> phone, Email email, Role role, Address address, Course course, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, role, address, course, tags);
+
         this.name = name;
         this.phone = phone;
         this.email = email;
+        this.role = role;
         this.address = address;
         this.course = course;
         this.tags.addAll(tags);
@@ -43,12 +47,16 @@ public class Person {
         return name;
     }
 
-    public Phone getPhone() {
+    public Optional<Phone> getPhone() {
         return phone;
     }
 
     public Email getEmail() {
         return email;
+    }
+
+    public Role getRole() {
+        return role;
     }
 
     public Address getAddress() {
@@ -99,6 +107,7 @@ public class Person {
         return name.equals(otherPerson.name)
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
+                && role.equals(otherPerson.role)
                 && address.equals(otherPerson.address)
                 && course.equals(otherPerson.course)
                 && tags.equals(otherPerson.tags);
@@ -107,7 +116,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, course, tags);
+        return Objects.hash(name, phone, email, role, address, course, tags);
     }
 
     @Override
@@ -116,6 +125,7 @@ public class Person {
                 .add("name", name)
                 .add("phone", phone)
                 .add("email", email)
+                .add("role", role)
                 .add("address", address)
                 .add("course", course)
                 .add("tags", tags)
