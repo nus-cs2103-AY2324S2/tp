@@ -7,7 +7,9 @@ import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataLoadingException;
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyClassBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 
@@ -20,12 +22,16 @@ public class StorageManager implements Storage {
     private AddressBookStorage addressBookStorage;
     private UserPrefsStorage userPrefsStorage;
 
+    private ClassBookStorage classBookStorage;
+
     /**
      * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage,
+                          ClassBookStorage classBookStorage) {
         this.addressBookStorage = addressBookStorage;
         this.userPrefsStorage = userPrefsStorage;
+        this.classBookStorage = classBookStorage;
     }
 
     // ================ UserPrefs methods ==============================
@@ -75,4 +81,43 @@ public class StorageManager implements Storage {
         addressBookStorage.saveAddressBook(addressBook, filePath);
     }
 
+    //classBook methods
+
+    @Override
+    public Path getClassBookFilePath() {
+        return classBookStorage.getClassBookFilePath();
+    }
+
+    @Override
+    public Optional<ReadOnlyClassBook> readClassBook() throws DataLoadingException {
+        return readClassBook(classBookStorage.getClassBookFilePath());
+    }
+
+    @Override
+    public Optional<ReadOnlyClassBook> readClassBook(Path filePath) throws DataLoadingException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return classBookStorage.readClassBook(filePath);
+    }
+
+    @Override
+    public void createJsonFileForEachCC(Optional<JsonSerializableClassBook> classBook) throws IOException,
+            IllegalValueException {
+        classBookStorage.createJsonFileForEachCC(classBook);
+    }
+
+    @Override
+    public void createJsonFileForEachCC(JsonSerializableClassBook classBook) throws IOException, IllegalValueException {
+        classBookStorage.createJsonFileForEachCC(classBook);
+    }
+
+    @Override
+    public void saveClassBook(ReadOnlyClassBook classBook) throws IOException, IllegalValueException {
+        saveClassBook(classBook, classBookStorage.getClassBookFilePath());
+    }
+
+    @Override
+    public void saveClassBook(ReadOnlyClassBook classBook, Path filePath) throws IOException, IllegalValueException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        classBookStorage.saveClassBook(classBook, filePath);
+    }
 }
