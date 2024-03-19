@@ -157,11 +157,47 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd client in the client list.
 * `find Betsy` followed by `delete 1` deletes the 1st client in the results of the `find` command.
 
+### Updating last met : `met`
+
+Updates the last met date you had with your client.
+
+Format: `met INDEX l/DATE`
+
+* Updates the client at the specified `INDEX`.
+* The index refers to the index number shown in the displayed client list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* The DATE format must be in **YYYY-MM-DD**. 7 May 2023 should be entered as 2023-05-07.
+
+Examples:
+* `met 2 l/2023-05-07` updates the last met date of the 2nd client in the client list to 7 May 2023.
+* `met 7 l/2024-07-08` updates the last met date of the 7th client in the client list to 8 July 2024.
+
+### Scheduling appointments : `schedule`
+
+Schedules an appointment date and time you have with your client.
+
+Format: `schedule INDEX s/DATETIME`
+
+* Schedules an appointment the client at the specified `INDEX`.
+* The index refers to the index number shown in the displayed client list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* The DATETIME format must be in **YYYY-MM-DD HH:mm**. 7 May 2023 2.15pm should be entered as 2023-05-07 14:15.
+
+Examples:
+* `schedule 2 s/2023-05-07 22:00` schedules an appointment with the 
+2nd client in the client list at 7 May 2023 10pm.
+* `schedule 7 s/2024-07-08 07:30` schedules an appointment with the 
+7th client in the client list at 8 July 2024 7.30am.
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the client list.
 
 Format: `clear`
+
+><span style="color: red;"> [!CAUTION] </span> 
+>
+>><span style="color: red;"> Clearing is irreversible and will NOT have a confirmation screen </span> 
 
 ### Exiting the program : `exit`
 
@@ -205,13 +241,15 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action     | Format, Examples
------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**    | `add n/NAME c/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear**  | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit**   | `edit INDEX [n/NAME] [c/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List**   | `list`
-**View**   | `view`
-**Help**   | `help`
+| Action       | Format, Examples                                                                                                                                                     |
+|--------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**      | `add n/NAME c/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g.,`add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **Clear**    | `clear`                                                                                                                                                              |
+| **Delete**   | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                  |
+| **Edit**     | `edit INDEX [n/NAME] [c/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                          |
+| **Find**     | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                           |
+| **List**     | `list`                                                                                                                                                               |
+| **LastMet**  | `met INDEX [l/DATE]`<br> eg., `met 2 l/2023-05-07`                                                                                                                   |
+| **Schedule** | `schedule INDEX [s/DATETIME]`<br> eg., `schedule 2 s/2023-05-07 22:00`                                                                                               |                                                                                                                               |
+| **View**     | `view INDEX`<br> eg., `view 1`                                                                                                                                        |
+| **Help**     | `help`                                                                                                                                                               |
