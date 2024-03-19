@@ -52,7 +52,7 @@ public class ViewClientCommand extends ViewCommand {
     }
 
     /**
-     * Compares this ViewCommand with another object to check for equality.
+     * Compares this ViewClientCommand with another object to check for equality.
      *
      * @param other the other object to compare with.
      * @return true if both commands are equal, otherwise false.
@@ -68,8 +68,8 @@ public class ViewClientCommand extends ViewCommand {
             return false;
         }
 
-        ViewClientCommand otherViewCommand = (ViewClientCommand) other;
-        return clientIndex.equals(otherViewCommand.clientIndex);
+        ViewClientCommand otherViewClientCommand = (ViewClientCommand) other;
+        return clientIndex.equals(otherViewClientCommand.clientIndex);
     }
 
     @Override

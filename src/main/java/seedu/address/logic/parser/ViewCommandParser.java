@@ -11,7 +11,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 /**
  * Parses input arguments and creates a new ViewCommand object
  */
-public class ViewCommandParser implements Parser<ViewClientCommand> {
+public class ViewCommandParser implements Parser<ViewCommand> {
 
     public static final String VIEW_CLIENT_ARGUMENT = "c";
     public static final String VIEW_MEETING_ARGUMENT = "m";
@@ -21,17 +21,7 @@ public class ViewCommandParser implements Parser<ViewClientCommand> {
      * and returns a DeleteCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public ViewClientCommand parse(String args) throws ParseException {
-        try {
-            Index index = ParserUtil.parseIndex(args);
-            return new ViewClientCommand(index);
-        } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewClientCommand.MESSAGE_USAGE), pe);
-        }
-    }
-
-    public ViewCommand testparse(String args) throws ParseException {
+    public ViewCommand parse(String args) throws ParseException {
         try {
             String[] index = getValidArgs(args);
 

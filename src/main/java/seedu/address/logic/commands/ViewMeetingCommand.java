@@ -52,4 +52,25 @@ public class ViewMeetingCommand extends ViewCommand {
 
         return new CommandResult(MESSAGE_SUCCESS + this.clientIndex.getOneBased());
     }
+
+    /**
+     * Compares this ViewMeetingCommand with another object to check for equality.
+     *
+     * @param other the other object to compare with.
+     * @return true if both commands are equal, otherwise false.
+     */
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof ViewMeetingCommand)) {
+            return false;
+        }
+
+        ViewMeetingCommand otherViewMeetingCommand = (ViewMeetingCommand) other;
+        return clientIndex.equals(otherViewMeetingCommand.clientIndex);
+    }
 }
