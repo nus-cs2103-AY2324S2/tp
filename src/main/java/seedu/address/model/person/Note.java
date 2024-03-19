@@ -22,9 +22,6 @@ public class Note {
      * @param note A valid note.
      */
     public Note(String note) {
-        //must add check back later
-        //  requireNonNull(note);
-        //  checkArgument(isValidNote(note), MESSAGE_CONSTRAINTS);
         value = note;
     }
 

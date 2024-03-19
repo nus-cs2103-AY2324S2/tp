@@ -15,7 +15,7 @@ import seedu.address.model.person.Person;
 
 /**
  * Adds a note of an existing person in the address book.
- * A note must be specified.
+ * A non-empty note must be specified.
  */
 public class NoteCommand extends Command {
 

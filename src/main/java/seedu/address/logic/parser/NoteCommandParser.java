@@ -37,5 +37,3 @@ public class NoteCommandParser implements Parser<NoteCommand> {
     }
 
 }
-
-
