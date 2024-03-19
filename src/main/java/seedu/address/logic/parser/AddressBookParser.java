@@ -93,7 +93,7 @@ public class AddressBookParser {
 
         case RedoCommand.COMMAND_WORD:
             return new RedoCommand();
-            
+
         case RemoveTagFromAllCommand.COMMAND_WORD:
             return new RemoveTagFromAllCommandParser().parse(arguments);
 
