@@ -25,7 +25,7 @@ public class ModuleCodeTest {
         assertTrue(module.equals(module));
 
         // same values -> returns true
-        ModuleCode remarkCopy = new ModuleCode(module.value);
+        ModuleCode remarkCopy = new ModuleCode(module.moduleCode);
         assertTrue(module.equals(remarkCopy));
 
         // different types -> returns false
