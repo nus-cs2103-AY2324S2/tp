@@ -16,6 +16,9 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.ClassBook;
+import seedu.address.model.person.Classes;
+import seedu.address.model.person.CourseCode;
 import seedu.address.model.person.Person;
 
 /**
@@ -55,6 +58,9 @@ public class TypicalPersons {
             .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
             .build();
 
+    public static final Classes TYPICAL_CLASS_1 = new ClassBuilder().withCC("CS2103T").build();
+    public static final Classes TYPICAL_CLASS_2 = new ClassBuilder().withCC("CS2103").build();
+
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
     private TypicalPersons() {} // prevents instantiation
@@ -72,5 +78,11 @@ public class TypicalPersons {
 
     public static List<Person> getTypicalPersons() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+    }
+
+    public static ClassBook getTypicalClassBook() {
+        ClassBook cb = new ClassBook();
+        cb.createClass(new Classes(new CourseCode("cs2103")));
+        return cb;
     }
 }
