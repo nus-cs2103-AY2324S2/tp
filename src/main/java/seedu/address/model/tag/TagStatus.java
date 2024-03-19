@@ -9,22 +9,24 @@ public enum TagStatus {
     INCOMPLETE_GOOD, // incomplete before deadline
     INCOMPLETE_BAD; // incomplete after deadline
 
+    public static final TagStatus DEFAULT_STATUS = INCOMPLETE_GOOD;
+
     /**
      * @param status Keyword corresponding each of the TagStatus.
      * @return TagStatus matching the keyword.
      */
     public static TagStatus getTagStatus(String status) {
         switch (status) {
-            case "cg":
-                return TagStatus.COMPLETE_GOOD;
-            case "cb":
-                return TagStatus.COMPLETE_BAD;
-            case "ig":
-                return TagStatus.INCOMPLETE_GOOD;
-            case "ib":
-                return TagStatus.INCOMPLETE_BAD;
-            default:
-                return TagStatus.INCOMPLETE_GOOD;
+        case "cg":
+            return TagStatus.COMPLETE_GOOD;
+        case "cb":
+            return TagStatus.COMPLETE_BAD;
+        case "ig":
+            return TagStatus.INCOMPLETE_GOOD;
+        case "ib":
+            return TagStatus.INCOMPLETE_BAD;
+        default:
+            return TagStatus.DEFAULT_STATUS;
         }
     }
 

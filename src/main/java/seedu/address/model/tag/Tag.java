@@ -1,11 +1,7 @@
 package seedu.address.model.tag;
 
-import seedu.address.logic.commands.MarkCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 /**
  * Represents a Tag in the address book.
@@ -17,7 +13,8 @@ public class Tag {
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
     public final String tagName;
-    public TagStatus tagStatus;
+
+    private TagStatus tagStatus;
 
     /**
      * Constructs a {@code Tag}.
@@ -33,6 +30,10 @@ public class Tag {
         checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
         this.tagName = tagName;
         this.tagStatus = tagStatus;
+    }
+
+    public TagStatus getTagStatus() {
+        return tagStatus;
     }
 
     /**
