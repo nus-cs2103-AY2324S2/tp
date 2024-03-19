@@ -2,8 +2,8 @@ package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.GROUP_DESC_HUSBAND;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_GROUP_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GROUP_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NUSID_AMY;
