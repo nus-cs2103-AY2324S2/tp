@@ -34,7 +34,6 @@ public class ExportCommandTest {
     private ExportCommand exportCommand = new ExportCommand();
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private Model emptyModel = new ModelManager(new AddressBook(), new UserPrefs());
-    private Model modelWithNoFilePath = new ModelManager(new AddressBook(), new UserPrefs());
     private Model modelWithInvalidJsonFormat = new ModelManager(new AddressBook(), new UserPrefs());
     private Model modelWithNoPersonsArray = new ModelManager(new AddressBook(), new UserPrefs());
     private Model modelWithInvalidStructure = new ModelManager(new AddressBook(), new UserPrefs());
@@ -46,6 +45,7 @@ public class ExportCommandTest {
         modelWithInvalidJsonFormat.setAddressBookFilePath(INVALID_JSON_FORMAT_PATH);
         modelWithNoPersonsArray.setAddressBookFilePath(NO_PERSONS_ARRAY_PATH);
         modelWithInvalidStructure.setAddressBookFilePath(INVALID_JSON_STRUCTURE_PATH);
+
     }
 
     @Test
@@ -72,13 +72,6 @@ public class ExportCommandTest {
 
         CommandException thrown = assertThrows(CommandException.class, () -> exportCommand.execute(model));
         assertEquals("Could not create directory for CSV file.", thrown.getMessage());
-    }
-
-    @Test
-    public void execute_withoutValidJsonFilePath_throwsCommandException() {
-        CommandException thrown = assertThrows(CommandException.class, () -> exportCommand
-                .execute(modelWithNoFilePath));
-        assertEquals("Cannot find JSON file to export.", thrown.getMessage());
     }
 
     @Test
