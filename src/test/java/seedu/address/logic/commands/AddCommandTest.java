@@ -212,7 +212,10 @@ public class AddCommandTest {
             requireNonNull(person);
             return personsAdded.stream().anyMatch(person::isSamePerson);
         }
+        @Override
+        public void commitAddressBook() {
 
+        }
         @Override
         public void addPerson(Person person) {
             requireNonNull(person);
