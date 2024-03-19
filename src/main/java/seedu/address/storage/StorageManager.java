@@ -10,6 +10,7 @@ import seedu.address.commons.exceptions.DataLoadingException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.appointment.ReadOnlyAppointmentList;
 
 /**
  * Manages storage of AddressBook data in local storage.
@@ -54,6 +55,11 @@ public class StorageManager implements Storage {
     }
 
     @Override
+    public Path getAppointmentListFilePath() {
+        return addressBookStorage.getAppointmentListFilePath();
+    }
+
+    @Override
     public Optional<ReadOnlyAddressBook> readAddressBook() throws DataLoadingException {
         return readAddressBook(addressBookStorage.getAddressBookFilePath());
     }
@@ -65,14 +71,36 @@ public class StorageManager implements Storage {
     }
 
     @Override
+    public Optional<ReadOnlyAppointmentList> readAppointmentList() throws DataLoadingException {
+        return readAppointmentList(addressBookStorage.getAppointmentListFilePath());
+    }
+
+    @Override
+    public Optional<ReadOnlyAppointmentList> readAppointmentList(Path filePath) throws DataLoadingException {
+        logger.fine("Attempting to read appointments data from file: " + filePath);
+        return addressBookStorage.readAppointmentList(filePath);
+    }
+
+    @Override
     public void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException {
         saveAddressBook(addressBook, addressBookStorage.getAddressBookFilePath());
     }
 
     @Override
     public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
-        logger.fine("Attempting to write to data file: " + filePath);
+        logger.fine("Attempting to write persons to data file: " + filePath);
         addressBookStorage.saveAddressBook(addressBook, filePath);
+    }
+
+    @Override
+    public void saveAppointmentList(ReadOnlyAppointmentList appointmentList) throws IOException {
+        saveAppointmentList(appointmentList, addressBookStorage.getAddressBookFilePath());
+    }
+
+    @Override
+    public void saveAppointmentList(ReadOnlyAppointmentList appointmentList, Path filePath) throws IOException {
+        logger.fine("Attempting to write appointments to data file: " + filePath);
+        addressBookStorage.saveAppointmentList(appointmentList, filePath);
     }
 
 }

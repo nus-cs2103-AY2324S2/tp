@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataLoadingException;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.appointment.ReadOnlyAppointmentList;
 
 /**
  * Represents a storage for {@link seedu.address.model.AddressBook}.
@@ -16,6 +17,8 @@ public interface AddressBookStorage {
      * Returns the file path of the data file.
      */
     Path getAddressBookFilePath();
+
+    Path getAppointmentListFilePath();
 
     /**
      * Returns AddressBook data as a {@link ReadOnlyAddressBook}.
@@ -31,6 +34,19 @@ public interface AddressBookStorage {
     Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataLoadingException;
 
     /**
+     * Returns AppointmentList data as a {@link ReadOnlyAddressBook}.
+     * Returns {@code Optional.empty()} if storage file is not found.
+     *
+     * @throws DataLoadingException if loading the data from storage failed.
+     */
+    Optional<ReadOnlyAppointmentList> readAppointmentList() throws DataLoadingException;
+
+    /**
+     * @see #getAppointmentListFilePath()
+     */
+    Optional<ReadOnlyAppointmentList> readAppointmentList(Path filePath) throws DataLoadingException;
+
+    /**
      * Saves the given {@link ReadOnlyAddressBook} to the storage.
      * @param addressBook cannot be null.
      * @throws IOException if there was any problem writing to the file.
@@ -41,5 +57,17 @@ public interface AddressBookStorage {
      * @see #saveAddressBook(ReadOnlyAddressBook)
      */
     void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException;
+
+    /**
+     * Saves the given {@link ReadOnlyAppointmentList} to the storage.
+     * @param appointmentList cannot be null.
+     * @throws IOException if there was any problem writing to the file.
+     */
+    void saveAppointmentList(ReadOnlyAppointmentList appointmentList) throws IOException;
+
+    /**
+     * @see #saveAppointmentList(ReadOnlyAppointmentList)
+     */
+    void saveAppointmentList(ReadOnlyAppointmentList appointmentList, Path filePath) throws IOException;
 
 }
