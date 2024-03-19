@@ -147,21 +147,15 @@ Examples:
 
 ### Filtering persons by tag: `filter`
 
-Finds persons that are tagged with any of the given tags.
+Finds persons that are tagged with all of the given tags.
 
 Format: `filter TAG [MORE_TAGS]`
 
-* The search is case-insensitive. e.g `friends` will match with `Friends`.
-* The order of the tags does not matter. e.g. `friends family` will match `family friends`.
-* Only the tag is searched.
-* Only full tags will be matched e.g. `friend` will not match `friends`.
-* Persons matching at least one tag will be returned (i.e. `OR` search).
-  e.g. `friends family` will return persons with either the `friends` tag or `family` tag, or both `friends` and `family` tag.
+* The search is case-insensitive. e.g `supplier` will match with `Supplier`.
+* Only full tags will be matched e.g. `supplier` will not match `suppliers`.
+* Persons matching all tags will be returned (i.e. `AND` search).
+  e.g. `seafood supplier` will return persons with both `seafood` and `supplier` tag.
 
-Examples:
-* `filter friends` returns `Alex Yeoh` and `Bernice Yu`.
-* `filter family criminal` returns `David Li` and `Crowe`.<br>
-  ![result for 'filter family criminal'](images/filterFamilyCriminal.png)
 
 ### Deleting a person : `delete`
 
