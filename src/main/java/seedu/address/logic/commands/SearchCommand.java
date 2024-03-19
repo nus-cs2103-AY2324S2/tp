@@ -35,17 +35,17 @@ import seedu.address.model.tag.Tag;
 public class SearchCommand extends Command {
     public static final String COMMAND_WORD = "search";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons where all their attributes match "
-            + "the specified attributes.\n"
-            + "For email, country, phone number and interviews only full words will be matched, while"
-            + "name, comment and tags, partial words will be matched.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose attributes match all "
+            + "the corresponding specified attributes.\n"
+            + "For phone number, email, country and status, only full words will be matched, while "
+            + "for name, comment and tags, partial words will be matched.\n"
             + "Parameters: [" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_COUNTRY + "COUNTRY] "
             + "[" + PREFIX_COMMENT + "COMMENT] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD
+            + "[" + PREFIX_TAG + "TAG]\n"
+            + "Example: " + COMMAND_WORD + " "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
