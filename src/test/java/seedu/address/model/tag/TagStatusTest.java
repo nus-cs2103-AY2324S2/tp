@@ -1,15 +1,15 @@
 package seedu.address.model.tag;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 class TagStatusTest {
 
     @Test
     void getTagStatus() {
 
-        final String EMPTY_TAG_STATUS = "";
+        final String emptyTagStatus = "";
 
         assertTrue(TagStatus.COMPLETE_GOOD.equals(TagStatus.getTagStatus(
                 TagStatus.COMPLETE_GOOD_KEYWORD)));
@@ -20,6 +20,6 @@ class TagStatusTest {
         assertTrue(TagStatus.INCOMPLETE_BAD.equals(TagStatus.getTagStatus(
                 TagStatus.INCOMPLETE_BAD_KEYWORD)));
         assertTrue(TagStatus.DEFAULT_STATUS.equals(TagStatus.getTagStatus(
-                EMPTY_TAG_STATUS)));
+                emptyTagStatus)));
     }
 }
