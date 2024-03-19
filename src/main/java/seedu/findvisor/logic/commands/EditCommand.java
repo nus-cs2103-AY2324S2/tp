@@ -23,6 +23,7 @@ import seedu.findvisor.logic.commands.exceptions.CommandException;
 import seedu.findvisor.model.Model;
 import seedu.findvisor.model.person.Address;
 import seedu.findvisor.model.person.Email;
+import seedu.findvisor.model.person.Meeting;
 import seedu.findvisor.model.person.Name;
 import seedu.findvisor.model.person.Person;
 import seedu.findvisor.model.person.Phone;
@@ -100,8 +101,10 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        // EditCommand does not edit meeting so we keep the original meeting
+        Optional<Meeting> meeting = personToEdit.getMeeting();
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, meeting);
     }
 
     @Override
