@@ -136,11 +136,11 @@ Example: `edita L293D L293E` edits the asset `L293D`, changing its name to `L293
 
 ### Locating persons by name or asset: `find`
 
-Finds persons whose names or assets contain any of the given keywords.
+Finds persons whose names, tags or assets contain any of the given keywords.
 
 Format: `find <keyword> [<keyword>]...`
 
-Example: `find John` searches all contacts and assets for the keyword `John`.
+Example: `find John` searches all contact names, tags and assets for the keyword `John`.
 
 * At least one keyword must be provided.
 * Keywords are case-insensitive.

@@ -7,7 +7,7 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.commons.util.ToStringBuilder;
 
 /**
- * Tests that a {@code Person}'s {@code Name} or {@code Tags} matches any of the keywords given.
+ * Tests that a {@code Person}'s {@code Name}, {@code Tags} or {@code Assets} matches any of the keywords given.
  */
 public class PersonSearchPredicate implements Predicate<Person> {
 
