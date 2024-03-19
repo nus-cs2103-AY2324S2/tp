@@ -52,6 +52,7 @@ public class SelectCommand extends Command {
         Person personToSelect = lastShownList.get(targetIndex.getZeroBased());
         IsSamePersonPredicate predicate = new IsSamePersonPredicate(personToSelect);
         model.updateFilteredPersonList(predicate);
+        model.updateSelectedPerson(personToSelect);
         return new CommandResult(String.format(MESSAGE_SELECT_PERSON_SUCCESS, Messages.format(personToSelect)));
     }
 
