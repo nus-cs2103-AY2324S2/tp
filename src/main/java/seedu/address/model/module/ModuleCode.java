@@ -135,15 +135,9 @@ public class ModuleCode {
      */
     public String listTutorialClasses() {
         if (tutorialClasses.size() == 0) {
-<<<<<<< HEAD
-            return String.format("Tutorials in %s: None!", value);
-        } else {
-            StringBuilder tutorialsString = new StringBuilder(String.format("Tutorials in %s:", value));
-=======
             return String.format("Tutorials in %s: None!", moduleCode);
         } else {
             StringBuilder tutorialsString = new StringBuilder(String.format("Tutorials in %s:", moduleCode));
->>>>>>> origin/master
             for (TutorialClass tutorialClass : tutorialClasses) {
                 tutorialsString.append(" ");
                 tutorialsString.append(tutorialClass.toString());
@@ -169,15 +163,5 @@ public class ModuleCode {
      */
     public void deleteTutorialClass(TutorialClass tutorialClass) {
         tutorialClasses.remove(tutorialClass);
-    }
-
-    /**
-     * Deletes a tutorial with the given name from the module.
-     * The tutorial has to exist to be used in this function.
-     *
-     * @param tutorialString name of tutorial class to be deleted.
-     */
-    public void deleteTutorialClass(TutorialClass tutorialString) {
-        tutorialClasses.remove(tutorialString);
     }
 }
