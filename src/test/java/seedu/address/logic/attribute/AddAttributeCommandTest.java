@@ -7,8 +7,6 @@ import static seedu.address.testutil.TypicalPersons.ALICE;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.attributes.AddAttributeCommand;
-import seedu.address.model.person.Person;
-
 
 public class AddAttributeCommandTest {
 
