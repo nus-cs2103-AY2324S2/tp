@@ -25,7 +25,17 @@ public class FindStarsLessThanCommandParserTest {
                 new FindStarsLessThanCommand(new StarsLessThanPredicate(2));
         assertParseSuccess(parser, " 2", expectedFindCommand);
 
-        // valid integer with whitespaces
+        // valid integer with leading and trailing whitespaces
         assertParseSuccess(parser, " 2 ", expectedFindCommand);
+    }
+
+    @Test
+    public void parse_invalidArgs_throwsParseException() {
+        // multiple integers
+        assertParseFailure(parser, "1 2 3", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                FindStarsLessThanCommand.MESSAGE_USAGE));
+
+        // negative integer
+        assertParseFailure(parser, "-1", FindStarsLessThanCommand.MESSAGE_VALID_UPPER_BOUND);
     }
 }
