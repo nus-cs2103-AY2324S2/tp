@@ -205,6 +205,10 @@ data types and no duplicates of fields.
 
 Step 4: The newly added Patient will be added to the end of list, shown in the UI. 
 
+The following UML sequence diagram illustrates how the `AddCommand` operation works.
+<puml src="diagrams/AddSequenceDiagram.puml" alt="Add Sequence Diagram" />
+
+
 #### Design Considerations
 
 #### Aspect of Handling Duplicated Fields 
@@ -457,6 +461,10 @@ data types and no duplicates of fields.
 * Upon successful validation, it will update the `Patient` instance.
 
 Step 4: The Patient with specified index will be updated in the list, shown in the UI.
+
+The following UML sequence diagram illustrates how the `EditCommand` operation works.
+<puml src="diagrams/EditSequenceDiagram.puml" alt="Edit Sequence Diagram" />
+
 
 #### Design Considerations
 
