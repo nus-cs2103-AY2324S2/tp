@@ -76,8 +76,7 @@ public class MedicalInformation {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(" Height: ").append(getHeight()).append(" Weight: ").append(getWeight()).append(" Allergies: ");
-        getAllergyTag().forEach(builder::append);
+        builder.append(" Height: ").append(getHeight()).append(" Weight: ").append(getWeight()).append("Allergic to: ");
         return builder.toString();
     }
 

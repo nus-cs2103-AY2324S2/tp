@@ -1,5 +1,7 @@
 package vitalconnect.ui;
 
+import java.util.Comparator;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -40,6 +42,8 @@ public class PersonCard extends UiPart<Region> {
     private Label contactInformation;
     @FXML
     private Label medicalInformation;
+    @FXML
+    private Label allergy;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -56,11 +60,21 @@ public class PersonCard extends UiPart<Region> {
         String medicalInformationText = "";
         if (mi != null) {
             contactInformationText = mi.toString();
+            allergy.setText("Allergic to: ");
+        } else {
+            allergy.setText("");
         }
         id.setText(displayedIndex + ". ");
         name.setText(person.getIdentificationInformation().getName().fullName);
         nric.setText(person.getIdentificationInformation().getNric().nric);
         contactInformation.setText(contactInformationText);
         medicalInformation.setText(medicalInformationText);
+
+
+        if (mi != null && mi.getAllergyTag() != null) {
+            mi.getAllergyTag().stream()
+                    .sorted(Comparator.comparing(tag -> tag.tagName))
+                    .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        }
     }
 }

@@ -16,7 +16,7 @@ import vitalconnect.model.person.medicalinformation.MedicalInformation;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
-
+    Predicate<Person> PREDICATE_SHOW_ALL_MEDICAL = Person::hasMedicalInformation;
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */

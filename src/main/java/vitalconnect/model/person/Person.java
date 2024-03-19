@@ -99,7 +99,7 @@ public class Person {
      * Make a new copy of that person.
      */
     public Person copyPerson() {
-        return new Person(this.identificationInformation, this.contactInformation);
+        return new Person(this.identificationInformation, this.contactInformation, this.medicalInformation);
     }
 
     /**
@@ -118,20 +118,25 @@ public class Person {
         }
 
         Person otherPerson = (Person) other;
+        boolean isSamePerson = getIdentificationInformation().equals(otherPerson.getIdentificationInformation());
 
-        boolean isSame = getIdentificationInformation().equals(otherPerson.getIdentificationInformation());
-
-        // If both have contact information
         if (otherPerson.hasContactInformation() && hasContactInformation()) {
-            isSame = isSame && getContactInformation().equals(otherPerson.getContactInformation());
+            // true if both have same contact information
+            isSamePerson = isSamePerson && getContactInformation().equals(otherPerson.getContactInformation());
+        } else {
+            // true if both do not have contact information
+            isSamePerson = isSamePerson && !otherPerson.hasContactInformation() && !hasContactInformation();
         }
 
-        // If both have medical information
         if (otherPerson.hasMedicalInformation() && hasMedicalInformation()) {
-            isSame = isSame && getMedicalInformation().equals(otherPerson.getMedicalInformation());
+            // true if both have same medical information
+            isSamePerson = isSamePerson && getMedicalInformation().equals(otherPerson.getMedicalInformation());
+        } else {
+            // true if both do not have medical information
+            isSamePerson = isSamePerson && !otherPerson.hasMedicalInformation() && !hasMedicalInformation();
         }
 
-        return isSame;
+        return isSamePerson;
     }
 
     @Override
