@@ -172,7 +172,7 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteEvent(Event target) {
-            eventBook.removeEvent(target);
+        eventBook.removeEvent(target);
     }
 
     @Override
@@ -194,7 +194,7 @@ public class ModelManager implements Model {
     @Override
     public boolean isEqualSelectedEvent(Event event) {
         requireNonNull(event);
-        return eventBook.isSelectedEvent(event);
+        return eventBook.isSameSelectedEvent(event);
     }
 
     @Override

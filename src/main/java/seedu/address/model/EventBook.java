@@ -43,7 +43,13 @@ public class EventBook implements ReadOnlyEventBook {
         resetData(toBeCopied);
     }
 
-    public boolean isSelectedEvent(Event event) {
+    /**
+     * Returns true if the selected event with the same identity as {@code event} exists in the event book.
+     *
+     * @param event
+     * @return
+     */
+    public boolean isSameSelectedEvent(Event event) {
         requireNonNull(event);
         return event.equals(selectedEvent);
     }
