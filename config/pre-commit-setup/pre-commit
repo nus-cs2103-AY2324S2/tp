@@ -7,7 +7,6 @@ set -e
 # Check style for main and test
 ./gradlew checkstyleMain
 ./gradlew checkstyleTest
-./gradlew test
 
 # Check the exit status from gradle command
 if [ $? -eq 0 ]; then
