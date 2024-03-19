@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Optional;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
@@ -36,14 +37,26 @@ public class DeleteAppointmentCommand extends Command {
         requireNonNull(model);
         List<Appointment> lastShownList = model.getFilteredAppointmentList();
 
-        if (targetAppointmentIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
+        if (targetAppointmentIndex.getZeroBased() >= Appointment.getIdTracker()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Appointment appointmentToDelete = lastShownList.get(targetAppointmentIndex.getZeroBased());
-        model.deleteAppointment(appointmentToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_APPOINTMENT_SUCCESS,
-                Messages.formatAppointment(appointmentToDelete)));
+        // We try to find the appointment based on the given appointmentId.
+        Optional<Appointment> appointmentToDelete = lastShownList.stream()
+                .filter(appointment -> appointment.getAppointmentId() == targetAppointmentIndex.getOneBased())
+                .findFirst();
+
+        if (appointmentToDelete.isPresent()) {
+            // Delete the appointment if it was successfully found.
+            model.deleteAppointment(appointmentToDelete.get());
+
+            return new CommandResult(String.format(MESSAGE_DELETE_APPOINTMENT_SUCCESS,
+                    Messages.formatAppointment(appointmentToDelete.get())));
+
+        } else {
+            // Otherwise we just throw an error.
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        }
     }
 
     @Override

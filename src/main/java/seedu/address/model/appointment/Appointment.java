@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.person.Person;
 
 /**
  * Represents an Appointment attached to a Person in AddressBook
@@ -132,6 +133,10 @@ public class Appointment implements Comparable<Appointment> {
 
     public String getAppointmentDescription() {
         return appointmentDescription;
+    }
+
+    public static int getIdTracker() {
+        return idTracker;
     }
 
     /**

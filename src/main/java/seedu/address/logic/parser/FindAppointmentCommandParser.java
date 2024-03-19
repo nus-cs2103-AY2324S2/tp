@@ -30,7 +30,7 @@ public class FindAppointmentCommandParser implements Parser<FindAppointmentComma
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_STUDENT_ID, PREFIX_APPOINTMENT_ID);
         int studentId = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_STUDENT_ID).get()).getOneBased();
-        int appointmentId = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_STUDENT_ID).get()).getOneBased();
+        int appointmentId = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_APPOINTMENT_ID).get()).getOneBased();
 
         return new FindAppointmentCommand(new FindAppointmentPredicate(studentId, appointmentId));
     }
