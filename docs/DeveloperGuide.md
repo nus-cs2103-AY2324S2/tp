@@ -158,6 +158,32 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Edit a `Person`
+
+Edits the details of an existing `Person` identified by their `INDEX`in the displayed person list.
+The commands are implemented in the `EditCommand` class which extend the `Command` class.
+
+* Step 1. The `EditCommand` object's `execute()` method is called.
+* Step 2. The `INDEX` is checked to be within the valid range of the displayed person list. If the `INDEX` given is invalid (i.e., out of range), a `CommandException` is thrown.
+* Step 3. The `Person` at the given `INDEX` is referenced and removed from person list.
+* Step 4. The field(s) to be edited are checked.
+  * If there are no fields to be edited, a `CommandException` is thrown.
+  * If any of the edited fields are invalid, a `CommandException` is thrown.
+  * If the edited person is the same as the original person, a `CommandException` is thrown`.
+  * If any of `Email`, `Phone`, `Telegram`, `Github` fields are duplicates with any existing person in person list, a `CommandException` is thrown.
+* Step 5. The model object's `addPerson()` method is called. The input parameter is the `editedPerson` with the edited details.
+* Step 5. The `Person` field(s) are edited.
+
+The diagram below describes this behaviour concisely. It shows how a user’s command is processed and what message is ultimately shown if they decide to edit a person.
+
+<puml src="diagrams/EditCommandActivityDiagram.puml" />
+
+The sequence diagram below also shows the interaction between the various components during the execution of the `EditCommand`.
+
+<puml src="diagrams/EditCommandSequenceDiagram.puml" />
+
+<div style="page-break-after: always;"></div>
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -284,7 +310,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Value proposition**:
 
-* TA Toolkit is a desktop app that helps the user manage a large number of student contacts 
+* TA Toolkit is a desktop app that helps the user manage a large number of student contacts
 across different communication channels efficiently. It is optimised for use via a Command
 Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI)
 * It categorises contacts into their tutorial group, allowing for easier management of contacts
@@ -330,7 +356,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The add student command format is invalid.
     * 1a1. TA Toolkit shows an error message.
-  
+
       Use case resumes at step 1.
 
 * 2a. Student already exists in the list of students.
@@ -451,11 +477,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2b1. TA Toolkit shows a message asking whether to replace or keep the existing tag.
         * 2b1a. User decides to replace the existing tag.
             * 2b1a1. TA Toolkit removes the current project team tag from the student.
-              
+
               Use case resumes at step 2.
 
         * 2b1b. User decides to keep the existing tag.
-        
+
           Use case ends.
 
 ---
@@ -615,8 +641,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should
 be able to accomplish most of the tasks faster using commands than using the mouse.
-4.  All functions within the application must provide responses to user queries within a timeframe of 2 seconds. 
-5.  The applications does not support concurrent usage by multiple users. 
+4.  All functions within the application must provide responses to user queries within a timeframe of 2 seconds.
+5.  The applications does not support concurrent usage by multiple users.
 6.  The application does not offer support for languages aside from English.
 7.  The application should be able to handle most common user input errors and provide meaningful error messages.
 
