@@ -158,7 +158,12 @@ public class Person {
                     .add("identification", getIdentificationInformation())
                     .add("contact", getContactInformation())
                     .toString();
-        } else {
+        } else if (hasMedicalInformation()) {
+            return new ToStringBuilder(this)
+                    .add("identification", getIdentificationInformation())
+                    .add("medicalinfo", getMedicalInformation())
+                    .toString();
+        }  else {
             return new ToStringBuilder(this)
                     .add("identification", getIdentificationInformation())
                     .toString();
