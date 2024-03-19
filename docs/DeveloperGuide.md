@@ -492,16 +492,12 @@ specified otherwise)
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-1. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical 
-    usage.
-1. A user with above average typing speed for regular English text (i.e. not code, not system admin 
-   commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-1. New users should be able to perform basic operations (add, edit, list, delete contacts) with some 
-   guidance from the help documentation.
+1. Should be able to hold up to 1000 persons while ensuring that commands can be executed within two seconds.
+1. A user with above average typing speed (40 wpm) for regular English text (i.e. not code, not system admin commands) should be able to accomplish most tasks faster using commands than using the mouse.
+1. New users should be able to perform basic operations (add, edit, list, delete contacts) with some guidance from the help documentation.
 1. The product is not required to handle financial or inventory aspects of managing a restaurant.
 1. All text must be at least font size 12 to ensure readability.
-1. Comprehensive documentation, including user guides and developer guides should be updated with each 
-   release.
+1. User guides and developer guides should be updated with each release.
 
 ### Glossary
 
