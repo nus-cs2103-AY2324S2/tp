@@ -7,7 +7,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_HOUSINGTYPE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_POSTAL_CODE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
@@ -82,12 +81,8 @@ public class PersonTest {
         editedAlice = new PersonBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
-        // different address -> returns false
+        // different housingtype -> returns false
         editedAlice = new PersonBuilder(ALICE).withHousingType(VALID_HOUSINGTYPE_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
-
-        // different postal code -> return false
-        editedAlice = new PersonBuilder(ALICE).withPostalCode(VALID_POSTAL_CODE_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different tags -> returns false

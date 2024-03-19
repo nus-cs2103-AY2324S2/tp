@@ -64,8 +64,8 @@ public class EditPersonDescriptorBuilder {
     /**
      * Sets the Housing Type of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withHousingType(String housingtype) {
-        descriptor.setHousingType(housingtype);
+    public EditPersonDescriptorBuilder withHousingType(String housingType) {
+        descriptor.setHousingType(housingType);
         return this;
     }
 
