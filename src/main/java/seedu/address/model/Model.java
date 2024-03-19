@@ -1,11 +1,13 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.UUID;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.relationship.Relationship;
 
 /**
  * The API of the Model component.
@@ -84,5 +86,10 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+    UUID getIdFromString(String digits);
+    boolean hasRelationship(Relationship target);
+    void addRelationship(Relationship toAdd);
+    void deleteRelationship(Relationship toDelete);
+    String getExistingRelationship(Relationship toGet);
 
 }

@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.UUID;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -67,7 +68,18 @@ public class UniquePersonList implements Iterable<Person> {
 
         internalList.set(index, editedPerson);
     }
-
+    public UUID getIdFromString(String digits) {
+        for (Person person : internalList) {
+            String currentPersonUUID = person.getUuidString();
+            int UUIDLen = currentPersonUUID.length();
+            String toMatch = currentPersonUUID.substring(UUIDLen -4);
+            boolean isMatch = toMatch.equals(digits);
+            if (isMatch) {
+                return person.getUuid();
+            }
+        }
+        return null;
+    }
     /**
      * Removes the equivalent person from the list.
      * The person must exist in the list.

@@ -3,14 +3,14 @@ package seedu.address.logic.relationship;
 import java.util.Map;
 
 import seedu.address.model.person.Person;
-import seedu.address.model.person.relationship.RelationshipManager;
+import seedu.address.model.person.relationship.RelationshipUtilManager;
 
 /**
  * Parses user input into a DeleteRelationshipCommand.
  */
 public class DeleteRelationshipCommandParser {
     private final Map<String, Person> personMap;
-    private final RelationshipManager relationshipManager;
+    private final RelationshipUtilManager relationshipManager;
 
     /**
      * Creates a new DeleteRelationshipCommandParser with the given person map and relationship manager.
@@ -18,7 +18,7 @@ public class DeleteRelationshipCommandParser {
      * @param personMap           A map linking UUID strings to Person objects.
      * @param relationshipManager The RelationshipManager instance managing the relationships.
      */
-    public DeleteRelationshipCommandParser(Map<String, Person> personMap, RelationshipManager relationshipManager) {
+    public DeleteRelationshipCommandParser(Map<String, Person> personMap, RelationshipUtilManager relationshipManager) {
         this.personMap = personMap;
         this.relationshipManager = relationshipManager;
     }

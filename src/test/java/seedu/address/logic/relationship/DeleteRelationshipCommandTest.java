@@ -14,19 +14,19 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.attribute.Attribute;
 import seedu.address.model.person.attribute.NameAttribute;
 import seedu.address.model.person.relationship.Relationship;
-import seedu.address.model.person.relationship.RelationshipManager;
+import seedu.address.model.person.relationship.RelationshipUtilManager;
 import seedu.address.model.person.relationship.RoleBasedRelationship;
 
 class DeleteRelationshipCommandTest {
 
     private Map<String, Person> personMap;
-    private RelationshipManager relationshipManager;
+    private RelationshipUtilManager relationshipManager;
     private DeleteRelationshipCommand command;
 
     @BeforeEach
     void setUp() {
         personMap = new HashMap<>();
-        relationshipManager = new RelationshipManager();
+        relationshipManager = new RelationshipUtilManager();
 
         // Assume NameAttribute is a subclass of Attribute suitable for testing
         Attribute name1 = new NameAttribute("Name", "John Doe");

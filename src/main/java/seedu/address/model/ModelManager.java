@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.UUID;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -12,6 +13,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.relationship.Relationship;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -111,6 +113,22 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    @Override
+    public boolean hasRelationship(Relationship target) {
+        return addressBook.hasRelationship(target);
+    }
+    @Override
+    public void addRelationship(Relationship toAdd) {
+        addressBook.addRelationship(toAdd);
+    }
+    @Override
+    public void deleteRelationship(Relationship toDelete) {
+        addressBook.deleteRelationship(toDelete);
+    }
+    public String getExistingRelationship(Relationship toGet) {
+        return addressBook.getExistingRelationship(toGet);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -126,6 +144,10 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+    @Override
+    public UUID getIdFromString(String digits) {
+        return addressBook.getIdFromString(digits);
     }
 
     @Override

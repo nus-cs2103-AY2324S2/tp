@@ -13,18 +13,18 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.attribute.Attribute;
 import seedu.address.model.person.attribute.NameAttribute;
 import seedu.address.model.person.relationship.BioParentsRelationship;
-import seedu.address.model.person.relationship.RelationshipManager;
+import seedu.address.model.person.relationship.RelationshipUtilManager;
 
 class DeleteRelationshipCommandParserTest {
 
     private Map<String, Person> personMap;
-    private RelationshipManager relationshipManager;
+    private RelationshipUtilManager relationshipManager;
     private DeleteRelationshipCommandParser parser;
 
     @BeforeEach
     void setUp() {
         personMap = new HashMap<>();
-        relationshipManager = new RelationshipManager();
+        relationshipManager = new RelationshipUtilManager();
         parser = new DeleteRelationshipCommandParser(personMap, relationshipManager);
     }
 

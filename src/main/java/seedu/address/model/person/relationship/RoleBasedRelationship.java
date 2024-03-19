@@ -9,7 +9,7 @@ import java.util.UUID;
  */
 public class RoleBasedRelationship extends Relationship {
     private static final int MAX_ROLES = 2;
-    private Map<UUID, String> roles; // Map of person UUID to their role in the relationship
+    private Map<UUID, String> roles = new HashMap<>(); // Map of person UUID to their role in the relationship
 
     /**
      * Creates a new RoleBasedRelationship with the given UUIDs of the two persons.
@@ -17,33 +17,25 @@ public class RoleBasedRelationship extends Relationship {
      * @param person1 The UUID of the first person in the relationship.
      * @param person2 The UUID of the second person in the relationship.
      */
-    public RoleBasedRelationship(UUID person1, UUID person2) {
-        super(person1, person2);
-        roles = new HashMap<>();
+    public RoleBasedRelationship(UUID person1, UUID person2,
+                                 String relationDescriptor, String rolePerson1, String rolePerson2) {
+        super(person1, person2, relationDescriptor);
+        roles.put(person1, rolePerson1);
+        roles.put(person2, rolePerson2);
+    }
+    @Override
+    public String getRoleDescriptor(UUID targetPerson) {
+        if (!targetPerson.equals(super.getPerson1()) && !targetPerson.equals(super.getPerson2())) {
+            throw new IllegalArgumentException("This person is not in this relationship");
+        }
+        return roles.get(targetPerson);
     }
 
-    /**
-     * Adds a role for the specified person in the relationship.
-     *
-     * @param personUuid The UUID of the person for whom the role is being added.
-     * @param role       The role to be added for the person.
-     * @throws IllegalStateException If attempting to add more than two roles to the relationship.
-     */
-    public void addRole(UUID personUuid, String role) {
-        if (roles.size() < MAX_ROLES) {
-            roles.put(personUuid, role);
-        } else {
-            throw new IllegalStateException("Cannot add more than two roles to a relationship.");
-        }
-    }
-
-    // Get role of a person
-    public String getRole(UUID personUuid) {
-        String role = roles.get(personUuid);
-        if (role == null) {
-            throw new IllegalArgumentException("UUID not found in the roles map.");
-        }
-        return role;
+    @Override
+    public String toString() {
+        return String.format("%s\n %s is %s, %s is %s",
+                super.toString(), super.getPerson1().toString(), getRoleDescriptor(super.getPerson1()),
+                super.getPerson2().toString(), getRoleDescriptor(super.getPerson2()));
     }
 }
 

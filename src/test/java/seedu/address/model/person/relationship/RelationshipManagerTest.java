@@ -11,7 +11,7 @@ public class RelationshipManagerTest {
 
     @Test
     public void addRelationship_getRelationships_returnsCorrectRelationships() {
-        RelationshipManager manager = new RelationshipManager();
+        RelationshipUtilManager manager = new RelationshipUtilManager();
         UUID person1 = UUID.randomUUID();
         UUID person2 = UUID.randomUUID();
         Relationship relationship = new Relationship(person1, person2) {

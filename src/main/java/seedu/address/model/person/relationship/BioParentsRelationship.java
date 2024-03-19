@@ -11,10 +11,7 @@ public class BioParentsRelationship extends RoleBasedRelationship {
 
     /**
      * Creates a new BioParentsRelationship between two persons.
-     */
-    public BioParentsRelationship(UUID parentUuid, UUID childUuid) {
-        super(parentUuid, childUuid);
-        addRole(parentUuid, ROLE_PARENT);
-        addRole(childUuid, ROLE_CHILD);
+     */public BioParentsRelationship(UUID parentUuid, UUID childUuid) {
+        super(parentUuid, childUuid, "family", ROLE_PARENT, ROLE_CHILD);
     }
 }

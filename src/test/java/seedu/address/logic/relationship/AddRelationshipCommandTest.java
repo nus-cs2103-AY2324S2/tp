@@ -34,7 +34,7 @@ class AddRelationshipCommandTest {
         personMap.put(uuid1, person1);
         personMap.put(uuid2, person2);
 
-        command = new AddRelationshipCommand(personMap);
+        command = new AddRelationshipCommand();
 
     }
 
