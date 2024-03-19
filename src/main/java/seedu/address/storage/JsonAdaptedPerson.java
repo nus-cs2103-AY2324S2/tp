@@ -35,8 +35,8 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String studentid,
-            @JsonProperty("tags") List<JsonAdaptedAttendance> tags) {
+            @JsonProperty("email") String email, @JsonProperty("studentid") String studentid,
+            @JsonProperty("attendances") List<JsonAdaptedAttendance> tags) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -54,7 +54,7 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         studentid = source.getStudentId().value;
-        attendances.addAll(source.getTags().stream()
+        attendances.addAll(source.getAttendances().stream()
                 .map(JsonAdaptedAttendance::new)
                 .collect(Collectors.toList()));
     }
@@ -97,7 +97,7 @@ class JsonAdaptedPerson {
         if (studentid == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, StudentId.class.getSimpleName()));
         }
-        if (!StudentId.isValidAddress(studentid)) {
+        if (!StudentId.isValidStudentId(studentid)) {
             throw new IllegalValueException(StudentId.MESSAGE_CONSTRAINTS);
         }
         final StudentId modelStudentId = new StudentId(studentid);

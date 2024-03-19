@@ -42,8 +42,8 @@ public class AddCommandParser implements Parser<AddCommand> {
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        StudentId studentId = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_STUDENTID).get());
-        Set<Attendance> attendanceList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_ATTENDANCE_RECORD));
+        StudentId studentId = ParserUtil.parseStudentId(argMultimap.getValue(PREFIX_STUDENTID).get());
+        Set<Attendance> attendanceList = ParserUtil.parseAttendances(argMultimap.getAllValues(PREFIX_ATTENDANCE_RECORD));
 
         Person person = new Person(name, phone, email, studentId, attendanceList);
 

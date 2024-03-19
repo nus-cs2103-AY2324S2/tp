@@ -42,10 +42,10 @@ public class Messages {
                 .append(person.getPhone())
                 .append("; Email: ")
                 .append(person.getEmail())
-                .append("; Address: ")
+                .append("; StudentId: ")
                 .append(person.getStudentId())
-                .append("; Tags: ");
-        person.getTags().forEach(builder::append);
+                .append("; Attendances: ");
+        person.getAttendances().forEach(builder::append);
         return builder.toString();
     }
 

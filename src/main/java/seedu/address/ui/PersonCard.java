@@ -52,7 +52,7 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         studentid.setText(person.getStudentId().value);
         email.setText(person.getEmail().value);
-        person.getTags().stream()
+        person.getAttendances().stream()
                 .sorted(Comparator.comparing(attendance -> attendance.attendanceName))
                 .forEach(tag -> attendance.getChildren().add(new Label(tag.attendanceName)));
     }

@@ -10,17 +10,19 @@ import seedu.address.model.person.AttendanceDate;
 
 public class AddAttendanceRecordCommand extends Command {
 
-    public static final String COMMAND_WORD = "AddAttendance";
+    public static final String COMMAND_WORD = "attendance";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Add attendance record. "
             + "Parameters: "
             + PREFIX_ATTENDANCE_RECORD + "DATE\n"
-            + "Example: " + COMMAND_WORD + "ar/ 2024-03-19";
+            + "Example: " + COMMAND_WORD + "ar/ 19-03-2024";
+
+
+    public static final String MESSAGE_NOT_IMPLEMENTED_YET = "attendance command not implemented yet";
+    public static final String MESSAGE_SUCCESS = "New attendance added: %1$s";
+    public static final String MESSAGE_ARGUMENTS = "Date: %1$s";
 
     private AttendanceDate date;
-
-
-    public static final String MESSAGE_NOT_IMPLEMENTED_YET = "AddAttendance command not implemented yet";
 
     public AddAttendanceRecordCommand(AttendanceDate date) {
         requireAllNonNull(date);
@@ -29,7 +31,7 @@ public class AddAttendanceRecordCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        return new CommandResult(MESSAGE_NOT_IMPLEMENTED_YET);
+        return new CommandResult(String.format(MESSAGE_ARGUMENTS, date));
     }
 
     @Override

@@ -46,7 +46,7 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         studentId = personToCopy.getStudentId();
-        attendances = new HashSet<>(personToCopy.getTags());
+        attendances = new HashSet<>(personToCopy.getAttendances());
     }
 
     /**
@@ -61,7 +61,7 @@ public class PersonBuilder {
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
      */
     public PersonBuilder withTags(String ... tags) {
-        this.attendances = SampleDataUtil.getTagSet(tags);
+        this.attendances = SampleDataUtil.getAttendanceSet(tags);
         return this;
     }
 

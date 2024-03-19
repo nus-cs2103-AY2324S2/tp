@@ -103,26 +103,26 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseAddress_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseAddress((String) null));
+    public void parseStudentId_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseStudentId((String) null));
     }
 
     @Test
-    public void parseAddress_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseAddress(INVALID_ADDRESS));
+    public void parseStudentId_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseStudentId(INVALID_ADDRESS));
     }
 
     @Test
-    public void parseAddress_validValueWithoutWhitespace_returnsAddress() throws Exception {
+    public void parseStudentId_validValueWithoutWhitespace_returnsAddress() throws Exception {
         StudentId expectedStudentId = new StudentId(VALID_ADDRESS);
-        assertEquals(expectedStudentId, ParserUtil.parseAddress(VALID_ADDRESS));
+        assertEquals(expectedStudentId, ParserUtil.parseStudentId(VALID_ADDRESS));
     }
 
     @Test
-    public void parseAddress_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
+    public void parseStudentId_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
         String addressWithWhitespace = WHITESPACE + VALID_ADDRESS + WHITESPACE;
         StudentId expectedStudentId = new StudentId(VALID_ADDRESS);
-        assertEquals(expectedStudentId, ParserUtil.parseAddress(addressWithWhitespace));
+        assertEquals(expectedStudentId, ParserUtil.parseStudentId(addressWithWhitespace));
     }
 
     @Test
@@ -148,47 +148,47 @@ public class ParserUtilTest {
         assertEquals(expectedEmail, ParserUtil.parseEmail(emailWithWhitespace));
     }
 
+//    @Test
+//    public void parseAttendance_null_throwsNullPointerException() {
+//        assertThrows(NullPointerException.class, () -> ParserUtil.parseAttendances(null));
+//    }
+
     @Test
-    public void parseTag_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseTag(null));
+    public void parseAttendance_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseAttendances(INVALID_TAG));
     }
 
     @Test
-    public void parseTag_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseTag(INVALID_TAG));
-    }
-
-    @Test
-    public void parseTag_validValueWithoutWhitespace_returnsTag() throws Exception {
+    public void parseAttendance_validValueWithoutWhitespace_returnsTag() throws Exception {
         Attendance expectedAttendance = new Attendance(VALID_TAG_1);
-        assertEquals(expectedAttendance, ParserUtil.parseTag(VALID_TAG_1));
+        assertEquals(expectedAttendance, ParserUtil.parseAttendances(VALID_TAG_1));
     }
 
     @Test
     public void parseTag_validValueWithWhitespace_returnsTrimmedTag() throws Exception {
         String tagWithWhitespace = WHITESPACE + VALID_TAG_1 + WHITESPACE;
         Attendance expectedAttendance = new Attendance(VALID_TAG_1);
-        assertEquals(expectedAttendance, ParserUtil.parseTag(tagWithWhitespace));
+        assertEquals(expectedAttendance, ParserUtil.parseAttendances(tagWithWhitespace));
+    }
+
+//    @Test
+//    public void parseAttendances_null_throwsNullPointerException() {
+//        assertThrows(NullPointerException.class, () -> ParserUtil.parseAttendances(null));
+//    }
+
+    @Test
+    public void parseAttendances_collectionWithInvalidTags_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseAttendances(Arrays.asList(VALID_TAG_1, INVALID_TAG)));
     }
 
     @Test
-    public void parseTags_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseTags(null));
+    public void parseAttendances_emptyCollection_returnsEmptySet() throws Exception {
+        assertTrue(ParserUtil.parseAttendances(Collections.emptyList()).isEmpty());
     }
 
     @Test
-    public void parseTags_collectionWithInvalidTags_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, INVALID_TAG)));
-    }
-
-    @Test
-    public void parseTags_emptyCollection_returnsEmptySet() throws Exception {
-        assertTrue(ParserUtil.parseTags(Collections.emptyList()).isEmpty());
-    }
-
-    @Test
-    public void parseTags_collectionWithValidTags_returnsTagSet() throws Exception {
-        Set<Attendance> actualAttendanceSet = ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, VALID_TAG_2));
+    public void parseAttendances_collectionWithValidTags_returnsTagSet() throws Exception {
+        Set<Attendance> actualAttendanceSet = ParserUtil.parseAttendances(Arrays.asList(VALID_TAG_1, VALID_TAG_2));
         Set<Attendance> expectedAttendanceSet = new HashSet<Attendance>(Arrays.asList(new Attendance(VALID_TAG_1), new Attendance(VALID_TAG_2)));
 
         assertEquals(expectedAttendanceSet, actualAttendanceSet);

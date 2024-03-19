@@ -35,8 +35,8 @@ public class EditPersonDescriptorBuilder {
         descriptor.setName(person.getName());
         descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
-        descriptor.setAddress(person.getStudentId());
-        descriptor.setTags(person.getTags());
+        descriptor.setStudentId(person.getStudentId());
+        descriptor.setAttendances(person.getAttendances());
     }
 
     /**
@@ -66,8 +66,8 @@ public class EditPersonDescriptorBuilder {
     /**
      * Sets the {@code Address} of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withAddress(String address) {
-        descriptor.setAddress(new StudentId(address));
+    public EditPersonDescriptorBuilder withStudentId(String address) {
+        descriptor.setStudentId(new StudentId(address));
         return this;
     }
 
@@ -77,7 +77,7 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withTags(String... tags) {
         Set<Attendance> attendanceSet = Stream.of(tags).map(Attendance::new).collect(Collectors.toSet());
-        descriptor.setTags(attendanceSet);
+        descriptor.setAttendances(attendanceSet);
         return this;
     }
 

@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE_RECORD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.util.stream.Stream;
 
@@ -13,7 +14,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.AttendanceDate;
 import seedu.address.model.person.Classes;
 
-public class AddAttendanceRecordCommandParser {
+public class AddAttendanceRecordCommandParser  implements Parser<AddAttendanceRecordCommand> {
 
     public AddAttendanceRecordCommand parse(String args) throws ParseException {
         requireNonNull(args);
@@ -27,11 +28,9 @@ public class AddAttendanceRecordCommandParser {
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_ATTENDANCE_RECORD);
 
-        String attendanceDate = argMultimap.getValue(PREFIX_ATTENDANCE_RECORD).orElse("");
-        return new AddAttendanceRecordCommand(new AttendanceDate((attendanceDate)));
+        AttendanceDate attendanceDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_ATTENDANCE_RECORD).get());
 
-//        Classes classes = ParserUtil.parseClass(argMultimap.getValue(PREFIX_CLASS).get());
-//        return new CreateClassCommand(classes);
+        return new AddAttendanceRecordCommand(attendanceDate);
 
     }
 

@@ -56,9 +56,9 @@ public class EditCommandParser implements Parser<EditCommand> {
             editPersonDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
         }
         if (argMultimap.getValue(PREFIX_STUDENTID).isPresent()) {
-            editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_STUDENTID).get()));
+            editPersonDescriptor.setStudentId(ParserUtil.parseStudentId(argMultimap.getValue(PREFIX_STUDENTID).get()));
         }
-        parseTagsForEdit(argMultimap.getAllValues(PREFIX_ATTENDANCE_RECORD)).ifPresent(editPersonDescriptor::setTags);
+        parseAttendanceForEdit(argMultimap.getAllValues(PREFIX_ATTENDANCE_RECORD)).ifPresent(editPersonDescriptor::setAttendances);
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
@@ -72,14 +72,14 @@ public class EditCommandParser implements Parser<EditCommand> {
      * If {@code tags} contain only one element which is an empty string, it will be parsed into a
      * {@code Set<Tag>} containing zero tags.
      */
-    private Optional<Set<Attendance>> parseTagsForEdit(Collection<String> tags) throws ParseException {
-        assert tags != null;
+    private Optional<Set<Attendance>> parseAttendanceForEdit(Collection<String> attendances) throws ParseException {
+        assert attendances != null;
 
-        if (tags.isEmpty()) {
+        if (attendances.isEmpty()) {
             return Optional.empty();
         }
-        Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
-        return Optional.of(ParserUtil.parseTags(tagSet));
+        Collection<String> tagSet = attendances.size() == 1 && attendances.contains("") ? Collections.emptySet() : attendances;
+        return Optional.of(ParserUtil.parseAttendances(tagSet));
     }
 
 }
