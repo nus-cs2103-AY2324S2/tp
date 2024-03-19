@@ -1,5 +1,6 @@
 package seedu.address.logic.attribute;
 
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
@@ -7,6 +8,7 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.attributes.DeleteAttributeCommand;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -32,5 +34,13 @@ public class DeleteAttributeCommandTest {
     public void execute_fail2() {
         DeleteAttributeCommand deleteAttributeCommand = new DeleteAttributeCommand(ALICE.getUuidString(), null);
         assertThrows(NullPointerException.class, () -> deleteAttributeCommand.execute(model));
+    }
+
+    @Test
+    public void execute_pass() throws CommandException {
+        DeleteAttributeCommand deleteAttributeCommand =
+                new DeleteAttributeCommand(ALICE.getUuidString().substring(32,36), "Address");
+        deleteAttributeCommand.execute(model);
+        assertThrows(IllegalArgumentException.class, () -> ALICE.getAttribute("Address"));
     }
 }
