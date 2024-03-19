@@ -62,10 +62,8 @@ public class EditPersonDescriptorTest {
         editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withMajor(VALID_MAJOR_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
-        // different remarks -> returns false
+        // different remark -> returns false
         editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withRemark(VALID_REMARK_OUTSPOKEN).build();
-        System.out.println(DESC_AMY);
-        System.out.println(editedAmy);
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different tags -> returns false

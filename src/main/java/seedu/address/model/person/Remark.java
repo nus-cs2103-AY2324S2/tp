@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 /**
  * Represents a remark for a Person in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidRemark(String)}
+ * Guarantees: immutable; is always valid
  */
 public class Remark {
 
@@ -19,12 +19,6 @@ public class Remark {
     public Remark(String remark) {
         requireNonNull(remark);
         this.value = remark;
-    }
-    /**
-     * Returns true if a given string is a valid remark.
-     */
-    public static boolean isValidRemark(String test) {
-        return true;
     }
     @Override
     public String toString() {
@@ -42,7 +36,7 @@ public class Remark {
         }
 
         Remark otherRemark = (Remark) other;
-        return this.value.equals(otherRemark.value);
+        return value.equals(otherRemark.value);
     }
     @Override
     public int hashCode() {
