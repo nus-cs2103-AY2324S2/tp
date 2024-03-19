@@ -24,6 +24,9 @@ import seedu.address.model.tag.TagStatus;
 public class MarkCommand extends Command {
 
     public static final String COMMAND_WORD = "mark";
+
+    public static final String SAMPLE_COMMAND = COMMAND_WORD + " 1 " + PREFIX_TAG
+            + " assignment1 " + PREFIX_TAGSTATUS + " cg";
     // to be updated
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Updates the status of the specified tag "
             + "with the specified status.\n"
@@ -31,8 +34,7 @@ public class MarkCommand extends Command {
             + " and tag status would be created.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_TAG + " [TAG] " + PREFIX_TAGSTATUS + " [TAGSTATUS]\n"
-            + "Example: " + COMMAND_WORD + " 1 " + PREFIX_TAG + " assignment1 "
-            + PREFIX_TAGSTATUS + " cg";
+            + "Example: " + SAMPLE_COMMAND;
 
     public static final String MESSAGE_MARK_PERSON_SUCCESS = "Updated Person: %1$s";
     private final Index index;

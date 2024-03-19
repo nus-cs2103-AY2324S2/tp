@@ -6,14 +6,23 @@
     "phone" : "94351253",
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
-    "tags" : [ "friends" ]
+    "tags" : [ {
+      "tagName" : "friends",
+      "tagStatus" : "INCOMPLETE_GOOD"
+    } ]
   }, {
     "type" : "stu",
     "name" : "Benson Meier",
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
-    "tags" : [ "owesMoney", "friends" ]
+    "tags" : [ {
+      "tagName" : "owesMoney",
+      "tagStatus" : "INCOMPLETE_GOOD"
+    }, {
+      "tagName" : "friends",
+      "tagStatus" : "INCOMPLETE_GOOD"
+    } ]
   }, {
     "type" : "stu",
     "name" : "Carl Kurz",
@@ -27,7 +36,10 @@
     "phone" : "87652533",
     "email" : "cornelia@example.com",
     "address" : "10th street",
-    "tags" : [ "friends" ]
+    "tags" : [ {
+      "tagName" : "friends",
+      "tagStatus" : "INCOMPLETE_GOOD"
+    } ]
   }, {
     "type" : "stu",
     "name" : "Elle Meyer",

@@ -55,7 +55,7 @@ public class SampleDataUtil {
      */
     public static Set<Tag> getTagSet(String... strings) {
         return Arrays.stream(strings)
-                .map(tagName -> new Tag(tagName, TagStatus.INCOMPLETE_GOOD))
+                .map(tagName -> new Tag(tagName, TagStatus.DEFAULT_STATUS))
                 .collect(Collectors.toSet());
     }
 
