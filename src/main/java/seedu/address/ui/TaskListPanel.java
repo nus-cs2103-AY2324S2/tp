@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
+import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.task.Task;
 
@@ -44,5 +45,42 @@ public class TaskListPanel extends UiPart<Region> {
                 setGraphic(new TaskCard(task, getIndex() + 1).getRoot());
             }
         }
+    }
+
+    /**
+     * Shows the tasks list panel.
+     * @throws IllegalStateException
+     *     <ul>
+     *         <li>
+     *             if this method is called on a thread other than the JavaFX Application Thread.
+     *         </li>
+     *         <li>
+     *             if this method is called during animation or layout processing.
+     *         </li>
+     *         <li>
+     *             if this method is called on the primary stage.
+     *         </li>
+     *         <li>
+     *             if {@code dialogStage} is already showing.
+     *         </li>
+     *     </ul>
+     */
+    public void show() {
+        logger.fine("Showing all tasks.");
+        getRoot().setVisible(true);
+    }
+
+    /**
+     * Returns true if the help window is currently being shown.
+     */
+    public boolean isShowing() {
+        return getRoot().isVisible();
+    }
+
+    /**
+     * Hides the help window.
+     */
+    public void hide() {
+        getRoot().setVisible(false);
     }
 }
