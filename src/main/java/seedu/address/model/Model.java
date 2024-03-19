@@ -84,4 +84,38 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Returns true if the clear command was the previously called command.
+     * This should be used to check whether the user has the raised the intention to clear all data from
+     * the address book.
+     *
+     * @return true if the clear operation was previously called, false otherwise.
+     */
+    boolean isAwaitingClear();
+
+    /**
+     * Sets the waiting status for clearing the address book.
+     * This should be called to when user inputs "clear".
+     *
+     * @param isAwaitingClear true to indicate a "clear" command has been called, false otherwise.
+     */
+    void setAwaitingClear(boolean isAwaitingClear);
+
+    /**
+     * Returns true if the clear operation has been confirmed.
+     * This should be used to check whether the user has confirmed the intention to clear all data from the
+     * address book.
+     *
+     * @return true if the clear operation is confirmed, false otherwise.
+     */
+    boolean isConfirmClear();
+
+    /**
+     * Sets the confirmation status for clearing the address book.
+     * This should be called to confirm or cancel the clear operation based on user input.
+     *
+     * @param isConfirmClear true to set the clear operation as confirmed, false otherwise.
+     */
+    void setConfirmClear(boolean isConfirmClear);
 }
