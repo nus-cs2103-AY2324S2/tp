@@ -344,7 +344,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case: UC01 - Add a client's contact in SWEE**
 
 **MSS**
-
+ 
 1.  User inputs details of the client.
 2.  SWEE adds the client as a contact including the details given.
 3.  SWEE lists out all current contacts that have been saved (UC04).
