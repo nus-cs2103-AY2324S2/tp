@@ -7,12 +7,19 @@ import java.util.Set;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.tag.Tag;
 
+/**
+ * Represents a Employee in the address book.
+ * Guarantees: details are present and not null, field values are validated, immutable.
+ */
 public class Employee extends Person {
 
     private final Department department;
     private final JobTitle jobTitle;
     private Skills skills = new Skills(new HashSet<>());
 
+    /**
+     * Every field must be present and not null.
+     */
     public Employee(Name name, Phone phone, Email email, Address address, Remark remark, Set<Tag> tags,
                     Department department, JobTitle jobTitle, Skills skills) {
         super(name, phone, email, address, remark, tags);

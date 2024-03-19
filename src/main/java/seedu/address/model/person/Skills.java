@@ -4,16 +4,30 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Represents a Person's skills in the address book.
+ * Guarantees: immutable; is valid as declared in {@link #isValidSkills(String)}
+ */
 public class Skills {
 
     public static final String MESSAGE_CONSTRAINTS = "Skills should only contain alphanumeric characters and spaces";
 
     private final Set<String> skills;
 
+    /**
+     * Constructs a {@code Skills}.
+     *
+     * @param skills A valid set of skills.
+     */
     public Skills(Set<String> skills) {
         this.skills = new HashSet<>(skills);
     }
 
+    /**
+     * Constructs a {@code Skills}.
+     *
+     * @param skills A valid string of skills.
+     */
     public Skills(String skills) {
         this.skills = new HashSet<>();
         String[] skillsArray = skills.split(" ");

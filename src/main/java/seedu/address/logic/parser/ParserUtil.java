@@ -120,6 +120,10 @@ public class ParserUtil {
         return new Tag(trimmedTag);
     }
 
+    /**
+     * Parses a {@code String remark} into a {@code Remark}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
     public static Remark parseRemark(String remark) {
         requireNonNull(remark);
         return new Remark(remark);
@@ -137,6 +141,12 @@ public class ParserUtil {
         return tagSet;
     }
 
+    /**
+     * Parses a {@code String department} into a {@code Department}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code department} is invalid.
+     */
     public static Department parseDepartment(String department) throws ParseException {
         requireNonNull(department);
         String trimmedDepartment = department.trim();
@@ -146,6 +156,12 @@ public class ParserUtil {
         return new Department(trimmedDepartment);
     }
 
+    /**
+     * Parses a {@code String jobTitle} into a {@code JobTitle}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code jobTitle} is invalid.
+     */
     public static JobTitle parseJobTitle(String jobTitle) throws ParseException {
         requireNonNull(jobTitle);
         String trimmedJobTitle = jobTitle.trim();
@@ -155,6 +171,12 @@ public class ParserUtil {
         return new JobTitle(trimmedJobTitle);
     }
 
+    /**
+     * Parses a {@code String skills} into a {@code Skills}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code skills} is invalid.
+     */
     public static Skills parseSkills(String skills) throws ParseException {
         requireNonNull(skills);
         String trimmedSkills = skills.trim();
@@ -164,6 +186,12 @@ public class ParserUtil {
         return new Skills(trimmedSkills);
     }
 
+    /**
+     * Parses a {@code String products} into a {@code Products}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code products} is invalid.
+     */
     public static Products parseProducts(List<String> products) throws ParseException {
         requireNonNull(products);
         if (!Products.isValidProducts(products)) {
@@ -172,6 +200,10 @@ public class ParserUtil {
         return new Products(products);
     }
 
+    /**
+     * Parses a {@code String preferences} into a {@code String}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
     public static String parsePreferences(String preferences) {
         requireNonNull(preferences);
         return preferences;

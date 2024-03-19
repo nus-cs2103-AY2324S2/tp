@@ -99,7 +99,8 @@ public class PersonCard extends UiPart<Region> {
             preferences.setText("Preferences: " + client.getPreferences());
             products.setVisible(true);
             products.setManaged(true);
-            products.setText("Buying Products: " + client.getProducts().getProducts().stream().collect(Collectors.joining(", ")));
+            products.setText("Buying Products: "
+                    + client.getProducts().getProducts().stream().collect(Collectors.joining(", ")));
         } else if (person instanceof Employee) {
             Employee employee = (Employee) person;
             role.getChildren().add(new Label("Employee"));
@@ -121,7 +122,8 @@ public class PersonCard extends UiPart<Region> {
             termsOfService.setText("Terms of Service: " + supplier.getTermsOfService().toString());
             products.setVisible(true);
             products.setManaged(true);
-            products.setText("Selling Products: " + supplier.getProducts().getProducts().stream().collect(Collectors.joining(", ")));
+            products.setText("Selling Products: "
+                    + supplier.getProducts().getProducts().stream().collect(Collectors.joining(", ")));
         }
 
     }

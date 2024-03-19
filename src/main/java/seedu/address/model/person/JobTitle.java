@@ -3,14 +3,25 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents a Person's job title in the address book.
+ * Guarantees: immutable; is valid as declared in
+ * {@link #isValidJobTitle(String)}
+ */
 public class JobTitle {
 
-    public static final String MESSAGE_CONSTRAINTS = "Job titles should only contain alphanumeric characters and spaces, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Job titles should only contain "
+            + "alphanumeric characters and spaces, and it should not be blank";
 
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
     private final String title;
 
+    /**
+     * Constructs a {@code JobTitle}.
+     *
+     * @param title A valid job title.
+     */
     public JobTitle(String title) {
         requireNonNull(title);
         checkArgument(isValidJobTitle(title), MESSAGE_CONSTRAINTS);

@@ -3,12 +3,21 @@ package seedu.address.model.person;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Represents a Client's products in the address book.
+ * Guarantees: details are present and not null, field values are validated, immutable.
+ */
 public class Products {
 
     public static final String MESSAGE_CONSTRAINTS = "Products should only contain alphanumeric characters and spaces";
 
     private final List<String> products;
 
+    /**
+     * Constructs a {@code Products}.
+     *
+     * @param products A valid list of products.
+     */
     public Products(List<String> products) {
         this.products = products;
     }

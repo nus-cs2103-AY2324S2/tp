@@ -3,6 +3,10 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents a Person's department in the address book.
+ * Guarantees: immutable; is valid as declared in {@link #isValidDepartment(String)}
+ */
 public class Department {
 
     public static final String MESSAGE_CONSTRAINTS =
@@ -16,6 +20,11 @@ public class Department {
 
     private final String departmentName;
 
+    /**
+     * Constructs a {@code Department}.
+     *
+     * @param departmentName A valid department name.
+     */
     public Department(String departmentName) {
         requireNonNull(departmentName);
         checkArgument(isValidDepartment(departmentName), MESSAGE_CONSTRAINTS);
