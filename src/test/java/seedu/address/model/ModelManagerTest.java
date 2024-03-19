@@ -94,6 +94,43 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void isAwaitingClear_initialState_false() {
+        assertFalse(modelManager.isAwaitingClear());
+    }
+
+    @Test
+    public void setAwaitingClear_true_stateChanged() {
+        modelManager.setAwaitingClear(true);
+        assertTrue(modelManager.isAwaitingClear());
+    }
+
+    @Test
+    public void setAwaitingClear_false_stateChanged() {
+        modelManager.setAwaitingClear(true); // Set to true first
+        modelManager.setAwaitingClear(false); // Then set to false
+        assertFalse(modelManager.isAwaitingClear());
+    }
+
+    @Test
+    public void isConfirmClear_initialState_false() {
+        assertFalse(modelManager.isConfirmClear());
+    }
+
+    @Test
+    public void setConfirmClear_true_stateChanged() {
+        modelManager.setConfirmClear(true);
+        assertTrue(modelManager.isConfirmClear());
+    }
+
+    @Test
+    public void setConfirmClear_false_stateChanged() {
+        ModelManager modelManager = new ModelManager();
+        modelManager.setConfirmClear(true); // Set to true first
+        modelManager.setConfirmClear(false); // Then set to false
+        assertFalse(modelManager.isConfirmClear());
+    }
+
+    @Test
     public void equals() {
         AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
         AddressBook differentAddressBook = new AddressBook();

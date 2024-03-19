@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -32,6 +33,7 @@ public class LogicManager implements Logic {
     private final Model model;
     private final Storage storage;
     private final AddressBookParser addressBookParser;
+    private boolean previouslyClear;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -40,15 +42,32 @@ public class LogicManager implements Logic {
         this.model = model;
         this.storage = storage;
         addressBookParser = new AddressBookParser();
+        this.previouslyClear = false;
     }
 
     @Override
     public CommandResult execute(String commandText) throws CommandException, ParseException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
+        if (this.previouslyClear) {
+            if (commandText.trim().equalsIgnoreCase("y")) {
+                model.setConfirmClear(true);
+                // execute clear command, clear successful
+            }
+            // execute clear command, clear cancelled
+            commandText = "clear";
+        }
+
         CommandResult commandResult;
         Command command = addressBookParser.parseCommand(commandText);
         commandResult = command.execute(model);
+
+        // check if command was clear and model is awaiting confirmation
+        if (command instanceof ClearCommand && model.isAwaitingClear()) {
+            this.previouslyClear = true;
+        } else {
+            this.previouslyClear = false;
+        }
 
         try {
             storage.saveAddressBook(model.getAddressBook());
