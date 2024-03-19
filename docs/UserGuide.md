@@ -85,11 +85,11 @@ Examples:
 * `ac n/John Doe c/F14-3 p/98765432 e/johnd@example.com t/@johndoe g/johnDoeGithub`
 * `ac n/Betsy Crowe c/T10-2 e/betsycrowe@example.com p/1234567 g/betsycodes`
 
-### Listing all persons : `list`
+### Listing all persons : `ls`
 
 Shows a list of all persons in the TA Toolkit.
 
-Format: `list`
+Format: `ls`
 
 ### Updating a person : `uc`
 
@@ -125,6 +125,19 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
+### Viewing a person : `view`
+
+View the specified person from the TA Toolkit.
+
+Format: `view INDEX`
+
+* View the person at the specified `INDEX`.
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `ls` followed by `view 2` views the 2nd person in the TA Toolkit.
+
 ### Deleting a person : `dc`
 
 Deletes the specified person from the TA Toolkit.
@@ -136,7 +149,7 @@ Format: `dc INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `dc 2` deletes the 2nd person in the TA Toolkit.
+* `ls` followed by `dc 2` deletes the 2nd person in the TA Toolkit.
 * `find Betsy` followed by `dc 1` deletes the 1st person in the results of the `find` command.
 
 ### Clearing all entries : `clear`
@@ -194,5 +207,6 @@ Action     | Format, Examples
 **Delete** | `dc INDEX`<br> e.g., `dc 3`
 **Edit**   | `uc INDEX [n/NAME] [c/CLASS_GROUP] [e/EMAIL] [p/PHONE] [t/TELEGRAM] [g/GITHUB]…​`<br> e.g.,`uc 2 n/James Lee e/jameslee@example.com`
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List**   | `list`
+**List**   | `ls`
 **Help**   | `help`
+**View**   | `view INDEX`
