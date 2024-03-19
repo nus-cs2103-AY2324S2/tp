@@ -3,8 +3,8 @@ package seedu.findvisor.model.person;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.findvisor.logic.commands.CommandTestUtil.VALID_MEETING_REMARK;
 import static seedu.findvisor.logic.commands.CommandTestUtil.INVALID_MEETING_REMARK;
+import static seedu.findvisor.logic.commands.CommandTestUtil.VALID_MEETING_REMARK;
 
 import java.time.LocalDateTime;
 

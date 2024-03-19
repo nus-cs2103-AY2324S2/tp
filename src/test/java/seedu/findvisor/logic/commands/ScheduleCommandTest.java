@@ -8,6 +8,7 @@ import static seedu.findvisor.logic.commands.CommandTestUtil.assertCommandFailur
 import static seedu.findvisor.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.findvisor.logic.commands.CommandTestUtil.createOldMeeting;
 import static seedu.findvisor.logic.commands.CommandTestUtil.createValidMeeting;
+import static seedu.findvisor.logic.commands.CommandTestUtil.createValidMeetingNonEmptyRemark;
 import static seedu.findvisor.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.findvisor.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.findvisor.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
@@ -71,6 +72,23 @@ public class ScheduleCommandTest {
         ScheduleCommand scheduleCommand = new ScheduleCommand(INDEX_FIRST_PERSON, meeting);
 
         assertCommandFailure(scheduleCommand, model, ScheduleCommand.MESSAGE_CANNOT_SCHEDULE_MEETING_IN_THE_PAST);
+    }
+
+    @Test
+    public void execute_meetingRemarkPresent_success() {
+        Meeting meeting = createValidMeetingNonEmptyRemark();
+        ScheduleCommand scheduleCommand = new ScheduleCommand(INDEX_FIRST_PERSON, meeting);
+        Person targetPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        PersonBuilder personBuilder = new PersonBuilder(targetPerson).withMeeting(Optional.of(meeting));
+        Person editedPerson = personBuilder.build();
+
+        String expectedMessage = String.format(ScheduleCommand.MESSAGE_SCHEDULE_SUCCESS, targetPerson.getName(),
+                meeting.getStartString(), meeting.getEndString());
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
+
+        assertCommandSuccess(scheduleCommand, model, expectedMessage, expectedModel);
     }
 
     @Test

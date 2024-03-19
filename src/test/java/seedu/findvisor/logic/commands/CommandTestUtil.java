@@ -38,6 +38,8 @@ public class CommandTestUtil {
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_MEETING_REMARK = "Meeting with someone";
+    public static final String VALID_MEETING_START_STR = "12-02-2024T12:00";
+    public static final String VALID_MEETING_END_STR = "12-02-2024T13:00";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -56,6 +58,8 @@ public class CommandTestUtil {
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_MEETING_REMARK = "INVALID MEETING REMARK".repeat(100);
+    public static final String INVALID_MEETING_START_STR = "INVALID MEETING START";
+    public static final String INVALID_MEETING_END_STR = "INVALID MEETING END";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
