@@ -33,6 +33,11 @@ public class DeletePersonCommand extends Command {
 
     private final Index targetIndex;
 
+    /**
+     * Constructor of DeletePersonCommand
+     *
+     * @param targetIndex Index of person user wants to delete.
+     */
     public DeletePersonCommand(Index targetIndex) {
         requireNonNull(targetIndex);
         this.targetIndex = targetIndex;
