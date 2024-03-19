@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -18,7 +17,7 @@ public class PersonSearchPredicateTest {
     @Test
     public void equals() {
         List<String> firstPredicateKeywordList = Collections.singletonList("first");
-        List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
+        List<String> secondPredicateKeywordList = List.of("first", "second");
 
         PersonSearchPredicate firstPredicate = new PersonSearchPredicate(firstPredicateKeywordList);
         PersonSearchPredicate secondPredicate = new PersonSearchPredicate(secondPredicateKeywordList);
@@ -31,10 +30,10 @@ public class PersonSearchPredicateTest {
         assertEquals(firstPredicate, firstPredicateCopy);
 
         // different types -> returns false
-        assertNotEquals(1, firstPredicate);
+        assertFalse(firstPredicate.equals(1));
 
         // null -> returns false
-        assertNotEquals(null, firstPredicate);
+        assertFalse(firstPredicate.equals(null));
 
         // different person -> returns false
         assertNotEquals(firstPredicate, secondPredicate);
@@ -47,15 +46,15 @@ public class PersonSearchPredicateTest {
         assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
 
         // Multiple keywords
-        predicate = new PersonSearchPredicate(Arrays.asList("Alice", "Bob"));
+        predicate = new PersonSearchPredicate(List.of("Alice", "Bob"));
         assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
 
         // Only one matching keyword
-        predicate = new PersonSearchPredicate(Arrays.asList("Bob", "Carol"));
+        predicate = new PersonSearchPredicate(List.of("Bob", "Carol"));
         assertTrue(predicate.test(new PersonBuilder().withName("Alice Carol").build()));
 
         // Mixed-case keywords
-        predicate = new PersonSearchPredicate(Arrays.asList("aLIce", "bOB"));
+        predicate = new PersonSearchPredicate(List.of("aLIce", "bOB"));
         assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
     }
 
@@ -66,11 +65,11 @@ public class PersonSearchPredicateTest {
         assertFalse(predicate.test(new PersonBuilder().withName("Alice").build()));
 
         // Non-matching keyword
-        predicate = new PersonSearchPredicate(Arrays.asList("Carol"));
+        predicate = new PersonSearchPredicate(List.of("Carol"));
         assertFalse(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
 
         // Keywords match phone, email and address, but does not match name, tags or assets
-        predicate = new PersonSearchPredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street"));
+        predicate = new PersonSearchPredicate(List.of("12345", "alice@email.com", "Main", "Street"));
         assertFalse(predicate.test(new PersonBuilder().withName("Alice").withPhone("12345")
                 .withEmail("alice@email.com").withAddress("Main Street").build()));
     }
@@ -82,11 +81,11 @@ public class PersonSearchPredicateTest {
         assertTrue(predicate.test(new PersonBuilder().withTags("friends").build()));
 
         // Multiple keywords
-        predicate = new PersonSearchPredicate(Arrays.asList("friends", "colleagues"));
+        predicate = new PersonSearchPredicate(List.of("friends", "colleagues"));
         assertTrue(predicate.test(new PersonBuilder().withTags("colleagues").build()));
 
         // Mixed-case keywords
-        predicate = new PersonSearchPredicate(Arrays.asList("fRieNdS", "cOllEaGuEs"));
+        predicate = new PersonSearchPredicate(List.of("fRieNdS", "cOllEaGuEs"));
         assertTrue(predicate.test(new PersonBuilder().withTags("colleagues").build()));
     }
 
@@ -97,11 +96,11 @@ public class PersonSearchPredicateTest {
         assertFalse(predicate.test(new PersonBuilder().withTags("friends").build()));
 
         // Non-matching keyword
-        predicate = new PersonSearchPredicate(Arrays.asList("friends", "colleagues"));
+        predicate = new PersonSearchPredicate(List.of("friends", "colleagues"));
         assertFalse(predicate.test(new PersonBuilder().withTags("family").build()));
 
         // Keywords match phone, email and address, but does not match name, tags or assets
-        predicate = new PersonSearchPredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street"));
+        predicate = new PersonSearchPredicate(List.of("12345", "alice@email.com", "Main", "Street"));
         assertFalse(predicate.test(new PersonBuilder().withName("Alice").withPhone("12345")
                 .withEmail("alice@email.com").withAddress("Main Street").withTags("friends").build()));
     }
@@ -113,11 +112,11 @@ public class PersonSearchPredicateTest {
         assertTrue(predicate.test(new PersonBuilder().withAssets("hammer").build()));
 
         // Multiple keywords
-        predicate = new PersonSearchPredicate(Arrays.asList("hammer", "screwdriver"));
+        predicate = new PersonSearchPredicate(List.of("hammer", "screwdriver"));
         assertTrue(predicate.test(new PersonBuilder().withAssets("screwdriver").build()));
 
         // Mixed-case keywords
-        predicate = new PersonSearchPredicate(Arrays.asList("hAmMeR", "sCrEwDriVer"));
+        predicate = new PersonSearchPredicate(List.of("hAmMeR", "sCrEwDriVer"));
         assertTrue(predicate.test(new PersonBuilder().withAssets("screwdriver").build()));
     }
 
@@ -128,11 +127,11 @@ public class PersonSearchPredicateTest {
         assertFalse(predicate.test(new PersonBuilder().withAssets("hammer").build()));
 
         // Non-matching keyword
-        predicate = new PersonSearchPredicate(Arrays.asList("helmet", "gloves"));
+        predicate = new PersonSearchPredicate(List.of("helmet", "gloves"));
         assertFalse(predicate.test(new PersonBuilder().withAssets("hammer").build()));
 
         // Keywords match phone, email and address, but does not match name, tags or assets
-        predicate = new PersonSearchPredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street"));
+        predicate = new PersonSearchPredicate(List.of("12345", "alice@email.com", "Main", "Street"));
         assertFalse(predicate.test(new PersonBuilder().withName("Alice")
                                    .withPhone("12345")
                                    .withEmail("alice@email.com")
