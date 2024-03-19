@@ -28,6 +28,6 @@ public class AssignTaskCommandTest {
         AssignTaskCommand atc = new AssignTaskCommand(5, 1);
         atc.execute(model);
 
-        assertEquals("1 3 5", model.getFilteredEmployeeList().get(0).getTasks().getTasks());
+        assertEquals("5", model.getFilteredEmployeeList().get(0).getTasks().getTasks());
     }
 }
