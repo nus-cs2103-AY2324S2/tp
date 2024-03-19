@@ -14,7 +14,7 @@ box Model MODEL_COLOR_T1
 participant "m:Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("delete S1234567A")
+[-> LogicManager : execute("delete T1234567A")
 activate LogicManager
 
 LogicManager -> AddressBookParser : parseCommand("delete S1234567A")
@@ -27,7 +27,7 @@ activate DeleteCommandParser
 DeleteCommandParser --> AddressBookParser
 deactivate DeleteCommandParser
 
-AddressBookParser -> DeleteCommandParser : parse("S1234567A")
+AddressBookParser -> DeleteCommandParser : parse("T1234567A")
 activate DeleteCommandParser
 
 create DeleteCommand
@@ -49,7 +49,7 @@ deactivate AddressBookParser
 LogicManager -> DeleteCommand : execute(m)
 activate DeleteCommand
 
-DeleteCommand -> Model : deletePersonWithNric(new Nric("S1234567A"))
+DeleteCommand -> Model : deletePersonWithNric(Nric: "T1234567A")
 activate Model
 
 Model --> DeleteCommand

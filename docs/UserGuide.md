@@ -4,9 +4,9 @@
   pageNav: 3
 ---
 
-# AB-3 User Guide
+# CLInic User Guide
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a  Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+CLInic is a **desktop app for managing patients and appointments, optimized for use via a  Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, CLInic can get your patient management tasks done faster than traditional GUI apps.
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -30,9 +30,9 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * `add n/John Doe i/T0123456A b/2001-05-02 p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
 
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
+   * `delete T0123456A` : Deletes patient with NRIC T0123456A and corresponding appointments.
 
    * `clear` : Deletes all contacts.
 
@@ -134,6 +134,7 @@ Examples:
 ### Deleting a person : `delete`
 
 Deletes the specified person (identified by NRIC) from the address book.
+Corresponding appointments for the specified person will be deleted too.
 
 Format: `delete NRIC`
 
@@ -144,9 +145,23 @@ Examples:
 * `list` followed by `delete S1234567A` deletes the person with NRIC S1234567A in the address book.
 * `find Betsy` followed by `delete S1234567A` deletes the person with NRIC S1234567A in the results of the `find` command.
 
+### Adding an Appointment: `addApp`
+
+Adds an appointment to the address book.
+
+Format: `addApp i/NRIC d/DATE from/STARTTIME to/ENDTIME t/APPOINTMENTTYPE note/NOTE`
+
+* Adds an appointment for the person with specified `NRIC`, on `DATE` from `STARTTIME` to `ENDTIME`
+* Details of `APPOINTMENTTYPE` and `NOTE` will be captured for reference
+* Person with this NRIC **must exist within database**.
+
+Examples:
+* `addApp i/ T0123456A d/ 2024-02-20 from/ 11:00 to/ 11:30 t/ Medical Check-up note/ Routine check-in`
+* `addApp i/ S1234567A d/ 2024-02-20 from/ 15:00 to/ 15:30 t/ Blood Test note/ Follow-up from last consultation`
+
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all entries from CLInic.
 
 Format: `clear`
 
@@ -194,9 +209,10 @@ _Details coming soon ..._
 
 Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add**    | `add n/NAME i/NRIC b/DOB p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/John Doe i/T0123456A b/2001-05-02 p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 **Clear**  | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Delete** | `delete NRIC`<br> e.g., `delete T0123456A`
+**AddApp** | `addApp i/NRIC d/DATE from/STARTTIME to/ENDTIME t/APPOINTMENTTYPE note/NOTE`<br> e.g., `addApp i/ T0123456A d/ 2024-02-20 from/ 11:00 to/ 11:30 t/ Medical Check-up note/ Routine check-in`
 **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List**   | `list`
