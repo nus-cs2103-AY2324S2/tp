@@ -33,19 +33,19 @@ public class TypicalPersons {
             .withTags("owesMoney", "friends").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street")
-            .withGrade("A").withSubject("Maths").build();
+            .withDateTimes("2024-03-02 1800").withGrade("A").withSubject("Maths").build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withAddress("10th street")
-            .withGrade("B+").withSubject("Maths").withTags("friends").build();
+            .withDateTimes("2024-04-02 1900").withGrade("B+").withSubject("Maths").withTags("friends").build();
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("9482224")
             .withEmail("werner@example.com").withAddress("michegan ave")
-            .withGrade("B-").withSubject("English").build();
+            .withDateTimes("2024-05-02 2000").withGrade("B-").withSubject("English").build();
     public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("9482427")
             .withEmail("lydia@example.com").withAddress("little tokyo")
-            .withGrade("C").withSubject("English").build();
+            .withDateTimes("2024-06-02 2100").withGrade("C").withSubject("English").build();
     public static final Person GEORGE = new PersonBuilder().withName("George Best").withPhone("9482442")
             .withEmail("anna@example.com").withAddress("4th street")
-            .withGrade("D").withSubject("Chinese").build();
+            .withDateTimes("2024-07-02 2200").withGrade("D").withSubject("Chinese").build();
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withPhone("8482424")

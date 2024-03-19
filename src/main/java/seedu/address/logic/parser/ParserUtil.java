@@ -10,6 +10,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.DateTime;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Grade;
 import seedu.address.model.person.Name;
@@ -152,5 +153,23 @@ public class ParserUtil {
             throw new ParseException(Subject.MESSAGE_CONSTRAINTS);
         }
         return new Subject(trimmedSubject);
+    }
+
+    public static DateTime parseDateTime(String dateTime) throws ParseException {
+        requireNonNull(dateTime);
+        String trimmedDateTime = dateTime.trim();
+        if (!DateTime.isValidDateTime(trimmedDateTime)) {
+            throw new ParseException(DateTime.MESSAGE_CONSTRAINTS);
+        }
+        return new DateTime(trimmedDateTime);
+    }
+
+    public static Set<DateTime> parseDateTimes(Collection<String> dateTimes) throws ParseException {
+        requireNonNull(dateTimes);
+        final Set<DateTime> dateTimeSet = new HashSet<>();
+        for (String dateTime : dateTimes) {
+            dateTimeSet.add(parseDateTime(dateTime));
+        }
+        return dateTimeSet;
     }
 }
