@@ -15,7 +15,7 @@ public class DeleteGroupCommand extends Command {
     public static final String COMMAND_WORD = "delete-group";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes a preexisting group. "
-            + "groups can be specified by name. "
+            + "groups can be specified by name.\n"
             + "Parameters: NAME (cannot be empty and must already exist)\n"
             + "Example: " + COMMAND_WORD + " CS2103T GROUP ";
 

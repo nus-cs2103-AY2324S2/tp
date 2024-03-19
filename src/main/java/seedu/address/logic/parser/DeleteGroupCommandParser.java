@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COURSEMATE;
 
 import seedu.address.logic.commands.DeleteGroupCommand;
@@ -20,7 +21,11 @@ public class DeleteGroupCommandParser implements Parser<DeleteGroupCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultiMap = ArgumentTokenizer.tokenize(args, PREFIX_COURSEMATE);
 
-        Name groupName = ParserUtil.parseName(argMultiMap.getPreamble());
-        return new DeleteGroupCommand(groupName);
+        try {
+            Name groupName = ParserUtil.parseName(argMultiMap.getPreamble());
+            return new DeleteGroupCommand(groupName);
+        } catch (ParseException e) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteGroupCommand.MESSAGE_USAGE));
+        }
     }
 }

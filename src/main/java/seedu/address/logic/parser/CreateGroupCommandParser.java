@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COURSEMATE;
 
 import java.util.Set;
@@ -23,10 +24,13 @@ public class CreateGroupCommandParser implements Parser<CreateGroupCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultiMap = ArgumentTokenizer.tokenize(args, PREFIX_COURSEMATE);
 
-        Name name = ParserUtil.parseName(argMultiMap.getPreamble());
-        Set<QueryableCourseMate> queryableCourseMateSet =
-                ParserUtil.parseQueryableCourseMates(argMultiMap.getAllValues(PREFIX_COURSEMATE));
-
-        return new CreateGroupCommand(name, queryableCourseMateSet);
+        try {
+            Name name = ParserUtil.parseName(argMultiMap.getPreamble());
+            Set<QueryableCourseMate> queryableCourseMateSet =
+                    ParserUtil.parseQueryableCourseMates(argMultiMap.getAllValues(PREFIX_COURSEMATE));
+            return new CreateGroupCommand(name, queryableCourseMateSet);
+        } catch (ParseException e) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CreateGroupCommand.MESSAGE_USAGE));
+        }
     }
 }

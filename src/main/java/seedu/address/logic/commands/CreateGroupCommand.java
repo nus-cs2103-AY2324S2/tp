@@ -23,12 +23,12 @@ public class CreateGroupCommand extends Command {
     public static final String COMMAND_WORD = "create-group";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Creates a group containing any number of CourseMates, "
-            + "CourseMates can be specified either by name or by the '#' notation. "
+            + "CourseMates can be specified either by name or by the '#' notation.\n"
             + "Parameters: NAME (cannot be empty and must be unique) "
-            + "[" + PREFIX_COURSEMATE + "[COURSEMATE]\n" + "]"
+            + "[" + PREFIX_COURSEMATE + " COURSEMATE" + "]\n"
             + "Example: " + COMMAND_WORD + " CS2103T GROUP "
-            + PREFIX_COURSEMATE + "#1 "
-            + PREFIX_COURSEMATE + "John Doe.";
+            + PREFIX_COURSEMATE + " #1 "
+            + PREFIX_COURSEMATE + " John Doe.";
 
     public static final String MESSAGE_DUPLICATE_GROUP = "This group already exists in the group list.";
 
