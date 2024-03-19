@@ -17,13 +17,13 @@ import seedu.realodex.model.ReadOnlyRealodex;
 /**
  * A class to access Realodex data stored as a json file on the hard disk.
  */
-public class JsonAddressBookStorage implements RealodexStorage {
+public class JsonRealodexStorage implements RealodexStorage {
 
-    private static final Logger logger = LogsCenter.getLogger(JsonAddressBookStorage.class);
+    private static final Logger logger = LogsCenter.getLogger(JsonRealodexStorage.class);
 
     private Path filePath;
 
-    public JsonAddressBookStorage(Path filePath) {
+    public JsonRealodexStorage(Path filePath) {
         this.filePath = filePath;
     }
 

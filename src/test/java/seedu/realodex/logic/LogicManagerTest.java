@@ -32,7 +32,7 @@ import seedu.realodex.model.ModelManager;
 import seedu.realodex.model.ReadOnlyRealodex;
 import seedu.realodex.model.UserPrefs;
 import seedu.realodex.model.person.Person;
-import seedu.realodex.storage.JsonAddressBookStorage;
+import seedu.realodex.storage.JsonRealodexStorage;
 import seedu.realodex.storage.JsonUserPrefsStorage;
 import seedu.realodex.storage.StorageManager;
 import seedu.realodex.testutil.PersonBuilder;
@@ -49,8 +49,8 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
+        JsonRealodexStorage addressBookStorage =
+                new JsonRealodexStorage(temporaryFolder.resolve("addressBook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
@@ -154,7 +154,7 @@ public class LogicManagerTest {
         Path prefPath = temporaryFolder.resolve("ExceptionUserPrefs.json");
 
         // Inject LogicManager with an RealodexStorage that throws the IOException e when saving
-        JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(prefPath) {
+        JsonRealodexStorage addressBookStorage = new JsonRealodexStorage(prefPath) {
             @Override
             public void saveAddressBook(ReadOnlyRealodex addressBook, Path filePath)
                     throws IOException {
