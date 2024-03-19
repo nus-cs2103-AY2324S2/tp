@@ -1,8 +1,8 @@
 package seedu.address.model.order;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.testutil.TypicalOrders.COOKIES_ONLY;
 import static seedu.address.testutil.TypicalOrders.CUPCAKES_AND_COOKIES;
 import static seedu.address.testutil.TypicalOrders.CUPCAKES_ONLY;

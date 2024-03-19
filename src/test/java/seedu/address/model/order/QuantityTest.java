@@ -16,8 +16,7 @@ public class QuantityTest {
     @Test
     public void constructor_invalidQuantity_throwsIllegalArgumentException() {
         String invalidQuantity = "";
-        assertThrows(IllegalArgumentException.class,
-                () -> new Quantity(Integer.parseInt(invalidQuantity)));
+        assertThrows(IllegalArgumentException.class, () -> new Quantity(Integer.parseInt(invalidQuantity)));
     }
 
     @Test
