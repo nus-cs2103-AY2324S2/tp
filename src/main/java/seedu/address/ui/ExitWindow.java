@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
@@ -20,6 +21,9 @@ public class ExitWindow extends UiPart<Stage> {
 
     @FXML
     private Label exitMessage;
+
+    @FXML
+    private Button yesButton;
 
     /**
      * Creates a new ExitWindow.
@@ -69,19 +73,6 @@ public class ExitWindow extends UiPart<Stage> {
         return getRoot().isShowing();
     }
 
-    /**
-     * Hides the exit window.
-     */
-    public void hide() {
-        getRoot().hide();
-    }
-
-    /**
-     * Focuses on the exit window.
-     */
-    public void focus() {
-        getRoot().requestFocus();
-    }
 
     /**
      * Exits from the program.
@@ -97,5 +88,6 @@ public class ExitWindow extends UiPart<Stage> {
     @FXML
     private void noButton() {
         getRoot().hide();
+        yesButton.requestFocus();
     }
 }
