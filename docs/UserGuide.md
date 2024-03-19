@@ -251,5 +251,5 @@ _Details coming soon ..._
 | **List**     | `list`                                                                                                                                                               |
 | **LastMet**  | `met INDEX [l/DATE]`<br> eg., `met 2 l/2023-05-07`                                                                                                                   |
 | **Schedule** | `schedule INDEX [s/DATETIME]`<br> eg., `schedule 2 s/2023-05-07 22:00`                                                                                               |                                                                                                                               |
-| **View**     | `view`                                                                                                                                                               |
+| **View**     | `view INDEX`<br> eg., `view 1`                                                                                                                                        |
 | **Help**     | `help`                                                                                                                                                               |
