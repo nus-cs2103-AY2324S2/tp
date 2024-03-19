@@ -48,6 +48,7 @@ public class PersonProfile extends UiPart<Region> {
      */
     public PersonProfile() {
         super(FXML);
+        profilePane.setVisible(false);
     }
 
     /**
@@ -65,6 +66,7 @@ public class PersonProfile extends UiPart<Region> {
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        profilePane.setVisible(true);
     }
 
     /**
@@ -81,5 +83,6 @@ public class PersonProfile extends UiPart<Region> {
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        profilePane.setVisible(true);
     }
 }
