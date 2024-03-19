@@ -10,7 +10,6 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.messages.ModuleMessages;
-import seedu.address.logic.messages.TutorialClassMessages;
 import seedu.address.model.Model;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ModuleTutorialPair;
@@ -50,7 +49,7 @@ public abstract class AddStudentToClassCommand extends Command {
         }
         if (!existingModule.hasTutorialClass(tutorialClass)) {
             throw new CommandException(
-                    String.format(TutorialClassMessages.MESSAGE_TUTORIAL_CLASS_NOT_FOUND, tutorialClass));
+                    String.format(ModuleMessages.MESSAGE_TUTORIAL_DOES_NOT_BELONG_TO_MODULE, tutorialClass, module));
         }
         return new ModuleTutorialPair(module, tutorialClass);
     }

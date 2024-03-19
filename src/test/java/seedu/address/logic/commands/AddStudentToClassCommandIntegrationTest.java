@@ -91,4 +91,17 @@ public class AddStudentToClassCommandIntegrationTest {
                 expectedModel, String.format(ModuleMessages.MESSAGE_MODULE_NOT_FOUND, newModule));
     }
 
+    @Test
+    public void execute_addStudentToValidModuleButInvalidTutorial_throwsCommandException() {
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+
+        ModuleCode newModule = new ModuleCode(VALID_MODULE_AMY);
+        expectedModel.addModule(newModule);
+        TutorialClass newTutorial = new TutorialClass(VALID_TUTORIAL_BOB);
+        Person validPerson = new PersonBuilder().build();
+        assertCommandFailure(new AddStudentToClassByEmailCommand(validPerson.getEmail(), newModule, newTutorial),
+                expectedModel,
+                String.format(ModuleMessages.MESSAGE_TUTORIAL_DOES_NOT_BELONG_TO_MODULE, newTutorial, newModule));
+    }
+
 }
