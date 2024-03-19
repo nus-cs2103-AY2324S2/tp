@@ -3,12 +3,18 @@ package seedu.address.logic.attribute;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.attributes.AddAttributeCommand;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
 
 public class AddAttributeCommandTest {
+
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void execute_null() {
@@ -35,6 +41,13 @@ public class AddAttributeCommandTest {
     public void execute_fail2() {
         AddAttributeCommand addAttributeCommand =
                 new AddAttributeCommand(ALICE.getUuidString(), null, "Alice");
-        assertThrows(NullPointerException.class, () -> addAttributeCommand.execute(null));
+        assertThrows(NullPointerException.class, () -> addAttributeCommand.execute(model));
+    }
+
+    @Test
+    public void execute_fail3() {
+        AddAttributeCommand addAttributeCommand =
+                new AddAttributeCommand(ALICE.getUuidString(), "Name", null);
+        assertThrows(NullPointerException.class, () -> addAttributeCommand.execute(model));
     }
 }

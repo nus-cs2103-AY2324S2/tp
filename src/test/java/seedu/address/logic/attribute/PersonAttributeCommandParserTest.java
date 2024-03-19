@@ -40,4 +40,5 @@ class PersonAttributeCommandParserTest {
         String unknownCommand = "modifyAttribute 12345 nickname Johnny";
         assertThrows(ParseException.class, () -> parser.parse(unknownCommand));
     }
+
 }

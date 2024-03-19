@@ -158,4 +158,12 @@ public class ModelManagerTest {
         modelManager.addPerson(ALICE);
         assertTrue(modelManager.hasAttribute(ALICE.getUuidString(), "Name"));
     }
+
+    @Test
+    void deleteAttribute_test() {
+        modelManager.addPerson(HOON);
+        modelManager.deleteAttribute(HOON.getUuidString(), "Name");
+        assertFalse(HOON.hasAttribute("Name"));
+        HOON.setAttribute("Name", "Hoon Meier");
+    }
 }

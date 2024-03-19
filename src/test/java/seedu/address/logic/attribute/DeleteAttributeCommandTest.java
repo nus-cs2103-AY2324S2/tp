@@ -33,12 +33,12 @@ public class DeleteAttributeCommandTest {
     @Test
     public void execute_fail() {
         DeleteAttributeCommand deleteAttributeCommand = new DeleteAttributeCommand(null, "Name");
-        assertThrows(NullPointerException.class, () -> deleteAttributeCommand.execute(null));
+        assertThrows(NullPointerException.class, () -> deleteAttributeCommand.execute(model));
     }
 
     @Test
     public void execute_fail2() {
         DeleteAttributeCommand deleteAttributeCommand = new DeleteAttributeCommand(ALICE.getUuidString(), null);
-        assertThrows(NullPointerException.class, () -> deleteAttributeCommand.execute(null));
+        assertThrows(NullPointerException.class, () -> deleteAttributeCommand.execute(model));
     }
 }

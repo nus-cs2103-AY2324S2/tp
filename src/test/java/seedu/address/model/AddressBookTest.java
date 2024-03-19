@@ -126,6 +126,14 @@ public class AddressBookTest {
         assertFalse(result, "Should return false for a non-existent attribute.");
     }
 
+    @Test
+    void deleteAttribute_test() {
+        addressBook.addPerson(HOON);
+        addressBook.deleteAttribute(HOON.getUuidString(), "Name");
+        assertFalse(HOON.hasAttribute("Name"));
+        HOON.setAttribute("Name", "Hoon Meier");
+    }
+
     /**
      * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
      */
