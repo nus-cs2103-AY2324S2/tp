@@ -60,7 +60,7 @@ public class AddCommandParser implements Parser<AddCommand> {
             if (addressString.isPresent()) {
                 address = Optional.of(ParserUtil.parseAddress(addressString.get()));
             } else {
-                throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+                throw new ParseException(Address.MESSAGE_CONSTRAINTS_PROFESSOR);
             }
         } else {
             // address is optional for other RoleTypes

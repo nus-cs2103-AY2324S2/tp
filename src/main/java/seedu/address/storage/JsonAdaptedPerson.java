@@ -61,7 +61,7 @@ class JsonAdaptedPerson {
         phone = source.getPhone().map(x -> x.value).orElse(null);
         email = source.getEmail().value;
         role = source.getRole().role.name();
-        address = source.getAddress().value;
+        address = source.getAddress().map(x -> x.value).orElse(null);
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -113,7 +113,7 @@ class JsonAdaptedPerson {
         if (!Address.isValidAddress(address)) {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
-        final Address modelAddress = new Address(address);
+        final Optional<Address> modelAddress = Optional.of(new Address(address));
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
         return new Person(modelName, modelPhone, modelEmail, modelRole, modelAddress, modelTags);
