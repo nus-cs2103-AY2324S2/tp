@@ -7,7 +7,8 @@
     "location" : "remote",
     "status" : "ongoing",
     "description" : "Use Figma to design User-friendly web interfaces",
-    "role" : "Frontend Engineer"
+    "role" : "Frontend Engineer",
+    "remark" : ""
   }, {
     "companyName" : "Microsoft",
     "contactName" : "Alice Pauline",
@@ -16,7 +17,8 @@
     "location" : "remote",
     "status" : "ongoing",
     "description" : "Use Figma to design User-friendly web interfaces",
-    "role" : "Frontend Engineer"
+    "role" : "Frontend Engineer",
+    "remark" : ""
   }
   ]
 }

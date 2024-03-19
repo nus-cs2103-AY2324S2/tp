@@ -3,6 +3,7 @@ package seedu.address.model.internship;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.InternshipCommandTestUtil.VALID_COMPANY_NAME_BOB;
+import static seedu.address.model.util.InternshipSampleDataUtil.EMPTY_REMARK;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalInternships.ALICE_MICROSOFT;
 import static seedu.address.testutil.TypicalInternships.BOB;
@@ -15,7 +16,7 @@ public class InternshipTest {
     @Test
     public void constructor_allNull_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new Internship(null, null, null,
-                null, null, null, null, null));
+                null, null, null, null, null, null));
     }
 
     @Test
@@ -23,7 +24,7 @@ public class InternshipTest {
         assertThrows(NullPointerException.class, () -> new Internship(null, new ContactName("John Doe"),
                 new ContactEmail("johnDoe@gmail.com"), new ContactNumber("91234567"), new Location("local"),
                 new ApplicationStatus("to_apply"), new Description("Software Engineer Intern"),
-                new Role("Software Engineer")));
+                new Role("Software Engineer"), EMPTY_REMARK));
     }
 
     @Test

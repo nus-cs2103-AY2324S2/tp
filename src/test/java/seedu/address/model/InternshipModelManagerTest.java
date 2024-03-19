@@ -10,15 +10,7 @@ import java.nio.file.Paths;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.internship.ApplicationStatus;
-import seedu.address.model.internship.CompanyName;
-import seedu.address.model.internship.ContactEmail;
-import seedu.address.model.internship.ContactName;
-import seedu.address.model.internship.ContactNumber;
-import seedu.address.model.internship.Description;
-import seedu.address.model.internship.Internship;
-import seedu.address.model.internship.Location;
-import seedu.address.model.internship.Role;
+import seedu.address.model.internship.*;
 
 public class InternshipModelManagerTest {
 
@@ -32,7 +24,8 @@ public class InternshipModelManagerTest {
             new Location("remote"),
             new ApplicationStatus("rejected"),
             new Description("Business Development Internship"),
-            new Role("Business Development Associate")
+            new Role("Business Development Associate"),
+            new Remark("")
     );
 
     @Test
@@ -108,7 +101,9 @@ public class InternshipModelManagerTest {
                 new Location("remote"),
                 new ApplicationStatus("rejected"),
                 new Description("Business Development Internship"),
-                new Role("Business Development Associate"));
+                new Role("Business Development Associate"),
+                new Remark("")
+        );
         Internship internship2 = new Internship(
                 new CompanyName("Google"),
                 new ContactName("John Doe"),
@@ -117,7 +112,8 @@ public class InternshipModelManagerTest {
                 new Location("remote"),
                 new ApplicationStatus("pending"),
                 new Description("Software Engineering Internship"),
-                new Role("Software Engineer")
+                new Role("Software Engineer"),
+                new Remark("")
         );
         internshipModelManager.addInternship(internship1);
         internshipModelManager.setInternship(internship1, internship2);
