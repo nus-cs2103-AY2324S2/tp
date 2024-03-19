@@ -29,7 +29,8 @@ public class ParserUtilTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_FAMILY = "0";
     private static final String INVALID_EMAIL = "example.com";
-    private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_TAG_1 = "#buyer";
+    private static final String INVALID_TAG_2 = "friend";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
@@ -121,7 +122,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseIncome_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseIncome(INVALID_PHONE));
+        assertThrows(ParseException.class, () -> ParserUtil.parseIncome(INVALID_INCOME));
     }
 
     @Test
@@ -211,7 +212,8 @@ public class ParserUtilTest {
 
     @Test
     public void parseTag_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseTag(INVALID_TAG));
+        assertThrows(ParseException.class, () -> ParserUtil.parseTag(INVALID_TAG_1));
+        assertThrows(ParseException.class, () -> ParserUtil.parseTag(INVALID_TAG_2));
     }
 
     @Test
@@ -234,7 +236,8 @@ public class ParserUtilTest {
 
     @Test
     public void parseTags_collectionWithInvalidTags_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, INVALID_TAG)));
+        assertThrows(ParseException.class, () -> ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, INVALID_TAG_1)));
+        assertThrows(ParseException.class, () -> ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, INVALID_TAG_2)));
     }
 
     @Test
@@ -248,5 +251,22 @@ public class ParserUtilTest {
         Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    @Test
+    public void parseTags_sinlgeDuplicateTags_ignoresDuplicates() throws Exception {
+        Set<Tag> tagSetWithDuplicates = ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, VALID_TAG_1));
+        Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1)));
+
+        assertEquals(tagSetWithDuplicates, expectedTagSet);
+    }
+
+    @Test
+    public void parseTags_multipleDuplicateTags_ignoresDuplicates() throws Exception {
+        Set<Tag> tagSetWithMultipleDuplicates = ParserUtil.parseTags(Arrays.asList(
+                VALID_TAG_1, VALID_TAG_2, VALID_TAG_1, VALID_TAG_2));
+        Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
+
+        assertEquals(tagSetWithMultipleDuplicates, expectedTagSet);
     }
 }

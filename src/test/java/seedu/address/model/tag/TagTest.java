@@ -26,13 +26,15 @@ public class TagTest {
 
         // Invalid tag names
         assertFalse(Tag.isValidTagName("")); // Empty tag name
-        assertFalse(Tag.isValidTagName("Buyers")); // Tag names should be lowercase
-        assertFalse(Tag.isValidTagName("Sellers")); // Extra space at the end
+        assertFalse(Tag.isValidTagName("Buyers")); // Should not be plural
+        assertFalse(Tag.isValidTagName("Sellers ")); // Extra space at the end
         assertFalse(Tag.isValidTagName("Invalid Tag")); // Space within the tag name
 
         // Valid tag names
         assertTrue(Tag.isValidTagName("buyer"));
         assertTrue(Tag.isValidTagName("seller"));
+        assertTrue(Tag.isValidTagName("buYeR")); // Tag converts string to uppercase
+        assertTrue(Tag.isValidTagName("seLLer")); // Tag converts string to uppercase
     }
 
 }
