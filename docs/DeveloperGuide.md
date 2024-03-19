@@ -589,6 +589,9 @@ The `DeleteCommand` is responsible for deleting a patient in the address book.
 
 * Delete command is used when the user wants to remove a patient from the address book.
 
+The following UML sequence diagram illustrates how the Delete operation works.
+<puml src="diagrams/DeleteSequenceDiagram.puml" alt="Delete Sequence Diagram" />
+
 #### Example Usage Scenario
 
 Given below is an example usage scenario and how the group creation mechanism behaves at each step.
