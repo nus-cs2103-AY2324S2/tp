@@ -47,8 +47,18 @@ class GroupCommandParserTest {
 
         // tag
         String userInput = " id/" + defaultNusId + TAG_DESC_AMY;
-        GroupCommand.GroupPersonDescriptor descriptor = new GroupPersonDescriptorBuilder().withNusId(defaultNusId).withTag(VALID_TAG_AMY).build();
+        GroupCommand.GroupPersonDescriptor descriptor = new GroupPersonDescriptorBuilder()
+                .withNusId(defaultNusId)
+                .withTag(VALID_TAG_AMY).build();
         GroupCommand expectedCommand = new GroupCommand(nusid, descriptor);
+        assertParseSuccessGroup(parser, userInput, expectedCommand);
+
+        // group
+        userInput = " id/" + defaultNusId + GROUP_DESC_HUSBAND;
+        descriptor = new GroupPersonDescriptorBuilder()
+                .withNusId(defaultNusId)
+                .withGroups(VALID_GROUP_HUSBAND).build();
+        expectedCommand = new GroupCommand(nusid, descriptor);
         assertParseSuccessGroup(parser, userInput, expectedCommand);
     }
 
