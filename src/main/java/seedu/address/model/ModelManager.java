@@ -213,6 +213,11 @@ public class ModelManager implements Model {
         eventBook.addPersonToSelectedEvent(person);
     }
 
+    @Override
+    public void deletePersonFromSelectedEvent(Person person) {
+        requireNonNull(person);
+        eventBook.deletePersonFromSelectedEvent(person);
+    }
 
     //=========== Filtered Event List and Person List of Selected Event Accessors ====================================
     @Override

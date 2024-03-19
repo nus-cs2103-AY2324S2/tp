@@ -108,6 +108,8 @@ public interface Model {
 
     void addPersonToSelectedEvent(Person person);
 
+    void deletePersonFromSelectedEvent(Person person);
+
     /**
      * Returns an unmodifiable view of the filtered event list.
      *

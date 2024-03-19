@@ -150,6 +150,18 @@ public class EventBook implements ReadOnlyEventBook {
         }
     }
 
+    /**
+     * Deletes a person from the selected event if an event is currently selected.
+     * If no event is selected, the person will not be deleted.
+     *
+     * @param person The person to be added to the selected event.
+     */
+    public void deletePersonFromSelectedEvent(Person person) {
+        if (isAnEventSelected()) {
+            selectedEvent.deletePerson(person);
+        }
+    }
+
     // Util methods
 
     @Override
