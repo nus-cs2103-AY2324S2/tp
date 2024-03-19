@@ -12,6 +12,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Major;
@@ -36,7 +37,7 @@ public class ParserUtilTest {
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_YEAR = "7";
     private static final String VALID_TELEGRAM = "telegram";
-    private static final String VALID_REMARK= "shy";
+    private static final String VALID_REMARK = "shy";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
 

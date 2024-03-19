@@ -267,6 +267,7 @@ public class EditCommand extends Command {
                     && Objects.equals(year, otherEditPersonDescriptor.year)
                     && Objects.equals(telegram, otherEditPersonDescriptor.telegram)
                     && Objects.equals(major, otherEditPersonDescriptor.major)
+                    && Objects.equals(remark, otherEditPersonDescriptor.remark)
                     && Objects.equals(tags, otherEditPersonDescriptor.tags);
         }
 

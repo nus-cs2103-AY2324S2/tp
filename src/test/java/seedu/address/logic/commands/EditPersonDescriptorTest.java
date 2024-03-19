@@ -15,6 +15,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TELEGRAM_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_YEAR_AMY;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
@@ -81,7 +82,7 @@ public class EditPersonDescriptorTest {
                 + editPersonDescriptor.getYear().orElse(null) + ", major="
                 + editPersonDescriptor.getMajor().orElse(null) + ", telegram="
                 + editPersonDescriptor.getTelegram().orElse(null) + ", remark="
-                + editPersonDescriptor.getRemark().orElse(null)+ ", tags="
+                + editPersonDescriptor.getRemark().orElse(null) + ", tags="
                 + editPersonDescriptor.getTags().orElse(null) + "}";
         assertEquals(expected, editPersonDescriptor.toString());
     }
