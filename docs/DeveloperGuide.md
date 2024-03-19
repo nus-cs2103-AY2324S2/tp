@@ -345,9 +345,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
  
-1.  User inputs details of the client.
-2.  SWEE adds the client as a contact including the details given.
-3.  SWEE lists out all current contacts that have been saved (UC04).
+1. User requests to add a client's contact. 
+2. User inputs details of the client.
+3. SWEE adds the client as a contact.
+4. SWEE lists out all current contacts that have been saved (UC04).
 
     Use case ends.
 
@@ -383,7 +384,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: UC03 - View a client's contact in SWEE**
+**Use case: UC03 - View a client's contact**
 
 **MSS**
 
@@ -393,7 +394,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: UC04 - List all saved client contacts in SWEE**
+**Use case: UC04 - List all saved client contacts**
 
 **MSS**
 
