@@ -22,15 +22,7 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.InternshipMessages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.InternshipModel;
-import seedu.address.model.internship.ApplicationStatus;
-import seedu.address.model.internship.CompanyName;
-import seedu.address.model.internship.ContactEmail;
-import seedu.address.model.internship.ContactName;
-import seedu.address.model.internship.ContactNumber;
-import seedu.address.model.internship.Description;
-import seedu.address.model.internship.Internship;
-import seedu.address.model.internship.Location;
-import seedu.address.model.internship.Role;
+import seedu.address.model.internship.*;
 
 /**
  * Edits the details of an existing internship in the internship data.
@@ -120,8 +112,9 @@ public class InternshipEditCommand extends InternshipCommand {
                 .orElse(internshipToEdit.getContactNumber());
         ApplicationStatus updatedApplicationStatus = editInternshipDescriptor.getApplicationStatus()
                 .orElse(internshipToEdit.getApplicationStatus());
+        Remark updatedRemark = internshipToEdit.getRemark(); // edit command does not allow editing remarks
         return new Internship(updatedCompanyName, updatedContactName, updatedContactEmail, updatedContactNumber,
-                updatedLocation, updatedApplicationStatus, updatedDescription, updatedRole);
+                updatedLocation, updatedApplicationStatus, updatedDescription, updatedRole, updatedRemark);
     }
 
     @Override

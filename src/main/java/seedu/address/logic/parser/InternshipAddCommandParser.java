@@ -14,15 +14,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.InternshipAddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.internship.ApplicationStatus;
-import seedu.address.model.internship.CompanyName;
-import seedu.address.model.internship.ContactEmail;
-import seedu.address.model.internship.ContactName;
-import seedu.address.model.internship.ContactNumber;
-import seedu.address.model.internship.Description;
-import seedu.address.model.internship.Internship;
-import seedu.address.model.internship.Location;
-import seedu.address.model.internship.Role;
+import seedu.address.model.internship.*;
 
 /**
  * Parses input arguments and creates a new InternshipAddCommand object
@@ -57,8 +49,9 @@ public class InternshipAddCommandParser implements InternshipParser<InternshipAd
         ApplicationStatus status = InternshipParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).get());
         Description desc = InternshipParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
         Role role = InternshipParserUtil.parseRole(argMultimap.getValue(PREFIX_ROLE).get());
+        Remark remark = new Remark(""); // Add Command does not allow adding remarks immediately
 
-        Internship internship = new Internship(com, poc, email, phon, loc, status, desc, role);
+        Internship internship = new Internship(com, poc, email, phon, loc, status, desc, role, remark);
 
         return new InternshipAddCommand(internship);
     }
