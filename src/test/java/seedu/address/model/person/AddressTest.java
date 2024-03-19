@@ -47,4 +47,30 @@ public class AddressTest {
         // different values -> returns false
         assertFalse(address.equals(new Address("Other Valid Address")));
     }
+
+    @Test
+    public void isMatch() {
+        Address address = new Address("51 Clementi Road");
+
+        // Exact match -> returns true
+        assertTrue(address.isMatch("51 Clementi Road"));
+
+        // Substring whole word -> returns true
+        assertTrue(address.isMatch(" Clementi"));
+
+        // Substring partial word -> returns true
+        assertTrue(address.isMatch(" Clem"));
+
+        // Substring case mismatch -> returns true
+        assertTrue(address.isMatch(" clem"));
+
+        // Additional whitespace
+        assertTrue(address.isMatch(" 51 Clementi Road\n"));
+
+        // Substring mismatch
+        assertFalse(address.isMatch("street"));
+
+        // Different type
+        assertFalse(address.isMatch(1));
+    }
 }

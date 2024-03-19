@@ -59,7 +59,7 @@ public class EditCommand extends Command {
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
+     * @param index                of the person in the filtered person list to edit
      * @param editPersonDescriptor details to edit the person with
      */
     public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
@@ -80,7 +80,7 @@ public class EditCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
-
+      
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
@@ -111,6 +111,7 @@ public class EditCommand extends Command {
 
     /**
      * Takes a person object and only returns non-null fields
+     *
      * @param person
      * @return a String of non-null fields
      */
@@ -126,15 +127,15 @@ public class EditCommand extends Command {
         sb.append(name);
         sb.append("; Phone: ").append(phone);
 
-        if (!email.value.isEmpty()) {
+        if (!email.getValue().isEmpty()) {
             sb.append("; Email: ").append(email);
         }
 
-        if (!address.value.isEmpty()) {
+        if (!address.getValue().isEmpty()) {
             sb.append("; Address: ").append(address);
         }
 
-        if (!note.value.isEmpty()) {
+        if (!note.getValue().isEmpty()) {
             sb.append("; Note: ").append(note);
         }
 
@@ -170,8 +171,8 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the person with. Each non-empty field value will
+     * replace the corresponding field value of the person.
      */
     public static class EditPersonDescriptor {
         private Name name;
@@ -181,7 +182,8 @@ public class EditCommand extends Command {
         private Set<Tag> tags;
         private Note note;
 
-        public EditPersonDescriptor() {}
+        public EditPersonDescriptor() {
+        }
 
         /**
          * Copy constructor.
@@ -234,6 +236,7 @@ public class EditCommand extends Command {
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
         }
+
         public Optional<Note> getNote() {
             return Optional.ofNullable(note);
         }
@@ -251,7 +254,8 @@ public class EditCommand extends Command {
         }
 
         /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+         * Returns an unmodifiable tag set, which throws
+         * {@code UnsupportedOperationException}
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code tags} is null.
          */
