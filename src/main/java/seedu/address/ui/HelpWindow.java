@@ -127,7 +127,7 @@ public class HelpWindow extends UiPart<Stage> {
     @FXML
     private void openUrl() {
         try {
-            if (System.getProperty("os.name").trim().toLowerCase().contains(OS.LINUX.toString().toLowerCase())) {
+            if (AppUtil.OS.isLinux()) {
                 final Clipboard clipboard = Clipboard.getSystemClipboard();
                 final ClipboardContent url = new ClipboardContent();
                 url.putString(USERGUIDE_URL);
