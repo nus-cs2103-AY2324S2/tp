@@ -96,8 +96,10 @@ public class EditCommand extends Command {
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Schedule updatedSchedule = editPersonDescriptor.getSchedule().orElse(personToEdit.getSchedule());; // Edit does not allow editing schedule
-        Remark updatedRemark = editPersonDescriptor.getRemark().orElse(personToEdit.getRemark()); // Edit does not allow editing remark
+        Schedule updatedSchedule = editPersonDescriptor.getSchedule()
+                .orElse(personToEdit.getSchedule());; // Edit does not allow editing schedule
+        Remark updatedRemark = editPersonDescriptor.getRemark()
+                .orElse(personToEdit.getRemark()); // Edit does not allow editing remark
         Tag updatedTag = editPersonDescriptor.getTag().orElse(personToEdit.getTag());
         Set<Group> updatedGroups = editPersonDescriptor.getGroups().orElse(personToEdit.getGroups());
 
