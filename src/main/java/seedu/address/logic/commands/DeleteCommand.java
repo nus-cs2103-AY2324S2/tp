@@ -16,14 +16,16 @@ import seedu.address.model.person.Client;
  */
 public class DeleteCommand extends Command {
 
-    public static final String COMMAND_WORD = "delete";
+    public static final String COMMAND_WORD = "del";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the client identified by the index number used in the displayed client list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Client: %1$s";
+    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Client %1$s deleted successfully!";
+
+    public static final String MESSAGE_DELETE_PERSON_FAIL = "Error: Client not deleted. %1$s";
 
     private final Index targetIndex;
 
@@ -37,12 +39,13 @@ public class DeleteCommand extends Command {
         List<Client> lastShownList = model.getFilteredPersonList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(String.format(MESSAGE_DELETE_PERSON_FAIL,
+                Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX));
         }
 
         Client clientToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deletePerson(clientToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(clientToDelete)));
+        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, clientToDelete.getName()));
     }
 
     @Override
