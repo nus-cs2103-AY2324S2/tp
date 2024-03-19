@@ -24,10 +24,11 @@ public class MarkCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
-/*    @Test
+    @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
         Person editedPerson = new PersonBuilder().build();
-        EditCommand editCommand = new MarkCommand(INDEX_FIRST_PERSON, VALID_TAG);
+        EditCommand.EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedPerson).build();
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson));
 
@@ -35,7 +36,7 @@ public class MarkCommandTest {
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
-    }*/
+    }
 
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
@@ -168,4 +169,5 @@ public class MarkCommandTest {
                 + editPersonDescriptor + "}";
         assertEquals(expected, editCommand.toString());
     }
+
 }

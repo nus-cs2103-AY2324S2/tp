@@ -59,8 +59,13 @@ public class CommandTestUtil {
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS + " "; // empty string not allowed for
     // addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + " " + "hubby*"; // '*' not allowed in tags
+    public static final String VALID_TAG_FRIEND_DESC = " " + PREFIX_TAG + " "
+            + VALID_TAG_FRIEND; // '*' not allowed in tags
+
     public static final String INVALID_TAG_TAGSTATUS_COMPLETE_GOOD = INVALID_TAG_DESC + " " + PREFIX_TAGSTATUS
             + " " + VALID_TAGSTATUS_COMPLETE_GOOD;
+    public static final String VALID_TAG_FRIEND_TAGSTATUS_COMPLETE_GOOD = VALID_TAG_FRIEND_DESC + " "
+            + PREFIX_TAGSTATUS + " " + VALID_TAGSTATUS_COMPLETE_GOOD;
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
