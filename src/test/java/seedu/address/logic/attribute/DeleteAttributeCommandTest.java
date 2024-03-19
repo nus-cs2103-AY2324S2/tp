@@ -42,4 +42,11 @@ public class DeleteAttributeCommandTest {
         deleteAttributeCommand.execute(model);
         assertThrows(IllegalArgumentException.class, () -> ALICE.getAttribute("Address"));
     }
+
+    @Test
+    public void execute_noAttribute() throws CommandException {
+        DeleteAttributeCommand deleteAttributeCommand =
+                new DeleteAttributeCommand(ALICE.getUuidString().substring(32, 36), "Dog");
+        assertThrows(CommandException.class, () -> deleteAttributeCommand.execute(model));
+    }
 }
