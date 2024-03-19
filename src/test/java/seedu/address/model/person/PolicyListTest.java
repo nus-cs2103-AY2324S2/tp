@@ -40,7 +40,7 @@ public class PolicyListTest {
                 .observableArrayList(expectedPolicyObservableList);
         actualPolicyObservableList.add(policy3);
         PolicyList actualPolicyList = new PolicyList(actualPolicyObservableList);
-        actualPolicyList.deletePolicy(policy3.policyID);
+        actualPolicyList.deletePolicy(policy3.policyId);
         assertEquals(actualPolicyList, expectedPolicyList);
     }
 
@@ -64,8 +64,8 @@ public class PolicyListTest {
         policyObservableList.add(policy3);
         PolicyList actualPolicyList = new PolicyList(policyObservableList);
 
-        assertTrue(actualPolicyList.hasPolicy(policy2.policyID));
-        assertFalse(actualPolicyList.hasPolicy(policy4.policyID));
+        assertTrue(actualPolicyList.hasPolicy(policy2.policyId));
+        assertFalse(actualPolicyList.hasPolicy(policy4.policyId));
     }
 
     @Test

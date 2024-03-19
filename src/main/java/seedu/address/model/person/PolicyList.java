@@ -70,7 +70,7 @@ public class PolicyList {
         assert newPolicy != null;
         boolean isConflicting = false;
         for (Policy p: policyList) {
-            if (p.hasSameID(newPolicy)) {
+            if (p.hasSameId(newPolicy)) {
                 isConflicting = true;
                 break;
             }

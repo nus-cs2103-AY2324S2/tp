@@ -11,6 +11,7 @@
     <columns>
         <TableColumn fx:id="policyId" editable="false" minWidth="80.0" prefWidth="100.0" reorderable="false" text="Policy ID" />
         <TableColumn fx:id="policyName" editable="false" minWidth="120.0" prefWidth="300.0" reorderable="false" text="Policy Name" />
+        <!-- <TableColumn fx:id="policyType" editable="false" minWidth="120.0" prefWidth="300.0" reorderable="false" text="Policy Type" /> -->
     </columns>
     <columnResizePolicy>
         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

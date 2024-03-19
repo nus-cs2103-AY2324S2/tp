@@ -35,22 +35,22 @@ public class PolicyTest {
 
     @Test
     public void isValidIdTestTrue() {
-        assertTrue(Policy.isValidID(VALID_ID));
+        assertTrue(Policy.isValidId(VALID_ID));
     }
 
     @Test
     public void isValidIdTestFalse() {
-        assertFalse(Policy.isValidID(INVALID_ID));
+        assertFalse(Policy.isValidId(INVALID_ID));
     }
 
     @Test
     public void hasSameIdTestTrue() {
-        assertTrue(policy.hasSameID(policy));
+        assertTrue(policy.hasSameId(policy));
     }
     @Test
     public void hasSameIdTestFalse() {
         Policy otherPolicy = new Policy("Health", "456");
-        assertFalse(policy.hasSameID(otherPolicy));
+        assertFalse(policy.hasSameId(otherPolicy));
     }
 
     @Test

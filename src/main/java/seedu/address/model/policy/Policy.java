@@ -32,23 +32,35 @@ public class Policy {
     /**
      * The Policy id.
      */
-    public final String policyID;
-    private final PolicyType type;
+    public final String policyId;
+    private final PolicyType policyType;
 
 
     /**
      * Instantiates a new Policy.
      *
      * @param policyName the policy name
-     * @param policyID   the policy id
+     * @param policyId   the policy id
      */
-    public Policy(String policyName, String policyID) {
-        requireNonNull(policyName, policyID);
+    public Policy(String policyName, String policyId) {
+        requireNonNull(policyName, policyId);
         checkArgument(isValidName(policyName), MESSAGE_CONSTRAINTS_NAME);
-        checkArgument(isValidID(policyID), MESSAGE_CONSTRAINTS_ID);
+        checkArgument(isValidId(policyId), MESSAGE_CONSTRAINTS_ID);
         this.policyName = policyName;
-        this.policyID = policyID;
-        this.type = PolicyType.DEFAULT;
+        this.policyId = policyId;
+        this.policyType = PolicyType.DEFAULT;
+    }
+
+    public String getPolicyId() {
+        return policyId;
+    }
+
+    public String getPolicyName() {
+        return policyName;
+    }
+
+    public PolicyType getPolicyType() {
+        return policyType;
     }
 
     /**
@@ -58,7 +70,7 @@ public class Policy {
      * @return the boolean
      */
     public boolean isID(String testID) {
-        return testID.equals(policyID);
+        return testID.equals(policyId);
     }
 
     /**
@@ -77,7 +89,7 @@ public class Policy {
      * @param test the test
      * @return the boolean
      */
-    public static boolean isValidID(String test) {
+    public static boolean isValidId(String test) {
         return test.matches(VALIDATION_ID_REGEX);
     }
 
@@ -87,12 +99,12 @@ public class Policy {
      * @param policy the policy
      * @return the boolean
      */
-    public boolean hasSameID(Policy policy) {
-        return policyID.equals(policy.policyID);
+    public boolean hasSameId(Policy policy) {
+        return policyId.equals(policy.policyId);
     }
     @Override
     public String toString() {
-        return "Name:" + policyName + ", Type:" + type + ", Policy ID:" + policyID;
+        return "Name:" + policyName + ", Type:" + policyType + ", Policy ID:" + policyId;
     }
 
     @Override
@@ -106,6 +118,6 @@ public class Policy {
         }
 
         Policy policy = (Policy) obj;
-        return policyID.equals(policy.policyID) && policyName.equals(policy.policyName);
+        return policyId.equals(policy.policyId) && policyName.equals(policy.policyName);
     }
 }
