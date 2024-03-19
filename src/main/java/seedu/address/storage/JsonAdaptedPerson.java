@@ -132,7 +132,7 @@ class JsonAdaptedPerson {
         final Course modelCourse = new Course(course);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-      
+
         return new Person(modelName, modelPhone, modelEmail, modelRole, modelAddress, modelCourse, modelTags);
     }
 

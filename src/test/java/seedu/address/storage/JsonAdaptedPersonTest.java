@@ -97,7 +97,7 @@ public class JsonAdaptedPersonTest {
         String expectedMessage = Role.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
-  
+
     @Test
     public void toModelType_nullRole_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(
@@ -106,7 +106,7 @@ public class JsonAdaptedPersonTest {
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Role.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
-  
+
     @Test
     public void toModelType_invalidCourse_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(

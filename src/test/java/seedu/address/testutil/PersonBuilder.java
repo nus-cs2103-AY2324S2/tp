@@ -99,7 +99,7 @@ public class PersonBuilder {
         return this;
     }
 
-    /** 
+    /**
      * Sets the {@code Role} of the {@code Person} that we are building.
      */
     public PersonBuilder withRole(String role) {
@@ -114,7 +114,7 @@ public class PersonBuilder {
         this.course = new Course(course);
         return this;
     }
-  
+
     public Person build() {
         return new Person(name, phone, email, role, address, course, tags);
     }

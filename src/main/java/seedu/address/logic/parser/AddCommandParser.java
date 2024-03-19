@@ -55,7 +55,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         } else {
             phone = Optional.empty();
         }
-      
+
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Role role = ParserUtil.parseRole(argMultimap.getValue(PREFIX_ROLE).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
@@ -63,7 +63,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         Person person = new Person(name, phone, email, role, address, course, tagList);
-      
+
         return new AddCommand(person);
     }
 
