@@ -50,8 +50,8 @@ public class Telegram {
             return false;
         }
 
-        Telegram otherPhone = (Telegram) other;
-        return value.equals(otherPhone.value);
+        Telegram otherTelegram = (Telegram) other;
+        return value.equals(otherTelegram.value);
     }
 
     @Override
