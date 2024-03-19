@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.ReadOnlyAppointmentList;
 import seedu.address.model.person.Person;
 
 /**
@@ -114,4 +115,9 @@ public interface Model {
      * The person must exist in the address book.
      */
     void deleteAppointment(Appointment target);
+
+    /**
+     * Get appointments from inside person list
+     */
+    ReadOnlyAppointmentList getAppointmentList();
 }

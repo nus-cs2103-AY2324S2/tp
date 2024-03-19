@@ -1,47 +1,68 @@
 package seedu.address.testutil;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 import seedu.address.model.appointment.Appointment;
+
 
 /**
  * A utility class to help with building Person objects.
  */
 public class AppointmentBuilder {
 
-    public static final int DEFAULT_STUDENT_ID = 1;
-    public static final LocalDateTime DEFAULT_DATETIME = LocalDateTime.parse("2024-03-18 09:00",
-            DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
-    public static final boolean DEFAULT_ATTENDED = false;
-    public static final String DEFAULT_APPOINTMENT_DESCRIPTION = "This is a dummy appointment";
     public static final int DEFAULT_APPOINTMENT_ID = 1;
+    public static final LocalDateTime DEFAULT_APPOINTMENT_DATE_TIME = LocalDateTime.of(2020, 12, 12, 12, 12);
+    public static final int DEFAULT_STUDENT_ID = 1;
 
-    private int studentId;
-    private LocalDateTime appointmentDateTime;
-    private boolean hasAttended;
-    private String appointmentDescription;
+    public static final String DEFAULT_APPOINTMENT_DESCRIPTION = "Appointment Description";
+
+    public static final boolean DEFAULT_HAS_ATTENDED = false;
+
     private int appointmentId;
+    private LocalDateTime appointmentDateTime;
+    private int studentId;
+
+    //TODO: replace with caseLog
+    private String appointmentDescription;
+
+    private boolean hasAttended;
 
     /**
      * Creates a {@code AppointmentBuilder} with the default details.
      */
     public AppointmentBuilder() {
-        studentId = DEFAULT_STUDENT_ID;
-        appointmentDateTime = DEFAULT_DATETIME;
-        hasAttended = DEFAULT_ATTENDED;
         appointmentId = DEFAULT_APPOINTMENT_ID;
+        appointmentDateTime = DEFAULT_APPOINTMENT_DATE_TIME;
+        studentId = DEFAULT_STUDENT_ID;
         appointmentDescription = DEFAULT_APPOINTMENT_DESCRIPTION;
+        hasAttended = DEFAULT_HAS_ATTENDED;
     }
 
     /**
      * Initializes the AppointmentBuilder with the data of {@code appointmentToCopy}.
      */
     public AppointmentBuilder(Appointment appointmentToCopy) {
-        studentId = appointmentToCopy.getStudentId();
+        appointmentId = appointmentToCopy.getAppointmentId();
         appointmentDateTime = appointmentToCopy.getAppointmentDateTime();
-        hasAttended = appointmentToCopy.getAttendedStatus();
+        studentId = appointmentToCopy.getStudentId();
         appointmentDescription = appointmentToCopy.getAppointmentDescription();
+        hasAttended = appointmentToCopy.getAttendedStatus();
+    }
+
+    /**
+     * Sets the {@code appointmentId} of the {@code Appointment} that we are building.
+     */
+    public AppointmentBuilder withAppointmentId(int appointmentId) {
+        this.appointmentId = appointmentId;
+        return this;
+    }
+
+    /**
+     * Set the {@code withAppointmentDateTime} of the {@code Appointment} that we are building.
+     */
+    public AppointmentBuilder withAppointmentDateTime(LocalDateTime dateTime) {
+        this.appointmentDateTime = dateTime;
+        return this;
     }
 
     /**
@@ -53,23 +74,7 @@ public class AppointmentBuilder {
     }
 
     /**
-     * Sets the {@code appointmentDateTime} of the {@code Appointment} that we are building.
-     */
-    public AppointmentBuilder withAppointmentDateTime(LocalDateTime appointmentDateTime) {
-        this.appointmentDateTime = appointmentDateTime;
-        return this;
-    }
-
-    /**
-     * Sets the {@code hasAttended} of the {@code Appointment} that we are building.
-     */
-    public AppointmentBuilder withHasAttended(Boolean hasAttended) {
-        this.hasAttended = hasAttended;
-        return this;
-    }
-
-    /**
-     * Sets the {@code appointmentDescription} of the {@code Appointment} that we are building.
+     * Sets the {@code AppointmentDescription} of the {@code Appointment} that we are building.
      */
     public AppointmentBuilder withAppointmentDescription(String appointmentDescription) {
         this.appointmentDescription = appointmentDescription;
@@ -77,10 +82,10 @@ public class AppointmentBuilder {
     }
 
     /**
-     * Sets the {@code appointmentId} of the {@code Appointment} that we are building.
+     * Sets the {@code hasAttended} of the {@code Appointment} that we are building.
      */
-    public AppointmentBuilder withAppointmentId(int appointmentId) {
-        this.appointmentId = appointmentId;
+    public AppointmentBuilder withHasAttended(boolean hasAttended) {
+        this.hasAttended = hasAttended;
         return this;
     }
 

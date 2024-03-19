@@ -23,6 +23,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.ReadOnlyAppointmentList;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
@@ -183,6 +184,11 @@ public class AddCommandTest {
         public void updateFilteredAppointmentList(Predicate<Appointment> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public ReadOnlyAppointmentList getAppointmentList() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
@@ -226,5 +232,4 @@ public class AddCommandTest {
             return new AddressBook();
         }
     }
-
 }

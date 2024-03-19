@@ -118,6 +118,22 @@ public class Appointment implements Comparable<Appointment> {
         this.hasAttended = hasAttended;
     }
 
+    public int getAppointmentId() {
+        return appointmentId;
+    }
+
+    public LocalDateTime getAppointmentDateTime() {
+        return appointmentDateTime;
+    }
+
+    public int getStudentId() {
+        return studentId;
+    }
+
+    public String getAppointmentDescription() {
+        return appointmentDescription;
+    }
+
     /**
      * Compares the appointment id of this appointment with another appointment.
      *
@@ -144,20 +160,4 @@ public class Appointment implements Comparable<Appointment> {
                 && otherAppointment.getAppointmentDateTime().equals(getAppointmentDateTime());
     }
 
-    public int getStudentId() {
-        return studentId;
-    }
-
-    public LocalDateTime getAppointmentDateTime() {
-        return appointmentDateTime;
-    }
-
-    public int getAppointmentId() {
-        return appointmentId;
-    }
-
-    //TODO: remove after case log is implemented
-    public String getAppointmentDescription() {
-        return appointmentDescription;
-    }
 }
