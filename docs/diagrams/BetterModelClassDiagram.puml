@@ -23,4 +23,6 @@ Person *--> LastMet
 Person *--> Schedule
 Person *--> Priority
 Person *--> PolicyList
+
+PolicyList --> "*" Policy
 @enduml
