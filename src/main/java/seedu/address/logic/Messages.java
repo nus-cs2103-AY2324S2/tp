@@ -41,6 +41,9 @@ public class Messages {
         return builder.toString();
     }
 
+    /**
+     * Formats the {@code task} for display to the user.
+     */
     public static String format(Task task) {
         final StringBuilder builder = new StringBuilder();
         builder.append(task.getName());
