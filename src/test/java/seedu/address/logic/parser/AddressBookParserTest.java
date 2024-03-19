@@ -94,8 +94,7 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_sort() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
-        FilterCommand command = (FilterCommand) parser.parseCommand(
-                seedu.address.logic.commands.FilterCommand.COMMAND_WORD + " "
+        FilterCommand command = (FilterCommand) parser.parseCommand(FilterCommand.COMMAND_WORD + " "
                         + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FilterCommand(new PersonHasTagPredicate(TestUtil.stringsToTags(keywords))), command);
     }
