@@ -60,16 +60,16 @@ public class PhoneTest {
 
     @Test
     public void isMatch() {
-        Phone phone = new Phone("12345678");
+        Phone phone = new Phone("92345678");
 
         // Exact match -> returns true
-        assertTrue(phone.isMatch("12345678"));
+        assertTrue(phone.isMatch("92345678"));
 
         // Substring partial word -> returns true
-        assertTrue(phone.isMatch("1234"));
+        assertTrue(phone.isMatch("9234"));
 
         // Additional whitespace
-        assertTrue(phone.isMatch(" 12345678\n"));
+        assertTrue(phone.isMatch(" 92345678\n"));
 
         // Substring mismatch
         assertFalse(phone.isMatch("invalid"));

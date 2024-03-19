@@ -152,7 +152,7 @@ public class Person {
 
         return otherPerson != null
                 && otherPerson.getAttribute(PersonAttribute.NAME).equals(getAttribute(PersonAttribute.NAME))
-                && otherPerson.getAttribute(PersonAttribute.PHONE).equals(getAttribute(PersonAttribute.NAME));
+                && otherPerson.getAttribute(PersonAttribute.PHONE).equals(getAttribute(PersonAttribute.PHONE));
     }
 
     /**

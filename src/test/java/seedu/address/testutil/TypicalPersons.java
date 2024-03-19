@@ -40,9 +40,9 @@ public class TypicalPersons {
             .withNote("Best man").build();
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("94822240")
             .withEmail("werner@example.com").withAddress("michegan ave").build();
-    public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("9482427")
-            .withEmail("lydia@example.com").withAddress("little tokyo").build();
-    public static final Person GEORGE = new PersonBuilder().withName("George Best").withPhone("9482442")
+    public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("94824279")
+            .withEmail("lydia@example.com").withAddress("little tokyo").withNote("lover").build();
+    public static final Person GEORGE = new PersonBuilder().withName("George Best").withPhone("94824428")
             .withEmail("anna@example.com").withAddress("4th street").build();
 
     // Manually added
