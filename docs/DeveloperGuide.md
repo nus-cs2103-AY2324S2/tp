@@ -363,8 +363,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * is reasonably comfortable using CLI apps
 * is a personal trainer
 
-**Value proposition
-**: FitBook will help to keep track of client-specific information such as progress, goals, and preferences all in one place, allowing the user to organize and manage their clients' information efficiently.
+**Value proposition**: FitBook will help to keep track of client-specific information such as progress, goals, and preferences all in one place, allowing the user to organize and manage their clients' information efficiently.
 
 ### User stories
 
@@ -505,8 +504,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **FitBook**: An address book with additional capabilities for managing personal training clients
 * **GUI (Graphical User Interface)**: The visual interface of FitBook that users interact with
 * **Healthy**: In a good physical or mental condition
-* **JavaFX
-  **: A set of graphics and media packages that enables developers to design, create, test and debug applications
+* **JavaFX**: A set of graphics and media packages that enables developers to design, create, test and debug applications
 * **JSON (JavaScript Object Notation)**:  A lightweight data-interchange format used for storing and transporting data
 * **Low-end devices**: Computers with lesser than average hardware resources such as processing power and memory
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
