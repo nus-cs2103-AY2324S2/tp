@@ -10,8 +10,9 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the
-  original source as well}
+| Module                                  | Description                               |
+|-----------------------------------------|-------------------------------------------|
+| [ZXing](https://github.com/zxing/zxing) | Barcode image processing library for Java |
 
 --------------------------------------------------------------------------------------------------------------------
 
