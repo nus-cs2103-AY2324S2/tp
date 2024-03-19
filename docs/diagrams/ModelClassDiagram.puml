@@ -15,8 +15,13 @@ Class UserPrefs
 Class UniquePersonList
 Class Person
 Class Address
+Class Birthday
 Class Email
 Class Name
+Class LastMet
+Class Schedule
+Class Priority
+Class PolicyList
 Class Phone
 Class Tag
 
@@ -41,6 +46,11 @@ Person *--> Name
 Person *--> Phone
 Person *--> Email
 Person *--> Address
+Person *--> Birthday
+Person *--> LastMet
+Person *--> Schedule
+Person *--> Priority
+Person *--> PolicyList
 Person *--> "*" Tag
 
 Person -[hidden]up--> I

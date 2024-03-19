@@ -310,7 +310,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | insurance agent | see when I last met a client                          | check in on a client that I have not met for a long time              |
 | `* *`    | insurance agent | mark that a schedule is completed                     | know that i fulfilled the appointment scheduled                       |
 | `* *`    | insurance agent | add policy details of a client                        | keep track of clients and their policies                              |
-| `* *`    | insurance agent | schedule checkup date and time for clients            | so I know when to follow-up with them                                 |
+| `* *`    | insurance agent | schedule checkup date and time for clients            | know when to follow-up with them                                      |
+| `*`      | insurance agent | set the overdue period for last met                   | be reminded of a follow-up at my own pace                             |
 | `*`      | insurance agent | sort clients by priority                              | deal with client with higher priority status first                    |
 | `*`      | insurance agent | track deals that I have closed                        | track my current progress                                             |
 | `*`      | insurance agent | edit my client's details                              | update my client's details                                            |
