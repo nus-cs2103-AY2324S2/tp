@@ -46,50 +46,50 @@ public class InternshipEditCommandParser implements InternshipParser<InternshipE
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_COMPANY, PREFIX_CONTACT_NAME, PREFIX_CONTACT_EMAIL,
                 PREFIX_CONTACT_NUMBER, PREFIX_LOCATION, PREFIX_STATUS, PREFIX_DESCRIPTION, PREFIX_ROLE, PREFIX_REMARK);
 
-        EditInternshipDescriptor editPersonDescriptor = new EditInternshipDescriptor();
+        EditInternshipDescriptor editInternshipDescriptor = new EditInternshipDescriptor();
 
         if (argMultimap.getValue(PREFIX_COMPANY).isPresent()) {
-            editPersonDescriptor.setCompanyName(InternshipParserUtil.parseCompanyName(argMultimap
+            editInternshipDescriptor.setCompanyName(InternshipParserUtil.parseCompanyName(argMultimap
                     .getValue(PREFIX_COMPANY).get()));
         }
         if (argMultimap.getValue(PREFIX_CONTACT_NAME).isPresent()) {
-            editPersonDescriptor.setContactName(InternshipParserUtil.parseContactName(argMultimap
+            editInternshipDescriptor.setContactName(InternshipParserUtil.parseContactName(argMultimap
                     .getValue(PREFIX_CONTACT_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_CONTACT_NUMBER).isPresent()) {
-            editPersonDescriptor.setContactNumber(InternshipParserUtil.parseContactNumber(argMultimap
+            editInternshipDescriptor.setContactNumber(InternshipParserUtil.parseContactNumber(argMultimap
                     .getValue(PREFIX_CONTACT_NUMBER).get()));
         }
         if (argMultimap.getValue(PREFIX_CONTACT_EMAIL).isPresent()) {
-            editPersonDescriptor.setContactEmail(InternshipParserUtil.parseContactEmail(argMultimap
+            editInternshipDescriptor.setContactEmail(InternshipParserUtil.parseContactEmail(argMultimap
                     .getValue(PREFIX_CONTACT_EMAIL).get()));
         }
         if (argMultimap.getValue(PREFIX_LOCATION).isPresent()) {
-            editPersonDescriptor.setLocation(InternshipParserUtil.parseLocation(argMultimap
+            editInternshipDescriptor.setLocation(InternshipParserUtil.parseLocation(argMultimap
                     .getValue(PREFIX_LOCATION).get()));
         }
         if (argMultimap.getValue(PREFIX_STATUS).isPresent()) {
-            editPersonDescriptor.setApplicationStatus(InternshipParserUtil.parseStatus(argMultimap
+            editInternshipDescriptor.setApplicationStatus(InternshipParserUtil.parseStatus(argMultimap
                     .getValue(PREFIX_STATUS).get()));
         }
         if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
-            editPersonDescriptor.setDescription(InternshipParserUtil.parseDescription(argMultimap
+            editInternshipDescriptor.setDescription(InternshipParserUtil.parseDescription(argMultimap
                     .getValue(PREFIX_DESCRIPTION).get()));
         }
         if (argMultimap.getValue(PREFIX_ROLE).isPresent()) {
-            editPersonDescriptor.setRole(InternshipParserUtil.parseRole(argMultimap
+            editInternshipDescriptor.setRole(InternshipParserUtil.parseRole(argMultimap
                     .getValue(PREFIX_ROLE).get()));
         }
         if (argMultimap.getValue(PREFIX_REMARK).isPresent()) {
-            editPersonDescriptor.setRemark(InternshipParserUtil.parseRemark(argMultimap
+            editInternshipDescriptor.setRemark(InternshipParserUtil.parseRemark(argMultimap
                     .getValue(PREFIX_REMARK).get()));
         }
 
-        if (!editPersonDescriptor.isAnyFieldEdited()) {
+        if (!editInternshipDescriptor.isAnyFieldEdited()) {
             throw new ParseException(InternshipEditCommand.MESSAGE_NOT_EDITED);
         }
 
-        return new InternshipEditCommand(index, editPersonDescriptor);
+        return new InternshipEditCommand(index, editInternshipDescriptor);
     }
 
 }

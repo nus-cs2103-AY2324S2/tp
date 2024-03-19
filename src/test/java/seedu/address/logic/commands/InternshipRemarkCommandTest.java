@@ -93,13 +93,13 @@ public class InternshipRemarkCommandTest {
 
     /**
      * Edit filtered list where index is larger than size of filtered list,
-     * but smaller than size of address book
+     * but smaller than size of internship data
      */
     @Test
     public void execute_invalidInternshipIndexFilteredList_failure() {
         showInternshipAtIndex(model, INDEX_FIRST_INTERNSHIP);
         Index outOfBoundIndex = INDEX_SECOND_INTERNSHIP;
-        // ensures that outOfBoundIndex is still in bounds of address book list
+        // ensures that outOfBoundIndex is still in bounds of internship data list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getInternshipData().getInternshipList().size());
 
         InternshipRemarkCommand remarkCommand = new InternshipRemarkCommand(outOfBoundIndex,

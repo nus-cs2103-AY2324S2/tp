@@ -33,7 +33,7 @@ public class JsonAdaptedInternship {
     private final String remark;
 
     /**
-     * Constructs a {@code JsonAdaptedInternship} with the given person details.
+     * Constructs a {@code JsonAdaptedInternship} with the given internship details.
      */
     @JsonCreator
     public JsonAdaptedInternship(@JsonProperty("companyName") String companyName,
