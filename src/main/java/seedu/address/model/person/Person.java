@@ -87,6 +87,19 @@ public class Person {
         this.meetings = meetings;
     }
 
+    public void addMeetings(Meeting meeting) {
+        this.meetings.add(meeting);
+    }
+
+    public boolean hasExistingMeeting(Meeting meeting) {
+        for (Meeting m : this.meetings) {
+            if (m.equals(meeting)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.

@@ -26,7 +26,7 @@ public class AddMeetingCommand extends Command {
     public static final String COMMAND_WORD = "addMeeting";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a meeting to the client identified by the index number. \n"
-            + "Parameters: /client CLIENT_INDEX /dt DATE_TIME /d DESCRIPTION \n"
+            + "Parameters: client/ CLIENT_INDEX dt/ DATE_TIME /d DESCRIPTION \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_CLIENT_INDEX + "1 "
             + PREFIX_DATETIME + "02-01-2024 12:00 "
@@ -74,7 +74,6 @@ public class AddMeetingCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
-        List<Meeting> lastShownMeetingList = model.getFilteredMeetingList();
 
         if (clientIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
@@ -83,10 +82,10 @@ public class AddMeetingCommand extends Command {
         Person client = lastShownList.get(clientIndex.getZeroBased());
         Meeting meetingToAdd = new Meeting(description, dateTime, client);
 
-        if (model.hasMeeting(meetingToAdd)) {
+        if (model.hasMeeting(meetingToAdd) && client.hasExistingMeeting(meetingToAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_MEETING);
         }
-
+        client.addMeetings(meetingToAdd);
         model.addMeeting(meetingToAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS,  Messages.format(meetingToAdd)));
     }
