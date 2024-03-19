@@ -34,7 +34,7 @@ public class Address implements Field {
     }
 
     /**
-     * Returns true if a given string is a valid email.
+     * Returns true if a given string is a valid address.
      */
     private static boolean isValid(String test) {
         return test.matches(VALIDATION_REGEX);

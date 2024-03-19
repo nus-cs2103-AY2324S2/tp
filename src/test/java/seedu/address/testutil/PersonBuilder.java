@@ -1,7 +1,10 @@
 package seedu.address.testutil;
 
+import java.util.List;
+
 import seedu.address.model.person.Person;
 import seedu.address.model.person.fields.Address;
+import seedu.address.model.person.fields.Assets;
 import seedu.address.model.person.fields.Email;
 import seedu.address.model.person.fields.Name;
 import seedu.address.model.person.fields.Phone;
@@ -18,12 +21,14 @@ public class PersonBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String[] DEFAULT_TAGS = { };
+    public static final String[] DEFAULT_ASSETS = { };
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
     private Tags tags;
+    private Assets assets;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -34,6 +39,7 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         tags = new Tags(DEFAULT_TAGS);
+        assets = Assets.of(List.of(DEFAULT_ASSETS));
     }
 
     /**
@@ -45,6 +51,7 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         tags = personToCopy.getTags();
+        assets = personToCopy.getAssets();
     }
 
     /**
@@ -60,6 +67,14 @@ public class PersonBuilder {
      */
     public PersonBuilder withTags(String... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
+        return this;
+    }
+
+    /**
+     * Parses the {@code assets} into a {@code Assets} and set it to the {@code Person} that we are building.
+     */
+    public PersonBuilder withAssets(String... assets) {
+        this.assets = SampleDataUtil.getAssetSet(assets);
         return this;
     }
 
@@ -88,7 +103,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, tags);
+        return new Person(name, phone, email, address, tags, assets);
     }
 
 }
