@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.TYPICAL_CLASS_1;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -18,73 +18,69 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
+import seedu.address.model.ClassBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyClassBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Classes;
 import seedu.address.model.person.Person;
-import seedu.address.testutil.PersonBuilder;
-
-public class AddCommandTest {
+import seedu.address.testutil.ClassBuilder;
+public class CreateClassCommandTest {
 
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null));
+    public void constructor_nullClass_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new CreateClassCommand(null));
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Person validPerson = new PersonBuilder().build();
+    public void execute_classAcceptedByModel_createSuccessful() throws Exception {
+        ModelStubAcceptingClassCreated modelStub = new ModelStubAcceptingClassCreated();
+        Classes validClass = new ClassBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
+        CommandResult commandResult = new CreateClassCommand(validClass).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, Messages.format(validPerson)),
+        assertEquals(String.format(CreateClassCommand.MESSAGE_SUCCESS, Messages.classFormat(validClass)),
                 commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
+        assertEquals(Arrays.asList(validClass), modelStub.classesCreated);
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Person validPerson = new PersonBuilder().build();
-        AddCommand addCommand = new AddCommand(validPerson);
-        ModelStub modelStub = new ModelStubWithPerson(validPerson);
+    public void execute_duplicateClass_throwsCommandException() {
+        Classes validClass = new ClassBuilder().build();
+        CreateClassCommand createClassCommand = new CreateClassCommand(validClass);
+        ModelStub modelStub = new ModelStubWithClass(validClass);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, CreateClassCommand.MESSAGE_DUPLICATE_CLASS, () ->
+                createClassCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Person alice = new PersonBuilder().withName("Alice").build();
-        Person bob = new PersonBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        Classes cs1 = new ClassBuilder().withCC("cc123").build();
+        Classes cs2 = new ClassBuilder().withCC("cc789").build();
+        CreateClassCommand createCs1Command = new CreateClassCommand(cs1);
+        CreateClassCommand createCs2Command = new CreateClassCommand(cs2);
 
-        // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(createCs1Command.equals(createCs1Command));
 
-        // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        CreateClassCommand cs1Copy = new CreateClassCommand(cs1);
+        assertTrue(createCs1Command.equals(cs1Copy));
 
-        // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertFalse(createCs1Command.equals(1));
 
-        // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertFalse(createCs1Command.equals(null));
 
-        // different person -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        assertFalse(createCs1Command.equals(createCs2Command));
     }
 
     @Test
     public void toStringMethod() {
-        AddCommand addCommand = new AddCommand(ALICE);
-        String expected = AddCommand.class.getCanonicalName() + "{toAdd=" + ALICE + "}";
-        assertEquals(expected, addCommand.toString());
+        CreateClassCommand createClassCommand = new CreateClassCommand(TYPICAL_CLASS_1);
+        String expected = CreateClassCommand.class.getCanonicalName() + "{toCreate=" + TYPICAL_CLASS_1 + "}";
+        assertEquals(expected, createClassCommand.toString());
     }
+
 
     /**
      * A default model stub that have all of the methods failing.
@@ -204,43 +200,42 @@ public class AddCommandTest {
     /**
      * A Model stub that contains a single person.
      */
-    private class ModelStubWithPerson extends ModelStub {
-        private final Person person;
+    private class ModelStubWithClass extends CreateClassCommandTest.ModelStub {
+        private final Classes classes;
 
-        ModelStubWithPerson(Person person) {
-            requireNonNull(person);
-            this.person = person;
+        ModelStubWithClass(Classes classes) {
+            requireNonNull(classes);
+            this.classes = classes;
         }
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return this.person.isSamePerson(person);
+        public boolean hasClass(Classes classes) {
+            requireNonNull(classes);
+            return this.classes.isSameClass(classes);
         }
     }
 
     /**
      * A Model stub that always accept the person being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Person> personsAdded = new ArrayList<>();
+    private class ModelStubAcceptingClassCreated extends CreateClassCommandTest.ModelStub {
+        final ArrayList<Classes> classesCreated = new ArrayList<>();
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePerson);
+        public boolean hasClass(Classes classes) {
+            requireNonNull(classes);
+            return classesCreated.stream().anyMatch(classes::isSameClass);
         }
 
         @Override
-        public void addPerson(Person person) {
-            requireNonNull(person);
-            personsAdded.add(person);
+        public void createClass(Classes classes) {
+            requireNonNull(classes);
+            classesCreated.add(classes);
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public ReadOnlyClassBook getClassBook() {
+            return new ClassBook();
         }
     }
-
 }
