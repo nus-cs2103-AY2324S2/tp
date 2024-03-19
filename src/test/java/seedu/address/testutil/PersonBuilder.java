@@ -3,7 +3,9 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.model.person.Applicant;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Interviewer;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -97,4 +99,11 @@ public class PersonBuilder {
         return new Person(name, phone, email, remark, tags);
     }
 
+    public Applicant applicantBuilder() {
+        return new Applicant(name, phone, email, remark, tags);
+    }
+
+    public Interviewer interviewerBuilder() {
+        return new Interviewer(name, phone, email, remark, tags);
+    }
 }

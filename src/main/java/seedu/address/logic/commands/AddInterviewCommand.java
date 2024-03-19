@@ -81,6 +81,8 @@ public class AddInterviewCommand extends Command {
 
         boolean isFoundApplicant = false;
         boolean isFoundInterviewer = false;
+        boolean isCorrectApplicantPhone = true;
+        boolean isCorrectInterviewerPhone = true;
         Phone targetApplicantPhone = applicant;
         Phone targetInterviewerPhone = interviewer;
         Person applicantSearch = null;
@@ -88,15 +90,28 @@ public class AddInterviewCommand extends Command {
 
         for (Person p : lastShownList) {
             if (p.getPhone().equals(targetApplicantPhone)) {
-                applicantSearch = p;
                 isFoundApplicant = true;
+            }
+
+            if (isFoundApplicant) {
+                if (p.getPersonType().equals("APPLICANT")) {
+                    isCorrectApplicantPhone = false;
+                }
+                applicantSearch = p;
                 break;
             }
+
         }
         for (Person p : lastShownList) {
             if (p.getPhone().equals(targetInterviewerPhone)) {
-                interviewerSearch = p;
                 isFoundInterviewer = true;
+            }
+
+            if (isFoundInterviewer) {
+                if (p.getPersonType().equals("INTERVIEWER")) {
+                    isCorrectInterviewerPhone = false;
+                }
+                interviewerSearch = p;
                 break;
             }
         }
@@ -105,9 +120,20 @@ public class AddInterviewCommand extends Command {
             throw new CommandException(MESSAGE_INVALID_END_TIME);
         }
 
+
         if (!isFoundApplicant || !isFoundInterviewer) {
             throw new CommandException(Messages.MESSAGE_PERSON_NOT_IN_LIST);
         }
+        if (isCorrectApplicantPhone && isCorrectInterviewerPhone) {
+            throw new CommandException(Messages.MESSAGE_INCORRECT_INTERVIEWER_AND_APPLICANT_PHONE_NUMBER);
+        }
+        if (isCorrectApplicantPhone) {
+            throw new CommandException(Messages.MESSAGE_INCORRECT_APPLICANT_PHONE_NUMBER);
+        }
+        if (isCorrectInterviewerPhone) {
+            throw new CommandException(Messages.MESSAGE_INCORRECT_INTERVIEWER_PHONE_NUMBER);
+        }
+
 
         this.interview = new Interview(applicantSearch, interviewerSearch, date, startTime, endTime, description);
 
@@ -115,9 +141,10 @@ public class AddInterviewCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_INTERVIEW);
         }
 
+
         model.addInterview(interview);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.formatInterview(interview)));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, "\n" + Messages.formatInterview(interview)));
     }
 
     @Override

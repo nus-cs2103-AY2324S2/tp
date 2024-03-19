@@ -33,7 +33,7 @@ public class AddInterviewCommandIntergrationTest {
         assertCommandSuccess(new AddInterviewCommand(validInterview.getDescription(),
                         validInterview.getApplicant().getPhone(), validInterview.getInterviewer().getPhone(),
                         validInterview.getDate(), validInterview.getStartTime(), validInterview.getEndTime()), model,
-                String.format(AddInterviewCommand.MESSAGE_SUCCESS, Messages.formatInterview(validInterview)),
+                String.format(AddInterviewCommand.MESSAGE_SUCCESS, "\n" + Messages.formatInterview(validInterview)),
                 expectedModel);
     }
 
