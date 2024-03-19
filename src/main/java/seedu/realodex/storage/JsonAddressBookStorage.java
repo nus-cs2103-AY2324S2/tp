@@ -45,8 +45,8 @@ public class JsonAddressBookStorage implements RealodexStorage {
     public Optional<ReadOnlyRealodex> readAddressBook(Path filePath) throws DataLoadingException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableRealodex> jsonAddressBook = JsonUtil.readJsonFile(
-                filePath, JsonSerializableRealodex.class);
+        Optional<JsonSerializableAddressBook> jsonAddressBook = JsonUtil.readJsonFile(
+                filePath, JsonSerializableAddressBook.class);
         if (!jsonAddressBook.isPresent()) {
             return Optional.empty();
         }
@@ -74,6 +74,6 @@ public class JsonAddressBookStorage implements RealodexStorage {
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableRealodex(addressBook), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableAddressBook(addressBook), filePath);
     }
 }

@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.realodex.commons.core.GuiSettings;
 import seedu.realodex.model.person.NameContainsKeyphrasePredicate;
-import seedu.realodex.testutil.AddressBookBuilder;
+import seedu.realodex.testutil.RealodexBuilder;
 
 public class ModelManagerTest {
 
@@ -94,7 +94,7 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        Realodex realodex = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
+        Realodex realodex = new RealodexBuilder().withPerson(ALICE).withPerson(BENSON).build();
         Realodex differentRealodex = new Realodex();
         UserPrefs userPrefs = new UserPrefs();
 

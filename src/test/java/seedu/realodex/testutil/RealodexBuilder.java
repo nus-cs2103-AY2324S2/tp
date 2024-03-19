@@ -6,24 +6,24 @@ import seedu.realodex.model.person.Person;
 /**
  * A utility class to help with building Addressbook objects.
  * Example usage: <br>
- *     {@code Realodex ab = new AddressBookBuilder().withPerson("John", "Doe").build();}
+ *     {@code Realodex ab = new RealodexBuilder().withPerson("John", "Doe").build();}
  */
-public class AddressBookBuilder {
+public class RealodexBuilder {
 
     private Realodex realodex;
 
-    public AddressBookBuilder() {
+    public RealodexBuilder() {
         realodex = new Realodex();
     }
 
-    public AddressBookBuilder(Realodex realodex) {
+    public RealodexBuilder(Realodex realodex) {
         this.realodex = realodex;
     }
 
     /**
      * Adds a new {@code Person} to the {@code Realodex} that we are building.
      */
-    public AddressBookBuilder withPerson(Person person) {
+    public RealodexBuilder withPerson(Person person) {
         realodex.addPerson(person);
         return this;
     }
