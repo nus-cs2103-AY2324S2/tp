@@ -5,6 +5,8 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.exceptions.InvalidClientException;
+import seedu.address.logic.commands.exceptions.InvalidMeetingException;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 
@@ -55,7 +57,8 @@ public interface Model {
     ReadOnlyAddressBook getAddressBook();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a person with the same identity as {@code person} exists in
+     * the address book.
      */
     boolean hasPerson(Person person);
 
@@ -74,21 +77,44 @@ public interface Model {
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The person identity of {@code editedPerson} must not be the same as another
+     * existing person in the address book.
      */
     void setPerson(Person target, Person editedPerson);
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
+    /* Meeting Abstract Methods */
+
     /** Returns an unmodifiable view of the filtered meeting list */
     ObservableList<Meeting> getFilteredMeetingList();
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered person list to filter by the given
+     * {@code predicate}.
+     * 
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
     void updateFilteredMeetingList(Predicate<Meeting> predicate);
+
+    /**
+     * Deletes all meetings for a givne client.
+     * The client must exist in the address book.
+     * 
+     * @throws InvalidClientException if {@code clientIndex} is an invalid index.
+     */
+    void deleteAllMeetingsForClient(int clientIndex) throws InvalidClientException;
+
+    /**
+     * Deletes a specific meeting of a specific client.
+     * The client and meeting must exist in the address book.
+     * 
+     * @throws InvalidClientException  if {@code clientIndex} is an invalid index.
+     * @throws InvalidMeetingException if {@code meetingIndex} is an invalid index.
+     */
+    void deleteSpecificMeetingForClient(int clientIndex, int meetingIndex)
+            throws InvalidClientException, InvalidMeetingException;
 }
