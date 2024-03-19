@@ -41,7 +41,7 @@ public class Volunteer extends Person {
                 && email.equals(otherVolunteer.email)
                 && address.equals(otherVolunteer.address)
                 && tags.equals(otherVolunteer.tags)
-                && hasSamePairing(otherVolunteer);
+                && pairedWith.equals(otherVolunteer.pairedWith);
     }
 
     @Override
@@ -53,7 +53,7 @@ public class Volunteer extends Person {
                 .add("address", address)
                 .add("tags", tags)
                 .add("role", role)
-                .add("pairedWith", pairedWith == null ? "None" : pairedWith.getName())
+                .add("pairedWith", pairedWith.orElse(-1))
                 .toString();
     }
 }

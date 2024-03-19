@@ -1,6 +1,7 @@
 package scrolls.elder.testutil;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import scrolls.elder.model.person.Address;
@@ -33,7 +34,7 @@ public class PersonBuilder {
     private Address address;
     private Set<Tag> tags;
     private Role role;
-    private Person pairedWith;
+    private Optional<Integer> pairedWith;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -46,7 +47,7 @@ public class PersonBuilder {
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
         role = new Role(DEFAULT_VOLUNTEER_ROLE_STRING);
-        pairedWith = null;
+        pairedWith = Optional.empty();
     }
 
     /**
@@ -122,7 +123,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code pairedWith} of the {@code Person} that we are building.
      */
-    public PersonBuilder withPairedWith(Person pairedWith) {
+    public PersonBuilder withPairedWith(Optional<Integer> pairedWith) {
         this.pairedWith = pairedWith;
         return this;
     }
@@ -138,6 +139,9 @@ public class PersonBuilder {
             person = new Befriendee(name, phone, email, address, tags);
         }
         person.setId(id);
+        if (pairedWith.isPresent()) {
+            person.setPairedWith(pairedWith);
+        }
         return person;
     }
 
