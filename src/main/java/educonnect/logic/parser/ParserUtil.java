@@ -13,6 +13,7 @@ import educonnect.commons.core.index.Index;
 import educonnect.commons.util.StringUtil;
 import educonnect.logic.parser.exceptions.ParseException;
 import educonnect.model.student.Email;
+import educonnect.model.student.Link;
 import educonnect.model.student.Name;
 import educonnect.model.student.StudentId;
 import educonnect.model.student.TelegramHandle;
@@ -228,5 +229,20 @@ public class ParserUtil {
             throw new ParseException(Period.PERIOD_CONSTRAINTS);
         }
         return new Period("period", trimmedPeriod);
+    }
+
+    /**
+     * Parses a {@code String link} into a {@code Link}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code link} is invalid.
+     */
+    public static Link parseLink(String s) throws ParseException {
+        requireNonNull(s);
+        String trimmedLink = s.trim();
+        if (!Link.isValidLink(trimmedLink)) {
+            throw new ParseException(Link.MESSAGE_CONSTRAINTS);
+        }
+        return new Link(trimmedLink);
     }
 }

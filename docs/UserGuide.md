@@ -17,6 +17,7 @@ EduConnect is a **desktop app for managing student contacts, optimized for use v
     - [Listing all students : `list`](#listing-all-students--list)
     - [Editing a student : `edit`](#editing-a-student--edit)
     - [Locating students by name: `find`](#locating-students-by-name-find)
+    - [Linking a student to a weblink: `link`](#locating-students-by-name-find)
     - [Deleting a student : `delete`](#deleting-a-student--delete)
     - [Clearing all entries : `clear`](#clearing-all-entries--clear)
     - [Exiting the program : `exit`](#exiting-the-program--exit)
@@ -157,6 +158,19 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlex.png)
 
+### Linking a student to a weblink: `link`
+
+Links a student to a Website URL.
+
+Format: `link [s/STUDENT_ID] [e/EMAIL] [h/TELEGRAM_HANDLE] l/WEBLINK`
+* Users can choose to 
+* Link must be a valid website URL.
+* The weblink in the GUI will only be displayed if the student has a weblink attached.
+
+Examples:
+* `link s/A1654327X l/https://nus-cs2103-ay2324s2.github.io/website/` links the website `https://nus-cs2103-ay2324s2.github.io/website/` to a student with ID `A1654327X`.
+* `link h/@john.doe l/https://nus-cs2103-ay2324s2.github.io/website/` links the website `https://nus-cs2103-ay2324s2.github.io/website/` to a student with Telegram Handle `@john.doe`
+  ![result for 'link s/A1234537X l/https://nus-cs2103-ay2324s2.github.io/website/'](images/linkCommand.png)
 
 ### Deleting a student : `delete`
 
@@ -228,5 +242,6 @@ Action     | Format, Examples
 **Delete** | `delete [s/STUDENT_ID] [e/EMAIL] [h/TELEGRAM_HANDLE]`<br> e.g., `delete s/A1654327X`
 **Edit**   | `edit INDEX [n/NAME] [s/STUDENT_ID] [e/EMAIL] [h/TELEGRAM_HANDLE] [c/TIMETABLE] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com c/mon: 8-10, 10-12 tue: 11-13 thu: 12-15, 15-17`
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Link**   | `link [s/STUDENT_ID] [e/EMAIL] [h/TELEGRAM_HANDLE] l/WEBLINK` <br> e.g. `link s/A1654327X l/https://nus-cs2103-ay2324s2.github.io/website/`
 **List**   | `list`
 **Help**   | `help`

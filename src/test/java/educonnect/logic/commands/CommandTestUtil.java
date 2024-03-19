@@ -40,6 +40,8 @@ public class CommandTestUtil {
     public static final String VALID_TELEGRAM_HANDLE_AMY = "@amyb";
     public static final String VALID_TELEGRAM_HANDLE_BOB = "@choobobco";
     public static final String VALID_TELEGRAM_HANDLE_JOHN = "@doedoejohnjohn.joe";
+
+    public static final String VALID_LINK_JOHN = "https://www.google.com/";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_TAG_SMART = "smart";
@@ -64,6 +66,7 @@ public class CommandTestUtil {
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_TELEGRAM_HANDLE_DESC =
         " " + PREFIX_TELEGRAM_HANDLE; // empty string not allowed for addresses
+    public static final String INVALID_LINK = "dhello";
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_TIMETABLE_DESC = " " + PREFIX_TIMETABLE
                                                         + "mon: 13 to 15" // 'to' is not allowed, use '-'

@@ -1,6 +1,7 @@
 package educonnect.testutil;
 
 import static educonnect.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static educonnect.logic.parser.CliSyntax.PREFIX_LINK;
 import static educonnect.logic.parser.CliSyntax.PREFIX_NAME;
 import static educonnect.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
 import static educonnect.logic.parser.CliSyntax.PREFIX_TAG;
@@ -52,6 +53,7 @@ public class StudentUtil {
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getTelegramHandle().ifPresent(
                 address -> sb.append(PREFIX_TELEGRAM_HANDLE).append(address.value).append(" "));
+        descriptor.getLink().ifPresent(link -> sb.append(PREFIX_LINK).append(link.url).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {

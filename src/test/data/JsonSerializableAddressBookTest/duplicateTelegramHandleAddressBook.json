@@ -23,7 +23,8 @@
         "periods" : [ ]
       } ],
       "numOfDays" : 5
-    }
+    },
+    "link": "https://github.com/tanjiajiajun/tp"
   }, {
     "name": "Alice Pauline",
     "studentId": "A1234567X",
@@ -63,6 +64,7 @@
         "periods" : [ ]
       } ],
       "numOfDays" : 5
-    }
+    },
+    "link": "https://github.com/tanjiajiajun/tp"
   } ]
 }
