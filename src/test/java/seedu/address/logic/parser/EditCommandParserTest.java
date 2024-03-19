@@ -207,7 +207,7 @@ public class EditCommandParserTest {
         // remark
         userInput = targetIndex.getOneBased() + REMARK_DESC_AMY;
         descriptor = new EditPersonDescriptorBuilder().withRemark(VALID_REMARK_AMY).build();
-      
+
         // 2 tags
         userInput = targetIndex.getOneBased() + TAG_DESC_BOB + TAG_DESC_AMY;
         descriptor = new EditPersonDescriptorBuilder().withTags(VALID_TAG_BOB, VALID_TAG_AMY).build();
