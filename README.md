@@ -23,9 +23,9 @@ It allows you to input intimate details about your patients, such as food prefer
 |      Project Links      |                            Description                            |
 |-------------------------|------------------------------------------------------------------|
 | [Project Website](https://ay2324s2-cs2103-f09-2.github.io/tp/) | Official website for the PatientSync desktop application.       |
-| [User Guide](UserGuide.html#quick-start)               | Quick Start guide for users interested in using PatientSync.    |
-| [Developer Guide](DeveloperGuide.html)                 | Comprehensive guide for developers interested in contributing to PatientSync. |
-| [About Us](AboutUs.html)                              | Learn more about the team behind the PatientSync project.        |
+| [User Guide](https://ay2324s2-cs2103-f09-2.github.io/tp/UserGuide.html#quick-start)   | Quick Start guide for users interested in using PatientSync.    |
+| [Developer Guide](https://ay2324s2-cs2103-f09-2.github.io/tp/DeveloperGuide.html)     | Comprehensive guide for developers interested in contributing to PatientSync. |
+| [About Us](https://ay2324s2-cs2103-f09-2.github.io/tp/AboutUs.html)                              | Learn more about the team behind the PatientSync project.        |
 
 
 **Acknowledgements**\
