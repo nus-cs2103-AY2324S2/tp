@@ -119,24 +119,19 @@ public class Person {
 
         Person otherPerson = (Person) other;
 
+        boolean isSame = getIdentificationInformation().equals(otherPerson.getIdentificationInformation());
+
         // If both have contact information
         if (otherPerson.hasContactInformation() && hasContactInformation()) {
-            return getIdentificationInformation().equals(otherPerson.getIdentificationInformation())
-                    && getContactInformation().equals(otherPerson.getContactInformation());
+            isSame = isSame && getContactInformation().equals(otherPerson.getContactInformation());
         }
 
         // If both have medical information
         if (otherPerson.hasMedicalInformation() && hasMedicalInformation()) {
-            return getIdentificationInformation().equals(otherPerson.getIdentificationInformation())
-                    && getMedicalInformation().equals(otherPerson.getMedicalInformation());
+            isSame = isSame && getMedicalInformation().equals(otherPerson.getMedicalInformation());
         }
 
-        // If neither has contact information
-        if (!otherPerson.hasContactInformation() && !hasContactInformation()) {
-            return getIdentificationInformation().equals(otherPerson.getIdentificationInformation());
-        }
-
-        return false;
+        return isSame;
     }
 
     @Override

@@ -117,6 +117,21 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code Height} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withHeight(String height) {
+        this.height = new Height(height);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Weight} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withWeight(String weight) {
+        this.weight = new Weight(weight);
+        return this;
+    }
+    /**
      * Build a person.
      */
     public Person build() {

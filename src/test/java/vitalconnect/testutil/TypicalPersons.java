@@ -24,18 +24,18 @@ public class TypicalPersons {
         .withEmail("email@e.com").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
         .withNric("S1234568B")
-        .withTags("owesMoney", "friends").build();
+        .build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz")
         .withNric("T1234567J").build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier")
         .withNric("F1234567N")
-        .withTags("friends").build();
+        .build();
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer")
         .withNric("G1234567X").build();
     public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz")
         .withNric("M1234567K").build();
     public static final Person GEORGE = new PersonBuilder().withName("George Best")
-        .withNric("F1234560R").build();
+        .withNric("F1234560R").withHeight("160").withWeight("160").withTags("peanuts").build();
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withNric("S1234569J").build();

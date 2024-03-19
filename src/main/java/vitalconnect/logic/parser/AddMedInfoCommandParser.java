@@ -18,7 +18,7 @@ import vitalconnect.model.person.medicalinformation.MedicalInformation;
 import vitalconnect.model.person.medicalinformation.Weight;
 
 /**
- * Parses input arguments and creates a new AddCommand object
+ * Parses input arguments and creates a new AddMedInfoCommand object
  */
 public class AddMedInfoCommandParser implements Parser<AddMedInfoCommand> {
     @Override
@@ -37,7 +37,6 @@ public class AddMedInfoCommandParser implements Parser<AddMedInfoCommand> {
         Set<AllergyTag> allergyTags = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_ALLERGYTAG));
         Nric nric = ParserUtil.parseNric(argMultimap.getValue(PREFIX_NRIC).get());
 
-        // Check if at least one of the fields is present
         if (height.isEmpty() && weight.isEmpty() && Nric.isValidNric(nric.toString())) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddMedInfoCommand.MESSAGE_USAGE));
         }

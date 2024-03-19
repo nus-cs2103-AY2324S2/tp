@@ -16,7 +16,7 @@ import vitalconnect.model.person.identificationinformation.Nric;
 import vitalconnect.model.person.medicalinformation.MedicalInformation;
 
 /**
- * Adds a person to the clinic.
+ * Adds medication information for a person.
  */
 public class AddMedInfoCommand extends Command {
     public static final String COMMAND_WORD = "addmi";
@@ -39,7 +39,7 @@ public class AddMedInfoCommand extends Command {
     private final MedicalInformation medicalInformation;
 
     /**
-     * Creates an AddCommand to add the specified {@code ContactInformation}
+     * Creates an AddMedInfoCommand to add the specified {@code MedicalInformation}
      */
     public AddMedInfoCommand(Nric nric, MedicalInformation medicalInformation) {
         requireNonNull(medicalInformation);
