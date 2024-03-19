@@ -27,7 +27,7 @@ public class JsonAdaptedEmployeeTest {
     private static final String INVALID_TEAM = "Neon Cats";
     private static final String INVALID_ROLE = " ";
     private static final String INVALID_TAG = "#friend";
-    private static final String INVALID_UID = "-100";
+    private static final String INVALID_UID = "-42";
 
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_PHONE = BENSON.getPhone().toString();
@@ -135,7 +135,7 @@ public class JsonAdaptedEmployeeTest {
     public void toModelType_invalidRole_throwsIllegalValueException() {
         JsonAdaptedEmployee employee = new JsonAdaptedEmployee(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
                 VALID_TEAM, INVALID_ROLE,
-                VALID_TAGS);
+                VALID_TAGS, VALID_UID);
         String expectedMessage = Role.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, employee::toModelType);
     }
@@ -143,7 +143,7 @@ public class JsonAdaptedEmployeeTest {
     @Test
     public void toModelType_nullRole_throwsIllegalValueException() {
         JsonAdaptedEmployee employee = new JsonAdaptedEmployee(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                VALID_TEAM, null, VALID_TAGS);
+                VALID_TEAM, null, VALID_TAGS, VALID_UID);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Role.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, employee::toModelType);
     }
@@ -154,8 +154,16 @@ public class JsonAdaptedEmployeeTest {
         invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
         JsonAdaptedEmployee employee = new JsonAdaptedEmployee(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
                 VALID_TEAM, VALID_ROLE,
-                invalidTags);
+                invalidTags, VALID_UID);
         assertThrows(IllegalValueException.class, employee::toModelType);
     }
 
+    @Test
+    public void toModelType_invalidUid_throwsIllegalValueException() {
+        JsonAdaptedEmployee employee = new JsonAdaptedEmployee(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
+                VALID_TEAM, VALID_ROLE,
+                VALID_TAGS, INVALID_UID);
+        String expectedMessage = "UID must be a positive integer.";
+        assertThrows(IllegalValueException.class, expectedMessage, employee::toModelType);
+    }
 }

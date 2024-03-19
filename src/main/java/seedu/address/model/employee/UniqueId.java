@@ -1,32 +1,16 @@
 package seedu.address.model.employee;
 
+import seedu.address.commons.exceptions.IllegalValueException;
+
 /**
  * This class represents a unique ID for an employee.
  * Todo: Add validation for uid
  */
 public class UniqueId {
+    private static final String VALIDATION_REGEX = "\\d+";
+
     private static Integer lastUsedIndex;
     private Integer uid;
-
-    /**
-     * Constructor for creating a new UniqueId with a step and value.
-     *
-     * @param lastUsedIndex The starting value for the ID.
-     */
-    public UniqueId(int lastUsedIndex) {
-        this.uid = 0;
-        UniqueId.lastUsedIndex = lastUsedIndex;
-    }
-
-    /**
-     * Constructor for creating a new UniqueId with a specific ID.
-     *
-     * @param uid The specific ID.
-     */
-    public UniqueId(Integer uid) {
-        this.uid = uid;
-        UniqueId.lastUsedIndex = uid;
-    }
 
     /**
      * Constructor for creating a new UniqueId
@@ -36,13 +20,35 @@ public class UniqueId {
     }
 
     /**
+     * Constructor for creating a new UniqueId with an integer number
+     *
+     * @param intUid The specific ID.
+     * @throws IllegalStateException If the ID is null, empty or less than 0.
+     */
+    public UniqueId(Integer intUid) throws IllegalStateException, IllegalValueException {
+        this.uid = intUid;
+        UniqueId.lastUsedIndex = intUid;
+    }
+
+    /**
+     * Constructor for creating a new UniqueId with a string number
+     *
+     * @param strUid The specific ID.
+     * @throws IllegalStateException If the ID is null, empty or less than 0.
+     */
+    public UniqueId(String strUid) throws IllegalStateException {
+        this.uid = Integer.parseInt(strUid);
+        UniqueId.lastUsedIndex = Integer.parseInt(strUid);
+    }
+
+    /**
      * Generates a new ID. If no ID has been set, it initializes the ID with the
      * last used index.
      * Otherwise, it increments the ID by the step value.
      */
     public void generateNewId() {
         if (uid == null) {
-            System.out.println("why no work");
+            throw new NullPointerException("ID is null while generating");
         }
         this.uid = ++lastUsedIndex;
     }
@@ -52,6 +58,32 @@ public class UniqueId {
      */
     public Integer getUidValue() {
         return uid;
+    }
+
+    /**
+     * Checks if the given unique ID is valid.
+     *
+     * @param intUid The unique ID to be checked.
+     * @return true if the unique ID is valid, false otherwise.
+     */
+    public static boolean isValidUid(Integer intUid) {
+        if (intUid == null || intUid < 0) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * Checks if a given string is a valid unique identifier (UID).
+     *
+     * @param strUid The string to be checked.
+     * @return true if the string is a valid UID, false otherwise.
+     */
+    public static boolean isValidUid(String strUid) {
+        if (strUid == null || strUid.isEmpty() || !strUid.matches(VALIDATION_REGEX)) {
+            return false;
+        }
+        return true;
     }
 
     /**
@@ -80,9 +112,9 @@ public class UniqueId {
     @Override
     public String toString() {
         if (uid == null) {
-            throw new NullPointerException("ID is null");
+            throw new NullPointerException("ID is null while converting to string");
         }
-        return "Unique ID: " + uid;
+        return "UID: " + uid;
     }
 
     /**

@@ -10,6 +10,7 @@ import seedu.address.model.employee.Name;
 import seedu.address.model.employee.Phone;
 import seedu.address.model.employee.Role;
 import seedu.address.model.employee.Team;
+import seedu.address.model.employee.UniqueId;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -24,6 +25,7 @@ public class EmployeeBuilder {
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_TEAM = "A";
     public static final String DEFAULT_ROLE = "Manager";
+    public static final String DEFAULT_UID = "1000";
 
     private Name name;
     private Phone phone;
@@ -32,6 +34,7 @@ public class EmployeeBuilder {
     private Team team;
     private Role role;
     private Set<Tag> tags;
+    private UniqueId uid;
 
     /**
      * Creates a {@code EmployeeBuilder} with the default details.
@@ -44,6 +47,7 @@ public class EmployeeBuilder {
         team = new Team(DEFAULT_TEAM);
         role = new Role(DEFAULT_ROLE);
         tags = new HashSet<>();
+        uid = new UniqueId(DEFAULT_UID);
     }
 
     /**
@@ -57,6 +61,7 @@ public class EmployeeBuilder {
         team = employeeToCopy.getTeam();
         role = employeeToCopy.getRole();
         tags = new HashSet<>(employeeToCopy.getTags());
+        uid = employeeToCopy.getUid();
     }
 
     /**
@@ -68,9 +73,10 @@ public class EmployeeBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Employee} that we are building.
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the
+     * {@code Employee} that we are building.
      */
-    public EmployeeBuilder withTags(String ... tags) {
+    public EmployeeBuilder withTags(String... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
@@ -115,8 +121,16 @@ public class EmployeeBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code UniqueId} of the {@code Employee} that we are building.
+     */
+    public EmployeeBuilder withUid(String uid) {
+        this.uid = new UniqueId(uid);
+        return this;
+    }
+
     public Employee build() {
-        return new Employee(name, phone, email, address, team, role, tags);
+        return new Employee(name, phone, email, address, team, role, tags, uid);
     }
 
 }
