@@ -44,9 +44,16 @@ public class DeleteAttributeCommandTest {
     }
 
     @Test
-    public void execute_noAttribute() throws CommandException {
+    public void execute_noAttribute() {
         DeleteAttributeCommand deleteAttributeCommand =
                 new DeleteAttributeCommand(ALICE.getUuidString().substring(32, 36), "Dog");
         assertThrows(CommandException.class, () -> deleteAttributeCommand.execute(model));
+    }
+
+    @Test
+    public void execute_noPerson() {
+        DeleteAttributeCommand deleteAttributeCommand =
+                new DeleteAttributeCommand("1234", "Name");
+        assertThrows(Exception.class, () -> deleteAttributeCommand.execute(model));
     }
 }
