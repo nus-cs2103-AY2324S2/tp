@@ -304,8 +304,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | new user                | try out the features with some sample data                                                    | understand what each feature does                                  |
 | `* *`    | new user                | tag suppliers with the types of food they supply                                              | easily find the right supplier for specific ingredients            |
 | `* *`    | new user                | tag employees as 'full time' or 'part time'                                                   | easily find the contacts of part time employees during peak period |
-| `* *`    | clumsy user             | see all commands I entered this session                                                       |                                                                    |
-| `* *`    | clumsy user             | undo my last command                                                                          |                                                                    |
+| `* *`    | forgetful user          | see all commands I entered this session                                                       |                                                                    |
+| `* *`    | clumsy user             | undo my last command                                                                          | so that I can rectify an erroneous command                         |
 | `* *`    | user with poor eyesight | view the contact details in a larger window when I click on a contact                         | more easily see the contact details                                |
 | `* *`    | user with poor eyesight | have tags with different colors                                                               | easily differentiate tags                                          |
 | `* *`    | intermediate user       | sort reservations by date and time                                                            | plan the seating arrangement and kitchen workload effectively      |
