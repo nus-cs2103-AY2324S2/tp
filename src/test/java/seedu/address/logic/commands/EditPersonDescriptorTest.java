@@ -10,6 +10,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MATRIC_NUMBER_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_REFLECTION_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STUDIO_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
@@ -54,8 +55,12 @@ public class EditPersonDescriptorTest {
         editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withAddress(VALID_ADDRESS_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
-        // diferent matriculation number -> returns false
+        // different matriculation number -> returns false
         editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withMatric(VALID_MATRIC_NUMBER_BOB).build();
+        assertFalse(DESC_AMY.equals(editedAmy));
+
+        // different reflection -> returns false
+        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withReflection(VALID_REFLECTION_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different studio -> returns false
@@ -76,6 +81,7 @@ public class EditPersonDescriptorTest {
                 + editPersonDescriptor.getEmail().orElse(null) + ", address="
                 + editPersonDescriptor.getAddress().orElse(null) + ", tags="
                 + editPersonDescriptor.getMatric().orElse(null) + ", matriculation number="
+                + editPersonDescriptor.getReflection().orElse(null) + ", reflection="
                 + editPersonDescriptor.getStudio().orElse(null) + ", studio="
                 + editPersonDescriptor.getTags().orElse(null) + "}";
         assertEquals(expected, editPersonDescriptor.toString());
