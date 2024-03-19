@@ -2,10 +2,19 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.logging.Logger;
 
+import com.google.zxing.WriterException;
+
+import seedu.address.QrCodeGenerator;
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.person.exceptions.AttributeNotFoundException;
 import seedu.address.model.tag.Tag;
@@ -28,6 +37,8 @@ public class Person {
         TAGS,
         NOTE
     }
+
+    private static final Logger logger = LogsCenter.getLogger(Person.class);
 
     // Identity fields
     private final Name name;
@@ -52,6 +63,7 @@ public class Person {
         tagSet.addAll(tags);
         this.tags = new TagSet(tagSet);
         this.note = note;
+        this.generateQrCode();
     }
 
     /**
@@ -110,6 +122,27 @@ public class Person {
     }
 
     /**
+     * Retrieves the QR code path.
+     *
+     * @return the path of the generated QR code
+     */
+    public Path getQrCodePath() {
+        return QrCodeGenerator.getQrCodePath(this);
+    }
+
+    /**
+     * Generates a QR code for the person.
+     */
+    public void generateQrCode() {
+        try {
+            QrCodeGenerator.generateQrCode(this);
+            logger.info("Generated QR code for " + this);
+        } catch (WriterException | IOException e) {
+            logger.warning("Unable to generate QR code for " + this);
+        }
+    }
+
+    /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      */
@@ -164,4 +197,23 @@ public class Person {
                 .toString();
     }
 
+    /**
+     * Deletes the QR code for the person.
+     *
+     * @return true if a QR code was deleted, false otherwise
+     */
+    public boolean deleteQrCode() {
+        try {
+            boolean result = Files.deleteIfExists(this.getQrCodePath());
+            if (result) {
+                logger.info("Deleted QR code for " + this);
+            } else {
+                logger.info("Unable to delete QR code for " + this + " as it does not exist");
+            }
+            return result;
+        } catch (IOException e) {
+            logger.warning("Unable to delete QR code for " + this);
+            return false;
+        }
+    }
 }

@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.person.Person;
 
 /**
  * Clears the address book.
@@ -26,6 +27,9 @@ public class ClearCommand extends Command {
         if (!confirmed) {
             return new CommandResult(MESSAGE_CONFIRM);
         } else {
+            // Delete QR codes of every person in the address book
+            model.getAddressBook().getPersonList().forEach(Person::deleteQrCode);
+
             model.setAddressBook(new AddressBook());
             return new CommandResult(MESSAGE_SUCCESS);
         }

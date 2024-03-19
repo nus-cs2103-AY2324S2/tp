@@ -39,7 +39,9 @@ public class Email extends Attribute<String> {
     public Email(String email) {
         super(email);
         requireNonNull(email);
-        checkArgument(isValidEmail(email), MESSAGE_CONSTRAINTS);
+        if (!email.isEmpty()) {
+            checkArgument(isValidEmail(email), MESSAGE_CONSTRAINTS);
+        }
     }
 
     /**

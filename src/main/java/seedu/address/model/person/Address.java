@@ -26,7 +26,9 @@ public class Address extends Attribute<String> {
     public Address(String address) {
         super(address);
         requireNonNull(address);
-        checkArgument(isValidAddress(address), MESSAGE_CONSTRAINTS);
+        if (!address.isEmpty()) {
+            checkArgument(isValidAddress(address), MESSAGE_CONSTRAINTS);
+        }
     }
 
     /**
