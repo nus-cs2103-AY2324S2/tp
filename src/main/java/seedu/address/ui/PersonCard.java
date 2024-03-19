@@ -56,8 +56,14 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
-        policy.setText(person.getPolicy().value);
         relationship.setText(person.getRelationship().value);
+        if (person.isClient()) {
+            policy.setText(person.getPolicy().value.equals("")
+                ? "No policy assigned"
+                : "Policy: " + person.getPolicy().value);
+        } else {
+            policy.setManaged(false);
+        }
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

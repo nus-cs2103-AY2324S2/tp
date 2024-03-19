@@ -137,16 +137,14 @@
     -fx-text-fill: #010504;
 }
 
-        .relationship-label {
-            -fx-text-fill: #2a9d8f; /* Choose your color */
-            -fx-font-style: italic;
-            -fx-font-size: 12px;
-            -fx-background-color: #e9c46a; /* Background color if needed */
-            -fx-background-radius: 5;
-            -fx-padding: 3;
-        }
-
-
+.relationship-label {
+    -fx-text-fill: #2a9d8f; /* Choose your color */
+    -fx-font-style: italic;
+    -fx-font-size: 12px;
+    -fx-background-color: #e9c46a; /* Background color if needed */
+    -fx-background-radius: 5;
+    -fx-padding: 3;
+}
 
 .stack-pane {
      -fx-background-color: derive(#1d1d1d, 20%);
