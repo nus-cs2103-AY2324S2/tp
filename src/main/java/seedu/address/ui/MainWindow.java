@@ -193,6 +193,10 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
+            if (commandResult.isUpdateProfile()) {
+                personProfile.setPerson(logic.getSelectedPerson());
+            }
+
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("An error occurred while executing command: " + commandText);

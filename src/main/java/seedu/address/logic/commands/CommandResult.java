@@ -62,6 +62,10 @@ public class CommandResult {
         return exit;
     }
 
+    public boolean isUpdateProfile() {
+        return updateProfile;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
