@@ -158,8 +158,8 @@ public class ParserUtil {
         }
 
         String trimmedAttend = attend.iterator().next().trim();
-        if (!trimmedAttend.equalsIgnoreCase("true") &&
-                !trimmedAttend.equalsIgnoreCase("false")) {
+        if (!trimmedAttend.equalsIgnoreCase("true")
+                && !trimmedAttend.equalsIgnoreCase("false")) {
             throw new ParseException(Appointment.MESSAGE_CONSTRAINTS);
         }
         return Boolean.parseBoolean(trimmedAttend);

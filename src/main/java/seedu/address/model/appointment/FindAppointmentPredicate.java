@@ -9,6 +9,11 @@ public class FindAppointmentPredicate implements Predicate<Appointment> {
     private final int studentId;
     private final int appointmentId;
 
+    /**
+     * Finds appointment based on student and appointment id.
+     * @param studentId         target student id.
+     * @param appointmentId     target appointment id.
+     */
     public FindAppointmentPredicate(int studentId, int appointmentId) {
         this.studentId = studentId;
         this.appointmentId = appointmentId;

@@ -154,12 +154,12 @@ public class ModelManager implements Model {
     @Override
     public boolean hasAppointment(Appointment appointment) {
         requireNonNull(appointment);
-//        return appointmentBook.hasAppointment(appointment);
+        // return appointmentBook.hasAppointment(appointment);
         return false;
     }
     @Override
     public void addAppointment(Appointment appointment) {
-//        appoinmentBook.addAppointment(appointment);
+        // appoinmentBook.addAppointment(appointment);
         updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
     }
 
@@ -180,6 +180,6 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteAppointment(Appointment target) {
-//        addressBook.removePerson(target);
+        // addressBook.removePerson(target);
     }
 }
