@@ -28,9 +28,9 @@ public class NoteCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds note to person.\n"
             + "Parameters: "
-            + PREFIX_NAME + "NAME, "
-            + PREFIX_NOTE + "NOTE "
-            + "Example: " + COMMAND_WORD + " Moochie" + " Meet at 6pm tuesday";
+            + PREFIX_NAME + "Moochie"
+            + PREFIX_NOTE + "Meet at 6pm tuesday"
+            + "Example: " + COMMAND_WORD + " Moochie" + "Meet at 6pm tuesday";
     private final Name name;
     private final Note note;
 
@@ -48,7 +48,7 @@ public class NoteCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         List<Person> lastShownList = model.getFilteredPersonList();
 
-        Person personToEdit = findByName(lastShownList, name);
+        Person personToEdit = model.findByName(name);
         if (personToEdit instanceof Maintainer || personToEdit instanceof Staff
                 || personToEdit instanceof Supplier) {
             throw new CommandException("Person is not of general person class");
@@ -70,24 +70,6 @@ public class NoteCommand extends Command {
     private String generateSuccessMessage(Person personToEdit) {
         String message = MESSAGE_ADD_NOTE_SUCCESS;
         return String.format(message, personToEdit);
-    }
-
-    /**
-     * Finds a person from a List of persons identified by its name.
-     *
-     * @param personList The list of persons to search from.
-     * @param targetName The name of the person to return.
-     *
-     * @return The person object with name equals to {@code targetName}.
-     * */
-    public Person findByName(List<Person> personList, Name targetName) {
-        for (Person person: personList) {
-            Name name = person.getName();
-            if (name.equals(targetName)) {
-                return person;
-            }
-        }
-        return null;
     }
 
     @Override
