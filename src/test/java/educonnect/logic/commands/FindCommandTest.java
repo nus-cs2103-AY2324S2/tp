@@ -13,7 +13,7 @@ import educonnect.logic.Messages;
 import educonnect.model.Model;
 import educonnect.model.ModelManager;
 import educonnect.model.UserPrefs;
-import educonnect.model.student.NameContainsKeywordsPredicate;
+import educonnect.model.student.predicates.NameContainsKeywordsPredicate;
 import educonnect.testutil.TypicalStudents;
 
 /**

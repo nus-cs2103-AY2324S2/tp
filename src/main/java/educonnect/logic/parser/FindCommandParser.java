@@ -4,7 +4,7 @@ import static educonnect.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import educonnect.logic.commands.FindCommand;
 import educonnect.logic.parser.exceptions.ParseException;
-import educonnect.model.student.NameContainsKeywordsPredicate;
+import educonnect.model.student.predicates.NameContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object

@@ -16,7 +16,7 @@ import educonnect.model.student.TelegramHandle;
 import educonnect.model.student.timetable.Period;
 import educonnect.model.student.timetable.Timetable;
 import educonnect.model.student.timetable.exceptions.OverlapPeriodException;
-import educonnect.model.tag.Tag;
+import educonnect.model.student.Tag;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.

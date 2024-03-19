@@ -23,7 +23,7 @@ import educonnect.model.student.timetable.Period;
 import educonnect.model.student.timetable.Timetable;
 import educonnect.model.student.timetable.exceptions.NumberOfDaysException;
 import educonnect.model.student.timetable.exceptions.OverlapPeriodException;
-import educonnect.model.tag.Tag;
+import educonnect.model.student.Tag;
 import educonnect.testutil.TypicalTimetableAndValues;
 
 public class ParserUtilTest {

@@ -21,7 +21,7 @@ import educonnect.logic.commands.FindCommand;
 import educonnect.logic.commands.HelpCommand;
 import educonnect.logic.commands.ListCommand;
 import educonnect.logic.parser.exceptions.ParseException;
-import educonnect.model.student.NameContainsKeywordsPredicate;
+import educonnect.model.student.predicates.NameContainsKeywordsPredicate;
 import educonnect.model.student.Student;
 import educonnect.model.student.StudentId;
 import educonnect.testutil.EditStudentDescriptorBuilder;

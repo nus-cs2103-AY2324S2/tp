@@ -26,7 +26,7 @@ import educonnect.commons.core.index.Index;
 import educonnect.logic.commands.EditCommand;
 import educonnect.logic.parser.exceptions.ParseException;
 import educonnect.model.student.timetable.Timetable;
-import educonnect.model.tag.Tag;
+import educonnect.model.student.Tag;
 
 /**
  * Parses input arguments and creates a new EditCommand object

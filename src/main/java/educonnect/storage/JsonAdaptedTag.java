@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 import educonnect.commons.exceptions.IllegalValueException;
-import educonnect.model.tag.Tag;
+import educonnect.model.student.Tag;
 
 /**
  * Jackson-friendly version of {@link Tag}.

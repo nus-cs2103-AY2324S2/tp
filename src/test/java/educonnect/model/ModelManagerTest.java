@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import educonnect.commons.core.GuiSettings;
-import educonnect.model.student.NameContainsKeywordsPredicate;
+import educonnect.model.student.predicates.NameContainsKeywordsPredicate;
 import educonnect.testutil.AddressBookBuilder;
 import educonnect.testutil.Assert;
 import educonnect.testutil.TypicalStudents;

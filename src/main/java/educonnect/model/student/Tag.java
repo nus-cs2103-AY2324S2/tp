@@ -1,4 +1,4 @@
-package educonnect.model.tag;
+package educonnect.model.student;
 
 import static educonnect.commons.util.AppUtil.checkArgument;
 import static java.util.Objects.requireNonNull;

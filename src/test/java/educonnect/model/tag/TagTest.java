@@ -1,5 +1,6 @@
 package educonnect.model.tag;
 
+import educonnect.model.student.Tag;
 import org.junit.jupiter.api.Test;
 
 import educonnect.testutil.Assert;
