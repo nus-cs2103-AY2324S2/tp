@@ -106,5 +106,7 @@ public interface Model {
 
     boolean isValidAppointment(Appointment toAdd);
 
+    /** Returns an unmodifiable view of the appointment list */
+
     ObservableList<Appointment> getAppointmentList();
 }

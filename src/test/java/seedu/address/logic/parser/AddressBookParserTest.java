@@ -17,6 +17,7 @@ import seedu.address.logic.commands.AddAppointmentCommand;
 import seedu.address.logic.commands.AddDoctorCommand;
 import seedu.address.logic.commands.AddPatientCommand;
 import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.DeleteAppointmentCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
@@ -65,6 +66,12 @@ public class AddressBookParserTest {
         AddAppointmentCommand command = (AddAppointmentCommand) parser.parseCommand(
                 AppointmentUtil.getAddAppointmentCommand(appt));
         assertEquals(new AddAppointmentCommand(appt), command);
+    }
+    @Test
+    public void parseCommand_deleteappointment() throws Exception {
+        DeleteAppointmentCommand command = (DeleteAppointmentCommand) parser.parseCommand(
+                DeleteAppointmentCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
+        assertEquals(new DeleteAppointmentCommand(INDEX_FIRST_PERSON), command);
     }
 
     @Test
