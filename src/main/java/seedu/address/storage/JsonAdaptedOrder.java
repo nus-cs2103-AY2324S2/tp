@@ -1,6 +1,7 @@
 package seedu.address.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.order.Amount;
@@ -30,8 +31,9 @@ public class JsonAdaptedOrder {
      * Constructs a {@code JsonAdaptedOrder} with the given order details
      */
     @JsonCreator
-    public JsonAdaptedOrder(String orderId, String orderDate, String deadline, String amount,
-                            String remark, String status) {
+    public JsonAdaptedOrder(@JsonProperty("orderid") String orderId, @JsonProperty("orderdate") String orderDate,
+                            @JsonProperty("deadline") String deadline, @JsonProperty("amount") String amount,
+                            @JsonProperty("remark") String remark, @JsonProperty("status") String status) {
         this.orderId = orderId;
         this.orderDate = orderDate;
         this.deadline = deadline;
@@ -59,7 +61,7 @@ public class JsonAdaptedOrder {
      */
 
     public Order toModelType() throws IllegalValueException {
-        if (orderId == null) {
+        if (orderId == null || !OrderId.isValidOrderId(orderId)) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, OrderId.class.getSimpleName()));
         }
         final OrderId modelOrderId = new OrderId(orderId);

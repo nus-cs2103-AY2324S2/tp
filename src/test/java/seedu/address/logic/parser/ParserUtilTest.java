@@ -47,7 +47,7 @@ public class ParserUtilTest {
     @Test
     public void parseIndex_outOfRangeInput_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
-            -> ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
+                -> ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
     }
 
     @Test
@@ -210,8 +210,9 @@ public class ParserUtilTest {
     @Test
     public void testParseInvalidOrderId() {
         String input = "123";
-        assertThrows(IllegalArgumentException.class, () -> ParserUtil.parseOrderId(input));
+        assertThrows(ParseException.class, () -> ParserUtil.parseOrderId(input));
     }
+
     @Test
     public void parseTags_collectionWithValidTags_returnsTagSet() throws Exception {
         Set<Tag> actualTagSet = ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, VALID_TAG_2));

@@ -8,6 +8,7 @@ import java.util.UUID;
  */
 public class OrderId {
 
+    public static final String MESSAGE_CONSTRAINTS = "Order ID should be a valid UUID";
     private final UUID id;
 
     /**
@@ -22,9 +23,25 @@ public class OrderId {
      *
      * @param id UUID to be used as the OrderId.
      */
-    public OrderId(String id) {
+    public OrderId(String id) throws IllegalArgumentException {
         this.id = UUID.fromString(id);
     }
+
+    /**
+     * Checks whether a OrderId string is valid
+     *
+     * @param test String to be tested.
+     * @return true if the string is a valid UUID, false otherwise.
+     */
+    public static boolean isValidOrderId(String test) {
+        try {
+            UUID.fromString(test);
+            return true;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
+    }
+
 
     @Override
     public String toString() {
