@@ -127,7 +127,7 @@ public class DeleteMeetingCommandTest {
         Index targetClientIndex = Index.fromOneBased(1);
         Index targetMeetingIndex = Index.fromOneBased(1);
         DeleteMeetingCommand deleteMeetingCommand = new DeleteMeetingCommand(targetClientIndex, targetMeetingIndex);
-        String expected = DeleteMeetingCommand.class.getCanonicalName() + 
+        String expected = DeleteMeetingCommand.class.getCanonicalName() +
             "{clientIndex=" + targetClientIndex + ", meetingIndex=" + targetMeetingIndex + "}";
         assertEquals(expected, deleteMeetingCommand.toString());
     }
