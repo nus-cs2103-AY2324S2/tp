@@ -26,7 +26,7 @@ public class TutorialClassTest {
         assertTrue(tutorialClass.equals(tutorialClass));
 
         // same values -> returns true
-        TutorialClass remarkCopy = new TutorialClass(tutorialClass.value);
+        TutorialClass remarkCopy = new TutorialClass(tutorialClass.tutorialName);
         assertTrue(tutorialClass.equals(remarkCopy));
 
         // different types -> returns false
@@ -54,13 +54,13 @@ public class TutorialClassTest {
     void isSameTutorialClass() {
         ModuleCode module = new ModuleBuilder().withModuleCode("CS2102").withTutorialClasses(VALID_TUTORIAL).build();
         TutorialClass tutorialClass = module.getTutorialClasses().get(1);
-        String tutorialClassString = tutorialClass.value;
+        String tutorialClassString = tutorialClass.tutorialName;
         assertTrue(VALID_TUTORIAL.equals(tutorialClassString));
 
         // different module but same tutorial class notation
         module = new ModuleBuilder().withModuleCode("CS2105").withTutorialClasses(VALID_TUTORIAL).build();
         tutorialClass = module.getTutorialClasses().get(1);
-        tutorialClassString = tutorialClass.value;
+        tutorialClassString = tutorialClass.tutorialName;
         assertTrue(VALID_TUTORIAL.equals(tutorialClassString));
     }
 
@@ -69,13 +69,13 @@ public class TutorialClassTest {
         // same module but different tutorial class
         ModuleCode module = new ModuleBuilder().withModuleCode("CS2102").withTutorialClasses(VALID_TUTORIAL).build();
         TutorialClass tutorialClass = module.getTutorialClasses().get(0);
-        String tutorialClassString = tutorialClass.value;
+        String tutorialClassString = tutorialClass.tutorialName;
         assertFalse(VALID_TUTORIAL.equals(tutorialClassString));
 
         // different module and different tutorial class
         module = new ModuleBuilder().withModuleCode("CS2109").withTutorialClasses("T05").build();
         tutorialClass = module.getTutorialClasses().get(1);
-        String tutorialClassToCompare = tutorialClass.value;
+        String tutorialClassToCompare = tutorialClass.tutorialName;
         assertFalse(tutorialClassString.equals(tutorialClassToCompare));
     }
 
