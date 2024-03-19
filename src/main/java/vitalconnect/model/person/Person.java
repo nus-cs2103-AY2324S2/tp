@@ -163,7 +163,7 @@ public class Person {
                     .add("identification", getIdentificationInformation())
                     .add("medicalinfo", getMedicalInformation())
                     .toString();
-        }  else {
+        } else {
             return new ToStringBuilder(this)
                     .add("identification", getIdentificationInformation())
                     .toString();
