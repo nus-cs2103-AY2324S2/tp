@@ -50,12 +50,10 @@ public class PersonUtil {
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email).append(" "));
         descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address).append(" "));
-        if (descriptor.getTags().isPresent()) {
-            descriptor.getTags().get().stream().forEach(s -> sb.append(PREFIX_TAG).append(s.get()).append(" "));
-        }
-        if (descriptor.getAssets().isPresent()) {
-            descriptor.getAssets().get().stream().forEach(s -> sb.append(PREFIX_ASSET).append(s.get()).append(" "));
-        }
+        descriptor.getTags().ifPresent(
+                tags -> tags.stream().forEach(tag -> sb.append(PREFIX_TAG).append(tag.get()).append(" ")));
+        descriptor.getAssets().ifPresent(
+                assets -> assets.stream().forEach(asset -> sb.append(PREFIX_ASSET).append(asset.get()).append(" ")));
         return sb.toString();
     }
 
