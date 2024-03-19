@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static staffconnect.commons.util.AppUtil.checkArgument;
 
 import java.util.Arrays;
-import java.util.Optional;
 import java.util.stream.Stream;
 
 /**
@@ -83,8 +82,9 @@ public class Faculty {
     }
 
     private static FacultyName fromString(String name) {
-        return Arrays.stream(FacultyName.values())
-                .filter(faculty -> faculty.getFacultyName().equalsIgnoreCase(name))
+        return Stream.of(FacultyName.values())
+                .filter(member -> Arrays.stream(member.facultyNameValues)
+                .anyMatch(value -> value.equalsIgnoreCase(name)))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("No enum constant matches the provided name: "
                         + name));
