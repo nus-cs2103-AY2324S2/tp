@@ -10,7 +10,7 @@ import seedu.realodex.model.person.Person;
 import seedu.realodex.model.person.UniquePersonList;
 
 /**
- * Wraps all data at the address-book level
+ * Wraps all data at the realodex level
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
 public class Realodex implements ReadOnlyRealodex {
