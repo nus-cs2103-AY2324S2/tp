@@ -46,8 +46,8 @@ public class AddressBookParser {
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
 
-        if (arguments.trim().startsWith("-a")) {
-            return ArticleBookParser.parseCommand(commandWord + arguments.substring(2));
+        if (arguments.trim().startsWith("-a ")) {
+            return ArticleBookParser.parseCommand(commandWord + arguments.substring(3));
         }
 
         // Note to developers: Change the log level in config.json to enable lower level (i.e., FINE, FINER and lower)
