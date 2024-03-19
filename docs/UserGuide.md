@@ -3,26 +3,37 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+<span style="color: #f66a0a;">CareerSync</span> is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI).  
+It lets you effortlessly manage, search, and sift through your various internship applications!
 
 * Table of Contents
   {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+## Quick Start
 
-## Quick start
+Start keeping track of your internships easily with <span style="color: #f66a0a;">CareerSync!</span>
 
-1. Ensure you have Java `11` or above installed in your Computer.
+### Installation
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Ensure that you have [Java 11 or above](https://www.java.com/en/download/) installed on your computer.
+    - [How do I check my version of Java installed?](#check-version-of-java-installed)
+    - If you are a MacOS, follow the instructions [here](https://nus-cs2103-ay2324s2.github.io/website/admin/programmingLanguages.html) instead.
+2. Download the latest `CareerSync.jar` file [here]().
+3. Make sure your jar file is located in an empty folder.
+4. Start <span style="color: #f66a0a;">CareerSync</span>.
+    - For MacOS:
+        - Open up your Terminal by typing <kbd>Command</kbd> + <kbd>Space</kbd>, then type <kbd>Enter</kbd>.<br>
+        - Navigate to the folder containing your jar file using `cd`. If you are not sure how to use `cd`, refer to [this link]!(https://www.ibm.com/docs/en/aix/7.2?topic=directories-changing-another-directory-cd-command).<br>
+        - Enter `java -jar CareerSync.jar` and type <kbd>Enter</kbd>.
+   - For Windows:
+       - Open the folder containing `CareerSync.jar`.
+       - Double-click on `CareerSync.jar` to start up our application!
+5. The [Graphical User Interace](#glossary) similar to the below should pop up on your screen.
 
-1. Copy the file to the folder you want to use as the _home folder_ for your CareerSync.
-
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+6. Try typing some of the following commands, then typing <kbd>Enter</kbd> to execute them.
    Some example commands you can try:
 
     * `list` : Lists all contacts.
@@ -35,7 +46,8 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
    * `exit` : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+7. Refer to the [Features](#features) below for more details, and have fun using <span style="color: 
+#f66a0a;">CareerSync!</span>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -155,20 +167,17 @@ Exits the program.
 
 Format: `exit`
 
-### Saving the data
+### Saving and Editing Your Internship Data 
 
-CareerSync data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+<div markdown="span" class="alert alert-danger">
 
-### Editing the data file
-
-CareerSync data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, CareerSync will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
-Furthermore, certain edits can cause the CareerSync to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
+⚠️ Caution:
+Users are **NOT** recommended to modify their data file directly, since wrong formatting will cause the app to malfunction.
+Only do so if you are an experienced user! <br>
 </div>
 
-### Archiving data files `[coming in v2.0]`
+CareerSync data is saved in the hard disk, as a JSON file at the path `[JAR file location]/data/internship.json`.
+After every command that changes the data, CareerSync performs a save automatically. There is no need to save manually.
 
 _Details coming soon ..._
 
