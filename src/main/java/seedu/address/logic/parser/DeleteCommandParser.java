@@ -29,7 +29,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
                 String nameString = name.toString();
                 return new DeleteCommand(null, nameString);
             } else {
-                throw new ParseException("Unexpected error occurred while parsing DeleteCommand.");
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
             }
         } catch (ParseException pe) {
             throw new ParseException(

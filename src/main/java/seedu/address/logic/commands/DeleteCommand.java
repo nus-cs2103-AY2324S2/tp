@@ -24,8 +24,8 @@ public class DeleteCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) or NAME (must be the exact full name)\n"
             + "Example: " + COMMAND_WORD + " 1" + "or" + COMMAND_WORD + " John Doe";
 
+    public static final String MESSAGE_DELETE_PERSON_ERROR = "Please provide either a name or index to delete.";
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
-
     private final Index targetIndex;
     private final String targetName;
 
@@ -62,10 +62,10 @@ public class DeleteCommand extends Command {
                 model.deletePerson(personToDelete);
                 return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
             } else {
-                throw new CommandException("Person with the name \"" + targetName + "\" not found.");
+                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_NAME);
             }
         } else {
-            throw new CommandException("Please provide the correct index or the full name of the person!");
+            throw new CommandException(MESSAGE_DELETE_PERSON_ERROR);
         }
     }
 
