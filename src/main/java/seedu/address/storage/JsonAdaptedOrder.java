@@ -31,7 +31,7 @@ public class JsonAdaptedOrder {
      * Constructs a {@code JsonAdaptedOrder} with the given order details
      */
     @JsonCreator
-    public JsonAdaptedOrder(@JsonProperty("orderid") String orderId, @JsonProperty("orderdate") String orderDate,
+    public JsonAdaptedOrder(@JsonProperty("orderId") String orderId, @JsonProperty("orderDate") String orderDate,
                             @JsonProperty("deadline") String deadline, @JsonProperty("amount") String amount,
                             @JsonProperty("remark") String remark, @JsonProperty("status") String status) {
         this.orderId = orderId;

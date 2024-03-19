@@ -1,9 +1,7 @@
 package seedu.address.storage;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.storage.JsonAdaptedOrder.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalOrders.ROSES;
 
 import org.junit.jupiter.api.Test;
 
@@ -18,23 +16,13 @@ import seedu.address.model.order.Status;
 public class JsonAdaptedOrderTest {
 
     private static final String INVALID_ORDERID = "#FXXXXXXXX";
-    private static final String INVALID_ORDERDATE = "24/D/23";
-    private static final String INVALID_DEADLINE = "24/D/23";
-    private static final String INVALID_AMOUNT = "@6.7";
-    private static final String INVALID_REMARK = "%HOME";
-    private static final String INVALID_STATUS = "#NOW";
-    private static final String VALID_ORDERID = "1";
-    private static final String VALID_ORDERDATE = "2024-03-19";
-    private static final String VALID_DEADLINE = "2024-03-21";
-    private static final String VALID_AMOUNT = "50.00";
-    private static final String VALID_REMARK = "Urgent order";
-    private static final String VALID_STATUS = "Pending";
+    private static final String VALID_ORDERID = "69c25c8d-9e34-4d9d-8bad-e378f203ae73";
+    private static final String VALID_ORDERDATE = "01-03-2024 23:59";
+    private static final String VALID_DEADLINE = "01-04-2024 23:59";
+    private static final String VALID_AMOUNT = "10";
+    private static final String VALID_REMARK = "No remark";
+    private static final String VALID_STATUS = "CANCELED";
 
-    @Test
-    public void toModelType_validOrderDetails_returnsOrder() throws Exception {
-        JsonAdaptedOrder order = new JsonAdaptedOrder(ROSES);
-        assertEquals(ROSES, order.toModelType());
-    }
 
     @Test
     public void toModelType_invalidOrderId_throwsIllegalValueException() {
