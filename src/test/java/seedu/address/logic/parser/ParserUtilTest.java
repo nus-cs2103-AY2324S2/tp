@@ -148,9 +148,9 @@ public class ParserUtilTest {
         assertEquals(expectedEmail, ParserUtil.parseEmail(emailWithWhitespace));
     }
 
-//    @Test
-//    public void parseAttendance_null_throwsNullPointerException() {
-//        assertThrows(NullPointerException.class, () -> ParserUtil.parseAttendances(null));
+    //    @Test
+    //    public void parseAttendance_null_throwsNullPointerException() {
+    //        assertThrows(NullPointerException.class, () -> ParserUtil.parseAttendances(null));
     //    }
     @Test
     public void parseAttendance_invalidValue_throwsParseException() {
@@ -170,9 +170,9 @@ public class ParserUtilTest {
         assertEquals(expectedAttendance, ParserUtil.parseAttendances(tagWithWhitespace));
     }
 
-//    @Test
-//    public void parseAttendances_null_throwsNullPointerException() {
-//        assertThrows(NullPointerException.class, () -> ParserUtil.parseAttendances(null));
+    //    @Test
+    //    public void parseAttendances_null_throwsNullPointerException() {
+    //        assertThrows(NullPointerException.class, () -> ParserUtil.parseAttendances(null));
     //    }
     @Test
     public void parseAttendances_collectionWithInvalidTags_throwsParseException() {
