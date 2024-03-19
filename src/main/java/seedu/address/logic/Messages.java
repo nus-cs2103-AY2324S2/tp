@@ -25,7 +25,6 @@ public class Messages {
     public static final String MESSAGE_INVALID_PHONE_NUMBER = "Phone number provided not found";
 
     public static final String MESSAGE_PHONE_NUMBER_NOT_FOUND = "Phone number provided not found";
-  
     public static final String MESSAGE_ORDER_NOT_CREATED = "Please create an order before adding products.";
 
     public static final String MESSAGE_ONLY_ONE_FIELD = "Only one field can be provided";
