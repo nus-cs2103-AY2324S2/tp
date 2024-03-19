@@ -20,4 +20,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_COMMISSION = new Prefix("; commission : ");
 
     public static final Prefix PREFIX_FIELD = new Prefix("; field : ");
+    public static final Prefix PREFIX_NOTE = new Prefix("; note : ");
 }
