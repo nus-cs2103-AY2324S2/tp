@@ -13,14 +13,6 @@ public class InvalidationListenerManager {
     private final ArrayList<InvalidationListener> listeners = new ArrayList<>();
 
     /**
-     * Adds a listener to the list of listeners.
-     */
-    public void add(InvalidationListener listener) {
-        requireNonNull(listener);
-        listeners.add(listener);
-    }
-
-    /**
      * Adds {@code listener} to the list of listeners.
      * If the same listener is added more that once, then it will be notified more than once.
      */
