@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -73,24 +74,24 @@ public class AddOrderCommandTest {
         assert (addOrderCommand.equals(addOrderCommandCopy));
 
         // different types -> returns false
-        assert (!addOrderCommand.equals(1));
+        assertFalse(addOrderCommand.equals(1));
 
         // null -> returns false
-        assert (!addOrderCommand.equals(null));
+        assertFalse(addOrderCommand.equals(null));
 
         // different index -> returns false
         AddOrderCommand differentOrderCommand = new AddOrderCommand(Index.fromOneBased(2), ORDER_STUB);
-        assert (!addOrderCommand.equals(differentOrderCommand));
+        assertFalse(addOrderCommand.equals(differentOrderCommand));
 
         // different date -> returns false
         Order orderWithDifferentDate = new Order(new Date("2020-01-02"), REMARK_STUB);
         differentOrderCommand = new AddOrderCommand(INDEX_FIRST_PERSON, orderWithDifferentDate);
-        assert (!addOrderCommand.equals(differentOrderCommand));
+        assertFalse(addOrderCommand.equals(differentOrderCommand));
 
         // different remark -> returns false
         Order orderWithDifferentRemark = new Order(DATE_STUB, "200 chicken wings");
         differentOrderCommand = new AddOrderCommand(INDEX_FIRST_PERSON, orderWithDifferentRemark);
-        assert (!addOrderCommand.equals(differentOrderCommand));
+        assertFalse(addOrderCommand.equals(differentOrderCommand));
     }
 
     @Test
