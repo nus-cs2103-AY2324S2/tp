@@ -3,8 +3,8 @@ package seedu.findvisor.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.findvisor.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.findvisor.logic.parser.CliSyntax.PREFIX_END_DATETIME;
-import static seedu.findvisor.logic.parser.CliSyntax.PREFIX_START_DATETIME;
 import static seedu.findvisor.logic.parser.CliSyntax.PREFIX_MEETING_REMARK;
+import static seedu.findvisor.logic.parser.CliSyntax.PREFIX_START_DATETIME;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;

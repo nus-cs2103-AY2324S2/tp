@@ -20,7 +20,8 @@ public class Meeting {
             + "end date time.\n"
             + "Each input string for datetime must be in the format dd-MM-yyyy'T'HH:mm, for example 23-02-2024T16:00.\n"
             + "The start datetime must be before the end date time.";
-    public static final String MESSAGE_REMARK_CONSTRAINTS = "Remark is at most " + MAX_REMARK_LENGTH + " characters long.";
+    public static final String MESSAGE_REMARK_CONSTRAINTS = "Remark is at most "
+            + MAX_REMARK_LENGTH + " characters long.";
 
     public final LocalDateTime start;
     public final LocalDateTime end;
