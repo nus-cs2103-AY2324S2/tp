@@ -72,7 +72,7 @@ public class ModelManager implements Model {
     @Override
     public void setCodeConnectFilePath(Path codeConnectFilePath) {
         requireNonNull(codeConnectFilePath);
-        userPrefs.setAddressBookFilePath(codeConnectFilePath);
+        userPrefs.setCodeConnectFilePath(codeConnectFilePath);
     }
 
     //=========== CodeConnect ================================================================================
