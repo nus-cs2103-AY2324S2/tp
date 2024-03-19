@@ -16,26 +16,29 @@ import seedu.address.model.tag.Tag;
  */
 public class Person {
 
+    //Mandatory fields
+    //Identity fields
     private final Nric nric;
-    private final Name name;
-    private final Set<Tag> tags = new HashSet<>();
+    private Name name;
     private Phone phone;
-    private Email email = null;
-    private Sex sex;
-    // Data fields
     private Address address;
+    private final DateOfBirth dateOfBirth;
+    private Sex sex;
+    private Status status;
+    // Optional fields
+    // Data fields
+    private final Set<Tag> tags = new HashSet<>();
+    private Email email = null;
+    private Country country = null;
+    //Medical information
     private Allergies allergies = null;
     private BloodType bloodType = null;
-    private Country country = null;
-    private final DateOfBirth dateOfBirth;
-    //Medical history
     private Condition condition = null;
     private DateOfAdmission dateOfAdmission = null;
     private Diagnosis diagnosis = null;
-    private final Status status;
     private Symptom symptom = null;
     /**
-     * Every field must be present and not null.
+     * Every mandatory field must be present and not null.
      */
     public Person(Nric nric, Name name, Phone phone, Address address, DateOfBirth dateOfBirth, Sex sex, Status status) {
         //Only the fields that are mandatory are included down here
@@ -48,12 +51,6 @@ public class Person {
         this.sex = sex;
         this.status = status;
     }
-
-    // TODO @laney0808 Create Optional Setters
-    /**
-     * Returns NRIC of patient.
-     * @return
-     */
     public Nric getNric() {
         return nric;
     }
@@ -120,6 +117,96 @@ public class Person {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+    /**
+     * Sets the name of the person to input value.
+     * @param name the new name.
+     */
+    public void setName(Name name) {
+        this.name = name;
+    }
+
+    /**
+     * Sets the phone of the person to input value.
+     * @param phone the new phone.
+     */
+    public void setPhone(Phone phone) {
+        this.phone = phone;
+    }
+    /**
+     * Sets the address of the person to input value.
+     */
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+    /**
+     * Sets the sex of the person to input value.
+     */
+    public void setSex(Sex sex) {
+        this.sex = sex;
+    }
+    /**
+     * Sets the status of the person to input value.
+     * @param status the new status.
+     */
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+    /**
+     * Sets the email of the person to input value.
+     * @param email the new email.
+     */
+    public void setEmail(Email email) {
+        this.email = email;
+    }
+    /**
+     * Sets the allergies of the person to input value.
+     * @param allergies the new allergies.
+     */
+    public void setAllergies(Allergies allergies) {
+        this.allergies = allergies;
+    }
+    /**
+     * Sets the blood type of the person to input value.
+     * @param bloodType the new blood type.
+     */
+    public void setBloodType(BloodType bloodType) {
+        this.bloodType = bloodType;
+    }
+    /**
+     * Sets the country of the person to input value.
+     * @param country the new country.
+     */
+    public void setCountry(Country country) {
+        this.country = country;
+    }
+    /**
+     * Sets the condition of the person to input value.
+     * @param condition the new condition.
+     */
+    public void setCondition(Condition condition) {
+        this.condition = condition;
+    }
+    /**
+     * Sets the date of admission of the person to input value.
+     * @param dateOfAdmission the new date of admission.
+     */
+    public void setDateOfAdmission(DateOfAdmission dateOfAdmission) {
+        this.dateOfAdmission = dateOfAdmission;
+    }
+    /**
+     * Sets the diagnosis of the person to input value.
+     * @param diagnosis the new diagnosis.
+     */
+    public void setDiagnosis(Diagnosis diagnosis) {
+        this.diagnosis = diagnosis;
+    }
+    /**
+     * Sets the symptom of the person to input value.
+     * @param symptom the new symptom.
+     */
+    public void setSymptom(Symptom symptom) {
+        this.symptom = symptom;
     }
 
     /**
