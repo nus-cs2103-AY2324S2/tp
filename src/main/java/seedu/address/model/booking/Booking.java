@@ -1,10 +1,11 @@
 package seedu.address.model.booking;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.util.Objects;
 
 import seedu.address.commons.util.ToStringBuilder;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * Represents a booking
