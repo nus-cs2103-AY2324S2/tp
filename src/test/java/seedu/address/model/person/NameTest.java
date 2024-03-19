@@ -77,5 +77,4 @@ public class NameTest {
         // Substring mismatch
         assertFalse(name.isMatch("invalid"));
     }
-
 }
