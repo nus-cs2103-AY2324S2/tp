@@ -51,6 +51,24 @@ public class Person {
         this.sex = sex;
         this.status = status;
     }
+    /**
+     * Constructor for Person with only Nric.
+     */
+    private Person(Nric nric) {
+        this.nric = nric;
+        this.name = null;
+        this.phone = null;
+        this.address = null;
+        this.dateOfBirth = null;
+        this.sex = null;
+        this.status = null;
+    }
+    /**
+     * Constructor for Person with only Nric.
+     */
+    public static Person createPersonWithNric(Nric nric) {
+        return new Person(nric);
+    }
     public Nric getNric() {
         return nric;
     }
@@ -242,7 +260,8 @@ public class Person {
                 && address.equals(otherPerson.address)
                 && dateOfBirth.equals(otherPerson.dateOfBirth)
                 && dateOfAdmission.equals(otherPerson.dateOfAdmission)
-                && sex.equals(otherPerson.sex);
+                && sex.equals(otherPerson.sex)
+                && status.equals(otherPerson.status);
     }
 
     @Override

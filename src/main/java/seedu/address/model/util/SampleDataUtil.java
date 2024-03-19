@@ -1,7 +1,7 @@
 package seedu.address.model.util;
 
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ImmuniMate;
+import seedu.address.model.ReadOnlyImmuniMate;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.DateOfBirth;
 import seedu.address.model.person.Name;
@@ -38,8 +38,8 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
+    public static ReadOnlyImmuniMate getSampleAddressBook() {
+        ImmuniMate sampleAb = new ImmuniMate();
         for (Person samplePerson : getSamplePersons()) {
             sampleAb.addPerson(samplePerson);
         }
