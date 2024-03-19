@@ -196,6 +196,7 @@ _Details coming soon ..._
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
+
 Action | Format, Examples
 --------|------------------
 **Add** | `add TYPE /name NAME /email EMAIL /country_code CODE /number NUMBER /address ADDRESS …​` <br> e.g., `add client /name Elon /email elon@gmail.com /country_code +60 /number 88888888 /address Elon Street, Block 123, 101010 Singapore`
