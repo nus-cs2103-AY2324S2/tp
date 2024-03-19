@@ -1,15 +1,19 @@
 package seedu.address.logic.parser;
 
+
 import static seedu.address.logic.commands.CommandTestUtil.GROUP_DESC_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GROUP_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NUSID_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_AMY;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccessGroup;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.GroupCommand;
+import seedu.address.model.group.Group;
 import seedu.address.model.person.NusId;
 import seedu.address.testutil.GroupPersonDescriptorBuilder;
 
@@ -18,6 +22,19 @@ import seedu.address.testutil.GroupPersonDescriptorBuilder;
 class GroupCommandParserTest {
 
     private GroupCommandParser parser = new GroupCommandParser();
+    private static final String MESSAGE_INVALID_FORMAT =
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, GroupCommand.MESSAGE_USAGE);
+    
+    @Test
+    public void parse_invalidPreamble_failure() {
+
+
+        // invalid arguments being parsed as preamble
+        assertParseFailure(parser, "E0123456 some random string", MESSAGE_INVALID_FORMAT);
+
+        // invalid prefix being parsed as preamble
+        assertParseFailure(parser, "E0123456 i/ string", MESSAGE_INVALID_FORMAT);
+    }
 
     @Test
     public void parse_allFieldsSpecified_success() {
