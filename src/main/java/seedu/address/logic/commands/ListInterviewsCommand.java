@@ -21,6 +21,7 @@ public class ListInterviewsCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         List<Interview> interviewList = model.getFilteredInterviewList();
+        System.out.println(interviewList);
         String result = "";
         int x = 1;
         for (Interview i : interviewList) {

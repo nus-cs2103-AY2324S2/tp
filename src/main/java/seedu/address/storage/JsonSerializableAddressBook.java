@@ -1,5 +1,7 @@
 package seedu.address.storage;
 
+import static seedu.address.logic.commands.AddInterviewCommand.MESSAGE_DUPLICATE_INTERVIEW;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -11,7 +13,9 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.interview.Interview;
 import seedu.address.model.person.Person;
+
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
@@ -22,13 +26,19 @@ class JsonSerializableAddressBook {
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
+    private final List<JsonAdaptedInterview> interviews = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableAddressBook} with the given persons.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
+    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
+                                       @JsonProperty("interviews") List<JsonAdaptedInterview> interviews) {
         this.persons.addAll(persons);
+        if (interviews != null) {
+            this.interviews.addAll(interviews);
+        }
+
     }
 
     /**
@@ -38,6 +48,9 @@ class JsonSerializableAddressBook {
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        interviews.addAll(source.getInterviewList().stream()
+                .map(JsonAdaptedInterview::new).collect(Collectors.toList()));
+
     }
 
     /**
@@ -53,6 +66,13 @@ class JsonSerializableAddressBook {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
             addressBook.addPerson(person);
+        }
+        for (JsonAdaptedInterview jsonAdaptedInterview : interviews) {
+            Interview interview = jsonAdaptedInterview.toModelType();
+            if (addressBook.hasInterview(interview)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_INTERVIEW);
+            }
+            addressBook.addInterview(interview);
         }
         return addressBook;
     }

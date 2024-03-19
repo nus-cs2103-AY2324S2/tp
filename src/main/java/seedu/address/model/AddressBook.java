@@ -59,8 +59,8 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
-
         setPersons(newData.getPersonList());
+        setInterviews(newData.getInterviewList());
     }
 
     //// person-level operations
@@ -126,12 +126,17 @@ public class AddressBook implements ReadOnlyAddressBook {
         return interviews.contains(interview);
     }
 
+
     /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
     public void removeInterview(Interview key) {
         interviews.remove(key);
+    }
+
+    public void setInterviews(List<Interview> interviews) {
+        this.interviews.setInterviews(interviews);
     }
 
     //// util methods
