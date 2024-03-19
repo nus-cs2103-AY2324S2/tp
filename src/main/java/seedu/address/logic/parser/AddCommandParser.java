@@ -49,7 +49,7 @@ public class AddCommandParser implements Parser<AddCommand> {
                         PREFIX_DATEOFADMISSION, PREFIX_ALLERGIES, PREFIX_BLOODTYPE, PREFIX_CONDITION, PREFIX_SYMPTOM,
                         PREFIX_DIAGNOSIS);
         if (!arePrefixesPresent(argMultimap, PREFIX_NRIC, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_DATEOFBIRTH,
-                PREFIX_SEX) || !argMultimap.getPreamble().isEmpty()) {
+                PREFIX_SEX, PREFIX_STATUS) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
