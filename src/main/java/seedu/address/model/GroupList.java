@@ -24,6 +24,7 @@ public class GroupList implements ReadOnlyGroupList {
      */
     public GroupList(ReadOnlyGroupList toBeCopied) {
         this();
+        requireNonNull(toBeCopied);
         resetData(toBeCopied);
     }
 

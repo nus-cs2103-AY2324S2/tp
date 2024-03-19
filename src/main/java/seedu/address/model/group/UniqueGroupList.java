@@ -132,8 +132,15 @@ public class UniqueGroupList implements Iterable<Group> {
 
     @Override
     public boolean equals(Object other) {
-        //    TODO: implement
-        return false;
+        if (other == this) {
+            return true;
+        }
+        if (!(other instanceof UniqueGroupList)) {
+            return false;
+        }
+
+        UniqueGroupList otherUniqueGroupList = (UniqueGroupList) other;
+        return otherUniqueGroupList.internalList.equals(internalList);
     }
 
     @Override
