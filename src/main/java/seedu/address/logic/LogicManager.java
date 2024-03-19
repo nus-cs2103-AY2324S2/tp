@@ -20,6 +20,7 @@ import seedu.address.logic.commands.FindPersonCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListPersonCommand;
 import seedu.address.logic.commands.MarkAttendanceCommand;
+import seedu.address.logic.commands.UnmarkAttendanceCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -92,6 +93,7 @@ public class LogicManager implements Logic {
                 FindPersonCommand.COMMAND_WORD,
                 ListPersonCommand.COMMAND_WORD,
                 MarkAttendanceCommand.COMMAND_WORD,
+                UnmarkAttendanceCommand.COMMAND_WORD,
                 ExitCommand.COMMAND_WORD,
                 HelpCommand.COMMAND_WORD
         );
