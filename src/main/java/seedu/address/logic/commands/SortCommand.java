@@ -34,17 +34,17 @@ public class SortCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        if (category.equals("tag")) {
+        if (category.equalsIgnoreCase("tag")) {
             model.getAddressBook()
                     .getPersons()
                     .sortListByTag();
-        } else if (category.equals("name")) {
+        } else if (category.equalsIgnoreCase("name")) {
             model.getAddressBook()
                     .getPersons()
                     .sortListByName();
         }
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
-        return new CommandResult("Sorting tags");
+        return new CommandResult("Sorted address book by: " + category.toLowerCase());
     }
 }
