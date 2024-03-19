@@ -40,7 +40,7 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
-
+    private ExitWindow exitWindow;
 
 
     @FXML
@@ -75,8 +75,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
-
-
+        exitWindow = new ExitWindow();
 
     }
 
@@ -188,10 +187,9 @@ public class MainWindow extends UiPart<Stage> {
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
-        primaryStage.hide();
+        exitWindow.show();
+        //primaryStage.hide();
     }
-
-
 
     public PersonListPanel getPersonListPanel() {
         return personListPanel;

@@ -26,13 +26,18 @@ public class CommandHelperWindow extends AnchorPane {
 
     private AddCommandHelper addCommandHelper;
 
+    /**
+     * Starts the CommandHelper Window
+     */
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+
     }
 
     public void setCommandHelper(AddCommandHelper a) {
         this.addCommandHelper = a;
+        dialogContainer.getChildren().addAll(DialogBox.getDukeDialog("Hello, please enter the name of the person"));
     }
 
     /**
