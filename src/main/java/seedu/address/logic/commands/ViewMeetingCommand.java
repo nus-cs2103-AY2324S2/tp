@@ -42,7 +42,7 @@ public class ViewMeetingCommand extends ViewCommand {
         ArrayList<Meeting> meetings = selectedClient.getMeetings();
 
         if (this.meetingIndex.getZeroBased() >= meetings.size()) {
-
+            throw new CommandException(Messages.MESSAGE_INVALID_MEETING_DISPLAYED_INDEX);
         }
 
         Meeting selectedMeeting = meetings.get(this.meetingIndex.getZeroBased());
