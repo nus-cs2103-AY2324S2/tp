@@ -79,7 +79,7 @@ public class FindCommandTest {
     public void toStringMethod() {
         List<Predicate<Student>> predicates = List.of(new NameContainsKeywordsPredicate("keyword"));
         FindCommand findCommand = new FindCommand(predicates);
-        String expected = FindCommand.class.getCanonicalName() + "{predicate=" + predicates + "}";
+        String expected = FindCommand.class.getCanonicalName() + "{predicates=" + predicates + "}";
         assertEquals(expected, findCommand.toString());
     }
 
