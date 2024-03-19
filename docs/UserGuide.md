@@ -189,15 +189,47 @@ Examples:
 * `schedule 7 s/2024-07-08 07:30` schedules an appointment with the 
 7th client in the client list at 8 July 2024 7.30am.
 
+### Adding a policy : `addpolicy`
+
+Adds a policy to the client.
+
+Format: `addpolicy INDEX n/POLICY_NAME i/POLICY_ID`
+
+* Adds a policy to the client at the specified `INDEX`.
+* The index refers to the index number shown in the displayed client list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* The policy ID of the new policy must be unique to other policies the client has.
+
+Examples:
+* `addpolicy 1 n/Life i/1` adds a policy named `Life` with policy ID `1` to the 1st client in the client list.
+* `addpolicy 3 n/Health i/2` adds a policy named `Health` with policy ID `2` to the 3rd client in the client list.
+
+### Deleting a policy : `deletepolicy`
+
+Deletes a policy from the client.
+
+Format: `deletepolicy INDEX i/POLICY_ID`
+
+* Deletes a policy from the client at the specified `INDEX`.
+* The index refers to the index number shown in the displayed client list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `deletepolicy 1 i/1` deletes the policy with policy ID `1` from the 1st client in the client list.
+* `deletepolicy 3 i/2` deletes the policy with policy ID `2` from the 3rd client in the client list.
+
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the client list.
 
 Format: `clear`
 
-><span style="color: red;"> [!CAUTION] </span> 
->
->><span style="color: red;"> Clearing is irreversible and will NOT have a confirmation screen </span> 
+<box>
+
+<span style="color: red;"> :warning:**Caution:** </span>>
+Clearing is irreversible and will NOT have a confirmation screen 
+</box>
 
 ### Exiting the program : `exit`
 
@@ -213,12 +245,11 @@ ClientCare data are saved in the hard disk automatically after any command that 
 
 ClientCare data is automatically saved as a JSON file `[JAR file location]/data/clientcare.json`. Advanced users are welcome to update data directly by editing that data file.
 
-<box type="warning" seamless>
-
-**Caution:**
-If your changes to the data file makes its format invalid, ClientCare will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
+>[!CAUTION]
+>If your changes to the data file makes its format invalid, ClientCare will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
 Furthermore, certain edits can cause the ClientCare to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
-</box>
+
+
 
 ### Archiving data files `[coming in v2.0]`
 
@@ -241,15 +272,18 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action       | Format, Examples                                                                                                                                                     |
-|--------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**      | `add n/NAME c/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g.,`add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Clear**    | `clear`                                                                                                                                                              |
-| **Delete**   | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                  |
-| **Edit**     | `edit INDEX [n/NAME] [c/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                          |
-| **Find**     | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                           |
-| **List**     | `list`                                                                                                                                                               |
-| **LastMet**  | `met INDEX [l/DATE]`<br> eg., `met 2 l/2023-05-07`                                                                                                                   |
-| **Schedule** | `schedule INDEX [s/DATETIME]`<br> eg., `schedule 2 s/2023-05-07 22:00`                                                                                               |                                                                                                                               |
-| **View**     | `view INDEX`<br> eg., `view 1`                                                                                                                                        |
-| **Help**     | `help`                                                                                                                                                               |
+| Action            | Format, Examples                                                                                                                                                        |
+|-------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**           | `add n/NAME c/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g.,`add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`    |
+| **Clear**         | `clear`                                                                                                                                                                 |
+| **Delete**        | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                     |
+| **Edit**          | `edit INDEX [n/NAME] [c/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                             |
+| **Find**          | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                              |
+| **List**          | `list`                                                                                                                                                                  |
+| **LastMet**       | `met INDEX [l/DATE]`<br> eg., `met 2 l/2023-05-07`                                                                                                                      |
+| **Schedule**      | `schedule INDEX [s/DATETIME]`<br> eg., `schedule 2 s/2023-05-07 22:00`                                                                                                  |                                                                                                                               |
+| **View**          | `view INDEX`<br> eg., `view 1`                                                                                                                                          |
+| **Add Policy**    | `addpolicy INDEX n/POLICY_NAME i/POLICY_ID` <br/> eg., 'addpolicy 1 n/Life i/1'                                                                                         |
+| **Delete Policy** | `deletepolicy INDEX i/POLICY_ID` <br/> eg., 'deletepolicy 1 i/1'                                                                                                        |
+| **Help**          | `help`                                                                                                                                                                  |
+| **Exit**          | `exit`                                                                                                                                                                  |
