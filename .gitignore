@@ -24,3 +24,6 @@ docs/_site/
 
 # VSCode local configuration files
 .vscode/
+
+# Binary files
+bin
