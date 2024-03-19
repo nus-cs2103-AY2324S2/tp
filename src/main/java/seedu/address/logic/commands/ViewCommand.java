@@ -16,9 +16,9 @@ import seedu.address.model.person.NameContainsKeywordsPredicate;
 public class ViewCommand extends Command {
     /*
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": shows the summary stats"
-            + "Example: " + COMMAND_WORD;
+            + "Example: " + COMMAND_WORD;*/
 
-    public static final String MESSAGE_SUCCESS = "Viewing the stats of students";*/
+    public static final String MESSAGE_SUCCESS = "Viewing the stats of students";
 
     public static final String COMMAND_WORD = "view";
 
@@ -29,7 +29,7 @@ public class ViewCommand extends Command {
 
     private final NameContainsKeywordsPredicate namePredicate;
     private final IsSameIdPredicate idPredicate;
-    
+
     public ViewCommand() {
         this.namePredicate = null;
         this.idPredicate = null;
@@ -81,11 +81,5 @@ public class ViewCommand extends Command {
         return new ToStringBuilder(this)
                 .add("namePredicate", namePredicate)
                 .toString();
-
-    
-
-    @Override
-    public CommandResult execute(Model model) throws CommandException {
-        
     }
 }

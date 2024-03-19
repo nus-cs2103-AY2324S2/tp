@@ -27,9 +27,9 @@ public class ViewCommandParser implements Parser<ViewCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the ViewCommand
      * and returns a ViewCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
-
   /*
   public Command parse(String arguments) throws ParseException {
         if (arguments.trim().equals("-all")) {
@@ -42,13 +42,11 @@ public class ViewCommandParser implements Parser<ViewCommand> {
             throw new ParseException("Invalid arguments for 'view' command");
         }
     }*/
-    
     // TEMPORARY - Move to CliSyntax
-    public static final PREFIX_STATS = "-stats";
-    public static final PREFIX_STATSLONG = "-statistics";
-    public static final PREFIX_ALL = "-all";
+    public static final Prefix PREFIX_STATS = new Prefix("-stats");
+    public static final Prefix PREFIX_STATSLONG = new Prefix("-statistics");
+    public static final Prefix PREFIX_ALL = new Prefix("-all");
     // End of temporary
-    
     public ViewCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ID, PREFIX_STATS, PREFIX_STATSLONG, PREFIX_ALL);
@@ -60,13 +58,11 @@ public class ViewCommandParser implements Parser<ViewCommand> {
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
         }
-      
-        if (arePrefixPresent(argMultimap, PREFIX_ALL) {
+        if (arePrefixesPresent(argMultimap, PREFIX_ALL)) {
             return new ListCommand();
-        } else if (arePrefixPresent(argMultimap, PREFIX_STATS) || arePrefixPresent(argMultimap, PREFIX_STATSLONG)) {
+        } else if (arePrefixesPresent(argMultimap, PREFIX_STATS) || arePrefixesPresent(argMultimap, PREFIX_STATSLONG)) {
             return new ViewCommand();
         }
-            
         Name name = null;
         try {
             if (arePrefixesPresent(argMultimap, PREFIX_NAME)) {
@@ -75,7 +71,6 @@ public class ViewCommandParser implements Parser<ViewCommand> {
         } catch (ParseException e) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
         }
-
         Id id = null;
         try {
             if (arePrefixesPresent(argMultimap, PREFIX_ID)) {
@@ -89,7 +84,6 @@ public class ViewCommandParser implements Parser<ViewCommand> {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
-
         if (name == null && id == null) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
@@ -100,7 +94,6 @@ public class ViewCommandParser implements Parser<ViewCommand> {
             return new ViewCommand(new IsSameIdPredicate(id));
         }
     }
-
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
