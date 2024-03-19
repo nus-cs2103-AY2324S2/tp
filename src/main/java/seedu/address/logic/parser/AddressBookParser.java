@@ -8,6 +8,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.commands.*;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddOrderCommand;
 import seedu.address.logic.commands.CancelCommand;
@@ -53,6 +54,7 @@ public class AddressBookParser {
         // Lower level log messages are used sparingly to minimize noise in the code.
         logger.fine("Command word: " + commandWord + "; Arguments: " + arguments);
 
+
         switch (commandWord) {
 
         case AddCommand.COMMAND_WORD:
@@ -84,6 +86,9 @@ public class AddressBookParser {
 
         case AddOrderCommand.COMMAND_WORD:
             return new AddOrderCommandParser().parse(arguments);
+
+        case AddProductCommand.COMMAND_WORD:
+            return new AddProductCommandParser().parse(arguments);
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);
