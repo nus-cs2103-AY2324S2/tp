@@ -1,8 +1,10 @@
 package seedu.address.ui;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import javafx.embed.swing.JFXPanel;
 import seedu.address.model.module.ModuleCode;
 

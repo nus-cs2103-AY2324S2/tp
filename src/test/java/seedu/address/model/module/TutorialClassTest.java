@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 import static seedu.address.model.module.TutorialClass.isValidTutorialClass;
+import static seedu.address.testutil.TypicalPersons.ALICE;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -18,6 +19,8 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.StudentId;
 import seedu.address.model.tag.Tag;
+import seedu.address.testutil.ModuleBuilder;
+import seedu.address.testutil.PersonBuilder;
 
 public class TutorialClassTest {
 
@@ -56,6 +59,44 @@ public class TutorialClassTest {
     }
 
     @Test
+    void isSameTutorialClass() {
+        ModuleCode module = new ModuleBuilder().withModuleCode("CS2102").withTutorialClasses(VALID_TUTORIAL).build();
+        TutorialClass tutorialClass = module.getTutorialClasses().get(1);
+        String tutorialClassString = tutorialClass.value;
+        assertTrue(VALID_TUTORIAL.equals(tutorialClassString));
+
+        // different module but same tutorial class notation
+        module = new ModuleBuilder().withModuleCode("CS2105").withTutorialClasses(VALID_TUTORIAL).build();
+        tutorialClass = module.getTutorialClasses().get(1);
+        tutorialClassString = tutorialClass.value;
+        assertTrue(VALID_TUTORIAL.equals(tutorialClassString));
+    }
+
+    @Test
+    void isDifferentTutorialClass() {
+        // same module but different tutorial class
+        ModuleCode module = new ModuleBuilder().withModuleCode("CS2102").withTutorialClasses(VALID_TUTORIAL).build();
+        TutorialClass tutorialClass = module.getTutorialClasses().get(0);
+        String tutorialClassString = tutorialClass.value;
+        assertFalse(VALID_TUTORIAL.equals(tutorialClassString));
+
+        // different module and different tutorial class
+        module = new ModuleBuilder().withModuleCode("CS2109").withTutorialClasses("T05").build();
+        tutorialClass = module.getTutorialClasses().get(1);
+        String tutorialClassToCompare = tutorialClass.value;
+        assertFalse(tutorialClassString.equals(tutorialClassToCompare));
+    }
+
+    @Test
+    void createTutorialClassWithExistingListOfStudentsSuccess() {
+        ArrayList<Person> listOfStudents = new ArrayList<>();
+        Person alice = new PersonBuilder(ALICE).build();
+        listOfStudents.add(alice);
+        TutorialClass tutorialClass = new TutorialClass(VALID_TUTORIAL, listOfStudents);
+        assertTrue(tutorialClass.getStudents().equals(listOfStudents));
+    }
+
+    @Test
     void testToString_success() {
         TutorialClass tutorial = new TutorialClass(VALID_TUTORIAL);
         assertEquals(tutorial.toString(), VALID_TUTORIAL);
@@ -83,18 +124,14 @@ public class TutorialClassTest {
         Name name1 = new Name("John");
         Email email1 = new Email("john@example.com");
         StudentId stuId1 = new StudentId("A0213333J");
-        ModuleCode module1 = new ModuleCode("CS2103");
-        TutorialClass tutorial1 = new TutorialClass("T01");
         Set<Tag> tags1 = new HashSet<>();
-        Person student1 = new Person(name1, email1, stuId1, module1, tutorial1, tags1);
+        Person student1 = new Person(name1, email1, stuId1, tags1);
 
         Name name2 = new Name("Alice");
         Email email2 = new Email("alice@example.com");
         StudentId stuId2 = new StudentId("A0145678A");
-        ModuleCode module2 = new ModuleCode("CS2101");
-        TutorialClass tutorial2 = new TutorialClass("T02");
         Set<Tag> tags2 = new HashSet<>();
-        Person student2 = new Person(name2, email2, stuId2, module2, tutorial2, tags2);
+        Person student2 = new Person(name2, email2, stuId2, tags2);
 
         students.add(student1);
         students.add(student2);
