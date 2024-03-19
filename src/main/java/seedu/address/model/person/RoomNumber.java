@@ -3,9 +3,12 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.time.LocalDate;
+
 /**
  * Represents a Person's room number in the logbook.
- * Guarantees: immutable; is valid as declared in {@link #isValidRoomNumber(String)}
+ * Guarantees: immutable; is valid as declared in
+ * {@link #isValidRoomNumber(String)}
  */
 public class RoomNumber {
 
@@ -17,7 +20,12 @@ public class RoomNumber {
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
+    // Ignore the year, it will be updated
+    private static final LocalDate firstResultRelease = LocalDate.parse("2020-04-05");
+    private static final LocalDate lastResultRelease = LocalDate.parse("2020-04-12");
+
     public final String value;
+    private final LocalDate lastModified;
 
     /**
      * Constructs an {@code RoomNumber}.
@@ -28,6 +36,7 @@ public class RoomNumber {
         requireNonNull(roomNumber);
         checkArgument(isValidRoomNumber(roomNumber), MESSAGE_CONSTRAINTS);
         value = roomNumber;
+        lastModified = LocalDate.now();
     }
 
     /**
@@ -35,6 +44,40 @@ public class RoomNumber {
      */
     public static boolean isValidRoomNumber(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns true when RoomNumber is due for an udpdate.
+     */
+    public boolean isOutdated() {
+        return isOutdated(lastModified);
+    }
+
+    /**
+     * Returns true when RoomNumber is due for an udpdate.
+     */
+    protected static boolean isOutdated(LocalDate date) {
+        LocalDate lastRelease = lastResultRelease;
+        lastRelease = lastRelease.withYear(LocalDate.now().getYear());
+        if (lastRelease.isAfter(LocalDate.now())) {
+            lastRelease = lastRelease.minusYears(1);
+        }
+
+        if (!date.isBefore(lastRelease)) {
+            return false;
+        }
+
+        LocalDate firstRelease = firstResultRelease;
+        firstRelease = firstRelease.withYear(LocalDate.now().getYear());
+        if (firstRelease.isAfter(LocalDate.now())) {
+            firstRelease = firstRelease.minusYears(1);
+        }
+
+        if (!date.isBefore(firstRelease)) {
+            return false;
+        }
+
+        return true;
     }
 
     @Override
