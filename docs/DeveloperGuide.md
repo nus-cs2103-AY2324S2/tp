@@ -495,6 +495,9 @@ Step 3: The use executes `deletee 1 e/1` to delete the Event as he realised he k
 date.
 * Upon successful validation,  an `DeleteEventCommand` instance is created.
 
+The following UML sequence diagram illustrates how the Delete Event operation works.
+<puml src="diagrams/DeleteEventSequenceDiagram.puml" alt="Delete Event Sequence Diagram" />
+
 #### Design Considerations
 
 **Aspect: Choice of COMMAND_WORD**
@@ -506,6 +509,17 @@ date.
 * **Alternative 2**: `deleteID`
     * Pros: Clearer syntax.
     * Cons: User might confuse ID as Patient ID and also inconsistency with `adde` command, further confusing user.
+
+**Aspect: Syntax to choose event to delete**
+
+* **Alternative 1 (current choice)**: Delete event by `[EVENT_INDEX]`. Syntax: prefix `e/` followed by `[EVENT_INDEX]` 
+    * Pros: User do not need to type whole event name, also similar to delete patient where patient index is used to
+  identify patient of interest.
+    * Cons: User need to know the `[EVENT_INDEX]` of the patient.
+      <br></br>
+* **Alternative 2**: Delete event by `[EVENT_NAME]`. Syntax: prefix `e/` followed by `[EVENT_NAME]`
+    * Pros: User can delete event quickly if name is short.
+    * Cons: User need to input the whole event name which might be tedious if `[EVENT_NAME]` is very long.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -534,6 +548,10 @@ which falls on the 20th January.
 
 Step 3: The user executes `edite 1 e/1 n/New Birthday d/20-01-2023` to edit the Event.
 * Upon successful validation,  an `EditEventCommand` instance is created.
+
+The following UML sequence diagram illustrates how the Edit Event operations works.
+<puml src="diagrams/EditEventSequenceDiagram.puml" alt="Edit Event Sequence Diagram" />
+
 
 #### Design Considerations
 
