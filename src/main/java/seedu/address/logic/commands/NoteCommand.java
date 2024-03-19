@@ -28,9 +28,10 @@ public class NoteCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds note to person.\n"
             + "Parameters: "
-            + PREFIX_NAME + "Moochie"
-            + PREFIX_NOTE + "Meet at 6pm tuesday"
-            + "Example: " + COMMAND_WORD + " Moochie" + "Meet at 6pm tuesday";
+            + PREFIX_NAME + "NAME"
+            + PREFIX_NOTE + "NOTE"
+            + "Example: " + COMMAND_WORD + PREFIX_NAME
+            + " Moochie" + PREFIX_NOTE + "Meet at 6pm Tuesday";
     private final Name name;
     private final Note note;
 
