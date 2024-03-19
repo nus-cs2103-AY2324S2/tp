@@ -56,12 +56,12 @@ By using commands, HR officers can efficiently organize contacts for their recru
   e.g. in `/filter <Tag>`, `<Tag>` is a parameter which can be used as `/filter initial_application`.
 
 * Items in square brackets are optional.<br>
-  e.g `name/NAME [tag/TAG]` can be used as `name/John Doe tag/friend` or as `name/John Doe`.
+  e.g `/name NAME [/tag TAG]` can be used as `/name John Doe /tag friend` or as `/name John Doe`.
 
 * Parameters can be in any order for `add_applicant` and `edit_applicant` commands.<br>
-  e.g. if the command specifies `name/NAME phone/PHONE_NUMBER`, `phone/PHONE_NUMBER name/NAME` is also acceptable.
+  e.g. if the command specifies `/name NAME /phone PHONE_NUMBER`, `/phone PHONE_NUMBER /name NAME` is also acceptable.
 
-* Parameters must be in strict order for `filter`, `comment`, `export`, and `tag` command.
+* Parameters must be in strict order for `filter`, `note`, `export`, and `tag` command.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
