@@ -9,6 +9,7 @@ import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -31,9 +32,13 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private EmployeeListPanel employeeListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private TaskListPanel taskListPanel;
+
+    @FXML
+    private VBox employeeList;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -42,7 +47,10 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane employeeListPanelPlaceholder;
+
+    @FXML
+    private StackPane taskListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -110,17 +118,23 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        employeeListPanel = new EmployeeListPanel(logic.getFilteredEmployeeList());
+        employeeListPanelPlaceholder.getChildren().add(employeeListPanel.getRoot());
+
+        taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
+        taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
+
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getTaskMasterProFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        taskListPanel.hide();
     }
 
     /**
@@ -147,6 +161,28 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Shows the list of employees.
+     */
+    @FXML
+    public void handleShowEmployees() {
+        if (!employeeListPanel.getRoot().isVisible()) {
+            employeeListPanel.getRoot().setVisible(true);
+            taskListPanel.getRoot().setVisible(false);
+        }
+    }
+
+    /**
+     * Shows the list of tasks.
+     */
+    @FXML
+    public void handleShowTasks() {
+        if (!taskListPanel.getRoot().isVisible()) {
+            employeeListPanel.getRoot().setVisible(false);
+            taskListPanel.getRoot().setVisible(true);
+        }
+    }
+
     void show() {
         primaryStage.show();
     }
@@ -163,8 +199,8 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    public EmployeeListPanel getEmployeeListPanel() {
+        return employeeListPanel;
     }
 
     /**
@@ -180,6 +216,14 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
+            }
+
+            if (commandResult.isShowEmployees()) {
+                handleShowEmployees();
+            }
+
+            if (commandResult.isShowTasks()) {
+                handleShowTasks();
             }
 
             if (commandResult.isExit()) {
