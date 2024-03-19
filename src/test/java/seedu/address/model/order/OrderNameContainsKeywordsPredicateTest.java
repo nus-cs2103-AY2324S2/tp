@@ -42,7 +42,7 @@ public class OrderNameContainsKeywordsPredicateTest {
         // different person -> returns false
         assertFalse(firstPredicate.equals(secondPredicate));
     }
-    
+
     @Test
     public void test_nameDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
