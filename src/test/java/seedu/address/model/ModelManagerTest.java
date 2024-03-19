@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -16,7 +17,9 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.Person;
 import seedu.address.testutil.AddressBookBuilder;
+import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.TypicalPersons;
 
 public class ModelManagerTest {
@@ -33,6 +36,33 @@ public class ModelManagerTest {
     @Test
     public void setUserPrefs_nullUserPrefs_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.setUserPrefs(null));
+    }
+
+    @Test
+    public void setPerson_personInAddressBook_success() {
+        // Create initial state
+        ReadOnlyAddressBook initialAddressBook = modelManager.getAddressBook();
+        ReadOnlyUserPrefs initialUserPrefs = modelManager.getUserPrefs();
+
+        // Add a valid person to the address book
+        Person validPerson = new PersonBuilder().build();
+        modelManager.addPerson(validPerson);
+
+        // Create an edited version of the person
+        Person editedPerson = new PersonBuilder(validPerson).withName("New Name").build();
+
+        // Set edited person in the model
+        modelManager.setPerson(validPerson, editedPerson);
+
+        // Check if the edited person is in the filteredPersons list
+        assertEquals(editedPerson, modelManager.getFilteredPersonList().get(0));
+        assertNotEquals(validPerson, modelManager.getFilteredPersonList().get(0));
+
+        // Ensure that the address book's state was not changed
+        assertEquals(initialAddressBook, modelManager.getAddressBook());
+
+        // Ensure that the user prefs remain unchanged
+        assertEquals(initialUserPrefs, modelManager.getUserPrefs());
     }
 
     @Test

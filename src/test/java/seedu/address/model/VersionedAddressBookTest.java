@@ -35,6 +35,39 @@ public class VersionedAddressBookTest {
     }
 
     @Test
+    public void equals_sameInstance_returnsTrue() {
+        VersionedAddressBook versionedAddressBook = new VersionedAddressBook(new AddressBook());
+        assertTrue(versionedAddressBook.equals(versionedAddressBook));
+    }
+
+    @Test
+    public void equals_differentClass_returnsFalse() {
+        VersionedAddressBook versionedAddressBook = new VersionedAddressBook(new AddressBook());
+        assertFalse(versionedAddressBook.equals(new Object()));
+    }
+
+    @Test
+    public void equals_null_returnsFalse() {
+        VersionedAddressBook versionedAddressBook = new VersionedAddressBook(new AddressBook());
+        assertFalse(versionedAddressBook.equals(null));
+    }
+
+    @Test
+    public void equals_differentState_returnsFalse() {
+        VersionedAddressBook versionedAddressBook1 = new VersionedAddressBook(new AddressBook());
+        VersionedAddressBook versionedAddressBook2 = new VersionedAddressBook(new AddressBook());
+        versionedAddressBook2.commit();
+        assertFalse(versionedAddressBook1.equals(versionedAddressBook2));
+    }
+
+    @Test
+    public void equals_sameState_returnsTrue() {
+        VersionedAddressBook versionedAddressBook1 = new VersionedAddressBook(new AddressBook());
+        VersionedAddressBook versionedAddressBook2 = new VersionedAddressBook(new AddressBook());
+        assertTrue(versionedAddressBook1.equals(versionedAddressBook2));
+    }
+
+    @Test
     public void commit_multipleAddressBookPointerAtEndOfStateList_noStatesRemovedCurrentStateSaved() {
         VersionedAddressBook versionedAddressBook = prepareAddressBookList(
                 emptyAddressBook, addressBookWithAmy, addressBookWithBob);
