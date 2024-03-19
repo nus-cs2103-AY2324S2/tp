@@ -5,8 +5,8 @@ import java.util.Comparator;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import seedu.address.model.person.Person;
 
 /**
@@ -24,10 +24,10 @@ public class PersonProfile extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Person person;
+    private Person person;
 
     @FXML
-    private HBox profilePane;
+    private VBox profilePane;
     @FXML
     private Label name;
     @FXML
@@ -44,10 +44,33 @@ public class PersonProfile extends UiPart<Region> {
     private Label lastcontact;
 
     /**
+     * Creates a {@code PersonProfile}.
+     */
+    public PersonProfile() {
+        super(FXML);
+    }
+
+    /**
      * Creates a {@code PersonProfile} with the given {@code Person}.
      */
     public PersonProfile(Person person) {
         super(FXML);
+        this.person = person;
+        name.setText(person.getName().fullName);
+        phone.setText("Phone number: " + person.getPhone().value);
+        address.setText("Address: " + person.getAddress().value);
+        email.setText("Email: " + person.getEmail().value);
+        upcoming.setText("Upcoming: " + person.getUpcoming().toString());
+        lastcontact.setText("Last contacted: " + person.getLastcontact().toString());
+        person.getTags().stream()
+                .sorted(Comparator.comparing(tag -> tag.tagName))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+    }
+
+    /**
+     * Updates the {@code PersonProfile} with the given {@code Person}.
+     */
+    public void setPerson(Person person) {
         this.person = person;
         name.setText(person.getName().fullName);
         phone.setText("Phone number: " + person.getPhone().value);
