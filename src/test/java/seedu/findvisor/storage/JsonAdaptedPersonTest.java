@@ -1,6 +1,7 @@
 package seedu.findvisor.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.findvisor.logic.commands.CommandTestUtil.INVALID_MEETING_REMARK;
 import static seedu.findvisor.storage.JsonAdaptedPerson.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.findvisor.testutil.Assert.assertThrows;
 import static seedu.findvisor.testutil.TypicalPersons.BENSON;
@@ -123,10 +124,11 @@ public class JsonAdaptedPersonTest {
 
     @Test
     public void toModelType_invalidMeeting_throwsIllegalValueException() {
-        JsonAdaptedMeeting invalidMeeting = new JsonAdaptedMeeting("INVALID_START", "INVALID_END");
+        JsonAdaptedMeeting invalidMeeting = new JsonAdaptedMeeting("INVALID_START",
+                "INVALID_END", INVALID_MEETING_REMARK);
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
                 invalidMeeting, VALID_TAGS);
-        String expectedMessage = Meeting.MESSAGE_CONSTRAINTS;
+        String expectedMessage = Meeting.MESSAGE_DATETIME_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 

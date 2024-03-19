@@ -4,6 +4,7 @@ import static seedu.findvisor.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.findvisor.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.findvisor.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.findvisor.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.findvisor.logic.commands.CommandTestUtil.VALID_MEETING_REMARK;
 import static seedu.findvisor.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.findvisor.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.findvisor.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
@@ -38,7 +39,8 @@ public class TypicalPersons {
             .withEmail("heinz@example.com").withAddress("wall street")
             .withMeeting(Optional.of(new Meeting(
                         LocalDateTime.of(2024, 3, 12, 14, 0, 0),
-                        LocalDateTime.of(2024, 3, 12, 15, 0, 0)))).build();
+                        LocalDateTime.of(2024, 3, 12, 15, 0, 0),
+                        VALID_MEETING_REMARK))).build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withAddress("10th street").withTags("friends").build();
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("94822247")
