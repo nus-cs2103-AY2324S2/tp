@@ -177,8 +177,7 @@ public class EditCommand extends Command {
 
     /**
      * Stores the details to edit the person with. Each non-empty field value will
-     * replace the
-     * corresponding field value of the person.
+     * replace the corresponding field value of the person.
      */
     public static class EditPersonDescriptor {
         private Name name;
