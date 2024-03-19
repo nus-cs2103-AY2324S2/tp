@@ -148,12 +148,13 @@ the data of your previous Tether home folder.
 
 ## Command summary
 
-| Action                           | Format, Examples                                                                                                                              |
-|----------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add Applicant**                | `add_applicant n/NAME p/PHONE e/EMAIL [t/TAG]` <br> e.g., `add_applicant n/John Doe p/81239123 e/johndoe123@gmail.com`                         |
-| **Add Interviewer**              | `add_interviewer n/NAME p/PHONE e/EMAIL [t/TAG]` <br> e.g., `add_interviewer n/Jane Doe p/81239123 e/janed@example.com`                         |
-| **Add Interview**                | `add_interview desc/DESCRIPTION date/DATE st/START TIME et/END TIME a/APPLICANT PHONE i/INTERVIEWER PHONE`<br> e.g., `add_interview desc/Interview with John date/2024-11-11 st/10:00 et/11:00 a/81239123 i/91238123` |
-| **Delete Person**                | `delete_person PHONE` <br> e.g., `delete_person 81239123`                                                                                     |
-| **Delete Interview**             | `delete_interview INDEX`<br> e.g., `delete_interview 1`                                                                                        |
-| **List Interviews**              | `list_interviews`                                                                                                                              |
-| **Exit**                         | `exit`                                                                                                                                         |
+| Action               | Format, Examples                                                                                                                                                                                                 |
+|----------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add Applicant**    | `add_applicant n/NAME p/PHONE e/EMAIL [t/TAG]` <br> e.g., `add_applicant n/John Doe p/81239123 e/johndoe123@gmail.com`                                                                                           |
+| **Add Interviewer**  | `add_interviewer n/NAME p/PHONE e/EMAIL [t/TAG]` <br> e.g., `add_interviewer n/Jane Doe p/81239123 e/janed@example.com`                                                                                          |
+| **Add Interview**    | `add_interview desc/DESCRIPTION date/DATE st/START TIME et/END TIME a/APPLICANT PHONE i/INTERVIEWER PHONE`<br> e.g., `add_interview desc/Interview with John date/2024-11-11 st/10:00 et/11:00 a/81239123 i/91238123` |
+| **Delete Person**    | `delete_person PHONE` <br> e.g., `delete_person 81239123`                                                                                                                                                        |
+| **Delete Interview** | `delete_interview INDEX`<br> e.g., `delete_interview 1`                                                                                                                                                          |
+| **List Interviews**  | `list_interviews`                                                                                                                                                                                                |
+| **Exit**             | `exit`                                                                                                                                                                                                           |
+| **Help**             | `help`                                                                                                                                                                                                            |
