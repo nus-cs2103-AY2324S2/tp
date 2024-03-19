@@ -25,30 +25,30 @@ public class TypicalPersons {
 
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
             .withStudentId("A0223456X")
-            .withEmail("alice@example.com")
+            .withEmail("e0345678@u.nus.edu")
             .withGrade("A+")
             .withGroups("Group 1").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withStudentId("A0323456X")
-            .withEmail("johnd@example.com")
+            .withEmail("e1023456@u.nus.edu")
             .withGrade("A")
             .withGroups("Group 2B", "Group 1").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withStudentId("A0823456X")
-            .withGrade("A-").withEmail("heinz@example.com").build();
+            .withGrade("A-").withEmail("e1123456@u.nus.edu").build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier")
-            .withStudentId("A0923456X").withGrade("B+").withEmail("cornelia@example.com").withGroups("Group 1").build();
+            .withStudentId("A0923456X").withGrade("B+").withEmail("e1234567@u.nus.edu").withGroups("Group 1").build();
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer")
-            .withStudentId("A1023456X").withGrade("B").withEmail("werner@example.com").build();
+            .withStudentId("A1023456X").withGrade("B").withEmail("e1345678@u.nus.edu").build();
     public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz")
-            .withStudentId("A0123656X").withGrade("B-").withEmail("lydia@example.com").build();
+            .withStudentId("A0123656X").withGrade("B-").withEmail("e1456789@u.nus.edu").build();
     public static final Person GEORGE = new PersonBuilder().withName("George Best")
-            .withStudentId("A0128956X").withGrade("C").withEmail("anna@example.com").build();
+            .withStudentId("A0128956X").withGrade("C").withEmail("e0234567@u.nus.edu").build();
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier")
-            .withStudentId("A1056438U").withEmail("stefan@example.com").build();
+            .withStudentId("A1056438U").withEmail("e1034567@u.nus.edu").build();
     public static final Person IDA = new PersonBuilder().withName("Ida Mueller")
-            .withStudentId("A1078906H").withEmail("hans@example.com").build();
+            .withStudentId("A1078906H").withEmail("e1045678@u.nus.edu").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withStudentId(VALID_STUDENTID_AMY)

@@ -20,7 +20,7 @@ public class PersonBuilder {
 
     public static final String DEFAULT_STUDENTID = "A0123456X";
 
-    public static final String DEFAULT_EMAIL = "amy@gmail.com";
+    public static final String DEFAULT_EMAIL = "e0123456@u.nus.edu";
     public static final String DEFAULT_GRADE = "A+";
 
     private Name name;
@@ -73,14 +73,6 @@ public class PersonBuilder {
      */
     public PersonBuilder withGroups(String ... groups) {
         this.groups = SampleDataUtil.getGroupSet(groups);
-        return this;
-    }
-
-    /**
-     * Sets the {@code Phone} of the {@code Person} that we are building.
-     */
-    public PersonBuilder withPhone(String phone) {
-
         return this;
     }
 

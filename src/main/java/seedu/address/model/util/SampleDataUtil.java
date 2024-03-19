@@ -22,17 +22,17 @@ public class SampleDataUtil {
         return new Person[] {
 
             new Person(new Name("Alex Yeoh"), new StudentId("A0123456X"),
-                    new Email("alexyeoh@example.com"), new Grade("A+"), getGroupSet("Group 3")),
+                    new Email("e0987654@u.nus.edu"), new Grade("A+"), getGroupSet("Group 3")),
             new Person(new Name("Bernice Yu"), new StudentId("A0123456H"),
-                    new Email("berniceyu@example.com"), new Grade("A"), getGroupSet("Group 2", "Group 2B")),
+                    new Email("e0876543@u.nus.edu"), new Grade("A"), getGroupSet("Group 2", "Group 2B")),
             new Person(new Name("Charlotte Oliveiro"), new StudentId("A0123456U"),
-                    new Email("charlotte@example.com"), new Grade("A-"), getGroupSet("Group30")),
+                    new Email("e0765432@u.nus.edu"), new Grade("A-"), getGroupSet("Group30")),
             new Person(new Name("David Li"), new StudentId("A0123456A"),
-                    new Email("lidavid@example.com"), new Grade("B+"), getGroupSet("Group 4")),
+                    new Email("e0654321@u.nus.edu"), new Grade("B+"), getGroupSet("Group 4")),
             new Person(new Name("Irfan Ibrahim"), new StudentId("A0123457X"),
-                    new Email("irfan@example.com"), new Grade("B"), getGroupSet("Group 20")),
+                    new Email("e1098765@u.nus.edu"), new Grade("B"), getGroupSet("Group 20")),
             new Person(new Name("Roy Balakrishnan"), new StudentId("A0123458X"),
-                    new Email("royb@example.com"), new Grade("C"), getGroupSet("Group 30"))
+                    new Email("e1087654@u.nus.edu"), new Grade("C"), getGroupSet("Group 30"))
 
         };
     }
