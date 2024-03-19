@@ -12,7 +12,7 @@ import java.util.Objects;
  */
 public class BloodType {
     public static final String MESSAGE_CONSTRAINTS =
-            "BloodType should be A, B, AB, O. Rh should be either POSITIVE or NEGATIVE";
+            "BloodType should be A, B, AB, O. Rh should be either + or -";
     private enum Type { A, B, AB, O };
     private enum Rh { POSITIVE, NEGATIVE };
     private final Type type;
@@ -28,7 +28,7 @@ public class BloodType {
         requireNonNull(type, rh);
         checkArgument(isValidBloodType(type, rh), MESSAGE_CONSTRAINTS);
         this.type = Type.valueOf(type);
-        this.rh = Rh.valueOf(rh);
+        this.rh = rh == "+" ? Rh.POSITIVE : Rh.NEGATIVE;
     }
 
     /**
@@ -40,8 +40,10 @@ public class BloodType {
     public static boolean isValidBloodType(String testType, String testRh) {
         try {
             Type type = Type.valueOf(testType);
-            Rh rh = Rh.valueOf(testRh);
-            return true;
+            if (testRh == "+" || testRh == "-") {
+                return true;
+            }
+            return false;
         } catch (IllegalArgumentException e) {
             return false;
         }
@@ -52,6 +54,15 @@ public class BloodType {
 
     public String getRh() {
         return rh.toString();
+    }
+
+    /**
+     * Returns given placeholder string if value field is not initialised
+     * @param alt
+     * @return placeholder string
+     */
+    public String orElse(String alt) {
+        return type == null ? alt : getType() + getRh();
     }
 
     @Override
