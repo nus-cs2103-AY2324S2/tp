@@ -30,7 +30,7 @@ Clinic Mate is a **desktop** app for managing contacts in a clinic, optimized fo
 
    * `list` : Lists all contacts.
 
-   * `add n/John Doe i/T0123456A ag/12 s/Male a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * `add n/John Doe p/88888888 e/johndoe@mail.com i/T0123456A ag/12 s/Male a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
 
    * `delete T0123456A` : Deletes the contact with the IC 'T0123456A' shown in the current list.
 
@@ -68,12 +68,14 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
-
 ### Adding a person: `add`
 
 Adds a person to the address book.
 
-Format: `add n/NAME i/IC_NUMBER ag/AGE s/SEX a/ADDRESS`
+Format: `add n/NAME p/PHONE e/EMAIL i/IC_NUMBER ag/AGE s/SEX a/ADDRESS`
+
+* A person will be uniquely identified by his/her personal identification number.
+* Clinic mate does not allow the same identification number to be twice.
 
 <box type="tip" seamless>
 
@@ -81,7 +83,7 @@ Format: `add n/NAME i/IC_NUMBER ag/AGE s/SEX a/ADDRESS`
 </box>
 
 Examples:
-* `add n/John Doe i/T0123456A ag/12 s/Male a/John street, block 123, #01-01`
+* `add n/John Doe p/88888888 e/johndoe@mail.com i/T0123456A ag/12 s/Male a/John street, block 123, #01-01`
 
 ### Adding a note : `addnote`
 
@@ -172,7 +174,7 @@ _Details coming soon ..._
 
 Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**    | `add n/NAME i/IC_NUMBER ag/AGE s/SEX a/ADDRESS` <br> e.g., `add n/John Doe i/T0123456A ag/12 s/Male a/John street, block 123, #01-01`
+**Add**    | `add n/NAME p/PHONE e/EMAIL i/IC_NUMBER ag/AGE s/SEX a/ADDRESS` <br> e.g., `add n/John Doe p/88888888 e/johndoe@mail.com i/T0123456A ag/12 s/Male a/John street, block 123, #01-01`
 **Clear**  | `clear`
 **Delete** | `delete IC_NUMBER`<br> e.g., `delete T0123456A`
 **AddNote**   | `addnote i/IC_NUMBER n/NOTE`<br> e.g., `addnote i/T0123456A n/Patient has diabetes`
