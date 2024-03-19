@@ -11,7 +11,7 @@ import seedu.realodex.commons.core.LogsCenter;
 import seedu.realodex.logic.commands.Command;
 import seedu.realodex.logic.commands.CommandResult;
 import seedu.realodex.logic.commands.exceptions.CommandException;
-import seedu.realodex.logic.parser.AddressBookParser;
+import seedu.realodex.logic.parser.RealodexParser;
 import seedu.realodex.logic.parser.exceptions.ParseException;
 import seedu.realodex.model.Model;
 import seedu.realodex.model.ReadOnlyAddressBook;
@@ -31,7 +31,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final AddressBookParser addressBookParser;
+    private final RealodexParser realodexParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -39,7 +39,7 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        addressBookParser = new AddressBookParser();
+        realodexParser = new RealodexParser();
     }
 
     @Override
@@ -47,7 +47,7 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
+        Command command = realodexParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
         try {

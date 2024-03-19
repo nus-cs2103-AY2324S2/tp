@@ -25,9 +25,9 @@ import seedu.realodex.testutil.EditPersonDescriptorBuilder;
 import seedu.realodex.testutil.PersonBuilder;
 import seedu.realodex.testutil.PersonUtil;
 
-public class AddressBookParserTest {
+public class RealodexParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final RealodexParser parser = new RealodexParser();
 
     @Test
     public void parseCommand_add() throws Exception {
