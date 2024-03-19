@@ -1,6 +1,6 @@
 ---
   layout: default.md
-    title: "About Us"
+  title: "About Us"
 ---
 
 # About Us
@@ -35,7 +35,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Loh Jin Hun
 
-<img src="images/Ragnapop.png" width="200px">
+<img src="images/ragnapop.png" width="200px">
 
 [[github](http://github.com/Ragnapop)] [[portfolio](team/ragnapop.md)]
 
@@ -44,7 +44,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Chen Kuan Min
 
-<img src="images/Rikko1204.png" width="200px">
+<img src="images/rikko1204.png" width="200px">
 
 [[github](http://github.com/Rikko1204)]
 [[portfolio](team/rikko1204.md)]

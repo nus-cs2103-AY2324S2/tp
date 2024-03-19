@@ -1,14 +1,20 @@
 {
   "persons": [ {
+    "nusId": "E0123456",
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "alice@example.com",
-    "address": "123, Jurong West Ave 6, #08-111",
-    "tags": [ "friends" ]
+    "tag": "Student",
+    "groups": [ "friends" ],
+    "schedule" : "09/09/2020",
+    "remark" : ""
   }, {
+    "nusId": "E0123456",
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",
-    "address": "4th street"
+    "tag": "Student",
+    "schedule" : "09/09/2020",
+    "remark" : ""
   } ]
 }
