@@ -177,6 +177,10 @@ public class Order implements Comparable<Order> {
      * @return A boolean value of whether the two orders are the same.
      */
     public boolean isSameOrder(Order otherOrder) {
+        if (otherOrder == null) {
+            return false;
+        }
+
         if (otherOrder.equals(this)) {
             return true;
         }
@@ -214,6 +218,7 @@ public class Order implements Comparable<Order> {
             str += productList.get(k).getName();
             str += ",";
             str += productMap.get(productList.get(k)).getValue();
+            str += "\n";
         }
         return str;
     }
