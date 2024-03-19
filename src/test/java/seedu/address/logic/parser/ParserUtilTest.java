@@ -14,10 +14,10 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.StudentId;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.StudentId;
 import seedu.address.model.tag.Attendance;
 
 public class ParserUtilTest {
@@ -152,7 +152,6 @@ public class ParserUtilTest {
 //    public void parseAttendance_null_throwsNullPointerException() {
 //        assertThrows(NullPointerException.class, () -> ParserUtil.parseAttendances(null));
 //    }
-
     @Test
     public void parseAttendance_invalidValue_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseAttendances(INVALID_TAG));
@@ -175,7 +174,6 @@ public class ParserUtilTest {
 //    public void parseAttendances_null_throwsNullPointerException() {
 //        assertThrows(NullPointerException.class, () -> ParserUtil.parseAttendances(null));
 //    }
-
     @Test
     public void parseAttendances_collectionWithInvalidTags_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseAttendances(Arrays.asList(VALID_TAG_1, INVALID_TAG)));
@@ -189,7 +187,8 @@ public class ParserUtilTest {
     @Test
     public void parseAttendances_collectionWithValidTags_returnsTagSet() throws Exception {
         Set<Attendance> actualAttendanceSet = ParserUtil.parseAttendances(Arrays.asList(VALID_TAG_1, VALID_TAG_2));
-        Set<Attendance> expectedAttendanceSet = new HashSet<Attendance>(Arrays.asList(new Attendance(VALID_TAG_1), new Attendance(VALID_TAG_2)));
+        Set<Attendance> expectedAttendanceSet = new HashSet<Attendance>(Arrays.asList(new Attendance(VALID_TAG_1),
+                new Attendance(VALID_TAG_2)));
 
         assertEquals(expectedAttendanceSet, actualAttendanceSet);
     }
