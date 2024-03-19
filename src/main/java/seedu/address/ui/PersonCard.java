@@ -51,7 +51,7 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         roomNumber.setText(person.getRoomNumber() != null ? person.getRoomNumber().value : "");
         telegram.setText(person.getTelegram() != null ? person.getTelegram().value : "");
-        birthday.setText(person.getBirthday() != null ? String.valueOf(person.getBirthday().value) : "");
+        birthday.setText(person.getBirthday() != null ? String.valueOf(person.getBirthday()) : "");
         email.setText(person.getEmail() != null ? person.getEmail().value : "");
     }
 }

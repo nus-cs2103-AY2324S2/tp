@@ -16,7 +16,8 @@ import java.util.Locale;
 public class Birthday {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Birthday has to be in the format of dd/MM/yyyy or yyyy, and it should not be blank";
+            "Birthday should not be blank and has to be in one of the given format: "
+            + "[dd/MM/yyyy] [dd-MM-yyyy] [yyyy-MM-dd] [yyyy/MM/dd]";
 
     /*
      * The first character of the birthday must not be a whitespace,
@@ -29,7 +30,7 @@ public class Birthday {
             .appendOptional(DateTimeFormatter.ofPattern("yyyy/MM/dd"))
             .toFormatter(Locale.ENGLISH);
 
-    public static final DateTimeFormatter OUTPUT_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    public static final DateTimeFormatter OUTPUT_FORMATTER = DateTimeFormatter.ofPattern("dd LLLL yyyy");
 
     public final LocalDate value;
 
@@ -52,7 +53,6 @@ public class Birthday {
             LocalDate.parse(test, VALIDATION_FORMATTER);
             return true;
         } catch (DateTimeParseException e) {
-            System.out.println(e.getMessage());
             return false;
         }
     }
