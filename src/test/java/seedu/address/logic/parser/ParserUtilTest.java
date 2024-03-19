@@ -17,22 +17,30 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.group.Group;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.NusId;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Remark;
+import seedu.address.model.person.Schedule;
 import seedu.address.model.person.Tag;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
+    private static final String INVALID_NUSID = "e1234567";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_TAG = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_GROUP = "#friend";
+    private static final String INVALID_SCHEDULE = "2024-12-12";
 
     private static final String VALID_NAME = "Rachel Walker";
+    private static final String VALID_NUSID = "E1234567";
     private static final String VALID_PHONE = "123456";
     private static final String VALID_TAG = "Student";
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_GROUP_1 = "friend";
     private static final String VALID_GROUP_2 = "neighbour";
+    private static final String VALID_SCHEDULE = "12-12-2020";
+    private static final String VALID_REMARK = "I love Hong Jun";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -54,6 +62,22 @@ public class ParserUtilTest {
 
         // Leading and trailing whitespaces
         assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("  1  "));
+    }
+
+    @Test
+    public void parseNusId_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseNusId((String) null));
+    }
+
+    @Test
+    public void parseNusId_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseNusId(INVALID_NUSID));
+    }
+
+    @Test
+    public void parseNusId_validValueWithoutWhitespace_returnsNusId() throws Exception {
+        NusId expectedNusId = new NusId(VALID_NUSID);
+        assertEquals(expectedNusId, ParserUtil.parseNusId(VALID_NUSID));
     }
 
     @Test
@@ -195,5 +219,26 @@ public class ParserUtilTest {
                 new Group(VALID_GROUP_2)));
 
         assertEquals(expectedGroupSet, actualGroupSet);
+    }
+
+    @Test
+    public void parseSchedule_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseSchedule((String) null));
+    }
+
+    @Test
+    public void parseSchedule_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseSchedule(INVALID_SCHEDULE));
+    }
+
+    @Test
+    public void parseSchedule_validValueWithoutWhitespace_returnsSchedule() throws Exception {
+        Schedule expectedSchedule = new Schedule(VALID_SCHEDULE);
+        assertEquals(expectedSchedule, ParserUtil.parseSchedule(VALID_SCHEDULE));
+    }
+
+    @Test
+    public void parseRemark_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new Remark(null));
     }
 }
