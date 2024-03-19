@@ -1,5 +1,6 @@
 package educonnect.logic.commands;
 
+
 import static educonnect.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static educonnect.logic.parser.CliSyntax.PREFIX_NAME;
 import static educonnect.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
@@ -21,6 +22,7 @@ import educonnect.logic.Messages;
 import educonnect.logic.commands.exceptions.CommandException;
 import educonnect.model.Model;
 import educonnect.model.student.Email;
+import educonnect.model.student.Link;
 import educonnect.model.student.Name;
 import educonnect.model.student.Student;
 import educonnect.model.student.StudentId;
@@ -114,10 +116,12 @@ public class EditCommand extends Command {
         Email updatedEmail = editStudentDescriptor.getEmail().orElse(studentToEdit.getEmail());
         TelegramHandle updatedTelegramHandle = editStudentDescriptor.getTelegramHandle().orElse(
                     studentToEdit.getTelegramHandle());
+        Link updatedLink = editStudentDescriptor.getLink().orElse(studentToEdit.getLink());
         Set<Tag> updatedTags = editStudentDescriptor.getTags().orElse(studentToEdit.getTags());
         Timetable timetable = editStudentDescriptor.getTimetable().orElse(studentToEdit.getTimetable());
 
-        return new Student(updatedName, updatedStudentId, updatedEmail, updatedTelegramHandle, updatedTags, timetable);
+        return new Student(updatedName, updatedStudentId, updatedEmail, updatedTelegramHandle, updatedLink,
+                updatedTags, timetable);
     }
 
     @Override
@@ -155,6 +159,7 @@ public class EditCommand extends Command {
         private TelegramHandle telegramHandle;
         private Set<Tag> tags;
         private Timetable timetable;
+        private Link link;
 
         public EditStudentDescriptor() {}
 
@@ -167,6 +172,7 @@ public class EditCommand extends Command {
             setStudentId(toCopy.studentId);
             setEmail(toCopy.email);
             setTelegramHandle(toCopy.telegramHandle);
+            setLink(toCopy.link);
             setTags(toCopy.tags);
             setTimetable(toCopy.timetable);
         }
@@ -175,7 +181,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, studentId, email, telegramHandle, tags, timetable);
+            return CollectionUtil.isAnyNonNull(name, studentId, email, telegramHandle, link, tags, timetable);
         }
 
         public void setName(Name name) {
@@ -200,6 +206,13 @@ public class EditCommand extends Command {
 
         public Optional<Email> getEmail() {
             return Optional.ofNullable(email);
+        }
+        public void setLink(Link link) {
+            this.link = link;
+        }
+
+        public Optional<Link> getLink() {
+            return Optional.ofNullable(link);
         }
 
         public void setTelegramHandle(TelegramHandle telegramHandle) {
@@ -252,7 +265,8 @@ public class EditCommand extends Command {
                     && Objects.equals(email, otherEditStudentDescriptor.email)
                     && Objects.equals(telegramHandle, otherEditStudentDescriptor.telegramHandle)
                     && Objects.equals(tags, otherEditStudentDescriptor.tags)
-                    && Objects.equals(timetable, otherEditStudentDescriptor.timetable);
+                    && Objects.equals(timetable, otherEditStudentDescriptor.timetable)
+                    && Objects.equals(link, otherEditStudentDescriptor.link);
         }
 
         @Override
@@ -262,6 +276,7 @@ public class EditCommand extends Command {
                     .add("student id", studentId)
                     .add("email", email)
                     .add("telegram handle", telegramHandle)
+                    .add("link", link)
                     .add("tags", tags)
                     .add("timetable", timetable == null ? null : timetable.convertToCommandString())
                     .toString();

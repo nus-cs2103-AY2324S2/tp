@@ -2,6 +2,7 @@ package educonnect.logic.parser;
 
 import static educonnect.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static educonnect.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static educonnect.logic.parser.CliSyntax.PREFIX_LINK;
 import static educonnect.logic.parser.CliSyntax.PREFIX_NAME;
 import static educonnect.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
 import static educonnect.logic.parser.CliSyntax.PREFIX_TAG;
@@ -42,7 +43,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_STUDENT_ID,
-                        PREFIX_EMAIL, PREFIX_TELEGRAM_HANDLE, PREFIX_TAG, PREFIX_TIMETABLE);
+                        PREFIX_EMAIL, PREFIX_TELEGRAM_HANDLE, PREFIX_LINK, PREFIX_TAG, PREFIX_TIMETABLE);
 
         Index index;
 
@@ -73,6 +74,9 @@ public class EditCommandParser implements Parser<EditCommand> {
                         PREFIX_TELEGRAM_HANDLE).get()));
         }
 
+        if (argMultimap.getValue(PREFIX_LINK).isPresent()) {
+            editPersonDescriptor.setLink(ParserUtil.parseLink(argMultimap.getValue(PREFIX_LINK).get()));
+        }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 
         if (argMultimap.getValue(PREFIX_TIMETABLE).isPresent()) {

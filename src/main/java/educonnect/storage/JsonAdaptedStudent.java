@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import educonnect.commons.exceptions.IllegalValueException;
 import educonnect.model.student.Email;
+import educonnect.model.student.Link;
 import educonnect.model.student.Name;
 import educonnect.model.student.Student;
 import educonnect.model.student.StudentId;
@@ -29,8 +30,10 @@ class JsonAdaptedStudent {
     private final String studentId;
     private final String email;
     private final String telegramHandle;
+    private final String link;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
     private final Timetable timetable;
+
 
     /**
      * Constructs a {@code JsonAdaptedStudent} with the given student details.
@@ -40,12 +43,14 @@ class JsonAdaptedStudent {
                               @JsonProperty("studentId") String studentId,
                               @JsonProperty("email") String email,
                               @JsonProperty("telegramHandle") String telegramHandle,
+                              @JsonProperty("link") String link,
                               @JsonProperty("tags") List<JsonAdaptedTag> tags,
                               @JsonProperty("timetable") Timetable timetable) {
         this.name = name;
         this.studentId = studentId;
         this.email = email;
         this.telegramHandle = telegramHandle;
+        this.link = link;
         if (tags != null) {
             this.tags.addAll(tags);
         }
@@ -60,6 +65,7 @@ class JsonAdaptedStudent {
         studentId = source.getStudentId().value;
         email = source.getEmail().value;
         telegramHandle = source.getTelegramHandle().value;
+        link = source.getLink().url;
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -103,6 +109,12 @@ class JsonAdaptedStudent {
         }
         final Email modelEmail = new Email(email);
 
+
+        if (!Link.isValidLink(link)) {
+            throw new IllegalValueException(Link.MESSAGE_CONSTRAINTS);
+        }
+        final Link modelLink = new Link(link);
+
         if (telegramHandle == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                 TelegramHandle.class.getSimpleName()));
@@ -119,7 +131,8 @@ class JsonAdaptedStudent {
                     Timetable.class.getSimpleName()));
         }
 
-        return new Student(modelName, modelstudentId, modelEmail, modeltelegramHandle, modelTags, timetable);
+        return new Student(modelName, modelstudentId, modelEmail, modeltelegramHandle, modelLink, modelTags,
+                timetable);
     }
 
 }

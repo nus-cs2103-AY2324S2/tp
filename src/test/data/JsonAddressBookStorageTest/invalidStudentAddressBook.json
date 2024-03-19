@@ -3,6 +3,7 @@
     "name": "Student with invalid name field: Ha!ns Mu@ster",
     "studentId": "A1234567L",
     "email": "hans@example.com",
-    "telegramHandle": "@hans"
+    "telegramHandle": "@hans",
+    "link": "https://github.com/tanjiajiajun/tp"
   } ]
 }

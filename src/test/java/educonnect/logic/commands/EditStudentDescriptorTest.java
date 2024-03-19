@@ -70,7 +70,8 @@ public class EditStudentDescriptorTest {
                           + ", student id=" + editStudentDescriptor.getStudentId().orElse(null)
                           + ", email=" + editStudentDescriptor.getEmail().orElse(null)
                           + ", telegram handle=" + editStudentDescriptor.getTelegramHandle().orElse(null)
-                          + ", tags=" + editStudentDescriptor.getTags().orElse(null)
+                        + ", link=" + editStudentDescriptor.getLink().orElse(null)
+                        + ", tags=" + editStudentDescriptor.getTags().orElse(null)
                           + ", timetable=" + editStudentDescriptor.getTimetable().orElse(null) + "}";
         assertEquals(expected, editStudentDescriptor.toString());
     }

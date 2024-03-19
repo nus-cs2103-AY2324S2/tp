@@ -4,6 +4,7 @@
     "studentId": "A1234567B",
     "email": "dexter@example.com",
     "telegramHandle": "@bobDexter",
+    "link": "https://github.com/tanjiajiajun/tp",
     "tags": [ "friends" ],
     "timetable" : {
       "days" : [ {
@@ -29,6 +30,7 @@
     "studentId": "A1234567P",
     "email": "dexter@example.com",
     "telegramHandle": "@alicepaul",
+    "link": "https://github.com/tanjiajiajun/tp",
     "timetable" : {
       "days" : [ {
         "dayOfWeek" : "MONDAY",
