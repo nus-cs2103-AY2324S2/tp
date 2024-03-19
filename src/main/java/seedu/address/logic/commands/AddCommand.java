@@ -7,6 +7,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_IC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_WARD;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -26,16 +29,22 @@ public class AddCommand extends Command {
             + PREFIX_NAME + "NAME "
             + PREFIX_IC + "IC "
             + PREFIX_DOB + "DOB "
-            + PREFIX_ADMISSION_DATE + "EMAIL "
+            + PREFIX_ADMISSION_DATE + "ADMISSION DATE "
             + PREFIX_WARD + "WARD NUMBER "
             + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_PHONE + "PHONE]...\n"
+            + "[" + PREFIX_EMAIL + "EMAIL]...\n"
+            + "[" + PREFIX_ADDRESS + "ADDRESS]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_IC + "S0123456A "
             + PREFIX_DOB + "1/1/2000 "
             + PREFIX_ADMISSION_DATE + "15/03/2024 "
             + PREFIX_WARD + "3"
-            + PREFIX_TAG + "Fall risk ";
+            + PREFIX_TAG + "Fall risk "
+            + PREFIX_PHONE + "98765432 "
+            + PREFIX_EMAIL + "johndoe@gmail.com"
+            + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25";
 
     public static final String MESSAGE_SUCCESS = "New patient added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This patient already exists in the address book";
