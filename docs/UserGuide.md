@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-FitBook is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, FitBook can get your contact management tasks done faster than traditional GUI apps.
+FitBook is a **desktop app for managing clients, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you are a personal trainer that prefers typing over mouse interactions, FitBook is the perfect application for you to manage your clients!
 
 * Table of Contents
 {:toc}
@@ -109,6 +109,19 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st client to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd client to be `Betsy Crower` and clears all existing tags.
 
+### Adding a note to clients : `note`
+
+Format: `note INDEX note/NOTE`
+
+* Edits the note of the client specified by `INDEX`. The index refers to the index number shown in the displayed client list. The index **must be a positive integer** 1, 2, 3, …​
+* Existing note will be updated to the input note.
+
+> While this can also be done using the `edit` command, this `note` command serves as a faster way for users to directly modify a note.
+
+Examples:
+*  `note 1 note/History of asthma` - Edits the note of the 1st client to `History of asthma`.
+*  `edit 2 note/Previously sprained both ankles` - Edits the note of the 2nd client to `Previously sprained both ankles`.
+
 ### Locating clients by name: `find`
 
 Finds clients whose names contain any of the given keywords.
@@ -143,9 +156,13 @@ Examples:
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all client information from the address book.
 
-Format: `clear`
+**NOTE: This command irreversibly clears all client information in FitBook. It should be used with caution.**
+
+If you are sure of your decision to clear all client information, use the `/confirm` prefix with this command to execute it.
+
+Format: `clear /confirm`
 
 ### Exiting the program : `exit`
 
@@ -165,6 +182,15 @@ Address book data is saved automatically as a JSON file `[JAR file location]/dat
 If your changes to the data file makes its format invalid, FitBook will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
 Furthermore, certain edits can cause FitBook to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
+
+### Save Contact to Phone
+
+![QrCodeContactCard](images/QrCodeContactCard.png)
+
+To save a contact to your mobile phone from FitBook, simply scan the QR code next to the contact.
+
+<img src="images/QRScanning.png" height="480">
+<img src="images/QRContact.png" height="480"> 
 
 ### Archiving data files `[coming in v2.0]`
 

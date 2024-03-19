@@ -31,6 +31,8 @@ public class NoteCommandParser implements Parser<NoteCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, NoteCommand.MESSAGE_USAGE), ive);
         }
 
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NOTE);
+
         Note note = new Note(argMultimap.getValue(PREFIX_NOTE).orElse(""));
 
         return new NoteCommand(index, note);
