@@ -26,9 +26,11 @@ Furthermore, the **FAQ** section will answer commonly asked questions, addressin
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
-_to be added_
 
-
+* Ensure Java 11 is installed in your computer. If it's not, install it [here](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html)
+* Download the latest ConnectCare.jar
+* Copy the jar file to the folder you want to use as the home folder
+* Double click the file to start the application!
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
