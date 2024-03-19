@@ -59,15 +59,12 @@ public class OrderList implements Iterable<Order> {
     /**
      * Adds an order to the order list.
      * @param toAdd The order that is to be added.
-     * @param person The person that the order is tagged to.
      */
-    public void addOrder(Order toAdd, Person person) {
-        requireAllNonNull(toAdd, person);
-        toAdd.setCustomer(person);
+    public void addOrder(Order toAdd) {
+        requireAllNonNull(toAdd);
         toAdd.setID(orderIdCounter);
         orderList.put(toAdd.getId(), toAdd);
         internalList.add(toAdd);
-        person.addOrder(toAdd);
         orderIdCounter++;
     }
 
@@ -105,7 +102,7 @@ public class OrderList implements Iterable<Order> {
         //}
         orderList.remove(toDelete);
         internalList.remove(oldOrder);
-        respectiveCustomer.deleteOrder(oldOrder.getId());
+        //respectiveCustomer.deleteOrder(oldOrder.getId());
     }
 
     /**
@@ -127,7 +124,7 @@ public class OrderList implements Iterable<Order> {
         toEdit.setID(oldOrder.getId());
         internalList.set(oldOrderIndex, toEdit);
         orderList.put(orderId, toEdit);
-        respectiveCustomer.editOrder(oldOrder.getId(), toEdit);
+        //respectiveCustomer.editOrder(oldOrder.getId(), toEdit);
     }
 
     /**
