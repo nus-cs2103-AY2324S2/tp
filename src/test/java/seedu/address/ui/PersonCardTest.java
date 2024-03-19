@@ -10,7 +10,7 @@ class PersonCardTest {
 
     @Test
     public void create_somePersonCard_success() {
-        assertNotNull(new PersonCard(ALICE, INDEX_FIRST_PERSON.getOneBased()));
+        assertNotNull(new PersonCard(ALICE, INDEX_FIRST_PERSON.getZeroBased()));
     }
 
 }

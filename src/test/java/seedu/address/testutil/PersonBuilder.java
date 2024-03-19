@@ -10,6 +10,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonType;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.TagStatus;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
@@ -99,6 +100,14 @@ public class PersonBuilder {
      */
     public PersonBuilder withEmail(String email) {
         this.email = new Email(email);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Tag} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withTag(String tagName, TagStatus tagStatus) {
+        this.tags = Tag.updateTagsWithNewTag(new HashSet<>(tags), tagName, tagStatus);
         return this;
     }
 

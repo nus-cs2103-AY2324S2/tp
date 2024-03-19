@@ -60,7 +60,7 @@ class MarkCommandParserTest {
         Index targetIndex = INDEX_SECOND_PERSON;
         String userInput = targetIndex.getOneBased() + VALID_TAG_FRIEND_TAGSTATUS_COMPLETE_GOOD;
 
-        MarkCommand expectedCommand = new MarkCommand(targetIndex, VALID_TAG_FRIEND, TagStatus.COMPLETE_GOOD);
+        MarkCommand expectedCommand = new MarkCommand(targetIndex, VALID_TAG_FRIENDS, TagStatus.COMPLETE_GOOD);
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }

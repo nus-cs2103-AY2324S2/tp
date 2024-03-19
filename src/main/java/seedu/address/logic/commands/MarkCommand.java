@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -66,25 +67,14 @@ public class MarkCommand extends Command {
         Set<Tag> currTags = new HashSet<>(personToEdit.getTags());
 
         // create a new person with the new tag, necessary as the person fields are currently final
-        Person editedPerson = createEditedPerson(personToEdit, updateTagsWithNewTag(currTags));
+        Person editedPerson = createEditedPerson(personToEdit, Tag.updateTagsWithNewTag(currTags,
+                this.tagName, this.tagStatus));
 
         // update the person list and make GUI show all existing person
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
         return new CommandResult(String.format(MESSAGE_MARK_PERSON_SUCCESS, Messages.format(editedPerson)));
-    }
-
-    private Set<Tag> updateTagsWithNewTag(Set<Tag> currTags) {
-        // Instead of retrieving the Tag sharing the same name and update it,
-        // remove the potentially existing Tag of the same name from the hashset
-        // and then add in a new Tag with the same tagName but updated tagStatus.
-        // This is to avoid having linearly check through the hashset to retrieve
-        // the existing Tag
-        Tag newTag = new Tag(tagName, tagStatus);
-        currTags.remove(newTag);
-        currTags.add(new Tag(tagName, tagStatus));
-        return currTags;
     }
 
     @Override
@@ -113,5 +103,13 @@ public class MarkCommand extends Command {
         assert personToEdit != null;
         return new Person(personToEdit.getType(), personToEdit.getName(), personToEdit.getPhone(),
                 personToEdit.getEmail(), personToEdit.getAddress(), newTags);
+    }
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .add("index", index.toString())
+                .add("tagName", tagName)
+                .add("tagStatus", tagStatus)
+                .toString();
     }
 }
