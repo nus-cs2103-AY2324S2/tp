@@ -10,6 +10,9 @@ import seedu.address.logic.commands.AddAttendanceRecordCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.AttendanceDate;
 
+/**
+ * Parses input arguments and creates a new AddAttendanceRecordCommand object
+ */
 public class AddAttendanceRecordCommandParser  implements Parser<AddAttendanceRecordCommand> {
 
     public AddAttendanceRecordCommand parse(String args) throws ParseException {
@@ -18,7 +21,8 @@ public class AddAttendanceRecordCommandParser  implements Parser<AddAttendanceRe
 
         if (!arePrefixesPresent(argMultimap, PREFIX_ATTENDANCE_RECORD)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddAttendanceRecordCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddAttendanceRecordCommand.MESSAGE_USAGE));
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_ATTENDANCE_RECORD);
@@ -29,6 +33,10 @@ public class AddAttendanceRecordCommandParser  implements Parser<AddAttendanceRe
 
     }
 
+    /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
