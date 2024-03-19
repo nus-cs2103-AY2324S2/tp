@@ -1,5 +1,8 @@
 package seedu.address.logic.commands;
 
+import org.junit.jupiter.api.Test;
+import java.time.LocalDateTime;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -12,8 +15,6 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.JAMAL;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
-import org.junit.jupiter.api.Test;
-
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.ModelManager;
 import seedu.address.logic.Messages;
@@ -21,16 +22,15 @@ import seedu.address.model.meeting.Meeting;
 import seedu.address.model.Model;
 import seedu.address.model.UserPrefs;
 
-import java.time.LocalDateTime;
-
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
  * {@code DeleteCommand}.
  */
 public class DeleteMeetingCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private static final Meeting testMeeting = new Meeting("test meeting", LocalDateTime.now(), JAMAL);
+
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void execute_validClientIndexValidMeetingIndex() {
@@ -43,7 +43,7 @@ public class DeleteMeetingCommandTest {
         DeleteMeetingCommand deleteMeetingCommand = new DeleteMeetingCommand(testClientIndex,
                 testMeetingIndex);
 
-         String expectedMessage = "Meeting 1 deleted successfully ";
+        String expectedMessage = "Meeting 1 deleted successfully ";
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
 
@@ -127,7 +127,8 @@ public class DeleteMeetingCommandTest {
         Index targetClientIndex = Index.fromOneBased(1);
         Index targetMeetingIndex = Index.fromOneBased(1);
         DeleteMeetingCommand deleteMeetingCommand = new DeleteMeetingCommand(targetClientIndex, targetMeetingIndex);
-        String expected = DeleteMeetingCommand.class.getCanonicalName() + "{clientIndex=" + targetClientIndex + ", meetingIndex=" + targetMeetingIndex +"}";
+        String expected = DeleteMeetingCommand.class.getCanonicalName() + 
+            "{clientIndex=" + targetClientIndex + ", meetingIndex=" + targetMeetingIndex + "}";
         assertEquals(expected, deleteMeetingCommand.toString());
     }
 }
