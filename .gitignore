@@ -9,7 +9,7 @@ src/main/resources/docs/
 /*.iml
 
 # VSC files
-.code-workspace
+*.code-workspace
 
 # Storage/log files
 /data/
