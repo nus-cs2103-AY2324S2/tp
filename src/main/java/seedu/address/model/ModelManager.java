@@ -109,11 +109,6 @@ public class ModelManager implements Model {
         addressBook.addPerson(person);
     }
 
-    @Override
-    public Person viewPerson(Person target) {
-        return target;
-    }
-
     //=========== Filtered Person List Accessors =============================================================
 
     /**

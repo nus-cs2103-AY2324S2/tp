@@ -12,7 +12,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class ViewCommandParser implements Parser<ViewCommand> {
     public static final String MESSAGE_ONE_BASED_INDEXING =
-            "Please input a 1-based integer.";
+            "Please input a 1-based index.";
 
     /**
      * Parses the given {@code String} of arguments in the context of the ViewCommand
