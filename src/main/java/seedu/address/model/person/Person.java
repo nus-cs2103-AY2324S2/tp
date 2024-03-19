@@ -26,7 +26,7 @@ public class Person {
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, RoomNumber roomNumber, Telegram telegram, Birthday birthday) {
-        requireAllNonNull(name, phone, email, roomNumber, telegram, birthday);
+        requireAllNonNull(name, phone);
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -89,12 +89,35 @@ public class Person {
         }
 
         Person otherPerson = (Person) other;
-        return name.equals(otherPerson.name)
-                && phone.equals(otherPerson.phone)
-                && email.equals(otherPerson.email)
-                && roomNumber.equals(otherPerson.roomNumber)
-                && telegram.equals(otherPerson.telegram)
-                && birthday.equals(otherPerson.birthday);
+
+        boolean isEqual = name.equals(otherPerson.name) && phone.equals(otherPerson.phone);
+
+        if (email != null && otherPerson.email == null || email == null && otherPerson.email != null) {
+            return false;
+        } else if (email != null && otherPerson.email != null) {
+            isEqual = isEqual && email.equals(otherPerson.email);
+        }
+
+        if (roomNumber != null && otherPerson.roomNumber == null
+                || roomNumber == null && otherPerson.roomNumber != null) {
+            return false;
+        } else if (roomNumber != null && otherPerson.roomNumber != null) {
+            isEqual = isEqual && roomNumber.equals(otherPerson.roomNumber);
+        }
+
+        if (telegram != null && otherPerson.telegram == null || telegram == null && otherPerson.telegram != null) {
+            return false;
+        } else if (telegram != null && otherPerson.telegram != null) {
+            isEqual = isEqual && telegram.equals(otherPerson.telegram);
+        }
+
+        if (birthday != null && otherPerson.birthday == null || birthday == null && otherPerson.birthday != null) {
+            return false;
+        } else if (birthday != null && otherPerson.birthday != null) {
+            isEqual = isEqual && birthday.equals(otherPerson.birthday);
+        }
+
+        return isEqual;
     }
 
     @Override
@@ -105,14 +128,27 @@ public class Person {
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this)
-                .add("name", name)
-                .add("phone", phone)
-                .add("email", email)
-                .add("roomNumber", roomNumber)
-                .add("telegram", telegram)
-                .add("birthday", birthday)
-                .toString();
+        ToStringBuilder sb = new ToStringBuilder(this);
+        sb.add("name", name);
+        sb.add("phone", phone);
+
+        if (email != null) {
+            sb.add("email", email);
+        }
+
+        if (roomNumber != null) {
+            sb.add("roomNumber", roomNumber);
+        }
+
+        if (telegram != null) {
+            sb.add("telegram", telegram);
+        }
+
+        if (birthday != null) {
+            sb.add("birthday", birthday);
+        }
+
+        return sb.toString();
     }
 
 }
