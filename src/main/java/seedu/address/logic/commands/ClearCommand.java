@@ -6,7 +6,7 @@ import seedu.address.model.CodeConnect;
 import seedu.address.model.Model;
 
 /**
- * Clears CodeConnect.
+ * Clears the address book.
  */
 public class ClearCommand extends Command {
 

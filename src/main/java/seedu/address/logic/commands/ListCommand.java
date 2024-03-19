@@ -6,7 +6,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CONTACTS;
 import seedu.address.model.Model;
 
 /**
- * Lists all contacts in CodeConnect to the user.
+ * Lists all contacts in the address book to the user.
  */
 public class ListCommand extends Command {
 

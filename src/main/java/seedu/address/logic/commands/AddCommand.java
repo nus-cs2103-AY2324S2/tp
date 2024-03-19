@@ -16,13 +16,13 @@ import seedu.address.model.Model;
 import seedu.address.model.contact.Contact;
 
 /**
- * Adds a contact to the CodeConnect.
+ * Adds a contact to the address book.
  */
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a contact to the CodeConnect. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a contact to the address book. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "

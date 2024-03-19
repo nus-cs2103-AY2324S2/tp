@@ -10,7 +10,7 @@ import seedu.address.model.Model;
 import seedu.address.model.contact.TagsContainKeywordsPredicate;
 
 /**
- * Finds and lists all persons in CodeConnect whose tag contains any of the argument keywords.
+ * Finds and lists all persons in the address book whose tag contains any of the argument keywords.
  * Keyword matching is case-insensitive.
  */
 public class FindTagCommand extends Command {

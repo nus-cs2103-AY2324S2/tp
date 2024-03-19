@@ -33,7 +33,7 @@ import seedu.address.model.tag.Tag;
 import seedu.address.model.techstack.TechStack;
 
 /**
- * Edits the details of an existing contact in CodeConnect.
+ * Edits the details of an existing contact in the address book.
  */
 public class EditCommand extends Command {
 

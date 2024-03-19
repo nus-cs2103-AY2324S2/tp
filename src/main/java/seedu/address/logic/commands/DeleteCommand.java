@@ -12,7 +12,7 @@ import seedu.address.model.Model;
 import seedu.address.model.contact.Contact;
 
 /**
- * Deletes a contact identified using it's displayed index from CodeConnect.
+ * Deletes a contact identified using it's displayed index from address book.
  */
 public class DeleteCommand extends Command {
 
