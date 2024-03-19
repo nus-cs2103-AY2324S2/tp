@@ -5,7 +5,6 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
