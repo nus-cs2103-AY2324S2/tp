@@ -71,10 +71,10 @@ public class DeleteMeetingCommandTest {
         model.addPerson(JAMAL);
         // Do not add any meeting to JAMAL to ensure the meeting index is invalid
         int clientIndex = model.getAddressBook().getPersonList().indexOf(JAMAL);
-    
+
         Index testClientIndex = Index.fromOneBased(Index.fromZeroBased(clientIndex).getOneBased());
         Index testMeetingIndex = Index.fromOneBased(Index.fromZeroBased(JAMAL.getMeetings().size()).getOneBased());
-    
+
         DeleteMeetingCommand deleteMeetingCommand = new DeleteMeetingCommand(testClientIndex, testMeetingIndex);
 
         String expectedMessage = "Error: Meeting 2 not found";
@@ -87,10 +87,10 @@ public class DeleteMeetingCommandTest {
         model.addPerson(JAMAL);
         // No meeting added to ensure meeting index is also invalid
         int invalidClientIndex = model.getAddressBook().getPersonList().size();
-    
+
         Index testClientIndex = Index.fromOneBased(Index.fromZeroBased(invalidClientIndex).getOneBased());
         Index testMeetingIndex = Index.fromOneBased(Index.fromZeroBased(JAMAL.getMeetings().size()).getOneBased());
-    
+
         DeleteMeetingCommand deleteMeetingCommand = new DeleteMeetingCommand(testClientIndex, testMeetingIndex);
 
         // invalid client index should be caught before invalid meeting index
