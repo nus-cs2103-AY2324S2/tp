@@ -23,7 +23,7 @@ end box
 [-> LogicManager : execute("add n/Dohn Joe p/98765432 a/123 e/dohn@gm.com m/A1234567X s/S1 r/R1")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("add n/Dohn Joe p/98765432 a/123 e/dohn@gm.com m/A1234567X s/S1 r/R1")
+LogicManager -> AddressBookParser : parseCommand(...)
 activate AddressBookParser
 
 create AddCommandParser
@@ -33,12 +33,12 @@ activate AddCommandParser
 AddCommandParser --> AddressBookParser
 deactivate AddCommandParser
 
-AddressBookParser -> AddCommandParser : parse("n/Dohn Joe p/98765432 a/123 e/dohn@gm.com m/A1234567X s/S1 r/R1")
+AddressBookParser -> AddCommandParser : parse(...)
 activate AddCommandParser
 
 'Tokenizer and ParserUtil dont have constructors, how?
 
-AddCommandParser -> ArgumentTokenizer : tokenize("n/Dohn Joe p/98765432 a/123 e/dohn@gm.com m/A1234567X s/S1 r/R1", "/n", "/p", "/a", "/e", "/m", "/s", "/r")
+AddCommandParser -> ArgumentTokenizer : tokenize(...)
 activate ArgumentTokenizer
 
 create ArgumentMultimap
@@ -51,7 +51,7 @@ deactivate ArgumentMultimap
 ArgumentTokenizer --> AddCommandParser
 deactivate ArgumentTokenizer
 
-AddCommandParser -> AddCommandParser : arePrefixesPresent(multi, "/n", "/a", "/p", "/e")
+AddCommandParser -> AddCommandParser : arePrefixesPresent(...)
 activate AddCommandParser
 AddCommandParser --> AddCommandParser
 deactivate AddCommandParser
@@ -61,7 +61,7 @@ activate ArgumentMultimap
 ArgumentMultimap --> AddCommandParser
 deactivate ArgumentMultimap
 
-AddCommandParser -> ArgumentMultimap : verifyNoDuplicatePrefixesFor("/n", "p", "e", "a", "m", "r", "s")
+AddCommandParser -> ArgumentMultimap : verifyNoDuplicatePrefixesFor(...)
 activate ArgumentMultimap
 ArgumentMultimap --> AddCommandParser
 
