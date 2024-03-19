@@ -118,7 +118,7 @@ public class ModelManager implements Model {
     @Override
     public void addMeeting(Meeting meeting) {
         addressBook.addMeeting(meeting);
-        // updateFilteredMeetingList(PREDICATE_SHOW_ALL_MEETINGS);
+        updateFilteredMeetingList(PREDICATE_SHOW_ALL_MEETINGS);
     }
 
     @Override
@@ -147,6 +147,12 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredMeetingList(Predicate<Meeting> predicate) {
+        requireNonNull(predicate);
+        filteredMeetings.setPredicate(predicate);
     }
 
     @Override

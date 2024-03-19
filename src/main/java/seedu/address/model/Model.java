@@ -100,4 +100,6 @@ public interface Model {
      * Returns true if a meeting with the same description and dateTime {@code meeting} exists in the address book.
      */
     boolean hasMeeting(Meeting meeting);
+
+    void updateFilteredMeetingList(Predicate<Meeting> predicate);
 }
