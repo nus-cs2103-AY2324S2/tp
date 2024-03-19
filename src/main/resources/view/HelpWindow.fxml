@@ -25,7 +25,7 @@
       </stylesheets>
 
       <VBox fx:id="mainContainer" prefWidth="700.0" prefHeight="605.0">
-        <HBox fx:id="helpMessageContainer" prefHeight="135.0">
+        <HBox fx:id="helpMessageContainer" prefHeight="155.0">
           <children>
             <Label fx:id="helpMessage" text="Label" wrapText="true">
               <HBox.margin>
@@ -48,7 +48,7 @@
 
         <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" hvalue="1.0" fitToWidth="true" fitToHeight="true" vvalue="1.0">
           <content>
-            <TableView fx:id="userGuideTable" prefHeight="470.0" maxWidth="700.0" VBox.vgrow="always">
+            <TableView fx:id="userGuideTable" prefHeight="450.0" maxWidth="700.0" VBox.vgrow="always">
               <columns>
                 <TableColumn fx:id="commandColumn" text="Command" prefWidth="100.0"/>
                 <TableColumn fx:id="usageColumn" text="Usage" prefWidth="600.0">

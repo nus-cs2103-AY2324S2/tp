@@ -28,6 +28,7 @@ public class HelpWindow extends UiPart<Stage> {
             + "\n\nThings to note:"
             + "\n  • Items in square brackets are optional."
             + "\n  • Items with '...' after them can be used multiple times including zero times."
+            + "\n  • Click the 'Command' header to sort the commands alphabetically"
             + "\n  • Press 'q' to close this window.";
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
