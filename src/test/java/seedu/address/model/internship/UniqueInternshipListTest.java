@@ -246,7 +246,7 @@ public class UniqueInternshipListTest {
     @Test
     public void testToString() {
         UniqueInternshipList internshipList = new UniqueInternshipList();
-internshipList.add(ALICE_MICROSOFT);
+        internshipList.add(ALICE_MICROSOFT);
         assertEquals(internshipList.toString(), internshipList.asUnmodifiableObservableList().toString());
     }
 }

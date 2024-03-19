@@ -32,11 +32,13 @@ public class InternshipRemarkCommandTest {
         Internship firstInternship = model.getFilteredInternshipList().get(INDEX_FIRST_INTERNSHIP.getZeroBased());
         Internship editedInternship = new InternshipBuilder(firstInternship).withRemark(REMARK_STUB).build();
 
-        InternshipRemarkCommand remarkCommand = new InternshipRemarkCommand(INDEX_FIRST_INTERNSHIP, new Remark(editedInternship.getRemark().value));
+        InternshipRemarkCommand remarkCommand = new InternshipRemarkCommand(INDEX_FIRST_INTERNSHIP,
+                new Remark(editedInternship.getRemark().value));
 
         String expectedMessage = String.format(InternshipRemarkCommand.MESSAGE_ADD_REMARK_SUCCESS, editedInternship);
 
-        InternshipModel expectedModel = new InternshipModelManager(new InternshipData(model.getInternshipData()), new InternshipUserPrefs());
+        InternshipModel expectedModel = new InternshipModelManager(new InternshipData(model.getInternshipData()),
+                new InternshipUserPrefs());
         expectedModel.setInternship(firstInternship, editedInternship);
 
         assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel);
@@ -52,7 +54,8 @@ public class InternshipRemarkCommandTest {
 
         String expectedMessage = String.format(InternshipRemarkCommand.MESSAGE_DELETE_REMARK_SUCCESS, editedInternship);
 
-        InternshipModel expectedModel = new InternshipModelManager(new InternshipData(model.getInternshipData()), new InternshipUserPrefs());
+        InternshipModel expectedModel = new InternshipModelManager(new InternshipData(model.getInternshipData()),
+                new InternshipUserPrefs());
         expectedModel.setInternship(firstInternship, editedInternship);
 
         assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel);
@@ -63,14 +66,17 @@ public class InternshipRemarkCommandTest {
         showInternshipAtIndex(model, INDEX_FIRST_INTERNSHIP);
 
         Internship firstInternship = model.getFilteredInternshipList().get(INDEX_FIRST_INTERNSHIP.getZeroBased());
-        Internship editedInternship = new InternshipBuilder(model.getFilteredInternshipList().get(INDEX_FIRST_INTERNSHIP.getZeroBased()))
+        Internship editedInternship = new InternshipBuilder(model.getFilteredInternshipList()
+                .get(INDEX_FIRST_INTERNSHIP.getZeroBased()))
                 .withRemark(REMARK_STUB).build();
 
-        InternshipRemarkCommand remarkCommand = new InternshipRemarkCommand(INDEX_FIRST_INTERNSHIP, new Remark(editedInternship.getRemark().value));
+        InternshipRemarkCommand remarkCommand = new InternshipRemarkCommand(INDEX_FIRST_INTERNSHIP,
+                new Remark(editedInternship.getRemark().value));
 
         String expectedMessage = String.format(InternshipRemarkCommand.MESSAGE_ADD_REMARK_SUCCESS, editedInternship);
 
-        InternshipModel expectedModel = new InternshipModelManager(new InternshipData(model.getInternshipData()), new InternshipUserPrefs());
+        InternshipModel expectedModel = new InternshipModelManager(new InternshipData(model.getInternshipData()),
+                new InternshipUserPrefs());
         expectedModel.setInternship(firstInternship, editedInternship);
 
         assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel);
@@ -79,7 +85,8 @@ public class InternshipRemarkCommandTest {
     @Test
     public void execute_invalidInternshipIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredInternshipList().size() + 1);
-        InternshipRemarkCommand remarkCommand = new InternshipRemarkCommand(outOfBoundIndex, new Remark(VALID_REMARK_BOB));
+        InternshipRemarkCommand remarkCommand = new InternshipRemarkCommand(outOfBoundIndex,
+                new Remark(VALID_REMARK_BOB));
 
         assertCommandFailure(remarkCommand, model, InternshipMessages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
     }
@@ -95,7 +102,8 @@ public class InternshipRemarkCommandTest {
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getInternshipData().getInternshipList().size());
 
-        InternshipRemarkCommand remarkCommand = new InternshipRemarkCommand(outOfBoundIndex, new Remark(VALID_REMARK_BOB));
+        InternshipRemarkCommand remarkCommand = new InternshipRemarkCommand(outOfBoundIndex,
+                new Remark(VALID_REMARK_BOB));
 
         assertCommandFailure(remarkCommand, model, InternshipMessages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
     }

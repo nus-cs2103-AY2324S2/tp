@@ -1,6 +1,15 @@
 package seedu.address.testutil;
 
-import seedu.address.model.internship.*;
+import seedu.address.model.internship.ApplicationStatus;
+import seedu.address.model.internship.CompanyName;
+import seedu.address.model.internship.ContactEmail;
+import seedu.address.model.internship.ContactName;
+import seedu.address.model.internship.ContactNumber;
+import seedu.address.model.internship.Description;
+import seedu.address.model.internship.Internship;
+import seedu.address.model.internship.Location;
+import seedu.address.model.internship.Remark;
+import seedu.address.model.internship.Role;
 
 /**
  * A utility class to help with building Internship objects.

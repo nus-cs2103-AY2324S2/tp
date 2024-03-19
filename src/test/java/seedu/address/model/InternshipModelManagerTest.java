@@ -10,7 +10,16 @@ import java.nio.file.Paths;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.internship.*;
+import seedu.address.model.internship.ApplicationStatus;
+import seedu.address.model.internship.CompanyName;
+import seedu.address.model.internship.ContactEmail;
+import seedu.address.model.internship.ContactName;
+import seedu.address.model.internship.ContactNumber;
+import seedu.address.model.internship.Description;
+import seedu.address.model.internship.Internship;
+import seedu.address.model.internship.Location;
+import seedu.address.model.internship.Remark;
+import seedu.address.model.internship.Role;
 
 public class InternshipModelManagerTest {
 

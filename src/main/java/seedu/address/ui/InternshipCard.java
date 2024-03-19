@@ -5,7 +5,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.internship.ApplicationStatus;
-import seedu.address.model.internship.ApplicationStatus;
 import seedu.address.model.internship.ApplicationStatus.StatusEnum;
 import seedu.address.model.internship.CompanyName;
 import seedu.address.model.internship.ContactEmail;

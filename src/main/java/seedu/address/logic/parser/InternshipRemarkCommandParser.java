@@ -10,7 +10,15 @@ import seedu.address.logic.commands.InternshipRemarkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.internship.Remark;
 
+/**
+ * Parses input arguments and creates a new InternshipRemarkCommand object
+ */
 public class InternshipRemarkCommandParser {
+    /**
+     * Parses the given {@code String} of arguments in the context of the InternshipRemarkCommand
+     * and returns an InternshipRemarkCommand object for execution.
+     * @throws ParseException if the user input does not conform the expected format
+     */
     public InternshipRemarkCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_REMARK);
@@ -19,7 +27,8 @@ public class InternshipRemarkCommandParser {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (IllegalValueException ive) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, InternshipRemarkCommand.MESSAGE_USAGE), ive);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    InternshipRemarkCommand.MESSAGE_USAGE), ive);
         }
 
         String remark = argMultimap.getValue(PREFIX_REMARK).orElse("");

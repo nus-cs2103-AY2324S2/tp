@@ -8,7 +8,16 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.commands.*;
+import seedu.address.logic.commands.InternshipAddCommand;
+import seedu.address.logic.commands.InternshipClearCommand;
+import seedu.address.logic.commands.InternshipCommand;
+import seedu.address.logic.commands.InternshipDeleteCommand;
+import seedu.address.logic.commands.InternshipEditCommand;
+import seedu.address.logic.commands.InternshipExitCommand;
+import seedu.address.logic.commands.InternshipFindCommand;
+import seedu.address.logic.commands.InternshipHelpCommand;
+import seedu.address.logic.commands.InternshipListCommand;
+import seedu.address.logic.commands.InternshipRemarkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**

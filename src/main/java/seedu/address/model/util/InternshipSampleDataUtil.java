@@ -6,7 +6,16 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.InternshipData;
 import seedu.address.model.ReadOnlyInternshipData;
-import seedu.address.model.internship.*;
+import seedu.address.model.internship.ApplicationStatus;
+import seedu.address.model.internship.CompanyName;
+import seedu.address.model.internship.ContactEmail;
+import seedu.address.model.internship.ContactName;
+import seedu.address.model.internship.ContactNumber;
+import seedu.address.model.internship.Description;
+import seedu.address.model.internship.Internship;
+import seedu.address.model.internship.Location;
+import seedu.address.model.internship.Remark;
+import seedu.address.model.internship.Role;
 import seedu.address.model.tag.Tag;
 
 /**
