@@ -16,7 +16,7 @@ public class FindNumCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose phone number contain any of "
             + "the specified number and displays them as a list with index numbers.\n"
-            + "Parameters: 8_DIGIT_PHONE_NUMBER [MORE_8_DIGIT_PHONE_NUMBERS]...\n"
+            + "Parameters: PHONE_NUMBER [PHONE_NUMBERS]...\n"
             + "Example: " + COMMAND_WORD + " 87438807";
 
     private final PhoneContainsDigitsPredicate predicate;
