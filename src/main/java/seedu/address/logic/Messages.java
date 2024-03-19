@@ -38,15 +38,24 @@ public class Messages {
         final StringBuilder builder = new StringBuilder();
         builder.append(person.getName())
                 .append("; Phone: ")
-                .append(person.getPhone())
-                .append("; Email: ")
-                .append(person.getEmail())
-                .append("; Room Number: ")
-                .append(person.getRoomNumber())
-                .append("; Telegram: ")
-                .append(person.getTelegram())
-                .append("; Birthday: ")
-                .append(person.getBirthday());
+                .append(person.getPhone());
+
+        if (person.getEmail() != null) {
+            builder.append("; Email: ").append(person.getEmail());
+        }
+
+        if (person.getRoomNumber() != null) {
+            builder.append("; Room Number: ").append(person.getRoomNumber());
+        }
+
+        if (person.getTelegram() != null) {
+            builder.append("; Telegram: ").append(person.getTelegram());
+        }
+
+        if (person.getBirthday() != null) {
+            builder.append("; Birthday: ").append(person.getBirthday());
+        }
+
         return builder.toString();
     }
 

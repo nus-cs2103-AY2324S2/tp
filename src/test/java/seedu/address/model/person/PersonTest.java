@@ -79,7 +79,6 @@ public class PersonTest {
         // different room number -> returns false
         editedAlice = new PersonBuilder(ALICE).withRoomNumber(VALID_ROOMNUMBER_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
-
     }
 
     @Test
