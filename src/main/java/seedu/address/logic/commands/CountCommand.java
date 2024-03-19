@@ -12,7 +12,7 @@ public class CountCommand extends Command {
 
     public static final String COMMAND_WORD = "count";
 
-    public static final String MESSAGE_SUCCESS = "Number of contacts in Connectify: %1$d";
+    public static final String MESSAGE_SUCCESS = "You currently have %1$d contacts.";
 
 
     @Override
