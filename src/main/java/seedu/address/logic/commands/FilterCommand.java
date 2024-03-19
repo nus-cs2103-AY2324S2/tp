@@ -28,6 +28,7 @@ public class FilterCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
+        System.out.println(this.toString());
         requireNonNull(model);
         model.updateFilteredPersonList(predicate);
         return new CommandResult(
