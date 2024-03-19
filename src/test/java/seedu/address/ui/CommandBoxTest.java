@@ -1,12 +1,15 @@
 package seedu.address.ui;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import javafx.application.Application;
+import javafx.collections.ObservableList;
 import javafx.stage.Stage;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -55,5 +58,23 @@ public class CommandBoxTest {
         assertNotNull(commandBox);
     }
 
+    @Test
+    public void setStyleToIndicateCommandFailure_addsErrorStyleClass() {
+        ObservableList<String> styleClass = commandBox.getCommandTextField().getStyleClass();
+        assertFalse(styleClass.contains(CommandBox.ERROR_STYLE_CLASS));
+        commandBox.setStyleToIndicateCommandFailure();
+
+        assertTrue(styleClass.contains(CommandBox.ERROR_STYLE_CLASS));
+    }
+
+    @Test
+    public void setStyleToDefault_removesErrorStyleClass() {
+        ObservableList<String> styleClass = commandBox.getCommandTextField().getStyleClass();
+        styleClass.add(CommandBox.ERROR_STYLE_CLASS); // Add ERROR_STYLE_CLASS initially
+        assertTrue(styleClass.contains(CommandBox.ERROR_STYLE_CLASS));
+        commandBox.setStyleToDefault();
+
+        assertFalse(styleClass.contains(CommandBox.ERROR_STYLE_CLASS));
+    }
 
 }

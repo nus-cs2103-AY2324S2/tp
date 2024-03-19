@@ -29,7 +29,6 @@ public class CommandBox extends UiPart<Region> {
     @FXML
     private TextField commandTextField;
 
-
     /**
      * Creates a {@code CommandBox} with the given {@code CommandExecutor}.
      */
@@ -75,14 +74,14 @@ public class CommandBox extends UiPart<Region> {
     /**
      * Sets the command box style to use the default style.
      */
-    private void setStyleToDefault() {
+    void setStyleToDefault() {
         commandTextField.getStyleClass().remove(ERROR_STYLE_CLASS);
     }
 
     /**
      * Sets the command box style to indicate a failed command.
      */
-    private void setStyleToIndicateCommandFailure() {
+    void setStyleToIndicateCommandFailure() {
         ObservableList<String> styleClass = commandTextField.getStyleClass();
 
         if (styleClass.contains(ERROR_STYLE_CLASS)) {
@@ -90,6 +89,15 @@ public class CommandBox extends UiPart<Region> {
         }
 
         styleClass.add(ERROR_STYLE_CLASS);
+    }
+
+    /**
+     * Returns the command text field for the command box instance.
+     *
+     * @return The command text field.
+     */
+    protected TextField getCommandTextField() {
+        return commandTextField;
     }
 
     /**
