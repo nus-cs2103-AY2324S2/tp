@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
@@ -48,10 +49,10 @@ public class FindCommandTest {
         assertEquals(findFirstCommand, findFirstCommandCopy);
 
         // different types -> returns false
-        assertNotEquals(1, findFirstCommand);
+        assertFalse(findFirstCommand.equals(1));
 
         // null -> returns false
-        assertNotEquals(null, findFirstCommand);
+        assertFalse(findFirstCommand.equals(null));
 
         // different person -> returns false
         assertNotEquals(findFirstCommand, findSecondCommand);
