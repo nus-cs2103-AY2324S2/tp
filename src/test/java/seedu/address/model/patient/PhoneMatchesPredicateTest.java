@@ -4,10 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
 import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.PatientBuilder;
@@ -22,15 +18,16 @@ public class PhoneMatchesPredicateTest {
         String secondPhoneString = "88888888";
         Phone secondPhone = new Phone(secondPhoneString);
 
-        /*
-        NameContainsKeywordsPredicate firstPredicate = new NameContainsKeywordsPredicate();
-        NameContainsKeywordsPredicate secondPredicate = new NameContainsKeywordsPredicate(secondPredicateKeywordList);
+        PhoneMatchesPredicate firstPredicate = new PhoneMatchesPredicate(firstPhone);
+        PhoneMatchesPredicate secondPredicate = new PhoneMatchesPredicate(secondPhone);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        NameContainsKeywordsPredicate firstPredicateCopy = new NameContainsKeywordsPredicate(firstPredicateKeywordList);
+        String firstPhoneStringCopy = "99999999";
+        Phone firstPhoneCopy = new Phone(firstPhoneStringCopy);
+        PhoneMatchesPredicate firstPredicateCopy = new PhoneMatchesPredicate(firstPhoneCopy);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -41,51 +38,32 @@ public class PhoneMatchesPredicateTest {
 
         // different person -> returns false
         assertFalse(firstPredicate.equals(secondPredicate));
-
-         */
     }
 
     @Test
-    public void test_nameContainsKeywords_returnsTrue() {
-        // One keyword
-        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Collections.singletonList("Alice"));
-        assertTrue(predicate.test(new PatientBuilder().withName("Alice Bob").build()));
-
-        // Multiple keywords
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob"));
-        assertTrue(predicate.test(new PatientBuilder().withName("Alice Bob").build()));
-
-        // Only one matching keyword
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("Bob", "Carol"));
-        assertTrue(predicate.test(new PatientBuilder().withName("Alice Carol").build()));
-
-        // Mixed-case keywords
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("aLIce", "bOB"));
-        assertTrue(predicate.test(new PatientBuilder().withName("Alice Bob").build()));
+    public void test_phoneMatches_returnsTrue() {
+        String phoneNumber = "98765432";
+        PhoneMatchesPredicate predicate = new PhoneMatchesPredicate(new Phone(phoneNumber));
+        assertTrue(predicate.test(new PatientBuilder().withPhone(phoneNumber).build()));
     }
 
     @Test
-    public void test_nameDoesNotContainKeywords_returnsFalse() {
-        // Zero keywords
-        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Collections.emptyList());
-        assertFalse(predicate.test(new PatientBuilder().withName("Alice").build()));
+    public void test_phoneDoesNotMatch_returnsFalse() {
+        // Null check
+        String phoneNumber = "98765432";
+        PhoneMatchesPredicate predicate = new PhoneMatchesPredicate(new Phone(phoneNumber));
+        assertFalse(predicate.test(null));
 
-        // Non-matching keyword
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("Carol"));
-        assertFalse(predicate.test(new PatientBuilder().withName("Alice Bob").build()));
-
-        // Keywords match phone, email and address, but does not match name
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street"));
-        assertFalse(predicate.test(new PatientBuilder().withName("Alice").withPhone("12345")
-                .withEmail("alice@email.com").withAddress("Main Street").build()));
+        // Non-matching phones
+        assertFalse(predicate.test(new PatientBuilder().withPhone("99999999").build()));
     }
 
     @Test
     public void toStringMethod() {
-        List<String> keywords = List.of("keyword1", "keyword2");
-        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(keywords);
+        Phone phone = new Phone("99999999");
+        PhoneMatchesPredicate predicate = new PhoneMatchesPredicate(phone);
 
-        String expected = NameContainsKeywordsPredicate.class.getCanonicalName() + "{keywords=" + keywords + "}";
+        String expected = PhoneMatchesPredicate.class.getCanonicalName() + "{phone=" + phone + "}";
         assertEquals(expected, predicate.toString());
     }
 }

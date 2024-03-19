@@ -16,6 +16,9 @@ public class PhoneMatchesPredicate implements Predicate<Patient> {
 
     @Override
     public boolean test(Patient patient) {
+        if (patient == null) {
+            return false;
+        }
         return patient.getPhone().equals(this.phone);
     }
 
