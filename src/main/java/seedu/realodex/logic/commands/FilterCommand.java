@@ -8,7 +8,7 @@ import seedu.realodex.model.Model;
 import seedu.realodex.model.person.NameContainsKeyphrasePredicate;
 
 /**
- * Filters and lists all persons in address book whose name contains the argument keyphrase.
+ * Filters and lists all persons in realodex whose name contains the argument keyphrase.
  * Keyphrase matching is case-insensitive.
  */
 public class FilterCommand extends Command {

@@ -35,17 +35,17 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' realodex file path.
      */
     Path getRealodexFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' realodex file path.
      */
     void setRealodexFilePath(Path realodexFilePath);
 
     /**
-     * Replaces address book data with the data in {@code realodex}.
+     * Replaces realodex data with the data in {@code realodex}.
      */
     void setRealodex(ReadOnlyRealodex realodex);
 
@@ -53,19 +53,19 @@ public interface Model {
     ReadOnlyRealodex getRealodex();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a person with the same identity as {@code person} exists in realodex.
      */
     boolean hasPerson(Person person);
 
     /**
      * Deletes the given person.
-     * The person must exist in the address book.
+     * The person must exist in the realodex.
      */
     void deletePerson(Person target);
 
     /**
      * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * {@code person} must not already exist in realodex.
      */
     void addPerson(Person person);
 

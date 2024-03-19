@@ -6,7 +6,7 @@ import seedu.realodex.model.Model;
 import seedu.realodex.model.Realodex;
 
 /**
- * Clears the address book.
+ * Clears the realodex.
  */
 public class ClearCommand extends Command {
 

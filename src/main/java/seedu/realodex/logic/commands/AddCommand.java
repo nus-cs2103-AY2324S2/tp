@@ -17,7 +17,7 @@ import seedu.realodex.model.Model;
 import seedu.realodex.model.person.Person;
 
 /**
- * Adds a person to the address book.
+ * Adds a person to the realodex.
  */
 public class AddCommand extends Command {
 

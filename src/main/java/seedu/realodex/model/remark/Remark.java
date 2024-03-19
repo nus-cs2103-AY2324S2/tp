@@ -1,7 +1,7 @@
 package seedu.realodex.model.remark;
 
 /**
- * Represents a remark in the address book.
+ * Represents a remark in realodex.
  */
 public class Remark {
 

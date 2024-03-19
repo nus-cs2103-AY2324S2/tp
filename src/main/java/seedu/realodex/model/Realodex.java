@@ -60,7 +60,7 @@ public class Realodex implements ReadOnlyRealodex {
     //// person-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a person with the same identity as {@code person} exists in realodex.
      */
     public boolean hasPerson(Person person) {
         requireNonNull(person);
@@ -68,8 +68,8 @@ public class Realodex implements ReadOnlyRealodex {
     }
 
     /**
-     * Adds a person to the address book.
-     * The person must not already exist in the address book.
+     * Adds a person to realodex.
+     * The person must not already exist in realodex.
      */
     public void addPerson(Person p) {
         persons.add(p);
@@ -77,8 +77,8 @@ public class Realodex implements ReadOnlyRealodex {
 
     /**
      * Replaces the given person {@code target} in the list with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * {@code target} must exist in realodex.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in realodex.
      */
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
@@ -88,7 +88,7 @@ public class Realodex implements ReadOnlyRealodex {
 
     /**
      * Removes {@code key} from this {@code Realodex}.
-     * {@code key} must exist in the address book.
+     * {@code key} must exist in realodex.
      */
     public void removePerson(Person key) {
         persons.remove(key);

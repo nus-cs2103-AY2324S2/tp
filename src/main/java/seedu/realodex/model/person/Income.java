@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.realodex.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents the income of a person in the address book.
+ * Represents the income of a person in realodex.
  * Guarantees: income is present, not null, and adheres to specific constraints.
  */
 public class Income {

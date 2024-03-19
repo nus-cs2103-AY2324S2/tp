@@ -4,7 +4,7 @@ import javafx.collections.ObservableList;
 import seedu.realodex.model.person.Person;
 
 /**
- * Unmodifiable view of an address book
+ * Unmodifiable view of an realodex
  */
 public interface ReadOnlyRealodex {
 

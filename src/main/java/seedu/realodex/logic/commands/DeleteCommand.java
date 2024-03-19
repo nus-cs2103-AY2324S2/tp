@@ -15,7 +15,7 @@ import seedu.realodex.model.person.Name;
 import seedu.realodex.model.person.Person;
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Deletes a person identified using it's displayed index from realodex.
  */
 public class DeleteCommand extends Command {
 

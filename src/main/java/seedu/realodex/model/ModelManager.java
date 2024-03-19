@@ -14,7 +14,7 @@ import seedu.realodex.commons.core.LogsCenter;
 import seedu.realodex.model.person.Person;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the realodex data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -29,7 +29,7 @@ public class ModelManager implements Model {
     public ModelManager(ReadOnlyRealodex realodex, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(realodex, userPrefs);
 
-        logger.fine("Initializing with address book: " + realodex + " and user prefs " + userPrefs);
+        logger.fine("Initializing with realodex: " + realodex + " and user prefs " + userPrefs);
 
         this.realodex = new Realodex(realodex);
         this.userPrefs = new UserPrefs(userPrefs);

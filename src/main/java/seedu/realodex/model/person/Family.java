@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.realodex.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents the family size of a person in the address book.
+ * Represents the family size of a person in realodex.
  * Guarantees: family size is present and not null, and adheres to specific constraints.
  */
 public class Family {
