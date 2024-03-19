@@ -1,7 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
 <VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
-  <VBox VBox.vgrow="ALWAYS" />
+  <GridPane>
+    <VBox alignment="CENTER_LEFT" minHeight="100" GridPane.rowIndex="0">
+      <padding>
+        <Insets top="5" right="5" bottom="5" left="15" />
+      </padding>
+      <HBox spacing="5" alignment="CENTER">
+        <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
+      </HBox>
+    </VBox>
+
+    <VBox alignment="CENTER_LEFT" minHeight="100" GridPane.rowIndex="1">
+      <padding>
+        <Insets top="5" right="5" bottom="5" left="15" />
+      </padding>
+      <Label text="Contact Information" styleClass="cell_big_label" />
+      <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
+      <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
+      <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+      <Label fx:id="upcoming" styleClass="cell_small_label" text="\$upcoming" />
+      <Label fx:id="lastcontact" styleClass="cell_small_label" text="\$lastcontacted"/>
+    </VBox>
+
+    <VBox alignment="CENTER_LEFT" minHeight="100" GridPane.rowIndex="2">
+      <padding>
+        <Insets top="5" right="5" bottom="5" left="15" />
+      </padding>
+      <Label text="Existing Plans" styleClass="cell_big_label" />
+      <FlowPane fx:id="tags" />
+    </VBox>
+  </GridPane>
 </VBox>
