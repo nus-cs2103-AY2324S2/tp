@@ -4,6 +4,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import seedu.address.model.asset.Asset;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.fields.Prefix;
 
@@ -14,6 +15,7 @@ public class Messages {
 
     public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
+    public static final String MESSAGE_INVALID_ASSET_DISPLAYED = "The asset name provided is invalid";
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
@@ -52,6 +54,13 @@ public class Messages {
                 .append("; Assets: ")
                 .append(person.getAssets());
         return builder.toString();
+    }
+
+    /**
+     * Formats the {@code asset} for display to the user.
+     */
+    public static String format(Asset asset) {
+        return asset.get();
     }
 
 }

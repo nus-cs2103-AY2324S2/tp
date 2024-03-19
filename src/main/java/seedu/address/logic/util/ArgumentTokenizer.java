@@ -7,6 +7,8 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.person.fields.Prefix;
 
+import static seedu.address.model.person.fields.Name.PREFIX_NAME;
+
 /**
  * Tokenizes arguments string of the form: {@code preamble <prefix>value <prefix>value ...}<br>
  *     e.g. {@code some preamble text t/ 11.00 t/12.00 k/ m/ July}  where prefixes are {@code t/ k/ m/}.<br>
@@ -28,6 +30,21 @@ public class ArgumentTokenizer {
     public static ArgumentMultimap tokenize(String argsString, Prefix... prefixes) {
         List<PrefixPosition> positions = findAllPrefixPositions(argsString, prefixes);
         return extractArguments(argsString, positions);
+    }
+
+    /**
+     * Tokenizes an arguments string and returns an {@code ArgumentMultimap} object that simply returns the name of
+     * the assetToEdit and newAsset.
+     *
+     * @param argsString Arguments string of the form: {@code preamble <prefix>value <prefix>value ...}
+     * @return           ArgumentMultimap object that maps prefixes to their arguments
+     */
+    public static ArgumentMultimap tokenizeEditAsset(String argsString) {
+        ArgumentMultimap argMultimap = new ArgumentMultimap();
+
+        argMultimap.put(PREFIX_NAME, argsString.substring(argsString.lastIndexOf(" ") + 1));
+
+        return argMultimap;
     }
 
     /**

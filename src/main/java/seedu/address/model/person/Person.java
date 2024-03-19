@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.asset.Asset;
 import seedu.address.model.person.fields.Address;
 import seedu.address.model.person.fields.Assets;
 import seedu.address.model.person.fields.Email;
@@ -92,6 +93,21 @@ public class Person {
 
         return otherPerson != null
                 && otherPerson.getName().equals(getName());
+    }
+
+    /**
+     * Returns true if person has asset.
+     */
+    public boolean hasAsset(Asset asset) {
+        return assets.contains(asset);
+    }
+
+    /**
+     * Updates asset in assets
+     */
+    public Assets updateAsset(Asset assetToEdit, Asset newAsset) {
+        assets.update(assetToEdit, newAsset);
+        return assets;
     }
 
     /**

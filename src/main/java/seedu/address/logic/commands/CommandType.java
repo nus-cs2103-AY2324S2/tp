@@ -17,6 +17,12 @@ public enum CommandType {
             return EditCommand.of(arguments);
         }
     },
+    EDITA {
+        @Override
+        public Command createCommand(String arguments) throws IllegalArgumentException {
+            return EditAssetCommand.of(arguments);
+        }
+    },
     DELETE {
         @Override
         public Command createCommand(String arguments) throws IllegalArgumentException {

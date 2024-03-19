@@ -52,6 +52,15 @@ public class Assets implements Field {
         return assets;
     }
 
+    public boolean contains(Asset asset) {
+        return assets.contains(asset);
+    }
+
+    public void update(Asset assetToEdit, Asset newAsset) {
+        assets.remove(assetToEdit);
+        assets.add(newAsset);
+    }
+
     public Stream<Asset> stream() {
         return assets.stream();
     }
