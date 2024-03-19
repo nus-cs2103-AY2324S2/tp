@@ -12,11 +12,11 @@ public class BuyerTest {
     public void equals() {
 
         Buyer buyerAlice =
-                new Buyer(ALICE.getName(), ALICE.getPhone(), ALICE.getEmail(), ALICE.getAddress(),
-                        ALICE.getPostalCode(), ALICE.getTags());
+                new Buyer(ALICE.getName(), ALICE.getPhone(), ALICE.getEmail(), ALICE.getHousingType(),
+                        ALICE.getTags());
         Buyer buyerBob =
-                new Buyer(BOB.getName(), BOB.getPhone(), BOB.getEmail(), BOB.getAddress(),
-                        BOB.getPostalCode(), BOB.getTags());
+                new Buyer(BOB.getName(), BOB.getPhone(), BOB.getEmail(), BOB.getHousingType(),
+                        BOB.getTags());
 
         // same object -> returns true
         assertTrue(buyerAlice.equals(buyerAlice));
