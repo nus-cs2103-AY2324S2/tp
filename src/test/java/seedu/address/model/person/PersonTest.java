@@ -83,10 +83,6 @@ public class PersonTest {
 
     @Test
     public void equals_someOptionalFieldsAreNull_success() {
-        // same values -> returns true
-        Person aliceCopy = new PersonBuilder(ALICE).build();
-        assertTrue(ALICE.equals(aliceCopy));
-
         Person aliceCopyWithoutEmail = new Person(
                 ALICE.getName(),
                 ALICE.getPhone(),
@@ -95,6 +91,7 @@ public class PersonTest {
                 ALICE.getTelegram(),
                 ALICE.getBirthday());
         assertFalse(ALICE.equals(aliceCopyWithoutEmail));
+        assertFalse(aliceCopyWithoutEmail.equals(ALICE));
 
         Person aliceCopyWithoutRoomNumber = new Person(
                 ALICE.getName(),
@@ -104,6 +101,7 @@ public class PersonTest {
                 ALICE.getTelegram(),
                 ALICE.getBirthday());
         assertFalse(ALICE.equals(aliceCopyWithoutRoomNumber));
+        assertFalse(aliceCopyWithoutRoomNumber.equals(ALICE));
 
         Person aliceCopyWithoutTelegram = new Person(
                 ALICE.getName(),
@@ -113,6 +111,7 @@ public class PersonTest {
                 null,
                 ALICE.getBirthday());
         assertFalse(ALICE.equals(aliceCopyWithoutTelegram));
+        assertFalse(aliceCopyWithoutTelegram.equals(ALICE));
 
         Person aliceCopyWithoutBirthday = new Person(
                 ALICE.getName(),
@@ -122,6 +121,7 @@ public class PersonTest {
                 ALICE.getTelegram(),
                 null);
         assertFalse(ALICE.equals(aliceCopyWithoutBirthday));
+        assertFalse(aliceCopyWithoutBirthday.equals(ALICE));
     }
 
     @Test
