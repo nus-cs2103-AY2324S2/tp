@@ -14,19 +14,19 @@ import seedu.address.model.person.Telegram;
 
 public class MessagesTest {
 
-    private static final String FORMATTED_ALL_FIELDS_MESSAGE = "Johnny; Phone: 98765432; "
-            + "Email: john@gmail.com; Room Number: 01-01; Telegram: John; Birthday: 01-01-2000";
+    private static final String FORMATTED_ALL_FIELDS_MESSAGE = "Johnny G; Phone: 98765432; "
+            + "Email: john@gmail.com; Room Number: 01-01; Telegram: Johnny; Birthday: 01-01-2000";
     private static final String FORMATTED_ALL_MANDATORY_FIELDS_MESSAGE = "Johnny; Phone: 98765432";
     private static final String FORMATTED_ALL_MANDATORY_AND_SOME_OPTIONAL_FIELDS_MESSAGE = "Johnny; Phone: 98765432; "
             + "Room Number: 01-01; Birthday: 01-01-2000";
 
     @Test
     public void format_personWithAllFields_success() {
-        Name name = new Name("Johnny");
+        Name name = new Name("Johnny G");
         Phone phone = new Phone("98765432");
         Email email = new Email("john@gmail.com");
         RoomNumber roomNumber = new RoomNumber("01-01");
-        Telegram telegram = new Telegram("John");
+        Telegram telegram = new Telegram("Johnny");
         Birthday birthday = new Birthday("01-01-2000");
 
         Person person = new Person(name, phone, email, roomNumber, telegram, birthday);
