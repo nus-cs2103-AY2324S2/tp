@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import java.util.ArrayList;
 
 import javafx.beans.InvalidationListener;
-import javafx.beans.Observable;
 
 /**
  * Manages a list of {@link InvalidationListener}.
