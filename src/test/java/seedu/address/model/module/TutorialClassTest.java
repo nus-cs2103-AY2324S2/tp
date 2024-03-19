@@ -105,7 +105,7 @@ public class TutorialClassTest {
     @Test
     void testEmptyConstructor() {
         TutorialClass tutorialClass = new TutorialClass();
-        assertEquals("", tutorialClass.value);
+        assertEquals("", tutorialClass.getTutorialClass().toString());
         try {
             Field field = TutorialClass.class.getDeclaredField("students");
             field.setAccessible(true); // Allow access to private field
@@ -137,7 +137,7 @@ public class TutorialClassTest {
         students.add(student2);
 
         TutorialClass tutorialClass = new TutorialClass(VALID_TUTORIAL, students);
-        assertEquals(VALID_TUTORIAL, tutorialClass.value);
+        assertEquals(VALID_TUTORIAL, tutorialClass.getTutorialClass().toString());
         assertEquals(2, tutorialClass.getStudents().size()); // Accessing students via getter
         assertTrue(tutorialClass.getStudents().contains(student1));
         assertTrue(tutorialClass.getStudents().contains(student2));

@@ -29,7 +29,7 @@ public class TutorialClass {
      * Initializes the {@code value} field to an empty string and creates an empty list for {@code students}.
      */
     public TutorialClass() {
-        this.value = "";
+        this.tutorialName = "";
         this.students = new ArrayList<>();
     }
 

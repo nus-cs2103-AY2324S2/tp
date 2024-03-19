@@ -26,7 +26,7 @@ public class ModuleCard extends UiPart<Region> {
     public ModuleCard(ModuleCode moduleCode) {
         super(FXML);
         this.moduleCode = moduleCode;
-        moduleCodeLabel.setText(moduleCode.value);
+        moduleCodeLabel.setText(moduleCode.getModule().toString());
         tutorialClassLabel.setText(moduleCode.getTutorialClasses().toString());
     }
 }
