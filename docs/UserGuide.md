@@ -86,8 +86,9 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison t/criminal`
 
-Unlike the `edit` command, `p/` without any phone number is not supported.
-If you want to not specify the phone number, leave out `p/PHONE` entirely.
+Unlike the `edit` command, `t/` with an empty tag is not supported.
+If you want to not include any tag, leave out `t/TAG` entirely.
+Similarly, `p/` without any phone number is not supported, if you want to not specify the phone number, leave out `p/PHONE` entirely.
 
 ### Listing all persons : `list`
 
