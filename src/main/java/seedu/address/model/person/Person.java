@@ -8,7 +8,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Task;
 
 /**
  * Represents a Person in the address book.
@@ -23,18 +23,18 @@ public class Person {
 
     // Data fields
     private final Address address;
-    private final Set<Tag> tags = new HashSet<>();
+    private final Set<Task> tasks = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Address address, Set<Task> tasks) {
+        requireAllNonNull(name, phone, email, address);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.tags.addAll(tags);
+        this.tasks.addAll(tasks);
     }
 
     public Name getName() {
@@ -54,11 +54,31 @@ public class Person {
     }
 
     /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * Returns an immutable task set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public Set<Task> getTasks() {
+        return Collections.unmodifiableSet(tasks);
+    }
+
+    /**
+     * @param task to be assigned to {@code this}
+     * @return a new {@code Person} as a result of assigning {@code task} to {@code this}
+     */
+    public Person addTask(Task task) {
+        Set<Task> editedTasks = new HashSet<>(tasks);
+        editedTasks.add(task);
+        return new Person(name, phone, email, address, editedTasks);
+    }
+
+    /**
+     * @param task to be unassigned from {@code this}
+     * @return a new {@code Person} as a result of unassigning {@code task} to {@code this}
+     */
+    public Person deleteTask(Task task) {
+        Set<Task> editedTasks = new HashSet<>(tasks);
+        editedTasks.remove(task);
+        return new Person(name, phone, email, address, editedTasks);
     }
 
     /**
@@ -94,13 +114,13 @@ public class Person {
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
-                && tags.equals(otherPerson.tags);
+                && tasks.equals(otherPerson.tasks);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, tasks);
     }
 
     @Override
@@ -110,7 +130,7 @@ public class Person {
                 .add("phone", phone)
                 .add("email", email)
                 .add("address", address)
-                .add("tags", tags)
+                .add("tasks", tasks)
                 .toString();
     }
 
