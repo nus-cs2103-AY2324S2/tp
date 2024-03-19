@@ -27,9 +27,9 @@
                     </minWidth>
                 </Label>
                <!-- Here lies the edit of task information -->
-   
+
                      <!--Label fx:id="mark" styleClass="cell_small_label" text="\$mark" /-->
-   
+
                      <Label fx:id="description" styleClass="cell_small_label" text="\$description" />
                 <!-- Label fx:id="name" text="\$first" styleClass="cell_big_label" / -->
             </HBox>
