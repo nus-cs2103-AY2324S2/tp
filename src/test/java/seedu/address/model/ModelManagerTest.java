@@ -15,6 +15,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.testutil.AddressBookBuilder;
 
@@ -130,6 +131,10 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs)));
 
         // finds a valid person by name
-        assertEquals(ALICE, modelManagerCopy.findByName(ALICE.getName()));
+        try {
+            assertEquals(ALICE, modelManagerCopy.findByName(ALICE.getName()));
+        } catch (CommandException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -43,6 +43,7 @@ class JsonAdaptedPerson {
     private String product;
     private String price;
     private String skill;
+
     private String commission;
     private String note;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
@@ -89,6 +90,30 @@ class JsonAdaptedPerson {
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+    }
+
+    public void setEmployment(String employment) {
+        this.employment = employment;
+    }
+
+    public void setSalary(String salary) {
+        this.salary = salary;
+    }
+
+    public void setProduct(String product) {
+        this.product = product;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public void setSkill(String skill) {
+        this.skill = skill;
+    }
+
+    public void setCommission(String commission) {
+        this.commission = commission;
     }
 
     /**

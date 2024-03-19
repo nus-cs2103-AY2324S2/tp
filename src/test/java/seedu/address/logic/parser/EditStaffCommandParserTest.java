@@ -1,6 +1,5 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
@@ -14,6 +13,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_STAFF;
+import static seedu.address.logic.messages.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FIELD;
@@ -26,9 +26,9 @@ import static seedu.address.testutil.TypicalPersons.CARL;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.Messages;
 import seedu.address.logic.commands.EditStaffCommand;
 import seedu.address.logic.commands.EditStaffCommand.EditStaffDescriptor;
+import seedu.address.logic.messages.Messages;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
@@ -43,7 +43,8 @@ public class EditStaffCommandParserTest {
         // no field specified
         String userInput = EditStaffCommand.COMMAND_WORD + " " + PREFIX_NAME + " "
             + " " + PREFIX_FIELD + "{" + " }";
-        assertParseFailure(parser, userInput, MESSAGE_INVALID_COMMAND_FORMAT);
+        assertParseFailure(parser, userInput, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                EditStaffCommand.MESSAGE_USAGE));
     }
 
     @Test
@@ -52,7 +53,8 @@ public class EditStaffCommandParserTest {
         String userInput = EditStaffCommand.COMMAND_WORD + " " + PREFIX_NAME + " "
             + " " + PREFIX_FIELD + "{" + PHONE_DESC_AMY
             + ADDRESS_DESC_AMY + EMAIL_DESC_AMY + " }";
-        assertParseFailure(parser, userInput, MESSAGE_INVALID_COMMAND_FORMAT);
+        assertParseFailure(parser, userInput, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                EditStaffCommand.MESSAGE_USAGE));
     }
 
     @Test
@@ -76,7 +78,8 @@ public class EditStaffCommandParserTest {
         userInput = EditStaffCommand.COMMAND_WORD + " " + PREFIX_NAME + "Staff1"
             + " " + PREFIX_FIELD + "{" + INVALID_NAME_DESC + INVALID_EMAIL_DESC
             + VALID_ADDRESS_AMY + VALID_PHONE_AMY + " }";
-        assertParseFailure(parser, userInput, MESSAGE_INVALID_COMMAND_FORMAT);
+        assertParseFailure(parser, userInput, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                EditStaffCommand.MESSAGE_USAGE));
     }
 
     @Test

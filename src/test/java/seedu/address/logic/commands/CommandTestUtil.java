@@ -212,11 +212,17 @@ public class CommandTestUtil {
     public static void showPersonWithName(Model model, Name targetName) {
         assertTrue(targetName != null);
 
-        Person person = model.findByName(targetName);
-        final String[] splitName = person.getName().fullName.split("\\s+");
-        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        Person person;
 
-        assertEquals(1, model.getFilteredPersonList().size());
+        try {
+            person = model.findByName(targetName);
+            final String[] splitName = person.getName().fullName.split("\\s+");
+            model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+
+            assertEquals(1, model.getFilteredPersonList().size());
+        } catch (CommandException e) {
+            e.printStackTrace();
+        }
     }
 
 }

@@ -16,8 +16,8 @@ import java.util.Set;
 
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.messages.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -41,11 +41,11 @@ public class EditCommand extends Command {
             + "[" + PREFIX_FIELD + "FIELD] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
+            + "[" + PREFIX_EMAIL + "EMAIL] \n"
             + "Example: " + COMMAND_WORD
             + PREFIX_NAME + "John Doe Others "
             + PREFIX_FIELD + "{ "
-            + PREFIX_NAME + "John Deed "
+            + "phone : " + "99820550 "
             + PREFIX_ADDRESS + "NUS College Avenue"
             + " }";
 

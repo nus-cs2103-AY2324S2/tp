@@ -78,23 +78,23 @@ public class PersonCard extends UiPart<Region> {
         if (person instanceof Staff) {
             Staff staff = (Staff) person;
             salary.setText(staff.getSalary().value);
-            employment.setText(staff.getEmployment().employment);
+            employment.setText(staff.getEmployment().value);
             salary.setManaged(true);
             employment.setManaged(true);
             salary.setVisible(true);
             employment.setVisible(true);
         } else if (person instanceof Supplier) {
             Supplier supplier = (Supplier) person;
-            product.setText(supplier.getProduct().product);
-            price.setText(supplier.getPrice().price);
+            product.setText(supplier.getProduct().value);
+            price.setText(supplier.getPrice().value);
             product.setManaged(true);
             price.setManaged(true);
             product.setVisible(true);
             price.setVisible(true);
         } else if (person instanceof Maintainer) {
             Maintainer maintainer = (Maintainer) person;
-            skill.setText(maintainer.getSkill().skill);
-            commission.setText(maintainer.getCommission().commission);
+            skill.setText(maintainer.getSkill().value);
+            commission.setText(maintainer.getCommission().value);
             skill.setManaged(true);
             commission.setManaged(true);
             skill.setVisible(true);

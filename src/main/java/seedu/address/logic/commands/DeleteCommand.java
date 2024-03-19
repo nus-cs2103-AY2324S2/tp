@@ -6,8 +6,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import java.util.List;
 
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.messages.DeleteMessages;
 import seedu.address.model.Model;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -16,7 +16,6 @@ import seedu.address.model.person.Person;
  * Deletes a person identified using it's displayed name from the address book.
  */
 public class DeleteCommand extends Command {
-
     public static final String COMMAND_WORD = "/delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
@@ -24,8 +23,6 @@ public class DeleteCommand extends Command {
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + "Example: " + COMMAND_WORD + " Moochie";
-
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
 
     private final Name targetName;
 
@@ -61,11 +58,12 @@ public class DeleteCommand extends Command {
         personToDelete = findByName(lastShownList, targetName);
 
         if (personToDelete == null) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(DeleteMessages.MESSAGE_DELETE_NAME_NOT_FOUND);
         }
 
         model.deletePerson(personToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
+        return new CommandResult(String.format(DeleteMessages.MESSAGE_DELETE_PERSON_SUCCESS,
+                DeleteMessages.format(personToDelete)));
     }
 
     @Override

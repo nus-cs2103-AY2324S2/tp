@@ -99,7 +99,7 @@ public class PersonUtil {
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
         sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
         sb.append(PREFIX_SALARY + person.getSalary().value + " ");
-        sb.append(PREFIX_EMPLOYMENT + person.getEmployment().employment + " ");
+        sb.append(PREFIX_EMPLOYMENT + person.getEmployment().value + " ");
         return sb.toString();
     }
 
@@ -112,8 +112,8 @@ public class PersonUtil {
         sb.append(PREFIX_PHONE + person.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
         sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
-        sb.append(PREFIX_PRODUCT + person.getProduct().product + " ");
-        sb.append(PREFIX_PRICE + person.getPrice().price + " ");
+        sb.append(PREFIX_PRODUCT + person.getProduct().value + " ");
+        sb.append(PREFIX_PRICE + person.getPrice().value + " ");
         return sb.toString();
     }
 
@@ -126,8 +126,8 @@ public class PersonUtil {
         sb.append(PREFIX_PHONE + person.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
         sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
-        sb.append(PREFIX_SKILL + person.getSkill().skill + " ");
-        sb.append(PREFIX_COMMISSION + person.getCommission().commission + " ");
+        sb.append(PREFIX_SKILL + person.getSkill().value + " ");
+        sb.append(PREFIX_COMMISSION + person.getCommission().value + " ");
         return sb.toString();
     }
 
@@ -152,7 +152,7 @@ public class PersonUtil {
         descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
         descriptor.getSalary().ifPresent(salary -> sb.append(PREFIX_SALARY).append(salary.value).append(" "));
         descriptor.getEmployment().ifPresent(employment -> sb.append(PREFIX_EMPLOYMENT)
-                .append(employment.employment).append(" "));
+                .append(employment.value).append(" "));
         return sb.toString();
     }
 
@@ -164,8 +164,8 @@ public class PersonUtil {
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
-        descriptor.getProduct().ifPresent(product -> sb.append(PREFIX_PRODUCT).append(product.product).append(" "));
-        descriptor.getPrice().ifPresent(price -> sb.append(PREFIX_PRICE).append(price.price).append(" "));
+        descriptor.getProduct().ifPresent(product -> sb.append(PREFIX_PRODUCT).append(product.value).append(" "));
+        descriptor.getPrice().ifPresent(price -> sb.append(PREFIX_PRICE).append(price.value).append(" "));
         return sb.toString();
     }
 
@@ -177,9 +177,9 @@ public class PersonUtil {
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
-        descriptor.getSkill().ifPresent(skill -> sb.append(PREFIX_SKILL).append(skill.skill).append(" "));
+        descriptor.getSkill().ifPresent(skill -> sb.append(PREFIX_SKILL).append(skill.value).append(" "));
         descriptor.getCommission().ifPresent(commission -> sb.append(PREFIX_COMMISSION)
-                .append(commission.commission).append(" "));
+                .append(commission.value).append(" "));
         return sb.toString();
     }
 }
