@@ -63,11 +63,11 @@ public class StringUtil {
         boolean matchFound = false;
 
         for (int i = 0; i < wordsInPreppedSentence.length - wordsInPreppedWords.length + 1; i++) {
-            String testWord = "";
+            StringBuilder testWordBuilder = new StringBuilder();
             for (int j = 0; j < wordsInPreppedWords.length; j++) {
-                testWord = testWord + wordsInPreppedSentence[i + j] + " ";
-
+                testWordBuilder.append(wordsInPreppedSentence[i + j]).append(" ");
             }
+            String testWord = testWordBuilder.toString();
             if (testWord.indexOf(preppedWords) == 0) {
                 matchFound = true;
                 break;
