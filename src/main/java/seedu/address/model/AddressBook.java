@@ -84,7 +84,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public boolean hasTag(Tag tag) {
         requireNonNull(tag);
-        System.out.println(tagList.toString());
         return tagList.contains(tag);
     }
 
