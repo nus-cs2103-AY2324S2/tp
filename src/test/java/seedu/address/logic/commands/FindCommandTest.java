@@ -234,9 +234,8 @@ public class FindCommandTest {
     public void execute_searchTags_noPersonsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
 
-        HashSet<Tag> tagSet = new HashSet<>();
-        tagSet.add(new Tag("Enemies"));
-        TagSetContainsAllTagsPredicate predicate = new TagSetContainsAllTagsPredicate(tagSet);
+        TagSetContainsAllTagsPredicate predicate = new TagSetContainsAllTagsPredicate(
+                new HashSet<>(Arrays.asList(new Tag("Enemies"))));
 
         FindCommand command = new FindCommand(new CombinedPredicates(predicate));
         expectedModel.updateFilteredPersonList(predicate);
@@ -249,9 +248,8 @@ public class FindCommandTest {
         // Single person found
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
 
-        HashSet<Tag> tagSet = new HashSet<>();
-        tagSet.add(new Tag("owesmoney"));
-        TagSetContainsAllTagsPredicate predicate = new TagSetContainsAllTagsPredicate(tagSet);
+        TagSetContainsAllTagsPredicate predicate = new TagSetContainsAllTagsPredicate(
+                new HashSet<>(Arrays.asList(new Tag("owesmoney"))));
 
         FindCommand command = new FindCommand(new CombinedPredicates(predicate));
         expectedModel.updateFilteredPersonList(predicate);
@@ -261,9 +259,7 @@ public class FindCommandTest {
         // Multiple persons found
         expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
 
-        tagSet.clear();
-        tagSet.add(new Tag("friends"));
-        predicate = new TagSetContainsAllTagsPredicate(tagSet);
+        predicate = new TagSetContainsAllTagsPredicate(new HashSet<>(Arrays.asList(new Tag("friends"))));
 
         command = new FindCommand(new CombinedPredicates(predicate));
         expectedModel.updateFilteredPersonList(predicate);
@@ -276,10 +272,8 @@ public class FindCommandTest {
         // Single person found
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
 
-        HashSet<Tag> tagSet = new HashSet<>();
-        tagSet.add(new Tag("owesmoney"));
-        tagSet.add(new Tag("friends"));
-        TagSetContainsAllTagsPredicate predicate = new TagSetContainsAllTagsPredicate(tagSet);
+        TagSetContainsAllTagsPredicate predicate = new TagSetContainsAllTagsPredicate(
+                new HashSet<>(Arrays.asList(new Tag("owesmoney"), new Tag("friends"))));
 
         FindCommand command = new FindCommand(new CombinedPredicates(predicate));
         expectedModel.updateFilteredPersonList(predicate);
@@ -361,9 +355,8 @@ public class FindCommandTest {
         // Multiple persons found
         expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
 
-        HashSet<Tag> tagSet = new HashSet<>();
-        tagSet.add(new Tag("friends"));
-        TagSetContainsAllTagsPredicate tagsPredicate = new TagSetContainsAllTagsPredicate(tagSet);
+        TagSetContainsAllTagsPredicate tagsPredicate = new TagSetContainsAllTagsPredicate(
+                new HashSet<>(Arrays.asList(new Tag("friends"))));
         PhoneContainsSubstringPredicate phonePredicate = new PhoneContainsSubstringPredicate("8765");
 
         combinedPredicates = new CombinedPredicates(tagsPredicate, phonePredicate);
