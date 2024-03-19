@@ -31,9 +31,9 @@ command to run the application.<br>
 1. Some example commands you can try:
 
    * `add n/John Doe p/98765432 i/20000 e/johnd@example.com a/311, Clementi Ave 2, #02-25 f/4 t/buyer r/Owes money.`
-   Adds a contact named `John Doe` to the Realodex.
+   Adds a contact named `John Doe` to Realodex.
 
-   * `delete John Doe` : Deletes the client with name `John Doe` from the Realodex.
+   * `delete John Doe` : Deletes the client with name `John Doe` from Realodex.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -49,15 +49,18 @@ command to run the application.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
+
+* Parameters enclosed in `[]` are optional to input.
+
 </box>
 
 ### Adding a client: `add`
 
-Adds a client to the Realodex. 
+Adds a client to Realodex. 
 
 Format: `add n/NAME p/PHONE i/INCOME e/EMAIL a/ADDRESS f/FAMILY t/TAG [r/REMARK]`
 
-- Note that `REMARK` is optional
+- Note that `REMARK` is optional, enclosed in `[]`.
 - You may input the parameters in any order (e.g. if
 the command specifies `n/NAME a/ADDRESS`, `a/ADDRESS n/NAME` is also acceptable). 
 - Note that the tag is to indicate if a client is a
@@ -65,31 +68,31 @@ Buyer, Seller or both, so tags only accept "buyer" or "seller" as the input (cas
 
 Examples:
 * `add n/John Doe p/98765432 i/20000 e/johnd@example.com a/311, Clementi Ave 2, #02-25 f/4 t/Buyer r/Owes $1000.`
-* `add n/Betsy Crowe a/Newgate Prison i/$0 f/1 p/94859694 e/betsyc@rocketmail.com t/Seller`
+* `add n/Betsy Crowe a/Newgate Prison i/$0 f/1 p/94859694 e/betsyc@rocketmail.com t/Seller t/Buyer`
 
 ### Deleting a client : `delete`
 
-Deletes the specified client from the Realodex. There are 2 ways to do so: 
+Deletes the specified client from Realodex. There are 2 ways to do so: 
 
 #### Deleting by name
 
-Format: `delete NAME`
+Format: `delete n/NAME`
 
-* Deletes the client of the specified `NAME`.
+* Deletes the client of the specified `NAME` in Realodex.
 * If name is **not found**, error message will be shown `"NAME" is not found`.
 
 Example:
-* `delete Udhaya Shanmugam` deletes the client in the Realodex with the name "Udhaya Shanmugam".
+* `delete n/Udhaya Shanmugam` deletes the client in Realodex with the name "Udhaya Shanmugam".
 
 #### Deleting by index
 
 Format: `delete INDEX`
 
-* Deletes the client of the specified `INDEX` in the Realodex.
+* Deletes the client of the specified `INDEX` in Realodex.
 * If the index number is **invalid**, error message will be shown `The client index provided is invalid`.
 
 Example:
-* `delete 4` deletes the 4th client listed in the Realodex, provided he/she exists.
+* `delete 4` deletes the 4th client listed in Realodex, provided he/she exists.
 
 ### Editing clients : `edit`
 
@@ -118,11 +121,11 @@ Format: `filter KEYPHRASE`
 
 Example:
 
-- `filter Al` will list out persons whose name has `"Al"` inside, such as `"Alicia"`, `"Allysa"` and `"Jamal""`
+- `filter Al` will list out persons whose name has `"Al"` inside, such as `"Alicia"`, `"Allysa"` and `"Jamal"`
 
 ### Listing clients : `list`
 
-Lists all clients in the Realodex.
+Lists all clients in Realodex.
 
 Format: `list`
 
@@ -140,11 +143,11 @@ Format: `exit`
 
 ### Saving the data
 
-Realodex data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+Realodex data is saved in the hard disk automatically after any command that modifies it. There is no need to save manually.
 
 ### Editing the data file
 
-Realodex data are saved automatically as a JSON file `[JAR file location]/data/realodex.json`. Advanced users are welcome to update data directly by editing that data file.
+Realodex data is saved automatically as a JSON file `[JAR file location]/data/realodex.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <box type="warning" seamless>
 
@@ -178,7 +181,7 @@ _Details coming soon ..._
 Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 **Add**    | `add n/NAME p/PHONE i/INCOME e/EMAIL a/ADDRESS f/FAMILY t/TAG [r/REMARK]` <br> e.g. `add n/John Doe p/98765432 i/20000 e/johnd@example.com a/311, Clementi Ave 2, #02-25 f/4 r/Buyer t/Owes $1000.`
-**Delete (by name)** | `delete NAME`<br> e.g. `delete John`
+**Delete (by name)** | `delete n/NAME`<br> e.g. `delete n/John`
 **Delete (by index)** | `delete INDEX`<br> e.g. `delete 3`
 **edit** | `edit INDEX [n/NAME] [p/PHONE] [i/INCOME] [e/EMAIL] [a/ADDRESS] [f/FAMILY] [t/TAG] [r/REMARK]` <br> e.g. `edit 2 n/Denzel i/100000`
 **filter** | `filter STRING`<br> e.g. `filter David`
