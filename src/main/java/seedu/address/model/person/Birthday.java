@@ -29,7 +29,7 @@ public class Birthday {
             .appendOptional(DateTimeFormatter.ofPattern("yyyy/MM/dd"))
             .toFormatter(Locale.ENGLISH);
 
-    public static final DateTimeFormatter OUTPUT_FORMATTER = DateTimeFormatter.ofPattern("dd-L-yyyy");
+    public static final DateTimeFormatter OUTPUT_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
     public final LocalDate value;
 
