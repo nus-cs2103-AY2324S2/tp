@@ -21,11 +21,11 @@ public class RatingTest {
 
     @Test
     public void isValidRating() {
-        // invalid addresses
+        // invalid rating
         assertFalse(Rating.isValidRating(124)); // empty string
         assertFalse(Rating.isValidRating(-1)); // spaces only
 
-        // valid addresses
+        // valid rating
         assertTrue(Rating.isValidRating(4));
     }
 
@@ -33,7 +33,7 @@ public class RatingTest {
     public void equals() {
         Rating rating = new Rating(5);
 
-        // same values -> returns true
+        // same rating -> returns true
         assertTrue(rating.equals(new Rating(5)));
 
         // same object -> returns true
