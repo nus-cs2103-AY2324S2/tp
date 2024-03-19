@@ -14,7 +14,7 @@ import seedu.address.model.person.exceptions.PersonNotFoundException;
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
  * A client is considered unique by comparing using {@code Client#isSamePerson(Client)}. As such, adding and updating of
- * persons uses Client#isSamePerson(Client) for equality so as to ensure that the client being added or updated is
+ * clients uses Client#isSamePerson(Client) for equality so as to ensure that the client being added or updated is
  * unique in terms of identity in the UniquePersonList. However, the removal of a client uses Client#equals(Object) so
  * as to ensure that the client with exactly the same fields will be removed.
  *

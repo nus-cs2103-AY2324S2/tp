@@ -86,7 +86,7 @@ A person can have any number of tags (including 0)
 
 Examples:
 * `add --name=John Doe --phone=98765432 --email=johnd@example.com --addr=John street, block 123, #01-01`
-* `add --name=Jane Doe --phone=92933578 --email=janed@example.sg --addr=Amy street, block 123, #11-02 --tags=Dsiabled --tags=SeekingAssistance`
+  * `add --name=Jane Doe --phone=92933578 --email=janed@example.sg --addr=Amy street, block 123, #11-02 --tags=Disabled --tags=SeekingAssistance`
 
 ### Listing all persons : `list`
 
