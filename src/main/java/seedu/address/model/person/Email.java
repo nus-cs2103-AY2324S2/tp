@@ -8,28 +8,29 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; is valid as declared in {@link #isValidEmail(String)}
  */
 public class Email {
-
     private static final String SPECIAL_CHARACTERS = "+_.-";
     public static final String MESSAGE_CONSTRAINTS = "Emails should be of the format local-part@domain "
             + "and adhere to the following constraints:\n"
-            + "1. The local-part should only contain alphanumeric characters and these special characters, excluding "
-            + "the parentheses, (" + SPECIAL_CHARACTERS + "). The local-part may not start or end with any special "
-            + "characters.\n"
-            + "2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels "
-            + "separated by periods.\n"
+            + "1. The local-part should only be in the format of e/E follow by 7 digits from [0-9].\n"
+            + "The local-part should not consists any special characters."
+            + "e.g." + SPECIAL_CHARACTERS + "\n"
+            + "2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels.\n"
             + "The domain name must:\n"
-            + "    - end with a domain label at least 2 characters long\n"
-            + "    - have each domain label start and end with alphanumeric characters\n"
-            + "    - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.";
-    // alphanumeric and special characters
+            + "    - end with a domain label u.nus.edu\n";
+
+    //alphanumeric and special characters
     private static final String ALPHANUMERIC_NO_UNDERSCORE = "[^\\W_]+"; // alphanumeric characters except underscore
-    private static final String LOCAL_PART_REGEX = "^" + ALPHANUMERIC_NO_UNDERSCORE + "([" + SPECIAL_CHARACTERS + "]"
-            + ALPHANUMERIC_NO_UNDERSCORE + ")*";
-    private static final String DOMAIN_PART_REGEX = ALPHANUMERIC_NO_UNDERSCORE
-            + "(-" + ALPHANUMERIC_NO_UNDERSCORE + ")*";
-    private static final String DOMAIN_LAST_PART_REGEX = "(" + DOMAIN_PART_REGEX + "){2,}$"; // At least two chars
-    private static final String DOMAIN_REGEX = "(" + DOMAIN_PART_REGEX + "\\.)*" + DOMAIN_LAST_PART_REGEX;
+    private static final String LOCAL_PART_REGEX = "[eE]\\d{7}";
+
+//    private static final String DOMAIN_PART_REGEX = ALPHANUMERIC_NO_UNDERSCORE
+//            + "(-" + ALPHANUMERIC_NO_UNDERSCORE + ")*";
+//    private static final String DOMAIN_LAST_PART_REGEX = "(" + DOMAIN_PART_REGEX + "){2,}$"; // At least two chars
+    private static final String DOMAIN_REGEX = "u.nus.edu";
     public static final String VALIDATION_REGEX = LOCAL_PART_REGEX + "@" + DOMAIN_REGEX;
+
+//    public static final String MESSAGE_CONSTRAINTS = "The email should be in the format: e0123456@u.nus.edu\n"
+//            + "The first character is case insensitive, follow by 7 digits, and @u.nus.edu";
+    //public static final String VALIDATION_REGEX = "[eE]\\d{7}@u.nus.edu";
 
     public final String value;
 

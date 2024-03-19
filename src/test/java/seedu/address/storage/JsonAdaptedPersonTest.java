@@ -20,7 +20,6 @@ import seedu.address.model.person.StudentId;
 public class JsonAdaptedPersonTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_STUDENTID = "P034&";
-    private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_GRADE = "F-";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_GROUP = "#group";
@@ -28,7 +27,6 @@ public class JsonAdaptedPersonTest {
 
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_STUDENTID = BENSON.getStudentId().toString();
-
     private static final String VALID_EMAIL = BENSON.getEmail().toString();
     private static final String VALID_GRADE = BENSON.getGrade().toString();
     private static final List<JsonAdaptedGroup> VALID_GROUPS = BENSON.getGroups().stream()
