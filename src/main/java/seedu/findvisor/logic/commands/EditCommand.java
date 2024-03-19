@@ -100,8 +100,9 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Optional<Meeting> meeting = personToEdit.getMeeting();
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        // EditCommand does not edit meeting so we keep the original meeting
+        Optional<Meeting> meeting = personToEdit.getMeeting();
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, meeting);
     }
