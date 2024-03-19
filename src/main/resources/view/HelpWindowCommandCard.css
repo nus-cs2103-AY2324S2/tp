@@ -1,0 +1,11 @@
+#helpMessageCard {
+    -fx-background-color: derive(#1d1d1d, 25%);
+}
+
+#commandWord {
+    -fx-text-fill: white;
+}
+
+#messageUsage {
+    -fx-text-fill: lightgray;
+}

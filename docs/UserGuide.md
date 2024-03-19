@@ -72,9 +72,9 @@ If you can type fast, TAPro can get your contact management tasks done faster th
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page, and the command usages with examples.
 
-![help message](images/helpMessage.png)
+![help message](images/helpWindow.png)
 
 Format: `help`
 
