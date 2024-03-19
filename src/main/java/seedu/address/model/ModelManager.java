@@ -181,6 +181,17 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public String getFormattedClassList() {
+        ObservableList<Classes> classesList = this.getFilteredClassList();
+        String returnString = "";
+        for (int i = 0; i < classesList.size(); i++) {
+            returnString += (i + 1) + ": " + classesList.get(i).getCourseCode() + "   ";
+        }
+        return returnString;
+    }
+
+
+    @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;

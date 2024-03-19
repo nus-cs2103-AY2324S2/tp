@@ -18,13 +18,8 @@ public class ViewClassesCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        ObservableList<Classes> classesList = model.getFilteredClassList();
-        String returnString = MESSAGE_SUCCESS;
-        for (int i = 0; i < classesList.size(); i++) {
-            returnString += (i + 1) + ": " + classesList.get(i).getCourseCode() + "   ";
-        }
-
-        return new CommandResult(returnString);
+        String formattedClassList = model.getFormattedClassList();
+        return new CommandResult(MESSAGE_SUCCESS + formattedClassList);
     }
 }
 
