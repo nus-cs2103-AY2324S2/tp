@@ -184,9 +184,9 @@ Format: `schedule INDEX s/DATETIME`
 * The DATETIME format must be in **YYYY-MM-DD HH:mm**. 7 May 2023 2.15pm should be entered as 2023-05-07 14:15.
 
 Examples:
-* `schedule 2 s/2023-05-07 22:00` schedules an appointment with the 
+* `schedule 2 s/2023-05-07 22:00` schedules an appointment with the
 2nd client in the client list at 7 May 2023 10pm.
-* `schedule 7 s/2024-07-08 07:30` schedules an appointment with the 
+* `schedule 7 s/2024-07-08 07:30` schedules an appointment with the
 7th client in the client list at 8 July 2024 7.30am.
 
 ### Adding a policy : `addpolicy`
@@ -228,7 +228,7 @@ Format: `clear`
 <box type="warning" theme="danger" icon=":warning:">
 
 <span style="color: red;"> **CAUTION:** </span>
-Clearing is irreversible and will NOT have a confirmation screen 
+Clearing is irreversible and will NOT have a confirmation screen
 </box>
 
 ### Exiting the program : `exit`
