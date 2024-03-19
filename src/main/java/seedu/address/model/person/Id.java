@@ -1,5 +1,8 @@
 package seedu.address.model.person;
-
+/**
+ * Represents a Person's id in the address book.
+ * Guarantees: immutable; is valid as declared in {@link #isValidId(String)}
+ */
 public class Id {
     public static final String MESSAGE_CONSTRAINTS =
             "Ids should only contain numbers";
@@ -9,6 +12,11 @@ public class Id {
         this.id = id;
     }
 
+    /**
+     * Checks if the given id is a valid Id.
+     * @param test Input id to validate.
+     * @return Result of validation.
+     */
     public static boolean isValidId(String test) {
         try {
             Integer.parseInt(test);

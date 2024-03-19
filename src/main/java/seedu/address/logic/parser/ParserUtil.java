@@ -126,10 +126,15 @@ public class ParserUtil {
         return new Subject(trimmedSubject);
     }
 
+    /**
+     * Parses id input to check if id is valid to instantiate a new Id object.
+     * @param id Id to check for validity;
+     * @return New Id object with the input id.
+     * @throws ParseException If input id is invalid.
+     */
     public static Id parseId(String id) throws ParseException {
         requireNonNull(id);
         String trimmedId = id.trim();
-        int parsedId = -1;
         if (!Id.isValidId(trimmedId)) {
             throw new ParseException(Id.MESSAGE_CONSTRAINTS);
         }

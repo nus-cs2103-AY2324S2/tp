@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.IsSameIdPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
@@ -30,16 +29,27 @@ public class ViewCommand extends Command {
     private final NameContainsKeywordsPredicate namePredicate;
     private final IsSameIdPredicate idPredicate;
 
+    /**
+     * Constructor for a non search based view command (stats or all)
+     */
     public ViewCommand() {
         this.namePredicate = null;
         this.idPredicate = null;
     }
 
+    /**
+     * Constructor for a view by name command.
+     * @param predicate Name to search for in list.
+     */
     public ViewCommand(NameContainsKeywordsPredicate predicate) {
         this.namePredicate = predicate;
         this.idPredicate = null;
     }
 
+    /**
+     * Constructor for a view by id command.
+     * @param id Id to search for in list.
+     */
     public ViewCommand(IsSameIdPredicate id) {
         this.namePredicate = null;
         this.idPredicate = id;

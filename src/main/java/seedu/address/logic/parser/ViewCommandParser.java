@@ -8,10 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import java.util.Arrays;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.ViewCommand;
-import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Id;
@@ -30,8 +27,8 @@ public class ViewCommandParser implements Parser<ViewCommand> {
      *
      * @throws ParseException if the user input does not conform the expected format
      */
-  /*
-  public Command parse(String arguments) throws ParseException {
+    /*
+    public Command parse(String arguments) throws ParseException {
         if (arguments.trim().equals("-all")) {
             return new ListCommand();
         } else if (arguments.trim().equals("-statistics")) {
@@ -46,7 +43,15 @@ public class ViewCommandParser implements Parser<ViewCommand> {
     public static final Prefix PREFIX_STATS = new Prefix("-stats");
     public static final Prefix PREFIX_STATSLONG = new Prefix("-statistics");
     public static final Prefix PREFIX_ALL = new Prefix("-all");
+
     // End of temporary
+
+    /**
+     * Parses view command arguments and returns the new command as a new view command object.
+     * @param args Input arguments.
+     * @return ViewCommand object of the right constructor.
+     * @throws ParseException If args are missing or invalid.
+     */
     public ViewCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ID, PREFIX_STATS, PREFIX_STATSLONG, PREFIX_ALL);
@@ -82,11 +87,11 @@ public class ViewCommandParser implements Parser<ViewCommand> {
         String trimmedArgs = args.trim();
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
         }
         if (name == null && id == null) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
         } else if (id == null) {
             String[] nameKeywords = trimmedArgs.split("\\s+");
             return new ViewCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
@@ -94,6 +99,7 @@ public class ViewCommandParser implements Parser<ViewCommand> {
             return new ViewCommand(new IsSameIdPredicate(id));
         }
     }
+
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }

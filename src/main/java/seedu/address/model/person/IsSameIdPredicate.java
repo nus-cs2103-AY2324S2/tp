@@ -1,7 +1,9 @@
 package seedu.address.model.person;
 
 import java.util.function.Predicate;
-
+/**
+ * Tests that a {@code Person}'s {@code Id} matches any of the given Id.
+ */
 public class IsSameIdPredicate implements Predicate<Person> {
 
     private int testId;
