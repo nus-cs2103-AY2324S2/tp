@@ -55,7 +55,7 @@ public class AddProductCommand extends Command{
         }
         //Add ability to add product to order
         if (lastOrder.getProductMap().containsKey(product)) {
-            lastOrder.changeQuantity(product, lastOrder.getQuantityValue(product) + quantity.getValue());
+            lastOrder.changeQuantity(product, new Quantity(lastOrder.getQuantityValue(product) + quantity.getValue()));
         } else {
             lastOrder.addProduct(product, quantity);
         }
