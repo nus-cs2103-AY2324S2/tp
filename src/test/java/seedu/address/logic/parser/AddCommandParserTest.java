@@ -63,7 +63,8 @@ public class AddCommandParserTest {
         Person singleParent = new PersonBuilder(BOB).withFirstParentPhone("12345678")
                 .withSecondParentPhone("12345678").build();
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + " p/12345678" + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + STUDENT_ID_DESC_BOB + TAG_DESC_FRIEND + TAG_DESC_HUSBAND, new AddCommand(singleParent));
+                + ADDRESS_DESC_BOB + STUDENT_ID_DESC_BOB + TAG_DESC_FRIEND
+                + TAG_DESC_HUSBAND, new AddCommand(singleParent));
 
         // multiple tags - all accepted
         Person expectedPersonMultipleTags = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
