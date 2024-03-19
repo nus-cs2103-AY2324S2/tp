@@ -19,16 +19,13 @@ public class JsonAdaptedLoanRecords {
     public static final String MISSING_MESSAGE = "LoanRecords' loans field is missing!";
 
     private final List<JsonAdaptedLoan> loans;
-    private final int nextLoanId;
 
     /**
      * Constructs a {@code JsonAdaptedLoanRecords} with the given loan details.
      */
     @JsonCreator
-    public JsonAdaptedLoanRecords(@JsonProperty("loans") List<JsonAdaptedLoan> loans,
-                                    @JsonProperty("nextLoanId") int nextLoanId) {
+    public JsonAdaptedLoanRecords(@JsonProperty("loans") List<JsonAdaptedLoan> loans) {
         this.loans = loans;
-        this.nextLoanId = nextLoanId;
     }
 
     /**
@@ -39,11 +36,17 @@ public class JsonAdaptedLoanRecords {
             loans = source.getLoanList().stream()
                 .map(JsonAdaptedLoan::new)
                 .collect(Collectors.toList());
-            nextLoanId = source.getNextLoanId();
         } else {
             loans = null;
-            nextLoanId = 0;
         }
+    }
+
+    /**
+     * Factory method to create a new instance of JsonAdaptedLoanRecords
+     * to disambiguate the constructor for null values.
+     */
+    public static JsonAdaptedLoanRecords factory(LoanRecords source) {
+        return new JsonAdaptedLoanRecords(source);
     }
 
     /**
@@ -60,7 +63,7 @@ public class JsonAdaptedLoanRecords {
         for (JsonAdaptedLoan loan : loans) {
             loanList.add(loan.toModelType());
         }
-        LoanRecords loanRecords = new LoanRecords(loanList, nextLoanId);
+        LoanRecords loanRecords = new LoanRecords(loanList);
 
         return loanRecords;
     }

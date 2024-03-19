@@ -4,6 +4,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 
@@ -18,26 +19,26 @@ import seedu.address.logic.commands.LinkLoanCommand.LinkLoanDescriptor;
 public class LoanRecords {
 
     private static final String DATE_MESSAGE_CONSTRAINTS = "Dates must be in the format dd-MM-yyyy.";
+    private static int nextLoanId = 1;
 
     private final List<Loan> loans;
-    private int nextLoanId;
-
     /**
      * Constructs a {@code LoanRecords}.
      */
     public LoanRecords() {
         loans = new ArrayList<>();
-        nextLoanId = 1;
     }
 
     /**
-     * Constructs a {@code LoanRecords} with a given id.
-     * @param nextLoanId A valid id.
+     * Constructs a {@code LoanRecords} with a given list of loans.
+     * @param loans A valid list of loans.
      */
-    public LoanRecords(List<Loan> loans, int nextLoanId) {
+    public LoanRecords(List<Loan> loans) {
         requireAllNonNull(loans);
         this.loans = loans;
-        this.nextLoanId = nextLoanId;
+        for (Loan loan : loans) {
+            nextLoanId = Math.max(nextLoanId, loan.getId() + 1);
+        }
     }
 
     /**
@@ -182,7 +183,16 @@ public class LoanRecords {
         }
 
         LoanRecords otherLoanRecords = (LoanRecords) other;
-        return this.nextLoanId == otherLoanRecords.nextLoanId;
+        // create hashset of ids of loans in this and other
+        HashSet<Integer> thisLoanIds = new HashSet<>();
+        HashSet<Integer> otherLoanIds = new HashSet<>();
+        for (Loan loan : loans) {
+            thisLoanIds.add(loan.getId());
+        }
+        for (Loan loan : otherLoanRecords.loans) {
+            otherLoanIds.add(loan.getId());
+        }
+        return thisLoanIds.equals(otherLoanIds);
     }
 
     @Override
