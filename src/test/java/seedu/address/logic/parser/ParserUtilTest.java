@@ -24,7 +24,6 @@ public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_STUDENTID = "P0123";
     private static final String INVALID_GRADE = "F-";
-
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_GROUP = "Gr@up";
 
@@ -80,7 +79,6 @@ public class ParserUtilTest {
         assertEquals(expectedName, ParserUtil.parseName(nameWithWhitespace));
     }
 
-
     @Test
     public void parseStudentId_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseStudentId((String) null));
@@ -96,13 +94,6 @@ public class ParserUtilTest {
         StudentId expectedStudentId = new StudentId(VALID_STUDENTID);
         assertEquals(expectedStudentId, ParserUtil.parseStudentId(VALID_STUDENTID));
     }
-
-
-
-
-
-
-
 
     @Test
     public void parseGrade_null_throwsNullPointerException() {
