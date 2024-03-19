@@ -5,21 +5,17 @@
 #yesButton {
     -fx-text-fill: black;
 }
-#noButton {
-    -fx-background-color: dimgray;
-}
 
-#yesButton {
+#noButton, #yesButton {
     -fx-background-color: white;
 }
-
 
 #noButton:focused, #yesButton:focused {
     -fx-background-color: "#a6ff6b";
 }
 
-#yesButton:armed {
-    -fx-background-color: darkgray;
+#yesButton:hover, #noButton:hover {
+    -fx-cursor: hand;
 }
 
 #exitMessageContainer {

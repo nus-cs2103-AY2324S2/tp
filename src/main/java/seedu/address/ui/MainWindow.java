@@ -188,10 +188,8 @@ public class MainWindow extends UiPart<Stage> {
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         exitWindow.show();
-//        primaryStage.hide();
+        //primaryStage.hide();
     }
-
-
 
     public PersonListPanel getPersonListPanel() {
         return personListPanel;

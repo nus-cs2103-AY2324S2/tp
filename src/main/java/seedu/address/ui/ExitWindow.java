@@ -4,23 +4,19 @@ import java.util.logging.Logger;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 
 /**
- * Controller for a help page
+ * An exit window that seeks confirmation for program exit.
  */
 public class ExitWindow extends UiPart<Stage> {
 
-    public static final String EXIT_MESSAGE = "Are you sure you want to exit? Data will be saved.";
+    public static final String EXIT_MESSAGE = "Are you sure you want to exit? Press ENTER to confirm.";
 
     private static final Logger logger = LogsCenter.getLogger(ExitWindow.class);
     private static final String FXML = "ExitWindow.fxml";
-
-    @FXML
-    private Button copyButton;
 
     @FXML
     private Label exitMessage;
@@ -36,14 +32,14 @@ public class ExitWindow extends UiPart<Stage> {
     }
 
     /**
-     * Creates a new HelpWindow.
+     * Creates a new ExitWindow.
      */
     public ExitWindow() {
         this(new Stage());
     }
 
     /**
-     * Shows the help window.
+     * Shows the exit window.
      * @throws IllegalStateException
      *     <ul>
      *         <li>
@@ -88,7 +84,7 @@ public class ExitWindow extends UiPart<Stage> {
     }
 
     /**
-     * Copies the URL to the user guide to the clipboard.
+     * Exits from the program.
      */
     @FXML
     private void yesButton() {
@@ -96,11 +92,10 @@ public class ExitWindow extends UiPart<Stage> {
     }
 
     /**
-     * Copies the URL to the user guide to the clipboard.
+     * Hides the exit window.
      */
     @FXML
-    private boolean noButton() {
+    private void noButton() {
         getRoot().hide();
-        return false;
     }
 }
