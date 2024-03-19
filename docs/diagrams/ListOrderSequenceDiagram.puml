@@ -1,0 +1,22 @@
+@startuml
+!include style.puml
+
+actor User
+boundary UI
+control Logic
+entity Model
+entity "Person" as Person
+
+User -> UI : listorder 1
+UI -> Logic : parseCommand("listorder 1")
+Logic -> Model : getFilteredPersonList()
+Model --> Logic : personList
+Logic -> Model : getPerson(Index)
+Model --> Logic : personTargeted
+Logic -> Person : getOrders()
+Person --> Logic : orders
+Logic -> Logic : sortOrdersByDate(orders)
+Logic -> UI : createOrderListString(sortedOrders)
+UI -> User : display orders
+
+@enduml
