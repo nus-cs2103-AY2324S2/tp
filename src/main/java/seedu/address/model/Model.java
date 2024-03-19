@@ -6,8 +6,10 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.coursemate.CourseMate;
+import seedu.address.model.coursemate.Name;
 import seedu.address.model.coursemate.QueryableCourseMate;
 import seedu.address.model.group.Group;
+import seedu.address.model.group.exceptions.GroupNotFoundException;
 
 /**
  * The API of the Model component.
@@ -15,6 +17,9 @@ import seedu.address.model.group.Group;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<CourseMate> PREDICATE_SHOW_ALL_COURSE_MATES = unused -> true;
+
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Group> PREDICATE_SHOW_ALL_GROUPS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -79,6 +84,36 @@ public interface Model {
      */
     void setCourseMate(CourseMate target, CourseMate editedCourseMate);
 
+    /**
+     * Returns true if a courseMate with the same identity as {@code courseMate} exists in the contact list.
+     */
+    boolean hasGroup(Group group);
+
+    /**
+     * Deletes the given group.
+     * The group must exist in the contact list.
+     */
+    void deleteGroup(Group target);
+
+    /**
+     * Finds the group based on name.
+     * @throws GroupNotFoundException if group doesn't exist
+     */
+    Group findGroup(Name name) throws GroupNotFoundException;
+
+    /**
+     * Adds the given group.
+     * {@code group} must not already exist in the contact list.
+     */
+    void addGroup(Group group);
+
+    /**
+     * Replaces the given group {@code target} with {@code editedGroup}.
+     * {@code target} must exist in the contact list.
+     * The group identity of {@code editedGroup} must not be the same as another
+     * existing group in the contact list.
+     */
+    void setGroup(Group target, Group editedGroup);
     /**
      * Finds a {@code CourseMate} with the exact same name.
      */

@@ -8,6 +8,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_COURSE_MATE;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.GroupList;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -22,8 +23,8 @@ public class ListCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalContactList(), new UserPrefs());
-        expectedModel = new ModelManager(model.getContactList(), new UserPrefs());
+        model = new ModelManager(getTypicalContactList(), new UserPrefs(), new GroupList());
+        expectedModel = new ModelManager(model.getContactList(), new UserPrefs(), new GroupList());
     }
 
     @Test

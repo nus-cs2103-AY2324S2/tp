@@ -22,8 +22,10 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyContactList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.coursemate.CourseMate;
+import seedu.address.model.coursemate.Name;
 import seedu.address.model.coursemate.QueryableCourseMate;
 import seedu.address.model.group.Group;
+import seedu.address.model.group.exceptions.GroupNotFoundException;
 import seedu.address.testutil.CourseMateBuilder;
 
 public class AddCommandTest {
@@ -150,6 +152,31 @@ public class AddCommandTest {
         }
 
         @Override public CourseMate findCourseMate(QueryableCourseMate queryableCourseMate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addGroup(Group group) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasGroup(Group group) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteGroup(Group target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Group findGroup(Name name) throws GroupNotFoundException {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setGroup(Group target, Group editedGroup) {
             throw new AssertionError("This method should not be called.");
         }
 
