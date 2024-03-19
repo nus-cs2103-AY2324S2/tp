@@ -61,5 +61,12 @@
     "tags" : [ ],
     "remark" : "",
     "moneyOwed" : "0"
+  }, {
+    "name" : "John Wick",
+    "phone" : "88765432",
+    "email" : "johnd@example.com",
+    "address" : "311, Clementi Ave 12, #12-25",
+    "remark" : "He has skills",
+    "tags" : [ "TAs", "CCA", "Acquaintances" ]
   } ]
 }
