@@ -6,7 +6,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.order.Amount;
 import seedu.address.model.order.Deadline;
-//import seedu.address.model.order.Discount;
 import seedu.address.model.order.Order;
 import seedu.address.model.order.OrderDate;
 import seedu.address.model.order.OrderId;
@@ -27,22 +26,19 @@ public class JsonAdaptedOrder {
     private final String amount;
     private final String remark;
     private final String status;
-    //private final Double discount;
 
     /**
      * Constructs a {@code JsonAdaptedOrder} with the given order details
      */
     @JsonCreator
-    public JsonAdaptedOrder(@JsonProperty("orderId") String orderId, @JsonProperty("orderDate") String orderDate,
-                            @JsonProperty("deadline") String deadline, @JsonProperty("amount") String amount,
-                            @JsonProperty("remark") String remark, @JsonProperty("status") String status) {
+    public JsonAdaptedOrder(String orderId, String orderDate, String deadline, String amount,
+                            String remark, String status) {
         this.orderId = orderId;
         this.orderDate = orderDate;
         this.deadline = deadline;
         this.amount = amount;
         this.remark = remark;
         this.status = status;
-        //this.discount = discount;
     }
 
     /**
@@ -55,7 +51,6 @@ public class JsonAdaptedOrder {
         amount = source.getAmount().toString();
         remark = source.getRemark().toString();
         status = source.getStatus().toString();
-        //discount = source.getDiscount().value;
     }
 
     /**
@@ -94,7 +89,7 @@ public class JsonAdaptedOrder {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Amount.class.getSimpleName()));
         }
 
-        if (!Amount.isValidAmount(String.valueOf(amount))) {
+        if (!Amount.isValidAmount(amount.toString())) {
             throw new IllegalValueException(Amount.MESSAGE_CONSTRAINTS);
         }
         final Amount modelAmount = new Amount(String.valueOf(amount));
@@ -116,16 +111,6 @@ public class JsonAdaptedOrder {
             throw new IllegalValueException(Status.MESSAGE_CONSTRAINTS);
         }
         final Status modelStatus = new Status(status);
-
-        /*if (discount == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-            Discount.class.getSimpleName()));
-        }
-
-        if (!Discount.isValidDiscount(discount)) {
-            throw new IllegalValueException(Discount.MESSAGE_CONSTRAINTS);
-        }
-        final Discount modelDiscount = new Discount(discount);*/
 
         return new Order(modelOrderId, modelOrderDate, modelDeadline, modelAmount, modelRemarks, modelStatus);
     }
