@@ -38,6 +38,7 @@ public class PersonTest {
         assertTrue(ALICE.isSamePerson(editedAlice));
 
         // different name, all other attributes same -> returns false
+        // it is currently failing because the isSamePerson method is comparing the uniqueId instead of the name
         editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).build();
         assertFalse(ALICE.isSamePerson(editedAlice));
 
@@ -92,8 +93,13 @@ public class PersonTest {
 
     @Test
     public void toStringMethod() {
-        String expected = Person.class.getCanonicalName() + "{name=" + ALICE.getName() + ", phone=" + ALICE.getPhone()
-                + ", email=" + ALICE.getEmail() + ", address=" + ALICE.getAddress() + ", tags=" + ALICE.getTags() + "}";
+        String expected = Person.class.getCanonicalName() 
+            + "{name=" + ALICE.getName()
+            + ", phone=" + ALICE.getPhone()
+            + ", email=" + ALICE.getEmail()
+            + ", address=" + ALICE.getAddress()
+            + ", subject=" + ALICE.getSubject()
+            + ", tags=" + ALICE.getTags() + "}";
         assertEquals(expected, ALICE.toString());
     }
 }
