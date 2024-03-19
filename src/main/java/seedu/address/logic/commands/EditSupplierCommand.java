@@ -245,14 +245,12 @@ public class EditSupplierCommand extends Command {
                 return true;
             }
 
-            // instanceof handles nulls
             if (!(other instanceof EditSupplierDescriptor)) {
                 return false;
             }
 
             EditSupplierDescriptor otherEditSupplierDescriptor = (EditSupplierDescriptor) other;
 
-            // Compare each field individually
             boolean phoneEquals = Objects.equals(phone, otherEditSupplierDescriptor.phone);
             boolean emailEquals = Objects.equals(email, otherEditSupplierDescriptor.email);
             boolean addressEquals = Objects.equals(address, otherEditSupplierDescriptor.address);
