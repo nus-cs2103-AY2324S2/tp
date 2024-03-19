@@ -82,7 +82,7 @@ public class CombinedPredicatesTest {
         // Multiple predicate - Valid equality
         combinedPredicates = new CombinedPredicates(namePredicate, phonePredicate);
 
-        assertTrue(combinedPredicates.equals(new CombinedPredicates(namePredicateClone, phonePredicate)));
+        assertTrue(combinedPredicates.equals(new CombinedPredicates(namePredicateClone, phonePredicateClone)));
 
         // Single predicate - Invalid equality
         combinedPredicates = new CombinedPredicates(namePredicate);
