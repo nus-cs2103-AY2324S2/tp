@@ -15,7 +15,9 @@ import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
+import seedu.address.logic.commands.AddClassCommand;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.DeleteClassCommand;
 import seedu.address.logic.commands.ListClassesCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -214,12 +216,13 @@ public class MainWindow extends UiPart<Stage> {
 
             clearPanels();
 
-            if (commandText.equals(ListClassesCommand.COMMAND_WORD)) {
+            if (commandText.equals(ListClassesCommand.COMMAND_WORD)
+                    || commandText.split(" ")[0].equals(AddClassCommand.COMMAND_WORD)
+                    || commandText.split(" ")[0].equals(DeleteClassCommand.COMMAND_WORD)) {
                 switchToModuleListPanel();
             } else {
                 switchToPersonListPanel();
             }
-
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("An error occurred while executing command: " + commandText);
