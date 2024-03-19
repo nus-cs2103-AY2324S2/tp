@@ -44,8 +44,8 @@ public class FindNumCommand extends Command {
             return false;
         }
 
-        FindNumCommand otherFindCommand = (FindNumCommand) other;
-        return predicate.equals(otherFindCommand.predicate);
+        FindNumCommand otherFindNumCommand = (FindNumCommand) other;
+        return predicate.equals(otherFindNumCommand.predicate);
     }
 
     @Override
