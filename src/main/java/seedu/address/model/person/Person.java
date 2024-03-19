@@ -61,6 +61,37 @@ public class Person {
         }
     }
 
+    // Constructors for loading purposes
+    /**
+     * Constructs a person with a given UUID.
+     * Every field must be present and not null.
+     */
+    public Person(UUID uuid, Name name, Phone phone, Email email, Address address) {
+        requireAllNonNull(name, phone, email, address, tags);
+        this.uuid = uuid;
+        this.attributes.put("Name", new NameAttribute("Name", name.toString()));
+        this.attributes.put("Phone", new NameAttribute("Phone", phone.toString()));
+        this.attributes.put("Email", new StringAttribute("Email", email.toString()));
+        this.attributes.put("Address", new StringAttribute("Address", address.toString()));
+    }
+
+    /**
+     * Constructs a person with a given UUID and a list of attributes.
+     * There are no compulsory fields, attribute list can be null.
+     *
+     * @params uuid The UUID of the person.
+     * @params attributes A list of attributes to be added to the person.
+     *      If the list is null, the person will have no attributes.
+     *      If there are multiple attributes of the same type, the last one will be used.
+     * @return A person with the given attributes.
+     */
+    public Person(UUID uuid, Attribute[] attributes) {
+        this.uuid = uuid;
+        for (Attribute attribute : attributes) {
+            this.attributes.put(attribute.getName(), attribute);
+        }
+    }
+
     public Name getName() { //Earmarked for deprecation - superseded by getAttribute - name should be optional
         if (!attributes.containsKey("Name")) {
             return new Name("<no name>");
@@ -185,10 +216,13 @@ public class Person {
             return true;
         }
 
+        Attribute otherPersonNameAttribute = otherPerson.attributes.get("Name");
+        Attribute thisPersonNameAttribute = this.attributes.get("Name");
+
         return otherPerson != null
-                && otherPerson
-                .attributes.get("Name").getValueAsString().equals(
-                        attributes.get("Name").getValueAsString());
+                && otherPersonNameAttribute != null
+                && thisPersonNameAttribute != null
+                && otherPersonNameAttribute.getValueAsString().equals(thisPersonNameAttribute.getValueAsString());
     }
 
     /**
@@ -282,6 +316,7 @@ public class Person {
         return sb.toString().trim();
     }
 
-    public void setAttribute(String attributeName, Attribute attributeValue) {
+    public Set<Attribute> getAttributes() {
+        return new HashSet<>(attributes.values());
     }
 }

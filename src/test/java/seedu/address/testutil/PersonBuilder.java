@@ -2,6 +2,7 @@ package seedu.address.testutil;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.UUID;
 
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -91,6 +92,10 @@ public class PersonBuilder {
 
     public Person build() {
         return new Person(name, phone, email, address, tags);
+    }
+
+    public Person buildWithUuid(String uuid) {
+        return new Person(UUID.fromString(uuid), name, phone, email, address);
     }
 
 }
