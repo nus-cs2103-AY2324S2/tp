@@ -114,7 +114,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setRealodexFilePath(Path addressBookFilePath) {
+        public void setRealodexFilePath(Path realodexFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 

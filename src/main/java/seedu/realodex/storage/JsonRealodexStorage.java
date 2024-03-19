@@ -45,14 +45,14 @@ public class JsonRealodexStorage implements RealodexStorage {
     public Optional<ReadOnlyRealodex> readRealodex(Path filePath) throws DataLoadingException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableRealodex> jsonAddressBook = JsonUtil.readJsonFile(
+        Optional<JsonSerializableRealodex> jsonRealodex = JsonUtil.readJsonFile(
                 filePath, JsonSerializableRealodex.class);
-        if (!jsonAddressBook.isPresent()) {
+        if (!jsonRealodex.isPresent()) {
             return Optional.empty();
         }
 
         try {
-            return Optional.of(jsonAddressBook.get().toModelType());
+            return Optional.of(jsonRealodex.get().toModelType());
         } catch (IllegalValueException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataLoadingException(ive);
@@ -60,8 +60,8 @@ public class JsonRealodexStorage implements RealodexStorage {
     }
 
     @Override
-    public void saveRealodex(ReadOnlyRealodex addressBook) throws IOException {
-        saveRealodex(addressBook, filePath);
+    public void saveRealodex(ReadOnlyRealodex realodex) throws IOException {
+        saveRealodex(realodex, filePath);
     }
 
     /**
@@ -69,11 +69,11 @@ public class JsonRealodexStorage implements RealodexStorage {
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveRealodex(ReadOnlyRealodex addressBook, Path filePath) throws IOException {
-        requireNonNull(addressBook);
+    public void saveRealodex(ReadOnlyRealodex realodex, Path filePath) throws IOException {
+        requireNonNull(realodex);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableRealodex(addressBook), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableRealodex(realodex), filePath);
     }
 }

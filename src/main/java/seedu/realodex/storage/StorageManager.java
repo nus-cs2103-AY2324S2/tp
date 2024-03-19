@@ -65,14 +65,14 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public void saveRealodex(ReadOnlyRealodex addressBook) throws IOException {
-        saveRealodex(addressBook, realodexStorage.getRealodexFilePath());
+    public void saveRealodex(ReadOnlyRealodex realodex) throws IOException {
+        saveRealodex(realodex, realodexStorage.getRealodexFilePath());
     }
 
     @Override
-    public void saveRealodex(ReadOnlyRealodex addressBook, Path filePath) throws IOException {
+    public void saveRealodex(ReadOnlyRealodex realodex, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        realodexStorage.saveRealodex(addressBook, filePath);
+        realodexStorage.saveRealodex(realodex, filePath);
     }
 
 }

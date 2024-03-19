@@ -49,10 +49,10 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonRealodexStorage addressBookStorage =
+        JsonRealodexStorage realodexStorage =
                 new JsonRealodexStorage(temporaryFolder.resolve("realodex.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(realodexStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -154,9 +154,9 @@ public class LogicManagerTest {
         Path prefPath = temporaryFolder.resolve("ExceptionUserPrefs.json");
 
         // Inject LogicManager with an RealodexStorage that throws the IOException e when saving
-        JsonRealodexStorage addressBookStorage = new JsonRealodexStorage(prefPath) {
+        JsonRealodexStorage realodexStorage = new JsonRealodexStorage(prefPath) {
             @Override
-            public void saveRealodex(ReadOnlyRealodex addressBook, Path filePath)
+            public void saveRealodex(ReadOnlyRealodex realodex, Path filePath)
                     throws IOException {
                 throw e;
             }
@@ -164,11 +164,11 @@ public class LogicManagerTest {
 
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(realodexStorage, userPrefsStorage);
 
         logic = new LogicManager(model, storage);
 
-        // Triggers the saveAddressBook method by executing an add command
+        // Triggers the saveRealodex method by executing an add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY
                 + INCOME_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + FAMILY_DESC_AMY + TAG_DESC_AMY;
         Person expectedPerson = new PersonBuilder(AMY).withTags(VALID_TAG_AMY).build();

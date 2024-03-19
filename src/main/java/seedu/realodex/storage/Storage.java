@@ -27,6 +27,6 @@ public interface Storage extends RealodexStorage, UserPrefsStorage {
     Optional<ReadOnlyRealodex> readRealodex() throws DataLoadingException;
 
     @Override
-    void saveRealodex(ReadOnlyRealodex addressBook) throws IOException;
+    void saveRealodex(ReadOnlyRealodex realodex) throws IOException;
 
 }

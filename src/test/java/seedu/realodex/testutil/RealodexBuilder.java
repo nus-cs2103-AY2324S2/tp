@@ -4,7 +4,7 @@ import seedu.realodex.model.Realodex;
 import seedu.realodex.model.person.Person;
 
 /**
- * A utility class to help with building Addressbook objects.
+ * A utility class to help with building Realodex objects.
  * Example usage: <br>
  *     {@code Realodex ab = new RealodexBuilder().withPerson("John", "Doe").build();}
  */

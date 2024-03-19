@@ -92,12 +92,12 @@ public class JsonRealodexStorageTest {
     }
 
     /**
-     * Saves {@code addressBook} at the specified {@code filePath}.
+     * Saves {@code realodex} at the specified {@code filePath}.
      */
-    private void saveRealodex(ReadOnlyRealodex addressBook, String filePath) {
+    private void saveRealodex(ReadOnlyRealodex realodex, String filePath) {
         try {
             new JsonRealodexStorage(Paths.get(filePath))
-                    .saveRealodex(addressBook, addToTestDataPathIfNotNull(filePath));
+                    .saveRealodex(realodex, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }

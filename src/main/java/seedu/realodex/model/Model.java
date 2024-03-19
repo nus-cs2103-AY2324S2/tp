@@ -42,7 +42,7 @@ public interface Model {
     /**
      * Sets the user prefs' address book file path.
      */
-    void setRealodexFilePath(Path addressBookFilePath);
+    void setRealodexFilePath(Path realodexFilePath);
 
     /**
      * Replaces address book data with the data in {@code realodex}.

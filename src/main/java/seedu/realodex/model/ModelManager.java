@@ -70,9 +70,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setRealodexFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setRealodexFilePath(addressBookFilePath);
+    public void setRealodexFilePath(Path realodexFilePath) {
+        requireNonNull(realodexFilePath);
+        userPrefs.setRealodexFilePath(realodexFilePath);
     }
 
     //=========== Realodex ================================================================================

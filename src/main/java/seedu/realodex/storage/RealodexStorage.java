@@ -33,14 +33,14 @@ public interface RealodexStorage {
 
     /**
      * Saves the given {@link ReadOnlyRealodex} to the storage.
-     * @param addressBook cannot be null.
+     * @param realodex cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveRealodex(ReadOnlyRealodex addressBook) throws IOException;
+    void saveRealodex(ReadOnlyRealodex realodex) throws IOException;
 
     /**
      * @see #saveRealodex(ReadOnlyRealodex)
      */
-    void saveRealodex(ReadOnlyRealodex addressBook, Path filePath) throws IOException;
+    void saveRealodex(ReadOnlyRealodex realodex, Path filePath) throws IOException;
 
 }

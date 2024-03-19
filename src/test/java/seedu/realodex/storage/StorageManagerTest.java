@@ -24,9 +24,9 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonRealodexStorage addressBookStorage = new JsonRealodexStorage(getTempFilePath("ab"));
+        JsonRealodexStorage realodexStorage = new JsonRealodexStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
+        storageManager = new StorageManager(realodexStorage, userPrefsStorage);
     }
 
     private Path getTempFilePath(String fileName) {
