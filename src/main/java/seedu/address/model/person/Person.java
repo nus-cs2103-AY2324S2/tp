@@ -9,6 +9,7 @@ import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Task;
 
 /**
  * Represents a Person in the address book.
@@ -24,6 +25,7 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private Task task = null;
 
     /**
      * Every field must be present and not null.
@@ -51,6 +53,22 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+
+    public Task getTask() {
+        return task;
+    }
+
+    /**
+     * Sets a {@code Task} to person
+     * @param task Task to be assigned to this person.
+     */
+    public void setTask(Task task) {
+        this.task = task;
+    }
+
+    public boolean isBusy() {
+        return (this.task == null);
     }
 
     /**

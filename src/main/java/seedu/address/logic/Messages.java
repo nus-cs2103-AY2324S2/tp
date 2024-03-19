@@ -6,6 +6,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.person.Person;
+import seedu.address.model.task.Task;
 
 /**
  * Container for user visible messages.
@@ -46,6 +47,20 @@ public class Messages {
                 .append("; Tags: ");
         person.getTags().forEach(builder::append);
         return builder.toString();
+    }
+
+    /**
+     * Returns the full name of a person given.
+     */
+    public static String printName(Person person) {
+        return person.getName().toString();
+    }
+
+    /**
+     * Returns the task name of a task.
+     */
+    public static String printTask(Task task) {
+        return task.toString();
     }
 
 }

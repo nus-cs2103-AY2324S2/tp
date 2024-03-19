@@ -42,5 +42,22 @@
     "email" : "anna@example.com",
     "address" : "4th street",
     "tags" : [ ]
-  } ]
+  } ],
+  "tasks": [ {
+    "title" : "Complete Project Proposal",
+    "deadline" : "25-03-2024 2359",
+    "personInCharge" : "Alice Pauline"
+  }, {
+    "title" : "Prepare Presentation Slides",
+    "deadline" : "05-05-2024 0900",
+    "personInCharge" : "Benson Meier"
+  }, {
+    "title" : "Submit Year End Report",
+    "deadline" : "30-11-2024 1700",
+    "personInCharge" : "Carl Kurz"
+  }, {
+    "title" : "Organize Team Meeting",
+    "deadline" : "04-08-2024 1400",
+    "personInCharge" : "Daniel Meier"
+  }]
 }
