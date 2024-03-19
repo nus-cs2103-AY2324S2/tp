@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.Messages.MESSAGE_UNCLEAR_COMMAND;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 
 import java.util.logging.Logger;
@@ -31,6 +32,20 @@ public class AddressBookParser {
     private static final Logger logger = LogsCenter.getLogger(AddressBookParser.class);
 
     /**
+     * Used to match incomplete commands with full commands.
+     */
+    private final String[] COMMANDS = {
+        AddCommand.COMMAND_WORD,
+        EditCommand.COMMAND_WORD,
+        DeleteCommand.COMMAND_WORD,
+        ClearCommand.COMMAND_WORD,
+        FindCommand.COMMAND_WORD,
+        ListCommand.COMMAND_WORD,
+        ExitCommand.COMMAND_WORD,
+        HelpCommand.COMMAND_WORD,
+    };
+
+    /**
      * Parses user input into command for execution.
      *
      * @param userInput full user input string
@@ -50,6 +65,8 @@ public class AddressBookParser {
         // log messages such as the one below.
         // Lower level log messages are used sparingly to minimize noise in the code.
         logger.fine("Command word: " + commandWord + "; Arguments: " + arguments);
+
+        String fullCommand = fullCommand(commandWord);
 
         switch (commandWord) {
 
@@ -80,6 +97,38 @@ public class AddressBookParser {
         default:
             logger.finer("This user input caused a ParseException: " + userInput);
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+        }
+    }
+
+    /**
+     * Checks if command is a substring of a full command.
+     * 
+     * @param command user input command string
+     * @return  full command if input is a substring, else return the original input command
+     * @throws ParseException if the input matches to multiple commands
+     */
+    private String fullCommand(String command) throws ParseException {
+        final String INITIAL_VALUE = "";
+        String possibleCommand = INITIAL_VALUE;
+
+        for (String commandWord : COMMANDS) {
+            // Input command matches the full command.
+            if (commandWord.startsWith(command)) {
+                // Input command matches with multiple full commands.
+                if (!possibleCommand.equals(INITIAL_VALUE)) {
+                    throw new ParseException(MESSAGE_UNCLEAR_COMMAND);
+                }
+
+                possibleCommand = commandWord;
+            }
+        }
+
+        if (possibleCommand.equals(INITIAL_VALUE)) {
+            // Return original command if no match found.
+            return command;
+        } else {
+            // Return matched full command.
+            return possibleCommand;
         }
     }
 
