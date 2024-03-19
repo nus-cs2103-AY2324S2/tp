@@ -1,22 +1,46 @@
 @startuml
 !include style.puml
+skinparam ArrowFontStyle plain
 
-actor User
-boundary UI
-control Logic
-entity Model
-entity "Person" as Person
+Actor User as user USER_COLOR
+Participant ":UI" as ui UI_COLOR
+Participant ":Logic" as logic LOGIC_COLOR
+Participant ":Model" as model MODEL_COLOR
+Participant "Person" as person PEOPLE_COLOR
 
-User -> UI : listorder 1
-UI -> Logic : parseCommand("listorder 1")
-Logic -> Model : getFilteredPersonList()
-Model --> Logic : personList
-Logic -> Model : getPerson(Index)
-Model --> Logic : personTargeted
-Logic -> Person : getOrders()
-Person --> Logic : orders
-Logic -> Logic : sortOrdersByDate(orders)
-Logic -> UI : createOrderListString(sortedOrders)
-UI -> User : display orders
+user -[USER_COLOR]> ui : "listorder 1"
+activate ui UI_COLOR
+
+ui -[UI_COLOR]> logic : execute("listorder 1")
+activate logic LOGIC_COLOR
+
+logic -[LOGIC_COLOR]> model : getFilteredPersonList()
+activate model MODEL_COLOR
+
+model -[MODEL_COLOR]-> logic : personList
+deactivate model MODEL_COLOR
+
+logic -[LOGIC_COLOR]> model : getPerson(Index)
+activate model MODEL_COLOR
+
+model -[MODEL_COLOR]-> logic : personTargeted
+deactivate model MODEL_COLOR
+
+logic -[LOGIC_COLOR]> person : getOrders()
+activate person PEOPLE_COLOR
+
+person -[PEOPLE_COLOR]-> logic : orders
+deactivate person PEOPLE_COLOR
+
+logic -[LOGIC_COLOR]> logic : sortOrdersByDate(orders)
+activate logic LOGIC_COLOR
+logic --[LOGIC_COLOR]> logic
+deactivate logic LOGIC_COLOR
+
+logic -[LOGIC_COLOR]> ui : createOrderListString(sortedOrders)
+deactivate logic LOGIC_COLOR
+
+ui -[UI_COLOR]> user : display orders
+deactivate ui UI_COLOR
 
 @enduml
