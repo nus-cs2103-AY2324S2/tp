@@ -575,6 +575,22 @@ Step 3: The user decide to remove the first patient in the address book.
 
 Step 4: The user executes the `delete 1` command to remove the first patient in the address book.
 
+### 3.9 Listing all Patients
+
+#### Introduction
+
+The `ListCommand` is responsible for listing all patients in the address book.
+
+## Specifications
+
+* The ListCommand make use of a `Predicate` that always evaluates to true.
+* Through ListCommand#execute(), the `Predicate` is passed as an argument to Model#updateFilteredPersonList(),
+causing the UI to only show all patients.
+* The UML sequence diagram below shows the interaction between the Logic and Model components after calling `list`
+command.
+
+<puml src="diagrams/ListSequenceDiagram.puml" alt="List Sequence Diagram" />
+
 --------------------------------------------------------------------------------------------------------------------
 ## 4 Planned Enhancements
 
