@@ -65,7 +65,7 @@ public class AddOrderCommand extends Command {
         this.order.addProduct(new Product("cupcake"), new Quantity(2));
 
         editedPerson.addOrder(this.order);
-
+        this.order.setCustomer(editedPerson);
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
 

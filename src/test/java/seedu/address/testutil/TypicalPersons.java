@@ -70,6 +70,7 @@ public class TypicalPersons {
         }
         for (int k = 0; k < getTypicalOrders().size(); k++) {
             ab.addOrder(getTypicalOrders().get(k), getTypicalPersons().get(k));
+            getTypicalPersons().get(k).addOrder(getTypicalOrders().get(k));
         }
         return ab;
     }

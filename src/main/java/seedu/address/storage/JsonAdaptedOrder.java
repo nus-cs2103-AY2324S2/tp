@@ -1,8 +1,11 @@
 package seedu.address.storage;
 
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.address.commons.exceptions.IllegalValueException;
@@ -14,26 +17,34 @@ import seedu.address.model.order.Quantity;
  * Jackson friendly version of {@link Order}.
  */
 public class JsonAdaptedOrder {
-    private final Order order;
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Order's %s field is missing!";
+    private int id;
+    private Map<JsonAdaptedProduct, JsonAdaptedQuantity> productMap;
+    private JsonAdaptedPerson customer;
 
     /**
      * Constructs a {@code JsonAdaptedOrder} with the given {@code order}.
      */
     @JsonCreator
-    public JsonAdaptedOrder(Map<Product, Quantity> order) {
-        this.order = new Order(order);
+    public JsonAdaptedOrder(@JsonProperty("id") Integer id,
+                            @JsonProperty("productMap") Map<JsonAdaptedProduct, JsonAdaptedQuantity> productMap,
+                            @JsonProperty("orderCustomer") JsonAdaptedPerson orderCustomer) {
+        this.id = id;
+        this.productMap = productMap;
+        this.customer = orderCustomer;
     }
 
     /**
      * Converts a given {@code Order} into this class for Jackson use.
      */
     public JsonAdaptedOrder(Order order) {
-        this.order = order;
+        this.id = order.getId();
+
     }
 
     @JsonValue
-    public Map<Product, Quantity> getOrder() {
-        return this.order.getProductMap();
+    public Map<JsonAdaptedProduct, JsonAdaptedQuantity> getOrder() {
+        return productMap;
     }
 
     /**

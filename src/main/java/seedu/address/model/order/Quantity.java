@@ -24,7 +24,7 @@ public class Quantity {
     }
 
     /**
-     * Returns true if a given string is a valid phone number.
+     * Returns true if a given String is a valid quantity number.
      */
     public static boolean isValidQuantity(String test) {
         return test.matches(VALIDATION_REGEX);

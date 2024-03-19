@@ -194,6 +194,9 @@ public class Order implements Comparable<Order> {
      * @return A boolean value of whether the two orders are the same.
      */
     public boolean isSameOrder(Order otherOrder) {
+        if(otherOrder == null) {
+            return false;
+        }
         if (otherOrder.equals(this)) {
             return true;
         }

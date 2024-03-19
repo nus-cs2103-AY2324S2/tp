@@ -94,7 +94,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void addOrder(Order order, Person person) {
         int orderCounter = orders.getOrderIdCounter();
         order.setID(orderCounter);
-        orders.addOrder(order, person);
+        orders.addOrder(order);
     }
 
     public Order findOrderByIndex(int id) {
