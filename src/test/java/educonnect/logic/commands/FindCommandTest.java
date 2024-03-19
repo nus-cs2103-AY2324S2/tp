@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
@@ -14,6 +15,7 @@ import educonnect.logic.Messages;
 import educonnect.model.Model;
 import educonnect.model.ModelManager;
 import educonnect.model.UserPrefs;
+import educonnect.model.student.Student;
 import educonnect.model.student.predicates.NameContainsKeywordsPredicate;
 import educonnect.testutil.TypicalStudents;
 
@@ -75,9 +77,9 @@ public class FindCommandTest {
 
     @Test
     public void toStringMethod() {
-        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate("keyword");
-        FindCommand findCommand = new FindCommand(List.of(predicate));
-        String expected = FindCommand.class.getCanonicalName() + "{predicate=" + predicate + "}";
+        List<Predicate<Student>> predicates = List.of(new NameContainsKeywordsPredicate("keyword"));
+        FindCommand findCommand = new FindCommand(predicates);
+        String expected = FindCommand.class.getCanonicalName() + "{predicate=" + predicates + "}";
         assertEquals(expected, findCommand.toString());
     }
 

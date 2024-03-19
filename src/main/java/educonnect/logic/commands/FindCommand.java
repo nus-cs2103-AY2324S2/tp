@@ -3,6 +3,8 @@ package educonnect.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import educonnect.commons.util.ToStringBuilder;
@@ -49,13 +51,15 @@ public class FindCommand extends Command {
         }
 
         FindCommand otherFindCommand = (FindCommand) other;
-        return predicates.equals(otherFindCommand.predicates);
+        Set<Predicate<Student>> thisPredicates = new HashSet<>(predicates);
+        Set<Predicate<Student>> otherPredicates = new HashSet<>(otherFindCommand.predicates);
+        return thisPredicates.equals(otherPredicates);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("predicate", predicates)
+                .add("predicates", predicates)
                 .toString();
     }
 }
