@@ -7,6 +7,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+
 /**
  * Wraps all appointments in one list object.
  * Duplicates are not allowed (by {@code Appointment::equals} comparison).
@@ -75,5 +76,13 @@ public class AppointmentList implements ReadOnlyAppointmentList {
     public void addAppointment(Appointment appointment) {
         requireNonNull(appointment);
         appointments.add(appointment);
+    }
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeAppointment(Appointment key) {
+        appointments.remove(key);
     }
 }

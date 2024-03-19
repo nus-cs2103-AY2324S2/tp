@@ -60,7 +60,7 @@ public class ModelManager implements Model {
         this.appointmentList = new AppointmentList(appointmentList);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        filteredAppointments = new FilteredList<>(FXCollections.observableArrayList());
+        filteredAppointments = new FilteredList<>(this.appointmentList.getAppointmentList());
     }
 
     public ModelManager() {
@@ -185,12 +185,11 @@ public class ModelManager implements Model {
     @Override
     public boolean hasAppointment(Appointment appointment) {
         requireNonNull(appointment);
-        // return appointmentBook.hasAppointment(appointment);
-        return false;
+        return appointmentList.hasAppointment(appointment);
     }
     @Override
     public void addAppointment(Appointment appointment) {
-        // appoinmentBook.addAppointment(appointment);
+        appointmentList.addAppointment(appointment);
         updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
     }
 
@@ -211,6 +210,6 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteAppointment(Appointment target) {
-        // addressBook.removePerson(target);
+         appointmentList.removeAppointment(target);
     }
 }
