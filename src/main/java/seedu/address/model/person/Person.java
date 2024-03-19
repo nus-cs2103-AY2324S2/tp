@@ -45,7 +45,6 @@ public class Person {
         this.address = address;
         this.tags.addAll(tags);
         this.note = note;
-        this.generateQrCode();
     }
 
     public Name getName() {

@@ -96,17 +96,22 @@ public class ModelManager implements Model {
     @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
+        target.deleteQrCode();
     }
 
     @Override
     public void addPerson(Person person) {
         addressBook.addPerson(person);
+        person.generateQrCode();
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
+
+        target.deleteQrCode();
+        editedPerson.generateQrCode();
 
         addressBook.setPerson(target, editedPerson);
     }
