@@ -82,6 +82,10 @@ public abstract class Person {
         this.pairedWith = pairedWith;
     }
 
+    public boolean isPairPresent(Person person) {
+        return person.getPairedWith().isPresent();
+    }
+
     /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.

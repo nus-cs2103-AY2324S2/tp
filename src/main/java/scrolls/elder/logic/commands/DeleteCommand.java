@@ -12,7 +12,7 @@ import scrolls.elder.model.Model;
 import scrolls.elder.model.person.Person;
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Deletes a person identified using its displayed index from the address book.
  */
 public class DeleteCommand extends Command {
 
@@ -24,6 +24,9 @@ public class DeleteCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
+    public static final String MESSAGE_DELETE_PERSON_ERROR = "Unable to delete contact: ";
+    public static final String MESSAGE_CONFIRM_DELETE =
+            "Valid contact inputted. Are you sure you want to delete this contact?";
 
     private final Index targetIndex;
 
@@ -37,10 +40,18 @@ public class DeleteCommand extends Command {
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(MESSAGE_DELETE_PERSON_ERROR + Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
         Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
+
+        /**
+         * Check if the person to be deleted is paired with another person.
+         */
+        if (personToDelete.isPairPresent(personToDelete)) {
+            throw new CommandException(MESSAGE_DELETE_PERSON_ERROR + Messages.MESSAGE_CONTACT_PAIRED_BEFORE_DELETE);
+        }
+
         model.deletePerson(personToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
     }
