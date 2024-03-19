@@ -58,9 +58,13 @@ public class PersonCard extends UiPart<Region> {
         email.setText(person.getEmail().value);
         relationship.setText(person.getRelationship().value);
         if (person.isClient()) {
-            policy.setText(person.getPolicy().value.equals("")
-                ? "No policy assigned"
-                : "Policy: " + person.getPolicy().value);
+            if (person.getPolicy().value.equals("")) {
+                policy.setText("No policy assigned");
+                policy.setStyle("-fx-background-color: #f54242");
+            } else {
+                policy.setText("Policy: " + person.getPolicy().value);
+                policy.setStyle("-fx-background-color: #1fab2f");
+            }
         } else {
             policy.setManaged(false);
         }

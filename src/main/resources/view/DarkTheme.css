@@ -146,6 +146,14 @@
     -fx-padding: 3;
 }
 
+.policy-label {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 13px;
+    -fx-text-fill: #010504;
+    -fx-background-radius: 3px;
+    -fx-padding: 2px;
+}
+
 .stack-pane {
      -fx-background-color: derive(#1d1d1d, 20%);
 }
