@@ -124,21 +124,23 @@ Examples:
 
 ### Locating clients by name: `find`
 
-Finds clients whose names contain any of the given keywords.
+Finds all clients whose specified attribute contains the specified keyword.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [note/NOTE] [t/TAG]…​`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Clients matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* Any fields can be searched.
+* Multiple fields can be search in one command
+  * All fields must match (e.g `find n/Wendy p/91234567` will match with a contact whose name contains `wendy` and phone number contains `91234567`)
+* All fields except `TAG` will be matched based on substring (e.g `Wen` will match `Wendy`)
+* `TAG` must be an exact match (case-insensitive)
+  * E.g `find t/fri` will not match the tag `friend`
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `find n/Wendy` returns `Wendy Son` and `Wendy Kim`
+  ![result for 'find n/Wendy'](images/FindNameMultiple.png)
+* `find n/Wendy t/Lover` returns `Wendy` (`Name` contains `Wendy` and is tagged with `Lover`)
+  ![result for 'find n/Wendy t/Lover'](images/FindNameTag.png)
 
 ### Deleting a client : `delete`
 

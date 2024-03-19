@@ -24,7 +24,7 @@ public class HelpWindow extends UiPart<Stage> {
             + "list \t\t- Shows a list of all clients saved in FitBook.\n"
             + "edit \t- Edits an existing client in FitBook.\n"
             + "note \t- Adds a new note to a client.\n"
-            + "find \t- Finds clients whose names contain any of the given keywords.\n"
+            + "find \t- Finds all clients whose specified attribute contains the specified keyword.\n"
             + "delete \t- Deletes the specified client from FitBook.\n"
             + "clear \t- Clears all entries from FitBook. USE WITH CAUTION.\n"
             + "exit \t- Exits FitBook.\n"
@@ -62,21 +62,24 @@ public class HelpWindow extends UiPart<Stage> {
 
     /**
      * Shows the help window.
+     *
      * @throws IllegalStateException
-     *     <ul>
-     *         <li>
-     *             if this method is called on a thread other than the JavaFX Application Thread.
-     *         </li>
-     *         <li>
-     *             if this method is called during animation or layout processing.
-     *         </li>
-     *         <li>
-     *             if this method is called on the primary stage.
-     *         </li>
-     *         <li>
-     *             if {@code dialogStage} is already showing.
-     *         </li>
-     *     </ul>
+     *                               <ul>
+     *                               <li>
+     *                               if this method is called on a thread other than
+     *                               the JavaFX Application Thread.
+     *                               </li>
+     *                               <li>
+     *                               if this method is called during animation or
+     *                               layout processing.
+     *                               </li>
+     *                               <li>
+     *                               if this method is called on the primary stage.
+     *                               </li>
+     *                               <li>
+     *                               if {@code dialogStage} is already showing.
+     *                               </li>
+     *                               </ul>
      */
     public void show() {
         logger.fine("Showing help page about the application.");

@@ -5,7 +5,6 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -16,14 +15,30 @@ import com.google.zxing.WriterException;
 import seedu.address.QrCodeGenerator;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.person.exceptions.AttributeNotFoundException;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.TagSet;
 
 /**
  * Represents a Person in the address book.
- * Guarantees: details are present and not null, field values are validated, immutable.
+ * Guarantees: details are present and not null, field values are validated,
+ * immutable.
  */
 public class Person {
+    /**
+     * Attributes of a Person
+     */
+    public enum PersonAttribute {
+        NAME,
+        PHONE,
+        EMAIL,
+        ADDRESS,
+        TAGS,
+        NOTE
+    }
+
     private static final Logger logger = LogsCenter.getLogger(Person.class);
+
     // Identity fields
     private final Name name;
     private final Phone phone;
@@ -31,7 +46,7 @@ public class Person {
 
     // Data fields
     private final Address address;
-    private final Set<Tag> tags = new HashSet<>();
+    private final TagSet tags;
     private final Note note;
 
     /**
@@ -43,9 +58,37 @@ public class Person {
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.tags.addAll(tags);
+        Set<Tag> tagSet = new HashSet<>();
+        tagSet.addAll(tags);
+        this.tags = new TagSet(tagSet);
         this.note = note;
         this.generateQrCode();
+    }
+
+    /**
+     * Get the valued of the specified attribute.
+     *
+     * @param attribute Attribute to retrieve
+     *
+     * @return Value of the specified attribute
+     */
+    public Attribute<? extends Object> getAttribute(PersonAttribute attribute) {
+        switch (attribute) {
+        case NAME:
+            return this.name;
+        case PHONE:
+            return this.phone;
+        case EMAIL:
+            return this.email;
+        case ADDRESS:
+            return this.address;
+        case TAGS:
+            return this.tags;
+        case NOTE:
+            return this.note;
+        default:
+            throw new AttributeNotFoundException();
+        }
     }
 
     public Name getName() {
@@ -65,11 +108,12 @@ public class Person {
     }
 
     /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * Returns an immutable tag set, which throws
+     * {@code UnsupportedOperationException}
      * if modification is attempted.
      */
     public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+        return this.tags.getValue();
     }
 
     public Note getNote() {
@@ -107,8 +151,8 @@ public class Person {
         }
 
         return otherPerson != null
-                && otherPerson.getName().equals(getName())
-                && otherPerson.getPhone().equals(getPhone());
+                && otherPerson.getAttribute(PersonAttribute.NAME).equals(getAttribute(PersonAttribute.NAME))
+                && otherPerson.getAttribute(PersonAttribute.PHONE).equals(getAttribute(PersonAttribute.PHONE));
     }
 
     /**
@@ -152,8 +196,6 @@ public class Person {
                 .add("tags", tags)
                 .toString();
     }
-
-
 
     /**
      * Deletes the QR code for the person.
