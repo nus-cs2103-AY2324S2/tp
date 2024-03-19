@@ -44,11 +44,4 @@ public class ListAppointmentCommandParser implements Parser<ListAppointmentComma
         return new ListAppointmentCommand(combinedPredicate);
     }
 
-    /**
-     * Returns true if any of the prefixes contains non-empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean hasAtLeastOnePrefixPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
-    }
 }
