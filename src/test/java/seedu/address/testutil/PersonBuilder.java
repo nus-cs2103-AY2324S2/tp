@@ -1,6 +1,7 @@
 package seedu.address.testutil;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.model.person.Address;
@@ -24,7 +25,7 @@ public class PersonBuilder {
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
     private Name name;
-    private Phone phone;
+    private Optional<Phone> phone;
     private Email email;
     private Role role;
     private Address address;
@@ -35,7 +36,7 @@ public class PersonBuilder {
      */
     public PersonBuilder() {
         name = new Name(DEFAULT_NAME);
-        phone = new Phone(DEFAULT_PHONE);
+        phone = Optional.of(new Phone(DEFAULT_PHONE));
         email = new Email(DEFAULT_EMAIL);
         role = new Role(DEFAULT_ROLE);
         address = new Address(DEFAULT_ADDRESS);
@@ -82,7 +83,7 @@ public class PersonBuilder {
      * Sets the {@code Phone} of the {@code Person} that we are building.
      */
     public PersonBuilder withPhone(String phone) {
-        this.phone = new Phone(phone);
+        this.phone = Optional.of(new Phone(phone));
         return this;
     }
 

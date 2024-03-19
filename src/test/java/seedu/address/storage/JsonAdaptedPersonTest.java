@@ -27,7 +27,7 @@ public class JsonAdaptedPersonTest {
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = BENSON.getName().toString();
-    private static final String VALID_PHONE = BENSON.getPhone().toString();
+    private static final String VALID_PHONE = BENSON.getPhone().get().toString();
     private static final String VALID_EMAIL = BENSON.getEmail().toString();
     private static final String VALID_ROLE = BENSON.getRole().toString();
     private static final String VALID_ADDRESS = BENSON.getAddress().toString();
@@ -63,14 +63,6 @@ public class JsonAdaptedPersonTest {
                 new JsonAdaptedPerson(VALID_NAME, INVALID_PHONE, VALID_EMAIL,
                                       VALID_ROLE, VALID_ADDRESS, VALID_TAGS);
         String expectedMessage = Phone.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
-    }
-
-    @Test
-    public void toModelType_nullPhone_throwsIllegalValueException() {
-        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, null, VALID_EMAIL,
-                                                         VALID_ROLE, VALID_ADDRESS, VALID_TAGS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 

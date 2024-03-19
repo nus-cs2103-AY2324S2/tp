@@ -3,10 +3,12 @@ package seedu.address.storage;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
@@ -36,7 +38,9 @@ class JsonAdaptedPerson {
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
+    public JsonAdaptedPerson(@JsonProperty("name") String name,
+            @JsonInclude(JsonInclude.Include.NON_NULL)
+            @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("role") String role,
             @JsonProperty("address") String address, @JsonProperty("tags") List<JsonAdaptedTag> tags) {
         this.name = name;
@@ -54,7 +58,7 @@ class JsonAdaptedPerson {
      */
     public JsonAdaptedPerson(Person source) {
         name = source.getName().fullName;
-        phone = source.getPhone().value;
+        phone = source.getPhone().map(x -> x.value).orElse(null);
         email = source.getEmail().value;
         role = source.getRole().role.name();
         address = source.getAddress().value;
@@ -82,13 +86,10 @@ class JsonAdaptedPerson {
         }
         final Name modelName = new Name(name);
 
-        if (phone == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
-        }
-        if (!Phone.isValidPhone(phone)) {
+        if (phone != null && !Phone.isValidPhone(phone)) {
             throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
         }
-        final Phone modelPhone = new Phone(phone);
+        final Optional<Phone> modelPhone = Optional.ofNullable(phone).map(phone -> new Phone(phone));
 
         if (email == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
