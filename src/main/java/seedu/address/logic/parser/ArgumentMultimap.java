@@ -1,5 +1,8 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.model.person.Phone.DEFAULT_NUMBER;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -9,6 +12,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.Messages;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Phone;
 
 /**
  * Stores mapping of prefixes to their respective arguments.
@@ -39,6 +43,9 @@ public class ArgumentMultimap {
      * Returns the last value of {@code prefix}.
      */
     public Optional<String> getValue(Prefix prefix) {
+        if (prefix.equals(PREFIX_PHONE) && !argMultimap.containsKey(prefix)) {
+            return Optional.of(DEFAULT_NUMBER);
+        }
         List<String> values = getAllValues(prefix);
         return values.isEmpty() ? Optional.empty() : Optional.of(values.get(values.size() - 1));
     }

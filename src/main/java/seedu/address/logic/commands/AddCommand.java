@@ -22,14 +22,14 @@ public class AddCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a company to the address book. "
             + "Parameters: "
             + PREFIX_NAME + " NAME "
-            + PREFIX_PHONE + " PHONE "
+            + PREFIX_TAG + " TAG "
             + PREFIX_EMAIL + " EMAIL "
-            + PREFIX_TAG + " TAG...\n"
+            + "[" + PREFIX_PHONE + " PHONE]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + " NUS "
-            + PREFIX_PHONE + " 98765432 "
+            + PREFIX_TAG + " SoftwareEngineer "
             + PREFIX_EMAIL + " NUS@nus.edu.com "
-            + PREFIX_TAG + " Software Engineer ";
+            + PREFIX_PHONE + " 91234567 ";
     public static final String MESSAGE_SUCCESS = "New company added: %1$s";
     public static final String MESSAGE_DUPLICATE_COMPANY = "This company already exists in the address book";
 

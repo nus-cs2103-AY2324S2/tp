@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.person.Phone.DEFAULT_NUMBER;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -58,6 +59,10 @@ public class ParserUtil {
     public static Phone parsePhone(String phone) throws ParseException {
         requireNonNull(phone);
         String trimmedPhone = phone.trim();
+        if (phone.equals(DEFAULT_NUMBER)) {
+            return new Phone();
+        }
+
         if (!Phone.isValidPhone(trimmedPhone)) {
             throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
         }
@@ -92,7 +97,7 @@ public class ParserUtil {
         if (!Tag.isValidTagName(trimmedTag)) {
             throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
         }
-        return new Tag(trimmedTag.toLowerCase());
+        return new Tag(trimmedTag);
     }
 
     /**
