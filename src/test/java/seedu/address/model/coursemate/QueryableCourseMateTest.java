@@ -2,6 +2,7 @@ package seedu.address.model.coursemate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -47,5 +48,26 @@ public class QueryableCourseMateTest {
         QueryableCourseMate queryableCourseMate = new QueryableCourseMate(index);
         assertTrue(queryableCourseMate.isIndex());
         assertEquals(queryableCourseMate.getIndex(), index);
+    }
+
+    @Test
+    public void equals() {
+        QueryableCourseMate indexZero1 = new QueryableCourseMate(Index.fromZeroBased(0));
+        QueryableCourseMate indexZero2 = new QueryableCourseMate(Index.fromZeroBased(0));
+        QueryableCourseMate indexOne = new QueryableCourseMate(Index.fromZeroBased(1));
+
+        QueryableCourseMate hello1 = new QueryableCourseMate(new Name("Hello"));
+        QueryableCourseMate hello2 = new QueryableCourseMate(new Name("Hello"));
+        QueryableCourseMate hi = new QueryableCourseMate(new Name("Hi"));
+
+        assertEquals(indexZero1, indexZero2);
+        assertEquals(indexZero2, indexZero1);
+        assertNotEquals(indexZero1, indexOne);
+        assertNotEquals(indexZero1, hello1);
+
+        assertEquals(hello1, hello2);
+        assertEquals(hello2, hello1);
+        assertNotEquals(hi, hello1);
+        assertNotEquals(hello1, indexOne);
     }
 }

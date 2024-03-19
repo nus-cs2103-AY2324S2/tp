@@ -124,4 +124,16 @@ public class ParserUtil {
             return new QueryableCourseMate(parseName(trimmedLabel));
         }
     }
+    /**
+     * Parses {@code String labels} into a {@code Set<QueryableCourseMate>}.
+     */
+    public static Set<QueryableCourseMate> parseQueryableCourseMates(Collection<String> labels)
+            throws ParseException {
+        requireNonNull(labels);
+        final Set<QueryableCourseMate> courseMateSet = new HashSet<>();
+        for (String courseMateName : labels) {
+            courseMateSet.add(parseQueryableCourseMate(courseMateName));
+        }
+        return courseMateSet;
+    }
 }

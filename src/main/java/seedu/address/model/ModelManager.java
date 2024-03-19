@@ -12,9 +12,11 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.coursemate.CourseMate;
+import seedu.address.model.coursemate.Name;
 import seedu.address.model.coursemate.QueryableCourseMate;
 import seedu.address.model.coursemate.exceptions.CourseMateNotFoundException;
 import seedu.address.model.group.Group;
+import seedu.address.model.group.exceptions.GroupNotFoundException;
 
 /**
  * Represents the in-memory model of the contact list data.
@@ -23,6 +25,7 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final ContactList contactList;
+    private final GroupList groupList;
     private final UserPrefs userPrefs;
     private final FilteredList<CourseMate> filteredCourseMates;
     private final FilteredList<Group> filteredGroups;
@@ -31,20 +34,21 @@ public class ModelManager implements Model {
     /**
      * Initializes a ModelManager with the given contact list and userPrefs.
      */
-    public ModelManager(ReadOnlyContactList contactList, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyContactList contactList, ReadOnlyUserPrefs userPrefs, ReadOnlyGroupList groupList) {
         requireAllNonNull(contactList, userPrefs);
 
         logger.fine("Initializing with contact list: " + contactList + " and user prefs " + userPrefs);
 
         this.contactList = new ContactList(contactList);
         this.userPrefs = new UserPrefs(userPrefs);
+        this.groupList = new GroupList(groupList);
         filteredCourseMates = new FilteredList<>(this.contactList.getCourseMateList());
-        filteredGroups = new FilteredList<>(this.contactList.getGroupList());
+        filteredGroups = new FilteredList<>(this.groupList.getGroupList());
         recentlyProcessedCourseMate = null;
     }
 
     public ModelManager() {
-        this(new ContactList(), new UserPrefs());
+        this(new ContactList(), new UserPrefs(), new GroupList());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -118,6 +122,36 @@ public class ModelManager implements Model {
         contactList.setCourseMate(target, editedCourseMate);
     }
 
+    //=========== GroupList ================================================================================
+    @Override
+    public boolean hasGroup(Group group) {
+        requireNonNull(group);
+        return groupList.hasGroup(group);
+    }
+
+    @Override
+    public void deleteGroup(Group target) {
+        groupList.removeGroup(target);
+    }
+
+    @Override
+    public Group findGroup(Name name) throws GroupNotFoundException {
+        return groupList.findGroup(name);
+    }
+
+    @Override
+    public void addGroup(Group group) {
+        groupList.addGroup(group);
+        updateFilteredGroupList(PREDICATE_SHOW_ALL_GROUPS);
+    }
+
+    @Override
+    public void setGroup(Group target, Group editedGroup) {
+        requireAllNonNull(target, editedGroup);
+
+        groupList.setGroup(target, editedGroup);
+    }
+
     @Override
     public CourseMate findCourseMate(QueryableCourseMate query) {
         // EVENTUALLY CHANGE TO HANDLE
@@ -153,7 +187,7 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredGroupList(Predicate<Group> predicate) {
         requireNonNull(predicate);
-        //  TODO: implement
+        filteredGroups.setPredicate(predicate);
     }
 
     //=========== Most recently processed course mate ========================================================

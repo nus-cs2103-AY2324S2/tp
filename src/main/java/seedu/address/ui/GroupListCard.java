@@ -32,7 +32,7 @@ public class GroupListCard extends UiPart<Region> {
         super(FXML);
         this.group = group;
         name.setText(group.getName().fullName);
-        group.getMembers().stream()
+        group.asUnmodifiableObservableList().stream()
                 .sorted(Comparator.comparing(courseMate -> courseMate.getName().fullName))
                 .forEach(courseMate -> groupMembers.getChildren().add(new Label(courseMate.getName().fullName)));
     }

@@ -8,6 +8,7 @@ import static seedu.address.testutil.TypicalCourseMates.getTypicalContactList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.GroupList;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -23,14 +24,14 @@ public class AddCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalContactList(), new UserPrefs());
+        model = new ModelManager(getTypicalContactList(), new UserPrefs(), new GroupList());
     }
 
     @Test
     public void execute_newCourseMate_success() {
         CourseMate validCourseMate = new CourseMateBuilder().build();
 
-        Model expectedModel = new ModelManager(model.getContactList(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getContactList(), new UserPrefs(), new GroupList());
         expectedModel.addCourseMate(validCourseMate);
 
         assertCommandSuccess(new AddCommand(validCourseMate), model,

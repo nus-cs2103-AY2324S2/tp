@@ -66,4 +66,41 @@ public class QueryableCourseMate {
     public boolean isName() {
         return name != null;
     }
+
+    @Override
+    public String toString() {
+        if (isName()) {
+            return name.toString();
+        } else {
+            return "#" + index.getOneBased();
+        }
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+        if (!(other instanceof QueryableCourseMate)) {
+            return false;
+        }
+
+        QueryableCourseMate otherQueryable = (QueryableCourseMate) other;
+        if (isName() && otherQueryable.isName()) {
+            return name.equals(otherQueryable.name);
+        }
+        if (isIndex() && otherQueryable.isIndex()) {
+            return index.equals(otherQueryable.index);
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        if (isName()) {
+            return name.hashCode();
+        } else {
+            return index.hashCode();
+        }
+    }
 }

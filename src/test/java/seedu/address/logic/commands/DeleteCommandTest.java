@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
+import seedu.address.model.GroupList;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -26,7 +27,7 @@ import seedu.address.model.coursemate.CourseMate;
  */
 public class DeleteCommandTest {
 
-    private Model model = new ModelManager(getTypicalContactList(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalContactList(), new UserPrefs(), new GroupList());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -35,7 +36,7 @@ public class DeleteCommandTest {
 
         String expectedMessage = DeleteCommand.MESSAGE_DELETE_COURSE_MATE_SUCCESS;
 
-        ModelManager expectedModel = new ModelManager(model.getContactList(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getContactList(), new UserPrefs(), new GroupList());
         expectedModel.deleteCourseMate(courseMateToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel, true);
@@ -60,7 +61,7 @@ public class DeleteCommandTest {
 
         String expectedMessage = DeleteCommand.MESSAGE_DELETE_COURSE_MATE_SUCCESS;
 
-        Model expectedModel = new ModelManager(model.getContactList(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getContactList(), new UserPrefs(), new GroupList());
         expectedModel.deleteCourseMate(courseMateToDelete);
         showNoCourseMate(expectedModel);
 

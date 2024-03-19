@@ -22,6 +22,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.EditCommand.EditCourseMateDescriptor;
 import seedu.address.model.ContactList;
+import seedu.address.model.GroupList;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -34,7 +35,7 @@ import seedu.address.testutil.EditCourseMateDescriptorBuilder;
  */
 public class EditCommandTest {
 
-    private Model model = new ModelManager(getTypicalContactList(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalContactList(), new UserPrefs(), new GroupList());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -44,7 +45,8 @@ public class EditCommandTest {
 
         String expectedMessage = EditCommand.MESSAGE_EDIT_COURSE_MATE_SUCCESS;
 
-        Model expectedModel = new ModelManager(new ContactList(model.getContactList()), new UserPrefs());
+        Model expectedModel = new ModelManager(
+                new ContactList(model.getContactList()), new UserPrefs(), new GroupList());
         expectedModel.setCourseMate(model.getFilteredCourseMateList().get(0), editedCourseMate);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel, true);
@@ -66,7 +68,8 @@ public class EditCommandTest {
 
         String expectedMessage = EditCommand.MESSAGE_EDIT_COURSE_MATE_SUCCESS;
 
-        Model expectedModel = new ModelManager(new ContactList(model.getContactList()), new UserPrefs());
+        Model expectedModel = new ModelManager(
+                new ContactList(model.getContactList()), new UserPrefs(), new GroupList());
         expectedModel.setCourseMate(lastCourseMate, editedCourseMate);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel, true);
@@ -80,7 +83,8 @@ public class EditCommandTest {
 
         String expectedMessage = EditCommand.MESSAGE_EDIT_COURSE_MATE_SUCCESS;
 
-        Model expectedModel = new ModelManager(new ContactList(model.getContactList()), new UserPrefs());
+        Model expectedModel = new ModelManager(
+                new ContactList(model.getContactList()), new UserPrefs(), new GroupList());
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel, true);
         assertRecentlyProcessedCourseMateEdited(model, editedCourseMate);
@@ -98,7 +102,8 @@ public class EditCommandTest {
 
         String expectedMessage = EditCommand.MESSAGE_EDIT_COURSE_MATE_SUCCESS;
 
-        Model expectedModel = new ModelManager(new ContactList(model.getContactList()), new UserPrefs());
+        Model expectedModel = new ModelManager(
+                new ContactList(model.getContactList()), new UserPrefs(), new GroupList());
         expectedModel.setCourseMate(model.getFilteredCourseMateList().get(0), editedCourseMate);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel, true);
