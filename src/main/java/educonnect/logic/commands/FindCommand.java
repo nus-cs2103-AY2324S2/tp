@@ -2,13 +2,13 @@ package educonnect.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Collection;
+import java.util.function.Predicate;
+
 import educonnect.commons.util.ToStringBuilder;
 import educonnect.logic.Messages;
 import educonnect.model.Model;
 import educonnect.model.student.Student;
-
-import java.util.Collection;
-import java.util.function.Predicate;
 
 /**
  * Finds and lists all students in address book whose name contains any of the argument keywords.

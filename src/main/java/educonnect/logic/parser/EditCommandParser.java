@@ -26,8 +26,8 @@ import java.util.Set;
 import educonnect.commons.core.index.Index;
 import educonnect.logic.commands.EditCommand;
 import educonnect.logic.parser.exceptions.ParseException;
-import educonnect.model.student.timetable.Timetable;
 import educonnect.model.student.Tag;
+import educonnect.model.student.timetable.Timetable;
 
 /**
  * Parses input arguments and creates a new EditCommand object

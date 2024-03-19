@@ -1,10 +1,10 @@
 package educonnect.model.student.predicates;
 
-import educonnect.commons.util.ToStringBuilder;
-import educonnect.model.student.Tag;
-import educonnect.model.student.Student;
-
 import java.util.function.Predicate;
+
+import educonnect.commons.util.ToStringBuilder;
+import educonnect.model.student.Student;
+import educonnect.model.student.Tag;
 
 /**
  * Tests that a {@code Student}'s {@code Tag} matches the keywords given.

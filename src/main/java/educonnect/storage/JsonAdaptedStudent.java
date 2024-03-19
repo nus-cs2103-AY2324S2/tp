@@ -15,9 +15,9 @@ import educonnect.model.student.Link;
 import educonnect.model.student.Name;
 import educonnect.model.student.Student;
 import educonnect.model.student.StudentId;
+import educonnect.model.student.Tag;
 import educonnect.model.student.TelegramHandle;
 import educonnect.model.student.timetable.Timetable;
-import educonnect.model.student.Tag;
 
 /**
  * Jackson-friendly version of {@link Student}.

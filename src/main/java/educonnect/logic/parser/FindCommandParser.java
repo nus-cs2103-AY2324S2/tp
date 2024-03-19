@@ -1,17 +1,26 @@
 package educonnect.logic.parser;
 
-import educonnect.logic.commands.FindCommand;
-import educonnect.logic.parser.exceptions.ParseException;
-import educonnect.model.student.*;
-
 import static educonnect.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static educonnect.logic.parser.CliSyntax.*;
-import educonnect.model.student.predicates.*;
+import static educonnect.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static educonnect.logic.parser.CliSyntax.PREFIX_NAME;
+import static educonnect.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
+import static educonnect.logic.parser.CliSyntax.PREFIX_TAG;
+import static educonnect.logic.parser.CliSyntax.PREFIX_TELEGRAM_HANDLE;
 
 import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
+
+import educonnect.logic.commands.FindCommand;
+import educonnect.logic.parser.exceptions.ParseException;
+import educonnect.model.student.Student;
+import educonnect.model.student.Tag;
+import educonnect.model.student.predicates.EmailContainsKeywordsPredicate;
+import educonnect.model.student.predicates.IdContainsKeywordsPredicate;
+import educonnect.model.student.predicates.NameContainsKeywordsPredicate;
+import educonnect.model.student.predicates.TagContainsKeywordsPredicate;
+import educonnect.model.student.predicates.TelegramContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object
