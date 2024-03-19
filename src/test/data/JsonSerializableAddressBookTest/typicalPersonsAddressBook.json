@@ -9,7 +9,7 @@
     "dob": "20/02/2000",
     "ic": "A1234567B",
     "admissionDate": "01/03/2024",
-    "ward":"ward A"
+    "ward":"A1"
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
@@ -19,7 +19,7 @@
     "dob": "20/02/2001",
     "ic": "A2345678B",
     "admissionDate": "01/02/2024",
-    "ward": "ward B"
+    "ward": "B1"
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",
@@ -29,7 +29,7 @@
     "dob": "20/02/2002",
     "ic": "A3456789B",
     "admissionDate": "05/03/2024",
-    "ward": "ward C"
+    "ward": "C1"
   }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",
@@ -39,7 +39,7 @@
     "dob": "20/02/2003",
     "ic": "A5678901B",
     "admissionDate": "10/03/2024",
-    "ward": "ward D"
+    "ward": "D1"
   }, {
     "name" : "Elle Meyer",
     "phone" : "9482224",
@@ -49,7 +49,7 @@
     "dob": "20/02/2004",
     "ic": "A4756976B",
     "admissionDate": "05/02/2024",
-    "ward": "ward E"
+    "ward": "E1"
   }, {
     "name" : "Fiona Kunz",
     "phone" : "9482427",
@@ -59,7 +59,7 @@
     "dob": "20/02/2006",
     "ic": "A5739485B",
     "admissionDate": "11/03/2024",
-    "ward": "ward F"
+    "ward": "F1"
   }, {
     "name" : "George Best",
     "phone" : "9482442",
@@ -69,6 +69,6 @@
     "dob": "20/05/2000",
     "ic": "A0987654B",
     "admissionDate": "16/03/2024",
-    "ward": "ward G"
+    "ward": "G1"
   } ]
 }

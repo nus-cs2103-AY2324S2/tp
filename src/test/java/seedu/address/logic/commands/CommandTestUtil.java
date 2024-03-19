@@ -46,8 +46,8 @@ public class CommandTestUtil {
     public static final String VALID_IC_BOB = "M2222222W";
     public static final String VALID_ADMISSION_DATE_AMY = "10/03/2024";
     public static final String VALID_ADMISSION_DATE_BOB = "10/03/2024";
-    public static final String VALID_WARD_AMY = "Ward A";
-    public static final String VALID_WARD_BOB = "Ward B";
+    public static final String VALID_WARD_AMY = "A1";
+    public static final String VALID_WARD_BOB = "B1";
 
 
     // description + value
