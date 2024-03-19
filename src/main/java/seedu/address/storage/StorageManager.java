@@ -94,6 +94,7 @@ public class StorageManager implements Storage {
 
     @Override
     public void saveAppointmentList(ReadOnlyAppointmentList appointmentList) throws IOException {
+        // This saves to a different JSON file.
         saveAppointmentList(appointmentList, addressBookStorage.getAppointmentListFilePath());
     }
 
