@@ -45,8 +45,8 @@ public class CommandTestUtil {
     public static final String VALID_NOTE_AMY = "She likes aardvarks.";
     public static final String VALID_NOTE_BOB = "Favourite pastime: Eating";
     public static final String VALID_NOTE_CELINE = "Sleepy";
-    public static final String VALID_APPOINTMENT_FRIDAY = "23:59 FRI";
-    public static final String VALID_APPOINTMENT_SUNDAY = "08:00 SUN";
+    public static final String VALID_APPOINTMENT_FRIDAY = "18:00-20:00 FRI";
+    public static final String VALID_APPOINTMENT_SUNDAY = "08:00-10:00 SUN";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -80,6 +80,7 @@ public class CommandTestUtil {
 
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
+    public static final EditCommand.EditPersonDescriptor DESC_CELINE;
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
@@ -88,6 +89,9 @@ public class CommandTestUtil {
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        DESC_CELINE = new EditPersonDescriptorBuilder().withName(VALID_NAME_CELINE)
+                .withPhone(VALID_PHONE_CELINE).withEmail(VALID_EMAIL_CELINE).withAddress(VALID_ADDRESS_CELINE)
+                .withAppointments(VALID_APPOINTMENT_FRIDAY).build();
     }
 
     /**
