@@ -17,14 +17,17 @@ import seedu.findvisor.model.person.Meeting;
 class JsonAdaptedMeeting {
     private final String start;
     private final String end;
+    private final String remark;
 
     /**
      * Constructs a {@code JsonAdaptedMeeting} with the given {@code start} and {@code end}.
      */
     @JsonCreator
-    public JsonAdaptedMeeting(@JsonProperty("start") String start, @JsonProperty("end") String end) {
+    public JsonAdaptedMeeting(@JsonProperty("start") String start,
+            @JsonProperty("end") String end, @JsonProperty("remark") String remark) {
         this.start = start;
         this.end = end;
+        this.remark = remark;
     }
 
     /**
@@ -33,7 +36,7 @@ class JsonAdaptedMeeting {
     public JsonAdaptedMeeting(Optional<Meeting> source) {
         start = source.map(meeting -> DateTimeUtil.dateTimeToInputString(meeting.start)).orElse("");
         end = source.map(meeting -> DateTimeUtil.dateTimeToInputString(meeting.end)).orElse("");
-        // end = DateTimeUtil.dateTimeToString(source.end);
+        remark = source.map(meeting -> meeting.remark).orElse("");
     }
 
     /**
@@ -50,11 +53,14 @@ class JsonAdaptedMeeting {
             LocalDateTime start = DateTimeUtil.parseDateTimeString(this.start);
             LocalDateTime end = DateTimeUtil.parseDateTimeString(this.end);
             if (!Meeting.isValidDateTime(start, end)) {
-                throw new IllegalValueException(Meeting.MESSAGE_CONSTRAINTS);
+                throw new IllegalValueException(Meeting.MESSAGE_DATETIME_CONSTRAINTS);
             }
-            return Optional.of(new Meeting(start, end));
+            if (!Meeting.isValidRemark(remark)) {
+                throw new IllegalValueException(Meeting.MESSAGE_REMARK_CONSTRAINTS);
+            }
+            return Optional.of(new Meeting(start, end, remark));
         } catch (DateTimeParseException e) {
-            throw new IllegalValueException(Meeting.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Meeting.MESSAGE_DATETIME_CONSTRAINTS);
         }
     }
 

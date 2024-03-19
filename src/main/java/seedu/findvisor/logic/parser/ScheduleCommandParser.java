@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.findvisor.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.findvisor.logic.parser.CliSyntax.PREFIX_END_DATETIME;
 import static seedu.findvisor.logic.parser.CliSyntax.PREFIX_START_DATETIME;
+import static seedu.findvisor.logic.parser.CliSyntax.PREFIX_MEETING_REMARK;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
@@ -26,7 +27,7 @@ public class ScheduleCommandParser implements Parser<ScheduleCommand> {
     public ScheduleCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_START_DATETIME, PREFIX_END_DATETIME);
+                ArgumentTokenizer.tokenize(args, PREFIX_START_DATETIME, PREFIX_END_DATETIME, PREFIX_MEETING_REMARK);
 
         Index index;
 
@@ -53,7 +54,9 @@ public class ScheduleCommandParser implements Parser<ScheduleCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ScheduleCommand.MESSAGE_USAGE), pe);
         }
 
-        Meeting meeting = new Meeting(startDateTime, endDateTime);
+        String remark = argMultimap.getValue(PREFIX_MEETING_REMARK).orElse("");
+
+        Meeting meeting = new Meeting(startDateTime, endDateTime, remark);
 
         return new ScheduleCommand(index, meeting);
     }

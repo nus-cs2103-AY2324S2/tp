@@ -15,13 +15,16 @@ import seedu.findvisor.commons.util.ToStringBuilder;
  * Guarantees: immutable; is valid as declared in {@link #isValidDateTime(LocalDateTime, LocalDateTime)}
  */
 public class Meeting {
-    public static final String MESSAGE_CONSTRAINTS = "Meetings consist of 2 datetimes, the start datetime and "
+    public static final int MAX_REMARK_LENGTH = 200;
+    public static final String MESSAGE_DATETIME_CONSTRAINTS = "Meetings consist of 2 datetimes, the start datetime and "
             + "end date time.\n"
             + "Each input string for datetime must be in the format dd-MM-yyyy'T'HH:mm, for example 23-02-2024T16:00.\n"
             + "The start datetime must be before the end date time.";
+    public static final String MESSAGE_REMARK_CONSTRAINTS = "Remark is at most " + MAX_REMARK_LENGTH + " characters long.";
 
     public final LocalDateTime start;
     public final LocalDateTime end;
+    public final String remark;
 
     /**
      * Constructs an {@code Meeting}.
@@ -29,11 +32,13 @@ public class Meeting {
      * @param start The start datetime of the meeting.
      * @param end The end datetime of the meeting.
      */
-    public Meeting(LocalDateTime start, LocalDateTime end) {
-        requireAllNonNull(start, end);
-        checkArgument(isValidDateTime(start, end), MESSAGE_CONSTRAINTS);
+    public Meeting(LocalDateTime start, LocalDateTime end, String remark) {
+        requireAllNonNull(start, end, remark);
+        checkArgument(isValidDateTime(start, end), MESSAGE_DATETIME_CONSTRAINTS);
+        checkArgument(isValidRemark(remark), MESSAGE_REMARK_CONSTRAINTS);
         this.start = start;
         this.end = end;
+        this.remark = remark;
     }
 
     /**
@@ -42,6 +47,10 @@ public class Meeting {
      */
     public static boolean isValidDateTime(LocalDateTime start, LocalDateTime end) {
         return start.isBefore(end);
+    }
+
+    public static boolean isValidRemark(String remark) {
+        return remark.length() <= MAX_REMARK_LENGTH;
     }
 
     public String getStartString() {
@@ -57,6 +66,7 @@ public class Meeting {
         return new ToStringBuilder(this)
                 .add("Start Datetime", getStartString())
                 .add("End Datetime", getEndString())
+                .add("Remark", remark)
                 .toString();
     }
 
