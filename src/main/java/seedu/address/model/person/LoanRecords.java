@@ -104,6 +104,34 @@ public class LoanRecords {
         return loans.get(idx);
     }
 
+    public Loan getLoanById(int id) {
+        for (Loan loan : loans) {
+            if (loan.getId() == id) {
+                return loan;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Marks a loan as returned.
+     * @param idx A valid index.
+     */
+    public void markLoanAsReturned(int idx) {
+        loans.get(idx).markAsReturned();
+    }
+
+    /**
+     * Marks a loan as returned.
+     * @param id A valid id.
+     */
+    public void markLoanAsReturnedById(int id) {
+        Loan loan = getLoanById(id);
+        if (loan != null) {
+            loan.markAsReturned();
+        }
+    }
+
     /**
      * @return A list of loans.
      */
