@@ -17,21 +17,9 @@ public class Email {
             + "2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels.\n"
             + "The domain name must:\n"
             + "    - end with a domain label u.nus.edu\n";
-
-    //alphanumeric and special characters
-    private static final String ALPHANUMERIC_NO_UNDERSCORE = "[^\\W_]+"; // alphanumeric characters except underscore
     private static final String LOCAL_PART_REGEX = "[eE]\\d{7}";
-
-//    private static final String DOMAIN_PART_REGEX = ALPHANUMERIC_NO_UNDERSCORE
-//            + "(-" + ALPHANUMERIC_NO_UNDERSCORE + ")*";
-//    private static final String DOMAIN_LAST_PART_REGEX = "(" + DOMAIN_PART_REGEX + "){2,}$"; // At least two chars
     private static final String DOMAIN_REGEX = "u.nus.edu";
     public static final String VALIDATION_REGEX = LOCAL_PART_REGEX + "@" + DOMAIN_REGEX;
-
-//    public static final String MESSAGE_CONSTRAINTS = "The email should be in the format: e0123456@u.nus.edu\n"
-//            + "The first character is case insensitive, follow by 7 digits, and @u.nus.edu";
-    //public static final String VALIDATION_REGEX = "[eE]\\d{7}@u.nus.edu";
-
     public final String value;
 
     /**
