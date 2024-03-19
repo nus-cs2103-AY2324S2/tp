@@ -56,7 +56,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Replaces the contents of the appointment list with {@code appointments}.
-     * {@code persons} must not contain duplicate persons.
+     * {@code appointments} must not contain duplicate appointments.
      */
     public void setAppointments(List<Appointment> appointments) {
         this.appointments.setAppointments(appointments);
