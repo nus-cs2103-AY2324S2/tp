@@ -40,7 +40,7 @@ class GroupCommandParserTest {
     }
 
     @Test
-    public void parse_oneFieldSpecified_success(){
+    public void parse_oneFieldSpecified_success() {
 
         String defaultNusId = "E1234567";
         NusId nusid = new NusId((defaultNusId));
