@@ -70,7 +70,7 @@ public class AddCommand extends Command {
 
     /**
      * Takes a person object and only returns non-null fields
-     * 
+     *
      * @param person
      * @return a String of non-null fields
      */
