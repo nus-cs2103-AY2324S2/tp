@@ -3,11 +3,13 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.lang.Comparable;
+
 /**
  * Represents a Person's name in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
  */
-public class Name {
+public class Name implements Comparable<Name> {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Names should only contain alphanumeric characters and spaces, and it should not be blank";
@@ -57,6 +59,11 @@ public class Name {
 
         Name otherName = (Name) other;
         return fullName.equals(otherName.fullName);
+    }
+
+    @Override
+    public int compareTo(Name otherName) {
+        return this.fullName.compareTo(otherName.fullName);
     }
 
     @Override
