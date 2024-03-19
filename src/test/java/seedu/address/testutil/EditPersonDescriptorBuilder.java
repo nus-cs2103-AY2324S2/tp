@@ -35,7 +35,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setName(person.getName());
         descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
-        descriptor.setAvailability(person.getAvailability());
+        descriptor.setAvailabilities(person.getAvailabilities());
         descriptor.setTags(person.getTags());
     }
 
@@ -66,8 +66,9 @@ public class EditPersonDescriptorBuilder {
     /**
      * Sets the {@code Address} of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withAvailability(String availablity) {
-        descriptor.setAvailability(new Availability(availablity));
+    public EditPersonDescriptorBuilder withAvailability(String... availablities) {
+        Set<Availability> availabilitySet = Stream.of(availablities).map(Availability::new).collect(Collectors.toSet());
+        descriptor.setAvailabilities(availabilitySet);
         return this;
     }
 
