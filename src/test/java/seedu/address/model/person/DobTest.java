@@ -44,11 +44,13 @@ public class DobTest {
         // Define date format
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         // Format date
+        String todayFormatted = today.format(formatter);
         String tomorrowFormatted = tomorrow.format(formatter);
         assertFalse(Dob.isValidDob(tomorrowFormatted));
 
         // valid Dob
         assertTrue(Dob.isValidDob("17/03/2024"));
+        assertTrue(Dob.isValidDob(todayFormatted));
     }
 
     @Test

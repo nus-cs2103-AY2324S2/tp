@@ -44,11 +44,13 @@ public class AdmissionDateTest {
         // Define date format
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         // Format date
+        String todayFormatted = today.format(formatter);
         String tomorrowFormatted = tomorrow.format(formatter);
         assertFalse(AdmissionDate.isValidAdmissionDate(tomorrowFormatted));
 
         // valid AdmissionDate
         assertTrue(AdmissionDate.isValidAdmissionDate("17/03/2024"));
+        assertTrue(AdmissionDate.isValidAdmissionDate(todayFormatted));
     }
 
     @Test
