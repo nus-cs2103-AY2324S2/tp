@@ -18,24 +18,25 @@ public class HelpWindow extends UiPart<Stage> {
     public static final String USERGUIDE_URL =
             "https://github.com/AY2324S2-CS2103-F15-2/tp/blob/master/docs/UserGuide.md";
     public static final String HELP_MESSAGE =
-            "Here are the list of commands that are available for use: \n" +
-                    "    - Viewing help : 'help'\n\n" +
-                    "    - Adding a student: 'add'\n" +
-                    "       Usage: 'add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [g/GRADE] [s/SUBJECT] [t/TAG]…'\n\n" +
-                    "    - Listing all persons : 'list'\n\n" +
-                    "    - Editing a person : 'edit'\n" +
-                    "       Usage: 'edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…'\n\n" +
-                    "    - Locating persons by name: 'find'\n" +
-                    "       Usage: 'find KEYWORD [MORE_KEYWORDS]'\n\n" +
-                    "    - Deleting a person : 'delete'\n" +
-                    "       Usage: 'delete INDEX'\n\n" +
-                    "    - Mark student's payment: 'mark_payment'\n" +
-                    "       Usage: 'mark_payment INDEX'\n\n" +
-                    "    - View outstanding payments: 'payment_list'\n" +
-                    "       Usage: 'payment_list'\n\n" +
-                    "    - Clearing all entries : 'clear'\n\n" +
-                    "    - Exiting the program : 'exit'\n\n" +
-                    "You can view the complete user guide at " + USERGUIDE_URL;
+            "Here are the list of commands that are available for use: \n"
+                    + "    - Viewing help : 'help'\n\n"
+                    + "    - Adding a student: 'add'\n"
+                    + "       Usage: 'add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [g/GRADE] [s/SUBJECT] [t/TAG]…'\n\n"
+                    + "    - Listing all persons : 'list'\n\n"
+                    + "    - Editing a person : 'edit'\n"
+                    + "       Usage: 'edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…'\n\n"
+                    + "    - Locating persons by name: 'find'\n"
+                    + "       Usage: 'find KEYWORD [MORE_KEYWORDS]'\n\n"
+                    + "    - Deleting a person : 'delete'\n"
+                    + "       Usage: 'delete INDEX'\n\n"
+                    + "    - Mark student's payment: 'mark_payment'\n"
+                    + "       Usage: 'mark_payment INDEX'\n\n"
+                    + "    - View outstanding payments: 'payment_list'\n"
+                    + "       Usage: 'payment_list'\n\n"
+                    + "    - Clearing all entries : 'clear'\n\n"
+                    + "    - Exiting the program : 'exit'\n\n"
+                    + "You can view the complete user guide at "
+                    + USERGUIDE_URL;
 
 
 
