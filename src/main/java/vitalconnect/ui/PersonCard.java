@@ -9,6 +9,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import vitalconnect.model.person.Person;
 import vitalconnect.model.person.contactinformation.ContactInformation;
+import vitalconnect.model.person.medicalinformation.MedicalInformation;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -39,6 +40,8 @@ public class PersonCard extends UiPart<Region> {
     private FlowPane tags;
     @FXML
     private Label contactInformation;
+    @FXML
+    private Label medicalInformation;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -47,16 +50,19 @@ public class PersonCard extends UiPart<Region> {
         super(FXML);
         this.person = person;
         ContactInformation ci = person.getContactInformation();
+        MedicalInformation mi = person.getMedicalInformation();
         String contactInformationText = "";
         if (ci != null) {
             contactInformationText = ci.toString();
+        }
+        String medicalInformationText = "";
+        if (mi != null) {
+            contactInformationText = mi.toString();
         }
         id.setText(displayedIndex + ". ");
         name.setText(person.getIdentificationInformation().getName().fullName);
         nric.setText(person.getIdentificationInformation().getNric().nric);
         contactInformation.setText(contactInformationText);
-        person.getMedicalInformation().getAllergyTag().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        medicalInformation.setText(medicalInformationText);
     }
 }
