@@ -11,11 +11,15 @@ import seedu.address.model.Model;
 public class InitClearCommand extends Command {
     public static final String COMMAND_WORD = "clear";
     public static final String MESSAGE_SUCCESS = "Clearing the database is irreversible. Proceed? (Y/N)";
+    public static final String MESSAGE_DATABASE_EMPTY = "The database is empty.";
 
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
+        if (model.getAddressBook().getPersonList().isEmpty()) {
+            return new CommandResult(MESSAGE_DATABASE_EMPTY, CommandBoxState.NORMAL);
+        }
         return new CommandResult(MESSAGE_SUCCESS, CommandBoxState.CLEARCONFIRM);
     }
 }
