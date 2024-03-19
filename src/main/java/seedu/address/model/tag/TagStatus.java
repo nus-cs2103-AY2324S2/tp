@@ -10,6 +10,11 @@ public enum TagStatus {
     INCOMPLETE_BAD; // incomplete after deadline
 
     public static final TagStatus DEFAULT_STATUS = INCOMPLETE_GOOD;
+    public static final String COMPLETE_GOOD_KEYWORD = "cg";
+    public static final String COMPLETE_BAD_KEYWORD = "cb";
+    public static final String INCOMPLETE_GOOD_KEYWORD = "ig";
+    public static final String INCOMPLETE_BAD_KEYWORD = "ib";
+
 
     /**
      * @param status Keyword corresponding each of the TagStatus.
@@ -17,13 +22,13 @@ public enum TagStatus {
      */
     public static TagStatus getTagStatus(String status) {
         switch (status) {
-        case "cg":
+        case COMPLETE_GOOD_KEYWORD:
             return TagStatus.COMPLETE_GOOD;
-        case "cb":
+        case COMPLETE_BAD_KEYWORD:
             return TagStatus.COMPLETE_BAD;
-        case "ig":
+        case INCOMPLETE_GOOD_KEYWORD:
             return TagStatus.INCOMPLETE_GOOD;
-        case "ib":
+        case INCOMPLETE_BAD_KEYWORD:
             return TagStatus.INCOMPLETE_BAD;
         default:
             return TagStatus.DEFAULT_STATUS;

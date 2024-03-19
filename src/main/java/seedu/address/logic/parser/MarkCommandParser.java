@@ -9,6 +9,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.MarkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.TagStatus;
 
 /**
@@ -40,6 +41,16 @@ public class MarkCommandParser implements Parser<MarkCommand> {
         String statusIdentifier = argMultimap.getValue(PREFIX_TAGSTATUS).get();
 
         TagStatus tagStatus = TagStatus.getTagStatus(statusIdentifier);
+
+        // an alternative approach is to instantiate the Tag object and try to
+        // catch the Illegal Exception Error. The tag can then be fed into the
+        // MarkCommand. The author decided to pass in the tagName instead as the
+        // TagName might be used to search for tags in future implementations
+        try {
+            Tag.isTagNameValid(tagName);
+        } catch (IllegalArgumentException e) {
+            throw new ParseException(e.getMessage());
+        }
 
         return new MarkCommand(index, tagName, tagStatus);
     }
