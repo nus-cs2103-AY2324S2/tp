@@ -21,7 +21,7 @@ public class HelpWindow extends UiPart<Stage> {
             + "\n1. Quick add an applicant/interviewer: add_[applicant/interviewer] n/[name] p/[phone] e/[email] "
             + "\n2. Add an interview: add_interview desc/[description] date/[date] st/[starting time] et/[ending time] "
             + "a/[applicant phone] i/[interviewer phone]"
-            + "\n3. Delete an applicant/interviewer: delete_persons [phone]"
+            + "\n3. Delete an applicant/interviewer: delete_person [phone]"
             + "\n4. Delete an interview: delete_interview [interview index]"
             + "\n5. List applicants/interviewers: list_persons"
             + "\n6. List interviews: list_interviews"

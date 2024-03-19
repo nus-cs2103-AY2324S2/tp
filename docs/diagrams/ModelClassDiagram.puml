@@ -8,17 +8,21 @@ Package Model as ModelPackage <<Rectangle>>{
 Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
 Class "<<interface>>\nModel" as Model
+Enum "<<enumeration>>\nType" as Type
 Class AddressBook
 Class ModelManager
 Class UserPrefs
 
 Class UniquePersonList
 Class Person
+Class Applicant
+Class Interviewer
 Class Address
 Class Email
 Class Name
 Class Phone
 Class Tag
+Enum Type
 
 Class I #FFFFFF
 }
@@ -40,8 +44,11 @@ UniquePersonList --> "~* all" Person
 Person *--> Name
 Person *--> Phone
 Person *--> Email
-Person *--> Address
+Person *--> Type
 Person *--> "*" Tag
+
+Applicant -up--|>Person
+Interviewer -up--|>Person
 
 Person -[hidden]up--> I
 UniquePersonList -[hidden]right-> I
