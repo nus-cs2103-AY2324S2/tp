@@ -9,11 +9,14 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
+import seedu.address.model.person.AttendanceDate;
+import seedu.address.model.person.Classes;
+import seedu.address.model.person.CourseCode;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.StudentId;
+import seedu.address.model.tag.Attendance;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -71,13 +74,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code address} is invalid.
      */
-    public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+    public static StudentId parseStudentId(String studentId) throws ParseException {
+        requireNonNull(studentId);
+        String trimmedStudentId = studentId.trim();
+        if (!StudentId.isValidStudentId(trimmedStudentId)) {
+            throw new ParseException(StudentId.MESSAGE_CONSTRAINTS);
         }
-        return new Address(trimmedAddress);
+        return new StudentId(trimmedStudentId);
     }
 
     /**
@@ -96,29 +99,59 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String course code} into an {@code Classes}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code courseCode} is invalid.
+     */
+    public static Classes parseClass(String courseCode) throws ParseException {
+        requireNonNull(courseCode);
+        String trimmedCourseCode = courseCode.trim();
+        if (!CourseCode.isValidClass(trimmedCourseCode)) {
+            throw new ParseException(CourseCode.MESSAGE_CONSTRAINTS);
+        }
+        return new Classes(new CourseCode(trimmedCourseCode));
+    }
+
+    /**
+     * Parses a {@code String date} into an {@code AttendanceDate}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code date} is invalid.
+     */
+    public static AttendanceDate parseDate(String date) throws ParseException {
+        requireNonNull(date);
+        String trimmedDate = date.trim();
+        if (!AttendanceDate.isValidDate(trimmedDate)) {
+            throw new ParseException(AttendanceDate.MESSAGE_CONSTRAINTS);
+        }
+        return new AttendanceDate(trimmedDate);
+    }
+
+    /**
      * Parses a {@code String tag} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code tag} is invalid.
      */
-    public static Tag parseTag(String tag) throws ParseException {
+    public static Attendance parseAttendances(String tag) throws ParseException {
         requireNonNull(tag);
         String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+        if (!Attendance.isValidTagName(trimmedTag)) {
+            throw new ParseException(Attendance.MESSAGE_CONSTRAINTS);
         }
-        return new Tag(trimmedTag);
+        return new Attendance(trimmedTag);
     }
 
     /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
      */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
-        requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
+    public static Set<Attendance> parseAttendances(Collection<String> attendances) throws ParseException {
+        requireNonNull(attendances);
+        final Set<Attendance> attendanceSet = new HashSet<>();
+        for (String attendanceName : attendances) {
+            attendanceSet.add(parseAttendances(attendanceName));
         }
-        return tagSet;
+        return attendanceSet;
     }
 }

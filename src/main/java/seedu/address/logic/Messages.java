@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.parser.Prefix;
+import seedu.address.model.person.Classes;
 import seedu.address.model.person.Person;
 
 /**
@@ -41,10 +42,20 @@ public class Messages {
                 .append(person.getPhone())
                 .append("; Email: ")
                 .append(person.getEmail())
-                .append("; Address: ")
-                .append(person.getAddress())
-                .append("; Tags: ");
-        person.getTags().forEach(builder::append);
+                .append("; StudentId: ")
+                .append(person.getStudentId())
+                .append("; Attendances: ");
+        person.getAttendances().forEach(builder::append);
+        return builder.toString();
+    }
+
+    /**
+     * Formats the {@code classes} for display to the user.
+     */
+    public static String classFormat(Classes classes) {
+        final StringBuilder builder = new StringBuilder();
+        builder.append(classes.getCourseCode());
+
         return builder.toString();
     }
 
