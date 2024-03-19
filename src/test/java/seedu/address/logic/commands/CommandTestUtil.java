@@ -69,7 +69,6 @@ public class CommandTestUtil {
     public static final String INVALID_YEAR_DESC = " " + PREFIX_YEAR + "7";
     public static final String INVALID_MAJOR_DESC = " " + PREFIX_MAJOR; // empty string not allowed for major
     public static final String INVALID_TELEGRAM_DESC = " " + PREFIX_TELEGRAM + "inval!d";
-    public static final String INVALID_REMARK_DESC = " " + PREFIX_REMARK + "#shy"; // '#' not allowed in remark
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
