@@ -45,7 +45,8 @@ public class TypicalCourseMates {
     public static final CourseMate IDA = new CourseMateBuilder().withName("Ida Mueller").withPhone("8482131")
             .withEmail("hans@example.com").build();
 
-    // Manually added - CourseMate's details found in {@code CommandTestUtil}
+    // Manually added - CourseMate's details found in {@code CommandTestUtil}.
+    // Enforce that they are not in the typicalCourseMates
     public static final CourseMate AMY = new CourseMateBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
             .withEmail(VALID_EMAIL_AMY).withSkills(VALID_SKILL_REACT).build();
     public static final CourseMate BOB = new CourseMateBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)

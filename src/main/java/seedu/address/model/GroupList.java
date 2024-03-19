@@ -3,17 +3,12 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
-import java.util.Set;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.coursemate.CourseMate;
-import seedu.address.model.coursemate.Email;
 import seedu.address.model.coursemate.Name;
-import seedu.address.model.coursemate.Phone;
 import seedu.address.model.group.Group;
 import seedu.address.model.group.UniqueGroupList;
-import seedu.address.model.skill.Skill;
 
 /**
  * Wraps all data at the group list level
@@ -45,30 +40,7 @@ public class GroupList implements ReadOnlyGroupList {
      */
     public void resetData(ReadOnlyGroupList newData) {
         requireNonNull(newData);
-
-        // For now initialize groups with hard-coded data
-
-        CourseMate member1 = new CourseMate(
-                new Name("Member1"), new Phone("0123"), new Email("Member1@example.com"),
-                Set.of(new Skill("skill1")));
-        CourseMate member2 = new CourseMate(
-                new Name("Member2"), new Phone("0123"), new Email("Member2@example.com"),
-                Set.of(new Skill("skill1")));
-        CourseMate member3 = new CourseMate(
-                new Name("Member3"), new Phone("0123"), new Email("Member3@example.com"),
-                Set.of(new Skill("skill1")));
-        CourseMate member4 = new CourseMate(
-                new Name("Member4"), new Phone("0123"), new Email("Member4@example.com"),
-                Set.of(new Skill("skill1")));
-
-        setGroups(List.of(
-                new Group(new Name("Group 1"), Set.of(member1, member2, member3, member4)),
-                new Group(new Name("Group 2"), Set.of(member1, member2)),
-                new Group(new Name("Group 3"), Set.of(member1, member2, member3)),
-                new Group(new Name("Group 4"), Set.of(member2, member3, member4)),
-                new Group(new Name("Group 5"), Set.of(member2, member3))));
-        // TODO: replace with this
-        // setGroups(newData.getGroupList());
+        setGroups(newData.getGroupList());
     }
 
     //// group-level operations

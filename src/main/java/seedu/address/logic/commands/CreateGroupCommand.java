@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COURSEMATE;
 
@@ -52,6 +53,7 @@ public class CreateGroupCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        requireNonNull(model);
         try {
             Set<CourseMate> courseMateList = queryableCourseMateSet
                     .stream()
@@ -68,6 +70,20 @@ public class CreateGroupCommand extends Command {
         } catch (CourseMateNotFoundException e) {
             throw new CommandException(MESSAGE_MEMBERS_DONT_EXIST);
         }
+    }
 
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof CreateGroupCommand)) {
+            return false;
+        }
+
+        CreateGroupCommand otherCreateGroupCommand = (CreateGroupCommand) other;
+        return otherCreateGroupCommand.groupName.equals(groupName)
+                && otherCreateGroupCommand.queryableCourseMateSet.equals(queryableCourseMateSet);
     }
 }

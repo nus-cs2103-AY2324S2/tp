@@ -22,6 +22,7 @@ public class Group extends UniqueCourseMateList {
     public Group(Name name, Iterable<CourseMate> members) {
         super();
         requireNonNull(name);
+        requireNonNull(members);
         this.name = name;
         members.forEach(this::add);
     }
@@ -33,6 +34,7 @@ public class Group extends UniqueCourseMateList {
      */
     public Group(Name name) {
         super();
+        requireNonNull(name);
         this.name = name;
     }
 

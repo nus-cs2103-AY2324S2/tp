@@ -26,6 +26,7 @@ public class DeleteGroupCommand extends Command {
      * @param toDelete group to be deleted
      */
     public DeleteGroupCommand(Name toDelete) {
+        requireNonNull(toDelete);
         this.toDelete = toDelete;
     }
 
@@ -42,5 +43,19 @@ public class DeleteGroupCommand extends Command {
         } catch (GroupNotFoundException exception) {
             throw new CommandException("Specified group wasn't found", exception);
         }
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof DeleteGroupCommand)) {
+            return false;
+        }
+
+        DeleteGroupCommand otherDelete = (DeleteGroupCommand) other;
+        return otherDelete.toDelete.equals(toDelete);
     }
 }

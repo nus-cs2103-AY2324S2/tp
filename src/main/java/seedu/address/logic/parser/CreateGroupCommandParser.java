@@ -27,8 +27,6 @@ public class CreateGroupCommandParser implements Parser<CreateGroupCommand> {
         Set<QueryableCourseMate> queryableCourseMateSet =
                 ParserUtil.parseQueryableCourseMates(argMultiMap.getAllValues(PREFIX_COURSEMATE));
 
-        // TODO: check if group already exists
-
         return new CreateGroupCommand(name, queryableCourseMateSet);
     }
 }
