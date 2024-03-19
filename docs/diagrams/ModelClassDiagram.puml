@@ -14,6 +14,8 @@ Class UserPrefs
 
 Class UniquePersonList
 Class Person
+Class UniqueMeetingList
+Class Meeting
 Class Address
 Class Email
 Class Name
@@ -42,6 +44,9 @@ Person *--> Phone
 Person *--> Email
 Person *--> Address
 Person *--> "*" Tag
+
+AddressBook *--> "1" UniqueMeetingList
+UniqueMeetingList --> "~* all" Meeting
 
 Person -[hidden]up--> I
 UniquePersonList -[hidden]right-> I
