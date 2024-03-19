@@ -12,6 +12,7 @@ public class TaskTest {
     public void constructor_validInput_success() {
         Task task = new Task("Test Task");
         assertEquals("Test Task", task.getDescription());
+        assertFalse(task.getStatus());
     }
 
     @Test
@@ -38,5 +39,19 @@ public class TaskTest {
     public void equals_differentObjectDifferentType_false() {
         Task task = new Task("Test Task");
         assertFalse(task.equals(new Object()));
+    }
+
+    @Test
+    public void setAsDone_checkMarkStatus_true() {
+        Task task = new Task("Test Task");
+        task.setAsDone();
+        assertTrue(task.getStatus());
+    }
+
+    @Test
+    public void setAsUndone_checkUnmarkStatus_false() {
+        Task task = new Task("Test Task");
+        task.setAsUndone();
+        assertFalse(task.getStatus());
     }
 }
