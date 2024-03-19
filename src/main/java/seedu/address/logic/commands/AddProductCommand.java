@@ -1,13 +1,14 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRODUCT_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRODUCT_QUANTITY;
+
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.order.Order;
 import seedu.address.model.order.Product;
 import seedu.address.model.order.Quantity;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PRODUCT_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PRODUCT_QUANTITY;
 
 /**
  * Adds a product to the order.
