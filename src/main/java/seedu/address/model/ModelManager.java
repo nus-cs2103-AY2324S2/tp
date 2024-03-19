@@ -11,6 +11,8 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.messages.Messages;
 import seedu.address.model.person.Maintainer;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -153,13 +155,19 @@ public class ModelManager implements Model {
      * Find the person by their name.
      * @param targetName Refers to the name identifier.
      * @return Person that matches the name.
+     * @throws CommandException Handles invalid person message.
      */
     @Override
-    public Person findByName(Name targetName) {
+    public Person findByName(Name targetName) throws CommandException {
         for (Person person: filteredPersons) {
             Name name = person.getName();
             if (name.equals(targetName)) {
-                return person;
+                if (!(person instanceof Supplier) && !(person instanceof Staff)
+                        && !(person instanceof Maintainer)) {
+                    return person;
+                } else {
+                    throw new CommandException(Messages.MESSAGE_INVALID_EDIT_PERSON);
+                }
             }
         }
         return null;
@@ -169,13 +177,18 @@ public class ModelManager implements Model {
      * Find the maintainer by their name.
      * @param targetName Refers to the name identifier.
      * @return Maintainer that matches the name.
+     * @throws CommandException Handles invalid maintainer message.
      */
     @Override
-    public Maintainer findMaintainerByName(Name targetName) {
+    public Maintainer findMaintainerByName(Name targetName) throws CommandException {
         for (Person person: filteredPersons) {
             Name name = person.getName();
             if (name.equals(targetName) && person instanceof Maintainer) {
-                return (Maintainer) person;
+                if (person instanceof Maintainer) {
+                    return (Maintainer) person;
+                } else {
+                    throw new CommandException(Messages.MESSAGE_INVALID_EDIT_MAINTAINER);
+                }
             }
         }
         return null;
@@ -185,13 +198,18 @@ public class ModelManager implements Model {
      * Find the staff by their name.
      * @param targetName Refers to the name identifier.
      * @return Staff that matches the name.
+     * @throws CommandException Handles invalid staff message.
      */
     @Override
-    public Staff findStaffByName(Name targetName) {
+    public Staff findStaffByName(Name targetName) throws CommandException {
         for (Person person: filteredPersons) {
             Name name = person.getName();
-            if (name.equals(targetName) && person instanceof Staff) {
-                return (Staff) person;
+            if (name.equals(targetName)) {
+                if (person instanceof Staff) {
+                    return (Staff) person;
+                } else {
+                    throw new CommandException(Messages.MESSAGE_INVALID_EDIT_STAFF);
+                }
             }
         }
         return null;
@@ -201,13 +219,18 @@ public class ModelManager implements Model {
      * Find the supplier by their name.
      * @param targetName Refers to the name identifier.
      * @return Supplier that matches the name.
+     * @throws CommandException Handles invalid supplier message.
      */
     @Override
-    public Supplier findSupplierByName(Name targetName) {
+    public Supplier findSupplierByName(Name targetName) throws CommandException {
         for (Person person: filteredPersons) {
             Name name = person.getName();
-            if (name.equals(targetName) && person instanceof Supplier) {
-                return (Supplier) person;
+            if (name.equals(targetName)) {
+                if (person instanceof Supplier) {
+                    return (Supplier) person;
+                } else {
+                    throw new CommandException(Messages.MESSAGE_INVALID_EDIT_SUPPLIER);
+                }
             }
         }
         return null;
