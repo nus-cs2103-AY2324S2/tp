@@ -11,17 +11,17 @@ import seedu.address.model.person.PersonHasTagPredicate;
  * Sorts and lists all persons in address book who are tagged by any of the argument keywords.
  * Keyword matching is case-sensitive.
  */
-public class SortCommand extends Command {
-    public static final String COMMAND_WORD = "sort";
+public class FilterCommand extends Command {
+    public static final String COMMAND_WORD = "filter";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts for all persons whose tags include any of "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters for all persons whose tags include any of "
             + "the specified keywords and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " friend teacher student";
 
     private final PersonHasTagPredicate predicate;
 
-    public SortCommand(PersonHasTagPredicate predicate) {
+    public FilterCommand(PersonHasTagPredicate predicate) {
         this.predicate = predicate;
     }
 
@@ -40,12 +40,12 @@ public class SortCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof SortCommand)) {
+        if (!(other instanceof FilterCommand)) {
             return false;
         }
 
-        SortCommand otherSortCommand = (SortCommand) other;
-        return predicate.equals(otherSortCommand.predicate);
+        FilterCommand otherFilterCommand = (FilterCommand) other;
+        return predicate.equals(otherFilterCommand.predicate);
     }
 
     @Override
