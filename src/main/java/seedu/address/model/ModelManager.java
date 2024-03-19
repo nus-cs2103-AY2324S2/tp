@@ -157,7 +157,9 @@ public class ModelManager implements Model {
         return addressBook.equals(otherModelManager.addressBook)
                 && userPrefs.equals(otherModelManager.userPrefs)
                 && filteredPersons.equals(otherModelManager.filteredPersons)
-                && selectedPerson.isSamePerson(otherModelManager.selectedPerson);
+                && (selectedPerson == null
+                    ? otherModelManager.selectedPerson == null
+                    : selectedPerson.equals(otherModelManager.selectedPerson));
     }
 
 }
