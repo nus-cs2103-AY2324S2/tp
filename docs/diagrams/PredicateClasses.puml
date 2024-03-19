@@ -1,0 +1,20 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR_T4
+skinparam classBackgroundColor MODEL_COLOR
+
+package "Predicate classes" {
+Class "<<interface>>\nPredicate" as Predicate
+Class "IsSamePersonPredicate"
+Class "NameContainsKeywordsPredicate"
+}
+
+Class "SelectCommand"
+Class "FindCommand"
+
+SelectCommand ..> IsSamePersonPredicate : <<create>>
+FindCommand --> NameContainsKeywordsPredicate
+IsSamePersonPredicate .up.|> Predicate
+NameContainsKeywordsPredicate .up.|> Predicate
+@enduml
