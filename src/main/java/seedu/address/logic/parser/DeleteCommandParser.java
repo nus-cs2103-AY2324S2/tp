@@ -25,16 +25,14 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_ID);
 
         if (argMultimap.getValue(PREFIX_ID).isEmpty()) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
         }
 
         try {
             Id id = ParserUtil.parseId(argMultimap.getValue(PREFIX_ID).get());
             return new DeleteCommand(id);
         } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);
         }
     }
 

@@ -45,7 +45,7 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_invalidIdUnfilteredList_throwsCommandException() {
-        Id outOfBoundId = Id.generateId(model.getFilteredPersonList().size() + 1);
+        Id outOfBoundId = Id.generateNextId();
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundId);
 
         assertCommandFailure(deleteCommand, model,
