@@ -5,6 +5,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.internship.ApplicationStatus;
+import seedu.address.model.internship.ApplicationStatus;
 import seedu.address.model.internship.ApplicationStatus.StatusEnum;
 import seedu.address.model.internship.CompanyName;
 import seedu.address.model.internship.ContactEmail;
@@ -13,6 +14,7 @@ import seedu.address.model.internship.ContactNumber;
 import seedu.address.model.internship.Description;
 import seedu.address.model.internship.Internship;
 import seedu.address.model.internship.Location;
+import seedu.address.model.internship.Remark;
 import seedu.address.model.internship.Role;
 
 /**
@@ -51,6 +53,9 @@ public class InternshipCard extends UiPart<Region> {
     private Label loc;
     @FXML
     private Label poc;
+    @FXML
+    private Label remark;
+
 
     /**
      * Creates a {@code InternshipCard} with the given {@code Internship} and index to display.
@@ -65,6 +70,7 @@ public class InternshipCard extends UiPart<Region> {
         setDescriptionLabel(internship.getDescription());
         setLocationLabel(internship.getLocation());
         setPocLabel(internship.getContactName(), internship.getContactEmail(), internship.getContactNumber());
+        setRemarkLabel(internship.getRemark());
     }
 
     /**
@@ -145,6 +151,15 @@ public class InternshipCard extends UiPart<Region> {
             throw new IllegalArgumentException("Unexpected application status: "
                     + statusEnum);
         }
+    }
+
+    /**
+     * Sets the remark label to the given remark.
+     *
+     * @param remark remark of the internship
+     */
+    private void setRemarkLabel(Remark remark) {
+        this.remark.setText(remark.toString());
     }
 
     protected Label getIdLabel() {
