@@ -32,7 +32,8 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_STUDENTID, PREFIX_ATTENDANCE_RECORD);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
+                        PREFIX_STUDENTID, PREFIX_ATTENDANCE_RECORD);
 
         Index index;
 
@@ -58,7 +59,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_STUDENTID).isPresent()) {
             editPersonDescriptor.setStudentId(ParserUtil.parseStudentId(argMultimap.getValue(PREFIX_STUDENTID).get()));
         }
-        parseAttendanceForEdit(argMultimap.getAllValues(PREFIX_ATTENDANCE_RECORD)).ifPresent(editPersonDescriptor::setAttendances);
+        parseAttendanceForEdit(argMultimap.getAllValues(PREFIX_ATTENDANCE_RECORD))
+                .ifPresent(editPersonDescriptor::setAttendances);
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
@@ -78,7 +80,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (attendances.isEmpty()) {
             return Optional.empty();
         }
-        Collection<String> tagSet = attendances.size() == 1 && attendances.contains("") ? Collections.emptySet() : attendances;
+        Collection<String> tagSet = attendances.size() == 1 && attendances.contains("")
+                ? Collections.emptySet() : attendances;
         return Optional.of(ParserUtil.parseAttendances(tagSet));
     }
 

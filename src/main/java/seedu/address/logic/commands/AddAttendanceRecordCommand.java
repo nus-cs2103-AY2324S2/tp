@@ -2,12 +2,14 @@ package seedu.address.logic.commands;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE_RECORD;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.AttendanceDate;
 
+/**
+ * Adds an attendance record to students.
+ */
 public class AddAttendanceRecordCommand extends Command {
 
     public static final String COMMAND_WORD = "attendance";
@@ -21,9 +23,11 @@ public class AddAttendanceRecordCommand extends Command {
     public static final String MESSAGE_NOT_IMPLEMENTED_YET = "attendance command not implemented yet";
     public static final String MESSAGE_SUCCESS = "New attendance added: %1$s";
     public static final String MESSAGE_ARGUMENTS = "Date: %1$s";
-
     private AttendanceDate date;
 
+    /**
+     * Creates an AddAttendanceRecord to add the specified {@code date}
+     */
     public AddAttendanceRecordCommand(AttendanceDate date) {
         requireAllNonNull(date);
         this.date = date;

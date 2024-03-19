@@ -3,6 +3,9 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents an AttendanceDate in the student.
+ */
 public class AttendanceDate {
 
     public static final String MESSAGE_CONSTRAINTS = "Attendance date should be in dd-MM-yyyy";
