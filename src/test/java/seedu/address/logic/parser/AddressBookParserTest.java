@@ -24,6 +24,7 @@ import seedu.address.logic.commands.clients.HelpCommand;
 import seedu.address.logic.commands.clients.ListCommand;
 import seedu.address.logic.commands.orders.AddOrderCommand;
 import seedu.address.logic.commands.orders.DeleteOrderCommand;
+import seedu.address.logic.commands.orders.ViewOrdersCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.order.OrderId;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
@@ -110,9 +111,15 @@ public class AddressBookParserTest {
     }
 
     @Test
+    public void parseCommand_viewOrders() throws Exception {
+        assertTrue(parser.parseCommand(ViewOrdersCommand.COMMAND_WORD) instanceof ViewOrdersCommand);
+        assertTrue(parser.parseCommand(ViewOrdersCommand.COMMAND_WORD + " 3") instanceof ViewOrdersCommand);
+    }
+
+    @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
-            -> parser.parseCommand(""));
+                -> parser.parseCommand(""));
     }
 
     @Test
