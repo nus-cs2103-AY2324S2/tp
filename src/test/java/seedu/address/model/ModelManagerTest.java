@@ -112,7 +112,6 @@ public class ModelManagerTest {
         // Verify that the userPrefs is correctly initialized with the data from the ReadOnlyUserPrefs
         assertEquals(userPrefs, modelManager.getUserPrefs());
 
-        // Verify that the filteredPersons list is correctly initialized and reflects the content of the versionedAddressBook
         assertTrue(modelManager.getFilteredPersonList().containsAll(addressBook.getPersonList()));
     }
 
