@@ -15,8 +15,9 @@ import seedu.address.model.employee.Name;
 import seedu.address.model.employee.Phone;
 import seedu.address.model.employee.Role;
 import seedu.address.model.employee.Team;
-import seedu.address.model.tag.Tag;
 import seedu.address.model.employee.UniqueId;
+import seedu.address.model.tag.Tag;
+
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser
@@ -29,9 +30,8 @@ public class ParserUtil {
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading
-     * and trailing whitespaces will be
-     * trimmed.
-     * 
+     * and trailing whitespaces will be trimmed.
+     *
      * @throws ParseException if the specified index is invalid (not non-zero
      *                        unsigned integer).
      */
@@ -160,9 +160,12 @@ public class ParserUtil {
         return tagSet;
     }
 
-    /*
+    /**
      * Parses a {@code String uid} into a {@code UniqueId}.
-     * 
+     *
+     * @param uid Unique Id as a string
+     * @return UniqueId object made from the string
+     * @throws ParseException if uid string is corrupted
      */
     public static UniqueId parseUid(String uid) throws ParseException {
         requireNonNull(uid);

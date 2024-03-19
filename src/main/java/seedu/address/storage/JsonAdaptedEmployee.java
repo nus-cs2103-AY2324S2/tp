@@ -76,6 +76,15 @@ class JsonAdaptedEmployee {
     }
 
     /**
+     * Method to get the UID
+     *
+     * @return the UID
+     */
+    public Integer getUid() {
+        return uid;
+    }
+
+    /**
      * Converts this Jackson-friendly adapted employee object into the model's
      * {@code Employee} object.
      *

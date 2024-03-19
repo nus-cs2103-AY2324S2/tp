@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
-import javafx.beans.binding.IntegerBinding;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -53,17 +52,6 @@ public class DeleteCommand extends Command {
         this.targetIndex = null; // Index is not used in this context
         this.targetName = targetName;
         this.uid = null; // UniqueId is not used in this context
-    }
-
-    /**
-     * Constructor for uid-based deletion
-     *
-     * @param uid unique id of the employee to delete
-     */
-    public DeleteCommand(Integer uidint) {
-        this.targetIndex = null; // Index is not used in this context
-        this.targetName = null; // Name is not used in this context
-        this.uid = new UniqueId(uidint);
     }
 
     @Override
@@ -118,13 +106,11 @@ public class DeleteCommand extends Command {
         throw new CommandException(Messages.MESSAGE_EMPLOYEE_NOT_FOUND);
     }
 
-    /*
+    /**
      * Deletes an employee by unique id
-     * 
+     *
      * @param model the model to execute the command
-     * 
      * @return the result of the command
-     * 
      * @throws CommandException if the employee is not found
      */
     private CommandResult deleteByUid(Model model) throws CommandException {

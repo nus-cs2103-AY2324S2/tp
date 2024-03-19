@@ -4,33 +4,50 @@ package seedu.address.model.employee;
  * This class represents a unique ID for an employee.
  */
 public class UniqueId {
+    // private Integer uid;
+
+    // public UniqueId() {
+    // this.uid = 0;
+    // }
+
+    // public UniqueId(Integer uid) {
+    // this.uid = uid;
+    // }
+
+    // public Integer getUidValue() {
+    // return uid;
+    // }
+
     private Integer uid;
-    private Integer step;
-    private Integer lastUsedIndex;
+    public static Integer lastUsedIndex;
 
     /**
      * Constructor for creating a new UniqueId with a step and value.
-     * 
+     *
      * @param step          The increment value for each new ID.
      * @param lastUsedIndex The starting value for the ID.
      */
-    public UniqueId(int step, int lastUsedIndex) {
-        // Todo: Add validation for step and lastUsedIndex
-        this.step = step;
-        this.uid = null;
-        this.lastUsedIndex = lastUsedIndex;
+    public UniqueId(int lastUsedIndex) {
+        this.uid = 0;
+        UniqueId.lastUsedIndex = lastUsedIndex;
     }
 
     /**
      * Constructor for creating a new UniqueId with a specific ID.
-     * 
+     *
      * @param uid The specific ID.
      */
     public UniqueId(Integer uid) {
         // Todo: Add validation for uid
         this.uid = uid;
-        this.step = null;
-        this.lastUsedIndex = uid;
+        UniqueId.lastUsedIndex = uid;
+    }
+
+    /**
+     * Constructor for creating a new UniqueId
+     */
+    public UniqueId() {
+        this.uid = 0;
     }
 
     /**
@@ -40,11 +57,10 @@ public class UniqueId {
      */
     public void generateNewId() {
         if (uid == null) {
-            uid = lastUsedIndex;
-        } else {
-            uid += step;
+            System.out.println("why no work");
         }
-        lastUsedIndex = uid;
+        this.uid = ++lastUsedIndex;
+        UniqueId.lastUsedIndex = this.uid;
     }
 
     /**
@@ -56,7 +72,7 @@ public class UniqueId {
 
     /**
      * Checks if a given UniqueId is valid.
-     * 
+     *
      * @param uid The UniqueId to check.
      * @return True if the UniqueId is not null and its value is greater than or
      *         equal to the last used index.
@@ -70,8 +86,8 @@ public class UniqueId {
 
     /**
      * Checks if a given UniqueId is valid, given String.
-     * 
-     * @param String The UniqueId to check.
+     *
+     * @param uid The UniqueId to check.
      * @return True if the UniqueId is not null and its value is greater than or
      *         equal to the last used index.
      */
@@ -89,7 +105,7 @@ public class UniqueId {
 
     /**
      * Sets the ID to a given value.
-     * 
+     *
      * @param uid The new ID value as a string.
      * @throws NumberFormatException If the given string cannot be parsed to an
      *                               integer or if the new ID is not valid.
@@ -111,7 +127,7 @@ public class UniqueId {
 
     /**
      * Checks if a given ID is valid.
-     * 
+     *
      * @param uid           The ID to check.
      * @param lastUsedIndex The last used index.
      * @return True if the ID is not null and is greater than or equal to the last
@@ -122,7 +138,31 @@ public class UniqueId {
     }
 
     /**
-     * @return The ID as a string. If the ID is null, it returns the string "null".
+     * Sets the last used index.
+     *
+     * @param lastUsedIndex The new last used index.
+     * @throws NumberFormatException If the last used index is not valid.
+     * @throws IllegalStateException If the last used index is greater than the
+     *                               step.
+     */
+    public static void setLastUsedIndex(Integer lastUsedIndex) {
+        if (lastUsedIndex == null) {
+            throw new NumberFormatException("Null or Empty Last Used Index");
+        }
+        try {
+            // Integer newLastUsedIndex = Integer.parseInt(lastUsedIndex);
+            // if (newLastUsedIndex > step) {
+            // throw new IllegalStateException("Last Used Index is greater than Step");
+            // }
+            UniqueId.lastUsedIndex = lastUsedIndex;
+        } catch (NumberFormatException e) {
+            throw new NumberFormatException("Invalid Last Used Index");
+        }
+    }
+
+    /**
+     * @return The ID as a string. If the ID is null, it returns the string
+     *         "null".
      */
     @Override
     public String toString() {
@@ -134,9 +174,10 @@ public class UniqueId {
 
     /**
      * Checks if this UniqueId is equal to another object.
-     * 
+     *
      * @param other The object to compare with.
-     * @return True if the other object is a UniqueId and its value is equal to this
+     * @return True if the other object is a UniqueId and its value is equal to
+     *         this
      *         UniqueId's value.
      */
     @Override
@@ -150,6 +191,7 @@ public class UniqueId {
         }
 
         UniqueId otherId = (UniqueId) other;
-        return otherId.getUidValue() != null && otherId.getUidValue().equals(getUidValue());
+        return otherId.getUidValue() != null &&
+                otherId.getUidValue().equals(getUidValue());
     }
 }
