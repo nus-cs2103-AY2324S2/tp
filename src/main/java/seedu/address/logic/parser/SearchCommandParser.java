@@ -6,6 +6,9 @@ import seedu.address.logic.commands.SearchCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
 
+/**
+ * Parser for the search command.
+ */
 public class SearchCommandParser implements Parser<SearchCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the SearchCommand

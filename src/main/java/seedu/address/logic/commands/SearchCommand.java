@@ -7,6 +7,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.tag.Tag;
 
+/**
+ * Format search instructions for every command for display.
+ */
 public class SearchCommand extends Command {
 
     public static final String COMMAND_WORD = "search";
@@ -15,15 +18,19 @@ public class SearchCommand extends Command {
 
     public static final String MESSAGE_NO_TAG = "no person with this tag is found";
 
-    private final Tag tag;
-
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Search people who are associated with this tag "
             + "by listing the person that it is associated with.\n"
             + "Parameters: TAG (must be an existing tag) "
             + "[TAG]\n"
-            + "Example: "+ COMMAND_WORD + " + school";
+            + "Example: " + COMMAND_WORD + " + school";
 
+    private final Tag tag;
+
+    /**
+     * The constructor for SearchCommand
+     * @param tag the tag that you want to search the list for
+     */
     public SearchCommand(Tag tag) {
         requireAllNonNull(tag);
         this.tag = tag;
