@@ -56,8 +56,6 @@ public class EditPersonDescriptorBuilder {
         return this;
     }
 
-
-
     /**
      * Sets the {@code Email} of the {@code EditPersonDescriptor} that we are building.
      */

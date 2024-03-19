@@ -41,12 +41,10 @@ public class EditCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_STUDENTID + "STUDENTID] "
             + "[" + PREFIX_NAME + "NAME] "
-
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_GRADE + "GRADE] "
             + "[" + PREFIX_GROUP + "GROUP]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-
             + PREFIX_EMAIL + "johndoe@example.com";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
@@ -103,7 +101,6 @@ public class EditCommand extends Command {
         Grade updatedGrade = editPersonDescriptor.getGrade().orElse(personToEdit.getGrade());
         Set<Group> updatedGroups = editPersonDescriptor.getGroups().orElse(personToEdit.getGroups());
 
-
         return new Person(updatedName, updatedStudentId, updatedEmail, updatedGrade, updatedGroups);
 
     }
@@ -139,7 +136,6 @@ public class EditCommand extends Command {
     public static class EditPersonDescriptor {
         private Name name;
         private StudentId studentId;
-
         private Email email;
         private Set<Group> groups;
         private Grade grade;
@@ -152,7 +148,6 @@ public class EditCommand extends Command {
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
-
             setStudentId(toCopy.studentId);
             setEmail(toCopy.email);
             setGroups(toCopy.groups);
@@ -182,10 +177,6 @@ public class EditCommand extends Command {
         public Optional<Name> getName() {
             return Optional.ofNullable(name);
         }
-
-
-
-
 
         public void setEmail(Email email) {
             this.email = email;
@@ -233,7 +224,6 @@ public class EditCommand extends Command {
 
             EditPersonDescriptor otherEditPersonDescriptor = (EditPersonDescriptor) other;
             return Objects.equals(name, otherEditPersonDescriptor.name)
-
                     && Objects.equals(studentId, otherEditPersonDescriptor.studentId)
                     && Objects.equals(email, otherEditPersonDescriptor.email)
                     && Objects.equals(grade, otherEditPersonDescriptor.grade)

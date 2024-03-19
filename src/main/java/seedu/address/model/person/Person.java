@@ -18,10 +18,7 @@ public class Person {
 
     // Identity fields
     private final Name name;
-
     private final StudentId studentId;
-
-
     private final Email email;
 
     // Data fields
@@ -46,11 +43,9 @@ public class Person {
         return name;
     }
 
-
     public StudentId getStudentId() {
         return studentId;
     }
-
 
     public Email getEmail() {
         return email;
@@ -69,8 +64,8 @@ public class Person {
     }
 
     /**
-     * Returns true if both persons have the same name.
-     * This defines a weaker notion of equality between two persons.
+     * Returns true if both persons have the same student id.
+     * This defines a stronger notion of equality between two persons.
      */
     public boolean isSamePerson(Person otherPerson) {
         if (otherPerson == this) {
@@ -78,7 +73,7 @@ public class Person {
         }
 
         return otherPerson != null
-                && otherPerson.getName().equals(getName());
+                && otherPerson.getStudentId().equals(getStudentId());
     }
 
     /**
@@ -98,9 +93,7 @@ public class Person {
 
         Person otherPerson = (Person) other;
         return name.equals(otherPerson.name)
-
                 && studentId.equals(otherPerson.studentId)
-
                 && email.equals(otherPerson.email)
                 && grade.equals(otherPerson.grade)
                 && groups.equals(otherPerson.groups);

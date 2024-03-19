@@ -26,9 +26,7 @@ class JsonAdaptedPerson {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 
     private final String name;
-
     private final String studentId;
-
     private final String email;
     private final String grade;
     private final List<JsonAdaptedGroup> groups = new ArrayList<>();
@@ -44,8 +42,6 @@ class JsonAdaptedPerson {
             @JsonProperty("grade") String grade, @JsonProperty("groups") List<JsonAdaptedGroup> groups) {
         this.name = name;
         this.studentId = studentId;
-
-
         this.email = email;
         if (groups != null) {
             this.groups.addAll(groups);
@@ -59,7 +55,6 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(Person source) {
         name = source.getName().fullName;
         studentId = source.getStudentId().id;
-
         email = source.getEmail().value;
         grade = source.getGrade().value;
         groups.addAll(source.getGroups().stream()

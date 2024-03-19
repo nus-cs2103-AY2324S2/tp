@@ -51,7 +51,6 @@ public class AddCommandParser implements Parser<AddCommand> {
         Set<Group> groupList = ParserUtil.parseGroups(argMultimap.getAllValues(PREFIX_GROUP));
         Person person = new Person(name, studentId, email, grade, groupList);
 
-
         return new AddCommand(person);
     }
 

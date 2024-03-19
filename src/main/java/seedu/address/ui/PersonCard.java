@@ -34,8 +34,6 @@ public class PersonCard extends UiPart<Region> {
     private Label studentId;
     @FXML
     private Label id;
-
-
     @FXML
     private Label email;
     @FXML
@@ -53,7 +51,6 @@ public class PersonCard extends UiPart<Region> {
         studentId.setText(person.getStudentId().id);
         name.setText(person.getName().fullName);
         grade.setText(person.getGrade().value);
-
         email.setText(person.getEmail().value);
         person.getGroups().stream()
                 .sorted(Comparator.comparing(group -> group.groupName))

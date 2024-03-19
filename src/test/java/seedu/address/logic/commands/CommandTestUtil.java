@@ -28,10 +28,8 @@ public class CommandTestUtil {
 
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
-
     public static final String VALID_STUDENTID_AMY = "A0123456U";
     public static final String VALID_STUDENTID_BOB = "A0987664H";
-
     public static final String VALID_EMAIL_AMY = "e1023456@u.nus.edu";
     public static final String VALID_EMAIL_BOB = "e1034567@u.nus.edu";
     public static final String VALID_GRADE_AMY = "A";
@@ -41,10 +39,8 @@ public class CommandTestUtil {
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
-
     public static final String STUDENTID_DESC_AMY = " " + PREFIX_STUDENTID + VALID_STUDENTID_AMY;
     public static final String STUDENTID_DESC_BOB = " " + PREFIX_STUDENTID + VALID_STUDENTID_BOB;
-
     public static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + VALID_EMAIL_AMY;
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
     public static final String GRADE_DESC_AMY = " " + PREFIX_GRADE + VALID_GRADE_AMY;
@@ -53,7 +49,6 @@ public class CommandTestUtil {
     public static final String GROUP_DESC_1 = " " + PREFIX_GROUP + VALID_GROUP_GROUP1;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
-
     // 'P' not allowed in the first character of studentId
     public static final String INVALID_STUDENTID_DESC = " " + PREFIX_STUDENTID + "P0128890U";
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
