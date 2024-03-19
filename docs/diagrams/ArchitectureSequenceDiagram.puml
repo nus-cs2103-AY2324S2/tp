@@ -6,19 +6,30 @@ Actor User as user USER_COLOR
 Participant ":UI" as ui UI_COLOR
 Participant ":Logic" as logic LOGIC_COLOR
 Participant ":Model" as model MODEL_COLOR
+Participant ":Storage" as storage STORAGE_COLOR
 
-
-user -[USER_COLOR]> ui : "view A0123456X"
+user -[USER_COLOR]> ui : "find A0123456X"
 activate ui UI_COLOR
 
-ui -[UI_COLOR]> logic : execute("view A0123456X")
+ui -[UI_COLOR]> logic : execute("find A0123456X")
 activate logic LOGIC_COLOR
 
-logic -[LOGIC_COLOR]> model : viewPerson(p)
+logic -[LOGIC_COLOR]> model : findPerson(p)
 activate model MODEL_COLOR
 
 model -[MODEL_COLOR]-> logic
 deactivate model
+
+logic -[LOGIC_COLOR]> storage : saveAddressBook(addressBook)
+activate storage STORAGE_COLOR
+
+storage -[STORAGE_COLOR]> storage : Save to file
+activate storage STORAGE_COLOR_T1
+storage --[STORAGE_COLOR]> storage
+deactivate storage
+
+storage --[STORAGE_COLOR]> logic
+deactivate storage
 
 logic --[LOGIC_COLOR]> ui
 deactivate logic
