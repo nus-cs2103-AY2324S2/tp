@@ -38,13 +38,11 @@ public class JsonAdaptedTutorialClass {
         this.tutorialName = source.tutorialName;
         this.students = source.getStudents().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList());
     }
-
-    @JsonValue
+    
     public String getTutorialName() {
         return tutorialName;
     }
 
-    @JsonValue
     public List<JsonAdaptedPerson> getStudents() {
         return new ArrayList<>(students);
     }
