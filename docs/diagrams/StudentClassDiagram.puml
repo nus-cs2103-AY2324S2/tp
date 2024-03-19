@@ -1,0 +1,40 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Model as ModelPackage <<Rectangle>>{
+
+Class Student
+Class StudentId
+Class Email
+Class Name
+Class TelegramHandle
+Class Tag
+Class Timetable
+Class Day
+Class Period
+
+Class I #FFFFFF
+}
+
+Class HiddenOutside #FFFFFF
+
+Student -[hidden]up-> HiddenOutside
+
+Student *--> Name
+Student *--> StudentId
+Student *--> Email
+Student *--> TelegramHandle
+Student *--> "*" Tag
+Student *--> Timetable
+
+Name -[hidden]right-> StudentId
+StudentId -[hidden]right-> TelegramHandle
+TelegramHandle -[hidden]right-> Email
+
+Timetable *--> "1..7" Day
+Day *--> "0..24" Period
+
+@enduml
