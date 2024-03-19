@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MAJOR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
@@ -40,6 +41,8 @@ public class CommandTestUtil {
     public static final String VALID_MAJOR_BOB = "Business Analytics";
     public static final String VALID_TELEGRAM_AMY = "amy123";
     public static final String VALID_TELEGRAM_BOB = "bob456";
+    public static final String VALID_REMARK_SHY = "shy";
+    public static final String VALID_REMARK_OUTSPOKEN = "outspoken";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
@@ -55,6 +58,8 @@ public class CommandTestUtil {
     public static final String MAJOR_DESC_BOB = " " + PREFIX_MAJOR + VALID_MAJOR_BOB;
     public static final String TELEGRAM_DESC_AMY = " " + PREFIX_TELEGRAM + VALID_TELEGRAM_AMY;
     public static final String TELEGRAM_DESC_BOB = " " + PREFIX_TELEGRAM + VALID_TELEGRAM_BOB;
+    public static final String REMARK_DESC_SHY = " " + PREFIX_REMARK + VALID_REMARK_SHY;
+    public static final String REMARK_DESC_OUTSPOKEN = " " + PREFIX_REMARK + VALID_REMARK_OUTSPOKEN;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
@@ -64,6 +69,7 @@ public class CommandTestUtil {
     public static final String INVALID_YEAR_DESC = " " + PREFIX_YEAR + "7";
     public static final String INVALID_MAJOR_DESC = " " + PREFIX_MAJOR; // empty string not allowed for major
     public static final String INVALID_TELEGRAM_DESC = " " + PREFIX_TELEGRAM + "inval!d";
+    public static final String INVALID_REMARK_DESC = " " + PREFIX_REMARK + "#shy"; // '#' not allowed in remark
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
@@ -75,10 +81,10 @@ public class CommandTestUtil {
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withMajor(VALID_MAJOR_AMY)
-                .withTags(VALID_TAG_FRIEND).build();
+                .withRemark(VALID_REMARK_SHY).withTags(VALID_TAG_FRIEND).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withMajor(VALID_MAJOR_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withRemark(VALID_REMARK_OUTSPOKEN).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 
     /**

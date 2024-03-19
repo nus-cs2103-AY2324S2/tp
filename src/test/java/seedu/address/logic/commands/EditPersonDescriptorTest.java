@@ -9,10 +9,10 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MAJOR_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_REMARK_OUTSPOKEN;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
 import org.junit.jupiter.api.Test;
-
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
@@ -52,6 +52,12 @@ public class EditPersonDescriptorTest {
         editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withMajor(VALID_MAJOR_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
+        // different remarks -> returns false
+        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withRemark(VALID_REMARK_OUTSPOKEN).build();
+        System.out.println(DESC_AMY);
+        System.out.println(editedAmy);
+        assertFalse(DESC_AMY.equals(editedAmy));
+
         // different tags -> returns false
         editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(DESC_AMY.equals(editedAmy));
@@ -66,7 +72,8 @@ public class EditPersonDescriptorTest {
                 + editPersonDescriptor.getEmail().orElse(null) + ", year="
                 + editPersonDescriptor.getYear().orElse(null) + ", major="
                 + editPersonDescriptor.getMajor().orElse(null) + ", telegram="
-                + editPersonDescriptor.getTelegram().orElse(null) + ", tags="
+                + editPersonDescriptor.getTelegram().orElse(null) + ", remark="
+                + editPersonDescriptor.getRemark().orElse(null)+ ", tags="
                 + editPersonDescriptor.getTags().orElse(null) + "}";
         assertEquals(expected, editPersonDescriptor.toString());
     }

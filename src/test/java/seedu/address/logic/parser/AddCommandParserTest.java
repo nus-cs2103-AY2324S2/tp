@@ -18,6 +18,8 @@ import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.address.logic.commands.CommandTestUtil.REMARK_DESC_OUTSPOKEN;
+import static seedu.address.logic.commands.CommandTestUtil.REMARK_DESC_SHY;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.TELEGRAM_DESC_AMY;
@@ -44,7 +46,6 @@ import static seedu.address.testutil.TypicalPersons.AMY;
 import static seedu.address.testutil.TypicalPersons.BOB;
 
 import org.junit.jupiter.api.Test;
-
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.model.person.Email;
@@ -64,7 +65,7 @@ public class AddCommandParserTest {
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                        + YEAR_DESC_BOB + MAJOR_DESC_BOB + TELEGRAM_DESC_BOB + TAG_DESC_FRIEND,
+                        + YEAR_DESC_BOB + MAJOR_DESC_BOB + TELEGRAM_DESC_BOB + REMARK_DESC_OUTSPOKEN + TAG_DESC_FRIEND,
                 new AddCommand(expectedPerson));
 
 
@@ -73,14 +74,14 @@ public class AddCommandParserTest {
                 .build();
         assertParseSuccess(parser,
                 NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + YEAR_DESC_BOB + MAJOR_DESC_BOB
-                        + TELEGRAM_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
+                        + TELEGRAM_DESC_BOB + REMARK_DESC_OUTSPOKEN + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
                 new AddCommand(expectedPersonMultipleTags));
     }
 
     @Test
     public void parse_repeatedNonTagValue_failure() {
         String validExpectedPersonString = NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + YEAR_DESC_BOB
-                + TELEGRAM_DESC_BOB + MAJOR_DESC_BOB + TAG_DESC_FRIEND;
+                + TELEGRAM_DESC_BOB + MAJOR_DESC_BOB + REMARK_DESC_OUTSPOKEN + TAG_DESC_FRIEND;
 
         // multiple names
         assertParseFailure(parser, NAME_DESC_AMY + validExpectedPersonString,
@@ -104,6 +105,10 @@ public class AddCommandParserTest {
 
         // multiple telegrams
         assertParseFailure(parser, TELEGRAM_DESC_AMY + validExpectedPersonString,
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_TELEGRAM));
+
+        // multiple remarks
+        assertParseFailure(parser, REMARK_DESC_SHY + validExpectedPersonString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_TELEGRAM));
 
 

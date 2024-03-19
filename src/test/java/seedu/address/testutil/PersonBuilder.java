@@ -8,6 +8,7 @@ import seedu.address.model.person.Major;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Remark;
 import seedu.address.model.person.Telegram;
 import seedu.address.model.person.Year;
 import seedu.address.model.tag.Tag;
@@ -24,13 +25,14 @@ public class PersonBuilder {
     public static final String DEFAULT_YEAR = "1";
     public static final String DEFAULT_MAJOR = "Computer Science";
     public static final String DEFAULT_TELEGRAM = "amy123";
-
+    public static final String DEFAULT_REMARK = "shy";
     private Name name;
     private Phone phone;
     private Email email;
     private Year year;
     private Major major;
     private Telegram telegram;
+    private Remark remark;
     private Set<Tag> tags;
 
     /**
@@ -43,6 +45,7 @@ public class PersonBuilder {
         year = new Year(DEFAULT_YEAR);
         major = new Major(DEFAULT_MAJOR);
         telegram = new Telegram(DEFAULT_TELEGRAM);
+        remark = new Remark(DEFAULT_REMARK);
         tags = new HashSet<>();
     }
 
@@ -56,6 +59,7 @@ public class PersonBuilder {
         year = personToCopy.getYear();
         major = personToCopy.getMajor();
         telegram = personToCopy.getTelegram();
+        remark = personToCopy.getRemark();
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -115,8 +119,16 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Remark} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withRemark(String remark) {
+        this.remark = new Remark(remark);
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, phone, email, year, telegram, major, tags);
+        return new Person(name, phone, email, year, telegram, major, remark, tags);
     }
 
 }
