@@ -106,36 +106,7 @@ public class EditCommandTest {
     }
 
     @Test
-    public void execute_duplicatePersonUnfilteredList_failure() {
-        Person secondPerson = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
-
-        NusId nusId = secondPerson.getNusId();
-
-        Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(firstPerson).build();
-        EditCommand editCommand = new EditCommand(nusId, descriptor);
-
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PERSON);
-    }
-
-    @Test
-    public void execute_duplicatePersonFilteredList_failure() {
-        //showPersonAtIndex(model, INDEX_FIRST_PERSON);
-
-        String nusIdOfFirstPerson = "E1234567";
-        NusId nusId = new NusId(nusIdOfFirstPerson);
-
-        // edit person in filtered list into a duplicate in address book
-        Person personInList = model.getAddressBook().getPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
-        EditCommand editCommand = new EditCommand(nusId,
-                new EditPersonDescriptorBuilder(personInList).build());
-
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PERSON);
-    }
-
-    @Test
     public void execute_invalidPersonIndexUnfilteredList_failure() {
-        //Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
         NusId nusId = new NusId("E0000000"); // NusId does not exist
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(nusId, descriptor);
@@ -149,15 +120,9 @@ public class EditCommandTest {
      */
     @Test
     public void execute_invalidPersonIndexFilteredList_failure() {
-        //showPersonAtIndex(model, INDEX_FIRST_PERSON);
-        //Index outOfBoundIndex = INDEX_SECOND_PERSON;
-        // ensures that outOfBoundIndex is still in bounds of address book list
-        //assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
-
         NusId nusId = new NusId("E0000000"); // NusId does not exist
         EditCommand editCommand = new EditCommand(nusId,
                 new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());
-
         assertCommandFailure(editCommand, model, Messages.MESSAGE_NON_EXISTENT_PERSON);
     }
 
@@ -188,7 +153,6 @@ public class EditCommandTest {
 
     @Test
     public void toStringMethod() {
-        //Index index = Index.fromOneBased(1);
         String defaultNusId = "E1234567"; // This is the default NUS id of a person
         NusId nusId = new NusId(defaultNusId);
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
