@@ -39,10 +39,7 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.group.Group;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Tag;
+import seedu.address.model.person.*;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 public class EditCommandParserTest {
@@ -109,61 +106,69 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_allFieldsSpecified_success() {
-        Index targetIndex = INDEX_SECOND_PERSON;
-        String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + GROUP_DESC_HUSBAND
+        //Index targetIndex = INDEX_SECOND_PERSON;
+        String defaultNusId = "E1234567";
+        NusId nusId = new NusId(defaultNusId);
+
+        String userInput = defaultNusId + PHONE_DESC_BOB + GROUP_DESC_HUSBAND
                 + EMAIL_DESC_AMY + TAG_DESC_AMY + NAME_DESC_AMY + GROUP_DESC_FRIEND;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY).withTag(VALID_TAG_AMY)
                 .withGroups(VALID_GROUP_HUSBAND, VALID_GROUP_FRIEND).build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+        EditCommand expectedCommand = new EditCommand(nusId, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
     @Test
     public void parse_someFieldsSpecified_success() {
-        Index targetIndex = INDEX_FIRST_PERSON;
-        String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + EMAIL_DESC_AMY;
+        //Index targetIndex = INDEX_FIRST_PERSON;
+        String defaultNusId = "E1234567";
+        NusId nusId = new NusId(defaultNusId);
+        String userInput = defaultNusId + PHONE_DESC_BOB + EMAIL_DESC_AMY;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB)
                 .withEmail(VALID_EMAIL_AMY).build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+        EditCommand expectedCommand = new EditCommand(nusId, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
     @Test
     public void parse_oneFieldSpecified_success() {
+        String defaultNusId = "E1234567";
+        NusId nusId = new NusId(defaultNusId);
+
         // name
-        Index targetIndex = INDEX_THIRD_PERSON;
-        String userInput = targetIndex.getOneBased() + NAME_DESC_AMY;
+        //Index targetIndex = INDEX_THIRD_PERSON;
+        String userInput = defaultNusId + NAME_DESC_AMY;
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY).build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+        EditCommand expectedCommand = new EditCommand(nusId, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // phone
-        userInput = targetIndex.getOneBased() + PHONE_DESC_AMY;
+        userInput = defaultNusId + PHONE_DESC_AMY;
         descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_AMY).build();
-        expectedCommand = new EditCommand(targetIndex, descriptor);
+        expectedCommand = new EditCommand(nusId, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // email
-        userInput = targetIndex.getOneBased() + EMAIL_DESC_AMY;
+        userInput = defaultNusId + EMAIL_DESC_AMY;
         descriptor = new EditPersonDescriptorBuilder().withEmail(VALID_EMAIL_AMY).build();
-        expectedCommand = new EditCommand(targetIndex, descriptor);
+        expectedCommand = new EditCommand(nusId, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // tag
-        userInput = targetIndex.getOneBased() + TAG_DESC_AMY;
+        userInput = defaultNusId + TAG_DESC_AMY;
         descriptor = new EditPersonDescriptorBuilder().withTag(VALID_TAG_AMY).build();
-        expectedCommand = new EditCommand(targetIndex, descriptor);
+        expectedCommand = new EditCommand(nusId, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // groups
-        userInput = targetIndex.getOneBased() + GROUP_DESC_FRIEND;
+        userInput = defaultNusId + GROUP_DESC_FRIEND;
         descriptor = new EditPersonDescriptorBuilder().withGroups(VALID_GROUP_FRIEND).build();
-        expectedCommand = new EditCommand(targetIndex, descriptor);
+        expectedCommand = new EditCommand(nusId, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
@@ -172,19 +177,21 @@ public class EditCommandParserTest {
         // More extensive testing of duplicate parameter detections is done in
         // AddCommandParserTest#parse_repeatedNonGroupValue_failure()
 
+        String defaultNusId = "E1234567";
+
         // valid followed by invalid
-        Index targetIndex = INDEX_FIRST_PERSON;
-        String userInput = targetIndex.getOneBased() + INVALID_PHONE_DESC + PHONE_DESC_BOB;
+        //Index targetIndex = INDEX_FIRST_PERSON;
+        String userInput = defaultNusId + INVALID_PHONE_DESC + PHONE_DESC_BOB;
 
         assertParseFailure(parser, userInput, Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PHONE));
 
         // invalid followed by valid
-        userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + INVALID_PHONE_DESC;
+        userInput = defaultNusId + PHONE_DESC_BOB + INVALID_PHONE_DESC;
 
         assertParseFailure(parser, userInput, Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PHONE));
 
         // multiple valid fields repeated
-        userInput = targetIndex.getOneBased() + PHONE_DESC_AMY + TAG_DESC_AMY + EMAIL_DESC_AMY
+        userInput = defaultNusId + PHONE_DESC_AMY + TAG_DESC_AMY + EMAIL_DESC_AMY
                 + GROUP_DESC_FRIEND + PHONE_DESC_AMY + TAG_DESC_AMY + EMAIL_DESC_AMY + GROUP_DESC_FRIEND
                 + PHONE_DESC_BOB + TAG_DESC_BOB + EMAIL_DESC_BOB + GROUP_DESC_HUSBAND;
 
@@ -192,7 +199,7 @@ public class EditCommandParserTest {
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PHONE, PREFIX_EMAIL, PREFIX_TAG));
 
         // multiple invalid values
-        userInput = targetIndex.getOneBased() + INVALID_PHONE_DESC + INVALID_TAG_DESC + INVALID_EMAIL_DESC
+        userInput = defaultNusId + INVALID_PHONE_DESC + INVALID_TAG_DESC + INVALID_EMAIL_DESC
                 + INVALID_PHONE_DESC + INVALID_TAG_DESC + INVALID_EMAIL_DESC;
 
         assertParseFailure(parser, userInput,
@@ -201,11 +208,13 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_resetGroups_success() {
-        Index targetIndex = INDEX_THIRD_PERSON;
-        String userInput = targetIndex.getOneBased() + GROUP_EMPTY;
+        String defaultNusId = "E1234567";
+        NusId nusId = new NusId(defaultNusId);
+        //Index targetIndex = INDEX_THIRD_PERSON;
+        String userInput = defaultNusId + GROUP_EMPTY;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withGroups().build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+        EditCommand expectedCommand = new EditCommand(nusId, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }
