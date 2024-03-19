@@ -7,22 +7,22 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a Tag in the address book.
  * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
  */
-public class Tag {
+public class Attendance {
 
     public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
-    public final String tagName;
+    public final String attendanceName;
 
     /**
-     * Constructs a {@code Tag}.
+     * Constructs a {@code Attendance}.
      *
-     * @param tagName A valid tag name.
+     * @param attendanceName A valid tag name.
      */
-    public Tag(String tagName) {
-        requireNonNull(tagName);
-        checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
-        this.tagName = tagName;
+    public Attendance(String attendanceName) {
+        requireNonNull(attendanceName);
+        checkArgument(isValidTagName(attendanceName), MESSAGE_CONSTRAINTS);
+        this.attendanceName = attendanceName;
     }
 
     /**
@@ -39,24 +39,24 @@ public class Tag {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof Tag)) {
+        if (!(other instanceof Attendance)) {
             return false;
         }
 
-        Tag otherTag = (Tag) other;
-        return tagName.equals(otherTag.tagName);
+        Attendance otherAttendance = (Attendance) other;
+        return attendanceName.equals(otherAttendance.attendanceName);
     }
 
     @Override
     public int hashCode() {
-        return tagName.hashCode();
+        return attendanceName.hashCode();
     }
 
     /**
      * Format state as text for viewing.
      */
     public String toString() {
-        return '[' + tagName + ']';
+        return '[' + attendanceName + ']';
     }
 
 }

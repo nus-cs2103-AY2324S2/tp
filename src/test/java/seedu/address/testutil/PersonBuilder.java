@@ -8,7 +8,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.Attendance;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
@@ -25,7 +25,7 @@ public class PersonBuilder {
     private Phone phone;
     private Email email;
     private StudentId studentId;
-    private Set<Tag> tags;
+    private Set<Attendance> attendances;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -35,7 +35,7 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         studentId = new StudentId(DEFAULT_ADDRESS);
-        tags = new HashSet<>();
+        attendances = new HashSet<>();
     }
 
     /**
@@ -46,7 +46,7 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         studentId = personToCopy.getStudentId();
-        tags = new HashSet<>(personToCopy.getTags());
+        attendances = new HashSet<>(personToCopy.getTags());
     }
 
     /**
@@ -61,7 +61,7 @@ public class PersonBuilder {
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
      */
     public PersonBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
+        this.attendances = SampleDataUtil.getTagSet(tags);
         return this;
     }
 
@@ -90,7 +90,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, studentId, tags);
+        return new Person(name, phone, email, studentId, attendances);
     }
 
 }
