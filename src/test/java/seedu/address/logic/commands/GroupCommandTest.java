@@ -78,7 +78,8 @@ class GroupCommandTest {
         GroupCommand.GroupPersonDescriptor groupPersonDescriptor = new GroupCommand.GroupPersonDescriptor();
         GroupCommand groupCommand = new GroupCommand(new NusId(VALID_NUSID_BOB),
                 groupPersonDescriptor);
-        String expected = GroupCommand.class.getCanonicalName() + "{nusId =" + VALID_NUSID_BOB + ", groupPersonDescriptor="
+        String expected = GroupCommand.class.getCanonicalName() + "{nusId =" + VALID_NUSID_BOB
+                + ", groupPersonDescriptor="
                 + groupPersonDescriptor + "}";
 
         assertEquals(expected, groupCommand.toString());

@@ -6,7 +6,6 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.GroupCommand;
 import seedu.address.logic.commands.GroupCommand.GroupPersonDescriptor;
-
 import seedu.address.model.group.Group;
 import seedu.address.model.person.NusId;
 import seedu.address.model.person.Person;
