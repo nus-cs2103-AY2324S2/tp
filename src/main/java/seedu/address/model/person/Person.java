@@ -22,7 +22,7 @@ public class Person {
 
     // Data fields
     private final Remark remark;
-    private final Set<Tag> tags = new HashSet<>();
+    protected Set<Tag> tags = new HashSet<>();
 
     // Type field
     private Type type = Type.PERSON;

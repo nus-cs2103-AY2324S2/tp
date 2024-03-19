@@ -21,7 +21,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 
 /**
- * Adds an Interview to the talent tracker.
+ * Adds an Interview to Tether.
  */
 public class AddInterviewCommand extends Command {
 
@@ -42,12 +42,12 @@ public class AddInterviewCommand extends Command {
             + PREFIX_APPLICANT + "88888888"
             + PREFIX_INTERVIEWER + "88889999";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an interview to the talent tracker. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an interview to Tether. "
             + MESSAGE_INFORMATION;
 
 
     public static final String MESSAGE_SUCCESS = "New Interview added: %1$s";
-    public static final String MESSAGE_DUPLICATE_INTERVIEW = "This Interview already exists in the talent tracker";
+    public static final String MESSAGE_DUPLICATE_INTERVIEW = "This Interview already exists in Tether.";
 
     private String description;
     private Phone applicant;

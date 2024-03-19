@@ -6,7 +6,7 @@ import java.time.LocalTime;
 import seedu.address.model.person.Person;
 
 /**
- * Represents an Interview in the talent tracker.
+ * Represents an Interview in the Tether.
  */
 public class Interview {
     private Person applicant;

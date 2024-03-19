@@ -9,17 +9,17 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
 /**
- * Adds an interviewer to the talent tracker.
+ * Adds an interviewer to Tether.
  */
 public class AddInterviewerPersonCommand extends AddPersonCommand {
 
     public static final String COMMAND_WORD = AddPersonCommand.COMMAND_WORD + "_interviewer";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an interviewer to the talent tracker. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an interviewer to Tether. "
             + AddPersonCommand.MESSAGE_USAGE;
 
     public static final String MESSAGE_SUCCESS = "New interviewer added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This interviewer already exists in the talent tracker."
+    public static final String MESSAGE_DUPLICATE_PERSON = "This interviewer already exists in the Tether."
             + " Do ensure phone number is unique";
 
     /**

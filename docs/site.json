@@ -1,10 +1,10 @@
 {
   "baseUrl": "",
-  "titlePrefix": "TalentTracker",
-  "titleSuffix": "AddressBook Level-3",
-  "faviconPath": "images/SeEduLogo.png",
+  "titlePrefix": "Tether",
+  "titleSuffix": "Tether",
+  "faviconPath": "images/tether_logo.png",
   "style": {
-    "codeTheme": "light"
+    "codeTheme": "dark"
   },
   "ignore": [
     "_markbind/layouts/*",
