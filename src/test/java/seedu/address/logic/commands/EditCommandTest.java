@@ -159,7 +159,7 @@ public class EditCommandTest {
         EditCommand commandWithSameValues = new EditCommand(INDEX_FIRST_PERSON, copyDescriptor);
         EditPersonDescriptor editedDescriptor = new EditPersonDescriptorBuilder(DESC_AMY)
                 .withUpcoming(VALID_UPCOMING_BOB).build();
-        EditPersonDescriptor editedDescriptor_lastcontact = new EditPersonDescriptorBuilder(DESC_AMY)
+        EditPersonDescriptor editedDescriptorLastContact = new EditPersonDescriptorBuilder(DESC_AMY)
                 .withLastContact(VALID_LAST_CONTACT_BOB).build();
 
         assertTrue(standardCommand.equals(commandWithSameValues));
@@ -193,17 +193,17 @@ public class EditCommandTest {
         assertFalse(DESC_AMY.equals(editedDescriptor));
 
         // different lastcontact -> return false
-        assertFalse(DESC_AMY.equals(editedDescriptor_lastcontact));
+        assertFalse(DESC_AMY.equals(editedDescriptorLastContact));
 
         // different lastcontact, same other fields -> return false
-        editedDescriptor_lastcontact = new EditPersonDescriptorBuilder(DESC_AMY)
+        editedDescriptorLastContact = new EditPersonDescriptorBuilder(DESC_AMY)
                 .withLastContact(VALID_LAST_CONTACT_BOB).build();
-        assertFalse(DESC_AMY.equals(editedDescriptor_lastcontact));
+        assertFalse(DESC_AMY.equals(editedDescriptorLastContact));
 
         // same lastcontact -> return true
-        editedDescriptor_lastcontact = new EditPersonDescriptorBuilder(DESC_AMY)
+        editedDescriptorLastContact = new EditPersonDescriptorBuilder(DESC_AMY)
                 .withLastContact(VALID_LAST_CONTACT_AMY).build();
-        assertTrue(DESC_AMY.equals(editedDescriptor_lastcontact));
+        assertTrue(DESC_AMY.equals(editedDescriptorLastContact));
 
     }
 
