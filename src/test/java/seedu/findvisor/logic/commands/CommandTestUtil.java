@@ -2,6 +2,7 @@ package seedu.findvisor.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.findvisor.commons.util.DateTimeUtil.parseDateTimeString;
 import static seedu.findvisor.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.findvisor.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.findvisor.logic.parser.CliSyntax.PREFIX_NAME;
@@ -60,6 +61,11 @@ public class CommandTestUtil {
     public static final String INVALID_MEETING_REMARK = "INVALID MEETING REMARK".repeat(100);
     public static final String INVALID_MEETING_START_STR = "INVALID MEETING START";
     public static final String INVALID_MEETING_END_STR = "INVALID MEETING END";
+
+    public static final Meeting VALID_MEETING_NO_REMARK = new Meeting(parseDateTimeString(VALID_MEETING_START_STR),
+                parseDateTimeString(VALID_MEETING_END_STR), "");
+    public static final Meeting VALID_MEETING_WITH_REMARK = new Meeting(parseDateTimeString(VALID_MEETING_START_STR),
+                parseDateTimeString(VALID_MEETING_END_STR), VALID_MEETING_REMARK);
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
