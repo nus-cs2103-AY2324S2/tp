@@ -1,6 +1,6 @@
 package seedu.address.model.appointment;
 
-import java.util.List;
+import javafx.collections.ObservableList;
 
 
 /**
@@ -12,6 +12,6 @@ public interface ReadOnlyAppointmentList {
      * Returns an unmodifiable view of the appointment list.
      * This list will not contain any duplicate appointments.
      */
-    List<Appointment> getAppointmentList();
+    ObservableList<Appointment> getAppointmentList();
 
 }

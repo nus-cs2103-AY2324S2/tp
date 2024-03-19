@@ -5,7 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.ArrayList;
 import java.util.List;
 
-
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 /**
  * Wraps all appointments in one list object.
  * Duplicates are not allowed (by {@code Appointment::equals} comparison).
@@ -42,8 +43,8 @@ public class AppointmentList implements ReadOnlyAppointmentList {
      * This list will not contain any duplicate appointments.
      */
     @Override
-    public List<Appointment> getAppointmentList() {
-        return appointments;
+    public ObservableList<Appointment> getAppointmentList() {
+        return FXCollections.observableList(appointments);
     }
 
     /**
