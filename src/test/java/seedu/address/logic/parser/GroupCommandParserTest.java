@@ -2,6 +2,8 @@ package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.GROUP_DESC_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_GROUP_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GROUP_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NUSID_AMY;
@@ -12,7 +14,9 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.GroupCommand;
+import seedu.address.model.group.Group;
 import seedu.address.model.person.NusId;
+import seedu.address.model.person.Tag;
 import seedu.address.testutil.GroupPersonDescriptorBuilder;
 
 
@@ -76,5 +80,10 @@ class GroupCommandParserTest {
         assertParseSuccessGroup(parser, userInput, expectedCommand);
     }
 
+    @Test
+    public void parse_invalidValue_failure() {
 
+        assertParseFailure(parser, " id/E0123456" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
+        assertParseFailure(parser, " id/E0123456" + INVALID_GROUP_DESC, Group.MESSAGE_CONSTRAINTS); // invalid group
+    }
 }
