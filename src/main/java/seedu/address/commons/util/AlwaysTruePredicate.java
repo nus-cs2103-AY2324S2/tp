@@ -2,8 +2,6 @@ package seedu.address.commons.util;
 
 import java.util.function.Predicate;
 
-import seedu.address.model.person.PhoneMatchesPredicate;
-
 /**
  * Predicate that always returns true.
  */
