@@ -13,6 +13,7 @@ import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.util.AppUtil;
 import seedu.address.commons.util.AppUtil.OS;
 
 /**
@@ -22,30 +23,14 @@ public class HelpWindow extends UiPart<Stage> {
     public static final String USERGUIDE_URL = "https://ay2324s2-cs2103t-t17-3.github.io/tp/UserGuide.html";
     public static final String HELP_MESSAGE = "Available commands:\n"
             + "help \t- Shows this window.\n"
-            + "add \t- Adds a client to FitBook.\n"
+            + String.format("add %s\t- Adds a client to FitBook.\n", (AppUtil.OS.isLinux() || AppUtil.OS.isWindows()) ? "\t" : "")
             + "list \t\t- Shows a list of all clients saved in FitBook.\n"
-            + "edit \t- Edits an existing client in FitBook.\n"
+            + String.format("edit %s\t- Edits an existing client in FitBook.\n", (AppUtil.OS.isLinux() || AppUtil.OS.isWindows()) ? "\t" : "")
             + "note \t- Adds a new note to a client.\n"
-            + "find \t- Finds all clients whose specified attribute contains the specified keyword.\n"
+            + String.format("find %s\t- Finds all clients whose specified attribute contains the specified keyword.\n", (AppUtil.OS.isWindows()) ? "\t" : "")
             + "delete \t- Deletes the specified client from FitBook.\n"
             + "clear \t- Clears all entries from FitBook. USE WITH CAUTION.\n"
-            + "exit \t- Exits FitBook.\n"
-            + "\n"
-            + "To view more information about a specific command, enter the command into the input box and press "
-            + "<Enter>.\n"
-            + "\n"
-            + "Need more help? Refer to the user guide at " + USERGUIDE_URL;
-
-    public static final String HELP_MESSAGE_ALTERNATE = "Available commands:\n"
-            + "help \t- Shows this window.\n"
-            + "add \t\t- Adds a client to FitBook.\n"
-            + "list \t\t- Shows a list of all clients saved in FitBook.\n"
-            + "edit \t\t- Edits an existing client in FitBook.\n"
-            + "note \t- Adds a new note to a client.\n"
-            + "find \t- Finds all clients whose specified attribute contains the specified keyword.\n"
-            + "delete \t- Deletes the specified client from FitBook.\n"
-            + "clear \t- Clears all entries from FitBook. USE WITH CAUTION.\n"
-            + "exit \t\t- Exits FitBook.\n"
+            + String.format("exit %s\t- Exits FitBook.\n", (AppUtil.OS.isLinux() || AppUtil.OS.isWindows()) ? "\t" : "")
             + "\n"
             + "To view more information about a specific command, enter the command into the input box and press "
             + "<Enter>.\n"
@@ -73,11 +58,8 @@ public class HelpWindow extends UiPart<Stage> {
             copyButton.setText("Copy URL");
         }
 
-        if (OS.isLinux() || OS.isWindows()) {
-            helpMessage.setText(HELP_MESSAGE_ALTERNATE);
-        } else {
-            helpMessage.setText(HELP_MESSAGE);
-        }
+        helpMessage.setText(HELP_MESSAGE);
+        
     }
 
     /**
