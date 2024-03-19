@@ -298,7 +298,7 @@ While the changes to code may be minimal, the test data will have to be updated 
 
 <box type="warning" seamless>
 
-You must delete AddressBook’s storage file located at `/data/addressbook.json` before running it! Not doing so will cause AddressBook to default to an empty address book!
+You must delete AddressBook’s storage file located at `/data/realodex.json` before running it! Not doing so will cause AddressBook to default to an empty address book!
 
 </box>
 

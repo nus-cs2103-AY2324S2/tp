@@ -50,7 +50,7 @@ public class LogicManagerTest {
     @BeforeEach
     public void setUp() {
         JsonRealodexStorage addressBookStorage =
-                new JsonRealodexStorage(temporaryFolder.resolve("addressBook.json"));
+                new JsonRealodexStorage(temporaryFolder.resolve("realodex.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);

@@ -62,7 +62,7 @@ public class JsonRealodexStorageTest {
 
     @Test
     public void readAndSaveAddressBook_allInOrder_success() throws Exception {
-        Path filePath = testFolder.resolve("TempAddressBook.json");
+        Path filePath = testFolder.resolve("TempRealodex.json");
         Realodex original = getTypicalAddressBook();
         JsonRealodexStorage jsonRealodexStorage = new JsonRealodexStorage(filePath);
 
