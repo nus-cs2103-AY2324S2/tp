@@ -10,7 +10,7 @@ import java.time.format.DateTimeParseException;
 /**
  * Represents a date of an order in the address book.
  */
-public class Date {
+public class Date implements Comparable<Date> {
 
     public static final String MESSAGE_CONSTRAINTS = "Date format should be YYYY-MM-DD, and it should not be blank";
 
@@ -64,6 +64,11 @@ public class Date {
     @Override
     public int hashCode() {
         return date.hashCode();
+    }
+
+    @Override
+    public int compareTo(Date other) {
+        return this.date.compareTo(other.date);
     }
 
 }
