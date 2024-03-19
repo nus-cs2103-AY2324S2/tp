@@ -33,7 +33,7 @@ public class PersonUtil {
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
         sb.append(PREFIX_ROOMNUMBER + person.getRoomNumber().value + " ");
         sb.append(PREFIX_TELEGRAM + person.getTelegram().value + " ");
-        sb.append(PREFIX_BIRTHDAY + person.getBirthday().value + " ");
+        sb.append(PREFIX_BIRTHDAY + String.valueOf(person.getBirthday().value) + " ");
         return sb.toString();
     }
 
