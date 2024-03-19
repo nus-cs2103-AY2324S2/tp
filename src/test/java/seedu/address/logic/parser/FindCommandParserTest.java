@@ -13,8 +13,6 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import java.util.Arrays;
 import java.util.HashSet;
 
-import javax.print.attribute.standard.MediaSize.NA;
-
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.FindCommand;
