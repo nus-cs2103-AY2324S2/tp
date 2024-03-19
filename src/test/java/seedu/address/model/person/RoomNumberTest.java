@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
+import java.time.LocalDate;
+
 import org.junit.jupiter.api.Test;
 
 public class RoomNumberTest {
@@ -32,6 +34,32 @@ public class RoomNumberTest {
         assertTrue(RoomNumber.isValidRoomNumber("12-12"));
         assertTrue(RoomNumber.isValidRoomNumber("01-02"));
         assertTrue(RoomNumber.isValidRoomNumber("03-01"));
+    }
+
+    @Test
+    public void isOutdated() {
+        RoomNumber roomNumber = new RoomNumber("01-01");
+        assertFalse(roomNumber.isOutdated());
+
+        // If updated on the lastResultRelease for this AY
+        LocalDate date1 = LocalDate.parse("2020-04-12");
+        date1 = date1.withYear(LocalDate.now().getYear());
+        if (date1.isAfter(LocalDate.now())) {
+            date1 = date1.minusYears(1);
+        }
+        assertFalse(RoomNumber.isOutdated(date1));
+
+        // If updated on the firstResultRelease for this AY
+        LocalDate date2 = LocalDate.parse("2020-04-05");
+        date2 = date2.withYear(LocalDate.now().getYear());
+        if (date2.isAfter(LocalDate.now())) {
+            date2 = date2.minusYears(1);
+        }
+        assertFalse(RoomNumber.isOutdated(date2));
+
+        // If updated before the firstResultRelease for this AY
+        LocalDate date3 = date2.minusDays(1);
+        assertTrue(RoomNumber.isOutdated(date3));
     }
 
     @Test

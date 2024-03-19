@@ -47,10 +47,10 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(Person source) {
         name = source.getName().fullName;
         phone = source.getPhone().value;
-        email = source.getEmail().value;
-        roomNumber = source.getRoomNumber().value;
-        telegram = source.getTelegram().value;
-        birthday = source.getBirthday().value;
+        email = source.getEmail() == null ? null : source.getEmail().value;
+        roomNumber = source.getRoomNumber() == null ? null : source.getRoomNumber().value;
+        telegram = source.getTelegram() == null ? null : source.getTelegram().value;
+        birthday = source.getBirthday() == null ? null : String.valueOf(source.getBirthday().value);
     }
 
     /**
