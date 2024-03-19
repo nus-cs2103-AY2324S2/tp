@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-FitBook is a **desktop app for managing clients, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you are a fitness trainer that prefers typing over mouse interactions, FitBook is the perfect application for you to manage your clients!
+FitBook is a **desktop app for managing clients, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you are a personal trainer that prefers typing over mouse interactions, FitBook is the perfect application for you to manage your clients!
 
 * Table of Contents
 {:toc}
