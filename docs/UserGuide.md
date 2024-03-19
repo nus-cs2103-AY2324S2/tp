@@ -38,7 +38,7 @@ Start keeping track of your internships easily with <span style="color: #f66a0a;
 
     * `list` : Lists all contacts.
 
-   * `add /company Titktok /email hr@tiktok.com /number 9089030 /location remote /status ongoing /description create new recommendation engine /role Software Intern` : Adds the internship entry to the CareerSync application.
+   * `add /company Tiktok /email hr@tiktok.com /number 9089030 /location remote /status ongoing /description create new recommendation engine /role Software Intern` : Adds the internship entry to the CareerSync application.
 
    * `delete 2` : Deletes the 2nd internship entry shown in the current list.
 
@@ -83,8 +83,7 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
-
-### Adding an entry: `add`
+## Adding an entry: `add`
 
 Add an internship entry and all the relevant fields
 
@@ -93,7 +92,21 @@ Format: `add /company COMPANY_NAME /description DESCRIPTION /status STATUS [/poc
 Examples:
 * `add /company Titktok /email hr@tiktok.com /number 9089030 /location remote /status ongoing /description create new recommendation engine /role Software Intern`
 
-### Listing all persons : `list`
+### Deleting an internship: `delete`
+
+Deletes the internship entry with the corresponding index (based on the displayed list at point of deletion)
+
+Format: `delete INDEX`
+
+* Deletes the internship at the specified `INDEX`.
+* The index refers to the index number shown in the displayed list of internship entries at point of deletion.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list` followed by `delete 7` deletes the 7th entry in the internship entries list.
+* `find Google` followed by `delete 1` deletes the 1st entry in the results of the `find` command.
+
+### Listing all internships: `list`
 
 Shows a list of all internships in the application
 
@@ -108,22 +121,33 @@ Shows the full details of an internship entry. This replaces the current view of
 
 CLI input will be implemented in a future release.
 
-### Editing a person : `edit`
+### Editing an internship: `edit`
 
 Edits an existing internship entry in the application.
 
 Format: `edit INDEX [/company COMPANY_NAME] [/pocname NAME_OF_CONTACT] [/email EMAIL_OF_CONTACT] [/number NUMBER_OF_CONTACT] [/location LOCATION_ENUM] [/status STATUS] [/description DESCRIPTION] [/role ROLE] …​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the internship at the specified `INDEX`. The index refers to the index number shown in the displayed internship list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided. Multiple fields can be edited at once.
 * Existing values will be updated to the input values.
-* When editing status, only the valid statuses will be accepeted. Not-valid statuses will cause the command to be rejected.
-
+* When editing status, only the valid statuses will be accepted. Not-valid statuses will cause the command to be rejected.
 
 Examples:
-*  `edit 1  /email nussu@u.nus.edu /number 9666 1666` Edits the email and phone number of the 1st person to be `nussu@u.nus.edu` and `9666 1666` respectively.
+*  `edit 1  /email nussu@u.nus.edu /number 9666 1666` Edits the email and phone number of the 1st internship to be `nussu@u.nus.edu` and `9666 1666` respectively.
+ 
+### Adding a remark: `addremark`
 
-### Locating persons by name: `find`
+Adds a remark to an existing internship in the application.
+
+Format: `addremark INDEX [/remark REMARK]`
+
+* Adds a remark or modifies the existing one, of an existing internship at the specified `INDEX`. The index refers to the index number shown in the displayed internship list. The index **must be a positive integer** 1, 2, 3, …​
+* Existing remarks will be updated to the input values.
+
+Examples:
+*  `addremark 1 /remark This internship has a behavioural interview!` Adds or modifies the remark of the internship at index 1 to be `This internship has a behavioural interview!`.
+
+### Locating internships by name: `find`
 
 Finds internship entries whose names contain any of the given keywords.
 
@@ -141,27 +165,13 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
-
-Deletes the internship entry with the corresponding index (based on the displayed list at point of deletion)
-
-Format: `delete INDEX`
-
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed list of internship entries at point of deletion.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `list` followed by `delete 7` deletes the 7th entry in the internship entries list.
-* `find Google` followed by `delete 1` deletes the 1st entry in the results of the `find` command.
-
-### Clearing all entries : `clear`
+### Clearing all internships: `clear`
 
 Clears all entries from the application.
 
 Format: `clear`
 
-### Exiting the program : `exit`
+### Exiting the program: `exit`
 
 Exits the program.
 
@@ -198,12 +208,13 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** |`add /company COMPANY_NAME /description DESCRIPTION /status STATUS [/pocname NAME_OF_CONTACT] [/email EMAIL_OF_CONTACT] [/number NUMBER_OF_CONTACT] [/location LOCATION_ENUM] [/role ROLE]`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [/company COMPANY_NAME] [/pocname NAME_OF_CONTACT] [/email EMAIL_OF_CONTACT] [/number NUMBER_OF_CONTACT] [/location LOCATION_ENUM] [/status STATUS] [/description DESCRIPTION] [/role ROLE] `<br> e.g.,`edit 1  /email nussu@u.nus.edu /number 9666 1666`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+| Action                                     | Description                              |
+|--------------------------------------------|------------------------------------------|
+| [add](#adding-an-entry-add)                | Adds an Internship.                      |
+| [delete](#deleting-an-internship-delete)   | Removes a Internship.                    |
+| [list](#listing-all-internships-list)      | Removes a Internship.                    |
+| [edit](#editing-an-internship-edit)        | Modifies an existing Internship.         |
+| [addremark](#adding-a-remark-addremark)    | Adds a remark to an existing Internship. |
+| [clear](#clearing-all-internships-clear)   | Removes all Internships from the deck.   |
+| [find](#locating-internships-by-name-find) | Sets the goal for the session.           |
+| [exit](#exiting-the-program-exit)          | Exits and closes the application.        |
