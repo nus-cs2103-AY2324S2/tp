@@ -32,6 +32,9 @@ public class CommandResult {
         this.isAddByStep = false;
     }
 
+    /**
+     * Constructs a {@code CommandResult} with the specified fields.
+     */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean isAddByStep) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
