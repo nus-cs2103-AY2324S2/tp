@@ -68,7 +68,6 @@ public class StringUtil {
                 testWord = testWord + wordsInPreppedSentence[i + j] + " ";
 
             }
-            System.out.println(testWord);
             if (testWord.indexOf(preppedWords) == 0) {
                 matchFound = true;
                 break;
