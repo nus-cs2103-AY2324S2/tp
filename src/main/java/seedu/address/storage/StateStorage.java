@@ -49,6 +49,9 @@ public class StateStorage {
      * @return The path of the state file.
      */
     public static Path getFilePath() {
+        if (FILE_PATH == null) {
+            return Paths.get(filePath);
+        }
         return FILE_PATH;
     }
 
@@ -61,6 +64,15 @@ public class StateStorage {
         } catch (IOException e) {
             logger.info("Error clearing state text: " + e.getMessage());
         }
+    }
+
+    /**
+     * Checks if the state storage file exists.
+     *
+     * @return True if the file exists, else false.
+     */
+    public static boolean isStateStorageExists() {
+        return Files.exists(FILE_PATH);
     }
 
     /**

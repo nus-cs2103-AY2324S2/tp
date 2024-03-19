@@ -72,4 +72,10 @@ public class StateStorageTest {
         assertThrows(DataLoadingException.class, () -> loadState());
     }
 
+    @Test
+    public void isStateStorageExists_fileDoesNotExist_returnsFalse() {
+        deleteStateStorage();
+        assertEquals(false, StateStorage.isStateStorageExists());
+    }
+
 }
