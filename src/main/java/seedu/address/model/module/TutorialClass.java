@@ -25,6 +25,15 @@ public class TutorialClass {
 
     public final String tutorialName;
     private final ArrayList<Person> students;
+    /**
+     * Constructs a {@code TutorialClass} with default values.
+     * Initializes the {@code value} field to an empty string and creates an empty list for {@code students}.
+     */
+    public TutorialClass() {
+        this.tutorialName = "";
+        this.students = new ArrayList<>();
+    }
+
 
     /**
      * A constructor for TutorialClass. Creates an empty tutorial class with no
@@ -50,7 +59,6 @@ public class TutorialClass {
         this.tutorialName = tutorialClass;
         this.students = students;
     }
-
     /**
      * Returns true if a given string is a valid tutorial class code.
      */
