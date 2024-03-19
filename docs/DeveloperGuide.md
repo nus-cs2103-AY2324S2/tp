@@ -275,7 +275,7 @@ _{Explain here how the data archiving feature will be implemented}_
 **Target user profile**:
 
 * A computer science tutor managing students for tutorials
-* has numerous of students to manage in a tutorial slot 
+* has numerous of students to manage in a tutorial slot
 * has to add, list, delete, sort, search students in the app
 * is reasonably comfortable using CLI apps
 * can type fast

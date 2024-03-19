@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MAJOR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
@@ -28,6 +29,7 @@ import seedu.address.model.person.Major;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Remark;
 import seedu.address.model.person.Telegram;
 import seedu.address.model.person.Year;
 import seedu.address.model.tag.Tag;
@@ -49,6 +51,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_YEAR + "YEAR] "
             + "[" + PREFIX_MAJOR + "MAJOR] "
             + "[" + PREFIX_TELEGRAM + "TELEGRAM]"
+            + "[" + PREFIX_REMARK + "REMARK]"
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -107,10 +110,11 @@ public class EditCommand extends Command {
         Year updatedYear = editPersonDescriptor.getYear().orElse(personToEdit.getYear());
         Major updatedMajor = editPersonDescriptor.getMajor().orElse(personToEdit.getMajor());
         Telegram updatedTelegram = editPersonDescriptor.getTelegram().orElse(personToEdit.getTelegram());
+        Remark updatedRemark = editPersonDescriptor.getRemark().orElse(personToEdit.getRemark());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedYear, updatedTelegram,
-                updatedMajor, updatedTags);
+                updatedMajor, updatedRemark, updatedTags);
     }
 
     @Override
@@ -148,6 +152,7 @@ public class EditCommand extends Command {
         private Year year;
         private Major major;
         private Telegram telegram;
+        private Remark remark;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -163,6 +168,7 @@ public class EditCommand extends Command {
             setYear(toCopy.year);
             setMajor(toCopy.major);
             setTelegram(toCopy.telegram);
+            setRemark(toCopy.remark);
             setTags(toCopy.tags);
         }
 
@@ -170,7 +176,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, year, major, telegram, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, year, major, telegram, remark, tags);
         }
 
         public void setName(Name name) {
@@ -218,6 +224,13 @@ public class EditCommand extends Command {
         public Optional<Major> getMajor() {
             return Optional.ofNullable(major);
         }
+        public void setRemark(Remark remark) {
+            this.remark = remark;
+        }
+
+        public Optional<Remark> getRemark() {
+            return Optional.ofNullable(remark);
+        }
 
         /**
          * Sets {@code tags} to this object's {@code tags}.
@@ -254,6 +267,7 @@ public class EditCommand extends Command {
                     && Objects.equals(year, otherEditPersonDescriptor.year)
                     && Objects.equals(telegram, otherEditPersonDescriptor.telegram)
                     && Objects.equals(major, otherEditPersonDescriptor.major)
+                    && Objects.equals(remark, otherEditPersonDescriptor.remark)
                     && Objects.equals(tags, otherEditPersonDescriptor.tags);
         }
 
@@ -266,6 +280,7 @@ public class EditCommand extends Command {
                     .add("year", year)
                     .add("major", major)
                     .add("telegram", telegram)
+                    .add("remark", remark)
                     .add("tags", tags)
                     .toString();
         }

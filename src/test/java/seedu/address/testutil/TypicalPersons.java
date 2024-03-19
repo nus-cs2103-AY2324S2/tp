@@ -8,6 +8,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_REMARK_OUTSPOKEN;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_REMARK_SHY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TELEGRAM_AMY;
@@ -30,34 +32,34 @@ public class TypicalPersons {
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
             .withMajor("Computer Science").withEmail("alice@example.com")
             .withYear("1").withTelegram("alicepauline")
-            .withPhone("94351253")
+            .withPhone("94351253").withRemark("shy")
             .withTags("friends").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withMajor("Computer Science")
             .withYear("1").withTelegram("bensonmeier")
-            .withEmail("johnd@example.com").withPhone("98765432")
+            .withEmail("johnd@example.com").withPhone("98765432").withRemark("always skip tutorials")
             .withTags("owesMoney", "friends").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz")
             .withPhone("95352563").withTelegram("carlkurz")
-            .withMajor("Computer Science").withEmail("heinz@example.com")
+            .withMajor("Computer Science").withEmail("heinz@example.com").withRemark("")
             .withYear("1").build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier")
             .withPhone("87652533")
             .withMajor("Computer Engineering").withEmail("corelia@example.com")
-            .withYear("1").withTelegram("danielmeier")
+            .withYear("1").withTelegram("danielmeier").withRemark("hardworking")
             .withTags("friends").build();
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer")
             .withPhone("9482224")
             .withEmail("werner@example.com").withMajor("Computer Engineering")
-            .withYear("2").withTelegram("ellemeyer").build();
+            .withYear("2").withTelegram("ellemeyer").withRemark("strong foundations").build();
     public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz")
             .withPhone("9482427")
             .withEmail("lydia@example.com").withMajor("Business Analytics")
-            .withYear("2").withTelegram("fionakunz1").build();
+            .withYear("2").withTelegram("fionakunz1").withRemark("Always ask questions in class").build();
     public static final Person GEORGE = new PersonBuilder().withName("George Best")
             .withPhone("9482442")
             .withEmail("anna@example.com").withMajor("Business Analytics")
-            .withYear("2").withTelegram("georgebest1").build();
+            .withYear("2").withTelegram("georgebest1").withRemark("").build();
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withPhone("8482424")
@@ -68,10 +70,11 @@ public class TypicalPersons {
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
             .withEmail(VALID_EMAIL_AMY).withYear(VALID_YEAR_AMY).withTelegram(VALID_TELEGRAM_AMY)
-            .withMajor(VALID_MAJOR_AMY).withTags(VALID_TAG_FRIEND).build();
+            .withMajor(VALID_MAJOR_AMY).withRemark(VALID_REMARK_SHY).withTags(VALID_TAG_FRIEND).build();
     public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
             .withEmail(VALID_EMAIL_BOB).withYear(VALID_YEAR_BOB).withTelegram(VALID_TELEGRAM_BOB)
-             .withMajor(VALID_MAJOR_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+             .withMajor(VALID_MAJOR_BOB).withRemark(VALID_REMARK_OUTSPOKEN).withTags(VALID_TAG_HUSBAND,
+                    VALID_TAG_FRIEND)
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER

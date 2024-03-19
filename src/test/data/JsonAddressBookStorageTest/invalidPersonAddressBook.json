@@ -5,6 +5,7 @@
     "email": "hans@example.com",
     "year": "1",
     "major": "Computer Science",
-    "telegram": "personwithinvalidname"
+    "telegram": "personwithinvalidname",
+    "remark": "remark is always valid"
   } ]
 }

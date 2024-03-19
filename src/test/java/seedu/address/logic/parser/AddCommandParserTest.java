@@ -18,6 +18,8 @@ import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.address.logic.commands.CommandTestUtil.REMARK_DESC_OUTSPOKEN;
+import static seedu.address.logic.commands.CommandTestUtil.REMARK_DESC_SHY;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.TELEGRAM_DESC_AMY;
@@ -26,6 +28,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MAJOR_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_REMARK_OUTSPOKEN;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TELEGRAM_BOB;
@@ -36,6 +39,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MAJOR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -60,27 +64,29 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Person expectedPerson = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
+        Person expectedPerson = new PersonBuilder(BOB).withRemark(VALID_REMARK_OUTSPOKEN).withTags(VALID_TAG_FRIEND)
+                        .build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                        + YEAR_DESC_BOB + MAJOR_DESC_BOB + TELEGRAM_DESC_BOB + TAG_DESC_FRIEND,
+                        + YEAR_DESC_BOB + MAJOR_DESC_BOB + TELEGRAM_DESC_BOB + REMARK_DESC_OUTSPOKEN + TAG_DESC_FRIEND,
                 new AddCommand(expectedPerson));
 
 
         // multiple tags - all accepted
-        Person expectedPersonMultipleTags = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+        Person expectedPersonMultipleTags = new PersonBuilder(BOB).withRemark(VALID_REMARK_OUTSPOKEN).withTags(
+                VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
         assertParseSuccess(parser,
                 NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + YEAR_DESC_BOB + MAJOR_DESC_BOB
-                        + TELEGRAM_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
+                        + TELEGRAM_DESC_BOB + REMARK_DESC_OUTSPOKEN + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
                 new AddCommand(expectedPersonMultipleTags));
     }
 
     @Test
     public void parse_repeatedNonTagValue_failure() {
         String validExpectedPersonString = NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + YEAR_DESC_BOB
-                + TELEGRAM_DESC_BOB + MAJOR_DESC_BOB + TAG_DESC_FRIEND;
+                + TELEGRAM_DESC_BOB + MAJOR_DESC_BOB + REMARK_DESC_OUTSPOKEN + TAG_DESC_FRIEND;
 
         // multiple names
         assertParseFailure(parser, NAME_DESC_AMY + validExpectedPersonString,
@@ -106,13 +112,17 @@ public class AddCommandParserTest {
         assertParseFailure(parser, TELEGRAM_DESC_AMY + validExpectedPersonString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_TELEGRAM));
 
+        // multiple remarks
+        assertParseFailure(parser, REMARK_DESC_SHY + validExpectedPersonString,
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_REMARK));
+
 
         // multiple fields repeated
         assertParseFailure(parser,
                 validExpectedPersonString + PHONE_DESC_AMY + EMAIL_DESC_AMY + NAME_DESC_AMY + MAJOR_DESC_AMY
                         + validExpectedPersonString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NAME, PREFIX_MAJOR, PREFIX_EMAIL, PREFIX_YEAR,
-                        PREFIX_TELEGRAM, PREFIX_PHONE));
+                        PREFIX_TELEGRAM, PREFIX_REMARK, PREFIX_PHONE));
 
         // invalid value followed by valid value
 
@@ -171,8 +181,8 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_optionalFieldsMissing_success() {
-        // zero tags
-        Person expectedPerson = new PersonBuilder(AMY).withTags().build();
+        // no remark and zero tags
+        Person expectedPerson = new PersonBuilder(AMY).withRemark("").withTags().build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + YEAR_DESC_AMY
                 + TELEGRAM_DESC_AMY + MAJOR_DESC_AMY, new AddCommand(expectedPerson));
     }

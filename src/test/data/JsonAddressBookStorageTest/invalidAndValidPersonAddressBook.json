@@ -5,13 +5,15 @@
     "email": "hans@example.com",
     "year": "1",
     "major": "Computer Science",
-    "telegram": "validperson"
+    "telegram": "validperson",
+    "remark": "valid remark"
   }, {
     "name": "Person With Invalid Phone Field",
     "phone": "948asdf2424",
     "email": "hans@example.com",
     "year": "1",
     "major": "Computer Science",
-    "telegram": "invalidperson"
+    "telegram": "invalidperson",
+    "remark": "remark is always valid"
   } ]
 }

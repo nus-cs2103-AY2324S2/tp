@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MAJOR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
@@ -30,6 +31,7 @@ public class AddCommand extends Command {
             + PREFIX_YEAR + "YEAR "
             + PREFIX_MAJOR + "MAJOR "
             + PREFIX_TELEGRAM + "TELEGRAM "
+            + "[" + PREFIX_REMARK + "REMARK] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
@@ -37,7 +39,8 @@ public class AddCommand extends Command {
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_YEAR + "2 "
             + PREFIX_MAJOR + "Computer Science "
-            + PREFIX_TELEGRAM + "johndoe"
+            + PREFIX_TELEGRAM + "johndoe "
+            + PREFIX_REMARK + "Very quiet student "
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 

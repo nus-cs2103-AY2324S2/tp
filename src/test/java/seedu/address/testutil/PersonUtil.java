@@ -4,6 +4,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MAJOR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
@@ -38,6 +39,7 @@ public class PersonUtil {
         sb.append(PREFIX_YEAR + person.getYear().value + " ");
         sb.append(PREFIX_MAJOR + person.getMajor().value + " ");
         sb.append(PREFIX_TELEGRAM + person.getTelegram().value + " ");
+        sb.append(PREFIX_REMARK + person.getRemark().value + " ");
         person.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
@@ -54,7 +56,8 @@ public class PersonUtil {
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getMajor().ifPresent(major -> sb.append(PREFIX_MAJOR).append(major.value).append(" "));
         descriptor.getYear().ifPresent(year -> sb.append(PREFIX_YEAR).append(year.value).append(" "));
-        descriptor.getTelegram().ifPresent(year -> sb.append(PREFIX_TELEGRAM).append(year.value).append(" "));
+        descriptor.getTelegram().ifPresent(telegram -> sb.append(PREFIX_TELEGRAM).append(telegram.value).append(" "));
+        descriptor.getRemark().ifPresent(remark-> sb.append(PREFIX_REMARK).append(remark.value).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {

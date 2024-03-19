@@ -10,6 +10,7 @@ import seedu.address.model.person.Major;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Remark;
 import seedu.address.model.person.Telegram;
 import seedu.address.model.person.Year;
 import seedu.address.model.tag.Tag;
@@ -39,6 +40,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setEmail(person.getEmail());
         descriptor.setMajor(person.getMajor());
         descriptor.setTelegram(person.getTelegram());
+        descriptor.setRemark(person.getRemark());
         descriptor.setTags(person.getTags());
     }
 
@@ -87,6 +89,14 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withMajor(String major) {
         descriptor.setMajor(new Major(major));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Remark} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withRemark(String remark) {
+        descriptor.setRemark(new Remark(remark));
         return this;
     }
 
