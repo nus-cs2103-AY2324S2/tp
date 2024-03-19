@@ -209,10 +209,6 @@ public class EditCommand extends Command {
             this.note = note;
         }
 
-        public Optional<Note> getNote() {
-            return Optional.ofNullable(note);
-        }
-
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
