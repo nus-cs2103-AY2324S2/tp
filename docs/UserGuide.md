@@ -18,6 +18,7 @@ CulinaryContacts is a **desktop app for managing contacts, optimized for use via
     * [Finding persons by name: `find`](#finding-persons-by-name-find)
     * [Filtering persons by tag: `filter`](#filtering-persons-by-tag-filter)
     * [Deleting a person: `delete`](#deleting-a-person--delete)
+    * [Clearing all entries: `clear`](#clearing-all-entries--clear)
     * [Exiting the program: `exit`](#exiting-the-program--exit)
     * [Saving the data](#saving-the-data)
     * [Editing the data file](#editing-the-data-file)
