@@ -37,11 +37,11 @@ public class Department {
         return departmentName;
     }
 
-    @Override   
+    @Override
     public String toString() {
         return departmentName;
     }
-    
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {

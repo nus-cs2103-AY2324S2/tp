@@ -1,5 +1,6 @@
 package seedu.address.model.person;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -16,9 +17,7 @@ public class Skills {
     public Skills(String skills) {
         this.skills = new HashSet<>();
         String[] skillsArray = skills.split(" ");
-        for (String skill : skillsArray) {
-            this.skills.add(skill);
-        }
+        Collections.addAll(this.skills, skillsArray);
     }
 
     public static boolean isValidSkills(String test) {

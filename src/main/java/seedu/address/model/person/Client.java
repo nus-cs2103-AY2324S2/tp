@@ -1,7 +1,5 @@
 package seedu.address.model.person;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -9,11 +7,11 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.tag.Tag;
 
 public class Client extends Person {
-    private Products products;
-    private String preferences;
+    private final Products products;
+    private final String preferences;
 
     public Client(Name name, Phone phone, Email email, Address address, Remark remark,
-            Set<Tag> tags, Products products, String preferences) {
+                  Set<Tag> tags, Products products, String preferences) {
         super(name, phone, email, address, remark, tags);
         this.products = products;
         this.preferences = preferences;

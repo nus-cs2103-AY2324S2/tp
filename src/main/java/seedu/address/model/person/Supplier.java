@@ -7,11 +7,11 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.tag.Tag;
 
 public class Supplier extends Person {
-    private Products products;
-    private TermsOfService termsOfService;
+    private final Products products;
+    private final TermsOfService termsOfService;
 
     public Supplier(Name name, Phone phone, Email email, Address address, Remark remark, Set<Tag> tags,
-            Products products, TermsOfService termsOfService) {
+                    Products products, TermsOfService termsOfService) {
         super(name, phone, email, address, remark, tags);
         this.products = products;
         this.termsOfService = termsOfService;
@@ -29,9 +29,9 @@ public class Supplier extends Person {
     public boolean equals(Object other) {
         return other == this
                 || (other instanceof Supplier
-                        && super.equals(other)
-                        && products.equals(((Supplier) other).products)
-                        && termsOfService.equals(((Supplier) other).termsOfService));
+                && super.equals(other)
+                && products.equals(((Supplier) other).products)
+                && termsOfService.equals(((Supplier) other).termsOfService));
     }
 
     @Override

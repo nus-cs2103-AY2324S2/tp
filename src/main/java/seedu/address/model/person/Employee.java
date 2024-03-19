@@ -1,4 +1,3 @@
-
 package seedu.address.model.person;
 
 import java.util.HashSet;
@@ -10,12 +9,12 @@ import seedu.address.model.tag.Tag;
 
 public class Employee extends Person {
 
-    private Department department;
-    private JobTitle jobTitle;
+    private final Department department;
+    private final JobTitle jobTitle;
     private Skills skills = new Skills(new HashSet<>());
 
     public Employee(Name name, Phone phone, Email email, Address address, Remark remark, Set<Tag> tags,
-            Department department, JobTitle jobTitle, Skills skills) {
+                    Department department, JobTitle jobTitle, Skills skills) {
         super(name, phone, email, address, remark, tags);
         this.department = department;
         this.jobTitle = jobTitle;
@@ -38,10 +37,10 @@ public class Employee extends Person {
     public boolean equals(Object other) {
         return other == this
                 || (other instanceof Employee
-                        && super.equals(other)
-                        && department.equals(((Employee) other).department)
-                        && jobTitle.equals(((Employee) other).jobTitle)
-                        && skills.equals(((Employee) other).skills));
+                && super.equals(other)
+                && department.equals(((Employee) other).department)
+                && jobTitle.equals(((Employee) other).jobTitle)
+                && skills.equals(((Employee) other).skills));
     }
 
     @Override
