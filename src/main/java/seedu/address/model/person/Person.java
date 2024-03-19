@@ -107,7 +107,8 @@ public class Person {
         }
 
         return otherPerson != null
-                && otherPerson.getName().equals(getName());
+                && otherPerson.getName().equals(getName())
+                && otherPerson.getPhone().equals(getPhone());
     }
 
     /**
@@ -151,6 +152,8 @@ public class Person {
                 .add("tags", tags)
                 .toString();
     }
+
+
 
     /**
      * Deletes the QR code for the person.
