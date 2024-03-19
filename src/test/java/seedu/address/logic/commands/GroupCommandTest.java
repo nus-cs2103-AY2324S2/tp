@@ -16,8 +16,6 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.testutil.GroupPersonDescriptorBuilder;
-import seedu.address.testutil.PersonBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
@@ -25,6 +23,8 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.NusId;
 import seedu.address.model.person.Person;
+import seedu.address.testutil.GroupPersonDescriptorBuilder;
+import seedu.address.testutil.PersonBuilder;
 
 import java.util.Set;
 

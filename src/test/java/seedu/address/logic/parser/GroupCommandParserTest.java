@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.GroupCommand;
 
-import seedu.address.model.person.*;
+import seedu.address.model.person.NusId;
 import seedu.address.testutil.GroupPersonDescriptorBuilder;
 
 
