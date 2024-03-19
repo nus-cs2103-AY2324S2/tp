@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.Assert.assertThrowsExactly;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
 
@@ -15,8 +16,11 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.order.Order;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.testutil.AddressBookBuilder;
+import seedu.address.testutil.OrderBuilder;
 
 public class ModelManagerTest {
 
@@ -91,6 +95,33 @@ public class ModelManagerTest {
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
+    }
+
+    @Test
+    public void addOrder_anyOrder_throwsCommandException() {
+        OrderBuilder builder = new OrderBuilder();
+        Order order = builder.build();
+
+        assertThrowsExactly(CommandException.class, () -> modelManager.addOrder(order),
+                "Expected addOrder to throw CommandException, but it did not.");
+    }
+
+    @Test
+    public void deleteOrder_anyOrder_throwsCommandException() {
+        OrderBuilder builder = new OrderBuilder();
+        Order order = builder.build();
+
+        assertThrowsExactly(CommandException.class, () -> modelManager.deleteOrder(order),
+                "Expected addOrder to throw CommandException, but it did not.");
+    }
+
+    @Test
+    public void getOrderList_anyOrder_throwsCommandException() {
+        OrderBuilder builder = new OrderBuilder();
+        Order order = builder.build();
+
+        assertThrowsExactly(CommandException.class, () -> modelManager.getOrderList(),
+                "Expected addOrder to throw CommandException, but it did not.");
     }
 
     @Test

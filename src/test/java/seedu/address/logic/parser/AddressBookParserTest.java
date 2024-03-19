@@ -22,11 +22,15 @@ import seedu.address.logic.commands.clients.ExitCommand;
 import seedu.address.logic.commands.clients.FindCommand;
 import seedu.address.logic.commands.clients.HelpCommand;
 import seedu.address.logic.commands.clients.ListCommand;
+import seedu.address.logic.commands.orders.AddOrderCommand;
+import seedu.address.logic.commands.orders.DeleteOrderCommand;
 import seedu.address.logic.commands.orders.ViewOrdersCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.order.OrderId;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.OrderBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
 
@@ -87,6 +91,23 @@ public class AddressBookParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+    }
+
+    @Test
+    public void parseCommand_createOrder() throws Exception {
+        String remarks = " d/1xRoses";
+        String cost = " c/100";
+        String date = " by/10-10-2024 00:00";
+        assertTrue(parser.parseCommand(AddOrderCommand.COMMAND_WORD
+                + remarks + cost + date) instanceof AddOrderCommand);
+    }
+
+    @Test
+    public void parseCommand_deleteOrder() throws Exception {
+        OrderBuilder builder = new OrderBuilder();
+        OrderId orderId = builder.build().getOrderId();
+        assertTrue(parser.parseCommand(DeleteOrderCommand.COMMAND_WORD
+                + " id/" + orderId.toString()) instanceof DeleteOrderCommand);
     }
 
     @Test
