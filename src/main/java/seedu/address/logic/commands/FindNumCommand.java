@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.PhoneContainsDigitsPredicate;
 
 import static java.util.Objects.requireNonNull;
 
@@ -20,9 +20,9 @@ public class FindNumCommand extends Command {
             + "Parameters: 8_DIGIT_PHONE_NUMBER [MORE_8_DIGIT_PHONE_NUMBERS]...\n"
             + "Example: " + COMMAND_WORD + " 87438807";
 
-    private final NameContainsKeywordsPredicate predicate;
+    private final PhoneContainsDigitsPredicate predicate;
 
-    public FindNumCommand(NameContainsKeywordsPredicate predicate) {
+    public FindNumCommand(PhoneContainsDigitsPredicate predicate) {
         this.predicate = predicate;
     }
 
