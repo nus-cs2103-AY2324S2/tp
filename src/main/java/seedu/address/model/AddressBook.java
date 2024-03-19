@@ -8,6 +8,8 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.order.Order;
 import seedu.address.model.order.OrderList;
+import seedu.address.model.order.Product;
+import seedu.address.model.order.Quantity;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -52,6 +54,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.persons.setPersons(persons);
     }
 
+    public void setOrders(List<Order> orders) {
+        this.orders.setOrders(orders);
+    }
+
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
@@ -59,6 +65,8 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
+        setOrders(newData.getOrderList());
+        //we need to make setOrders
     }
 
     //// person-level operations
@@ -84,6 +92,8 @@ public class AddressBook implements ReadOnlyAddressBook {
      *
      */
     public void addOrder(Order order, Person person) {
+        int orderCounter = orders.getOrderIdCounter();
+        order.setID(orderCounter);
         orders.addOrder(order, person);
     }
 
@@ -100,6 +110,16 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(editedPerson);
 
         persons.setPerson(target, editedPerson);
+    }
+
+    /**
+     * Replaces the given person {@code target} in the list with {@code editedPerson}.
+     * {@code target} must exist in the address book.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     */
+    public Order setOrder(Order target, Product currProduct, Quantity newQuantity) {
+        requireNonNull(target);
+        return target.updateOrder(currProduct, newQuantity);
     }
 
     /**

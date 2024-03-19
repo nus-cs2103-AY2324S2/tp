@@ -32,7 +32,7 @@ public class CancelCommandTest {
         String expectedMessage = String.format(CancelCommand.MESSAGE_CANCEL_ORDER_SUCCESS,
                 INDEX_FIRST_ORDER.getOneBased());
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         expectedModel.deleteOrder(INDEX_FIRST_ORDER.getOneBased());
 
         assertCommandSuccess(cancelCommand, model, expectedMessage, expectedModel);

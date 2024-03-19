@@ -11,6 +11,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.exceptions.OrderNotFoundException;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.exceptions.PersonNotFoundException;
 
 /**
  * Represents the list of active orders in the addressbook.
@@ -61,13 +62,28 @@ public class OrderList implements Iterable<Order> {
      * @param person The person that the order is tagged to.
      */
     public void addOrder(Order toAdd, Person person) {
-        requireAllNonNull(toAdd);
-        //make sure that our addordercommand has a means to set the OrderID
-        orderList.put(toAdd.getId(), toAdd);
+        requireAllNonNull(toAdd, person);
+        toAdd.setCustomer(person);
         toAdd.setID(orderIdCounter);
+        orderList.put(toAdd.getId(), toAdd);
         internalList.add(toAdd);
         person.addOrder(toAdd);
         orderIdCounter++;
+    }
+
+    /**
+     * Replaces the order {@code target} in the list with {@code editedOrder}.
+     * {@code target} must exist in the list.
+     */
+    public void setOrder(Order target, Order editedOrder) {
+        requireAllNonNull(target, editedOrder);
+
+        int index = internalList.indexOf(target);
+        if (index == -1) {
+            throw new PersonNotFoundException();
+        }
+
+        internalList.set(index, editedOrder);
     }
 
     /**
@@ -83,9 +99,13 @@ public class OrderList implements Iterable<Order> {
         if (oldOrder == null) {
             throw new OrderNotFoundException();
         }
-        Integer oldOrderIndex = internalList.indexOf(oldOrder);
+        Person respectiveCustomer = oldOrder.getCustomer();
+        //if (respectiveCustomer == null) {
+        //    throw new PersonNotFoundException();
+        //}
         orderList.remove(toDelete);
-        internalList.remove(oldOrderIndex);
+        internalList.remove(oldOrder);
+        respectiveCustomer.deleteOrder(oldOrder.getId());
     }
 
     /**
@@ -98,16 +118,24 @@ public class OrderList implements Iterable<Order> {
         if (orderId < 1) {
             throw new NullPointerException();
         }
-        Order currOrder = orderList.get(orderId);
-        if (currOrder == null) {
+        Order oldOrder = orderList.get(orderId);
+        if (oldOrder == null) {
             throw new OrderNotFoundException();
         }
-        if (!currOrder.isSameOrder(toEdit)) {
-            Order oldOrder = orderList.get(orderId);
-            int oldOrderIndex = internalList.indexOf(oldOrder);
-            orderList.put(orderId, toEdit);
-            internalList.set(oldOrderIndex, toEdit);
-        }
+        Person respectiveCustomer = oldOrder.getCustomer();
+        int oldOrderIndex = internalList.indexOf(oldOrder);
+        toEdit.setID(oldOrder.getId());
+        internalList.set(oldOrderIndex, toEdit);
+        orderList.put(orderId, toEdit);
+        respectiveCustomer.editOrder(oldOrder.getId(), toEdit);
+    }
+
+    /**
+     * For testing purposes.
+     */
+    public void clearOrders() {
+        internalList.clear();
+        orderList.clear();
     }
 
     /**
@@ -151,6 +179,14 @@ public class OrderList implements Iterable<Order> {
         return order;
     }
 
+    public void setOrders(List<Order> orders) {
+        requireAllNonNull(orders);
+        for (Order d: orders) {
+            orderList.put(d.getId(), d);
+        }
+        internalList.setAll(orders);
+    }
+
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      * @return the backing list as an unmodifiable {@code ObservableList}.
@@ -185,7 +221,7 @@ public class OrderList implements Iterable<Order> {
         }
 
         OrderList otherOrderList = (OrderList) other;
-        return internalList.equals(otherOrderList.internalList);
+        return orderList.equals(otherOrderList.orderList);
     }
 
     /**

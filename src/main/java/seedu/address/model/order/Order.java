@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.model.person.Person;
@@ -82,9 +83,8 @@ public class Order implements Comparable<Order> {
      * @param product Product of which quantity is returned.
      * @return quantity of the product.
      */
-    public Quantity getQuantity(Product product) {
-        Quantity currQuantity = productMap.get(product);
-        return currQuantity;
+    public Optional<Quantity> getQuantity(Product product) {
+        return Optional.ofNullable(productMap.get(product));
     }
 
     /**
@@ -99,20 +99,37 @@ public class Order implements Comparable<Order> {
 
     /**
      * Sets the quantity values of the product in the order.
+     *
      * @param currProduct Product of which quantity to be editted.
-     * @param newQuantity new Quantity of the specified product.
+     * @param newQuantity New Quantity of the specified product.
+     * @return Updated order.
      */
-    public void changeQuantity(Product currProduct, int newQuantity) {
-        Quantity currQuantity = productMap.get(currProduct);
-        currQuantity.setQuantity(newQuantity);
+    public Order changeQuantity(Product currProduct, Quantity newQuantity) {
+        productMap.put(currProduct, newQuantity);
+        return new Order(productMap);
     }
 
     /**
      * Deletes the specified product from the order.
      * @param product Product to be deleted.
+     * @return Updated order.
      */
-    public void deleteProduct(Product product) {
+    public Order deleteProduct(Product product) {
         productMap.remove(product);
+        return new Order(productMap);
+    }
+
+    /**
+     * Updates the specified product from the order.
+     * If new Quantity is zero, the product is removed from the map.
+     * @param currProduct Product to be updated.
+     * @param newQuantity Quantity to update to.
+     * @return Updated order.
+     */
+    public Order updateOrder(Product currProduct, Quantity newQuantity) {
+        return newQuantity.getValue() == 0
+                ? deleteProduct(currProduct)
+                : changeQuantity(currProduct, newQuantity);
     }
 
     /**
@@ -153,6 +170,14 @@ public class Order implements Comparable<Order> {
     }
 
     /**
+     * Sets the {@code Person} ordering the order
+     * @param person the customer that the order belongs to
+     */
+    public void setCustomer(Person person) {
+        this.customer = person;
+    }
+
+    /**
      * Compares the other Order Object with this Object based on the OrderID
      * @param otherOrder the object to be compared.
      * @return negative integer, zero, or a positive integer as this object is less than,
@@ -173,13 +198,17 @@ public class Order implements Comparable<Order> {
      * @return A boolean value of whether the two orders are the same.
      */
     public boolean isSameOrder(Order otherOrder) {
-        if (otherOrder == this) {
+        if (otherOrder == null) {
+            return false;
+        }
+
+        if (otherOrder.equals(this)) {
             return true;
         }
 
         return otherOrder != null
                 && otherOrder.id == this.id
-                && otherOrder.customer == this.customer;
+                && otherOrder.customer.equals(this.customer);
     }
 
     @Override
@@ -190,7 +219,6 @@ public class Order implements Comparable<Order> {
         if (!(other instanceof Order)) {
             return false;
         }
-
         Order otherOrder = (Order) other;
         return (this.id == otherOrder.id)
                 && this.productMap.equals(otherOrder.productMap);
@@ -211,6 +239,7 @@ public class Order implements Comparable<Order> {
             str += productList.get(k).getName();
             str += ",";
             str += productMap.get(productList.get(k)).getValue();
+            str += "\n";
         }
         return str;
     }

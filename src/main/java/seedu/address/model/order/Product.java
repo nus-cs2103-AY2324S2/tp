@@ -1,5 +1,8 @@
 package seedu.address.model.order;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -22,7 +25,16 @@ public class Product {
      * @param name Name of the Product.
      */
     public Product(@JsonProperty("order") String name) {
+        requireNonNull(name);
+        checkArgument(isValidProduct(name), MESSAGE_CONSTRAINTS);
         this.name = name;
+    }
+
+    /**
+     * Returns true if a given string is a valid name.
+     */
+    public static boolean isValidProduct(String test) {
+        return test.matches(VALIDATION_REGEX);
     }
 
     @Override

@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRODUCT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRODUCT_QUANTITY;
@@ -30,6 +31,9 @@ public class CommandTestUtil {
 
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
+
+    public static final String VALID_ORDER_INDEX_ONE = "1";
+    public static final String VALID_ORDER_INDEX_TWO = "2";
     public static final String VALID_PRODUCT_CUPCAKE = "Cupcake";
     public static final String VALID_PRODUCT_COOKIE = "Cookie";
     public static final String VALID_PRODUCT_DOUGHNUT = "Doughnut";
@@ -49,6 +53,8 @@ public class CommandTestUtil {
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
     public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_PHONE_BOB;
+    public static final String ORDER_INDEX_DESC_ONE = " " + PREFIX_ORDER + VALID_ORDER_INDEX_ONE;
+    public static final String ORDER_INDEX_DESC_TWO = " " + PREFIX_ORDER + VALID_ORDER_INDEX_TWO;
     public static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + VALID_EMAIL_AMY;
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
@@ -67,8 +73,8 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditPersonDescriptor DESC_AMY;
-    public static final EditCommand.EditPersonDescriptor DESC_BOB;
+    public static final EditCustomerCommand.EditPersonDescriptor DESC_AMY;
+    public static final EditCustomerCommand.EditPersonDescriptor DESC_BOB;
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)

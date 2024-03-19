@@ -7,6 +7,8 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.order.Order;
+import seedu.address.model.order.Product;
+import seedu.address.model.order.Quantity;
 import seedu.address.model.person.Person;
 
 /**
@@ -82,10 +84,25 @@ public interface Model {
     void setPerson(Person target, Person editedPerson);
 
     /**
+     * Adds the given order {@code newOrder} to the given person {@code person} into the orderlist.
+     * @param newOrder Order object to be added to the orderlist.
+     * @param person Person object to be attached to the order, which will be added to the orderlist.
+     */
+    void addOrder(Order newOrder, Person person);
+
+    /**
      * Deletes the given order.
      * The order must exist in the address book.
      */
     void deleteOrder(int id);
+
+    /**
+     * Sets the quantity of the product in the order.
+     * If the product is not in the order yet, add the product and set its quantity.
+     * @param currProduct Product of which quantity to be editted.
+     * @param newQuantity new Quantity of the specified product.
+     */
+    Order setOrder(Order target, Product currProduct, Quantity newQuantity);
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
