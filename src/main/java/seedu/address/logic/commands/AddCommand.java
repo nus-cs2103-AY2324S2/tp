@@ -70,6 +70,7 @@ public class AddCommand extends Command {
 
     /**
      * Takes a person object and only returns non-null fields
+     * 
      * @param person
      * @return a String of non-null fields
      */
@@ -85,15 +86,15 @@ public class AddCommand extends Command {
         sb.append(name);
         sb.append("; Phone: ").append(phone);
 
-        if (!email.value.isEmpty()) {
+        if (!email.getValue().isEmpty()) {
             sb.append("; Email: ").append(email);
         }
 
-        if (!address.value.isEmpty()) {
+        if (!address.getValue().isEmpty()) {
             sb.append("; Address: ").append(address);
         }
 
-        if (!note.value.isEmpty()) {
+        if (!note.getValue().isEmpty()) {
             sb.append("; Note: ").append(note);
         }
 
