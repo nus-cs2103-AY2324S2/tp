@@ -141,6 +141,12 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Monica` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+### Viewing all appointments : `appointments`
+
+Displays all current appointments across all users from the address book.
+
+Format: `appointments`
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
