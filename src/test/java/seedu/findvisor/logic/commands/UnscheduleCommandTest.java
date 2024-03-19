@@ -90,7 +90,8 @@ public class UnscheduleCommandTest {
     public void execute_noMeetingToUnschedule_throwsCommandException() {
         UnscheduleCommand unscheduleCommand = new UnscheduleCommand(INDEX_FIRST_PERSON);
 
-        assertCommandFailure(unscheduleCommand, model, UnscheduleCommand.MESSAGE_NO_MEETING_TO_UNSCHEDULE);
+        assertCommandFailure(unscheduleCommand, model, String.format(UnscheduleCommand.MESSAGE_NO_MEETING_TO_UNSCHEDULE,
+                model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()).getName()));
     }
 
     @Test

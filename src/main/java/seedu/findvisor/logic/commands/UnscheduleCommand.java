@@ -53,7 +53,7 @@ public class UnscheduleCommand extends Command {
 
         Person personToEdit = lastShownList.get(targetIndex.getZeroBased());
         if (personToEdit.getMeeting().isEmpty()) {
-            throw new CommandException(MESSAGE_NO_MEETING_TO_UNSCHEDULE);
+            throw new CommandException(String.format(MESSAGE_NO_MEETING_TO_UNSCHEDULE, personToEdit.getName()));
         }
         Person editedPerson = createEditedPerson(personToEdit);
 
