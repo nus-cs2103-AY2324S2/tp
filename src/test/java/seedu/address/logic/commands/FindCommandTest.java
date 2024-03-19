@@ -55,10 +55,8 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_RelationshipNamKeywords_noPersonFound() {
+    public void execute_relationshipNameKeywords_noPersonFound() {
 
-
-        
     }
 
     @Test

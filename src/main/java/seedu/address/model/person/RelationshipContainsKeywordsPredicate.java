@@ -5,6 +5,9 @@ import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
 
+/**
+ * Tests that a {@code Person}'s {@code Relationship} matches any of the keywords given.
+ */
 public class RelationshipContainsKeywordsPredicate implements Predicate<Person> {
     private final List<String> keywords;
 
@@ -23,7 +26,8 @@ public class RelationshipContainsKeywordsPredicate implements Predicate<Person> 
             return false;
         }
 
-        RelationshipContainsKeywordsPredicate otherRelationshipContainsKeywordsPredicate = (RelationshipContainsKeywordsPredicate) other;
+        RelationshipContainsKeywordsPredicate otherRelationshipContainsKeywordsPredicate =
+                (RelationshipContainsKeywordsPredicate) other;
         return keywords.equals(otherRelationshipContainsKeywordsPredicate.keywords);
     }
 
