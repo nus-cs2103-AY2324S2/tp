@@ -54,7 +54,7 @@ public class JsonAdaptedTutorialClass {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted tutorial class.
      */
-    public TutorialClass toModelType() {
+    public TutorialClass toModelType() throws IllegalValueException {
         try {
             ArrayList<Person> students = new ArrayList<>();
             for (JsonAdaptedPerson student : this.students) {
@@ -62,7 +62,7 @@ public class JsonAdaptedTutorialClass {
             }
             return new TutorialClass(tutorialName, students);
         } catch (IllegalValueException e) {
-            throw new IllegalArgumentException(e.getMessage());
+            throw new IllegalValueException(TutorialClass.MESSAGE_CONSTRAINTS);
         }
     }
 

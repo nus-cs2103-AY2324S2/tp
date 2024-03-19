@@ -128,7 +128,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Returns the tutorial object from the tutorial list if it exists.
      */
     public TutorialClass findTutorialClassFromList(TutorialClass tutorialClass, ModuleCode moduleCode)
-                throws CommandException {
+            throws CommandException {
         requireNonNull(tutorialClass);
         requireNonNull(moduleCode);
         ModuleCode moduleInList = findModuleFromList(moduleCode);

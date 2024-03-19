@@ -2,8 +2,8 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_STUDENT_ID;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_PERSON_EMAIL;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_PERSON_STUDENT_ID;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_AMY;
@@ -20,6 +20,7 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.addstudenttoclasscommands.AddStudentToClassByEmailCommand;
 import seedu.address.logic.commands.addstudenttoclasscommands.AddStudentToClassByIdCommand;
@@ -56,15 +57,19 @@ public class AddStudentToClassCommandTest {
     @Test
     public void execute_invalidStudent_fail() {
         AddStudentToClassByEmailCommand addStudentToClassByEmailCommand = new AddStudentToClassByEmailCommand(
-                new Email(INVALID_EMAIL), new ModuleCode(VALID_MODULE_AMY), new TutorialClass(VALID_TUTORIAL_AMY));
+                new Email(INVALID_PERSON_EMAIL), new ModuleCode(VALID_MODULE_AMY),
+                        new TutorialClass(VALID_TUTORIAL_AMY));
         AddStudentToClassByIdCommand addStudentToClassByIdCommand = new AddStudentToClassByIdCommand(
-                new StudentId(INVALID_STUDENT_ID), new ModuleCode(VALID_MODULE_AMY),
+                new StudentId(INVALID_PERSON_STUDENT_ID), new ModuleCode(VALID_MODULE_AMY),
                 new TutorialClass(VALID_TUTORIAL_AMY));
-
+        AddStudentToClassByIndexCommand addStudentToClassByIndexCommand = new AddStudentToClassByIndexCommand(
+            Index.fromOneBased(1000), new ModuleCode(VALID_MODULE_AMY), new TutorialClass(VALID_TUTORIAL_AMY));
         assertCommandFailure(addStudentToClassByEmailCommand, model,
-                String.format(PersonMessages.MESSAGE_PERSON_EMAIL_NOT_FOUND, INVALID_EMAIL));
+                String.format(PersonMessages.MESSAGE_PERSON_EMAIL_NOT_FOUND, INVALID_PERSON_EMAIL));
         assertCommandFailure(addStudentToClassByIdCommand, model,
-                String.format(PersonMessages.MESSAGE_PERSON_STUDENT_ID_NOT_FOUND, INVALID_STUDENT_ID));
+                String.format(PersonMessages.MESSAGE_PERSON_STUDENT_ID_NOT_FOUND, INVALID_PERSON_STUDENT_ID));
+        assertCommandFailure(addStudentToClassByIndexCommand, model,
+                String.format(PersonMessages.MESSAGE_PERSON_INDEX_NOT_FOUND, 1000));
     }
 
     @Test
