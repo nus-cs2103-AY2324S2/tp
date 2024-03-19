@@ -50,6 +50,7 @@ public class InitDeleteCommand extends Command {
         return (this.targetIndex.equals(o.targetIndex));
     }
 
+    @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .add("targetIndex", targetIndex)
