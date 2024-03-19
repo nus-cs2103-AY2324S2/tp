@@ -7,8 +7,8 @@ import java.util.Set;
 
 import seedu.address.logic.commands.CreateGroupCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.coursemate.CourseMate;
 import seedu.address.model.coursemate.Name;
+import seedu.address.model.coursemate.QueryableCourseMate;
 
 /**
  * Parses input arguments and creates a new {@code CreateGroupCommand} object.
@@ -24,10 +24,11 @@ public class CreateGroupCommandParser implements Parser<CreateGroupCommand> {
         ArgumentMultimap argMultiMap = ArgumentTokenizer.tokenize(args, PREFIX_COURSEMATE);
 
         Name name = ParserUtil.parseName(argMultiMap.getPreamble());
-        Set<CourseMate> courseMateList = ParserUtil.parseCourseMates(argMultiMap.getAllValues(PREFIX_COURSEMATE));
+        Set<QueryableCourseMate> queryableCourseMateSet =
+                ParserUtil.parseQueryableCourseMates(argMultiMap.getAllValues(PREFIX_COURSEMATE));
 
         // TODO: check if group already exists
 
-        return new CreateGroupCommand(name, courseMateList);
+        return new CreateGroupCommand(name, queryableCourseMateSet);
     }
 }

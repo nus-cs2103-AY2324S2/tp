@@ -7,6 +7,7 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.coursemate.CourseMate;
+import seedu.address.model.coursemate.Name;
 import seedu.address.model.coursemate.UniqueCourseMateList;
 
 /**
@@ -86,6 +87,15 @@ public class ContactList implements ReadOnlyContactList {
         requireNonNull(editedCourseMate);
 
         courseMates.setCourseMate(target, editedCourseMate);
+    }
+
+    /**
+     * Finds a {@code CourseMate} with the exact same name.
+     */
+    public CourseMate findCourseMate(Name name) {
+        requireNonNull(name);
+
+        return courseMates.findCourseMate(name);
     }
 
     /**

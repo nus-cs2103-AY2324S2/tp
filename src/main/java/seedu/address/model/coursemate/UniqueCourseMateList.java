@@ -54,6 +54,22 @@ public class UniqueCourseMateList implements Iterable<CourseMate> {
     }
 
     /**
+     * Finds a courseMate in the list.
+     * The courseMate must already exist in the list. Throws an exception otherwise.
+     */
+
+    public CourseMate findCourseMate(Name name) {
+        requireNonNull(name);
+        for (CourseMate courseMate: internalList) {
+            if (courseMate.getName().equals(name)) {
+                return courseMate;
+            }
+        }
+
+        throw new CourseMateNotFoundException();
+    }
+
+    /**
      * Replaces the courseMate {@code target} in the list with {@code editedCourseMate}.
      * {@code target} must exist in the list.
      * The courseMate identity of {@code editedCourseMate}

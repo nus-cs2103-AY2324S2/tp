@@ -168,4 +168,26 @@ public class ParserUtilTest {
 
         assertEquals(expectedSkillSet, actualSkillSet);
     }
+
+    @Test
+    public void parseQueryableCourseMate_emptyString_throwsError() {
+        assertThrows(ParseException.class, () ->
+                ParserUtil.parseQueryableCourseMate(""));
+    }
+
+    @Test
+    public void parseQueryableCourseMate_garbageIndex_throwsError() {
+        assertThrows(ParseException.class, () ->
+                ParserUtil.parseQueryableCourseMate("#ABC"));
+    }
+
+    @Test
+    public void parseQueryableCourseMate_normalIndex_returnsIndexQueryableCourseMate() throws Exception {
+        assertTrue(ParserUtil.parseQueryableCourseMate("#123").isIndex());
+    }
+
+    @Test
+    public void parseQueryableCourseMate_normalName_returnsNameQueryableCourseMate() throws Exception {
+        assertTrue(ParserUtil.parseQueryableCourseMate("John Doe").isName());
+    }
 }

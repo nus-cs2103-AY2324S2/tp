@@ -13,6 +13,8 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.coursemate.CourseMate;
 import seedu.address.model.coursemate.Name;
+import seedu.address.model.coursemate.QueryableCourseMate;
+import seedu.address.model.coursemate.exceptions.CourseMateNotFoundException;
 import seedu.address.model.group.Group;
 import seedu.address.model.group.exceptions.GroupNotFoundException;
 
@@ -39,7 +41,7 @@ public class ModelManager implements Model {
 
         this.contactList = new ContactList(contactList);
         this.userPrefs = new UserPrefs(userPrefs);
-        this.groupList = new GroupList();
+        this.groupList = new GroupList(groupList);
         filteredCourseMates = new FilteredList<>(this.contactList.getCourseMateList());
         filteredGroups = new FilteredList<>(this.groupList.getGroupList());
         recentlyProcessedCourseMate = null;
@@ -148,6 +150,16 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedGroup);
 
         groupList.setGroup(target, editedGroup);
+    }
+
+    @Override
+    public CourseMate findCourseMate(QueryableCourseMate query) {
+        // EVENTUALLY CHANGE TO HANDLE
+        if (query.isIndex()) {
+            throw new CourseMateNotFoundException();
+        } else {
+            return contactList.findCourseMate(query.getName());
+        }
     }
 
     //=========== Filtered CourseMate List Accessors =============================================================

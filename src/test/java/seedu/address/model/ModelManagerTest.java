@@ -1,5 +1,6 @@
 package seedu.address.model;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -15,7 +16,10 @@ import java.nio.file.Paths;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.coursemate.ContainsKeywordPredicate;
+import seedu.address.model.coursemate.Name;
+import seedu.address.model.coursemate.QueryableCourseMate;
 import seedu.address.testutil.ContactListBuilder;
 
 public class ModelManagerTest {
@@ -86,6 +90,24 @@ public class ModelManagerTest {
     public void hasCourseMate_courseMateInContactList_returnsTrue() {
         modelManager.addCourseMate(ALICE);
         assertTrue(modelManager.hasCourseMate(ALICE));
+    }
+
+    @Test
+    public void findCourseMate_byNameCourseMateInContactList_doesNotThrow() {
+        modelManager.addCourseMate(ALICE);
+        assertDoesNotThrow(() -> modelManager.findCourseMate(new QueryableCourseMate(ALICE.getName())));
+    }
+
+    @Test
+    public void findCourseMate_byNameCourseMateNotInContactList_throwsError() {
+        assertThrows(RuntimeException.class, () ->
+                modelManager.findCourseMate(new QueryableCourseMate(new Name("RANDOM_STRING_12KAJ@"))));
+    }
+
+    @Test
+    public void findCourseMate_byIndexCourseMateNotInContactList_throwsError() {
+        assertThrows(RuntimeException.class, () ->
+                modelManager.findCourseMate(new QueryableCourseMate(Index.fromZeroBased(0))));
     }
 
     @Test

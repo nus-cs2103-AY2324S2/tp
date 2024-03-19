@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.coursemate.CourseMate;
 import seedu.address.model.coursemate.Name;
+import seedu.address.model.coursemate.QueryableCourseMate;
 import seedu.address.model.group.Group;
 import seedu.address.model.group.exceptions.GroupNotFoundException;
 
@@ -113,6 +114,10 @@ public interface Model {
      * existing group in the contact list.
      */
     void setGroup(Group target, Group editedGroup);
+    /**
+     * Finds a {@code CourseMate} with the exact same name.
+     */
+    CourseMate findCourseMate(QueryableCourseMate query);
 
     /** Returns an unmodifiable view of the filtered courseMate list */
     ObservableList<CourseMate> getFilteredCourseMateList();

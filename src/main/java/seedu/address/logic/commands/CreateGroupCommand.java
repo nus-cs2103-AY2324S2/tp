@@ -4,11 +4,13 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COURSEMATE;
 
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.coursemate.CourseMate;
 import seedu.address.model.coursemate.Name;
+import seedu.address.model.coursemate.QueryableCourseMate;
 import seedu.address.model.group.Group;
 
 /**
@@ -28,20 +30,29 @@ public class CreateGroupCommand extends Command {
 
     public static final String MESSAGE_DUPLICATE_GROUP = "This group already exists in the group list";
 
-    private final Group toAdd;
+    private final Name groupName;
+    private final Set<QueryableCourseMate> queryableCourseMateSet;
 
     /**
-     * Basic constructor for CreateGroupCommand. Creates a group with specified details.
-     * @param name name of the group
-     * @param courseMateSet set containing the courseMates in the group
+     * Basic constructor for CreateGroupCommand.
+     * Creates the details or a group to be created.
+     * @param groupName name of the group
+     * @param queryableCourseMateSet set containing the queryableCourseMate in the group
      */
-    public CreateGroupCommand(Name name, Set<CourseMate> courseMateSet) {
-        requireAllNonNull(name, courseMateSet);
-        toAdd = new Group(name, courseMateSet);
+    public CreateGroupCommand(Name groupName, Set<QueryableCourseMate> queryableCourseMateSet) {
+        requireAllNonNull(groupName, queryableCourseMateSet);
+        this.groupName = groupName;
+        this.queryableCourseMateSet = queryableCourseMateSet;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        Set<CourseMate> courseMateList = queryableCourseMateSet
+                .stream()
+                .map(model::findCourseMate)
+                .collect(Collectors.toSet());
+        Group toAdd = new Group(groupName, courseMateList);
+
         if (model.hasGroup(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_GROUP);
         }

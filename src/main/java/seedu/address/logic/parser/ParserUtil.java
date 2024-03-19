@@ -9,10 +9,10 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.coursemate.CourseMate;
 import seedu.address.model.coursemate.Email;
 import seedu.address.model.coursemate.Name;
 import seedu.address.model.coursemate.Phone;
+import seedu.address.model.coursemate.QueryableCourseMate;
 import seedu.address.model.skill.Skill;
 
 /**
@@ -108,28 +108,31 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String courseMateName} into a {@code CourseMate}.
-     * Leading and trailing whitespaces will be trimmed.
-     * {@code courseMateName} can be a name or a '#' notation label.
-     *
-     * @throws ParseException if the given {@code courseMateName} is invalid.
+     * Parses {@code String label} into a {@code QueryableCourseMate}.
      */
-    public static CourseMate parseCourseMate(String courseMateName) throws ParseException {
-        requireNonNull(courseMateName);
+    public static QueryableCourseMate parseQueryableCourseMate(String label) throws ParseException {
+        requireNonNull(label);
+        String trimmedLabel = label.trim();
 
-        // TODO: Find coursemate by name or by # indicator
+        if (trimmedLabel.isEmpty()) {
+            throw new ParseException("the query cannot be empty");
+        }
 
-        return new CourseMate(new Name(courseMateName), new Phone("123"), new Email("jane@doe.com"), new HashSet<>());
+        if (trimmedLabel.charAt(0) == '#') {
+            return new QueryableCourseMate(parseIndex(trimmedLabel.substring(1)));
+        } else {
+            return new QueryableCourseMate(parseName(trimmedLabel));
+        }
     }
-
     /**
-     * Parses {@code Collection<String> courseMates} into a {@code Set<CourseMate>}.
+     * Parses {@code String labels} into a {@code Set<QueryableCourseMate>}.
      */
-    public static Set<CourseMate> parseCourseMates(Collection<String> courseMates) throws ParseException {
-        requireNonNull(courseMates);
-        final Set<CourseMate> courseMateSet = new HashSet<>();
-        for (String courseMateName : courseMates) {
-            courseMateSet.add(parseCourseMate(courseMateName));
+    public static Set<QueryableCourseMate> parseQueryableCourseMates(Collection<String> labels)
+            throws ParseException {
+        requireNonNull(labels);
+        final Set<QueryableCourseMate> courseMateSet = new HashSet<>();
+        for (String courseMateName : labels) {
+            courseMateSet.add(parseQueryableCourseMate(courseMateName));
         }
         return courseMateSet;
     }
