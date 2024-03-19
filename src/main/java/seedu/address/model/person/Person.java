@@ -62,7 +62,6 @@ public class Person {
         tagSet.addAll(tags);
         this.tags = new TagSet(tagSet);
         this.note = note;
-        this.generateQrCode();
     }
 
     /**

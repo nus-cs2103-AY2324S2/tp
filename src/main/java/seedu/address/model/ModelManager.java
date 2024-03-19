@@ -34,6 +34,8 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+
+        initQrCodes();
     }
 
     public ModelManager() {
@@ -79,6 +81,9 @@ public class ModelManager implements Model {
 
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
+        // Delete QR codes of every person in the address book
+        this.addressBook.getPersonList().forEach(Person::deleteQrCode);
+
         this.addressBook.resetData(addressBook);
     }
 
@@ -96,11 +101,13 @@ public class ModelManager implements Model {
     @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
+        target.deleteQrCode();
     }
 
     @Override
     public void addPerson(Person person) {
         addressBook.addPerson(person);
+        person.generateQrCode();
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
@@ -108,7 +115,19 @@ public class ModelManager implements Model {
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
 
+        target.deleteQrCode();
+        editedPerson.generateQrCode();
+
         addressBook.setPerson(target, editedPerson);
+    }
+
+    /**
+     * Initialize QR codes for all persons in the address book.
+     */
+    public void initQrCodes() {
+        for (Person person : this.addressBook.getPersonList()) {
+            person.generateQrCode();
+        }
     }
 
     //=========== Filtered Person List Accessors =============================================================
