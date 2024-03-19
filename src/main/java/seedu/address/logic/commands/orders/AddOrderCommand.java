@@ -26,7 +26,7 @@ public class AddOrderCommand extends Command {
             + "DETAILS (in formation related to order), "
             + "DEADLINE (the date the order is due"
             + "r/ [ORDER]\n"
-            + "Example: " + COMMAND_WORD + "d/1xRoses c/40 by/23-07-2024 00:00";
+            + "Example: " + COMMAND_WORD + " d/1xRoses c/40 by/23-07-2024 00:00";
 
     public static final String MESSAGE_SUCCESS = "New Order added!";
     private final Order order;

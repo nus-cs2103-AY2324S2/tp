@@ -31,14 +31,12 @@ public class AddOrderCommandParser implements Parser<AddOrderCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
                 PREFIX_DETAILS, PREFIX_BY, PREFIX_PRICE);
-
         OrderId orderId = new OrderId();
         OrderDate orderDate = new OrderDate(getCurrentTime());
-        Deadline deadline = new Deadline(argMultimap.getValue(PREFIX_BY).toString());
-        Remark remark = new Remark(argMultimap.getValue(PREFIX_DETAILS).orElse(""));
-        Amount amount = new Amount(argMultimap.getValue(PREFIX_PRICE).orElse("0"));
-        Status status = new Status("Processing");
-
+        Deadline deadline = new Deadline(argMultimap.getValue(PREFIX_BY).get());
+        Remark remark = new Remark(argMultimap.getValue(PREFIX_DETAILS).get());
+        Amount amount = new Amount(argMultimap.getValue(PREFIX_PRICE).get());
+        Status status = new Status("pending");
         Order order = new Order(orderId, orderDate, deadline, amount, remark, status);
         return new AddOrderCommand(order);
     }
