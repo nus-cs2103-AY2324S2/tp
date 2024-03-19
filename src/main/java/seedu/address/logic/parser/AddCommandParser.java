@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOMNUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 
+import java.util.Optional;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
@@ -36,20 +37,30 @@ public class AddCommandParser implements Parser<AddCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ROOMNUMBER,
                         PREFIX_TELEGRAM, PREFIX_BIRTHDAY);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ROOMNUMBER, PREFIX_TELEGRAM, PREFIX_BIRTHDAY,
-                PREFIX_PHONE, PREFIX_EMAIL)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ROOMNUMBER,
-                PREFIX_TELEGRAM, PREFIX_BIRTHDAY);
+                PREFIX_TELEGRAM);
+
+        // Mandatory fields
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        RoomNumber roomNumber = ParserUtil.parseRoomNumber(argMultimap.getValue(PREFIX_ROOMNUMBER).get());
-        Telegram telegram = ParserUtil.parseTelegram(argMultimap.getValue(PREFIX_TELEGRAM).get());
-        Birthday birthday = ParserUtil.parseBirthday(argMultimap.getValue(PREFIX_BIRTHDAY).get());
+
+        // Optional fields
+        Optional<String> emailText = argMultimap.getValue(PREFIX_EMAIL);
+        Email email = emailText.isPresent() ? ParserUtil.parseEmail(emailText.get()) : null;
+
+        Optional<String> roomNumberText = argMultimap.getValue(PREFIX_ROOMNUMBER);
+        RoomNumber roomNumber = roomNumberText.isPresent() ? ParserUtil.parseRoomNumber(roomNumberText.get()) : null;
+
+        Optional<String> telegramText = argMultimap.getValue(PREFIX_TELEGRAM);
+        Telegram telegram = telegramText.isPresent() ? ParserUtil.parseTelegram(telegramText.get()) : null;
+
+        Optional<String> birthdayText = argMultimap.getValue(PREFIX_BIRTHDAY);
+        Birthday birthday = birthdayText.isPresent() ? ParserUtil.parseBirthday(birthdayText.get()) : null;
 
         Person person = new Person(name, phone, email, roomNumber, telegram, birthday);
         return new AddCommand(person);
