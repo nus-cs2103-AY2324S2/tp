@@ -22,12 +22,14 @@ public class Internship {
     private final ContactEmail contactEmail;
     private final ContactNumber contactNumber;
     private final ApplicationStatus applicationStatus;
+    private final Remark remark;
+
     /**
-     * Every field must be present and not null.
+     * Every field except for remark must be present and not null.
      */
     public Internship(CompanyName companyName, ContactName contactName, ContactEmail contactEmail,
                       ContactNumber contactNumber, Location location, ApplicationStatus applicationStatus,
-                      Description description, Role role) {
+                      Description description, Role role, Remark remark) {
         requireAllNonNull(companyName, contactName, contactEmail, contactNumber, location, applicationStatus,
                 description, role);
         this.companyName = companyName;
@@ -38,6 +40,7 @@ public class Internship {
         this.applicationStatus = applicationStatus;
         this.description = description;
         this.role = role;
+        this.remark = remark;
     }
 
     public CompanyName getCompanyName() {
@@ -70,6 +73,10 @@ public class Internship {
 
     public Role getRole() {
         return role;
+    }
+
+    public Remark getRemark() {
+        return remark;
     }
 
     /**
@@ -131,6 +138,7 @@ public class Internship {
                 .add("applicationStatus", applicationStatus)
                 .add("description", description)
                 .add("role", role)
+                .add("remark", remark)
                 .toString();
     }
 }
