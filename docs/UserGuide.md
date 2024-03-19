@@ -111,9 +111,9 @@ Examples:
 *  `edit_applicant 1 /phone 91234567 /email johndoe@example.com` Edits the phone number and email address of the 1st applicant to be `91234567` and `johndoe@example.com` respectively.
 *  `edit_applicant 2 /name Betsy Crower /tag` Edits the name of the 2nd applicant to be `Betsy Crower` and clears all existing tags.
 
-### Locating interviewees by name: `find`
+### Locating applicants by name: `find`
 
-Finds persons whose names contain any of the given keywords.
+Finds applicants whose names contain any of the given keywords.
 
 Format: `find Keyword [More_Keywords]`
 
@@ -143,9 +143,9 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd applicant in the HRConnect.
 * `find Betsy` followed by `delete 1` deletes the 1st applicant in the results of the `find` command.
 
-### Adding tags to interviewees: `/tag`
+### Adding tags to applicants: `/tag`
 
-Attaches specific tags to interviewees for easy filtering later
+Attaches specific tags to applicants for easy filtering later
 
 Format: `/tag <ApplicationID> <Tag>`
 
@@ -177,7 +177,7 @@ Format: `note <ApplicationId> /note <Note>`
 Examples:
 * `note 1 /note S/Pass Holder` will add the note “S/Pass Holder” to the applicant identified by ID 1.
 
-### Exporting interviewees contacts by pageId : `/export`
+### Exporting applicants contacts by pageId : `/export`
 Extracts applicants' contacts into a separate HRConnect identified by a pageId
 Format: /export <ContactRange> <pageId>
 
