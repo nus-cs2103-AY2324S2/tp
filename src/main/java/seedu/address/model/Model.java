@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.coursemate.CourseMate;
+import seedu.address.model.coursemate.QueryableCourseMate;
 import seedu.address.model.group.Group;
 
 /**
@@ -77,6 +78,11 @@ public interface Model {
      * existing courseMate in the contact list.
      */
     void setCourseMate(CourseMate target, CourseMate editedCourseMate);
+
+    /**
+     * Finds a {@code CourseMate} with the exact same name.
+     */
+    CourseMate findCourseMate(QueryableCourseMate query);
 
     /** Returns an unmodifiable view of the filtered courseMate list */
     ObservableList<CourseMate> getFilteredCourseMateList();

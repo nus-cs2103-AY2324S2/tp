@@ -1,5 +1,6 @@
 package seedu.address.model.coursemate;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -55,6 +56,18 @@ public class UniqueCourseMateListTest {
     public void add_duplicateCourseMate_throwsDuplicateCourseMateException() {
         uniqueCourseMateList.add(ALICE);
         assertThrows(DuplicateCourseMateException.class, () -> uniqueCourseMateList.add(ALICE));
+    }
+
+    @Test
+    public void findCourseMate_courseMateDoesNotExist_throwsCourseMateNotFoundException() {
+        assertThrows(CourseMateNotFoundException.class, () ->
+                uniqueCourseMateList.findCourseMate(new Name("RANDOMSTRINGAJ124AJK")));
+    }
+
+    @Test
+    public void findCourseMate_courseMateExists_courseMateFound() {
+        uniqueCourseMateList.add(ALICE);
+        assertDoesNotThrow(() -> uniqueCourseMateList.findCourseMate(ALICE.getName()));
     }
 
     @Test

@@ -134,6 +134,15 @@ public class ContactList implements ReadOnlyContactList {
     }
 
     /**
+     * Finds a {@code CourseMate} with the exact same name.
+     */
+    public CourseMate findCourseMate(Name name) {
+        requireNonNull(name);
+
+        return courseMates.findCourseMate(name);
+    }
+
+    /**
      * Removes {@code key} from this {@code ContactList}.
      * {@code key} must exist in the contact list.
      */
