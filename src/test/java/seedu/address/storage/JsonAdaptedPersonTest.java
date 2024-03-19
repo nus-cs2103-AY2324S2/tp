@@ -14,11 +14,13 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.NusId;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Tag;
 
 public class JsonAdaptedPersonTest {
     private static final String INVALID_NAME = "R@chel";
+    private static final String INVALID_NUSID = "e1234567";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_TAG = " ";
     private static final String INVALID_EMAIL = "example.com";
@@ -37,6 +39,22 @@ public class JsonAdaptedPersonTest {
     public void toModelType_validPersonDetails_returnsPerson() throws Exception {
         JsonAdaptedPerson person = new JsonAdaptedPerson(BENSON);
         assertEquals(BENSON, person.toModelType());
+    }
+
+    @Test
+    public void toModelType_invalidNusId_throwsIllegalValueException() {
+        JsonAdaptedPerson person =
+                new JsonAdaptedPerson(INVALID_NUSID, VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_TAG, VALID_GROUPS);
+        String expectedMessage = NusId.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_nullNusId_throwsIllegalValueException() {
+        JsonAdaptedPerson person =
+                new JsonAdaptedPerson(null, VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_TAG, VALID_GROUPS);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, NusId.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
     @Test
