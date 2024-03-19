@@ -5,9 +5,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DATEOFBIRTH;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SEX;
 
 import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.EditCommand.EditPatientDescriptor;
 import seedu.address.model.patient.Patient;
 
 /**
@@ -32,6 +33,7 @@ public class PatientUtil {
         sb.append(PREFIX_EMAIL + patient.getEmail().value + " ");
         sb.append(PREFIX_ADDRESS + patient.getAddress().value + " ");
         sb.append(PREFIX_DATEOFBIRTH + patient.getDateOfBirth().toString() + " ");
+        sb.append(PREFIX_SEX + patient.getSex().toString() + " ");
         System.out.println(sb.toString());
         return sb.toString();
     }
@@ -39,7 +41,7 @@ public class PatientUtil {
     /**
      * Returns the part of command string for the given {@code EditPersonDescriptor}'s details.
      */
-    public static String getEditPersonDescriptorDetails(EditPersonDescriptor descriptor) {
+    public static String getEditPersonDescriptorDetails(EditPatientDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));

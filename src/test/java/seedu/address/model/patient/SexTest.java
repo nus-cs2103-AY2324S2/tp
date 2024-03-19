@@ -33,4 +33,24 @@ public class SexTest {
         assertTrue(Sex.isValidSex("Male"));
         assertTrue(Sex.isValidSex("Female"));
     }
+
+    @Test
+    public void equals() {
+        Sex sex = new Sex("Male");
+
+        // same values -> returns true
+        assertTrue(sex.equals(new Sex("Male")));
+
+        // same object -> returns true
+        assertTrue(sex.equals(sex));
+
+        // null -> returns false
+        assertFalse(sex.equals(null));
+
+        // different types -> returns false
+        assertFalse(sex.equals(5.0f));
+
+        // different values -> returns false
+        assertFalse(sex.equals(new Sex("Female")));
+    }
 }

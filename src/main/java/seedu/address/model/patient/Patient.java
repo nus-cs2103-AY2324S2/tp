@@ -17,6 +17,7 @@ public class Patient {
     private final Phone phone;
     private final Email email;
     private final DateOfBirth dateOfBirth;
+    private final Sex sex;
 
     // Data fields
     private final Address address;
@@ -24,13 +25,14 @@ public class Patient {
     /**
      * Every field must be present and not null.
      */
-    public Patient(Name name, Phone phone, Email email, Address address, DateOfBirth dateOfBirth) {
-        requireAllNonNull(name, phone, email, address);
+    public Patient(Name name, Phone phone, Email email, Address address, DateOfBirth dateOfBirth, Sex sex) {
+        requireAllNonNull(name, phone, email, address, dateOfBirth, sex);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.dateOfBirth = dateOfBirth;
+        this.sex = sex;
     }
 
     public Name getName() {
@@ -53,11 +55,15 @@ public class Patient {
         return dateOfBirth;
     }
 
+    public Sex getSex() {
+        return sex;
+    }
+
     /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      */
-    public boolean isSamePerson(Patient otherPatient) {
+    public boolean isSamePatient(Patient otherPatient) {
         if (otherPatient == this) {
             return true;
         }
@@ -85,13 +91,15 @@ public class Patient {
         return name.equals(otherPatient.name)
                 && phone.equals(otherPatient.phone)
                 && email.equals(otherPatient.email)
-                && address.equals(otherPatient.address);
+                && address.equals(otherPatient.address)
+                && dateOfBirth.equals(otherPatient.dateOfBirth)
+                && sex.equals(otherPatient.sex);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, dateOfBirth);
+        return Objects.hash(name, phone, email, address, dateOfBirth, sex);
     }
 
     @Override
@@ -102,6 +110,7 @@ public class Patient {
                 .add("email", email)
                 .add("address", address)
                 .add("date of birth", dateOfBirth)
+                .add("sex", sex)
                 .toString();
     }
 

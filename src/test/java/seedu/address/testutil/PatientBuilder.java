@@ -6,6 +6,7 @@ import seedu.address.model.patient.Email;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.Phone;
+import seedu.address.model.patient.Sex;
 
 /**
  * A utility class to help with building Patient objects.
@@ -17,13 +18,14 @@ public class PatientBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_DATEOFBIRTH = "25/2/2025";
+    public static final String DEFAULT_SEX = "Female";
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
-
     private DateOfBirth dateOfBirth;
+    private Sex sex;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -34,6 +36,7 @@ public class PatientBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         dateOfBirth = new DateOfBirth(DEFAULT_DATEOFBIRTH);
+        sex = new Sex(DEFAULT_SEX);
     }
 
     /**
@@ -45,6 +48,7 @@ public class PatientBuilder {
         email = patientToCopy.getEmail();
         address = patientToCopy.getAddress();
         dateOfBirth = patientToCopy.getDateOfBirth();
+        sex = patientToCopy.getSex();
     }
 
     /**
@@ -87,8 +91,16 @@ public class PatientBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Sex} of the {@Cose Patient} that we are building.
+     */
+    public PatientBuilder withSex(String sex) {
+        this.sex = new Sex(sex);
+        return this;
+    }
+
     public Patient build() {
-        return new Patient(name, phone, email, address, dateOfBirth);
+        return new Patient(name, phone, email, address, dateOfBirth, sex);
     }
 
 }

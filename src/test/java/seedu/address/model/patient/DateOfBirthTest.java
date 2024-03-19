@@ -36,4 +36,33 @@ public class DateOfBirthTest {
         assertTrue(DateOfBirth.isValidDateOfBirth("25/2/2024")); // valid first input foramt
         assertTrue(DateOfBirth.isValidDateOfBirth("2024-2-24")); // valid second input format
     }
+
+    @Test
+    public void equals() {
+        DateOfBirth dateOfBirth = new DateOfBirth("2024-2-5");
+
+        // same values -> returns true
+        assertTrue(dateOfBirth.equals(new DateOfBirth("2024-2-5")));
+
+        // same values -> returns true
+        assertTrue(dateOfBirth.equals(new DateOfBirth("2024-02-05")));
+
+        // another acceptable input format -> returns true
+        assertTrue(dateOfBirth.equals(new DateOfBirth("5/2/2024")));
+
+        //another acceptable input format -> returns true
+        assertTrue(dateOfBirth.equals(new DateOfBirth("05/02/2024")));
+
+        // same object -> returns true
+        assertTrue(dateOfBirth.equals(dateOfBirth));
+
+        // null -> returns false
+        assertFalse(dateOfBirth.equals(null));
+
+        // different types -> returns false
+        assertFalse(dateOfBirth.equals(5.0f));
+
+        // different values -> returns false
+        assertFalse(dateOfBirth.equals(new DateOfBirth("2026-12-5")));
+    }
 }

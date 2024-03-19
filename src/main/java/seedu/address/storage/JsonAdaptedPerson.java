@@ -10,6 +10,7 @@ import seedu.address.model.patient.Email;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.Phone;
+import seedu.address.model.patient.Sex;
 /**
  * Jackson-friendly version of {@link Patient}.
  */
@@ -22,6 +23,7 @@ class JsonAdaptedPerson {
     private final String email;
     private final String address;
     private final String dateOfBirth;
+    private final String sex;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given patient details.
@@ -29,12 +31,14 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-                             @JsonProperty("date of birth") String dateOfBirth) {
+                             @JsonProperty("date of birth") String dateOfBirth,
+                             @JsonProperty("sex") String sex) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.dateOfBirth = dateOfBirth;
+        this.sex = sex;
     }
 
     /**
@@ -46,6 +50,7 @@ class JsonAdaptedPerson {
         email = source.getEmail().value;
         address = source.getAddress().value;
         dateOfBirth = source.getDateOfBirth().dateOfBirth.toString();
+        sex = source.getSex().sex.getLabel();
     }
 
     /**
@@ -96,7 +101,16 @@ class JsonAdaptedPerson {
         }
         final DateOfBirth modelDateOfBirth = new DateOfBirth(dateOfBirth);
 
-        return new Patient(modelName, modelPhone, modelEmail, modelAddress, modelDateOfBirth);
+        if (sex == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Sex.class.getSimpleName()));
+        }
+        if (!Sex.isValidSex(sex)) {
+            throw new IllegalValueException(Sex.MESSAGE_CONSTRAINTS);
+        }
+        final Sex modelSex = new Sex(sex);
+
+        return new Patient(modelName, modelPhone, modelEmail, modelAddress, modelDateOfBirth, modelSex);
     }
 
 }

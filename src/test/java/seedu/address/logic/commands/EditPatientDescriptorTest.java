@@ -12,7 +12,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.EditCommand.EditPatientDescriptor;
 import seedu.address.testutil.EditPatientDescriptorBuilder;
 
 public class EditPatientDescriptorTest {
@@ -20,7 +20,9 @@ public class EditPatientDescriptorTest {
     @Test
     public void equals() {
         // same values -> returns true
-        EditPersonDescriptor descriptorWithSameValues = new EditPersonDescriptor(DESC_AMY);
+        EditPatientDescriptor descriptorWithSameValues = new EditPatientDescriptor(DESC_AMY);
+        System.out.println(DESC_AMY);
+        System.out.println(descriptorWithSameValues);
         assertTrue(DESC_AMY.equals(descriptorWithSameValues));
 
         // same object -> returns true
@@ -36,7 +38,7 @@ public class EditPatientDescriptorTest {
         assertFalse(DESC_AMY.equals(DESC_BOB));
 
         // different name -> returns false
-        EditPersonDescriptor editedAmy = new EditPatientDescriptorBuilder(DESC_AMY).withName(VALID_NAME_BOB).build();
+        EditPatientDescriptor editedAmy = new EditPatientDescriptorBuilder(DESC_AMY).withName(VALID_NAME_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different phone -> returns false
@@ -54,13 +56,14 @@ public class EditPatientDescriptorTest {
 
     @Test
     public void toStringMethod() {
-        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
-        String expected = EditPersonDescriptor.class.getCanonicalName() + "{name="
+        EditPatientDescriptor editPersonDescriptor = new EditPatientDescriptor();
+        String expected = EditPatientDescriptor.class.getCanonicalName() + "{name="
                 + editPersonDescriptor.getName().orElse(null) + ", phone="
                 + editPersonDescriptor.getPhone().orElse(null) + ", email="
                 + editPersonDescriptor.getEmail().orElse(null) + ", address="
                 + editPersonDescriptor.getAddress().orElse(null) + ", date of birth="
-                + editPersonDescriptor.getDateOfBirth().orElse(null) + "}";
+                + editPersonDescriptor.getDateOfBirth().orElse(null) + ", sex="
+                + editPersonDescriptor.getSex().orElse(null) + "}";
         assertEquals(expected, editPersonDescriptor.toString());
     }
 }
