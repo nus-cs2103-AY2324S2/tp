@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.testutil.AddressBookBuilder;
+import seedu.address.testutil.TypicalPersons;
 
 public class ModelManagerTest {
 
@@ -92,6 +93,48 @@ public class ModelManagerTest {
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
+    }
+
+    @Test
+    public void constructor_validArguments_success() {
+        // Create a ReadOnlyAddressBook with typical persons
+        ReadOnlyAddressBook addressBook = TypicalPersons.getTypicalAddressBook();
+
+        // Create a ReadOnlyUserPrefs with typical preferences
+        ReadOnlyUserPrefs userPrefs = new UserPrefs();
+
+        // Create a ModelManager instance using the constructor with arguments
+        ModelManager modelManager = new ModelManager(addressBook, userPrefs);
+
+        // Verify that the versionedAddressBook is correctly initialized with the data from the ReadOnlyAddressBook
+        assertEquals(addressBook, modelManager.getAddressBook());
+
+        // Verify that the userPrefs is correctly initialized with the data from the ReadOnlyUserPrefs
+        assertEquals(userPrefs, modelManager.getUserPrefs());
+
+        // Verify that the filteredPersons list is correctly initialized and reflects the content of the versionedAddressBook
+        assertTrue(modelManager.getFilteredPersonList().containsAll(addressBook.getPersonList()));
+    }
+
+    @Test
+    public void setUserPrefs_validUserPrefs_success() {
+        // Create initial user preferences
+        UserPrefs initialUserPrefs = new UserPrefs();
+
+        // Create a new set of user preferences
+        UserPrefs newUserPrefs = new UserPrefs();
+        GuiSettings defaultGuiSettings = new GuiSettings(800, 600, 0, 0);
+        newUserPrefs.setGuiSettings(defaultGuiSettings);
+
+        // Create a ModelManager instance
+        ModelManager modelManager = new ModelManager();
+
+        // Set the user preferences
+        modelManager.setUserPrefs(newUserPrefs);
+
+        // Verify that the user preferences in the ModelManager are updated
+        ReadOnlyUserPrefs retrievedUserPrefs = modelManager.getUserPrefs();
+        assertEquals(newUserPrefs, retrievedUserPrefs);
     }
 
     @Test
