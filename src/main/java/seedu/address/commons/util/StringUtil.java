@@ -5,12 +5,34 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.util.Arrays;
 
 /**
  * Helper functions for handling strings.
  */
 public class StringUtil {
+
+    /**
+     * Returns true if the {@code sentence} contains the {@code word}.
+     *   Ignores case and a full word match is not required.
+     *   <br>examples:<pre>
+     *       containsIgnoreCase("abcd", "abc") == true
+     *       containsIgnoreCase("ABc def", "bc def") == true
+     *       </pre>
+     * @param sentence cannot be null
+     * @param words cannot be null, cannot be empty
+     * @return {@code true} if the {@code sentence} contains the {@code word}, {@code false} otherwise.
+     */
+    public static boolean containsIngnoreCase(String sentence, String words) {
+        requireNonNull(sentence);
+        requireNonNull(words);
+
+        final String preppedSentence = sentence.toLowerCase().trim();
+        final String preppedWords = words.toLowerCase().trim();
+
+        checkArgument(!preppedWords.isEmpty(), "Word parameter cannot be empty");
+
+        return preppedSentence.contains(preppedWords);
+    }
 
     /**
      * Returns true if the {@code sentence} contains the {@code word}.
@@ -20,13 +42,13 @@ public class StringUtil {
      *       containsIgnoreCase("ABc def", "DEF") == true
      *       containsIgnoreCase("ABc def", "AB") == true
      *       containsIgnoreCase("ABc def", "de") == true
-     *       containsIgnoreCase("ABc def", "bd def") == false // not in chronological order.
+     *       containsIgnoreCase("ABc def", "bc def") == false // not in chronological order.
      *       </pre>
      * @param sentence cannot be null
      * @param words cannot be null, cannot be empty
      * @return {@code true} if the {@code sentence} contains the {@code word}, {@code false} otherwise.
      */
-    public static boolean containsIgnoreCase(String sentence, String words) {
+    public static boolean containsOrderedSubstringIgnoreCase(String sentence, String words) {
         requireNonNull(sentence);
         requireNonNull(words);
 
@@ -38,14 +60,21 @@ public class StringUtil {
         String[] wordsInPreppedSentence = preppedSentence.split(" ");
         String[] wordsInPreppedWords = words.split("\\s+");
 
-        if (wordsInPreppedWords.length > wordsInPreppedSentence.length) {
-            return false;
-        } else if (wordsInPreppedSentence.length == wordsInPreppedWords.length) {
-            return preppedSentence.indexOf(preppedWords) == 0;
-        } else {
-            return Arrays.stream(wordsInPreppedSentence)
-                    .anyMatch(sentencePart -> sentencePart.indexOf(preppedWords) == 0);
+        boolean matchFound = false;
+
+        for (int i = 0; i < wordsInPreppedSentence.length - wordsInPreppedWords.length + 1; i++) {
+            String testWord = "";
+            for (int j = 0; j < wordsInPreppedWords.length; j++) {
+                testWord = testWord + wordsInPreppedSentence[i + j] + " ";
+
+            }
+            System.out.println(testWord);
+            if (testWord.indexOf(preppedWords) == 0) {
+                matchFound = true;
+                break;
+            }
         }
+        return matchFound;
     }
 
     /**

@@ -18,7 +18,7 @@ public class NameContainsQueryNamePredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
-        return StringUtil.containsIgnoreCase(person.getName().fullName, queryName);
+        return StringUtil.containsOrderedSubstringIgnoreCase(person.getName().fullName, queryName);
     }
 
     @Override

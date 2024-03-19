@@ -46,6 +46,44 @@ public class StringUtilTest {
     }
 
     //---------------- Tests for containsIgnoreCase -------------------------------------
+    @Test
+    public void containsIgnoreCase_nullWord_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> StringUtil
+                .containsIngnoreCase("typical sentence", null));
+    }
+
+    @Test
+    public void containsIgnoreCase_emptyWord_throwsIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, "Word parameter cannot be empty", ()
+                -> StringUtil.containsIngnoreCase("typical sentence", "  "));
+    }
+
+    @Test
+    public void containsIgnoreCase_nullSentence_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> StringUtil.containsIngnoreCase(null, "abc"));
+    }
+
+    @Test
+    public void containsIgnoreCase_partialMatch_returnsTrue() {
+        assertTrue(StringUtil.containsIngnoreCase("A1234567X", "X"));
+        assertTrue(StringUtil.containsIngnoreCase("A1234567X", "123"));
+        assertTrue(StringUtil.containsIngnoreCase("A1234567X", "A"));
+        assertTrue(StringUtil.containsIngnoreCase("A1234567X", "a123"));
+    }
+
+    @Test
+    public void containsIgnoreCase_fullMatch_returnsTrue() {
+        assertTrue(StringUtil.containsIngnoreCase("A1234567X", "A1234567X"));
+    }
+
+    @Test
+    public void containsIgnoreCase_noMatch_returnsFalse() {
+        assertFalse(StringUtil.containsIngnoreCase("A1234567X", "B"));
+        assertFalse(StringUtil.containsIngnoreCase("A1234567X", "A1234567Y"));
+    }
+
+    //---------------- Tests for containsOrderedSubstringIgnoreCase -------------------------------------
+
 
     /*
      * Invalid equivalence partitions for word: null, empty
@@ -54,19 +92,20 @@ public class StringUtilTest {
      */
 
     @Test
-    public void containsIgnoreCase_nullWord_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> StringUtil.containsIgnoreCase("typical sentence", null));
+    public void containsOrderedSubstringIgnoreCase_nullWord_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> StringUtil
+                .containsOrderedSubstringIgnoreCase("typical sentence", null));
     }
 
     @Test
-    public void containsIgnoreCase_emptyWord_throwsIllegalArgumentException() {
+    public void containsOrderedSubstringIgnoreCase_emptyWord_throwsIllegalArgumentException() {
         assertThrows(IllegalArgumentException.class, "Word parameter cannot be empty", ()
-                -> StringUtil.containsIgnoreCase("typical sentence", "  "));
+                -> StringUtil.containsOrderedSubstringIgnoreCase("typical sentence", "  "));
     }
 
     @Test
-    public void containsIgnoreCase_nullSentence_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> StringUtil.containsIgnoreCase(null, "abc"));
+    public void containsOrderedSubstringIgnoreCase_nullSentence_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> StringUtil.containsOrderedSubstringIgnoreCase(null, "abc"));
     }
 
     /*
@@ -96,40 +135,42 @@ public class StringUtilTest {
      */
 
     @Test
-    public void containsIgnoreCase_partialMatch_returnsTrue() {
-        assertTrue(StringUtil.containsIgnoreCase("Johnathan Doe", "John"));
-        assertTrue(StringUtil.containsIgnoreCase("Johnathan Oliver", "Oli"));
-        assertTrue(StringUtil.containsIgnoreCase("Johnathan Oliver", "J"));
-        assertTrue(StringUtil.containsIgnoreCase("Johnathan Oliver", "O"));
+    public void containsOrderedSubstringIgnoreCase_partialMatch_returnsTrue() {
+        assertTrue(StringUtil.containsOrderedSubstringIgnoreCase("Johnathan Doe", "John"));
+        assertTrue(StringUtil.containsOrderedSubstringIgnoreCase("Johnathan Oliver", "Oli"));
+        assertTrue(StringUtil.containsOrderedSubstringIgnoreCase("Johnathan Oliver", "J"));
+        assertTrue(StringUtil.containsOrderedSubstringIgnoreCase("Johnathan Oliver", "O"));
     }
 
     @Test
-    public void containsIgnoreCase_oneWordMatch_returnsTrue() {
-        assertTrue(StringUtil.containsIgnoreCase("John Doe", "John"));
-        assertTrue(StringUtil.containsIgnoreCase("John Doe", "Doe"));
+    public void containsOrderedSubstringIgnoreCase_oneWordMatch_returnsTrue() {
+        assertTrue(StringUtil.containsOrderedSubstringIgnoreCase("John Doe", "John"));
+        assertTrue(StringUtil.containsOrderedSubstringIgnoreCase("John Doe", "Doe"));
+        assertTrue(StringUtil.containsOrderedSubstringIgnoreCase("John Doe Li", "Li"));
     }
     @Test
-    public void containsIgnoreCase_combinedWordsMath_returnsTrue() {
-        assertTrue(StringUtil.containsIgnoreCase("John Doe", "John Doe"));
-        assertTrue(StringUtil.containsIgnoreCase("John Doe", "John Do"));
-    }
-
-    @Test
-    public void containsIgnoreCase_moreDetails_returnsFalse() {
-        assertFalse(StringUtil.containsIgnoreCase("John Doe", "Johnathan Doe"));
-        assertFalse(StringUtil.containsIgnoreCase("John Doe", "John Does"));
+    public void containsOrderedSubstringIgnoreCase_combinedWordsMath_returnsTrue() {
+        assertTrue(StringUtil.containsOrderedSubstringIgnoreCase("John Doe", "John Doe"));
+        assertTrue(StringUtil.containsOrderedSubstringIgnoreCase("John Doe", "John Do"));
+        assertTrue(StringUtil.containsOrderedSubstringIgnoreCase("John Doe Li", "Doe Li"));
     }
 
     @Test
-    public void containsIgnoreCase_invalidOrdering_returnsFalse() {
-        assertFalse(StringUtil.containsIgnoreCase("John Doe", "Doe John"));
-        assertFalse(StringUtil.containsIgnoreCase("Johnathan Doe", "nathan"));
-        assertFalse(StringUtil.containsIgnoreCase("Johnathan Oliver", "liver"));
+    public void containsOrderedSubstringIgnoreCase_moreDetails_returnsFalse() {
+        assertFalse(StringUtil.containsOrderedSubstringIgnoreCase("John Doe", "Johnathan Doe"));
+        assertFalse(StringUtil.containsOrderedSubstringIgnoreCase("John Doe", "John Does"));
     }
 
     @Test
-    public void containsIgnoreCase_queryWordsGreaterThanSentence_returnsFalse() {
-        assertFalse(StringUtil.containsIgnoreCase("John Doe", "John Doe Mike"));
+    public void containsOrderedSubstringIgnoreCase_invalidOrdering_returnsFalse() {
+        assertFalse(StringUtil.containsOrderedSubstringIgnoreCase("John Doe", "Doe John"));
+        assertFalse(StringUtil.containsOrderedSubstringIgnoreCase("Johnathan Doe", "nathan"));
+        assertFalse(StringUtil.containsOrderedSubstringIgnoreCase("Johnathan Oliver", "liver"));
+    }
+
+    @Test
+    public void containsOrderedSubstringIgnoreCase_queryWordsGreaterThanSentence_returnsFalse() {
+        assertFalse(StringUtil.containsOrderedSubstringIgnoreCase("John Doe", "John Doe Mike"));
     }
 
     //---------------- Tests for getDetails --------------------------------------

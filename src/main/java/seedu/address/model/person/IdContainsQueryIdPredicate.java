@@ -18,7 +18,7 @@ public class IdContainsQueryIdPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
-        return StringUtil.containsIgnoreCase(person.getId().id, queryId);
+        return StringUtil.containsOrderedSubstringIgnoreCase(person.getId().id, queryId);
     }
 
     @Override
