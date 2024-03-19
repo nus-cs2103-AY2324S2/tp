@@ -115,23 +115,31 @@ Examples:
 
 ### Search students by name or ID: `find`
 
-Finds students whose names contain any of the given keywords or whose ID matches givens student ID
+Finds students whose names or IDs matches any of the given keywords. 
+Can search by both the IDs and name.
 
 Formats: 
 * search by name: `find [n/NAME]`
 * search by student ID: `find [id/STUDENT_ID]`
+* * search by name: `find [n/NAME]`
+* search by student ID and name: `find [n/NAME] [id/STUDENT_ID]`
 
 * The search is case-insensitive. e.g `john` will match `John`, `a1234567x` will match `A1234567X`
-* Only the name or student id is searched.
-* The search by name supports partial word matching e.g. `John` will match `Jonathan`
-* only full ID will be matched for search by student ID e.g. `A123` will not match `A1234567X`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* Only the name or student id is queried.
+* The search by name supports partial word matching, but must be in chronological order e.g. `John` will match `Jonathan`. And `nathan` will not match with `Jonathan`.
+* The search by ID supports partial word matching, but must be in chronological order e.g. `A123` will match `A1234567X`. And `2345` will not match with `A1234567X`.
+* When querying student through name with multiple keywords, only names that match all will be returned.
+  e.g. `Hans Bo` will return `Hans Bober`, `Hans Bober` and not `Hans Mayer`
+* When searching by both id and name, only ids and names that match both will be returned. 
+ e.g. `Hans Bo` and `A1234` will return entries that has names starting with `Hans Bo` and id starting with `A1234`.
 
 Examples:
-* `find John` returns `john`, `John Doe`, `Jonathan`
-* `find alex david` returns `Alex Yeoh`, `David Li`
-* `find id/A1234567X` returns `Hannah Neo with ID A12345678X`
+* `find n/John` returns `john`, `John Doe`, `Johnathan`
+* `find n/John` returns `john`, `John Doe`, `Johnathan`
+* `find n/alex david` returns `Alex David`
+* `find id/A1234567X` returns a person with ID `A12345678X`
+* `find id/A123` returns entries with IDs starting with `A123`
+* `find id/A1234567X n/John Doe` returns a person `John Doe` with ID `A12345678X`
 
 ### Deleting a person : `delete`
 
