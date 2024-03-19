@@ -36,19 +36,20 @@ public class IcTest {
         assertFalse(Ic.isValidIc("-A12345B")); // starts with a hyphen
         assertFalse(Ic.isValidIc("A12345-")); // ends with a hyphen
         assertFalse(Ic.isValidIc("A.12345B")); // periods
+        assertFalse(Ic.isValidIc("ABCD")); // alphabets only
+        assertFalse(Ic.isValidIc("12345")); // numeric only
+        assertFalse(Ic.isValidIc("A12345B")); // 5 digit number
 
         // valid Ic
-        assertTrue(Ic.isValidIc("A12345B"));
-        assertTrue(Ic.isValidIc("ABCD")); // alphabets only
-        assertTrue(Ic.isValidIc("12345")); // numeric only
+        assertTrue(Ic.isValidIc("A1234567B"));
     }
 
     @Test
     public void equals() {
-        Ic Ic = new Ic("A12345B");
+        Ic Ic = new Ic("A1234567B");
 
         // same values -> returns true
-        assertTrue(Ic.equals(new Ic("A12345B")));
+        assertTrue(Ic.equals(new Ic("A1234567B")));
 
         // same object -> returns true
         assertTrue(Ic.equals(Ic));
@@ -60,6 +61,6 @@ public class IcTest {
         assertFalse(Ic.equals(5));
 
         // different values -> returns false
-        assertFalse(Ic.equals(new Ic("W5678X")));
+        assertFalse(Ic.equals(new Ic("W5678901X")));
     }
 }
