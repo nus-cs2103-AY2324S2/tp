@@ -23,7 +23,6 @@ import seedu.address.model.person.StudentId;
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_STUDENTID = "P0123";
-    private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_GRADE = "F-";
 
     private static final String INVALID_EMAIL = "example.com";
@@ -31,9 +30,8 @@ public class ParserUtilTest {
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_STUDENTID = "A0123456X";
-    private static final String VALID_PHONE = "123456";
     private static final String VALID_GRADE = "A+";
-    private static final String VALID_EMAIL = "rachel@example.com";
+    private static final String VALID_EMAIL = "e0123456@u.nus.edu";
     private static final String VALID_GROUP_1 = "Group1";
     private static final String VALID_GROUP_2 = "Group 2";
 
@@ -142,6 +140,7 @@ public class ParserUtilTest {
     @Test
     public void parseEmail_validValueWithoutWhitespace_returnsEmail() throws Exception {
         Email expectedEmail = new Email(VALID_EMAIL);
+        System.out.println(expectedEmail);
         assertEquals(expectedEmail, ParserUtil.parseEmail(VALID_EMAIL));
     }
 
