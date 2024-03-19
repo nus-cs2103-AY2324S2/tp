@@ -12,8 +12,13 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.order.Order;
+import seedu.address.testutil.OrderBuilder;
 import seedu.address.testutil.PersonBuilder;
 
 public class PersonTest {
@@ -50,6 +55,20 @@ public class PersonTest {
         String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
         editedBob = new PersonBuilder(BOB).withName(nameWithTrailingSpaces).build();
         assertFalse(BOB.isSamePerson(editedBob));
+    }
+
+    @Test
+    public void isSameTestWithOrder() {
+        PersonBuilder personBuilder = new PersonBuilder();
+        Person person = personBuilder.build();
+        OrderBuilder orderBuilder = new OrderBuilder();
+        Order order = orderBuilder.build();
+        Set<Order> setOfOrders = new HashSet<>();
+        setOfOrders.add(order);
+
+        Person editedAlice = new Person(person.getName(), person.getPhone(),
+                person.getEmail(), person.getAddress(), person.getTags(), setOfOrders);
+        assertTrue(person.isSamePerson(editedAlice));
     }
 
     @Test
