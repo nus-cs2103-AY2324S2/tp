@@ -30,15 +30,15 @@ public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand
 
         if (!arePrefixesPresent(argMultimap, PREFIX_STUDENT_ID, PREFIX_DATETIME)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    AddAppointmentCommand.MESSAGE_USAGE));
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddAppointmentCommand.MESSAGE_USAGE));
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_STUDENT_ID, PREFIX_DATETIME, PREFIX_ATTEND,
-                PREFIX_APPOINTMENT_DESCRIPTION);
-        int studentId = ParserUtil.parseStudentId(argMultimap.getValue(PREFIX_STUDENT_ID).get());
+        argMultimap.verifyNoDuplicatePrefixesFor(
+                PREFIX_STUDENT_ID, PREFIX_DATETIME, PREFIX_ATTEND, PREFIX_APPOINTMENT_DESCRIPTION);
+        int studentId = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_STUDENT_ID).get()).getOneBased();
         LocalDateTime appointmentDateTime = ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_DATETIME).get());
-        boolean hasAttended = ParserUtil.parseAttend(argMultimap.getAllValues(PREFIX_ATTEND));
+        boolean hasAttended = ParserUtil.parseHasAttended(argMultimap.getAllValues(PREFIX_ATTEND));
         //TODO: remove after case log is implemented
         String appointmentDescription = ParserUtil.parseDescription(
                 argMultimap.getAllValues(PREFIX_APPOINTMENT_DESCRIPTION));

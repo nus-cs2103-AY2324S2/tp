@@ -11,7 +11,7 @@ import seedu.address.model.appointment.Appointment;
 import java.util.function.Predicate;
 
 /**
- * Finds and lists all appointments in address book whose name contains any of the argument keywords.
+ * Finds the appointment in the CogniCare address book which matches the student and appointment id.
  */
 public class FindAppointmentCommand extends Command {
 
@@ -35,8 +35,8 @@ public class FindAppointmentCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredAppointmentList(predicate);
-        return new CommandResult(
-                String.format(Messages.MESSAGE_APPOINTMENTS_LISTED_OVERVIEW, model.getFilteredAppointmentList().size()));
+        return new CommandResult(String.format(Messages.MESSAGE_APPOINTMENTS_LISTED_OVERVIEW,
+                model.getFilteredAppointmentList().size()));
     }
 
     @Override

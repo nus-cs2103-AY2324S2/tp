@@ -20,7 +20,7 @@ public class ListAppointmentCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists all appointments that meets the condition "
             + "Optional Parameters: "
-            + PREFIX_NAME + "NAME or "
+            + PREFIX_NAME + "NAME "
             + PREFIX_STUDENT_ID + "STUDENT_ID\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "

@@ -19,9 +19,9 @@ public class AddAppointmentCommand extends Command {
 
     public static final String COMMAND_WORD = "appointment";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an appointment to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an appointment to the CogniCare address book. "
             + "Parameters: "
-            + PREFIX_STUDENT_ID + "STUDENTID "
+            + PREFIX_STUDENT_ID + "STUDENT_ID "
             + PREFIX_DATETIME + "DATETIME "
             + PREFIX_ATTEND + "ATTEND "
             + PREFIX_APPOINTMENT_DESCRIPTION + "APPOINTMENT DESCRIPTION\n"

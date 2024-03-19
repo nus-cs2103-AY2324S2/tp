@@ -126,21 +126,6 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String studentId} into an {@code int}.
-     *
-     * @throws ParseException if the given {@code studentId} is invalid.
-     */
-    public static int parseStudentId(String studentId) throws ParseException {
-        requireNonNull(studentId);
-        String trimmedStudentId = studentId.trim();
-        int sid = Integer.parseInt(trimmedStudentId);
-        if (sid < 0) {
-            throw new ParseException(Appointment.MESSAGE_CONSTRAINTS);
-        }
-        return sid;
-    }
-
-    /**
      * Parses a {@code String dateTime} into an {@code LocalDateTime}.
      *
      * @throws ParseException if the given {@code dateTime} is invalid.
@@ -150,13 +135,13 @@ public class ParserUtil {
         String trimmedDateTime = dateTime.trim();
 
         DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        LocalDateTime dt;
+        LocalDateTime localDateTime;
         try {
-            dt = LocalDateTime.parse(trimmedDateTime, format);
+            localDateTime = LocalDateTime.parse(trimmedDateTime, format);
         } catch (Exception e) {
             throw new ParseException(Appointment.MESSAGE_CONSTRAINTS);
         }
-        return dt;
+        return localDateTime;
     }
 
     /**
@@ -165,7 +150,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code attend} is invalid.
      */
-    public static boolean parseAttend(Collection<String> attend) throws ParseException {
+    public static boolean parseHasAttended(Collection<String> attend) throws ParseException {
         requireNonNull(attend);
         if (attend.isEmpty()) {
             return false;
