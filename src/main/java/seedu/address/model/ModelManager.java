@@ -133,7 +133,7 @@ public class ModelManager implements Model {
 
     @Override
     public Person getSelectedPerson() {
-        return selectedPerson;
+        return this.selectedPerson;
     }
 
     @Override
@@ -156,7 +156,8 @@ public class ModelManager implements Model {
         ModelManager otherModelManager = (ModelManager) other;
         return addressBook.equals(otherModelManager.addressBook)
                 && userPrefs.equals(otherModelManager.userPrefs)
-                && filteredPersons.equals(otherModelManager.filteredPersons);
+                && filteredPersons.equals(otherModelManager.filteredPersons)
+                && selectedPerson.isSamePerson(otherModelManager.selectedPerson);
     }
 
 }

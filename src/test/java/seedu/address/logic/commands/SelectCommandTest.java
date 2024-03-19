@@ -39,12 +39,11 @@ public class SelectCommandTest {
         String expectedMessage = String.format(SelectCommand.MESSAGE_SELECT_PERSON_SUCCESS,
                 Messages.format(personToSelect));
 
-        IsSamePersonPredicate predicate = preparePredicate(personToSelect);
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedModel.updateSelectedPerson(personToSelect);
 
         assertCommandSuccess(selectCommand, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(ALICE), model.getFilteredPersonList());
+        assertEquals(ALICE, model.getSelectedPerson());
     }
 
     @Test
@@ -65,9 +64,11 @@ public class SelectCommandTest {
         String expectedMessage = String.format(SelectCommand.MESSAGE_SELECT_PERSON_SUCCESS,
                 Messages.format(personToSelect));
 
+
         IsSamePersonPredicate predicate = preparePredicate(personToSelect);
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.updateFilteredPersonList(predicate);
+        showPersonAtIndex(expectedModel, INDEX_FIRST_PERSON);
+        expectedModel.updateSelectedPerson(personToSelect);
 
         assertCommandSuccess(selectCommand, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(ALICE), model.getFilteredPersonList());
