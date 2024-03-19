@@ -68,7 +68,7 @@ public class PersonSearchPredicateTest {
         predicate = new PersonSearchPredicate(Arrays.asList("Carol"));
         assertFalse(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
 
-        // Keywords match phone, email and address, but does not match name
+        // Keywords match phone, email and address, but does not match name, tags or assets
         predicate = new PersonSearchPredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street"));
         assertFalse(predicate.test(new PersonBuilder().withName("Alice").withPhone("12345")
                 .withEmail("alice@email.com").withAddress("Main Street").build()));
@@ -99,10 +99,46 @@ public class PersonSearchPredicateTest {
         predicate = new PersonSearchPredicate(Arrays.asList("friends", "colleagues"));
         assertFalse(predicate.test(new PersonBuilder().withTags("family").build()));
 
-        // Keywords match phone, email and address, but does not match name or tags
+        // Keywords match phone, email and address, but does not match name, tags or assets
         predicate = new PersonSearchPredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street"));
         assertFalse(predicate.test(new PersonBuilder().withName("Alice").withPhone("12345")
                 .withEmail("alice@email.com").withAddress("Main Street").withTags("friends").build()));
+    }
+
+    @Test
+    public void test_assetContainsKeywords_returnsTrue() {
+        // One keyword
+        PersonSearchPredicate predicate = new PersonSearchPredicate(Collections.singletonList("hammer"));
+        assertTrue(predicate.test(new PersonBuilder().withAssets("hammer").build()));
+
+        // Multiple keywords
+        predicate = new PersonSearchPredicate(Arrays.asList("hammer", "screwdriver"));
+        assertTrue(predicate.test(new PersonBuilder().withAssets("screwdriver").build()));
+
+        // Mixed-case keywords
+        predicate = new PersonSearchPredicate(Arrays.asList("hAmMeR", "sCrEwDriVer"));
+        assertTrue(predicate.test(new PersonBuilder().withAssets("screwdriver").build()));
+    }
+
+    @Test
+    public void test_assetDoesNotContainKeywords_returnsFalse() {
+        // Zero keywords
+        PersonSearchPredicate predicate = new PersonSearchPredicate(Collections.emptyList());
+        assertFalse(predicate.test(new PersonBuilder().withAssets("hammer").build()));
+
+        // Non-matching keyword
+        predicate = new PersonSearchPredicate(Arrays.asList("helmet", "gloves"));
+        assertFalse(predicate.test(new PersonBuilder().withAssets("hammer").build()));
+
+        // Keywords match phone, email and address, but does not match name, tags or assets
+        predicate = new PersonSearchPredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street"));
+        assertFalse(predicate.test(new PersonBuilder().withName("Alice")
+                                   .withPhone("12345")
+                                   .withEmail("alice@email.com")
+                                   .withAddress("Main Street")
+                                   .withTags("friends")
+                                   .withAssets("hammer")
+                                   .build()));
     }
 
     @Test
