@@ -10,6 +10,10 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.event.Event;
+
+/**
+ * Deletes an event identified using it's displayed index from the address book.
+ */
 public class DeleteEventCommand extends Command {
 
     public static final String COMMAND_WORD = "delev";
@@ -28,7 +32,7 @@ public class DeleteEventCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException{
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Event> lastShownList = model.getFilteredEventList();
 
