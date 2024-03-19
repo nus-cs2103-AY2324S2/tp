@@ -61,7 +61,8 @@ class GroupCommandTest {
     public void execute_invalidPersonIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
         NusId nusId = new NusId("E0000000"); // NusId does not exist
-        GroupCommand.GroupPersonDescriptor descriptor = new GroupPersonDescriptorBuilder().withNusId("E0000000").build();
+        GroupCommand.GroupPersonDescriptor descriptor = new GroupPersonDescriptorBuilder().withNusId("E0000000")
+                .build();
         GroupCommand editCommand = new GroupCommand(nusId, descriptor);
         assertCommandFailure(editCommand, model, Messages.MESSAGE_NON_EXISTENT_PERSON);
     }
