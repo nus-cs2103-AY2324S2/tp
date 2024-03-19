@@ -130,8 +130,8 @@ public class DeleteCommandTest {
                 new PersonBuilder().withName("Udhaya").build().getName());
         DeleteCommand deleteNotUdhayaCommand = new DeleteCommand(
                 new PersonBuilder().withName("not Udhaya").build().getName());
-        DeleteCommand deleteUdhayaShanugamCommand = new DeleteCommand(
-                new PersonBuilder().withName("Udhaya Shanugam").build().getName());
+        DeleteCommand deleteUdhayaShanmugamCommand = new DeleteCommand(
+                new PersonBuilder().withName("Udhaya Shanmugam").build().getName());
         DeleteCommand deleteAddressCommand = new DeleteCommand(
                 new PersonBuilder().withAddress("Udhaya").build().getName());
 
@@ -156,7 +156,7 @@ public class DeleteCommandTest {
         assertFalse(deleteUdhayaCommand.equals(deleteAddressCommand));
 
         //delete Udhaya should not delete someone with name Udhaya Shanugam
-        assertFalse(deleteUdhayaCommand.equals(deleteUdhayaShanugamCommand));
+        assertFalse(deleteUdhayaCommand.equals(deleteUdhayaShanmugamCommand));
     }
 
     @Test
