@@ -3,12 +3,12 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
+import static seedu.address.logic.Messages.MESSAGE_CONTACT_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BENSON;
-import static seedu.address.testutil.TypicalPersons.DANIEL;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalContacts.ALICE;
+import static seedu.address.testutil.TypicalContacts.BENSON;
+import static seedu.address.testutil.TypicalContacts.DANIEL;
+import static seedu.address.testutil.TypicalContacts.getTypicalCodeConnect;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -19,15 +19,14 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.person.TagsContainKeywordsPredicate;
+import seedu.address.model.contact.TagsContainKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindTagCommand}.
  */
 public class FindTagCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalCodeConnect(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalCodeConnect(), new UserPrefs());
 
     @Test
     public void equals() {
@@ -50,35 +49,35 @@ public class FindTagCommandTest {
         // null -> returns false
         assertFalse(findFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different contact -> returns false
         assertFalse(findFirstCommand.equals(findSecondCommand));
     }
 
     @Test
-    public void execute_zeroKeywords_noPersonFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
-        List<String> tagKeywords = List.of("Acquaintances");
+    public void execute_zeroKeywords_noContactFound() {
+        String expectedMessage = String.format(MESSAGE_CONTACT_LISTED_OVERVIEW, 0);
+        List<String> tagKeywords = List.of(" ");
         TagsContainKeywordsPredicate predicate = new TagsContainKeywordsPredicate(tagKeywords);
         FindTagCommand command = new FindTagCommand(tagKeywords);
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredContactList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+        assertEquals(Collections.emptyList(), model.getFilteredContactList());
     }
 
     @Test
-    public void execute_multipleKeywords_multiplePersonsFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
+    public void execute_multipleKeywords_multipleContactsFound() {
+        String expectedMessage = String.format(MESSAGE_CONTACT_LISTED_OVERVIEW, 3);
         List<String> tagKeywords = List.of("friends");
         TagsContainKeywordsPredicate predicate = new TagsContainKeywordsPredicate(tagKeywords);
         FindTagCommand command = new FindTagCommand(tagKeywords);
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredContactList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(ALICE, BENSON, DANIEL), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(ALICE, BENSON, DANIEL), model.getFilteredContactList());
     }
 
     @Test
     public void toStringMethod() {
-        List<String> tagKeywords= List.of("School", "Friends");
+        List<String> tagKeywords= List.of("keyword");
         FindTagCommand FindTagCommand = new FindTagCommand(tagKeywords);
         String expected = FindTagCommand.class.getCanonicalName() + "{predicate=" + tagKeywords + "}";
         assertEquals(expected, FindTagCommand.toString());

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+  <GridPane HBox.hgrow="ALWAYS">
+    <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
+    </columnConstraints>
+    <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
+      <padding>
+        <Insets top="5" right="5" bottom="5" left="15" />
+      </padding>
+      <HBox spacing = "5" alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308">
+        <Label fx:id="id" styleClass="cell_big_label">
+          <maxWidth>
+            <!-- Ensures that the label text is never truncated -->
+            <Region fx:constant="USE_PREF_SIZE" />
+          </maxWidth>
+        </Label>
+        <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
+        <Label fx:id="githubUsername" />
+        <HBox spacing = "4" alignment="CENTER_LEFT">
+          <HBox fx:id="tags" spacing = "4" />
+          <HBox fx:id="techStacks" spacing = "4"/>
+          <padding>
+            <Insets top="4.5" />
+          </padding>
+        </HBox>
+      </HBox>
+            <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
+            <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
+            <HBox spacing="1">
+                <Label fx:id="emailLabel" styleClass="cell_small_label" text="\$email_label" />
+                <Label fx:id="email" text="\$email" />
+            </HBox>
+    </VBox>
+  </GridPane>
+</HBox>
