@@ -9,7 +9,8 @@ import java.util.function.Predicate;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
+import seedu.address.model.patient.Patient;
+
 
 /**
  * Finds and lists all persons whose name or phone number matches any of the argument inputs.
@@ -30,11 +31,11 @@ public class FindCommand extends Command {
             + PREFIX_PHONE + "91234567";
 
 
-    private final Predicate<Person> namePredicate;
+    private final Predicate<Patient> namePredicate;
 
-    private final Predicate<Person> phonePredicate;
+    private final Predicate<Patient> phonePredicate;
 
-    public FindCommand(Predicate<Person> namePredicate, Predicate<Person> phonePredicate) {
+    public FindCommand(Predicate<Patient> namePredicate, Predicate<Patient> phonePredicate) {
         this.namePredicate = namePredicate;
         this.phonePredicate = phonePredicate;
     }

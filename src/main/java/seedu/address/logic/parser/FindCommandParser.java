@@ -13,9 +13,9 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.util.AlwaysTruePredicate;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.PhoneMatchesPredicate;
+import seedu.address.model.patient.NameContainsKeywordsPredicate;
+import seedu.address.model.patient.Patient;
+import seedu.address.model.patient.PhoneMatchesPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -44,8 +44,8 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE);
 
-        Predicate<Person> namePredicate;
-        Predicate<Person> phonePredicate;
+        Predicate<Patient> namePredicate;
+        Predicate<Patient> phonePredicate;
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             String keyword = argMultimap.getValue(PREFIX_NAME).get().trim();
@@ -56,13 +56,13 @@ public class FindCommandParser implements Parser<FindCommand> {
             String [] nameKeywords = keyword.split("\\s+");
             namePredicate = new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords));
         } else {
-            namePredicate = new AlwaysTruePredicate<Person>();
+            namePredicate = new AlwaysTruePredicate<Patient>();
         }
 
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
             phonePredicate = new PhoneMatchesPredicate(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
         } else {
-            phonePredicate = new AlwaysTruePredicate<Person>();
+            phonePredicate = new AlwaysTruePredicate<Patient>();
         }
 
         logger.info("----------------[namePredicate][" + namePredicate + "]");

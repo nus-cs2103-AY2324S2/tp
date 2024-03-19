@@ -4,12 +4,14 @@
     "phone": "94351253",
     "email": "alice@example.com",
     "address": "123, Jurong West Ave 6, #08-111",
-    "dateOfBirth" : "2024-12-2"
+    "dateOfBirth" : "2024-12-2",
+    "sex" : "Female"
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",
     "address": "4th street",
-    "dateOfBirth" : "2032-06-23"
+    "dateOfBirth" : "2032-06-23",
+    "sex" : "Female"
   } ]
 }
