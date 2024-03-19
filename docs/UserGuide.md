@@ -6,8 +6,17 @@
 
 # NetConnect User Guide
 
-NetConnect is a desktop app for managing contacts in SMEs, optimized for use via a Command Line Interface (CLI) while still 
-having the benefits of a Graphical User Interface (GUI). It enables managers to efficiently manage their employees, clients, as well as suppliers, **all in one place** ☝🏻.
+NetConnect is a desktop app for managing contacts in SMEs, optimized for use via a Command Line Interface (CLI)
+while still having the benefits of a Graphical User Interface (GUI). It enables managers to efficiently manage their
+ employees, clients, as well as suppliers, **all in one place** ☝🏻.
+
+NetConnect aims to target a specific user demographic, which demands a hyper-specific set of requirements.
+Specifically, we aim to address the woes of food business managers who have to manage multiple groups of contacts,
+such as clients, suppliers, and employees.
+
+If you relate to this problem we identified, then NetConnect might be just right for you. This user guide will
+ accompany you in maximising the capabilities of this product, freeing time for more pressing issues.
+
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -22,11 +31,13 @@ having the benefits of a Graphical User Interface (GUI). It enables managers to 
 
 1. Copy the file to the folder you want to use as the _home folder_ for your NetConnect.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar netconnect.jar` command to run the application.<br>
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar netconnect.jar`
+   command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing
+   Enter will open the help window.<br>
    Some example commands you can try:
 
    * `list` : Lists all contacts.
