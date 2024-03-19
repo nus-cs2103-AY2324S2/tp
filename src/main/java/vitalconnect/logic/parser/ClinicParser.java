@@ -8,7 +8,23 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import vitalconnect.commons.core.LogsCenter;
-import vitalconnect.logic.commands.*;
+import vitalconnect.logic.commands.AddCommand;
+import vitalconnect.logic.commands.AddContactCommand;
+import vitalconnect.logic.commands.AddMedInfoCommand;
+import vitalconnect.logic.commands.ClearCommand;
+import vitalconnect.logic.commands.Command;
+import vitalconnect.logic.commands.CreateAptCommand;
+import vitalconnect.logic.commands.DeleteAptCommand;
+import vitalconnect.logic.commands.DeleteCommand;
+import vitalconnect.logic.commands.DeleteContactCommand;
+import vitalconnect.logic.commands.DeleteMedicalCommand;
+import vitalconnect.logic.commands.EditCommand;
+import vitalconnect.logic.commands.ExitCommand;
+import vitalconnect.logic.commands.FindCommand;
+import vitalconnect.logic.commands.HelpCommand;
+import vitalconnect.logic.commands.ListAptCommand;
+import vitalconnect.logic.commands.ListCommand;
+import vitalconnect.logic.commands.ListMedicalCommand;
 import vitalconnect.logic.parser.exceptions.ParseException;
 
 
@@ -92,6 +108,9 @@ public class ClinicParser {
 
         case ListMedicalCommand.COMMAND_WORD:
             return new ListMedicalCommand();
+
+        case DeleteMedicalCommand.COMMAND_WORD:
+            return new DeleteMedicalCommandParser().parse(arguments);
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);
