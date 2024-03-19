@@ -1,6 +1,7 @@
 package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents the family size of a person in the address book.
@@ -10,9 +11,11 @@ public class Family {
 
     /** Message for constraints on family size. */
     public static final String MESSAGE_CONSTRAINTS = "Family size should be at least 1";
+    public static final String VALIDATION_REGEX = "^[1-9]\\d*$";
 
     /** The family size. */
-    private Integer familySize;
+    private String familySize;
+
 
     /**
      * Constructs a {@code Family} instance with the given family size including him or herself.
@@ -21,7 +24,8 @@ public class Family {
      */
     public Family(String familySize) {
         requireNonNull(familySize);
-        this.familySize = Integer.valueOf(familySize);
+        checkArgument(isValidFamily(familySize), MESSAGE_CONSTRAINTS);
+        this.familySize = familySize;
     }
 
     /**
@@ -31,7 +35,7 @@ public class Family {
      * @return True if the family size is greater than or equal to zero, false otherwise.
      */
     public static boolean isValidFamily(String familySize) {
-        return Integer.parseInt(familySize) > 0;
+        return familySize.matches(VALIDATION_REGEX);
     }
 
     /**
@@ -50,7 +54,7 @@ public class Family {
      * @return A string representation with descriptive text.
      */
     public String toStringWithRepresentation() {
-        return "Family size is " + familySize.toString();
+        return "Family size is " + familySize;
     }
 
     /**
