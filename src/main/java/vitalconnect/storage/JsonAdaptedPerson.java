@@ -67,14 +67,18 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(Person source) {
         name = source.getIdentificationInformation().getName().fullName;
         nric = source.getIdentificationInformation().getNric().nric;
-        email = source.getContactInformation().getEmail().value;
-        phone = source.getContactInformation().getPhone().value;
-        address = source.getContactInformation().getAddress().value;
-        height = source.getMedicalInformation().getHeight().value;
-        weight = source.getMedicalInformation().getWeight().value;
-        allergyTags.addAll(source.getMedicalInformation().getAllergyTag().stream()
-                .map(JsonAdaptedTag::new)
-                .collect(Collectors.toList()));
+        if (source.hasContactInformation()) {
+            email = source.getContactInformation().getEmail().value;
+            phone = source.getContactInformation().getPhone().value;
+            address = source.getContactInformation().getAddress().value;
+        }
+        if (source.hasMedicalInformation()) {
+            height = source.getMedicalInformation().getHeight().value;
+            weight = source.getMedicalInformation().getWeight().value;
+            allergyTags.addAll(source.getMedicalInformation().getAllergyTag().stream()
+                    .map(JsonAdaptedTag::new)
+                    .collect(Collectors.toList()));
+        }
     }
 
     /**
