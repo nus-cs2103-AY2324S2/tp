@@ -291,6 +291,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 |----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
 | `* * *` | busy student | view my friends' schedules | find a suitable time to plan a meetup. |
 | `* * *` | NUS student | view my schedule | access my personalized schedule, manage my contacts, and utilize other features of the platform.|
+| `* * *` | NUS student | categorize my friends by interests  | quickly identify individuals who share similar hobbies or preferences.|
+| `* * *` | NUS student | categorize my friends by module | easily identify classmates and organize study groups.|
 | `* * *` | NUS student who likes **---** | find who has similar hobbies/interests with me | know who might want to go to a **---** related activities with me.|
 | `* * *` | NUS student who prefers command line interface | have a GUI to include commands | add details with convenience |
 | `* * *` | NUS student working part time | utilise Moddie to store contact details for team members, advisor | optimise my time management with school and work. |
