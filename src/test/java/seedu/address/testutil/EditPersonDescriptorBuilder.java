@@ -37,6 +37,10 @@ public class EditPersonDescriptorBuilder {
         descriptor.setEmail(person.getEmail());
         descriptor.setAddress(person.getAddress());
         descriptor.setTags(person.getTags());
+        descriptor.setDob(person.getDob());
+        descriptor.setIc(person.getIc());
+        descriptor.setAdmissionDate(person.getAdmissionDate());
+        descriptor.setWard(person.getWard());
     }
 
     /**

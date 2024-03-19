@@ -3,11 +3,15 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 /**
  * Represents a patient's date of birth in the address book.
  */
 public class Dob {
-    public static final String MESSAGE_CONSTRAINTS = "Dates of birth takes in a date";
+    public static final String MESSAGE_CONSTRAINTS = "Dates of birth takes in a date"
+            + "Date of birth should not be later than date of recording";
     public static final String VALIDATION_REGEX = "^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/[0-9]{4}$";
 
     public final String value;
@@ -23,8 +27,19 @@ public class Dob {
         this.value = value;
     }
 
+    /**
+     * Returns true if a given string is a valid date of birth.
+     */
     public static boolean isValidDob(String dob) {
-        return dob.matches(VALIDATION_REGEX);
+        if (dob.matches(VALIDATION_REGEX)) {
+            LocalDate today = LocalDate.now();
+            // Define the date format
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            // Parse the string to LocalDate
+            LocalDate date = LocalDate.parse(dob, formatter);
+            return date.isEqual(today) || date.isBefore(today);
+        }
+        return false;
     }
 
     @Override
