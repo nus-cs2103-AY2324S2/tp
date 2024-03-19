@@ -77,5 +77,4 @@ public class StateStorageTest {
         deleteStateStorage();
         assertEquals(false, StateStorage.isStateStorageExists());
     }
-
 }

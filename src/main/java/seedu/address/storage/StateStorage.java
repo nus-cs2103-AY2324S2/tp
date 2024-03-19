@@ -49,9 +49,6 @@ public class StateStorage {
      * @return The path of the state file.
      */
     public static Path getFilePath() {
-        if (FILE_PATH == null) {
-            return Paths.get(filePath);
-        }
         return FILE_PATH;
     }
 
