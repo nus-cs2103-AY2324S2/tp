@@ -26,14 +26,17 @@ public class DeleteTaskCommandParser implements Parser<DeleteTaskCommand> {
             String projectName = args.split("/in ")[1];
             Task task = new Task(taskName);
             if (taskName.length() == 0) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteTaskCommand.MESSAGE_USAGE));
+                throw new ParseException(String.format(
+                    MESSAGE_INVALID_COMMAND_FORMAT,
+                    DeleteTaskCommand.MESSAGE_USAGE));
             }
             Name name = ParserUtil.parseName(projectName);
             Person person = new Person(name);
             return new DeleteTaskCommand(task, person);
-        }
-        catch (ArrayIndexOutOfBoundsException e) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE));
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new ParseException(String.format(
+                MESSAGE_INVALID_COMMAND_FORMAT,
+                AddTaskCommand.MESSAGE_USAGE));
         }
     }
 }

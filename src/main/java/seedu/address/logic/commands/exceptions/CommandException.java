@@ -1,4 +1,4 @@
-package seedu.address.commons.exceptions;
+package seedu.address.logic.commands.exceptions;
 
 /**
  * Represents an error which occurs during execution of a {@link Command}.

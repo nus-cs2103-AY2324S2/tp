@@ -26,14 +26,17 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
             String projectName = args.split("/to ")[1];
             Task task = new Task(taskName);
             if (taskName.length() == 0) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteTaskCommand.MESSAGE_USAGE));
+                throw new ParseException(String.format(
+                    MESSAGE_INVALID_COMMAND_FORMAT,
+                    DeleteTaskCommand.MESSAGE_USAGE));
             }
             Name name = ParserUtil.parseName(projectName);
             Person person = new Person(name);
             return new AddTaskCommand(task, person);
-        }
-        catch (ArrayIndexOutOfBoundsException e) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE));
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new ParseException(String.format(
+                MESSAGE_INVALID_COMMAND_FORMAT,
+                AddTaskCommand.MESSAGE_USAGE));
         }
     }
 }

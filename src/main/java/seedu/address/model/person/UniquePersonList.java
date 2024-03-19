@@ -36,6 +36,9 @@ public class UniquePersonList implements Iterable<Person> {
         return internalList.stream().anyMatch(toCheck::isSamePerson);
     }
 
+    /**
+     * Returns the person object with the matching name in the addressbook
+     */
     public Person findPerson(Name name) {
         requireNonNull(name);
         return internalList.stream()

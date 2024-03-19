@@ -21,14 +21,8 @@ public class Person {
     private final List<Task> taskList;
 
     /**
-     * Every field must be present and not null.
+     * Constructs a Person object with empty taskList
      */
-    public Person(Name name, List<Task> taskList) {
-        requireAllNonNull(name);
-        this.name = name;
-        this.taskList = taskList;
-    }
-
     public Person(Name name) {
         requireAllNonNull(name);
         this.name = name;
@@ -36,21 +30,30 @@ public class Person {
         this.taskList = taskList;
     }
 
+    /**
+     * Adds task to the Person object
+     */
     public void addTask(Task task) {
         taskList.add(task);
     }
 
-    public void removeTask(Task task){
+    /**
+     * Removes task from the Person object
+     */
+    public void removeTask(Task task) {
         int i = 0;
-        for (Task t : taskList){
-            if (t.equals(task)){
+        for (Task t : taskList) {
+            if (t.equals(task)) {
                 taskList.remove(i);
                 break;
             }
-            i+=1;
+            i += 1;
         }
     }
 
+    /**
+     * Returns the name of the Person
+     */
     public Name getName() {
         return name;
     }
@@ -99,10 +102,13 @@ public class Person {
                 .add("name", name).toString();
     }
 
+    /**
+     * Returns true if the Person has a task that is equal to the specified task
+     */
     public boolean hasTask(Task task) {
-        for(Task t : taskList) {
+        for (Task t : taskList) {
             System.out.println(task.getName().fullName);
-            if(t.equals(task)) {
+            if (t.equals(task)) {
                 return true;
             }
         }

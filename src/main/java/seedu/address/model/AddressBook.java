@@ -68,6 +68,9 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.contains(person);
     }
 
+    /**
+     * Returns the person object with the matching name in the addressbook
+     */
     public Person findPerson(Name name) {
         requireNonNull(name);
         return persons.findPerson(name);

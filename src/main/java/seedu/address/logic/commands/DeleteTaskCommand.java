@@ -2,9 +2,9 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.address.commons.exceptions.CommandException;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.project.Task;
@@ -22,8 +22,10 @@ public class DeleteTaskCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "%1$s  has been deleted from %2$s";
 
-    public static final String MESSAGE_PROJECT_NOT_FOUND = "Project %2$s not found: Please make sure the project exists.";
-    public static final String MESSAGE_TASK_NOT_FOUND = "Task %1$s not found: Please make sure the task exists in project %2$s";
+    public static final String MESSAGE_PROJECT_NOT_FOUND = "Project %2$s not found: "
+            + "Please make sure the project exists.";
+    public static final String MESSAGE_TASK_NOT_FOUND = "Task %1$s not found: "
+            + "Please make sure the task exists in project %2$s";
 
     private final Task toDelete;
     private final Person taskProject;
@@ -42,14 +44,23 @@ public class DeleteTaskCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         if (!model.hasPerson(taskProject)) {
-            throw new CommandException(String.format(MESSAGE_PROJECT_NOT_FOUND, Messages.format(toDelete), Messages.format(taskProject)));
+            throw new CommandException(String.format(
+                MESSAGE_PROJECT_NOT_FOUND,
+                Messages.format(toDelete),
+                Messages.format(taskProject)));
         }
         Person combineTask = model.findPerson(taskProject.getName());
         if (!combineTask.hasTask(toDelete)) {
-            throw new CommandException(String.format(MESSAGE_TASK_NOT_FOUND, Messages.format(toDelete), Messages.format(taskProject)));
+            throw new CommandException(String.format(
+                MESSAGE_TASK_NOT_FOUND,
+                Messages.format(toDelete),
+                Messages.format(taskProject)));
         }
         combineTask.removeTask(toDelete);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toDelete), Messages.format(taskProject)));
+        return new CommandResult(String.format(
+            MESSAGE_SUCCESS,
+            Messages.format(toDelete),
+            Messages.format(taskProject)));
     }
 
     @Override
