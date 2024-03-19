@@ -191,4 +191,20 @@ public class ParserUtil {
         }
         return new Policy(trimmedPolicyName, trimmedPolicyID);
     }
+
+    /**
+     * Parses {@code String policyId} into a {@code String}.
+     * Leading and trailing whitespaces will be trimmed.
+     * @param policyId the policy id
+     * @return the policyid
+     * @throws ParseException
+     */
+    public static String parsePolicyId(String policyId) throws ParseException {
+        requireNonNull(policyId);
+        String trimmedPolicyId = policyId.trim();
+        if (!Policy.isValidID(trimmedPolicyId)) {
+            throw new ParseException(Policy.MESSAGE_CONSTRAINTS_ID);
+        }
+        return trimmedPolicyId;
+    }
 }
