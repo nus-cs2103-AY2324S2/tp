@@ -196,6 +196,19 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Filter feature
+
+Current implementation of filter command only filters tags, and has a similar implementation logic-wise to the find 
+command. This arises due to the use of ObservableList to produce a view of the model containing only the persons that
+pass some predicate. The below class diagram represents the current relationship between FindCommand, FilterCommand, 
+Predicate, PersonHasTagPredicate and NameContainsKeywordsPredicate:
+
+<img src="images/FilterClassDiagram.png" width="550" />
+
+Future implementation of filter commands can abstract out the similarities between filter commands by implementing
+Filter as an Interface, making the code more extensible:
+
+[insert next UML here]
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
