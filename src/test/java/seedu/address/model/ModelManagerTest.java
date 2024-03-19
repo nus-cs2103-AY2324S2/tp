@@ -7,6 +7,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalPersons.CARL;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -14,10 +15,12 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.Person;
 import seedu.address.testutil.AddressBookBuilder;
-
 public class ModelManagerTest {
 
     private ModelManager modelManager = new ModelManager();
@@ -92,6 +95,21 @@ public class ModelManagerTest {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
     }
 
+    @Test
+    public void updateSortedPersonListSortAscending_sortsPersonsCorrectly() {
+        modelManager.addPerson(ALICE);
+        modelManager.addPerson(BENSON);
+        modelManager.addPerson(CARL);
+
+        modelManager.updateSortedPersonListSortAscending();
+        assert ALICE.getStarCount() == 5 : "ALICE's stars should be 5";
+        assert BENSON.getStarCount() == 0 : "BENSON's stars should be 0";
+        assert CARL.getStarCount() == 0 : "CARL's stars should be 0";
+
+        // Order should be BENSON, CARL, ALICE in ascending order. Tiebreaking should be the index of person
+        ObservableList<Person> expectedList = FXCollections.observableArrayList(BENSON, CARL, ALICE);
+        assertEquals(expectedList, modelManager.getSortedPersonList());
+    }
 
     @Test
     public void equals() {

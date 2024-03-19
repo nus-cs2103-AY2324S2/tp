@@ -128,6 +128,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Person> getSortedPersonList() {
+        return sortedPersons;
+    }
+
+    @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
@@ -138,6 +143,7 @@ public class ModelManager implements Model {
         Comparator<Person> ascendingComparator = Comparator.comparingInt(Person::getStarCount);
         sortedPersons.setComparator(ascendingComparator);
     }
+
     @Override
     public ObservableList<Person> getCorrectPersonList() {
         return sortedPersons;
