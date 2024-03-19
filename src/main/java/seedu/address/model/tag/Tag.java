@@ -49,7 +49,7 @@ public class Tag extends Attribute<String> {
 
         String other = (String) otherValue;
 
-        return this.getValue().toLowerCase().contains(other.toLowerCase());
+        return this.getValue().trim().toLowerCase().contains(other.trim().toLowerCase());
     }
 
     @Override
