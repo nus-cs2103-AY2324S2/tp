@@ -30,7 +30,7 @@ public class JsonAdaptedMeetingTest {
     }
 
     @Test
-    public void toModelType_invalidDateTime_throwsIllegalValueException() {
+    public void toModelType_invalidDateTimeFormat_throwsIllegalValueException() {
         JsonAdaptedMeeting meeting = new JsonAdaptedMeeting(INVALID_MEETING_START_STR,
                 INVALID_MEETING_END_STR, VALID_MEETING_REMARK);
         String expectedMessage = Meeting.MESSAGE_DATETIME_CONSTRAINTS;
@@ -40,6 +40,14 @@ public class JsonAdaptedMeetingTest {
         assertThrows(IllegalValueException.class, expectedMessage, meeting::toModelType);
 
         meeting = new JsonAdaptedMeeting(INVALID_MEETING_START_STR, VALID_MEETING_END_STR, VALID_MEETING_REMARK);
+        assertThrows(IllegalValueException.class, expectedMessage, meeting::toModelType);
+    }
+
+    @Test
+    public void toModelType_endDateTimeBeforeStart_throwsIllegalValueException() {
+        JsonAdaptedMeeting meeting = new JsonAdaptedMeeting(VALID_MEETING_END_STR,
+                VALID_MEETING_START_STR, VALID_MEETING_REMARK);
+        String expectedMessage = Meeting.MESSAGE_DATETIME_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, meeting::toModelType);
     }
 
