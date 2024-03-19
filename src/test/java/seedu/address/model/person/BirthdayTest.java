@@ -21,17 +21,18 @@ public class BirthdayTest {
 
     @Test
     public void isValidBirthday() {
-        // null address
+        // null birthday
         assertThrows(NullPointerException.class, () -> Birthday.isValidBirthday(null));
 
-        // invalid addresses
+        // invalid birthday
         assertFalse(Birthday.isValidBirthday("")); // empty string
         assertFalse(Birthday.isValidBirthday(" ")); // spaces only
+        assertFalse(Birthday.isValidBirthday("12-12")); // missing year fields
 
-        // valid addresses
-        assertTrue(Birthday.isValidBirthday("12-12"));
-        assertTrue(Birthday.isValidBirthday("01-02"));
-        assertTrue(Birthday.isValidBirthday("03-01"));
+        // valid birthday
+        assertTrue(Birthday.isValidBirthday("12-12-2024"));
+        assertTrue(Birthday.isValidBirthday("12/12/2024"));
+        assertTrue(Birthday.isValidBirthday("29/02/2024"));
     }
 
     @Test
