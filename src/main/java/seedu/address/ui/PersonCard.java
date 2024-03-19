@@ -53,7 +53,6 @@ public class PersonCard extends UiPart<Region> {
      * Set colour of status circle to represent status
      *
      * @param status Status of the person
-     * @return colour representing that respective status
      */
     public void updateStatusCircle(Status status) {
         switch (status.getStatusType()) {
