@@ -4,9 +4,8 @@
   pageNav: 3
 ---
 
-# AB-3 User Guide
-
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a  Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+# ClientCare User Guide
+ClientCare is a **desktop application for assisting insurance agents in managing their client relationships and follow-ups effectively.** While it has a Graphical User Interface (GUI), most of the user interactions happen using through text commands. If you can type fast, ClientCare can get your client management done faster than traditional GUI apps.
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -17,24 +16,24 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `clientcare.jar` from [here](https://github.com/AY2324S2-CS2103T-W12-1/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your ClientCare.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar clientcare.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * `list` : Lists all contacts.
+   * `list` : Lists all clients.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * `add n/John Doe c/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 b/1990-01-01 p/low t/friends t/owesMoney` : Adds a client contact named `John Doe` to the client list.
 
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
+   * `delete 3` : Deletes the 3rd client contact shown in the current list.
 
-   * `clear` : Deletes all contacts.
+   * `clear` : Deletes all client contacts.
 
    * `exit` : Exits the app.
 
@@ -58,7 +57,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `n/NAME c/PHONE_NUMBER`, `c/PHONE_NUMBER n/NAME` is also acceptable.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
@@ -68,54 +67,67 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
 Format: `help`
 
+### Adding a client: `add`
 
-### Adding a person: `add`
+Adds a client to the client list.
 
-Adds a person to the address book.
-
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add n/NAME c/PHONE_NUMBER e/EMAIL a/ADDRESS b/BIRTHDAY p/PRIORITY [t/TAG]…​`
 
 <box type="tip" seamless>
 
-**Tip:** A person can have any number of tags (including 0)
+**Tip:** A client can have any number of tags (including 0)
 </box>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/John Doe c/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 b/1990-01-01 p/low t/friends t/owesMoney`
+* `add n/Betsy Crowe t/friend p/vip e/betsycrowe@example.com a/Newgate Prison c/1234567 t/criminal b/1979-03-04`
 
-### Listing all persons : `list`
+### Listing all clients : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all clients in the client list.
 
 Format: `list`
 
-### Editing a person : `edit`
+### View a client : `view`
 
-Edits an existing person in the address book.
+Shows the particulars and policies of a client.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `view INDEX`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Views the client at the specified `INDEX`.
+* The index refers to the index number shown in the displayed client list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list` followed by `view 2` views the 2nd client in the client list.
+* `find Betsy` followed by `view 1` view the 1st client in the results of the `find` command.
+
+### Editing a client : `edit`
+
+Edits an existing client in the client list.
+
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [b/BIRTHDAY] [p/PRIORITY] [t/TAG]…​`
+
+* Edits the client at the specified `INDEX`. The index refers to the index number shown in the displayed client list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
+* When editing tags, the existing tags of the client will be removed i.e adding of tags is not cumulative.
+* You can remove all the client’s tags by typing `t/` without
     specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit 1 c/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st client to be `91234567` and `johndoe@example.com` respectively.
+*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd client to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
+### Locating client by name: `find`
 
-Finds persons whose names contain any of the given keywords.
+Finds client whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -123,7 +135,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
+* client matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
@@ -131,25 +143,61 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+### Deleting a client : `delete`
 
-Deletes the specified person from the address book.
+Deletes the specified client from the client list.
 
 Format: `delete INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Deletes the client at the specified `INDEX`.
+* The index refers to the index number shown in the displayed client list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `delete 2` deletes the 2nd client in the client list.
+* `find Betsy` followed by `delete 1` deletes the 1st client in the results of the `find` command.
+
+### Updating last met : `met`
+
+Updates the last met date you had with your client.
+
+Format: `met INDEX l/DATE`
+
+* Updates the client at the specified `INDEX`.
+* The index refers to the index number shown in the displayed client list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* The DATE format must be in **YYYY-MM-DD**. 7 May 2023 should be entered as 2023-05-07.
+
+Examples:
+* `met 2 l/2023-05-07` updates the last met date of the 2nd client in the client list to 7 May 2023.
+* `met 7 l/2024-07-08` updates the last met date of the 7th client in the client list to 8 July 2024.
+
+### Scheduling appointments : `schedule`
+
+Schedules an appointment date and time you have with your client.
+
+Format: `schedule INDEX s/DATETIME`
+
+* Schedules an appointment the client at the specified `INDEX`.
+* The index refers to the index number shown in the displayed client list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* The DATETIME format must be in **YYYY-MM-DD HH:mm**. 7 May 2023 2.15pm should be entered as 2023-05-07 14:15.
+
+Examples:
+* `schedule 2 s/2023-05-07 22:00` schedules an appointment with the 
+2nd client in the client list at 7 May 2023 10pm.
+* `schedule 7 s/2024-07-08 07:30` schedules an appointment with the 
+7th client in the client list at 8 July 2024 7.30am.
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all entries from the client list.
 
 Format: `clear`
+
+><span style="color: red;"> [!CAUTION] </span> 
+>
+>><span style="color: red;"> Clearing is irreversible and will NOT have a confirmation screen </span> 
 
 ### Exiting the program : `exit`
 
@@ -159,17 +207,17 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+ClientCare data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+ClientCare data is automatically saved as a JSON file `[JAR file location]/data/clientcare.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <box type="warning" seamless>
 
 **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
-Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
+If your changes to the data file makes its format invalid, ClientCare will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
+Furthermore, certain edits can cause the ClientCare to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
 
 ### Archiving data files `[coming in v2.0]`
@@ -181,7 +229,7 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ClientCare home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -193,12 +241,15 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action     | Format, Examples
------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear**  | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List**   | `list`
-**Help**   | `help`
+| Action       | Format, Examples                                                                                                                                                     |
+|--------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**      | `add n/NAME c/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g.,`add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **Clear**    | `clear`                                                                                                                                                              |
+| **Delete**   | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                  |
+| **Edit**     | `edit INDEX [n/NAME] [c/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                          |
+| **Find**     | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                           |
+| **List**     | `list`                                                                                                                                                               |
+| **LastMet**  | `met INDEX [l/DATE]`<br> eg., `met 2 l/2023-05-07`                                                                                                                   |
+| **Schedule** | `schedule INDEX [s/DATETIME]`<br> eg., `schedule 2 s/2023-05-07 22:00`                                                                                               |                                                                                                                               |
+| **View**     | `view INDEX`<br> eg., `view 1`                                                                                                                                        |
+| **Help**     | `help`                                                                                                                                                               |

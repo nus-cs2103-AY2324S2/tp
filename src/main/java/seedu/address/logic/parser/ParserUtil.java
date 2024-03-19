@@ -14,6 +14,7 @@ import seedu.address.model.person.Birthday;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Priority;
 import seedu.address.model.policy.Policy;
 import seedu.address.model.tag.Tag;
 
@@ -109,6 +110,21 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String priority} into a {@code Priority}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code priority} is invalid.
+     */
+    public static Priority parsePriority(String priority) throws ParseException {
+        requireNonNull(priority);
+        String trimmedPriority = priority.trim();
+        if (!Priority.isValidPriority(trimmedPriority)) {
+            throw new ParseException(Priority.MESSAGE_CONSTRAINTS);
+        }
+        return new Priority(trimmedPriority);
+    }
+
+    /**
      * Parses a {@code String email} into an {@code Email}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -174,5 +190,21 @@ public class ParserUtil {
             throw new ParseException(Policy.MESSAGE_CONSTRAINTS_ID);
         }
         return new Policy(trimmedPolicyName, trimmedPolicyID);
+    }
+
+    /**
+     * Parses {@code String policyId} into a {@code String}.
+     * Leading and trailing whitespaces will be trimmed.
+     * @param policyId the policy id
+     * @return the policyid
+     * @throws ParseException
+     */
+    public static String parsePolicyId(String policyId) throws ParseException {
+        requireNonNull(policyId);
+        String trimmedPolicyId = policyId.trim();
+        if (!Policy.isValidID(trimmedPolicyId)) {
+            throw new ParseException(Policy.MESSAGE_CONSTRAINTS_ID);
+        }
+        return trimmedPolicyId;
     }
 }

@@ -61,19 +61,20 @@ public class AddPolicyCommand extends Command {
         Person personToAddPolicy = lastShownList.get(index.getZeroBased());
 
         // Checks for conflicting Policy ID here
-        if (personToAddPolicy.hasPolicyID(policy)) {
+        if (personToAddPolicy.isConflictingPolicyId(policy)) {
             throw new CommandException(Messages.MESSAGE_DUPLICATE_POLICY);
         }
-        PolicyList updatedPolicyList = personToAddPolicy.getPolicyList().getPolicyListClone();
+        PolicyList updatedPolicyList = personToAddPolicy.getPolicyList();
         updatedPolicyList.addPolicy(policy);
 
         Person policyAddedPerson = new Person(personToAddPolicy.getName(), personToAddPolicy.getPhone(),
                 personToAddPolicy.getEmail(), personToAddPolicy.getAddress(), personToAddPolicy.getBirthday(),
-                personToAddPolicy.getLastMet(), personToAddPolicy.getSchedule(), personToAddPolicy.getTags(),
-                updatedPolicyList);
+                personToAddPolicy.getPriority(), personToAddPolicy.getLastMet(), personToAddPolicy.getSchedule(),
+                personToAddPolicy.getTags(), updatedPolicyList);
 
         model.setPerson(personToAddPolicy, policyAddedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.setDisplayClient(policyAddedPerson);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, personToAddPolicy.getName()));
     }

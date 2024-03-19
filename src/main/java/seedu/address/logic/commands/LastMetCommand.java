@@ -65,11 +65,12 @@ public class LastMetCommand extends Command {
         Person personToMeet = lastShownList.get(index.getZeroBased());
         Person metPerson = new Person(
                 personToMeet.getName(), personToMeet.getPhone(), personToMeet.getEmail(),
-                personToMeet.getAddress(), personToMeet.getBirthday(),
+                personToMeet.getAddress(), personToMeet.getBirthday(), personToMeet.getPriority(),
                 this.lastMet, personToMeet.getSchedule(), personToMeet.getTags(), personToMeet.getPolicyList());
 
         model.setPerson(personToMeet, metPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.setDisplayClient(metPerson);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, personToMeet.getName()));
     }

@@ -240,4 +240,25 @@ public class ParserUtilTest {
         Policy expectedPolicy = new Policy(VALID_POLICYNAME, VALID_POLICYID);
         assertEquals(expectedPolicy, ParserUtil.parsePolicyInfo(VALID_POLICYNAME, policyIdWithWhitespace));
     }
+
+    @Test
+    public void parsePolicyId_nullPolicyId_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parsePolicyId((String) null));
+    }
+
+    @Test
+    public void parsePolicyId_invalidValuePolicyId_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parsePolicyId(INVALID_POLICYID));
+    }
+
+    @Test
+    public void parsePolicyId_validValueWithoutWhitespace_returnsString() throws Exception {
+        assertEquals(VALID_POLICYID, ParserUtil.parsePolicyId(VALID_POLICYID));
+    }
+
+    @Test
+    public void parsePolicyId_validValueWithWhitespacePolicyID_returnsTrimmedString() throws Exception {
+        String policyIdWithWhitespace = WHITESPACE + VALID_POLICYID + WHITESPACE;
+        assertEquals(VALID_POLICYID, ParserUtil.parsePolicyId(policyIdWithWhitespace));
+    }
 }

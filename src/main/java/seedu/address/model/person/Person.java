@@ -27,6 +27,7 @@ public class Person {
     // Data fields
     private final Address address;
     private final Birthday birthday;
+    private final Priority priority;
     private final LastMet lastMet;
     private final Schedule schedule;
     private final Set<Tag> tags = new HashSet<>();
@@ -35,13 +36,15 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Birthday birthday, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, birthday, tags);
+    public Person(Name name, Phone phone, Email email, Address address, Birthday birthday, Priority priority,
+                  Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, birthday, priority, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.birthday = birthday;
+        this.priority = priority;
         this.lastMet = new LastMet(LocalDate.now());
         this.schedule = new Schedule(LocalDateTime.now(), true);
         this.tags.addAll(tags);
@@ -52,13 +55,14 @@ public class Person {
      * Person constructor used for subsequent LastMet, Schedule and Mark Commands.
      */
     public Person(Name name, Phone phone, Email email, Address address, Birthday birthday,
-                  LastMet lastmet, Schedule schedule, Set<Tag> tags, PolicyList policyList) {
+        Priority priority, LastMet lastmet, Schedule schedule, Set<Tag> tags, PolicyList policyList) {
         requireAllNonNull(name, phone, email, address, birthday, tags, policyList);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.birthday = birthday;
+        this.priority = priority;
         this.lastMet = checkNullLastMet(lastmet);
         this.schedule = checkNullSchedule(schedule);
         this.tags.addAll(tags);
@@ -85,6 +89,10 @@ public class Person {
         return birthday;
     }
 
+    public Priority getPriority() {
+        return priority;
+    }
+
     public LastMet getLastMet() {
         return lastMet;
     }
@@ -93,7 +101,7 @@ public class Person {
         return schedule;
     }
     public PolicyList getPolicyList() {
-        return policyList;
+        return policyList.getPolicyListClone();
     }
 
     private LastMet checkNullLastMet(LastMet lastmet) {
@@ -134,13 +142,23 @@ public class Person {
     }
 
     /**
-     * Has policy id boolean.
-     *
-     * @param policy the policy
-     * @return the boolean
+     * Returns true if person has a policy in their policyList that has conflicting policyId as testPolicy.
+     * @param testPolicy Policy to be tested for conflicting policyId
+     * @return true if person has a policy in their policyList that has conflicting policyId as testPolicy
      */
-    public boolean hasPolicyID(Policy policy) {
-        return policyList.hasPolicyID(policy);
+    public boolean isConflictingPolicyId(Policy testPolicy) {
+        assert testPolicy != null;
+        return policyList.hasConflictingPolicyId(testPolicy);
+    }
+
+    /**
+     * Returns true if person has any policy in their policyList that has policyId.
+     * @param policyId Policy ID to be tested for existence
+     * @return true if person has any policy in their policyList that has policyId
+     */
+    public boolean hasPolicyID(String policyId) {
+        assert policyId != null;
+        return policyList.hasPolicy(policyId);
     }
 
 
@@ -165,6 +183,7 @@ public class Person {
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
                 && birthday.equals(otherPerson.birthday)
+                && priority.equals(otherPerson.priority)
                 && tags.equals(otherPerson.tags)
                 && policyList.equals(otherPerson.policyList);
     }
@@ -172,7 +191,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, birthday, tags);
+        return Objects.hash(name, phone, email, address, birthday, priority, tags);
     }
 
     @Override
@@ -183,6 +202,7 @@ public class Person {
                 .add("email", email)
                 .add("address", address)
                 .add("birthday", birthday)
+                .add("priority", priority)
                 .add("tags", tags)
                 .add("policies", policyList)
                 .toString();

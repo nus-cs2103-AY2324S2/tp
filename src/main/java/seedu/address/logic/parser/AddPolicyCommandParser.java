@@ -15,13 +15,13 @@ import seedu.address.model.policy.Policy;
 
 
 /**
- * Parses input arguments and creates a new ScheduleCommand object
+ * Parses input arguments and creates a new AddPolicyCommand object
  */
-public class AddPolicyCommandParser {
+public class AddPolicyCommandParser implements Parser<AddPolicyCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the ScheduleCommand
-     * and returns an ScheduleCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the AddPolicyCommand
+     * and returns an AddPolicyCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddPolicyCommand parse(String args) throws ParseException {

@@ -23,6 +23,8 @@ public class Messages {
                 "Multiple values specified for the following single-valued field(s): ";
     public static final String MESSAGE_DUPLICATE_POLICY =
             "You cannot add a policy with the same Policy ID as an existing policy";
+    public static final String MESSAGE_POLICY_NOT_FOUND =
+            "You cannot delete a policy that does not exist";
 
     /**
      * Returns an error message indicating the duplicate prefixes.
@@ -50,6 +52,8 @@ public class Messages {
                 .append(person.getAddress())
                 .append("; Birthday: ")
                 .append(person.getBirthday())
+                .append("; Priority: ")
+                .append(person.getPriority())
                 .append("; Tags: ");
         person.getTags().forEach(builder::append);
         return builder.toString();

@@ -56,13 +56,14 @@ public class MarkCommand extends Command {
 
         Person metPerson = new Person(
                 personToMeet.getName(), personToMeet.getPhone(), personToMeet.getEmail(),
-                personToMeet.getAddress(), personToMeet.getBirthday(),
+                personToMeet.getAddress(), personToMeet.getBirthday(), personToMeet.getPriority(),
                 personToMeet.getLastMet(), personToMeet.getSchedule(), personToMeet.getTags(),
                 personToMeet.getPolicyList());
 
         metPerson.getSchedule().markIsDone();
         model.setPerson(personToMeet, metPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.setDisplayClient(metPerson);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, personToMeet.getName()));
     }
