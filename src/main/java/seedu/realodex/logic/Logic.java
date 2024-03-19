@@ -36,7 +36,7 @@ public interface Logic {
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getRealodexFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

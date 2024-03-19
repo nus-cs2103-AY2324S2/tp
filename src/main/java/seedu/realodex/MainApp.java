@@ -73,19 +73,19 @@ public class MainApp extends Application {
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        logger.info("Using data file : " + storage.getAddressBookFilePath());
+        logger.info("Using data file : " + storage.getRealodexFilePath());
 
         Optional<ReadOnlyRealodex> addressBookOptional;
         ReadOnlyRealodex initialData;
         try {
-            addressBookOptional = storage.readAddressBook();
+            addressBookOptional = storage.readRealodex();
             if (!addressBookOptional.isPresent()) {
-                logger.info("Creating a new data file " + storage.getAddressBookFilePath()
+                logger.info("Creating a new data file " + storage.getRealodexFilePath()
                         + " populated with a sample Realodex.");
             }
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleRealodex);
         } catch (DataLoadingException e) {
-            logger.warning("Data file at " + storage.getAddressBookFilePath() + " could not be loaded."
+            logger.warning("Data file at " + storage.getRealodexFilePath() + " could not be loaded."
                     + " Will be starting with an empty Realodex.");
             initialData = new Realodex();
         }

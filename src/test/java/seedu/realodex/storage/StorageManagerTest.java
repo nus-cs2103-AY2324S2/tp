@@ -56,13 +56,13 @@ public class StorageManagerTest {
          */
         Realodex original = getTypicalRealodex();
         storageManager.saveRealodex(original);
-        ReadOnlyRealodex retrieved = storageManager.readAddressBook().get();
+        ReadOnlyRealodex retrieved = storageManager.readRealodex().get();
         assertEquals(original, new Realodex(retrieved));
     }
 
     @Test
-    public void getAddressBookFilePath() {
-        assertNotNull(storageManager.getAddressBookFilePath());
+    public void getRealodexFilePath() {
+        assertNotNull(storageManager.getRealodexFilePath());
     }
 
 }

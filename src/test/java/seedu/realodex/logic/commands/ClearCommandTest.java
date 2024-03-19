@@ -13,7 +13,7 @@ import seedu.realodex.model.UserPrefs;
 public class ClearCommandTest {
 
     @Test
-    public void execute_emptyAddressBook_success() {
+    public void execute_emptyRealodex_success() {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
 
@@ -21,7 +21,7 @@ public class ClearCommandTest {
     }
 
     @Test
-    public void execute_nonEmptyAddressBook_success() {
+    public void execute_nonEmptyRealodex_success() {
         Model model = new ModelManager(getTypicalRealodex(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalRealodex(), new UserPrefs());
         expectedModel.setRealodex(new Realodex());

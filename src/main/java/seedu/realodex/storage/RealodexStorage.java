@@ -16,7 +16,7 @@ public interface RealodexStorage {
     /**
      * Returns the file path of the data file.
      */
-    Path getAddressBookFilePath();
+    Path getRealodexFilePath();
 
     /**
      * Returns Realodex data as a {@link ReadOnlyRealodex}.
@@ -24,12 +24,12 @@ public interface RealodexStorage {
      *
      * @throws DataLoadingException if loading the data from storage failed.
      */
-    Optional<ReadOnlyRealodex> readAddressBook() throws DataLoadingException;
+    Optional<ReadOnlyRealodex> readRealodex() throws DataLoadingException;
 
     /**
-     * @see #getAddressBookFilePath()
+     * @see #getRealodexFilePath()
      */
-    Optional<ReadOnlyRealodex> readAddressBook(Path filePath) throws DataLoadingException;
+    Optional<ReadOnlyRealodex> readRealodex(Path filePath) throws DataLoadingException;
 
     /**
      * Saves the given {@link ReadOnlyRealodex} to the storage.

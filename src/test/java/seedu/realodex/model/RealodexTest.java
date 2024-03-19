@@ -37,7 +37,7 @@ public class RealodexTest {
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
+    public void resetData_withValidReadOnlyRealodex_replacesData() {
         Realodex newData = getTypicalRealodex();
         realodex.resetData(newData);
         assertEquals(newData, realodex);
@@ -60,18 +60,18 @@ public class RealodexTest {
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
+    public void hasPerson_personNotInRealodex_returnsFalse() {
         assertFalse(realodex.hasPerson(ALICE));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
+    public void hasPerson_personInRealodex_returnsTrue() {
         realodex.addPerson(ALICE);
         assertTrue(realodex.hasPerson(ALICE));
     }
 
     @Test
-    public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
+    public void hasPerson_personWithSameIdentityFieldsInRealodex_returnsTrue() {
         realodex.addPerson(ALICE);
         Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_AMY)
                 .build();

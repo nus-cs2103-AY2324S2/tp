@@ -27,22 +27,22 @@ public class JsonRealodexStorage implements RealodexStorage {
         this.filePath = filePath;
     }
 
-    public Path getAddressBookFilePath() {
+    public Path getRealodexFilePath() {
         return filePath;
     }
 
     @Override
-    public Optional<ReadOnlyRealodex> readAddressBook() throws DataLoadingException {
-        return readAddressBook(filePath);
+    public Optional<ReadOnlyRealodex> readRealodex() throws DataLoadingException {
+        return readRealodex(filePath);
     }
 
     /**
-     * Similar to {@link #readAddressBook()}.
+     * Similar to {@link #readRealodex()}.
      *
      * @param filePath location of the data. Cannot be null.
      * @throws DataLoadingException if loading the data from storage failed.
      */
-    public Optional<ReadOnlyRealodex> readAddressBook(Path filePath) throws DataLoadingException {
+    public Optional<ReadOnlyRealodex> readRealodex(Path filePath) throws DataLoadingException {
         requireNonNull(filePath);
 
         Optional<JsonSerializableRealodex> jsonAddressBook = JsonUtil.readJsonFile(

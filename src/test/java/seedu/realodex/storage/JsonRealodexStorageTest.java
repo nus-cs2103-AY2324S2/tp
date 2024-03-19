@@ -26,12 +26,12 @@ public class JsonRealodexStorageTest {
     public Path testFolder;
 
     @Test
-    public void readAddressBook_nullFilePath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> readAddressBook(null));
+    public void readRealodex_nullFilePath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> readRealodex(null));
     }
 
-    private java.util.Optional<ReadOnlyRealodex> readAddressBook(String filePath) throws Exception {
-        return new JsonRealodexStorage(Paths.get(filePath)).readAddressBook(addToTestDataPathIfNotNull(filePath));
+    private java.util.Optional<ReadOnlyRealodex> readRealodex(String filePath) throws Exception {
+        return new JsonRealodexStorage(Paths.get(filePath)).readRealodex(addToTestDataPathIfNotNull(filePath));
     }
 
     private Path addToTestDataPathIfNotNull(String prefsFileInTestDataFolder) {
@@ -42,59 +42,59 @@ public class JsonRealodexStorageTest {
 
     @Test
     public void read_missingFile_emptyResult() throws Exception {
-        assertFalse(readAddressBook("NonExistentFile.json").isPresent());
+        assertFalse(readRealodex("NonExistentFile.json").isPresent());
     }
 
     @Test
     public void read_notJsonFormat_exceptionThrown() {
-        assertThrows(DataLoadingException.class, () -> readAddressBook("notJsonFormatRealodex.json"));
+        assertThrows(DataLoadingException.class, () -> readRealodex("notJsonFormatRealodex.json"));
     }
 
     @Test
-    public void readAddressBook_invalidPersonAddressBook_throwDataLoadingException() {
-        assertThrows(DataLoadingException.class, () -> readAddressBook("invalidPersonRealodex.json"));
+    public void readRealodex_invalidPersonRealodex_throwDataLoadingException() {
+        assertThrows(DataLoadingException.class, () -> readRealodex("invalidPersonRealodex.json"));
     }
 
     @Test
-    public void readAddressBook_invalidAndValidPersonAddressBook_throwDataLoadingException() {
-        assertThrows(DataLoadingException.class, () -> readAddressBook("invalidAndValidPersonRealodex.json"));
+    public void readRealodex_invalidAndValidPersonRealodex_throwDataLoadingException() {
+        assertThrows(DataLoadingException.class, () -> readRealodex("invalidAndValidPersonRealodex.json"));
     }
 
     @Test
-    public void readAndSaveAddressBook_allInOrder_success() throws Exception {
+    public void readAndSaveRealodex_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempRealodex.json");
         Realodex original = getTypicalRealodex();
         JsonRealodexStorage jsonRealodexStorage = new JsonRealodexStorage(filePath);
 
         // Save in new file and read back
         jsonRealodexStorage.saveRealodex(original, filePath);
-        ReadOnlyRealodex readBack = jsonRealodexStorage.readAddressBook(filePath).get();
+        ReadOnlyRealodex readBack = jsonRealodexStorage.readRealodex(filePath).get();
         assertEquals(original, new Realodex(readBack));
 
         // Modify data, overwrite exiting file, and read back
         original.addPerson(HOON);
         original.removePerson(ALICE);
         jsonRealodexStorage.saveRealodex(original, filePath);
-        readBack = jsonRealodexStorage.readAddressBook(filePath).get();
+        readBack = jsonRealodexStorage.readRealodex(filePath).get();
         assertEquals(original, new Realodex(readBack));
 
         // Save and read without specifying file path
         original.addPerson(IDA);
         jsonRealodexStorage.saveRealodex(original); // file path not specified
-        readBack = jsonRealodexStorage.readAddressBook().get(); // file path not specified
+        readBack = jsonRealodexStorage.readRealodex().get(); // file path not specified
         assertEquals(original, new Realodex(readBack));
 
     }
 
     @Test
-    public void saveAddressBook_nullAddressBook_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> saveAddressBook(null, "SomeFile.json"));
+    public void saveRealodex_nullRealodex_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> saveRealodex(null, "SomeFile.json"));
     }
 
     /**
      * Saves {@code addressBook} at the specified {@code filePath}.
      */
-    private void saveAddressBook(ReadOnlyRealodex addressBook, String filePath) {
+    private void saveRealodex(ReadOnlyRealodex addressBook, String filePath) {
         try {
             new JsonRealodexStorage(Paths.get(filePath))
                     .saveRealodex(addressBook, addToTestDataPathIfNotNull(filePath));
@@ -104,7 +104,7 @@ public class JsonRealodexStorageTest {
     }
 
     @Test
-    public void saveAddressBook_nullFilePath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> saveAddressBook(new Realodex(), null));
+    public void saveRealodex_nullFilePath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> saveRealodex(new Realodex(), null));
     }
 }

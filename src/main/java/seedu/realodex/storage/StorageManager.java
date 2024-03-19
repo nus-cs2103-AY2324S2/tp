@@ -49,24 +49,24 @@ public class StorageManager implements Storage {
     // ================ Realodex methods ==============================
 
     @Override
-    public Path getAddressBookFilePath() {
-        return realodexStorage.getAddressBookFilePath();
+    public Path getRealodexFilePath() {
+        return realodexStorage.getRealodexFilePath();
     }
 
     @Override
-    public Optional<ReadOnlyRealodex> readAddressBook() throws DataLoadingException {
-        return readAddressBook(realodexStorage.getAddressBookFilePath());
+    public Optional<ReadOnlyRealodex> readRealodex() throws DataLoadingException {
+        return readRealodex(realodexStorage.getRealodexFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyRealodex> readAddressBook(Path filePath) throws DataLoadingException {
+    public Optional<ReadOnlyRealodex> readRealodex(Path filePath) throws DataLoadingException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return realodexStorage.readAddressBook(filePath);
+        return realodexStorage.readRealodex(filePath);
     }
 
     @Override
     public void saveRealodex(ReadOnlyRealodex addressBook) throws IOException {
-        saveRealodex(addressBook, realodexStorage.getAddressBookFilePath());
+        saveRealodex(addressBook, realodexStorage.getRealodexFilePath());
     }
 
     @Override

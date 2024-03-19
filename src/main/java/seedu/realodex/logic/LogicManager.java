@@ -72,7 +72,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
+    public Path getRealodexFilePath() {
         return model.getRealodexFilePath();
     }
 
