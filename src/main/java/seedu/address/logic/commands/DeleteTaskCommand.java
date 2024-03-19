@@ -19,7 +19,7 @@ public class DeleteTaskCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
     public static final String MESSAGE_SUCCESS = "Deleted Task: %1$s";
-    public static final String MESSAGE_INDEX_TOO_LARGE = "The index is not valid, use \"list task\" to "
+    public static final String MESSAGE_INDEX_TOO_LARGE = "The index is not valid, use \"listtask\" to "
             + "display all tasks.";
 
     public static final String MESSAGE_INDEX_BELOW_ONE = "The index must be greater than 0.";
