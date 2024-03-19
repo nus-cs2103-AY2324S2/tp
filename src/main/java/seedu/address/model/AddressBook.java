@@ -5,7 +5,12 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.date.Date;
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.AppointmentList;
+import seedu.address.model.appointment.TimePeriod;
+import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -16,6 +21,7 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    private final AppointmentList appointments;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -26,6 +32,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
+        appointments = new AppointmentList();
     }
 
     public AddressBook() {}
@@ -55,9 +62,34 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
+        setAppointments(newData.getAppointmentList());
     }
 
     //// person-level operations
+
+    /**
+     * Returns true if a person with the same name as {@code person} exists in the address book.
+     */
+    public boolean hasPersonWithNric(Nric nric) {
+        requireNonNull(nric);
+        return persons.hasPersonWithNric(nric);
+    }
+
+    /**
+     * Returns true if a person with the same name as {@code person} exists in the address book.
+     */
+    public Person getPersonWithNric(Nric nric) {
+        requireNonNull(nric);
+        return persons.getPersonWithNric(nric);
+    }
+
+    /**
+     * Deletes if a person with the same nric as {@code nric} exists in the address book.
+     */
+    public void deletePersonWithNric(Nric nric) {
+        requireNonNull(nric);
+        persons.deletePersonWithNric(nric);
+    }
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
@@ -94,6 +126,52 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    //// appointment-level operations
+
+    /**
+     * Replaces the contents of the person list with {@code persons}.
+     * {@code persons} must not contain duplicate persons.
+     */
+    public void setAppointments(List<Appointment> appointments) {
+        this.appointments.setAppointments(appointments);
+    }
+
+
+    /**
+     * Returns true if an appointment with the same identity as {@code appointment}
+     * exists in the address book.
+     */
+    public boolean hasAppointment(Appointment appointment) {
+        requireNonNull(appointment);
+        return appointments.contains(appointment);
+    }
+
+    /**
+     * Adds an appointment to the address book.
+     * The appointment must not already exist in the address book.
+     */
+    public void addAppointment(Appointment a) {
+        appointments.add(a);
+    }
+
+    /**
+     * Replaces the given person {@code target} in the list with {@code editedPerson}.
+     * {@code target} must exist in the address book.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     */
+    public void setAppointment(Appointment target, Appointment editedAppointment) {
+        requireNonNull(editedAppointment);
+        appointments.setAppointment(target, editedAppointment);
+    }
+
+    /**
+     * Cancels {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void cancelAppointment(Appointment key) {
+        appointments.remove(key);
+    }
+
     //// util methods
 
     @Override
@@ -106,6 +184,19 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Person> getPersonList() {
         return persons.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Appointment> getAppointmentList() {
+        return appointments.asUnmodifiableObservableList();
+    }
+
+    public Appointment getMatchingAppointment(Nric nric, Date date, TimePeriod timePeriod) {
+        return appointments.getMatchingAppointment(nric, date, timePeriod);
+    }
+
+    public void deleteAppointmentsWithNric(Nric targetNric) {
+        appointments.deleteAppointmentsWithNric(targetNric);
     }
 
     @Override
