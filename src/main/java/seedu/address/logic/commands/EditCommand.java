@@ -73,7 +73,13 @@ public class EditCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_COURSE_MATE_DISPLAYED_INDEX);
         }
 
-        CourseMate courseMateToEdit = lastShownList.get(index.getZeroBased());
+        CourseMate courseMateToEdit;
+        if (Index.fromOneBased(0) == index) {
+            courseMateToEdit = model.getRecentlyProcessedCourseMate();
+        } else {
+            courseMateToEdit = lastShownList.get(index.getZeroBased());
+        }
+
         CourseMate editedCourseMate = createEditedCourseMate(courseMateToEdit, editCourseMateDescriptor);
 
         if (!courseMateToEdit.isSameCourseMate(editedCourseMate) && model.hasCourseMate(editedCourseMate)) {

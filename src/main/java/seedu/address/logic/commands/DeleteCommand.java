@@ -40,7 +40,13 @@ public class DeleteCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_COURSE_MATE_DISPLAYED_INDEX);
         }
 
-        CourseMate courseMateToDelete = lastShownList.get(targetIndex.getZeroBased());
+        CourseMate courseMateToDelete;
+        if (Index.fromOneBased(0) == targetIndex) {
+            courseMateToDelete = model.getRecentlyProcessedCourseMate();
+        } else {
+            courseMateToDelete = lastShownList.get(targetIndex.getZeroBased());
+        }
+
         model.deleteCourseMate(courseMateToDelete);
         model.setRecentlyProcessedCourseMate(courseMateToDelete);
         return new CommandResult(MESSAGE_DELETE_COURSE_MATE_SUCCESS, false, false, true);

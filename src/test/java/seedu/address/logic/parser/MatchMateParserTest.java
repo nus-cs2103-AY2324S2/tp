@@ -44,7 +44,7 @@ public class MatchMateParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_COURSE_MATE.getOneBased());
+                DeleteCommand.COMMAND_WORD + " #" + INDEX_FIRST_COURSE_MATE.getOneBased());
         assertEquals(new DeleteCommand(INDEX_FIRST_COURSE_MATE), command);
     }
 
@@ -52,7 +52,7 @@ public class MatchMateParserTest {
     public void parseCommand_edit() throws Exception {
         CourseMate courseMate = new CourseMateBuilder().build();
         EditCommand.EditCourseMateDescriptor descriptor = new EditCourseMateDescriptorBuilder(courseMate).build();
-        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
+        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " #"
                 + INDEX_FIRST_COURSE_MATE.getOneBased() + " "
                 + CourseMateUtil.getEditCourseMateDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST_COURSE_MATE, descriptor), command);
