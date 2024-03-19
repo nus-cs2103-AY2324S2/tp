@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static staffconnect.commons.util.AppUtil.checkArgument;
 
 import java.util.Arrays;
+import java.util.stream.Stream;
 
 /**
  * Represents a Person's faculty in the staff book.
@@ -19,28 +20,29 @@ public class Faculty {
      * or the value is invalid. The enum class serves as the purpose for parsing user strings into the faculty name.
      */
     public enum FacultyName {
-        ARTS_AND_SOCIAL_SCIENCES("Arts and Social Sciences"),
-        BUSINESS("Business"),
-        COMPUTING("Computing"),
-        CONTINUING_AND_LIFELONG_EDUCATION("Continuing and Lifelong Education"),
-        DENTISTRY("Dentistry"),
-        DESIGN_AND_ENVIRONMENT("Design and Environment"),
-        DUKE_NUS_MEDICAL_SCHOOL("Duke-NUS Medical School"),
-        ENGINEERING("Engineering"),
-        INTEGRATIVE_SCIENCES_AND_ENGINEERING("Integrative Sciences and Engineering"),
-        LAW("Law"),
-        MEDICINE("Medicine"),
-        MUSIC("Music"),
-        PUBLIC_HEALTH("Public Health"),
-        PUBLIC_POLICY("Public Policy"),
-        SCIENCE("Science"),
-        UNIVERSITY_SCHOLARS_PROGRAMME("University Scholars Programme"),
-        YALE_NUS_COLLEGE("Yale-NUS College");
+        ARTS_AND_SOCIAL_SCIENCES("Faculty of Arts of Social Sciences", "Arts and Social Sciences", "FASS"),
+        BUSINESS("Business School", "Business", "Biz School", "Biz"),
+        COMPUTING("School of Computing", "Computing", "SoC"),
+        CONTINUING_AND_LIFELONG_EDUCATION("School of Continuing and Lifelong Education",
+                "Continuing and Lifelong Education", "SCALE"),
+        DENTISTRY("Faculty of Dentistry", "Dentistry"),
+        DESIGN_AND_ENVIRONMENT("School of Design and Environment", "Design and Environment", "SDE"),
+        DUKE_NUS_MEDICAL_SCHOOL("Duke-NUS Medical School", "Duke-NUS"),
+        ENGINEERING("Faculty of Engineering", "Engineering", "FoE"),
+        INTEGRATIVE_SCIENCES_AND_ENGINEERING("Integrative Sciences and Engineering", "ISEP"),
+        LAW("Faculty of Law", "Law"),
+        MEDICINE("Yong Loo Lin School of Medicine", "Medicine", "School of Medicine"),
+        MUSIC("Yong Siew Toh Conservatory of Music", "Music", "YST Conservatory of Music"),
+        PUBLIC_HEALTH("Saw Swee Hock School of Public Health", "Public Health"),
+        PUBLIC_POLICY("Public Policy", "Lee Kuan Yew School of Public Policy", "LKY School of Public Policy"),
+        SCIENCE("Faculty of Science", "Science", "FoS"),
+        UNIVERSITY_SCHOLARS_PROGRAMME("University Scholars Programme", "USP"),
+        YALE_NUS_COLLEGE("Yale-NUS College", "Yale-NUS");
 
-        private final String facultyNameValue;
+        private final String[] facultyNameValues;
 
-        FacultyName(String facultyName) {
-            this.facultyNameValue = facultyName;
+        FacultyName(String... facultyNames) {
+            this.facultyNameValues = facultyNames;
         }
 
         /**
@@ -49,7 +51,7 @@ public class Faculty {
          * @return name of the faculty
          */
         public String getFacultyName() {
-            return facultyNameValue;
+            return facultyNameValues[0];
         }
     }
     public final FacultyName value;
@@ -74,17 +76,18 @@ public class Faculty {
     public static boolean isValidFaculty(String test) {
         requireNonNull(test, "faculty cannot be null");
 
-        return Arrays.stream(FacultyName.values())
-                .anyMatch(faculty -> faculty.getFacultyName().equalsIgnoreCase(test));
+        return Stream.of(FacultyName.values())
+                .flatMap(member -> Arrays.stream(member.facultyNameValues))
+                .anyMatch(value -> value.equalsIgnoreCase(test));
     }
 
     private static FacultyName fromString(String name) {
-        for (FacultyName faculty : FacultyName.values()) {
-            if (faculty.getFacultyName().equalsIgnoreCase(name)) {
-                return faculty;
-            }
-        }
-        throw new IllegalArgumentException("No enum constant matches the provided name: " + name);
+        return Stream.of(FacultyName.values())
+                .filter(member -> Arrays.stream(member.facultyNameValues)
+                .anyMatch(value -> value.equalsIgnoreCase(name)))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("No enum constant matches the provided name: "
+                        + name));
     }
 
     @Override

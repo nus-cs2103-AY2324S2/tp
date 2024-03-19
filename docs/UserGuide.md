@@ -221,23 +221,23 @@ Furthermore, certain edits can cause the StaffConnect to behave in unexpected wa
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
 2. **Restrictions on the valid user input of `Faculty` values**: For the current version, a valid user input for `Faculty` with prefix `f/` can only match exactly the same string as suggested below. Cases can be ignored though.
-   - Arts and Social Sciences
-   - Business
-   - Computing
-   - Continuing and Lifelong Education
-   - Dentistry
-   - Design and Environment
-   - Duke-NUS Medical School
-   - Engineering
-   - Integrative Sciences and Engineering
-   - Law
-   - Medicine
-   - Music
-   - Public Health
-   - Public Policy
-   - Science
-   - University Scholars Programme
-   - Yale-NUS College
+   - Faculty of Arts of Social Sciences; Arts and Social Sciences; FASS
+   - Business School; Business; Biz School; Biz
+   - School of Computing; Computing; SoC
+   - School of Continuing and Lifelong Education; Continuing and Lifelong Education; SCALE
+   - Faculty of Dentistry; Dentistry
+   - School of Design and Environment; Design and Environment; SDE
+   - Duke-NUS Medical School; Duke-NUS
+   - Faculty of Engineering; Engineering; FoE
+   - Integrative Sciences and Engineering; ISEP
+   - Faculty of Law; Law
+   - Yong Loo Lin School of Medicine; Medicine
+   - Yong Siew Toh Conservatory of Music; Music; TST Conservatory of Music
+   - Saw Swee Hock School of Public Health; Public Health
+   - Lee Kuan Yew School of Public Policy; Public Policy; LKY School of Public Policy
+   - Faculty of Science; Science; FoS
+   - University Scholars Programme; USP
+   - Yale-NUS College; Yale-NUS
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
