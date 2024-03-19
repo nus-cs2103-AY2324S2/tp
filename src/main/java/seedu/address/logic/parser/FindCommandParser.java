@@ -5,7 +5,7 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_ID;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 
 import java.util.List;
@@ -42,9 +42,9 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME,
-                        PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_ORDER_ID);
+                        PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_ORDER);
 
-        argMultimap.verifyOnlyOnePrefixFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_ORDER_ID);
+        argMultimap.verifyOnlyOnePrefixFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_ORDER);
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             List<String> names = argMultimap.getAllValues(PREFIX_NAME);
@@ -79,6 +79,6 @@ public class FindCommandParser implements Parser<FindCommand> {
             return new FindPersonCommand(new AddressContainsKeywordsPredicate(addresses));
         }
 
-        return new FindOrderCommand(new MatchingOrderIndexPredicate((argMultimap.getAllValues(PREFIX_ORDER_ID))));
+        return new FindOrderCommand(new MatchingOrderIndexPredicate((argMultimap.getAllValues(PREFIX_ORDER))));
     }
 }

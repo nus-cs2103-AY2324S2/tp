@@ -153,14 +153,15 @@ public class AddCommandTest {
         }
 
         @Override
-        public void deleteOrder(int id) {
+        public Order setOrder(Order order, Product product, Quantity quantity) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public Order setOrder(Order order, Product product, Quantity quantity) {
+        public void deleteOrder(int id) {
             throw new AssertionError("This method should not be called.");
         }
+
         @Override
         public void setPerson(Person target, Person editedPerson) {
             throw new AssertionError("This method should not be called.");

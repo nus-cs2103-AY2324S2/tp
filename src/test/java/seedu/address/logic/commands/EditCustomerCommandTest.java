@@ -41,7 +41,8 @@ public class EditCustomerCommandTest {
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedPerson).build();
         EditCustomerCommand editCustomerCommand = new EditCustomerCommand(INDEX_FIRST_PERSON, descriptor);
 
-        String expectedMessage = String.format(EditCustomerCommand.MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson));
+        String expectedMessage = String.format(EditCustomerCommand.MESSAGE_EDIT_PERSON_SUCCESS,
+                Messages.format(editedPerson));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
@@ -62,7 +63,8 @@ public class EditCustomerCommandTest {
                 .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();
         EditCustomerCommand editCustomerCommand = new EditCustomerCommand(indexLastPerson, descriptor);
 
-        String expectedMessage = String.format(EditCustomerCommand.MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson));
+        String expectedMessage = String.format(EditCustomerCommand.MESSAGE_EDIT_PERSON_SUCCESS,
+                Messages.format(editedPerson));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(lastPerson, editedPerson);
@@ -72,10 +74,12 @@ public class EditCustomerCommandTest {
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
-        EditCustomerCommand editCustomerCommand = new EditCustomerCommand(INDEX_FIRST_PERSON, new EditPersonDescriptor());
+        EditCustomerCommand editCustomerCommand = new EditCustomerCommand(INDEX_FIRST_PERSON,
+                new EditPersonDescriptor());
         Person editedPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
 
-        String expectedMessage = String.format(EditCustomerCommand.MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson));
+        String expectedMessage = String.format(EditCustomerCommand.MESSAGE_EDIT_PERSON_SUCCESS,
+                Messages.format(editedPerson));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
 
@@ -91,7 +95,8 @@ public class EditCustomerCommandTest {
         EditCustomerCommand editCustomerCommand = new EditCustomerCommand(INDEX_FIRST_PERSON,
                 new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
-        String expectedMessage = String.format(EditCustomerCommand.MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson));
+        String expectedMessage = String.format(EditCustomerCommand.MESSAGE_EDIT_PERSON_SUCCESS,
+                Messages.format(editedPerson));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
@@ -176,8 +181,8 @@ public class EditCustomerCommandTest {
         Index index = Index.fromOneBased(1);
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
         EditCustomerCommand editCustomerCommand = new EditCustomerCommand(index, editPersonDescriptor);
-        String expected = EditCustomerCommand.class.getCanonicalName() + "{index=" + index + ", editPersonDescriptor="
-                + editPersonDescriptor + "}";
+        String expected = EditCustomerCommand.class.getCanonicalName() + "{index=" + index
+                + ", editPersonDescriptor=" + editPersonDescriptor + "}";
         assertEquals(expected, editCustomerCommand.toString());
     }
 

@@ -1,5 +1,8 @@
 package seedu.address.model.order;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -10,7 +13,7 @@ public class Quantity {
             "Product quantity should only be a number.";
 
     /** Accept only non-negative integers*/
-    public static final String VALIDATION_REGEX = "^\\d*$";
+    public static final String VALIDATION_REGEX = "^\\d+$";
 
     private int value;
 
@@ -18,16 +21,10 @@ public class Quantity {
      * Constructs a {@code Order} with {@code value}
      * @param value value of the Quantity.
      */
-    public Quantity(@JsonProperty("order") int value) {
-
+    public Quantity(@JsonProperty("order") Integer value) {
+        requireNonNull(value);
+        checkArgument(isValidQuantity(value.toString()), MESSAGE_CONSTRAINTS);
         this.value = value;
-    }
-
-    /**
-     * Returns true if a given String is a valid quantity number.
-     */
-    public static boolean isValidQuantity(String test) {
-        return test.matches(VALIDATION_REGEX);
     }
 
     @Override
@@ -69,5 +66,12 @@ public class Quantity {
      */
     public void setQuantity(int newQuantity) {
         this.value = newQuantity;
+    }
+
+    /**
+     * Returns true if a given string is a valid quantity.
+     */
+    public static boolean isValidQuantity(String test) {
+        return test.matches(VALIDATION_REGEX);
     }
 }

@@ -156,6 +156,9 @@ public class Order implements Comparable<Order> {
         return productMap.isEmpty();
     }
 
+    public void setProducts(Map<Product, Quantity> products) {
+        this.productMap = products;
+    }
     /**
      * Gets the {@code Person} ordering the order
      *
@@ -194,7 +197,7 @@ public class Order implements Comparable<Order> {
      * @return A boolean value of whether the two orders are the same.
      */
     public boolean isSameOrder(Order otherOrder) {
-        if(otherOrder == null) {
+        if (otherOrder == null) {
             return false;
         }
         if (otherOrder.equals(this)) {
@@ -234,6 +237,7 @@ public class Order implements Comparable<Order> {
             str += productList.get(k).getName();
             str += ",";
             str += productMap.get(productList.get(k)).getValue();
+            str += "\n";
         }
         return str;
     }

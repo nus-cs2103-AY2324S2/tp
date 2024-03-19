@@ -2,7 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_ID;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRODUCT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRODUCT_QUANTITY;
 
@@ -22,13 +22,13 @@ public class EditOrderCommandParser implements Parser<EditOrderCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args,
-                        PREFIX_ORDER_ID, PREFIX_PRODUCT_NAME, PREFIX_PRODUCT_QUANTITY);
+                        PREFIX_ORDER, PREFIX_PRODUCT_NAME, PREFIX_PRODUCT_QUANTITY);
 
         Index index;
 
         try {
             index = ParserUtil.parseIndex(
-                    argMultimap.getValue(PREFIX_ORDER_ID)
+                    argMultimap.getValue(PREFIX_ORDER)
                             .orElseThrow(() -> new ParseException("")));
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
