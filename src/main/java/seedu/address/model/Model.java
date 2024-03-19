@@ -91,28 +91,30 @@ public interface Model {
     void updateFilteredPersonList(Predicate<Person> predicate);
 
     /**
-     * Returns true if an appointment with the same details as {@code appointment} exists in the address book.
+     * Returns true if an appointment with the same details as {@code appointment} exists in the appointment list.
      */
     boolean hasAppointment(Appointment appointment);
 
     /**
      * Adds the given appointment.
-     * {@code appointment} must not already exist in the address book.
+     * {@code appointment} must not already exist in the appointment list.
      */
     void addAppointment(Appointment appointment);
 
-    /** Returns an unmodifiable view of the filtered person list */
+    /**
+     * Returns an unmodifiable view of the filtered appointment list
+     */
     ObservableList<Appointment> getFilteredAppointmentList();
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered appointment list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredAppointmentList(Predicate<Appointment> predicate);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Deletes the given appointment.
+     * The appointment must exist in the appointment list.
      */
     void deleteAppointment(Appointment target);
 

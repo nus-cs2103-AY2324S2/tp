@@ -11,7 +11,7 @@ import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
 
 /**
- * Finds the appointment in the CogniCare address book which matches the student and appointment id.
+ * Finds the appointment in the CogniCare appointment list which matches the student and appointment id.
  */
 public class FindAppointmentCommand extends Command {
 

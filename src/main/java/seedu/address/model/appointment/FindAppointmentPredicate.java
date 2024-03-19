@@ -3,7 +3,7 @@ package seedu.address.model.appointment;
 import java.util.function.Predicate;
 
 /**
- * Tests that a {@code Appointment}'s {@code studentId} matches the index given.
+ * Tests that a {@code Appointment}'s {@code studentId} and {@code appointmentId} matches the indexs given.
  */
 public class FindAppointmentPredicate implements Predicate<Appointment> {
     private final int studentId;
@@ -11,8 +11,8 @@ public class FindAppointmentPredicate implements Predicate<Appointment> {
 
     /**
      * Finds appointment based on student and appointment id.
-     * @param studentId         target student id.
-     * @param appointmentId     target appointment id.
+     * @param studentId target student id.
+     * @param appointmentId target appointment id.
      */
     public FindAppointmentPredicate(int studentId, int appointmentId) {
         this.studentId = studentId;

@@ -49,6 +49,8 @@ public interface Logic {
      */
     void setGuiSettings(GuiSettings guiSettings);
 
-    /** Returns an unmodifiable view of the filtered list of appointments */
+    /**
+     * Returns an unmodifiable view of the filtered list of appointments
+     */
     ObservableList<Appointment> getFilteredAppointmentList();
 }

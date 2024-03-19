@@ -186,11 +186,19 @@ public class ModelManager implements Model {
         requireNonNull(appointment);
         return appointmentList.hasAppointment(appointment);
     }
+
     @Override
     public void addAppointment(Appointment appointment) {
         appointmentList.addAppointment(appointment);
         updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
     }
+
+    @Override
+    public void deleteAppointment(Appointment target) {
+        appointmentList.removeAppointment(target);
+    }
+
+    //=========== Filtered Appointment List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
@@ -207,8 +215,4 @@ public class ModelManager implements Model {
         filteredAppointments.setPredicate(predicate);
     }
 
-    @Override
-    public void deleteAppointment(Appointment target) {
-        appointmentList.removeAppointment(target);
-    }
 }

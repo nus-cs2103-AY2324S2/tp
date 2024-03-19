@@ -13,14 +13,14 @@ import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
 
 /**
- * Deletes an appointment identified using it's displayed index from the CogniCare address book.
+ * Deletes an appointment identified using its appointment id.
  */
 public class DeleteAppointmentCommand extends Command {
 
     public static final String COMMAND_WORD = "deleteappointment";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the appointment identified by the index number used in the displayed appointment list.\n"
+            + ": Deletes the appointment identified by its appointment id.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 

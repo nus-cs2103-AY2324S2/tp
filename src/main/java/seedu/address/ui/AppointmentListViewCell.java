@@ -4,7 +4,7 @@ import javafx.scene.control.ListCell;
 import seedu.address.model.appointment.Appointment;
 
 /**
- * Custom {@code ListCell} that displays the graphics of a {@code Appointment} using a {@code PersonCard}.
+ * Custom {@code ListCell} that displays the graphics of a {@code Appointment} using an {@code AppointmentCard}.
  */
 public class AppointmentListViewCell extends ListCell<Appointment> {
     @Override

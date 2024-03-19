@@ -37,7 +37,7 @@ public class AppointmentCard extends UiPart<Region> {
     private Label appointmentDescription;
 
     /**
-     * Creates a {@code AppointmentCode} with the given {@code Appointment} and index to display.
+     * Creates a {@code AppointmentCode} with the given {@code Appointment} to display.
      */
     public AppointmentCard(Appointment appointment) {
         super(FXML);

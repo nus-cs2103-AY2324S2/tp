@@ -23,7 +23,6 @@ public class FindAppointmentCommandParser implements Parser<FindAppointmentComma
 
         if (!ParserUtil.arePrefixesPresent(argMultimap, PREFIX_STUDENT_ID, PREFIX_APPOINTMENT_ID)
                 || !argMultimap.getPreamble().isEmpty()) {
-
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindAppointmentCommand.MESSAGE_USAGE));
         }

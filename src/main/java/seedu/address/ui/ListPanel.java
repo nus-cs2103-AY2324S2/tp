@@ -11,7 +11,7 @@ import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Person;
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of persons, appointments and case logs.
  */
 public class ListPanel extends UiPart<Region> {
     private static final String FXML = "ListPanel.fxml";
@@ -24,7 +24,7 @@ public class ListPanel extends UiPart<Region> {
     @FXML
     private ListView<Person> caseLogListView;
     /**
-     * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
+     * Creates a {@code ListPanel} with the given {@code ObservableLists}.
      */
     public ListPanel(ObservableList<Person> personList, ObservableList<Appointment> appointmentList) {
         super(FXML);

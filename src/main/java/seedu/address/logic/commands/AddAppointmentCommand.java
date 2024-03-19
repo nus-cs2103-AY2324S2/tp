@@ -13,13 +13,13 @@ import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
 
 /**
- * Adds an appointment to the address book.
+ * Adds an appointment to CogniCare's appointment list.
  */
 public class AddAppointmentCommand extends Command {
 
     public static final String COMMAND_WORD = "appointment";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an appointment to the CogniCare address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an appointment to CogniCare. "
             + "Parameters: "
             + PREFIX_STUDENT_ID + "STUDENT_ID "
             + PREFIX_DATETIME + "DATETIME "
@@ -33,7 +33,7 @@ public class AddAppointmentCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New appointment added: %1$s";
     public static final String MESSAGE_DUPLICATE_APPOINTMENT =
-            "This appointment already exists in the CogniCare address book";
+            "This appointment already exists in the appointment list";
 
     private final Appointment toAdd;
 
