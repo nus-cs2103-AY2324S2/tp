@@ -93,6 +93,12 @@ public interface Model {
     void addBooking(Booking booking);
 
     /**
+     * Deletes the given Booking.
+     * The Booking must exist in the address book.
+     */
+    void cancelBooking(Booking target);
+
+    /**
      * Returns True if booking exists, else False
      */
     boolean hasBooking(Booking booking);
