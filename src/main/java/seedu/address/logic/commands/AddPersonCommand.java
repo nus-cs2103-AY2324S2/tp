@@ -9,7 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import seedu.address.model.person.Person;
 
 /**
- * Adds a person to the talent tracker.
+ * Adds a person to Tether.
  */
 public abstract class AddPersonCommand extends Command {
 

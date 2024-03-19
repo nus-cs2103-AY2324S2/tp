@@ -30,8 +30,8 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.AddInterviewerPersonCommand;
 import seedu.address.logic.commands.AddPersonCommand;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Interviewer;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.PersonBuilder;
@@ -40,8 +40,8 @@ public class AddInterviewerCommandParserTest {
     private AddInterviewerCommandParser parser = new AddInterviewerCommandParser();
 
     @Test
-    public void parse_allFieldsPresent_success() {
-        Person expectedPerson = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
+    public void parse_interviewerAllFieldsPresent_success() {
+        Interviewer expectedPerson = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND).build_interviewer();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
@@ -52,16 +52,16 @@ public class AddInterviewerCommandParserTest {
                 + TAG_DESC_FRIEND, new AddInterviewerPersonCommand(expectedPerson));
 
         // multiple tags - all accepted
-        Person expectedPersonMultipleTags = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
-                .build();
+        Interviewer expectedPersonMultipleTags = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+                .build_interviewer();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddInterviewerPersonCommand(expectedPersonMultipleTags));
     }
 
     @Test
-    public void parse_optionalFieldsMissing_success() {
+    public void parse_interviewerOptionalFieldsMissing_success() {
         // zero tags
-        Person expectedPerson = new PersonBuilder(AMY).withTags().build();
+        Interviewer expectedPerson = new PersonBuilder(AMY).withTags().build_interviewer();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY,
                 new AddInterviewerPersonCommand(expectedPerson));
     }

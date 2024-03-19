@@ -4,7 +4,7 @@
   pageNav: 3
 ---
 
-# AB-3 Developer Guide
+# Tether Developer Guide
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -289,24 +289,24 @@ Free alternative for tracking interview datetimes, applicant contacts and their 
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                                                       | I want to …​                             | So that I can…​                                                           |
-|----------|-------------------------------------------------------------------------------|------------------------------------------|---------------------------------------------------------------------------|
-| `* * *`  | new user                                                                      | see usage instructions                   | refer to instructions when I forget how to use the Talent Tracker         |
-| `* * *`  | user                                                                          | add a new person (applicant/interviewer) |                                                                           |
-| `* * *`  | user                                                                          | delete a person (applicant/interviewer)  | remove person entries that I no longer need                               |
-| `* * *`  | user                                                                          | add a new interview                      |                                                                           |
-| `* * *`  | user                                                                          | delete an interviewer                    | remove interview entries that I no longer need                            |
-| `* *`    | user with many persons in the Talent Tracker                                  | find a person by name/email              | locate details of a person without having to go through the entire list   |
-| `* *`    | user with many interviews in the Talent Tracker                               | filter interviews by date                | locate details of interviews without having to go through the entire list |
-| `* *`    | user with many applicants of varying application status in the Talent Tracker | tag applicants                           | identify applicant's application progress                                 |
-| `* `     | user collaborating with other Talent Tracker users                            | share an applicant's details             | update other hiring managers on applicant details                         |
-| `* `     | user who does not want to clutter local hard drive with files                 | store applicant's resume                 | view applicant's resume in the Talent Tracker                             |
+| Priority | As a …​                                                           | I want to …​                             | So that I can…​                                                           |
+|----------|-------------------------------------------------------------------|------------------------------------------|---------------------------------------------------------------------------|
+| `* * *`  | new user                                                          | see usage instructions                   | refer to instructions when I forget how to use the Tether                 |
+| `* * *`  | user                                                              | add a new person (applicant/interviewer) |                                                                           |
+| `* * *`  | user                                                              | delete a person (applicant/interviewer)  | remove person entries that I no longer need                               |
+| `* * *`  | user                                                              | add a new interview                      |                                                                           |
+| `* * *`  | user                                                              | delete an interviewer                    | remove interview entries that I no longer need                            |
+| `* *`    | user with many persons in Tether                                  | find a person by name/email              | locate details of a person without having to go through the entire list   |
+| `* *`    | user with many interviews in Tether                               | filter interviews by date                | locate details of interviews without having to go through the entire list |
+| `* *`    | user with many applicants of varying application status in Tether | tag applicants                           | identify applicant's application progress                                 |
+| `* `     | user collaborating with other Tether users                        | share an applicant's details             | update other hiring managers on applicant details                         |
+| `* `     | user who does not want to clutter local hard drive with files     | store applicant's resume                 | view applicant's resume in Tether                                         |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `TalentTracker` and the **Actor** is the `Hiring Manager`, unless specified otherwise)
+(For all use cases below, the **System** is the `Tether` and the **Actor** is the `Hiring Manager`, unless specified otherwise)
 
 **Use case: UC01 - Add a person**
 
@@ -326,7 +326,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. System shows an error message indicating invalid name/email/phone number.
 
       Use case resumes at step 2.
-  
+
 **Use case: UC02 - Delete a person by phone number**
 
 **MSS**
@@ -376,13 +376,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. System shows an error message indicating applicant not found.
 
       Use case resumes at step 2.
-  
+
 * 4a. The tag is already added for the applicant.
 
     * 4a1. System shows an error message indicating tag is already added.
 
       Use case resumes at step 2.
-  
+
 **Use case: UC04 - Find a person by name/email**
 
 **MSS**
@@ -398,13 +398,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The list is empty.
 
-    * 2a1. TalentTracker shows an error message indicating no person in list.
+    * 2a1. Tether shows an error message indicating no person in list.
 
       Use case resumes at step 2.
 
 * 3a. The given name/email is invalid.
 
-    * 3a1. TalentTracker shows an error message indicating person not found.
+    * 3a1. Tether shows an error message indicating person not found.
 
       Use case resumes at step 2.
 

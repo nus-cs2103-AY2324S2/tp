@@ -11,6 +11,7 @@
     "phone": "94351253",
     "email": "pauline@example.com",
     "remark" : "",
-    "type": "APPLICANT"
+    "type": "APPLICANT",
+    "tagged" : [ ]
   } ]
 }
