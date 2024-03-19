@@ -85,7 +85,8 @@ public class Meeting {
         Meeting otherMeeting = (Meeting) other;
         // We only need to compare up to minutes, comparing seconds and nanos is unnecessary and can cause issues.
         return start.truncatedTo(ChronoUnit.MINUTES).equals(otherMeeting.start.truncatedTo(ChronoUnit.MINUTES))
-                && end.truncatedTo(ChronoUnit.MINUTES).equals(otherMeeting.end.truncatedTo(ChronoUnit.MINUTES));
+                && end.truncatedTo(ChronoUnit.MINUTES).equals(otherMeeting.end.truncatedTo(ChronoUnit.MINUTES))
+                && remark.equals(otherMeeting.remark);
     }
 
     @Override

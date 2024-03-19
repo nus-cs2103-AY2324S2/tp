@@ -77,6 +77,14 @@ public class CommandTestUtil {
      */
     public static Meeting createValidMeeting() {
         return new Meeting(LocalDateTime.now().plusDays(1),
+                LocalDateTime.now().plusDays(1).plusHours(1), "");
+    }
+
+    /**
+     * Creates a valid meeting that is in the future with a non-empty remark
+     */
+    public static Meeting createValidMeetingNonEmptyRemark() {
+        return new Meeting(LocalDateTime.now().plusDays(1),
                 LocalDateTime.now().plusDays(1).plusHours(1), VALID_MEETING_REMARK);
     }
 

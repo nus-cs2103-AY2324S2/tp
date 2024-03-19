@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.findvisor.logic.commands.CommandTestUtil.VALID_MEETING_REMARK;
+import static seedu.findvisor.logic.commands.CommandTestUtil.INVALID_MEETING_REMARK;
 
 import java.time.LocalDateTime;
 
@@ -18,11 +19,17 @@ public class MeetingTest {
         assertThrows(NullPointerException.class, () -> new Meeting(null, null, VALID_MEETING_REMARK));
         assertThrows(NullPointerException.class, () -> new Meeting(START, null, VALID_MEETING_REMARK));
         assertThrows(NullPointerException.class, () -> new Meeting(null, END, VALID_MEETING_REMARK));
+        assertThrows(NullPointerException.class, () -> new Meeting(START, END, null));
     }
 
     @Test
-    public void constructor_invalidMeeting_throwsIllegalArgumentException() {
+    public void constructor_invalidMeetingDateTime_throwsIllegalArgumentException() {
         assertThrows(IllegalArgumentException.class, () -> new Meeting(END, START, VALID_MEETING_REMARK));
+    }
+
+    @Test
+    public void constructor_invalidMeetingRemark_throwsIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, () -> new Meeting(START, END, INVALID_MEETING_REMARK));
     }
 
     @Test
@@ -37,6 +44,18 @@ public class MeetingTest {
 
         // valid meeting
         assertTrue(Meeting.isValidDateTime(START, END));
+    }
+
+    @Test
+    public void isValidMeetingRemark() {
+        // null meeting remark
+        assertThrows(NullPointerException.class, () -> Meeting.isValidRemark(null));
+
+        // invalid meeting remark
+        assertFalse(Meeting.isValidRemark(INVALID_MEETING_REMARK));
+
+        // valid meeting remark
+        assertTrue(Meeting.isValidRemark(VALID_MEETING_REMARK));
     }
 
     @Test
@@ -58,5 +77,8 @@ public class MeetingTest {
         // different values -> returns false
         assertFalse(meeting.equals(new Meeting(LocalDateTime.now(),
                 LocalDateTime.now().plusHours(1), VALID_MEETING_REMARK)));
+
+        // different remark -> returns false
+        assertFalse(meeting.equals(new Meeting(START, END, "Different remark")));
     }
 }
