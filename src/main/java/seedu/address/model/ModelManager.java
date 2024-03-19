@@ -81,6 +81,9 @@ public class ModelManager implements Model {
 
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
+        // Delete QR codes of every person in the address book
+        this.addressBook.getPersonList().forEach(Person::deleteQrCode);
+
         this.addressBook.resetData(addressBook);
     }
 

@@ -27,9 +27,6 @@ public class ClearCommand extends Command {
         if (!confirmed) {
             return new CommandResult(MESSAGE_CONFIRM);
         } else {
-            // Delete QR codes of every person in the address book
-            model.getAddressBook().getPersonList().forEach(Person::deleteQrCode);
-
             model.setAddressBook(new AddressBook());
             return new CommandResult(MESSAGE_SUCCESS);
         }
