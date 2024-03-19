@@ -20,9 +20,13 @@ public class Messages {
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
-    public static final String MESSAGE_MARK_ATTENDANCE_SUCCESS = "Marked Attendance for Person: ";
+    public static final String MESSAGE_MARKED_ATTENDANCE_SUCCESS = "Marked attendance for student: ";
     public static final String MESSAGE_MARK_EXISTING_ATTENDANCE_SUCCESS =
-            "Re-marked Attendance for Person: ";
+            "Re-marked Attendance for student: ";
+    public static final String MESSAGE_UNMARKED_ATTENDANCE_SUCCESS = "Unmarked attendance for student: ";
+    public static final String MESSAGE_UNMARK_NONEXISITING_ATTENDANCE_SUCCESS =
+            "Attendance is unmarked for student: ";
+
     /**
      * Returns an error message indicating the duplicate prefixes.
      */

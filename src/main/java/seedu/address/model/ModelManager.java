@@ -135,6 +135,7 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -151,6 +152,7 @@ public class ModelManager implements Model {
                 && userPrefs.equals(otherModelManager.userPrefs)
                 && filteredPersons.equals(otherModelManager.filteredPersons);
     }
+
 
     // todo - Used for Debugging purposes. Consider creating more robust toString()
     //    @Override
