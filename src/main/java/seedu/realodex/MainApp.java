@@ -22,7 +22,7 @@ import seedu.realodex.model.ReadOnlyRealodex;
 import seedu.realodex.model.ReadOnlyUserPrefs;
 import seedu.realodex.model.UserPrefs;
 import seedu.realodex.model.util.SampleDataUtil;
-import seedu.realodex.storage.AddressBookStorage;
+import seedu.realodex.storage.RealodexStorage;
 import seedu.realodex.storage.JsonAddressBookStorage;
 import seedu.realodex.storage.JsonUserPrefsStorage;
 import seedu.realodex.storage.Storage;
@@ -57,8 +57,8 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        RealodexStorage realodexStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
+        storage = new StorageManager(realodexStorage, userPrefsStorage);
 
         model = initModelManager(storage, userPrefs);
 

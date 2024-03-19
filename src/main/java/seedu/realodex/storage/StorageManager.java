@@ -17,14 +17,14 @@ import seedu.realodex.model.UserPrefs;
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private AddressBookStorage addressBookStorage;
+    private RealodexStorage realodexStorage;
     private UserPrefsStorage userPrefsStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given {@code RealodexStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
-        this.addressBookStorage = addressBookStorage;
+    public StorageManager(RealodexStorage realodexStorage, UserPrefsStorage userPrefsStorage) {
+        this.realodexStorage = realodexStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -50,29 +50,29 @@ public class StorageManager implements Storage {
 
     @Override
     public Path getAddressBookFilePath() {
-        return addressBookStorage.getAddressBookFilePath();
+        return realodexStorage.getAddressBookFilePath();
     }
 
     @Override
     public Optional<ReadOnlyRealodex> readAddressBook() throws DataLoadingException {
-        return readAddressBook(addressBookStorage.getAddressBookFilePath());
+        return readAddressBook(realodexStorage.getAddressBookFilePath());
     }
 
     @Override
     public Optional<ReadOnlyRealodex> readAddressBook(Path filePath) throws DataLoadingException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return addressBookStorage.readAddressBook(filePath);
+        return realodexStorage.readAddressBook(filePath);
     }
 
     @Override
     public void saveAddressBook(ReadOnlyRealodex addressBook) throws IOException {
-        saveAddressBook(addressBook, addressBookStorage.getAddressBookFilePath());
+        saveAddressBook(addressBook, realodexStorage.getAddressBookFilePath());
     }
 
     @Override
     public void saveAddressBook(ReadOnlyRealodex addressBook, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        addressBookStorage.saveAddressBook(addressBook, filePath);
+        realodexStorage.saveAddressBook(addressBook, filePath);
     }
 
 }

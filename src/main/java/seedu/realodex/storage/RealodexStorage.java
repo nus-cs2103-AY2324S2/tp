@@ -11,7 +11,7 @@ import seedu.realodex.model.Realodex;
 /**
  * Represents a storage for {@link Realodex}.
  */
-public interface AddressBookStorage {
+public interface RealodexStorage {
 
     /**
      * Returns the file path of the data file.

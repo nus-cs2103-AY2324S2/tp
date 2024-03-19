@@ -17,7 +17,7 @@ import seedu.realodex.model.ReadOnlyRealodex;
 /**
  * A class to access Realodex data stored as a json file on the hard disk.
  */
-public class JsonAddressBookStorage implements AddressBookStorage {
+public class JsonAddressBookStorage implements RealodexStorage {
 
     private static final Logger logger = LogsCenter.getLogger(JsonAddressBookStorage.class);
 
@@ -45,8 +45,8 @@ public class JsonAddressBookStorage implements AddressBookStorage {
     public Optional<ReadOnlyRealodex> readAddressBook(Path filePath) throws DataLoadingException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableAddressBook> jsonAddressBook = JsonUtil.readJsonFile(
-                filePath, JsonSerializableAddressBook.class);
+        Optional<JsonSerializableRealodex> jsonAddressBook = JsonUtil.readJsonFile(
+                filePath, JsonSerializableRealodex.class);
         if (!jsonAddressBook.isPresent()) {
             return Optional.empty();
         }
@@ -74,6 +74,6 @@ public class JsonAddressBookStorage implements AddressBookStorage {
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableAddressBook(addressBook), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableRealodex(addressBook), filePath);
     }
 }
