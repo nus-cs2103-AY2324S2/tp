@@ -46,9 +46,6 @@ public class DeleteAttributeCommand extends Command {
         requireNonNull(model);
         UUID fullUuid = model.getFullUuid(toDelete);
         Person personToDelete = model.getPersonByUuid(fullUuid);
-        if (personToDelete == null) {
-            throw new CommandException("Person not found.");
-        }
 
         if (!model.hasAttribute(personToDelete.getUuidString(), attributeName)) {
             throw new CommandException("Attribute not found.");
