@@ -40,6 +40,10 @@ public class ModelManager implements Model {
         this.classBook = new ClassBook(classBook);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredClasses = new FilteredList<>(this.classBook.getClassList());
+
+        // Set an initial predicate that always evaluates to false in order to hide people on startup
+        Predicate<Person> initialPredicate = person -> false;
+        filteredPersons.setPredicate(initialPredicate);
     }
 
     public ModelManager() {
