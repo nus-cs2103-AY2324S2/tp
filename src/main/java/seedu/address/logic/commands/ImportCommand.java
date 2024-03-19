@@ -9,13 +9,9 @@ import com.opencsv.CSVReaderBuilder;
 import seedu.address.commons.exceptions.DataLoadingException;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.AddCommandParser;
-import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
-import seedu.address.model.util.SampleDataUtil;
-import seedu.address.storage.AddressBookStorage;
-import seedu.address.storage.JsonAddressBookStorage;
 
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
@@ -96,7 +92,7 @@ public class ImportCommand extends Command {
     /**
      * Represents the order of the data that should be parsed into the addCommandParser
      */
-    private final String[] header = {"name", "phone", "email", "address", "tags"};
+    private final String[] header = {"name", "phone", "email", "address", "matric", "reflection", "studio", "tags"};
 
     /**
      * Represents a mapping of String to prefix of the data that should be parsed into the addCommandParser.
@@ -106,8 +102,11 @@ public class ImportCommand extends Command {
             "phone", PREFIX_PHONE,
             "email", PREFIX_EMAIL,
             "address", PREFIX_ADDRESS,
+            "matric", PREFIX_MATRIC_NUMBER,
+            "reflection", PREFIX_REFLECTION,
+            "studio", PREFIX_STUDIO,
             "tags", PREFIX_TAG
-    );
+            );
 
     public String convertToAddCommandInput(Map<String, String> personData) {
         StringBuilder sb = new StringBuilder();
