@@ -10,7 +10,9 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Birthday;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.MoneyOwed;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
@@ -25,6 +27,7 @@ public class ParserUtil {
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
+     *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
@@ -96,6 +99,21 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String moneyOwed} into a {@code MoneyOwed}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code MoneyOwed} is invalid.
+     */
+    public static MoneyOwed parseMoneyOwed(String moneyOwed) throws ParseException {
+        requireNonNull(moneyOwed);
+        String trimmedMoneyOwed = moneyOwed.trim();
+        if (!MoneyOwed.isValidMoney(trimmedMoneyOwed)) {
+            throw new ParseException(MoneyOwed.MESSAGE_CONSTRAINTS);
+        }
+        return new MoneyOwed(trimmedMoneyOwed);
+    }
+
+    /**
      * Parses a {@code String tag} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -120,5 +138,17 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses {@code String birthday} into a {@code Birthday}.
+     */
+    public static Birthday parseBirthday(String birthday) throws ParseException {
+        birthday = birthday == null ? "" : birthday;
+        String trimmedBirthday = birthday.trim();
+        if (!Birthday.isValidBirthday(trimmedBirthday)) {
+            throw new ParseException(Birthday.BIRTHDAY_CONSTRAINTS);
+        }
+        return new Birthday(trimmedBirthday);
     }
 }
