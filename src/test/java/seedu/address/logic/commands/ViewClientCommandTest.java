@@ -3,11 +3,12 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
+
+import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.logic.commands.ViewClientCommand.MESSAGE_SUCCESS;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPersons.*;
 
 import org.junit.jupiter.api.Test;
 
@@ -43,6 +44,11 @@ public class ViewClientCommandTest {
 
         // different person -> returns false
         assertFalse(firstViewCommand.equals(secondViewCommand));
+    }
+    @Test
+    public void execute_viewClient_success() {
+        CommandResult expectedCommandResult = new CommandResult(MESSAGE_SUCCESS + INDEX_FIRST_PERSON.getOneBased());
+        assertCommandSuccess(new ViewClientCommand(INDEX_FIRST_PERSON), model, expectedCommandResult, model);
     }
 
     @Test
