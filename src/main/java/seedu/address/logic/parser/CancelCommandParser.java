@@ -25,5 +25,4 @@ public class CancelCommandParser implements Parser<CancelCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, CancelCommand.MESSAGE_USAGE), pe);
         }
     }
-
 }
