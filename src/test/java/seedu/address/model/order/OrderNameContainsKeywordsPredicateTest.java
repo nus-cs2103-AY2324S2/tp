@@ -42,15 +42,7 @@ public class OrderNameContainsKeywordsPredicateTest {
         // different person -> returns false
         assertFalse(firstPredicate.equals(secondPredicate));
     }
-
-    //    @Test
-    //    public void test_nameContainsKeywords_returnsTrue() {
-    //        // One keyword
-    //        OrderNameContainsKeywordsPredicate predicate = new
-    //                OrderNameContainsKeywordsPredicate(Collections.singletonList("200"));
-    //        assertTrue(predicate.test(new OrderBuilder(ROSES).withRemark("200").build()));
-    //    }
-
+    
     @Test
     public void test_nameDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
