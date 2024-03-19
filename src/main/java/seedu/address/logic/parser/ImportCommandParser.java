@@ -1,10 +1,10 @@
 package seedu.address.logic.parser;
 
-import java.nio.file.Path;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_IMPORT;
+
+import java.nio.file.Path;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.ImportCommand;
