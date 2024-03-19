@@ -93,11 +93,11 @@ public class JsonAdaptedOrder {
         final Deadline modelDeadline = new Deadline(deadline);
 
         if (amount == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Amount.class.getSimpleName()));
+            throw new NumberFormatException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Amount.class.getSimpleName()));
         }
 
         if (!Amount.isValidAmount(amount)) {
-            throw new IllegalValueException(Amount.MESSAGE_CONSTRAINTS);
+            throw new NumberFormatException(Amount.MESSAGE_CONSTRAINTS);
         }
         final Amount modelAmount = new Amount(String.valueOf(amount));
 
