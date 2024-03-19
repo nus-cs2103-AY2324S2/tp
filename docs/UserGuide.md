@@ -176,15 +176,15 @@ Add a meeting to a person based on specified description and date.
 Format: `meeting INDEX [d/DESCRIPTION] [s/DATETIME]`
 
 * Adds a meeting to the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3,…​ and tally within range index of the displayed list.
-* At both of the fields must be provided and valid.
+* Both of the fields must be provided and valid values.
 * A valid `DESCRIPTION` of the meeting can only contain latin alphanumeric characters.
 * A valid `DATETIME` of the meeting can only contain valid date and 24 hour time values with a single space to separate the date and time in the format of `dd/MM/yyyy HH:mm`.
-* Duplicates meetings with the same `DESCRIPTION` and `DATETIME` in the same person is not allowed.
+* Duplicate meetings with the same `DESCRIPTION` and `DATETIME` in the same person is not allowed.
 
 Examples:
-* `meeting 1 d/ Meet for finals preperation s/ 12/04/2024 18:00` adds a meeting to the first person with the description of `Meet for finals preperation` and the at the date and time of `12/04/2024 18:00` 
-* `meeting 2 d/ Meet for practical exam s/ 20/04/2024 15:00` adds a meeting to the second person with the description of `Meet for practical exam` and at the date and time of `20/04/2024 15:00`
-  ![result for 'meeting 1 d/ Meet for finals preperation s/ 12/04/2024 18:00'](images/addMeetingResult.png)
+* `meeting 1 d/ Meet for finals preparation s/ 12/04/2024 18:00` adds a meeting to the first person with the description of `Meet for finals preparation` and the date and time of `12/04/2024 18:00` 
+* `meeting 2 d/ Meet for practical exam s/ 20/04/2024 15:00` adds a meeting to the second person with the description of `Meet for practical exam` and the date and time of `20/04/2024 15:00`
+  ![result for 'meeting 1 d/ Meet for finals preparation s/ 12/04/2024 18:00'](images/addMeetingResult.png)
 
 ### Deleting a person : `delete`
 
@@ -268,6 +268,6 @@ Action | Format, Examples
 **Filter** | `filter [m/MODULE] [f/FACULTY] [t/TAG]…`<br> e.g., `filter m/CS2100 t/friends`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **Sort** | `sort [ATTRIBUTE]`<br> e.g., `sort p/`
-**AddMeeting** | `meeting INDEX [d/DESCRIPTION] [s/DATETIME]`<br> e.g., `meeting 1 d/ Meet for finals preperation s/ 12/04/2024 18:00`
+**Add Meeting** | `meeting INDEX [d/DESCRIPTION] [s/DATETIME]`<br> e.g., `meeting 1 d/ Meet for finals preparation s/ 12/04/2024 18:00`
 **List** | `list`
 **Help** | `help`
