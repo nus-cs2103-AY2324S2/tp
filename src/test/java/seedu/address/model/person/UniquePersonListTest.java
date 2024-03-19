@@ -15,6 +15,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.person.exceptions.DuplicateIdException;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.IdNotFoundException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
@@ -92,6 +93,13 @@ public class UniquePersonListTest {
     }
 
     @Test
+    public void add_duplicateId_throwsDuplicateIdException() {
+        uniquePersonList.add(ALICE);
+        Person sameIdPerson = new PersonBuilder(BOB).withId(ALICE.getId().value).build();
+        assertThrows(DuplicateIdException.class, () -> uniquePersonList.add(sameIdPerson));
+    }
+
+    @Test
     public void setPerson_nullTargetPerson_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniquePersonList.setPerson(null, ALICE));
     }
@@ -140,6 +148,14 @@ public class UniquePersonListTest {
         uniquePersonList.add(ALICE);
         uniquePersonList.add(BOB);
         assertThrows(DuplicatePersonException.class, () -> uniquePersonList.setPerson(ALICE, BOB));
+    }
+
+    @Test
+    public void setPerson_editedPersonHasDuplicateId_throwsDuplicateIdException() {
+        uniquePersonList.add(ALICE);
+        uniquePersonList.add(BOB);
+        Person editedAlice = new PersonBuilder(ALICE).withId(BOB.getId().value).build();
+        assertThrows(DuplicateIdException.class, () -> uniquePersonList.setPerson(ALICE, editedAlice));
     }
 
     @Test
@@ -193,6 +209,13 @@ public class UniquePersonListTest {
     public void setPersons_listWithDuplicatePersons_throwsDuplicatePersonException() {
         List<Person> listWithDuplicatePersons = Arrays.asList(ALICE, ALICE);
         assertThrows(DuplicatePersonException.class, () -> uniquePersonList.setPersons(listWithDuplicatePersons));
+    }
+
+    @Test
+    public void setPersons_listWithDuplicateIds_throwsDuplicateIdException() {
+        List<Person> listWithDuplicateIds = Arrays.asList(ALICE,
+                new PersonBuilder(BOB).withId(ALICE.getId().value).build());
+        assertThrows(DuplicateIdException.class, () -> uniquePersonList.setPersons(listWithDuplicateIds));
     }
 
     @Test

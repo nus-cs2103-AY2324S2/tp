@@ -11,7 +11,23 @@ import org.junit.jupiter.api.Test;
 public class IdTest {
 
     @Test
-    public void factoryMethods() {
+    public void generateNextId() {
+        Id id = Id.generateNextId();
+        Id next = Id.generateNextId();
+        assertEquals(next.value, id.value + 1);
+    }
+
+    @Test
+    public void generateId() {
+        int nextValue = Id.generateNextId().value + 1;
+        Id id = Id.generateId(nextValue);
+        Id next = Id.generateNextId();
+        assertEquals(next.value, id.value + 1);
+    }
+
+    @Test
+    public void factoryMethods_invalidId_throwsIllegalArgumentException() {
+        // Invalid id
         int invalidId = 0;
         assertThrows(IllegalArgumentException.class, () -> Id.generateId(invalidId));
         assertThrows(IllegalArgumentException.class, () -> Id.generateTempId(invalidId));
