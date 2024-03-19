@@ -103,13 +103,14 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         // create getMeritScore within edit person desciptor class shall be fine, and then uncomment below
-        // MeritScore updatedMeritScore = editPersonDescriptor.getMeritScore().orElse(personToEdit.getMeritScore());
+        MeritScore updatedMeritScore = personToEdit.getMeritScore();
 
-        BookList updatedBookList = editPersonDescriptor.getBookList().orElse(personToEdit.getBookList());
+        BookList updatedBookList = personToEdit.getBookList();
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
-        // return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedBookList, updatedTags);
+        // return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
+                 updatedMeritScore, updatedBookList, updatedTags);
     }
 
     @Override
@@ -160,6 +161,8 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
+            setMeritScore(toCopy.meritScore);
+            setBookList(toCopy.bookList);
             setTags(toCopy.tags);
         }
 
@@ -210,6 +213,14 @@ public class EditCommand extends Command {
             return Optional.ofNullable(bookList);
         }
 
+        public void setMeritScore(MeritScore meritScore) {
+            this.meritScore = meritScore;
+        }
+
+        public Optional<MeritScore> getMeritScore() {
+            return Optional.ofNullable(meritScore);
+        }
+
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
@@ -243,7 +254,9 @@ public class EditCommand extends Command {
                     && Objects.equals(phone, otherEditPersonDescriptor.phone)
                     && Objects.equals(email, otherEditPersonDescriptor.email)
                     && Objects.equals(address, otherEditPersonDescriptor.address)
-                    && Objects.equals(tags, otherEditPersonDescriptor.tags);
+                    && Objects.equals(tags, otherEditPersonDescriptor.tags)
+                    && Objects.equals(bookList, otherEditPersonDescriptor.bookList)
+                    && Objects.equals(meritScore, otherEditPersonDescriptor.meritScore);
         }
 
         @Override
@@ -253,6 +266,8 @@ public class EditCommand extends Command {
                     .add("phone", phone)
                     .add("email", email)
                     .add("address", address)
+                    .add("meritScore", meritScore)
+                    .add("bookTitle", bookList)
                     .add("tags", tags)
                     .toString();
         }
