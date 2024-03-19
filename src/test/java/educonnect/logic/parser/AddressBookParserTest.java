@@ -9,6 +9,8 @@ import static educonnect.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 import educonnect.logic.commands.AddCommand;
@@ -21,14 +23,13 @@ import educonnect.logic.commands.FindCommand;
 import educonnect.logic.commands.HelpCommand;
 import educonnect.logic.commands.ListCommand;
 import educonnect.logic.parser.exceptions.ParseException;
-import educonnect.model.student.predicates.NameContainsKeywordsPredicate;
 import educonnect.model.student.Student;
 import educonnect.model.student.StudentId;
+import educonnect.model.student.predicates.NameContainsKeywordsPredicate;
 import educonnect.testutil.EditStudentDescriptorBuilder;
 import educonnect.testutil.StudentBuilder;
 import educonnect.testutil.StudentUtil;
 
-import java.util.List;
 
 public class AddressBookParserTest {
 

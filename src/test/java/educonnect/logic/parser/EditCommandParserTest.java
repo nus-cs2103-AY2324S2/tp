@@ -41,8 +41,8 @@ import educonnect.logic.commands.EditCommand.EditStudentDescriptor;
 import educonnect.model.student.Email;
 import educonnect.model.student.Name;
 import educonnect.model.student.StudentId;
-import educonnect.model.student.TelegramHandle;
 import educonnect.model.student.Tag;
+import educonnect.model.student.TelegramHandle;
 import educonnect.testutil.EditStudentDescriptorBuilder;
 
 public class EditCommandParserTest {

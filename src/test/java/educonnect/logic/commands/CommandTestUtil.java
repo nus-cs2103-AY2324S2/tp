@@ -19,8 +19,8 @@ import educonnect.commons.core.index.Index;
 import educonnect.logic.commands.exceptions.CommandException;
 import educonnect.model.AddressBook;
 import educonnect.model.Model;
-import educonnect.model.student.predicates.NameContainsKeywordsPredicate;
 import educonnect.model.student.Student;
+import educonnect.model.student.predicates.NameContainsKeywordsPredicate;
 import educonnect.testutil.EditStudentDescriptorBuilder;
 
 /**

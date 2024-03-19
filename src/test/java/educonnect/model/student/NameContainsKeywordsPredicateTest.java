@@ -5,9 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import educonnect.model.student.predicates.NameContainsKeywordsPredicate;
 import org.junit.jupiter.api.Test;
 
+import educonnect.model.student.predicates.NameContainsKeywordsPredicate;
 import educonnect.testutil.StudentBuilder;
 
 public class NameContainsKeywordsPredicateTest {
