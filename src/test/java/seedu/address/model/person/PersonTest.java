@@ -79,7 +79,49 @@ public class PersonTest {
         // different room number -> returns false
         editedAlice = new PersonBuilder(ALICE).withRoomNumber(VALID_ROOMNUMBER_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
+    }
 
+    @Test
+    public void equals_someOptionalFieldsAreNull_success() {
+        // same values -> returns true
+        Person aliceCopy = new PersonBuilder(ALICE).build();
+        assertTrue(ALICE.equals(aliceCopy));
+
+        Person aliceCopyWithoutEmail = new Person(
+                ALICE.getName(),
+                ALICE.getPhone(),
+                null,
+                ALICE.getRoomNumber(),
+                ALICE.getTelegram(),
+                ALICE.getBirthday());
+        assertFalse(ALICE.equals(aliceCopyWithoutEmail));
+
+        Person aliceCopyWithoutRoomNumber = new Person(
+                ALICE.getName(),
+                ALICE.getPhone(),
+                ALICE.getEmail(),
+                null,
+                ALICE.getTelegram(),
+                ALICE.getBirthday());
+        assertFalse(ALICE.equals(aliceCopyWithoutRoomNumber));
+
+        Person aliceCopyWithoutTelegram = new Person(
+                ALICE.getName(),
+                ALICE.getPhone(),
+                ALICE.getEmail(),
+                ALICE.getRoomNumber(),
+                null,
+                ALICE.getBirthday());
+        assertFalse(ALICE.equals(aliceCopyWithoutTelegram));
+
+        Person aliceCopyWithoutBirthday = new Person(
+                ALICE.getName(),
+                ALICE.getPhone(),
+                ALICE.getEmail(),
+                ALICE.getRoomNumber(),
+                ALICE.getTelegram(),
+                null);
+        assertFalse(ALICE.equals(aliceCopyWithoutBirthday));
     }
 
     @Test
