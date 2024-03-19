@@ -12,16 +12,21 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import vitalconnect.commons.core.GuiSettings;
+import vitalconnect.model.allergytag.AllergyTag;
 import vitalconnect.model.person.contactinformation.Address;
 import vitalconnect.model.person.contactinformation.ContactInformation;
 import vitalconnect.model.person.contactinformation.Email;
 import vitalconnect.model.person.contactinformation.Phone;
 import vitalconnect.model.person.identificationinformation.NameContainsKeywordsPredicate;
+import vitalconnect.model.person.medicalinformation.Height;
+import vitalconnect.model.person.medicalinformation.MedicalInformation;
+import vitalconnect.model.person.medicalinformation.Weight;
 import vitalconnect.testutil.ClinicBuilder;
 
 
@@ -163,6 +168,15 @@ public class ModelManagerTest {
             .findPersonByNric(ALICE.getIdentificationInformation().getNric()).getContactInformation());
     }
 
+    @Test
+    public void updatePersonMedicalInformation_success() {
+        ModelManager modelManager = new ModelManager();
+        modelManager.addPerson(ALICE); // Assuming ALICE is a predefined Person object
+        MedicalInformation mi = new MedicalInformation(new Height("111"), new Weight("111"));
+        modelManager.updatePersonMedicalInformation(ALICE.getIdentificationInformation().getNric(), mi);
+        assertEquals(mi, modelManager
+                .findPersonByNric(ALICE.getIdentificationInformation().getNric()).getMedicalInformation());
+    }
 
     @Test
     public void equals() {

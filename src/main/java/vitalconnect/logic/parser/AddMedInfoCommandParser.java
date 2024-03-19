@@ -9,7 +9,6 @@ import static vitalconnect.logic.parser.CliSyntax.PREFIX_WEIGHT;
 import java.util.Set;
 import java.util.stream.Stream;
 
-import vitalconnect.logic.commands.AddContactCommand;
 import vitalconnect.logic.commands.AddMedInfoCommand;
 import vitalconnect.logic.parser.exceptions.ParseException;
 import vitalconnect.model.allergytag.AllergyTag;
@@ -40,7 +39,7 @@ public class AddMedInfoCommandParser implements Parser<AddMedInfoCommand> {
 
         // Check if at least one of the fields is present
         if (height.isEmpty() && weight.isEmpty() && Nric.isValidNric(nric.toString())) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddContactCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddMedInfoCommand.MESSAGE_USAGE));
         }
 
         MedicalInformation medicalInformation = new MedicalInformation(height, weight, allergyTags);

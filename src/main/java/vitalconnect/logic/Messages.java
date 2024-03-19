@@ -20,6 +20,7 @@ public class Messages {
                 "Multiple values specified for the following single-valued field(s): ";
     public static final String MESSAGE_PERSON_NOT_FOUND = "Person not found";
     public static final String MESSAGE_PERSON_ALREADY_EXIST = "Person already exists";
+    public static final String MESSAGE_MEDICAL_INFO_ALREADY_EXIST = "Person's medical information already exists";
     public static final String MESSAGE_EMAIL_NOT_FOUND = "Email not found";
     public static final String MESSAGE_PHONE_NOT_FOUND = "Phone not found";
     public static final String MESSAGE_ADDRESS_NOT_FOUND = "Address not found";
