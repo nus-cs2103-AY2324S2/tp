@@ -149,7 +149,6 @@ public class ParserUtil {
     /**
      * Parses a {@code String status} into an {@code Status status}.
      * Leading and trailing whitespaces will be trimmed.
-     * TODO // Implement parseBloodType
      * @throws ParseException if the given {@code sex} is invalid.
      */
     public static BloodType parseBloodType(String bloodType) throws ParseException {
