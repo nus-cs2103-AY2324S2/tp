@@ -26,5 +26,10 @@ public class Seller extends Person {
         super(name, phone, email, housingtype, tags);
         this.house = house;
     }
+
+    public Seller(Name name, Phone phone, Email email, String housingtype, Set<Tag> tags) {
+        super(name, phone, email, housingtype, tags);
+        this.house = null;
+    }
 }
 
