@@ -211,6 +211,11 @@ public class AddCommandTest {
         public Appointment getMatchingAppointment(Nric nric, Date date, TimePeriod timePeriod) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void deleteAppointmentsWithNric(Nric targetNric) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

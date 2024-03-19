@@ -141,4 +141,7 @@ public interface Model {
 
     /** Returns an Appointment that matches based on Nric, Date and TimePeriod given **/
     Appointment getMatchingAppointment(Nric nric, Date date, TimePeriod timePeriod);
+
+    /** Deletes all appointments of a targetNric **/
+    void deleteAppointmentsWithNric(Nric targetNric);
 }

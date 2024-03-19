@@ -202,6 +202,38 @@ public class AppointmentListTest {
     }
 
     @Test
+    public void deleteAppointmentsWithNric_validNric_appointmentsRemoved() {
+        appointmentList.add(ALICE_APPT);
+        appointmentList.add(BOB_APPT);
+
+        appointmentList.deleteAppointmentsWithNric(ALICE_APPT.getNric());
+
+        AppointmentList expectedAppointmentList = new AppointmentList();
+        expectedAppointmentList.add(BOB_APPT);
+
+        assertEquals(expectedAppointmentList, appointmentList);
+    }
+
+    @Test
+    public void deleteAppointmentsWithNric_nricNotInList_noChange() {
+        appointmentList.add(ALICE_APPT);
+        appointmentList.add(BOB_APPT);
+
+        appointmentList.deleteAppointmentsWithNric(ALICE_APPT.getNric());
+        appointmentList.deleteAppointmentsWithNric(ALICE_APPT.getNric()); //to show use of nric that's not there
+
+        AppointmentList expectedAppointmentList = new AppointmentList();
+        expectedAppointmentList.add(BOB_APPT);
+
+        assertEquals(expectedAppointmentList, appointmentList);
+    }
+
+    @Test
+    public void deleteAppointmentsWithNric_nullNric_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> appointmentList.deleteAppointmentsWithNric(null));
+    }
+
+    @Test
     public void toStringMethod() {
         assertEquals(appointmentList.asUnmodifiableObservableList().toString(), appointmentList.toString());
     }

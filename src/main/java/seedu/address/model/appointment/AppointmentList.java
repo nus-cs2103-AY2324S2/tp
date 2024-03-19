@@ -185,4 +185,10 @@ public class AppointmentList implements Iterable<Appointment> {
         internalList.sort(Comparator.comparing(Appointment::getDate)
                                     .thenComparing(Appointment::getTimePeriod));
     }
+
+    /** Delete all appointments with given Nric if such appointments exist without exceptions **/
+    public void deleteAppointmentsWithNric(Nric nric) {
+        requireNonNull(nric);
+        internalList.removeIf(appointment -> appointment.getNric().equals(nric));
+    }
 }
