@@ -23,6 +23,7 @@ public class PersonBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_SUBJECT = "Math";
+    public static final String DEAFULT_UNIQUEID = "1";
 
     private Name name;
     private Phone phone;
@@ -41,6 +42,8 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
+        subject = new Subject(DEFAULT_SUBJECT);
+        uniqueId = new Id(DEAFULT_UNIQUEID);
     }
 
     /**
@@ -52,6 +55,8 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
+        subject = personToCopy.getSubject();
+        uniqueId = personToCopy.getUniqueId();
     }
 
     /**
