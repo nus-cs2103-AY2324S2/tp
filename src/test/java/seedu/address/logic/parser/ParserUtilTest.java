@@ -12,12 +12,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
-
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Major;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Remark;
 import seedu.address.model.person.Telegram;
 import seedu.address.model.tag.Tag;
 
@@ -36,6 +36,7 @@ public class ParserUtilTest {
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_YEAR = "7";
     private static final String VALID_TELEGRAM = "telegram";
+    private static final String VALID_REMARK= "shy";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
 
@@ -184,6 +185,24 @@ public class ParserUtilTest {
         String telegramWithWhitespace = WHITESPACE + VALID_TELEGRAM + WHITESPACE;
         Telegram expectedTelegram = new Telegram(VALID_TELEGRAM);
         assertEquals(expectedTelegram, ParserUtil.parseTelegram(telegramWithWhitespace));
+    }
+
+    @Test
+    public void parseRemark_null_throwsNullPointerException() throws Exception {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseRemark(null));
+    }
+
+    @Test
+    public void parseRemark_validValueWithoutWhitespace_returnsRemark() throws Exception {
+        Remark expectedRemark = new Remark(VALID_REMARK);
+        assertEquals(expectedRemark, ParserUtil.parseRemark(VALID_REMARK));
+    }
+
+    @Test
+    public void parseRemark_validValueWithWhitespace_returnsTrimmedRemark() throws Exception {
+        String remarkWithWhitespace = WHITESPACE + VALID_REMARK + WHITESPACE;
+        Remark expectedRemark = new Remark(VALID_REMARK);
+        assertEquals(expectedRemark, ParserUtil.parseRemark(remarkWithWhitespace));
     }
 
     @Test
