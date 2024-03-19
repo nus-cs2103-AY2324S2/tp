@@ -1,6 +1,8 @@
 package educonnect.model;
 
 import java.nio.file.Path;
+import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 
@@ -16,7 +18,7 @@ import javafx.collections.ObservableList;
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Student> PREDICATE_SHOW_ALL_STUDENTS = unused -> true;
+    List<Predicate<Student>> PREDICATE_SHOW_ALL_STUDENTS = List.of(unused -> true);
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -110,5 +112,5 @@ public interface Model {
      * Updates the filter of the filtered student list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredStudentList(Predicate<Student> predicate);
+    void updateFilteredStudentList(Collection<Predicate<Student>> predicates);
 }
