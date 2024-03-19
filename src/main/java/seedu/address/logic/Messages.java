@@ -60,7 +60,7 @@ public class Messages {
      * Returns the task name of a task.
      */
     public static String printTask(Task task) {
-        return task.toString();
+        return task.getTaskTitle().toString();
     }
 
 }

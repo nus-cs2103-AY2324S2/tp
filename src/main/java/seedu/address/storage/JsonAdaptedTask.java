@@ -17,9 +17,9 @@ import seedu.address.model.task.Task;
 public class JsonAdaptedTask {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Task's %s field is missing!";
-
+    //private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-ddTHH:mm");
     private final String title;
-    private final String deadline;
+    private final LocalDateTime deadline;
 
     /**
      * Constructs a {@code JsonAdaptedTask} with the given task details.
@@ -27,7 +27,7 @@ public class JsonAdaptedTask {
     @JsonCreator
     public JsonAdaptedTask(@JsonProperty("title") String title, @JsonProperty("deadline") String deadline) {
         this.title = title;
-        this.deadline = deadline;
+        this.deadline = LocalDateTime.parse(deadline, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss"));
     }
 
     /**
@@ -35,7 +35,7 @@ public class JsonAdaptedTask {
      */
     public JsonAdaptedTask(Task source) {
         title = source.getTaskTitle();
-        deadline = source.getDeadline().dateTime.toString();
+        deadline = source.getDeadline().dateTime;
     }
 
     /**
@@ -52,8 +52,7 @@ public class JsonAdaptedTask {
         if (deadline == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "deadline"));
         }
-        LocalDateTime parsedDeadline = LocalDateTime.parse(deadline);
-        final Deadline modelDeadline = new Deadline(parsedDeadline);
+        final Deadline modelDeadline = new Deadline(deadline);
 
         return new Task(modelTaskTitle, modelDeadline);
     }

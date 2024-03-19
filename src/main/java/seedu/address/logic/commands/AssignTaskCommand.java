@@ -34,7 +34,7 @@ public class AssignTaskCommand extends Command {
             + PREFIX_TO + " 1";
 
     public static final String MESSAGE_PERSON_IS_BUSY = "A task has already been assigned for %1$s. "
-            + "Please select another person.assign";
+            + "Please select another person.";
     private final Index index;
     private final Task task;
 

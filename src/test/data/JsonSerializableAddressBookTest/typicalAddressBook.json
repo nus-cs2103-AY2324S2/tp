@@ -45,19 +45,19 @@
   } ],
   "tasks": [ {
     "title" : "Complete Project Proposal",
-    "deadline" : "25-03-2024 2359",
+    "deadline" : "2024-03-25T23:59:00",
     "personInCharge" : "Alice Pauline"
   }, {
     "title" : "Prepare Presentation Slides",
-    "deadline" : "05-05-2024 0900",
+    "deadline" : "2024-05-05T09:00:00",
     "personInCharge" : "Benson Meier"
   }, {
     "title" : "Submit Year End Report",
-    "deadline" : "30-11-2024 1700",
+    "deadline" : "2024-11-30T17:00:00",
     "personInCharge" : "Carl Kurz"
   }, {
     "title" : "Organize Team Meeting",
-    "deadline" : "04-08-2024 1400",
+    "deadline" : "2024-08-04T14:00:00",
     "personInCharge" : "Daniel Meier"
   }]
 }

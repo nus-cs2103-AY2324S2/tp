@@ -165,6 +165,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void addTask(Task t) {
+            throw new ArithmeticException("This method should not be called.");
+        }
+
+        @Override
         public void assignTask(Task task, Person person) {
             throw new AssertionError("This method should not be called.");
         }
