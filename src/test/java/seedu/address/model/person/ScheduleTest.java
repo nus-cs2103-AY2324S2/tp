@@ -29,12 +29,13 @@ public class ScheduleTest {
         assertFalse(Schedule.isValidSchedule("12~12~2020")); // ~ incorrectly used
         assertFalse(Schedule.isValidSchedule("2020-12-12")); // Incorrect format
         assertFalse(Schedule.isValidSchedule("12-2020-12")); // Incorrect format
-        assertFalse(Schedule.isValidSchedule("")); // Empty string
         assertFalse(Schedule.isValidSchedule("12-12-2020 12pm")); // Extra strings
 
         // valid schedule
         assertTrue(Schedule.isValidSchedule("12-12-2020")); // Correct format
         assertTrue(Schedule.isValidSchedule("12/12/2020")); // Correct format
+        assertTrue(Schedule.isValidSchedule("")); // Empty string
+
     }
 
     @Test
