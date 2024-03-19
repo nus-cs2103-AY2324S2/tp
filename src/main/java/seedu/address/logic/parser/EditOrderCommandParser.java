@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PRODUCT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRODUCT_QUANTITY;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditCustomerCommand;
 import seedu.address.logic.commands.EditOrderCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -32,7 +31,7 @@ public class EditOrderCommandParser implements Parser<EditOrderCommand> {
                             .orElseThrow(() -> new ParseException("")));
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    EditCustomerCommand.MESSAGE_USAGE), pe);
+                    EditOrderCommand.MESSAGE_USAGE), pe);
         }
 
         EditOrderCommand.EditOrderDescriptor editOrderDescriptor =

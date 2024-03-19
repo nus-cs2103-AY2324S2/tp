@@ -27,10 +27,9 @@ public class EditOrderCommand extends EditCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Edits the details of the order identified "
-            + "by the index number used in the displayed person list. "
+            + "by the index number used in the displayed order list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: [" + PREFIX_ORDER + "INDEX (must be a positive integer)] "
-            + "[" + PREFIX_PRODUCT_NAME + "PRODUCT_NAME] "
             + "[" + PREFIX_PRODUCT_QUANTITY + "PRODUCT_QUANTITY] "
             + "Example: " + COMMAND_WORD + " " + PREFIX_ORDER + "1 "
             + PREFIX_PRODUCT_NAME + "cupcake "
