@@ -205,6 +205,10 @@ Predicate, PersonHasTagPredicate and NameContainsKeywordsPredicate:
 
 <img src="images/FilterClassDiagram.png" width="550" />
 
+Future implementation of filter commands can abstract out the similarities between filter commands by implementing
+Filter as an Interface, making the code more extensible:
+
+[insert next UML here]
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
