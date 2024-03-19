@@ -32,7 +32,7 @@ public class Status {
     /**
      * Gets status type
      *
-     * @return status type of this status
+     * @return Status type of this status
      */
     public StatusType getStatusType() {
         return this.status;

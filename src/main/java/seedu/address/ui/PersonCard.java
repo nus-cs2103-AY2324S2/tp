@@ -5,8 +5,8 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
-import seedu.address.model.person.Person;
 import javafx.scene.shape.Circle;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.Status;
 
 /**
@@ -52,7 +52,7 @@ public class PersonCard extends UiPart<Region> {
     /**
      * Set colour of status circle to represent status
      *
-     * @param status
+     * @param status Status of the person
      * @return colour representing that respective status
      */
     public void updateStatusCircle(Status status) {
