@@ -3,6 +3,8 @@
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Scene?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
@@ -35,6 +37,15 @@
 
         <HBox VBox.vgrow="ALWAYS">
           <VBox fx:id="personList" minWidth="350" prefHeight="600" prefWidth="400" styleClass="pane-without-border" VBox.vgrow="ALWAYS">
+              <HBox spacing="10" alignment="CENTER">
+                  <padding>
+                      <Insets top="10" right="10" bottom="10" left="10"/>
+                  </padding>
+                  <Button styleClass="hbox-button" mnemonicParsing="false" text="All" HBox.hgrow="ALWAYS" />
+                  <Button styleClass="hbox-button" mnemonicParsing="false" text="Profs" HBox.hgrow="ALWAYS" />
+                  <Button styleClass="hbox-button" mnemonicParsing="false" text="TAs" HBox.hgrow="ALWAYS" />
+                  <Button styleClass="hbox-button" mnemonicParsing="false" text="Others" HBox.hgrow="ALWAYS" />
+              </HBox>
             <padding>
               <Insets bottom="10" left="10" right="10" top="10" />
             </padding>

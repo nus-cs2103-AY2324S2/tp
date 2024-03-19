@@ -28,7 +28,18 @@ public class CommandBox extends UiPart<Region> {
         super(FXML);
         this.commandExecutor = commandExecutor;
 
-        commandTextField.setText("> ");
+        commandTextField.focusedProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue) { // When the text field is focused
+                if (commandTextField.getText().equals("> ")) {
+                    commandTextField.setText("");
+                }
+            } else { // When the text field loses focus
+                if (commandTextField.getText().isEmpty()) {
+                    commandTextField.setText("> ");
+                }
+            }
+        });
+
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.startsWith("> ")) {
