@@ -60,7 +60,7 @@ public class JsonAdaptedAppointment {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "appointmentDescription"));
         }
 
-        if (appointmentId < 0 || studentId < 0) {
+        if (appointmentId <= 0 || studentId <= 0) {
             // TODO: Custom type for SID
             throw new IllegalValueException("Please only use positive index.");
         }
