@@ -64,6 +64,9 @@ public class AddressTest {
         // Substring case mismatch -> returns true
         assertTrue(address.isMatch(" clem"));
 
+        // Additional whitespace
+        assertTrue(address.isMatch(" 51 Clementi Road\n"));
+
         // Substring mismatch
         assertFalse(address.isMatch("street"));
     }
