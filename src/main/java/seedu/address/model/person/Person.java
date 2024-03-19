@@ -12,7 +12,8 @@ import seedu.address.model.task.Task;
 
 /**
  * Represents a Person in the address book.
- * Guarantees: details are present and not null, field values are validated, immutable.
+ * Guarantees: details are present and not null, field values are validated,
+ * immutable.
  */
 public class Person {
 
@@ -54,7 +55,8 @@ public class Person {
     }
 
     /**
-     * Returns an immutable task set, which throws {@code UnsupportedOperationException}
+     * Returns an immutable task set, which throws
+     * {@code UnsupportedOperationException}
      * if modification is attempted.
      */
     public Set<Task> getTasks() {
@@ -63,7 +65,8 @@ public class Person {
 
     /**
      * @param task to be assigned to {@code this}
-     * @return a new {@code Person} as a result of assigning {@code task} to {@code this}
+     * @return a new {@code Person} as a result of assigning {@code task} to
+     *         {@code this}
      */
     public Person addTask(Task task) {
         Set<Task> editedTasks = new HashSet<>(tasks);
@@ -73,7 +76,22 @@ public class Person {
 
     /**
      * @param task to be unassigned from {@code this}
-     * @return a new {@code Person} as a result of unassigning {@code task} to {@code this}
+     * @return a new {@code Person} as a result of unassigning {@code task} to
+     *         {@code this}
+     */
+    public boolean hasTask(Task task) {
+        for (Task t : tasks) {
+            if (task.equals(t)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * @param task to be unassigned from {@code this}
+     * @return a new {@code Person} as a result of unassigning {@code task} to
+     *         {@code this}
      */
     public Person deleteTask(Task task) {
         Set<Task> editedTasks = new HashSet<>(tasks);
