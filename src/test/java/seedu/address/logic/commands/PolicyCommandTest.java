@@ -33,7 +33,7 @@ public class PolicyCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
-    public void execute_addRemarkUnfilteredList_success() {
+    public void execute_addPolicyUnfilteredList_success() {
         Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Person editedPerson = new PersonBuilder(firstPerson).withPolicy(POLICY_STUB).build();
 
@@ -43,12 +43,13 @@ public class PolicyCommandTest {
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(firstPerson, editedPerson);
+        expectedModel.commitAddressBook();
 
         assertCommandSuccess(policyCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
-    public void execute_deleteRemarkUnfilteredList_success() {
+    public void execute_deletePolicyUnfilteredList_success() {
         Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Person editedPerson = new PersonBuilder(firstPerson).withPolicy("").build();
 
@@ -59,6 +60,7 @@ public class PolicyCommandTest {
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(firstPerson, editedPerson);
+        expectedModel.commitAddressBook();
 
         assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel);
     }
@@ -77,6 +79,7 @@ public class PolicyCommandTest {
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(firstPerson, editedPerson);
+        expectedModel.commitAddressBook();
 
         assertCommandSuccess(policyCommand, model, expectedMessage, expectedModel);
     }
