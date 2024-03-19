@@ -7,7 +7,8 @@
     "address" : "123, Jurong West Ave 6, #08-111",
     "meeting" : {
       "start" : "",
-      "end" : ""
+      "end" : "",
+      "remark" : ""
     },
     "tags" : [ "friends" ]
   }, {
@@ -17,7 +18,8 @@
     "address" : "311, Clementi Ave 2, #02-25",
     "meeting" : {
       "start" : "",
-      "end" : ""
+      "end" : "",
+      "remark" : ""
     },
     "tags" : [ "owesMoney", "friends" ]
   }, {
@@ -27,7 +29,8 @@
     "address" : "wall street",
     "meeting" : {
       "start" : "12-03-2024T14:00",
-      "end" : "12-03-2024T15:00"
+      "end" : "12-03-2024T15:00",
+      "remark" : ""
     },
     "tags" : [ ]
   }, {
@@ -37,7 +40,8 @@
     "address" : "10th street",
     "meeting" : {
       "start" : "",
-      "end" : ""
+      "end" : "",
+      "remark" : ""
     },
     "tags" : [ "friends" ]
   }, {
@@ -47,7 +51,8 @@
     "address" : "michegan ave",
     "meeting" : {
       "start" : "",
-      "end" : ""
+      "end" : "",
+      "remark" : ""
     },
     "tags" : [ ]
   }, {
@@ -57,7 +62,8 @@
     "address" : "little tokyo",
     "meeting" : {
       "start" : "",
-      "end" : ""
+      "end" : "",
+      "remark" : ""
     },
     "tags" : [ ]
   }, {
@@ -67,7 +73,8 @@
     "address" : "4th street",
     "meeting" : {
       "start" : "",
-      "end" : ""
+      "end" : "",
+      "remark" : ""
     },
     "tags" : [ ]
   } ]

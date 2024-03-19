@@ -6,7 +6,8 @@
     "address": "123, Jurong West Ave 6, #08-111",
     "meeting" : {
       "start" : "",
-      "end" : ""
+      "end" : "",
+      "remark" : ""
     },
     "tags": [ "friends" ]
   }, {
@@ -16,7 +17,8 @@
     "address": "4th street",
     "meeting" : {
       "start" : "",
-      "end" : ""
+      "end" : "",
+      "remark" : ""
     }
   } ]
 }
