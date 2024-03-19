@@ -103,6 +103,7 @@ public interface Model {
     /**
      * Returns a ReadOnlyStringProperty for the course code.
      * This allows observers to track changes to the course code.
+     *
      * @return a read-only string property representing the course code.
      */
     ReadOnlyStringProperty courseCodeProperty();
@@ -143,7 +144,7 @@ public interface Model {
      * into a {@link CourseName} object. It is used to load the course name information
      * when the application starts or whenever the course name needs to be accessed.
      *
-     * @return the {@link CourseName} object representing the course name retrieved from storage
+     * @return the {@link CourseName} object representing the course name retrieved from storage.
      */
     CourseName getCourseName();
 

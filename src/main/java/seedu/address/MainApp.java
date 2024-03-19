@@ -34,7 +34,6 @@ import seedu.address.storage.UserPrefsStorage;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
 
-
 /**
  * Runs the application.
  */
@@ -80,19 +79,17 @@ public class MainApp extends Application {
     private Model initModelManager(Storage storage, UserPrefs userPrefs) {
         logger.info("Using data file : " + storage.getAddressBookFilePath());
         logger.info("Using course data file : " + storage.getCourseNameFilePath());
-        Optional<ReadOnlyAddressBook> addressBookOptional;
-        Optional<ReadOnlyCourseName> courseNameOptional;
         ReadOnlyAddressBook initialData;
         ReadOnlyCourseName initialCourseNameData;
         try {
-            addressBookOptional = storage.readAddressBook();
-            if (!addressBookOptional.isPresent()) {
+            Optional<ReadOnlyAddressBook> addressBookOptional = storage.readAddressBook();
+            if (addressBookOptional.isEmpty()) {
                 logger.info("Creating a new data file " + storage.getAddressBookFilePath()
                         + " populated with a sample AddressBook.");
             }
-            courseNameOptional = storage.readCourse();
+            Optional<ReadOnlyCourseName> courseNameOptional = storage.readCourse();
 
-            if (!courseNameOptional.isPresent()) {
+            if (courseNameOptional.isEmpty()) {
                 logger.info("Creating a new course data file " + storage.getCourseNameFilePath()
                         + " populated with a course.");
             }
@@ -134,7 +131,7 @@ public class MainApp extends Application {
 
         try {
             Optional<Config> configOptional = ConfigUtil.readConfig(configFilePathUsed);
-            if (!configOptional.isPresent()) {
+            if (configOptional.isEmpty()) {
                 logger.info("Creating new config file " + configFilePathUsed);
             }
             initializedConfig = configOptional.orElse(new Config());
@@ -165,7 +162,7 @@ public class MainApp extends Application {
         UserPrefs initializedPrefs;
         try {
             Optional<UserPrefs> prefsOptional = storage.readUserPrefs();
-            if (!prefsOptional.isPresent()) {
+            if (prefsOptional.isEmpty()) {
                 logger.info("Creating new preference file " + prefsFilePath);
             }
             initializedPrefs = prefsOptional.orElse(new UserPrefs());

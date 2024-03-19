@@ -129,7 +129,6 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String course} into a {@code course}.
      * Parses a {@code String weekNumber} into a {@code WeekNumber}.
      * Leading and trailing whitespaces will be trimmed.
      *

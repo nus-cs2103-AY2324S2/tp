@@ -21,9 +21,6 @@ import seedu.address.logic.commands.MarkAttendanceCommand;
 import seedu.address.logic.commands.SetCourseCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
-
-
-
 /**
  * Parses user input.
  */

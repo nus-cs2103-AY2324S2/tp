@@ -115,7 +115,7 @@ public class MainWindow extends UiPart<Stage> {
         try {
             Optional<ReadOnlyCourseName> courseNameOptional = storage.readCourse();
 
-            if (!courseNameOptional.isPresent()) {
+            if (courseNameOptional.isEmpty()) {
                 logger.info("Creating a new course data file " + storage.getCourseNameFilePath()
                         + " populated with a course.");
             }

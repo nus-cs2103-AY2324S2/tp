@@ -61,6 +61,4 @@ public interface Logic {
      * Returns the user prefs' courseName file path.
      */
     Path getCourseNameFilePath();
-
-
 }

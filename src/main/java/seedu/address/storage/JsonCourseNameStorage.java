@@ -48,7 +48,7 @@ public class JsonCourseNameStorage implements CourseStorageName {
 
         Optional<JsonSerializableCourseName> jsonCourse = JsonUtil.readJsonFile(
                 filePath, JsonSerializableCourseName.class);
-        if (!jsonCourse.isPresent()) {
+        if (jsonCourse.isEmpty()) {
             return Optional.empty();
         }
 

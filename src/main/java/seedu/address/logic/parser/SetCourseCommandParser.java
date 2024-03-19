@@ -9,7 +9,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.course.Course;
 
 /**
- * Parses input arguments and creates a new {@code SetCourseCommand} object
+ * Parses input arguments and creates a new {@code SetCourseCommand} object.
  */
 public class SetCourseCommandParser implements Parser<SetCourseCommand> {
     /**

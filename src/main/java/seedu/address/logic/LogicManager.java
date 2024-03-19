@@ -48,9 +48,8 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
 
-        CommandResult commandResult;
         Command command = addressBookParser.parseCommand(commandText);
-        commandResult = command.execute(model);
+        CommandResult commandResult = command.execute(model);
 
         try {
             storage.saveAddressBook(model.getAddressBook());
@@ -93,6 +92,7 @@ public class LogicManager implements Logic {
     public ReadOnlyCourseName getCourseName() {
         return model.getCourseName();
     }
+
     @Override
     public Path getCourseNameFilePath() {
         return model.getCourseNameFilePath();

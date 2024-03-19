@@ -5,16 +5,22 @@ import static java.util.Objects.requireNonNull;
 /**
  * Represents a Course in the address book.
  * Holds details about a course, such as its code, which follows a specific format.
+ * <p>
  * The course code is expected to adhere to the format defined by {@link #VALIDATION_REGEX},
  * which ensures it matches the typical NUS course code format. This format includes two
  * initial uppercase letters, followed by four digits, and an optional trailing uppercase letter.
+ * </p>
+ * <p>
  * Note: The course code is not marked as final to allow for the possibility of changes to
  * the course code after the course object has been created. This flexibility accommodates
  * scenarios where course codes might need to be updated or corrected.
+ * </p>
  */
 public class Course {
+    public static final String COURSE_CODE_FORMAT = "XX1234Y";
+
     public static final String MESSAGE_CONSTRAINTS =
-            "Course code should follow the format \"XX1234Y\", Y is optional";
+            "Course code should follow the format \"" + COURSE_CODE_FORMAT + "\", Y is optional";
 
     /**
      * Represents a course code validation in NUS Computer Science.
@@ -38,7 +44,7 @@ public class Course {
     }
 
     /**
-     * Checks if the given string matches the NUS Computer Science course code format.
+     * Checks if the given string matches the NUS course code format.
      *
      * @param test The string to test against the course code validation regex.
      * @return true if the given string matches the course code format, false otherwise.

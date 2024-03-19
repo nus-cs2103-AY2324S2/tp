@@ -4,6 +4,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.model.course.Course.isValidCode;
 
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.util.CommandMessageUsageUtil;
 import seedu.address.model.Model;
 import seedu.address.model.course.Course;
 
@@ -24,9 +25,10 @@ public class SetCourseCommand extends Command {
     public static final String MESSAGE_CONSTRAINTS =
             "Course code should follow the format \"XX1234Y\", Y is optional";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + "Sets course";
+    public static final String MESSAGE_USAGE = CommandMessageUsageUtil.generateMessageUsage("setcrs",
+            "Sets Course", "course code", "CS2104");
 
-    public static final String MESSAGE_SUCCESS = "Successfully updated course";
+    public static final String MESSAGE_SUCCESS = "Successfully updated course name";
 
 
     private final Course course;

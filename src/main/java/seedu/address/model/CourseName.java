@@ -5,8 +5,7 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.model.course.Course;
 
 /**
- * Wraps all data at the address-book level
- * Duplicates are not allowed (by .isSamePerson comparison)
+ * Wraps all data at the course level
  */
 public class CourseName implements ReadOnlyCourseName {
 
@@ -16,7 +15,7 @@ public class CourseName implements ReadOnlyCourseName {
     public CourseName() {}
 
     /**
-     * Creates a Course using the course in the {@code toBeCopied}
+     * Creates a Course using the course in the {@code toBeCopied}.
      */
     public CourseName(ReadOnlyCourseName toBeCopied) {
         this();

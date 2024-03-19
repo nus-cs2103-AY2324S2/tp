@@ -34,6 +34,7 @@ public interface CourseStorageName {
 
     /**
      * Saves the given {@link ReadOnlyCourseName} to the storage.
+     *
      * @param course cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */

@@ -22,6 +22,8 @@ import seedu.address.model.weeknumber.WeekNumber;
  * Contains utility methods for populating {@code AddressBook} with sample data.
  */
 public class SampleDataUtil {
+
+    public static final String COURSE_CODE_FORMAT = "XX1234Y";
     public static Person[] getSamplePersons() {
         return new Person[] {
             new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
@@ -73,7 +75,7 @@ public class SampleDataUtil {
 
     public static ReadOnlyCourseName getSampleCourseName() {
         CourseName courseName = new CourseName();
-        courseName.setCourse(new Course("XX1234Y"));
+        courseName.setCourse(new Course(COURSE_CODE_FORMAT));
         return courseName;
     }
 

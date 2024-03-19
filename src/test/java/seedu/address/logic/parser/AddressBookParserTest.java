@@ -113,7 +113,7 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_setcourse() throws Exception {
+    public void parseCommand_setCourse() throws Exception {
         final String code = "CS2103T";
         SetCourseCommand command = (SetCourseCommand) parser.parseCommand(SetCourseCommand.COMMAND_WORD + " "
                  + code);
