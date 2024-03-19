@@ -38,15 +38,19 @@ public class DeleteEventCommand extends Command {
         requireNonNull(model);
         List<Event> lastShownList = model.getFilteredEventList();
 
-        if (model.isAnEventSelected()) {
-            throw new CommandException(MESSAGE_INVALID_DELETE_EVENT);
-        }
+//        if (model.isAnEventSelected()) {
+//            throw new CommandException(MESSAGE_INVALID_DELETE_EVENT);
+//        }
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
         }
 
         Event eventToDelete = lastShownList.get(targetIndex.getZeroBased());
+
+        if (model.isEqualSelectedEvent(eventToDelete)) {
+            throw new CommandException(MESSAGE_INVALID_DELETE_EVENT);
+        }
 
         model.deleteEvent(eventToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_EVENT_SUCCESS, Messages.format(eventToDelete)));

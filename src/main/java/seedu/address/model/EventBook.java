@@ -43,6 +43,11 @@ public class EventBook implements ReadOnlyEventBook {
         resetData(toBeCopied);
     }
 
+    public boolean isSelectedEvent(Event event) {
+        requireNonNull(event);
+        return event.equals(selectedEvent);
+    }
+
     // List overwrite operations
 
     /**
