@@ -327,7 +327,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-    
+
 
 **Use case: UC01 - Add an article**
 
@@ -342,7 +342,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. Command was invalid.
   * 1a1. PressPlanner shows an error message.
-    
+
     Use case ends.
 
 
@@ -382,7 +382,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 3a. The given index is invalid.
 
     * 3a1. PressPlanner shows an error message.
-    
+
       Use case resumes at step 2.
 
 
@@ -430,8 +430,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to list articles.
 1. PressPlanner lists out all articles.
 1. User requests to find articles with given keywords.
-1. PressPlanner displays a filtered list of articles found, 
-each containing at least one of the given keywords.
+1. PressPlanner displays a filtered list of articles found,
+ each containing at least one of the given keywords.
 
    Use case ends.
 
@@ -463,7 +463,7 @@ each containing at least one of the given keywords.
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 1. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-1. Should be able to hold up to 1000 articles without a noticeable sluggishness in performance for typical usage. 
+1. Should be able to hold up to 1000 articles without a noticeable sluggishness in performance for typical usage.
 1. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 
