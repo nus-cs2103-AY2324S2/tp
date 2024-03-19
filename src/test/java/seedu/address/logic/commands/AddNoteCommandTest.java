@@ -18,6 +18,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ModelManager;
 import seedu.address.model.person.Person;
@@ -71,7 +72,7 @@ public class AddNoteCommandTest {
             assertEquals(VALID_NOTE_FLU, noteCaptor.get(noteCaptor.size() - 1));
 
             assertEquals(
-                    new CommandResult(String.format(AddNoteCommand.MESSAGE_SUCCESS, VALID_NOTE_FLU.getDescription()),
+                    new CommandResult(String.format(AddNoteCommand.MESSAGE_SUCCESS, Messages.format(VALID_NOTE_FLU)),
                             false,
                             false),
                     result);

@@ -307,5 +307,6 @@ public class Person {
         public Person build() {
             return new Person(nric, name, gender, birthDate, phone, email, drugAllergy, illnesses, notes);
         }
+
     }
 }

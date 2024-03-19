@@ -3,6 +3,7 @@ package seedu.address.model.person.note;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 import seedu.address.commons.util.ToStringBuilder;
@@ -33,6 +34,11 @@ public class Note {
 
     public Description getDescription() {
         return description;
+    }
+
+    public String getDateTimeAsString() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        return dateTime.format(formatter);
     }
 
     @Override

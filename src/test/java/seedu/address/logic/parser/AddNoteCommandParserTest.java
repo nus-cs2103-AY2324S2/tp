@@ -50,7 +50,6 @@ public class AddNoteCommandParserTest {
     @Test
     public void parse_compulsoryFieldMissing_failure() {
         String message = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddNoteCommand.MESSAGE_USAGE);
-
         // Missing date prefix.
         assertParseFailure(parser, "1 " + TIME_DESC + NOTE_DESC, message);
 
