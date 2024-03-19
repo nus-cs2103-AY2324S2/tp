@@ -9,6 +9,7 @@ import seedu.address.model.tag.Tag;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
@@ -38,7 +39,7 @@ public class TagCommand extends Command {
 
     /**
      * @param index of the person in the filtered person list to edit the comment
-     * @param tags to be added to the person
+     * @param tags  to be added to the person
      */
     public TagCommand(Index index, Set<Tag> tags) {
         requireAllNonNull(index, tags);
@@ -68,5 +69,22 @@ public class TagCommand extends Command {
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
         return new CommandResult(String.format(MESSAGE_ADD_TAGS_SUCCESS, Messages.format(editedPerson)));
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        TagCommand that = (TagCommand) o;
+
+        if (!Objects.equals(index, that.index)) {
+            return false;
+        }
+        return Objects.equals(tags, that.tags);
     }
 }
