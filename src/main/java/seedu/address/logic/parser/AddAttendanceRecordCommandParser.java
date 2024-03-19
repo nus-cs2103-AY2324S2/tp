@@ -8,7 +8,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddAttendanceRecordCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.AttendanceDate;
+import seedu.address.model.tag.Attendance;
 
 /**
  * Parses input arguments and creates a new AddAttendanceRecordCommand object
@@ -32,9 +32,9 @@ public class AddAttendanceRecordCommandParser implements Parser<AddAttendanceRec
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_ATTENDANCE_RECORD);
 
-        AttendanceDate attendanceDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_ATTENDANCE_RECORD).get());
+        Attendance attendance = ParserUtil.parseDate(argMultimap.getValue(PREFIX_ATTENDANCE_RECORD).get());
 
-        return new AddAttendanceRecordCommand(attendanceDate);
+        return new AddAttendanceRecordCommand(attendance);
 
     }
 

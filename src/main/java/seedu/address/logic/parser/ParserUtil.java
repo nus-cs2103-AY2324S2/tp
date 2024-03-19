@@ -9,7 +9,6 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.AttendanceDate;
 import seedu.address.model.person.Classes;
 import seedu.address.model.person.CourseCode;
 import seedu.address.model.person.Email;
@@ -119,13 +118,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code date} is invalid.
      */
-    public static AttendanceDate parseDate(String date) throws ParseException {
+    public static Attendance parseDate(String date) throws ParseException {
         requireNonNull(date);
         String trimmedDate = date.trim();
-        if (!AttendanceDate.isValidDate(trimmedDate)) {
-            throw new ParseException(AttendanceDate.MESSAGE_CONSTRAINTS);
+        if (!Attendance.isValidDate(trimmedDate)) {
+            throw new ParseException(Attendance.MESSAGE_CONSTRAINTS);
         }
-        return new AttendanceDate(trimmedDate);
+        return new Attendance(trimmedDate);
     }
 
     /**
@@ -137,7 +136,7 @@ public class ParserUtil {
     public static Attendance parseAttendances(String tag) throws ParseException {
         requireNonNull(tag);
         String trimmedTag = tag.trim();
-        if (!Attendance.isValidTagName(trimmedTag)) {
+        if (!Attendance.isValidDate(trimmedTag)) {
             throw new ParseException(Attendance.MESSAGE_CONSTRAINTS);
         }
         return new Attendance(trimmedTag);

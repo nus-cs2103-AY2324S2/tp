@@ -11,26 +11,26 @@ import seedu.address.model.tag.Attendance;
  */
 class JsonAdaptedAttendance {
 
-    private final String tagName;
+    private final String attendanceDate;
 
     /**
      * Constructs a {@code JsonAdaptedTag} with the given {@code tagName}.
      */
     @JsonCreator
-    public JsonAdaptedAttendance(String tagName) {
-        this.tagName = tagName;
+    public JsonAdaptedAttendance(String attendanceDate) {
+        this.attendanceDate = attendanceDate;
     }
 
     /**
      * Converts a given {@code Tag} into this class for Jackson use.
      */
     public JsonAdaptedAttendance(Attendance source) {
-        tagName = source.attendanceName;
+        attendanceDate = source.attendanceName;
     }
 
     @JsonValue
-    public String getTagName() {
-        return tagName;
+    public String getAttendanceDate() {
+        return attendanceDate;
     }
 
     /**
@@ -39,10 +39,10 @@ class JsonAdaptedAttendance {
      * @throws IllegalValueException if there were any data constraints violated in the adapted tag.
      */
     public Attendance toModelType() throws IllegalValueException {
-        if (!Attendance.isValidTagName(tagName)) {
+        if (!Attendance.isValidDate(attendanceDate)) {
             throw new IllegalValueException(Attendance.MESSAGE_CONSTRAINTS);
         }
-        return new Attendance(tagName);
+        return new Attendance(attendanceDate);
     }
 
 }

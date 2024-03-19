@@ -12,15 +12,15 @@ public class AttendanceTest {
     }
 
     @Test
-    public void constructor_invalidTagName_throwsIllegalArgumentException() {
-        String invalidTagName = "";
-        assertThrows(IllegalArgumentException.class, () -> new Attendance(invalidTagName));
+    public void constructor_invalidAttendanceDate_throwsIllegalArgumentException() {
+        String invalidAttendanceDate = "";
+        assertThrows(IllegalArgumentException.class, () -> new Attendance(invalidAttendanceDate));
     }
 
     @Test
-    public void isValidTagName() {
+    public void isValidDate() {
         // null tag name
-        assertThrows(NullPointerException.class, () -> Attendance.isValidTagName(null));
+        assertThrows(NullPointerException.class, () -> Attendance.isValidDate(null));
     }
 
 }
