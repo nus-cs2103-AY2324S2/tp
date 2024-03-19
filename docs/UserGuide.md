@@ -166,6 +166,14 @@ If your changes to the data file makes its format invalid, FitBook will discard 
 Furthermore, certain edits can cause FitBook to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
 
+### Save Contact to Phone
+
+![QrCodeContactCard](images/QrCodeContactCard.png)
+
+To save a contact to your mobile phone from FitBook, simply scan the QR code next to the contact.
+
+<img src="images/QRCodeScanScreenshot.png" height="240">
+
 ### Archiving data files `[coming in v2.0]`
 
 _Details coming soon ..._
