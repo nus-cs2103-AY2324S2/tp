@@ -120,12 +120,7 @@ public class ModuleCode {
      * @return true if the class name is in the list. False otherwise.
      */
     public boolean hasTutorialClass(TutorialClass tutorialClass) {
-        for (TutorialClass tutorialClassInModule : tutorialClasses) {
-            if (tutorialClass.equals(tutorialClassInModule)) {
-                return true;
-            }
-        }
-        return false;
+        return tutorialClasses.contains(tutorialClass);
     }
 
 

@@ -44,14 +44,15 @@ public abstract class AddStudentToClassCommand extends Command {
         ModuleCode module = getModule();
         TutorialClass tutorialClass = getTutorialClass();
         ModuleCode existingModule = model.findModuleFromList(module);
+        TutorialClass existingTutorialClass = model.findTutorialClassFromList(tutorialClass, existingModule);
         if (existingModule == null) {
             throw new CommandException(String.format(ModuleMessages.MESSAGE_MODULE_NOT_FOUND, module));
         }
-        if (!existingModule.hasTutorialClass(tutorialClass)) {
+        if (existingTutorialClass == null) {
             throw new CommandException(
                     String.format(ModuleMessages.MESSAGE_TUTORIAL_DOES_NOT_BELONG_TO_MODULE, tutorialClass, module));
         }
-        return new ModuleTutorialPair(module, tutorialClass);
+        return new ModuleTutorialPair(existingModule, existingTutorialClass);
     }
 
     protected ModuleCode getModule() {

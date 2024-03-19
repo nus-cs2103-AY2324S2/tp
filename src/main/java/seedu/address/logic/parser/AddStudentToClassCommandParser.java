@@ -29,6 +29,7 @@ public class AddStudentToClassCommandParser implements Parser<AddStudentToClassC
      * Parses the given {@code String} of arguments in the context of the
      * AddStudentToClass and returns an AddStudentToClassCommand object for
      * execution.
+     * 
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddStudentToClassCommand parse(String args) throws ParseException {

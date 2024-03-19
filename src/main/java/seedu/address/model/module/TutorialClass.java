@@ -34,6 +34,14 @@ public class TutorialClass {
         this.students = new ArrayList<>();
     }
 
+    /**
+     * Set students to the tutorial class
+     * @param students
+     */
+    public void setStudents(ArrayList<Person> students) {
+        this.students.addAll(students);
+    }
+
 
     /**
      * A constructor for TutorialClass. Creates an empty tutorial class with no
@@ -77,7 +85,6 @@ public class TutorialClass {
      */
     public void addStudent(Person student) {
         students.add(student);
-
     }
 
     /**
@@ -106,7 +113,7 @@ public class TutorialClass {
         }
 
         TutorialClass otherTutorialClass = (TutorialClass) other;
-        return tutorialName.equals(otherTutorialClass.tutorialName);
+        return tutorialName.equals(otherTutorialClass.tutorialName) && students.equals(otherTutorialClass.students);
     }
 
     @Override

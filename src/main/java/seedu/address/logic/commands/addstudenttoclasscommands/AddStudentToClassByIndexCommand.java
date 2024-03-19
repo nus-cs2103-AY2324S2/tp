@@ -49,7 +49,7 @@ public class AddStudentToClassByIndexCommand extends AddStudentToClassCommand {
             throw new CommandException(String.format(PersonMessages.MESSAGE_DUPLICATE_STUDENT_IN_CLASS, personToAdd,
                     tutorialClass));
         } else {
-            tutorialClass.addStudent(personToAdd);
+            model.addPersonToTutorialClass(personToAdd, module, tutorialClass);
             return new CommandResult(
                     String.format(PersonMessages.MESSAGE_ADD_STUDENT_TO_CLASS_SUCCESS,
                      Messages.format(personToAdd), module, tutorialClass));

@@ -9,6 +9,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.module.ModuleCode;
+import seedu.address.model.module.TutorialClass;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -58,14 +59,15 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.modules.clear();
         this.modules.addAll(modules);
     }
+
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
-
         setPersons(newData.getPersonList());
         setModules(newData.getModuleList());
+
     }
 
     //// person-level operations
@@ -110,6 +112,23 @@ public class AddressBook implements ReadOnlyAddressBook {
         }
         return null;
     }
+
+    /**
+     * Returns the tutorial object from the tutorial list if it exists.
+     */
+    public TutorialClass findTutorialClassFromList(TutorialClass tutorialClass, ModuleCode moduleCode) {
+        requireNonNull(tutorialClass);
+        requireNonNull(moduleCode);
+        ModuleCode moduleInList = findModuleFromList(moduleCode);
+        if (moduleInList == null) {
+            throw new IllegalArgumentException("Module does not exist in the address book.");
+        }
+        return moduleInList.getTutorialClasses().stream()
+                .filter(tutorial -> tutorial.equals(tutorialClass))
+                .findFirst()
+                .orElse(null);
+    }
+    
     /**
      * Adds a module to the address book.
      * The module must not already exist in the address book. (TODO)
@@ -117,6 +136,25 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public void addModule(ModuleCode m) {
         modules.add(m);
+    }
+
+    /**
+     * Adds a person to the students list of a specific tutorial class within a module.
+     */
+    public void addPersonToTutorialClass(Person person, ModuleCode module, TutorialClass tutorialClass) {
+        requireNonNull(person);
+        requireNonNull(module);
+        requireNonNull(tutorialClass);
+
+        ModuleCode moduleInList = findModuleFromList(module);
+        if (moduleInList == null) {
+            throw new IllegalArgumentException("Module does not exist in the address book.");
+        }
+        TutorialClass tutorialClassInList = moduleInList.getTutorialClasses().stream()
+                .filter(tutorial -> tutorial.equals(tutorialClass))
+                .findFirst()
+                .orElse(null);
+        tutorialClassInList.addStudent(person);
     }
 
     /**

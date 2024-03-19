@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.module.ModuleCode;
+import seedu.address.model.module.TutorialClass;
 import seedu.address.model.person.Person;
 
 /**
@@ -66,6 +67,14 @@ public interface Model {
      * @return the module if it exists, else return null.
      */
     ModuleCode findModuleFromList(ModuleCode module);
+
+    /**
+     * Find tutorial object from the list if it exists. Else, returns null.
+     * @param tutorialClass to be searched
+     * @param moduleCode    to be searched
+     */
+    TutorialClass findTutorialClassFromList(TutorialClass tutorialClass, ModuleCode moduleCode);
+
     /**
      * Deletes the given person.
      * The person must exist in the address book.
@@ -84,6 +93,10 @@ public interface Model {
      */
     void addModule(ModuleCode module);
 
+    /**
+     * Adds the given person to the given tutorial class in the given module.
+     */
+    void addPersonToTutorialClass(Person person, ModuleCode module, TutorialClass tutorialClass);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.

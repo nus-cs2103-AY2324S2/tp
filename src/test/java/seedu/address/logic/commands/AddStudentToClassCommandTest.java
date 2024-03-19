@@ -30,7 +30,9 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.TutorialClass;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.StudentId;
+import seedu.address.testutil.PersonBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -39,6 +41,7 @@ import seedu.address.model.person.StudentId;
 public class AddStudentToClassCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private TutorialClass tutorialClass;
 
     @BeforeEach
     public void setUp() {
@@ -46,6 +49,7 @@ public class AddStudentToClassCommandTest {
         model.addModule(newModule);
         TutorialClass newTutorialClass = new TutorialClass(VALID_TUTORIAL_AMY);
         newModule.addTutorialClass(newTutorialClass);
+        tutorialClass = newTutorialClass;
     }
 
     @Test
@@ -63,7 +67,7 @@ public class AddStudentToClassCommandTest {
     }
 
 
-    /* @Test
+    @Test
     public void execute_duplicateStudent_fail() {
         Person person = new PersonBuilder().build();
         model.addPerson(person);
@@ -77,7 +81,7 @@ public class AddStudentToClassCommandTest {
                 String.format(PersonMessages.MESSAGE_DUPLICATE_STUDENT_IN_CLASS, person, tutorialClass));
         assertCommandFailure(addStudentToClassByEmailCommand, model,
                 String.format(PersonMessages.MESSAGE_DUPLICATE_STUDENT_IN_CLASS, person, tutorialClass));
-    } */
+    }
 
     @Test
     public void equals() {
