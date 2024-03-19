@@ -43,5 +43,5 @@ jobs:
         uses: codecov/codecov-action@v3
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-        ignore: 
-          - "main/java/seedu/address/ui"
+        with:
+          paths-ignore: "main/java/seedu/address/ui/**/*"

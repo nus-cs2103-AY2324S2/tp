@@ -1,9 +1,9 @@
 package seedu.address.model.person;
 
-import java.util.ArrayList;
 import java.util.stream.Stream;
 
-import seedu.address.model.person.exceptions.PolicyNotFoundException;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import seedu.address.model.policy.Policy;
 
 
@@ -14,13 +14,13 @@ public class PolicyList {
     /**
      * The Policy list.
      */
-    public final ArrayList<Policy> policyList;
+    public final ObservableList<Policy> policyList;
 
     /**
      * Instantiates a new Policy list.
      */
     public PolicyList() {
-        this.policyList = new ArrayList<Policy>();
+        this.policyList = FXCollections.observableArrayList();
     }
 
     /**
@@ -28,7 +28,7 @@ public class PolicyList {
      *
      * @param policyList the policy list
      */
-    public PolicyList(ArrayList<Policy> policyList) {
+    public PolicyList(ObservableList<Policy> policyList) {
         this.policyList = policyList;
     }
 
@@ -45,28 +45,29 @@ public class PolicyList {
      * Delete policy.
      *
      * @param policyId the policy id
-     * @throws PolicyNotFoundException the policy not found exception
      */
-    public void deletePolicy(String policyId) throws PolicyNotFoundException {
+    public void deletePolicy(String policyId) {
         Policy toDelete = findPolicy(policyId);
         policyList.remove(toDelete);
     }
-    private Policy findPolicy(String policyId) throws PolicyNotFoundException {
+
+    private Policy findPolicy(String policyId) {
         for (Policy p: policyList) {
             if (p.isID(policyId)) {
                 return p;
             }
         }
-        throw new PolicyNotFoundException();
+        return null;
     }
 
     /**
-     * Has policy id boolean.
+     * Has conflicting policy id boolean.
      *
      * @param newPolicy the new policy
      * @return the boolean
      */
-    public boolean hasPolicyID(Policy newPolicy) {
+    public boolean hasConflictingPolicyId(Policy newPolicy) {
+        assert newPolicy != null;
         boolean isConflicting = false;
         for (Policy p: policyList) {
             if (p.hasSameID(newPolicy)) {
@@ -78,7 +79,17 @@ public class PolicyList {
     }
 
     /**
-     * To stream stream.
+     * Has policy boolean.
+     *
+     * @param policyId the policy id
+     * @return the boolean
+     */
+    public boolean hasPolicy(String policyId) {
+        return findPolicy(policyId) != null;
+    }
+
+    /**
+     * Creates a stream from PolicyList.
      *
      * @return the stream
      */
@@ -92,9 +103,7 @@ public class PolicyList {
      * @return the policy list clone
      */
     public PolicyList getPolicyListClone() {
-        @SuppressWarnings("unchecked")
-        // cloneArraylist is a clone of policyList and can be safely typecasted
-        ArrayList<Policy> cloneArraylist = (ArrayList<Policy>) policyList.clone();
+        ObservableList<Policy> cloneArraylist = FXCollections.observableArrayList(policyList);
         return new PolicyList(cloneArraylist);
     }
 

@@ -13,10 +13,12 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PRIORITY_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.BENSON;
 import static seedu.address.testutil.TypicalPersons.BOB;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.policy.Policy;
 import seedu.address.testutil.PersonBuilder;
 
 public class PersonTest {
@@ -104,6 +106,24 @@ public class PersonTest {
         //differnt policies -> return false
         editedAlice = new PersonBuilder(ALICE).withPolicies(VALID_POLICY_LIFE).build();
         assertFalse(ALICE.equals(editedAlice));
+    }
+
+    @Test
+    public void isConflictingPolicyID() {
+        // same policy id -> returns true
+        assertTrue(BENSON.isConflictingPolicyId(new Policy("Health", "123")));
+
+        // different policy id -> returns false
+        assertFalse(BENSON.isConflictingPolicyId(new Policy("Saving", "789")));
+    }
+
+    @Test
+    public void hasPolicyID() {
+        // has policy id -> returns true
+        assertTrue(BENSON.hasPolicyID("123"));
+
+        // does not have policy id -> returns false
+        assertFalse(BENSON.hasPolicyID("789"));
     }
 
     @Test
