@@ -21,11 +21,11 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.StudentId;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.StudentId;
 import seedu.address.model.tag.Attendance;
 
 /**
@@ -99,7 +99,7 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         StudentId updatedStudentId = editPersonDescriptor.getAddress().orElse(personToEdit.getStudentId());
-        Set<Attendance> updatedAttendances = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Set<Attendance> updatedAttendances = editPersonDescriptor.getTags().orElse(personToEdit.getAttendances());
 
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedStudentId, updatedAttendances);
@@ -150,8 +150,8 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
-            setAddress(toCopy.studentId);
-            setTags(toCopy.attendances);
+            setStudentId(toCopy.studentId);
+            setAttendances(toCopy.attendances);
         }
 
         /**
@@ -185,7 +185,7 @@ public class EditCommand extends Command {
             return Optional.ofNullable(email);
         }
 
-        public void setAddress(StudentId studentId) {
+        public void setStudentId(StudentId studentId) {
             this.studentId = studentId;
         }
 
@@ -197,7 +197,7 @@ public class EditCommand extends Command {
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
          */
-        public void setTags(Set<Attendance> attendances) {
+        public void setAttendances(Set<Attendance> attendances) {
             this.attendances = (attendances != null) ? new HashSet<>(attendances) : null;
         }
 

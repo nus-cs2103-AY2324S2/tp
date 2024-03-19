@@ -10,11 +10,11 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.StudentId;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.StudentId;
 import seedu.address.model.tag.Attendance;
 
 /**
@@ -35,8 +35,8 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String studentid,
-            @JsonProperty("tags") List<JsonAdaptedAttendance> tags) {
+            @JsonProperty("email") String email, @JsonProperty("studentid") String studentid,
+            @JsonProperty("attendances") List<JsonAdaptedAttendance> tags) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -54,7 +54,7 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         studentid = source.getStudentId().value;
-        attendances.addAll(source.getTags().stream()
+        attendances.addAll(source.getAttendances().stream()
                 .map(JsonAdaptedAttendance::new)
                 .collect(Collectors.toList()));
     }
@@ -95,9 +95,10 @@ class JsonAdaptedPerson {
         final Email modelEmail = new Email(email);
 
         if (studentid == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, StudentId.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    StudentId.class.getSimpleName()));
         }
-        if (!StudentId.isValidAddress(studentid)) {
+        if (!StudentId.isValidStudentId(studentid)) {
             throw new IllegalValueException(StudentId.MESSAGE_CONSTRAINTS);
         }
         final StudentId modelStudentId = new StudentId(studentid);

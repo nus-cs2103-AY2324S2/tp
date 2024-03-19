@@ -35,8 +35,8 @@ public class AddCommand extends Command {
             + PREFIX_ATTENDANCE_RECORD + "friends "
             + PREFIX_ATTENDANCE_RECORD + "owesMoney";
 
-    public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
+    public static final String MESSAGE_SUCCESS = "New student added: %1$s";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This student already exists in the class";
 
     private final Person toAdd;
 

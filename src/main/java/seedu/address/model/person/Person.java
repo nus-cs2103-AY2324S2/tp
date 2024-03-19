@@ -57,7 +57,7 @@ public class Person {
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Attendance> getTags() {
+    public Set<Attendance> getAttendances() {
         return Collections.unmodifiableSet(attendances);
     }
 
@@ -109,7 +109,7 @@ public class Person {
                 .add("name", name)
                 .add("phone", phone)
                 .add("email", email)
-                .add("studentid", studentId)
+                .add("student id", studentId)
                 .add("attendance", attendances)
                 .toString();
     }
