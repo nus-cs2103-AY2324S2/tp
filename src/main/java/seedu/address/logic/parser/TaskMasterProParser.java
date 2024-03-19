@@ -20,6 +20,7 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ListTasksCommand;
 import seedu.address.logic.commands.MarkCommand;
 import seedu.address.logic.commands.UnassignTaskCommand;
 import seedu.address.logic.commands.UnmarkCommand;
@@ -88,6 +89,9 @@ public class TaskMasterProParser {
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
+
+        case ListTasksCommand.COMMAND_WORD:
+            return new ListTasksCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
