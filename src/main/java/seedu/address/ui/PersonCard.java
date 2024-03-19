@@ -32,6 +32,9 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label nric;
 
+    @FXML
+    private Label remark;
+
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
@@ -43,5 +46,6 @@ public class PersonCard extends UiPart<Region> {
         nric.setText("T01234567A"); // Set static value for UI testing
         //name.setText(person.getName().fullName + " (" + person.getSex().value + ")")
         name.setText(person.getName().fullName + " (X)"); // Set static value for UI testing
+        remark.setText(person.getRemark().value);
     }
 }

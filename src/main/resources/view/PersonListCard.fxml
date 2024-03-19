@@ -41,6 +41,7 @@
                     <Font size="14.0" />
                 </font>
             </Label>
+            <Label fx:id="remark" styleClass="cell_small_label" text="\$remark" />
         </VBox>
       <Circle fill="#3ea435" radius="17.0" stroke="#3ea435" strokeType="INSIDE" strokeWidth="4.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
          <GridPane.margin>
