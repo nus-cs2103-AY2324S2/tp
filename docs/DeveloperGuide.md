@@ -150,7 +150,7 @@ How the parsing works:
 **API
 ** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+<img src="images/ModelClassDiagram.png" width="682" />
 
 
 The `Model` component,
@@ -158,6 +158,9 @@ The `Model` component,
 * stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which
   is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to
+  this list so that the UI automatically updates when the data in the list change.
+* stores the currently 'selected' `Order` objects (e.g., results of a search query) as a separate _filtered_ list which
+  is exposed to outsiders as an unmodifiable `ObservableList<Order>` that can be 'observed' e.g. the UI can be bound to
   this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as
   a `ReadOnlyUserPref` objects.
@@ -328,51 +331,51 @@ _{Explain here how the data archiving feature will be implemented}_
 **User Needs and Preferences**:
 
 * Efficient Customer Management:
-  * Can organize and manage customer lists effectively.
-  * Prefers streamlined processes for handling customer information.
-  * Values tools that optimize workflows and save time.
+    * Can organize and manage customer lists effectively.
+    * Prefers streamlined processes for handling customer information.
+    * Values tools that optimize workflows and save time.
 * Organised Orders
-  * Prefers to organize orders and sort them via due date.
-  * Helps to keep track of customer's delivery deadlines.
+    * Prefers to organize orders and sort them via due date.
+    * Helps to keep track of customer's delivery deadlines.
 * Persistent Data Storage:
-  * Prefers applications with backup and synchronization capabilities for data integrity.
+    * Prefers applications with backup and synchronization capabilities for data integrity.
 
 **Value proposition**:
+
 * Manage contacts faster than a typical mouse/GUI driven app.
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …             | I want to …                                                              | So that I can…                                                                                                |
-|----------|--------------------|--------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------|
-| `* * *`  | Florist            | easily add new customers to my address book                              | keep track of all my clients' information in one place.                                                       |
-| `* * *`  | Florist            | have a search function                                                   | quickly find specific customers when I need to reference their details.                                       |
-| `* * *`  | Florist            | be accessible via a command-line interface                               | efficiently manage my customer list without navigating through complex menus.                                 |
-| `* * *`  | Florist            | have customizable fields                                                 | record specific details about each customer, such as their favorite colors or special requests.               |
-| `* * *`  | Florist            | be cost-effective and easy to use                                        | maximize productivity without investing in expensive CRM systems.                                             |
-| `* * *`  | Florist            | have data backup and synchronization capabilities                        | access my customer information from multiple devices and ensure its security.                                 |
-| `* * *`  | Florist            | have secure access controls and permissions settings                     | restrict sensitive information and ensure data privacy compliance.                                            |
-| `* *`    | Florist            | categorize my customers                                                  | tailor my marketing efforts accordingly based on factors like their preferred flowers or past purchases. |
-| `* *`    | Florist            | generate reports on customer activity                                    | analyze trends and make informed business decisions based on order history and frequency of purchases.        |
-| `* *`    | Florist            | have a reminder feature                                                  | stay organized and follow up with customers on important dates, such as birthdays or anniversaries.           |
-| `* *`    | Florist            | have customizable templates for invoices and receipts                    | easily generate and send professional-looking documents to my customers.                                      |
-| `* *`    | Florist            | have a notes section for each customer                                   | record specific preferences and requirements for their projects.                                              |
-| `* *`    | Florist            | integrate with accounting software                                       | easily track expenses related to each customer and maintain accurate financial records.                       |
-| `*`      | Florist            | have a mobile-friendly interface                                         | easily access customer information on the go and process orders efficiently.                                  |
-| `*`      | Florist            | integrate with my email client                                           | send personalized messages and promotions to my customers directly from the platform.                         |
-| `*`      | Florist            | integrate with e-commerce platforms                                      | automatically sync customer data and manage orders efficiently when participating in online marketplaces.     |
-| `*`      | Florist            | track communication history with customers                               | provide personalized and timely customer service including emails and phone calls.                            |
-| `*`      | Florist            | support multiple user accounts with shared access                        | my team members can collaborate on managing customer relationships.                                           |
-| `*`      | Florist            | have a scheduling feature                                                | manage registrations and communicate updates with attendees seamlessly.                                       |
-| `*`      | Florist            | have a feature for scanning and capturing customer contact information   | grow my mailing list and follow up with potential leads quickly.                                              |
-| `*`      | Florist            | integrate with social media platforms                                    | easily connect with customers and engage with them through various channels.                                  |
-| `*`      | Florist            | provide insights into customer demographics and preferences              | tailor my product offerings and marketing campaigns to target specific audiences effectively.                 |
-| `*`      | Florist            | provide analytics and insights on customer behavior                      | continuously improve my products and services to meet customer needs based on purchase patterns and feedback. |
-| `*`      | Florist            | provide insights into customer satisfaction through feedback and reviews | address any concerns and improve the overall customer experience.                                             |
-| `*`      | Florist            | offer customizable tags or labels for customers                          | segment my audience and target specific groups with tailored marketing campaigns.                             |
-| `*`      | Florist            | have a good out of the box experience                                    | immediately use the application without needing to configure it for my own needs.                             |
-
+| Priority | As a …  | I want to …                                                              | So that I can…                                                                                                |
+|----------|---------|--------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------|
+| `* * *`  | Florist | easily add new customers to my address book                              | keep track of all my clients' information in one place.                                                       |
+| `* * *`  | Florist | have a search function                                                   | quickly find specific customers when I need to reference their details.                                       |
+| `* * *`  | Florist | be accessible via a command-line interface                               | efficiently manage my customer list without navigating through complex menus.                                 |
+| `* * *`  | Florist | have customizable fields                                                 | record specific details about each customer, such as their favorite colors or special requests.               |
+| `* * *`  | Florist | be cost-effective and easy to use                                        | maximize productivity without investing in expensive CRM systems.                                             |
+| `* * *`  | Florist | have data backup and synchronization capabilities                        | access my customer information from multiple devices and ensure its security.                                 |
+| `* * *`  | Florist | have secure access controls and permissions settings                     | restrict sensitive information and ensure data privacy compliance.                                            |
+| `* *`    | Florist | categorize my customers                                                  | tailor my marketing efforts accordingly based on factors like their preferred flowers or past purchases.      |
+| `* *`    | Florist | generate reports on customer activity                                    | analyze trends and make informed business decisions based on order history and frequency of purchases.        |
+| `* *`    | Florist | have a reminder feature                                                  | stay organized and follow up with customers on important dates, such as birthdays or anniversaries.           |
+| `* *`    | Florist | have customizable templates for invoices and receipts                    | easily generate and send professional-looking documents to my customers.                                      |
+| `* *`    | Florist | have a notes section for each customer                                   | record specific preferences and requirements for their projects.                                              |
+| `* *`    | Florist | integrate with accounting software                                       | easily track expenses related to each customer and maintain accurate financial records.                       |
+| `*`      | Florist | have a mobile-friendly interface                                         | easily access customer information on the go and process orders efficiently.                                  |
+| `*`      | Florist | integrate with my email client                                           | send personalized messages and promotions to my customers directly from the platform.                         |
+| `*`      | Florist | integrate with e-commerce platforms                                      | automatically sync customer data and manage orders efficiently when participating in online marketplaces.     |
+| `*`      | Florist | track communication history with customers                               | provide personalized and timely customer service including emails and phone calls.                            |
+| `*`      | Florist | support multiple user accounts with shared access                        | my team members can collaborate on managing customer relationships.                                           |
+| `*`      | Florist | have a scheduling feature                                                | manage registrations and communicate updates with attendees seamlessly.                                       |
+| `*`      | Florist | have a feature for scanning and capturing customer contact information   | grow my mailing list and follow up with potential leads quickly.                                              |
+| `*`      | Florist | integrate with social media platforms                                    | easily connect with customers and engage with them through various channels.                                  |
+| `*`      | Florist | provide insights into customer demographics and preferences              | tailor my product offerings and marketing campaigns to target specific audiences effectively.                 |
+| `*`      | Florist | provide analytics and insights on customer behavior                      | continuously improve my products and services to meet customer needs based on purchase patterns and feedback. |
+| `*`      | Florist | provide insights into customer satisfaction through feedback and reviews | address any concerns and improve the overall customer experience.                                             |
+| `*`      | Florist | offer customizable tags or labels for customers                          | segment my audience and target specific groups with tailored marketing campaigns.                             |
+| `*`      | Florist | have a good out of the box experience                                    | immediately use the application without needing to configure it for my own needs.                             |
 
 ### Use cases
 
@@ -635,20 +638,26 @@ otherwise)
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4.  Should provide clear and informative error messages to users in case of unexpected errors. Additionally, detailed logs should be maintained for system administrators to troubleshoot issues effectively.
-5. Application architecture should be scalable to accommodate future growth in terms of users and data volume, without compromising performance.
-6. Automated backups of critical data should be performed, and there should be a documented and tested procedure for data recovery in case of system failures or data loss.
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be
+   able to accomplish most of the tasks faster using commands than using the mouse.
+4. Should provide clear and informative error messages to users in case of unexpected errors. Additionally, detailed
+   logs should be maintained for system administrators to troubleshoot issues effectively.
+5. Application architecture should be scalable to accommodate future growth in terms of users and data volume, without
+   compromising performance.
+6. Automated backups of critical data should be performed, and there should be a documented and tested procedure for
+   data recovery in case of system failures or data loss.
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 * **Application architecture**: Describes the patterns and techniques used to design and build an application
-* **System administrators**: Professionals responsible for managing, configuring, and ensuring the proper operation of computer systems and servers
-* **Detailed logs**: Records that track events, operations, errors, and other significant activities that occur within a software system or application.
+* **System administrators**: Professionals responsible for managing, configuring, and ensuring the proper operation of
+  computer systems and servers
+* **Detailed logs**: Records that track events, operations, errors, and other significant activities that occur within a
+  software system or application.
 
 --------------------------------------------------------------------------------------------------------------------
 
