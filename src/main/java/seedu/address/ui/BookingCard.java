@@ -5,10 +5,10 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.booking.Booking;
-import seedu.address.model.person.Person;
 
-import java.util.Comparator;
-
+/**
+ * A UI component that displays information of a {@code Booking}.
+ */
 public class BookingCard extends UiPart<Region> {
 
     private static final String FXML = "BookingListCard.fxml";
@@ -26,7 +26,9 @@ public class BookingCard extends UiPart<Region> {
     @FXML
     private Label endTime;
 
-
+    /**
+     * Creates a {@code BookingCode} with the given {@code Booking} and index to display.
+     */
     public BookingCard(Booking booking, int displayedIndex) {
         super(FXML);
         this.booking = booking;
