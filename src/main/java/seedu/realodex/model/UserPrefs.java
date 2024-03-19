@@ -14,7 +14,7 @@ import seedu.realodex.commons.core.GuiSettings;
 public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
-    private Path ralodexFilePath = Paths.get("data" , "realodex.json");
+    private Path realodexFilePath = Paths.get("data" , "realodex.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -48,12 +48,12 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     }
 
     public Path getAddressBookFilePath() {
-        return ralodexFilePath;
+        return realodexFilePath;
     }
 
     public void setAddressBookFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
-        this.ralodexFilePath = addressBookFilePath;
+        this.realodexFilePath = addressBookFilePath;
     }
 
     @Override
@@ -69,19 +69,19 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
         UserPrefs otherUserPrefs = (UserPrefs) other;
         return guiSettings.equals(otherUserPrefs.guiSettings)
-                && ralodexFilePath.equals(otherUserPrefs.ralodexFilePath);
+                && realodexFilePath.equals(otherUserPrefs.realodexFilePath);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, ralodexFilePath);
+        return Objects.hash(guiSettings, realodexFilePath);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);
-        sb.append("\nLocal data file location : " + ralodexFilePath);
+        sb.append("\nLocal data file location : " + realodexFilePath);
         return sb.toString();
     }
 

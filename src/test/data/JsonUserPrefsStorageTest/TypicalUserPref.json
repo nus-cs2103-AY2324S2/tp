@@ -7,5 +7,5 @@
       "y" : 100
     }
   },
-  "addressBookFilePath" : "realodex.json"
+  "realodexFilePath" : "realodex.json"
 }
