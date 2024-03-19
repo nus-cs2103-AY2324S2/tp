@@ -80,6 +80,7 @@ public class PersonProfile extends UiPart<Region> {
         email.setText("Email: " + person.getEmail().value);
         upcoming.setText("Upcoming: " + person.getUpcoming().toString());
         lastcontact.setText("Last contacted: " + person.getLastcontact().toString());
+        tags.getChildren().clear();
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

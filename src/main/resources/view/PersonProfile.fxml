@@ -8,10 +8,9 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.VBox?>
 
-<?import javafx.scene.image.ImageView?>
 <VBox id="profilePane" fx:id="profilePane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
   <GridPane>
-    <VBox alignment="CENTER_LEFT" minHeight="100" GridPane.rowIndex="0">
+    <VBox alignment="CENTER_LEFT" minHeight="225" GridPane.rowIndex="0">
       <padding>
         <Insets top="5" right="5" bottom="5" left="15" />
       </padding>
@@ -21,7 +20,8 @@
           <image>
             <Image url="@/images/profile.jpg" />
           </image>
-          <fitWidth>300</fitWidth>
+          <fitWidth>175</fitWidth>
+          <fitHeight>180</fitHeight>
         </ImageView>
       </VBox>
     </VBox>
