@@ -19,8 +19,8 @@ public class Housekeeper extends Person {
      * @param address
      * @param tags
      */
-    public Housekeeper(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        super(name, phone, email, address, tags);
+    public Housekeeper(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Type type) {
+        super(name, phone, email, address, tags, type);
     }
 
     /**
@@ -43,7 +43,8 @@ public class Housekeeper extends Person {
                 && this.getPhone().equals(otherPerson.getPhone())
                 && this.getEmail().equals(otherPerson.getEmail())
                 && this.getAddress().equals(otherPerson.getAddress())
-                && this.getTags().equals(otherPerson.getTags());
+                && this.getTags().equals(otherPerson.getTags())
+                && this.getType().equals(otherPerson.getType());
     }
 
     @Override
