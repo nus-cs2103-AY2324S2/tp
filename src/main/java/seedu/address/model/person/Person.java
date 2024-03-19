@@ -31,8 +31,8 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Grade grade, Subject subject
-                  , Set<DateTime> dateTimes, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Email email, Address address, Grade grade, Subject subject,
+                  Set<DateTime> dateTimes, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, grade, subject, dateTimes, tags);
         this.name = name;
         this.phone = phone;

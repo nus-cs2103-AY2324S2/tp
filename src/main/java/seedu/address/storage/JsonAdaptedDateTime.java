@@ -5,7 +5,11 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.DateTime;
+import seedu.address.model.person.Person;
 
+/**
+ * Jackson-friendly version of {@link DateTime}.
+ */
 public class JsonAdaptedDateTime {
     private final String dateTime;
 
