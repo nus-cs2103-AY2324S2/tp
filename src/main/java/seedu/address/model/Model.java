@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.person.Maintainer;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -93,27 +94,31 @@ public interface Model {
      * Find the person by their name.
      * @param targetName Refers to the name identifier.
      * @return Person that matches the name.
+     * @throws CommandException Handles invalid person message.
      */
-    Person findByName(Name targetName);
+    Person findByName(Name targetName) throws CommandException;
 
     /**
      * Find the maintainer by their name.
      * @param targetName Refers to the name identifier.
      * @return Maintainer that matches the name.
+     * @throws CommandException Handles invalid maintainer message.
      */
-    Maintainer findMaintainerByName(Name targetName);
+    Maintainer findMaintainerByName(Name targetName) throws CommandException;
 
     /**
      * Find the staff by their name.
      * @param targetName Refers to the name identifier.
      * @return Staff that matches the name.
+     * @throws CommandException Handles invalid staff message.
      */
-    Staff findStaffByName(Name targetName);
+    Staff findStaffByName(Name targetName) throws CommandException;
 
     /**
      * Find the supplier by their name.
      * @param targetName Refers to the name identifier.
      * @return Supplier that matches the name.
+     * @throws CommandException Handles invalid supplier message.
      */
-    Supplier findSupplierByName(Name targetName);
+    Supplier findSupplierByName(Name targetName) throws CommandException;
 }

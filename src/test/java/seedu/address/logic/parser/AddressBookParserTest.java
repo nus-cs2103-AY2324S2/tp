@@ -2,8 +2,8 @@ package seedu.address.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.messages.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.messages.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FIELD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -39,7 +39,9 @@ import seedu.address.logic.commands.HelpPoochStaffCommand;
 import seedu.address.logic.commands.HelpPoochSupplierCommand;
 import seedu.address.logic.commands.HelpSearchCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.SearchCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.KeywordPredicate;
 import seedu.address.model.person.Maintainer;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
@@ -99,7 +101,7 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + ALICE.getName());
+                DeleteCommand.COMMAND_WORD + " ; name : " + ALICE.getName());
         assertEquals(new DeleteCommand(ALICE.getName()), command);
     }
 
@@ -212,6 +214,15 @@ public class AddressBookParserTest {
         assertTrue(parser.parseCommand(HelpPoochStaffCommand.COMMAND_WORD) instanceof HelpPoochStaffCommand);
         assertTrue(parser.parseCommand(HelpPoochStaffCommand.COMMAND_WORD + " 3")
                 instanceof HelpPoochStaffCommand);
+    }
+
+    @Test
+    public void parseCommand_search() throws Exception {
+        String keyword = " ; name : Poochie";
+        ArgumentMultimap token = ArgumentTokenizer.tokenize(keyword, PREFIX_NAME);
+        SearchCommand command = (SearchCommand) parser.parseCommand(
+                SearchCommand.COMMAND_WORD + keyword);
+        assertEquals(new SearchCommand(new KeywordPredicate(token)), command);
     }
 
 

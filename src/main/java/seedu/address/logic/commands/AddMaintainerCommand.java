@@ -9,8 +9,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SKILL;
 
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.messages.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.person.Maintainer;
 
@@ -19,7 +19,7 @@ import seedu.address.model.person.Maintainer;
  */
 public class AddMaintainerCommand extends Command {
 
-    public static final String COMMAND_WORD = "/pooch-maintenance";
+    public static final String COMMAND_WORD = "/pooch-maintainer";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a maintainer to the address book. "
             + "Parameters: "

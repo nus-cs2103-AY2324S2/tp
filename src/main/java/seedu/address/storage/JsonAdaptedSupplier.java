@@ -9,8 +9,6 @@ import seedu.address.model.person.Supplier;
 class JsonAdaptedSupplier extends JsonAdaptedPerson {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
-    private final String product;
-    private final String price;
 
 
     /**
@@ -19,7 +17,7 @@ class JsonAdaptedSupplier extends JsonAdaptedPerson {
     public JsonAdaptedSupplier(Person source) {
         super(source);
         Supplier supplier = (Supplier) source;
-        product = supplier.getProduct().product;
-        price = supplier.getPrice().price;
+        setProduct(supplier.getProduct().value);
+        setPrice(supplier.getPrice().value);
     }
 }

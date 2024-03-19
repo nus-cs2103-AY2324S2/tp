@@ -7,7 +7,7 @@ import seedu.address.model.Model;
  */
 public class HelpPoochSupplierCommand extends Command {
 
-    public static final String COMMAND_WORD = "help-poochsupplier";
+    public static final String COMMAND_WORD = "/help-poochsupplier";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Shows program usage instructions for pocch-supplier command.\n"

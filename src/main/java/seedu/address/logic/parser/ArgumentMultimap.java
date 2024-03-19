@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-import seedu.address.logic.Messages;
+import seedu.address.logic.messages.Messages;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -74,6 +74,21 @@ public class ArgumentMultimap {
         if (duplicatedPrefixes.length > 0) {
             throw new ParseException(Messages.getErrorMessageForDuplicatePrefixes(duplicatedPrefixes));
         }
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof ArgumentMultimap)) {
+            return false;
+        }
+
+        ArgumentMultimap otherArgumentMultimap = (ArgumentMultimap) other;
+        return argMultimap.equals(otherArgumentMultimap.argMultimap);
     }
 
     /**
