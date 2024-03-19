@@ -32,7 +32,7 @@ public class OrderCard extends UiPart<Region> {
     public OrderCard(Order order) {
         super(FXML);
         this.order = order;
-        orderId.setText(order.getId() + ". ");
+        orderId.setText("Order " + order.getId());
         customerName.setText(order.getCustomer().getName().fullName);
         ArrayList<String> productList = new ArrayList<>();
         order.getProductMap().forEach((product, quantity) -> productList.add(product + " x " + quantity));
