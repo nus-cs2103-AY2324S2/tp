@@ -159,7 +159,7 @@ public class EditCommandTest {
         EditCommand commandWithSameValues = new EditCommand(INDEX_FIRST_PERSON, copyDescriptor);
         EditPersonDescriptor editedDescriptor = new EditPersonDescriptorBuilder(DESC_AMY)
                 .withUpcoming(VALID_UPCOMING_BOB).build();
-        EditPersonDescriptor editedDescriptor_lastcontact = new EditPersonDescriptorBuilder(DESC_AMY)
+        EditPersonDescriptor editedDescriptorForLastcontact = new EditPersonDescriptorBuilder(DESC_AMY)
                 .withLastContact(VALID_LAST_CONTACT_BOB).build();
 
         assertTrue(standardCommand.equals(commandWithSameValues));
