@@ -86,8 +86,6 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_GROUP_DESC, Group.MESSAGE_CONSTRAINTS); // invalid group
         assertParseFailure(parser, "1" + INVALID_STUDENTID_DESC, StudentId.MESSAGE_CONSTRAINTS); // invalid student id
 
-
-
         // while parsing {@code PREFIX_GROUP} alone will reset the groups of the {@code Person} being edited,
         // parsing it together with a valid group results in error
         assertParseFailure(parser, "1" + GROUP_DESC_2B + GROUP_DESC_1 + GROUP_EMPTY, Group.MESSAGE_CONSTRAINTS);
@@ -95,7 +93,6 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + GROUP_EMPTY + GROUP_DESC_2B + GROUP_DESC_1, Group.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
-
         assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC
                 + VALID_GRADE_AMY + VALID_STUDENTID_AMY, Name.MESSAGE_CONSTRAINTS);
 
@@ -137,8 +134,6 @@ public class EditCommandParserTest {
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-
-
         // email
         userInput = targetIndex.getOneBased() + EMAIL_DESC_AMY;
         descriptor = new EditPersonDescriptorBuilder().withEmail(VALID_EMAIL_AMY).build();
@@ -172,9 +167,6 @@ public class EditCommandParserTest {
 
 
         Index targetIndex = INDEX_FIRST_PERSON;
-
-
-
 
         // multiple valid fields repeated
         String userInput = targetIndex.getOneBased() + EMAIL_DESC_AMY + GROUP_DESC_2B + GRADE_DESC_AMY

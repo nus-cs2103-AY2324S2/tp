@@ -24,14 +24,12 @@ public class AddCommand extends Command {
             + "Parameters: "
             + PREFIX_STUDENTID + "STUDENTID "
             + PREFIX_NAME + "NAME "
-
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_GRADE + "GRADE"
             + "[" + PREFIX_GROUP + "GROUP]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_STUDENTID + "A0123456H "
             + PREFIX_NAME + "John Doe "
-
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_GRADE + "A+"
             + PREFIX_GROUP + "Group 1 "

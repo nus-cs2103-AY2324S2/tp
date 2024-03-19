@@ -18,10 +18,7 @@ public class Person {
 
     // Identity fields
     private final Name name;
-
     private final StudentId studentId;
-
-
     private final Email email;
 
     // Data fields
@@ -46,11 +43,9 @@ public class Person {
         return name;
     }
 
-
     public StudentId getStudentId() {
         return studentId;
     }
-
 
     public Email getEmail() {
         return email;

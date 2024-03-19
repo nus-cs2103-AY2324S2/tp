@@ -75,16 +75,13 @@ public class AddCommandParserTest {
         String validExpectedPersonString = NAME_DESC_BOB + STUDENTID_DESC_BOB + EMAIL_DESC_BOB
                 + GRADE_DESC_BOB + GROUP_DESC_2B;
 
-
         // multiple names
         assertParseFailure(parser, NAME_DESC_AMY + validExpectedPersonString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NAME));
 
-
         // multiple studentIds
         assertParseFailure(parser, STUDENTID_DESC_AMY + validExpectedPersonString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_STUDENTID));
-
 
         // multiple emails
         assertParseFailure(parser, EMAIL_DESC_AMY + validExpectedPersonString,
@@ -96,7 +93,6 @@ public class AddCommandParserTest {
 
         // multiple fields repeated
         assertParseFailure(parser,
-
                 validExpectedPersonString + EMAIL_DESC_AMY + NAME_DESC_AMY
                         + STUDENTID_DESC_AMY + GRADE_DESC_BOB + validExpectedPersonString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NAME, PREFIX_GRADE, PREFIX_EMAIL,
@@ -117,8 +113,6 @@ public class AddCommandParserTest {
         assertParseFailure(parser, INVALID_EMAIL_DESC + validExpectedPersonString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_EMAIL));
 
-
-
         // invalid grade
         assertParseFailure(parser, INVALID_GRADE_DESC + validExpectedPersonString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_GRADE));
@@ -136,8 +130,6 @@ public class AddCommandParserTest {
         // invalid email
         assertParseFailure(parser, validExpectedPersonString + INVALID_EMAIL_DESC,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_EMAIL));
-
-
 
         // invalid grade
         assertParseFailure(parser, validExpectedPersonString + INVALID_GRADE_DESC,
@@ -157,7 +149,7 @@ public class AddCommandParserTest {
     public void parse_compulsoryFieldMissing_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
 
-
+        // missing name prefix
         assertParseFailure(parser, VALID_NAME_BOB + STUDENTID_DESC_BOB + EMAIL_DESC_BOB
                 + GRADE_DESC_BOB, expectedMessage);
 
@@ -182,8 +174,6 @@ public class AddCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         // invalid name
-
-
         assertParseFailure(parser, INVALID_NAME_DESC + STUDENTID_DESC_BOB + EMAIL_DESC_BOB
                 + GRADE_DESC_BOB + GROUP_DESC_1 + GROUP_DESC_2B, Name.MESSAGE_CONSTRAINTS);
 

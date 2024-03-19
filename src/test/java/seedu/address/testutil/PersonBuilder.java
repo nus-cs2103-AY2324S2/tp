@@ -17,15 +17,12 @@ import seedu.address.model.util.SampleDataUtil;
 public class PersonBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
-
     public static final String DEFAULT_STUDENTID = "A0123456X";
-
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_GRADE = "A+";
 
     private Name name;
     private StudentId studentId;
-
     private Email email;
     private Grade grade;
     private Set<Group> groups;

@@ -6,10 +6,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static seedu.address.model.person.TypicalStudentIds.ID_FIRST_PERSON;
-import static seedu.address.model.person.TypicalStudentIds.ID_SECOND_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalStudentIds.ID_FIRST_PERSON;
+import static seedu.address.testutil.TypicalStudentIds.ID_SECOND_PERSON;
 
 import org.junit.jupiter.api.Test;
 

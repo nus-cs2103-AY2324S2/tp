@@ -57,7 +57,6 @@ public class EditCommandTest {
 
         PersonBuilder personInList = new PersonBuilder(lastPerson);
 
-
         Person editedPerson = personInList.withName(VALID_NAME_BOB).withStudentId(VALID_STUDENTID_BOB)
             .withGrade(VALID_GRADE_BOB).withGroups(VALID_GROUP_GROUP1).build();
 

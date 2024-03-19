@@ -35,7 +35,6 @@ public class PersonTest {
         assertFalse(ALICE.isSamePerson(null));
 
         // same student id, all other attributes different -> returns true
-
         Person editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB)
                 .withEmail(VALID_EMAIL_BOB).withGrade(VALID_GRADE_BOB).withGroups(VALID_GROUP_GROUP1).build();
 
@@ -68,12 +67,9 @@ public class PersonTest {
         Person editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
-
         // different studentId -> returns false
         editedAlice = new PersonBuilder(ALICE).withStudentId(VALID_STUDENTID_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
-
-
 
         // different email -> returns false
         editedAlice = new PersonBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
