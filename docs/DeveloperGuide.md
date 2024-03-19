@@ -13,6 +13,7 @@
 
 ## **Acknowledgements**
 
+* Trie implementation is reused from [eugenp's tutorials](https://github.com/eugenp/tutorials) with minor modifications.
 _{ list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well }_
 
 --------------------------------------------------------------------------------------------------------------------
@@ -423,6 +424,20 @@ testers are expected to do more *exploratory* testing.
        Expected: The most recent window size and location is retained.
 
 1. _{ more test cases …​ }_
+
+### Adding a person
+If TAPro does not have any student contacts, the following comamnds can be used to add some 
+students.
+
+1. Adding a person
+
+   1. Prerequisites: No persons in the list.
+
+   1. Command 1: `addstu n/John Doe p/98765432 e/johndoe@example.com nn/e0123456 a/311, Clementi Ave 2, #02-25 
+      t/friends t/owesMoney`
+   1. Command 2: `addstu n/Mary Jane p/91234911 e/janemary@example.com nn/e0123457 a/312, Clementi St 1, #03-25
+      t/friends t/owesTutorial2` 
+
 
 ### Deleting a person
 

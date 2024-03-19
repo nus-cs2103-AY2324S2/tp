@@ -36,7 +36,7 @@ If you can type fast, TAPro can get your contact management tasks done faster th
 
    * `addstu nn/e0952224 n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Contact Book.
 
-   * `delstu 3` : Deletes the 3rd contact shown in the current list.
+   * `delstu NUSNET_ID` : Deletes the student with the specified NUSNET_ID from the contact book.
 
    * `clear` : Deletes all contacts.
 
@@ -72,9 +72,9 @@ If you can type fast, TAPro can get your contact management tasks done faster th
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page, and the command usages with examples.
 
-![help message](images/helpMessage.png)
+![help message](images/helpWindow.png)
 
 Format: `help`
 
@@ -94,14 +94,19 @@ Adds a student to the address book.
 
 Format: `addstu n/NAME p/PHONE_NUMBER e/EMAIL nn/NUSNET_ID a/ADDRESS [t/TAG]…​`
 
+* Add a student with the given details.
+* The name and nusnet id must be provided. And nusnet id must be unique.
+* All the remaining fields are optional. If not provided, a placeholder value will be used.
+
 <box type="tip" seamless>
 
 **Tip:** A person can have any number of tags (including 0)
 </box>
 
 Examples:
-* `addstu n/John Doe p/98765432 e/johnd@example.com nn/e1234567 a/John street, block 123, #01-01`
-* `add n/Betsy nn/e01234567 Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `addstu n/John Doe nn/e1234567 [p/98765432] [e/johnd@example.com] [a/John street, block 123, #01-01]`
+* `addstu n/Betsy Crowe nn/e01234567 t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `addstu n/Betsy Crowe nn/e01234567`
 
 ### Listing all students : `list`
 
@@ -156,19 +161,28 @@ Format: `mark nn/NUSNET_ID wk/WEEK_NUMBER`
 Example:
 * `mark nn/e1234567 wk/3`
 
-### Deleting a student : `delete`
+### Unmarking a student's attendance for a given week by their NUSNet: `unmark`
 
-Deletes the specified person from the address book.
+Unmarks a student's attendance for a particular week.
 
-Format: `delete INDEX`
+Format: `unmark nn/NUSNET_ID wk/WEEK_NUMBER`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+Example:
+* `unmark nn/e1234567 wk/3`
+
+### Deleting a student: `delstu`
+
+Deletes the specified student from the contact book.
+
+Format: `delstu NUSNET_ID`
+
+* Deletes the student with the specified NUSNET_ID from the contact book. 
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `delstu e0957499` deletes the student with the NUSNET_ID of `e0957499` in the contact book.
+
+Pro Tip:
+* If you cannot remember your student's NUSNET_ID, you could use `find Betsy` or `list` followed by `delstu <Betsy's NUSNET_ID>` to find and delete the student.
 
 ### Clearing all entries : `clear`
 
@@ -222,8 +236,10 @@ Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 **Add Student**    | `addstu n/NAME p/PHONE_NUMBER e/EMAIL nn/NUSNET_ID a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com nn/e1234567 a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **Clear**  | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Delete Student** | `delstu NUSNET_ID`<br> e.g., `delstu e0957499`
 **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Mark**   | `mark nn/NUSNET_ID wk/WEEK_NUMBER`<br> e.g., `mark nn/e1234567 wk/3`
+**Unmark**   | `unmark nn/NUSNET_ID wk/WEEK_NUMBER`<br> e.g., `unmark nn/e1234567 wk/3`
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List**   | `list`
 **Help**   | `help`

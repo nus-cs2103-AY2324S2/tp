@@ -201,6 +201,7 @@ public class ModelManager implements Model {
                 && filteredPersons.equals(otherModelManager.filteredPersons);
     }
 
+
     // todo - Used for Debugging purposes. Consider creating more robust toString()
     //    @Override
     //    public String toString() {
