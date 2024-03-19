@@ -2,12 +2,15 @@ package seedu.address.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPersons.CAT;
+import static seedu.address.testutil.TypicalPersonsUuid.ALICE;
+import static seedu.address.testutil.TypicalPersonsUuid.HOON;
+import static seedu.address.testutil.TypicalPersonsUuid.getTypicalAddressBook;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -87,6 +90,40 @@ public class AddressBookTest {
     public void toStringMethod() {
         String expected = AddressBook.class.getCanonicalName() + "{persons=" + addressBook.getPersonList() + "}";
         assertEquals(expected, addressBook.toString());
+    }
+
+    @Test
+    void deleteAttribute_existingAttribute_removesAttribute() {
+        assertTrue(CAT.hasAttribute("Name"), "Attribute should exist before deletion.");
+
+        CAT.deleteAttribute("Name");
+
+        assertFalse(CAT.hasAttribute("Name"), "Attribute should not exist after deletion.");
+
+        CAT.setAttribute("Name", "Cat");
+    }
+
+    @Test
+    void getPersonByUuid_existingUuid_returnsPerson() {
+        Person result = HOON;
+        String uuidString = result.getUuid().toString();
+
+        assertNotNull(result, "Should return a person for existing UUID.");
+        assertEquals(uuidString, result.getUuid().toString(), "Returned person should have the same UUID.");
+    }
+
+    @Test
+    void hasAttribute_existingAttribute_returnsTrue() {
+        boolean result = HOON.hasAttribute("Name");
+
+        assertTrue(result, "Should return true for an existing attribute.");
+    }
+
+    @Test
+    void hasAttribute_nonExistentAttribute_returnsFalse() {
+        boolean result = HOON.hasAttribute("Pet");
+
+        assertFalse(result, "Should return false for a non-existent attribute.");
     }
 
     /**

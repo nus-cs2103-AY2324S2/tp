@@ -7,21 +7,24 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalPersons.DOG;
+import static seedu.address.testutil.TypicalPersons.HOON;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.UUID;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.Person;
 import seedu.address.testutil.AddressBookBuilder;
 
 public class ModelManagerTest {
 
     private ModelManager modelManager = new ModelManager();
-
     @Test
     public void constructor() {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
@@ -128,5 +131,31 @@ public class ModelManagerTest {
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
         assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs)));
+    }
+
+    @Test
+    void deleteAttribute_callsDeleteAttributeOnAddressBook() {
+        DOG.deleteAttribute("Name");
+        assertFalse(DOG.hasAttribute("Name"));
+    }
+
+    @Test
+    void getFullUuid_callsGetFullUuidOnAddressBook() {
+        modelManager.addPerson(ALICE);
+        UUID result = modelManager.getFullUuid(ALICE.getUuidString().substring(32, 36));
+        assertEquals(ALICE.getUuidString(), result.toString());
+    }
+
+    @Test
+    void getPersonByUuid_callsGetPersonByUuidOnAddressBook() {
+        modelManager.addPerson(HOON);
+        Person result = modelManager.getPersonByUuid(HOON.getUuid());
+        assertEquals(HOON, result);
+    }
+
+    @Test
+    void hasAttribute_callsHasAttributeOnAddressBook() {
+        modelManager.addPerson(ALICE);
+        assertTrue(modelManager.hasAttribute(ALICE.getUuidString(), "Name"));
     }
 }
