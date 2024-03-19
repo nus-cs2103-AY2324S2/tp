@@ -2,6 +2,7 @@ package seedu.findvisor.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.findvisor.logic.parser.CliSyntax.PREFIX_END_DATETIME;
+import static seedu.findvisor.logic.parser.CliSyntax.PREFIX_MEETING_REMARK;
 import static seedu.findvisor.logic.parser.CliSyntax.PREFIX_START_DATETIME;
 import static seedu.findvisor.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
@@ -34,6 +35,7 @@ public class ScheduleCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_START_DATETIME + "START DATETIME "
             + PREFIX_END_DATETIME + "END DATETIME "
+            + "[" + PREFIX_MEETING_REMARK + "REMARK" + "]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_START_DATETIME + "22-02-2024T14:00 "
             + PREFIX_END_DATETIME + "22-02-2024T15:00 ";
