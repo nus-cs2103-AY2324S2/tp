@@ -4,7 +4,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.task.exepctions.TaskNotFoundException;
+import seedu.address.model.task.exceptions.TaskNotFoundException;
 
 /**
  * A list of tasks.
@@ -30,6 +30,13 @@ public class TaskList {
         if (!internalList.remove(toRemove)) {
             throw new TaskNotFoundException();
         }
+    }
+
+    /**
+     * Returns true if the list contains an equivalent task as the given argument.
+     */
+    public boolean contains(Task toCheck) {
+        return internalList.stream().anyMatch(toCheck::isSameTask);
     }
 
     /**

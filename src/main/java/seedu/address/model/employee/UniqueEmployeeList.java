@@ -37,7 +37,7 @@ public class UniqueEmployeeList implements Iterable<Employee> {
     }
 
     /**
-     * Adds a employee to the list.
+     * Adds an employee to the list.
      * The employee must not already exist in the list.
      */
     public void add(Employee toAdd) {
@@ -47,6 +47,8 @@ public class UniqueEmployeeList implements Iterable<Employee> {
         }
         internalList.add(toAdd);
     }
+
+
 
     /**
      * Replaces the employee {@code target} in the list with {@code editedEmployee}.
@@ -147,4 +149,6 @@ public class UniqueEmployeeList implements Iterable<Employee> {
         }
         return true;
     }
+
+
 }
