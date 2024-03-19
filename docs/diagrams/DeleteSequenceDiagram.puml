@@ -49,7 +49,7 @@ deactivate TaskMasterProParser
 LogicManager -> DeleteCommand : execute(m)
 activate DeleteCommand
 
-DeleteCommand -> Model : deleteEmployee(e:Employee)
+DeleteCommand -> Model : deleteEmployee(employee)
 activate Model
 
 Model --> DeleteCommand
