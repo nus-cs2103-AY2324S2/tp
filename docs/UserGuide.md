@@ -172,6 +172,9 @@ Furthermore, certain edits can cause FitBook to behave in unexpected ways (e.g.,
 
 To save a contact to your mobile phone from FitBook, simply scan the QR code next to the contact.
 
+<img src="images/QRScanning.png" height="480">
+<img src="images/QRContact.png" height="480"> 
+
 ### Archiving data files `[coming in v2.0]`
 
 _Details coming soon ..._
