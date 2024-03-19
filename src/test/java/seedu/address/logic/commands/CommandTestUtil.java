@@ -41,7 +41,9 @@ public class CommandTestUtil {
     public static final String VALID_UPCOMING_AMY = "12-12-2024 1200";
     public static final String VALID_UPCOMING_BOB = "05-05-2024 1700";
     public static final String VALID_LAST_CONTACT = "13-03-2024 0600";
-    public static final String VALID_LAST_CONTACT_BOB = "13-04-2024 1600";
+    public static final String VALID_LAST_CONTACT_AMY = "13-04-2024 1600";
+    public static final String VALID_LAST_CONTACT_BOB = "13-04-2024 1700";
+
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -62,9 +64,6 @@ public class CommandTestUtil {
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
-    public static final String INVALID_UPCOMING_DESC = " " + PREFIX_UPCOMING + "12-12-2024"; // invalid date format
-    public static final String INVALID_LAST_CONTACT = " " + PREFIX_LASTCONTACT + "13-03-20242 0600"; // additional digit
-
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
@@ -74,10 +73,12 @@ public class CommandTestUtil {
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withTags(VALID_TAG_FRIEND).withUpcoming(VALID_UPCOMING_AMY).build();
+                .withTags(VALID_TAG_FRIEND).withUpcoming(VALID_UPCOMING_AMY).withLastContact(VALID_LAST_CONTACT_AMY)
+                .build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).withUpcoming(VALID_UPCOMING_BOB).build();
+                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).withUpcoming(VALID_UPCOMING_BOB)
+                .withLastContact(VALID_LAST_CONTACT_BOB).build();
     }
 
     /**

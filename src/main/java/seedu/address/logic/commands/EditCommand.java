@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LASTCONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -47,7 +48,8 @@ public class EditCommand extends Command {
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_TAG + "TAG] "
-            + "[" + PREFIX_UPCOMING + "UPCOMING]...\n"
+            + "[" + PREFIX_UPCOMING + "UPCOMING] "
+            + "[" + PREFIX_LASTCONTACT + "LASTCONTACT]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
@@ -105,7 +107,7 @@ public class EditCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Upcoming updatedUpcoming = editPersonDescriptor.getUpcoming().orElse(personToEdit.getUpcoming());
-        LastContact updatedLastContact = personToEdit.getLastcontact(); // Edit command does not allow editing remarks
+        LastContact updatedLastContact = editPersonDescriptor.getLastcontact().orElse(personToEdit.getLastcontact());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedUpcoming,
                 updatedLastContact);
@@ -169,7 +171,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, upcoming);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, upcoming, lastContact);
         }
 
         public void setName(Name name) {
@@ -204,10 +206,6 @@ public class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
-        public void setLastContact(LastContact lastContact) {
-            this.lastContact = lastContact;
-        }
-
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
@@ -234,6 +232,13 @@ public class EditCommand extends Command {
             return Optional.ofNullable(upcoming);
         }
 
+        public void setLastContact(LastContact lastContact) {
+            this.lastContact = lastContact;
+        }
+
+        public Optional<LastContact> getLastcontact() {
+            return Optional.ofNullable(lastContact);
+        }
         @Override
         public boolean equals(Object other) {
             if (other == this) {
@@ -251,7 +256,8 @@ public class EditCommand extends Command {
                     && Objects.equals(email, otherEditPersonDescriptor.email)
                     && Objects.equals(address, otherEditPersonDescriptor.address)
                     && Objects.equals(tags, otherEditPersonDescriptor.tags)
-                    && Objects.equals(upcoming, otherEditPersonDescriptor.upcoming);
+                    && Objects.equals(upcoming, otherEditPersonDescriptor.upcoming)
+                    && Objects.equals(lastContact, otherEditPersonDescriptor.lastContact);
         }
 
         @Override
@@ -263,7 +269,9 @@ public class EditCommand extends Command {
                     .add("address", address)
                     .add("tags", tags)
                     .add("upcoming", upcoming)
+                    .add("lastcontact", lastContact)
                     .toString();
         }
+
     }
 }

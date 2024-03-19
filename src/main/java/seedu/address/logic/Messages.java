@@ -48,7 +48,7 @@ public class Messages {
         builder.append("; Upcoming: ")
                 .append(person.getUpcoming());
         builder.append("; Last contacted: ")
-                .append(person.getLastcontact().getDateTimeString())
+                .append(person.getLastcontact().toString())
                 .append(";");
         return builder.toString();
     }

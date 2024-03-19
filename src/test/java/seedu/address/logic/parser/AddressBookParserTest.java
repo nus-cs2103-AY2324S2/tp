@@ -20,6 +20,7 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.FindTagsAndCommand;
 import seedu.address.logic.commands.FindTagsOrCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.LastContactCommand;
@@ -29,6 +30,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.LastContact;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.TagsAndFoundPredicate;
 import seedu.address.model.tag.TagsOrFoundPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
@@ -98,6 +100,14 @@ public class AddressBookParserTest {
     }
 
     @Test
+    public void parseCommand_findTagsAnd() throws Exception {
+        List<String> tags = List.of("foo", "bar", "baz");
+        FindTagsAndCommand command = (FindTagsAndCommand) parser.parseCommand(
+                FindTagsAndCommand.COMMAND_WORD + " " + String.join(" ", tags));
+        assertEquals(new FindTagsAndCommand(new TagsAndFoundPredicate(TagBuilder.build(tags))), command);
+    }
+
+    @Test
     public void parseCommand_help() throws Exception {
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD) instanceof HelpCommand);
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD + " 3") instanceof HelpCommand);
@@ -127,7 +137,7 @@ public class AddressBookParserTest {
         LastContactCommand command = (LastContactCommand) parser.parseCommand(
                 LastContactCommand.COMMAND_WORD + " "
                         + PREFIX_NAME + name + " "
-                        + PREFIX_LASTCONTACT + lastContact.getDateTimeString());
+                        + PREFIX_LASTCONTACT + lastContact);
         assertEquals(new LastContactCommand(name, lastContact), command);
     }
 

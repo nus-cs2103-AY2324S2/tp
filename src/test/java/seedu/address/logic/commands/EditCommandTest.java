@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_LAST_CONTACT_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_LAST_CONTACT_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
@@ -156,7 +158,9 @@ public class EditCommandTest {
         EditPersonDescriptor copyDescriptor = new EditPersonDescriptor(DESC_AMY);
         EditCommand commandWithSameValues = new EditCommand(INDEX_FIRST_PERSON, copyDescriptor);
         EditPersonDescriptor editedDescriptor = new EditPersonDescriptorBuilder(DESC_AMY)
-            .withUpcoming(VALID_UPCOMING_BOB).build();
+                .withUpcoming(VALID_UPCOMING_BOB).build();
+        EditPersonDescriptor editedDescriptor_lastcontact = new EditPersonDescriptorBuilder(DESC_AMY)
+                .withLastContact(VALID_LAST_CONTACT_BOB).build();
 
         assertTrue(standardCommand.equals(commandWithSameValues));
 
@@ -187,6 +191,20 @@ public class EditCommandTest {
         editedDescriptor = new EditPersonDescriptorBuilder(DESC_BOB)
                 .withUpcoming(VALID_UPCOMING_AMY).build();
         assertFalse(DESC_AMY.equals(editedDescriptor));
+
+        // different lastcontact -> return false
+        assertFalse(DESC_AMY.equals(editedDescriptor_lastcontact));
+
+        // different lastcontact, same other fields -> return false
+        editedDescriptor_lastcontact = new EditPersonDescriptorBuilder(DESC_AMY)
+                .withLastContact(VALID_LAST_CONTACT_BOB).build();
+        assertFalse(DESC_AMY.equals(editedDescriptor_lastcontact));
+
+        // same lastcontact -> return true
+        editedDescriptor_lastcontact = new EditPersonDescriptorBuilder(DESC_AMY)
+                .withLastContact(VALID_LAST_CONTACT_AMY).build();
+        assertTrue(DESC_AMY.equals(editedDescriptor_lastcontact));
+
     }
 
     @Test
