@@ -245,7 +245,7 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_searchTags_personsFound() {
+    public void execute_searchSingleTag_personsFound() {
         // Single person found
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
 
@@ -269,6 +269,22 @@ public class FindCommandTest {
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(ALICE, BENSON, DANIEL), model.getFilteredPersonList());
+    }
+
+    @Test
+    public void execute_searchMultipleTags_personsFound() {
+        // Single person found
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
+
+        HashSet<Tag> tagSet = new HashSet<>();
+        tagSet.add(new Tag("owesmoney"));
+        tagSet.add(new Tag("friends"));
+        TagSetContainsAllTagsPredicate predicate = new TagSetContainsAllTagsPredicate(tagSet);
+
+        FindCommand command = new FindCommand(new CombinedPredicates(predicate));
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(BENSON), model.getFilteredPersonList());
     }
 
     @Test
