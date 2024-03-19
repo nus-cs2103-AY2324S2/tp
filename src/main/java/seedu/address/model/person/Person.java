@@ -110,6 +110,8 @@ public class Person {
         return name.equals(otherPerson.name)
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
+                && year.equals(otherPerson.year)
+                && telegram.equals(otherPerson.telegram)
                 && major.equals(otherPerson.major)
                 && remark.equals(otherPerson.remark)
                 && tags.equals(otherPerson.tags);
@@ -118,7 +120,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, major, remark, tags);
+        return Objects.hash(name, phone, email, year, telegram, major, remark, tags);
     }
 
     @Override
@@ -128,8 +130,8 @@ public class Person {
                 .add("phone", phone)
                 .add("email", email)
                 .add("year", year)
-                .add("major", major)
                 .add("telegram", telegram)
+                .add("major", major)
                 .add("remark", remark)
                 .add("tags", tags)
                 .toString();
