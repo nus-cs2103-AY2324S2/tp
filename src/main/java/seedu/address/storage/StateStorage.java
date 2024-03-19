@@ -39,7 +39,7 @@ public class StateStorage {
                 Files.createFile(FILE_PATH);
             }
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            logger.info("Error clearing creating state storage: " + e.getMessage());
         }
     }
 
@@ -83,7 +83,7 @@ public class StateStorage {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
             writer.write(input);
         } catch (IOException e) {
-            System.out.println("Error saving tasks to file: " + e.getMessage());
+            logger.info("Error saving state to file: " + e.getMessage());
         }
     }
 
