@@ -47,8 +47,5 @@ public interface Logic {
      */
     void setGuiSettings(GuiSettings guiSettings);
 
-    /**
-     * Checks if the initial module list panel is displayed.
-     */
     boolean isInitialModuleListPanelDisplayed();
 }

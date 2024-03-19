@@ -34,5 +34,7 @@ public interface ReadOnlyAddressBook {
      *
      * @param moduleCode The module code to add.
      */
+    ObservableList<ModuleCode> getModuleList();
+    boolean hasModule(ModuleCode moduleCode);
     void addModule(ModuleCode moduleCode);
 }
