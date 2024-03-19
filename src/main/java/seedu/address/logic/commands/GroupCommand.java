@@ -95,6 +95,14 @@ public class GroupCommand extends Command {
 
         return new Person(nusId, name, phone, email, updatedTag, updatedGroups);
     }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .add("nusid", toGroup)
+                .add("groupPersonDescriptor", groupPersonDescriptor)
+                .toString();
+    }
     /**
      * Sets {@code group} to this object's {@code groups}.
      * A defensive copy of {@code groups} is used internally.
@@ -117,6 +125,8 @@ public class GroupCommand extends Command {
             setGroups(toCopy.groups);
             setTag(toCopy.tag);
         }
+
+
 
         /**
          * Returns true if at least one field is edited.
@@ -172,14 +182,14 @@ public class GroupCommand extends Command {
             return Objects.equals(nusid, otherGroupPersonDescriptor.nusid)
                     && Objects.equals(groups, otherGroupPersonDescriptor.groups)
                     && Objects.equals(tag, otherGroupPersonDescriptor.tag);
-                    //&& Objects.equals(address, otherEditPersonDescriptor.address)
-                    //&& Objects.equals(tags, otherEditPersonDescriptor.tags);
         }
 
         @Override
         public String toString() {
             return new ToStringBuilder(this)
-                    .add("nusid", nusid)
+                    .add("nusId", nusid)
+                    .add("groups", groups)
+                    .add("tag", tag)
                     .toString();
         }
     }
