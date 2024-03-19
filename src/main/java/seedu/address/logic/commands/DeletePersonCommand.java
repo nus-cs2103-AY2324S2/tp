@@ -1,15 +1,15 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.List;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
-
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * When no event is selected, deletes a person identified using it's displayed index from the address book.
@@ -48,6 +48,14 @@ public class DeletePersonCommand extends Command {
         }
     }
 
+    /**
+     * Handles the deletion of a person from the global list. This method is called when no event is currently
+     * selected in the model.
+     *
+     * @param model The model from which the person will be deleted globally. Must not be null.
+     * @return A {@link CommandResult} object containing the success message of the global deletion.
+     * @throws CommandException If the target index is invalid, i.e., if it is out of bounds of the list size.
+     */
     public CommandResult deleteFromGlobal(Model model) throws CommandException {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
@@ -61,6 +69,15 @@ public class DeletePersonCommand extends Command {
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_GLOBAL_SUCCESS, Messages.format(personToDelete)));
     }
 
+    /**
+     * Handles the deletion of a person from the list of a currently selected event. This method is called
+     * when an event is selected in the model.
+     *
+     * @param model The model from which the person will be deleted from the selected event. Must not be null.
+     * @return A {@link CommandResult} object containing the success message of the event-specific deletion.
+     * @throws CommandException If no event is selected, if the target index is invalid (out of bounds of the
+     *      list size), or if the person is not part of the selected event.
+     */
     public CommandResult deleteFromEvent(Model model) throws CommandException {
         requireNonNull(model);
         if (!model.isAnEventSelected()) {

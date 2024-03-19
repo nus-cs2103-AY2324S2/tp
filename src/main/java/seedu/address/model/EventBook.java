@@ -147,6 +147,7 @@ public class EventBook implements ReadOnlyEventBook {
     public void addPersonToSelectedEvent(Person person) {
         if (isAnEventSelected()) {
             selectedEvent.addPerson(person);
+            personsOfSelectedEvent.add(person);
         }
     }
 
@@ -159,6 +160,7 @@ public class EventBook implements ReadOnlyEventBook {
     public void deletePersonFromSelectedEvent(Person person) {
         if (isAnEventSelected()) {
             selectedEvent.deletePerson(person);
+            personsOfSelectedEvent.remove(person);
         }
     }
 
