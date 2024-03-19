@@ -57,12 +57,10 @@ public class TaskList {
     /**
      * Deletes a task based on the index of list.
      *
-     * @param index The index of the task to be deleted in the list.
+     * @param task The task to be deleted.
      */
-    public Task deleteTask(Index index) {
-        Task task = taskList.get(index.getZeroBased());
-        taskList.remove(index.getZeroBased());
-        return task;
+    public void deleteTask(Task task) {
+        taskList.remove(task);
     }
 
     public ObservableList<Task> getSerializeTaskList() {
@@ -72,7 +70,7 @@ public class TaskList {
     public boolean hasTask(Task task) {
         return taskList.contains(task);
     }
-  
+
     public boolean isValidTaskIndex(Index index) {
         return index.getZeroBased() < taskList.size();
     }

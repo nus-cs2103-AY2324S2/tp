@@ -44,7 +44,8 @@ public class ModelManager implements Model {
         this(new AddressBook(), new TaskList(), new UserPrefs());
     }
 
-    //=========== UserPrefs ==================================================================================
+    // =========== UserPrefs
+    // ==================================================================================
 
     @Override
     public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
@@ -98,7 +99,8 @@ public class ModelManager implements Model {
         userPrefs.setTaskListFilePath(taskListFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    // =========== AddressBook
+    // ================================================================================
 
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
@@ -134,7 +136,8 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
-    //=========== Task Manager ===============================================================================
+    // =========== Task Manager
+    // ===============================================================================
 
     @Override
     public void addTask(Task task) {
@@ -142,8 +145,14 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Task deleteTask(Index index) {
-        return taskList.deleteTask(index);
+    public void deleteTask(Task task) {
+        addressBook.deleteAssignedTask(task);
+        taskList.deleteTask(task);
+    }
+
+    @Override
+    public Task getTask(Index index) {
+        return taskList.getTask(index);
     }
 
     @Override
@@ -156,6 +165,7 @@ public class ModelManager implements Model {
     public boolean isValidTaskIndex(Index index) {
         return taskList.isValidTaskIndex(index);
     }
+
     /**
      * Replaces task list data with the data in {@code taskList}.
      *
@@ -173,10 +183,12 @@ public class ModelManager implements Model {
         return taskList;
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    // =========== Filtered Person List Accessors
+    // =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Person} backed by the
+     * internal list of
      * {@code versionedAddressBook}
      */
     @Override

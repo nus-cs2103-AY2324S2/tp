@@ -106,9 +106,16 @@ public interface Model {
 
     /**
      * Deletes the given task.
-     * {@code index} the index must exist in the task list.
+     * {@code task} the task must exist in the task list.
      */
-    Task deleteTask(Index index);
+    void deleteTask(Task task);
+
+    /**
+     * Gets the task based on the given index.
+     * {@code index} the index in the task list.
+     */
+    Task getTask(Index index);
+
 
     /**
      * Returns true if a task has the same description as a {@code task} in the task list.

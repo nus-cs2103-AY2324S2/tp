@@ -48,8 +48,9 @@ public class DeleteTaskCommand extends Command {
             throw new CommandException(MESSAGE_INDEX_TOO_LARGE);
         }
 
-        Task deletedTask = model.deleteTask(taskIndexToDelete);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, deletedTask.getDescription()));
+        Task taskToDelete = model.getTask(taskIndexToDelete);
+        model.deleteTask(taskToDelete);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, taskToDelete.getDescription()));
     }
 
     @Override

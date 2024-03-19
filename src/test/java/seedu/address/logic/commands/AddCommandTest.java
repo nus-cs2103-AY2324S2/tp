@@ -191,10 +191,20 @@ public class AddCommandTest {
         /**
          * Deletes a task based on the index of list.
          *
-         * @param index The index of the task to be deleted in the list.
+         * @param task The task to be deleted in the list.
          */
         @Override
-        public Task deleteTask(Index index) {
+        public void deleteTask(Task task) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        /**
+         * Returns a task based on the index of list.
+         *
+         * @param index The index of the task to be returned.
+         */
+        @Override
+        public Task getTask(Index index) {
             throw new AssertionError("This method should not be called.");
         }
 
