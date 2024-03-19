@@ -11,8 +11,8 @@ import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.commons.core.index.Index;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 
@@ -165,8 +165,8 @@ public class ModelManager implements Model {
     // =========== Meeting Instance Accessors =============================================================
     @Override
     public void deleteAllMeetingsForClient(Index clientIndex) {
-            Person targetClient = filteredPersons.get(clientIndex.getZeroBased());
-            targetClient.setMeetings(new ArrayList<Meeting>());
+        Person targetClient = filteredPersons.get(clientIndex.getZeroBased());
+        targetClient.setMeetings(new ArrayList<Meeting>());
     }
 
     @Override

@@ -9,8 +9,8 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
 import seedu.address.model.meeting.Meeting;
+import seedu.address.model.person.Person;
 
 /**
  * Deletes a meeting of a particular person using it's displayed index from the
@@ -18,22 +18,27 @@ import seedu.address.model.meeting.Meeting;
  */
 public class DeleteMeetingCommand extends Command {
 
-    private final Index clientIndex;
-    private final Index meetingIndex;
-
-    public DeleteMeetingCommand(Index clientIndex, Index meetingIndex) {
-        this.clientIndex = clientIndex;
-        this.meetingIndex = meetingIndex;
-    }
-
     public static final String COMMAND_WORD = "delete meeting";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the meeting of a particular client identified by the index number used in the displayed client list.\n"
+            + ": Deletes the meeting of a particular client identified by the "
+            + "index number used in the displayed client list.\n"
             + "Parameters: CLIENT_INDEX (must be a positive integer) MEETING_INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1 1";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Meeting %1$s deleted successfully ";
+
+    private final Index clientIndex;
+    private final Index meetingIndex;
+
+    /**
+     * Creates a DeleteMeetingCommand that would be responsible
+     * for deleting a meeting in address book.
+     */
+    public DeleteMeetingCommand(Index clientIndex, Index meetingIndex) {
+        this.clientIndex = clientIndex;
+        this.meetingIndex = meetingIndex;
+    }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
@@ -45,10 +50,11 @@ public class DeleteMeetingCommand extends Command {
         }
 
         Person targetClient = lastShownList.get(clientIndex.getZeroBased());
-        List<Meeting> lastShownMeetings  = targetClient.getMeetings();
+        List<Meeting> lastShownMeetings = targetClient.getMeetings();
 
         if (meetingIndex.getZeroBased() >= lastShownMeetings.size()) {
-            throw new CommandException(String.format(Messages.MESSAGE_INVALID_MEETING_DISPLAYED_INDEX, meetingIndex.getOneBased()));
+            throw new CommandException(String.format(
+                    Messages.MESSAGE_INVALID_MEETING_DISPLAYED_INDEX, meetingIndex.getOneBased()));
         }
 
         model.deleteSpecificMeetingForClient(clientIndex, meetingIndex);

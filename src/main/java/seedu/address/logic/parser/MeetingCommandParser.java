@@ -11,7 +11,7 @@ public interface MeetingCommandParser<T extends Command> {
     /**
      * Parses {@code firstArgument} into a command and returns it.
      * Parses {@code secondArgument} into a command and returns it.
-     * 
+     *
      * @throws ParseException if {@code firstArgument} or {@code secondArgument}
      *                        does not conform the expected format
      */

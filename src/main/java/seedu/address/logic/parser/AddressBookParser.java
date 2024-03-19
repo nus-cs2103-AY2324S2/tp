@@ -57,36 +57,36 @@ public class AddressBookParser {
 
             switch (commandWord) {
 
-                case AddCommand.COMMAND_WORD:
-                    return new AddCommandParser().parse(arguments);
+            case AddCommand.COMMAND_WORD:
+                return new AddCommandParser().parse(arguments);
 
-                case EditCommand.COMMAND_WORD:
-                    return new EditCommandParser().parse(arguments);
+            case EditCommand.COMMAND_WORD:
+                return new EditCommandParser().parse(arguments);
 
-                case DeleteCommand.COMMAND_WORD:
-                    return new DeleteCommandParser().parse(arguments);
+            case DeleteCommand.COMMAND_WORD:
+                return new DeleteCommandParser().parse(arguments);
 
-                case ClearCommand.COMMAND_WORD:
-                    return new ClearCommand();
+            case ClearCommand.COMMAND_WORD:
+                return new ClearCommand();
 
-                case FindCommand.COMMAND_WORD:
-                    return new FindCommandParser().parse(arguments);
+            case FindCommand.COMMAND_WORD:
+                return new FindCommandParser().parse(arguments);
 
-                case ListCommand.COMMAND_WORD:
-                    return new ListCommand();
+            case ListCommand.COMMAND_WORD:
+                return new ListCommand();
 
-                case ExitCommand.COMMAND_WORD:
-                    return new ExitCommand();
+            case ExitCommand.COMMAND_WORD:
+                return new ExitCommand();
 
-                case HelpCommand.COMMAND_WORD:
-                    return new HelpCommand();
+            case HelpCommand.COMMAND_WORD:
+                return new HelpCommand();
 
-                case ViewCommand.COMMAND_WORD:
-                    return new ViewCommandParser().parse(arguments);
+            case ViewCommand.COMMAND_WORD:
+                return new ViewCommandParser().parse(arguments);
 
-                default:
-                    logger.finer("This user input caused a ParseException: " + userInput);
-                    throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+            default:
+                logger.finer("This user input caused a ParseException: " + userInput);
+                throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
             }
         } else if (meetingCommandTwoArgsMatcher.matches()) {
             final String commandWord = basicCommandMatcher.group("commandWord");
@@ -94,12 +94,12 @@ public class AddressBookParser {
             final String secondArgument = basicCommandMatcher.group("secondArgument");
 
             switch (commandWord) {
-                case DeleteMeetingCommand.COMMAND_WORD:
-                    return new DeleteMeetingCommandParser().parse(firstArgument, secondArgument);
+            case DeleteMeetingCommand.COMMAND_WORD:
+                return new DeleteMeetingCommandParser().parse(firstArgument, secondArgument);
 
-                default:
-                    logger.finer("This user input caused a ParseException: " + userInput);
-                    throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+            default:
+                logger.finer("This user input caused a ParseException: " + userInput);
+                throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
             }
         } else {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
