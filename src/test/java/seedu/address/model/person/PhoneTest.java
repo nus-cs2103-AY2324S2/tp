@@ -57,4 +57,21 @@ public class PhoneTest {
         // different values -> returns false
         assertFalse(phone.equals(new Phone("995")));
     }
+
+    @Test
+    public void isMatch() {
+        Phone phone = new Phone("12345678");
+
+        // Exact match -> returns true
+        assertTrue(phone.isMatch("12345678"));
+
+        // Substring partial word -> returns true
+        assertTrue(phone.isMatch("1234"));
+
+        // Additional whitespace
+        assertTrue(phone.isMatch(" 12345678\n"));
+
+        // Substring mismatch
+        assertFalse(phone.isMatch("invalid"));
+    }
 }
