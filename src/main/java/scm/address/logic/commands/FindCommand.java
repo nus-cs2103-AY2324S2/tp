@@ -10,7 +10,8 @@ import scm.address.model.person.NameContainsKeywordsPredicate;
 import scm.address.model.person.TagsContainKeywordsPredicate;
 
 /**
- * Finds and lists all persons in contact manager whose name contains any of the argument keywords.
+ * Finds and lists all persons in contact manager whose name, address, and any
+ * of its tags contain any of the specified argument keywords.
  * Keyword matching is case insensitive.
  */
 public class FindCommand extends Command {
@@ -26,7 +27,10 @@ public class FindCommand extends Command {
     private final AddressContainsKeywordsPredicate addressPredicate;
     private final TagsContainKeywordsPredicate tagsPredicate;
 
-
+    /**
+     * Creates a FindCommand to find all {@code Person} that
+     * contains any keyword in its name, address, and any of its tags.
+     */
     public FindCommand(NameContainsKeywordsPredicate namePredicate,
                        AddressContainsKeywordsPredicate addressPredicate,
                        TagsContainKeywordsPredicate tagsPredicate) {

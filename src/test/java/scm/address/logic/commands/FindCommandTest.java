@@ -46,13 +46,15 @@ public class FindCommandTest {
 
 
         FindCommand findFirstCommand = new FindCommand(firstNamePredicate, firstAddressPredicate, firstTagsPredicate);
-        FindCommand findSecondCommand = new FindCommand(secondNamePredicate, secondAddressPredicate, secondTagsPredicate);
+        FindCommand findSecondCommand = new FindCommand(secondNamePredicate,
+                                                        secondAddressPredicate, secondTagsPredicate);
 
         // same object -> returns true
         assertTrue(findFirstCommand.equals(findFirstCommand));
 
         // same values -> returns true
-        FindCommand findFirstCommandCopy = new FindCommand(firstNamePredicate, firstAddressPredicate, firstTagsPredicate);
+        FindCommand findFirstCommandCopy = new FindCommand(firstNamePredicate,
+                                                                firstAddressPredicate, firstTagsPredicate);
         assertTrue(findFirstCommand.equals(findFirstCommandCopy));
 
         // different types -> returns false
@@ -94,7 +96,8 @@ public class FindCommandTest {
     @Test
     public void toStringMethod() {
         NameContainsKeywordsPredicate namePredicate = new NameContainsKeywordsPredicate(Arrays.asList("keyword"));
-        AddressContainsKeywordsPredicate addressPredicate = new AddressContainsKeywordsPredicate(Arrays.asList("keyword"));
+        AddressContainsKeywordsPredicate addressPredicate = new AddressContainsKeywordsPredicate(Arrays
+                                                                                                .asList("keyword"));
         TagsContainKeywordsPredicate tagsPredicate = new TagsContainKeywordsPredicate(Arrays.asList("keyword"));
 
         FindCommand findCommand = new FindCommand(namePredicate, addressPredicate, tagsPredicate);

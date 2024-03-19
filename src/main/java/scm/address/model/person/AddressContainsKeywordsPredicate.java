@@ -22,7 +22,8 @@ public class AddressContainsKeywordsPredicate implements Predicate<Person> {
             return true;
         }
 
-        return keywords.stream()
+        return keywords
+                .stream()
                 .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getAddress().value, keyword));
     }
 
@@ -37,7 +38,8 @@ public class AddressContainsKeywordsPredicate implements Predicate<Person> {
             return false;
         }
 
-        AddressContainsKeywordsPredicate otherAddressContainsKeywordsPredicate = (AddressContainsKeywordsPredicate) other;
+        AddressContainsKeywordsPredicate otherAddressContainsKeywordsPredicate = (AddressContainsKeywordsPredicate)
+                other;
         return keywords.equals(otherAddressContainsKeywordsPredicate.keywords);
     }
 

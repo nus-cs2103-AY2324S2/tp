@@ -1,14 +1,15 @@
 package scm.address.logic.parser;
 
 import static scm.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static scm.address.logic.parser.CliSyntax.*;
+import static scm.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static scm.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static scm.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
 
-import scm.address.logic.commands.AddCommand;
 import scm.address.logic.commands.FindCommand;
 import scm.address.logic.parser.exceptions.ParseException;
 import scm.address.model.person.AddressContainsKeywordsPredicate;
@@ -19,8 +20,6 @@ import scm.address.model.person.TagsContainKeywordsPredicate;
  * Parses input arguments and creates a new FindCommand object
  */
 public class FindCommandParser implements Parser<FindCommand> {
-    private final Prefix[] PREFIXES = { PREFIX_NAME, PREFIX_ADDRESS, PREFIX_TAG };
-
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
      * and returns a FindCommand object for execution.
