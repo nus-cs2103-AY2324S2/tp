@@ -1,3 +1,5 @@
+package seedu.address.model.meeting;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -11,8 +13,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.meeting.Meeting;
-import seedu.address.model.meeting.UniqueMeetingList;
 import seedu.address.model.meeting.exceptions.DuplicateMeetingException;
 import seedu.address.model.meeting.exceptions.MeetingNotFoundException;
 import seedu.address.testutil.MeetingBuilder;

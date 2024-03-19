@@ -90,7 +90,9 @@ public class Person {
     public void addMeetings(Meeting meeting) {
         this.meetings.add(meeting);
     }
-
+    /**
+     * Returns true if the person has existing meeting.
+     */
     public boolean hasExistingMeeting(Meeting meeting) {
         for (Meeting m : this.meetings) {
             if (m.equals(meeting)) {

@@ -1,21 +1,19 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CLIENT_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CLIENT_INDEX;
 
-import seedu.address.commons.util.ToStringBuilder;
+import java.time.LocalDateTime;
+import java.util.List;
+
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
-
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.List;
-import seedu.address.commons.core.index.Index;
 
 /**
  * Represents a command to add a meeting associated with a specific client in the address book.
@@ -25,7 +23,8 @@ import seedu.address.commons.core.index.Index;
 public class AddMeetingCommand extends Command {
     public static final String COMMAND_WORD = "addMeeting";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a meeting to the client identified by the index number. \n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a meeting to the "
+            + "client identified by the index number. \n"
             + "Parameters: client/ CLIENT_INDEX dt/ DATE_TIME /d DESCRIPTION \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_CLIENT_INDEX + "1 "
@@ -50,7 +49,7 @@ public class AddMeetingCommand extends Command {
      */
 
     public AddMeetingCommand(LocalDateTime dateTime, String description, Index clientIndex) {
-        if(dateTime == null || description == null || clientIndex == null) {
+        if (dateTime == null || description == null || clientIndex == null) {
             throw new NullPointerException();
         }
         this.dateTime = dateTime;
@@ -87,7 +86,7 @@ public class AddMeetingCommand extends Command {
         }
         client.addMeetings(meetingToAdd);
         model.addMeeting(meetingToAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS,  Messages.format(meetingToAdd)));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(meetingToAdd)));
     }
 
     /**

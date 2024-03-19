@@ -23,8 +23,10 @@ import seedu.address.model.person.Person;
  * that a meeting is removed only if it matches exactly as a meeting object.
  *
  * This approach allows for nuanced control over meeting management:
- * - When adding or updating, meetings are considered the same based on specific attributes, allowing for flexible uniqueness criteria.
- * - When removing, the stricter {@code equals} method ensures that only an exact match is removed, preventing unintended deletions.
+ * - When adding or updating, meetings are considered the same based on specific attributes,
+ * allowing for flexible uniqueness criteria.
+ * - When removing, the stricter {@code equals} method ensures that only an exact match is removed,
+ * preventing unintended deletions.
  *
  * Supports a minimal set of list operations.
  *
