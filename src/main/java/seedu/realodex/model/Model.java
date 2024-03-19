@@ -45,12 +45,12 @@ public interface Model {
     void setRealodexFilePath(Path addressBookFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces address book data with the data in {@code realodex}.
      */
-    void setRealodex(ReadOnlyRealodex addressBook);
+    void setRealodex(ReadOnlyRealodex realodex);
 
     /** Returns the Realodex */
-    ReadOnlyRealodex getAddressBook();
+    ReadOnlyRealodex getRealodex();
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.

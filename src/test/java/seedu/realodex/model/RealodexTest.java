@@ -7,7 +7,7 @@ import static seedu.realodex.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.realodex.logic.commands.CommandTestUtil.VALID_TAG_AMY;
 import static seedu.realodex.testutil.Assert.assertThrows;
 import static seedu.realodex.testutil.TypicalPersons.ALICE;
-import static seedu.realodex.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.realodex.testutil.TypicalPersons.getTypicalRealodex;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -38,7 +38,7 @@ public class RealodexTest {
 
     @Test
     public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        Realodex newData = getTypicalAddressBook();
+        Realodex newData = getTypicalRealodex();
         realodex.resetData(newData);
         assertEquals(newData, realodex);
     }

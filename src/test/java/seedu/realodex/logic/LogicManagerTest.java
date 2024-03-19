@@ -127,7 +127,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getRealodex(), new UserPrefs());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 
@@ -156,7 +156,7 @@ public class LogicManagerTest {
         // Inject LogicManager with an RealodexStorage that throws the IOException e when saving
         JsonRealodexStorage addressBookStorage = new JsonRealodexStorage(prefPath) {
             @Override
-            public void saveAddressBook(ReadOnlyRealodex addressBook, Path filePath)
+            public void saveRealodex(ReadOnlyRealodex addressBook, Path filePath)
                     throws IOException {
                 throw e;
             }

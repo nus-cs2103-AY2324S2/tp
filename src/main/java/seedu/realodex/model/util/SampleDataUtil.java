@@ -73,7 +73,7 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyRealodex getSampleAddressBook() {
+    public static ReadOnlyRealodex getSampleRealodex() {
         Realodex sampleAb = new Realodex();
         for (Person samplePerson : getSamplePersons()) {
             sampleAb.addPerson(samplePerson);

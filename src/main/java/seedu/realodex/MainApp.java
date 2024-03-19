@@ -57,7 +57,7 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        RealodexStorage realodexStorage = new JsonRealodexStorage(userPrefs.getAddressBookFilePath());
+        RealodexStorage realodexStorage = new JsonRealodexStorage(userPrefs.getRealodexFilePath());
         storage = new StorageManager(realodexStorage, userPrefsStorage);
 
         model = initModelManager(storage, userPrefs);
@@ -83,7 +83,7 @@ public class MainApp extends Application {
                 logger.info("Creating a new data file " + storage.getAddressBookFilePath()
                         + " populated with a sample Realodex.");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleRealodex);
         } catch (DataLoadingException e) {
             logger.warning("Data file at " + storage.getAddressBookFilePath() + " could not be loaded."
                     + " Will be starting with an empty Realodex.");

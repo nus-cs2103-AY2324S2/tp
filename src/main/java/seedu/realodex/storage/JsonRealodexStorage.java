@@ -60,16 +60,16 @@ public class JsonRealodexStorage implements RealodexStorage {
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyRealodex addressBook) throws IOException {
-        saveAddressBook(addressBook, filePath);
+    public void saveRealodex(ReadOnlyRealodex addressBook) throws IOException {
+        saveRealodex(addressBook, filePath);
     }
 
     /**
-     * Similar to {@link #saveAddressBook(ReadOnlyRealodex)}.
+     * Similar to {@link #saveRealodex(ReadOnlyRealodex)}.
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveAddressBook(ReadOnlyRealodex addressBook, Path filePath) throws IOException {
+    public void saveRealodex(ReadOnlyRealodex addressBook, Path filePath) throws IOException {
         requireNonNull(addressBook);
         requireNonNull(filePath);
 

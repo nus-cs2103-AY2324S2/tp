@@ -66,24 +66,24 @@ public class ModelManager implements Model {
 
     @Override
     public Path getRealodexFilePath() {
-        return userPrefs.getAddressBookFilePath();
+        return userPrefs.getRealodexFilePath();
     }
 
     @Override
     public void setRealodexFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+        userPrefs.setRealodexFilePath(addressBookFilePath);
     }
 
     //=========== Realodex ================================================================================
 
     @Override
-    public void setRealodex(ReadOnlyRealodex addressBook) {
-        this.realodex.resetData(addressBook);
+    public void setRealodex(ReadOnlyRealodex realodex) {
+        this.realodex.resetData(realodex);
     }
 
     @Override
-    public ReadOnlyRealodex getAddressBook() {
+    public ReadOnlyRealodex getRealodex() {
         return realodex;
     }
 

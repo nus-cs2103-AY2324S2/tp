@@ -1,7 +1,7 @@
 package seedu.realodex.logic.commands;
 
 import static seedu.realodex.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.realodex.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.realodex.testutil.TypicalPersons.getTypicalRealodex;
 
 import org.junit.jupiter.api.Test;
 
@@ -22,8 +22,8 @@ public class ClearCommandTest {
 
     @Test
     public void execute_nonEmptyAddressBook_success() {
-        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        Model model = new ModelManager(getTypicalRealodex(), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalRealodex(), new UserPrefs());
         expectedModel.setRealodex(new Realodex());
 
         assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);

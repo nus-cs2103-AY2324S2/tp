@@ -26,9 +26,9 @@ public interface Logic {
     /**
      * Returns the Realodex.
      *
-     * @see seedu.realodex.model.Model#getAddressBook()
+     * @see seedu.realodex.model.Model#getRealodex()
      */
-    ReadOnlyRealodex getAddressBook();
+    ReadOnlyRealodex getRealodex();
 
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Person> getFilteredPersonList();

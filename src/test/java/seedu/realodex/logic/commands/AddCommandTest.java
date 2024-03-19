@@ -129,7 +129,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyRealodex getAddressBook() {
+        public ReadOnlyRealodex getRealodex() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -196,7 +196,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyRealodex getAddressBook() {
+        public ReadOnlyRealodex getRealodex() {
             return new Realodex();
         }
     }

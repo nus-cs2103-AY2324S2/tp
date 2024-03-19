@@ -91,7 +91,7 @@ public class TypicalPersons {
     /**
      * Returns an {@code Realodex} with all the typical persons.
      */
-    public static Realodex getTypicalAddressBook() {
+    public static Realodex getTypicalRealodex() {
         Realodex ab = new Realodex();
         for (Person person : getTypicalPersons()) {
             ab.addPerson(person);

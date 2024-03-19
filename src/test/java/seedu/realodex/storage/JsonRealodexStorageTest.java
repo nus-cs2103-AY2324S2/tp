@@ -6,7 +6,7 @@ import static seedu.realodex.testutil.Assert.assertThrows;
 import static seedu.realodex.testutil.TypicalPersons.ALICE;
 import static seedu.realodex.testutil.TypicalPersons.HOON;
 import static seedu.realodex.testutil.TypicalPersons.IDA;
-import static seedu.realodex.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.realodex.testutil.TypicalPersons.getTypicalRealodex;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -63,24 +63,24 @@ public class JsonRealodexStorageTest {
     @Test
     public void readAndSaveAddressBook_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempRealodex.json");
-        Realodex original = getTypicalAddressBook();
+        Realodex original = getTypicalRealodex();
         JsonRealodexStorage jsonRealodexStorage = new JsonRealodexStorage(filePath);
 
         // Save in new file and read back
-        jsonRealodexStorage.saveAddressBook(original, filePath);
+        jsonRealodexStorage.saveRealodex(original, filePath);
         ReadOnlyRealodex readBack = jsonRealodexStorage.readAddressBook(filePath).get();
         assertEquals(original, new Realodex(readBack));
 
         // Modify data, overwrite exiting file, and read back
         original.addPerson(HOON);
         original.removePerson(ALICE);
-        jsonRealodexStorage.saveAddressBook(original, filePath);
+        jsonRealodexStorage.saveRealodex(original, filePath);
         readBack = jsonRealodexStorage.readAddressBook(filePath).get();
         assertEquals(original, new Realodex(readBack));
 
         // Save and read without specifying file path
         original.addPerson(IDA);
-        jsonRealodexStorage.saveAddressBook(original); // file path not specified
+        jsonRealodexStorage.saveRealodex(original); // file path not specified
         readBack = jsonRealodexStorage.readAddressBook().get(); // file path not specified
         assertEquals(original, new Realodex(readBack));
 
@@ -97,7 +97,7 @@ public class JsonRealodexStorageTest {
     private void saveAddressBook(ReadOnlyRealodex addressBook, String filePath) {
         try {
             new JsonRealodexStorage(Paths.get(filePath))
-                    .saveAddressBook(addressBook, addToTestDataPathIfNotNull(filePath));
+                    .saveRealodex(addressBook, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }

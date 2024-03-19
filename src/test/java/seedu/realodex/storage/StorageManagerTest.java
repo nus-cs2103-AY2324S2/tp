@@ -2,7 +2,7 @@ package seedu.realodex.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static seedu.realodex.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.realodex.testutil.TypicalPersons.getTypicalRealodex;
 
 import java.nio.file.Path;
 
@@ -48,14 +48,14 @@ public class StorageManagerTest {
     }
 
     @Test
-    public void addressBookReadSave() throws Exception {
+    public void realodexReadSave() throws Exception {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
          * {@link JsonRealodexStorage} class.
          * More extensive testing of UserPref saving/reading is done in {@link JsonRealodexStorageTest} class.
          */
-        Realodex original = getTypicalAddressBook();
-        storageManager.saveAddressBook(original);
+        Realodex original = getTypicalRealodex();
+        storageManager.saveRealodex(original);
         ReadOnlyRealodex retrieved = storageManager.readAddressBook().get();
         assertEquals(original, new Realodex(retrieved));
     }

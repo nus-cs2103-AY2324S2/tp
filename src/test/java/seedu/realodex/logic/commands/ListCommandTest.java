@@ -3,7 +3,7 @@ package seedu.realodex.logic.commands;
 import static seedu.realodex.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.realodex.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.realodex.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.realodex.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.realodex.testutil.TypicalPersons.getTypicalRealodex;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,8 +22,8 @@ public class ListCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalRealodex(), new UserPrefs());
+        expectedModel = new ModelManager(model.getRealodex(), new UserPrefs());
     }
 
     @Test

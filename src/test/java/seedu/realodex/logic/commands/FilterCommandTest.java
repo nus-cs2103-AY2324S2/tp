@@ -7,7 +7,7 @@ import static seedu.realodex.logic.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static seedu.realodex.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.realodex.testutil.TypicalPersons.DANIEL;
 import static seedu.realodex.testutil.TypicalPersons.ELLE;
-import static seedu.realodex.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.realodex.testutil.TypicalPersons.getTypicalRealodex;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -23,8 +23,8 @@ import seedu.realodex.model.person.NameContainsKeyphrasePredicate;
  * Contains integration tests (interaction with the Model) for {@code FilterCommand}.
  */
 public class FilterCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalRealodex(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalRealodex(), new UserPrefs());
 
     @Test
     public void equals() {

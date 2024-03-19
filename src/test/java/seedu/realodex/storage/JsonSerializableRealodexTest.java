@@ -25,7 +25,7 @@ public class JsonSerializableRealodexTest {
         JsonSerializableRealodex dataFromFile = JsonUtil.readJsonFile(TYPICAL_PERSONS_FILE,
                                                                       JsonSerializableRealodex.class).get();
         Realodex realodexFromFile = dataFromFile.toModelType();
-        Realodex typicalPersonsRealodex = TypicalPersons.getTypicalAddressBook();
+        Realodex typicalPersonsRealodex = TypicalPersons.getTypicalRealodex();
         assertEquals(realodexFromFile, typicalPersonsRealodex);
     }
 
