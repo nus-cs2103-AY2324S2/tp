@@ -62,7 +62,17 @@ public class TagSet extends Attribute<Set<Tag>> {
             return true;
         }
 
-        return otherTags.stream().allMatch(tag -> this.getValue().contains(tag));
+        return otherTags.stream().allMatch(tag -> this.contains(tag));
+    }
+
+    public boolean contains(Object otherValue) {
+        if (!(otherValue instanceof Tag)) {
+            return false;
+        }
+
+        Tag other = ((Tag) otherValue);
+
+        return this.getValue().stream().anyMatch(tag -> tag.isMatch(other.getValue()));
     }
 
     @Override
