@@ -119,8 +119,8 @@ Format: `note INDEX note/NOTE`
 > While this can also be done using the `edit` command, this `note` command serves as a faster way for users to directly modify a note.
 
 Examples:
-*  `note 1 note/History of asthma` Edits the note of the 1st client to `History of asthma`.
-*  `edit 2 note/Previously sprained both ankles` Edits the note of the 2nd client to `Previously sprained both ankles`.
+*  `note 1 note/History of asthma` - Edits the note of the 1st client to `History of asthma`.
+*  `edit 2 note/Previously sprained both ankles` - Edits the note of the 2nd client to `Previously sprained both ankles`.
 
 ### Locating clients by name: `find`
 
