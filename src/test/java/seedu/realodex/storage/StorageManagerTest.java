@@ -11,8 +11,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.realodex.commons.core.GuiSettings;
-import seedu.realodex.model.Realodex;
 import seedu.realodex.model.ReadOnlyRealodex;
+import seedu.realodex.model.Realodex;
 import seedu.realodex.model.UserPrefs;
 
 public class StorageManagerTest {

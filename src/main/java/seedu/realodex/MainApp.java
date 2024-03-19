@@ -15,21 +15,22 @@ import seedu.realodex.commons.util.ConfigUtil;
 import seedu.realodex.commons.util.StringUtil;
 import seedu.realodex.logic.Logic;
 import seedu.realodex.logic.LogicManager;
-import seedu.realodex.model.Realodex;
 import seedu.realodex.model.Model;
 import seedu.realodex.model.ModelManager;
 import seedu.realodex.model.ReadOnlyRealodex;
 import seedu.realodex.model.ReadOnlyUserPrefs;
+import seedu.realodex.model.Realodex;
 import seedu.realodex.model.UserPrefs;
 import seedu.realodex.model.util.SampleDataUtil;
 import seedu.realodex.storage.JsonRealodexStorage;
-import seedu.realodex.storage.RealodexStorage;
 import seedu.realodex.storage.JsonUserPrefsStorage;
+import seedu.realodex.storage.RealodexStorage;
 import seedu.realodex.storage.Storage;
 import seedu.realodex.storage.StorageManager;
 import seedu.realodex.storage.UserPrefsStorage;
 import seedu.realodex.ui.Ui;
 import seedu.realodex.ui.UiManager;
+
 
 /**
  * Runs the application.

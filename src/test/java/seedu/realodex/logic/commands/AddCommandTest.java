@@ -18,10 +18,10 @@ import javafx.collections.ObservableList;
 import seedu.realodex.commons.core.GuiSettings;
 import seedu.realodex.logic.Messages;
 import seedu.realodex.logic.commands.exceptions.CommandException;
-import seedu.realodex.model.ReadOnlyRealodex;
-import seedu.realodex.model.Realodex;
 import seedu.realodex.model.Model;
+import seedu.realodex.model.ReadOnlyRealodex;
 import seedu.realodex.model.ReadOnlyUserPrefs;
+import seedu.realodex.model.Realodex;
 import seedu.realodex.model.person.Person;
 import seedu.realodex.testutil.PersonBuilder;
 

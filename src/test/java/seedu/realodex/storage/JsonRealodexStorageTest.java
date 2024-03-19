@@ -16,8 +16,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.realodex.commons.exceptions.DataLoadingException;
-import seedu.realodex.model.Realodex;
 import seedu.realodex.model.ReadOnlyRealodex;
+import seedu.realodex.model.Realodex;
 
 public class JsonRealodexStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonRealodexStorageTest");

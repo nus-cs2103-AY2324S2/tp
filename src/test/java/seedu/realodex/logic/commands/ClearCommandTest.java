@@ -5,9 +5,9 @@ import static seedu.realodex.testutil.TypicalPersons.getTypicalRealodex;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.realodex.model.Realodex;
 import seedu.realodex.model.Model;
 import seedu.realodex.model.ModelManager;
+import seedu.realodex.model.Realodex;
 import seedu.realodex.model.UserPrefs;
 
 public class ClearCommandTest {

@@ -2,8 +2,8 @@ package seedu.realodex.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.realodex.model.Realodex;
 import seedu.realodex.model.Model;
+import seedu.realodex.model.Realodex;
 
 /**
  * Clears the address book.

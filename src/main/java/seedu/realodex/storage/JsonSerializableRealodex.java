@@ -9,8 +9,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.realodex.commons.exceptions.IllegalValueException;
-import seedu.realodex.model.Realodex;
 import seedu.realodex.model.ReadOnlyRealodex;
+import seedu.realodex.model.Realodex;
 import seedu.realodex.model.person.Person;
 
 /**
