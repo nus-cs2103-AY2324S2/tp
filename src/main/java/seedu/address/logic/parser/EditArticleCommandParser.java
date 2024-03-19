@@ -90,8 +90,8 @@ public class EditArticleCommandParser {
     private Optional<String[]> parseSourcesForEdit(List<String> sources) throws ParseException {
         assert sources != null;
 
-        for (String Source : sources) {
-            if (Source.isEmpty()) {
+        for (String source : sources) {
+            if (source.isEmpty()) {
                 return Optional.empty();
             }
         }

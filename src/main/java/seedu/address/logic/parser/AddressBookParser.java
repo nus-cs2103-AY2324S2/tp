@@ -77,7 +77,7 @@ public class AddressBookParser {
             return new HelpCommand();
 
         default:
-             return ArticleBookParser.parseCommand(commandWord);
+            return ArticleBookParser.parseCommand(commandWord);
         }
     }
 

@@ -186,11 +186,11 @@ public class ParserUtil {
      */
     public static String[] parseSources(List<String> sources) throws ParseException {
         requireNonNull(sources);
-        final String[] SourceSet = new String[sources.size()];
+        final String[] sourceSet = new String[sources.size()];
         for (int i = 0; i < sources.size(); i++) {
-            SourceSet[i] = parseSource(sources.get(i));
+            sourceSet[i] = parseSource(sources.get(i));
         }
-        return SourceSet;
+        return sourceSet;
     }
 
     /**
