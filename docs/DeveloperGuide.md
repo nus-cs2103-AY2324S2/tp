@@ -386,7 +386,11 @@ Step 1: The user accesses the PatientSync application.
 Step 2: The user executes the `adde 1 n/Birthday d/20-01-2022` command to add the Event, Birthday, which falls on the 20th January.
 * Upon successful validation, it creates an `AddEventsCommand` instance.
 
-The PlantUML Diagram of this scenario can be found [here](diagrams/AddEventSequenceDiagram.puml).
+<box type="info" seamless>
+<b>Note</b>: Only 1 Event can be added at a time per command
+</box>
+
+<puml src="diagrams/AddEventSequenceDiagram.puml" alt="Add Event Sequence Diagram" />
 
 #### Design Considerations
 
