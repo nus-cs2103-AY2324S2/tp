@@ -64,5 +64,19 @@ class JsonAdaptedMeeting {
         }
     }
 
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof JsonAdaptedMeeting)) {
+            return false;
+        }
+
+        JsonAdaptedMeeting otherMeeting = (JsonAdaptedMeeting) other;
+        return start.equals(otherMeeting.start) && end.equals(otherMeeting.end) && remark.equals(otherMeeting.remark);
+    }
+
 }
 
