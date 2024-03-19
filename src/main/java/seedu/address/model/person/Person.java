@@ -31,10 +31,6 @@ public class Person {
      */
     public Person(Name name, Phone phone, Email email, Role role, Address address, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, role, address, tags);
-//        if (role.getRoleType() == Role.RoleType.PROFESSOR) {
-//            requireAllNonNull(address, "Office address is required for PROFESSOR");
-//            // Can add future address format checks here
-//        }
         this.name = name;
         this.phone = phone;
         this.email = email;
