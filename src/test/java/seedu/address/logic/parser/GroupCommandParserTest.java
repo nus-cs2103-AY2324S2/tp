@@ -39,5 +39,18 @@ class GroupCommandParserTest {
         assertParseSuccessGroup(parser, userInput, expectedCommand);
     }
 
+    @Test
+    public void parse_oneFieldSpecified_success(){
+
+        String defaultNusId = "E1234567";
+        NusId nusid = new NusId((defaultNusId));
+
+        // tag
+        String userInput = " id/" + defaultNusId + TAG_DESC_AMY;
+        GroupCommand.GroupPersonDescriptor descriptor = new GroupPersonDescriptorBuilder().withNusId(defaultNusId).withTag(VALID_TAG_AMY).build();
+        GroupCommand expectedCommand = new GroupCommand(nusid, descriptor);
+        assertParseSuccessGroup(parser, userInput, expectedCommand);
+    }
+
 
 }
