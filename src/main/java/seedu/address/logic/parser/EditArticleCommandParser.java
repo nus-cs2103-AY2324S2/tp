@@ -53,13 +53,15 @@ public class EditArticleCommandParser {
             editArticleDescriptor.setTitle(ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TITLE).get()));
         }
         if (argMultimap.getValue(PREFIX_PUBLICATION_DATE).isPresent()) {
-            editArticleDescriptor.setPublicationDate(ParserUtil.parsePublicationDate(argMultimap.getValue(PREFIX_PUBLICATION_DATE).get()));
+            editArticleDescriptor.setPublicationDate(ParserUtil.parsePublicationDate(argMultimap
+                    .getValue(PREFIX_PUBLICATION_DATE).get()));
         }
         if (argMultimap.getValue(PREFIX_CATEGORY).isPresent()) {
             editArticleDescriptor.setCategory(ParserUtil.parseCategory(argMultimap.getValue(PREFIX_CATEGORY).get()));
         }
         if (argMultimap.getValue(PREFIX_STATUS).isPresent()) {
-            editArticleDescriptor.setStatus((Article.Status) ParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).get()));
+            editArticleDescriptor.setStatus((Article.Status) ParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS)
+                    .get()));
         }
 
         parseAuthorsForEdit(argMultimap.getAllValues(PREFIX_AUTHOR)).ifPresent(editArticleDescriptor::setAuthors);
@@ -93,10 +95,9 @@ public class EditArticleCommandParser {
                 return Optional.empty();
             }
         }
-        List<String> SourceSet = sources;
-        SourceSet = SourceSet.size() == 1 && SourceSet.contains("") ? Collections.emptyList() : SourceSet;
-        return Optional.of(ParserUtil.parseSources(SourceSet));
+        List<String> sourceSet = sources;
+        sourceSet = sourceSet.size() == 1 && sourceSet.contains("") ? Collections.emptyList() : sourceSet;
+        return Optional.of(ParserUtil.parseSources(sourceSet));
     }
 
 }
-

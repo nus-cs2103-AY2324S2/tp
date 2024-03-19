@@ -128,6 +128,9 @@ public class ParserUtil {
         return tagSet;
     }
 
+    /**
+     * Parses a {@code String title} into a {@code Title}.
+     */
     public static String parseTitle(String title) throws ParseException {
         requireNonNull(title);
         String trimmedTitle = title.trim();
@@ -135,6 +138,9 @@ public class ParserUtil {
         return trimmedTitle;
     }
 
+    /**
+     * Parses a {@code String author} into a {@code Author}.
+     */
     public static String parseAuthor(String author) throws ParseException {
         requireNonNull(author);
         String trimmedAuthor = author.trim();
@@ -142,7 +148,9 @@ public class ParserUtil {
         return trimmedAuthor;
     }
 
-
+    /**
+     * Parses a {@code List<String> authors} into a {@code String[]}.
+     */
     public static String[] parseAuthors(List<String> authors) throws ParseException {
         requireNonNull(authors);
         final String[] authorSet = new String[authors.size()];
@@ -152,6 +160,9 @@ public class ParserUtil {
         return authorSet;
     }
 
+    /**
+     * Parses a {@code String publicationDate} into a {@code LocalDateTime}.
+     */
     public static LocalDateTime parsePublicationDate(String publicationDate) throws ParseException {
         requireNonNull(publicationDate);
         String trimmedPublicationDate = publicationDate.trim();
@@ -160,6 +171,9 @@ public class ParserUtil {
         return parsedDate;
     }
 
+    /**
+     * Parses a {@code String source} into a {@code Source}.
+     */
     public static String parseSource(String source) throws ParseException {
         requireNonNull(source);
         String trimmedSource = source.trim();
@@ -167,7 +181,9 @@ public class ParserUtil {
         return trimmedSource;
     }
 
-
+    /**
+     * Parses a {@code List<String> sources} into a {@code String[]}.
+     */
     public static String[] parseSources(List<String> sources) throws ParseException {
         requireNonNull(sources);
         final String[] SourceSet = new String[sources.size()];
@@ -177,6 +193,9 @@ public class ParserUtil {
         return SourceSet;
     }
 
+    /**
+     * Parses a {@code String category} into a {@code Category}.
+     */
     public static String parseCategory(String category) throws ParseException {
         requireNonNull(category);
         String trimmedCategory = category.trim();
@@ -184,6 +203,9 @@ public class ParserUtil {
         return trimmedCategory;
     }
 
+    /**
+     * Parses a {@code String status} into a {@code Status}.
+     */
     public static Enum<Article.Status> parseStatus(String status) throws ParseException {
         requireNonNull(status);
         String trimmedStatus = status.trim();
