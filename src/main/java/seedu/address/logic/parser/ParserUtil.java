@@ -68,6 +68,20 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String phone} into a {@code Optional<Phone>}, allowing empty input.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code phone} is invalid.
+     */
+    public static Optional<Phone> parseOptionalPhone(String phone) throws ParseException {
+        requireNonNull(phone);
+        if (phone.trim().isEmpty()) {
+            return Optional.empty();
+        }
+        return Optional.of(parsePhone(phone));
+    }
+
+    /**
      * Parses a {@code String address} into an {@code Address}.
      * Leading and trailing whitespaces will be trimmed.
      *
