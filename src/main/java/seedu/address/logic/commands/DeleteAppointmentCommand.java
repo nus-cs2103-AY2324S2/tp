@@ -38,7 +38,7 @@ public class DeleteAppointmentCommand extends Command {
         List<Appointment> lastShownList = model.getFilteredAppointmentList();
 
         if (targetAppointmentIndex.getZeroBased() >= Appointment.getIdTracker()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
         }
 
         // We try to find the appointment based on the given appointmentId.
@@ -55,7 +55,7 @@ public class DeleteAppointmentCommand extends Command {
 
         } else {
             // Otherwise we just throw an error.
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
         }
     }
 

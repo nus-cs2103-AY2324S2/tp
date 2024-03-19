@@ -94,7 +94,7 @@ public class StorageManager implements Storage {
 
     @Override
     public void saveAppointmentList(ReadOnlyAppointmentList appointmentList) throws IOException {
-        saveAppointmentList(appointmentList, addressBookStorage.getAppointmentListFilePath());
+        saveAppointmentList(appointmentList, addressBookStorage.getAddressBookFilePath());
     }
 
     @Override
