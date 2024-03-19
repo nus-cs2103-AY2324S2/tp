@@ -17,7 +17,7 @@ public class CommandHistoryTest {
     public void setUp() {
         history = new CommandHistory();
     }
- 
+
     @Test
     public void constructor_withCommandHistory_copiesCommandHistory() {
         final CommandHistory commandHistoryWithA = new CommandHistory();
