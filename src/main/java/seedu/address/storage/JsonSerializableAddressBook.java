@@ -34,7 +34,9 @@ class JsonSerializableAddressBook {
     public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
                                        @JsonProperty("interviews") List<JsonAdaptedInterview> interviews) {
         this.persons.addAll(persons);
-        this.interviews.addAll(interviews);
+        if (interviews != null) {
+            this.interviews.addAll(interviews);
+        }
     }
 
     /**
