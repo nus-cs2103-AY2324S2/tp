@@ -10,7 +10,7 @@ public class Quantity {
             "Product quantity should only be a number.";
 
     /** Accept only non-negative integers*/
-    public static final String VALIDATION_REGEX = "^\\d*$";
+    public static final String VALIDATION_REGEX = "^\\d+$";
 
     private int value;
 

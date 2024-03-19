@@ -2,7 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CUSTOMER_ID;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_ID;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -166,12 +166,12 @@ public class ParserUtil {
      */
     public static boolean isCustomer(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_CUSTOMER_ID, PREFIX_ORDER_ID);
+                ArgumentTokenizer.tokenize(args, PREFIX_CUSTOMER_ID, PREFIX_ORDER);
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_CUSTOMER_ID, PREFIX_ORDER_ID);
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_CUSTOMER_ID, PREFIX_ORDER);
 
         boolean hasCustomer = argMultimap.getValue(PREFIX_CUSTOMER_ID).isPresent();
-        boolean hasOrder = argMultimap.getValue(PREFIX_ORDER_ID).isPresent();
+        boolean hasOrder = argMultimap.getValue(PREFIX_ORDER).isPresent();
         if (hasCustomer && !hasOrder) {
             return true;
         } else if (!hasCustomer && hasOrder) {
