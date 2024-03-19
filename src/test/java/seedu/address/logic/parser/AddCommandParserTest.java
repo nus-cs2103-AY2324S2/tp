@@ -50,6 +50,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.DateTime;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Grade;
 import seedu.address.model.person.Name;
@@ -113,7 +114,7 @@ public class AddCommandParserTest {
                 validExpectedPersonString + PHONE_DESC_AMY + EMAIL_DESC_AMY + NAME_DESC_AMY + ADDRESS_DESC_AMY
                         + validExpectedPersonString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NAME, PREFIX_ADDRESS, PREFIX_EMAIL, PREFIX_PHONE,
-                        PREFIX_GRADE, PREFIX_SUBJECT, PREFIX_DATETIME));
+                        PREFIX_GRADE, PREFIX_SUBJECT));
 
         // invalid value followed by valid value
 
@@ -179,11 +180,6 @@ public class AddCommandParserTest {
         expectedPerson = new PersonBuilder(AMY).withTags().withSubject("Mathematics").build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY
                 + SUBJECT_DESC_AMY, new AddCommand(expectedPerson));
-
-        // one dateTime
-        expectedPerson = new PersonBuilder(AMY).withTags().build();
-        assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY
-                + DATETIME_DESC_MAR, new AddCommand(expectedPerson));
     }
 
     @Test
@@ -246,7 +242,7 @@ public class AddCommandParserTest {
         // invalid dateTime
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + GRADE_DESC_BOB + SUBJECT_DESC_BOB + INVALID_DATETIME_DESC + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
-                Address.MESSAGE_CONSTRAINTS);
+                DateTime.MESSAGE_CONSTRAINTS);
 
         // invalid tag
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB

@@ -3,7 +3,6 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
@@ -13,8 +12,7 @@ import java.time.format.ResolverStyle;
  * Guarantees: immutable; dateTime is valid as declared in {@link #isValidDateTime(String)}
  */
 public class DateTime {
-    public static final String MESSAGE_CONSTRAINTS = "DateTime should be in the format yyyy-mm-dd hhmm "
-            + "and after current day and time";
+    public static final String MESSAGE_CONSTRAINTS = "DateTime should be in the format yyyy-mm-dd hhmm";
     public static final String VALIDATION_REGEX = "\\d{4}-\\d{2}-\\d{2} \\d{4}";
     public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("uuuu-MM-dd HHmm")
             .withResolverStyle(ResolverStyle.STRICT);
@@ -29,11 +27,11 @@ public class DateTime {
     public DateTime(String dateTime) {
         requireNonNull(dateTime);
         checkArgument(isValidDateTime(dateTime), MESSAGE_CONSTRAINTS);
-        value = dateTime;
+        this.value = dateTime;
     }
 
     public static boolean isValidDateTime(String test) {
-        return test.matches(VALIDATION_REGEX) && isValidDateTimeFormat(test) && isAfterToday(test);
+        return test.matches(VALIDATION_REGEX) && isValidDateTimeFormat(test);
     }
 
     private static boolean isValidDateTimeFormat(String test) {
@@ -43,17 +41,6 @@ public class DateTime {
         } catch (DateTimeParseException e) {
             return false;
         }
-    }
-
-    private static boolean isAfterToday(String test) {
-        LocalDateTime now = LocalDateTime.now();
-        LocalDateTime dateTime = LocalDateTime.parse(test, DateTimeFormatter.ofPattern("uuuu-MM-dd HHmm"));
-        return !dateTime.isBefore(now);
-    }
-
-    @Override
-    public String toString() {
-        return '[' + value + ']';
     }
 
     @Override
@@ -67,7 +54,19 @@ public class DateTime {
             return false;
         }
 
-        DateTime dateTime = (DateTime) other;
-        return value.equals(dateTime.value);
+        DateTime otherDateTime = (DateTime) other;
+        return value.equals(otherDateTime.value);
+    }
+
+    @Override
+    public int hashCode() {
+        return value.hashCode();
+    }
+
+    /**
+     * Format state as text for viewing.
+     */
+    public String toString() {
+        return '[' + value + ']';
     }
 }
