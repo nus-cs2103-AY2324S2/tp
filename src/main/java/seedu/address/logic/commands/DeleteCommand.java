@@ -26,11 +26,16 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Removed Person: %1$s";
 
-    private final Id ID;
+    private final Id id;
 
-    public DeleteCommand(Id ID) {
-        requireNonNull(ID);
-        this.ID = ID;
+    /**
+     * Creates a DeleteCommand to remove the worker by specific ID.
+     *
+     * @param id ID of the worker to be removed.
+     */
+    public DeleteCommand(Id id) {
+        requireNonNull(id);
+        this.id = id;
     }
 
     @Override
@@ -40,7 +45,7 @@ public class DeleteCommand extends Command {
 
         Person personToRemove = lastShownList
                 .stream()
-                .filter(person -> person.getId().value == (this.ID.value))
+                .filter(person -> person.getId().value == (this.id.value))
                 .findFirst()
                 .orElse(null);
 
@@ -64,13 +69,13 @@ public class DeleteCommand extends Command {
         }
 
         DeleteCommand otherDeleteCommand = (DeleteCommand) other;
-        return ID.equals(otherDeleteCommand.ID);
+        return id.equals(otherDeleteCommand.id);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("targetIndex", ID)
+                .add("targetIndex", id)
                 .toString();
     }
 }
