@@ -99,7 +99,7 @@ public class AddressBookParserTest {
                 + INDEX_FIRST_PERSON.getOneBased()
                 + " t/alpha t/beta"));
     }
-  
+
     @Test
     public void parseCommand_untag() throws Exception {
         var index = INDEX_FIRST_PERSON;
