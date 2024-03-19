@@ -8,8 +8,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.PhoneContainsDigitsPredicate;
 
 /**
- * Finds and lists all persons in address book whose name contains any of the argument keywords.
- * Keyword matching is case insensitive.
+ * Finds and lists all persons in address book whose phone number contains any of the argument phone numbers.
  */
 public class FindNumCommand extends Command {
 
