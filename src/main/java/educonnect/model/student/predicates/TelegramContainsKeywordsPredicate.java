@@ -9,10 +9,10 @@ import educonnect.model.student.Student;
 /**
  * Tests that a {@code Student}'s {@code Email} matches any of the keywords given.
  */
-public class TelegramContainsKeywordPredicate implements Predicate<Student> {
+public class TelegramContainsKeywordsPredicate implements Predicate<Student> {
     private final String keywordTelegram;
 
-    public TelegramContainsKeywordPredicate(String keywordTelegram) {
+    public TelegramContainsKeywordsPredicate(String keywordTelegram) {
         this.keywordTelegram = keywordTelegram; //replace
     }
 
@@ -28,11 +28,11 @@ public class TelegramContainsKeywordPredicate implements Predicate<Student> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof TelegramContainsKeywordPredicate)) {
+        if (!(other instanceof TelegramContainsKeywordsPredicate)) {
             return false;
         }
 
-        TelegramContainsKeywordPredicate otherTelegramContainsKeywordsPredicate = (TelegramContainsKeywordPredicate) other;
+        TelegramContainsKeywordsPredicate otherTelegramContainsKeywordsPredicate = (TelegramContainsKeywordsPredicate) other;
         return keywordTelegram.equals(otherTelegramContainsKeywordsPredicate.keywordTelegram);
     }
 

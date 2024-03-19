@@ -9,10 +9,10 @@ import educonnect.model.student.Student;
 /**
  * Tests that a {@code Student}'s {@code Id} matches any of the keywords given.
  */
-public class IdContainsKeywordPredicate implements Predicate<Student> {
+public class IdContainsKeywordsPredicate implements Predicate<Student> {
     private final String keywordId;
 
-    public IdContainsKeywordPredicate(String keywordId) {
+    public IdContainsKeywordsPredicate(String keywordId) {
         this.keywordId = keywordId; //replace
     }
 
@@ -28,11 +28,11 @@ public class IdContainsKeywordPredicate implements Predicate<Student> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof IdContainsKeywordPredicate)) {
+        if (!(other instanceof IdContainsKeywordsPredicate)) {
             return false;
         }
 
-        IdContainsKeywordPredicate otherIdContainsKeywordsPredicate = (IdContainsKeywordPredicate) other;
+        IdContainsKeywordsPredicate otherIdContainsKeywordsPredicate = (IdContainsKeywordsPredicate) other;
         return keywordId.equals(otherIdContainsKeywordsPredicate.keywordId);
     }
 
