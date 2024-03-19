@@ -10,16 +10,16 @@ import java.util.function.Predicate;
  * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
  */
 public class PhoneContainsDigitsPredicate implements Predicate<Person> {
-    private final List<String> keywords;
+    private final List<String> phones;
 
-    public PhoneContainsDigitsPredicate(List<String> keywords) {
-        this.keywords = keywords;
+    public PhoneContainsDigitsPredicate(List<String> phones) {
+        this.phones = phones;
     }
 
     @Override
     public boolean test(Person person) {
-        return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getName().fullName, keyword));
+        return phones.stream()
+                .anyMatch(phone -> StringUtil.containsWordIgnoreCase(person.getPhone().value, phone));
     }
 
     @Override
@@ -34,11 +34,11 @@ public class PhoneContainsDigitsPredicate implements Predicate<Person> {
         }
 
         PhoneContainsDigitsPredicate otherNameContainsKeywordsPredicate = (PhoneContainsDigitsPredicate) other;
-        return keywords.equals(otherNameContainsKeywordsPredicate.keywords);
+        return phones.equals(otherNameContainsKeywordsPredicate.phones);
     }
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this).add("keywords", keywords).toString();
+        return new ToStringBuilder(this).add("phones", phones).toString();
     }
 }
