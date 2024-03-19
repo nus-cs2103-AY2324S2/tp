@@ -41,16 +41,20 @@ public class DeleteCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
+        // We try to find the person based on the given studentId.
         Optional<Person> personToDelete = lastShownList.stream()
                 .filter(person -> person.getSid() == targetIndex.getOneBased())
                 .findFirst();
 
         if (personToDelete.isPresent()) {
+            // Delete the person if it was successfully found.
             model.deletePerson(personToDelete.get());
+
             return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS,
                     Messages.format(personToDelete.get())));
 
         } else {
+            // Otherwise we just throw an error.
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
