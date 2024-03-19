@@ -6,8 +6,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Status;
 import javafx.scene.shape.Circle;
+import seedu.address.model.person.Status;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -49,20 +49,26 @@ public class PersonCard extends UiPart<Region> {
         updateStatusCircle(person.getStatus());
     }
 
+    /**
+     * Set colour of status circle to represent status
+     *
+     * @param status
+     * @return colour representing that respective status
+     */
     public void updateStatusCircle(Status status) {
         switch (status.getStatusType()) {
-            case HEALTHY:
-                statusCircle.setFill(Color.GREEN);
-                break;
-            case UNWELL:
-                statusCircle.setFill(Color.RED);
-                break;
-            case PENDING:
-                statusCircle.setFill(Color.YELLOW);
-                break;
-            default:
-                statusCircle.setFill(Color.GREY);
-                break;
+        case HEALTHY:
+            statusCircle.setFill(Color.GREEN);
+            break;
+        case UNWELL:
+            statusCircle.setFill(Color.RED);
+            break;
+        case PENDING:
+            statusCircle.setFill(Color.YELLOW);
+            break;
+        default:
+            statusCircle.setFill(Color.GREY);
+            break;
         }
     }
 }
