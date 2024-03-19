@@ -22,7 +22,7 @@ public class TutorialClass {
      */
     public static final String VALIDATION_REGEX = "^[A-Z]\\d{2}$";
 
-    public final String value;
+    public final String tutorialName;
     private final ArrayList<Person> students;
     /**
      * Constructs a {@code TutorialClass} with default values.
@@ -42,7 +42,7 @@ public class TutorialClass {
     public TutorialClass(String tutorialClass) {
         requireAllNonNull(tutorialClass);
         checkArgument(isValidTutorialClass(tutorialClass), MESSAGE_CONSTRAINTS);
-        this.value = tutorialClass;
+        this.tutorialName = tutorialClass;
         this.students = new ArrayList<>();
     }
 
@@ -55,7 +55,7 @@ public class TutorialClass {
     public TutorialClass(String tutorialClass, ArrayList<Person> students) {
         requireAllNonNull(tutorialClass);
         checkArgument(isValidTutorialClass(tutorialClass), MESSAGE_CONSTRAINTS);
-        this.value = tutorialClass;
+        this.tutorialName = tutorialClass;
         this.students = students;
     }
     /**
@@ -73,7 +73,7 @@ public class TutorialClass {
 
     @Override
     public String toString() {
-        return value;
+        return tutorialName;
     }
 
     @Override
@@ -88,11 +88,11 @@ public class TutorialClass {
         }
 
         TutorialClass otherTutorialClass = (TutorialClass) other;
-        return value.equals(otherTutorialClass.value);
+        return tutorialName.equals(otherTutorialClass.tutorialName);
     }
 
     @Override
     public int hashCode() {
-        return value.hashCode();
+        return tutorialName.hashCode();
     }
 }
