@@ -9,6 +9,8 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.NusId;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Remark;
+import seedu.address.model.person.Schedule;
 import seedu.address.model.person.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -22,6 +24,9 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_TAG = "Student";
+    public static final String DEFAULT_SCHEDULE = "12-12-2024";
+    public static final String DEFAULT_REMARK = "Consultation at COM3";
+
 
     private NusId nusId;
     private Name name;
@@ -29,6 +34,8 @@ public class PersonBuilder {
     private Email email;
     private Tag tag;
     private Set<Group> groups;
+    private Schedule schedule;
+    private Remark remark;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -40,6 +47,8 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         tag = new Tag(DEFAULT_TAG);
         groups = new HashSet<>();
+        schedule = new Schedule(DEFAULT_SCHEDULE);
+        remark = new Remark(DEFAULT_REMARK);
     }
 
     /**
@@ -52,6 +61,8 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         tag = personToCopy.getTag();
         groups = new HashSet<>(personToCopy.getGroups());
+        schedule = personToCopy.getSchedule();
+        remark = personToCopy.getRemark();
     }
 
     /**
@@ -102,8 +113,24 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Schedule} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withSchedule(String schedule) {
+        this.schedule = new Schedule(schedule);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Remark} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withRemark(String remark) {
+        this.remark = new Remark(remark);
+        return this;
+    }
+
     public Person build() {
-        return new Person(nusId, name, phone, email, tag, groups);
+        return new Person(nusId, name, phone, email, tag, groups, schedule, remark);
     }
 
 }
