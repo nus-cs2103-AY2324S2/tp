@@ -19,7 +19,7 @@ You can reach us at the email `E0957568@u.nus.edu`
 [[github](https://github.com/nichee)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Code Monkey
+* Role: Coder
 * Responsibilities: Coding :)
 
 ### Andrew Ong Pang Woon
