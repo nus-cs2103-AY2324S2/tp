@@ -6,7 +6,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import javafx.embed.swing.JFXPanel;
+import javafx.application.Platform;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -17,8 +17,7 @@ public class CommandBoxTest {
 
     @BeforeAll
     public static void setupJavaFX() {
-        // Initialize JavaFX toolkit
-        JFXPanel jfxPanel = new JFXPanel();
+        Platform.startup(() -> {});
     }
 
     @BeforeEach
