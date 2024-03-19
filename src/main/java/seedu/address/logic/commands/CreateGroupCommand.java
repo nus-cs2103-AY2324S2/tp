@@ -11,6 +11,7 @@ import seedu.address.model.Model;
 import seedu.address.model.coursemate.CourseMate;
 import seedu.address.model.coursemate.Name;
 import seedu.address.model.coursemate.QueryableCourseMate;
+import seedu.address.model.coursemate.exceptions.CourseMateNotFoundException;
 import seedu.address.model.group.Group;
 
 /**
@@ -28,7 +29,11 @@ public class CreateGroupCommand extends Command {
             + PREFIX_COURSEMATE + "#1 "
             + PREFIX_COURSEMATE + "John Doe.";
 
-    public static final String MESSAGE_DUPLICATE_GROUP = "This group already exists in the group list";
+    public static final String MESSAGE_DUPLICATE_GROUP = "This group already exists in the group list.";
+
+    public static final String MESSAGE_GROUP_CREATED = "A group with name: %s was created.";
+
+    public static final String MESSAGE_MEMBERS_DONT_EXIST = "Some of the included members could not be found.";
 
     private final Name groupName;
     private final Set<QueryableCourseMate> queryableCourseMateSet;
@@ -47,18 +52,22 @@ public class CreateGroupCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        Set<CourseMate> courseMateList = queryableCourseMateSet
-                .stream()
-                .map(model::findCourseMate)
-                .collect(Collectors.toSet());
-        Group toAdd = new Group(groupName, courseMateList);
+        try {
+            Set<CourseMate> courseMateList = queryableCourseMateSet
+                    .stream()
+                    .map(model::findCourseMate)
+                    .collect(Collectors.toSet());
+            Group toAdd = new Group(groupName, courseMateList);
 
-        if (model.hasGroup(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_GROUP);
+            if (model.hasGroup(toAdd)) {
+                throw new CommandException(MESSAGE_DUPLICATE_GROUP);
+            }
+
+            model.addGroup(toAdd);
+            return new CommandResult(String.format(MESSAGE_GROUP_CREATED, groupName));
+        } catch (CourseMateNotFoundException e) {
+            throw new CommandException(MESSAGE_MEMBERS_DONT_EXIST);
         }
 
-        model.addGroup(toAdd);
-        return new CommandResult(String.format("Hello from group: %s, Members: %s",
-                toAdd.getName(), toAdd));
     }
 }

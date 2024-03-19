@@ -66,4 +66,13 @@ public class QueryableCourseMate {
     public boolean isName() {
         return name != null;
     }
+
+    @Override
+    public String toString() {
+        if (isName()) {
+            return name.toString();
+        } else {
+            return "#" + index.getOneBased();
+        }
+    }
 }

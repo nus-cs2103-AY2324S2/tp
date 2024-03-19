@@ -66,4 +66,9 @@ public class Group extends UniqueCourseMateList {
 
         return otherGroup.name.equals(name) && super.equals(other);
     }
+
+    @Override
+    public String toString() {
+        return "Name: " + name + ", " + super.toString();
+    }
 }
