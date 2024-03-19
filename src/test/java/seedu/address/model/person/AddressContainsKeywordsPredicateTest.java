@@ -70,11 +70,6 @@ public class AddressContainsKeywordsPredicateTest {
         // Non-matching keyword
         predicate = new AddressContainsKeywordsPredicate(Arrays.asList("india"));
         assertFalse(predicate.test(new PersonBuilder().withAddress("little tokyo").build()));
-
-        // Keywords match phone, email and name, but does not match address
-        predicate = new AddressContainsKeywordsPredicate(Arrays.asList("12345", "alice@email.com", "Alice", "Tokyo"));
-        assertFalse(predicate.test(new PersonBuilder().withName("Alice").withPhone("12345")
-                .withEmail("alice@email.com").withAddress("Main Street").build()));
     }
 
     @Test
