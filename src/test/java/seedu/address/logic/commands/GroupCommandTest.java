@@ -26,7 +26,6 @@ import seedu.address.model.person.Person;
 import seedu.address.testutil.GroupPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 
-import java.util.Set;
 
 
 class GroupCommandTest {
