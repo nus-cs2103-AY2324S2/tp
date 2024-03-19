@@ -120,7 +120,7 @@ public class ParserUtil {
     public static OrderId parseOrderId(String orderId) throws ParseException {
         requireNonNull(orderId);
         String trimmedTag = orderId.trim();
-        return new OrderId(orderId);
+        return new OrderId(trimmedTag);
     }
 
     /**

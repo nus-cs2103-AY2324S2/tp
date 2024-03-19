@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -14,11 +15,13 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.order.OrderId;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
+import seedu.address.testutil.OrderBuilder;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
@@ -189,6 +192,25 @@ public class ParserUtilTest {
     @Test
     public void parseOrderId_invalidId_throwsParseException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseOrderId((String) null));
+    }
+
+    @Test
+    public void testParseNullOrderId() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseOrderId(null));
+    }
+
+    @Test
+    public void testParseOrderIdWithWhitespaces() throws ParseException {
+        OrderBuilder builder = new OrderBuilder();
+        String input = " " + builder.build().getOrderId().toString() + " ";
+        OrderId result = ParserUtil.parseOrderId(input);
+        assertNotNull(result);
+    }
+
+    @Test
+    public void testParseInvalidOrderId() {
+        String input = "123";
+        assertThrows(IllegalArgumentException.class, () -> ParserUtil.parseOrderId(input));
     }
     @Test
     public void parseTags_collectionWithValidTags_returnsTagSet() throws Exception {
