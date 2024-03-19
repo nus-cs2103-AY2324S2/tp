@@ -213,8 +213,7 @@ public class ModelManager implements Model {
         return addressBook.equals(otherModelManager.addressBook)
                 && taskList.equals(otherModelManager.taskList)
                 && userPrefs.equals(otherModelManager.userPrefs)
-                && filteredPersons.equals(otherModelManager.filteredPersons)
-                && filteredTasks.equals(otherModelManager.filteredTasks);
+                && filteredPersons.equals(otherModelManager.filteredPersons);
     }
 
 }
