@@ -50,17 +50,14 @@ public class AddMedInfoCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        // if person not exist, throw error
         Person p = model.findPersonByNric(nric);
         if (p == null) {
             throw new CommandException(MESSAGE_PERSON_NOT_FOUND);
         }
-        // if person already has contact information, throw error
 
         if (p.hasMedicalInformation()) {
             throw new CommandException(MESSAGE_MEDICAL_INFO_ALREADY_EXIST);
         } else {
-            // add the contact information to the person
             model.updatePersonMedicalInformation(nric, medicalInformation);
             model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
