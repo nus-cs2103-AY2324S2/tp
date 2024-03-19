@@ -15,7 +15,6 @@ import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
-import seedu.address.logic.commands.FindNumCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.RemarkCommand;
@@ -70,9 +69,6 @@ public class NetConnectParser {
 
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
-
-        case FindNumCommand.COMMAND_WORD:
-            return new FindNumCommandParser().parse(arguments);
 
         case RemarkCommand.COMMAND_WORD:
             return new RemarkCommandParser().parse(arguments);

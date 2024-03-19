@@ -24,13 +24,11 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
-import seedu.address.logic.commands.FindNumCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.RemarkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.person.PhoneContainsDigitsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Remark;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -81,14 +79,6 @@ public class NetConnectParserTest {
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
-    }
-
-    @Test
-    public void parseCommand_findNum() throws Exception {
-        List<String> phones = Arrays.asList("87438807", "99272758", "foo");
-        FindNumCommand command = (FindNumCommand) parser.parseCommand(
-                FindNumCommand.COMMAND_WORD + " " + phones.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindNumCommand(new PhoneContainsDigitsPredicate(phones)), command);
     }
 
     @Test
