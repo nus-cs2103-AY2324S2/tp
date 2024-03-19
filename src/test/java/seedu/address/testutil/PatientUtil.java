@@ -8,32 +8,32 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SEX;
 
 import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.model.person.Person;
+import seedu.address.logic.commands.EditCommand.EditPatientDescriptor;
+import seedu.address.model.patient.Patient;
 
 /**
- * A utility class for Person.
+ * A utility class for Patient.
  */
-public class PersonUtil {
+public class PatientUtil {
 
     /**
-     * Returns an add command string for adding the {@code person}.
+     * Returns an add command string for adding the {@code patient}.
      */
-    public static String getAddCommand(Person person) {
-        return AddCommand.COMMAND_WORD + " " + getPersonDetails(person);
+    public static String getAddCommand(Patient patient) {
+        return AddCommand.COMMAND_WORD + " " + getPersonDetails(patient);
     }
 
     /**
-     * Returns the part of command string for the given {@code person}'s details.
+     * Returns the part of command string for the given {@code patient}'s details.
      */
-    public static String getPersonDetails(Person person) {
+    public static String getPersonDetails(Patient patient) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_NAME + person.getName().fullName + " ");
-        sb.append(PREFIX_PHONE + person.getPhone().value + " ");
-        sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
-        sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
-        sb.append(PREFIX_DATEOFBIRTH + person.getDateOfBirth().toString() + " ");
-        sb.append(PREFIX_SEX + person.getSex().toString() + " ");
+        sb.append(PREFIX_NAME + patient.getName().fullName + " ");
+        sb.append(PREFIX_PHONE + patient.getPhone().value + " ");
+        sb.append(PREFIX_EMAIL + patient.getEmail().value + " ");
+        sb.append(PREFIX_ADDRESS + patient.getAddress().value + " ");
+        sb.append(PREFIX_DATEOFBIRTH + patient.getDateOfBirth().toString() + " ");
+        sb.append(PREFIX_SEX + patient.getSex().toString() + " ");
         System.out.println(sb.toString());
         return sb.toString();
     }
@@ -41,7 +41,7 @@ public class PersonUtil {
     /**
      * Returns the part of command string for the given {@code EditPersonDescriptor}'s details.
      */
-    public static String getEditPersonDescriptorDetails(EditPersonDescriptor descriptor) {
+    public static String getEditPersonDescriptorDetails(EditPatientDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
