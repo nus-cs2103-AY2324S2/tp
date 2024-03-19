@@ -3,14 +3,16 @@ package seedu.address.logic.commands;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import seedu.address.model.order.Order;
 import seedu.address.model.order.Product;
 import seedu.address.model.order.Quantity;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PRODUCT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRODUCT_QUANTITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRODUCT_NAME;
 
-public class AddProductCommand extends Command{
+/**
+ * Adds a product to the order.
+ */
+public class AddProductCommand extends Command {
     public static final String COMMAND_WORD = "product";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
@@ -31,6 +33,10 @@ public class AddProductCommand extends Command{
         this.quantity = quantity;
     }
 
+    /**
+     * Sets the last order
+     * @param order the last order
+     */
     public static void setLastOrder(Order order) {
         lastOrder = order;
     }

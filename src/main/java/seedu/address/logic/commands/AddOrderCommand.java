@@ -3,15 +3,12 @@ package seedu.address.logic.commands;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
-import java.util.Map;
 import java.util.Optional;
 
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.order.Order;
-import seedu.address.model.order.Product;
-import seedu.address.model.order.Quantity;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 
@@ -23,7 +20,8 @@ public class AddOrderCommand extends Command {
     public static final String MESSAGE_ARGUMENTS = "Index: %1$d";
     public static final String MESSAGE_ADD_ORDER_SUCCESS = "Added order to Person: %1$s";
     public static final String MESSAGE_DELETE_ORDER_SUCCESS = "Removed order from Person: %1$s";
-    public static final String MESSAGE_ADD_PRODUCTS = "Add products using this command: product pn/[PRODUCT] and pq/[QUANTITY]";
+    public static final String MESSAGE_ADD_PRODUCTS = "Add products using this command:" +
+            "product pn/[PRODUCT] and pq/[QUANTITY]";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Edits the order of the person identified "
             + "by the phone number of person. "
@@ -34,9 +32,8 @@ public class AddOrderCommand extends Command {
             + "p/ 87438807.";
 
     private final Phone phone;
-    private Order order;
-
     private static Order lastOrder;
+    private Order order;
 
     /**
      * Constructs an {@code AddOrderCommand} with the given {@code Phone}.
