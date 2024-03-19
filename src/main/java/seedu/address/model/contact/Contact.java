@@ -33,7 +33,7 @@ public class Contact {
      */
     public Contact(Name name, Phone phone, Email email, Address address, GitHubUsername gitHubUsername,
                    Set<TechStack> techStack, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+        requireAllNonNull(name, phone, email, address, tags, gitHubUsername, techStack);
         this.name = name;
         this.phone = phone;
         this.email = email;

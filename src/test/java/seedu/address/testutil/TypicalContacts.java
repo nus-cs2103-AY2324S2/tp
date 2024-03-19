@@ -28,26 +28,28 @@ public class TypicalContacts {
     public static final Contact ALICE = new ContactBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253")
-            .withGitHubUsername("allyyPaul")
+            .withGitHubUsername("AliceInWonderland2")
             .withTags("friends").build();
     public static final Contact BENSON = new ContactBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432")
-            .withGitHubUsername("BenSon007")
+            .withGitHubUsername("BenSon0")
             .withTags("owesMoney", "friends").build();
     public static final Contact CARL = new ContactBuilder().withName("Carl Kurz").withPhone("95352563")
-            .withEmail("heinz@example.com").withAddress("wall street").build();
+            .withEmail("heinz@example.com").withAddress("wall street").withGitHubUsername("CarlKurzCK").build();
     public static final Contact DANIEL = new ContactBuilder().withName("Daniel Meier").withPhone("87652533")
-            .withEmail("cornelia@example.com").withAddress("10th street").withTags("friends").build();
+            .withEmail("cornelia@example.com").withAddress("10th street").withGitHubUsername("Meier200").withTags("friends").build();
     public static final Contact ELLE = new ContactBuilder().withName("Elle Meyer").withPhone("9482224")
             .withEmail("werner@example.com").withAddress("michegan ave")
-            .withGitHubUsername("ellee").build();
+            .withGitHubUsername("Ellieellie").build();
     public static final Contact FIONA = new ContactBuilder().withName("Fiona Kunz").withPhone("9482427")
             .withEmail("lydia@example.com").withAddress("little tokyo")
-            .withGitHubUsername("FiFiiKunz").build();
+            .withGitHubUsername("FifiKunz").build();
     public static final Contact GEORGE = new ContactBuilder().withName("George Best").withPhone("9482442")
             .withEmail("anna@example.com").withAddress("4th street")
             .withGitHubUsername("GeBest2103").build();
+
+    public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
     // Manually added
     public static final Contact HOON = new ContactBuilder().withName("Hoon Meier").withPhone("8482424")
@@ -66,12 +68,10 @@ public class TypicalContacts {
             .withGitHubUsername(VALID_GITHUB_USERNAME_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
             .build();
 
-    public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
-
     private TypicalContacts() {} // prevents instantiation
 
     /**
-     * Returns an {@code CodeConnect} with all the typical persons.
+     * Returns an {@code CodeConnect} with all the typical contacts.
      */
     public static CodeConnect getTypicalCodeConnect() {
         CodeConnect ab = new CodeConnect();
