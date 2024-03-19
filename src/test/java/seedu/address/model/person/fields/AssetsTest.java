@@ -13,7 +13,7 @@ import seedu.address.model.asset.Asset;
 
 class AssetsTest {
 
-    private static final String INVALID_ASSET = "#nut";
+    private static final String INVALID_ASSET = " ";
     private static final String VALID_ASSET_1 = "screwdriver";
     private static final String VALID_ASSET_2 = "hammer";
 

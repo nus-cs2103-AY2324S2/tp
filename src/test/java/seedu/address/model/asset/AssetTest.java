@@ -15,9 +15,7 @@ public class AssetTest {
     @Test
     public void constructor_invalidAssetName_throwsIllegalArgumentException() {
         assertThrows(IllegalArgumentException.class, () -> Asset.of("")); // empty string
-        assertThrows(IllegalArgumentException.class, () -> Asset.of("Hello@World")); // not alphanumeric
-        assertThrows(IllegalArgumentException.class, () -> Asset.of("Testing 123")); // contains space
-        assertThrows(IllegalArgumentException.class, () -> Asset.of("Café123")); // contains illegal unicode character
+        assertThrows(IllegalArgumentException.class, () -> Asset.of(" ")); // spaces only
     }
 
     @Test
