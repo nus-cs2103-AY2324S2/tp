@@ -4,14 +4,19 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_STUDENT_ID_AMY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULECODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENTID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIALCLASS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddClassCommand;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
@@ -24,11 +29,16 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListClassesCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.SearchStudentCommand;
+import seedu.address.logic.commands.addstudenttoclasscommands.AddStudentToClassByEmailCommand;
+import seedu.address.logic.commands.addstudenttoclasscommands.AddStudentToClassByIdCommand;
+import seedu.address.logic.commands.addstudenttoclasscommands.AddStudentToClassCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.TutorialClass;
+import seedu.address.model.person.Email;
 import seedu.address.model.person.NameContainsKeywordPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.StudentId;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
@@ -56,7 +66,7 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
-            DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
+                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
         assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
     }
 
@@ -65,7 +75,7 @@ public class AddressBookParserTest {
         Person person = new PersonBuilder().build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-            + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
+                + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
     }
 
@@ -109,8 +119,7 @@ public class AddressBookParserTest {
     public void parseCommand_deleteClass() throws Exception {
         final String moduleCode = "CS2103T";
         final String tutorialClass = "T09";
-        DeleteClassCommand command = (DeleteClassCommand)
-                parser.parseCommand(DeleteClassCommand.COMMAND_WORD + " "
+        DeleteClassCommand command = (DeleteClassCommand) parser.parseCommand(DeleteClassCommand.COMMAND_WORD + " "
                 + PREFIX_MODULECODE + moduleCode + " " + PREFIX_TUTORIALCLASS + tutorialClass);
         assertEquals(new DeleteClassCommand(new ModuleCode(moduleCode),
                 new TutorialClass(tutorialClass)), command);
@@ -121,10 +130,34 @@ public class AddressBookParserTest {
         assertTrue(parser.parseCommand(ListClassesCommand.COMMAND_WORD) instanceof ListClassesCommand);
         assertTrue(parser.parseCommand(ListClassesCommand.COMMAND_WORD + " 3") instanceof ListClassesCommand);
     }
+
+    @Test
+    public void parseCommand_addStudentToClass() throws Exception {
+        final String moduleCode = "CS2103T";
+        final String tutorialClass = "T09";
+        final String email = VALID_EMAIL_AMY;
+        final String id = VALID_STUDENT_ID_AMY;
+        final Index index = INDEX_FIRST_PERSON;
+        AddStudentToClassCommand addByEmailCommand = (AddStudentToClassCommand) parser.parseCommand(
+                AddStudentToClassCommand.COMMAND_WORD + " " + PREFIX_EMAIL + email + " " + PREFIX_MODULECODE
+                        + moduleCode + " "
+                        + PREFIX_TUTORIALCLASS + tutorialClass);
+        AddStudentToClassCommand addByIdCommand = (AddStudentToClassCommand) parser.parseCommand(
+                AddStudentToClassCommand.COMMAND_WORD + " " + PREFIX_STUDENTID + id + " " + PREFIX_MODULECODE
+                        + moduleCode + " "
+                        + PREFIX_TUTORIALCLASS + tutorialClass);
+        assertEquals(new AddStudentToClassByEmailCommand(new Email(VALID_EMAIL_AMY), new ModuleCode(moduleCode),
+                new TutorialClass(tutorialClass)), addByEmailCommand);
+        assertEquals(new AddStudentToClassByIdCommand(new StudentId(VALID_STUDENT_ID_AMY), new ModuleCode(moduleCode),
+                new TutorialClass(tutorialClass)), addByIdCommand);
+
+    }
+
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
-        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
-            -> parser.parseCommand(""));
+        assertThrows(ParseException.class,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), (
+                ) -> parser.parseCommand(""));
     }
 
     @Test

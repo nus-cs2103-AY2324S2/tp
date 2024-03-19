@@ -6,6 +6,7 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.messages.PersonMessages;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.StudentId;
@@ -14,9 +15,6 @@ import seedu.address.model.person.StudentId;
  * Deletes a student identified using student ID from the address book.
  */
 public class DeleteStudentByIdCommand extends DeleteStudentCommand {
-
-    public static final String MESSAGE_PERSON_STUDENT_ID_NOT_FOUND = "The student with student ID %s "
-            + "does not exist in the address book";
 
     private final StudentId studentId;
 
@@ -34,7 +32,7 @@ public class DeleteStudentByIdCommand extends DeleteStudentCommand {
         Person personToDelete;
         personToDelete = model.searchPersonByPredicate(person -> person.getStudentId().equals(studentId));
         if (personToDelete == null) {
-            throw new CommandException(String.format(MESSAGE_PERSON_STUDENT_ID_NOT_FOUND, studentId));
+            throw new CommandException(String.format(PersonMessages.MESSAGE_PERSON_STUDENT_ID_NOT_FOUND, studentId));
         }
 
         model.deletePerson(personToDelete);

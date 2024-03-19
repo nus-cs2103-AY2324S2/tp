@@ -1,6 +1,7 @@
 package seedu.address.storage;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -17,14 +18,14 @@ class JsonAdaptedModule {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Module name is missing!";
 
     private final String name;
-    private final ArrayList<TutorialClass> tutorialClasses;
+    private final ArrayList<JsonAdaptedTutorialClass> tutorialClasses;
 
     /**
      * Constructs a {@code JsonAdaptedModule} with the given module details.
      */
     @JsonCreator
     public JsonAdaptedModule(@JsonProperty("name") String name, @JsonProperty("tutorialClasses")
-        ArrayList<TutorialClass> tutorialClasses) {
+        ArrayList<JsonAdaptedTutorialClass> tutorialClasses) {
         this.name = name;
         this.tutorialClasses = tutorialClasses;
     }
@@ -34,7 +35,22 @@ class JsonAdaptedModule {
      */
     public JsonAdaptedModule(ModuleCode source) {
         name = source.toString();
-        this.tutorialClasses = source.getTutorialClasses();
+        this.tutorialClasses = source.getTutorialClasses().stream().map(JsonAdaptedTutorialClass::new)
+            .collect(Collectors.toCollection(ArrayList::new));
+    }
+
+    /**
+     * Retrieves module name from the module.
+     */
+    public String getModuleName() {
+        return name;
+    }
+
+    /**
+     * Retrieves tutorial classes from the module.
+     */
+    public ArrayList<JsonAdaptedTutorialClass> getTutorialClasses() {
+        return tutorialClasses;
     }
 
     /**
@@ -45,6 +61,10 @@ class JsonAdaptedModule {
     public ModuleCode toModelType() throws IllegalValueException {
         if (!ModuleCode.isValidModuleCode(name)) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, name));
+        }
+        ArrayList<TutorialClass> tutorialClasses = new ArrayList<>();
+        for (JsonAdaptedTutorialClass tutorialClass : this.tutorialClasses) {
+            tutorialClasses.add(tutorialClass.toModelType());
         }
         return new ModuleCode(name, tutorialClasses);
     }

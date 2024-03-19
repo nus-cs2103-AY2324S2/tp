@@ -6,6 +6,7 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.messages.PersonMessages;
 import seedu.address.model.Model;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
@@ -15,8 +16,6 @@ import seedu.address.model.person.Person;
  */
 public class DeleteStudentByEmailCommand extends DeleteStudentCommand {
 
-    public static final String MESSAGE_PERSON_EMAIL_NOT_FOUND = "The student with email %s "
-            + "does not exist in the address book";
 
     private final Email email;
 
@@ -34,7 +33,7 @@ public class DeleteStudentByEmailCommand extends DeleteStudentCommand {
         Person personToDelete;
         personToDelete = model.searchPersonByPredicate(person -> person.getEmail().equals(email));
         if (personToDelete == null) {
-            throw new CommandException(String.format(MESSAGE_PERSON_EMAIL_NOT_FOUND, email));
+            throw new CommandException(String.format(PersonMessages.MESSAGE_PERSON_EMAIL_NOT_FOUND, email));
         }
         model.deletePerson(personToDelete);
 

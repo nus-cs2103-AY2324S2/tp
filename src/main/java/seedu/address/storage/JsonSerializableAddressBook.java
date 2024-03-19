@@ -2,6 +2,7 @@ package seedu.address.storage;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -27,11 +28,12 @@ class JsonSerializableAddressBook {
     private final List<JsonAdaptedModule> modules = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given persons and modules.
+     * Constructs a {@code JsonSerializableAddressBook} with the given persons and
+     * modules.
      */
     @JsonCreator
     public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
-                                       @JsonProperty("modules") List<JsonAdaptedModule> modules) {
+            @JsonProperty("modules") List<JsonAdaptedModule> modules) {
         if (persons != null) {
             this.persons.addAll(persons);
         }
@@ -43,7 +45,8 @@ class JsonSerializableAddressBook {
     /**
      * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
+     * @param source future changes to this will not affect the created
+     *               {@code JsonSerializableAddressBook}.
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
@@ -52,7 +55,6 @@ class JsonSerializableAddressBook {
 
     /**
      * Converts this address book into the model's {@code AddressBook} object.
-     *
      * @throws IllegalValueException if there were any data constraints violated.
      */
     public AddressBook toModelType() throws IllegalValueException {
@@ -72,6 +74,41 @@ class JsonSerializableAddressBook {
             addressBook.addModule(module);
         }
         return addressBook;
+    }
+
+    /**
+     * Adds a person to the students list of a specific tutorial class within a
+     * module.
+     * @param tutorialName The name of the tutorial class to which the person will
+     *                     be added.
+     * @param person       The person to be added.
+     * @throws IllegalValueException if the tutorial class or module does not exist
+     *                               in the address book.
+     */
+    public void addPersonToTutorialClass(String moduleName, String tutorialName, Person person)
+            throws IllegalValueException {
+        // Find the module that contains the specified tutorial class
+        Optional<JsonAdaptedModule> moduleOptional = modules.stream()
+                .filter(moduleCode -> moduleCode.getModuleName().equals(moduleName))
+                .findFirst();
+
+        if (moduleOptional.isPresent()) {
+            JsonAdaptedModule module = moduleOptional.get();
+            // Find the tutorial class with the specified name
+            Optional<JsonAdaptedTutorialClass> tutorialOptional = module.getTutorialClasses().stream()
+                    .filter(tutorial -> tutorial.getTutorialName().equals(tutorialName))
+                    .findFirst();
+
+            if (tutorialOptional.isPresent()) {
+                JsonAdaptedTutorialClass tutorialClass = tutorialOptional.get();
+                // Add the person to the students list of the tutorial class
+                tutorialClass.getStudents().add(new JsonAdaptedPerson(person));
+            } else {
+                throw new IllegalValueException("Tutorial class '" + tutorialName + "' not found in module.");
+            }
+        } else {
+            throw new IllegalValueException("Module containing tutorial class '" + tutorialName + "' not found.");
+        }
     }
 
 }

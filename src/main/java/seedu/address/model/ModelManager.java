@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.module.ModuleCode;
+import seedu.address.model.module.TutorialClass;
 import seedu.address.model.person.Person;
 
 
@@ -101,6 +102,16 @@ public class ModelManager implements Model {
         requireNonNull(module);
         return addressBook.findModuleFromList(module);
     }
+
+    @Override
+    public TutorialClass findTutorialClassFromList(TutorialClass tutorialClass, ModuleCode moduleCode) {
+        try {
+            return addressBook.findTutorialClassFromList(tutorialClass, moduleCode);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
     @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
@@ -115,6 +126,11 @@ public class ModelManager implements Model {
     @Override
     public void addModule(ModuleCode module) {
         addressBook.addModule(module);
+    }
+
+    @Override
+    public void addPersonToTutorialClass(Person person, ModuleCode module, TutorialClass tutorialClass) {
+        addressBook.addPersonToTutorialClass(person, module, tutorialClass);
     }
 
     @Override
