@@ -8,19 +8,18 @@
 
 > Perfection is achieved, not when there is nothing more to add, but when there is nothing left to take away.
 >
-> —  Antoine de Saint-Exupery
+> — Antoine de Saint-Exupery
 
 When working on an existing code base, you will most likely find that some features that are no longer necessary.
 This tutorial aims to give you some practice on such a code 'removal' activity by removing the `address` field from `Person` class.
 
 <box type="success">
 
-**If you have done the [Add `remark` command tutorial](AddRemark.html)  already**, you should know where the code had to be updated to add the field `remark`. From that experience, you can deduce where the code needs to be changed to _remove_ that field too. The removing of the `address` field can be done similarly.
+**If you have done the [Add `remark` command tutorial](AddRemark.html) already**, you should know where the code had to be updated to add the field `remark`. From that experience, you can deduce where the code needs to be changed to _remove_ that field too. The removing of the `address` field can be done similarly.
 <br>
 <br>
 However, if you have no such prior knowledge, removing a field can take a quite a bit of detective work. This tutorial takes you through that process. **At least have a read even if you don't actually do the steps yourself.**
 </box>
-
 
 <!-- * Table of Contents -->
 <!-- {:toc} -->
@@ -32,6 +31,7 @@ IntelliJ IDEA provides a refactoring tool that can identify *most* parts of a re
 ### Assisted refactoring
 
 The `address` field in `Person` is actually an instance of the `seedu.address.model.person.Address` class. Since removing the `Address` class will break the application, we start by identifying `Address`'s usages. This allows us to see code that depends on `Address` to function properly and edit them on a case-by-case basis. Right-click the `Address` class and select `Refactor` \> `Safe Delete` through the menu.
+
 * :bulb: To make things simpler, you can unselect the options `Search in comments and strings` and `Search for text occurrences`
 
 ![Usages detected](../images/remove/UnsafeDelete.png)
@@ -83,7 +83,7 @@ private Label address;
 
 **`PersonCard.fxml`**
 
-``` xml
+```xml
 ...
 <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
 <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
@@ -99,16 +99,18 @@ At this point, your application is working as intended and all your tests are pa
 
 In `src/test/data/`, data meant for testing purposes are stored. While keeping the `address` field in the json files does not cause the tests to fail, it is not good practice to let cruft from old features accumulate.
 
-**`invalidPersonAddressBook.json`:**
+**`invalidPersonNetConnect.json`:**
 
 ```json
 {
-  "persons": [ {
-    "name": "Person with invalid name field: Ha!ns Mu@ster",
-    "phone": "9482424",
-    "email": "hans@example.com",
-    "address": "4th street"
-  } ]
+  "persons": [
+    {
+      "name": "Person with invalid name field: Ha!ns Mu@ster",
+      "phone": "9482424",
+      "email": "hans@example.com",
+      "address": "4th street"
+    }
+  ]
 }
 ```
 
