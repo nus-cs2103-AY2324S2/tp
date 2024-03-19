@@ -66,6 +66,7 @@ public class AddOrderCommand extends Command {
         ArrayList<Order> currentOrders = personToEdit.getOrders();
         currentOrders.add(this.order);
         editedPerson.setOrders(currentOrders);
+        this.order.setCustomer(editedPerson);
         AddProductCommand.setLastOrder(this.order);
 
         model.setPerson(personToEdit, editedPerson);
