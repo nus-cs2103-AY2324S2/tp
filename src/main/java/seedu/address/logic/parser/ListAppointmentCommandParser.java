@@ -25,9 +25,9 @@ public class ListAppointmentCommandParser implements Parser<ListAppointmentComma
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_STUDENT_ID);
 
         // All these criterias are OR not AND
-        // if (argMultimap.getValue(CliSyntax.PREFIX_NAME).isPresent()) {
-            // Name name = ParserUtil.parseName(argMultimap.getValue(CliSyntax.PREFIX_NAME).get());
-            // predicates.add(new NameContainsKeywordsPredicate(Collections.singletonList(name.fullName)));
+        //if (argMultimap.getValue(CliSyntax.PREFIX_NAME).isPresent()) {
+        // Name name = ParserUtil.parseName(argMultimap.getValue(CliSyntax.PREFIX_NAME).get());
+        // predicates.add(new NameContainsKeywordsPredicate(Collections.singletonList(name.fullName)));
         // }
 
         if (argMultimap.getValue(PREFIX_STUDENT_ID).isPresent()) {
