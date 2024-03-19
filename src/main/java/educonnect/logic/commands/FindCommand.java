@@ -8,6 +8,7 @@ import educonnect.model.Model;
 import educonnect.model.student.Student;
 import educonnect.model.student.predicates.NameContainsKeywordsPredicate;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -24,9 +25,9 @@ public class FindCommand extends Command {
             + "Parameters: [n/NAME] [s/STUDENT_ID] [h/TELEGRAM_HANDLE] [t/TAG]...\n"
             + "Example: " + COMMAND_WORD + " n/alice t/tutorial-1";
 
-    private final List<Predicate<Student>> predicates;
+    private final Collection<Predicate<Student>> predicates;
 
-    public FindCommand(List<Predicate<Student>> predicate) {
+    public FindCommand(Collection<Predicate<Student>> predicates) {
         this.predicates = predicates;
     }
 
@@ -50,13 +51,13 @@ public class FindCommand extends Command {
         }
 
         FindCommand otherFindCommand = (FindCommand) other;
-        return predicate.equals(otherFindCommand.predicate);
+        return predicates.equals(otherFindCommand.predicates);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("predicate", predicate)
+                .add("predicate", predicates)
                 .toString();
     }
 }

@@ -3,14 +3,15 @@ package educonnect.logic.parser;
 import educonnect.logic.commands.AddCommand;
 import educonnect.logic.commands.FindCommand;
 import educonnect.logic.parser.exceptions.ParseException;
-import educonnect.model.student.Student;
+import educonnect.model.student.*;
+
 import static educonnect.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static educonnect.logic.parser.CliSyntax.*;
+import static java.util.Objects.requireNonNull;
+import educonnect.model.student.predicates.*;
 
-import educonnect.model.student.predicates.NameContainsKeywordsPredicate;
-
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
@@ -25,6 +26,7 @@ public class FindCommandParser implements Parser<FindCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public FindCommand parse(String args) throws ParseException {
+
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_STUDENT_ID, PREFIX_EMAIL,
                         PREFIX_TELEGRAM_HANDLE, PREFIX_TAG);
@@ -32,19 +34,23 @@ public class FindCommandParser implements Parser<FindCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
-        List<Predicate<Student>> predicates = new ArrayList<>();
-        if (arePrefixesPresent(argMultimap, PREFIX_NAME)) {
-
+        Set<Predicate<Student>> predicates = new HashSet<>();
+        argMultimap.getValue(PREFIX_NAME).ifPresent(keywordName ->
+                predicates.add(new NameContainsKeywordsPredicate(keywordName))
+        );
+        argMultimap.getValue(PREFIX_STUDENT_ID).ifPresent(keywordId ->
+                predicates.add(new IdContainsKeywordsPredicate(keywordId))
+        );
+        argMultimap.getValue(PREFIX_EMAIL).ifPresent(keywordName ->
+                predicates.add(new EmailContainsKeywordsPredicate(keywordName))
+        );
+        argMultimap.getValue(PREFIX_TELEGRAM_HANDLE).ifPresent(keywordName ->
+                predicates.add(new TelegramContainsKeywordsPredicate(keywordName))
+        );
+        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        for (Tag keywordTag: tagList) {
+            predicates.add(new TagContainsKeywordsPredicate(keywordTag));
         }
-        if (arePrefixesPresent(argMultimap, PREFIX_STUDENT_ID)) {
-        }
-        if (arePrefixesPresent(argMultimap, PREFIX_EMAIL)) {
-        }
-        if (arePrefixesPresent(argMultimap, PREFIX_TELEGRAM_HANDLE)) {
-        }
-        if (arePrefixesPresent(argMultimap, PREFIX_TAG)) {
-        }
-
 
         return new FindCommand(predicates);
     }

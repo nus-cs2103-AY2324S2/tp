@@ -13,8 +13,8 @@ public class TagContainsKeywordsPredicate implements Predicate<Student> {
 
     private final Tag keywordTag;
 
-    public TagContainsKeywordsPredicate(String keywordTag) {
-        this.keywordTag = new Tag(keywordTag); //replace
+    public TagContainsKeywordsPredicate(Tag keywordTag) {
+        this.keywordTag = keywordTag; //replace
     }
 
     @Override
