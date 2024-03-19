@@ -9,7 +9,6 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Remark {
     public static final String MESSAGE_CONSTRAINTS = "Remark should be alphanumeric or empty";
-    public static final String VALIDATION_REGEX = "\\p{Alnum}*"; // Allow empty strings
 
     public final String value;
 
@@ -24,13 +23,12 @@ public class Remark {
             checkArgument(isValidRemark(remark), MESSAGE_CONSTRAINTS);
             this.value = remark;
     }
-
-
+    
     /**
      * Returns true if a given string is a valid remark.
      */
     public static boolean isValidRemark(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return true;
     }
 
     @Override
@@ -50,7 +48,7 @@ public class Remark {
         }
 
         Remark otherRemark = (Remark) other;
-        return value.equals(otherRemark.value);
+        return this.value.equals(otherRemark.value);
     }
 
     @Override
