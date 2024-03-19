@@ -40,15 +40,12 @@ public class AddTaskCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
-        requireNonNull(model);
-
+    public CommandResult execute(Model model) throws CommandException {    requireNonNull(model);
         if (!model.hasPerson(taskProject)) {
-            throw new CommandException(String.format(MESSAGE_PROJECT_NOT_FOUND, Messages.format(toAdd), Messages.format(taskProject)));
-        }
-
-        taskProject.addTask(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd), Messages.format(taskProject)));
+            throw new CommandException(String.format(MESSAGE_PROJECT_NOT_FOUND, Messages.format(toAdd), Messages.format(taskProject)));    }
+        Person combineTask = model.findPerson(taskProject.getName());
+        combineTask.addTask(toAdd);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd), Messages.format(combineTask)));
     }
 
     @Override

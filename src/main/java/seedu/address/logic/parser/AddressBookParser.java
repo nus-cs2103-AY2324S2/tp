@@ -69,6 +69,10 @@ public class AddressBookParser {
             case DeleteProjectCommand.COMMAND_WORD:
                 return new DeleteProjectCommandParser().parse(arguments);
 
+            case DeleteTaskCommand.COMMAND_WORD:
+                String args = arguments.trim();
+                return new DeleteTaskCommandParser().parse(args);
+
             case EditCommand.COMMAND_WORD:
                 return new EditCommandParser().parse(arguments);
 
