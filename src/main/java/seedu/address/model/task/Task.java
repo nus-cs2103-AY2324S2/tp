@@ -36,4 +36,9 @@ public class Task {
         Task otherTask = (Task) other;
         return this.getDescription().equals(((Task) other).getDescription());
     }
+
+    @Override
+    public int hashCode() {
+        return description.hashCode();
+    }
 }
