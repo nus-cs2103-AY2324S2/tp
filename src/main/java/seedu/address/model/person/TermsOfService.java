@@ -38,6 +38,9 @@ public class TermsOfService {
         return test.matches(VALIDATION_REGEX);
     }
 
+    public String getTerms() {
+        return terms;
+    }
 
     @Override
     public String toString() {

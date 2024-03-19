@@ -2,18 +2,20 @@ package seedu.address.model.person;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.tag.Tag;
 
 public class Client extends Person {
-    private Products products = new Products(new ArrayList<>());
+    private Products products;
     private String preferences;
 
     public Client(Name name, Phone phone, Email email, Address address, Remark remark,
-            Set<Tag> tags, List<String> products, String preferences) {
+            Set<Tag> tags, Products products, String preferences) {
         super(name, phone, email, address, remark, tags);
-        this.products.addProducts(products);
+        this.products = products;
         this.preferences = preferences;
     }
 
@@ -22,7 +24,34 @@ public class Client extends Person {
     }
 
     public String getPreferences() {
-        return preferences;
+        return this.preferences;
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this
+                || (other instanceof Client
+                && super.equals(other)
+                && products.equals(((Client) other).products)
+                && preferences.equals(((Client) other).preferences));
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), products, preferences);
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .add("name", name)
+                .add("phone", phone)
+                .add("email", email)
+                .add("address", address)
+                .add("remark", remark)
+                .add("tags", tags)
+                .add("products", products)
+                .add("preferences", preferences)
+                .toString();
+    }
 }

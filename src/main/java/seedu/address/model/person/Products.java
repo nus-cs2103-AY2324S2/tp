@@ -4,18 +4,21 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Products {
+
+    public static final String MESSAGE_CONSTRAINTS = "Products should only contain alphanumeric characters and spaces";
+
     private final List<String> products;
 
     public Products(List<String> products) {
         this.products = products;
     }
 
-    public List<String> getProducts() {
-        return products;
+    public static boolean isValidProducts(List<String> test) {
+        return test.stream().allMatch(product -> product.matches("\\p{Alnum}+"));
     }
 
-    public void addProduct(String product) {
-        this.products.add(product);
+    public List<String> getProducts() {
+        return products;
     }
 
     public void addProducts(List<String> products) {
@@ -24,6 +27,10 @@ public class Products {
 
     public void removeProduct(String product) {
         products.remove(product);
+    }
+
+    public boolean isEmpty() {
+        return products.isEmpty();
     }
 
     @Override
