@@ -83,15 +83,11 @@ public class Faculty {
     }
 
     private static FacultyName fromString(String name) {
-        Optional<FacultyName> match = Stream.of(FacultyName.values())
-                .filter(member -> Arrays.stream(member.facultyNameValues)
-                        .anyMatch(value -> value.equalsIgnoreCase(name)))
-                .findFirst();
-        if (match.isPresent()) {
-            return match.get();
-        } else {
-            throw new IllegalArgumentException("No enum constant matches the provided name: " + name);
-        }
+        return Arrays.stream(FacultyName.values())
+                .filter(faculty -> faculty.getFacultyName().equalsIgnoreCase(name))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("No enum constant matches the provided name: "
+                        + name));
     }
 
     @Override
