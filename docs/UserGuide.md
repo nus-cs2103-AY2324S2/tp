@@ -162,6 +162,44 @@ The list entry of the user with <id> will not have the tag anymore.
 
 ![delete-tag](images/user-guide/delete-tag_mock_output.png)
 
+### Filtering contacts : filter
+
+Filters the contacts.
+
+Format: `filter <component>[.<modifier>]/<value> ...`
+
+`component` is one of `n`,`p`,`e`, or `a` corresponding to the values in add:
+name, phone, email and address respectively.
+
+There can be duplicate components, if there are multiple components, the
+contacts that match any of the components are shown.
+
+In order to filter with values that must all match, the only way to do so right
+now is to run multiple sequential filter commands.
+
+`modifier` is to specify how the filtering should be done, it is optional and
+defaults to `has`. The components are
+- `has`: value has to match part of the component
+- `hasnt`: negation of has
+- `is`: value has to match the component exactly
+- `isnt`: negation of is
+- `word`: value has to match a distinct word in the component, a word is any
+sequence of letters and numbers surrounded by spaces
+- `noword`: negation of word
+- `none`: the component is empty
+- `any`: the component is not empty
+
+Example
+```
+filter a/queenstown
+> The default modifier is has, so this lists every contact with an address that
+> has queenstown in it.
+
+filter p.is/12345678
+> Returns the contact with the phone number 12345678
+```
+
+
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -180,10 +218,6 @@ OfficeHarbor data are saved automatically as a JSON file `[JAR file location]/da
 If your changes to the data file makes its format invalid, OfficeHarbor will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
 Furthermore, certain edits can cause the OfficeHarbor to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
-
-### Filtering tags `[coming in v1.3]`
-
-_Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
