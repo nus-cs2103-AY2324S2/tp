@@ -152,6 +152,7 @@ public class EditCommandTest {
      */
     @Test
     public void execute_copyMeetingDetails_success() {
+        // The person at the third index of the unfiltered list has a non-empty meeting object
         Person personWithMeeting = model.getFilteredPersonList().get(INDEX_THIRD_PERSON.getZeroBased());
         PersonBuilder personInList = new PersonBuilder(personWithMeeting);
         Person editedPerson = personInList.withName(VALID_NAME_BOB).build();
