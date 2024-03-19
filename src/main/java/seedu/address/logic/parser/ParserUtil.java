@@ -47,7 +47,7 @@ public class ParserUtil {
         if (!StudentId.isValidStudentId(trimmedStudentId)) {
             throw new ParseException(StudentId.MESSAGE_CONSTRAINTS);
         }
-        return new StudentId(studentId);
+        return new StudentId(trimmedStudentId);
     }
 
     /**
