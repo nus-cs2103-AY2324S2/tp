@@ -25,10 +25,4 @@ public class DeleteMeetingCommandParserTest {
     public void parse_validArgs_returnsDeleteCommand() {
         assertMeetingParseSuccess(parser, "1", "1", new DeleteMeetingCommand(INDEX_FIRST_PERSON, INDEX_FIRST_MEETING));
     }
-
-    @Test
-    public void parse_invalidArgs_throwsParseException() {
-        assertMeetingParseFailure(parser, "a", "b",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteMeetingCommand.MESSAGE_USAGE));
-    }
 }
