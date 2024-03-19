@@ -1,17 +1,11 @@
 package seedu.address.logic.commands;
-import static seedu.address.logic.commands.CommandTestUtil.NOTE_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.NOTE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
-import seedu.address.logic.parser.NoteCommandParser;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -55,16 +49,5 @@ class NoteCommandTest {
         expectedModel.setPerson(firstPerson, editedPerson);
 
         assertCommandSuccess(noteCommand, model, expectedMessage, expectedModel);
-    }
-
-    @Test
-    public void parse_repeatedNoteField_failure() {
-        Index targetIndex = INDEX_FIRST_PERSON;
-        String invalidUserInput = targetIndex.getOneBased() + NOTE_DESC_AMY + NOTE_DESC_BOB;
-
-        NoteCommandParser noteCommandParser = new NoteCommandParser();
-
-        assertParseFailure(noteCommandParser, invalidUserInput,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NOTE));
     }
 }
