@@ -3,6 +3,7 @@ package seedu.address.storage;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -57,7 +58,7 @@ class JsonAdaptedPerson {
         if (tags != null) {
             this.tags.addAll(tags);
         }
-        this.remark = remark;
+        this.remark = Objects.requireNonNullElse(remark, "");
     }
 
     /**
@@ -130,6 +131,9 @@ class JsonAdaptedPerson {
         if (family == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Family.class.getSimpleName()));
         }
+        if (!Family.isValidFamily(family)) {
+            throw new IllegalValueException(Family.MESSAGE_CONSTRAINTS);
+        }
         final Family modelFamily = new Family(family);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
@@ -139,5 +143,4 @@ class JsonAdaptedPerson {
         return new Person(modelName, modelPhone, modelIncome, modelEmail, modelAddress, modelFamily,
                 modelTags, modelRemark);
     }
-
 }

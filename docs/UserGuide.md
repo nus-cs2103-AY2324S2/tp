@@ -53,15 +53,14 @@ command to run the application.<br>
 
 ### Adding a client: `add`
 
-Adds a client to the Realodex. Note that `TAG` is optional, and that you may input the parameters in any order (e.g. if 
-the command specifies `n/NAME a/ADDRESS`, `a/ADDRESS n/NAME` is also acceptable). You may
-also have multiple tags per client.
+Adds a client to the Realodex. Note that Name, Address, Income, Phone Number, Family Size, Email and Tag are compulsory. You may input the parameters in any order (e.g. if 
+the command specifies `n/NAME a/ADDRESS`, `a/ADDRESS n/NAME` is also acceptable). A client can be a buyer, seller or both. This should be reflected by tagging `t/buyer` and/or `t/seller`.
 
-Format: `add n/NAME p/PHONE i/INCOME e/EMAIL a/ADDRESS f/FAMILY [t/TAG]...`
+Format: `add n/NAME p/PHONE i/INCOME e/EMAIL a/ADDRESS f/FAMILY t/TAG ...`
 
 Examples:
-* `add n/John Doe p/98765432 i/20000 e/johnd@example.com a/311, Clementi Ave 2, #02-25 f/4 t/friends t/owesMoney`
-* `add n/Betsy Crowe a/Newgate Prison i/$0 f/1 p/94859694 e/betsyc@rocketmail.com`
+* `add n/John Doe p/98765432 i/20000 e/johnd@example.com a/311, Clementi Ave 2, #02-25 f/4 t/buyer`
+* `add n/Betsy Crowe a/Newgate Prison i/$0 f/1 p/94859694 e/betsyc@rocketmail.com t/seller`
 
 ### Deleting a client : `delete`
 

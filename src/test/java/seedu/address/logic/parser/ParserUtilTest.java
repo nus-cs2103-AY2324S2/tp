@@ -16,6 +16,8 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Family;
+import seedu.address.model.person.Income;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
@@ -23,13 +25,17 @@ import seedu.address.model.tag.Tag;
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
+    private static final String INVALID_INCOME = "-1";
     private static final String INVALID_ADDRESS = " ";
+    private static final String INVALID_FAMILY = "0";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
+    private static final String VALID_INCOME = "10000";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
+    private static final String VALID_FAMILY = "4";
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_TAG_1 = "buyer";
     private static final String VALID_TAG_2 = "seller";
@@ -42,9 +48,15 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseIndex_outOfRangeInput_throwsParseException() {
+    public void parseIndex_outOfRangeInputButPositive_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
             -> ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
+    }
+
+    @Test
+    public void parseIndex_outOfRangeInputButNegative_throwsParseException() {
+        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
+                -> ParserUtil.parseIndex(Long.toString(-1)));
     }
 
     @Test
@@ -103,6 +115,28 @@ public class ParserUtilTest {
     }
 
     @Test
+    public void parseIncome_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseIncome((String) null));
+    }
+
+    @Test
+    public void parseIncome_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseIncome(INVALID_PHONE));
+    }
+
+    @Test
+    public void parseIncome_validValueWithoutWhitespace_returnsIncome() throws Exception {
+        Income expectedIncome = new Income(VALID_INCOME);
+        assertEquals(expectedIncome, ParserUtil.parseIncome(VALID_INCOME));
+    }
+
+    @Test
+    public void parseIncome_validValueWithWhitespace_returnsTrimmedIncome() throws Exception {
+        String incomeWithWhitespace = WHITESPACE + VALID_INCOME + WHITESPACE;
+        Income expectedIncome = new Income(VALID_INCOME);
+        assertEquals(expectedIncome, ParserUtil.parseIncome(incomeWithWhitespace));
+    }
+    @Test
     public void parseAddress_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseAddress((String) null));
     }
@@ -123,6 +157,28 @@ public class ParserUtilTest {
         String addressWithWhitespace = WHITESPACE + VALID_ADDRESS + WHITESPACE;
         Address expectedAddress = new Address(VALID_ADDRESS);
         assertEquals(expectedAddress, ParserUtil.parseAddress(addressWithWhitespace));
+    }
+    @Test
+    public void parseFamily_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseFamily((String) null));
+    }
+
+    @Test
+    public void parseFamily_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseFamily(INVALID_FAMILY));
+    }
+
+    @Test
+    public void parseFamily_validValueWithoutWhitespace_returnsFamily() throws Exception {
+        Family expectedFamily = new Family(VALID_FAMILY);
+        assertEquals(expectedFamily, ParserUtil.parseFamily(VALID_FAMILY));
+    }
+
+    @Test
+    public void parseFamily_validValueWithWhitespace_returnsTrimmedFamily() throws Exception {
+        String familyWithWhitespace = WHITESPACE + VALID_FAMILY + WHITESPACE;
+        Family expectedFamily = new Family(VALID_FAMILY);
+        assertEquals(expectedFamily, ParserUtil.parseFamily(familyWithWhitespace));
     }
 
     @Test
