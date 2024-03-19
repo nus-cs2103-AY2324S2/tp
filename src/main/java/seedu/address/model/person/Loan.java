@@ -105,7 +105,6 @@ public class Loan {
 
     @Override
     public String toString() {
-        // return String.format("$%.2f, %s, %s", value, startDate, returnDate);
         if (isReturned) {
             return String.format("$%.2f, %s, %s (Returned)", value, DateUtil.format(startDate),
                     DateUtil.format(returnDate));
