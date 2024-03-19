@@ -1,6 +1,5 @@
 package seedu.address.model.person;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.tag.Tag;
