@@ -3,9 +3,7 @@ package seedu.address.model.person;
 import java.util.Set;
 
 import seedu.address.model.house.House;
-import seedu.address.model.house.PostalCode;
-import seedu.address.model.house.Street;
-import seedu.address.model.house.UnitNumber;
+
 import seedu.address.model.tag.Tag;
 
 /**
