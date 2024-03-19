@@ -32,8 +32,21 @@ public class FindCommand extends Command {
     private final PhoneMatchesPredicate phonePredicate;
     private final TagMatchesPredicate tagPredicate;
 
-    public FindCommand(NameContainsKeywordsPredicate predicate, EmailMatchesPredicate e, GroupMatchesPredicate g, PhoneMatchesPredicate p, TagMatchesPredicate t) {
-        namePredicate = predicate;
+    /**
+     * Creates a FindCommand with predicates initialized with the provided predicates
+     *
+     * @param n name
+     * @param e email
+     * @param g group
+     * @param p phone
+     * @param t tag
+     */
+    public FindCommand(NameContainsKeywordsPredicate n,
+                       EmailMatchesPredicate e,
+                       GroupMatchesPredicate g,
+                       PhoneMatchesPredicate p,
+                       TagMatchesPredicate t) {
+        namePredicate = n;
         emailPredicate = e;
         groupPredicate = g;
         phonePredicate = p;
@@ -64,11 +77,12 @@ public class FindCommand extends Command {
         }
 
         FindCommand otherFindCommand = (FindCommand) other;
-        return namePredicate.equals(otherFindCommand.namePredicate)
-                && emailPredicate.equals(otherFindCommand.emailPredicate)
-                && groupPredicate.equals(otherFindCommand.groupPredicate)
-                && phonePredicate.equals(otherFindCommand.phonePredicate)
-                && tagPredicate.equals(otherFindCommand.tagPredicate);
+        boolean x = namePredicate.equals(otherFindCommand.namePredicate);
+        boolean y = emailPredicate.equals(otherFindCommand.emailPredicate);
+        boolean z = groupPredicate.equals(otherFindCommand.groupPredicate);
+        boolean a = phonePredicate.equals(otherFindCommand.phonePredicate);
+        boolean b = tagPredicate.equals(otherFindCommand.tagPredicate);
+        return a && b && x && y && z;
     }
 
     @Override

@@ -77,6 +77,10 @@ public class ArgumentMultimap {
         }
     }
 
+    /**
+     * Throws a {@code ParseException} if none of the {@code prefixes} to be checked against has appeared
+     * in the arguments
+     */
     public void verifyAtLeastOnePrefixExists(Prefix... prefixes) throws ParseException {
         Prefix[] identifiedPrefixes = Stream.of(prefixes)
                 .filter(argMultimap::containsKey)

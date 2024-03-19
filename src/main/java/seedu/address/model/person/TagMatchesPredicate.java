@@ -33,4 +33,19 @@ public class TagMatchesPredicate implements Predicate<Person> {
                 .add("tagKeyword", keyword)
                 .toString();
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof TagMatchesPredicate)) {
+            return false;
+        }
+
+        TagMatchesPredicate predicate = (TagMatchesPredicate) other;
+        return keyword.equals(predicate.keyword);
+    }
 }

@@ -1,22 +1,22 @@
 package seedu.address.logic.parser;
 
-import java.util.Arrays;
-import java.util.List;
-
-import seedu.address.logic.commands.FindCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.GroupMatchesPredicate;
-import seedu.address.model.person.EmailMatchesPredicate;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.person.PhoneMatchesPredicate;
-import seedu.address.model.person.TagMatchesPredicate;
-
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.commands.FindCommand.NOT_REQUIRED_VALUE;
+
+import java.util.Arrays;
+import java.util.List;
+
+import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.EmailMatchesPredicate;
+import seedu.address.model.person.GroupMatchesPredicate;
+import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.PhoneMatchesPredicate;
+import seedu.address.model.person.TagMatchesPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object

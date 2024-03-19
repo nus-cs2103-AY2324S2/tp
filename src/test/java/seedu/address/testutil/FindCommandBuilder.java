@@ -15,7 +15,7 @@ public class FindCommandBuilder {
     public static final EmailMatchesPredicate DEFAULT_EMAIL_PRED =
             new EmailMatchesPredicate(FindCommand.NOT_REQUIRED_VALUE);
     public static final GroupMatchesPredicate DEFAULT_GROUPS_PRED =
-            new GroupMatchesPredicate(List.of(FindCommand.NOT_REQUIRED_VALUE));
+            new GroupMatchesPredicate(List.of());
     public static final PhoneMatchesPredicate DEFAULT_PHONE_PRED =
             new PhoneMatchesPredicate(FindCommand.NOT_REQUIRED_VALUE);
     public static final TagMatchesPredicate DEFAULT_TAG_PRED =
