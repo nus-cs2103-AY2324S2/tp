@@ -15,11 +15,13 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddTaskCommand;
 import seedu.address.logic.commands.AssignCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteTaskCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
@@ -51,6 +53,14 @@ public class AddressBookParserTest {
         Task task = new Task("test");
         AddTaskCommand command = (AddTaskCommand) parser.parseCommand(TaskUtil.getAddTaskCommand(task));
         assertNotNull(command);
+    }
+
+    @Test
+    public void parseCommand_deletetask() throws Exception {
+        parser.parseCommand("addtask test");
+        DeleteTaskCommand command = (DeleteTaskCommand) parser.parseCommand(TaskUtil.getDeleteTaskCommand(
+                Index.fromOneBased(1)));
+        assertEquals(new DeleteTaskCommand(INDEX_FIRST_PERSON), command);
     }
 
     @Test
@@ -110,8 +120,8 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
-        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
-            -> parser.parseCommand(""));
+        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), (
+        ) -> parser.parseCommand(""));
     }
 
     @Test

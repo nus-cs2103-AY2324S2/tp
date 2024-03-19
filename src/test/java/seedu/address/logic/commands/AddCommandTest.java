@@ -16,6 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
@@ -188,12 +189,33 @@ public class AddCommandTest {
         }
 
         /**
-         * Returns true if a task has the same description as a {@code task} in the task list.
+         * Deletes a task based on the index of list.
+         *
+         * @param index The index of the task to be deleted in the list.
+         */
+        @Override
+        public Task deleteTask(Index index) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        /**
+         * Returns true if a task has the same description as a {@code task} in the task
+         * list.
          *
          * @param task
          */
         @Override
         public boolean hasTask(Task task) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        /**
+         * Returns true if the {@code index} is within the task list.
+         *
+         * @param index
+         */
+        @Override
+        public boolean isValidTaskIndex(Index index) {
             throw new AssertionError("This method should not be called.");
         }
 
