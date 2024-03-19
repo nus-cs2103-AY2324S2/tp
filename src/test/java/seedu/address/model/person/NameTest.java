@@ -57,4 +57,25 @@ public class NameTest {
         // different values -> returns false
         assertFalse(name.equals(new Name("Other Valid Name")));
     }
+
+    @Test
+    public void isMatch() {
+        Name name = new Name("Wendy Son");
+
+        // Exact match -> returns true
+        assertTrue(name.isMatch("Wendy Son"));
+
+        // Substring partial word -> returns true
+        assertTrue(name.isMatch("Wen"));
+
+        // Substring case mismatch -> returns true
+        assertTrue(name.isMatch("wendy"));
+
+        // Additional whitespace
+        assertTrue(name.isMatch(" Wendy Son\n"));
+
+        // Substring mismatch
+        assertFalse(name.isMatch("invalid"));
+    }
+
 }
