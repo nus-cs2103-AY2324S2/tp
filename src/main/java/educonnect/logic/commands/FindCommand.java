@@ -6,10 +6,8 @@ import educonnect.commons.util.ToStringBuilder;
 import educonnect.logic.Messages;
 import educonnect.model.Model;
 import educonnect.model.student.Student;
-import educonnect.model.student.predicates.NameContainsKeywordsPredicate;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.function.Predicate;
 
 /**

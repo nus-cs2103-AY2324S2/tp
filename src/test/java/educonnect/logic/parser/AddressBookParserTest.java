@@ -28,6 +28,8 @@ import educonnect.testutil.EditStudentDescriptorBuilder;
 import educonnect.testutil.StudentBuilder;
 import educonnect.testutil.StudentUtil;
 
+import java.util.List;
+
 public class AddressBookParserTest {
 
     private final AddressBookParser parser = new AddressBookParser();
@@ -75,7 +77,7 @@ public class AddressBookParserTest {
         String keyword = "foo bar baz";
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + keyword);
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keyword)), command);
+        assertEquals(new FindCommand(List.of(new NameContainsKeywordsPredicate(keyword))), command);
     }
 
     @Test

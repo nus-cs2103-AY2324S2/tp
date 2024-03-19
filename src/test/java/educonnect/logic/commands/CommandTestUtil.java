@@ -146,7 +146,7 @@ public class CommandTestUtil {
 
         Student student = model.getFilteredStudentList().get(targetIndex.getZeroBased());
         final String name = student.getName().fullName;
-        model.updateFilteredStudentList(new NameContainsKeywordsPredicate(name));
+        model.updateFilteredStudentList(List.of(new NameContainsKeywordsPredicate(name)));
 
         assertEquals(1, model.getFilteredStudentList().size());
     }

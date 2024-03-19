@@ -1,6 +1,5 @@
 package educonnect.logic.parser;
 
-import educonnect.logic.commands.AddCommand;
 import educonnect.logic.commands.FindCommand;
 import educonnect.logic.parser.exceptions.ParseException;
 import educonnect.model.student.*;

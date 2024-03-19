@@ -23,6 +23,8 @@ import educonnect.model.student.Student;
 import educonnect.model.student.StudentId;
 import educonnect.model.student.TelegramHandle;
 
+import java.util.List;
+
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
  * {@code DeleteCommand}.
@@ -196,7 +198,7 @@ public class DeleteCommandTest {
      * Updates {@code model}'s filtered list to show no one.
      */
     private void showNoStudent(Model model) {
-        model.updateFilteredStudentList(p -> false);
+        model.updateFilteredStudentList(List.of(p -> false));
 
         assertTrue(model.getFilteredStudentList().isEmpty());
     }
