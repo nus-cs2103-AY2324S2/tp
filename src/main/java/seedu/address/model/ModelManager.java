@@ -119,15 +119,28 @@ public class ModelManager implements Model {
     }
 
     /**
-     * Add policy to person.
-     *
-     * @param target the target
-     * @param policy the policy
+     * Adds a policy to the person in AddressBook.
+     * @param target person to add policy to
+     * @param policy policy to be added
      */
     public void addPolicy(Person target, Policy policy) {
         requireAllNonNull(target, policy);
-        PolicyList newPolicyList = target.getPolicyList().getPolicyListClone();
+        PolicyList newPolicyList = target.getPolicyList();
         newPolicyList.addPolicy(policy);
+        setPerson(target, new Person(target.getName(), target.getPhone(), target.getEmail(), target.getAddress(),
+                target.getBirthday(), target.getPriority(), target.getLastMet(), target.getSchedule(), target.getTags(),
+                newPolicyList));
+    }
+
+    /**
+     * Deletes a policy from the person in AddressBook.
+     * @param target person to delete policy from
+     * @param policyId policy to be deleted
+     */
+    public void deletePolicy(Person target, String policyId) {
+        requireAllNonNull(target, policyId);
+        PolicyList newPolicyList = target.getPolicyList();
+        newPolicyList.deletePolicy(policyId);
         setPerson(target, new Person(target.getName(), target.getPhone(), target.getEmail(), target.getAddress(),
                 target.getBirthday(), target.getPriority(), target.getLastMet(), target.getSchedule(), target.getTags(),
                 newPolicyList));

@@ -61,10 +61,10 @@ public class AddPolicyCommand extends Command {
         Person personToAddPolicy = lastShownList.get(index.getZeroBased());
 
         // Checks for conflicting Policy ID here
-        if (personToAddPolicy.hasPolicyID(policy)) {
+        if (personToAddPolicy.isConflictingPolicyId(policy)) {
             throw new CommandException(Messages.MESSAGE_DUPLICATE_POLICY);
         }
-        PolicyList updatedPolicyList = personToAddPolicy.getPolicyList().getPolicyListClone();
+        PolicyList updatedPolicyList = personToAddPolicy.getPolicyList();
         updatedPolicyList.addPolicy(policy);
 
         Person policyAddedPerson = new Person(personToAddPolicy.getName(), personToAddPolicy.getPhone(),

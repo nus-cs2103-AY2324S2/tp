@@ -101,7 +101,7 @@ public class Person {
         return schedule;
     }
     public PolicyList getPolicyList() {
-        return policyList;
+        return policyList.getPolicyListClone();
     }
 
     private LastMet checkNullLastMet(LastMet lastmet) {
@@ -142,13 +142,23 @@ public class Person {
     }
 
     /**
-     * Has policy id boolean.
-     *
-     * @param policy the policy
-     * @return the boolean
+     * Returns true if person has a policy in their policyList that has conflicting policyId as testPolicy.
+     * @param testPolicy Policy to be tested for conflicting policyId
+     * @return true if person has a policy in their policyList that has conflicting policyId as testPolicy
      */
-    public boolean hasPolicyID(Policy policy) {
-        return policyList.hasPolicyID(policy);
+    public boolean isConflictingPolicyId(Policy testPolicy) {
+        assert testPolicy != null;
+        return policyList.hasConflictingPolicyId(testPolicy);
+    }
+
+    /**
+     * Returns true if person has any policy in their policyList that has policyId.
+     * @param policyId Policy ID to be tested for existence
+     * @return true if person has any policy in their policyList that has policyId
+     */
+    public boolean hasPolicyID(String policyId) {
+        assert policyId != null;
+        return policyList.hasPolicy(policyId);
     }
 
 
