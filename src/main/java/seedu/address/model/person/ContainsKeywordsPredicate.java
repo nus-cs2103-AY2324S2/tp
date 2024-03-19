@@ -37,7 +37,7 @@ public class ContainsKeywordsPredicate<T> implements Predicate<Person> {
     public boolean test(Person person) {
         if (prefix.equals(PREFIX_NAME)) {
             Optional<Name> name = (Optional<Name>) keywords;
-            return name.isEmpty() || person.getName().fullName.contains(name.get().fullName);
+            return person.getName().fullName.contains(name.orElse(person.getName()).fullName);
         } else if (prefix.equals(PREFIX_PHONE)) {
             Optional<Phone> phone = (Optional<Phone>) keywords;
             return person.getPhone().value.equals(phone.orElse(person.getPhone()).value);
@@ -52,7 +52,7 @@ public class ContainsKeywordsPredicate<T> implements Predicate<Person> {
             return person.getStatus().value.equals(status.orElse(person.getStatus()).value);
         } else if (prefix.equals(PREFIX_COMMENT)) {
             Optional<Comment> comment = (Optional<Comment>) keywords;
-            return person.getComment().value.contains(comment.orElse(new Comment("")).value);
+            return person.getComment().value.contains(comment.orElse(person.getComment()).value);
         } else if (prefix.equals(PREFIX_TAG)) {
             Optional<Set<Tag>> tags = (Optional<Set<Tag>>) keywords;
             if (tags.isEmpty()) {
