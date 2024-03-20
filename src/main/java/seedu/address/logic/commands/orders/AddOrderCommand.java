@@ -73,7 +73,6 @@ public class AddOrderCommand extends Command {
      * {@code personToEdit}.
      */
     private String generateSuccessMessage(Person personToEdit) {
-        String message = order != null ? MESSAGE_SUCCESS : MESSAGE_FAILURE;
-        return String.format(message, personToEdit);
+        return String.format(MESSAGE_SUCCESS, personToEdit);
     }
 }
