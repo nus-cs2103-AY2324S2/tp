@@ -19,13 +19,13 @@ UniqueAppointmentViewList -down-> AppointmentView
 Person -up-> "*" Tag
 
 Person *--> Name
-Person *--> NRIC
-Person *--> Birthday
+Person *--> Nric
+Person *--> DateOfBirth
 Person *--> Phone
 Person *--> Email
 Person *--> Address
 
-Appointment *--> NRIC
+Appointment *--> Nric
 Appointment *--> Date
 Appointment *--> TimePeriod
 Appointment *--> Notes
