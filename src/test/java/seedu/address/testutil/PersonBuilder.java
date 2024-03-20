@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.person.Address;
+import seedu.address.model.person.DateTime;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Grade;
 import seedu.address.model.person.Name;
@@ -23,7 +24,7 @@ public class PersonBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_GRADE = "A";
-    public static final String DEFAULT_SUBJECT = "Maths";
+    public static final String DEFAULT_SUBJECT = "English";
 
     private Name name;
     private Phone phone;
@@ -31,6 +32,7 @@ public class PersonBuilder {
     private Address address;
     private Grade grade;
     private Subject subject;
+    private Set<DateTime> dateTimes;
     private Set<Tag> tags;
 
     /**
@@ -43,6 +45,7 @@ public class PersonBuilder {
         address = new Address(DEFAULT_ADDRESS);
         grade = new Grade(DEFAULT_GRADE);
         subject = new Subject(DEFAULT_SUBJECT);
+        dateTimes = new HashSet<>();
         tags = new HashSet<>();
     }
 
@@ -56,6 +59,7 @@ public class PersonBuilder {
         address = personToCopy.getAddress();
         grade = personToCopy.getGrade();
         subject = personToCopy.getSubject();
+        dateTimes = new HashSet<>(personToCopy.getDateTimes());
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -115,8 +119,16 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code DateTime} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withDateTimes(String ... dateTimes) {
+        this.dateTimes = SampleDataUtil.getDateTimeSet(dateTimes);
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, phone, email, address, grade, subject, tags);
+        return new Person(name, phone, email, address, grade, subject, dateTimes, tags);
     }
 
 }
