@@ -87,11 +87,13 @@ public class ModelManager implements Model {
         return immuniMate;
     }
 
+    //TODO test cases
     @Override
     public boolean hasPerson(Person person) {
         requireNonNull(person);
         return immuniMate.hasPerson(person);
     }
+    //TODO test cases
     @Override
     public void deletePerson(Person target) {
         immuniMate.removePerson(target);

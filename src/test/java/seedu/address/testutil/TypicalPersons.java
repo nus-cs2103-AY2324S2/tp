@@ -17,6 +17,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.ImmuniMate;
+import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 
 /**
@@ -37,21 +38,22 @@ public class TypicalPersons {
             .withName("Daniel Meier").withPhone("87652533")
             .withAddress("10th street").withSex("M").withStatus("HEALTHY").build();
     public static final Person ELLE = new PersonBuilder().withNric("S8913957B")
-            .withName("Elle Meyer").withPhone("9482224")
+            .withName("Elle Meyer").withPhone("94822224")
             .withAddress("michegan ave").withSex("F").withStatus("UNWELL").build();
     public static final Person FIONA = new PersonBuilder().withNric("T0536171Z")
-            .withName("Fiona Kunz").withPhone("9482427")
+            .withName("Fiona Kunz").withPhone("94824427")
             .withAddress("little tokyo").withSex("F").withStatus("PENDING").build();
     public static final Person GEORGE = new PersonBuilder().withNric("T0829102Z")
-            .withName("George Best").withPhone("9482442")
+            .withName("George Best").withPhone("94824442")
             .withAddress("4th street").withSex("M").withStatus("HEALTHY").build();
+    //TODO add date of birth and some other optional fields
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withNric("T0123071C").withName("Hoon Meier")
-            .withPhone("8482424").withAddress("little india")
+            .withPhone("84824424").withAddress("little india")
             .withSex("M").withStatus("HEALTHY").build();
     public static final Person IDA = new PersonBuilder().withNric("T0239521A").withName("Ida Mueller")
-            .withPhone("8482131").withAddress("chicago ave")
+            .withPhone("84821131").withAddress("chicago ave")
             .withSex("F").withStatus("PENDING").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}

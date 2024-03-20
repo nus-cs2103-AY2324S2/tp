@@ -69,15 +69,14 @@ public class CreateCommand extends Command {
         toAdd = person;
     }
 
+    //TODO test cases
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        //TODO: Add check for duplicate NRIC for hasPerson
 
         if (model.hasPerson(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
-        //TODO: implement addPerson
 
         model.addPerson(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));

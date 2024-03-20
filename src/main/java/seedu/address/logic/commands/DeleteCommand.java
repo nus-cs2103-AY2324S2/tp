@@ -25,11 +25,12 @@ public class DeleteCommand extends Command {
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Patient: %1$s";
 
     private final Nric targetNric;
-
+    //TODO test cases
     public DeleteCommand(Nric targetNric) {
         this.targetNric = targetNric;
     }
 
+    //TODO test cases
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -59,10 +60,11 @@ public class DeleteCommand extends Command {
         return targetNric.equals(otherDeleteCommand.targetNric);
     }
 
+    //TODO test cases
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("targetIndex", targetNric)
+                .add("targetNric", targetNric)
                 .toString();
     }
 }

@@ -42,6 +42,7 @@ public class CreateCommandParser implements Parser<CreateCommand> {
      * and returns an AddCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
+    //TODO test cases
     public CreateCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NRIC, PREFIX_NAME, PREFIX_PHONE, PREFIX_ADDRESS,

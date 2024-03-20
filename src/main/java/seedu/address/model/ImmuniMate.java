@@ -14,6 +14,7 @@ import seedu.address.model.person.UniquePersonList;
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
 public class ImmuniMate implements ReadOnlyImmuniMate {
+    //TODO test cases
 
     private final UniquePersonList persons;
 

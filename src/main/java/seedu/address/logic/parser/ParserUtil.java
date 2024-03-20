@@ -54,6 +54,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code nric} is invalid.
      */
+    //TODO test cases
     public static Nric parseNric(String nric) throws ParseException {
         requireNonNull(nric);
         String trimmedNric = nric.trim();
@@ -84,6 +85,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code phone} is invalid.
      */
+    //TODO test cases
     public static Phone parsePhone(String phone) throws ParseException {
         requireNonNull(phone);
         String trimmedPhone = phone.trim();
@@ -114,6 +116,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code dob} is invalid.
      */
+    //TODO test cases
     public static DateOfBirth parseDateOfBirth(String dob) throws ParseException {
         requireNonNull(dob);
         String trimmedDob = dob.trim();
@@ -129,6 +132,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code sex} is invalid.
      */
+    //TODO test cases
     public static Sex parseSex(String sex) throws ParseException {
         requireNonNull(sex);
         String trimmedSex = sex.trim();
@@ -144,6 +148,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code sex} is invalid.
      */
+    //TODO test cases
     public static Status parseStatus(String status) throws ParseException {
         requireNonNull(status);
         String trimmedStatus = status.trim().toUpperCase();
@@ -157,6 +162,7 @@ public class ParserUtil {
      * Leading and trailing whitespaces will be trimmed.
      * @throws ParseException if the given {@code country} is invalid.
      */
+    //TODO test cases
     public static Country parseCountry(String country) throws ParseException {
         requireNonNull(country);
         //TODO: Implement country validation & standardisation
@@ -168,6 +174,7 @@ public class ParserUtil {
      * Leading and trailing whitespaces will be trimmed.
      * @throws ParseException if the given {@code dateOfAdmission} is invalid.
      */
+    //TODO test cases
     public static DateOfAdmission parseDateOfAdmission(String dateOfAdmission) throws ParseException {
         requireNonNull(dateOfAdmission);
         String trimmedDateOfAdmission = dateOfAdmission.trim();
@@ -183,6 +190,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code sex} is invalid.
      */
+    //TODO test cases
     public static BloodType parseBloodType(String bloodType) throws ParseException {
         requireNonNull(bloodType);
         String trimmedBloodType = bloodType.trim();
@@ -199,6 +207,7 @@ public class ParserUtil {
      * Leading and trailing whitespaces will be trimmed.
      * @throws ParseException if the given {@code allergies} is invalid.
      */
+    //TODO test cases
     public static Allergies parseAllergies(String allergies) throws ParseException {
         requireNonNull(allergies);
         String trimmedAllergies = allergies.trim();
@@ -213,6 +222,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code condition} is invalid.
      */
+    //TODO test cases
     public static Condition parseCondition(String condition) throws ParseException {
         requireNonNull(condition);
         String trimmedCondition = condition.trim();
@@ -225,6 +235,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code symptom} is invalid.
      */
+    //TODO test cases
     public static Symptom parseSymptom(String symptom) throws ParseException {
         requireNonNull(symptom);
         String trimmedSymptom = symptom.trim();
@@ -236,6 +247,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code diagnosis} is invalid.
      */
+    //TODO test cases
     public static Diagnosis parseDiagnosis(String diagnosis) throws ParseException {
         requireNonNull(diagnosis);
         String trimmedDiagnosis = diagnosis.trim();
@@ -249,6 +261,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code email} is invalid.
      */
+    //TODO test cases
     public static Email parseEmail(String email) throws ParseException {
         requireNonNull(email);
         String trimmedEmail = email.trim();

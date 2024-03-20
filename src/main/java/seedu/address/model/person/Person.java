@@ -259,9 +259,17 @@ public class Person {
                 && phone.equals(otherPerson.phone)
                 && address.equals(otherPerson.address)
                 && dateOfBirth.equals(otherPerson.dateOfBirth)
-                && dateOfAdmission.equals(otherPerson.dateOfAdmission)
                 && sex.equals(otherPerson.sex)
-                && status.equals(otherPerson.status);
+                && status.equals(otherPerson.status)
+                && tags.equals(otherPerson.tags)
+                && email.equals(otherPerson.email)
+                && country.equals(otherPerson.country)
+                && allergies.equals(otherPerson.allergies)
+                && bloodType.equals(otherPerson.bloodType)
+                && condition.equals(otherPerson.condition)
+                && dateOfAdmission.equals(otherPerson.dateOfAdmission)
+                && diagnosis.equals(otherPerson.diagnosis)
+                && symptom.equals(otherPerson.symptom);
     }
 
     @Override
@@ -273,7 +281,10 @@ public class Person {
     @Override
     public String toString() {
         // list view
-        return new ToStringBuilder(this).add("nric", nric).add("name", name).add("status", status).toString();
+        return new ToStringBuilder(this)
+                .add("nric", nric)
+                .add("name", name)
+                .add("status", status).toString();
     }
 
     /**
@@ -284,19 +295,20 @@ public class Person {
         return new ToStringBuilder(this)
                 .add("nric", nric)
                 .add("name", name)
-                .add("tags", tags)
                 .add("phone", phone)
-                .add("email", email)
-                .add("sex", sex)
                 .add("address", address)
+                .add("birthday", dateOfBirth)
+                .add("sex", sex)
+                .add("status", status)
+                .add("email", email)
+                .add("admission", dateOfAdmission)
                 .add("allergies", allergies)
                 .add("blood type", bloodType)
                 .add("country", country)
-                .add("birthday", dateOfBirth)
-                .add("condition", dateOfAdmission)
+                .add("condition", condition)
                 .add("diagnosis", diagnosis)
-                .add("status", status)
                 .add("symptom", symptom)
+                .add("tags", tags)
                 .toString();
     }
 }
