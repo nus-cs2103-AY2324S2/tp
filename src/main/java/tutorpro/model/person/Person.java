@@ -1,15 +1,17 @@
 package tutorpro.model.person;
 
-//import static tutorpro.commons.util.CollectionUtil.requireAllNonNull;
-
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import javafx.scene.layout.Region;
 import tutorpro.commons.util.CollectionUtil;
 import tutorpro.commons.util.ToStringBuilder;
 import tutorpro.model.tag.Tag;
+import tutorpro.ui.PersonCard;
+import tutorpro.ui.UiPart;
 
 /**
  * Represents a Person in the address book.
@@ -60,6 +62,10 @@ public class Person {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    protected boolean addTags(Tag... tags) {
+        return this.tags.addAll(Arrays.asList(tags));
     }
 
     /**
@@ -115,4 +121,7 @@ public class Person {
                 .toString();
     }
 
+    public UiPart<Region> getCard(int displayIndex) {
+        return new PersonCard(this, displayIndex);
+    }
 }

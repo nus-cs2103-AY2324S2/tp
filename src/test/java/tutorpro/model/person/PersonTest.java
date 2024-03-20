@@ -1,20 +1,19 @@
 package tutorpro.model.person;
 
-//import static org.junit.jupiter.api.Assertions.assertEquals;
-//import static org.junit.jupiter.api.Assertions.assertFalse;
-//import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 import static tutorpro.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static tutorpro.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static tutorpro.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static tutorpro.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static tutorpro.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-//import static tutorpro.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import tutorpro.model.tag.Tag;
 import tutorpro.testutil.Assert;
 import tutorpro.testutil.PersonBuilder;
+import tutorpro.testutil.StudentBuilder;
 import tutorpro.testutil.TypicalPersons;
 
 public class PersonTest {
@@ -98,5 +97,25 @@ public class PersonTest {
                 + ", phone=" + TypicalPersons.ALICE.getPhone() + ", email=" + TypicalPersons.ALICE.getEmail()
                 + ", address=" + TypicalPersons.ALICE.getAddress() + ", tags=" + TypicalPersons.ALICE.getTags() + "}";
         Assertions.assertEquals(expected, TypicalPersons.ALICE.toString());
+    }
+
+    @Test
+    public void addTags() {
+        Person person = new PersonBuilder().build();
+        Tag tag = new Tag("TAG");
+        person.addTags(tag);
+        Assertions.assertTrue(person.getTags().contains(tag));
+    }
+
+    @Test
+    public void getCard() {
+        try {
+            new StudentBuilder().build().getCard(1);
+            fail();
+        } catch (ExceptionInInitializerError e) {
+            return;
+        } catch (NoClassDefFoundError e) {
+            return;
+        }
     }
 }
