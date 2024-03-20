@@ -43,6 +43,10 @@ public class Relationship {
         return this.relationshipDescriptor;
     }
 
+    public String getRelationshipDescriptor() {
+        return this.relationshipDescriptor;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == this) {

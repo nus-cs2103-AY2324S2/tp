@@ -47,4 +47,12 @@ public class RelationshipUtil {
         }
         return relationshipsTracker.get(index).toString();
     }
+
+    /**
+     * Retrieves the list of relationships in the tracker.
+     * @return The list of relationships in the tracker.
+     */
+    public ArrayList<Relationship> getRelationshipsTracker() {
+        return relationshipsTracker;
+    }
 }
