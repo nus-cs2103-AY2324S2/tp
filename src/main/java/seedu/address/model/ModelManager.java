@@ -3,7 +3,9 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.io.IOException;
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -11,8 +13,11 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.exceptions.DataLoadingException;
 import seedu.address.model.person.Classes;
 import seedu.address.model.person.Person;
+import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.StorageManager;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -23,10 +28,11 @@ public class ModelManager implements Model {
     // private final AddressBook addressBook;
     private final ClassBook classBook;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private FilteredList<Person> filteredPersons;
     private final FilteredList<Classes> filteredClasses;
     private Classes selectedClass;
     private AddressBook selectedClassAddressBook;
+    private JsonAddressBookStorage Storage;
 
 
     /**
@@ -41,6 +47,7 @@ public class ModelManager implements Model {
         this.selectedClassAddressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         this.classBook = new ClassBook(classBook);
+
         filteredPersons = new FilteredList<>(this.selectedClassAddressBook.getPersonList());
         filteredClasses = new FilteredList<>(this.classBook.getClassList());
 
@@ -140,8 +147,15 @@ public class ModelManager implements Model {
 
     @Override
     public void addPerson(Person person) {
+        requireNonNull(person);
         selectedClassAddressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        filteredPersons = new FilteredList<>(this.selectedClassAddressBook.getPersonList());
+        try {
+            this.Storage.saveAddressBook(selectedClassAddressBook);
+        } catch(IOException e){};
+
+        // Predicate<Person> predicate = updatedPerson -> selectedClassAddressBook.getPersonList().contains(updatedPerson);
+        updateFilteredPersonList(updatedPerson -> true);
     }
 
     @Override
@@ -214,7 +228,6 @@ public class ModelManager implements Model {
                 && filteredPersons.equals(otherModelManager.filteredPersons);
     }
 
-
     //=====================ClassBook accessors=========================================================================
 
     @Override
@@ -222,11 +235,29 @@ public class ModelManager implements Model {
         requireNonNull(classes);
 
         selectedClass = classes;
-        selectedClassAddressBook = selectedClass.getAddressBook();
+        // selectedClassAddressBook = selectedClass.getAddressBook();
+        this.Storage = new JsonAddressBookStorage(selectedClass.getFilePath());
 
-        // Update filteredPersons with persons from selected class
-        Predicate<Person> predicate = person -> selectedClassAddressBook.getPersonList().contains(person);
-        updateFilteredPersonList(predicate);
+        try {
+            Optional<ReadOnlyAddressBook> optionalAddressBook = Storage.readAddressBook();
+
+            if (optionalAddressBook.isPresent()) {
+                selectedClassAddressBook = new AddressBook(optionalAddressBook.get());
+                filteredPersons = new FilteredList<>(this.selectedClassAddressBook.getPersonList());
+
+                updateFilteredPersonList(updatedPerson -> true);
+            } else {
+                logger.warning("Failed to load address book data for class: " + selectedClass);
+            }
+        } catch (DataLoadingException e) {
+            logger.warning("Error loading address book data for class: " + selectedClass);
+        }
+
+        filteredPersons = new FilteredList<>(this.selectedClassAddressBook.getPersonList());
+
+        // Predicate<Person> predicate = person -> selectedClassAddressBook.getPersonList().contains(person);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
+
 
 }

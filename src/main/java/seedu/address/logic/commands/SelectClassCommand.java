@@ -5,8 +5,12 @@ import seedu.address.logic.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.person.Classes;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.Person;
+
+import java.util.function.Predicate;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 public class SelectClassCommand extends Command{
     public static final String COMMAND_WORD = "select";
@@ -32,11 +36,12 @@ public class SelectClassCommand extends Command{
         if (index < 1 || index > model.getFilteredClassList().size()) {
             throw new IllegalArgumentException(Messages.MESSAGE_INVALID_CLASS_DISPLAYED_INDEX);
         }
-        Classes selectedClass = lastShownList.get(index);
+        Classes selectedClass = lastShownList.get(index - 1);
         model.selectClass(selectedClass);
-        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(selectedClass.getStudents());
-        // getStudents is a stub, waiting on memory
-        model.updateFilteredPersonList(predicate);
+
+//        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(selectedClass.getStudents());
+
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
         return new CommandResult(MESSAGE_SUCCESS + selectedClass.getCourseCode());
     }
