@@ -193,6 +193,11 @@ public class AddCommandTest {
         public boolean hasAttribute(String uuidString, String attributeName) {
             throw new AssertionError("This method should not be called.");
         }
+        @Override
+        public UUID getFullUuid(String digits) {
+            throw new AssertionError("This method should not be called");
+        }
+
     }
 
     /**
@@ -211,8 +216,6 @@ public class AddCommandTest {
             requireNonNull(person);
             return this.person.isSamePerson(person);
         }
-
-
     }
 
     /**

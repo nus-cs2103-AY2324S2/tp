@@ -15,7 +15,7 @@ import seedu.address.model.person.relationship.Relationship;
  */
 public class DeleteRelationshipCommand extends Command {
     public static final String COMMAND_WORD = "deleteRelation";
-    private static String MESSAGE_SUCCESS = "delete successful";
+    private static String MESSAGE_DELETE_RELATIONSHIP_SUCCESS = "delete successful";
     private String originUuid;
     private String targetUuid;
     private String relationshipDescriptor;
@@ -48,7 +48,7 @@ public class DeleteRelationshipCommand extends Command {
                 throw new CommandException(String.format("Sorry %s do not exist", toDelete));
             }
             model.deleteRelationship(toDelete);
-            return new CommandResult(MESSAGE_SUCCESS);
+            return new CommandResult(MESSAGE_DELETE_RELATIONSHIP_SUCCESS);
         } catch (IllegalArgumentException e) {
             throw new CommandException(String.format("Sorry, we do not accept %s as type", relationshipDescriptor));
         }
