@@ -159,13 +159,13 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 This section describes some noteworthy details on how certain features are implemented.
 
 ### Timetable Support
-* Each `Student` object now has a `Timetable` object as an attribute. 
-* Each `Timetable` contains <u>1 to 7</u> `Day` objects. 
-* Each `Day` object can contain <u>0 to 24 1-hour</u> `Period` objects, or less if each `Period` has intervals longer 
-  than 1 hour. 
+* Each `Student` object now has a `Timetable` object as an attribute.
+* Each `Timetable` contains <u>1 to 7</u> `Day` objects.
+* Each `Day` object can contain <u>0 to 24 1-hour</u> `Period` objects, or less if each `Period` has intervals longer
+  than 1 hour.
 * Each `Period` is defined by the start time and end time, indicated by integers on a 24-hour clock, i.e. 0-23.
 * Each `Day` cannot contain overlapping `Period`, an overlap occurs when the start time of the previos `Period` is 
-  before the end time of the next `Period`. E.g. for the case of `Period` of 12-14, `Period` of 14-16 is allowed, 
+  before the end time of the next `Period`. E.g. for the case of `Period` of 12-14, `Period` of 14-16 is allowed,
   but `Period` of 13-15 is not.
 
 ![StudentClassDiagram.png](diagrams%2FStudentClassDiagram.png)
@@ -174,7 +174,7 @@ This section describes some noteworthy details on how certain features are imple
 * The `Timetable` of the `Student` is specified during the `add` command, indicated with a `c/` prefix.
 * Similarly, the `Timetable` of a `Student` can be modified during the `edit` command, with the same prefix.
 * The `c/` prefix is optional, and if not specified, an empty `Timetable` object will be created as the attribute of 
-  the `Student`. 
+  the `Student`.
   * The arguments for the `Timetable` object can be broken down into its respective day and the period that day contains.
   * The day is indicated by its respective prefix as well, the format is `{DAY_3_LETTERS}:`, e.g. `"mon:"` or `"fri:"`.
   * E.g. an accepted `String` is `"mon: 13-15, 15-17 tue: 12-14 thu: 12-18"`
@@ -186,16 +186,16 @@ This section describes some noteworthy details on how certain features are imple
 
 ##### Proposed Implementation
 
-The proposed finding a common slot feature will be relying on the `find` command. It extends the `find` command with 
-a specified duration, and a common empty slot across all students that fulfils the duration requirement will be 
+The proposed finding a common slot feature will be relying on the `find` command. It extends the `find` command with
+a specified duration, and a common empty slot across all students that fulfils the duration requirement will be
 outputted to the user.
 
 * The command can be implemented as such: `slot [t/TAG] d/DURATION`
   * where `d/` is the prefix for duration, and `t/` is an optional argument for a filtered list of students.
 * Examples:
-  * `slot d/1` - EduConnect will look through the current list of students, i.e. can be the full list, or a filtered 
+  * `slot d/1` - EduConnect will look through the current list of students, i.e. can be the full list, or a filtered
     list if ran after the `find` command, then returns the earliest 1-hour slot available for the week.
-  * `slot t/TUT-1 d/2` - EduConnect will first filter and return a list of students with the tag `TUT-1`, then return 
+  * `slot t/TUT-1 d/2` - EduConnect will first filter and return a list of students with the tag `TUT-1`, then return
     the earliest 2-hour slot available for the week.
 
 _{more functionality to be implemented in later versions}_

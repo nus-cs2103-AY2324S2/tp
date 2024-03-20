@@ -46,9 +46,7 @@ create DeleteCommand
 DeleteCommandParser -> DeleteCommand : DeleteCommand(e)
 activate DeleteCommand
 
-
 deactivate DeleteStudentDescriptor
-
 
 DeleteCommand --> DeleteCommandParser :
 deactivate DeleteCommand
@@ -75,7 +73,6 @@ Model -> DeleteStudentDescriptor : s:Student
 deactivate Model
 DeleteStudentDescriptor -> DeleteCommand : s
 deactivate DeleteStudentDescriptor
-
 
 
 alt student exists
