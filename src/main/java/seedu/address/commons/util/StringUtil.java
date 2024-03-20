@@ -66,7 +66,13 @@ public class StringUtil {
         }
     }
 
-    public static boolean isValidLastFourDigitsUUID(String s) {
+    /**
+     * Returns true if the {@code s} represents an alphanumeric 4 character string, so that it is a valid last 4
+     * characters of a UUID
+     * @param s 4 character string representing the last 4 digits of a JAVA UUID
+     * @return true if it is valid
+     */
+    public static boolean isValidLastFourDigitsUuid(String s) {
         String pattern = "^[a-zA-Z0-9]{4}$";
         boolean isMatch = s.matches(pattern);
         return isMatch;

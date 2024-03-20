@@ -8,8 +8,8 @@ import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
-import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.Messages;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -122,9 +122,16 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
+    /**
+     * Parses a string into a string with 4 characters and whitespaces removed
+     * @param uuid last 4 characters of a UUID
+     * @return a trimmed String if uuid given as arguments is valid
+     * @throws ParseException
+     */
     public static String parseUUID(String uuid) throws ParseException {
         String trimmedUUID = uuid.trim();
-        if (!StringUtil.isValidLastFourDigitsUUID(trimmedUUID)) {
+        if (!StringUtil.isValidLastFourDigitsUuid(trimmedUUID)) {
             throw new ParseException(Messages.MESSAGE_INVALID_PERSON_UUID);
         }
         return trimmedUUID;

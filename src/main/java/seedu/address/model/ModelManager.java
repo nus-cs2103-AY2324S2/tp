@@ -146,13 +146,13 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
     @Override
-    public UUID getFullUUID(String digits) {
-        return addressBook.getFullUUID(digits);
+    public UUID getFullUuid(String digits) {
+        return addressBook.getFullUuid(digits);
     }
 
     @Override
-    public Person getPersonByUUID(UUID id) {
-        return addressBook.getPersonByUUID(id);
+    public Person getPersonByUuid(UUID id) {
+        return addressBook.getPersonByUuid(id);
     }
 
     @Override

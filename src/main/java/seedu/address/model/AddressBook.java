@@ -8,10 +8,11 @@ import java.util.UUID;
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.person.relationship.Relationship;
 import seedu.address.model.person.relationship.RelationshipUtil;
-import seedu.address.model.person.UniquePersonList;
-import seedu.address.model.person.relationship.RelationshipUtil;
+
+
 
 /**
  * Wraps all data at the address-book level
@@ -126,11 +127,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     public String getExistingRelationship(Relationship toGet) {
         return relationships.getExistingRelationship(toGet);
     }
-    public UUID getFullUUID(String digits) {
-        return persons.getFullUUID(digits);
+    public UUID getFullUuid(String digits) {
+        return persons.getFullUuid(digits);
     };
-    public Person getPersonByUUID(UUID id) {
-        return persons.getPersonByUUID(id);
+    public Person getPersonByUuid (UUID id) {
+        return persons.getPersonByUuid(id);
     }
 
     @Override

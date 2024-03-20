@@ -1,47 +1,48 @@
 package seedu.address.logic.relationship;
 
-import java.util.Map;
 import java.util.UUID;
 
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.relationship.BioParentsRelationship;
-import seedu.address.model.person.relationship.FriendsRelationship;
 import seedu.address.model.person.relationship.Relationship;
-import seedu.address.model.person.relationship.RelationshipUtil;
-import seedu.address.model.person.relationship.SpousesRelationship;
 
 /**
  * This class is responsible for parsing and executing commands to add relationships between persons.
  * It supports adding relationships with and without roles.
  */
 public class AddRelationshipCommand extends Command {
-    public final static String COMMAND_WORD = "addRelation";
-    private static String MESSAGE_SUCCESS = "Add Success";
-    private String originUUID;
-    private String targetUUID;
+    private static String MESSAGE_SUCCESS = "add success";
+    public static final String COMMAND_WORD = "addRelation";
+    private String originUuid;
+    private String targetUuid;
     private String relationshipDescriptor;
 
-    public AddRelationshipCommand(String originUUID, String targetUUID, String relationshipDescriptor) {
-        this.originUUID = originUUID;
-        this.targetUUID = targetUUID;
+    /**
+     * Constructor takes in the string arguments needed to be passed into the relationship constructor and performs
+     * the addition of the relationship
+     * @param originUuid
+     * @param targetUuid
+     * @param relationshipDescriptor
+     */
+    public AddRelationshipCommand(String originUuid, String targetUuid, String relationshipDescriptor) {
+        this.originUuid = originUuid;
+        this.targetUuid = targetUuid;
         this.relationshipDescriptor = relationshipDescriptor;
     }
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        UUID fullOriginUUID = model.getFullUUID(originUUID);
-        UUID fullTargetUUID = model.getFullUUID(targetUUID);
-        if (fullTargetUUID == null || fullOriginUUID == null) {
+        UUID fullOriginUuid = model.getFullUuid(originUuid);
+        UUID fullTargetUuid = model.getFullUuid(targetUuid);
+        if (fullTargetUuid == null || fullOriginUuid == null) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_UUID);
         }
-        if (fullOriginUUID == fullTargetUUID) {
+        if (fullOriginUuid == fullTargetUuid) {
             throw new CommandException("Relationships must be between 2 different people");
         }
-        Relationship toAdd = new Relationship(fullOriginUUID, fullTargetUUID, relationshipDescriptor);
+        Relationship toAdd = new Relationship(fullOriginUuid, fullTargetUuid, relationshipDescriptor);
         if (model.hasRelationship(toAdd)) {
             String existing = model.getExistingRelationship(toAdd);
             throw new CommandException(String.format("Sorry, %s", existing));

@@ -1,7 +1,7 @@
 package seedu.address.model.person.relationship;
 
-import java.util.Arrays;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.UUID;
 
 /**
@@ -51,8 +51,8 @@ public class Relationship {
             return false;
         }
         Relationship other = (Relationship) o;
-        return (other.person1.equals(this.person1) && other.person2.equals(this.person2)) ||
-                (other.person1.equals(this.person2) && other.person2.equals(this.person1));
+        return (other.person1.equals(this.person1) && other.person2.equals(this.person2))
+                || (other.person1.equals(this.person2) && other.person2.equals(this.person1));
     }
     @Override
     public String toString() {

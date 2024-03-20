@@ -2,13 +2,10 @@ package seedu.address.logic.relationship;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.Map;
-
 import seedu.address.logic.Messages;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.relationship.RelationshipUtil;
+
 
 /**
  * Parses user input into a DeleteRelationshipCommand.
@@ -25,10 +22,10 @@ public class DeleteRelationshipCommandParser {
         requireNonNull(userInput);
         String[] parts = userInput.split(" ", 3);
         try {
-            String originUUID = ParserUtil.parseUUID(parts[0]);
-            String targetUUID = ParserUtil.parseUUID(parts[1]);
+            String originUuid = ParserUtil.parseUUID(parts[0]);
+            String targetUuid = ParserUtil.parseUUID(parts[1]);
             String relationshipDescriptor = parts[2];
-            return new DeleteRelationshipCommand(originUUID, targetUUID, relationshipDescriptor);
+            return new DeleteRelationshipCommand(originUuid, targetUuid, relationshipDescriptor);
         } catch (ParseException pe) {
             throw new ParseException(Messages.MESSAGE_INVALID_PERSON_UUID);
         }

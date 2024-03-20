@@ -67,7 +67,7 @@ public class UniquePersonList implements Iterable<Person> {
 
         internalList.set(index, editedPerson);
     }
-    public UUID getFullUUID(String digits) {
+    public UUID getFullUuid(String digits) {
         for (Person p : internalList) {
             String currentPersonUUID = p.getUuidString();
             int len = currentPersonUUID.length();
@@ -80,7 +80,7 @@ public class UniquePersonList implements Iterable<Person> {
         return null;
     }
 
-    public Person getPersonByUUID(UUID id) {
+    public Person getPersonByUuid(UUID id) {
         for (Person p : internalList) {
             if (p.getUuid().equals(id)) {
                 return p;

@@ -161,7 +161,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public UUID getFullUUID(String Uuid) {
+        public UUID getFullUuid(String Uuid) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -185,7 +185,7 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
         @Override
-        public Person getPersonByUUID(UUID id) {
+        public Person getPersonByUuid(UUID id) {
             throw new AssertionError("this method should not be called");
         }
     }

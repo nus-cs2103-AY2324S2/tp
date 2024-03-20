@@ -17,12 +17,11 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.relationship.AddRelationshipCommand;
-import seedu.address.logic.relationship.DeleteRelationshipCommand;
-import seedu.address.logic.relationship.AddRelationshipCommandParser;
-import seedu.address.logic.relationship.DeleteRelationshipCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
-
+import seedu.address.logic.relationship.AddRelationshipCommand;
+import seedu.address.logic.relationship.AddRelationshipCommandParser;
+import seedu.address.logic.relationship.DeleteRelationshipCommand;
+import seedu.address.logic.relationship.DeleteRelationshipCommandParser;
 /**
  * Parses user input.
  */
