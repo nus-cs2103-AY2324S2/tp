@@ -11,6 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.ScrollPane?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
          title="ClientCare" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
   <icons>
@@ -60,11 +61,16 @@
             <StackPane fx:id="clientDetailsCardPlaceholder" VBox.vgrow="ALWAYS"/>
             <StackPane fx:id="clientPolicyTablePlaceholder" VBox.vgrow="ALWAYS"/>
           </VBox>
-          <VBox fx:id="schedule" styleClass="pane-with-border" minWidth="250" prefWidth="300" maxWidth="350" HBox.hgrow="ALWAYS">
+          <VBox fx:id="remindersView" styleClass="pane-with-border" minWidth="250" prefWidth="300" maxWidth="350" HBox.hgrow="ALWAYS">
             <padding>
               <Insets top="10" right="10" bottom="10" left="10" />
             </padding>
-            <StackPane fx:id="remindersPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+            <ScrollPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+              <content>
+                <StackPane fx:id="lastMetPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+                <StackPane fx:id="appointmentsPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+              </content>
+            </ScrollPane>
           </VBox>
         </HBox>
 

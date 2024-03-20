@@ -13,7 +13,7 @@ import seedu.address.model.person.Person;
 /**
  * Panel containing the list of reminders.
  */
-public class RemindersPanel extends UiPart<Region> {
+public class RemindersPanel {
     private static final String FXML = "RemindersPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(RemindersPanel.class);
 
