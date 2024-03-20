@@ -22,6 +22,8 @@ public class Messages {
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
 
+    public static final String MESSAGE_AT_LEAST_ONE_FIELD_REQUIRED =
+            "Please input at least one identifier (e.g. n/) into the command \n";
     /**
      * Returns an error message indicating the duplicate prefixes.
      */
