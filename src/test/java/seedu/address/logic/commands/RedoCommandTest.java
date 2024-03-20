@@ -42,6 +42,7 @@ class RedoCommandTest {
         CommandResult addCommandResult = new AddCommand(validPerson).execute(model);
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         CommandResult undoCommandResult = new UndoCommand().execute(model);
-        assertCommandSuccess(redoCommand, model, RedoCommand.MESSAGE_SUCCESS, expectedModel);
+        String expectedMessage = RedoCommand.MESSAGE_SUCCESS + addCommandResult.getFeedbackToUser();
+        assertCommandSuccess(new RedoCommand(), model, expectedMessage, expectedModel);
     }
 }

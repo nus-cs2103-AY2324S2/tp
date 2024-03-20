@@ -15,8 +15,7 @@ public class UndoCommand extends Command {
             + ": Undoes the previously issued command that changed data."
             + "Example: " + COMMAND_WORD;
 
-    //TODO: include information about undone command
-    public static final String MESSAGE_SUCCESS = "Undid previous command: ";
+    public static final String MESSAGE_SUCCESS = "Undid previous command:\n\t";
 
     public static final String MESSAGE_CANNOT_UNDO = "Unable to undo since there were no previously issued commands.";
     @Override
@@ -25,7 +24,7 @@ public class UndoCommand extends Command {
         if (model.canUndoAddressBook()) {
             model.undoAddressBook();
             String undoneCommandMessage = model.getAddressBookUndoneCommand().getFeedbackToUser();
-            return new CommandResult(MESSAGE_SUCCESS + "\n\t" + undoneCommandMessage);
+            return new CommandResult(MESSAGE_SUCCESS + undoneCommandMessage);
         } else {
             throw new CommandException(MESSAGE_CANNOT_UNDO);
         }
