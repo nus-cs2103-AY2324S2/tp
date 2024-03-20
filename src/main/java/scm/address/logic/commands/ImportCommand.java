@@ -3,11 +3,8 @@ package scm.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static scm.address.logic.parser.CliSyntax.PREFIX_FILENAME;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.io.*;
+import java.util.*;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
@@ -19,6 +16,7 @@ import scm.address.model.Model;
 import scm.address.model.ReadOnlyAddressBook;
 import scm.address.model.person.Person;
 import scm.address.storage.JsonAdaptedPerson;
+import scm.address.storage.JsonAdaptedTag;
 import scm.address.storage.JsonAddressBookStorage;
 
 /**
@@ -133,6 +131,38 @@ public class ImportCommand extends Command {
                 .map(JsonAdaptedPerson::new)
                 .collect(Collectors.toList());
     }
+
+    public List<JsonAdaptedPerson> readPersonsFromCSV(File file) throws DataLoadingException {
+        String filePath = file.getPath();
+        List<JsonAdaptedPerson> persons = new ArrayList<>();
+        try {
+
+            BufferedReader br = new BufferedReader(new FileReader(filePath));
+            String line = "";
+            String splitBy = ",";
+            String headers = br.readLine();
+            while ((line = br.readLine()) != null)   //returns a Boolean value
+            {
+                String[] info = line.split(splitBy);    // use comma as separator
+                String name = info[0];
+                String phone = info[1];
+                String email = info[2];
+                String address = info[3];
+                List<JsonAdaptedTag> tags = Arrays.stream(info[4].split(" \\| "))
+                        .map(JsonAdaptedTag::new)
+                        .collect(Collectors.toList());
+
+                JsonAdaptedPerson person = new JsonAdaptedPerson(name, phone, email, address, tags);
+                persons.add(person);
+            }
+        } catch (FileNotFoundException e) {
+            throw new DataLoadingException(new Exception("Cannot load file: " + file.getPath()));
+        } catch (IOException e) {
+            throw new DataLoadingException(new Exception("Error reading file: " + file.getPath()));
+        }
+        return persons;
+    }
+
 
 
 
