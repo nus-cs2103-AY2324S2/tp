@@ -8,7 +8,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.group.Group;
 
 /**
  * Represents a Person in the major book.
@@ -26,15 +26,15 @@ public class Person {
     // Data fields
     private final Major major;
     private final Remark remark;
-    private final Set<Tag> tags = new HashSet<>();
+    private final Set<Group> groups = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
 
     public Person(Name name, Phone phone, Email email, Year year, Telegram telegram, Major major, Remark remark,
-                  Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, major, remark, tags);
+                  Set<Group> groups) {
+        requireAllNonNull(name, phone, email, major, remark, groups);
 
         this.name = name;
         this.phone = phone;
@@ -43,7 +43,7 @@ public class Person {
         this.major = major;
         this.telegram = telegram;
         this.remark = remark;
-        this.tags.addAll(tags);
+        this.groups.addAll(groups);
     }
 
     public Name getName() {
@@ -72,11 +72,11 @@ public class Person {
     }
 
     /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * Returns an immutable group set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public Set<Group> getGroups() {
+        return Collections.unmodifiableSet(groups);
     }
 
     /**
@@ -115,13 +115,13 @@ public class Person {
                 && telegram.equals(otherPerson.telegram)
                 && major.equals(otherPerson.major)
                 && remark.equals(otherPerson.remark)
-                && tags.equals(otherPerson.tags);
+                && groups.equals(otherPerson.groups);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, year, telegram, major, remark, tags);
+        return Objects.hash(name, phone, email, year, telegram, major, remark, groups);
     }
 
     @Override
@@ -134,7 +134,7 @@ public class Person {
                 .add("telegram", telegram)
                 .add("major", major)
                 .add("remark", remark)
-                .add("tags", tags)
+                .add("groups", groups)
                 .toString();
     }
 

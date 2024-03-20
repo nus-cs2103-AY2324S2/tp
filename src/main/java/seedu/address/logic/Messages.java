@@ -49,8 +49,8 @@ public class Messages {
                 .append(person.getTelegram())
                 .append("; Remark: ")
                 .append(person.getRemark())
-                .append("; Tags: ");
-        person.getTags().forEach(builder::append);
+                .append("; Groups: ");
+        person.getGroups().forEach(builder::append);
         return builder.toString();
     }
 
