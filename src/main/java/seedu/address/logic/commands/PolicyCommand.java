@@ -26,10 +26,12 @@ public class PolicyCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_POLICY + "[POLICY]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_POLICY + "Likes to swim.";
+            + PREFIX_POLICY + "Policy XYZ";
 
     public static final String MESSAGE_ADD_POLICY_SUCCESS = "Added policy to Person: %1$s";
     public static final String MESSAGE_DELETE_POLICY_SUCCESS = "Removed policy from Person: %1$s";
+    public static final String MESSAGE_PERSON_NOT_CLIENT_FAILURE =
+            "Invalid person. Only clients can be assigned a policy";
 
     private final Index index;
     private final Policy policy;
@@ -54,11 +56,17 @@ public class PolicyCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
+
+        if (!personToEdit.isClient()) {
+            throw new CommandException(MESSAGE_PERSON_NOT_CLIENT_FAILURE);
+        }
+
         Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
                 personToEdit.getAddress(), personToEdit.getRelationship(), policy, personToEdit.getTags());
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.commitAddressBook();
 
         return new CommandResult(generateSuccessMessage(editedPerson));
     }

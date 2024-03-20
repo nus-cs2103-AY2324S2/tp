@@ -57,7 +57,8 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        InsuraConnectBookStorage insuraConnectBookStorage = new JsonInsuraConnectBookStorage(userPrefs.getAddressBookFilePath());
+        InsuraConnectBookStorage insuraConnectBookStorage =
+                new JsonInsuraConnectBookStorage(userPrefs.getAddressBookFilePath());
         storage = new StorageManager(insuraConnectBookStorage, userPrefsStorage);
 
         model = initModelManager(storage, userPrefs);
