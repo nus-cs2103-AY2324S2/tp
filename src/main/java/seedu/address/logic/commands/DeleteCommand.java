@@ -53,7 +53,7 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        if(isIndexBased) {
+        if (isIndexBased) {
             return handleIndexInput(model);
         } else {
             return handleStudentIdInput(model);
@@ -70,6 +70,14 @@ public class DeleteCommand extends Command {
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
     }
 
+    /**
+     * Handles delete by Student ID given.
+     * This method updates the list of persons in the model to show all persons,
+     * then attempts to find and delete the person with the specified student ID.
+     * @param model The model containing the list of persons to be modified.
+     * @return A CommandResult indicating the success of the delete operation.
+     * @throws CommandException If the specified student ID does not match any person in the model.
+     */
     public CommandResult handleStudentIdInput(Model model) throws CommandException {
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         List<Person> lastShownList = model.getFilteredPersonList();

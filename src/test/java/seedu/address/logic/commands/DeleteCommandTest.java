@@ -98,7 +98,7 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_nonExistentStudentIdUnfilteredList_throwsCommandException() {
-        Id nonExistentStudentId  = new Id("A1234567Z");
+        Id nonExistentStudentId = new Id("A1234567Z");
         DeleteCommand deleteCommand = new DeleteCommand(nonExistentStudentId);
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_STUDENT_NOT_FOUND);
     }
