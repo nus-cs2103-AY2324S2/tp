@@ -194,7 +194,7 @@ public class ParserUtilTest {
         Set<Tag> actualTagSet = ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, VALID_TAG_2),
                 Arrays.asList(VALID_INTEREST_1));
         Set<Tag> expectedTagSet = new HashSet<Tag>(
-            Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2), new Interest(VALID_INTEREST_1))); // Include interest
+            Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2), new Interest(VALID_INTEREST_1)));
         assertEquals(expectedTagSet, actualTagSet);
     }
 }
