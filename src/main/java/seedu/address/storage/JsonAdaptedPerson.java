@@ -158,7 +158,7 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Status.class.getSimpleName()));
         }
         if (!Status.isValidStatus(status)) {
-            throw new IllegalValueException(Sex.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Status.MESSAGE_CONSTRAINTS);
         }
         final Status modelStatus = new Status(status);
 

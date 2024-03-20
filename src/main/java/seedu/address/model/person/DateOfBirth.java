@@ -10,7 +10,7 @@ public class DateOfBirth {
     public static final String MESSAGE_CONSTRAINTS =
             "Date of birth should be in the format of YYYY-MM-DD, and it should not be blank.";
 
-    public static final String VALIDATION_REGEX = "^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/\\d{4}$";
+    public static final String VALIDATION_REGEX = "^\\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])";
 
     private final LocalDate dateOfBirth;
 
