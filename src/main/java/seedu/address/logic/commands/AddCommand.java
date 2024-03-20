@@ -54,6 +54,14 @@ public class AddCommand extends Command {
         toAdd = employee;
     }
 
+    /**
+     * Returns an {@code Employee} with the details of the employee to be added
+     * @return Employee to be added
+     */
+    public Employee getEmployee() {
+        return toAdd;
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
