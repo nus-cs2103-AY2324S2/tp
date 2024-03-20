@@ -113,6 +113,7 @@ public class DeleteCommandTest {
 
         assertCommandFailure(deleteCommand, emptyModel, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
+
     @Test
     public void of_validArgs_returnsDeleteCommand() {
         assertParseSuccess(DeleteCommand::of, "1", new DeleteCommand(INDEX_FIRST_PERSON));
