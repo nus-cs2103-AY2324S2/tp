@@ -6,6 +6,7 @@
     "address": "123, Jurong West Ave 6, #08-111",
     "grade": "A",
     "subject": "English",
+    "dateTimes": [ "2024-03-02 1800" ],
     "tags": [ "friends" ]
   }, {
     "name": "Alice Pauline",
@@ -13,6 +14,7 @@
     "email": "pauline@example.com",
     "grade": "A",
     "subject": "Maths",
+    "dateTimes": [ "2024-03-21 1800" ],
     "address": "4th street"
   } ]
 }

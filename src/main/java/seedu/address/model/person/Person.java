@@ -25,19 +25,22 @@ public class Person {
     private final Address address;
     private final Grade grade;
     private final Subject subject;
+    private final Set<DateTime> dateTimes = new HashSet<>();
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Grade grade, Subject subject, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, grade, subject, tags);
+    public Person(Name name, Phone phone, Email email, Address address, Grade grade, Subject subject,
+                  Set<DateTime> dateTimes, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, grade, subject, dateTimes, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.grade = grade;
         this.subject = subject;
+        this.dateTimes.addAll(dateTimes);
         this.tags.addAll(tags);
     }
 
@@ -63,6 +66,9 @@ public class Person {
 
     public Subject getSubject() {
         return subject;
+    }
+    public Set<DateTime> getDateTimes() {
+        return Collections.unmodifiableSet(dateTimes);
     }
 
     /**
@@ -106,13 +112,14 @@ public class Person {
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
+                && dateTimes.equals(otherPerson.dateTimes)
                 && tags.equals(otherPerson.tags);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, dateTimes, tags);
     }
 
     @Override
@@ -124,6 +131,7 @@ public class Person {
                 .add("address", address)
                 .add("grade", grade)
                 .add("subject", subject)
+                .add("dateTimes", dateTimes)
                 .add("tags", tags)
                 .toString();
     }

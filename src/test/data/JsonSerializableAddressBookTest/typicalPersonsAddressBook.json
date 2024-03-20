@@ -7,6 +7,7 @@
     "address" : "123, Jurong West Ave 6, #08-111",
     "grade": "A",
     "subject": "English",
+    "dateTimes": [ ],
     "tags" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
@@ -15,6 +16,7 @@
     "address" : "311, Clementi Ave 2, #02-25",
     "grade": "A",
     "subject": "English",
+    "dateTimes": [ "2024-02-03 1800" ],
     "tags" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Carl Kurz",
@@ -23,6 +25,7 @@
     "address" : "wall street",
     "grade": "A",
     "subject": "English",
+    "dateTimes": [ "2024-02-03 1800" ],
     "tags" : [ ]
   }, {
     "name" : "Daniel Meier",
@@ -31,6 +34,7 @@
     "address" : "10th street",
     "grade": "A",
     "subject": "English",
+    "dateTimes": [ "2024-02-03 1800" ],
     "tags" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
@@ -39,6 +43,7 @@
     "address" : "michegan ave",
     "grade": "A",
     "subject": "English",
+    "dateTimes": [ "2024-02-03 1800" ],
     "tags" : [ ]
   }, {
     "name" : "Fiona Kunz",
@@ -47,6 +52,7 @@
     "address" : "little tokyo",
     "grade": "A",
     "subject": "English",
+    "dateTimes": [ "2024-02-03 1800" ],
     "tags" : [ ]
   }, {
     "name" : "George Best",
@@ -55,6 +61,7 @@
     "address" : "4th street",
     "grade": "A",
     "subject": "English",
+    "dateTimes": [ "2024-02-03 1800" ],
     "tags" : [ ]
   } ]
 }

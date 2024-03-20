@@ -33,6 +33,7 @@
       <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
       <Label fx:id="grade" styleClass="cell_small_label" text="\$grade" />
       <Label fx:id="subject" styleClass="cell_small_label" text="\$subject" />
+      <FlowPane fx:id="dateTimes" />
     </VBox>
   </GridPane>
 </HBox>
