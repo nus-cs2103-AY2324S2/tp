@@ -31,14 +31,14 @@ public class RoomNumberTest {
         assertFalse(RoomNumber.isValidRoomNumber(" ")); // spaces only
 
         // valid addresses
-        assertTrue(RoomNumber.isValidRoomNumber("12-12"));
-        assertTrue(RoomNumber.isValidRoomNumber("01-02"));
-        assertTrue(RoomNumber.isValidRoomNumber("03-01"));
+        assertTrue(RoomNumber.isValidRoomNumber("sw-12-12"));
+        assertTrue(RoomNumber.isValidRoomNumber("kw-01-02"));
+        assertTrue(RoomNumber.isValidRoomNumber("kms-03-01"));
     }
 
     @Test
     public void isOutdated() {
-        RoomNumber roomNumber = new RoomNumber("01-01");
+        RoomNumber roomNumber = new RoomNumber("sw-01-01");
         assertFalse(roomNumber.isOutdated());
 
         // If updated on the lastResultRelease for this AY
@@ -64,10 +64,10 @@ public class RoomNumberTest {
 
     @Test
     public void equals() {
-        RoomNumber roomNumber = new RoomNumber("01-01");
+        RoomNumber roomNumber = new RoomNumber("sw-01-01");
 
         // same values -> returns true
-        assertTrue(roomNumber.equals(new RoomNumber("01-01")));
+        assertTrue(roomNumber.equals(new RoomNumber("sw-01-01")));
 
         // same object -> returns true
         assertTrue(roomNumber.equals(roomNumber));
@@ -79,6 +79,6 @@ public class RoomNumberTest {
         assertFalse(roomNumber.equals(5.0f));
 
         // different values -> returns false
-        assertFalse(roomNumber.equals(new RoomNumber("02-02")));
+        assertFalse(roomNumber.equals(new RoomNumber("nw-02-02")));
     }
 }

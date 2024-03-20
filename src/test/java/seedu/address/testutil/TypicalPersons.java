@@ -26,34 +26,34 @@ import seedu.address.model.person.Person;
 public class TypicalPersons {
 
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
-            .withRoomNumber("12-12").withTelegram("alicePauline").withBirthday("23/12/1990")
+            .withRoomNumber("nw-12-12").withTelegram("alicePauline").withBirthday("23/12/1990")
             .withEmail("alice@example.com")
             .withPhone("94351253").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
-            .withRoomNumber("02-25").withTelegram("bensonMeier").withBirthday("25/02/2001")
+            .withRoomNumber("WO-02-25").withTelegram("bensonMeier").withBirthday("25/02/2001")
             .withEmail("johnd@example.com").withPhone("98765432").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
-            .withEmail("heinz@example.com").withRoomNumber("03-12").withTelegram("carlKurz")
+            .withEmail("heinz@example.com").withRoomNumber("IW-03-12").withTelegram("carlKurz")
             .withBirthday("12/04/1995").build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
-            .withEmail("cornelia@example.com").withRoomNumber("10-10").withTelegram("danielMeier")
+            .withEmail("cornelia@example.com").withRoomNumber("an-10-10").withTelegram("danielMeier")
             .withBirthday("10/10/2002").build();
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("94822243")
-            .withEmail("werner@example.com").withRoomNumber("02-12").withTelegram("elleMeyer")
+            .withEmail("werner@example.com").withRoomNumber("tt-02-12B").withTelegram("elleMeyer")
             .withBirthday("14/02/1999").build();
     public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("94822427")
-            .withEmail("lydia@example.com").withRoomNumber("05-12").withTelegram("fionaKunz")
+            .withEmail("lydia@example.com").withRoomNumber("od-05-12S").withTelegram("fionaKunz")
             .withBirthday("12/05/2002").build();
     public static final Person GEORGE = new PersonBuilder().withName("George Best").withPhone("94824142")
-            .withEmail("anna@example.com").withRoomNumber("23-12").withTelegram("georgeBest")
+            .withEmail("anna@example.com").withRoomNumber("ie-23-12B").withTelegram("georgeBest")
             .withBirthday("22/12/1997").build();
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withPhone("84812424")
-            .withEmail("stefan@example.com").withRoomNumber("02-32").withTelegram("hoonMeier")
+            .withEmail("stefan@example.com").withRoomNumber("wk-02-32A").withTelegram("hoonMeier")
             .withBirthday("06/01/1992").build();
     public static final Person IDA = new PersonBuilder().withName("Ida Mueller").withPhone("84821311")
-            .withEmail("hans@example.com").withRoomNumber("01-32").withTelegram("idaMueller")
+            .withEmail("hans@example.com").withRoomNumber("kl-01-32D").withTelegram("idaMueller")
             .withBirthday("09/09/1998").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
