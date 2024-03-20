@@ -7,6 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalStudentIds.ID_FIRST_PERSON;
 import static seedu.address.testutil.TypicalStudentIds.ID_SECOND_PERSON;
@@ -71,10 +72,11 @@ public class DeleteCommandTest {
     }
 
     @Test
-    public void execute_invalidIndexFilteredList_throwsCommandException() {
+    public void execute_invalidIndexFilteredList_success() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
-        StudentId outOfBoundId = ID_SECOND_PERSON;
+        Person personToDelete = model.getAddressBook().getPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
+        StudentId outOfBoundId = personToDelete.getStudentId();
 
         // ensures that outOfBoundId is still in bounds of address book list
         assertTrue(model.getAddressBook().getPersonList().stream()
@@ -82,7 +84,14 @@ public class DeleteCommandTest {
 
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundId);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_DISPLAYED_STUDENT_ID);
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
+                Messages.format(personToDelete));
+
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel.deletePerson(personToDelete);
+        showPersonAtIndex(expectedModel, INDEX_FIRST_PERSON);
+
+        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
