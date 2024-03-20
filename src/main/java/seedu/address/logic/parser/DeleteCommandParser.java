@@ -31,11 +31,10 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_ID);
 
         if (argMultimap.getValue(PREFIX_ID).isPresent()) {
-
             String queryId = argMultimap.getValue(PREFIX_ID).get().trim();
             if (queryId.isEmpty()) {
                 throw new ParseException(
-                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, Id.MESSAGE_CONSTRAINTS));
             }
 
             try {
@@ -43,7 +42,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
                 return new DeleteCommand(id);
             } catch (ParseException pe) {
                 throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, Id.MESSAGE_CONSTRAINTS), pe);
             }
         }
 

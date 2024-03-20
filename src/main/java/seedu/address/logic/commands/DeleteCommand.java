@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
 import java.util.Objects;
@@ -29,50 +30,65 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
 
-    private final Index targetIndex;
-    private final Id targetStudId;
+    private final String deleteBy;
+    private final String keyword;
 
     /**
      * Instantiate Delete Command with target index.
      */
     public DeleteCommand(Index targetIndex) {
-        this.targetIndex = targetIndex;
-        this.targetStudId = null;
+        this.deleteBy = "index";
+        this.keyword = String.valueOf(targetIndex.getZeroBased());
     }
 
     /**
-     * Instantiate Delete Command with target student ID.
+     * Instantiate Delete Command with given student ID.
      */
-    public DeleteCommand(Id targetStudId) {
-        this.targetIndex = null;
-        this.targetStudId = targetStudId;
+    public DeleteCommand(Id targetStudentId) {
+        this.deleteBy = "studentId";
+        this.keyword = targetStudentId.toString();
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
 
-        if (targetIndex != null) {
-            if (targetIndex.getZeroBased() >= lastShownList.size()) {
-                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-            }
-            Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
-            model.deletePerson(personToDelete);
-            return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
-        } else if (targetStudId != null) {
-            Optional<Person> personToDelete = lastShownList.stream()
-                    .filter(person -> person.getId().equals(targetStudId))
-                    .findFirst();
-            if (personToDelete.isEmpty()) {
-                throw new CommandException(Messages.MESSAGE_STUDENT_NOT_FOUND);
-            }
-            model.deletePerson(personToDelete.get());
-            return new CommandResult(
-                    String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete.get())));
-        } else {
+        switch (deleteBy) {
+        
+        case "index":
+            return handleIndexInput(model);
+
+        case "studentId":
+            return handleStudentIdInput(model);
+
+        default:
             throw new CommandException(Messages.MESSAGE_INVALID_COMMAND_FORMAT);
         }
+    }
+
+    public CommandResult handleIndexInput(Model model) throws CommandException {
+        List<Person> lastShownList = model.getFilteredPersonList();
+        int targetIndex = Integer.parseInt(keyword);
+        if (targetIndex >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        }
+        Person personToDelete = lastShownList.get(targetIndex);
+        model.deletePerson(personToDelete);
+        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
+    }
+
+    public CommandResult handleStudentIdInput(Model model) throws CommandException {
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        List<Person> lastShownList = model.getFilteredPersonList();
+        Optional<Person> personToDelete = lastShownList.stream()
+                .filter(person -> person.getId().equals(new Id(keyword)))
+                .findFirst();
+        if (personToDelete.isEmpty()) {
+            throw new CommandException(Messages.MESSAGE_STUDENT_NOT_FOUND);
+        }
+        model.deletePerson(personToDelete.get());
+        return new CommandResult(
+                String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete.get())));
     }
 
     @Override
@@ -87,14 +103,13 @@ public class DeleteCommand extends Command {
         }
 
         DeleteCommand otherDeleteCommand = (DeleteCommand) other;
-        return Objects.equals(targetIndex, otherDeleteCommand.targetIndex)
-                && Objects.equals(targetStudId, otherDeleteCommand.targetStudId);
+        return Objects.equals(keyword, otherDeleteCommand.keyword);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("targetIndex", targetIndex)
+                .add(deleteBy, keyword)
                 .toString();
     }
 }
