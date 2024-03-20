@@ -82,9 +82,9 @@ public class QueryPatientAppointmentCommandTest {
 
     @Test
     public void toStringMethod() {
-        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Arrays.asList("keyword"));
-        FindCommand findCommand = new FindCommand(predicate);
-        String expected = FindCommand.class.getCanonicalName() + "{predicate=" + predicate + "}";
+        AppointmentContainsPatientPredicate predicate = new AppointmentContainsPatientPredicate(Arrays.asList("keyword"));
+        QueryPatientAppointmentCommand findCommand = new QueryPatientAppointmentCommand(predicate);
+        String expected = QueryPatientAppointmentCommand.class.getCanonicalName() + "{predicate=" + predicate + "}";
         assertEquals(expected, findCommand.toString());
     }
 
