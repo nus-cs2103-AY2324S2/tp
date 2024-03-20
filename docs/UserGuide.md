@@ -179,7 +179,7 @@ Examples:
 
 ### Exporting applicants contacts : `/export`
 Use filter or find to isolate the applicants that match the desired stage or role or name. Export will then extract those applicants' contacts into an external JSON file.
-Format: /export 
+Format: /export
 
 * Achieve an additional layer of organisation to properly arrange contacts
 
