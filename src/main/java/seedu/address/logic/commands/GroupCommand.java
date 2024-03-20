@@ -3,6 +3,9 @@ package seedu.address.logic.commands;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.logic.Messages;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
 import seedu.address.model.group.Group;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Grade;
@@ -36,15 +39,45 @@ public class GroupCommand extends Command {
             + PREFIX_STUDENTID + "A01234567R "
             + PREFIX_STUDENTID + "A12345678R ";
 
-    private final String groupName;
-    public GroupCommand(String groupName, EditGroupDescriptor editGroupDescriptor) {
-        requireNonNull(groupName);
-        requireNonNull(editGroupDescriptor);
+    private final Group group;
+    private final Set<StudentId> studentIds;
 
-        this.groupName = groupName;
-        this.editGroupDescriptor = new EditGroupDescriptor(editGroupDescriptor);
+    public GroupCommand(Group group, Set<StudentId> studentIds) {
+        requireNonNull(group);
+        requireNonNull(studentIds);
+        this.group = group;
+        this.studentIds = studentIds;
     }
 
+    @Override
+    public CommandResult execute(Model model) throws CommandException {
+        requireNonNull(model);
+        for (StudentId studentId : studentIds) {
+            EditCommand
+        }
+        return
+    }
 
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
 
+        // instanceof handles nulls
+        if (!(other instanceof GroupCommand)) {
+            return false;
+        }
+
+        GroupCommand otherGroupCommand = (GroupCommand) other;
+        return group.equals(otherGroupCommand.group) && studentIds.equals(otherGroupCommand.studentIds);
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .add("group", group)
+                .add("studentIds", studentIds)
+                .toString();
+    }
 }
