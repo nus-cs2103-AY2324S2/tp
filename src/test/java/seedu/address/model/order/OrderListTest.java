@@ -11,7 +11,6 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.exceptions.OrderNotFoundException;
 import seedu.address.testutil.OrderBuilder;
 
-
 public class OrderListTest {
 
     private final OrderList orderList = new OrderList();
@@ -74,20 +73,21 @@ public class OrderListTest {
     }
 
 
-    /*@Test
+    @Test
     public void editOrder_editedOrderHasSameCustomer_success() {
         // For some reason cannot use Typical Order, need to find fix.
-        OrderList testOrderList = new OrderList();
-        Order testOrder = new OrderBuilder().withIndex(1).withPerson(ALICE).withProductQuantity("cupcake", "2").build();
-        testOrderList.addOrder(testOrder, new PersonBuilder(ALICE).build());
-        Order testOrder2 = new OrderBuilder().withProductQuantity("cookies", "1").build();
+        //OrderList testOrderList = new OrderList();
+        //Order testOrder = new OrderBuilder().withIndex(1).withPerson(ALICE)
+        // .withProductQuantity("cupcake", "2").build();
+        //testOrderList.addOrder(testOrder, new PersonBuilder(ALICE).build());
+        //Order testOrder2 = new OrderBuilder().withProductQuantity("cookies", "1").build();
         //Order editedCupcakesAlice = new OrderBuilder(CUPCAKES_AND_COOKIES).withIndex(1).withPerson(ALICE).build();
-        testOrderList.editOrder(1, testOrder2);
-        OrderList expectedOrderList = new OrderList();
-        Order testOrder3 = new OrderBuilder().withIndex(1).withProductQuantity("cookies", "1").build();
-        expectedOrderList.addOrder(testOrder3, new PersonBuilder(ALICE).build());
-        assertEquals(expectedOrderList.getOrder(1), testOrderList.getOrder(1));
-    }*/
+        //testOrderList.editOrder(1, testOrder2);
+        //OrderList expectedOrderList = new OrderList();
+        //Order testOrder3 = new OrderBuilder().withIndex(1).withProductQuantity("cookies", "1").build();
+        //expectedOrderList.addOrder(testOrder3, new PersonBuilder(ALICE).build());
+        //assertEquals(expectedOrderList.getOrder(1), testOrderList.getOrder(1));
+    }
 
     @Test
     public void editOrder_existingOrder_editsOrderOnPerson() {

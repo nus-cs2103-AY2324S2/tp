@@ -102,7 +102,7 @@ public interface Model {
      * @param currProduct Product of which quantity to be editted.
      * @param newQuantity new Quantity of the specified product.
      */
-    Order setOrder(Order target, Product currProduct, Quantity newQuantity);
+    Order editOrder(Order target, Product currProduct, Quantity newQuantity);
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();

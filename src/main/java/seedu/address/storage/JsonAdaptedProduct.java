@@ -15,14 +15,14 @@ public class JsonAdaptedProduct {
 
     public static final String MISSING_NAME_FIELD_MESSAGE = "Product's name field is missing!";
 
-    private String name;
+    private final String name;
 
     /**
      * Constructs a {@code JsonAdaptedProduct} with the given product details.
      * @param name name of the Product.
      */
     @JsonCreator
-    public JsonAdaptedProduct(@JsonProperty("name") String name) {
+    public JsonAdaptedProduct(@JsonProperty("product") String name) {
         this.name = name;
     }
 
@@ -30,7 +30,7 @@ public class JsonAdaptedProduct {
      * Converts a given {@code Product} into this class for Jackson use.
      */
     public JsonAdaptedProduct(Product source) {
-        this.name = source.getName();
+        this.name = source.toString();
     }
 
     /**
@@ -39,6 +39,7 @@ public class JsonAdaptedProduct {
      * @throws IllegalValueException if there were anhy data constraints violated in the adapted product.
      */
     public Product toModelType() throws IllegalValueException {
+        System.out.println(this.name);
         if (!isValidProduct(this.name)) {
             throw new IllegalValueException(MISSING_NAME_FIELD_MESSAGE);
         }

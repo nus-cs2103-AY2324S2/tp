@@ -66,6 +66,7 @@ public class AddOrderCommand extends Command {
         AddProductCommand.setLastOrder(this.order);
         AddProductCommand.setPersonToEdit(personToEdit);
 
+
         return new CommandResult(generateSuccessMessage(editedPerson));
     }
 

@@ -76,7 +76,7 @@ public class TypicalPersons {
             Order copy = new OrderBuilder(getTypicalOrders().get(k)).build();
             copy.setCustomer(typicalPersons.get(k));
             typicalPersons.get(k).addOrder(copy);
-            ab.addOrder(copy, typicalPersons.get(k));
+            ab.addOrder(copy);
         }
         return ab;
     }

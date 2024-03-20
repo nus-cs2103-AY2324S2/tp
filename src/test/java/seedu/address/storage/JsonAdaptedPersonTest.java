@@ -38,8 +38,8 @@ public class JsonAdaptedPersonTest {
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
 
-    private static final ArrayList<JsonAdaptedOrder> VALID_ORDERS = (BENSON.getOrders().stream()
-            .map(JsonAdaptedOrder::new)
+    private static final ArrayList<Integer> VALID_ORDERS = (BENSON.getOrders().stream()
+            .map(order -> order.getId())
             .collect(Collectors.toCollection(ArrayList::new)));
 
     @Test
