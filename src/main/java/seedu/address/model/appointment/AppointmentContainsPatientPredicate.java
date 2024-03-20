@@ -2,8 +2,6 @@ package seedu.address.model.appointment;
 
 import seedu.address.commons.util.StringUtil;
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.person.PatientNameContainsKeywordsPredicate;
-import seedu.address.model.person.Person;
 
 import java.util.List;
 import java.util.function.Predicate;

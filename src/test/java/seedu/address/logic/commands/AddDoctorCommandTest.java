@@ -162,7 +162,7 @@ public class AddDoctorCommandTest {
         }
 
         @Override
-        public ObservableList<Appointment> getAppointmentList() {
+        public ObservableList<Appointment> getFilteredAppointmentList() {
             throw new AssertionError("This method should not be called.");
         }
 
