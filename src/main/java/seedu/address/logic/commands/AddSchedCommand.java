@@ -38,7 +38,7 @@ public class AddSchedCommand extends Command {
 
     private final ArrayList<Index> targetIndexes;
 
-    private Schedule schedule;
+    private final Schedule schedule;
 
     /**
      * Creates an AddCommand to add the specified {@code Person}

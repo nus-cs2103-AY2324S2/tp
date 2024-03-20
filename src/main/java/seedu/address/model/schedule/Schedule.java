@@ -27,7 +27,7 @@ public class Schedule {
     private final String schedName;
     private final LocalDateTime startTime;
     private final LocalDateTime endTime;
-    private ArrayList<Person> personList;
+    private final ArrayList<Person> personList;
 
     /**
      * Constructs a {@code Schedule}.
