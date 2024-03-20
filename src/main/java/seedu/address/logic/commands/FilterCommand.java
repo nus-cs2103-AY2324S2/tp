@@ -22,7 +22,8 @@ public class FilterCommand extends Command {
 
     public static final String MESSAGE_FIND_HELP = "Filter Command: Filters clients whose names contain "
             + "the specified keyphrase (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Format: filter KEYPHRASE\n";
+            + "Format: filter KEYPHRASE\n"
+            + "Example: filter Jus\n";
 
     private final NameContainsKeyphrasePredicate predicate;
 

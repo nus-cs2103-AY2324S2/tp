@@ -27,8 +27,10 @@ public class DeleteCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 or " + COMMAND_WORD + " " + PREFIX_NAME + "John Doe";
 
 
-    public static final String MESSAGE_DELETE_HELP = "Delete Command: (Coming soon)\n"
-            + "Format: (Coming soon)\n";
+    public static final String MESSAGE_DELETE_HELP = "Delete Command: Deletes a client in Realodex by "
+            + "either the client's full name or index number shown in the list.\n"
+            + "Format: delete n/FULL NAME or delete INDEX\n"
+            + "Example: delete n/James Lau OR delete 4\n";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Client: %1$s";
 
