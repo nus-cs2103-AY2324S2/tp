@@ -21,7 +21,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.PersonSearchPredicate;
+import seedu.address.model.person.PersonMatchesKeywordPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
@@ -33,10 +33,10 @@ public class FindCommandTest {
 
     @Test
     public void equals() {
-        PersonSearchPredicate firstPredicate =
-                new PersonSearchPredicate(Collections.singletonList("first"));
-        PersonSearchPredicate secondPredicate =
-                new PersonSearchPredicate(Collections.singletonList("second"));
+        PersonMatchesKeywordPredicate firstPredicate =
+                new PersonMatchesKeywordPredicate(Collections.singletonList("first"));
+        PersonMatchesKeywordPredicate secondPredicate =
+                new PersonMatchesKeywordPredicate(Collections.singletonList("second"));
 
         FindCommand findFirstCommand = new FindCommand(firstPredicate);
         FindCommand findSecondCommand = new FindCommand(secondPredicate);
@@ -61,7 +61,7 @@ public class FindCommandTest {
     @Test
     public void execute_zeroKeywords_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
-        PersonSearchPredicate predicate = preparePredicate(" ");
+        PersonMatchesKeywordPredicate predicate = preparePredicate(" ");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -71,7 +71,7 @@ public class FindCommandTest {
     @Test
     public void execute_multipleKeywords_multiplePersonsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
-        PersonSearchPredicate predicate = preparePredicate("Kurz Elle Kunz");
+        PersonMatchesKeywordPredicate predicate = preparePredicate("Kurz Elle Kunz");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -88,7 +88,7 @@ public class FindCommandTest {
     public void of_validArgs_returnsFindCommand() {
         // no leading and trailing whitespaces
         FindCommand expectedFindCommand =
-                new FindCommand(new PersonSearchPredicate(List.of("Alice", "Bob")));
+                new FindCommand(new PersonMatchesKeywordPredicate(List.of("Alice", "Bob")));
         assertParseSuccess(FindCommand::of, "Alice Bob", expectedFindCommand);
 
         // multiple whitespaces between keywords
@@ -97,7 +97,7 @@ public class FindCommandTest {
 
     @Test
     public void toStringMethod() {
-        PersonSearchPredicate predicate = new PersonSearchPredicate(List.of("keyword"));
+        PersonMatchesKeywordPredicate predicate = new PersonMatchesKeywordPredicate(List.of("keyword"));
         FindCommand findCommand = new FindCommand(predicate);
         String expected = FindCommand.class.getCanonicalName() + "{predicate=" + predicate + "}";
         assertEquals(expected, findCommand.toString());
@@ -106,8 +106,8 @@ public class FindCommandTest {
     /**
      * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
      */
-    private PersonSearchPredicate preparePredicate(String userInput) {
-        return new PersonSearchPredicate(List.of(userInput.split("\\s+")));
+    private PersonMatchesKeywordPredicate preparePredicate(String userInput) {
+        return new PersonMatchesKeywordPredicate(List.of(userInput.split("\\s+")));
     }
 
 }
