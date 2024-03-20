@@ -6,7 +6,7 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":TaskMasterProParser" as TaskMasterProParser LOGIC_COLOR
 participant ":AssignTaskCommandParser" as AssignTaskCommandParser LOGIC_COLOR
-participant ":AssignTaskCommand" as AssignTaskCommand LOGIC_COLOR
+participant "a:AssignTaskCommand" as AssignTaskCommand LOGIC_COLOR
 participant "r:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
