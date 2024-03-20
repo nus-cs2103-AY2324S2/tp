@@ -117,7 +117,12 @@ public class MainWindow extends UiPart<Stage> {
 
         // Update the details panel when a Person in the list is selected
         personListPanel.initListener((observable, oldValue, newValue) -> {
-            personDetailsPanel.update(newValue);
+            // newValue can be null if the selection in the personListView is cleared
+            if (newValue == null) {
+                personDetailsPanel.clear();
+            } else {
+                personDetailsPanel.update(newValue);
+            }
         });
 
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
