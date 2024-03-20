@@ -35,6 +35,7 @@ public class AddressBookTest {
     public void constructor() {
         assertEquals(Collections.emptyList(), addressBook.getPersonList());
         assertEquals(Collections.emptyList(), addressBook.getAppointmentList());
+        assertEquals(Collections.emptyList(), addressBook.getAppointmentViewList());
     }
 
     @Test
