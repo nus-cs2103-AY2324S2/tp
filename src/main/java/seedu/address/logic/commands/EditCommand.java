@@ -105,8 +105,8 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Grade updatedGrade = personToEdit.getGrade();
-        Subject updatedSubject = personToEdit.getSubject();
+        Grade updatedGrade = editPersonDescriptor.getGrade().orElse(personToEdit.getGrade());
+        Subject updatedSubject = editPersonDescriptor.getSubject().orElse(personToEdit.getSubject());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
@@ -146,6 +146,8 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
+        private Subject subject;
+        private Grade grade;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -159,6 +161,8 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
+            setSubject(toCopy.subject);
+            setGrade(toCopy.grade);
             setTags(toCopy.tags);
         }
 
@@ -166,7 +170,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, subject, grade, tags);
         }
 
         public void setName(Name name) {
@@ -199,6 +203,22 @@ public class EditCommand extends Command {
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
+        }
+
+        public void setSubject(Subject subject) {
+            this.subject = subject;
+        }
+
+        public Optional<Subject> getSubject() {
+            return Optional.ofNullable(subject);
+        }
+
+        public void setGrade(Grade grade) {
+            this.grade = grade;
+        }
+
+        public Optional<Grade> getGrade() {
+            return Optional.ofNullable(grade);
         }
 
         /**
@@ -244,6 +264,8 @@ public class EditCommand extends Command {
                     .add("phone", phone)
                     .add("email", email)
                     .add("address", address)
+                    .add("subject", subject)
+                    .add("grade", grade)
                     .add("tags", tags)
                     .toString();
         }
