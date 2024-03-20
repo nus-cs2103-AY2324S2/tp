@@ -16,6 +16,8 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     private GuiSettings guiSettings = new GuiSettings();
     private Path addressBookFilePath = Paths.get("data" , "addressbook.json");
 
+    private Path orderBookFilePath = Paths.get("data" , "addressbook.json");
+
     /**
      * Creates a {@code UserPrefs} with default values.
      */
@@ -36,6 +38,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
         setAddressBookFilePath(newUserPrefs.getAddressBookFilePath());
+        setOrderBookFilePath(newUserPrefs.getOrderBookFilePath());
     }
 
     public GuiSettings getGuiSettings() {
@@ -46,6 +49,8 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         requireNonNull(guiSettings);
         this.guiSettings = guiSettings;
     }
+
+    // ================ AddressBook methods ==============================
 
     public Path getAddressBookFilePath() {
         return addressBookFilePath;
@@ -69,12 +74,13 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
         UserPrefs otherUserPrefs = (UserPrefs) other;
         return guiSettings.equals(otherUserPrefs.guiSettings)
-                && addressBookFilePath.equals(otherUserPrefs.addressBookFilePath);
+                && addressBookFilePath.equals(otherUserPrefs.addressBookFilePath)
+                && orderBookFilePath.equals(otherUserPrefs.orderBookFilePath);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, addressBookFilePath);
+        return Objects.hash(guiSettings, addressBookFilePath, orderBookFilePath);
     }
 
     @Override
@@ -82,7 +88,18 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);
         sb.append("\nLocal data file location : " + addressBookFilePath);
+        sb.append("\nLocal data file location : " + orderBookFilePath);
         return sb.toString();
     }
 
+    // ================ OrderBook methods ==============================
+
+    public Path getOrderBookFilePath() {
+        return orderBookFilePath;
+    }
+
+    public void setOrderBookFilePath(Path orderBookFilePath) {
+        requireNonNull(orderBookFilePath);
+        this.orderBookFilePath = orderBookFilePath;
+    }
 }
