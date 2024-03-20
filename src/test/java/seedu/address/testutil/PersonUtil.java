@@ -3,10 +3,12 @@ package seedu.address.testutil;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERVIEWTIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.time.format.DateTimeFormatter;
 import java.util.Set;
 
 import seedu.address.logic.commands.AddCommand;
@@ -31,12 +33,14 @@ public class PersonUtil {
      * Returns the part of command string for the given {@code person}'s details.
      */
     public static String getPersonDetails(Person person) {
+        DateTimeFormatter reformat = DateTimeFormatter.ofPattern("ddMMyyyyHHmm");
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_COMPANY_NAME + person.getCompanyName().companyName + " ");
         sb.append(PREFIX_NAME + person.getName().fullName + " ");
         sb.append(PREFIX_PHONE + person.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
         sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
+        sb.append(PREFIX_INTERVIEWTIME + person.getDateTime().dateTime.format(reformat) + " ");
         person.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
@@ -47,6 +51,7 @@ public class PersonUtil {
      * Returns the part of command string for the given {@code EditPersonDescriptor}'s details.
      */
     public static String getEditPersonDescriptorDetails(EditPersonDescriptor descriptor) {
+        DateTimeFormatter reformat = DateTimeFormatter.ofPattern("ddMMyyyyHHmm");
         StringBuilder sb = new StringBuilder();
         descriptor.getCompanyName().ifPresent(companyName -> sb.append(PREFIX_COMPANY_NAME)
                 .append(companyName.companyName).append(" "));
@@ -54,6 +59,8 @@ public class PersonUtil {
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
+        descriptor.getDateTime().ifPresent(dateTime ->
+                sb.append(PREFIX_INTERVIEWTIME).append(dateTime.dateTime.format(reformat)).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {

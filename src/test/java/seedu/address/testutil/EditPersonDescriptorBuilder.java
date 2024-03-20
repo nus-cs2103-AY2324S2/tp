@@ -8,9 +8,11 @@ import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.CompanyName;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.InterviewTime;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Salary;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -38,6 +40,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
         descriptor.setAddress(person.getAddress());
+        descriptor.setDateTime(person.getDateTime());
         descriptor.setTags(person.getTags());
     }
 
@@ -82,6 +85,23 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
+     * To add interview-time to the person object
+     * @param dateTime input
+     * @return the object
+     */
+    public EditPersonDescriptorBuilder withInterviewTime(String dateTime) {
+        descriptor.setDateTime(new InterviewTime(dateTime));
+        return this;
+    }
+    /**
+     * Sets the {@code Salary} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withSalary(String salary) {
+        descriptor.setSalary(new Salary(salary));
+        return this;
+    }
+
+    /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
      * that we are building.
      */
@@ -94,4 +114,5 @@ public class EditPersonDescriptorBuilder {
     public EditPersonDescriptor build() {
         return descriptor;
     }
+
 }

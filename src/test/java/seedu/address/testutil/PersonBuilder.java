@@ -6,9 +6,11 @@ import java.util.Set;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.CompanyName;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.InterviewTime;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Salary;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -21,12 +23,16 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_INTERVIEWTIME = "121220221400";
+    public static final String DEFAULT_SALARY = "0";
 
     private CompanyName companyName;
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
+    private InterviewTime dateTime;
+    private Salary salary;
     private Set<Tag> tags;
 
     /**
@@ -38,6 +44,8 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
+        dateTime = new InterviewTime(DEFAULT_INTERVIEWTIME);
+        salary = new Salary(DEFAULT_SALARY);
         tags = new HashSet<>();
     }
 
@@ -50,6 +58,8 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
+        dateTime = personToCopy.getDateTime();
+        salary = personToCopy.getSalary();
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -72,7 +82,7 @@ public class PersonBuilder {
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
      */
-    public PersonBuilder withTags(String ... tags) {
+    public PersonBuilder withTags(String... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
@@ -82,6 +92,14 @@ public class PersonBuilder {
      */
     public PersonBuilder withAddress(String address) {
         this.address = new Address(address);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Salary} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withSalary(String salary) {
+        this.salary = new Salary(salary);
         return this;
     }
 
@@ -101,8 +119,18 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Adds dateTime to PersonBuilder object
+     * @param dateTime input
+     * @return object
+     */
+    public PersonBuilder withDateTime(String dateTime) {
+        this.dateTime = new InterviewTime(dateTime);
+        return this;
+    }
+
     public Person build() {
-        return new Person(companyName, name, phone, email, address, tags);
+        return new Person(companyName, name, phone, email, address, dateTime, salary, tags);
     }
 
 }
