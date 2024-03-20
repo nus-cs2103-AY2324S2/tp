@@ -14,12 +14,11 @@ import seedu.address.model.person.relationship.Relationship;
  * It supports adding relationships with and without roles.
  */
 public class AddRelationshipCommand extends Command {
-    private static String MESSAGE_SUCCESS = "add success";
     public static final String COMMAND_WORD = "addRelation";
+    private static String MESSAGE_SUCCESS = "add success";
     private String originUuid;
     private String targetUuid;
     private String relationshipDescriptor;
-
     /**
      * Constructor takes in the string arguments needed to be passed into the relationship constructor and performs
      * the addition of the relationship
@@ -49,5 +48,5 @@ public class AddRelationshipCommand extends Command {
         }
         model.addRelationship(toAdd);
         return new CommandResult(MESSAGE_SUCCESS);
-     }
+    }
 }

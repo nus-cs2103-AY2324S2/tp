@@ -97,7 +97,6 @@ public class AddressBookParser {
 
         case AddAttributeCommand.COMMAND_WORD:
             return new PersonAttributeCommandParser().parse(userInput);
-
         default:
             logger.finer("This user input caused a ParseException: " + userInput);
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

@@ -130,10 +130,10 @@ public class ParserUtil {
      * @throws ParseException
      */
     public static String parseUuid(String uuid) throws ParseException {
-        String trimmedUUID = uuid.trim();
-        if (!StringUtil.isValidLastFourDigitsUuid(trimmedUUID)) {
+        String trimmedUuid = uuid.trim();
+        if (!StringUtil.isValidLastFourDigitsUuid(trimmedUuid)) {
             throw new ParseException(Messages.MESSAGE_INVALID_PERSON_UUID);
         }
-        return trimmedUUID;
+        return trimmedUuid;
     }
 }
