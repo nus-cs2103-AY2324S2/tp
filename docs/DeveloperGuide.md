@@ -182,6 +182,23 @@ The sequence diagram below also shows the interaction between the various compon
 
 <puml src="diagrams/EditCommandSequenceDiagram.puml" />
 
+### View a `Person`
+
+Views the details of an existing `Person` identified by their `INDEX`in the displayed person list.
+The commands are implemented in the `ViewCommand` class which extend the `Command` class.
+
+* Step 1. The `ViewCommand` object's `execute()` method is called.
+* Step 2. The `INDEX` is checked to be within the valid range of the displayed person list. If the `INDEX` given is invalid (i.e., out of range), a `CommandException` is thrown.
+* Step 3. The `Person` at the given `INDEX` is referenced and then displayed to the user.
+
+The diagram below describes this behaviour concisely. It shows how a user’s command is processed and what message is ultimately shown if they decide to view a person.
+
+<puml src="diagrams/ViewCommandActivityDiagram.puml" />
+
+The sequence diagram below also shows the interaction between the various components during the execution of the `ViewCommand`.
+
+<puml src="diagrams/ViewCommandSequenceDiagram.puml" />
+
 <div style="page-break-after: always;"></div>
 
 ### \[Proposed\] Undo/redo feature
