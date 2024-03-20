@@ -20,10 +20,7 @@ public class Birthday {
      */
     public Birthday(String birthday) {
         requireNonNull(birthday);
-        // bypass regex test if no birthday information was entered
-        //if (!birthday.equals("birthday unknown")) {
-            checkArgument(isValidBirthday(birthday), MESSAGE_CONSTRAINTS);
-        //}
+        checkArgument(isValidBirthday(birthday), MESSAGE_CONSTRAINTS);
         this.value = birthday;
     }
 
