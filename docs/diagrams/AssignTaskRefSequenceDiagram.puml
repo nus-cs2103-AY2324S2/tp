@@ -1,0 +1,39 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+mainframe sd  update existing Employee fields
+box Logic LOGIC_COLOR_T1
+participant "a:AssignTaskCommand" as AssignTaskCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "m:Model" as Model MODEL_COLOR
+participant "t:Task" as Task MODEL_COLOR
+participant "e:Employee" as Employee MODEL_COLOR
+end box
+
+AssignTaskCommand -> Model : getFilteredTaskList()
+Model --> AssignTaskCommand : taskList
+
+AssignTaskCommand -> Model : getFilteredEmployeeList()
+Model --> AssignTaskCommand : employeeList
+
+'loop until taskId == 1 for each t in taskList
+'AssignTaskCommand -> Task: getTaskId()
+'end
+
+loop for each t in taskList
+    AssignTaskCommand -> Task: getTaskId()
+    opt taskId == 1
+        loop until employeeId == 6 for each e in employeeList
+            AssignTaskCommand -> Employee: getEmployeeId()
+            opt employeeId == 6
+                AssignTaskCommand -> Employee : assignTask(1)
+                Employee --> AssignTaskCommand : updatedEmployee
+                AssignTaskCommand -> Model : setEmployee(e, updatedEmployee)
+            end
+        end
+    end
+end
+@enduml

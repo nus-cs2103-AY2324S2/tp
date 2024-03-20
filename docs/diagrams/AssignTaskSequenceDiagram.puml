@@ -51,7 +51,7 @@ activate AssignTaskCommand
 
 'Put this into a ref block'
 
-group ref [update existing Employee fields,\nalso includes interactions with Task and Employee]
+group ref [update existing Employee fields]
 AssignTaskCommand -[hidden]-> Model
 end
 
