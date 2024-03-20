@@ -35,8 +35,8 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        Person person = new PersonBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
+        Person person = new PersonBuilder().build(); // PersonBuilder have unique ID
+        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));// But this does not
         assertEquals(new AddCommand(person), command);
     }
 
