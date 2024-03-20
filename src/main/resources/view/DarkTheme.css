@@ -62,11 +62,7 @@
     -fx-size: 35;
     -fx-border-width: 0 0 1 0;
     -fx-background-color: transparent;
-    -fx-border-color:
-        transparent
-        transparent
-        derive(-fx-base, 80%)
-        transparent;
+    -fx-border-color: transparent transparent derive(-fx-base, 80%) transparent;
     -fx-border-insets: 0 10 1 0;
 }
 
@@ -102,7 +98,7 @@
 
 .list-cell {
     -fx-label-padding: 0 0 0 0;
-    -fx-graphic-text-gap : 0;
+    -fx-graphic-text-gap: 0;
     -fx-padding: 0 0 0 0;
     -fx-background-radius: 10;
 }
@@ -151,7 +147,7 @@
     -fx-text-fill: #000000 !important;
 }
 
-.results-container .text-area{
+.results-container .text-area {
     -fx-background-color: transparent;
 }
 
@@ -208,8 +204,8 @@
 }
 
 .button:pressed, .button:default:hover:pressed {
-  -fx-background-color: white;
-  -fx-text-fill: #1d1d1d;
+    -fx-background-color: white;
+    -fx-text-fill: #1d1d1d;
 }
 
 .button:focused {
@@ -321,7 +317,7 @@
   // ================================ */
 
 .context-menu {
-    -fx-background-color:#A6A6A6;
+    -fx-background-color: #A6A6A6;
 }
 
 .context-menu .label {
