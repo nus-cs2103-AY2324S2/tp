@@ -5,13 +5,12 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalOrders.CUPCAKES_ONLY;
-import static seedu.address.testutil.TypicalPersons.ALICE;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.exceptions.OrderNotFoundException;
 import seedu.address.testutil.OrderBuilder;
-import seedu.address.testutil.PersonBuilder;
+
 
 public class OrderListTest {
 
@@ -74,8 +73,8 @@ public class OrderListTest {
         assertEquals(expectedOrderList, orderList);
     }
 
-    /**
-    @Test
+
+    /*@Test
     public void editOrder_editedOrderHasSameCustomer_success() {
         // For some reason cannot use Typical Order, need to find fix.
         OrderList testOrderList = new OrderList();
@@ -88,8 +87,7 @@ public class OrderListTest {
         Order testOrder3 = new OrderBuilder().withIndex(1).withProductQuantity("cookies", "1").build();
         expectedOrderList.addOrder(testOrder3, new PersonBuilder(ALICE).build());
         assertEquals(expectedOrderList.getOrder(1), testOrderList.getOrder(1));
-    }
-     */
+    }*/
 
     @Test
     public void editOrder_existingOrder_editsOrderOnPerson() {

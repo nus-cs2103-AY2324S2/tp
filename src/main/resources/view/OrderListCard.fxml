@@ -10,16 +10,16 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
-    <GridPane HBox.hgrow="ALWAYS">
+<HBox id="cardPane" fx:id="cardPane" prefWidth="150.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+    <GridPane prefWidth="150.0" HBox.hgrow="ALWAYS">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
         </columnConstraints>
-        <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
+        <VBox alignment="CENTER_LEFT" minHeight="60.0" GridPane.columnIndex="0">
             <padding>
                 <Insets bottom="5" left="15" right="5" top="5" />
             </padding>
-            <HBox alignment="CENTER_LEFT" prefWidth="130.0" spacing="5" translateY="-30.0">
+            <HBox alignment="CENTER_LEFT" prefWidth="130.0" spacing="5" translateY="-8.0">
                 <Label fx:id="orderId" styleClass="cell_big_label">
                     <minWidth>
                         <!-- Ensures that the label text is never truncated -->
@@ -27,8 +27,8 @@
                     </minWidth>
                 </Label>
             </HBox>
-            <FlowPane fx:id="products" />
-            <Label fx:id="customerName" styleClass="cell_small_label" text="\$customer" translateY="-30.0" />
+            <Label fx:id="customerName" styleClass="cell_small_label" text="\$customer" translateY="-8.0" />
+            <FlowPane fx:id="products" maxHeight="100.0" translateY="-3.0" />
         </VBox>
       <rowConstraints>
          <RowConstraints />
