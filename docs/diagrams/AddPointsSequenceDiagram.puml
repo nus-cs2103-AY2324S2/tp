@@ -29,7 +29,7 @@ activate AddPointsCommandParser
 AddPointsCommandParser --> AddressBookParser
 deactivate AddPointsCommandParser
 
-AddressBookParser -> DeleteCommandParser : parse(\n"n/Alice \np/50")
+AddressBookParser -> AddPointsCommandParser : parse(\n"n/Alice \np/50")
 activate AddPointsCommandParser
 
 create Points
@@ -79,7 +79,7 @@ CommandResult --> AddPointsCommand
 deactivate CommandResult
 
 AddPointsCommand --> LogicManager : r
-deactivate DeleteCommand
+deactivate AddPointsCommand
 
 [<--LogicManager
 deactivate LogicManager
