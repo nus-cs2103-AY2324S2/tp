@@ -41,7 +41,7 @@ Action     | Format, Examples
 
    * `list` : Lists all contacts.
 
-   * `add n/John Doe n/01-01` : Adds a contact named `John Doe` to Dormie.
+   * `add n/John Doe n/sw-01-01` : Adds a contact named `John Doe` to Dormie.
 
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
