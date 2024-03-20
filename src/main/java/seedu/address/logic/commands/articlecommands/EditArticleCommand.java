@@ -38,8 +38,7 @@ public class EditArticleCommand extends ArticleCommand {
             + "PARAMETERS LISTED HERE"; // Parameters used in the example are added here.
 
     public static final String MESSAGE_EDIT_ARTICLE_SUCCESS = "Edited Article: %1$s";
-    //TODO: REMOVE Article:
-    public static final String MESSAGE_NOT_EDITED = "Article: At least one field to edit must be provided.";
+    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_ARTICLE = "This article already exists in the article book.";
 
     private final Index index;
