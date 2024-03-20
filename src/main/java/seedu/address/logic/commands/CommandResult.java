@@ -5,7 +5,6 @@ import static java.util.Objects.requireNonNull;
 import java.util.Objects;
 
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.person.Person;
 
 /**
  * Represents the result of a command execution.
@@ -13,31 +12,20 @@ import seedu.address.model.person.Person;
 public class CommandResult {
 
     private final String feedbackToUser;
-    private final Person personEdited;
 
-    /**
-     * Help information should be shown to the user.
-     */
+    /** Help information should be shown to the user. */
     private final boolean showHelp;
 
-    /**
-     * The application should exit.
-     */
+    /** The application should exit. */
     private final boolean exit;
-
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, Person personEdited) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
-        this.personEdited = personEdited;
-    }
-
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
-        this(feedbackToUser, showHelp, exit, null);
     }
 
     /**
@@ -45,11 +33,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, null);
-    }
-
-    public CommandResult(String feedbackToUser, Person personEdited) {
-        this(feedbackToUser, false, false, personEdited);
+        this(feedbackToUser, false, false);
     }
 
     public String getFeedbackToUser() {
@@ -62,10 +46,6 @@ public class CommandResult {
 
     public boolean isExit() {
         return exit;
-    }
-
-    public Person getPersonEdited() {
-        return personEdited;
     }
 
     @Override
