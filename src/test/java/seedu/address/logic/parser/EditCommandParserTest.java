@@ -117,6 +117,8 @@ public class EditCommandParserTest {
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY).withTag(VALID_TAG_AMY)
                 .withGroups(VALID_GROUP_HUSBAND, VALID_GROUP_FRIEND).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+        System.out.println(userInput);
+        System.out.println(expectedCommand.toString());
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }

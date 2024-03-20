@@ -21,6 +21,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.GroupPersonDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -64,7 +65,12 @@ public class CommandTestUtil {
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
+
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
+
+    public static final GroupCommand.GroupPersonDescriptor DESC_AMY_GROUP;
+
+    public static final GroupCommand.GroupPersonDescriptor DESC_BOB_GROUP;
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
@@ -73,6 +79,10 @@ public class CommandTestUtil {
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withTag(VALID_TAG_BOB)
                 .withGroups(VALID_GROUP_HUSBAND, VALID_GROUP_FRIEND).build();
+        DESC_AMY_GROUP = new GroupPersonDescriptorBuilder().withNusId(VALID_NUSID_AMY).withTag(VALID_TAG_AMY)
+                .withGroups(VALID_GROUP_HUSBAND).build();
+        DESC_BOB_GROUP = new GroupPersonDescriptorBuilder().withNusId(VALID_NUSID_BOB).withTag(VALID_TAG_BOB)
+                .withGroups(VALID_GROUP_FRIEND).build();
     }
 
     /**
@@ -90,6 +100,8 @@ public class CommandTestUtil {
             throw new AssertionError("Execution of command should not fail.", ce);
         }
     }
+
+
 
     /**
      * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
