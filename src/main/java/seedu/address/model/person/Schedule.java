@@ -15,8 +15,10 @@ public class Schedule {
     /*
      * Date should be formatted as DD/MM/YYYY or DD-MM-YYYY
      */
-    public static final String VALIDATION_REGEX =
+    public static final String VALIDATION_REGEX_WITH_DATA =
             "^([0]?[1-9]|[1|2][0-9]|[3][0|1])[./-]([0]?[1-9]|[1][0-2])[./-]([0-9]{4}|[0-9]{2})$";
+
+    public static final String VALIDATION_REGEX_WITHOUT_DATA = "^$";
 
     public final String date;
 
@@ -37,7 +39,7 @@ public class Schedule {
      * Returns true if a given string is a valid date.
      */
     public static boolean isValidSchedule(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.matches(VALIDATION_REGEX_WITH_DATA) || test.matches(VALIDATION_REGEX_WITHOUT_DATA);
     }
 
 
