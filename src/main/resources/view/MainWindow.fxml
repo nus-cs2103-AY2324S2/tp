@@ -12,9 +12,9 @@
 <?import javafx.scene.layout.VBox?>
 
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
-         title="Address App" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
+         title="Housekeeping Hub" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
   <icons>
-    <Image url="@/images/address_book_32.png" />
+    <Image url="@/images/housekeepinghub.png" />
   </icons>
   <scene>
     <Scene>
@@ -24,7 +24,7 @@
       </stylesheets>
 
       <VBox>
-        <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
+        <MenuBar fx:id="menuBar" VBox.vgrow="NEVER" style="-fx-background-color: #ECE9E9">
           <Menu mnemonicParsing="false" text="File">
             <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
           </Menu>
@@ -33,20 +33,23 @@
           </Menu>
         </MenuBar>
 
-        <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
+        <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="stack-pane"
+                   style="-fx-background-color: #ECE9E9; -fx-border-width: 3 0 0 0; -fx-border-color: #BFBFBF">
           <padding>
-            <Insets top="5" right="10" bottom="5" left="10" />
+            <Insets top="10" right="10" bottom="5" left="10" />
           </padding>
         </StackPane>
 
-        <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
-                   minHeight="100" prefHeight="100" maxHeight="100">
+        <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="stack-pane"
+                   style="-fx-background-color: #ECE9E9; -fx-border-width: 0 0 3 0; -fx-border-color: #BFBFBF"
+                   minHeight="100" prefHeight="200" maxHeight="200">
           <padding>
-            <Insets top="5" right="10" bottom="5" left="10" />
+            <Insets top="10" right="10" bottom="10" left="10" />
           </padding>
         </StackPane>
 
-        <VBox fx:id="personList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
+        <VBox fx:id="personList" styleClass="stack-pane" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS"
+              style="-fx-background-color: #ECE9E9">
           <padding>
             <Insets top="10" right="10" bottom="10" left="10" />
           </padding>

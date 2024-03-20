@@ -19,19 +19,20 @@
         <Insets top="5" right="5" bottom="5" left="15" />
       </padding>
       <HBox spacing="5" alignment="CENTER_LEFT">
-        <Label fx:id="id" styleClass="cell_big_label">
+        <Label fx:id="id" styleClass="cell_big_label" style="-fx-text-fill: black">
           <minWidth>
             <!-- Ensures that the label text is never truncated -->
             <Region fx:constant="USE_PREF_SIZE" />
           </minWidth>
         </Label>
-        <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
-        <Label fx:id="type" styleClass="cell_small_label" text="\$type" style="-fx-background-color: lightblue; -fx-text-fill: black"/>
+        <Label fx:id="name" text="\$first" styleClass="cell_big_label" style="-fx-text-fill: black"/>
+        <Label fx:id="type" styleClass="cell_small_label" text="\$type"
+               style="-fx-background-color: #1679FE; -fx-text-fill: white; -fx-background-radius: 10; -fx-padding: 0 2 0 2"/>
       </HBox>
       <FlowPane fx:id="tags" />
-      <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
-      <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
-      <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+      <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" style="-fx-text-fill: black"/>
+      <Label fx:id="address" styleClass="cell_small_label" text="\$address" style="-fx-text-fill: black"/>
+      <Label fx:id="email" styleClass="cell_small_label" text="\$email" style="-fx-text-fill: black"/>
     </VBox>
   </GridPane>
 </HBox>

@@ -20,7 +20,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+   ![Ui](./docs/images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -67,7 +67,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 Shows a message explaning how to access the help page.
 
-![help message](images/helpMessage.png)
+![help message](./docs/images/helpMessage.png)
 
 Format: `help`
 
@@ -76,7 +76,7 @@ Format: `help`
 
 Adds a client or housekeeper to the address book.
 
-Format: `add TYPE /name NAME /email EMAIL /country_code CODE /number NUMBER /address ADDRESS`
+Format: `add TYPE n/NAME e/EMAIL p/NUMBER a/ADDRESS [t/TAG]…​`
 
 Notes: `TYPE` can be either 'client' or 'housekeeper'
 
@@ -85,8 +85,8 @@ A person can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add client /name Elon /email elon@gmail.com /country_code +60 /number 88888888 /address Elon Street, Block 123, 101010 Singapore`
-* `add housekeeper /name Betsy Crowe /email betsycrowe@example.com /country_code +44 /number 1234567 /address Newgate Prison`
+* `add client n/Elon e/elon@gmail.com p/+6088888888 a/Elon Street, Block 123, 101010 Singapore`
+* `add housekeeper n/Betsy Crowe p/+441234567 e/betsycrowe@example.com a/Newgate Prison t/criminal t/famous`
 
 ### Listing all persons : `list`
 
@@ -100,52 +100,20 @@ Example:
 * `list client`
 * `list housekeeper`
 
-### Editing a person : `edit`
-
-Edits an existing person in the address book.
-
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
-
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
-
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
-
-### Locating persons by name: `find`
-
-Finds persons whose names contain any of the given keywords.
-
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
-
 ### Deleting a person : `delete`
 
 Deletes the specified client or housekeeper from the address book.
 
-Format: `delete TYPE INDEX`
+Format: `delete INDEX`
 
-Notes: `TYPE` can be either 'client' or 'housekeeper'
 
 * Deletes the client or housekeeper at the specified `INDEX`.
-* The index refers to the index number shown in the displayed client or housekeeper list.
+* The index refers to the index number shown in the displayed list.
 * The index **must be a positive integer** 1, 2, 3, …​
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+The index to delete will work for any displayed list. i.e. Client list, Housekeeper list, original combined list at start up and filtered lists
+</div>
 
 Examples:
 * `list client` followed by `delete client 2` deletes the 2nd person in the client list.
@@ -176,9 +144,6 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
 
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -186,12 +151,6 @@ _Details coming soon ..._
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
-
---------------------------------------------------------------------------------------------------------------------
-
-## Known issues
-
-1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -206,3 +165,23 @@ Action | Format, Examples
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list [type]`
 **Help** | `help`                                                                                                                                                                                                                                 |
+
+----------------------------------------------------------------------------------------------------------------------
+## Glossary
+
+**JAR**
+: JAR stands for Java Archive. It is based on the ZIP file format that is commonly used to store java programs.
+
+**CLI**
+: CLI stands for Command Line Interface. It refers to programs that are primarily **text-based** where users interact with the program by typing **commands**. 
+As such, users will use their keyboards more, in contrast to a Graphical User Interface (GUI) where users will use their mouse to interact with the graphical elements.
+
+**Terminal**
+: A terminal is a Command Line Interface (CLI) that allows users to interact with computers by executing commands and viewing the results. 
+Popular terminals in mainstream operating systems include command prompt (CMD) for windows and Terminal in macOS and Linux.<br>
+**CMD**<br>
+<img src="https://www.auslogics.com/en/articles/wp-content/uploads/2023/07/Command-Prompt-PING.png" alt="drawing" width="500"/>
+<br> **Terminal (macOS)** <br>
+<img src="https://forums.macrumors.com/attachments/screen-shot-2020-12-09-at-4-50-12-pm-png.1690397/" alt="drawing" width="500"/>
+<br> **Terminal (Linux)** <br>
+<img src="https://static1.howtogeekimages.com/wordpress/wp-content/uploads/2013/03/linux-terminal-on-ubuntu.png" alt="drawing" width="500"/>

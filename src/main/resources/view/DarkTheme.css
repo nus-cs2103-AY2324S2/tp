@@ -90,30 +90,34 @@
 .list-view {
     -fx-background-insets: 0;
     -fx-padding: 0;
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: #ECE9E9;
 }
 
 .list-cell {
     -fx-label-padding: 0 0 0 0;
     -fx-graphic-text-gap : 0;
-    -fx-padding: 0 0 0 0;
+    -fx-padding: 0 0 20 0;
 }
 
 .list-cell:filled:even {
-    -fx-background-color: #3c3e3f;
+    -fx-background-color: #ECE9E9;
+    -fx-background-radius: 10;
 }
 
 .list-cell:filled:odd {
-    -fx-background-color: #515658;
+    -fx-background-color: #ECE9E9;
 }
 
 .list-cell:filled:selected {
-    -fx-background-color: #424d5f;
+    -fx-background-radius: 10;
 }
 
 .list-cell:filled:selected #cardPane {
-    -fx-border-color: #3e7b91;
-    -fx-border-width: 1;
+    -fx-background-radius: 10;
+    -fx-border-color: black;
+    -fx-border-width: 3;
+    -fx-background-color: #BFBFBF;
+    -fx-border-radius: 10;
 }
 
 .list-cell .label {
@@ -147,10 +151,18 @@
 }
 
 .result-display {
-    -fx-background-color: transparent;
+    -fx-background-color: #ECE9E9;
     -fx-font-family: "Segoe UI Light";
     -fx-font-size: 13pt;
-    -fx-text-fill: white;
+    -fx-text-fill: black;
+    -fx-border-width: 5;
+    -fx-border-radius: 10;
+    -fx-border-color: #BFBFBF;
+    -fx-padding: 5;
+    -fx-min-width: 500;
+    -fx-pref-width: 500;
+    -fx-max-width: 1000;
+    -fx-max-height: 200;
 }
 
 .result-display .label {
@@ -199,7 +211,7 @@
 .menu-bar .label {
     -fx-font-size: 14pt;
     -fx-font-family: "Segoe UI Light";
-    -fx-text-fill: white;
+    -fx-text-fill: black;
     -fx-opacity: 0.9;
 }
 
@@ -282,7 +294,7 @@
 }
 
 .scroll-bar {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: #ECE9E9;
 }
 
 .scroll-bar .thumb {
@@ -308,8 +320,10 @@
 }
 
 #cardPane {
-    -fx-background-color: transparent;
-    -fx-border-width: 0;
+    -fx-background-color: #ECE9E9;
+    -fx-border-width: 1;
+    -fx-border-color: #BFBFBF;
+    -fx-border-radius: 10;
 }
 
 #commandTypeLabel {
@@ -333,8 +347,9 @@
 }
 
 #resultDisplay .content {
-    -fx-background-color: transparent, #383838, transparent, #383838;
+    -fx-background-color: #ECE9E9;
     -fx-background-radius: 0;
+    -fx-border-width: 0;
 }
 
 #tags {
