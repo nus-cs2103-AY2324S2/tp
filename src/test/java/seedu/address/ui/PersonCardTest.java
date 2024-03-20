@@ -30,6 +30,24 @@ public class PersonCardTest {
         assertEquals(ALICE.getMajor().value, personCard.getMajorLabel().getText());
         assertEquals("@" + ALICE.getTelegram().value, personCard.getTelegramLabel().getText());
         assertEquals(ALICE.getRemark().value, personCard.getRemarkLabel().getText());
+
+        // Test group display
+        assertEquals(1, personCard.getGroupsPane().getChildren().size());
+        assertEquals(ALICE.getGroups().iterator().next().toString(), ("[" + ((Label) personCard.getGroupsPane()
+                .getChildren().get(0)).getText()) + "]");
+    }
+
+    @Test
+    public void testGetters() {
+        assertNotNull(personCard.getIdLabel());
+        assertNotNull(personCard.getNameLabel());
+        assertNotNull(personCard.getPhoneLabel());
+        assertNotNull(personCard.getEmailLabel());
+        assertNotNull(personCard.getYearLabel());
+        assertNotNull(personCard.getMajorLabel());
+        assertNotNull(personCard.getTelegramLabel());
+        assertNotNull(personCard.getRemarkLabel());
+        assertNotNull(personCard.getGroupsPane());
     }
 }
 
