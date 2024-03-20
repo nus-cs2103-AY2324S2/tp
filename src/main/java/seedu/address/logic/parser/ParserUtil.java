@@ -11,10 +11,12 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Id;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Subject;
 import seedu.address.model.tag.Tag;
+
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -123,6 +125,21 @@ public class ParserUtil {
             throw new ParseException(Subject.MESSAGE_CONSTANTS);
         }
         return new Subject(trimmedSubject);
+    }
+
+    /**
+     * Parses id input to check if id is valid to instantiate a new Id object.
+     * @param id Id to check for validity;
+     * @return New Id object with the input id.
+     * @throws ParseException If input id is invalid.
+     */
+    public static Id parseId(String id) throws ParseException {
+        requireNonNull(id);
+        String trimmedId = id.trim();
+        if (!Id.isValidId(trimmedId)) {
+            throw new ParseException(Id.MESSAGE_CONSTRAINTS);
+        }
+        return new Id(id);
     }
 
     /**

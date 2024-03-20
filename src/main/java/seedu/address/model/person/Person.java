@@ -16,14 +16,14 @@ import seedu.address.model.tag.Tag;
  */
 public class Person {
 
-    private static int personId;
 
 
     // Identity fields
     private final Name name;
     private final Phone phone;
     private final Email email;
-    private String uniqueId;
+    //private String uniqueId;
+    private Id uniqueId;
 
     // Data fields
     private final Address address;
@@ -34,8 +34,8 @@ public class Person {
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Subject subject,
-                  String uniqueId) {
-
+                  Id uniqueId) {
+      
         requireAllNonNull(name, phone, email, address, tags, subject);
         this.name = name;
         this.phone = phone;
@@ -74,14 +74,21 @@ public class Person {
         return Collections.unmodifiableSet(tags);
     }
 
-
-    /** Returns the uniqueId of the person */
     public String getUniqueId() {
         return uniqueId;
     }
 
-    /** Sets the uniqueId of the person */
+    
     public String setUniqueId(String uniqueId) {
+
+    /** Returns the uniqueId of the person */
+    public Id getUniqueId() {
+        return uniqueId;
+    }
+      
+    /** Sets the uniqueId of the person */
+    public Id setUniqueId(Id uniqueId) {
+
         return this.uniqueId = uniqueId;
     }
 
@@ -118,6 +125,7 @@ public class Person {
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
+                && subject.equals(otherPerson.subject)
                 && tags.equals(otherPerson.tags);
     }
 

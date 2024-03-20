@@ -5,6 +5,7 @@ import java.util.Set;
 
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Id;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -22,6 +23,7 @@ public class PersonBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_SUBJECT = "Math";
+    public static final String DEAFULT_UNIQUEID = "1";
 
     private Name name;
     private Phone phone;
@@ -29,7 +31,7 @@ public class PersonBuilder {
     private Address address;
     private Set<Tag> tags;
     private Subject subject;
-    private String uniqueId;
+    private Id uniqueId;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -40,6 +42,8 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
+        subject = new Subject(DEFAULT_SUBJECT);
+        uniqueId = new Id(DEAFULT_UNIQUEID);
     }
 
     /**
@@ -51,6 +55,8 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
+        subject = personToCopy.getSubject();
+        uniqueId = personToCopy.getUniqueId();
     }
 
     /**
@@ -105,7 +111,7 @@ public class PersonBuilder {
      * Sets the {@code UniqueId} of the {@code Person} that we are building.
      */
     public PersonBuilder withUniqueId(String uniqueId) {
-        this.uniqueId = uniqueId;
+        this.uniqueId = new Id(uniqueId);
         return this;
     }
 
