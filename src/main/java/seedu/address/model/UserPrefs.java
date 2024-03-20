@@ -15,6 +15,8 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
     private Path addressBookFilePath = Paths.get("data" , "addressbook.json");
+    private static boolean isSample = true;
+    private boolean isSampleJson = isSample;
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -36,6 +38,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
         setAddressBookFilePath(newUserPrefs.getAddressBookFilePath());
+        setIsSample(true);
     }
 
     public GuiSettings getGuiSettings() {
@@ -56,6 +59,17 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.addressBookFilePath = addressBookFilePath;
     }
 
+    public static boolean getIsSample() {
+        return isSample;
+    }
+
+    /**
+     * Sets true if the data is sample data. Otherwise, false.
+     */
+    public static void setIsSample(boolean status) {
+        isSample = status;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -74,7 +88,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, addressBookFilePath);
+        return Objects.hash(guiSettings, addressBookFilePath, isSample);
     }
 
     @Override
@@ -82,6 +96,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);
         sb.append("\nLocal data file location : " + addressBookFilePath);
+        sb.append("\n Is it Sample Data? : " + isSample);
         return sb.toString();
     }
 
