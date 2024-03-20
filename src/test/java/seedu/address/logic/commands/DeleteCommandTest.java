@@ -71,7 +71,7 @@ public class DeleteCommandTest {
 
         String expectedMessage = DeleteCommand.MESSAGE_DELETE_COURSE_MATE_SUCCESS;
 
-        ModelManager expectedModel = new ModelManager(model.getContactList(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getContactList(), new UserPrefs());
         expectedModel.deleteCourseMate(courseMateToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel, true);
