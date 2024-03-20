@@ -26,7 +26,7 @@
 * [3.3 Other Commands](#33-other-commands)
     * [3.3.1 Help ](#331-viewing-help--help)
     * [3.3.2 Exit](#332-exiting-the-program--exit)
-* [4. Table of Commands](#4-command-quick-reference)
+* [4. Commands Quick Reference](#4-commands-quick-reference)
 * [5. FAQs](#5-faqs)
 
 ## [1. Introduction](#table-of-contents)
@@ -45,13 +45,14 @@ The scope of the PressPlanner application is tailored to the specific needs of j
 1. Download the jar file from [our latest release](https://github.com/AY2324S2-CS2103T-F12-2/tp/releases).
 1. Move it to an **Empty** folder.
 
-> [!WARNING]
+> [!CAUTION]
 > App data will be stored in sub-folders from where it is launched. While you could run the app from any location, we recommend making a dedicated folder for our app to avoid confusion.
 
 ### [2.2.  Launching the App](#2-getting-started)
 1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.
 1. A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.
-   ![Ui](images/Ui.png)
+
+<img src="images/Ui.png" alt="UI">
 
 ### [2.3. Basic Commands](#2-getting-started)
 > [!NOTE] 
@@ -82,14 +83,13 @@ Let's go over the basic PressPlanner workflow. Say you've just finished intervie
 
 3. Now that that's done, let's say you need to find Gill Bate's number to arrange another interview
     - Typing the command `find Gill Bates` will pull up his contact
-      ![FindGillBates](images/FindGillBates.png)
 
 4. If you made a mistake or want to see all your contacts again:
     - Typing the command `list` will bring up all your contacts
 
 5. If you want to look up your article:
     - Typing the command `find -a My First Article` will pull up the article
-      ![FindMyArticle](images/FindMyArticle.png)
+
 6. If you want to see all your articles again:
     - Typing the command `list -a` will bring them all up
 
@@ -283,7 +283,7 @@ Exits the program.
 
 Format: `exit`
 
-## [4. Command Quick Reference](#table-of-contents)
+## [4. Commands Quick Reference](#table-of-contents)
 | Action | Command Format                                                                                   | Example |
 | --- |--------------------------------------------------------------------------------------------------| --- |
 | Add Person | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]...`                                         | `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
