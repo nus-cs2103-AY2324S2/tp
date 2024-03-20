@@ -7,12 +7,14 @@ skinparam classBackgroundColor MODEL_COLOR
 Enum "<<enumeration>>\nType" as Type
 
 AddressBook *-right-> "1" UniquePersonList
+AddressBook *-right-> "1" UniqueInterviewList
 AddressBook *-right-> "1" UniqueTagList
 UniqueTagList -[hidden]down- UniquePersonList
 UniqueTagList -[hidden]down- UniquePersonList
 
 UniqueTagList -right-> "*" Tag
 UniquePersonList -right-> Person
+UniqueInterviewList -right-> Interview
 
 Person -up-> "*" Tag
 
@@ -20,6 +22,9 @@ Person *--> Name
 Person *--> Phone
 Person *--> Email
 Person *--> Type
+
+Interview *--> Interviewer
+Interview *--> Applicant
 
 Applicant -up--|>Person
 Interviewer -up--|>Person
