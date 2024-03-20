@@ -14,7 +14,6 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -24,6 +23,8 @@ import seedu.address.model.coursemate.CourseMate;
 import seedu.address.model.coursemate.Email;
 import seedu.address.model.coursemate.Name;
 import seedu.address.model.coursemate.Phone;
+import seedu.address.model.coursemate.QueryableCourseMate;
+import seedu.address.model.coursemate.exceptions.CourseMateNotFoundException;
 import seedu.address.model.skill.Skill;
 
 /**
@@ -49,18 +50,19 @@ public class EditCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_COURSE_MATE = "This courseMate already exists in the contact list.";
 
-    private final Index index;
+    private final QueryableCourseMate queryableCourseMate;
     private final EditCourseMateDescriptor editCourseMateDescriptor;
 
+
     /**
-     * @param index of the courseMate in the filtered courseMate list to edit
+     * @param queryableCourseMate courseMate that we want to edit
      * @param editCourseMateDescriptor details to edit the courseMate with
      */
-    public EditCommand(Index index, EditCourseMateDescriptor editCourseMateDescriptor) {
-        requireNonNull(index);
+    public EditCommand(QueryableCourseMate queryableCourseMate, EditCourseMateDescriptor editCourseMateDescriptor) {
+        requireNonNull(queryableCourseMate);
         requireNonNull(editCourseMateDescriptor);
 
-        this.index = index;
+        this.queryableCourseMate = queryableCourseMate;
         this.editCourseMateDescriptor = new EditCourseMateDescriptor(editCourseMateDescriptor);
     }
 
@@ -69,11 +71,17 @@ public class EditCommand extends Command {
         requireNonNull(model);
         List<CourseMate> lastShownList = model.getFilteredCourseMateList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
+        if (queryableCourseMate.isIndex() && queryableCourseMate.getIndex().getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_COURSE_MATE_DISPLAYED_INDEX);
         }
 
-        CourseMate courseMateToEdit = lastShownList.get(index.getZeroBased());
+        CourseMate courseMateToEdit;
+        try {
+            courseMateToEdit = model.findCourseMate(queryableCourseMate);
+        } catch (CourseMateNotFoundException e) {
+            throw new CommandException(Messages.MESSAGE_INVALID_COURSE_MATE_NAME);
+        }
+
         CourseMate editedCourseMate = createEditedCourseMate(courseMateToEdit, editCourseMateDescriptor);
 
         if (!courseMateToEdit.isSameCourseMate(editedCourseMate) && model.hasCourseMate(editedCourseMate)) {
@@ -114,14 +122,14 @@ public class EditCommand extends Command {
         }
 
         EditCommand otherEditCommand = (EditCommand) other;
-        return index.equals(otherEditCommand.index)
+        return queryableCourseMate.getIndex().equals(otherEditCommand.queryableCourseMate.getIndex())
                 && editCourseMateDescriptor.equals(otherEditCommand.editCourseMateDescriptor);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("index", index)
+                .add("index", queryableCourseMate.getIndex())
                 .add("editCourseMateDescriptor", editCourseMateDescriptor)
                 .toString();
     }

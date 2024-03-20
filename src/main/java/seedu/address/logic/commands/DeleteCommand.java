@@ -4,12 +4,13 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.coursemate.CourseMate;
+import seedu.address.model.coursemate.QueryableCourseMate;
+import seedu.address.model.coursemate.exceptions.CourseMateNotFoundException;
 
 /**
  * Deletes a courseMate identified using it's displayed index from the contact list.
@@ -25,10 +26,10 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_DELETE_COURSE_MATE_SUCCESS = "Deleted CourseMate";
 
-    private final Index targetIndex;
+    private final QueryableCourseMate queryableCourseMate;
 
-    public DeleteCommand(Index targetIndex) {
-        this.targetIndex = targetIndex;
+    public DeleteCommand(QueryableCourseMate queryableCourseMate) {
+        this.queryableCourseMate = queryableCourseMate;
     }
 
     @Override
@@ -36,14 +37,19 @@ public class DeleteCommand extends Command {
         requireNonNull(model);
         List<CourseMate> lastShownList = model.getFilteredCourseMateList();
 
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
+        if (queryableCourseMate.isIndex() && queryableCourseMate.getIndex().getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_COURSE_MATE_DISPLAYED_INDEX);
         }
 
-        CourseMate courseMateToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deleteCourseMate(courseMateToDelete);
-        model.setRecentlyProcessedCourseMate(courseMateToDelete);
-        return new CommandResult(MESSAGE_DELETE_COURSE_MATE_SUCCESS, false, false, true);
+        try {
+            CourseMate courseMateToDelete = model.findCourseMate(queryableCourseMate);
+            model.deleteCourseMate(courseMateToDelete);
+            model.setRecentlyProcessedCourseMate(courseMateToDelete);
+            return new CommandResult(MESSAGE_DELETE_COURSE_MATE_SUCCESS, false, false, true);
+        } catch (CourseMateNotFoundException e) {
+            throw new CommandException(Messages.MESSAGE_INVALID_COURSE_MATE_NAME);
+        }
+
     }
 
     @Override
@@ -58,13 +64,13 @@ public class DeleteCommand extends Command {
         }
 
         DeleteCommand otherDeleteCommand = (DeleteCommand) other;
-        return targetIndex.equals(otherDeleteCommand.targetIndex);
+        return queryableCourseMate.getIndex().equals(otherDeleteCommand.queryableCourseMate.getIndex());
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("targetIndex", targetIndex)
+                .add("queryableCourseMateIndex", queryableCourseMate.getIndex())
                 .toString();
     }
 }

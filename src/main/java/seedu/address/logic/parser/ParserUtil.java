@@ -27,12 +27,20 @@ public class ParserUtil {
      * trimmed.
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
-    public static Index parseIndex(String oneBasedIndex) throws ParseException {
+    private static Index parseIndex(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
-        if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
+        if (trimmedIndex.isEmpty() || trimmedIndex.charAt(0) != '#' || trimmedIndex.equals("#")) {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
-        return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+
+        if (trimmedIndex.charAt(1) == '#') {
+            return Index.fromOneBased(0);
+        }
+
+        if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex.substring(1))) {
+            throw new ParseException(MESSAGE_INVALID_INDEX);
+        }
+        return Index.fromOneBased(Integer.parseInt(trimmedIndex.substring(1)));
     }
 
     /**
@@ -116,7 +124,7 @@ public class ParserUtil {
         }
 
         if (trimmedLabel.charAt(0) == '#') {
-            return new QueryableCourseMate(parseIndex(trimmedLabel.substring(1)));
+            return new QueryableCourseMate(parseIndex(trimmedLabel));
         } else {
             return new QueryableCourseMate(parseName(trimmedLabel));
         }

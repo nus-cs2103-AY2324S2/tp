@@ -27,6 +27,8 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.coursemate.CourseMate;
+import seedu.address.model.coursemate.Name;
+import seedu.address.model.coursemate.QueryableCourseMate;
 import seedu.address.testutil.CourseMateBuilder;
 import seedu.address.testutil.EditCourseMateDescriptorBuilder;
 
@@ -41,7 +43,7 @@ public class EditCommandTest {
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
         CourseMate editedCourseMate = new CourseMateBuilder().build();
         EditCommand.EditCourseMateDescriptor descriptor = new EditCourseMateDescriptorBuilder(editedCourseMate).build();
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_COURSE_MATE, descriptor);
+        EditCommand editCommand = new EditCommand(new QueryableCourseMate(INDEX_FIRST_COURSE_MATE), descriptor);
 
         String expectedMessage = EditCommand.MESSAGE_EDIT_COURSE_MATE_SUCCESS;
 
@@ -64,7 +66,7 @@ public class EditCommandTest {
 
         EditCourseMateDescriptor descriptor = new EditCourseMateDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withSkills(VALID_SKILL_JAVA).build();
-        EditCommand editCommand = new EditCommand(indexLastCourseMate, descriptor);
+        EditCommand editCommand = new EditCommand(new QueryableCourseMate(indexLastCourseMate), descriptor);
 
         String expectedMessage = EditCommand.MESSAGE_EDIT_COURSE_MATE_SUCCESS;
 
@@ -78,7 +80,8 @@ public class EditCommandTest {
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_COURSE_MATE, new EditCourseMateDescriptor());
+        EditCommand editCommand = new EditCommand(
+                new QueryableCourseMate(INDEX_FIRST_COURSE_MATE), new EditCourseMateDescriptor());
         CourseMate editedCourseMate = model.getFilteredCourseMateList().get(INDEX_FIRST_COURSE_MATE.getZeroBased());
 
         String expectedMessage = EditCommand.MESSAGE_EDIT_COURSE_MATE_SUCCESS;
@@ -97,7 +100,7 @@ public class EditCommandTest {
         CourseMate courseMateInFilteredList = model.getFilteredCourseMateList()
                 .get(INDEX_FIRST_COURSE_MATE.getZeroBased());
         CourseMate editedCourseMate = new CourseMateBuilder(courseMateInFilteredList).withName(VALID_NAME_BOB).build();
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_COURSE_MATE,
+        EditCommand editCommand = new EditCommand(new QueryableCourseMate(INDEX_FIRST_COURSE_MATE),
                 new EditCourseMateDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
         String expectedMessage = EditCommand.MESSAGE_EDIT_COURSE_MATE_SUCCESS;
@@ -114,7 +117,7 @@ public class EditCommandTest {
     public void execute_duplicateCourseMateUnfilteredList_failure() {
         CourseMate firstCourseMate = model.getFilteredCourseMateList().get(INDEX_FIRST_COURSE_MATE.getZeroBased());
         EditCourseMateDescriptor descriptor = new EditCourseMateDescriptorBuilder(firstCourseMate).build();
-        EditCommand editCommand = new EditCommand(INDEX_SECOND_COURSE_MATE, descriptor);
+        EditCommand editCommand = new EditCommand(new QueryableCourseMate(INDEX_SECOND_COURSE_MATE), descriptor);
 
         assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_COURSE_MATE);
         assertRecentlyProcessedCourseMateEdited(model, null);
@@ -127,7 +130,7 @@ public class EditCommandTest {
         // edit courseMate in filtered list into a duplicate in contact list
         CourseMate courseMateInList = model.getContactList().getCourseMateList()
                 .get(INDEX_SECOND_COURSE_MATE.getZeroBased());
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_COURSE_MATE,
+        EditCommand editCommand = new EditCommand(new QueryableCourseMate(INDEX_FIRST_COURSE_MATE),
                 new EditCourseMateDescriptorBuilder(courseMateInList).build());
 
         assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_COURSE_MATE);
@@ -138,9 +141,19 @@ public class EditCommandTest {
     public void execute_invalidCourseMateIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredCourseMateList().size() + 1);
         EditCourseMateDescriptor descriptor = new EditCourseMateDescriptorBuilder().withName(VALID_NAME_BOB).build();
-        EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
+        EditCommand editCommand = new EditCommand(new QueryableCourseMate(outOfBoundIndex), descriptor);
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_COURSE_MATE_DISPLAYED_INDEX);
+        assertRecentlyProcessedCourseMateEdited(model, null);
+    }
+
+    @Test
+    public void execute_invalidCourseMateNameUnfilteredList_failure() {
+        Name name = new Name("Bob");
+        EditCourseMateDescriptor descriptor = new EditCourseMateDescriptorBuilder().withName(VALID_NAME_BOB).build();
+        EditCommand editCommand = new EditCommand(new QueryableCourseMate(name), descriptor);
+
+        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_COURSE_MATE_NAME);
         assertRecentlyProcessedCourseMateEdited(model, null);
     }
 
@@ -155,7 +168,7 @@ public class EditCommandTest {
         // ensures that outOfBoundIndex is still in bounds of contact list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getContactList().getCourseMateList().size());
 
-        EditCommand editCommand = new EditCommand(outOfBoundIndex,
+        EditCommand editCommand = new EditCommand(new QueryableCourseMate(outOfBoundIndex),
                 new EditCourseMateDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_COURSE_MATE_DISPLAYED_INDEX);
@@ -164,11 +177,13 @@ public class EditCommandTest {
 
     @Test
     public void equals() {
-        final EditCommand standardCommand = new EditCommand(INDEX_FIRST_COURSE_MATE, DESC_AMY);
+        final EditCommand standardCommand = new EditCommand(
+                new QueryableCourseMate(INDEX_FIRST_COURSE_MATE), DESC_AMY);
 
         // same values -> returns true
         EditCommand.EditCourseMateDescriptor copyDescriptor = new EditCourseMateDescriptor(DESC_AMY);
-        EditCommand commandWithSameValues = new EditCommand(INDEX_FIRST_COURSE_MATE, copyDescriptor);
+        EditCommand commandWithSameValues = new EditCommand(
+                new QueryableCourseMate(INDEX_FIRST_COURSE_MATE), copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true
@@ -181,17 +196,19 @@ public class EditCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND_COURSE_MATE, DESC_AMY)));
+        assertFalse(standardCommand.equals(new EditCommand(
+                new QueryableCourseMate(INDEX_SECOND_COURSE_MATE), DESC_AMY)));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_COURSE_MATE, DESC_BOB)));
+        assertFalse(standardCommand.equals(
+                new EditCommand(new QueryableCourseMate(INDEX_FIRST_COURSE_MATE), DESC_BOB)));
     }
 
     @Test
     public void toStringMethod() {
         Index index = Index.fromOneBased(1);
         EditCourseMateDescriptor editCourseMateDescriptor = new EditCourseMateDescriptor();
-        EditCommand editCommand = new EditCommand(index, editCourseMateDescriptor);
+        EditCommand editCommand = new EditCommand(new QueryableCourseMate(index), editCourseMateDescriptor);
         String expected = EditCommand.class.getCanonicalName() + "{index=" + index + ", editCourseMateDescriptor="
                 + editCourseMateDescriptor + "}";
         assertEquals(expected, editCommand.toString());

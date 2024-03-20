@@ -12,10 +12,10 @@ import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditCourseMateDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.coursemate.QueryableCourseMate;
 import seedu.address.model.skill.Skill;
 
 /**
@@ -33,10 +33,10 @@ public class EditCommandParser implements Parser<EditCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_SKILL);
 
-        Index index;
+        QueryableCourseMate queryableCourseMate;
 
         try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
+            queryableCourseMate = ParserUtil.parseQueryableCourseMate(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
         }
@@ -60,7 +60,7 @@ public class EditCommandParser implements Parser<EditCommand> {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
 
-        return new EditCommand(index, editCourseMateDescriptor);
+        return new EditCommand(queryableCourseMate, editCourseMateDescriptor);
     }
 
     /**
