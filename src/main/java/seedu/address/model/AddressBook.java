@@ -126,7 +126,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Sorts the list of companies by their name in ascending order, ignoring case.
      */
     public void sortPersonList() {
-        persons.sort();
+        companies.sort();
     }
     @Override
     public int hashCode() {
