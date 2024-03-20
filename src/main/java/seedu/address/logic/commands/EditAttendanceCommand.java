@@ -2,10 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE_RECORD;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENTID;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE_STATUS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
@@ -28,25 +25,18 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.person.StudentId;
 import seedu.address.model.tag.Attendance;
 
-/**
- * Edits the details of an existing person in the address book.
- */
-public class EditCommand extends Command {
+public class EditAttendanceCommand extends Command {
 
-    public static final String COMMAND_WORD = "edit";
+    public static final String COMMAND_WORD = "edita";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the index number used in the displayed person list. "
-            + "Existing values will be overwritten by the input values.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the attendance record of the person identified "
+            + "by the index number used in the displayed person list. \n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_STUDENTID + "STUDENTID] "
-            + "[" + PREFIX_ATTENDANCE_RECORD + "Attendance]...\n"
+            + "[" + PREFIX_ATTENDANCE_RECORD + "Attendance] "
+            + "[" + PREFIX_ATTENDANCE_STATUS + "Status]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + PREFIX_ATTENDANCE_RECORD + "20-03-2024 "
+            + PREFIX_ATTENDANCE_STATUS + "0";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -55,16 +45,12 @@ public class EditCommand extends Command {
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
 
-    /**
-     * @param index of the person in the filtered person list to edit
-     * @param editPersonDescriptor details to edit the person with
-     */
-    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
+    public EditAttendanceCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
         requireNonNull(index);
         requireNonNull(editPersonDescriptor);
 
         this.index = index;
-        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this.editPersonDescriptor = editPersonDescriptor;
     }
 
     @Override
@@ -88,21 +74,26 @@ public class EditCommand extends Command {
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson)));
     }
 
-    /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
-     */
-    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
+    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) throws CommandException {
         assert personToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         StudentId updatedStudentId = editPersonDescriptor.getAddress().orElse(personToEdit.getStudentId());
-        Set<Attendance> updatedAttendances = editPersonDescriptor.getTags().orElse(personToEdit.getAttendances());
+        boolean found = false;
+        for (Attendance a : personToEdit.getAttendances()) {
+            if (a.attendanceName.getDate().equals(editPersonDescriptor.getAttendances().attendanceName.getDate())) {
+                a.attendanceName.setStatus(editPersonDescriptor.getAttendances().attendanceName.getStatus());
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            throw new CommandException(Messages.MESSAGE_DATE_NOT_FOUND);
+        }
 
-
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedStudentId, updatedAttendances);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedStudentId, personToEdit.getAttendances());
     }
 
     @Override
@@ -116,9 +107,9 @@ public class EditCommand extends Command {
             return false;
         }
 
-        EditCommand otherEditCommand = (EditCommand) other;
-        return index.equals(otherEditCommand.index)
-                && editPersonDescriptor.equals(otherEditCommand.editPersonDescriptor);
+        EditAttendanceCommand otherEditAttendanceCommand = (EditAttendanceCommand) other;
+        return index.equals(otherEditAttendanceCommand.index)
+                && editPersonDescriptor.equals(otherEditAttendanceCommand.editPersonDescriptor);
     }
 
     @Override
@@ -138,7 +129,7 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private StudentId studentId;
-        private Set<Attendance> attendances;
+        private Attendance attendances;
 
         public EditPersonDescriptor() {}
 
@@ -197,8 +188,8 @@ public class EditCommand extends Command {
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
          */
-        public void setAttendances(Set<Attendance> attendances) {
-            this.attendances = (attendances != null) ? new HashSet<>(attendances) : null;
+        public void setAttendances(Attendance attendances) {
+            this.attendances = attendances;
         }
 
         /**
@@ -206,8 +197,8 @@ public class EditCommand extends Command {
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code tags} is null.
          */
-        public Optional<Set<Attendance>> getTags() {
-            return (attendances != null) ? Optional.of(Collections.unmodifiableSet(attendances)) : Optional.empty();
+        public Attendance getAttendances() {
+            return attendances;
         }
 
         @Override
@@ -241,3 +232,4 @@ public class EditCommand extends Command {
         }
     }
 }
+
