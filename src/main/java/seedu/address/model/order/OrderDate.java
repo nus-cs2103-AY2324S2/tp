@@ -33,7 +33,7 @@ public class OrderDate {
 
     @Override
     public String toString() {
-        return orderDate.toString();
+        return DateTimeUtil.formatDateTime(orderDate);
     }
 
     @Override

@@ -15,6 +15,7 @@ public class DateTimeUtil {
      * Returns a list of valid date time formats.
      */
     public static final String VALID_DATETIME_FORMAT = "dd-MM-yyyy HH:mm";
+
     /**
      * Returns the valid formatter pattern.
      */
@@ -33,6 +34,16 @@ public class DateTimeUtil {
             return false;
         }
         return true;
+    }
+
+    /**
+     * Returns the current date time as a String.
+     *
+     * @param dateTime the date to be formatted.
+     * @return the current date time as a String.
+     */
+    public static String formatDateTime(LocalDateTime dateTime) {
+        return dateTime.format(FORMATTER);
     }
 
     /**

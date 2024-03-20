@@ -42,7 +42,7 @@ public class Deadline {
 
     @Override
     public String toString() {
-        return deadline.toString();
+        return DateTimeUtil.formatDateTime(deadline);
     }
 
 
