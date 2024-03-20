@@ -372,6 +372,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2/4.
 
+![Interactions Inside the Logic Component for the `assigntask 1 6` Command](images/AssignTaskSequenceDiagram.png)
+
 **Use case: Mark/unmark a task as done/not done**
 
 **MSS**
