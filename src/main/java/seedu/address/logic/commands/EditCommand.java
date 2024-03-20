@@ -2,10 +2,17 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEPARTMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_JOBTITLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PREFERENCES;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRODUCTS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SKILLS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TERMSOFSERVICE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
@@ -52,7 +59,14 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_TAG + "TAG]..."
+            + "[" + PREFIX_REMARK + "REMARK] "
+            + "[" + PREFIX_DEPARTMENT + "DEPARTMENT] "
+            + "[" + PREFIX_JOBTITLE + "JOBTITLE] "
+            + "[" + PREFIX_SKILLS + "SKILLS] "
+            + "[" + PREFIX_PRODUCTS + "PRODUCTS] "
+            + "[" + PREFIX_TERMSOFSERVICE + "TERMSOFSERVICE] "
+            + "[" + PREFIX_PREFERENCES + "PREFERENCES]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
@@ -101,7 +115,8 @@ public class EditCommand extends Command {
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
+    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor)
+            throws CommandException {
         assert personToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
@@ -112,13 +127,20 @@ public class EditCommand extends Command {
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
         if (personToEdit instanceof Client) {
+            if (editPersonDescriptor.getDepartment().isPresent() || editPersonDescriptor.getJobTitle().isPresent()
+                    || editPersonDescriptor.getSkills().isPresent()) {
+                throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_PROPERTY);
+            }
             String updatedPreferences = editPersonDescriptor.getPreferences()
                     .orElse(((Client) personToEdit).getPreferences());
             Products updatedProducts = editPersonDescriptor.getProducts().orElse(((Client) personToEdit).getProducts());
             return new Client(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRemark, updatedTags,
                     updatedProducts, updatedPreferences);
         } else if (personToEdit instanceof Employee) {
-            // Assuming Employee has a Department and JobTitle
+            if (editPersonDescriptor.getPreferences().isPresent() || editPersonDescriptor.getProducts().isPresent()
+                    || editPersonDescriptor.getTermsOfService().isPresent()) {
+                throw new CommandException(Messages.MESSAGE_INVALID_EMPLOYEE_PROPERTY);
+            }
             Department updatedDepartment = editPersonDescriptor.getDepartment()
                     .orElse(((Employee) personToEdit).getDepartment());
             JobTitle updatedJobTitle = editPersonDescriptor.getJobTitle()
@@ -127,7 +149,10 @@ public class EditCommand extends Command {
             return new Employee(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRemark, updatedTags,
                     updatedDepartment, updatedJobTitle, updatedSkills);
         } else if (personToEdit instanceof Supplier) {
-            // Assuming Supplier has TermsOfService
+            if (editPersonDescriptor.getDepartment().isPresent() || editPersonDescriptor.getJobTitle().isPresent()
+                    || editPersonDescriptor.getSkills().isPresent()) {
+                throw new CommandException(Messages.MESSAGE_INVALID_SUPPLIER_PROPERTY);
+            }
             TermsOfService updatedTermsOfService = editPersonDescriptor.getTermsOfService()
                     .orElse(((Supplier) personToEdit).getTermsOfService());
             Products updatedProducts = editPersonDescriptor.getProducts()
@@ -175,12 +200,12 @@ public class EditCommand extends Command {
         private Address address;
         private Set<Tag> tags;
         private Remark remark;
-        private Products products;
-        private String preferences;
         private Department department;
         private JobTitle jobTitle;
-        private TermsOfService termsOfService;
         private Skills skills;
+        private Products products;
+        private TermsOfService termsOfService;
+        private String preferences;
 
         public EditPersonDescriptor() {
         }
@@ -195,15 +220,21 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
-
+            setRemark(toCopy.remark);
+            setDepartment(toCopy.department);
+            setJobTitle(toCopy.jobTitle);
+            setSkills(toCopy.skills);
+            setProducts(toCopy.products);
+            setTermsOfService(toCopy.termsOfService);
+            setPreferences(toCopy.preferences);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, products, preferences, department,
-                    jobTitle, termsOfService);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, remark, department, jobTitle, skills,
+                    products, termsOfService, preferences);
         }
 
         public void setName(Name name) {
@@ -264,22 +295,6 @@ public class EditCommand extends Command {
             return Optional.ofNullable(remark);
         }
 
-        public void setProducts(Products products) {
-            this.products = products;
-        }
-
-        public Optional<Products> getProducts() {
-            return Optional.ofNullable(products);
-        }
-
-        public void setPreferences(String preferences) {
-            this.preferences = preferences;
-        }
-
-        public Optional<String> getPreferences() {
-            return Optional.ofNullable(preferences);
-        }
-
         public void setDepartment(Department department) {
             this.department = department;
         }
@@ -296,6 +311,22 @@ public class EditCommand extends Command {
             return Optional.ofNullable(jobTitle);
         }
 
+        public void setSkills(Skills skills) {
+            this.skills = skills;
+        }
+
+        public Optional<Skills> getSkills() {
+            return Optional.ofNullable(skills);
+        }
+
+        public void setProducts(Products products) {
+            this.products = products;
+        }
+
+        public Optional<Products> getProducts() {
+            return Optional.ofNullable(products);
+        }
+
         public void setTermsOfService(TermsOfService termsOfService) {
             this.termsOfService = termsOfService;
         }
@@ -304,12 +335,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(termsOfService);
         }
 
-        public void setSkills(Skills skills) {
-            this.skills = skills;
+        public void setPreferences(String preferences) {
+            this.preferences = preferences;
         }
 
-        public Optional<Skills> getSkills() {
-            return Optional.ofNullable(skills);
+        public Optional<String> getPreferences() {
+            return Optional.ofNullable(preferences);
         }
 
         @Override
@@ -329,49 +360,31 @@ public class EditCommand extends Command {
                     && Objects.equals(email, otherEditPersonDescriptor.email)
                     && Objects.equals(address, otherEditPersonDescriptor.address)
                     && Objects.equals(tags, otherEditPersonDescriptor.tags)
-                    && Objects.equals(products, otherEditPersonDescriptor.products)
-                    && Objects.equals(preferences, otherEditPersonDescriptor.preferences)
+                    && Objects.equals(remark, otherEditPersonDescriptor.remark)
                     && Objects.equals(department, otherEditPersonDescriptor.department)
                     && Objects.equals(jobTitle, otherEditPersonDescriptor.jobTitle)
-                    && Objects.equals(termsOfService, otherEditPersonDescriptor.termsOfService);
+                    && Objects.equals(skills, otherEditPersonDescriptor.skills)
+                    && Objects.equals(products, otherEditPersonDescriptor.products)
+                    && Objects.equals(termsOfService, otherEditPersonDescriptor.termsOfService)
+                    && Objects.equals(preferences, otherEditPersonDescriptor.preferences);
         }
 
         @Override
         public String toString() {
-            ToStringBuilder builder = new ToStringBuilder(this);
-
-            if (name != null) {
-                builder.add("name", name);
-            }
-            if (phone != null) {
-                builder.add("phone", phone);
-            }
-            if (email != null) {
-                builder.add("email", email);
-            }
-            if (address != null) {
-                builder.add("address", address);
-            }
-            if (tags != null && !tags.isEmpty()) {
-                builder.add("tags", tags);
-            }
-            if (products != null && !products.isEmpty()) {
-                builder.add("products", products);
-            }
-            if (preferences != null && !preferences.isEmpty()) {
-                builder.add("preferences", preferences);
-            }
-            if (department != null) {
-                builder.add("department", department);
-            }
-            if (jobTitle != null) {
-                builder.add("jobTitle", jobTitle);
-            }
-            if (termsOfService != null) {
-                builder.add("termsOfService", termsOfService);
-            }
-
-            return builder.toString();
+            return new ToStringBuilder(this)
+                    .add("name", name)
+                    .add("phone", phone)
+                    .add("email", email)
+                    .add("address", address)
+                    .add("tags", tags)
+                    .add("remark", remark)
+                    .add("department", department)
+                    .add("jobTitle", jobTitle)
+                    .add("skills", skills)
+                    .add("products", products)
+                    .add("termsOfService", termsOfService)
+                    .add("preferences", preferences)
+                    .toString();
         }
     }
 }

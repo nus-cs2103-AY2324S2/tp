@@ -19,6 +19,7 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.person.Products;
 import seedu.address.model.person.Remark;
 import seedu.address.model.person.Skills;
+import seedu.address.model.person.TermsOfService;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -172,21 +173,6 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String skills} into a {@code Skills}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code skills} is invalid.
-     */
-    public static Skills parseSkills(String skills) throws ParseException {
-        requireNonNull(skills);
-        String trimmedSkills = skills.trim();
-        if (!Skills.isValidSkills(trimmedSkills)) {
-            throw new ParseException(Skills.MESSAGE_CONSTRAINTS);
-        }
-        return new Skills(trimmedSkills);
-    }
-
-    /**
      * Parses a {@code String products} into a {@code Products}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -201,12 +187,63 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String skills} into a {@code Skills}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code skills} is invalid.
+     */
+    public static String parseSkills(String skills) throws ParseException {
+        requireNonNull(skills);
+        String trimmedSkills = skills.trim();
+        if (!Skills.isValidSkills(trimmedSkills)) {
+            throw new ParseException(Skills.MESSAGE_CONSTRAINTS);
+        }
+        return trimmedSkills;
+    }
+
+    /**
+     * Represents a set of skills.
+     */
+    public static Skills parseSkills(Collection<String> skills) throws ParseException {
+        requireNonNull(skills);
+        final Set<String> skillsSet = new HashSet<>();
+        for (String skill : skills) {
+            skillsSet.add(parseSkills(skill).toString());
+        }
+        return new Skills(skillsSet);
+    }
+
+    /**
+     * Parses a {@code String preferences} into a {@code String}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static Skills parseSkills(List<String> skills) throws ParseException {
+        requireNonNull(skills);
+        final Set<String> skillsSet = new HashSet<>();
+        for (String skill : skills) {
+            skillsSet.add(parseSkills(skill).toString());
+        }
+        return new Skills(skillsSet);
+    }
+
+    /**
      * Parses a {@code String preferences} into a {@code String}.
      * Leading and trailing whitespaces will be trimmed.
      */
     public static String parsePreferences(String preferences) {
         requireNonNull(preferences);
         return preferences;
+    }
+
+    /**
+     * Parses the terms of service.
+     *
+     * @param termsOfService The terms of service to be parsed.
+     * @return The parsed terms of service.
+     */
+    public static TermsOfService parseTermsOfService(String termsOfService) {
+        requireNonNull(termsOfService);
+        return new TermsOfService(termsOfService);
     }
 
 }

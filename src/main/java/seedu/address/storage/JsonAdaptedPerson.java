@@ -32,6 +32,7 @@ import seedu.address.model.tag.Tag;
 class JsonAdaptedPerson {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
+    public static final String INVALID_ROLE_MESSAGE_FORMAT = "Person's role is invalid!";
 
     private final String name;
     private final String phone;
@@ -133,7 +134,7 @@ class JsonAdaptedPerson {
         } else if (role.equals("supplier")) {
             return toSupplierModelType();
         } else {
-            throw new IllegalValueException("Unknown type");
+            throw new IllegalValueException(INVALID_ROLE_MESSAGE_FORMAT);
         }
     }
 
@@ -184,6 +185,9 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
+        if (remark == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Remark.class.getSimpleName()));
+        }
         final Remark modelRemark = new Remark(remark);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);

@@ -5,7 +5,10 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.parser.Prefix;
+import seedu.address.model.person.Client;
+import seedu.address.model.person.Employee;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Supplier;
 
 /**
  * Container for user visible messages.
@@ -18,6 +21,12 @@ public class Messages {
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
             "Multiple values specified for the following single-valued field(s): ";
+    public static final String MESSAGE_INVALID_CLIENT_PROPERTY = "Client cannot have department, job title, skills, "
+            + "and terms of service fields";
+    public static final String MESSAGE_INVALID_EMPLOYEE_PROPERTY = "Employee cannot have preferences, products, "
+            + "and terms of service fields";
+    public static final String MESSAGE_INVALID_SUPPLIER_PROPERTY = "Supplier cannot have department, job title, "
+            + "and skills fields";
 
     /**
      * Returns an error message indicating the duplicate prefixes.
@@ -45,6 +54,18 @@ public class Messages {
                 .append(person.getAddress())
                 .append("; Tags: ");
         person.getTags().forEach(builder::append);
+        builder.append("; Remark: ").append(person.getRemark());
+        if (person instanceof Client) {
+            builder.append("; Products: ").append(((Client) person).getProducts())
+                    .append("; Preferences: ").append(((Client) person).getPreferences());
+        } else if (person instanceof Employee) {
+            builder.append("; Department: ").append(((Employee) person).getDepartment())
+                    .append("; Job Title: ").append(((Employee) person).getJobTitle())
+                    .append("; Skills: ").append(((Employee) person).getSkills());
+        } else if (person instanceof Supplier) {
+            builder.append("; Products: ").append(((Supplier) person).getProducts())
+                    .append("; Terms of Service: ").append(((Supplier) person).getTermsOfService());
+        }
         return builder.toString();
     }
 
