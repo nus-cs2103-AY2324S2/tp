@@ -16,7 +16,7 @@ public class DateTimeUtil {
      */
     public static final String VALID_DATETIME_FORMAT = "dd-MM-yyyy HH:mm";
     /**
-     * Returns the valid formatter pattern
+     * Returns the valid formatter pattern.
      */
     public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern(VALID_DATETIME_FORMAT);
 

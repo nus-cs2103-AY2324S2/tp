@@ -114,6 +114,7 @@ public class ModelManager implements Model {
 
         addressBook.setPerson(target, editedPerson);
     }
+
     //=========== Order ================================================================================
     @Override
     public void addOrder(Order order) throws CommandException {
@@ -134,7 +135,7 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedAddressBook}.
      */
     @Override
     public ObservableList<Person> getFilteredPersonList() {
@@ -143,7 +144,7 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code Order} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedAddressBook}.
      */
     @Override
     public ObservableList<Order> getFilteredOrderList() {

@@ -11,13 +11,22 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.order.OrderId;
 
 /**
- * Parses input arguments and creates a new DeleteOrderCommand object
+ * Parses input arguments and creates a new DeleteOrderCommand object.
  */
 public class DeleteOrderCommandParser implements Parser<DeleteOrderCommand> {
 
     /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
+    /**
      * Parses the given {@code String} of arguments in the context of the
      * DeleteOrderCommand and returns a DeleteOrderCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public DeleteOrderCommand parse(String args) throws ParseException {
@@ -33,13 +42,5 @@ public class DeleteOrderCommandParser implements Parser<DeleteOrderCommand> {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);
         }
-    }
-
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }
