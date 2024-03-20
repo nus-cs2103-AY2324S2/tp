@@ -2,6 +2,7 @@ package seedu.address.logic.commands.orders;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -75,6 +76,7 @@ public class DeleteOrderCommand extends Command {
     }
 
     private Set<Order> removeOrder(OrderId orderId, Set<Order> orders) {
+        orders = new HashSet<>(orders);
         Iterator<Order> iterator = orders.iterator();
         while (iterator.hasNext()) {
             Order currentOrder = iterator.next();

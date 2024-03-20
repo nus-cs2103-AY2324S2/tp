@@ -1,30 +1,44 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Predicate;
 
+import org.junit.jupiter.api.Test;
+
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.orders.AddOrderCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.order.Order;
 import seedu.address.model.person.Person;
+import seedu.address.testutil.OrderBuilder;
+import seedu.address.testutil.PersonBuilder;
 
 public class AddOrderCommandTest {
 
-    /*@Test
+    @Test
     public void execute_orderAcceptedByModel_addSuccessful() throws Exception {
+        PersonBuilder personBuilder = new PersonBuilder();
+        Person person = personBuilder.build();
         OrderBuilder builder = new OrderBuilder();
         Order order = builder.build();
-        ModelStubAcceptingOrderAdded modelStub = new ModelStubAcceptingOrderAdded(order);
+        ModelStubAcceptingOrderAdded modelStub = new ModelStubAcceptingOrderAdded(order, person);
+
         Index targetIndex = INDEX_FIRST_PERSON;
         CommandResult commandResult = new AddOrderCommand(targetIndex, order).execute(modelStub);
-        assertEquals(String.format(MESSAGE_SUCCESS, Messages.format(order)),
-                commandResult.getFeedbackToUser());
-    }*/
+        assertEquals(1, modelStub.getOrderList().size());
+    }
 
     /**
      * A default model stub that have all of the methods failing.
@@ -120,11 +134,33 @@ public class AddOrderCommandTest {
      * A Model stub that always accepts the order being added.
      */
     private class ModelStubAcceptingOrderAdded extends AddOrderCommandTest.ModelStub {
-        private final Order order;
+        private Order order;
+        private Person person;
 
-        ModelStubAcceptingOrderAdded(Order order) {
+        ModelStubAcceptingOrderAdded(Order order, Person person) {
             requireNonNull(order);
             this.order = order;
+            this.person = person;
+        }
+
+        @Override
+        public void setPerson(Person target, Person editedPerson) {
+            requireAllNonNull(target, editedPerson);
+            this.person = editedPerson;
+        }
+
+        @Override
+        public ObservableList<Person> getFilteredPersonList() {
+            List<Person> sampleList = new ArrayList<>();
+            sampleList.add(this.person);
+            ObservableList<Person> personList = FXCollections.observableArrayList(sampleList);
+            return personList;
+        }
+
+        @Override
+        public ObservableList<Order> getOrderList() {
+            ObservableList<Order> orderList = FXCollections.observableArrayList(this.person.getOrders());
+            return orderList;
         }
     }
 }

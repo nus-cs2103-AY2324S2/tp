@@ -2,6 +2,7 @@ package seedu.address.logic.commands.orders;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -57,6 +58,11 @@ public class AddOrderCommand extends Command {
         }
         Person personToEdit = lastShownList.get(index.getZeroBased());
         Set<Order> orders = personToEdit.getOrders();
+        if (orders == null) {
+            orders = new HashSet<>();
+        } else {
+            orders = new HashSet<>(orders);
+        }
         orders.add(this.order);
         Person editedPerson = new Person(
                 personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
