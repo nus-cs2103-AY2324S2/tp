@@ -42,6 +42,7 @@ class JsonAdaptedPerson {
             @JsonInclude(JsonInclude.Include.NON_NULL)
             @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("role") String role,
+            @JsonInclude(JsonInclude.Include.NON_NULL)
             @JsonProperty("address") String address, @JsonProperty("tags") List<JsonAdaptedTag> tags) {
         this.name = name;
         this.phone = phone;
@@ -89,7 +90,7 @@ class JsonAdaptedPerson {
         if (phone != null && !Phone.isValidPhone(phone)) {
             throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
         }
-        final Optional<Phone> modelPhone = Optional.ofNullable(phone).map(phone -> new Phone(phone));
+        final Optional<Phone> modelPhone = Optional.ofNullable(phone).map(Phone::new);
 
         if (email == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
@@ -107,13 +108,10 @@ class JsonAdaptedPerson {
         }
         final Role modelRole = Role.valueOf(role);
 
-        if (address == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
-        }
-        if (!Address.isValidAddress(address)) {
+        if (address != null && !Address.isValidAddress(address)) {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
-        final Optional<Address> modelAddress = Optional.of(new Address(address));
+        final Optional<Address> modelAddress = Optional.ofNullable(address).map(Address::new);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
         return new Person(modelName, modelPhone, modelEmail, modelRole, modelAddress, modelTags);

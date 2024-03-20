@@ -68,7 +68,7 @@ public class EditPersonDescriptorBuilder {
      * Sets the {@code Address} of the {@code EditPersonDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withAddress(Optional<String> address) {
-        descriptor.setAddress(address.map(s -> new Address(s)));
+        descriptor.setAddress(address.map(Address::new));
         return this;
     }
 
