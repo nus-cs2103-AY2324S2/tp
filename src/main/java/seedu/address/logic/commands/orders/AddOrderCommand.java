@@ -39,7 +39,7 @@ public class AddOrderCommand extends Command {
     private final Index index;
 
     /**
-     * Creates an AddOrderCommand to add the specified {@code Order}
+     * Creates an AddOrderCommand to add the specified {@code Order}.
      */
     public AddOrderCommand(Index index, Order order) {
         requireAllNonNull(index, order);

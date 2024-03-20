@@ -36,7 +36,7 @@ public class DeleteOrderCommand extends Command {
 
 
     /**
-     * Creates an DeleteOrderCommand to delete the specified {@code Order}
+     * Creates an DeleteOrderCommand to delete the specified {@code Order}.
      */
     public DeleteOrderCommand(OrderId index) {
         this.index = index;

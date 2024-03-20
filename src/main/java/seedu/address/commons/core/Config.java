@@ -8,7 +8,7 @@ import java.util.logging.Level;
 import seedu.address.commons.util.ToStringBuilder;
 
 /**
- * Config values used by the app
+ * Config values used by the app.
  */
 public class Config {
 

@@ -20,20 +20,28 @@ import seedu.address.model.ReadOnlyAddressBook;
 public class JsonAddressBookStorage implements AddressBookStorage {
 
     private static final Logger logger = LogsCenter.getLogger(JsonAddressBookStorage.class);
+    private Path addressBookFilePath;
 
-    private Path filePath;
+    //private Path filePath;
 
-    public JsonAddressBookStorage(Path filePath) {
-        this.filePath = filePath;
+    /**
+     * Constructs a {@code JsonAddressBookStorage} with the specified file paths.
+     *
+     * @param addressBookFilePath The file path for the address book data.
+     */
+    public JsonAddressBookStorage(Path addressBookFilePath) {
+        this.addressBookFilePath = addressBookFilePath;
     }
+
 
     public Path getAddressBookFilePath() {
-        return filePath;
+        return addressBookFilePath;
     }
+
 
     @Override
     public Optional<ReadOnlyAddressBook> readAddressBook() throws DataLoadingException {
-        return readAddressBook(filePath);
+        return readAddressBook(addressBookFilePath);
     }
 
     /**
@@ -61,7 +69,7 @@ public class JsonAddressBookStorage implements AddressBookStorage {
 
     @Override
     public void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException {
-        saveAddressBook(addressBook, filePath);
+        saveAddressBook(addressBook, addressBookFilePath);
     }
 
     /**

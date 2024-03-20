@@ -8,11 +8,13 @@ import java.util.Objects;
 import java.util.stream.Stream;
 
 /**
- * Utility methods related to Collections
+ * Utility methods related to Collections.
  */
 public class CollectionUtil {
 
-    /** @see #requireAllNonNull(Collection) */
+    /**
+     * @see #requireAllNonNull(Collection)
+     */
     public static void requireAllNonNull(Object... items) {
         requireNonNull(items);
         Stream.of(items).forEach(Objects::requireNonNull);

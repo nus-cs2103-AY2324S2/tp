@@ -34,6 +34,7 @@ public class ViewOrdersCommandTest {
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
+        // TODO: Edit the code below for testing
         //        showOrderAtIndex(model, INDEX_FIRST_ORDER);
         //        assertCommandSuccess(new ViewOrdersCommand(), model,
         //        ViewOrdersCommand.MESSAGE_SUCCESS, expectedModel);
