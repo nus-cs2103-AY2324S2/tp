@@ -441,6 +441,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  User requests to tag a specific contact to a tutorial group.
 2.  AddressBook tags the contact to the tutorial group.
 
+    Use case ends.
+
 **Extensions**
 
 * 1a. User uses the wrong format in his request.
@@ -546,7 +548,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 Given below are instructions to test the app manually.
 
-<box type="info" seamless>
+<boxtype="info" seamless>
 
 **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
