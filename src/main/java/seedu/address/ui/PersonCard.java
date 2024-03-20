@@ -37,6 +37,8 @@ public class PersonCard extends UiPart<Region> {
     private Label email;
     @FXML
     private Label dateOfBirth;
+    @FXML
+    private Label sex;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Patient} and index to display.
@@ -50,5 +52,6 @@ public class PersonCard extends UiPart<Region> {
         address.setText(patient.getAddress().value);
         email.setText(patient.getEmail().value);
         dateOfBirth.setText(patient.getDateOfBirth().toString());
+        sex.setText(patient.getSex().toString());
     }
 }
