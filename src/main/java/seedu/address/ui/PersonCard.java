@@ -45,7 +45,7 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label remark;
     @FXML
-    private FlowPane tags;
+    private FlowPane groups;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -61,8 +61,8 @@ public class PersonCard extends UiPart<Region> {
         major.setText(person.getMajor().value);
         telegram.setText("@" + person.getTelegram().value);
         remark.setText(person.getRemark().value);
-        person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        person.getGroups().stream()
+                .sorted(Comparator.comparing(group -> group.groupName))
+                .forEach(group -> groups.getChildren().add(new Label(group.groupName)));
     }
 }
