@@ -127,7 +127,7 @@ Formats:
 * The search is case-insensitive. e.g `john` will match `John`, `a1234567x` will match `A1234567X`
 * Only the name or student id is queried.
 * The search by name supports partial word matching, but must be in chronological order e.g. `John` will match `Jonathan`. And `nathan` will not match with `Jonathan`.
-* The search by ID supports partial word matching, but must be in chronological order e.g. `A123` will match `A1234567X`. And `2345` will not match with `A1234567X`.
+* The search by ID supports partial word matching, does not need to be in chronological order e.g. `A123` will match `A1234567X`. And `2345` will match with `A1234567X`.
 * When querying student through name with multiple keywords, only names that match all will be returned.
   e.g. `Hans Bo` will return `Hans Bober`, `Hans Bober` and not `Hans Mayer`
 * When searching by both id and name, only ids and names that match both will be returned. 
@@ -138,7 +138,7 @@ Examples:
 * `find n/John` returns `john`, `John Doe`, `Johnathan`
 * `find n/alex david` returns `Alex David`
 * `find id/A1234567X` returns a person with ID `A12345678X`
-* `find id/A123` returns entries with IDs starting with `A123`
+* `find id/A123` returns entries with IDs with `A123`
 * `find id/A1234567X n/John Doe` returns a person `John Doe` with ID `A12345678X`
 
 ### Deleting a person : `delete`
