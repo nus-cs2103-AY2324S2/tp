@@ -22,8 +22,13 @@ import seedu.address.model.util.RelationshipUtil;
  * Parses input arguments and creates a new ListCommand object
  */
 public class ListAppointmentCommandParser implements Parser<ListAppointmentCommand> {
+
+    private final List<Person> patients;
+    public ListAppointmentCommandParser(List<Person> patients) {
+        this.patients = patients;
+    }
     @Override
-    public ListAppointmentCommand parse(String args, List<Person> patients) throws ParseException {
+    public ListAppointmentCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args,
                                            CliSyntax.PREFIX_NAME,
@@ -83,10 +88,4 @@ public class ListAppointmentCommandParser implements Parser<ListAppointmentComma
 
         return new ListAppointmentCommand(combinedPredicate);
     }
-
-    @Override
-    public ListAppointmentCommand parse(String userInput) throws ParseException {
-        return null;
-    }
-
 }

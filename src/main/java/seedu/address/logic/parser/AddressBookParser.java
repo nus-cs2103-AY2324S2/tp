@@ -90,7 +90,7 @@ public class AddressBookParser {
             return new HelpCommand();
 
         case AddAppointmentCommand.COMMAND_WORD:
-            return new AddAppointmentCommandParser().parse(arguments, this.patients);
+            return new AddAppointmentCommandParser(this.patients).parse(arguments);
 
         case FindAppointmentCommand.COMMAND_WORD:
             return new FindAppointmentCommandParser().parse(arguments);
@@ -99,7 +99,7 @@ public class AddressBookParser {
             return new DeleteAppointmentCommandParser().parse(arguments);
 
         case ListAppointmentCommand.COMMAND_WORD:
-            return new ListAppointmentCommandParser().parse(arguments, this.patients);
+            return new ListAppointmentCommandParser(this.patients).parse(arguments);
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);
