@@ -8,6 +8,7 @@ import java.util.UUID;
 public abstract class Relationship {
     protected UUID person1;
     protected UUID person2;
+    protected String type;
 
     /**
      * Creates a new Relationship object with the given UUIDs.

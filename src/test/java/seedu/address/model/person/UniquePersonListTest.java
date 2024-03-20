@@ -2,16 +2,19 @@ package seedu.address.model.person;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.address.testutil.TypicalPersons.IDA;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.UUID;
 
 import org.junit.jupiter.api.Test;
 
@@ -171,5 +174,41 @@ public class UniquePersonListTest {
     @Test
     public void toStringMethod() {
         assertEquals(uniquePersonList.asUnmodifiableObservableList().toString(), uniquePersonList.toString());
+    }
+    @Test
+    void deleteAttribute_existingAttribute_removesAttribute() {
+        assertTrue(IDA.hasAttribute("Name"));
+        IDA.deleteAttribute("Name");
+        assertFalse(IDA.hasAttribute("Name"));
+    }
+
+    @Test
+    void getPersonByUuid_existingUuid_returnsPerson() {
+        uniquePersonList.add(ALICE);
+        Person foundPerson = uniquePersonList.getPersonByUuid(ALICE.getUuid());
+        assertNotNull(foundPerson);
+        assertEquals(ALICE.getUuid(), foundPerson.getUuid());
+    }
+
+    @Test
+    void getFullUuid_matchingDigits_returnsFullUuid() {
+        uniquePersonList.add(ALICE);
+        String lastFourDigits = ALICE.getUuidString().substring(36 - 4);
+        UUID foundUuid = uniquePersonList.getFullUuid(lastFourDigits);
+        assertNotNull(foundUuid);
+        assertEquals(ALICE.getUuid(), foundUuid);
+    }
+
+    @Test
+    void hasAttribute_existingAttribute_returnsTrue() {
+        uniquePersonList.add(ALICE);
+        boolean result = uniquePersonList.hasAttribute(ALICE.getUuidString(), "Phone");
+        assertTrue(result);
+    }
+
+    @Test
+    void hasAttribute_nonExistingAttribute_returnsFalse() {
+        boolean result = uniquePersonList.hasAttribute(ALICE.getUuidString(), "NonExistentAttribute");
+        assertFalse(result);
     }
 }

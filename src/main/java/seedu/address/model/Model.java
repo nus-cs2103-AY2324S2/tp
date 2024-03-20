@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.UUID;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -85,4 +86,11 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
+    void deleteAttribute(String uuid, String attributeName);
+
+    UUID getFullUuid(String digits);
+
+    Person getPersonByUuid(UUID id);
+
+    boolean hasAttribute(String uuidString, String attributeName);
 }

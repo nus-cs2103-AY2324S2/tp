@@ -10,6 +10,7 @@ import static seedu.address.testutil.TypicalPersons.ALICE;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.UUID;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -155,6 +156,26 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteAttribute(String uuid, String attributeName) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public UUID getFullUuid(String digits) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Person getPersonByUuid(UUID id) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasAttribute(String uuidString, String attributeName) {
             throw new AssertionError("This method should not be called.");
         }
     }
