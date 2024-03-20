@@ -14,8 +14,6 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-import javafx.beans.InvalidationListener;
-import javafx.beans.Observable;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
@@ -24,6 +22,9 @@ import seedu.address.commons.util.InvalidationListenerManager;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.testutil.PersonBuilder;
+
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 
 public class AddressBookTest {
 
