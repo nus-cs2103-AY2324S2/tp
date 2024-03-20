@@ -4,6 +4,8 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.person.exceptions.AttendanceStatus;
+
 public class AttendanceTest {
 
     @Test
@@ -12,15 +14,16 @@ public class AttendanceTest {
     }
 
     @Test
-    public void constructor_invalidTagName_throwsIllegalArgumentException() {
-        String invalidTagName = "";
-        assertThrows(IllegalArgumentException.class, () -> new Attendance(invalidTagName));
+    public void constructor_invalidAttendanceDate_throwsIllegalArgumentException() {
+        String invalidAttendanceDate = "32-02-2024";
+        String invalidAttendanceStatus = "3";
+        assertThrows(IllegalArgumentException.class, () -> new Attendance(new AttendanceStatus(invalidAttendanceDate, invalidAttendanceStatus)));
     }
 
     @Test
-    public void isValidTagName() {
+    public void isValidDate() {
         // null tag name
-        assertThrows(NullPointerException.class, () -> Attendance.isValidTagName(null));
+        assertThrows(NullPointerException.class, () -> Attendance.isValidDate(null));
     }
 
 }
