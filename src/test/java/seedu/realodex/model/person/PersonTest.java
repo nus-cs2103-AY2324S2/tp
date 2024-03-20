@@ -9,6 +9,7 @@ import static seedu.realodex.logic.commands.CommandTestUtil.VALID_FAMILY_BOB;
 import static seedu.realodex.logic.commands.CommandTestUtil.VALID_INCOME_BOB;
 import static seedu.realodex.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.realodex.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.realodex.logic.commands.CommandTestUtil.VALID_REMARK_AMY;
 import static seedu.realodex.logic.commands.CommandTestUtil.VALID_TAG_AMY;
 import static seedu.realodex.testutil.Assert.assertThrows;
 import static seedu.realodex.testutil.TypicalPersons.ALICE;
@@ -41,7 +42,9 @@ public class PersonTest {
                 .withEmail(VALID_EMAIL_BOB)
                 .withAddress(VALID_ADDRESS_BOB)
                 .withFamily(VALID_FAMILY_BOB)
-                .withTags(VALID_TAG_AMY).build();
+                .withTags(VALID_TAG_AMY)
+                .withRemark(VALID_REMARK_AMY)
+                .build();
         assertTrue(ALICE.isSamePerson(editedAlice));
 
         // different name, all other attributes same -> returns false

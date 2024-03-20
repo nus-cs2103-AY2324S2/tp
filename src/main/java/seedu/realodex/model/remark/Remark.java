@@ -1,5 +1,7 @@
 package seedu.realodex.model.remark;
 
+import static java.util.Objects.requireNonNull;
+
 /**
  * Represents a remark in realodex.
  */
@@ -15,7 +17,19 @@ public class Remark {
      * @param remarkName A valid remark.
      */
     public Remark(String remarkName) {
+        requireNonNull(remarkName);
         this.remarkName = remarkName;
+    }
+
+    /**
+     * Returns true if a given string is a valid name.
+     * However, as of v1.2 there is no concrete check; hence it will always return true.
+     * @param test
+     * @return
+     */
+    public static boolean isValidRemark(String test) {
+        requireNonNull(test);
+        return true;
     }
 
     @Override
