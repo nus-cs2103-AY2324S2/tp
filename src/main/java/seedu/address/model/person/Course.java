@@ -17,12 +17,14 @@ public class Course {
 
     /*
      * A course code should start with 2-3 alphabets, followed by exactly 4 digits.
+     * The first digit should be within the range [1,8].
      * Some course codes may also have an alphabet as its last character. (i.e. CS2103T)
      * (Course code format is quoted from official NUS website)
      */
     private static final String PREFIX_CODE = "[A-Z]{2,3}";
-    private static final String POSTFIX_CODE = "[0-9]{4}[A-Z]{0,1}";
-    public static final String VALIDATION_REGEX = PREFIX_CODE + POSTFIX_CODE;
+    private static final String DIGIT_CODE = "[1-8][0-9]{3}";
+    private static final String POSTFIX_CODE = "[A-Z]{0,1}";
+    public static final String VALIDATION_REGEX = PREFIX_CODE + DIGIT_CODE + POSTFIX_CODE;
 
     public final String value;
 
@@ -34,14 +36,14 @@ public class Course {
     public Course(String course) {
         requireNonNull(course);
         checkArgument(isValidCourse(course), MESSAGE_CONSTRAINTS);
-        this.value = course.toUpperCase();
+        this.value = course.toUpperCase().trim();
     }
 
     /**
      * Returns true if a given string is a valid course code.
      */
     public static boolean isValidCourse(String test) {
-        return test.toUpperCase().matches(VALIDATION_REGEX);
+        return test.toUpperCase().trim().matches(VALIDATION_REGEX);
     }
 
     @Override
