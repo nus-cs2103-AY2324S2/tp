@@ -15,7 +15,7 @@ import seedu.address.model.person.relationship.Relationship;
  */
 public class AddRelationshipCommand extends Command {
     public static final String COMMAND_WORD = "addRelation";
-    public static String MESSAGE_ADD_RELATIONSHIP_SUCCESS = "add success";
+    public static final String MESSAGE_ADD_RELATIONSHIP_SUCCESS = "Add success";
     private String originUuid;
     private String targetUuid;
     private String relationshipDescriptor;
