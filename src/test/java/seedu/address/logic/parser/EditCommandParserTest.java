@@ -190,7 +190,7 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_THIRD_PERSON;
         String userInput = targetIndex.getOneBased() + TAG_EMPTY;
 
-        EditCompanyDescriptor descriptor = new EditPersonDescriptorBuilder().withTags().build();
+        EditCompanyDescriptor descriptor = new EditPersonDescriptorBuilder().withTags("SWE").build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
