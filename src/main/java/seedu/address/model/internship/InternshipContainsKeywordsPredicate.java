@@ -1,5 +1,6 @@
 package seedu.address.model.internship;
 
+import java.util.Optional;
 import java.util.Set;
 import java.util.function.Predicate;
 
@@ -11,14 +12,12 @@ import seedu.address.commons.util.ToStringBuilder;
  */
 public class InternshipContainsKeywordsPredicate implements Predicate<Internship> {
     private final boolean isMatchAll;
-    private final Set<String> companyNameKeywords;
-    private final Set<String> contactNameKeywords;
-    private final Set<String> contactEmailKeywords;
-    private final Set<String> contactPhoneKeywords;
-    private final Set<String> locationKeywords;
-    private final Set<String> statusKeywords;
-    private final Set<String> descriptionKeywords;
-    private final Set<String> roleKeywords;
+    private final Optional<Set<String>> companyNameKeywords;
+    private final Optional<Set<String>> contactNameKeywords;
+    private final Optional<Set<String>> locationKeywords;
+    private final Optional<Set<String>> statusKeywords;
+    private final Optional<Set<String>> descriptionKeywords;
+    private final Optional<Set<String>> roleKeywords;
 
     /**
      * Creates a predicate that checks if an internship's fields contain any of the keywords specified for that field.
@@ -26,21 +25,16 @@ public class InternshipContainsKeywordsPredicate implements Predicate<Internship
      *
      * @param companyNames  A string of company names separated by whitespace
      * @param contactNames  A string of contact names separated by whitespace
-     * @param contactEmails A string of contact emails separated by whitespace
-     * @param contactPhones A string of contact phones separated by whitespace
      * @param locations     A string of locations separated by whitespace
      * @param statuses      A string of statuses separated by whitespace
      * @param descriptions  A string of descriptions separated by whitespace
      * @param roles         A string of roles separated by whitespace
      * @param isMatchAll    A boolean to indicate if all keywords must be matched
      */
-    public InternshipContainsKeywordsPredicate(String companyNames, String contactNames, String contactEmails,
-                                               String contactPhones, String locations, String statuses,
-                                               String descriptions, String roles, boolean isMatchAll) {
+    public InternshipContainsKeywordsPredicate(String companyNames, String contactNames, String locations,
+                                               String statuses, String descriptions, String roles, boolean isMatchAll) {
         this.companyNameKeywords = getKeywords(companyNames);
         this.contactNameKeywords = getKeywords(contactNames);
-        this.contactEmailKeywords = getKeywords(contactEmails);
-        this.contactPhoneKeywords = getKeywords(contactPhones);
         this.locationKeywords = getKeywords(locations);
         this.statusKeywords = getKeywords(statuses);
         this.descriptionKeywords = getKeywords(descriptions);
@@ -51,35 +45,36 @@ public class InternshipContainsKeywordsPredicate implements Predicate<Internship
     @Override
     public boolean test(Internship internship) {
         boolean foundInCompanyName = companyNameKeywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(internship.getCompanyName().companyName,
-                        keyword));
+                .map(set -> StringUtil.containsWordIgnoreCase(String.join(" ", set),
+                        internship.getCompanyName().companyName))
+                .reduce((a, b) -> a || b).orElse(isMatchAll);
+        // if no keywords, return isMatchAll. For matching all predicates, no keywords have to be true
         boolean foundInContactName = contactNameKeywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(internship.getContactName().contactName,
-                        keyword));
-        boolean foundInContactEmail = contactEmailKeywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(internship.getContactEmail().value,
-                        keyword));
-        boolean foundInContactPhone = contactPhoneKeywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(internship.getContactNumber().value,
-                        keyword));
+                .map(set -> StringUtil.containsWordIgnoreCase(String.join(" ", set),
+                        internship.getContactName().contactName))
+                .reduce((a, b) -> a || b).orElse(isMatchAll);
         boolean foundInLocation = locationKeywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(internship.getLocation().toString(),
-                        keyword));
+                .map(set -> StringUtil.containsWordIgnoreCase(String.join(" ", set),
+                        internship.getLocation().toString()))
+                .reduce((a, b) -> a || b).orElse(isMatchAll);
         boolean foundInStatus = statusKeywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(internship.getApplicationStatus().toString(),
-                        keyword));
+                .map(set -> StringUtil.containsWordIgnoreCase(String.join(" ", set),
+                        internship.getApplicationStatus().toString()))
+                .reduce((a, b) -> a || b).orElse(isMatchAll);
         boolean foundInDescription = descriptionKeywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(internship.getDescription().description,
-                        keyword));
+                .map(set -> StringUtil.containsWordIgnoreCase(String.join(" ", set),
+                        internship.getDescription().description))
+                .reduce((a, b) -> a || b).orElse(isMatchAll);
         boolean foundInRole = roleKeywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(internship.getRole().role,
-                        keyword));
+                .map(set -> StringUtil.containsWordIgnoreCase(String.join(" ", set),
+                        internship.getRole().role))
+                .reduce((a, b) -> a || b).orElse(isMatchAll);
         if (isMatchAll) {
-            return foundInCompanyName && foundInContactName && foundInContactEmail && foundInContactPhone
-                    && foundInLocation && foundInStatus && foundInDescription && foundInRole;
+            return foundInCompanyName && foundInContactName && foundInLocation
+                    && foundInStatus && foundInDescription && foundInRole;
         } else { // match any
-            return foundInCompanyName || foundInContactName || foundInContactEmail || foundInContactPhone
-                    || foundInLocation || foundInStatus || foundInDescription || foundInRole;
+            return foundInCompanyName || foundInContactName || foundInLocation
+                    || foundInStatus || foundInDescription || foundInRole;
         }
     }
 
@@ -98,8 +93,6 @@ public class InternshipContainsKeywordsPredicate implements Predicate<Internship
                 (InternshipContainsKeywordsPredicate) other;
         return this.companyNameKeywords.equals(otherInternshipPredicate.companyNameKeywords)
                 && this.contactNameKeywords.equals(otherInternshipPredicate.contactNameKeywords)
-                && this.contactEmailKeywords.equals(otherInternshipPredicate.contactEmailKeywords)
-                && this.contactPhoneKeywords.equals(otherInternshipPredicate.contactPhoneKeywords)
                 && this.locationKeywords.equals(otherInternshipPredicate.locationKeywords)
                 && this.statusKeywords.equals(otherInternshipPredicate.statusKeywords)
                 && this.descriptionKeywords.equals(otherInternshipPredicate.descriptionKeywords)
@@ -111,15 +104,17 @@ public class InternshipContainsKeywordsPredicate implements Predicate<Internship
         return new ToStringBuilder(this)
                 .add(" companyNamekeywords", companyNameKeywords)
                 .add(" contactNameKeywords", contactNameKeywords)
-                .add(" contactEmailKeywords", contactEmailKeywords)
-                .add(" contactPhoneKeywords", contactPhoneKeywords)
                 .add(" locationKeywords", locationKeywords)
                 .add(" statusKeywords", statusKeywords)
                 .add(" descriptionKeywords", descriptionKeywords)
                 .add(" roleKeywords", roleKeywords).toString();
     }
 
-    protected Set<String> getKeywords(String keywords) {
-        return Set.of(keywords.split("\\s+"));
+    protected Optional<Set<String>> getKeywords(String keywords) {
+        if (keywords == null || keywords.isBlank()) {
+            return Optional.empty();
+        }
+        String[] keywordsArr = keywords.split("\\s+");
+        return Optional.of(Set.of(keywordsArr));
     }
 }
