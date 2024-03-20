@@ -4,6 +4,8 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.person.exceptions.AttendanceStatus;
+
 public class AttendanceTest {
 
     @Test
@@ -13,8 +15,9 @@ public class AttendanceTest {
 
     @Test
     public void constructor_invalidAttendanceDate_throwsIllegalArgumentException() {
-        String invalidAttendanceDate = "";
-        assertThrows(IllegalArgumentException.class, () -> new Attendance(invalidAttendanceDate));
+        String invalidAttendanceDate = "32-02-2024";
+        String invalidAttendanceStatus = "3";
+        assertThrows(IllegalArgumentException.class, () -> new Attendance(new AttendanceStatus(invalidAttendanceDate, invalidAttendanceStatus)));
     }
 
     @Test

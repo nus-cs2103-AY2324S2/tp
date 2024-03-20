@@ -15,6 +15,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.StudentId;
+import seedu.address.model.person.exceptions.AttendanceStatus;
 import seedu.address.model.tag.Attendance;
 
 /**
@@ -124,7 +125,7 @@ public class ParserUtil {
         if (!Attendance.isValidDate(trimmedDate)) {
             throw new ParseException(Attendance.MESSAGE_CONSTRAINTS);
         }
-        return new Attendance(trimmedDate);
+        return new Attendance(new AttendanceStatus(trimmedDate, "1"));
     }
 
     /**
@@ -139,7 +140,7 @@ public class ParserUtil {
         if (!Attendance.isValidDate(trimmedTag)) {
             throw new ParseException(Attendance.MESSAGE_CONSTRAINTS);
         }
-        return new Attendance(trimmedTag);
+        return new Attendance(new AttendanceStatus(trimmedTag, "1"));
     }
 
     /**
