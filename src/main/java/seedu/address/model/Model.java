@@ -100,7 +100,7 @@ public interface Model {
 
     boolean isAnEventSelected();
 
-    boolean isEqualSelectedEvent(Event event);
+    boolean isSameSelectedEvent(Event event);
 
     void selectEvent(Event event);
 

@@ -192,7 +192,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean isEqualSelectedEvent(Event event) {
+    public boolean isSameSelectedEvent(Event event) {
         requireNonNull(event);
         return eventBook.isSameSelectedEvent(event);
     }

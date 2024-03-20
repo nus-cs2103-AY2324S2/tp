@@ -57,7 +57,7 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_deleteEvent() throws Exception {
+    public void parseCommand_deleteEvent_success() throws Exception {
         DeleteEventCommand command = (DeleteEventCommand) parser.parseCommand(
                 DeleteEventCommand.COMMAND_WORD + " " + INDEX_FIRST_EVENT.getOneBased());
         assertEquals(new DeleteEventCommand(INDEX_FIRST_EVENT), command);

@@ -123,7 +123,7 @@ public class ModelStub implements Model {
 
 
     @Override
-    public boolean isEqualSelectedEvent(Event event) {
+    public boolean isSameSelectedEvent(Event event) {
         throw new AssertionError("This method should not be called.");
     }
 

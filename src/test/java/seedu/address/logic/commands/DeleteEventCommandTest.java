@@ -44,7 +44,7 @@ public class DeleteEventCommandTest {
     }
 
     @Test
-    public void execute_deleteEventSuccessful() throws CommandException {
+    public void execute_deleteEvent_success() throws CommandException {
         ModelManager model = new ModelManager();
         model.setEventBook(getTypicalEventBook());
         DeleteEventCommand deleteEventCommand = new DeleteEventCommand(Index.fromZeroBased(0));

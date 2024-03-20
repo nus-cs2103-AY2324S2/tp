@@ -178,7 +178,7 @@ public class ModelManagerTest {
 
     @Test
     public void isEqualSelectedEvent_nullEvent_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.isEqualSelectedEvent(null));
+        assertThrows(NullPointerException.class, () -> modelManager.isSameSelectedEvent(null));
     }
 
     @Test

@@ -18,7 +18,7 @@ public class DeleteEventCommand extends Command {
 
     public static final String COMMAND_WORD = "delev";
 
-    public static final String MESSAGE_INVALID_DELETE_EVENT = "The selected Event cannot be deleted";
+    public static final String MESSAGE_INVALID_DELETE_EVENT = "Cannot delete the event that is currently selected";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the event identified by the index number used in the displayed event list.\n"
@@ -44,7 +44,7 @@ public class DeleteEventCommand extends Command {
 
         Event eventToDelete = lastShownList.get(targetIndex.getZeroBased());
 
-        if (model.isEqualSelectedEvent(eventToDelete)) {
+        if (model.isSameSelectedEvent(eventToDelete)) {
             throw new CommandException(MESSAGE_INVALID_DELETE_EVENT);
         }
 
