@@ -20,6 +20,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ContactList;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyContactList;
+import seedu.address.model.ReadOnlyGroupList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.coursemate.CourseMate;
 import seedu.address.model.coursemate.Name;
@@ -148,6 +149,42 @@ public class AddCommandTest {
 
         @Override
         public void setCourseMate(CourseMate target, CourseMate editedCourseMate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        /**
+         * Returns the user prefs' contact list file path.
+         */
+        @Override
+        public Path getGroupListFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        /**
+         * Sets the user prefs' contact list file path.
+         *
+         * @param groupListFilePath
+         */
+        @Override
+        public void setGroupListFilePath(Path groupListFilePath) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        /**
+         * Replaces contact list data with the data in {@code groupList}.
+         *
+         * @param groupList
+         */
+        @Override
+        public void setGroupList(ReadOnlyGroupList groupList) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        /**
+         * Returns the GroupList
+         */
+        @Override
+        public ReadOnlyGroupList getGroupList() {
             throw new AssertionError("This method should not be called.");
         }
 

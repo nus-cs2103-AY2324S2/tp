@@ -15,6 +15,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
     private Path contactListFilePath = Paths.get("data" , "contactlist.json");
+    private Path groupListFilePath = Paths.get("data" , "grouplist.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -54,6 +55,15 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public void setContactListFilePath(Path contactListFilePath) {
         requireNonNull(contactListFilePath);
         this.contactListFilePath = contactListFilePath;
+    }
+
+    public Path getGroupListFilePath() {
+        return groupListFilePath;
+    }
+
+    public void setGroupListFilePath(Path groupListFilePath) {
+        requireNonNull(groupListFilePath);
+        this.groupListFilePath = groupListFilePath;
     }
 
     @Override

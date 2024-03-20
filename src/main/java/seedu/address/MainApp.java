@@ -20,11 +20,14 @@ import seedu.address.model.GroupList;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyContactList;
+import seedu.address.model.ReadOnlyGroupList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.ContactListStorage;
+import seedu.address.storage.GroupListStorage;
 import seedu.address.storage.JsonContactListStorage;
+import seedu.address.storage.JsonGroupListStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
@@ -59,7 +62,8 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         ContactListStorage contactListStorage = new JsonContactListStorage(userPrefs.getContactListFilePath());
-        storage = new StorageManager(contactListStorage, userPrefsStorage);
+        GroupListStorage groupListStorage = new JsonGroupListStorage(userPrefs.getGroupListFilePath());
+        storage = new StorageManager(contactListStorage, userPrefsStorage, groupListStorage);
 
         model = initModelManager(storage, userPrefs);
 
@@ -69,29 +73,44 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
-     * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
-     * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s contact list and {@code userPrefs}. <br>
+     * The data from the sample contact list will be used instead if {@code storage}'s contact list is not found,
+     * or an empty contact list will be used instead if errors occur when reading {@code storage}'s contact list.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         logger.info("Using data file : " + storage.getContactListFilePath());
 
-        Optional<ReadOnlyContactList> addressBookOptional;
-        ReadOnlyContactList initialData;
+        Optional<ReadOnlyContactList> contactListOptional;
+        ReadOnlyContactList initialContactList;
         try {
-            addressBookOptional = storage.readContactList();
-            if (!addressBookOptional.isPresent()) {
+            contactListOptional = storage.readContactList();
+            if (!contactListOptional.isPresent()) {
                 logger.info("Creating a new data file " + storage.getContactListFilePath()
                         + " populated with a sample ContactList.");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleContactList);
+            initialContactList = contactListOptional.orElseGet(SampleDataUtil::getSampleContactList);
         } catch (DataLoadingException e) {
             logger.warning("Data file at " + storage.getContactListFilePath() + " could not be loaded."
                     + " Will be starting with an empty ContactList.");
-            initialData = new ContactList();
+            initialContactList = new ContactList();
+        }
+        Optional<ReadOnlyGroupList> groupListOptional;
+        ReadOnlyGroupList initialGroupList;
+
+        try {
+            groupListOptional = storage.readGroupList();
+            if (!groupListOptional.isPresent()) {
+                logger.info("Creating a new data file " + storage.getGroupListFilePath()
+                        + " starting with an empty GroupList.");
+            }
+            initialGroupList = groupListOptional.orElseGet(GroupList::new);
+        } catch (DataLoadingException e) {
+            logger.warning("Data file at " + storage.getGroupListFilePath() + " could not be loaded."
+                    + " Will be starting with an empty GroupList.");
+            initialGroupList = new GroupList();
         }
 
-        return new ModelManager(initialData, userPrefs, new GroupList());
+        return new ModelManager(initialContactList, userPrefs, initialGroupList);
     }
 
     private void initLogging(Config config) {
@@ -177,7 +196,7 @@ public class MainApp extends Application {
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping Address Book ] =============================");
+        logger.info("============================ [ Stopping MatchMate ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {

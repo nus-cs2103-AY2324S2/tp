@@ -73,4 +73,9 @@ public class Group extends UniqueCourseMateList {
     public String toString() {
         return "Name: " + name + ", " + super.toString();
     }
+
+    @Override
+    public int hashCode() {
+        return name.hashCode() ^ super.hashCode();
+    }
 }
