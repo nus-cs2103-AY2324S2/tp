@@ -7,10 +7,12 @@
 # CapitalConnect User Guide
 
 **Welcome to Capital Connect: Your Portfolio Powerhouse!!**
+
 Do you ever feel like your startup portfolio is a tangled mess of spreadsheets and endless documents? You're not alone. 
 As a Venture Capital Portfolio Manager, juggling diverse investments across industries can be a complex challenge.
 
 **Who are you?**
+
 Our application is build for the aspiring venture capitalist! You are a professional on the lookout for the next Google. 
 You are passionate about innovative and new technologies. Most importantly, you want to **make your network your net-worth.**
 
@@ -117,16 +119,21 @@ Format: `add n/NAME p/PHONE_NUMBER i/INDUSTRY f/FUNDING_STAGE e/EMAIL a/ADDRESS 
 
 <box type="tip" seamless>
 
-**Tip:** We will shoot a warning message when an invalid input occurs! Look out for the following!
-**Tip:** You can't give us blank inputs! We need you to give us a valid input for mandatory fields! Check that phone number again, 
-did you accidentally add a digit?
-**Tip:** We understand that profitable investments requires prospecting a large range of industries. Hence, we have no restrictions on `INDUSTRY`!
-We let **you** decide how specific you want to define your startup categories by! If `Tech` is too general, you can now use more specific industry categories, such as 
-`web 3`, `AI`, `IAAS`!
 **Tip:** We only support traditional funding stages, hence inputs for `FUNDING_STAGE` must be either `S`, `PS`, `A`, `B` or `C`!
 `A`, `B`, `C` represents the respective funding series whilst `P` refers to pre-seed and `S` refers to the seed stage.
+</box>
 
+<box type="tip" seamless>
 
+**Tip:** You can't give us blank inputs! We need you to give us a valid input for mandatory fields! Check that phone number again,
+did you accidentally add a digit?
+</box>
+
+<box type="tip" seamless>
+
+**Tip:** We understand that profitable investments requires prospecting a large range of industries. Hence, we have no restrictions on `INDUSTRY`!
+We let **you** decide how specific you want to define your startup categories by! If `Tech` is too general, you can now use more specific industry categories, such as
+`web 3`, `AI`, `IAAS`!
 </box>
 
 Examples:
@@ -152,6 +159,8 @@ Format: `note INDEX NOTE`
 Examples:
 - `note 1 Innovative e-commerce platform` Adds or edits the note of the 1st startup to be "Innovative e-commerce platform".
 - `note 2 Expanding to new markets in Q3` Adds or edits the note of the 2nd startup with the information about its expansion plans. <br>
+
+
   ![result for 'note 1 Innovative e-commerce platform'](images/tracing/NoteCommand.png)
 
 **Tip:** Indexes are taken with respect to the list! Warnings might show up if you give us a invalid index.
@@ -173,7 +182,11 @@ Examples:
 *  `edit 1 p/91234567 e/stripe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Stripe t/` Edits the name of the 2nd person to be `Stripe` and clears all existing tags.
 
+
+<box type="tip" seamless>
+
 **Tip:** The same input rules for `add` applies here! An invalid input will throw an error.
+</box>
 
 ### Locating startups by name: `find`
 
@@ -190,8 +203,11 @@ Format: `find n/NAME [MORE_NAME]`
 
 Examples:
 * `find n/Google` returns `google` and `Google Deepmind`
+
   ![result for 'find by name google'](images/findByNameGoogle.png)
+
 * `find n/apple` returns `apple pay`, `eat apple`<br>
+
   ![result for 'find by name apple'](images/findByNameApple.png)
 
 ### Locating startups by funding stage: `find`
@@ -207,6 +223,7 @@ Format: `find f/FUNDING_STAGE [MORE_FUNDING_STAGES]`
 
 Examples:
 * `find f/C` returns startups that are currently in Series C funding
+
   ![result for 'find by fundingStage C'](images/findByFundingStage.png)
 
 ### Locating startups by industry: `find`
@@ -222,6 +239,7 @@ Format: `find f/INDUSTRY [MORE_INDUSTRIES]`
 
 Examples:
 * `find i/AI` returns startups that have AI tagged within their industry.
+
   ![result for 'find by fundingStage C'](images/findByIndustry.png)
 
 ### Deleting a startup : `delete`
