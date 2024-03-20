@@ -44,7 +44,7 @@ public class FindAndExportCommand extends Command {
      * @param filename The name of the file to which the filtered users are exported.
      * @param fileFormat The format of the file to which the filtered users are exported.
      */
-    public FindAndExportCommand(String tag, String name, String address, String filename, String fileFormat){
+    public FindAndExportCommand(String tag, String name, String address, String filename, String fileFormat) {
         this.tag = tag;
         this.name = name;
         this.address = address;
@@ -111,17 +111,17 @@ public class FindAndExportCommand extends Command {
     private void exportData(List<Person> users, String filename, String fileFormat) throws IOException {
         switch (fileFormat) {
         case "json":
-            exportDataAsJSON(users, filename);
+            exportDataAsJson(users, filename);
             break;
         case "csv":
-            exportDataAsCSV(users, filename);
+            exportDataAsCsv(users, filename);
             break;
         default:
             throw new IOException("Unsupported file format: " + fileFormat);
         }
     }
 
-    private void exportDataAsJSON(List<Person> users, String filename) throws IOException {
+    private void exportDataAsJson(List<Person> users, String filename) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         mapper.registerModule(new JavaTimeModule());
         mapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
@@ -136,7 +136,7 @@ public class FindAndExportCommand extends Command {
         mapper.writeValue(Files.newOutputStream(path), data);
     }
 
-    private void exportDataAsCSV(List<Person> users, String filename) throws IOException {
+    private void exportDataAsCsv(List<Person> users, String filename) throws IOException {
         Path path = Paths.get(filename);
         if (Files.exists(path) && !Files.isWritable(path)) {
             throw new IOException("File exists but is not writable: " + path);
@@ -147,7 +147,7 @@ public class FindAndExportCommand extends Command {
             csv.append(user.getName().fullName).append(",");
             csv.append(user.getPhone().value).append(",");
             csv.append(user.getEmail().value).append(",");
-            csv.append('\"'+ user.getAddress().value).append("\",");
+            csv.append('\"' + user.getAddress().value).append("\",");
             csv.append(user.getTags().stream().map(tag -> tag.tagName).reduce((a, b) -> a + " | " + b).orElse(""));
             csv.append("\n");
         }

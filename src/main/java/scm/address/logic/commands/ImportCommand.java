@@ -3,8 +3,16 @@ package scm.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static scm.address.logic.parser.CliSyntax.PREFIX_FILENAME;
 
-import java.io.*;
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
@@ -113,7 +121,7 @@ public class ImportCommand extends Command {
                 if (getFileFormat(file).equals("json")) {
                     savedPersons.addAll(readPersons(file));
                 } else if (getFileFormat(file).equals("csv")) {
-                    savedPersons.addAll(readPersonsFromCSV(file));
+                    savedPersons.addAll(readPersonsFromCsv(file));
                 } else {
                     logger.info(MESSAGE_INVALID_FILE);
                     throw new IllegalValueException(MESSAGE_INVALID_FILE);
@@ -133,7 +141,7 @@ public class ImportCommand extends Command {
      * @return A List of JsonAdaptedPerson present inside the {@code file}.
      * @throws DataLoadingException If the {@code file} is unable to be loaded.
      */
-    public List<JsonAdaptedPerson> readPersons(File file)
+    private List<JsonAdaptedPerson> readPersons(File file)
             throws DataLoadingException {
         JsonAddressBookStorage curStorage = new JsonAddressBookStorage(file.toPath());
         Optional<ReadOnlyAddressBook> readOnlyAddressBook = curStorage.readAddressBook();
@@ -146,18 +154,23 @@ public class ImportCommand extends Command {
                 .collect(Collectors.toList());
     }
 
-    public List<JsonAdaptedPerson> readPersonsFromCSV(File file) throws DataLoadingException {
+    /**
+     * Reads the csv data inside {@code file} and returns a List of JsonAdaptedPersons.
+     *
+     * @param file A csv file.
+     * @return A List of JsonAdaptedPerson present inside the {@code file}.
+     * @throws DataLoadingException If the {@code file} is unable to be loaded.
+     */
+    private List<JsonAdaptedPerson> readPersonsFromCsv(File file) throws DataLoadingException {
         String filePath = file.getPath();
         List<JsonAdaptedPerson> persons = new ArrayList<>();
         try {
-
             BufferedReader br = new BufferedReader(new FileReader(filePath));
             String line = "";
             String splitBy = ",(?=([^\"]*\"[^\"]*\")*[^\"]*$)";
             String headers = br.readLine();
-            while ((line = br.readLine()) != null)   //returns a Boolean value
-            {
-                String[] info = line.split(splitBy);    // use comma as separator
+            while ((line = br.readLine()) != null) {
+                String[] info = line.split(splitBy);
                 String name = info[0];
                 String phone = info[1];
                 String email = info[2];
@@ -186,9 +199,6 @@ public class ImportCommand extends Command {
         }
         return persons;
     }
-
-
-
 
     /**
      * Returns the file format of the {@code file}. Returns null if the file format is not found.
