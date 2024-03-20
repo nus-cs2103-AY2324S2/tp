@@ -5,12 +5,17 @@
     "tags": [ "friends" ],
     "email": "",
     "phone": "",
-    "address": ""
+    "address": "",
+    "height": "111",
+    "weight": "111"
+
   }, {
     "name": "Alice Pauline",
     "nric": "S1234567D",
     "email": "",
     "phone": "",
-    "address": ""
+    "address": "",
+    "height": "111",
+    "weight": "111"
   } ]
 }

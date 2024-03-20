@@ -8,6 +8,7 @@ import vitalconnect.commons.core.GuiSettings;
 import vitalconnect.model.person.Person;
 import vitalconnect.model.person.contactinformation.ContactInformation;
 import vitalconnect.model.person.identificationinformation.Nric;
+import vitalconnect.model.person.medicalinformation.MedicalInformation;
 
 /**
  * The API of the Model component.
@@ -15,7 +16,7 @@ import vitalconnect.model.person.identificationinformation.Nric;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
-
+    Predicate<Person> PREDICATE_SHOW_ALL_MEDICAL = Person::hasMedicalInformation;
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
@@ -94,4 +95,6 @@ public interface Model {
     void deleteAppointment(Appointment appointment);
     Person findPersonByNric(Nric nric);
     void updatePersonContactInformation(Nric nric, ContactInformation contactInformation);
+
+    void updatePersonMedicalInformation(Nric nric, MedicalInformation medicalInformation);
 }

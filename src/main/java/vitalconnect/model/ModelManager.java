@@ -16,6 +16,7 @@ import vitalconnect.commons.core.LogsCenter;
 import vitalconnect.model.person.Person;
 import vitalconnect.model.person.contactinformation.ContactInformation;
 import vitalconnect.model.person.identificationinformation.Nric;
+import vitalconnect.model.person.medicalinformation.MedicalInformation;
 
 
 /**
@@ -156,6 +157,19 @@ public class ModelManager implements Model {
         Person personToUpdate = person.copyPerson();
         personToUpdate.setContactInformation(contactInformation);
         setPerson(person, personToUpdate);
+    }
+
+    /**
+     * @param nric
+     * @param medicalInformation
+     */
+    @Override
+    public void updatePersonMedicalInformation(Nric nric, MedicalInformation medicalInformation) {
+        Person person = clinic.findPersonByNric(nric);
+        Person personToUpdate = person.copyPerson();
+        personToUpdate.setMedicalInformation(medicalInformation);
+        setPerson(person, personToUpdate);
+
     }
 
 
