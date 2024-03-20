@@ -162,6 +162,39 @@ The list entry of the user with <id> will not have the tag anymore.
 
 ![delete-tag](images/user-guide/delete-tag_mock_output.png)
 
+### Undoing a command : `undo`
+
+Resets the state of OH to before the execution of the latest command.
+
+Format: `undo`
+
+Output:
+The message "Undo success!" will be shown. 
+The list entry of the user will return to the state before the latest command. 
+If no command has been run at all, an error message "No more commands to undo!" will be shown instead.
+
+Example of undoing a delete command.
+
+Contact after a delete command:
+![delete_operation](images/user-guide/delete_operation-undo-mock.png)
+
+Contact after the delete command is undone:
+![undo](images/user-guide/undo_mock_output.png)
+
+### Redoing a command : `redo`
+
+Resets the state of OH to before the latest undo command.
+
+Format: `redo`
+
+Output:
+The message "Redo success!" will be shown.
+The list entry of the user will return to the state before the latest undo command.
+If no undo command has been run at all, an error message "No more commands to redo!" will be shown instead.
+
+Example of redoing the previous undo command:
+![redo](images/user-guide/redo_mock_output.png)
+
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -202,12 +235,16 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action     | Format, Examples                                                                                                                                                      |
-|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Clear**  | `clear`                                                                                                                                                               |
-| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
-| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
-| **List**   | `list`                                                                                                                                                                |
-| **Help**   | `help`                                                                                                                                                                |
+| Action         | Format, Examples                                                                                                                                       |
+|----------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**        | `add n/<name> p/<phone number> e/<email address> a/<address>` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665` |
+| **Delete**     | `delete <id>`<br> e.g., `delete 3`                                                                                                                     |
+| **Clear**      | `clear`                                                                                                                                                |
+| **Tag**        | `tag <id> l <tag name>`  <br> e.g., `tag 2 l friends`                                                                                                  |
+| **Delete Tag** | `delete-tag <id> l <tag name>` <br> e.g., `delete-tag 2 l friends`                                                                                     |
+| **List**       | `list`                                                                                                                                                 |
+| **Undo**       | `undo`                                                                                                                                                 |
+| **Redo**       | `redo`                                                                                                                                                 |
+| **Help**       | `help`                                                                                                                                                 |
+
+*Note*: `l` should be replaced with `|` in the command format.
