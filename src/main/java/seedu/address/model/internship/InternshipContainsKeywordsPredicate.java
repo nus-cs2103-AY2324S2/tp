@@ -42,13 +42,16 @@ public class InternshipContainsKeywordsPredicate implements Predicate<Internship
         this.isMatchAll = isMatchAll;
     }
 
+    /**
+     * Tests if the given internship contains any of the keywords specified for all fields (when isMatchAll is true) or
+     * any of the keywords specified for any field (when isMatchAll is false).
+     */
     @Override
     public boolean test(Internship internship) {
         boolean foundInCompanyName = companyNameKeywords.stream()
                 .map(set -> StringUtil.containsWordIgnoreCase(String.join(" ", set),
                         internship.getCompanyName().companyName))
                 .reduce((a, b) -> a || b).orElse(isMatchAll);
-        // if no keywords, return isMatchAll. For matching all predicates, no keywords have to be true
         boolean foundInContactName = contactNameKeywords.stream()
                 .map(set -> StringUtil.containsWordIgnoreCase(String.join(" ", set),
                         internship.getContactName().contactName))
@@ -102,7 +105,7 @@ public class InternshipContainsKeywordsPredicate implements Predicate<Internship
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add(" companyNamekeywords", companyNameKeywords)
+                .add(" companyNameKeywords", companyNameKeywords)
                 .add(" contactNameKeywords", contactNameKeywords)
                 .add(" locationKeywords", locationKeywords)
                 .add(" statusKeywords", statusKeywords)
@@ -110,6 +113,10 @@ public class InternshipContainsKeywordsPredicate implements Predicate<Internship
                 .add(" roleKeywords", roleKeywords).toString();
     }
 
+    /**
+     * @param keywords A string of keywords separated by whitespace
+     * @return An Optional containing a set of keywords if the input is not null or empty, else an empty Optional
+     */
     protected Optional<Set<String>> getKeywords(String keywords) {
         if (keywords == null || keywords.isBlank()) {
             return Optional.empty();
