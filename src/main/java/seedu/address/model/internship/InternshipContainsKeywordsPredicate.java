@@ -1,5 +1,6 @@
 package seedu.address.model.internship;
 
+import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
 import java.util.function.Predicate;
@@ -99,18 +100,20 @@ public class InternshipContainsKeywordsPredicate implements Predicate<Internship
                 && this.locationKeywords.equals(otherInternshipPredicate.locationKeywords)
                 && this.statusKeywords.equals(otherInternshipPredicate.statusKeywords)
                 && this.descriptionKeywords.equals(otherInternshipPredicate.descriptionKeywords)
-                && this.roleKeywords.equals(otherInternshipPredicate.roleKeywords);
+                && this.roleKeywords.equals(otherInternshipPredicate.roleKeywords)
+                && this.isMatchAll == otherInternshipPredicate.isMatchAll;
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add(" companyNameKeywords", companyNameKeywords)
-                .add(" contactNameKeywords", contactNameKeywords)
-                .add(" locationKeywords", locationKeywords)
-                .add(" statusKeywords", statusKeywords)
-                .add(" descriptionKeywords", descriptionKeywords)
-                .add(" roleKeywords", roleKeywords).toString();
+                .add(" companyNameKeywords", companyNameKeywords.orElse(Collections.singleton("")))
+                .add(" contactNameKeywords", contactNameKeywords.orElse(Collections.singleton("")))
+                .add(" locationKeywords", locationKeywords.orElse(Collections.singleton("")))
+                .add(" statusKeywords", statusKeywords.orElse(Collections.singleton("")))
+                .add(" descriptionKeywords", descriptionKeywords.orElse(Collections.singleton("")))
+                .add(" roleKeywords", roleKeywords.orElse(Collections.singleton("")))
+                .add(" isMatchAll", isMatchAll).toString();
     }
 
     /**
