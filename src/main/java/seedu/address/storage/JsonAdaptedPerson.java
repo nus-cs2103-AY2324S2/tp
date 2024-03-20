@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Allergies;
 import seedu.address.model.person.Country;
 import seedu.address.model.person.DateOfBirth;
 import seedu.address.model.person.Email;
@@ -32,6 +33,7 @@ class JsonAdaptedPerson {
     private final String dateOfBirth;
     private final Optional<String> email;
     private final Optional<String> country;
+    private final Optional<String> allergies;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -41,7 +43,7 @@ class JsonAdaptedPerson {
                              @JsonProperty("phone") String phone, @JsonProperty("address") String address,
                              @JsonProperty("dateOfBirth") String dob, @JsonProperty("sex") String sex,
                              @JsonProperty("status") String status, @JsonProperty("email") String email,
-                             @JsonProperty("country") String country) {
+                             @JsonProperty("country") String country, @JsonProperty("allergies") String allergies) {
         this.nric = nric;
         this.name = name;
         this.phone = phone;
@@ -51,6 +53,7 @@ class JsonAdaptedPerson {
         this.status = status;
         this.email = Optional.ofNullable(email);
         this.country = Optional.ofNullable(country);
+        this.allergies = Optional.ofNullable(allergies);
     }
 
     /**
@@ -66,6 +69,7 @@ class JsonAdaptedPerson {
         this.status = source.getStatus().toString();
         this.email = Optional.ofNullable(source.getEmail().toString());
         this.country = Optional.ofNullable(source.getCountry().toString());
+        this.allergies = Optional.ofNullable(source.getAllergies().toString());
     }
 
     /**
@@ -146,6 +150,11 @@ class JsonAdaptedPerson {
         if (country.isPresent()) {
             final Country modelCountry = new Country(country.get());
             person.setCountry(modelCountry);
+        }
+        // Allergies check
+        if (allergies.isPresent()) {
+            final Allergies modelAllergies = new Allergies(allergies.get());
+            person.setAllergies(modelAllergies);
         }
         return person;
     }
