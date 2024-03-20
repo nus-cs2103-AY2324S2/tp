@@ -37,7 +37,7 @@ public class Person {
         this.email = email;
         this.address = address;
         this.company = company;
-        this.starred = false;
+        this.starred = starred;
         this.tags.addAll(tags);
     }
 
