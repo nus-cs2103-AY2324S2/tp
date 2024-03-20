@@ -35,7 +35,7 @@ CogniCare is a **desktop app for managing all patients, optimized for use via a 
 
    * `delete 903` : Deletes the student that has the id of 903 (This is different from the natural ordering of the list).
 
-   * `clear` : Deletes all contacts.
+   * `clear` : Deletes all patient information from the CogniCare application.
 
    * `exit` : Exits the app.
 
@@ -129,7 +129,7 @@ Shows a list of all students in the address book.
 
 Shows a list of all students in the address book that matches _ALL_ the conditions that are specified.
 
-Format: `querystudents n/NAME p/PHONE_NUMBER e/EMAIL …​`
+Format: `querystudents [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] …​`
 
 For example: to find all the "Jerome" that are stored in the CogniCare application, the user may use the command
 Format: `querystudents n/Jerome …​`
@@ -219,12 +219,13 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action     | Format, Examples
------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear**  | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List**   | `list`
-**Help**   | `help`
+| Action                                                | Format, Examples                                                                                                                                                                                                            |
+|-------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add a patient**                                     | `patient n/NAME p/PHONE_NUMBER e/EMAIL [a/AFFLIATED_WITH]…​` <br> e.g., `patient n/Jerome Chua p/98765432 e/jerome@example.com a/depression` or `patient n/Davinci Lim p/98731122 e/betsycrowe@example.com a/sad a/anxiety` |
+| **Delete all entries from the CogniCare application** | `clear`                                                                                                                                                                                                                     |
+| **Delete**                                            | `delete STUDENT_ID`<br> e.g., `delete 3`                                                                                                                                                                                    |
+| **Edit**                                              | `edit STUDENT_ID [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/AFFLIATED_WITH]…​`edit 1 p/91234567 e/johndoe@example.com`                                                                                                          |
+| **Search**                                            | `querystudents [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] …​`<br> e.g., `querystudents n/Jerome p/61234567 e/outlook.com …​`                                                                                                       |
+| **List**                                              | `list`                                                                                                                                                                                                                      |
+| **Help**                                              | `help`                                                                                                                                                                                                                      |
+
