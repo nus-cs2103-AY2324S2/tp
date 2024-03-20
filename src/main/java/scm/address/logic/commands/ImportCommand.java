@@ -104,7 +104,21 @@ public class ImportCommand extends Command {
             }
 
             try {
-                savedPersons.addAll(readPersons(file));
+
+                if (getFileFormat(file) == null) {
+                    logger.info(MESSAGE_INVALID_FILE);
+                    throw new IllegalValueException(MESSAGE_INVALID_FILE);
+                }
+
+                if (getFileFormat(file).equals("json")) {
+                    savedPersons.addAll(readPersons(file));
+                } else if (getFileFormat(file).equals("csv")) {
+                    savedPersons.addAll(readPersonsFromCSV(file));
+                } else {
+                    logger.info(MESSAGE_INVALID_FILE);
+                    throw new IllegalValueException(MESSAGE_INVALID_FILE);
+                }
+
             } catch (DataLoadingException dle) {
                 logger.info("Data loading exception in: " + file.getPath());
                 throw dle;
