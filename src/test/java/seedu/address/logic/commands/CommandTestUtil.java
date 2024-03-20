@@ -36,6 +36,8 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_COMPANY_AMY = "TikTok";
     public static final String VALID_COMPANY_BOB = "Google";
+    public static final String VALID_PRIORITY_AMY = "high";
+    public static final String VALID_PRIORITY_BOB = "med";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
