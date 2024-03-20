@@ -21,12 +21,15 @@ public class Remark {
         this.remarkName = remarkName;
     }
 
-    /**
-     * Returns true if a given string is a valid name.
-     * However, as of v1.2 there is no concrete check; hence it will always return true.
-     * @param test
-     * @return
-     */
+ /**
+ * Validates if the given string is a valid remark. In the current implementation (as of v1.2),
+ * this method does not perform any actual validation checks and will always return true.
+ * This is a placeholder implementation and may change in future versions.
+ *
+ * @param test the string to be validated as a remark. Cannot be null.
+ * @return always true in the current version.
+ * @throws NullPointerException if the test parameter is null.
+ */
     public static boolean isValidRemark(String test) {
         requireNonNull(test);
         return true;
