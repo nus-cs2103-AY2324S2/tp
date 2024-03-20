@@ -89,7 +89,8 @@ Format: `help`
 
 ### Adding a person: `add`
 
-Adds a person to the address book.
+Adds a person (Client, Supplier, Employee) to the address book.
+
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS r/ROLE [t/TAG]…​`
 
@@ -101,6 +102,41 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS r/ROLE [t/TAG]…​`
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 r/client t/friend`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 r/supplier`
+
+**Info:** NetConnect checks for unique profiles by its NAME, PHONE and EMAIL. It does not allow you to create two profiles with identical name, phone number and email.
+
+### Deleting a person : `delete`
+
+Deletes the specified person from the address book.
+
+Format: `delete [n/NAME] [i/ID]`
+
+* Deletes the person with the specified `NAME` or `ID`.
+* If there are more than one person with the specified `NAME`, `ID` has to be used.
+* `ID` refers to the unique identification number assigned to each person when first added to the list.
+* `ID` **must refer to a person that exist within NetConnect**.
+
+Examples:
+* `delete i/2` deletes the person with an ID of 2 in the address book.
+* `delete n/John Doe` deletes the person with the name John Doe.
+
+**Info:** Instead of completely deleting the profile from the database, NetConnect does a soft delete of the profile instead. What this means is that the profile still exists in the database,
+but is marked as inactive, and will not appear in your current list or searches.
+
+### Adding a Remark to a Person : `remark`
+
+Adds a remark to a person in the address book.
+
+Format: `remark ID r/REMARK`
+
+* Adds a remark to the person with the specified `ID`.
+* `ID` refers to the unique identification number assigned to each person when first added to the list.
+* `ID` **must refer to a person that exist within NetConnect**.
+* You can remove a remark from a person by typing `rmark ID` without specifying any remarks after it.
+
+Examples:
+* `remark 1 r/John is a very good client` Adds a remark to the person with ID of 1.
+* `remark 2 ` Removes the remark from the person with ID of 2.
 
 ### Listing all persons : `list`
 
@@ -127,7 +163,7 @@ Examples:
 
 ### Locating persons by name: `find`
 
-Finds persons whose names contain any of the given keywords.
+Finds persons whose names contain any of the given name keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -155,20 +191,6 @@ Format: `findnum PHONE_NUMBER`
 Examples:
 * `findnum 83647382` returns `John Doe` who has the phone number `83647382`
 
-### Deleting a person : `delete`
-
-Deletes the specified person from the address book.
-
-Format: `delete [n/NAME] [i/ID]`
-
-* Deletes the person with the specified `NAME` or `ID`.
-* If there are more than one person with the specified `NAME`, `ID` has to be used.
-* `ID` refers to the unique identification number assigned to each person when first added to the list.
-* `ID` **must refer to a person that exist within NetConnect**.
-
-Examples:
-* `delete i/2` deletes the person with an ID of 2 in the address book.
-* `delete n/John Doe` deletes the person with the name John Doe.g
 
 ### Clearing all entries : `clear`
 
