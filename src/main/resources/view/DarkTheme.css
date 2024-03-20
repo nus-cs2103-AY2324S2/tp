@@ -163,6 +163,8 @@
     -fx-pref-width: 500;
     -fx-max-width: 1000;
     -fx-max-height: 200;
+    -fx-min-height: 100;
+    -fx-pref-height: 100;
 }
 
 .result-display .label {
