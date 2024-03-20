@@ -18,11 +18,14 @@ import seedu.address.model.person.Classes;
 import seedu.address.model.person.Person;
 import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.StorageManager;
-
+import seedu.address.ui.UIUpdateListener;
+import java.util.ArrayList;
+import java.util.List;
 /**
  * Represents the in-memory model of the address book data.
  */
 public class ModelManager implements Model {
+    private final List<UIUpdateListener> uiUpdateListeners;
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     // private final AddressBook addressBook;
@@ -54,6 +57,7 @@ public class ModelManager implements Model {
         // Set an initial predicate that always evaluates to false in order to hide people on startup
         Predicate<Person> initialPredicate = person -> false;
         filteredPersons.setPredicate(initialPredicate);
+        uiUpdateListeners = new ArrayList<>();
     }
 
     public ModelManager() {
@@ -262,7 +266,25 @@ public class ModelManager implements Model {
 
         // Predicate<Person> predicate = person -> selectedClassAddressBook.getPersonList().contains(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        for (UIUpdateListener listener : uiUpdateListeners) {
+            listener.updateUiOnClassSelected(classes);;
+        }
+        notifyUIUpdateListenersOnClassSelected(classes);
     }
 
+
+
+    public void addUIUpdateListener(UIUpdateListener listener) {
+        uiUpdateListeners.add(listener);
+    }
+
+    public void removeUIUpdateListener(UIUpdateListener listener) {
+        uiUpdateListeners.remove(listener);
+    }
+    private void notifyUIUpdateListenersOnClassSelected(Classes selectedClass) {
+        for (UIUpdateListener listener : uiUpdateListeners) {
+            listener.updateUiOnClassSelected(selectedClass);
+        }
+    }
 
 }
