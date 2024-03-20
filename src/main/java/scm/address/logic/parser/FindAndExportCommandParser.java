@@ -3,6 +3,7 @@ package scm.address.logic.parser;
 import static scm.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static scm.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static scm.address.logic.parser.CliSyntax.PREFIX_FILENAME;
+import static scm.address.logic.parser.CliSyntax.PREFIX_FILEFORMAT;
 import static scm.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import scm.address.logic.commands.FindAndExportCommand;
@@ -22,15 +23,16 @@ public class FindAndExportCommandParser implements Parser<FindAndExportCommand> 
      * @throws ParseException if the user input does not conform to the expected format.
      */
     public FindAndExportCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_FILENAME);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_FILENAME, PREFIX_FILEFORMAT);
         if (argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindAndExportCommand.MESSAGE_USAGE));
         }
         String tag = argMultimap.getPreamble().trim();
         String name = argMultimap.getValue(PREFIX_NAME).orElse(null);
         String address = argMultimap.getValue(PREFIX_ADDRESS).orElse(null);
-        String filename = argMultimap.getValue(PREFIX_FILENAME).orElse("default_filename.json");
+        String fileFormat = argMultimap.getValue(PREFIX_FILEFORMAT).orElse("json");
+        String filename = argMultimap.getValue(PREFIX_FILENAME).orElse("default_filename." + fileFormat);
 
-        return new FindAndExportCommand(tag, name, address, filename);
+        return new FindAndExportCommand(tag, name, address, filename, fileFormat);
     }
 }
