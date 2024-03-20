@@ -44,6 +44,14 @@ public class ArgumentMultimap {
     }
 
     /**
+     * Returns the last value of {@code prefix}.
+     */
+    public Optional<String> getOptionalBirthday(Prefix prefix) {
+        List<String> values = getAllValues(prefix);
+        return values.isEmpty() ? Optional.of("9999-99-99") : Optional.of(values.get(values.size() - 1));
+    }
+
+    /**
      * Returns all values of {@code prefix}.
      * If the prefix does not exist or has no values, this will return an empty list.
      * Modifying the returned list will not affect the underlying data structure of the ArgumentMultimap.

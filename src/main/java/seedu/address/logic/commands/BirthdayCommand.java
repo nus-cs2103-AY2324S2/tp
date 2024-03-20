@@ -26,11 +26,9 @@ public class BirthdayCommand extends Command {
             + "by the index number used in the last person listing. "
             + "Existing birthday date will be overwritten by the input.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "b/ [BIRTHDAY in YYYY-MM-DD]\n"
+            + "b/[BIRTHDAY in YYYY-MM-DD]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + "b/ 2000-02-02";
-    public static final String MESSAGE_NOT_IMPLEMENTED_YET =
-            "Birthday command not implemented yet";
+            + "b/2000-02-02";
     public static final String MESSAGE_ADD_BIRTHDAY_SUCCESS = "Added birthday to Person: %1$s";
     public static final String MESSAGE_DELETE_BIRTHDAY_SUCCESS = "Removed birthday from Person: %1$s";
 
