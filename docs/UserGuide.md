@@ -91,14 +91,19 @@ Format: `help`
 
 Adds a person to HackLink.
 
-Format: `add <name>, <email>, <phone>, <category>`
+Format: `add n/<name>, e/<email>, p/<phone>, a/<address>, c/<category>`
 
 <div markdown="span" class="alert alert-primary">:bulb:
 </div>
 
 Examples:
-* `add John Doe johnd@example.com 98765432 participant`
-* `add Betsy Crowe betsycrowe@example.com 1234567 sponsor`
+* `add n/John Doe e/johnd@example.com p/98765432, a/Kent Ridge c/participant`
+* `add n/Betsy Crowe e/betsycrowe@example.com p/1234567, a/Clementi ,c/sponsor`
+
+<span style="color:orange; font-weight:bold">Cautions / Warnings for Add:</span>
+* There should be no <span style="color:yellow">“/”</span> in each parameter.
+* There should be no contacts with the <span style="color:yellow">same information</span>.
+* Category should be one of <span style="color:yellow">Participant, Sponsor, and Staff</span>.
 
 ### Listing all persons : `list`
 
@@ -117,7 +122,12 @@ Acceptable values for each parameter
 * `<name>`: case insensitive alphabetic characters, spaces.
 * `<field>`: name, email, phone, category.
 * `<new value>`: follow the format of its field.
-* There should be no “/” in each parameter. There should be only one field rather than multiple fields. Updated information should be different from the original. There should be no contacts with the same information.
+
+<span style="color:orange; font-weight:bold">Cautions / Warnings for Edit:</span>
+* There should be no <span style="color:yellow">“/”</span> in each parameter. 
+* There should be only <span style="color:yellow">one field</span> rather than multiple fields. 
+* Updated information should be <span style="color:yellow">different</span> from the original. 
+
 
 ### Comment: `comment`
 Add notes or comments to contacts
@@ -216,7 +226,7 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS c/CATEGORY [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend c/participant t/colleague`
 **Clear** | `clear`
 **Remove** | `delete INDEX`<br> e.g., `delete 3`
 **Update** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
