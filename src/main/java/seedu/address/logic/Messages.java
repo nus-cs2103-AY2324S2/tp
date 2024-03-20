@@ -22,7 +22,7 @@ public class Messages {
     public static final String MESSAGE_APPOINTMENTS_LISTED_OVERVIEW = "%1$d appointments listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
-
+    public static final String MESSAGE_INVALID_PATIENT_ID = "No such patient with id %1$d exists";
     /**
      * Returns an error message indicating the duplicate prefixes.
      */

@@ -85,7 +85,7 @@ public class AddressBookParser {
             return new HelpCommand();
 
         case AddAppointmentCommand.COMMAND_WORD:
-            return new AddAppointmentCommandParser().parse(arguments);
+            return new AddAppointmentCommandParser().parse(arguments, patients);
 
         case FindAppointmentCommand.COMMAND_WORD:
             return new FindAppointmentCommandParser().parse(arguments);
