@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.ArrayList;
 import java.util.Optional;
 
 import seedu.address.logic.Messages;
@@ -61,16 +60,12 @@ public class AddOrderCommand extends Command {
         Person personToEdit = maybeEditablePerson.get();
         Person editedPerson = new Person(
                 personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), personToEdit.getTags());
+                personToEdit.getAddress(), personToEdit.getTags(), personToEdit.getOrders());
 
-        ArrayList<Order> currentOrders = personToEdit.getOrders();
-        currentOrders.add(this.order);
-        editedPerson.setOrders(currentOrders);
         this.order.setCustomer(editedPerson);
         AddProductCommand.setLastOrder(this.order);
-        model.addOrder(this.order, editedPerson);
-        model.setPerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
+        AddProductCommand.setPersonToEdit(personToEdit);
+
 
         return new CommandResult(generateSuccessMessage(editedPerson));
     }
