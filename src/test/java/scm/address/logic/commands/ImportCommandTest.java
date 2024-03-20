@@ -1,8 +1,7 @@
 package scm.address.logic.commands;
 
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static scm.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static scm.address.testutil.Assert.assertThrows;
 import static scm.address.testutil.TypicalPersons.JAMES;
@@ -29,6 +28,9 @@ import scm.address.storage.JsonAdaptedPerson;
 public class ImportCommandTest {
     private static final String UNKNOWN_FILE_NAME = "./src/test/data/ImportCommandTest/abcdefgh_abcdefgh.json";
     private static final String ADDRESS_BOOK_PATH = "./src/test/data/ImportCommandTest/addressbook.json";
+    private static final String TEST_CSV_FILE_PATH = "./src/test/data/ImportCommandTest/contacts.csv";
+
+    private static final String ADDRESS_BOOK_CSV_PATH = "./src/test/data/ImportCommandTest/addressbook.csv";
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
@@ -38,7 +40,7 @@ public class ImportCommandTest {
     }
 
     @Test
-    public void execute_existingFile_success() {
+    public void execute_existingJSONFile_success() {
         HashSet<File> curHashSet = new HashSet<>();
         curHashSet.add(new File(ADDRESS_BOOK_PATH));
         ImportCommand importCommand = new ImportCommand(curHashSet);
@@ -46,6 +48,21 @@ public class ImportCommandTest {
         String expectedMessage = "Contacts from files imported";
         expectedModel.addPerson(JAMES);
         assertCommandSuccess(importCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_importing_fromCSV_success() throws CommandException {
+        HashSet<File> curHashSet = new HashSet<>();
+        curHashSet.add(new File(ADDRESS_BOOK_CSV_PATH));
+
+        Model testModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        ImportCommand importCommand = new ImportCommand(curHashSet);
+        importCommand.execute(testModel);
+
+        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        expectedModel.addPerson(JAMES);
+
+        assertEquals(testModel, expectedModel);
     }
 
     @Test
