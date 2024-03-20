@@ -117,7 +117,6 @@ public class MainWindow extends UiPart<Stage> {
 
         // Do stuff when a Person in the list is selected
         personListPanel.initListener((observable, oldValue, newValue) -> {
-            System.out.println("Selected item: " + newValue);
             personDetailsPanel.update(newValue);
         });
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());

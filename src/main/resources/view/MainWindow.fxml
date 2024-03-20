@@ -52,7 +52,7 @@
                   <Insets bottom="10" left="10" right="10" top="10" />
                 </padding>
                      <children>
-                   <StackPane fx:id="personListPanelPlaceholder" />
+                   <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
                      </children>
               </VBox>
                   <StackPane fx:id="personDetailsPanelPlaceholder" alignment="TOP_RIGHT" styleClass="pane-with-border" HBox.hgrow="ALWAYS" />
