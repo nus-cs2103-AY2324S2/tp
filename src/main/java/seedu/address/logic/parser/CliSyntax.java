@@ -12,7 +12,10 @@ public class CliSyntax {
     public static final Prefix PREFIX_ADDRESS = new Prefix("a/");
     public static final Prefix PREFIX_TAG = new Prefix("t/");
     public static final Prefix PREFIX_MATRIC_NUMBER = new Prefix("m/");
+
     public static final Prefix PREFIX_REFLECTION = new Prefix("r/");
     public static final Prefix PREFIX_STUDIO = new Prefix("s/");
+
+    public static final Prefix PREFIX_IMPORT = new Prefix("i/");
 
 }
