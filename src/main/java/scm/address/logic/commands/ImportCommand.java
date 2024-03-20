@@ -173,10 +173,8 @@ public class ImportCommand extends Command {
                         .map(String::trim)
                         .map(JsonAdaptedTag::new)
                         .collect(Collectors.toList());
-                tags.stream().forEach(tag -> System.out.println("Tag: " + tag.getTagName()));
 
                 JsonAdaptedPerson person = new JsonAdaptedPerson(name, phone, email, address, tags);
-                System.out.println("Person: " + person.toString());
                 persons.add(person);
             }
         } catch (FileNotFoundException e) {
