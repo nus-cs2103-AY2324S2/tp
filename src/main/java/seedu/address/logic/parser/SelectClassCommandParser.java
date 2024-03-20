@@ -24,5 +24,4 @@ public class SelectClassCommandParser implements Parser<SelectClassCommand> {
                     SelectClassCommand.MESSAGE_USAGE));
         }
     }
-
 }
