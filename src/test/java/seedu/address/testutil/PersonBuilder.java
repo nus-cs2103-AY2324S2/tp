@@ -27,7 +27,7 @@ public class PersonBuilder {
     public static final String DEFAULT_DOB = "01/01/1990";
     public static final String DEFAULT_IC = "S1234567A";
     public static final String DEFAULT_ADMISSION_DATE = "01/01/2020";
-    public static final String DEFAULT_WARD = "Ward A";
+    public static final String DEFAULT_WARD = "A1";
 
     private Name name;
     private Phone phone;
