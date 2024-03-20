@@ -20,7 +20,6 @@ public class TaskList {
      */
     public TaskList() {
         taskList = new ArrayList<>();
-        //observableList = FXCollections.observableArrayList(taskList);
     }
 
     /**

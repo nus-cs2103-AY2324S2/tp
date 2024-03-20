@@ -112,7 +112,7 @@ public interface Model {
     boolean hasTask(Task task);
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered task list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredTaskList(Predicate<Task> predicate);
