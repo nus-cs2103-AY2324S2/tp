@@ -23,7 +23,7 @@ public class PersonBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_GITHUB_USERNAME = "amy-bee675";
-    public static final String DEFAULT_TECH_STACK = "Java";
+    //public static final String DEFAULT_TECH_STACK = "Java";
 
     private Name name;
     private Phone phone;
@@ -43,7 +43,7 @@ public class PersonBuilder {
         address = new Address(DEFAULT_ADDRESS);
         gitHubUsername = new GitHubUsername(DEFAULT_GITHUB_USERNAME);
         techStack = new HashSet<>();
-        techStack.add(new TechStack(DEFAULT_TECH_STACK));
+        //techStack.add(new TechStack(DEFAULT_TECH_STACK));
         tags = new HashSet<>();
     }
 
