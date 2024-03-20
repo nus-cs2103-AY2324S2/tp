@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.function.Predicate;
-import java.util.stream.Stream;
 
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -33,7 +32,7 @@ public class ListCommandParser implements Parser<ListCommand> {
         List<Predicate<Person>> predicates = new ArrayList<>();
 
         // Checks if there is at least one prefix available.
-        boolean hasAtLeastOnePrefixPresent = hasAtLeastOnePrefixPresent(argMultimap, CliSyntax.PREFIX_NAME,
+        boolean hasAtLeastOnePrefixPresent = ParserUtil.hasAtLeastOnePrefixPresent(argMultimap, CliSyntax.PREFIX_NAME,
                 CliSyntax.PREFIX_PHONE, CliSyntax.PREFIX_EMAIL, PREFIX_ALIAS);
 
         if (!hasAtLeastOnePrefixPresent || !argMultimap.getPreamble().isEmpty()) {
@@ -67,11 +66,4 @@ public class ListCommandParser implements Parser<ListCommand> {
         return new ListCommand(combinedPredicate);
     }
 
-    /**
-     * Returns true if any of the prefixes contains non-empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean hasAtLeastOnePrefixPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
-    }
 }

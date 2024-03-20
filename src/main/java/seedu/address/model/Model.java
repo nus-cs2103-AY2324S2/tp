@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.ReadOnlyAppointmentList;
 import seedu.address.model.person.Person;
 
@@ -14,6 +15,9 @@ import seedu.address.model.person.Person;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Appointment> PREDICATE_SHOW_ALL_APPOINTMENTS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -85,6 +89,34 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Returns true if an appointment with the same details as {@code appointment} exists in the appointment list.
+     */
+    boolean hasAppointment(Appointment appointment);
+
+    /**
+     * Adds the given appointment.
+     * {@code appointment} must not already exist in the appointment list.
+     */
+    void addAppointment(Appointment appointment);
+
+    /**
+     * Returns an unmodifiable view of the filtered appointment list
+     */
+    ObservableList<Appointment> getFilteredAppointmentList();
+
+    /**
+     * Updates the filter of the filtered appointment list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredAppointmentList(Predicate<Appointment> predicate);
+
+    /**
+     * Deletes the given appointment.
+     * The appointment must exist in the appointment list.
+     */
+    void deleteAppointment(Appointment target);
 
     /**
      * Get appointments from inside person list
