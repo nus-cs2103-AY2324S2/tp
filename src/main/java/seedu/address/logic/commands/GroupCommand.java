@@ -32,7 +32,7 @@ public class GroupCommand extends Command {
             + PREFIX_STUDENTID + "A0123456H ";
 
     public static final String MESSAGE_GROUP_SUCCESS = "All students were added!";
-    private static final String STUDENTS_NOT_FOUND = "The following IDs were not found (and not added to the group): ";
+    public static final String STUDENTS_NOT_FOUND = "The following IDs were not found (and not added to the group): ";
     private final Set<Group> group; //set with one group. for compatibility with edit command.
     private final Set<StudentId> studentIds;
 
@@ -47,6 +47,11 @@ public class GroupCommand extends Command {
         this.studentIds = studentIds;
     }
 
+    /**
+     * @param model {@code Model} which the command should operate on.
+     * @return a new CommandResult.
+     * @throws CommandException if there are ANY students not found at all.
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         String missingIds = "";
@@ -65,7 +70,7 @@ public class GroupCommand extends Command {
         if (missingIds.equals("")) {
             return new CommandResult(MESSAGE_GROUP_SUCCESS);
         } else {
-            return new CommandResult(STUDENTS_NOT_FOUND + missingIds);
+            throw new CommandException(STUDENTS_NOT_FOUND + missingIds);
         }
     }
 

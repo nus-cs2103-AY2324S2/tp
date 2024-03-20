@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
@@ -38,5 +39,22 @@ public class GroupCommandTest {
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
 
         assertCommandSuccess(groupCommand, model, expectedMessage, expectedModel);
+    }
+
+    /**
+     * Checks that trying to modify the student ID of someone not in the list fails.
+     * Currently, GroupCommand will add found IDs to the specified group, while
+     * throwing an exception if there are any unfound IDs at all.
+     */
+    @Test
+    public void execute_invalidPersonIndexUnfilteredList_failure() {
+        //tries to put a person with (unfound) ID "A9999999Z" in Group 99.
+        Person editedPerson = new PersonBuilder().withStudentId("A9999999Z")
+                .withGroups("Group 99").build();
+        HashSet<StudentId> studentIds = new HashSet<>();
+        studentIds.add(editedPerson.getStudentId());
+        GroupCommand groupCommand = new GroupCommand(editedPerson.getGroups(), studentIds);
+
+        assertCommandFailure(groupCommand, model, GroupCommand.STUDENTS_NOT_FOUND + "A9999999Z ");
     }
 }
