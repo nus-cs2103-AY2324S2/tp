@@ -8,11 +8,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
-import seedu.address.model.ModelManager;
-import seedu.address.model.person.Address;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Task;
 
@@ -26,17 +23,17 @@ public class JsonAdaptedTask {
     //private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-ddTHH:mm");
     private final String title;
     private final LocalDateTime deadline;
-    private final String personName;
+    private final String personInCharge;
 
     /**
      * Constructs a {@code JsonAdaptedTask} with the given task details.
      */
     @JsonCreator
     public JsonAdaptedTask(@JsonProperty("title") String title, @JsonProperty("deadline") String deadline,
-                           @JsonProperty("personInCharge") String personName) {
+                           @JsonProperty("personInCharge") String personInCharge) {
         this.title = title;
         this.deadline = LocalDateTime.parse(deadline, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss"));
-        this.personName = personName;
+        this.personInCharge = personInCharge;
     }
 
     /**
@@ -45,7 +42,7 @@ public class JsonAdaptedTask {
     public JsonAdaptedTask(Task source) {
         title = source.getTaskTitle();
         deadline = source.getDeadline().dateTime;
-        personName = source.getPersonInCharge().getName().toString();
+        personInCharge = source.getPersonInCharge().getName().toString();
     }
 
     /**
@@ -64,19 +61,20 @@ public class JsonAdaptedTask {
         }
         final Deadline modelDeadline = new Deadline(deadline);
 
-        if (personName == null) {
+        if (personInCharge == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "personInCharge"));
         }
-        if (!Name.isValidName(personName)) {
+        if (!Name.isValidName(personInCharge)) {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
-        };
-        final Name name = new Name(personName);
+        }
+        final Name name = new Name(personInCharge);
 
         // Find the Person object from the personList using the personName
-        Person modelPic = ab.getPerson(name);
+        final Person modelPic = ab.getPerson(name);
+        System.out.println(modelPic.getName());
 
         if (modelPic == null) {
-            throw new IllegalValueException("Person with name " + personName + " not found!");
+            throw new IllegalValueException("Person with name " + personInCharge + " not found!");
         }
 
         Task task = new Task(modelTaskTitle, modelDeadline);

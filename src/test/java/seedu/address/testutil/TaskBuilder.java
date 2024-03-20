@@ -67,6 +67,7 @@ public class TaskBuilder {
     public Task build() {
         Task t = new Task(title, deadline);
         t.setPersonInCharge(personInCharge);
+        personInCharge.setTask(t);
         return t;
     }
 }
