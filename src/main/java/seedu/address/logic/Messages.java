@@ -19,6 +19,7 @@ public class Messages {
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
 
+    public static final String MESSAGE_ID_NOT_VALID = "ID is not valid!";
     /**
      * Returns an error message indicating the duplicate prefixes.
      */
@@ -37,14 +38,17 @@ public class Messages {
     public static String format(Person person) {
         final StringBuilder builder = new StringBuilder();
         builder.append(person.getName())
+                .append("; Id: ")
+                .append(person.getId())
                 .append("; Phone: ")
-                .append(person.getPhone())
-                .append("; Email: ")
-                .append(person.getEmail())
-                .append("; Address: ")
-                .append(person.getAddress())
-                .append("; Tags: ");
-        person.getTags().forEach(builder::append);
+                .append(person.getPhone());
+        //.append("; Email: ")
+        //.append(person.getEmail())
+        //.append("; Address: ")
+        //.append(person.getAddress())
+        //.append("; Tags: ")
+
+        //person.getTags().forEach(builder::append);
         return builder.toString();
     }
 

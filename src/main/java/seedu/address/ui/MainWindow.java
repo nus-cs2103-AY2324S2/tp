@@ -163,6 +163,14 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+    /**
+     * Toggles the display.
+     */
+    @FXML
+    private void handleToggleDisplay() {
+        personListPanel.toggleDisplay();
+    }
+
     public PersonListPanel getPersonListPanel() {
         return personListPanel;
     }
@@ -184,6 +192,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isToggleDisplay()) {
+                handleToggleDisplay();
             }
 
             return commandResult;
