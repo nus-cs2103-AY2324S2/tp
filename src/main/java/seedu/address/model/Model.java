@@ -102,6 +102,6 @@ public interface Model {
     boolean hasClass(Classes classes);
 
     void selectClass(Classes classes);
-
+    String getSelectedClassName();
 
 }

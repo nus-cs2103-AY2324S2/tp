@@ -28,6 +28,7 @@ public class ModelManager implements Model {
     private Classes selectedClass;
     private AddressBook selectedClassAddressBook;
 
+
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
@@ -159,7 +160,10 @@ public class ModelManager implements Model {
 
         selectedClassAddressBook.setPerson(target, editedPerson);
     }
-
+    @Override
+    public String getSelectedClassName() {
+        return this.selectedClass.getCourseCode().toString();
+    }
     //=========== Filtered Person List Accessors =============================================================
 
     /**

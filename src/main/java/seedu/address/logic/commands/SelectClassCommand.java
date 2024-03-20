@@ -41,5 +41,4 @@ public class SelectClassCommand extends Command{
         return new CommandResult(MESSAGE_SUCCESS + selectedClass.getCourseCode());
     }
 
-
 }
