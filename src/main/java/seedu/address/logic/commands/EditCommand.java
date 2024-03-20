@@ -26,7 +26,6 @@ import seedu.address.model.person.DrugAllergy;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.illness.Illness;
@@ -108,18 +107,31 @@ public class EditCommand extends Command {
     private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
         assert personToEdit != null;
 
-        Nric updatedNric = personToEdit.getNric();
-        Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Gender updatedGender = personToEdit.getGender();
-        BirthDate updatedBirthDate = personToEdit.getBirthDate();
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        DrugAllergy updatedDrugAllergy = personToEdit.getDrugAllergy();
-        Set<Illness> updatedIllnesses = editPersonDescriptor.getTags().orElse(personToEdit.getIllnesses());
+        Person.Builder personBuilder = new Person.Builder(personToEdit);
 
-        return new Person(updatedNric, updatedName, updatedGender, updatedBirthDate,
-                updatedPhone, updatedEmail, updatedDrugAllergy, updatedIllnesses, personToEdit.getNotes());
+        if (editPersonDescriptor.getName().isPresent()) {
+            personBuilder.setName(editPersonDescriptor.getName().get());
+        }
+        if (editPersonDescriptor.getGender().isPresent()) {
+            personBuilder.setGender(editPersonDescriptor.getGender().get());
+        }
+        if (editPersonDescriptor.getBirthDate().isPresent()) {
+            personBuilder.setBirthDate(editPersonDescriptor.getBirthDate().get());
+        }
+        if (editPersonDescriptor.getPhone().isPresent()) {
+            personBuilder.setPhone(editPersonDescriptor.getPhone().get());
+        }
+        if (editPersonDescriptor.getEmail().isPresent()) {
+            personBuilder.setEmail(editPersonDescriptor.getEmail().get());
+        }
+        if (editPersonDescriptor.getDrugAllergy().isPresent()) {
+            personBuilder.setDrugAllergy(editPersonDescriptor.getDrugAllergy().get());
+        }
+        if (editPersonDescriptor.getIllnesses().isPresent()) {
+            personBuilder.setIllnesses(editPersonDescriptor.getIllnesses().get());
+        }
 
+        return personBuilder.build();
     }
 
     @Override
@@ -152,10 +164,12 @@ public class EditCommand extends Command {
      * corresponding field value of the person.
      */
     public static class EditPersonDescriptor {
-        private Nric nric;
         private Name name;
+        private Gender gender;
+        private BirthDate birthDate;
         private Phone phone;
         private Email email;
+        private DrugAllergy drugAllergy;
         private Set<Illness> illnesses;
 
         public EditPersonDescriptor() {
@@ -163,12 +177,15 @@ public class EditCommand extends Command {
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
+         * A defensive copy of {@code illnesses} is used internally.
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
+            setGender(toCopy.gender);
+            setBirthDate(toCopy.birthDate);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
+            setDrugAllergy(toCopy.drugAllergy);
             setIllnesses(toCopy.illnesses);
         }
 
@@ -176,15 +193,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, illnesses);
-        }
-
-        public void setNric(Nric nric) {
-            this.nric = nric;
-        }
-
-        public Optional<Nric> getNric() {
-            return Optional.ofNullable(nric);
+            return CollectionUtil.isAnyNonNull(name, gender, birthDate, phone, email, drugAllergy, illnesses);
         }
 
         public void setName(Name name) {
@@ -193,6 +202,22 @@ public class EditCommand extends Command {
 
         public Optional<Name> getName() {
             return Optional.ofNullable(name);
+        }
+
+        public void setGender(Gender gender) {
+            this.gender = gender;
+        }
+
+        public Optional<Gender> getGender() {
+            return Optional.ofNullable(gender);
+        }
+
+        public void setBirthDate(BirthDate birthDate) {
+            this.birthDate = birthDate;
+        }
+
+        public Optional<BirthDate> getBirthDate() {
+            return Optional.ofNullable(birthDate);
         }
 
         public void setPhone(Phone phone) {
@@ -211,21 +236,29 @@ public class EditCommand extends Command {
             return Optional.ofNullable(email);
         }
 
+        public void setDrugAllergy(DrugAllergy drugAllergy) {
+            this.drugAllergy = drugAllergy;
+        }
+
+        public Optional<DrugAllergy> getDrugAllergy() {
+            return Optional.ofNullable(drugAllergy);
+        }
+
         /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
+         * Sets {@code illnesses} to this object's {@code illnesses}.
+         * A defensive copy of {@code illnesses} is used internally.
          */
         public void setIllnesses(Set<Illness> illnesses) {
             this.illnesses = (illnesses != null) ? new HashSet<>(illnesses) : null;
         }
 
         /**
-         * Returns an unmodifiable tag set, which throws
+         * Returns an unmodifiable illness set, which throws
          * {@code UnsupportedOperationException}
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code tags} is null.
          */
-        public Optional<Set<Illness>> getTags() {
+        public Optional<Set<Illness>> getIllnesses() {
             return (illnesses != null) ? Optional.of(Collections.unmodifiableSet(illnesses)) : Optional.empty();
         }
 
@@ -250,11 +283,14 @@ public class EditCommand extends Command {
         @Override
         public String toString() {
             return new ToStringBuilder(this)
-                .add("name", name)
-                .add("phone", phone)
-                .add("email", email)
-                .add("tags", illnesses)
-                .toString();
+                    .add("name", name)
+                    .add("gender", gender)
+                    .add("birthDate", birthDate)
+                    .add("phone", phone)
+                    .add("email", email)
+                    .add("drugAllergy", drugAllergy)
+                    .add("illnesses", illnesses)
+                    .toString();
         }
     }
 }

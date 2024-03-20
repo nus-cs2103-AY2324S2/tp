@@ -54,8 +54,8 @@ public class PersonUtil {
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
-        if (descriptor.getTags().isPresent()) {
-            Set<Illness> illnesses = descriptor.getTags().get();
+        if (descriptor.getIllnesses().isPresent()) {
+            Set<Illness> illnesses = descriptor.getIllnesses().get();
             if (illnesses.isEmpty()) {
                 sb.append(PREFIX_ILLNESS);
             } else {
