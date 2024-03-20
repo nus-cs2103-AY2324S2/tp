@@ -44,7 +44,7 @@ public class InternshipFindCommandParserTest {
         InternshipFindCommand expectedFindCommand =
                 new InternshipFindCommand(new InternshipContainsKeywordsPredicate(
                         "Microsoft Google", null, null,
-                        null, null, null, false));
+                        null, null, null, true));
 
         assertParseSuccess(parser, MODE_WITHALL + " "
                 + PREFIX_COMPANY + " Microsoft Google ", expectedFindCommand);
