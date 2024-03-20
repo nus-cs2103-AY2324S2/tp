@@ -12,9 +12,6 @@ import seedu.address.commons.util.ToStringBuilder;
  * TODO: check if need to enforcing immutable
  */
 public class Appointment implements Comparable<Appointment> {
-    //TODO: is there any specific constraints to check in appointment?
-    public static final String MESSAGE_CONSTRAINTS =
-            "Appointment constraints";
     private static final boolean DEFAULT_ATTENDED_STATUS = false;
 
     private static int idTracker = 1;

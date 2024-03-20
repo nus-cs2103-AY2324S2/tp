@@ -10,6 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PATIENT_ID;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import seedu.address.logic.Messages;
 import seedu.address.logic.commands.AddAppointmentCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.Appointment;
@@ -48,6 +49,9 @@ public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand
         }
 
         LocalDateTime appointmentDateTime = ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_DATETIME).get());
+        if (appointmentDateTime.isBefore(LocalDateTime.now())) {
+            throw new ParseException(Messages.MESSAGE_DATETIME_IN_THE_PAST);
+        }
         boolean hasAttended = ParserUtil.parseHasAttended(argMultimap.getValue(PREFIX_ATTEND).orElse(""));
         //TODO: remove after case log is implemented
         String appointmentDescription = ParserUtil.parseDescription(
