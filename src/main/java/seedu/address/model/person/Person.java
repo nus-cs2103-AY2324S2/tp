@@ -46,6 +46,20 @@ public class Person {
         this.uniqueId = uniqueId;
     }
 
+        /**
+     * Every field must be present and not null.
+     */
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Subject subject) {
+      
+        requireAllNonNull(name, phone, email, address, tags, subject);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.subject = subject;
+    }
+
     public Name getName() {
         return name;
     }
@@ -74,13 +88,6 @@ public class Person {
         return Collections.unmodifiableSet(tags);
     }
 
-    public String getUniqueId() {
-        return uniqueId;
-    }
-
-    
-    public String setUniqueId(String uniqueId) {
-
     /** Returns the uniqueId of the person */
     public Id getUniqueId() {
         return uniqueId;
@@ -94,7 +101,7 @@ public class Person {
 
 
     /**
-     * Returns true if both persons have the same name.
+     * Returns true if both persons have the same ID.
      * This defines a weaker notion of equality between two persons.
      */
     public boolean isSamePerson(Person otherPerson) {

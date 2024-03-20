@@ -169,6 +169,11 @@ public class AddCommandTest {
         public String getNextUniqueId() {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public Person getPersonByUniqueId(int uniqueId) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

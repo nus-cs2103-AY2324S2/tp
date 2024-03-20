@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.person.Id;
 import seedu.address.model.person.Person;
 
 /**
@@ -134,7 +135,7 @@ public class ModelManager implements Model {
         int uniqueId = 0;
         // get max unique id with int parse
         for (Person person : addressBook.getPersonList()) {
-            int currentId = Integer.parseInt(person.getUniqueId().id);
+            int currentId = person.getUniqueId().getInt();
             if (currentId > uniqueId) {
                 uniqueId = currentId;
             }
@@ -146,7 +147,7 @@ public class ModelManager implements Model {
     @Override
     public Person getPersonByUniqueId(int uniqueId) {
         for (Person person : addressBook.getPersonList()) {
-            if (Integer.parseInt(person.getUniqueId()) == uniqueId) {
+            if (person.getUniqueId().equals(new Id(uniqueId))) {
                 return person;
             }
         }
