@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
@@ -47,6 +48,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.employee.Address;
 import seedu.address.model.employee.Email;
 import seedu.address.model.employee.Employee;
@@ -60,22 +62,32 @@ import seedu.address.testutil.EmployeeBuilder;
 public class AddCommandParserTest {
     private AddCommandParser parser = new AddCommandParser();
 
+    private void assertEmployeeDetailsEqual(Employee expected, Employee actual) {
+        assertEquals(expected.getName(), actual.getName());
+        assertEquals(expected.getPhone(), actual.getPhone());
+        assertEquals(expected.getEmail(), actual.getEmail());
+        assertEquals(expected.getAddress(), actual.getAddress());
+        assertEquals(expected.getRole(), actual.getRole());
+        assertEquals(expected.getTeam(), actual.getTeam());
+        assertEquals(expected.getTags(), actual.getTags());
+    }
+
     @Test
-    public void parse_allFieldsPresent_success() {
+    public void parse_allFieldsPresent_success() throws ParseException {
         Employee expectedEmployee = new EmployeeBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
 
         // whitespace only preamble
-        assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TEAM_DESC_BOB + ROLE_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedEmployee));
-
+        AddCommand resultCommand = parser.parse(PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB
+                + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + TEAM_DESC_BOB + ROLE_DESC_BOB + TAG_DESC_FRIEND);
+        assertEmployeeDetailsEqual(expectedEmployee, resultCommand.getEmployee());
 
         // multiple tags - all accepted
         Employee expectedEmployeeMultipleTags = new EmployeeBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
-        assertParseSuccess(parser,
+        AddCommand resultCommandMultipleTags = parser.parse(
                 NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + TEAM_DESC_BOB
-                        + ROLE_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
-                new AddCommand(expectedEmployeeMultipleTags));
+                        + ROLE_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND);
+        assertEmployeeDetailsEqual(expectedEmployeeMultipleTags, resultCommandMultipleTags.getEmployee());
     }
 
     @Test

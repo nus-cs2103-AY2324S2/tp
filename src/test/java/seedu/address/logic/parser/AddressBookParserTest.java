@@ -33,11 +33,22 @@ public class AddressBookParserTest {
 
     private final AddressBookParser parser = new AddressBookParser();
 
+    private void assertEmployeeEquals(Employee expected, Employee actual) {
+        // Check all relevant fields except the UUID
+        assertEquals(expected.getName(), actual.getName());
+        assertEquals(expected.getPhone(), actual.getPhone());
+        assertEquals(expected.getEmail(), actual.getEmail());
+        assertEquals(expected.getAddress(), actual.getAddress());
+        assertEquals(expected.getTeam(), actual.getTeam());
+        assertEquals(expected.getRole(), actual.getRole());
+        assertEquals(expected.getTags(), actual.getTags());
+
+    }
     @Test
     public void parseCommand_add() throws Exception {
         Employee employee = new EmployeeBuilder().build();
         AddCommand command = (AddCommand) parser.parseCommand(EmployeeUtil.getAddCommand(employee));
-        assertEquals(new AddCommand(employee), command);
+        assertEmployeeEquals(employee, command.getEmployee());
     }
 
     @Test
