@@ -1,12 +1,26 @@
----
-layout: page
-title: User Guide
----
+
+WELCOME TO HACKLINK!
 
 The Hackathon Participant Management Application is designed to help organizers efficiently manage participant information for hackathons. With features such as finding, sorting, adding, and deleting participants, you can streamline the process of organizing and coordinating your hackathon event.
 
 * Table of Contents
-{:toc}
+1. [Quick start](#quick-start)
+2. [Features](#features)
+    - [Viewing help](#viewing-help--help)
+    - [Adding a person](#adding-a-person--add)
+    - [Listing all persons](#listing-all-persons--list)
+    - [Editing a person](#editing-a-person--update)
+    - [Comment](#comment--comment)
+    - [Locating persons by name](#locating-persons-by-name--find)
+    - [Removing a person](#removing-a-person--remove)
+    - [Clearing all entries](#clearing-all-entries--clear)
+    - [Exiting the program](#exiting-the-program--exit)
+    - [Saving the data](#saving-the-data)
+    - [Editing the data file](#editing-the-data-file)
+    - [Archiving data files (coming in v2.0)](#archiving-data-files-coming-in-v20)
+3. [FAQ](#faq)
+4. [Known issues](#known-issues)
+5. [Command summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -27,15 +41,15 @@ The Hackathon Participant Management Application is designed to help organizers 
 
    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 e/johndoe@gmail.com c/participant` : Adds a contact named `John Doe` to the Address Book.
+   * `add n/John Doe p/98765432 e/johndoe@gmail.com c/participant` : Adds a person named `John Doe` to HackLink.
 
-   * `Remove 3` : Deletes the 3rd contact shown in the current list.
+   * `Remove 3` : Deletes the 3rd person shown in the current list.
      
-   * `Update n/John Doe t/number p/98765432` : Updates the contact information of the person named "John Doe"
+   * `Update update John Dow /number 89898989` : Updates the information of the person named "John Doe"
   
    * `Comment John Doe`
 
-   * `clear` : Deletes all contacts.
+   * `clear` : Deletes all contact information.
 
    * `exit` : Exits the app.
 
@@ -52,11 +66,8 @@ The Hackathon Participant Management Application is designed to help organizers 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[c/CATEGORY]…​` can be used as ` ` (i.e. 0 times), `c/staff`, `c/sponsor` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -78,12 +89,11 @@ Format: `help`
 
 ### Adding a person: `add`
 
-Adds a person to the address book.
+Adds a person to HackLink.
 
 Format: `add <name>, <email>, <phone>, <category>`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+<div markdown="span" class="alert alert-primary">:bulb:
 </div>
 
 Examples:
@@ -92,10 +102,9 @@ Examples:
 
 ### Listing all persons : `list`
 
-Shows a list of all persons in the address book. 
-Example: `Total: <total number of contact>`
-         The table will show all contacts
-
+Shows a list of all persons in HackLink. 
+Example: `Total: <total number of data>`
+         The table will show all the data
 
 Format: `list`
 
@@ -161,7 +170,7 @@ Precise expected outputs when the command fails
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all entries from the database.
 
 Format: `clear`
 
@@ -173,15 +182,15 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+HackLink data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+HackLink data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
-Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
+If your changes to the data file makes its format invalid, HackLink will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
+Furthermore, certain edits can cause the HackLink to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
 
 ### Archiving data files `[coming in v2.0]`
