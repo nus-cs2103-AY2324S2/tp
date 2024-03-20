@@ -85,14 +85,14 @@ class JsonAdaptedPerson {
         this.dateOfBirth = source.getDateOfBirth().toString();
         this.sex = source.getSex().toString();
         this.status = source.getStatus().toString();
-        this.email = Optional.ofNullable(source.getEmail().toString());
-        this.country = Optional.ofNullable(source.getCountry().toString());
-        this.allergies = Optional.ofNullable(source.getAllergies().toString());
-        this.bloodType = Optional.ofNullable(source.getBloodType().toString());
-        this.condition = Optional.ofNullable(source.getCondition().toString());
-        this.dateOfAdmission = Optional.ofNullable(source.getDateOfAdmission().toString());
-        this.diagnosis = Optional.ofNullable(source.getDiagnosis().toString());
-        this.symptom = Optional.ofNullable(source.getSymptom().toString());
+        this.email = Optional.ofNullable(source.getEmail()).map(Email::toString);
+        this.country = Optional.ofNullable(source.getCountry()).map(Country::toString);
+        this.allergies = Optional.ofNullable(source.getAllergies()).map(Allergies::toString);
+        this.bloodType = Optional.ofNullable(source.getBloodType()).map(BloodType::toString);
+        this.condition = Optional.ofNullable(source.getCondition()).map(Condition::toString);
+        this.dateOfAdmission = Optional.ofNullable(source.getDateOfAdmission()).map(DateOfAdmission::toString);
+        this.diagnosis = Optional.ofNullable(source.getDiagnosis()).map(Diagnosis::toString);
+        this.symptom = Optional.ofNullable(source.getSymptom()).map(Symptom::toString);
     }
 
     /**

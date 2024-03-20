@@ -241,7 +241,6 @@ public class Person {
                 && phone.equals(otherPerson.phone)
                 && address.equals(otherPerson.address)
                 && dateOfBirth.equals(otherPerson.dateOfBirth)
-                && dateOfAdmission.equals(otherPerson.dateOfAdmission)
                 && sex.equals(otherPerson.sex);
     }
 
