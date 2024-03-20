@@ -8,7 +8,6 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.tag.Tag;
 /**
  * Represents a Person in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
@@ -22,31 +21,22 @@ public class Person {
     // Data fields
     private final Address address;
     private final Remark remark;
-    private final Set<Tag> tags = new HashSet<>();
+    private final Set<Lesson> lessons = new HashSet<>();
     private final Subject subject;
-    private Lesson upcomingLesson;
 
     /**
-     * Person constructor with all fields except upcomingLesson.
+     * Person constructor with all fields.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Subject subject, Remark remark, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, subject, tags);
+    public Person(Name name, Phone phone, Email email, Address address, Subject subject,
+                  Remark remark, Set<Lesson> lessons) {
+        requireAllNonNull(name, phone, email, address, subject, lessons);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.subject = subject;
-        this.tags.addAll(tags);
+        this.lessons.addAll(lessons);
         this.remark = remark;
-    }
-    /**
-     * Person constructor with all fields including upcomingLesson.
-     */
-    public Person(Name name, Phone phone, Email email, Address address, Subject subject,
-                  Lesson upcomingLesson, Remark remark, Set<Tag> tags) {
-        this(name, phone, email, address, subject, remark, tags);
-        requireAllNonNull(upcomingLesson);
-        this.upcomingLesson = upcomingLesson;
     }
 
     public Name getName() {
@@ -69,8 +59,8 @@ public class Person {
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public Set<Lesson> getLessons() {
+        return Collections.unmodifiableSet(lessons);
     }
 
     public Remark getRemark() {
@@ -79,10 +69,6 @@ public class Person {
 
     public Subject getSubject() {
         return subject;
-    }
-
-    public Lesson getUpcomingLesson() {
-        return upcomingLesson;
     }
 
     /**
@@ -118,15 +104,14 @@ public class Person {
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
-                && remark.equals(otherPerson.remark)
-                && tags.equals(otherPerson.tags)
+                && lessons.equals(otherPerson.lessons)
                 && subject.equals(otherPerson.subject);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, subject, upcomingLesson, remark, tags);
+        return Objects.hash(name, phone, email, address, subject, remark, lessons);
     }
 
     @Override
@@ -137,9 +122,8 @@ public class Person {
                 .add("email", email)
                 .add("address", address)
                 .add("subject", subject)
-                .add("upcomingLesson", upcomingLesson)
                 .add("remark", remark)
-                .add("tags", tags)
+                .add("lessons", lessons)
                 .toString();
     }
 }

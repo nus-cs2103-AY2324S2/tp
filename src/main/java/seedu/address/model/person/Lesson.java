@@ -9,60 +9,57 @@ import java.time.format.DateTimeParseException;
  * Represents a lesson in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Lesson implements Comparable<Lesson> {
+public class Lesson {
     public static final String MESSAGE_CONSTRAINTS =
-            "Lessons should only contain alphanumeric characters and spaces, and it should not be blank";
-
+            "Lessons should only be of the form subject|dd-MM-yyyy|hh:mm|0/1, where subject contains only alphabeths"
+                    + " and spaces, and indicate lesson incomplete/completed with 0 or 1 respectively.";
     public static final String VALIDATION_REGEX = "^[a-zA-Z][a-zA-Z ]*$";
-    public static final String DATE_REGEX = "\\d{4}-\\d{2}-\\d{2}";
+    public static final String DATE_REGEX = "\\d{2}-\\d{2}-\\d{4}";
     public static final String TIME_REGEX = "\\d{2}:\\d{2}";
     private static final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
     private static final DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
-
-    public final String value;
+    private String value;
     private final Subject subject;
     private final LocalDate date;
     private final LocalTime time;
-    private LessonStatus status;
+    private int isCompleted;
 
     /**
      * Constructs a Lesson with the specified subject, date, and time.
      *
-     * @param subject The subject of the lesson.
-     * @param date    The date of the lesson.
-     * @param time    The time of the lesson.
+     * @param lesson The details of the lesson.
      */
-    public Lesson(String subject, String date, String time) {
-        this.subject = new Subject(subject);
-        this.date = LocalDate.parse(date, dateFormatter);
-        this.time = LocalTime.parse(time, timeFormatter);
-        this.status = LessonStatus.INCOMPLETE;
-        this.value = subject;
+    public Lesson(String lesson) {
+        String[] lessonDetails = lesson.trim().split("\\|");
+        String subjectDetail = lessonDetails[0];
+        String dateDetail = lessonDetails[1];
+        String timeDetail = lessonDetails[2];
+        int isCompletedDetail = Integer.parseInt(lessonDetails[3]);
+        this.subject = new Subject(subjectDetail);
+        this.date = LocalDate.parse(dateDetail, dateFormatter);
+        this.time = LocalTime.parse(timeDetail, timeFormatter);
+        this.isCompleted = isCompletedDetail;
+        this.value = subjectDetail + "|" + dateDetail + "|" + timeDetail + "|" + isCompleted;
     }
 
     /**
      * Returns true if a given string is a valid lesson.
      */
-    public static boolean isValidLesson(String[] lessonDetails) {
-        if (lessonDetails.length != 3) {
+    public static boolean isValidLesson(String lessonValue) {
+        String[] lessonDetails = lessonValue.split("\\|");
+        if (lessonDetails.length != 4) {
             return false;
         }
         try {
             LocalDate.parse(lessonDetails[1], dateFormatter);
             LocalTime.parse(lessonDetails[2], timeFormatter);
-        } catch (DateTimeParseException e) {
+            Integer.parseInt(lessonDetails[3]);
+        } catch (DateTimeParseException | NumberFormatException e) {
             return false;
         }
         return lessonDetails[0].matches(VALIDATION_REGEX)
                 && lessonDetails[1].matches(DATE_REGEX)
                 && lessonDetails[2].matches(TIME_REGEX);
-    }
-
-    /**
-     * Enumeration for lesson status.
-     */
-    public enum LessonStatus {
-        COMPLETED, INCOMPLETE, LAPSED
     }
 
     /**
@@ -97,32 +94,46 @@ public class Lesson implements Comparable<Lesson> {
      *
      * @return The status.
      */
-    public LessonStatus getStatus() {
-        return status;
+    public int getLessonStatus() {
+        return isCompleted;
     }
+
+    public String getLessonValue() {
+        return value;
+    }
+
     public void setLessonComplete() {
-        this.status = LessonStatus.COMPLETED;
+        this.isCompleted = 1;
     }
-    public void setLessonLapsed() {
-        this.status = LessonStatus.LAPSED;
-    }
+
     public void setLessonIncomplete() {
-        this.status = LessonStatus.INCOMPLETE;
+        this.isCompleted = 0;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof Lesson)) {
+            return false;
+        }
+
+        Lesson otherLesson = (Lesson) other;
+        return value.equals(otherLesson.value);
+    }
+
+    @Override
+    public int hashCode() {
+        return value.hashCode();
     }
 
     /**
-     * Compares this lesson with another lesson based on their date and time.
-     *
-     * @param other The other lesson to compare with.
-     * @return A negative integer, zero, or a positive integer as this lesson is before,
-     *         at the same time, or after the other lesson.
+     * Format state as text for viewing.
      */
-    @Override
-    public int compareTo(Lesson other) {
-        int dateComparison = this.date.compareTo(other.date);
-        if (dateComparison != 0) {
-            return dateComparison;
-        }
-        return this.time.compareTo(other.time);
+    public String toString() {
+        return '[' + value + ']';
     }
 }

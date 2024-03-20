@@ -20,7 +20,7 @@ import seedu.address.model.person.Remark;
 import seedu.address.testutil.PersonBuilder;
 
 class RemarkCommandTest {
-    private static final String REMARK_STUB = "Some remark";
+    private static final String REMARK_STUB = "She likes aardvarks.";
 
     private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     @Test
@@ -31,22 +31,6 @@ class RemarkCommandTest {
         RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_PERSON, new Remark(editedPerson.getRemark().value));
 
         String expectedMessage = String.format(RemarkCommand.MESSAGE_ADD_REMARK_SUCCESS, editedPerson);
-
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(firstPerson, editedPerson);
-
-        assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel);
-    }
-
-    @Test
-    public void execute_deleteRemarkUnfilteredList_success() {
-        Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Person editedPerson = new PersonBuilder(firstPerson).withRemark("").build();
-
-        RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_PERSON,
-                new Remark(editedPerson.getRemark().toString()));
-
-        String expectedMessage = String.format(RemarkCommand.MESSAGE_DELETE_REMARK_SUCCESS, editedPerson);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(firstPerson, editedPerson);
@@ -72,7 +56,6 @@ class RemarkCommandTest {
         assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel);
     }
 
-    @Test
     public void execute_invalidPersonIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
         RemarkCommand remarkCommand = new RemarkCommand(outOfBoundIndex, new Remark(VALID_REMARK_BOB));

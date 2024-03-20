@@ -11,7 +11,6 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
 import seedu.address.model.person.Subject;
-import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
@@ -25,15 +24,13 @@ public class PersonBuilder {
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     private static final String DEFAULT_REMARK = "";
     private static final String DEFAULT_SUBJECT = "Math";
-    private static final String DEFAULT_LESSON_DATE = "10-05-2002";
-    private static final String DEFAULT_LESSON_TIME = "10:00";
+    private static final String DEFAULT_LESSON = "Math|10-05-2002|13:00|0";
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
     private Subject subject;
-    private Lesson lesson;
-    private Set<Tag> tags;
+    private Set<Lesson> lessons;
     private Remark remark;
 
     /**
@@ -45,8 +42,7 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         subject = new Subject(DEFAULT_SUBJECT);
-        lesson = new Lesson(DEFAULT_SUBJECT, DEFAULT_LESSON_DATE, DEFAULT_LESSON_TIME);
-        tags = new HashSet<>();
+        lessons = new HashSet<>();
         remark = new Remark(DEFAULT_REMARK);
     }
 
@@ -59,8 +55,7 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         subject = personToCopy.getSubject();
-        lesson = personToCopy.getUpcomingLesson();
-        tags = new HashSet<>(personToCopy.getTags());
+        lessons = new HashSet<>(personToCopy.getLessons());
         remark = personToCopy.getRemark();
     }
 
@@ -73,10 +68,10 @@ public class PersonBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     * Parses the {@code lessons} into a {@code Set<Lesson>} and set it to the {@code Person} that we are building.
      */
-    public PersonBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
+    public PersonBuilder withLessons(String ... lessons) {
+        this.lessons = SampleDataUtil.getLessonSet(lessons);
         return this;
     }
 
@@ -113,23 +108,14 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Lesson} of the {@code Person} that being built.
+     * Sets the {@code Subject} of the {@code Person} that being built.
      */
     public PersonBuilder withSubject(String subject) {
         this.subject = new Subject(subject);
         return this;
     }
 
-    /**
-     * Sets the {@code Lesson} of the {@code Person} that being built.
-     */
-    public PersonBuilder withLesson(String subject, String date, String time) {
-        this.lesson = new Lesson(subject, date, time);
-        return this;
-    }
-
     public Person build() {
-        return new Person(name, phone, email, address, subject, lesson, remark, tags);
+        return new Person(name, phone, email, address, subject, remark, lessons);
     }
-
 }
