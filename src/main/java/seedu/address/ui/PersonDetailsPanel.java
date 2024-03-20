@@ -52,6 +52,11 @@ public class PersonDetailsPanel extends UiPart<Region> {
      * @param person the Person object containing the information to update the fields with
      */
     public void update(Person person) {
+        // Person can be null if no selection is made in the person list.
+        if (person == null) {
+            return;
+        }
+
         // Set fields with information from the person
         name.setText(person.getName().getValue());
         phone.setText(person.getPhone().getValue());
