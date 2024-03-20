@@ -84,7 +84,7 @@ public class TagCommandTest {
 
         TagCommand tagCommand = new TagCommand(invalidId, new HashSet<Tag>());
 
-        String expectedMessage = TagCommand.MESSAGE_DUPLICATE_TAGS;
+        String expectedMessage = Messages.MESSAGE_INVALID_PERSON_DISPLAYED_ID;
 
         assertThrows(CommandException.class, expectedMessage, () -> tagCommand.execute(expectedModel));
     }
