@@ -233,4 +233,15 @@ public class PersonTest {
                 "Name: Alice Pauline\nBirthday: 1999-01-01",
                 aliceCopy.allAttributesAsString());
     }
+
+    @Test
+    public void deleteAttributeTest() {
+        NameAttribute name = new NameAttribute("Name", "Alice Pauline");
+        BirthdayAttribute birthday = new BirthdayAttribute(
+                "Birthday",
+                LocalDate.of(1999, 1, 1));
+        Person aliceCopy = new Person(new Attribute[]{name, birthday});
+        aliceCopy.deleteAttribute("Name");
+        assertFalse(aliceCopy.hasAttribute("Name"));
+    }
 }

@@ -167,4 +167,73 @@ public class UniquePersonList implements Iterable<Person> {
         }
         return true;
     }
+
+    /**
+     * Deletes an attribute from a person identified by UUID.
+     * Iterates through the list of persons until the matching UUID is found, then deletes the specified attribute.
+     *
+     * @param uuid The UUID of the person from whom to delete the attribute.
+     * @param attributeName The name of the attribute to delete.
+     */
+    public void deleteAttribute(String uuid, String attributeName) {
+        for (Person person : internalList) {
+            if (person.getUuid().toString().equals(uuid)) {
+                person.deleteAttribute(attributeName);
+                return;
+            }
+        }
+    }
+
+    /**
+     * Retrieves a Person object by their UUID.
+     * Searches through the internal list of persons for a match with the provided UUID.
+     *
+     * @param uuid The UUID of the person to retrieve.
+     * @return The Person object if found, null otherwise.
+     */
+    public Person getPersonByUuid(UUID uuid) {
+        for (Person person : internalList) {
+            if (person.getUuid().equals(uuid)) {
+                return person;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Finds the full UUID of a person based on the last few digits provided.
+     * Searches each person's UUID for a match on the last four digits.
+     *
+     * @param digits The last few digits of the person's UUID.
+     * @return The full UUID of the person if a match is found, null otherwise.
+     */
+    public UUID getFullUuid(String digits) {
+        for (Person p : internalList) {
+            String currentPersonUuid = p.getUuidString();
+            int len = currentPersonUuid.length();
+            String toMatch = currentPersonUuid.substring(len - 4);
+            boolean isMatch = toMatch.equals(digits);
+            if (isMatch) {
+                return p.getUuid();
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Checks if a person identified by UUID has a specified attribute.
+     * Iterates through the list of persons to find a match for the UUID, then checks for the attribute.
+     *
+     * @param uuidString The UUID of the person as a string.
+     * @param attributeName The name of the attribute to check for.
+     * @return true if the person has the specified attribute, false otherwise.
+     */
+    public boolean hasAttribute(String uuidString, String attributeName) {
+        for (Person person : internalList) {
+            if (person.getUuidString().equals(uuidString)) {
+                return person.hasAttribute(attributeName);
+            }
+        }
+        return false;
+    }
 }
