@@ -39,12 +39,12 @@ public class AppointmentListViewTest {
     }
 
     @Test
-    public void add_nullAppointment_throwsNullPointerException() {
+    public void add_nullAppointmentView_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> appointmentListView.add(null));
     }
 
     @Test
-    public void add_duplicateAppointment_throwsDuplicateAppointmentException() {
+    public void add_duplicateAppointmentView_throwsDuplicateAppointmentException() {
         appointmentListView.add(ALICE_APPT_VIEW);
         assertThrows(DuplicateAppointmentException.class, () -> appointmentListView.add(ALICE_APPT_VIEW));
     }
@@ -116,7 +116,7 @@ public class AppointmentListViewTest {
     }
 
     @Test
-    public void setAppointments_appointmentList_replacesOwnListWithProvidedAppointmentList() {
+    public void setAppointments_appointmentList_replacesOwnListWithProvidedAppointmentViewList() {
         appointmentListView.add(ALICE_APPT_VIEW);
         AppointmentListView expectedAppointmentList = new AppointmentListView();
         expectedAppointmentList.add(BOB_APPT_VIEW);
