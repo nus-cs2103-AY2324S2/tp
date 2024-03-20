@@ -30,49 +30,43 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
 
-    private final String deleteBy;
-    private final String keyword;
+    private final boolean isIndexBased;
+    private Index targetIndex;
+    private Id targetStudentId;
 
     /**
      * Instantiate Delete Command with target index.
      */
     public DeleteCommand(Index targetIndex) {
-        this.deleteBy = "index";
-        this.keyword = String.valueOf(targetIndex.getZeroBased());
+        this.isIndexBased = true;
+        this.targetIndex = targetIndex;
     }
 
     /**
      * Instantiate Delete Command with given student ID.
      */
     public DeleteCommand(Id targetStudentId) {
-        this.deleteBy = "studentId";
-        this.keyword = targetStudentId.toString();
+        this.isIndexBased = false;
+        this.targetStudentId = targetStudentId;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
-        switch (deleteBy) {
         
-        case "index":
+        if(isIndexBased) {
             return handleIndexInput(model);
-
-        case "studentId":
+        } else {
             return handleStudentIdInput(model);
-
-        default:
-            throw new CommandException(Messages.MESSAGE_INVALID_COMMAND_FORMAT);
         }
     }
 
-    public CommandResult handleIndexInput(Model model) throws CommandException {
+    private CommandResult handleIndexInput(Model model) throws CommandException {
         List<Person> lastShownList = model.getFilteredPersonList();
-        int targetIndex = Integer.parseInt(keyword);
-        if (targetIndex >= lastShownList.size()) {
+        if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
-        Person personToDelete = lastShownList.get(targetIndex);
+        Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deletePerson(personToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
     }
@@ -81,7 +75,7 @@ public class DeleteCommand extends Command {
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         List<Person> lastShownList = model.getFilteredPersonList();
         Optional<Person> personToDelete = lastShownList.stream()
-                .filter(person -> person.getId().equals(new Id(keyword)))
+                .filter(person -> person.getId().equals(targetStudentId))
                 .findFirst();
         if (personToDelete.isEmpty()) {
             throw new CommandException(Messages.MESSAGE_STUDENT_NOT_FOUND);
@@ -103,13 +97,18 @@ public class DeleteCommand extends Command {
         }
 
         DeleteCommand otherDeleteCommand = (DeleteCommand) other;
-        return Objects.equals(keyword, otherDeleteCommand.keyword);
+        return Objects.equals(targetIndex, otherDeleteCommand.targetIndex)
+                && Objects.equals(targetStudentId, otherDeleteCommand.targetStudentId);
     }
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this)
-                .add(deleteBy, keyword)
-                .toString();
+        ToStringBuilder deleteToStringBuilder = new ToStringBuilder(this);
+        if (isIndexBased) {
+            deleteToStringBuilder.add("targetIndex", targetIndex);
+        } else {
+            deleteToStringBuilder.add("targetStudentId", targetStudentId);
+        }
+        return deleteToStringBuilder.toString();
     }
 }
