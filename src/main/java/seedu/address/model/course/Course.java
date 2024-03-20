@@ -89,4 +89,21 @@ public class Course {
         return courseCode.hashCode();
     }
 
+    /**
+     * Compares this Course's courseCode with another Course's courseCode for equality, ignoring case considerations.
+     * <p>
+     * This method provides a case-insensitive comparison of course codes, which can be useful for
+     * ensuring consistency in comparisons regardless of how the course codes are capitalized.
+     * </p>
+     *
+     * @param other The Course object to be compared with this Course for equality.
+     * @return true if the course codes of both courses are equal irrespective of case; false otherwise.
+     */
+    public boolean equalsIgnoreCase(Course other) {
+        if (other == this) {
+            return true;
+        }
+        return this.courseCode.equalsIgnoreCase(other.courseCode);
+    }
+
 }

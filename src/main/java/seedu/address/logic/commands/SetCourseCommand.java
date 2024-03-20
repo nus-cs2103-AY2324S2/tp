@@ -25,8 +25,8 @@ public class SetCourseCommand extends Command {
     public static final String MESSAGE_CONSTRAINTS =
             "Course code should follow the format \"XX1234Y\", Y is optional";
 
-    public static final String MESSAGE_USAGE = CommandMessageUsageUtil.generateMessageUsage("setcrs",
-            "Sets Course", "course code", "CS2104");
+    public static final String MESSAGE_USAGE = CommandMessageUsageUtil.generateMessageUsage(COMMAND_WORD,
+            "Set Course name ", "course code", COMMAND_WORD + " CS2104");
 
     public static final String MESSAGE_SUCCESS = "Successfully updated course name";
 
@@ -57,19 +57,16 @@ public class SetCourseCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        // short circuit if same object
         if (other == this) {
             return true;
         }
 
-        // instanceof handles nulls
         if (!(other instanceof SetCourseCommand)) {
             return false;
         }
 
-        // state check
         SetCourseCommand e = (SetCourseCommand) other;
-        return course.equals(e.course);
+        return course.equalsIgnoreCase(e.course);
 
     }
 
