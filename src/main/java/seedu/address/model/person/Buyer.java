@@ -19,11 +19,11 @@ public class Buyer extends Person {
      * @param name        The name of the buyer.
      * @param phone       The phone number of the buyer.
      * @param email       The email address of the buyer.
-     * @param housingtype The type of housing the buyer wants.
+     * @param housingType The type of housing the buyer wants.
      * @param tags        The tags associated with the buyer.
      */
-    public Buyer(Name name, Phone phone, Email email, String housingtype, Set<Tag> tags) {
-        super(name, phone, email, housingtype, tags);
+    public Buyer(Name name, Phone phone, Email email, String housingType, Set<Tag> tags) {
+        super(name, phone, email, housingType, tags);
         this.house = null;
     }
 
@@ -33,12 +33,12 @@ public class Buyer extends Person {
      * @param name        The name of the buyer.
      * @param phone       The phone number of the buyer.
      * @param email       The email address of the buyer.
-     * @param housingtype The type of housing the buyer wants.
+     * @param housingType The type of housing the buyer wants.
      * @param house       The house associated with the buyer.
      * @param tags        The tags associated with the buyer.
      */
-    public Buyer(Name name, Phone phone, Email email, String housingtype, House house, Set<Tag> tags) {
-        super(name, phone, email, housingtype, tags);
+    public Buyer(Name name, Phone phone, Email email, String housingType, House house, Set<Tag> tags) {
+        super(name, phone, email, housingType, tags);
         this.house = house;
     }
 }

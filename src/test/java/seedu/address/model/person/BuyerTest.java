@@ -29,5 +29,7 @@ public class BuyerTest {
 
         // different person -> returns false
         assertFalse(buyerAlice.equals(buyerBob));
+
+
     }
 }
