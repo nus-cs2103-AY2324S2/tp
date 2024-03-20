@@ -30,6 +30,9 @@ public class PairCommand extends Command {
     public static final String MESSAGE_DIFFERENT_PERSON_TYPE =
             "Pairing can only be done between a volunteer and a befriendee.";
 
+    public static final String MESSAGE_ALREADY_PAIRED =
+            "One or both of the persons are already paired, unpair and try again.";
+
     private final Index index1;
 
     private final Index index2;
@@ -70,9 +73,14 @@ public class PairCommand extends Command {
             throw new CommandException(MESSAGE_DIFFERENT_PERSON_TYPE);
         }
 
+        // Check if any of the persons are already paired
+        if (personToPair1.isPaired() || personToPair2.isPaired()) {
+            throw new CommandException(MESSAGE_ALREADY_PAIRED);
+        }
+
         // Set the pairedWith attribute of the befriendee and volunteer
-        personToPair1.setPairedWith(Optional.of(personToPair2.getId()));
-        personToPair2.setPairedWith(Optional.of(personToPair1.getId()));
+        personToPair1.setPairedWith(Optional.of(personToPair2.getName()));
+        personToPair2.setPairedWith(Optional.of(personToPair1.getName()));
 
         model.setPerson(lastShownList.get(index1.getZeroBased()), personToPair1);
         model.setPerson(lastShownList.get(index2.getZeroBased()), personToPair2);
