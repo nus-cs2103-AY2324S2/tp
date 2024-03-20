@@ -13,22 +13,11 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddAppointmentCommand;
-import seedu.address.logic.commands.AddDoctorCommand;
-import seedu.address.logic.commands.AddPatientCommand;
-import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.DeleteAppointmentCommand;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.*;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
-import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.QueryDoctorCommand;
-import seedu.address.logic.commands.QueryPatientCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.AppointmentContainsPatientPredicate;
 import seedu.address.model.person.Doctor;
 import seedu.address.model.person.DoctorNameContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
@@ -67,6 +56,16 @@ public class AddressBookParserTest {
                 AppointmentUtil.getAddAppointmentCommand(appt));
         assertEquals(new AddAppointmentCommand(appt), command);
     }
+
+    @Test
+    public void parseCommand_querypatientappointment() throws Exception {
+        List<String> keywords = List.of("T1234567A");
+        QueryPatientAppointmentCommand command = (QueryPatientAppointmentCommand) parser.parseCommand(
+                QueryPatientAppointmentCommand.COMMAND_WORD + " "
+                        + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new QueryPatientAppointmentCommand(new AppointmentContainsPatientPredicate(keywords)), command);
+    }
+
     @Test
     public void parseCommand_deleteappointment() throws Exception {
         DeleteAppointmentCommand command = (DeleteAppointmentCommand) parser.parseCommand(

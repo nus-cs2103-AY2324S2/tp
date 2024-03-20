@@ -60,7 +60,7 @@ public class QueryPatientAppointmentCommandTest {
     @Test
     public void execute_singleKeyword_singleAppointmentFound() {
         String expectedMessage = String.format(MESSAGE_APPOINTMENTS_LISTED_OVERVIEW, 1);
-        AppointmentContainsPatientPredicate predicate = preparePredicate("T0170911E");
+        AppointmentContainsPatientPredicate predicate = preparePredicate("S8734985A");
         QueryPatientAppointmentCommand command = new QueryPatientAppointmentCommand(predicate);
 
         System.out.println(expectedModel.getFilteredAppointmentList());
@@ -70,7 +70,7 @@ public class QueryPatientAppointmentCommandTest {
         System.out.println(expectedModel.getFilteredAppointmentList());
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(APPOINTMENT_1), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(APPOINTMENT_4), model.getFilteredAppointmentList());
     }
 
     @Test

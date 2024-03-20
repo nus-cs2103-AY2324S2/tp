@@ -22,7 +22,7 @@ public class QueryPatientCommandParserTest {
     }
 
     @Test
-    public void parse_validArgs_returnsFindCommand() {
+    public void parse_validArgs_returnsQueryCommand() {
         // no leading and trailing whitespaces
         QueryPatientCommand expectedQueryCommand =
                 new QueryPatientCommand(new PatientNameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
