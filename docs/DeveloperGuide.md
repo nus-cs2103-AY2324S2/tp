@@ -353,6 +353,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2a1. AddressBook shows an error message.
 
       Use case resumes at step 1.
+      
 * 2b. The given information is insufficient to form a contact.
 
     * 2b1. AddressBook shows an error message.
@@ -376,7 +377,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2a1. AddressBook shows an error message.
 
       Use case resumes at step 1.
-
+      
 * 2a. The contact does not exist.
 
     * 2a1. AddressBook shows an error message.
@@ -440,6 +441,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  User requests to tag a specific contact to a tutorial group.
 2.  AddressBook tags the contact to the tutorial group.
 
+    Use case ends.
+
 **Extensions**
 
 * 1a. User uses the wrong format in his request.
@@ -490,6 +493,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
+
 **Use case: schedules an event with a contact**
 
 **MSS**
@@ -521,6 +525,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 1.
 
 
+
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -543,7 +548,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 Given below are instructions to test the app manually.
 
-<box type="info" seamless>
+<boxtype="info" seamless>
 
 **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
