@@ -177,14 +177,14 @@ Format: `note <ApplicationId> /note <Note>`
 Examples:
 * `note 1 /note S/Pass Holder` will add the note “S/Pass Holder” to the applicant identified by ID 1.
 
-### Exporting applicants contacts by role/stage : `/export`
-Filter to isolate the applicants that match the desired stage or role. Export will then extract those applicants' contacts into a separate HRConnect
+### Exporting applicants contacts : `/export`
+Use filter or find to isolate the applicants that match the desired stage or role or name. Export will then extract those applicants' contacts into an external JSON file.
 Format: /export 
 
 * Achieve an additional layer of organisation to properly arrange contacts
 
 Examples:
-*  `/export` will append contacts from that page onto another page.
+*  `/export` will append contacts from that page onto another external JSON file.
 
 ### Clearing all entries : `clear`
 
