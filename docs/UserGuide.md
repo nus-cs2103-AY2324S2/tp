@@ -72,40 +72,44 @@ The app might contain some sample data.<br><hr>
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Launches the help menu depicted below. <br>
+Clicking `Open User Guide` leads to the User Guide website.
 
 ![help message](images/helpMessage.png)
-
 Format: `help`
 
+<hr>
 
 ### Adding a client: `add`
 
-Adds a client to the address book.
+Adds a client to the FitBook.
 
 Format: `add n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [note/NOTE] [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A client can have any number of tags (including 0)
+A client can 0 or more tags.
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 note/john from school`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 note/likes donuts t/criminal`
+* `add n/John Doe p/98765432 e/johnd@gmail.com a/John street, block 123, #01-01 note/john from school`
+* `add n/Betsy Crowe t/friend e/betsycrowe@hotmail.com a/Newgate Prison p/1234567 note/likes donuts t/criminal`
+<hr>
 
 ### Listing all clients : `list`
 
-Shows a list of all clients in the address book.
+Displays an indexed list of all clients in FitBook.
 
 Format: `list`
+<hr>
 
 ### Editing a client : `edit`
 
-Edits an existing client in the address book.
+Edits information tagged to an existing client
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [note/NOTE] [t/TAG]…​`
 
-* Edits the clients at the specified `INDEX`. The index refers to the index number shown in the displayed client list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the clients at the specified `INDEX`. The index refers to the index number shown in the displayed client list. 
+* The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the client will be removed i.e adding of tags is not cumulative.
@@ -115,6 +119,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [note/NOTE] [t/TAG]
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st client to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd client to be `Betsy Crower` and clears all existing tags.
+<hr>
 
 ### Adding a note to clients : `note`
 
@@ -128,6 +133,7 @@ Format: `note INDEX note/NOTE`
 Examples:
 *  `note 1 note/History of asthma` - Edits the note of the 1st client to `History of asthma`.
 *  `edit 2 note/Previously sprained both ankles` - Edits the note of the 2nd client to `Previously sprained both ankles`.
+<hr>
 
 ### Locating clients by name: `find`
 
@@ -149,9 +155,11 @@ Examples:
 * `find n/Wendy t/Lover` returns `Wendy` (`Name` contains `Wendy` and is tagged with `Lover`)
   ![result for 'find n/Wendy t/Lover'](images/FindNameTag.png)
 
+<hr>
+
 ### Deleting a client : `delete`
 
-Deletes the specified client from the address book.
+Deletes the specified client from FitBook.
 
 Format: `delete INDEX`
 
@@ -160,39 +168,49 @@ Format: `delete INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd client in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st client in the results of the `find` command.
+* `list` followed by `delete 2` deletes the second client in the list.
+* `find Betsy` followed by `delete 1` deletes the first client in the results of the `find` command.
+
+<hr>
 
 ### Clearing all entries : `clear`
 
-Clears all client information from the address book.
+Clears all client information from FitBook.
 
-**NOTE: This command irreversibly clears all client information in FitBook. It should be used with caution.**
+**NOTE: This command is irreversible and should be used with caution.**
 
 If you are sure of your decision to clear all client information, use the `/confirm` prefix with this command to execute it.
 
 Format: `clear /confirm`
 
+<hr>
+
 ### Exiting the program : `exit`
 
-Exits the program.
+Exits FitBook.
 
 Format: `exit`
+<hr>
 
 ### Saving the data
 
-Address book data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+FitBook data is saved in the hard disk automatically after any command that changes the data. 
+There is no need to save manually.
+
+<hr>
 
 ### Editing the data file
 
-Address book data is saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+FitBook data is saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. 
+Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, FitBook will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
 Furthermore, certain edits can cause FitBook to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
+<hr>
 
-### Save Contact to Phone
+### Save contact to phone
 
 ![QrCodeContactCard](images/QrCodeContactCard.png)
 
@@ -200,6 +218,7 @@ To save a contact to your mobile phone from FitBook, simply scan the QR code nex
 
 <img src="images/QRScanning.png" height="480">
 <img src="images/QRContact.png" height="480"> 
+<hr>
 
 ### Archiving data files `[coming in v2.0]`
 
@@ -210,7 +229,7 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous FitBook home folder.
+**A**: Install FitBook in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous FitBook home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
