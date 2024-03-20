@@ -151,33 +151,46 @@ Format: `delete NAME`
 Examples:
 * `delete Betsy` deletes the contact with the contact name `Betsy` in the address book.
 
-### Grouping a person : `group`
+### Adding a company tag to a person : `co`
 
-Groups the specified person under a specified group category.
+Adds the specified company tag name to the specified contact.
 
-Format: `group NAME g/GROUP_NAME`
+Format: `co NAME c/COMPANY_NAME`
 
-* Groups the contact with the specified `NAME` under a group with the specified `GROUP_NAME`. The specified `NAME` 
-    of the contact to be grouped is case-insensitive. e.g `group John Doe g/Friends` is the same as 
-    `group john doe g/Friends`
+* Adds the company tag to the person's contact. The specified `NAME` of the contact to add the company tag is 
+case-insensitive. e.g `co John Doe c/TikTok` is the same as `co john doe c/TikTok`
 
 Examples:
-* `group Betsy g/CS2103` groups the contact with the contact name `Betsy` under a group category named `CS2103`.
+* `co Betsy c/Google` adds the company tag `Google` to the contact name `Betsy` in the address book.
+
+### Assigning priority level to a contact : `pr/PRIORITY_LEVEL`
+
+Assigns the specified priority level to the specified contact.
+
+Format: `pr/PRIORITY_LEVEL NAME`
+
+* Assigns the specified priority level to the person's contact. The specified `NAME` of the contact to assign the 
+priority level is case-insensitive. e.g `pr/high Alex Tan` is the same as `pr/high alex tan`
+* Acceptable values for PRIORITY_LEVEL are `high` and `med`.
+
+Examples:
+* `pr/high Alex Tan` assigns `HIGH` priority level to the contact name `Alex Tan` in the address book.
+
+### Filtering contacts by priority : `filter-PRIORITY_LEVEL`
+
+Filters the contacts in the address book by the specified priority level.
+
+Format: `filter-PRIORITY_LEVEL`
+
+Examples:
+* `filter-high` returns a list of contacts with priority assigned as `high`.
+* `filter-med` returns a list of contacts with priority assigned as `med`.
 
 ### Getting the number of contacts : `count`
 
 Counts the number of contacts in the address book.
 
 Format: `count`
-
-### Filtering contacts by priority : `filter`
-
-Filters the contacts in the address book by the specified priority level.
-
-Format: `filter priority PRIORITY_LEVEL`
-
-Examples:
-* `filter priority high` returns a list of contacts with priority assigned as `high`.
 
 ### Starring a contact : `star`
 
@@ -246,15 +259,16 @@ _Details coming soon ..._
 ## Command summary
 
 Action     | Format, Examples
------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------
 **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **Clear**  | `clear`
 **Delete** | `delete NAME`<br> e.g., `delete John Doe`
 **Edit**   | `edit NAME [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit James n/James Lee e/jameslee@example.com`
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**Group**  | `group NAME g/GROUP_NAME`<br> e.g., `group James Doe g/Friends`
+**Add Company Tag**  | `co NAME c/COMPANY_NAME`<br> e.g., `co James Doe c/TikTok`
+**Assign Priority**  | `pr/PRIORITY_LEVEL NAME`<br> e.g., `pr/high Alex Tan`
+**Filter** | `filter-PRIORITY_LEVEL`<br> e.g., `filter-high`
 **Count**  | `count`
-**Filter** | `filter priority PRIORITY_LEVEL`<br> e.g., `filter priority high`
 **Star**   | `star NAME`<br> e.g., `star John Doe`
 **Undo**   | `undo`
 **List**   | `list`
