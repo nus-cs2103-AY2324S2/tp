@@ -72,13 +72,21 @@ deactivate ArgumentTokenizer
 AddCommandParser -> ParserUtil : parseName(...)
 activate ParserUtil
 ParserUtil --> AddCommandParser
+deactivate ParserUtil
 AddCommandParser -> ParserUtil : parsePhone(...)
+activate ParserUtil
 ParserUtil --> AddCommandParser
+deactivate ParserUtil
 AddCommandParser -> ParserUtil : parseEmail(...)
+activate ParserUtil
 ParserUtil --> AddCommandParser
+deactivate ParserUtil
 AddCommandParser -> ParserUtil : parseAddress(...)
+activate ParserUtil
 ParserUtil --> AddCommandParser
+deactivate ParserUtil
 AddCommandParser -> ParserUtil : parseTags(...)
+activate ParserUtil
 ParserUtil --> AddCommandParser
 deactivate ParserUtil
 
