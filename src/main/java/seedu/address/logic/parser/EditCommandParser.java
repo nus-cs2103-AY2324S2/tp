@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -19,6 +20,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.DateTime;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -35,7 +37,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                        PREFIX_SUBJECT, PREFIX_GRADE, PREFIX_TAG);
+                        PREFIX_SUBJECT, PREFIX_GRADE, PREFIX_DATETIME, PREFIX_TAG);
 
         Index index;
 
@@ -67,6 +69,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_GRADE).isPresent()) {
             editPersonDescriptor.setGrade(ParserUtil.parseGrade(argMultimap.getValue(PREFIX_GRADE).get()));
         }
+        parseDateTimeForEdit(argMultimap.getAllValues(PREFIX_DATETIME)).ifPresent(editPersonDescriptor::setDateTime);
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
@@ -91,4 +94,19 @@ public class EditCommandParser implements Parser<EditCommand> {
         return Optional.of(ParserUtil.parseTags(tagSet));
     }
 
+    /**
+     * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
+     * If {@code tags} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<Tag>} containing zero tags.
+     */
+    private Optional<Set<DateTime>> parseDateTimeForEdit(Collection<String> dateTime) throws ParseException {
+        assert dateTime != null;
+
+        if (dateTime.isEmpty()) {
+            return Optional.empty();
+        }
+        Collection<String> dateTimeSet =
+                dateTime.size() == 1 && dateTime.contains("") ? Collections.emptySet() : dateTime;
+        return Optional.of(ParserUtil.parseDateTimes(dateTimeSet));
+    }
 }
