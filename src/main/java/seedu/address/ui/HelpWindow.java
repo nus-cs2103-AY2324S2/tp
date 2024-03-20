@@ -59,8 +59,7 @@ public class HelpWindow extends UiPart<Stage> {
     }
 
     private boolean isDesktopBrowseActionSupported() {
-        return Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.OPEN)
-            && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE);
+        return Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE);
     }
 
     /**
@@ -110,21 +109,21 @@ public class HelpWindow extends UiPart<Stage> {
      * Shows the help window.
      *
      * @throws IllegalStateException <ul>
-     *                                                             <li>
-     *                                                             if this method is called on a thread other than
-     *                                                             the JavaFX Application Thread.
-     *                                                             </li>
-     *                                                             <li>
-     *                                                             if this method is called during animation or
-     *                                                             layout processing.
-     *                                                             </li>
-     *                                                             <li>
-     *                                                             if this method is called on the primary stage.
-     *                                                             </li>
-     *                                                             <li>
-     *                                                             if {@code dialogStage} is already showing.
-     *                                                             </li>
-     *                                                             </ul>
+     *                               <li>
+     *                               if this method is called on a thread other than
+     *                               the JavaFX Application Thread.
+     *                               </li>
+     *                               <li>
+     *                               if this method is called during animation or
+     *                               layout processing.
+     *                               </li>
+     *                               <li>
+     *                               if this method is called on the primary stage.
+     *                               </li>
+     *                               <li>
+     *                               if {@code dialogStage} is already showing.
+     *                               </li>
+     *                               </ul>
      */
     public void show() {
         logger.fine("Showing help page about the application.");
