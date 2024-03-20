@@ -52,6 +52,6 @@ public class CompanyCard extends UiPart<Region> {
         email.setText(company.getEmail().value);
         company.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+                .forEach(tag -> tags.getChildren().add(new Label(tag.capitalise(tag.tagName))));
     }
 }
