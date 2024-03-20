@@ -45,7 +45,7 @@ public abstract class UiPart<T> {
 
     /**
      * Constructs a UiPart with the specified FXML file within {@link #FXML_FILE_FOLDER} and root object.
-     * @see #UiPart(URL, T)
+     * @see #UiPart(URL, Object)
      */
     public UiPart(String fxmlFileName, T root) {
         this(getFxmlFileUrl(fxmlFileName), root);
