@@ -75,7 +75,7 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-### Adding a person: `add`
+### Adding a student: `add`
 
 Adds a Student to the EduLink NUS.
 
@@ -83,35 +83,35 @@ Format: `add n/NAME id/STUDENT_ID p/PRIMARY_ PHONE_NUMBER [, SECONDARY_PHONE_NUM
 
 <box type="tip" seamless>
 
-**Tip:** A person can have any number of tags (including 0)
+**Tip:** A student can have any number of tags (including 0)
 </box>
 
 Examples:
 * `add n/John Doe id/2023001 p/1234567890, 9876543210 e/john.doe@example.com, jdoe@example.com i/2023 m/Computer Science p/CS2103 Tut  g/A+ t/Honors`
 * `add n/Kumar Prabhat id/20414001 p/1234567890, 9876543210 e/john.doe@example.com`
 
-### Listing all persons : `list`
+### Listing all students : `list`
 
 Shows a list of all Students in the EduLink NUS.
 
 Format: `list`
 
-### Editing a person : `edit`
+### Editing a student : `edit`
 
-Edits an existing person in the address book.
+Edits an existing student in the address book.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
+* When editing tags, the existing tags of the student will be removed i.e adding of tags is not cumulative.
+* You can remove all the student’s tags by typing `t/` without
     specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st student to be `91234567` and `johndoe@example.com` respectively.
+*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd student to be `Betsy Crower` and clears all existing tags.
 
 ### Search students by name or ID: `find`
 
@@ -141,22 +141,24 @@ Examples:
 * `find id/A123` returns entries with IDs with `A123`
 * `find id/A1234567X n/John Doe` returns a person `John Doe` with ID `A12345678X`
 
-### Deleting a person : `delete`
+
+
+### Deleting a student : `delete`
 
 Deletes the specified individual from the EduLink NUS system.
 
 Format: `delete INDEX` **OR** `delete id/STUDENT_ID`
 
-* Deletes the person at the specified `INDEX` or deletes the person identified by the specified `STUDENT_ID`.
-* The INDEX refers to the index number shown in the displayed person list.
+* Deletes the student at the specified `INDEX` or deletes the student identified by the specified `STUDENT_ID`.
+* The INDEX refers to the index number shown in the displayed student list.
 * The STUDENT_ID refers to the unique identification string associated with individuals stored in EduLink NUS.
 * The INDEX **must be a positive integer** 1, 2, 3, …​ 
 * The STUDENT_ID **must exist within the system** 
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
-* `delete id/A026273X` deletes the person with Student ID A026273X.
+* `list` followed by `delete 2` deletes the 2nd student in the address book.
+* `find Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
+* `delete id/A026273X` deletes the student with Student ID A026273X.
 
 ### Filtering displayed list : `filter`
 
