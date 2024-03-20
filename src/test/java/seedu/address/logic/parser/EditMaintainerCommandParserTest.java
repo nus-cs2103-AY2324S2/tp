@@ -13,7 +13,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_MAINTAINER;
-import static seedu.address.logic.messages.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FIELD;
@@ -28,6 +27,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.EditMaintainerCommand;
 import seedu.address.logic.commands.EditMaintainerCommand.EditMaintainerDescriptor;
+import seedu.address.logic.messages.EditMessages;
 import seedu.address.logic.messages.Messages;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -43,8 +43,8 @@ public class EditMaintainerCommandParserTest {
         // no field specified
         String userInput = EditMaintainerCommand.COMMAND_WORD + " " + PREFIX_NAME + " "
             + " " + PREFIX_FIELD + "{" + " }";
-        assertParseFailure(parser, userInput, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                EditMaintainerCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, userInput, String.format(EditMessages.MESSAGE_EDIT_INVALID_NAME,
+                Name.MESSAGE_CONSTRAINTS));
     }
 
     @Test
@@ -53,33 +53,37 @@ public class EditMaintainerCommandParserTest {
         String userInput = EditMaintainerCommand.COMMAND_WORD + " " + PREFIX_NAME + " "
             + " " + PREFIX_FIELD + "{" + PHONE_DESC_AMY
             + ADDRESS_DESC_AMY + EMAIL_DESC_AMY + " }";
-        assertParseFailure(parser, userInput, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                EditMaintainerCommand.MESSAGE_USAGE));
+        assertParseFailure(parser,
+                userInput, String.format(EditMessages.MESSAGE_EDIT_INVALID_NAME, Name.MESSAGE_CONSTRAINTS));
     }
 
     @Test
     public void parse_invalidValue_failure() {
         String userInput = EditMaintainerCommand.COMMAND_WORD + " " + PREFIX_NAME + "Tom Tan1"
             + " " + PREFIX_FIELD + "{" + INVALID_PHONE_DESC + " }";
-        assertParseFailure(parser, userInput, Phone.MESSAGE_CONSTRAINTS); // invalid phone
+        assertParseFailure(parser, userInput,
+                String.format(EditMessages.MESSAGE_EDIT_INVALID_FIELD, Phone.MESSAGE_CONSTRAINTS)); // invalid phone
         userInput = EditMaintainerCommand.COMMAND_WORD + " " + PREFIX_NAME + "Tom Tan1"
             + " " + PREFIX_FIELD + "{" + INVALID_EMAIL_DESC + " }";
-        assertParseFailure(parser, userInput, Email.MESSAGE_CONSTRAINTS); // invalid email
+        assertParseFailure(parser, userInput,
+                String.format(EditMessages.MESSAGE_EDIT_INVALID_FIELD, Email.MESSAGE_CONSTRAINTS)); // invalid email
         userInput = EditMaintainerCommand.COMMAND_WORD + " " + PREFIX_NAME + "Tom Tan1"
             + " " + PREFIX_FIELD + "{" + INVALID_ADDRESS_DESC + " }";
-        assertParseFailure(parser, userInput, EditMaintainerCommand.MESSAGE_NOT_EDITED); // invalid address
+        assertParseFailure(parser, userInput,
+                EditMessages.MESSAGE_EDIT_EMPTY_FIELD); // invalid address
 
         // invalid phone followed by valid email
         userInput = EditMaintainerCommand.COMMAND_WORD + " " + PREFIX_NAME + "Tom Tan1"
             + " " + PREFIX_FIELD + "{" + INVALID_PHONE_DESC + EMAIL_DESC_AMY + " }";
-        assertParseFailure(parser, userInput, Phone.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, userInput,
+                String.format(EditMessages.MESSAGE_EDIT_INVALID_FIELD, Phone.MESSAGE_CONSTRAINTS));
 
         // multiple invalid values, but only the first invalid value is captured
         userInput = EditMaintainerCommand.COMMAND_WORD + " " + PREFIX_NAME + "Tom Tan1"
             + " " + PREFIX_FIELD + "{" + INVALID_NAME_DESC + INVALID_EMAIL_DESC
             + VALID_ADDRESS_AMY + VALID_PHONE_AMY + " }";
-        assertParseFailure(parser, userInput, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                EditMaintainerCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, userInput,
+                String.format(EditMessages.MESSAGE_EDIT_INVALID_NAME, Name.MESSAGE_CONSTRAINTS));
     }
 
     @Test

@@ -19,7 +19,7 @@ import java.util.Set;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.messages.Messages;
+import seedu.address.logic.messages.EditMessages;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Commission;
@@ -53,11 +53,6 @@ public class EditMaintainerCommand extends Command {
             + PREFIX_ADDRESS + "NUS College Avenue"
             + " }";
 
-    public static final String MESSAGE_EDIT_MAINTAINER_SUCCESS = "Edited Maintainer: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_MAINTAINER =
-            "This maintainer's name already exists in the address book.";
-
     private final Name name;
     private final EditMaintainerDescriptor editMaintainerDescriptor;
 
@@ -80,19 +75,16 @@ public class EditMaintainerCommand extends Command {
 
         Maintainer maintainerToEdit = model.findMaintainerByName(name);
 
-        if (maintainerToEdit == null) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_NAME);
+        Maintainer editedMaintainer = createEditedMaintainer(maintainerToEdit, editMaintainerDescriptor);
+
+        if (!maintainerToEdit.isSamePerson(editedMaintainer) && model.hasPerson(editedMaintainer)) {
+            throw new CommandException(EditMessages.MESSAGE_EDIT_NO_DIFFERENCE);
         }
 
-        Maintainer editedMantainer = createEditedMaintainer(maintainerToEdit, editMaintainerDescriptor);
-
-        if (!maintainerToEdit.isSamePerson(editedMantainer) && model.hasPerson(editedMantainer)) {
-            throw new CommandException(MESSAGE_DUPLICATE_MAINTAINER);
-        }
-
-        model.setPerson(maintainerToEdit, editedMantainer);
+        model.setPerson(maintainerToEdit, editedMaintainer);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_MAINTAINER_SUCCESS, Messages.format(editedMantainer)));
+        return new CommandResult(String.format(EditMessages.MESSAGE_EDIT_PERSON_SUCCESS,
+                EditMessages.format(editedMaintainer)));
     }
 
     /**

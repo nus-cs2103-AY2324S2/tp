@@ -9,6 +9,7 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.messages.NoteMessages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -30,7 +31,7 @@ public class NoteCommandTest {
         expectedModel.setPerson(model.getFilteredPersonList().get(0), expectedPerson);
 
         NoteCommand noteCommand = new NoteCommand(toAddNotePerson.getName(), validNote1);
-        String expectedMessage = String.format(NoteCommand.MESSAGE_ADD_NOTE_SUCCESS, expectedPerson);
+        String expectedMessage = String.format(NoteMessages.MESSAGE_ADD_NOTE_SUCCESS, expectedPerson);
 
         assertCommandSuccess(noteCommand, model, expectedMessage, expectedModel);
     }

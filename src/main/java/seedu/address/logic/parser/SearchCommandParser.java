@@ -1,6 +1,5 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.logic.messages.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMMISSION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -15,6 +14,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SKILL;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.SearchCommand;
+import seedu.address.logic.messages.SearchMessages;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.KeywordPredicate;
 
@@ -54,7 +54,8 @@ public class SearchCommandParser implements Parser<SearchCommand> {
                 PREFIX_SKILL,
                 PREFIX_COMMISSION)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(SearchMessages.MESSAGE_SEARCH_MISSING_FIELD,
+                    SearchCommand.MESSAGE_USAGE));
         }
 
         return new SearchCommand(new KeywordPredicate(argMultimap));

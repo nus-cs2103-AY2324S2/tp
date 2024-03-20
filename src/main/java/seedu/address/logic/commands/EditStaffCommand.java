@@ -19,7 +19,7 @@ import java.util.Set;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.messages.Messages;
+import seedu.address.logic.messages.EditMessages;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -53,9 +53,6 @@ public class EditStaffCommand extends Command {
             + "phone : " + "99820550 "
             + PREFIX_ADDRESS + "NUS College Avenue"
             + " }";
-    public static final String MESSAGE_EDIT_STAFF_SUCCESS = "Edited Staff: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This staff's name already exists in the address book.";
 
     private final Name name;
     private final EditStaffDescriptor editStaffDescriptor;
@@ -78,19 +75,16 @@ public class EditStaffCommand extends Command {
 
         Staff staffToEdit = model.findStaffByName(name);
 
-        if (staffToEdit == null) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_NAME);
-        }
-
         Staff editedStaff = createEditedStaff(staffToEdit, editStaffDescriptor);
 
         if (!staffToEdit.isSamePerson(editedStaff) && model.hasPerson(editedStaff)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(EditMessages.MESSAGE_EDIT_NO_DIFFERENCE);
         }
 
         model.setPerson(staffToEdit, editedStaff);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_STAFF_SUCCESS, Messages.format(editedStaff)));
+        return new CommandResult(String.format(EditMessages.MESSAGE_EDIT_PERSON_SUCCESS,
+                EditMessages.format(editedStaff)));
     }
 
 

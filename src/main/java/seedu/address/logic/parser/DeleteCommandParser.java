@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.messages.DeleteMessages;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -28,7 +27,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(DeleteMessages.MESSAGE_DELETE_MISSING_NAME,
-                    AddCommand.MESSAGE_USAGE));
+                    DeleteCommand.MESSAGE_USAGE));
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);

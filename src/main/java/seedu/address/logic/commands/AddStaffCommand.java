@@ -10,7 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.messages.Messages;
+import seedu.address.logic.messages.AddMessages;
 import seedu.address.model.Model;
 import seedu.address.model.person.Staff;
 
@@ -37,9 +37,6 @@ public class AddStaffCommand extends Command {
             + PREFIX_SALARY + "$50/hr "
             + PREFIX_EMPLOYMENT + "part-time";
 
-    public static final String MESSAGE_SUCCESS = "New staff is added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person's name already exists in the address book";
-
     private final Staff toAdd;
 
     /**
@@ -55,11 +52,11 @@ public class AddStaffCommand extends Command {
         requireNonNull(model);
 
         if (model.hasPerson(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(AddMessages.MESSAGE_ADD_DUPLICATE_PERSON);
         }
 
         model.addPerson(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
+        return new CommandResult(String.format(AddMessages.MESSAGE_ADD_PERSON_SUCCESS, AddMessages.format(toAdd)));
     }
 
     @Override

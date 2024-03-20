@@ -14,14 +14,8 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.HelpDeleteCommand;
-import seedu.address.logic.commands.HelpEditCommand;
-import seedu.address.logic.commands.HelpPoochMaintenanceCommand;
-import seedu.address.logic.commands.HelpPoochStaffCommand;
-import seedu.address.logic.commands.HelpPoochSupplierCommand;
-import seedu.address.logic.commands.HelpSearchCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.messages.HelpMessages;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -247,19 +241,19 @@ public class MainWindow extends UiPart<Stage> {
 
             String userFeedback = commandResult.getFeedbackToUser();
             Boolean isHelpCommand = commandResult.isShowHelp()
-                    && userFeedback.equals(HelpCommand.SHOWING_HELP_MESSAGE);
+                    && userFeedback.equals(HelpMessages.MESSAGES_SHOWING_HELP_MESSAGE);
             Boolean isPoochStaffHelpCommand = commandResult.isShowHelp()
-                    && userFeedback.equals(HelpPoochStaffCommand.SHOWING_HELP_MESSAGE);
+                    && userFeedback.equals(HelpMessages.MESSAGES_SHOWING_ADD_STAFF_HELP_MESSAGE);
             Boolean isPoochMaintenanceHelpCommand = commandResult.isShowHelp()
-                    && userFeedback.equals(HelpPoochMaintenanceCommand.SHOWING_HELP_MESSAGE);
+                    && userFeedback.equals(HelpMessages.MESSAGES_SHOWING_ADD_MAINTAINER_HELP_MESSAGE);
             Boolean isPoochSupplierHelpCommand = commandResult.isShowHelp()
-                    && userFeedback.equals(HelpPoochSupplierCommand.SHOWING_HELP_MESSAGE);
+                    && userFeedback.equals(HelpMessages.MESSAGES_SHOWING_ADD_SUPPLIER_HELP_MESSAGE);
             Boolean isDeleteHelpCommand = commandResult.isShowHelp()
-                    && userFeedback.equals(HelpDeleteCommand.SHOWING_HELP_MESSAGE);
+                    && userFeedback.equals(HelpMessages.MESSAGES_SHOWING_DELETE_HELP_MESSAGE);
             Boolean isEditHelpCommand = commandResult.isShowHelp()
-                    && userFeedback.equals(HelpEditCommand.SHOWING_HELP_MESSAGE);
+                    && userFeedback.equals(HelpMessages.MESSAGES_SHOWING_EDIT_HELP_MESSAGE);
             Boolean isSearchHelpCommand = commandResult.isShowHelp()
-                    && userFeedback.equals(HelpSearchCommand.SHOWING_HELP_MESSAGE);
+                    && userFeedback.equals(HelpMessages.MESSAGES_SHOWING_SEARCH_HELP_MESSAGE);
 
 
             if (isHelpCommand) {

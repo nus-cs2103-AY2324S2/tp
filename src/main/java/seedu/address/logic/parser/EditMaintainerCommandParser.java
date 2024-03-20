@@ -19,6 +19,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditMaintainerCommand;
 import seedu.address.logic.commands.EditMaintainerCommand.EditMaintainerDescriptor;
+import seedu.address.logic.messages.EditMessages;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Name;
 import seedu.address.model.tag.Tag;
@@ -40,6 +41,13 @@ public class EditMaintainerCommandParser implements Parser<EditMaintainerCommand
         String fieldArgs;
 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_FIELD);
+
+        // check for missing name
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME)) {
+            throw new ParseException(String.format(EditMessages.MESSAGE_EDIT_MISSING_NAME,
+                    EditMaintainerCommand.MESSAGE_USAGE));
+        }
+
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_FIELD)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     EditMaintainerCommand.MESSAGE_USAGE));
@@ -53,9 +61,16 @@ public class EditMaintainerCommandParser implements Parser<EditMaintainerCommand
         fieldArgMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
                 PREFIX_SKILL, PREFIX_COMMISSION);
 
-        EditMaintainerDescriptor editMaintainerDescriptor = editMaintainerDescription(fieldArgMultimap);
+        EditMaintainerDescriptor editMaintainerDescriptor;
+
+        try {
+            editMaintainerDescriptor = editMaintainerDescription(fieldArgMultimap);
+        } catch (ParseException pe) {
+            throw new ParseException(String.format(EditMessages.MESSAGE_EDIT_INVALID_FIELD, pe.getMessage()));
+        }
+
         if (!editMaintainerDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(EditMaintainerCommand.MESSAGE_NOT_EDITED);
+            throw new ParseException(EditMessages.MESSAGE_EDIT_EMPTY_FIELD);
         }
 
         Set<Tag> tags = new HashSet<>();
@@ -75,8 +90,7 @@ public class EditMaintainerCommandParser implements Parser<EditMaintainerCommand
         try {
             return ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    EditMaintainerCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(EditMessages.MESSAGE_EDIT_INVALID_NAME, pe.getMessage()));
         }
     }
 

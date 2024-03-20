@@ -1,10 +1,10 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.HelpPoochSupplierCommand.SHOWING_HELP_MESSAGE;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.messages.HelpMessages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 
@@ -14,7 +14,8 @@ public class HelpPoochSupplierCommandTest {
 
     @Test
     public void execute_poochSupplierHelp_success() {
-        CommandResult expectedCommandResult = new CommandResult(SHOWING_HELP_MESSAGE, true, false);
+        CommandResult expectedCommandResult = new CommandResult(HelpMessages.MESSAGES_SHOWING_ADD_SUPPLIER_HELP_MESSAGE,
+                true, false);
         assertCommandSuccess(new HelpPoochSupplierCommand(), model, expectedCommandResult, expectedModel);
     }
 }

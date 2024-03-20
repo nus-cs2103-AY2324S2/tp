@@ -19,6 +19,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditStaffCommand;
 import seedu.address.logic.commands.EditStaffCommand.EditStaffDescriptor;
+import seedu.address.logic.messages.EditMessages;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Name;
 import seedu.address.model.tag.Tag;
@@ -40,6 +41,13 @@ public class EditStaffCommandParser implements Parser<EditStaffCommand> {
         String fieldArgs;
 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_FIELD);
+
+        // check for missing name
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME)) {
+            throw new ParseException(String.format(EditMessages.MESSAGE_EDIT_MISSING_NAME,
+                    EditStaffCommand.MESSAGE_USAGE));
+        }
+
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_FIELD)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditStaffCommand.MESSAGE_USAGE));
         }
@@ -53,9 +61,16 @@ public class EditStaffCommandParser implements Parser<EditStaffCommand> {
         fieldArgMultimap.verifyNoDuplicatePrefixesFor(PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
                 PREFIX_EMPLOYMENT, PREFIX_SALARY);
 
-        EditStaffDescriptor editStaffDescriptor = editStaffDescription(fieldArgMultimap);
+        EditStaffDescriptor editStaffDescriptor;
+
+        try {
+            editStaffDescriptor = editStaffDescription(fieldArgMultimap);
+        } catch (ParseException pe) {
+            throw new ParseException(String.format(EditMessages.MESSAGE_EDIT_INVALID_FIELD, pe.getMessage()));
+        }
+
         if (!editStaffDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(EditStaffCommand.MESSAGE_NOT_EDITED);
+            throw new ParseException(EditMessages.MESSAGE_EDIT_EMPTY_FIELD);
         }
 
         Set<Tag> tags = new HashSet<>();
@@ -75,7 +90,7 @@ public class EditStaffCommandParser implements Parser<EditStaffCommand> {
         try {
             return ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditStaffCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(EditMessages.MESSAGE_EDIT_INVALID_NAME, pe.getMessage()));
         }
     }
 

@@ -19,6 +19,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditSupplierCommand;
 import seedu.address.logic.commands.EditSupplierCommand.EditSupplierDescriptor;
+import seedu.address.logic.messages.EditMessages;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Name;
 import seedu.address.model.tag.Tag;
@@ -41,6 +42,13 @@ public class EditSupplierCommandParser implements Parser<EditSupplierCommand> {
 
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_FIELD);
+
+        // check for missing name
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME)) {
+            throw new ParseException(String.format(EditMessages.MESSAGE_EDIT_MISSING_NAME,
+                    EditSupplierCommand.MESSAGE_USAGE));
+        }
+
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_FIELD)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditSupplierCommand.MESSAGE_USAGE));
         }
@@ -53,9 +61,16 @@ public class EditSupplierCommandParser implements Parser<EditSupplierCommand> {
                         PREFIX_PRODUCT, PREFIX_PRICE);
         fieldArgMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
 
-        EditSupplierDescriptor editSupplierDescriptor = editSupplierDescription(fieldArgMultimap);
+        EditSupplierDescriptor editSupplierDescriptor;
+
+        try {
+            editSupplierDescriptor = editSupplierDescription(fieldArgMultimap);
+        } catch (ParseException pe) {
+            throw new ParseException(String.format(EditMessages.MESSAGE_EDIT_INVALID_FIELD, pe.getMessage()));
+        }
+
         if (!editSupplierDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(EditSupplierCommand.MESSAGE_NOT_EDITED);
+            throw new ParseException(EditMessages.MESSAGE_EDIT_EMPTY_FIELD);
         }
 
         Set<Tag> tags = new HashSet<>();
@@ -75,8 +90,7 @@ public class EditSupplierCommandParser implements Parser<EditSupplierCommand> {
         try {
             return ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    EditSupplierCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(EditMessages.MESSAGE_EDIT_INVALID_NAME, pe.getMessage()));
         }
 
     }
