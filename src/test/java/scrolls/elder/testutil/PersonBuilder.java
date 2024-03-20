@@ -34,7 +34,7 @@ public class PersonBuilder {
     private Address address;
     private Set<Tag> tags;
     private Role role;
-    private Optional<Integer> pairedWith;
+    private Optional<Name> pairedWith;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -123,7 +123,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code pairedWith} of the {@code Person} that we are building.
      */
-    public PersonBuilder withPairedWith(Optional<Integer> pairedWith) {
+    public PersonBuilder withPairedWith(Optional<Name> pairedWith) {
         this.pairedWith = pairedWith;
         return this;
     }

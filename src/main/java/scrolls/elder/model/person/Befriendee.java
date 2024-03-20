@@ -52,7 +52,7 @@ public class Befriendee extends Person {
                 .add("address", address)
                 .add("tags", tags)
                 .add("role", role)
-                .add("pairedWith", pairedWith.orElse(-1))
+                .add("pairedWith", pairedWith.orElse(Name.getNone()))
                 .toString();
     }
 }

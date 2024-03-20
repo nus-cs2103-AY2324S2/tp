@@ -26,7 +26,7 @@ public abstract class Person {
     // Data fields
     protected final Address address;
     protected final Set<Tag> tags = new HashSet<>();
-    protected Optional<Integer> pairedWith;
+    protected Optional<Name> pairedWith;
 
     /**
      * Every field must be present and not null.
@@ -74,12 +74,16 @@ public abstract class Person {
         return Collections.unmodifiableSet(tags);
     }
 
-    public Optional<Integer> getPairedWith() {
+    public Optional<Name> getPairedWith() {
         return pairedWith;
     }
 
-    public void setPairedWith(Optional<Integer> pairedWith) {
+    public void setPairedWith(Optional<Name> pairedWith) {
         this.pairedWith = pairedWith;
+    }
+
+    public boolean isPaired() {
+        return pairedWith.isPresent();
     }
 
     /**
@@ -142,7 +146,7 @@ public abstract class Person {
                 .add("address", address)
                 .add("tags", tags)
                 .add("role", role)
-                .add("pairedWith", pairedWith.orElse(-1))
+                .add("pairedWith", pairedWith.orElse(Name.getNone()))
                 .toString();
     }
 
