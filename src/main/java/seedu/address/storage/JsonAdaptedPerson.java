@@ -35,14 +35,14 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("studentid") String studentid,
-            @JsonProperty("attendances") List<JsonAdaptedAttendance> tags) {
+                             @JsonProperty("email") String email, @JsonProperty("studentid") String studentid,
+                             @JsonProperty("attendances") List<JsonAdaptedAttendance> attendances) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.studentid = studentid;
-        if (tags != null) {
-            this.attendances.addAll(tags);
+        if (attendances != null) {
+            this.attendances.addAll(attendances);
         }
     }
 
@@ -55,8 +55,12 @@ class JsonAdaptedPerson {
         email = source.getEmail().value;
         studentid = source.getStudentId().value;
         attendances.addAll(source.getAttendances().stream()
-                .map(JsonAdaptedAttendance::new)
+                .map(attendance -> new JsonAdaptedAttendance(attendance.attendanceName.getDate(), attendance.attendanceName.getStatus()))
                 .collect(Collectors.toList()));
+
+//        for (JsonAdaptedAttendance i : attendances) {
+//            System.out.println(i.getAttendanceDate());
+//        }
     }
 
     /**
