@@ -8,7 +8,7 @@
 
 NetConnect is a desktop app for managing contacts in SMEs, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). It enables managers to efficiently manage their employees, clients, as well as suppliers, **all in one place** ☝🏻.
 
-NetConnect aims to target a specific user demographic, which demands a hyper-specific set of requirements. Specifically, we aim to address the woes of food business managers who have to manage multiple groups of contacts, such as clients, suppliers, and employees.
+The inspiration behind NetConnect lies in solving a specific set of challenges faced by the food business managers demographic. Specifically, we aim to address the challenge of managing various contact types: clients, suppliers, and employees.
 
 If you relate to this problem we identified, then NetConnect might be just right for you. This user guide will accompany you in maximising the capabilities of this product, freeing time for more pressing issues.
 
@@ -73,7 +73,7 @@ If you relate to this problem we identified, then NetConnect might be just right
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
@@ -84,12 +84,7 @@ Format: `help`
 
 Adds a person (Client, Supplier or Employee) to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS r/ROLE [t/TAG]…​`
-
-<box type="tip" seamless>
-
-**Tip:** A person can have any number of tags (including 0)
-</box>
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS role/ROLE [dob/yyyy-mm-dd][t/TAG]…​`
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 r/client t/friend`
@@ -128,8 +123,8 @@ Format: `remark i/ID r/REMARK`
 * You can remove a remark from a person by typing `rmark i/ID` without specifying any remarks after it.
 
 Examples:
-* `remark i/1 r/John is a very good client` Adds a remark to the person with ID of 1.
-* `remark i/2 ` Removes the remark from the person with ID of 2.
+* `remark i/2 r/John is a very good client` Adds a remark to the person with ID of 2.
+* `remark i/2` Removes the remark from the person with ID of 2.
 
 ### Listing all persons : `list`
 
@@ -141,15 +136,15 @@ Format: `list`
 
 Edits an existing person in the address book.
 
-Format: `edit i/ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/ROLE] [t/TAG]…​`
+Format: `edit ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [ro/ROLE] [t/TAG]…​`
 
-* Edits the person with the specified `ID`. `ID` refers to the unique identification number assigned to each person when first added to the list. `ID` **must refer to a person that exist within NetConnect**.
+* Edits the person with the specified `ID`. `ID` refers to the unique identification number assigned to each person when first added to the list.
+* `ID` **must refer to a person that exist within NetConnect**.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
-* You cannot edit a field that is invalid to the current person type
+* When editing tags, the existing tags of the person will be removed i.e. adding of tags is not cumulative.
+* You can remove all the person’s tags by typing `t/` without specifying any tags after it.
+* You cannot edit a field that is invalid to the current person type.
 
 Examples:
 *  `edit i/1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the person with ID of 1 to be `91234567` and `johndoe@example.com` respectively.
@@ -161,46 +156,48 @@ Finds persons whose names contain any of the given name keywords.
 
 Format: `find NAME_KEYWORD [MORE_NAME_KEYWORDS]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* The search is case-insensitive. e.g. `hans` will match `Hans`.
+* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`.
 * Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
+* Only full words will be matched e.g. `Han` will not match `Hans`.
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`.
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
+* `find John` returns `john` and `John Doe`.
+* `find alex david` returns `Alex Yeoh`, `David Li`.<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-**Tip:** You can concatenate all the names you are interested in finding. E.g. If you are interested in listing Alice, Bob and Charles in your list, you can use the following command
-`find alice bob charles`.
+**Tip:** You can concatenate all the names you are interested in finding. E.g. If you are interested in listing Alice, Bob and Charles in your list, you can use the following command `find alice bob charles`.
 
 ### Locating persons by remark: `findrem`
 
-Finds persons who have remarks that matches the given keywords
+Finds persons who have remarks that matches the given keywords.
 
 Format: `find REMARK_KEYWORD [MORE_REMARK_KEYWORDS]`
 
-* The search is case-insensitive. e.g `Friendly` will match `friendly`
-* The order of the keywords does not matter. e.g. `fish supply` will match `supply fish`
+* The search is case-insensitive. e.g. `Friendly` will match `friendly`.
+* The order of the keywords does not matter. e.g. `fish supply` will match `supply fish`.
 * Only the remark is searched.
-* Only full words will be matched e.g. `fish` will not match `fishball`
+* Only full words will be matched e.g. `fish` will not match `fishball`.
 * Persons with remarks matching at least one keyword will be returned (i.e. `OR` search).
 
 Examples:
-* `findrem unfriendly` returns `john` who has a remark `unfriendly`
-* `findrem marketing IC`  returns `Alex Yeoh` who has a remark `publicity IC`, and `David Li` who has a remark `marketing head`.<br>
+* `findrem unfriendly` returns all persons who have the remark `unfriendly`.
+* `findrem marketing IC`  returns all persons who have the remark `publicity IC`, as well as persons who have the remark `marketing head`.<br>
 
 ### Locating persons by role: `findrole`
 
-Finds persons whose role matches the given role.
+Finds persons whose role matches the given role - Client, Supplier or Employee.
 
 Format: `findrole ROLE_KEYWORD [MORE_ROLE_KEYWORDS]`
-* The search is case-insensitive. e.g `client` will match `Client`
+* The search is case-insensitive. e.g. `client` will match `Client`.
 * Only the role is searched.
-* the role must be an exact match of either `client`, `supplier` or `employee`
+* the role must be an exact match of either `client`, `supplier` or `employee`.
 
+Examples:
+* `findrole client` returns all persons who have the role `employee`.
+* `findrole supplier clients` returns all persons who have the role `supplier` or `client`.
 
 ### Locating persons by phone number: `findnum`
 
@@ -208,11 +205,11 @@ Finds persons whose phone number matches the given number.
 
 Format: `findnum CONTACT_NUMBER [CONTACT_NUMBERS]`
 
-* Only the full number is searched (i.e. no partial match). e.g. `83647382` or `8364` will not match `83641001`
+* Only the full number is searched (i.e. no partial match). e.g. `83647382` or `8364` will not match `83641001`.
 * The search will return at most one person for each number since two people cannot share the same phone number.
 
 Examples:
-* `findnum 83647382` returns `John Doe` who has the phone number `83647382`
+* `findnum 83647382` returns `John Doe` who has the phone number `83647382`.
 
 **Note:** NetConnect accepts phone numbers with three or more digits, to account for staff extensions in the company. This is not a bug.
 
@@ -232,6 +229,8 @@ Format: `relate [i/ID][n/NAME] [i/ID][n/NAME]`
 
 Example: `relate i/1 i/2` creates a relation between the profiles with ID of 1 and 2.
 
+**Info:** The relation is stored in a field within Person object, which contains the IDs of any suppliers or clients that they are connected to.
+
 ### Show Relations Associated to a Person : `showrelated`
 
 Shows all the relations associated to a person in the address book.
@@ -244,10 +243,21 @@ With every change to the command input, NetConnect saves and updates the command
 ### Export Current View to CSV File
 Retrieve information on a group of profiles at once with this function! This can be useful for consolidating all the emails or contact number at once, or to share information with third parties.
 
-**To export all profiles in the address book to a CSV file:** Step 1: `list` Step 2: `export`
+**To export all profiles in the address book to a CSV file:** 
+
+Step 1: `list` 
+
+Step 2: `export`
+
 * The `list` command in the first step is to pull all profiles into the current view.
 
-**To export a specific group of profiles to a CSV file:** Step 1: `find [KEYWORD]` or any other function that filters the profiles. Step 2: `export`
+**To export a specific group of profiles to a CSV file:**
+
+Step 1: `find [KEYWORD]` or any other function that filters the profiles.
+
+Step 2: `export`
+
+
 * The first step is to filter the profiles you want to export into the current view.
 
 ### Never Miss a Birthday!
@@ -267,18 +277,27 @@ NetConnect data are saved in the hard disk automatically after any command that 
 
 NetConnect data are saved automatically as a JSON file `[JAR file location]/data/netconnect.json`. Advanced users are welcome to update data directly by editing that data file.
 
-<box type="warning" seamless>
-
 **Caution:**
 If your changes to the data file makes its format invalid, NetConnect will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
 Furthermore, certain edits can cause the NetConnect to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
-</box>
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous NetConnect home folder.
+
+**Q**: How do I know if Java 11 is already installed on my computer?
+**A**: Open the Command Prompt (Windows) or the Terminal (MacOS) and run the `java -version` command. The output should contain Java 11 if it is installed.
+
+**Q**: What if I have newer versions of Java already installed on my computer?
+**A**: You will still need Java 11 to run NetConnect, though multiple versions should be fine. You may check this using the `java -version` command. The output should contain Java 11 if it is installed.
+
+**Q**: What operating systems can I use NetConnect on?
+**A**: NetConnect can be run on Linux, Windows, and macOS, provided that Java 11 is installed.
+
+**Q**: Do I require the internet to run the application?
+**A**: No, you do not need the internet to access our application or its features.
 
 --------------------------------------------------------------------------------------------------------------------
 
