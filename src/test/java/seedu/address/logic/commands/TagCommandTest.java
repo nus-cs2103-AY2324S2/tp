@@ -1,5 +1,13 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+
+import java.util.HashSet;
+import java.util.Set;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -11,14 +19,6 @@ import seedu.address.model.person.Id;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.PersonBuilder;
-
-import java.util.HashSet;
-import java.util.Set;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 public class TagCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
@@ -97,24 +97,24 @@ public class TagCommandTest {
         TagCommand tagCommandCopy = new TagCommand(new Id(240001), tagsCopy);
 
         // return true if same id and tags
-        assertTrue(tagCommand.equals(tagCommandCopy));
+        Assertions.assertTrue(tagCommand.equals(tagCommandCopy));
 
         // return true if same object
-        assertTrue(tagCommand.equals(tagCommand));
+        Assertions.assertTrue(tagCommand.equals(tagCommand));
 
         // return false if null
-        assertFalse(tagCommand.equals(null));
+        Assertions.assertFalse(tagCommand.equals(null));
 
         // return false if different command type
-        assertFalse(tagCommand.equals(new ClearCommand()));
+        Assertions.assertFalse(tagCommand.equals(new ClearCommand()));
 
         // return false if different id
-        assertFalse(tagCommand.equals(new TagCommand(new Id(240002), tags)));
+        Assertions.assertFalse(tagCommand.equals(new TagCommand(new Id(240002), tags)));
 
         tagsCopy.add(new Tag("Family"));
 
         // return false if different tag names
-        assertFalse(tagCommand.equals(tagCommandCopy));
+        Assertions.assertFalse(tagCommand.equals(tagCommandCopy));
     }
 
     @Test
@@ -126,7 +126,7 @@ public class TagCommandTest {
         String expected = TagCommand.class.getCanonicalName() + "{id=240001" + ", tags="
                 + tags + "}";
 
-        assertEquals(expected, tagCommand.toString());
+        Assertions.assertEquals(expected, tagCommand.toString());
 
     }
 

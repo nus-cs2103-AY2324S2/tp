@@ -1,31 +1,31 @@
 package seedu.address.logic.parser;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.TagCommand;
-import seedu.address.model.person.Id;
-import seedu.address.model.tag.Tag;
-
-import java.util.HashSet;
-import java.util.Set;
-
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+
+import java.util.HashSet;
+import java.util.Set;
+
+import org.junit.jupiter.api.Test;
+import seedu.address.logic.commands.TagCommand;
+import seedu.address.model.person.Id;
+import seedu.address.model.tag.Tag;
 
 public class TagCommandParserTest {
     private TagCommandParser parser = new TagCommandParser();
 
     @Test
     public void parse_singleTag_success() {
-        String user_input = "240001 " + PREFIX_TAG + " Finance";
+        String userInput = "240001 " + PREFIX_TAG + " Finance";
 
         Set<Tag> tags = new HashSet<>();
         tags.add(new Tag("Finance"));
 
         TagCommand expectedCommand = new TagCommand(new Id(240001), tags);
 
-        assertParseSuccess(parser, user_input, expectedCommand);
+        assertParseSuccess(parser, userInput, expectedCommand);
     }
 
     @Test
