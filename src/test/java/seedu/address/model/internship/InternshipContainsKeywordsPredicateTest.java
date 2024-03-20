@@ -4,17 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
-
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.internship.InternshipContainsKeywordsPredicate;
 import seedu.address.testutil.InternshipBuilder;
 
 public class InternshipContainsKeywordsPredicateTest {
