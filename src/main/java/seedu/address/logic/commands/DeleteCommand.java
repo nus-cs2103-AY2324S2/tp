@@ -50,7 +50,8 @@ public class DeleteCommand extends Command {
         Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deletePerson(personToDelete);
         personToDelete.deleteQrCode();
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, deletedPersonMessageGenerator(personToDelete)));
+        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS,
+                deletedPersonMessageGenerator(personToDelete)));
     }
 
     /**
