@@ -199,9 +199,27 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Command history feature
+
+This feature saves previously entered commands so that the user can easily view them again. 
+
+#### Steps to trigger
+1. User focuses the command input.
+2. User presses the Up arrow key to view the previous command in history, or Down arrow key to view the next.
+3. `updateCommandInput()` saves the currently edited command to the command buffer.
+4. `next()`/`previous()` in `CommandHistoryView` is called and if a next/previous command exists, the command text field is updated.
+
+The following sequence diagram shows what happens as the user requests to view the command history, and what happens after
+the command is executed:
+<puml src="diagrams/CommandHistorySequenceDiagram.puml" alt="Sequence Diagram for Command History" />
+
+#### Possible enhancements
+* The history size could be made to be configurable by the user.
+* The history could be saved to disk so that it persists between app launches.
+
 ### \[Proposed\] Undo/redo feature
 
-#### Proposed Implementation
+#### Proposed Implementation 
 
 The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo
 history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the
@@ -438,7 +456,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1b1. CodeConnect shows an error message.
       Use case ends.
 
-* 1c. No fields are entered.
+* 1c. Updated value does not follow format of the specific field.
     * 1b1. CodeConnect shows an error message.
       Use case ends.
 

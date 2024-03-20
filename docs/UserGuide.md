@@ -44,6 +44,8 @@ CodeConnect (CC) is a **desktop app for managing student contacts, optimized for
 
 ## Features
 
+### Commands
+
 <box type="info" seamless>
 
 **Notes about the command format:**<br>
@@ -66,7 +68,7 @@ CodeConnect (CC) is a **desktop app for managing student contacts, optimized for
 - If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
   </box>
 
-### Viewing help : `help`
+#### Viewing help : `help`
 
 Shows a message explaning how to access the help page.
 
@@ -74,7 +76,7 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
-### Adding a contact: `add`
+#### Adding a contact: `add`
 
 Adds a contact to the address book.
 
@@ -90,13 +92,13 @@ Examples:
 - `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 g/johnDoee`
 - `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 g/betBetty t/criminal ts/Flutter`
 
-### Listing all contacts : `list`
+#### Listing all contacts : `list`
 
 Shows a list of all contacts in the address book.
 
 Format: `list`
 
-### Editing a contact : `edit`
+#### Editing a contact : `edit`
 
 Edits an existing contact in the address book.
 
@@ -114,7 +116,7 @@ Examples:
 - `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st contact to be `91234567` and `johndoe@example.com` respectively.
 - `edit 2 n/Betsy Crower t/` Edits the name of the 2nd contact to be `Betsy Crower` and clears all existing tags.
 
-### Locating contacts by name: `find`
+#### Locating contacts by name: `find`
 
 Finds contacts whose names contain any of the given keywords.
 
@@ -133,7 +135,7 @@ Examples:
 - `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Locating contacts by tags: `find-tag`
+#### Locating contacts by tags: `find-tag`
 
 Finds contacts whose tags contain all the given keywords.
 
@@ -148,7 +150,7 @@ Examples:
 - image to be replaced
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a contact : `delete`
+#### Deleting a contact : `delete`
 
 Deletes the specified contact from the address book.
 
@@ -163,23 +165,31 @@ Examples:
 - `list` followed by `delete 2` deletes the 2nd contact in the address book.
 - `find Betsy` followed by `delete 1` deletes the 1st contact in the results of the `find` command.
 
-### Clearing all entries : `clear`
+#### Clearing all entries : `clear`
 
 Clears all entries from the address book.
 
 Format: `clear`
 
-### Exiting the program : `exit`
+#### Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
 
-### Saving the data
+### Other features
+
+#### View your previous commands
+
+You can view the commands you have run previously by pressing the up and down arrow keys while the command input is focused.
+Any edits you make to a command will be saved while navigating through your history, so you can go to a another command 
+to refer to it, and return back to your edited command to finish typing.
+
+#### Saving the data
 
 AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-### Editing the data file
+#### Editing the data file
 
 AddressBook data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
