@@ -40,9 +40,8 @@ public class ImportCommand extends Command {
     public static final String MESSAGE_NOT_IMPLEMENTED_YET =
             "Remark command not implemented yet";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Imports contacts from specified filepath "
-            + "Existing contacts will.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_IMPORT + "import] "
+            + "Parameters: filePath"
+            + "[" + PREFIX_IMPORT + "import]"
             + "Example: " + COMMAND_WORD + PREFIX_IMPORT + "C:usr/lib/text.csv";
     private static final String MESSAGE_ARGUMENTS = "filePath: %s";
     private static final String MESSAGE_IMPORT_SUCCESS = "Imported Contacts from: %s";
@@ -78,6 +77,7 @@ public class ImportCommand extends Command {
 
         this.filePath = filePath;
     }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -98,6 +98,7 @@ public class ImportCommand extends Command {
 
         return new CommandResult(String.format(MESSAGE_IMPORT_SUCCESS, filePath.toString()));
     }
+
     /**
      * Reads the csv file and returns a list of maps,
      * where each map represents a row of person's data in the csv file.
