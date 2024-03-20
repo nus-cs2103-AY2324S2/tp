@@ -8,6 +8,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Path?>
 
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
   <GridPane HBox.hgrow="ALWAYS">
@@ -25,6 +26,7 @@
             <Region fx:constant="USE_PREF_SIZE" />
           </minWidth>
         </Label>
+        <Path fx:id="star" />
         <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
       </HBox>
       <FlowPane fx:id="tags" />

@@ -6,7 +6,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.ClosePath;
+import javafx.scene.shape.LineTo;
 import javafx.scene.layout.Region;
+import javafx.scene.shape.MoveTo;
+import javafx.scene.shape.Path;
 import seedu.address.model.person.Person;
 
 /**
@@ -25,6 +30,7 @@ public class PersonCard extends UiPart<Region> {
      */
 
     public final Person person;
+    private final Path star;
 
     @FXML
     private HBox cardPane;
@@ -58,5 +64,32 @@ public class PersonCard extends UiPart<Region> {
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+
+        this.star = createStar();
+        if (person.isStarred()) {
+            cardPane.getChildren().add(cardPane.getChildren().indexOf(name) + 1, star);
+        }
+    }
+
+    /**
+     * Creates a star shape.
+     * @return Path representing the star shape.
+     */
+    private Path createStar() {
+        Path star = new Path();
+        star.getElements().addAll(
+                new MoveTo(30, 0),
+                new LineTo(0, 30),
+                new LineTo(60, 30),
+                new ClosePath(),
+                new MoveTo(0, 10),
+                new LineTo(60, 10),
+                new LineTo(30, 40),
+                new ClosePath()
+        );
+        star.setFill(Color.YELLOW);
+        star.setStroke(Color.BLACK);
+        star.setStrokeWidth(1);
+        return star;
     }
 }
