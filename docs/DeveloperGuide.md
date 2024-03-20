@@ -4,14 +4,18 @@ title: Developer Guide
 ---
 
 * Table of Contents
-  {:toc}
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the
-  original source as well}
+| Module                                  | Description                               |
+|-----------------------------------------|-------------------------------------------|
+| [JavaFX](https://openjfx.io/)                   | UI generation for Java |
+| [Jackson](https://github.com/FasterXML/jackson) | Json processing library for Java |
+| [JUnit5](https://github.com/junit-team/junit5)  | Automated testing library for Java |
+| [ZXing](https://github.com/zxing/zxing)         | Barcode image processing library for Java |
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -383,7 +387,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 3a1. FitBook shows an error message.
 
-      Use case resumes at step 2 
+      Use case resumes at step 2
 
 <hr>
 
