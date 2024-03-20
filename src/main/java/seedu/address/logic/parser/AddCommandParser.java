@@ -56,7 +56,7 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         Optional<String> addressString = argMultimap.getValue(PREFIX_ADDRESS);
         Optional<Address> address;
-        if (role.getRoleType() == Role.RoleType.PROFESSOR) {
+        if (role.equals(Role.PROFESSOR)) {
             if (addressString.isPresent()) {
                 address = Optional.of(ParserUtil.parseAddress(addressString.get()));
             } else {

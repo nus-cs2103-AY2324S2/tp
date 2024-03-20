@@ -105,7 +105,7 @@ public class ParserUtil {
     public static Optional<Address> parseOptionalAddress(String address) throws ParseException {
         requireNonNull(address);
         if (address.trim().isEmpty()) {
-            return Optional.empty();
+            return Optional.of(new Address(""));
         }
         return Optional.of(parseAddress(address));
     }
@@ -136,7 +136,7 @@ public class ParserUtil {
         if (!Role.isValidRole(trimmedRole)) {
             throw new ParseException(Role.MESSAGE_CONSTRAINTS);
         }
-        return new Role(trimmedRole);
+        return Role.valueOf(trimmedRole);
     }
 
     /**
