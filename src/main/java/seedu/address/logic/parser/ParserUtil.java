@@ -154,4 +154,14 @@ public class ParserUtil {
         }
         return attendanceSet;
     }
+
+    public static AttendanceStatus parsesAttendanceStatus(String date, String status) throws ParseException {
+        requireNonNull(date, status);
+        String trimmedDate = date.trim();
+        String trimmedStatus = status.trim();
+        if (!Attendance.isValidDate(trimmedDate) || !Attendance.isValidStatus(trimmedStatus)) {
+            throw new ParseException(Attendance.MESSAGE_CONSTRAINTS);
+        }
+        return new AttendanceStatus(date, status);
+    }
 }
