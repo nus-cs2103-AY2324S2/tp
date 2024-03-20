@@ -20,7 +20,7 @@ public class Sex {
      * The first character of the sex must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[MF]";
+    public static final String VALIDATION_REGEX = "[mfMF]";
 
     public final String value;
 
@@ -44,11 +44,11 @@ public class Sex {
     }
 
     public boolean isMaleString(String sex) {
-        return sex.equals(MALE);
+        return sex.equalsIgnoreCase(MALE);
     }
 
     public boolean isFemaleString(String sex) {
-        return sex.equals(FEMALE);
+        return sex.equalsIgnoreCase(FEMALE);
     }
 
     public static boolean isValidSex(String test) {
