@@ -30,6 +30,7 @@ class JsonAdaptedPerson {
     private final String email;
     private final String address;
     private final String company;
+    private final Boolean starred;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
     /**
@@ -38,12 +39,14 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-                             @JsonProperty("company") String company, @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+                             @JsonProperty("company") String company, @JsonProperty("starred") Boolean starred,
+                                            @JsonProperty("tags") List<JsonAdaptedTag> tags) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.company = company;
+        this.starred = starred;
         if (tags != null) {
             this.tags.addAll(tags);
         }
@@ -58,6 +61,7 @@ class JsonAdaptedPerson {
         email = source.getEmail().value;
         address = source.getAddress().value;
         company = source.getCompany().value;
+        starred = source.isStarred();
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -112,7 +116,7 @@ class JsonAdaptedPerson {
         final Company modelCompany = new Company(company);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelCompany, modelTags);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelCompany, starred, modelTags);
     }
 
 }
