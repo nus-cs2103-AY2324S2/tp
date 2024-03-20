@@ -169,6 +169,21 @@ Examples:
 
 
 * `find -a King` returns two articles: `King Charles’ health crisis: the future of Britain becomes uncertain` and `The king of the Jungle now reigns supreme in the state of Ohio`
+### Listing out articles: `list -a`
+
+List out titles of all articles in database
+
+Format: `list -a`
+
+* No parameters necessary
+
+Examples:
+* `list -a ` returns 
+
+ `1.Make Education Great Again: Donald Trump Takes Helm as Dean of NUS, Introduces 'Art of the Deal' as Mandatory Reading 06-06-2006 Straits Times`
+
+` 2.ChatGPT: NTU's New Dean, Pioneering AI-Led Education  12-12-2025 Mothership`
+
 
 ### Exiting the program : `exit`
 
