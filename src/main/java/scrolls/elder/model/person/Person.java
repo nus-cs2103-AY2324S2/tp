@@ -85,6 +85,7 @@ public abstract class Person {
 
     public boolean isPairPresent(Person person) {
         return person.getPairedWith().isPresent();
+    }
 
     public boolean isPaired() {
         return pairedWith.isPresent();
