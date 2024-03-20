@@ -6,7 +6,7 @@ import org.mockito.MockedStatic;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.mockStatic;
-import static seedu.address.testutil.TypicalPersons.GEORGE;
+import static seedu.address.testutil.TypicalContacts.GEORGE;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.when;
 
