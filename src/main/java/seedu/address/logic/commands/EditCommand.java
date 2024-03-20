@@ -117,6 +117,7 @@ public class EditCommand extends Command {
      * @throws IllegalArgumentException if the user input does not conform the expected format
      */
     public static EditCommand of(String args) throws IllegalArgumentException {
+        System.out.println(args);
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,

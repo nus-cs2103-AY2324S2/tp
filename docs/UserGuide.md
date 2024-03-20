@@ -126,9 +126,9 @@ Example: `edit 1 --email newemail@example.com` edits the contact with id `123`, 
 
 Edit existing assets without recreating them.
 
-Format: `edita <asset> <new_asset_name>`
+Format: `edita old/<old_asset_name> new/<new_asset_name>`
 
-Example: `edita L293D L293E` edits the asset `L293D`, changing its name to `L293E`.
+Example: `edita old/hammer new/screwdriver` edits the asset `hammer`, changing its name to `screwdriver`.
 
 * The asset will be renamed for all contacts linked to it.
 
@@ -200,6 +200,6 @@ Action     | Format      |        Examples
 **Add**    | `add --name <name> [--email <email>] [--phone <phone>] [--address <address>] [--asset <asset>]...` | `add --name John Doe --email johndoe@example.com --phone +12345678 --asset L293D`
 **Delete** | `delete <id>` | `delete 1`
 **Edit contact**   | `edit <id> [--email <email>] [--phone <phone>] [--asset <asset>]...` | `edit 1 --email newemail@example.com`
-**Edit asset**   | `edita <asset> <new_asset_name>` | `edita L293D L293E`
+**Edit asset**   | `edita old/<old_asset_name> new/<new_asset_name>` | `dita old/hammer new/screwdriver`
 **Find**   | ``find <keyword> [<keyword>]...`` | `find John`
 **Exit**   | `exit` | `exit`
