@@ -2,8 +2,10 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -16,6 +18,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.orders.AddOrderCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
@@ -39,6 +42,18 @@ public class AddOrderCommandTest {
         CommandResult commandResult = new AddOrderCommand(targetIndex, order).execute(modelStub);
         assertEquals(1, modelStub.getOrderList().size());
     }
+
+    @Test
+    public void execute_orderAcceptedByModel_indexError() throws Exception {
+        PersonBuilder personBuilder = new PersonBuilder();
+        Person person = personBuilder.build();
+        OrderBuilder builder = new OrderBuilder();
+        Order order = builder.build();
+        ModelStubAcceptingOrderAdded modelStub = new ModelStubAcceptingOrderAdded(order, person);
+        Index targetIndex = INDEX_THIRD_PERSON;
+        assertThrows(CommandException.class, () -> new AddOrderCommand(targetIndex, order).execute(modelStub));
+    }
+
 
     /**
      * A default model stub that have all of the methods failing.

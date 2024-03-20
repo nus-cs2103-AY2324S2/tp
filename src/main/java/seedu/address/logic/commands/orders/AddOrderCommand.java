@@ -58,11 +58,7 @@ public class AddOrderCommand extends Command {
         }
         Person personToEdit = lastShownList.get(index.getZeroBased());
         Set<Order> orders = personToEdit.getOrders();
-        if (orders == null) {
-            orders = new HashSet<>();
-        } else {
-            orders = new HashSet<>(orders);
-        }
+        orders = new HashSet<>(orders);
         orders.add(this.order);
         Person editedPerson = new Person(
                 personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
