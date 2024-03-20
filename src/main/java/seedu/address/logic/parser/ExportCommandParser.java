@@ -4,7 +4,7 @@ import seedu.address.logic.commands.ExportCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new Exportommand object
+ * Parses input arguments and creates a new ExportCommand object
  */
 public class ExportCommandParser implements Parser<ExportCommand> {
     public static final String MESSAGE_INVALID_FILENAME = "Error: Invalid filename. "
