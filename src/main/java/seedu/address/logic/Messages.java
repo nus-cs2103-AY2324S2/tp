@@ -63,7 +63,7 @@ public class Messages {
                 .append("; Publication Date: ")
                 .append(article.getPublicationDate())
                 .append("; Source: ")
-                .append(article.getSource())
+                .append(article.getSources())
                 .append("; Category: ")
                 .append(article.getCategory())
                 .append("; Status: ")

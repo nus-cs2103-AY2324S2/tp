@@ -6,7 +6,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PUBLICATION_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SOURCE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
 import java.time.LocalDateTime;
@@ -40,7 +39,7 @@ public class AddArticleCommandParser implements Parser<AddArticleCommand> {
         String[] authorList = ParserUtil.parseAuthors(argMultimap.getAllValues(PREFIX_AUTHOR));
         LocalDateTime publicationDate = ParserUtil.parsePublicationDate(argMultimap.getValue(PREFIX_PUBLICATION_DATE)
                 .get());
-        String[] sourceList = ParserUtil.parseSources(argMultimap.getAllValues(PREFIX_TAG));
+        String[] sourceList = ParserUtil.parseSources(argMultimap.getAllValues(PREFIX_SOURCE));
         String category = ParserUtil.parseCategory(argMultimap.getValue(PREFIX_CATEGORY).get());
         Article.Status status = (Article.Status) ParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).get());
 

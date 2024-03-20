@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
-import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 import seedu.address.model.article.TitleContainsKeywordsPredicate;
@@ -13,7 +12,7 @@ import seedu.address.model.article.TitleContainsKeywordsPredicate;
  * Finds and lists all articles in article book whose title contains any of the argument keywords.
  * Keyword matching is case-insensitive.
  */
-public class FindArticleCommand extends Command {
+public class FindArticleCommand extends ArticleCommand {
 
     public static final String COMMAND_WORD = "find";
 

@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
-import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -13,7 +12,7 @@ import seedu.address.model.article.Article;
 /**
  * Adds an article to the article book.
  */
-public class AddArticleCommand extends Command {
+public class AddArticleCommand extends ArticleCommand {
 
     public static final String COMMAND_WORD = "add";
 

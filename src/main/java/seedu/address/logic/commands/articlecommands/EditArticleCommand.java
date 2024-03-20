@@ -13,7 +13,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
-import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -23,7 +22,7 @@ import seedu.address.model.article.Article.Status;
 /**
  * Edits the details of an existing article in the article book.
  */
-public class EditArticleCommand extends Command {
+public class EditArticleCommand extends ArticleCommand {
 
     public static final String COMMAND_WORD = "edit";
 
@@ -89,7 +88,7 @@ public class EditArticleCommand extends Command {
         String[] authors = editArticleDescriptor.getAuthors().orElse(articleToEdit.getAuthors());
         LocalDateTime publicationDate = editArticleDescriptor.getPublicationDate()
                 .orElse(articleToEdit.getPublicationDate());
-        String[] source = editArticleDescriptor.getSource().orElse(articleToEdit.getSource());
+        String[] source = editArticleDescriptor.getSource().orElse(articleToEdit.getSources());
         String category = editArticleDescriptor.getCategory().orElse(articleToEdit.getCategory());
         Status status = editArticleDescriptor.getStatus().orElse(articleToEdit.getStatus());
 
