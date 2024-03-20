@@ -1,6 +1,6 @@
 ---
 layout: page
-title: User Guide
+title: Housekeeping Hub User Guide
 ---
 
 Welcome to HouseKeeping Hub, the premier **desktop solution for managing client and housekeeper contacts**. Combining the **efficiency of a Command Line Interface ([CLI](#cli)) with the convenience of a Graphical User Interface ([GUI](#gui))**, HouseKeeping Hub offers unparalleled speed and ease of use. Whether you're a typist or a clicker, HouseKeeping Hub ensures swift completion of all your contact management tasks. Bid farewell to the sluggishness of traditional GUI apps - with HouseKeeping Hub, managing your contacts has never been faster or simpler.
@@ -16,27 +16,58 @@ you will find a quick start (guide to install and start using our product), a li
 a glossary to help you understand some jargon. This guide is designed to provide you with clear and concise instructions 
 and a reader-friendly format to enhance your experience in using our product.
 
+## How to use this guide
 
-## Quick start
+Let's get started! Here's a rundown of every section in this guide:
+
+If you have yet to install Housekeeping Hub, you can refer to the [installation instructions](#installation).
+
+After installing the application, you can start off by following our [tutorial](#tutorial) to familiarise yourself
+with the basic features of the app.
+
+The [features](#features) section provides the detailed overview of each command, command formats and examples.
+
+If you'd like a quick reference of all available commands, check out the [command summary](#command-summary).
+
+You can head over to the [Frequently Asked Questions](#faq) section to view answers to common queries regarding the app.
+
+Finally, we have the [glossary](#glossary) section to clarify any technical jargon used.
+
+Now you have successfully mastered how to use this guide! One last thing: learn how to **navigate the guide**
+in the section below.
+
+## Navigating our guide
+
+Words highlighted in blue in our guide can direct you to a specific section in our guide ([FAQ](#faq)), 
+an external link ([download link](https://github.com/AY2324S2-CS2103T-W09-1/tp/releases)), or to an explanation of
+a term in the glossary ([CLI](#cli)).
+
+## Installation
+<a id="installation"></a>
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `HousekeepingHub-v1.2.0.jar` from [here](https://github.com/AY2324S2-CS2103T-W09-1/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your HouseKeeping Hub.
 
-1. Open a command [terminal](#terminal), `cd` into the folder you put the [jar](#jar) file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+1. Open a [command terminal](#terminal), and type in `cd` to navigate into the folder you placed the [jar](#jar) file in.
+
+1. Type in `java -jar HousekeepingHub-v1.2.0.jar` to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](./images/Ui.png)
+
+## Tutorial
+<a id="tutorial"></a>
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * `list` : Lists all contacts.
+   * `list client` : Lists all clients.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to HouseKeeping Hub.
+   * `add housekeeper n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a housekeeper named `John Doe`.
 
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
+   * `delete 3` : Deletes the 3rd contact shown in the last shown list.
 
    * `clear` : Deletes all contacts.
 
@@ -47,6 +78,7 @@ and a reader-friendly format to enhance your experience in using our product.
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
+<a id="features"></a>
 
 <div markdown="block" class="alert alert-info">
 
@@ -155,6 +187,7 @@ Furthermore, certain edits can cause the HouseKeeping Hub to behave in unexpecte
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
+<a id="faq"></a>
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous HouseKeeping Hub home folder.
@@ -162,6 +195,7 @@ Furthermore, certain edits can cause the HouseKeeping Hub to behave in unexpecte
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
+<a id="command-summary"></a>
 
 Action | Format, Examples
 --------|------------------
@@ -175,6 +209,7 @@ Action | Format, Examples
 
 ----------------------------------------------------------------------------------------------------------------------
 ## Glossary
+<a id="glossary"></a>
 
 **JAR**
 <a id="jar"></a>
