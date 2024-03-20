@@ -6,16 +6,11 @@
 
 # NetConnect User Guide
 
-NetConnect is a desktop app for managing contacts in SMEs, optimized for use via a Command Line Interface (CLI)
-while still having the benefits of a Graphical User Interface (GUI). It enables managers to efficiently manage their
- employees, clients, as well as suppliers, **all in one place** ☝🏻.
+NetConnect is a desktop app for managing contacts in SMEs, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). It enables managers to efficiently manage their employees, clients, as well as suppliers, **all in one place** ☝🏻.
 
-NetConnect aims to target a specific user demographic, which demands a hyper-specific set of requirements.
-Specifically, we aim to address the woes of food business managers who have to manage multiple groups of contacts,
-such as clients, suppliers, and employees.
+NetConnect aims to target a specific user demographic, which demands a hyper-specific set of requirements. Specifically, we aim to address the woes of food business managers who have to manage multiple groups of contacts, such as clients, suppliers, and employees.
 
-If you relate to this problem we identified, then NetConnect might be just right for you. This user guide will
- accompany you in maximising the capabilities of this product, freeing time for more pressing issues.
+If you relate to this problem we identified, then NetConnect might be just right for you. This user guide will accompany you in maximising the capabilities of this product, freeing time for more pressing issues.
 
 
 <!-- * Table of Contents -->
@@ -31,13 +26,11 @@ If you relate to this problem we identified, then NetConnect might be just right
 
 1. Copy the file to the folder you want to use as the _home folder_ for your NetConnect.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar netconnect.jar`
-   command to run the application.<br>
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar netconnect.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing
-   Enter will open the help window.<br>
+1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * `list` : Lists all contacts.
@@ -119,8 +112,8 @@ Examples:
 * `delete i/2` deletes the person with an ID of 2 in the address book.
 * `delete n/John Doe` deletes the person with the name John Doe (if no one else have the same name).
 
-**Info:** Instead of completely deleting the profile from the database, NetConnect does a soft delete of the profile instead. What this means is that the profile still exists in the database,
-but is marked as inactive, and will not appear in your current list or searches.
+**Info:** Instead of completely deleting the profile from the database, NetConnect does a soft delete of the profile instead. What this means is that the profile still exists in the database, but is marked as inactive, and will not appear in your current list or searches.
+
 **Warnings:** Due to the destructive nature of this action, NetConnect will require a confirmation from the user before it is executed.
 
 ### Adding a Remark to a Person : `remark`
@@ -237,7 +230,7 @@ Creates a relation between two profiles in the address book.
 
 Format: `relate [i/ID][n/NAME] [i/ID][n/NAME]`
 
-Exampple: `relate i/1 i/2` creates a relation between the profiles with ID of 1 and 2.
+Example: `relate i/1 i/2` creates a relation between the profiles with ID of 1 and 2.
 
 ### Show Relations Associated to a Person : `showrelated`
 
@@ -246,27 +239,19 @@ Shows all the relations associated to a person in the address book.
 Format: `showrelated [i/ID][n/NAME]`
 
 ### Open on Last State
-With every change to the command input, NetConnect saves and updates the command input in a separate file.
-When the app closes and is opened again, the last command present before closure will be retrieved from the separate file and
-input into the command field (if any). This way, you never have to worry about losing progress!
+With every change to the command input, NetConnect saves and updates the command input in a separate file. When the app closes and is opened again, the last command present before closure will be retrieved from the separate file and input into the command field (if any). This way, you never have to worry about losing progress!
 
 ### Export Current View to CSV File
-Retrieve information on a group of profiles at once with this function! This can be useful for consolidating all the emails or contact number at once
-, or to share information with third parties.
+Retrieve information on a group of profiles at once with this function! This can be useful for consolidating all the emails or contact number at once, or to share information with third parties.
 
-**To export all profiles in the address book to a CSV file:**
-Step 1: `list`
-Step 2: `export`
+**To export all profiles in the address book to a CSV file:** Step 1: `list` Step 2: `export`
 * The `list` command in the first step is to pull all profiles into the current view.
 
-**To export a specific group of profiles to a CSV file:**
-Step 1: `find [KEYWORD]` or any other function that filters the profiles.
-Step 2: `export`
+**To export a specific group of profiles to a CSV file:** Step 1: `find [KEYWORD]` or any other function that filters the profiles. Step 2: `export`
 * The first step is to filter the profiles you want to export into the current view.
 
 ### Never Miss a Birthday!
-Celebrate your employees' birthdays to show that you care.
-NetConnect will remind you of the birthdays of your employees, so you never have to miss a birthday again!
+Celebrate your employees' birthdays to show that you care. NetConnect will remind you of the birthdays of your employees, so you never have to miss a birthday again!
 
 ### Exiting the program : `exit`
 
