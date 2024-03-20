@@ -53,6 +53,7 @@ public class AddCommandTest {
         assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
     }
 
+
     @Test
     public void equals() {
         Person alice = new PersonBuilder().withName("Alice").build();
@@ -83,6 +84,14 @@ public class AddCommandTest {
         String expected = AddCommand.class.getCanonicalName() + "{toAdd=" + ALICE + "}";
         assertEquals(expected, addCommand.toString());
     }
+
+    @Test
+    public void execute_nullModel_throwsNullPointerException() {
+        Person validPerson = new PersonBuilder().build();
+        AddCommand addCommand = new AddCommand(validPerson);
+        assertThrows(NullPointerException.class, () -> addCommand.execute(null));
+    }
+
 
     /**
      * A default model stub that have all of the methods failing.
