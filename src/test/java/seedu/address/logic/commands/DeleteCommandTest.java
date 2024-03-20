@@ -80,7 +80,7 @@ public class DeleteCommandTest {
         expectedModel.deletePerson(personToDelete.get());
         showNoPerson(expectedModel);
 
-        assertEquals(6,expectedModel.getAddressBook().getPersonList().size());
+        assertEquals(6, expectedModel.getAddressBook().getPersonList().size());
     }
 
 
