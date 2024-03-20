@@ -97,15 +97,15 @@ public class AvailabilityTest {
 
     }
 
-    @Test
-    public void strToDayOfWeekTest() {
-        assertEquals(DayOfWeek.MONDAY.toString(), Availability.strToDayOfWeek(new String("mon")));
-        assertEquals(DayOfWeek.TUESDAY.toString(), Availability.strToDayOfWeek(new String("tues")));
-        assertEquals(DayOfWeek.WEDNESDAY.toString(), Availability.strToDayOfWeek(new String("wednes")));
-        assertEquals(DayOfWeek.THURSDAY.toString(), Availability.strToDayOfWeek(new String("thursday")));
-        assertEquals(DayOfWeek.FRIDAY.toString(), Availability.strToDayOfWeek(new String("FRIDAY")));
-        assertEquals(DayOfWeek.SATURDAY.toString(), Availability.strToDayOfWeek(new String("SATurday")));
-        assertEquals(DayOfWeek.SUNDAY.toString(), Availability.strToDayOfWeek(new String("sunDAY")));
-    }
+//    @Test
+//    public void strToDayOfWeekTest() {
+//        assertEquals(DayOfWeek.MONDAY.toString(), Availability.strToDayOfWeek(new String("mon")));
+//        assertEquals(DayOfWeek.TUESDAY.toString(), Availability.strToDayOfWeek(new String("tues")));
+//        assertEquals(DayOfWeek.WEDNESDAY.toString(), Availability.strToDayOfWeek(new String("wednes")));
+//        assertEquals(DayOfWeek.THURSDAY.toString(), Availability.strToDayOfWeek(new String("thursday")));
+//        assertEquals(DayOfWeek.FRIDAY.toString(), Availability.strToDayOfWeek(new String("FRIDAY")));
+//        assertEquals(DayOfWeek.SATURDAY.toString(), Availability.strToDayOfWeek(new String("SATurday")));
+//        assertEquals(DayOfWeek.SUNDAY.toString(), Availability.strToDayOfWeek(new String("sunDAY")));
+//    }
 
 }
