@@ -90,7 +90,7 @@ Format: `help`
 Add an internship entry and all the relevant fields
 
 Format: `add /com COMPANY_NAME /desc DESCRIPTION /status STATUS /poc CONTACT_NAME /email CONTACT_EMAIL 
-/phone CONTACT_NUMBER /loc LOCATION /role ROLE ​`
+/phone CONTACT_NUMBER /loc LOCATION /role ROLE​`
 
 Examples:
 * `add /com Tiktok /desc create new recommendation engine /status ongoing /poc jane yeo /email hr@tiktok.com 
