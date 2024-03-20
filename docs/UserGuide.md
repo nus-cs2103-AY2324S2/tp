@@ -28,7 +28,7 @@ By using commands, HR officers can efficiently organize contacts for their recru
 
    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the HRConnect.
+   * `add_applicant /name John Doe /phone 98765432 /email johnd@example.com /address 311, Clementi Ave 2, #02-25 /role SWE /tag friends` : Adds a contact named `John Doe` to the HRConnect.
 
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
@@ -56,12 +56,12 @@ By using commands, HR officers can efficiently organize contacts for their recru
   e.g. in `/filter <Tag>`, `<Tag>` is a parameter which can be used as `/filter initial_application`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g `/name NAME [/tag TAG]` can be used as `/name John Doe /tag friend` or as `/name John Doe`.
 
-* Parameters can be in any order for `add` and `edit` commands.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+* Parameters can be in any order for `add_applicant` and `edit_applicant` commands.<br>
+  e.g. if the command specifies `/name NAME /phone PHONE_NUMBER`, `/phone PHONE_NUMBER /name NAME` is also acceptable.
 
-* Parameters must be in strict order for `filter`, `comment`, `export`, and `tag` command.
+* Parameters must be in strict order for `filter`, `note`, `export`, and `tag` command.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
@@ -75,45 +75,45 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
-### Add an interviewee: `add`
+### Add an applicant: `add_applicant`
 
-Adds an interviewee to the HRConnect.
+Adds an applicant to HRConnect.
 
-Format: `add /n Name /p Phone_Number e/Email a/Address [/t Tag]…​`
+Format: `add_applicant /name Name /phone Phone_Number /email Email /address Address /role Role [/tag Tag]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A interviewee can have any number of tags (including 0)
+An applicant can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add /n John Doe /p 98765432 /e johnDoegmail.com /a John street, block 123, #01-01 /t friend`
+* `add_applicant /name John Doe /phone 98765432 /email johnDoe@gmail.com /address John street, block 123, #01-01 /role CEO /tag friend`
 
-### Listing all interviewees : `list`
+### Listing all applicants : `list`
 
-Shows a list of all persons in the HRConnect.
+Shows a list of all applicants in the HRConnect.
 
 Format: `list`
 
-### Editing an interviewee : `edit`
+### Editing an applicant : `edit_applicant`
 
-Edits an existing interviewee in the HRConnect.
+Edits an existing applicant in the HRConnect.
 
-Format: `edit Index [/n Name] [/p Phone] [/e Email] [/a Address] [/t Tag]…​`
+Format: `edit_applicant Index [/name Name] [/phone Phone] [/email Email] [/address Address] [/stage Stage] [/role Role] [/tag Tag]…​`
 
-* Edits the interviewee at the specified `Index`. The index refers to the index number shown in the displayed interviewee list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the applicant at the specified `Index`. The index refers to the index number shown in the displayed applicant list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the interviewee will be removed i.e adding of tags is not cumulative.
-* You can remove all the interviewee’s tags by typing `/t` without
+* When editing tags, the existing tags of the applicant will be removed i.e adding of tags is not cumulative.
+* You can remove all the applicant’s tags by typing `/tag` without
     specifying any tags after it.
 
 Examples:
-*  `edit 1 /n 91234567 /e johndoe@example.com` Edits the phone number and email address of the 1st interviewee to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 /n Betsy Crower /t` Edits the name of the 2nd interviewee to be `Betsy Crower` and clears all existing tags.
+*  `edit_applicant 1 /phone 91234567 /email johndoe@example.com` Edits the phone number and email address of the 1st applicant to be `91234567` and `johndoe@example.com` respectively.
+*  `edit_applicant 2 /name Betsy Crower /tag` Edits the name of the 2nd applicant to be `Betsy Crower` and clears all existing tags.
 
-### Locating interviewees by name: `find`
+### Locating applicants by name: `find`
 
-Finds persons whose names contain any of the given keywords.
+Finds applicants whose names contain any of the given keywords.
 
 Format: `find Keyword [More_Keywords]`
 
@@ -121,7 +121,7 @@ Format: `find Keyword [More_Keywords]`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
+* Applicants matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
@@ -129,23 +129,23 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting an interviewee : `delete`
+### Deleting an applicant : `delete`
 
-Deletes the specified interviewee from the HRConnect.
+Deletes the specified applicant from the HRConnect.
 
 Format: `delete Index`
 
-* Deletes the interviewee at the specified `Index`.
-* The index refers to the index number shown in the displayed interviewee list.
+* Deletes the applicant at the specified `Index`.
+* The index refers to the index number shown in the displayed applicant list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd interviewee in the HRConnect.
-* `find Betsy` followed by `delete 1` deletes the 1st interviewee in the results of the `find` command.
+* `list` followed by `delete 2` deletes the 2nd applicant in the HRConnect.
+* `find Betsy` followed by `delete 1` deletes the 1st applicant in the results of the `find` command.
 
-### Adding tags to interviewees: `/tag`
+### Adding tags to applicants: `/tag`
 
-Attaches specific tags to interviewees for easy filtering later
+Attaches specific tags to applicants for easy filtering later
 
 Format: `/tag <ApplicationID> <Tag>`
 
@@ -155,37 +155,36 @@ Format: `/tag <ApplicationID> <Tag>`
 Examples:
 * `/tag 123456 <initial_application>` maps the tag `<initial_application>` to applicant 123456
 
-### Filtering interviewees by tag : `/filter`
-Filter through contact list based on what stage the interviewee is in.
+### Filtering applicants by tag : `/filter`
+Filter through contact list based on what role or stage the applicant is in.
 Format: `/filter <Tag>`
 
 * Filters the contact list based on the `<Tag>` provided.
 * Possible values for `<Tag>` are `initial_application`, `technical_assessment`, `interview`, `decision_and_offer`.
 
 Examples:
-* `/filter initial_application` filters the contact list to show only interviewees in the initial application stage.
+* `filter /stage final_round` filters the contact list to show only applicants in the final round of application stage.
+* `filter /role SWE` filters the contact list to show only applicants who applied for SWE role.
 
-### Adding notes to interviewees by tag : `/comment`
-Facilitates the addition of notes or comments to individual interviewee entries.
-Format: `/comment <ApplicationId> <Note>`
+### Adding notes to applicants by tag : `/note`
+Facilitates the addition of notes or comments to individual applicant entries.
+Format: `note <ApplicationId> /note <Note>`
 
-* Incorporate supplementary notes to enrich the interviewee's profile.
+* Incorporate supplementary notes to enrich the applicant's profile.
 * Possible values for `<ApplicationId>` are integers.
 * Possible values for `<Note>` are any non-empty string that provides relevant commentary.
 
 Examples:
-* `/comment 10 “S/Pass Holder”` will add the note “S/Pass Holder” to the applicant identified by ID 10.
+* `note 1 /note S/Pass Holder` will add the note “S/Pass Holder” to the applicant identified by ID 1.
 
-### Exporting interviewees contacts by pageId : `/export`
-Extracts interviewees contacts into a separate HRConnect identified by a pageId
-Format: /export <ContactRange> <pageId>
+### Exporting applicants contacts : `/export`
+Use filter or find to isolate the applicants that match the desired stage or role or name. Export will then extract those applicants' contacts into an external JSON file.
+Format: /export
 
 * Achieve an additional layer of organisation to properly arrange contacts
-* Possible values for `<pageId>` are integers.
-* Possible values for ContactRange are two integers denoting start:end indices.
 
 Examples:
-*  `/export [0:10] 1` will append contacts 0 to 10 inclusive onto page identified by ID 1.
+*  `/export` will append contacts from that page onto another external JSON file.
 
 ### Clearing all entries : `clear`
 
@@ -218,14 +217,14 @@ Furthermore, certain edits can cause the HRConnect to behave in unexpected ways 
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add /n Name /p Phone_Number e/Email a/Address [/t Tag]…​`<br> e.g., `add /n John Doe /p 98765432 /e johnDoe@gmail.com /a John street, block 123, #01-01 /t friend`
+**Add_applicant** | `add_applicant /name Name /phone Phone_Number /email Email /address Address /role Role [/tag Tag]…​` <br> e.g., `add_applicant /name James Chow /phone 96622612 /email james@example.com /address 321, Clementi Ave 2, #02-25 /role Junior Engineer`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit Index [/n Name] [/p Phone] [/e Email] [/a Address] [/t Tag]…​`<br> e.g., `edit 2 /n Betsy Crower /t friend`
+**Edit_applicant** | `edit_applicant Index [/name Name] [/phone Phone] [/email Email] [/address Address] [/stage Stage] [/role Role] [/tag Tag]…​`<br> e.g., `edit_applicant 2 /stage waitlisted`
 **Find** | `find Keyword [More_Keywords]`<br> e.g., `find alice bob charlie`
 **List** | `list`
 **Help** | `help`
 **Exit** | `exit`
 **Filter** | `/filter <Tag>`  <br> e.g., `/filter initial_application`
-**Comment** | `/comment <ApplicationId> <Note>`  <br> e.g., `/comment 10 “S/Pass Holder”`
-**Export** | `/export <ContactRange> <pageId>` <br> e.g., `/export [0:10] 1`
+**Note** | `note <ApplicationId> /note <Note>`  <br> e.g., `note 1 /note S/Pass Holder`
+**Export** | `/export` <br> e.g., `/export`
