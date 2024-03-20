@@ -61,7 +61,7 @@ TutorsContactsPro is a **desktop app for tutors teaching Computer Science course
 
    * `list` : Lists all students.
 
-   * `add /name John Doe /email john@example.com /year 2 /major Computer science /tut T02 /tg johntg` : Adds a student named `John Doe` to the list.
+   * `add n/John Doe p/98765432 e/johnd@example.com y/2 m/Computer Science tg/johndoe r/Very quiet student g/TUT04 g/LAB10 ` : Adds a student named `John Doe` to the list.
    
    * `edit 1 /name John /email john@example.com /year 2 /major Computer science /tut T02 /tg` : Edits the first student on the current list. 
    
@@ -88,7 +88,7 @@ TutorsContactsPro is a **desktop app for tutors teaching Computer Science course
 |-----------------------|---------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|
 | `UPPER_CASE`          | Words in `UPPER_CASE` are the parameters to be supplied by the user                                                             | in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`                  |
 | square brackets `[]`  | Items in square brackets are optional                                                                                           | `n/NAME [g/Group]` can be used as `n/John Doe g/TUT` or as `n/John Doe`                      |
-| `…`                   | Items with `…`​ after them can be used multiple times including zero times                                                      | `[g/GROUP]…​` can be used as ` ` (i.e. 0 times), `g/TUT03`, g/TUT05 g/LAB05` etc            |
+| `…`                   | Items with `…`​ after them can be used multiple times including zero times                                                      | `[g/GROUP]…​` can be used as `g/TUT03`, `g/LAB01`, `g/REC08` etc            |
 | Order                 | Parameters can be in any order                                                                                                  | if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable. |
 | Extraneous parameters |  Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored | if the command specifies `help 123`, it will be interpreted as `help`                         |                                                                                                 | Singapore phone number, 8 digits, without country code                                        |
 
@@ -117,23 +117,22 @@ Format: `list`
 
 You can add a student to the list.
 
-Format: `add name/NAME email/EMAIL year/NUMBER major/MAJOR tut/TUTORIAL_SLOT [phone/PHONE_NUMBER] [tg/TELEGRAM_HANDLE] [rem/REMARKS]`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL y/YEAR m/MAJOR tg/TELEGRAM_HANDLE [r/REMARK] [g/Group]...`
 
 
 | Parameter         | Representation                        | Constraints                                                                             |
 |-------------------|---------------------------------------|-----------------------------------------------------------------------------------------|
 | `NAME`            | Name of the student                   | Auto Auto-capitalization will be handled. Extra/trailing/leading spaces will be removed |
-| `EMAIL`           | Email of the student                  | Must be in email format `username`@`email`.com                                          |
-| `NUMBER`          | Academic Year of the student          | A number ranging from 1 - 6, inclusive                                                  |
-| `MAJOR`           | Academic Major of the student contact | String to represent the major                                                           |
-| `TUTORIAL_SLOT`   | Tutorial slot attended by the student | Must be in tutorial slot format T/B`2-digit number`                                     |
 | `PHONE_NUMBER`    | Phone number of the student           | Singapore phone number, 8 digits, without country code                                  |
+| `EMAIL`           | Email of the student                  | Must be in email format `username`@`email`.com                                          |
+| `YEAR`            | Academic Year of the student          | A number ranging from 1 - 6, inclusive                                                  |
+| `MAJOR`           | Academic Major of the student contact | String to represent the major                                                           |
 | `TELEGRAM_HANDLE` | Telegram handle of the student        | Telegram handle format (a-z, 0-9 and underscores, case-insensitive), without prefix “@” |
 | `REMARKS`         | Addition remarks of the student       | 100 characters, case-sensitive. This can be anything                                    |
+| `GROUP`           | Tutorial/Lab/Recitation slot          | Must be in correct slot format TUT/LAB/REC`2-digit number`                              |
 
 Examples:
-* `add name/John Doe email/john@example.com year/2 major/Computer science tut/T02 tg/johntg`
-* `add name/Betsy Crowe email/betsycrowe@example.com year/3 major/Business analytics tg/bettyCr`
+* `add n/John Doe p/98765432 e/johnd@example.com y/2 m/Computer Science tg/johndoe r/Very quiet student g/TUT04 g/LAB10 `
 
 
 ### <span id='feature-edit'> Editing a student : `edit` <span>
@@ -237,7 +236,7 @@ _Details coming soon ..._
 |------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Help**   | `help`                                                                                                                                                                                                                              |
 | **List**   | `list`                                                                                                                                                                                                                              |
-| **Add**    | `add name/NAME email/EMAIL year/NUMBER major/MAJOR g/GROUP_SLOT [phone/PHONE_NUMBER] [tg/TELEGRAM_HANDLE] [rem/REMARKS]` <br> e.g., `add name/John Doe email/john@example.com year/2 major/Computer science g/TUT02 tg/johntg` |                                                                                                                                                                                                                            |
+| **Add**    | `add n/NAME p/PHONE e/EMAIL y/YEAR m/MAJOR tg/TELEGRAM [r/REMARK] [g/Group]...` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com y/2 m/Computer Science tg/johndoe r/Very quiet student g/TUT04 g/LAB10 ` |                                                                                                                                                                                                                            |
 | **Edit**   | `edit INDEX [name/NAME] [email/EMAIL] [year/NUMBER] [major/MAJOR] [tut/TUTORIAL_SLOT] [phone/PHONE_NUMBER] [tg/TELEGRAM_HANDLE] [rem/REMARKS]`<br> e.g., `edit 1 name/John email/john01@example.com`                                |
 | **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g.,`find john`                                                                                                                                                                                 |
 | **Delete** | `delete INDEX`<br> e.g., `delete 1`                                                                                                                                                                                                 |  
