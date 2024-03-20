@@ -83,6 +83,7 @@ public class ClassBook implements ReadOnlyClassBook {
                 .add("classes", classList)
                 .toString();
     }
+
     @Override
     public ObservableList<Classes> getClassList() {
         return classList.asUnmodifiableObservableList();

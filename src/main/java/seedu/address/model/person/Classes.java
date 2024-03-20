@@ -3,6 +3,7 @@ package seedu.address.model.person;
 import java.util.Objects;
 
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.AddressBook;
 
 /**
  * Represents a Class in the class book.
@@ -10,6 +11,8 @@ import seedu.address.commons.util.ToStringBuilder;
 public class Classes {
 
     private CourseCode courseCode; //tutorial grp
+
+    public AddressBook addressBook = new AddressBook();
 
     /**
      * Constructor for Classes.
