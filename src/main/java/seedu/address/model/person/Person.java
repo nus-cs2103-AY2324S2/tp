@@ -40,6 +40,17 @@ public class Person {
         this.image = new ImagePath();
     }
 
+
+    /**
+     * Constructs a Person object with the specified attributes.
+     *
+     * @param name    The name of the person.
+     * @param phone   The phone number of the person.
+     * @param email   The email address of the person.
+     * @param address The address of the person.
+     * @param tags    The set of tags associated with the person.
+     * @param image   The image path of the person.
+     */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, ImagePath image) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
@@ -78,7 +89,9 @@ public class Person {
         return Collections.unmodifiableSet(tags);
     }
 
-    public ImagePath getImage() { return this.image; }
+    public ImagePath getImage() {
+        return this.image;
+    }
 
     /**
      * Returns true if both persons have the same name.

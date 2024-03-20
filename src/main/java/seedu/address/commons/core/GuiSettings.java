@@ -14,10 +14,13 @@ public class GuiSettings implements Serializable {
 
     private static final double DEFAULT_HEIGHT = 600;
     private static final double DEFAULT_WIDTH = 740;
+    private static final String DEFAULT_THEME = "DarkTheme";
 
     private final double windowWidth;
     private final double windowHeight;
     private final Point windowCoordinates;
+
+    private String theme;
 
     /**
      * Constructs a {@code GuiSettings} with the default height, width and position.
@@ -47,6 +50,10 @@ public class GuiSettings implements Serializable {
 
     public Point getWindowCoordinates() {
         return windowCoordinates != null ? new Point(windowCoordinates) : null;
+    }
+
+    public String getDefaultTheme() {
+        return theme;
     }
 
     @Override
