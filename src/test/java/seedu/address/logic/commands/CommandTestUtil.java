@@ -70,7 +70,7 @@ public class CommandTestUtil {
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_SEX = " " + PREFIX_SEX + "Z"; // Only 'M' and 'F' allowed in sex
     public static final String INVALID_AGE = " " + PREFIX_AGE + "-15"; // Negative age not allowed in age
-    public static final String INVALID_IC = " " + PREFIX_IC_NUMBER + "P32979@"; // @ not allowed in identification number
+    public static final String INVALID_IC = " " + PREFIX_IC_NUMBER + "P379@"; // @ not allowed in identification number
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
