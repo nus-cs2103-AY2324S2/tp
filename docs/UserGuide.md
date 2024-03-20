@@ -3,7 +3,15 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+Introducing Dook: a **cutting-edge desktop application** engineered for the 
+seamless management of consultations and contacts, blending the power of a
+**Command Line Interface (CLI)** with the intuitive accessibility of a **Graphical User
+Interface (GUI)**. Designed specifically for the dynamic needs of the NUS 
+School of Computing community, Dook centralizes faculty information
+in an innovative manner, standing on the foundation of AddressBook Level 3
+(AB3) as an advanced brownfield project. For the quick typist, Dook elevates
+your ability to swiftly organize your academic consultations with professors
+and teaching assistants, outpacing conventional GUI-based applications.
 
 * Table of Contents
 {:toc}
@@ -185,14 +193,25 @@ _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## Address Book Command summary
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add** | `add -n NAME -p PHONE_NUMBER -e EMAIL -a ADDRESS [-t TAG]…​` <br> e.g., `add -n John Doe -p 22224444 -e jamesho@example.com -a 123, Clementi Rd, 1234665 -t friend t/colleague`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Edit** | `edit INDEX [-n NAME] [-p PHONE_NUMBER] [-e EMAIL] [-a ADDRESS] [-t TAG]…​`<br> e.g.,`edit 2 -n James Lee -e jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
+
+## Booking List Command summary
+
+| Action        | Format, Examples                                                                                                                   |
+|---------------|------------------------------------------------------------------------------------------------------------------------------------|
+| **Book**      | `book -n DESCRIPTION -s START_TIME -e END_TIME` <br> e.g., `book -n John's Birthday Party -s 2024-03-01 19:00 -e 2024-03-01 23:00` |
+| **View**      | `view -b`                                                                                                                          |
+| **Cancel**    | `cancel INDEX` or `cancel -a` or `cancel sudo -a` <br> e.g., `cancel 2`                                                            |
+| **Edit**      | `edit INDEX [-n DESCRIPTION] [-s START_TIME] [-e END_TIME]`<br> e.g.,`edit 2 -n Prof Aaron's Consultation -s 2024-03-01 14:30`     |
+| **Find**      | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find Prof Lee's Consultation`                                                            |
+| **Free Time** | `find -ft -n NAME`<br> e.g., `find -ft -n Prof Damith`                                                                             |

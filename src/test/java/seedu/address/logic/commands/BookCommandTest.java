@@ -121,6 +121,11 @@ public class BookCommandTest {
         }
 
         @Override
+        public void cancelBooking(Booking target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasBooking(Booking booking) {
             throw new AssertionError("This method should not be called.");
         }

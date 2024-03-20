@@ -27,7 +27,10 @@ public class BookingCard extends UiPart<Region> {
     private Label endTime;
 
     /**
-     * Creates a {@code BookingCode} with the given {@code Booking} and index to display.
+     * Constructs a BookingCard object with the specified booking and displayed index.
+     *
+     * @param booking       The booking to display.
+     * @param displayedIndex The index of the booking as displayed in the UI.
      */
     public BookingCard(Booking booking, int displayedIndex) {
         super(FXML);

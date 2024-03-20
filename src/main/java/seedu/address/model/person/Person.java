@@ -22,7 +22,9 @@ public class Person {
     private final Email email;
     // Data fields
     private final Address address;
+
     private final Set<Tag> tags = new HashSet<>();
+    private ImagePath image;
     private Rating rating;
 
     /**
@@ -35,6 +37,28 @@ public class Person {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.image = new ImagePath();
+    }
+
+
+    /**
+     * Constructs a Person object with the specified attributes.
+     *
+     * @param name    The name of the person.
+     * @param phone   The phone number of the person.
+     * @param email   The email address of the person.
+     * @param address The address of the person.
+     * @param tags    The set of tags associated with the person.
+     * @param image   The image path of the person.
+     */
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, ImagePath image) {
+        requireAllNonNull(name, phone, email, address, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.image = image;
     }
 
     public Name getName() {
@@ -63,6 +87,10 @@ public class Person {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    public ImagePath getImage() {
+        return this.image;
     }
 
     /**
