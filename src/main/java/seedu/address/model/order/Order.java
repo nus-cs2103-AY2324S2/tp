@@ -53,6 +53,10 @@ public class Order {
         return status;
     }
 
+    public boolean checkId(OrderId orderId) {
+        return this.getOrderId().equals(orderId);
+    }
+
 
     @Override
     public boolean equals(Object other) {
