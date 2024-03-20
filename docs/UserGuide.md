@@ -83,8 +83,8 @@ A person can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison t/criminal`
+* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 r/STUDENT`
+* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison r/STUDENT`
 
 Unlike the `edit` command, `t/` with an empty tag is not supported.
 If you want to not include any tag, leave out `t/TAG` entirely.
