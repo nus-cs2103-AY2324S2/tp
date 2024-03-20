@@ -45,40 +45,73 @@ public class StringUtilTest {
         assertTrue(StringUtil.isNonZeroUnsignedInteger("10"));
     }
 
+    //---------------- Tests for containsIgnoreCase -------------------------------------
+    @Test
+    public void containsIgnoreCase_nullWord_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> StringUtil
+                .containsIngnoreCase("typical sentence", null));
+    }
 
-    //---------------- Tests for containsWordIgnoreCase --------------------------------------
+    @Test
+    public void containsIgnoreCase_emptyWord_throwsIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, "Word parameter cannot be empty", ()
+                -> StringUtil.containsIngnoreCase("typical sentence", "  "));
+    }
+
+    @Test
+    public void containsIgnoreCase_nullSentence_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> StringUtil.containsIngnoreCase(null, "abc"));
+    }
+
+    @Test
+    public void containsIgnoreCase_partialMatch_returnsTrue() {
+        assertTrue(StringUtil.containsIngnoreCase("A1234567X", "X"));
+        assertTrue(StringUtil.containsIngnoreCase("A1234567X", "123"));
+        assertTrue(StringUtil.containsIngnoreCase("A1234567X", "A"));
+        assertTrue(StringUtil.containsIngnoreCase("A1234567X", "a123"));
+    }
+
+    @Test
+    public void containsIgnoreCase_fullMatch_returnsTrue() {
+        assertTrue(StringUtil.containsIngnoreCase("A1234567X", "A1234567X"));
+    }
+
+    @Test
+    public void containsIgnoreCase_noMatch_returnsFalse() {
+        assertFalse(StringUtil.containsIngnoreCase("A1234567X", "B"));
+        assertFalse(StringUtil.containsIngnoreCase("A1234567X", "A1234567Y"));
+    }
+
+    //---------------- Tests for containsOrderedSubstringIgnoreCase -------------------------------------
+
 
     /*
-     * Invalid equivalence partitions for word: null, empty, multiple words
+     * Invalid equivalence partitions for word: null, empty
      * Invalid equivalence partitions for sentence: null
      * The four test cases below test one invalid input at a time.
      */
 
     @Test
-    public void containsWordIgnoreCase_nullWord_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> StringUtil.containsWordIgnoreCase("typical sentence", null));
+    public void containsOrderedSubstringIgnoreCase_nullWord_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> StringUtil
+                .containsOrderedSubstringIgnoreCase("typical sentence", null));
     }
 
     @Test
-    public void containsWordIgnoreCase_emptyWord_throwsIllegalArgumentException() {
+    public void containsOrderedSubstringIgnoreCase_emptyWord_throwsIllegalArgumentException() {
         assertThrows(IllegalArgumentException.class, "Word parameter cannot be empty", ()
-            -> StringUtil.containsWordIgnoreCase("typical sentence", "  "));
+                -> StringUtil.containsOrderedSubstringIgnoreCase("typical sentence", "  "));
     }
 
     @Test
-    public void containsWordIgnoreCase_multipleWords_throwsIllegalArgumentException() {
-        assertThrows(IllegalArgumentException.class, "Word parameter should be a single word", ()
-            -> StringUtil.containsWordIgnoreCase("typical sentence", "aaa BBB"));
-    }
-
-    @Test
-    public void containsWordIgnoreCase_nullSentence_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> StringUtil.containsWordIgnoreCase(null, "abc"));
+    public void containsOrderedSubstringIgnoreCase_nullSentence_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> StringUtil.containsOrderedSubstringIgnoreCase(null, "abc"));
     }
 
     /*
      * Valid equivalence partitions for word:
      *   - any word
+     *   - multiple words
      *   - word containing symbols/numbers
      *   - word with leading/trailing spaces
      *
@@ -93,34 +126,51 @@ public class StringUtilTest {
      *   - last word in sentence
      *   - middle word in sentence
      *   - matches multiple words
+     *   - matches the first few characters of any words
      *
      * Possible scenarios returning false:
-     *   - query word matches part of a sentence word
-     *   - sentence word matches part of the query word
+     *   - Does not match does the search word chronologically. e.g. ABC & BC will return false.
      *
      * The test method below tries to verify all above with a reasonably low number of test cases.
      */
 
     @Test
-    public void containsWordIgnoreCase_validInputs_correctResult() {
+    public void containsOrderedSubstringIgnoreCase_partialMatch_returnsTrue() {
+        assertTrue(StringUtil.containsOrderedSubstringIgnoreCase("Johnathan Doe", "John"));
+        assertTrue(StringUtil.containsOrderedSubstringIgnoreCase("Johnathan Oliver", "Oli"));
+        assertTrue(StringUtil.containsOrderedSubstringIgnoreCase("Johnathan Oliver", "J"));
+        assertTrue(StringUtil.containsOrderedSubstringIgnoreCase("Johnathan Oliver", "O"));
+    }
 
-        // Empty sentence
-        assertFalse(StringUtil.containsWordIgnoreCase("", "abc")); // Boundary case
-        assertFalse(StringUtil.containsWordIgnoreCase("    ", "123"));
+    @Test
+    public void containsOrderedSubstringIgnoreCase_oneWordMatch_returnsTrue() {
+        assertTrue(StringUtil.containsOrderedSubstringIgnoreCase("John Doe", "John"));
+        assertTrue(StringUtil.containsOrderedSubstringIgnoreCase("John Doe", "Doe"));
+        assertTrue(StringUtil.containsOrderedSubstringIgnoreCase("John Doe Li", "Li"));
+    }
+    @Test
+    public void containsOrderedSubstringIgnoreCase_combinedWordsMath_returnsTrue() {
+        assertTrue(StringUtil.containsOrderedSubstringIgnoreCase("John Doe", "John Doe"));
+        assertTrue(StringUtil.containsOrderedSubstringIgnoreCase("John Doe", "John Do"));
+        assertTrue(StringUtil.containsOrderedSubstringIgnoreCase("John Doe Li", "Doe Li"));
+    }
 
-        // Matches a partial word only
-        assertFalse(StringUtil.containsWordIgnoreCase("aaa bbb ccc", "bb")); // Sentence word bigger than query word
-        assertFalse(StringUtil.containsWordIgnoreCase("aaa bbb ccc", "bbbb")); // Query word bigger than sentence word
+    @Test
+    public void containsOrderedSubstringIgnoreCase_moreDetails_returnsFalse() {
+        assertFalse(StringUtil.containsOrderedSubstringIgnoreCase("John Doe", "Johnathan Doe"));
+        assertFalse(StringUtil.containsOrderedSubstringIgnoreCase("John Doe", "John Does"));
+    }
 
-        // Matches word in the sentence, different upper/lower case letters
-        assertTrue(StringUtil.containsWordIgnoreCase("aaa bBb ccc", "Bbb")); // First word (boundary case)
-        assertTrue(StringUtil.containsWordIgnoreCase("aaa bBb ccc@1", "CCc@1")); // Last word (boundary case)
-        assertTrue(StringUtil.containsWordIgnoreCase("  AAA   bBb   ccc  ", "aaa")); // Sentence has extra spaces
-        assertTrue(StringUtil.containsWordIgnoreCase("Aaa", "aaa")); // Only one word in sentence (boundary case)
-        assertTrue(StringUtil.containsWordIgnoreCase("aaa bbb ccc", "  ccc  ")); // Leading/trailing spaces
+    @Test
+    public void containsOrderedSubstringIgnoreCase_invalidOrdering_returnsFalse() {
+        assertFalse(StringUtil.containsOrderedSubstringIgnoreCase("John Doe", "Doe John"));
+        assertFalse(StringUtil.containsOrderedSubstringIgnoreCase("Johnathan Doe", "nathan"));
+        assertFalse(StringUtil.containsOrderedSubstringIgnoreCase("Johnathan Oliver", "liver"));
+    }
 
-        // Matches multiple words in sentence
-        assertTrue(StringUtil.containsWordIgnoreCase("AAA bBb ccc  bbb", "bbB"));
+    @Test
+    public void containsOrderedSubstringIgnoreCase_queryWordsGreaterThanSentence_returnsFalse() {
+        assertFalse(StringUtil.containsOrderedSubstringIgnoreCase("John Doe", "John Doe Mike"));
     }
 
     //---------------- Tests for getDetails --------------------------------------

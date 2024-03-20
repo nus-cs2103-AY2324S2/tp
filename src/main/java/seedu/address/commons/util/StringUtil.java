@@ -5,7 +5,6 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.util.Arrays;
 
 /**
  * Helper functions for handling strings.
@@ -14,28 +13,67 @@ public class StringUtil {
 
     /**
      * Returns true if the {@code sentence} contains the {@code word}.
-     *   Ignores case, but a full word match is required.
+     *   Ignores case and a full word match is not required.
      *   <br>examples:<pre>
-     *       containsWordIgnoreCase("ABc def", "abc") == true
-     *       containsWordIgnoreCase("ABc def", "DEF") == true
-     *       containsWordIgnoreCase("ABc def", "AB") == false //not a full word match
+     *       containsIgnoreCase("abcd", "abc") == true
+     *       containsIgnoreCase("ABc def", "bc def") == true
      *       </pre>
      * @param sentence cannot be null
-     * @param word cannot be null, cannot be empty, must be a single word
+     * @param words cannot be null, cannot be empty
+     * @return {@code true} if the {@code sentence} contains the {@code word}, {@code false} otherwise.
      */
-    public static boolean containsWordIgnoreCase(String sentence, String word) {
+    public static boolean containsIngnoreCase(String sentence, String words) {
         requireNonNull(sentence);
-        requireNonNull(word);
+        requireNonNull(words);
 
-        String preppedWord = word.trim();
-        checkArgument(!preppedWord.isEmpty(), "Word parameter cannot be empty");
-        checkArgument(preppedWord.split("\\s+").length == 1, "Word parameter should be a single word");
+        final String preppedSentence = sentence.toLowerCase().trim();
+        final String preppedWords = words.toLowerCase().trim();
 
-        String preppedSentence = sentence;
-        String[] wordsInPreppedSentence = preppedSentence.split("\\s+");
+        checkArgument(!preppedWords.isEmpty(), "Word parameter cannot be empty");
 
-        return Arrays.stream(wordsInPreppedSentence)
-                .anyMatch(preppedWord::equalsIgnoreCase);
+        return preppedSentence.contains(preppedWords);
+    }
+
+    /**
+     * Returns true if the {@code sentence} contains the {@code word}.
+     *   Ignores case and a full word match is not required, however must be in chronological order.
+     *   <br>examples:<pre>
+     *       containsIgnoreCase("ABc def", "abc") == true
+     *       containsIgnoreCase("ABc def", "DEF") == true
+     *       containsIgnoreCase("ABc def", "AB") == true
+     *       containsIgnoreCase("ABc def", "de") == true
+     *       containsIgnoreCase("ABc def", "bc def") == false // not in chronological order.
+     *       </pre>
+     * @param sentence cannot be null
+     * @param words cannot be null, cannot be empty
+     * @return {@code true} if the {@code sentence} contains the {@code word}, {@code false} otherwise.
+     */
+    public static boolean containsOrderedSubstringIgnoreCase(String sentence, String words) {
+        requireNonNull(sentence);
+        requireNonNull(words);
+
+        final String preppedSentence = sentence.toLowerCase().trim();
+        final String preppedWords = words.toLowerCase().trim();
+
+        checkArgument(!preppedWords.isEmpty(), "Word parameter cannot be empty");
+
+        String[] wordsInPreppedSentence = preppedSentence.split(" ");
+        String[] wordsInPreppedWords = words.split("\\s+");
+
+        boolean matchFound = false;
+
+        for (int i = 0; i < wordsInPreppedSentence.length - wordsInPreppedWords.length + 1; i++) {
+            StringBuilder testWordBuilder = new StringBuilder();
+            for (int j = 0; j < wordsInPreppedWords.length; j++) {
+                testWordBuilder.append(wordsInPreppedSentence[i + j]).append(" ");
+            }
+            String testWord = testWordBuilder.toString();
+            if (testWord.indexOf(preppedWords) == 0) {
+                matchFound = true;
+                break;
+            }
+        }
+        return matchFound;
     }
 
     /**
