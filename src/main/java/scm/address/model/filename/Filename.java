@@ -7,10 +7,10 @@ import static java.util.Objects.requireNonNull;
  * Guarantees: immutable; filename is valid as declared in {@link #isValidFilename(String)}
  */
 public class Filename {
-    public static final String MESSAGE_CONSTRAINTS = "Filenames should be alphanumeric.";
+    public static final String MESSAGE_CONSTRAINTS = "Filenames should be alphanumeric and json/csv files.";
 
     public static final String MESSAGE_DUPLICATE = "Filenames should be unique.";
-    public static final String VALIDATION_REGEX = "\\p{Alnum}+";
+    public static final String VALIDATION_REGEX = "\\p{Alnum}+.json|\\p{Alnum}+.csv";
     public final String filename;
 
     /**
