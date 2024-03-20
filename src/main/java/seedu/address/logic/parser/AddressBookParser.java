@@ -15,9 +15,12 @@ import seedu.address.logic.commands.CompanyCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FilterHighPriorityCommand;
+import seedu.address.logic.commands.FilterMedPriorityCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.PriorityCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -66,11 +69,23 @@ public class AddressBookParser {
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 
+        case FilterHighPriorityCommand.COMMAND_WORD:
+            return new FilterHighPriorityCommand();
+
+        case FilterMedPriorityCommand.COMMAND_WORD:
+            return new FilterMedPriorityCommand();
+
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
 
         case CompanyCommand.COMMAND_WORD:
             return new CompanyCommandParser().parse(arguments);
+
+        case PriorityCommand.COMMAND_WORD_HIGH:
+            return new PriorityCommandParser("high").parse(arguments);
+
+        case PriorityCommand.COMMAND_WORD_MED:
+            return new PriorityCommandParser("med").parse(arguments);
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
