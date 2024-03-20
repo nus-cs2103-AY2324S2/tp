@@ -28,8 +28,6 @@ public class DeletePersonCommand extends Command {
 
     public static final String MESSAGE_DELETE_PERSON_GLOBAL_SUCCESS = "Deleted Person: %1$s from the address book.";
     public static final String MESSAGE_DELETE_PERSON_EVENT_SUCCESS = "Deleted Person: %1$s from the selected event.";
-    public static final String MESSAGE_NO_SUCH_PERSON = "This person is not found in the selected event.";
-
 
     private final Index targetIndex;
 
