@@ -10,10 +10,12 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_COURSE_MATE;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddMemberCommand;
 import seedu.address.logic.commands.AddSkillCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.CreateGroupCommand;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteMemberCommand;
 import seedu.address.logic.commands.DeleteSkillCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
@@ -114,6 +116,18 @@ public class MatchMateParserTest {
     public void parseCommand_createGroup() throws Exception {
         assertTrue(parser.parseCommand(CreateGroupCommand.COMMAND_WORD + " CS2103T Group")
                 instanceof CreateGroupCommand);
+    }
+
+    @Test
+    public void parseCommand_addMember() throws Exception {
+        assertTrue(parser.parseCommand(AddMemberCommand.COMMAND_WORD + " CS2103T Group -cm John Doe")
+                instanceof AddMemberCommand);
+    }
+
+    @Test
+    public void parseCommand_deleteMember() throws Exception {
+        assertTrue(parser.parseCommand(DeleteMemberCommand.COMMAND_WORD + " CS2103T Group -cm John Doe")
+                instanceof DeleteMemberCommand);
     }
 
     @Test

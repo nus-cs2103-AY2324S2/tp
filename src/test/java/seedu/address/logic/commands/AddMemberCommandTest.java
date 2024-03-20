@@ -7,6 +7,7 @@ import static seedu.address.testutil.TypicalCourseMates.getTypicalContactList;
 import static seedu.address.testutil.TypicalGroups.SAMPLE_GROUP_1;
 import static seedu.address.testutil.TypicalGroups.SAMPLE_GROUP_NAME_1;
 import static seedu.address.testutil.TypicalGroups.SAMPLE_QUERYABLE_SET_1;
+import static seedu.address.testutil.TypicalGroups.SAMPLE_QUERYABLE_SET_2;
 import static seedu.address.testutil.TypicalGroups.SAMPLE_UNQUERYABLE_SET_1;
 import static seedu.address.testutil.TypicalGroups.getTypicalGroupList;
 
@@ -20,9 +21,9 @@ import seedu.address.model.UserPrefs;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
- * {@code CreateGroupCommand}.
+ * {@code AddMemberCommand}.
  */
-public class CreateGroupCommandTest {
+public class AddMemberCommandTest {
     private final Model model = new ModelManager(getTypicalContactList(), new UserPrefs(), getTypicalGroupList());
     private final Model emptyGroupListModel =
             new ModelManager(getTypicalContactList(), new UserPrefs(), new GroupList());
@@ -30,34 +31,41 @@ public class CreateGroupCommandTest {
     @Test
     public void constructor_nullParameters_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () ->
-                new CreateGroupCommand(null, null));
+                new AddMemberCommand(null, null));
     }
 
     @Test
     public void execute_nullParameters_throwsNullPointerException() {
-        CreateGroupCommand createGroupCommand = new CreateGroupCommand(SAMPLE_GROUP_NAME_1, SAMPLE_QUERYABLE_SET_1);
+        AddMemberCommand addMemberCommand = new AddMemberCommand(SAMPLE_GROUP_NAME_1, SAMPLE_QUERYABLE_SET_1);
         assertThrows(NullPointerException.class, () ->
-                createGroupCommand.execute(null));
+                addMemberCommand.execute(null));
     }
 
     @Test
-    public void execute_groupInList_throwsCommandException() {
-        CreateGroupCommand createGroupCommand = new CreateGroupCommand(SAMPLE_GROUP_NAME_1, SAMPLE_QUERYABLE_SET_1);
-        assertTrue(model.hasGroup(SAMPLE_GROUP_1));
+    public void execute_groupNotInList_throwsCommandException() {
+        AddMemberCommand addMemberCommand = new AddMemberCommand(SAMPLE_GROUP_NAME_1, SAMPLE_QUERYABLE_SET_1);
+        assertThrows(CommandException.class, () -> addMemberCommand.execute(emptyGroupListModel));
+    }
+
+    @Test
+    public void execute_groupInListMembersNotInList_throwsCommandException() {
+        AddMemberCommand addMemberCommand = new AddMemberCommand(SAMPLE_GROUP_NAME_1, SAMPLE_UNQUERYABLE_SET_1);
         assertThrows(CommandException.class, () ->
-                createGroupCommand.execute(model));
+                addMemberCommand.execute(model));
     }
 
     @Test
-    public void execute_groupNotInList_runsNormally() {
-        CreateGroupCommand createGroupCommand = new CreateGroupCommand(SAMPLE_GROUP_NAME_1, SAMPLE_QUERYABLE_SET_1);
-        assertDoesNotThrow(() -> createGroupCommand.execute(emptyGroupListModel));
+    public void execute_groupInListMembersNotInGroup_runsNormally() {
+        AddMemberCommand addMemberCommand = new AddMemberCommand(SAMPLE_GROUP_NAME_1, SAMPLE_QUERYABLE_SET_2);
+        assertTrue(model.hasGroup(SAMPLE_GROUP_1));
+        assertDoesNotThrow(() -> addMemberCommand.execute(model));
+        assertDoesNotThrow(() -> new DeleteMemberCommand(SAMPLE_GROUP_NAME_1, SAMPLE_QUERYABLE_SET_2));
     }
 
     @Test
-    public void execute_membersNotInList_throwsCommandException() {
-        CreateGroupCommand createGroupCommand = new CreateGroupCommand(SAMPLE_GROUP_NAME_1, SAMPLE_UNQUERYABLE_SET_1);
-        assertThrows(CommandException.class, () -> createGroupCommand.execute(emptyGroupListModel));
+    public void execute_groupInListMemberInGroup_throwsCommandException() {
+        AddMemberCommand addMemberCommand = new AddMemberCommand(SAMPLE_GROUP_NAME_1, SAMPLE_QUERYABLE_SET_1);
+        assertThrows(CommandException.class, () -> addMemberCommand.execute(model));
     }
 
 }

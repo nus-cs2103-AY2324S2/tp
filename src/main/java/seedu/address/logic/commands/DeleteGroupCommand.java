@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.coursemate.Name;
@@ -41,7 +42,7 @@ public class DeleteGroupCommand extends Command {
             return new CommandResult(String.format("Deleted group %s",
                     toDelete));
         } catch (GroupNotFoundException exception) {
-            throw new CommandException("Specified group wasn't found", exception);
+            throw new CommandException(Messages.MESSAGE_INVALID_GROUP_NAME, exception);
         }
     }
 
