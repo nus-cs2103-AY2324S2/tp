@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -21,18 +22,20 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an employee to the address book.\n"
             + "Format:\n"
-            + "• " + COMMAND_WORD + " NAME, PHONE, EMAIL, [YEAR_JOINED]\n"
+            + "• " + COMMAND_WORD + " NAME, PHONE, EMAIL, ADDRESS, YEAR_JOINED\n"
             + "• " + COMMAND_WORD + " "
             + PREFIX_NAME + " NAME "
             + PREFIX_PHONE + " PHONE "
             + PREFIX_EMAIL + " EMAIL "
-            + "[" + PREFIX_YEAR_JOINED + " YEAR_JOINED]\n"
+            + PREFIX_ADDRESS + " ADDRESS"
+            + PREFIX_YEAR_JOINED + " YEAR_JOINED\n"
             + "Examples:\n"
-            + "• " + COMMAND_WORD + " John Doe, 98765432, johnd@example.com, 2024\n"
+            + "• " + COMMAND_WORD + " John Doe, 98765432, johnd@example.com, Street A, 2024\n"
             + "• " + COMMAND_WORD + " "
             + PREFIX_NAME + " John Doe "
             + PREFIX_PHONE + " 98765432 "
             + PREFIX_EMAIL + " johnd@example.com "
+            + PREFIX_ADDRESS + " Street A"
             + PREFIX_YEAR_JOINED + " 2024";
 
     public static final String MESSAGE_SUCCESS = "New employee added: %1$s";
