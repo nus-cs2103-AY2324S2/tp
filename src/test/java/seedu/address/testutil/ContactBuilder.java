@@ -41,6 +41,7 @@ public class ContactBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         gitHubUsername = new GitHubUsername(DEFAULT_GITHUB_USERNAME);
+        techStack = new HashSet<>();
         tags = new HashSet<>();
     }
 
@@ -52,6 +53,7 @@ public class ContactBuilder {
         phone = contactToCopy.getPhone();
         email = contactToCopy.getEmail();
         address = contactToCopy.getAddress();
+        gitHubUsername = contactToCopy.getGitHubUsername();
         techStack = new HashSet<>(contactToCopy.getTechStack());
         tags = new HashSet<>(contactToCopy.getTags());
     }

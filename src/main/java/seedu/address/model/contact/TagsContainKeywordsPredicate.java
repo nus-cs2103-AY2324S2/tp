@@ -15,13 +15,11 @@ public class TagsContainKeywordsPredicate implements Predicate<Contact> {
 
     @Override
     public boolean test(Contact contact) {
-        return tagKeywords.stream()
-                .allMatch(keyword ->
-                        contact.getTags().stream()
-                                .anyMatch(tag ->
-                                        StringUtil.containsWordIgnoreCase(tag.tagName, keyword)
-                                )
-                );
+        if (tagKeywords.isEmpty()) {
+            return false;
+        } else {
+            return tagKeywords.stream().allMatch(keyword -> contact.getTags().stream().anyMatch(tag -> StringUtil.containsWordIgnoreCase(tag.tagName, keyword)));
+        }
     }
 
     @Override

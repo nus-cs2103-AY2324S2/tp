@@ -15,7 +15,7 @@ import seedu.address.model.contact.TagsContainKeywordsPredicate;
  */
 public class FindTagCommand extends Command {
 
-    public static final String COMMAND_WORD = "find-tag";
+    public static final String COMMAND_WORD = "find-tags";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all contacts whose tags contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
@@ -55,7 +55,7 @@ public class FindTagCommand extends Command {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("tagKeywords", tagKeywords)
+                .add("predicate", tagKeywords)
                 .toString();
     }
 }
