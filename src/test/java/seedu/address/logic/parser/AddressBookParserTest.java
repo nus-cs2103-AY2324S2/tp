@@ -97,7 +97,7 @@ public class AddressBookParserTest {
         assertEquals(expectedCommand, parser.parseCommand(TagCommand.COMMAND_WORD
                 + " "
                 + INDEX_FIRST_PERSON.getOneBased()
-                + " t/alpha t/beta"));
+                + " tag:alpha tag:beta"));
     }
 
     @Test
@@ -107,7 +107,7 @@ public class AddressBookParserTest {
         assertEquals(expectedCommand, parser.parseCommand(UntagCommand.COMMAND_WORD
                 + " "
                 + INDEX_FIRST_PERSON.getOneBased()
-                + " t/alpha t/beta"));
+                + " tag:alpha tag:beta"));
     }
 
     @Test
