@@ -36,7 +36,9 @@ Avengers Assemble also supports copying the emails of any specific group of cont
 
 1. Use the `find` command to search for the people whose emails you would like to copy.
 2. Type `copy` to copy all the emails of currently displayed contacts into your clipboard.
+<img src="copy_1.png" alt="Type in the copy command.">
 3. All emails will be copied into your clipboard!
+<img src="copy.png" alt="The result of the `copy` command.">
 
 ### 5. New Fields Added
 To further support head TAs keeping track of the various reflections and studios happening in the ever hectic CS1101S, Avengers Assemble now supports adding the reflection `r/` and studio `s/` fields to contacts!
