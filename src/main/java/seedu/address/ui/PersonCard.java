@@ -8,6 +8,7 @@ import java.util.Comparator;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
@@ -75,7 +76,20 @@ public class PersonCard extends UiPart<Region> {
                 Desktop.getDesktop().mail(new URI("mailto:" + emailAddress));
             } catch (IOException | URISyntaxException e) {
                 e.printStackTrace();
+                // Handle the exception
+                showEmailErrorAlert();
             }
+        } else {
+            // Desktop or mail action is not supported
+            showEmailErrorAlert();
         }
+    }
+
+    private void showEmailErrorAlert() {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText(null);
+        alert.setContentText("Unable to open email client. Please make sure you have an email client configured.");
+        alert.showAndWait();
     }
 }
