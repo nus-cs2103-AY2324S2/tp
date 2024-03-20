@@ -175,13 +175,12 @@ Potential Errors:
 
 ### Locating persons by name : `find`
 
-Finds persons whose names contain any of the given keywords.
+Finds persons whose names, phone number, email, address or tag contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
@@ -189,17 +188,21 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
+* `find 9123` returns the phone numbers `91236547` and `23912376`
+* `find gmail` returns the emails `alexY@gmail.com` and `davidL@gmail.com`
+* `find road` returns the address `Upper Thomson Road` and `Lower Kent Ridge Road`
+* `find friend` returns anyone with the tag `friend`
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
 Expected success outcome:
 ```
-Contacts found:
+xx persons listed!
 ...
 ```
 
 Expected failure outcome:
 ```
-No contact found.
+0 persons listed!
 ```
 
 
