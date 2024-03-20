@@ -64,7 +64,6 @@ public class EditOrderCommand extends EditCommand {
         }
 
         Order orderToEdit = new Order(lastShownList.get(index.getZeroBased()));
-        assert orderToEdit != null;
 
         Order editedOrder = model.editOrder(orderToEdit,
                 editOrderDescriptor.getProduct(), editOrderDescriptor.getQuantity());

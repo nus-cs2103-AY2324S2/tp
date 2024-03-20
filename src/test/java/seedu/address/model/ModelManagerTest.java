@@ -2,36 +2,19 @@ package seedu.address.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PRODUCT_CUPCAKE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_TWO;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalOrders.COOKIES_ONLY;
-import static seedu.address.testutil.TypicalOrders.CUPCAKES_ONLY;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditOrderCommand;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.EditCustomerCommandParser;
-import seedu.address.logic.parser.EditOrderCommandParser;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.order.Order;
-import seedu.address.model.order.Product;
-import seedu.address.model.order.Quantity;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.testutil.AddressBookBuilder;
 
