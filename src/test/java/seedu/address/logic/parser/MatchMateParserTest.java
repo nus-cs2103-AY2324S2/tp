@@ -20,6 +20,7 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.coursemate.ContainsKeywordPredicate;
 import seedu.address.model.coursemate.CourseMate;
+import seedu.address.model.coursemate.QueryableCourseMate;
 import seedu.address.testutil.CourseMateBuilder;
 import seedu.address.testutil.CourseMateUtil;
 import seedu.address.testutil.EditCourseMateDescriptorBuilder;
@@ -45,7 +46,7 @@ public class MatchMateParserTest {
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
                 DeleteCommand.COMMAND_WORD + " #" + INDEX_FIRST_COURSE_MATE.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_COURSE_MATE), command);
+        assertEquals(new DeleteCommand(new QueryableCourseMate(INDEX_FIRST_COURSE_MATE)), command);
     }
 
     @Test
@@ -55,7 +56,7 @@ public class MatchMateParserTest {
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " #"
                 + INDEX_FIRST_COURSE_MATE.getOneBased() + " "
                 + CourseMateUtil.getEditCourseMateDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_COURSE_MATE, descriptor), command);
+        assertEquals(new EditCommand(new QueryableCourseMate(INDEX_FIRST_COURSE_MATE), descriptor), command);
     }
 
     @Test

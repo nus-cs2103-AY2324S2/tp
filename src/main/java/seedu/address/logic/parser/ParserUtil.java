@@ -27,7 +27,7 @@ public class ParserUtil {
      * trimmed.
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
-    public static Index parseIndex(String oneBasedIndex) throws ParseException {
+    private static Index parseIndex(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
         if (trimmedIndex.isEmpty() || trimmedIndex.charAt(0) != '#' || trimmedIndex.equals("#")) {
             throw new ParseException(MESSAGE_INVALID_INDEX);

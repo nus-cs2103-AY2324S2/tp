@@ -123,6 +123,7 @@ public class MainWindow extends UiPart<Stage> {
         courseMateListPanelPlaceholder.getChildren().add(courseMateListPanel.getRoot());
 
         courseMateDetailPanel = new CourseMateDetailPanel(logic.getFilteredCourseMateList().get(0));
+        logic.setRecentlyProcessedCourseMate(logic.getFilteredCourseMateList().get(0));
         courseMateDetailPanelPlaceholder.getChildren().add(courseMateDetailPanel.getRoot());
 
         groupListPanel = new GroupListPanel(logic.getFilteredGroupList());

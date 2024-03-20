@@ -19,6 +19,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.coursemate.CourseMate;
+import seedu.address.model.coursemate.QueryableCourseMate;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -31,7 +32,7 @@ public class DeleteCommandTest {
     @Test
     public void execute_validIndexUnfilteredList_success() {
         CourseMate courseMateToDelete = model.getFilteredCourseMateList().get(INDEX_FIRST_COURSE_MATE.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_COURSE_MATE);
+        DeleteCommand deleteCommand = new DeleteCommand(new QueryableCourseMate(INDEX_FIRST_COURSE_MATE));
 
         String expectedMessage = DeleteCommand.MESSAGE_DELETE_COURSE_MATE_SUCCESS;
 
@@ -45,7 +46,7 @@ public class DeleteCommandTest {
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredCourseMateList().size() + 1);
-        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
+        DeleteCommand deleteCommand = new DeleteCommand(new QueryableCourseMate(outOfBoundIndex));
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_COURSE_MATE_DISPLAYED_INDEX);
         assertRecentlyProcessedCourseMateEdited(model, null);
@@ -56,7 +57,7 @@ public class DeleteCommandTest {
         showCourseMateAtIndex(model, INDEX_FIRST_COURSE_MATE);
 
         CourseMate courseMateToDelete = model.getFilteredCourseMateList().get(INDEX_FIRST_COURSE_MATE.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_COURSE_MATE);
+        DeleteCommand deleteCommand = new DeleteCommand(new QueryableCourseMate(INDEX_FIRST_COURSE_MATE));
 
         String expectedMessage = DeleteCommand.MESSAGE_DELETE_COURSE_MATE_SUCCESS;
 
@@ -76,7 +77,7 @@ public class DeleteCommandTest {
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getContactList().getCourseMateList().size());
 
-        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
+        DeleteCommand deleteCommand = new DeleteCommand(new QueryableCourseMate(outOfBoundIndex));
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_COURSE_MATE_DISPLAYED_INDEX);
         assertRecentlyProcessedCourseMateEdited(model, null);
@@ -84,14 +85,14 @@ public class DeleteCommandTest {
 
     @Test
     public void equals() {
-        DeleteCommand deleteFirstCommand = new DeleteCommand(INDEX_FIRST_COURSE_MATE);
-        DeleteCommand deleteSecondCommand = new DeleteCommand(INDEX_SECOND_COURSE_MATE);
+        DeleteCommand deleteFirstCommand = new DeleteCommand(new QueryableCourseMate(INDEX_FIRST_COURSE_MATE));
+        DeleteCommand deleteSecondCommand = new DeleteCommand(new QueryableCourseMate(INDEX_SECOND_COURSE_MATE));
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(INDEX_FIRST_COURSE_MATE);
+        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(new QueryableCourseMate(INDEX_FIRST_COURSE_MATE));
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false
@@ -107,8 +108,8 @@ public class DeleteCommandTest {
     @Test
     public void toStringMethod() {
         Index targetIndex = Index.fromOneBased(1);
-        DeleteCommand deleteCommand = new DeleteCommand(targetIndex);
-        String expected = DeleteCommand.class.getCanonicalName() + "{targetIndex=" + targetIndex + "}";
+        DeleteCommand deleteCommand = new DeleteCommand(new QueryableCourseMate(targetIndex));
+        String expected = DeleteCommand.class.getCanonicalName() + "{queryableCourseMateIndex=" + targetIndex + "}";
         assertEquals(expected, deleteCommand.toString());
     }
 
