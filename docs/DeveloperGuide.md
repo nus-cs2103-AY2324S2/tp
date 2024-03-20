@@ -155,6 +155,10 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Membership feature
+The addmembership command that comes along with the membership feature is implemented like this:
+<img src="images/AddMembershipSequenceDiagram.png" width="600" />
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
