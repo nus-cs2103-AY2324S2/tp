@@ -92,7 +92,7 @@ public class Employee {
         }
         // TODO: Remove dead code
         return otherEmployee != null
-                // && otherEmployee.getName().equals(getName())
+                && otherEmployee.getName().equals(getName())
                 && this.uid.equals(otherEmployee.getUid());
     }
 
