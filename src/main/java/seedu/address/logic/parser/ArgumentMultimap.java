@@ -1,8 +1,5 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.model.person.Phone.DEFAULT_NUMBER;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
