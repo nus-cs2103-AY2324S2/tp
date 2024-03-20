@@ -87,8 +87,8 @@ TutorsContactsPro is a **desktop app for tutors teaching Computer Science course
 | Command format        | Representation                                                                                                                  | Examples                                                                                      |
 |-----------------------|---------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|
 | `UPPER_CASE`          | Words in `UPPER_CASE` are the parameters to be supplied by the user                                                             | in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`                  |
-| square brackets `[]`  | Items in square brackets are optional                                                                                           | `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`                      |
-| `…`                   | Items with `…`​ after them can be used multiple times including zero times                                                      | `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc            |
+| square brackets `[]`  | Items in square brackets are optional                                                                                           | `n/NAME [g/Group]` can be used as `n/John Doe g/TUT` or as `n/John Doe`                      |
+| `…`                   | Items with `…`​ after them can be used multiple times including zero times                                                      | `[g/GROUP]…​` can be used as ` ` (i.e. 0 times), `g/TUT03`, g/TUT05 g/LAB05` etc            |
 | Order                 | Parameters can be in any order                                                                                                  | if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable. |
 | Extraneous parameters |  Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored | if the command specifies `help 123`, it will be interpreted as `help`                         |                                                                                                 | Singapore phone number, 8 digits, without country code                                        |
 
@@ -145,9 +145,9 @@ Format: `edit INDEX [name/NAME] [email/EMAIL] [year/NUMBER] [major/MAJOR] [tut/T
 * Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the student will be removed i.e adding of tags is not cumulative.
-* You can remove all the student’s tags by typing `t/` without
-    specifying any tags after it.
+* When editing groups, the existing groups of the student will be removed i.e adding of groups is not cumulative.
+* You can remove all the student’s groups by typing `t/` without
+    specifying any groups after it.
 
 Examples:
 *  `edit 1 name/John email/john01@example.com` Edits the name of the first student to `John` and email to `john01@example.com` respectively.
@@ -237,7 +237,7 @@ _Details coming soon ..._
 |------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Help**   | `help`                                                                                                                                                                                                                              |
 | **List**   | `list`                                                                                                                                                                                                                              |
-| **Add**    | `add name/NAME email/EMAIL year/NUMBER major/MAJOR tut/TUTORIAL_SLOT [phone/PHONE_NUMBER] [tg/TELEGRAM_HANDLE] [rem/REMARKS]` <br> e.g., `add name/John Doe email/john@example.com year/2 major/Computer science tut/T02 tg/johntg` |                                                                                                                                                                                                                            |
+| **Add**    | `add name/NAME email/EMAIL year/NUMBER major/MAJOR g/GROUP_SLOT [phone/PHONE_NUMBER] [tg/TELEGRAM_HANDLE] [rem/REMARKS]` <br> e.g., `add name/John Doe email/john@example.com year/2 major/Computer science g/TUT02 tg/johntg` |                                                                                                                                                                                                                            |
 | **Edit**   | `edit INDEX [name/NAME] [email/EMAIL] [year/NUMBER] [major/MAJOR] [tut/TUTORIAL_SLOT] [phone/PHONE_NUMBER] [tg/TELEGRAM_HANDLE] [rem/REMARKS]`<br> e.g., `edit 1 name/John email/john01@example.com`                                |
 | **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g.,`find john`                                                                                                                                                                                 |
 | **Delete** | `delete INDEX`<br> e.g., `delete 1`                                                                                                                                                                                                 |  
