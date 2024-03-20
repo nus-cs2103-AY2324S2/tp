@@ -50,7 +50,14 @@ public class ImportCommandTest {
     @Test
     public void execute_import_invalidPathFailure() {
         Model model = new ModelManager(new AddressBook(), new UserPrefs());
-        ImportCommand importCommand = new ImportCommand(Paths.get("src/test/data/ImportCommandTest/invalid.csv"));
+        ImportCommand importCommand = new ImportCommand(Paths.get("src/test/data/ImportCommandTest/nonexistent.csv"));
         assertThrows(CommandException.class, () -> importCommand.execute(model));
+    }
+    @Test
+    public void equals() {
+        Path filePath = Paths.get("src/test/data/ImportCommandTest/valid.csv");
+        ImportCommand importCommand = new ImportCommand(filePath);
+        ImportCommand importCommandCopy = new ImportCommand(filePath);
+        assertEquals(importCommand, importCommandCopy);
     }
 }

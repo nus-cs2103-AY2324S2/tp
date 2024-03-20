@@ -90,8 +90,6 @@ public class ImportCommand extends Command {
                     addCommand.execute(model);
                 } catch (ParseException e) {
                     throw new CommandException(String.format(MESSAGE_PARSE_ERROR, personData));
-                } catch (CommandException e) {
-                    throw new CommandException(e.getMessage());
                 }
             }
         } catch (DataLoadingException e) {
