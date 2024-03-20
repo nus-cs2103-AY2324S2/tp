@@ -60,7 +60,10 @@ public class AddressBookParser {
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
 
-        case DeleteCommand.COMMAND_WORD:
+        case DeleteCommand.COMMAND_WORD_DElETE:
+        case DeleteCommand.COMMAND_WORD_DEL:
+        case DeleteCommand.COMMAND_WORD_RM:
+        case DeleteCommand.COMMAND_WORD_REMOVE:
             return new DeleteCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
