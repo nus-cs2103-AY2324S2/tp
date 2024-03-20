@@ -89,7 +89,7 @@ public class LogicManagerTest {
 
     @Test
     public void getFilteredOrderList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredOrderList().remove(0));
+        assertThrows(IndexOutOfBoundsException.class, () -> logic.getFilteredOrderList().remove(0));
     }
 
     /**

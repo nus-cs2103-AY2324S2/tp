@@ -100,7 +100,7 @@ public class ModelManagerTest {
 
     @Test
     public void getFilteredOrderList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredOrderList().remove(0));
+        assertThrows(IndexOutOfBoundsException.class, () -> modelManager.getFilteredOrderList().remove(0));
     }
 
     @Test

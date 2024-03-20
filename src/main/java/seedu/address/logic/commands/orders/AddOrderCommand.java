@@ -63,7 +63,7 @@ public class AddOrderCommand extends Command {
         Person editedPerson = new Person(
                 personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
                 personToEdit.getAddress(), personToEdit.getTags(), orders);
-        model.setPerson(personToEdit, editedPerson);
+        model.setPerson(personToEdit, editedPerson, this.order);
         return new CommandResult(generateSuccessMessage(editedPerson));
     }
 
