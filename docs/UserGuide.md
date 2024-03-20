@@ -149,13 +149,13 @@ Examples:
 
 Tags the specified person from the address book.
 
-Format: `/tag ID t/TAG...`
+Format: `/tag ID :tag TAG...`
 
 * Tags the person with the specified `ID`.
 * Allowed to have more than 1 tags per person.
 
 Examples:
-* `/tag 240001 t/finance t/manager` tags the person with `240001` ID with `finance` and `manager`.
+* `/tag 240001 :tag finance :tag manager` tags the person with `240001` ID with `finance` and `manager`.
 
 ### Saving the data
 
