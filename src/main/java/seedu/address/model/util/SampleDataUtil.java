@@ -21,31 +21,31 @@ import seedu.address.model.tag.Tag;
 public class SampleDataUtil {
     public static Person[] getSamplePersons() {
         return new Person[] {
-            new Person(new Name("Alex Yeoh"), Optional.of(new Phone("87438807")), new Email("alexyeoh@example.com"),
+            new Person(new Name("Alex Yeoh"), Optional.of(new Phone("87438807")), new Email("alexyeoh@u.nus.edu"),
                 new Role("STUDENT"),
-                new Address("Blk 30 Geylang Street 29, #06-40"),
+                new Address(""),
                 getTagSet("friends")),
-            new Person(new Name("Bernice Yu"), Optional.of(new Phone("99272758")), new Email("berniceyu@example.com"),
+            new Person(new Name("Bernice Yu"), Optional.of(new Phone("99272758")), new Email("berniceyu@u.nus.edu"),
                 new Role("STUDENT"),
-                new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                getTagSet("colleagues", "friends")),
+                new Address(""),
+                getTagSet("classmates", "friends")),
             new Person(new Name("Charlotte Oliveiro"), Optional.of(new Phone("93210283")),
                 new Email("charlotte@example.com"),
                 new Role("TA"),
-                new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                getTagSet("neighbours")),
-            new Person(new Name("David Li"), Optional.of(new Phone("91031282")), new Email("lidavid@example.com"),
+                new Address("AS7-0622"),
+                getTagSet("tutor")),
+            new Person(new Name("David Li"), Optional.of(new Phone("91031282")), new Email("lidavid@u.nus.edu"),
                 new Role("TA"),
-                new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                getTagSet("family")),
-            new Person(new Name("Irfan Ibrahim"), Optional.of(new Phone("92492021")), new Email("irfan@example.com"),
+                new Address(""),
+                getTagSet("friends")),
+            new Person(new Name("Irfan Ibrahim"), Optional.of(new Phone("92492021")), new Email("irfan@nus.edu.sg"),
                 new Role("PROFESSOR"),
-                new Address("Blk 47 Tampines Street 20, #17-35"),
-                getTagSet("classmates")),
-            new Person(new Name("Roy Balakrishnan"), Optional.of(new Phone("92624417")), new Email("royb@example.com"),
+                new Address("COM3-0513"),
+                getTagSet("lecturer")),
+            new Person(new Name("Roy Balakrishnan"), Optional.of(new Phone("92624417")), new Email("royb@nus.edu.sg"),
                 new Role("PROFESSOR"),
-                new Address("Blk 45 Aljunied Street 85, #11-31"),
-                getTagSet("colleagues"))
+                new Address("COM1-0203, 13 Computing Drive, NUS"),
+                getTagSet("head of department"))
         };
     }
 
