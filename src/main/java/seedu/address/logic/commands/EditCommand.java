@@ -26,6 +26,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Note;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
@@ -102,11 +103,14 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
+        Note updatedNote = personToEdit.getNote();
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Set<Appointment> updatedAppointments = editPersonDescriptor
                 .getAppointments().orElse(personToEdit.getAppointments());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedAppointments);
+        return new Person(
+            updatedName, updatedPhone, updatedEmail, updatedAddress, updatedNote, updatedTags, updatedAppointments
+            );
     }
 
     @Override
@@ -142,6 +146,7 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
+        private Note note;
         private Set<Tag> tags;
         private Set<Appointment> appointments;
 
@@ -156,6 +161,7 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
+            setNote(toCopy.note);
             setTags(toCopy.tags);
             setAppointments(toCopy.appointments);
         }
@@ -197,6 +203,10 @@ public class EditCommand extends Command {
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
+        }
+
+        public void setNote(Note note) {
+            this.note = note;
         }
 
         /**

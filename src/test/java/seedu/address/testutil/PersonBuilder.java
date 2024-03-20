@@ -7,6 +7,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Note;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
@@ -21,11 +22,13 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_NOTE = "She likes aardvarks.";
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
+    private Note note;
     private Set<Tag> tags;
     private Set<Appointment> appointments;
 
@@ -37,6 +40,8 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
+        note = new Note(DEFAULT_NOTE);
+
         tags = new HashSet<>();
         appointments = new HashSet<>();
     }
@@ -49,6 +54,7 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
+        note = personToCopy.getNote();
         tags = new HashSet<>(personToCopy.getTags());
         appointments = new HashSet<>(personToCopy.getAppointments());
     }
@@ -102,8 +108,16 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Note} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withNote(String note) {
+        this.note = new Note(note);
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, phone, email, address, tags, appointments);
+        return new Person(name, phone, email, address, note, tags, appointments);
     }
 
 }
