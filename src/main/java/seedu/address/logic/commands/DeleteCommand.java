@@ -53,7 +53,6 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        
         if(isIndexBased) {
             return handleIndexInput(model);
         } else {
