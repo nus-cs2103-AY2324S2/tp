@@ -91,7 +91,7 @@ Format: `add n/NAME id/STUDENT_ID p/PRIMARY_ PHONE_NUMBER [, SECONDARY_PHONE_NUM
 
 Examples:
 * `add n/John Doe id/A0265901E p/1234567890, 9876543210 e/john.doe@example.com, jdoe@example.com i/2023 m/Computer Science p/CS2103 Tut  g/A+ t/Honors`
-* `add n/Kumar Prabhat id/20414001 p/1234567890, 9876543210 e/john.doe@example.com`
+* `add n/Kumar Prabhat id/A0041400M p/1234567890, 9876543210 e/john.doe@example.com`
 
 ### Listing all students : `list`
 
