@@ -10,6 +10,7 @@ import seedu.address.commons.exceptions.DataLoadingException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.module.ModuleMap;
 
 /**
  * Manages storage of AddressBook data in local storage.
@@ -17,15 +18,21 @@ import seedu.address.model.UserPrefs;
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private AddressBookStorage addressBookStorage;
-    private UserPrefsStorage userPrefsStorage;
+    private final AddressBookStorage addressBookStorage;
+    private final UserPrefsStorage userPrefsStorage;
+
+    private final ModuleMapStorage moduleMapStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManager(
+            AddressBookStorage addressBookStorage,
+            UserPrefsStorage userPrefsStorage,
+            ModuleMapStorage moduleMapStorage) {
         this.addressBookStorage = addressBookStorage;
         this.userPrefsStorage = userPrefsStorage;
+        this.moduleMapStorage = moduleMapStorage;
     }
 
     // ================ UserPrefs methods ==============================
@@ -75,4 +82,14 @@ public class StorageManager implements Storage {
         addressBookStorage.saveAddressBook(addressBook, filePath);
     }
 
+    @Override
+    public Path getModuleFilePath() {
+        return moduleMapStorage.getModuleFilePath();
+    }
+
+    @Override
+    public ModuleMap readModuleMap() {
+        logger.fine("Attempting to read data from file: " + moduleMapStorage.getModuleFilePath());
+        return moduleMapStorage.readModuleMap();
+    }
 }

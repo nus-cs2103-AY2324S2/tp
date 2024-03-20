@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.module.ModuleMap;
 import seedu.address.model.student.Student;
 
 /**
@@ -51,6 +52,8 @@ public interface Model {
 
     /** Returns the AddressBook */
     ReadOnlyAddressBook getAddressBook();
+
+    ModuleMap getModuleMap();
 
     /**
      * Returns true if a student with the same identity as {@code student} exists in the address book.
