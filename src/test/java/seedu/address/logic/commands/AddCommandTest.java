@@ -385,6 +385,11 @@ public class AddCommandTest {
         public boolean hasAsset(Asset asset) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void editAsset(Asset target, Asset editedAsset) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
