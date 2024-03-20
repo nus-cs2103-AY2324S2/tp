@@ -17,6 +17,10 @@ public abstract class Command {
      */
     public abstract CommandResult execute(Model model) throws CommandException;
 
+    /**
+     * Returns the type of command.
+     * @return the type of command as a string.
+     */
     public abstract String commandType();
 
 }

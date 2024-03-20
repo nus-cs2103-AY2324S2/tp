@@ -45,7 +45,7 @@ public class ArticleCard extends UiPart<Region> {
 
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code ArticleCode} with the given {@code Article} and index to display.
      */
     public ArticleCard(Article article, int displayedIndex) {
         super(FXML);

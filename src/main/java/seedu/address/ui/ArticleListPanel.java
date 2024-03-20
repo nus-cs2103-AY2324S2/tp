@@ -11,7 +11,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.article.Article;
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of articles.
  */
 public class ArticleListPanel extends UiPart<Region> {
     private static final String FXML = "ArticleListPanel.fxml";
@@ -21,7 +21,7 @@ public class ArticleListPanel extends UiPart<Region> {
     private ListView<Article> articleListView;
 
     /**
-     * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
+     * Creates a {@code ArticleListPanel} with the given {@code ObservableList}.
      */
     public ArticleListPanel(ObservableList<Article> articleList) {
         super(FXML);
@@ -30,7 +30,7 @@ public class ArticleListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Article} using a {@code ArticleCard}.
      */
     class ArticleListViewCell extends ListCell<Article> {
         @Override
