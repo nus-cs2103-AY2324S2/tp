@@ -18,6 +18,13 @@ public class AssetBuilder {
     }
 
     /**
+     * Creates a {@code AssetBuilder} with the specified name.
+     */
+    public AssetBuilder(String name) {
+        this.name = name;
+    }
+
+    /**
      * Initializes the AssetBuilder with the data of {@code assetToCopy}.
      */
     public AssetBuilder(Asset assetToCopy) {

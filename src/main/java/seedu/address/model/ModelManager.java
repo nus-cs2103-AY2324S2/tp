@@ -128,6 +128,14 @@ public class ModelManager implements Model {
         return addressBook.hasAsset(asset);
     }
 
+    @Override
+    public void editAsset(Asset target, Asset editedAsset) {
+        requireNonNull(target);
+        requireNonNull(editedAsset);
+
+        addressBook.editAsset(target, editedAsset);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**

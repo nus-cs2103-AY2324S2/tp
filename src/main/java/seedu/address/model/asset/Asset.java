@@ -3,8 +3,6 @@ package seedu.address.model.asset;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import java.util.HashMap;
-
 import com.fasterxml.jackson.annotation.JsonValue;
 
 /**
@@ -13,38 +11,21 @@ import com.fasterxml.jackson.annotation.JsonValue;
  */
 public class Asset {
 
-    /**
-     * Stores all unique assets created.
-     */
     public static final String MESSAGE_CONSTRAINTS = "Asset names can take any values, and it should not be blank";
-    private static final HashMap<String, Asset> assetsHashMap = new HashMap<>();
     private static final String VALIDATION_REGEX = "\\S.*";
 
     private final String assetName;
 
-    private Asset(String assetName) {
-        this.assetName = assetName;
-    }
-
     /**
-     * Parses a {@code String assetName} into an {@code Asset}.
-     * Leading and trailing whitespaces will be trimmed.
-     * <p>
-     * Only creates a new {@code Asset} object if it does not already exist.
-     * Otherwise, an existing {@code Asset} with the same name is returned.
+     * Constructs a {@code Asset}.
      *
-     * @throws IllegalArgumentException if the given {@code assetName} is invalid.
+     * @param assetName A valid asset name.
      */
-    public static Asset of(String assetName) throws IllegalArgumentException {
+    public Asset(String assetName) {
         requireNonNull(assetName);
-        String trimmedName = assetName.trim();
-        checkArgument(isValid(trimmedName), MESSAGE_CONSTRAINTS);
-        if (assetsHashMap.containsKey(trimmedName)) {
-            return assetsHashMap.get(trimmedName);
-        }
-        Asset newAsset = new Asset(trimmedName);
-        assetsHashMap.put(trimmedName, newAsset);
-        return newAsset;
+        assetName = assetName.trim();
+        checkArgument(isValid(assetName), MESSAGE_CONSTRAINTS);
+        this.assetName = assetName;
     }
 
     @JsonValue
@@ -59,6 +40,18 @@ public class Asset {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Parses a {@code String name} into a {@code Name}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws IllegalArgumentException if the given {@code name} is invalid.
+     */
+    public static Asset of(String assetName) throws IllegalArgumentException {
+        requireNonNull(assetName);
+        String trimmedName = assetName.trim();
+        return new Asset(trimmedName);
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -70,8 +63,8 @@ public class Asset {
             return false;
         }
 
-        Asset otherTag = (Asset) other;
-        return assetName.equals(otherTag.assetName);
+        Asset otherAsset = (Asset) other;
+        return assetName.equals(otherAsset.assetName);
     }
 
     @Override

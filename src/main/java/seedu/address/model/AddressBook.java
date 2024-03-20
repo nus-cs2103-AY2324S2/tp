@@ -125,7 +125,23 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public boolean hasAsset(Asset asset) {
         requireNonNull(asset);
-        return persons.asUnmodifiableObservableList().stream().anyMatch(person -> person.hasAsset(asset));
+        return persons.asUnmodifiableObservableList()
+                .stream()
+                .anyMatch(person -> person.hasAsset(asset));
+    }
+
+    /**
+     * Changes all assets that equal target to editedAsset.
+     */
+    public void editAsset(Asset target, Asset editedAsset) {
+        requireNonNull(target);
+        save();
+        for (Person person : getPersonList()) {
+            if (person.getAssets().contains(target)) {
+                Person editedPerson = person.editAsset(target, editedAsset);
+                persons.setPerson(person, editedPerson);
+            }
+        }
     }
 
     //// util methods

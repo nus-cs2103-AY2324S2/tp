@@ -101,4 +101,9 @@ public interface Model {
      * Returns true if an asset with the same identity as {@code asset} exists in the address book.
      */
     boolean hasAsset(Asset asset);
+
+    /**
+     * Changes the target asset into the editedAsset.
+     */
+    void editAsset(Asset target, Asset editedAsset);
 }

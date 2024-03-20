@@ -1,8 +1,5 @@
 package seedu.address.logic.util;
 
-import static seedu.address.model.person.fields.Assets.PREFIX_ASSET;
-import static seedu.address.model.person.fields.Name.PREFIX_NAME;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -31,28 +28,6 @@ public class ArgumentTokenizer {
     public static ArgumentMultimap tokenize(String argsString, Prefix... prefixes) {
         List<PrefixPosition> positions = findAllPrefixPositions(argsString, prefixes);
         return extractArguments(argsString, positions);
-    }
-
-    /**
-     * Tokenizes an arguments string and returns an {@code ArgumentMultimap} object that simply returns the name of
-     * the assetToEdit and newAsset.
-     *
-     * @param argsString Arguments string of the form: {@code preamble <prefix>value <prefix>value ...}
-     * @return           ArgumentMultimap object that maps prefixes to their arguments
-     */
-    public static ArgumentMultimap tokenizeEditAsset(String argsString) {
-        ArgumentMultimap argMultimap = new ArgumentMultimap();
-
-        String trimmedArgsString = argsString.trim();
-
-        if (!trimmedArgsString.contains(" ")) {
-            return argMultimap;
-        }
-
-        argMultimap.put(PREFIX_ASSET, trimmedArgsString.substring(0, trimmedArgsString.indexOf(" ")));
-        argMultimap.put(PREFIX_NAME, trimmedArgsString.substring(trimmedArgsString.lastIndexOf(" ") + 1));
-
-        return argMultimap;
     }
 
     /**

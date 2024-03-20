@@ -103,11 +103,11 @@ public class Person {
     }
 
     /**
-     * Updates asset in assets
+     * Edits target to editedAsset in assets
      */
-    public Assets updateAsset(Asset assetToEdit, Asset newAsset) {
-        assets.update(assetToEdit, newAsset);
-        return assets;
+    public Person editAsset(Asset target, Asset editedAsset) {
+        return new Person(name, phone, email, address, tags,
+                assets.edit(target, editedAsset));
     }
 
     /**

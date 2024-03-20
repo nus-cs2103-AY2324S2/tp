@@ -1,7 +1,5 @@
 package seedu.address.logic.util;
 
-import static seedu.address.model.person.fields.Assets.PREFIX_ASSET;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -62,13 +60,6 @@ public class ArgumentMultimap {
      */
     public String getPreamble() {
         return getValue(new Prefix("")).orElse("");
-    }
-
-    /**
-     * Returns the asset to edit. Trims any leading/trailing spaces.
-     */
-    public String getAssetToEdit() {
-        return getValue(PREFIX_ASSET).orElse("");
     }
 
     /**
