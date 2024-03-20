@@ -126,12 +126,12 @@ public class AddCommandTest {
 
         @Override
         public void deleteSchedule(Schedule target) {
-            
+            String s;
         }
 
         @Override
         public void addSchedule(Schedule schedule) {
-
+            String s;
         }
 
         @Override
@@ -161,7 +161,7 @@ public class AddCommandTest {
 
         @Override
         public void setSchedule(Schedule target, Schedule editedSchedule) {
-
+            String s;
         }
 
         @Override
@@ -181,7 +181,7 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredScheduleList(Predicate<Schedule> predicate) {
-
+            String s;
         }
     }
 
