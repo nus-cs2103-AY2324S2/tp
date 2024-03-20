@@ -155,6 +155,9 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### \[Developed\] Edit_Applicant feature
+The edit_applicant functionality allows users to edit applicants' details. The details that can be edited include `Name`, `Phone`, 'Email`, `Address`, `Stage`, `Role` and `Tag`. 
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
