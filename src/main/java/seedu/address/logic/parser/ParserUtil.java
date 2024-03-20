@@ -138,5 +138,17 @@ public class ParserUtil {
 
     }
 
+    /**
+     * Parses {@code Collection<String> studentIds} into a {@code Set<StudentId>}.
+     */
+    public static Set<StudentId> parseStudentIds(Collection<String> studentIds) throws ParseException {
+        requireNonNull(studentIds);
+        final Set<StudentId> studentIdSet = new HashSet<>();
+        for (String studentId : studentIds) {
+            studentIdSet.add(parseStudentId(studentId));
+        }
+        return studentIdSet;
+    }
+
 
 }
