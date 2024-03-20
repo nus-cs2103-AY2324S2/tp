@@ -49,28 +49,28 @@ public class InternshipContainsKeywordsPredicate implements Predicate<Internship
     @Override
     public boolean test(Internship internship) {
         boolean foundInCompanyName = companyNameKeywords.stream()
-                .map(set -> StringUtil.containsWordIgnoreCase(String.join(" ", set),
-                        internship.getCompanyName().companyName))
+                .map(set -> set.stream().anyMatch(keyword ->
+                        StringUtil.containsWordIgnoreCase(internship.getCompanyName().companyName, keyword)))
                 .reduce((a, b) -> a || b).orElse(isMatchAll);
         boolean foundInContactName = contactNameKeywords.stream()
-                .map(set -> StringUtil.containsWordIgnoreCase(String.join(" ", set),
-                        internship.getContactName().contactName))
+                .map(set -> set.stream().anyMatch(keyword ->
+                        StringUtil.containsWordIgnoreCase(internship.getContactName().contactName, keyword)))
                 .reduce((a, b) -> a || b).orElse(isMatchAll);
         boolean foundInLocation = locationKeywords.stream()
-                .map(set -> StringUtil.containsWordIgnoreCase(String.join(" ", set),
-                        internship.getLocation().toString()))
+                .map(set -> set.stream().anyMatch(keyword ->
+                        StringUtil.containsWordIgnoreCase(internship.getLocation().toString(), keyword)))
                 .reduce((a, b) -> a || b).orElse(isMatchAll);
         boolean foundInStatus = statusKeywords.stream()
-                .map(set -> StringUtil.containsWordIgnoreCase(String.join(" ", set),
-                        internship.getApplicationStatus().toString()))
+                .map(set -> set.stream().anyMatch(keyword ->
+                        StringUtil.containsWordIgnoreCase(internship.getApplicationStatus().toString(), keyword)))
                 .reduce((a, b) -> a || b).orElse(isMatchAll);
         boolean foundInDescription = descriptionKeywords.stream()
-                .map(set -> StringUtil.containsWordIgnoreCase(String.join(" ", set),
-                        internship.getDescription().description))
+                .map(set -> set.stream().anyMatch(keyword ->
+                        StringUtil.containsWordIgnoreCase(internship.getDescription().description, keyword)))
                 .reduce((a, b) -> a || b).orElse(isMatchAll);
         boolean foundInRole = roleKeywords.stream()
-                .map(set -> StringUtil.containsWordIgnoreCase(String.join(" ", set),
-                        internship.getRole().role))
+                .map(set -> set.stream().anyMatch(keyword -> StringUtil.containsWordIgnoreCase(
+                        internship.getRole().role, keyword)))
                 .reduce((a, b) -> a || b).orElse(isMatchAll);
         if (isMatchAll) {
             return foundInCompanyName && foundInContactName && foundInLocation
