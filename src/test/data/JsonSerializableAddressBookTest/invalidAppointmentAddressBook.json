@@ -62,6 +62,15 @@
     "startTime" : "16:00",
     "endTime" : "17:00",
     "appointmentType" : "Monthly check-up",
-    "note" : "Routine follow up"
+    "note" : "Routine follow up",
+    "mark" : "false"
+  }, {
+    "nric" : "T0123456D",
+    "date" : "2024-03-02",
+    "startTime" : "16:00",
+    "endTime" : "17:00",
+    "appointmentType" : "Monthly check-up",
+    "note" : "Routine follow up",
+    "mark" : "abc"
   } ]
 }

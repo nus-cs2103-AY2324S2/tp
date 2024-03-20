@@ -7,6 +7,7 @@ import seedu.address.commons.core.date.Date;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentType;
+import seedu.address.model.appointment.Mark;
 import seedu.address.model.appointment.Note;
 import seedu.address.model.appointment.Time;
 import seedu.address.model.appointment.TimePeriod;
@@ -25,6 +26,7 @@ public class JsonAdaptedAppointment {
     private final String endTime;
     private final String appointmentType;
     private final String note;
+    private final String mark;
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
@@ -33,13 +35,14 @@ public class JsonAdaptedAppointment {
                              @JsonProperty("date") String date,
                              @JsonProperty("startTime") String startTime, @JsonProperty("endTime") String endTime,
                              @JsonProperty("appointmentType") String appointmentType,
-                                  @JsonProperty("note") String note) {
+                                  @JsonProperty("note") String note, @JsonProperty("mark") String mark) {
         this.nric = nric;
         this.date = date;
         this.startTime = startTime;
         this.endTime = endTime;
         this.appointmentType = appointmentType;
         this.note = note;
+        this.mark = mark;
     }
 
     /**
@@ -52,6 +55,7 @@ public class JsonAdaptedAppointment {
         endTime = source.getTimePeriod().getEndTime().toString();
         appointmentType = source.getAppointmentType().typeName;
         note = source.getNote().note;
+        mark = source.getMark().toString();
     }
 
     /**
@@ -114,7 +118,20 @@ public class JsonAdaptedAppointment {
         }
         final Note modelNote = new Note(note);
 
-        return new Appointment(modelNric, modelDate, modelTimePeriod,
-                modelAppointmentType, modelNote);
+        if (mark == null) {
+            throw new IllegalValueException(String.format(
+                    MISSING_FIELD_MESSAGE_FORMAT, "mark"));
+        }
+
+        if (!Mark.isValidMark(mark)) {
+            throw new IllegalValueException(Mark.MESSAGE_CONSTRAINTS);
+        }
+
+
+        Appointment newAppt = new Appointment(modelNric, modelDate, modelTimePeriod,
+            modelAppointmentType, modelNote);
+        newAppt.setMark(mark);
+
+        return newAppt;
     }
 }

@@ -71,6 +71,7 @@ public class AddAppCommand extends Command {
         }
 
         model.addAppointment(apptToAdd);
+        System.out.println(apptToAdd.toString());
         return new CommandResult(String.format(MESSAGE_ADD_APPOINTMENT_SUCCESS, Messages.format(apptToAdd)));
     }
 

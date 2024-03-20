@@ -3,6 +3,7 @@ package seedu.address.testutil;
 import seedu.address.commons.core.date.Date;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentType;
+import seedu.address.model.appointment.Mark;
 import seedu.address.model.appointment.Note;
 import seedu.address.model.appointment.Time;
 import seedu.address.model.appointment.TimePeriod;
@@ -18,12 +19,14 @@ public class AppointmentBuilder {
     public static final String DEFAULT_END_TIME = "23:59";
     public static final String DEFAULT_APPOINTMENT_TYPE = "Health Check-up";
     public static final String DEFAULT_NOTE = "Only speaks mandarin";
+    public static final String DEFAULT_MARK = "false";
 
     private Nric nric;
     private Date date;
     private TimePeriod timePeriod;
     private AppointmentType appointmentType;
     private Note note;
+    private Mark mark;
 
     /**
      * Creates a {@code AppointmentBuilder} with the default details.
@@ -37,6 +40,7 @@ public class AppointmentBuilder {
         timePeriod = new TimePeriod(startTime, endTime);
         appointmentType = new AppointmentType(DEFAULT_APPOINTMENT_TYPE);
         note = new Note(DEFAULT_NOTE);
+        mark = new Mark(DEFAULT_MARK);
     }
 
     /**
@@ -48,6 +52,7 @@ public class AppointmentBuilder {
         timePeriod = apptToCopy.getTimePeriod();
         appointmentType = apptToCopy.getAppointmentType();
         note = apptToCopy.getNote();
+        mark = apptToCopy.getMark();
     }
 
     /**
@@ -102,7 +107,20 @@ public class AppointmentBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Mark} of the {@code Appointment} that we are building.
+     */
+    public AppointmentBuilder withMark(String mark) {
+        this.mark = new Mark(mark);
+        return this;
+    }
+
+    /**
+     * Builds Appointment object using the provided data.
+     */
     public Appointment build() {
-        return new Appointment(nric, date, timePeriod, appointmentType, note);
+        Appointment appt = new Appointment(nric, date, timePeriod, appointmentType, note);
+        appt.setMark(this.mark.toString());
+        return appt;
     }
 }

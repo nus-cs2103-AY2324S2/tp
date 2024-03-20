@@ -63,20 +63,23 @@
     "startTime" : "16:00",
     "endTime" : "17:00",
     "appointmentType" : "Monthly check-up",
-    "note" : "Routine follow up"
+    "note" : "Routine follow up",
+    "mark" : "false"
   }, {
     "nric" : "T0123456A",
     "date" : "2024-04-01",
     "startTime" : "16:00",
     "endTime" : "17:00",
     "appointmentType" : "Monthly check-up",
-    "note" : "Routine follow up"
+    "note" : "Routine follow up",
+    "mark" : "false"
   } , {
     "nric" : "T0123456B",
     "date" : "2024-03-02",
     "startTime" : "12:00",
     "endTime" : "12:30",
     "appointmentType" : "X-Ray",
-    "note" : "Fractured finger"
+    "note" : "Fractured finger",
+    "mark" : "false"
   } ]
 }

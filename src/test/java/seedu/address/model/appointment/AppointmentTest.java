@@ -95,6 +95,11 @@ public class AppointmentTest {
         editedAliceAppt = new AppointmentBuilder(ALICE_APPT)
                 .withNote(VALID_APPOINTMENT_NOTE_BOB).build();
         assertFalse(ALICE_APPT.equals(editedAliceAppt));
+
+        // different mark -> returns false
+        editedAliceAppt = new AppointmentBuilder(ALICE_APPT).build();
+        editedAliceAppt.setMark("true");
+        assertFalse(ALICE_APPT.equals(editedAliceAppt));
     }
 
     @Test
@@ -104,7 +109,8 @@ public class AppointmentTest {
                 + ", date=" + ALICE_APPT_1.getDate()
                 + ", timePeriod=" + ALICE_APPT_1.getTimePeriod()
                 + ", appointmentType=" + ALICE_APPT_1.getAppointmentType()
-                + ", note=" + ALICE_APPT_1.getNote() + "}";
+                + ", note=" + ALICE_APPT_1.getNote()
+                + ", mark=" + ALICE_APPT_1.getMark() + "}";
         assertEquals(expected, ALICE_APPT_1.toString());
     }
 }
