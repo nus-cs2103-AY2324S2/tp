@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
@@ -16,6 +17,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.orders.AddOrderCommand;
 import seedu.address.logic.commands.orders.DeleteOrderCommand;
 import seedu.address.model.AddressBook;
@@ -23,6 +25,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.order.Order;
+import seedu.address.model.order.OrderId;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.OrderBuilder;
 import seedu.address.testutil.PersonBuilder;
@@ -40,6 +43,19 @@ public class DeleteOrderCommandTest {
         CommandResult commandResult = new AddOrderCommand(targetIndex, order).execute(modelStub);
         commandResult = new DeleteOrderCommand(order.getOrderId()).execute(modelStub);
         assertEquals(0, modelStub.getOrderList().size());
+    }
+
+    @Test
+    public void execute_deleteOrderByModel_deleteUnsuccessful() throws Exception {
+        PersonBuilder personBuilder = new PersonBuilder();
+        Person person = personBuilder.build();
+        OrderBuilder builder = new OrderBuilder();
+        Order order = builder.build();
+        ModelStubDeletingOrder modelStub = new ModelStubDeletingOrder(order, person);
+        Index targetIndex = INDEX_FIRST_PERSON;
+        CommandResult commandResult = new AddOrderCommand(targetIndex, order).execute(modelStub);
+        OrderId invalidId = new OrderId();
+        assertThrows(CommandException.class, () -> new DeleteOrderCommand(invalidId).execute(modelStub));
     }
 
     /**
