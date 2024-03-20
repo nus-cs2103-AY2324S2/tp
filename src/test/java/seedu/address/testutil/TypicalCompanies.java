@@ -19,7 +19,7 @@ import seedu.address.model.person.Company;
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
  */
-public class TypicalPersons {
+public class TypicalCompanies {
 
     public static final Company ALICE = new CompanyBuilder().withName("Alice Pauline")
             .withEmail("alice@example.com")
@@ -54,7 +54,7 @@ public class TypicalPersons {
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
-    private TypicalPersons() {} // prevents instantiation
+    private TypicalCompanies() {} // prevents instantiation
 
     /**
      * Returns an {@code AddressBook} with all the typical persons.
