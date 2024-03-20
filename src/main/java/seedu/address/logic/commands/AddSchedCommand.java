@@ -5,16 +5,22 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_END;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHEDULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_START;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.lang.reflect.Array;
+import java.util.*;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
 import seedu.address.model.schedule.Schedule;
+import seedu.address.model.tag.Tag;
 
 /**
  * Adds a schedule to the address book.
@@ -62,11 +68,32 @@ public class AddSchedCommand extends Command {
             participants.add(lastShownList.get(index.getZeroBased()));
         }
 
-        schedule.addParticipants(participants);
+        ArrayList<Person> addedParticipants = schedule.addParticipants(participants);
 
-        // !!!TO VERIFY WITH REST: is model implementation required for Schedule?
+        model.addSchedule(schedule);
+        for (Person p: addedParticipants) {
+            model.setPerson(p, editPersonSchedule(p));
+        }
 
         return new CommandResult(generateSuccessMessage());
+    }
+
+    /**
+     * Creates and returns a {@code Person} with the details of {@code personToEdit}
+     * edited with {@code editPersonDescriptor}.
+     */
+    private Person editPersonSchedule(Person personToEdit) {
+        assert personToEdit != null;
+
+        Name name = personToEdit.getName();
+        Phone phone = personToEdit.getPhone();
+        Email email = personToEdit.getEmail();
+        Address address = personToEdit.getAddress();
+        Set<Tag> tags = personToEdit.getTags();
+        AddScheduleToListDescriptor descriptor = new AddScheduleToListDescriptor(personToEdit.getSchedules(),
+                this.schedule);
+        ArrayList<Schedule> updatedSchedules = descriptor.getSchedules();
+        return new Person(name, phone, email, address, tags, updatedSchedules);
     }
 
     @Override
@@ -102,5 +129,58 @@ public class AddSchedCommand extends Command {
         return String.format(MESSAGE_SUCCESS, schedule);
     }
 
+    /**
+     * Stores the details to edit the person with. Each non-empty field value will replace the
+     * corresponding field value of the person.
+     */
+    public static class AddScheduleToListDescriptor {
+        private ArrayList<Schedule> schedules;
+
+        public AddScheduleToListDescriptor() {}
+
+        /**
+         * Copy constructor.
+         * A defensive copy of {@code tags} is used internally.
+         */
+        public AddScheduleToListDescriptor(ArrayList<Schedule> oldSchedules, Schedule s) {
+            this.schedules = oldSchedules;
+            addSchedule(s);
+        }
+
+        public void addSchedule(Schedule s) {
+            this.schedules.add(s);
+        }
+
+        /**
+         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code tags} is null.
+         */
+        public ArrayList<Schedule> getSchedules() {
+            return this.schedules;
+        }
+
+        @Override
+        public boolean equals(Object other) {
+            if (other == this) {
+                return true;
+            }
+
+            // instanceof handles nulls
+            if (!(other instanceof EditCommand.EditPersonDescriptor)) {
+                return false;
+            }
+
+            AddScheduleToListDescriptor otherAddScheduleToListDescriptor = (AddScheduleToListDescriptor) other;
+            return Objects.equals(schedules, otherAddScheduleToListDescriptor.schedules);
+        }
+
+        @Override
+        public String toString() {
+            return new ToStringBuilder(this)
+                    .add("schedule", schedules)
+                    .toString();
+        }
+    }
 }
 

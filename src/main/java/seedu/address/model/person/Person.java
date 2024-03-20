@@ -90,6 +90,10 @@ public class Person {
         return schedules;
     }
 
+    public void addSchedule(Schedule s) {
+        schedules.add(s);
+    }
+
     /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.

@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_START;
 import java.time.DateTimeException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddSchedCommand;
@@ -31,14 +32,14 @@ public class AddSchedCommandParser implements Parser<AddSchedCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
                 PREFIX_SCHEDULE, PREFIX_START, PREFIX_END);
 
-        ArrayList<Index> indexArrayList = new ArrayList<>();
+        ArrayList<Index> indexArrayList;
         try {
             indexArrayList = ParserUtil.parseIndexArrayList(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddSchedCommand.MESSAGE_USAGE), pe);
         }
 
-        if (!AddCommandParser.arePrefixesPresent(argMultimap, PREFIX_SCHEDULE, PREFIX_START, PREFIX_END)) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_SCHEDULE, PREFIX_START, PREFIX_END)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddSchedCommand.MESSAGE_USAGE));
         }
 
@@ -55,6 +56,13 @@ public class AddSchedCommandParser implements Parser<AddSchedCommand> {
         } catch (DateTimeException e) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddSchedCommand.MESSAGE_USAGE));
         }
+    }
 
+    /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }
