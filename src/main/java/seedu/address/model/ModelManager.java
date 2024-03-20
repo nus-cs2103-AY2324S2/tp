@@ -150,6 +150,12 @@ public class ModelManager implements Model {
 
     //=========== VersionedAddressBook Methods =============================================================
 
+    @Override
+    public ReadOnlyAddressBook getVersionedAddressBook() {
+        return versionedAddressBook;
+    }
+
+
     public void commitInitialAddressBook() {
         versionedAddressBook.commitInitial(addressBook);
     }

@@ -85,6 +85,8 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
+    ReadOnlyAddressBook getVersionedAddressBook();
+
     void commitAddressBook();
 
     boolean canUndoAddressBook();

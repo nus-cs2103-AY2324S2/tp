@@ -159,6 +159,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public ReadOnlyAddressBook getVersionedAddressBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void commitAddressBook() {}
 
         @Override
