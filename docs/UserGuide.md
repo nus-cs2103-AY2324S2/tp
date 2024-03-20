@@ -19,8 +19,10 @@ The Hackathon Participant Management Application is designed to help organizers 
     - [Editing the data file](#editing-the-data-file)
     - [Archiving data files (coming in v2.0)](#archiving-data-files-coming-in-v20)
 3. [FAQ](#faq)
-4. [Known issues](#known-issues)
-5. [Command summary](#command-summary)
+4. [Warnings](#warnings)
+5. [Known issues](#known-issues)
+6. [Tips](#tips)
+7. [Command summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -82,7 +84,7 @@ The Hackathon Participant Management Application is designed to help organizers 
 
 Shows a message explaning how to access the help page.
 
-![help message](images/helpMessage.png)
+![help message](images/helpMessageHackLink.png)
 
 Format: `help`
 
@@ -159,7 +161,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+  ![result for 'find alex david'](images/findJohnDoe.png)
 
 ### Removing a person : `Remove`
 
@@ -216,9 +218,20 @@ _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Warnings 
+1. **Invalid Command** : When a command format is incorrect or parameters are missing, the application will prompt the user with a warning message.
+2. **Command Failure** : If the person specified for editing or removing does not exist in the database, the application should display a warning message indicating the failure.
+3. **Invalid input for update** : If the input for editing a person's information is invalid, the application should display a warning message indicating the failure and provide guidance on the correct format.
+   
+--------------------------------------------------------------------------------------------------------------------
 ## Known issues
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
+
+--------------------------------------------------------------------------------------------------------------------
+## Tips 
+1. **Use Descriptive Command Names**: You are encouraged to use descriptive names when adding, updating, or removing participants. This makes it easier to identify and manage individuals within the application.
+2. **Utilize Tags for Organization**: Using tags when adding participants to categorize them effectively. For instance, tags like "participant," "sponsor," or "staff" can help you quickly filter and manage different groups.
 
 --------------------------------------------------------------------------------------------------------------------
 
