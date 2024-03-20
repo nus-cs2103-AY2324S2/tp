@@ -39,6 +39,11 @@ CapitalConnect in no time.  So, buckle up and get ready to experience a smoother
 startup investments!
 
 
+--------------------------------------------------------------------------------------------------------------------
+
+## Table Of Contents
+
+
 <!-- * Table of Contents -->
 <page-nav-print />
 
@@ -120,7 +125,7 @@ Format: `add n/NAME p/PHONE_NUMBER i/INDUSTRY f/FUNDING_STAGE e/EMAIL a/ADDRESS 
 <box type="tip" seamless>
 
 **Tip:** We only support traditional funding stages, hence inputs for `FUNDING_STAGE` must be either `S`, `PS`, `A`, `B` or `C`!
-`A`, `B`, `C` represents the respective funding series whilst `P` refers to pre-seed and `S` refers to the seed stage.
+`A`, `B`, `C` represents the respective funding series whilst `PS` refers to pre-seed and `S` refers to the seed stage.
 </box>
 
 <box type="tip" seamless>
