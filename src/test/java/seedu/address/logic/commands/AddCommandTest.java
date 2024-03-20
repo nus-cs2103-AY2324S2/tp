@@ -24,6 +24,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.relationship.Relationship;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -165,19 +166,38 @@ public class AddCommandTest {
         }
 
         @Override
-        public UUID getFullUuid(String digits) {
+        public boolean hasRelationship(Relationship target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addRelationship(Relationship target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteRelationship(Relationship toDelete) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public String getExistingRelationship(Relationship toGet) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public Person getPersonByUuid(UUID id) {
-            throw new AssertionError("This method should not be called.");
+            throw new AssertionError("this method should not be called");
         }
 
-        @Override
         public boolean hasAttribute(String uuidString, String attributeName) {
             throw new AssertionError("This method should not be called.");
         }
+        @Override
+        public UUID getFullUuid(String digits) {
+            throw new AssertionError("This method should not be called");
+        }
+
     }
 
     /**
