@@ -18,7 +18,9 @@ nerdTrackerPlus is a **desktop app for managing contacts, optimized for use via 
   - [8. Clearing all entries](#8-clearing-all-entries--clear) : `clear`
   - [9. Filtering by tags](#9-filtering-by-tags--filter) : `filter`
   - [10. Marking participation scores](#10-marking-participation-scores--mark) : `mark`
-  - [11. Exiting the program](#11-exiting-the-program--exit) : `exit`
+  - [11. Undo](#11-undoing-a-previous-command--undo) : `undo`
+  - [12. Redo](#12-redoing-a-previously-undone-command--redo) : `redo`
+  - [13. Exiting the program](#11-exiting-the-program--exit) : `exit`
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -196,7 +198,25 @@ Format: `mark INDEX WEEKNUMBER`
 * The index **must be a positive integer** 1, 2, 3, …​
 * The week must be a valid week from the range [1, 13].
 
-### 11. Exiting the program : `exit`
+### 11. Undoing a previous command : `undo`
+
+Undoes the previous command that changed data.
+
+Format: `undo`
+
+* Only undoes a command if it changed data.
+* Will not undo if no commands were issued beforehand.
+
+### 12. Redoing a previously undone command : `redo`
+
+Redoes the previously undone command.
+
+Format: `redo`
+
+* Will only redo the command that was undone immediately prior.
+* Will not redo if no commands were undone beforehand.
+
+### 13. Exiting the program : `exit`
 
 Exits the program.
 
@@ -239,9 +259,15 @@ _Details coming soon ..._
 Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Mark** | `mark INDEX WEEKNUMBER` <br> e.g., `mark 1 5`
+**Remove Tag** | `Remove Tag INDEX [t/TAG]…` <br> e.g., `Remove Tag 1 t/friends`
+**Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Filter** | `filter [all/any] NUMBEROFTAGS TAGNAME [TAGNAME]` <br> e.g., `filter [all/any] 2 friends colleagues`
 **List** | `list`
+**Clear** | `clear`
+**Undo** | `undo`
+**Redo** | `redo`
 **Help** | `help`
+**Exit** | `exit`
