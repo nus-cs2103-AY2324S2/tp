@@ -32,7 +32,6 @@ deactivate DeleteCommand
 CommandType --> AddressBookParser : d
 deactivate CommandType
 
-
 AddressBookParser --> LogicManager : d
 deactivate AddressBookParser
 
