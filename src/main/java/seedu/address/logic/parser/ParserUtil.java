@@ -134,7 +134,7 @@ public class ParserUtil {
     public static String parseTitle(String title) throws ParseException {
         requireNonNull(title);
         String trimmedTitle = title.trim();
-        //removed the check for author validity
+        //removed the check for title validity
         return trimmedTitle;
     }
 
