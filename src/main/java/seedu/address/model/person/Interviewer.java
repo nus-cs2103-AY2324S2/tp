@@ -2,6 +2,7 @@ package seedu.address.model.person;
 
 import java.util.Set;
 
+import seedu.address.model.person.enums.Type;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -12,17 +13,25 @@ public class Interviewer extends Person {
 
     private final Type type = Type.INTERVIEWER;
 
+    private InterviewerStatus status;
+
     /**
      * Every field must be present and not null.
      */
-    public Interviewer(Name name, Phone phone, Email email, Remark remark, Set<Tag> tags) {
+    public Interviewer(Name name, Phone phone, Email email, Remark remark, InterviewerStatus status, Set<Tag> tags) {
         super(name, phone, email, remark, tags);
         this.tags.add(new Tag("Interviewer"));
+        this.status = status;
     }
 
     @Override
     public String getPersonType() {
         return type.toString();
+    }
+
+    @Override
+    public String getStatus() {
+        return status.toString();
     }
 
     @Override

@@ -11,8 +11,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Applicant;
+import seedu.address.model.person.ApplicantStatus;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Interviewer;
+import seedu.address.model.person.InterviewerStatus;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -32,6 +34,7 @@ class JsonAdaptedPerson {
     private final String remark;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final String type;
+    private final String status;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -40,7 +43,9 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email,
                              @JsonProperty("remark") String remark,
-                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("type") String type) {
+                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                             @JsonProperty("type") String type,
+                             @JsonProperty("status") String status) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -49,6 +54,7 @@ class JsonAdaptedPerson {
             this.tagged.addAll(tagged);
         }
         this.type = type;
+        this.status = status;
     }
 
     /**
@@ -63,6 +69,7 @@ class JsonAdaptedPerson {
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
         type = source.getPersonType();
+        status = source.getStatus();
     }
 
     /**
@@ -108,9 +115,11 @@ class JsonAdaptedPerson {
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
         if (type.equals("APPLICANT")) {
-            return new Applicant(modelName, modelPhone, modelEmail, modelRemark, modelTags);
+            ApplicantStatus applicantStatus = new ApplicantStatus(status);
+            return new Applicant(modelName, modelPhone, modelEmail, modelRemark, applicantStatus, modelTags);
         } else if (type.equals("INTERVIEWER")) {
-            return new Interviewer(modelName, modelPhone, modelEmail, modelRemark, modelTags);
+            InterviewerStatus interviewerStatus = new InterviewerStatus(status);
+            return new Interviewer(modelName, modelPhone, modelEmail, modelRemark, interviewerStatus, modelTags);
         }
 
         return new Person(modelName, modelPhone, modelEmail, modelRemark, modelTags);

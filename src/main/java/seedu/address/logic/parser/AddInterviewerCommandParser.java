@@ -14,9 +14,11 @@ import seedu.address.logic.commands.AddPersonCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Interviewer;
+import seedu.address.model.person.InterviewerStatus;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
+import seedu.address.model.person.enums.InterviewerState;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -43,9 +45,10 @@ public class AddInterviewerCommandParser implements Parser<AddInterviewerPersonC
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Remark remark = new Remark(""); // add command does not allow adding remarks straight away
+        InterviewerStatus status = new InterviewerStatus(InterviewerState.FREE.toString());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Interviewer person = new Interviewer(name, phone, email, remark, tagList);
+        Interviewer person = new Interviewer(name, phone, email, remark, status, tagList);
 
         return new AddInterviewerPersonCommand(person);
     }

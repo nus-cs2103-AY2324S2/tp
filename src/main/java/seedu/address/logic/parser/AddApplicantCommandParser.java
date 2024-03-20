@@ -12,10 +12,12 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.AddApplicantPersonCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Applicant;
+import seedu.address.model.person.ApplicantStatus;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
+import seedu.address.model.person.enums.ApplicantState;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -43,9 +45,10 @@ public class AddApplicantCommandParser implements Parser<AddApplicantPersonComma
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Remark remark = new Remark(""); // add command does not allow adding remarks straight away
+        ApplicantStatus status = new ApplicantStatus(ApplicantState.STAGEONE.toString());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Applicant applicant = new Applicant(name, phone, email, remark, tagList);
+        Applicant applicant = new Applicant(name, phone, email, remark, status, tagList);
 
         return new AddApplicantPersonCommand(applicant);
     }
