@@ -16,7 +16,7 @@ import seedu.address.model.person.Id;
 import seedu.address.model.person.Person;
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Deletes a person identified using it's displayed index from the address book or given student ID.
  */
 public class DeleteCommand extends Command {
 
@@ -25,18 +25,24 @@ public class DeleteCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the person identified by the index number used in the displayed person list or Student ID.\n"
             + "Parameters: INDEX (must be a positive integer) or" + "[" + PREFIX_ID + "KEYWORD]\n"
-            + "Example: " + COMMAND_WORD + " 1, " + COMMAND_WORD + " " + PREFIX_ID + "A1234567Z" ;
+            + "Example: " + COMMAND_WORD + " 1, " + COMMAND_WORD + " " + PREFIX_ID + "A1234567Z";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
 
     private final Index targetIndex;
     private final Id targetStudId;
 
+    /**
+     * Instantiate Delete Command with target index.
+     */
     public DeleteCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
         this.targetStudId = null;
     }
 
+    /**
+     * Instantiate Delete Command with target student ID.
+     */
     public DeleteCommand(Id targetStudId) {
         this.targetIndex = null;
         this.targetStudId = targetStudId;
@@ -62,7 +68,8 @@ public class DeleteCommand extends Command {
                 throw new CommandException(Messages.MESSAGE_STUDENT_NOT_FOUND);
             }
             model.deletePerson(personToDelete.get());
-            return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete.get())));
+            return new CommandResult(
+                    String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete.get())));
         } else {
             throw new CommandException(Messages.MESSAGE_INVALID_COMMAND_FORMAT);
         }
