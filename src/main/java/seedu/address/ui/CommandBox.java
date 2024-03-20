@@ -1,12 +1,21 @@
 package seedu.address.ui;
 
+import static seedu.address.storage.StateStorage.getFilePath;
+import static seedu.address.storage.StateStorage.getLastCommand;
+
+import java.util.logging.Logger;
+
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
+import seedu.address.MainApp;
+import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.exceptions.DataLoadingException;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.storage.StateStorage;
 
 /**
  * The UI component that is responsible for receiving user command inputs.
@@ -15,7 +24,7 @@ public class CommandBox extends UiPart<Region> {
 
     public static final String ERROR_STYLE_CLASS = "error";
     private static final String FXML = "CommandBox.fxml";
-
+    private static final Logger logger = LogsCenter.getLogger(MainApp.class);
     private final CommandExecutor commandExecutor;
 
     @FXML
@@ -27,9 +36,21 @@ public class CommandBox extends UiPart<Region> {
     public CommandBox(CommandExecutor commandExecutor) {
         super(FXML);
         this.commandExecutor = commandExecutor;
-        // calls #setStyleToDefault() whenever there is a change to the text of the command box.
-        commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
+
+        try {
+            commandTextField.setText(getLastCommand());
+        } catch (DataLoadingException e) {
+            logger.warning("State file at " + getFilePath() + " could not be loaded."
+                    + " Starting with an empty command box.");
+        }
+
+
+        commandTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+            setStyleToDefault();
+            StateStorage.writeState(newValue);
+        });
     }
+
 
     /**
      * Handles the Enter button pressed event.
@@ -52,14 +73,14 @@ public class CommandBox extends UiPart<Region> {
     /**
      * Sets the command box style to use the default style.
      */
-    private void setStyleToDefault() {
+    void setStyleToDefault() {
         commandTextField.getStyleClass().remove(ERROR_STYLE_CLASS);
     }
 
     /**
      * Sets the command box style to indicate a failed command.
      */
-    private void setStyleToIndicateCommandFailure() {
+    void setStyleToIndicateCommandFailure() {
         ObservableList<String> styleClass = commandTextField.getStyleClass();
 
         if (styleClass.contains(ERROR_STYLE_CLASS)) {
@@ -67,6 +88,15 @@ public class CommandBox extends UiPart<Region> {
         }
 
         styleClass.add(ERROR_STYLE_CLASS);
+    }
+
+    /**
+     * Returns the command text field for the command box instance.
+     *
+     * @return The command text field.
+     */
+    protected TextField getCommandTextField() {
+        return commandTextField;
     }
 
     /**
