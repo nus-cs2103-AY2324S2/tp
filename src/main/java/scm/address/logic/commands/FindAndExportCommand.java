@@ -20,15 +20,15 @@ import scm.address.model.person.Person;
 /**
  * Represents a command to find users based on specified criteria and export their information.
  * The command allows filtering of users by tags, name, and address, and exports the
- * filtered list to a specified file.
+ * filtered list to a specified file, in a specified format.
  */
 public class FindAndExportCommand extends Command {
 
     public static final String COMMAND_WORD = "find_and_export";
     public static final String MESSAGE_USAGE = "find_and_export: Exports the users filtered by a tag "
             + "and other optional parameters.\n"
-            + "Parameters: TAG [n/NAME] [a/ADDRESS] [f/FILENAME]\n"
-            + "Example: find_and_export cs2103t n/john a/olive street 42 o/output1";
+            + "Parameters: TAG [n/NAME] [a/ADDRESS] [f/FILENAME] [v/FILEFORMAT]\n"
+            + "Example: find_and_export cs2103t n/john a/olive street 42 o/output1 v/csv";
     private final String tag;
     private final String name;
     private final String address;
@@ -42,6 +42,7 @@ public class FindAndExportCommand extends Command {
      * @param name The name substring by which users are further filtered. Can be {@code null}.
      * @param address The address substring by which users are further filtered. Can be {@code null}.
      * @param filename The name of the file to which the filtered users are exported.
+     * @param fileFormat The format of the file to which the filtered users are exported.
      */
     public FindAndExportCommand(String tag, String name, String address, String filename, String fileFormat){
         this.tag = tag;
