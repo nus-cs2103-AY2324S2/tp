@@ -61,6 +61,14 @@ public class AddAttendanceRecordCommand extends Command {
 
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
+        if (lastShownList.size() == 0 ){
+            throw new CommandException(Messages.MESSAGE_NO_PERSON_IN_THE_CLASS);
+        }
+        for (Attendance i : lastShownList.get(0).getAttendances()) {
+            if (date.attendanceName.getDate().equals(i.attendanceName.getDate())) {
+                throw new CommandException(Messages.MESSAGE_DUPLICATE_DATE_ATTENDANCE);
+            }
+        }
 
         for (int i = 0; i < lastShownList.size(); i++) {
             Index index = Index.fromZeroBased(i);

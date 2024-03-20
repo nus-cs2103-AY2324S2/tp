@@ -94,6 +94,12 @@ public class PersonCard extends UiPart<Region> {
                 });
     }
 
+    /**
+     * Create Icon based on the status of the attendance record.
+     *
+     * @param status of the attendance icon
+     * @return cross icon if the status is 0, tick icon if the status is 1, circle if the status is 2
+     */
     private FontAwesomeIconView createIconBasedOnStatus(String status) {
         FontAwesomeIconView iconView;
         switch (status) {
@@ -117,7 +123,7 @@ public class PersonCard extends UiPart<Region> {
             iconView.setFill(Color.GRAY);
         }
 
-        iconView.setSize("15");
+        iconView.setSize("16");
         return iconView;
     }
 }
