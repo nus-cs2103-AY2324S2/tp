@@ -45,6 +45,8 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
+    private Label remark;
+    @FXML
     private FlowPane tags;
     @FXML
     private FlowPane role;
@@ -76,7 +78,8 @@ public class PersonCard extends UiPart<Region> {
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-
+        remark.setText("Remark: " + person.getRemark().value);
+            
         preferences.setVisible(false);
         department.setVisible(false);
         jobTitle.setVisible(false);

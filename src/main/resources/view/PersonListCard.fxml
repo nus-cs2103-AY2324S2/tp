@@ -34,6 +34,7 @@
       <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
       <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
       <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+      <Label fx:id="remark" styleClass="cell_small_label" text="\$remark" />
       <Label fx:id="preferences" styleClass="cell_small_label" text="\$preferences" visible="false" />
       <Label fx:id="department" styleClass="cell_small_label" text="\$department" visible="false" />
       <Label fx:id="jobTitle" styleClass="cell_small_label" text="\$jobTitle" visible="false" />
