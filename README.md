@@ -21,4 +21,6 @@ a glance including:
 
 For the detailed documentation of this project (e.g. User or Developer Guide), see the **[Clinic Mate Website](https://ay2324s2-cs2103t-f14-2.github.io/tp/)**.
 
+To join our mailing list fill in this [form](https://docs.google.com/forms/d/e/1FAIpQLSdhsv0afLOwhto8Ov6CW9FqKSQyEJ-oprHHLmLS-d5ylGShmg/viewform?usp=sharing).
+
 This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
