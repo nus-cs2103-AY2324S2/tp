@@ -55,7 +55,7 @@
                    <StackPane fx:id="personListPanelPlaceholder" />
                      </children>
               </VBox>
-                  <StackPane fx:id="personDetailsPanelPlaceholder" styleClass="pane-with-border" HBox.hgrow="ALWAYS" />
+                  <StackPane fx:id="personDetailsPanelPlaceholder" alignment="TOP_RIGHT" styleClass="pane-with-border" HBox.hgrow="ALWAYS" />
                </children>
             </HBox>
 

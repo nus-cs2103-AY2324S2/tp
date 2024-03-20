@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
@@ -13,6 +14,7 @@
       <GridPane>
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
          </columnConstraints>
          <rowConstraints>
             <RowConstraints />
@@ -31,8 +33,8 @@
                   <Label fx:id="note" styleClass="cell_small_label" text="\$note" />
                </children>
             </VBox>
+            <ImageView fx:id="qrcode" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="TOP" />
          </children>
       </GridPane>
-      <Label fx:id="text" styleClass="cell_big_label" text="Hello" />
    </children>
 </VBox>
