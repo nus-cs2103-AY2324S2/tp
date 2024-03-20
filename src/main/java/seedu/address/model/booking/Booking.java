@@ -1,8 +1,11 @@
 package seedu.address.model.booking;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.util.Objects;
 
 import seedu.address.commons.util.ToStringBuilder;
+
 
 /**
  * Represents a booking
@@ -22,6 +25,7 @@ public class Booking {
      * @param end End time in ISO_LOCAL_DATE_TIME format
      */
     public Booking(Description description, StartTime start, EndTime end) {
+        requireAllNonNull(description, start, end);
         this.description = description;
         this.start = start;
         this.end = end;
