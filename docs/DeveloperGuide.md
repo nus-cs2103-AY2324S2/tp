@@ -400,7 +400,9 @@ If none of the employeeId == 6, an invalid employeeId exception will be thrown.
 
       Use case resumes at step 2.
 
-*{More to be added}*
+![Interactions Inside the Logic Component for the `mark 1` Command](images/MarkDiagram.png)
+![Interactions for mark for the `mark 1` command](images/MarkRefDiagram.png)
+Note that if none of the taskId == 1, an invalid taskId exception will be thrown.
 
 ### Non-Functional Requirements
 
