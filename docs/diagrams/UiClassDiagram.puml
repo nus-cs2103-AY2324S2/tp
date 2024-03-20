@@ -60,7 +60,6 @@ HelpWindow --|> UiPart
 CourseMateCard ...> Model
 CourseMateDetailPanel ..> Model
 GroupListCard ...> Model
-GroupListPanel ...> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
