@@ -122,7 +122,7 @@ public class ModelManager implements Model {
     }
 
     /**
-     * Returns an unmodifiable view of the list of {@code Order} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Order} backed by the internal list of.
      * {@code versionedAddressBook}
      */
     @Override

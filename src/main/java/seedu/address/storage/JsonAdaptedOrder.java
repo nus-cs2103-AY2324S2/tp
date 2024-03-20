@@ -28,7 +28,7 @@ public class JsonAdaptedOrder {
     private final String status;
 
     /**
-     * Constructs a {@code JsonAdaptedOrder} with the given order details
+     * Constructs a {@code JsonAdaptedOrder} with the given order details.
      */
     @JsonCreator
     public JsonAdaptedOrder(@JsonProperty("orderId") String orderId, @JsonProperty("orderDate") String orderDate,
