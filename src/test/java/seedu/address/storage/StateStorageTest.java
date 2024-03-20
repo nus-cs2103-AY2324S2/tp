@@ -4,12 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static seedu.address.storage.StateStorage.clearState;
 import static seedu.address.storage.StateStorage.deleteStateStorage;
-
+import static seedu.address.storage.StateStorage.getLastCommand;
 import static seedu.address.storage.StateStorage.loadState;
 import static seedu.address.storage.StateStorage.writeState;
 import static seedu.address.testutil.Assert.assertThrows;
-
-import java.nio.file.Paths;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -36,12 +34,26 @@ public class StateStorageTest {
     }
 
     @Test
+    public void getFilePath_successfullyReturned() {
+        assertNotNull(StateStorage.getFilePath());
+    }
+
+    @Test
     public void loadState_emptyFile_successfullyLoaded() throws DataLoadingException {
         clearState();
         String expected = "";
         String actual = loadState();
         assertEquals(expected, actual);
     }
+
+    @Test
+    public void getLastCommand_emptyFile_successfullyLoaded() throws DataLoadingException {
+        clearState();
+        String expected = "";
+        String actual = getLastCommand();
+        assertEquals(expected, actual);
+    }
+
     @Test
     public void writeState_successfullyWritten() throws DataLoadingException {
         String expected = "test123abc cba321tset";

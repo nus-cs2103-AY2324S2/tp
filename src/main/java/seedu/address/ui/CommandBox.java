@@ -1,6 +1,7 @@
 package seedu.address.ui;
 
 import static seedu.address.storage.StateStorage.getFilePath;
+import static seedu.address.storage.StateStorage.getLastCommand;
 
 import java.util.logging.Logger;
 
@@ -37,9 +38,7 @@ public class CommandBox extends UiPart<Region> {
         this.commandExecutor = commandExecutor;
 
         try {
-            StateStorage stateStorage = new StateStorage();
-            String lastCommand = StateStorage.loadState();
-            commandTextField.setText(lastCommand);
+            commandTextField.setText(getLastCommand());
         } catch (DataLoadingException e) {
             logger.warning("State file at " + getFilePath() + " could not be loaded."
                     + " Starting with an empty command box.");
