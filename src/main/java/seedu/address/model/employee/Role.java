@@ -5,7 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents an Employee's role in the address book.
- *  * Guarantees: immutable; is valid as declared in {@link #isValidRole(String)}
+ * * Guarantees: immutable; is valid as declared in {@link #isValidRole(String)}
  */
 public class Role {
 
@@ -15,7 +15,7 @@ public class Role {
      * The first character of the role must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[^\\s].*";
+    private static final String VALIDATION_REGEX = "[^\\s].*";
 
     public final String value;
 

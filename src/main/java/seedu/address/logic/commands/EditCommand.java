@@ -30,6 +30,7 @@ import seedu.address.model.employee.Name;
 import seedu.address.model.employee.Phone;
 import seedu.address.model.employee.Role;
 import seedu.address.model.employee.Team;
+import seedu.address.model.employee.UniqueId;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -62,7 +63,8 @@ public class EditCommand extends Command {
     private final EditEmployeeDescriptor editEmployeeDescriptor;
 
     /**
-     * @param index of the employee in the filtered employee list to edit
+     * @param index                  of the employee in the filtered employee list
+     *                               to edit
      * @param editEmployeeDescriptor details to edit the employee with
      */
     public EditCommand(Index index, EditEmployeeDescriptor editEmployeeDescriptor) {
@@ -95,11 +97,12 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code Employee} with the details of {@code employeeToEdit}
+     * Creates and returns a {@code Employee} with the details of
+     * {@code employeeToEdit}
      * edited with {@code editEmployeeDescriptor}.
      */
     private static Employee createEditedEmployee(Employee employeeToEdit,
-                                                 EditEmployeeDescriptor editEmployeeDescriptor) {
+            EditEmployeeDescriptor editEmployeeDescriptor) {
         assert employeeToEdit != null;
 
         Name updatedName = editEmployeeDescriptor.getName().orElse(employeeToEdit.getName());
@@ -109,9 +112,10 @@ public class EditCommand extends Command {
         Team updatedTeam = editEmployeeDescriptor.getTeam().orElse(employeeToEdit.getTeam());
         Role updatedRole = editEmployeeDescriptor.getRole().orElse(employeeToEdit.getRole());
         Set<Tag> updatedTags = editEmployeeDescriptor.getTags().orElse(employeeToEdit.getTags());
+        UniqueId uid = employeeToEdit.getUid();
 
         return new Employee(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTeam, updatedRole,
-                updatedTags);
+                updatedTags, uid);
     }
 
     @Override
@@ -139,7 +143,8 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Stores the details to edit the employee with. Each non-empty field value will replace the
+     * Stores the details to edit the employee with. Each non-empty field value will
+     * replace the
      * corresponding field value of the employee.
      */
     public static class EditEmployeeDescriptor {
@@ -151,7 +156,8 @@ public class EditCommand extends Command {
         private Role role;
         private Set<Tag> tags;
 
-        public EditEmployeeDescriptor() {}
+        public EditEmployeeDescriptor() {
+        }
 
         /**
          * Copy constructor.
@@ -231,7 +237,8 @@ public class EditCommand extends Command {
         }
 
         /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+         * Returns an unmodifiable tag set, which throws
+         * {@code UnsupportedOperationException}
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code tags} is null.
          */

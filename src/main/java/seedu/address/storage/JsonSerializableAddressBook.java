@@ -34,7 +34,8 @@ class JsonSerializableAddressBook {
     /**
      * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
+     * @param source future changes to this will not affect the created
+     *               {@code JsonSerializableAddressBook}.
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
         employees.addAll(source.getEmployeeList().stream().map(JsonAdaptedEmployee::new).collect(Collectors.toList()));
@@ -57,4 +58,10 @@ class JsonSerializableAddressBook {
         return addressBook;
     }
 
+    public int getMaxUid() {
+        return employees.stream()
+                .mapToInt(JsonAdaptedEmployee::getUid)
+                .max()
+                .orElse(0); // returns 0 if list is empty
+    }
 }

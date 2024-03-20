@@ -42,6 +42,8 @@ public class CommandTestUtil {
     public static final String VALID_TEAM_BOB = "B";
     public static final String VALID_ROLE_AMY = "Manager";
     public static final String VALID_ROLE_BOB = "Engineer";
+    public static final String VALID_UID_AMY = "101";
+    public static final String VALID_UID_BOB = "102";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -85,7 +87,8 @@ public class CommandTestUtil {
 
     /**
      * Executes the given {@code command}, confirms that <br>
-     * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
+     * - the returned {@link CommandResult} matches {@code expectedCommandResult}
+     * <br>
      * - the {@code actualModel} matches {@code expectedModel}
      */
     public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
@@ -100,7 +103,8 @@ public class CommandTestUtil {
     }
 
     /**
-     * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
+     * Convenience wrapper to
+     * {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
      * that takes a string {@code expectedMessage}.
      */
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
@@ -113,7 +117,8 @@ public class CommandTestUtil {
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
-     * - the address book, filtered employee list and selected employee in {@code actualModel} remain unchanged
+     * - the address book, filtered employee list and selected employee in
+     * {@code actualModel} remain unchanged
      */
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
@@ -125,8 +130,10 @@ public class CommandTestUtil {
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredEmployeeList());
     }
+
     /**
-     * Updates {@code model}'s filtered list to show only the employee at the given {@code targetIndex} in the
+     * Updates {@code model}'s filtered list to show only the employee at the given
+     * {@code targetIndex} in the
      * {@code model}'s address book.
      */
     public static void showEmployeeAtIndex(Model model, Index targetIndex) {

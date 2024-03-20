@@ -21,6 +21,7 @@ import seedu.address.model.employee.Name;
 import seedu.address.model.employee.Phone;
 import seedu.address.model.employee.Role;
 import seedu.address.model.employee.Team;
+import seedu.address.model.employee.UniqueId;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -31,12 +32,13 @@ public class AddCommandParser implements Parser<AddCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
      * and returns an AddCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG,
-                        PREFIX_TEAM, PREFIX_ROLE);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
+                PREFIX_ADDRESS, PREFIX_TAG,
+                PREFIX_TEAM, PREFIX_ROLE);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL,
                 PREFIX_TEAM, PREFIX_ROLE)
@@ -53,14 +55,17 @@ public class AddCommandParser implements Parser<AddCommand> {
         Team team = ParserUtil.parseTeam(argMultimap.getValue(PREFIX_TEAM).get());
         Role role = ParserUtil.parseRole(argMultimap.getValue(PREFIX_ROLE).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        UniqueId uid = new UniqueId();
+        uid.generateNewId();
 
-        Employee employee = new Employee(name, phone, email, address, team, role, tagList);
+        Employee employee = new Employee(name, phone, email, address, team, role, tagList, uid);
 
         return new AddCommand(employee);
     }
 
     /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * Returns true if none of the prefixes contains empty {@code Optional} values
+     * in the given
      * {@code ArgumentMultimap}.
      */
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {

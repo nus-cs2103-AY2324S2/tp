@@ -1,17 +1,22 @@
 {
-  "employee": [ {
-    "name": "Valid Person",
-    "phone": "9482424",
-    "email": "hans@example.com",
-    "address": "4th street",
-    "team": "A",
-    "role": "Manager"
-  }, {
-    "name": "Person With Invalid Phone Field",
-    "phone": "948asdf2424",
-    "email": "hans@example.com",
-    "address": "4th street",
-    "team": "A",
-    "role": "Manager"
-  } ]
+  "employee": [
+    {
+      "name": "Valid Person",
+      "phone": "9482424",
+      "email": "hans@example.com",
+      "address": "4th street",
+      "team": "A",
+      "role": "Manager",
+      "uid": "102"
+    },
+    {
+      "name": "Person With Invalid Phone Field",
+      "phone": "948asdf2424",
+      "email": "hans@example.com",
+      "address": "4th street",
+      "team": "A",
+      "role": "Manager",
+      "uid": "100"
+    }
+  ]
 }

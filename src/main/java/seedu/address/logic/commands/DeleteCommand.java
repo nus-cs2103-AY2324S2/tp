@@ -10,9 +10,11 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.employee.Employee;
+import seedu.address.model.employee.UniqueId;
 
 /**
- * Deletes a employee identified using it's displayed index from the address book.
+ * Deletes a employee identified using it's displayed index from the address
+ * book.
  */
 public class DeleteCommand extends Command {
 
@@ -27,15 +29,18 @@ public class DeleteCommand extends Command {
 
     private final Index targetIndex;
     private final String targetName;
+    private final UniqueId uid;
 
     /**
      * Constructor for index-based deletion
      *
-     * @param targetIndex index of the employee in the filtered employee list to delete
+     * @param targetIndex index of the employee in the filtered employee list to
+     *                    delete
      */
     public DeleteCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
         this.targetName = null; // Name is not used in this context
+        this.uid = null; // UniqueId is not used in this context
     }
 
     /**
@@ -46,6 +51,7 @@ public class DeleteCommand extends Command {
     public DeleteCommand(String targetName) {
         this.targetIndex = null; // Index is not used in this context
         this.targetName = targetName;
+        this.uid = null; // UniqueId is not used in this context
     }
 
     @Override
@@ -93,6 +99,26 @@ public class DeleteCommand extends Command {
         List<Employee> lastShownList = model.getFilteredEmployeeList();
         for (Employee employee : lastShownList) {
             if (employee.getName().fullName.equalsIgnoreCase(targetName)) {
+                model.deleteEmployee(employee);
+                return new CommandResult(String.format(MESSAGE_DELETE_EMPLOYEE_SUCCESS, Messages.format(employee)));
+            }
+        }
+        throw new CommandException(Messages.MESSAGE_EMPLOYEE_NOT_FOUND);
+    }
+
+    /**
+     * Deletes an employee by unique id
+     * TODO: Implement the functionality to delete by ID using this function
+     *
+     * @param model the model to execute the command
+     * @return the result of the command
+     * @throws CommandException if the employee is not found
+     */
+    private CommandResult deleteByUid(Model model) throws CommandException {
+        List<Employee> lastShownList = model.getFilteredEmployeeList();
+        for (Employee employee : lastShownList) {
+            assert uid != null;
+            if (employee.getUid().getUidValue().equals(uid.getUidValue())) {
                 model.deleteEmployee(employee);
                 return new CommandResult(String.format(MESSAGE_DELETE_EMPLOYEE_SUCCESS, Messages.format(employee)));
             }
