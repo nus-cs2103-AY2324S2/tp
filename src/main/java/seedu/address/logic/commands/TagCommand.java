@@ -74,7 +74,7 @@ public class TagCommand extends Command {
     }
 
 
-    private static String showTags(Collection<Tag> tags) {
+    static String showTags(Collection<Tag> tags) {
         return tags.stream().map((tag) -> tag.tagName)
                 .sorted() // making the output order deterministic
                 .collect(Collectors.joining(", "));

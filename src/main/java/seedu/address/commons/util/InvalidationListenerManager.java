@@ -10,7 +10,7 @@ import javafx.beans.Observable;
  * Manages a list of {@link InvalidationListener}.
  */
 public class InvalidationListenerManager {
-    private final ArrayList<InvalidationListener> listeners = new ArrayList<>();
+    public final ArrayList<InvalidationListener> listeners = new ArrayList<>();
 
     /**
      * Adds {@code listener} to the list of listeners.

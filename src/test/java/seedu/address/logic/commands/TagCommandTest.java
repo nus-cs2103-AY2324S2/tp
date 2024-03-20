@@ -8,6 +8,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -50,6 +51,19 @@ class TagCommandTest {
         String expectedMessage = Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
         assertCommandFailure(command, model, new CommandHistory(), expectedMessage);
     }
+    @Test
+    public void showTags_singleTag_returnsSingleTag() {
+        // Create a collection containing a single tag
+        Collection<Tag> tags = Arrays.asList(new Tag("friend"));
+
+        // Call the showTags method
+        String result = TagCommand.showTags(tags);
+
+        // Verify that the result is the same as the single tag
+        assertEquals("friend", result);
+    }
+
+
 
     @Test
     public void equals() {
