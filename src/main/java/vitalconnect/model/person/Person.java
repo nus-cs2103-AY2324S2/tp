@@ -41,6 +41,17 @@ public class Person {
     }
 
     /**
+     * Only identificationInformation and medicalInformation are present.
+     */
+    public Person(IdentificationInformation identificationInformation,
+                  MedicalInformation medicalInformation) {
+        requireAllNonNull(identificationInformation);
+        this.identificationInformation = identificationInformation;
+        this.contactInformation = null;
+        this.medicalInformation = medicalInformation;
+    }
+
+    /**
      * All fields are present.
      */
     public Person(IdentificationInformation identificationInformation,
@@ -99,7 +110,15 @@ public class Person {
      * Make a new copy of that person.
      */
     public Person copyPerson() {
-        return new Person(this.identificationInformation, this.contactInformation, this.medicalInformation);
+        if (hasContactInformation() && hasMedicalInformation()) {
+            return new Person(this.identificationInformation, this.contactInformation, this.medicalInformation);
+        } else if (hasContactInformation()) {
+            return new Person(this.identificationInformation, this.contactInformation);
+        } else if (hasMedicalInformation()) {
+            return new Person(this.identificationInformation, this.medicalInformation);
+        } else {
+            return new Person(this.identificationInformation);
+        }
     }
 
     /**
