@@ -46,7 +46,7 @@ public class StarCommand extends Command {
 
         model.setPerson(contactToStar, starredContact);
         model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult("Nice! I have starred this contact:\n" + contactToStar);
+        return new CommandResult("Nice! I have starred this contact:\n" + contactToStar.getName() + " ★");
     }
 
     @Override

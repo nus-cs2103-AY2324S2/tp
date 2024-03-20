@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import seedu.address.logic.Messages;
 import seedu.address.logic.commands.StarCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -18,16 +19,13 @@ public class StarCommandParser implements Parser<StarCommand> {
     @Override
     public StarCommand parse(String userInput) throws ParseException {
         requireNonNull(userInput);
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(userInput, PREFIX_NAME);
-
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME)
-                || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, StarCommand.MESSAGE_USAGE));
+        String trimmedArgs = userInput.trim();
+        if (trimmedArgs.isEmpty()) {
+            throw new ParseException(String.format(
+                    Messages.MESSAGE_INVALID_COMMAND_FORMAT, StarCommand.MESSAGE_USAGE));
         }
+        //String contactName = argMultimap.getValue(PREFIX_NAME).orElseThrow();
 
-        String contactName = argMultimap.getValue(PREFIX_NAME).orElseThrow();
-
-        return new StarCommand(contactName);
+        return new StarCommand(trimmedArgs);
     }
 }
