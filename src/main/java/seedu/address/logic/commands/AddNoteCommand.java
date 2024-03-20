@@ -83,7 +83,7 @@ public class AddNoteCommand extends Command {
      * Generates a command execution success message based on whether the remark is added to or removed from
      * {@code personToEdit}.
      */
-    private String generateSuccessMessage(Person personToEdit) {
+    public String generateSuccessMessage(Person personToEdit) {
         return String.format(MESSAGE_MODIFY_NOTE_SUCCESS, personToEdit.getName(),
                 personToEdit.getIdentityCardNumber());
     }
