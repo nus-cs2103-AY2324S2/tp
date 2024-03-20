@@ -6,11 +6,18 @@ skinparam classBackgroundColor MODEL_COLOR
 
 TaskMasterPro *-right-> "1" UniqueEmployeeList
 TaskMasterPro *-right-> "1" UniqueTagList
+TaskMasterPro *-down-> "1" TaskList
 UniqueTagList -[hidden]down- UniqueEmployeeList
 UniqueTagList -[hidden]down- UniqueEmployeeList
 
 UniqueTagList -right-> "*" Tag
 UniqueEmployeeList -right-> Employee
+
+TaskList --> Task
+Task *--> TaskId
+Task *--> TaskName
+Task *--> TaskStatus
+
 
 Employee -up-> "*" Tag
 
