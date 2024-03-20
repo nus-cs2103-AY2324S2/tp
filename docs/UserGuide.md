@@ -177,16 +177,14 @@ Format: `note <ApplicationId> /note <Note>`
 Examples:
 * `note 1 /note S/Pass Holder` will add the note “S/Pass Holder” to the applicant identified by ID 1.
 
-### Exporting applicants contacts by pageId : `/export`
-Extracts applicants' contacts into a separate HRConnect identified by a pageId
-Format: /export <ContactRange> <pageId>
+### Exporting applicants contacts by role/stage : `/export`
+Filter to isolate the applicants that match the desired stage or role. Export will then extract those applicants' contacts into a separate HRConnect
+Format: /export 
 
 * Achieve an additional layer of organisation to properly arrange contacts
-* Possible values for `<pageId>` are integers.
-* Possible values for ContactRange are two integers denoting start:end indices.
 
 Examples:
-*  `/export [0:10] 1` will append contacts 0 to 10 inclusive onto page identified by ID 1.
+*  `/export` will append contacts from that page onto another page.
 
 ### Clearing all entries : `clear`
 
@@ -229,4 +227,4 @@ Action | Format, Examples
 **Exit** | `exit`
 **Filter** | `/filter <Tag>`  <br> e.g., `/filter initial_application`
 **Note** | `note <ApplicationId> /note <Note>`  <br> e.g., `note 1 /note S/Pass Holder`
-**Export** | `/export <ContactRange> <pageId>` <br> e.g., `/export [0:10] 1`
+**Export** | `/export` <br> e.g., `/export`
