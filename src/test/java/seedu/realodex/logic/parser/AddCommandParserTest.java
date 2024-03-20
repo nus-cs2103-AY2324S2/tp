@@ -255,7 +255,6 @@ public class AddCommandParserTest {
         expectedPerson = new PersonBuilder(AMY).build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + INCOME_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + FAMILY_DESC_AMY
                 + TAG_DESC_AMY, new AddCommand(expectedPerson));
-
     }
 
     @Test

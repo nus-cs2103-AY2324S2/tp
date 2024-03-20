@@ -84,6 +84,7 @@ public class DeleteCommand extends Command {
         if (targetIndex != null) {
             return targetIndex.equals(otherDeleteCommand.targetIndex);
         } else {
+            assert targetName != null;
             return targetName.equals(otherDeleteCommand.targetName);
         }
     }
