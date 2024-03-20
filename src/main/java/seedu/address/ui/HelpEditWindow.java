@@ -19,13 +19,10 @@ public class HelpEditWindow extends UiPart<Stage> {
     public static final String HELP_MESSAGE = "Edit the fields of the specified person in the Pooch Planner"
             + "\n" + "" + "\n"
             + "Format:" + "\n"
-            + "/edit ; name : [name] ; field : { phone : [phone] ; address : [address] ; email : [email] } " + "\n"
-            + "/edit-staff ; name : [name] ; field : { phone : [phone] ; address : [address] ; email : [email] "
-            + "; salary : [salary]  ; employment : [part/full] }" + "\n"
-            + "/edit-supplier ; name : [name] ; field : { phone : [phone] ; address : [address] ; email : [email] "
-            + "; product : [product] ; price : [price] }" + "\n"
-            + "/edit-maintainer ; name : [name] ; field : { phone : [phone] ; address : [address] ; email : [email] "
-            + "; skill : [skill] ; commission : [commission] }" + "\n"
+            + "/edit ; name : [name] ; field { [field] : [value] }" + "\n"
+            + "/edit-staff ; name : [name] ; field { [field] : [value] }" + "\n"
+            + "/edit-supplier ; name : [name] ; field { [field] : [value] }" + "\n"
+            + "/edit-maintainer ; name : [name] ; field { [field] : [value] }" + "\n"
             + "\n" + "" + "\n"
             + "Go to our UG for more information : " + USERGUIDE_URL;
 
