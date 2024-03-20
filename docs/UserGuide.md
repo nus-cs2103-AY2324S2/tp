@@ -55,7 +55,7 @@ The scope of the PressPlanner application is tailored to the specific needs of j
 <img src="images/Ui.png" alt="UI">
 
 ### [2.3. Basic Commands](#2-getting-started)
-> [!NOTE] 
+> [!TIP] 
 > This section covers commands first-time users might need. For the full commands list, refer to the [Features](#features) section.
 
 Let's go over the basic PressPlanner workflow. Say you've just finished interviewing a certain Gill Bates about his company's latest product. You want to save his contact for later and keep track of your article. Let's fire up PressPlanner and get this task out of the way.
