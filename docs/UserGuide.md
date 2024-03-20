@@ -89,8 +89,7 @@ Format: `help`
 
 ### Adding a person: `add`
 
-Adds a person (Client, Supplier, Employee) to the address book.
-
+Adds a person (Client, Supplier or Employee) to the address book.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS r/ROLE [t/TAG]…​`
 
@@ -118,25 +117,26 @@ Format: `delete [n/NAME] [i/ID]`
 
 Examples:
 * `delete i/2` deletes the person with an ID of 2 in the address book.
-* `delete n/John Doe` deletes the person with the name John Doe.
+* `delete n/John Doe` deletes the person with the name John Doe (if no one else have the same name).
 
 **Info:** Instead of completely deleting the profile from the database, NetConnect does a soft delete of the profile instead. What this means is that the profile still exists in the database,
 but is marked as inactive, and will not appear in your current list or searches.
+**Warnings:** Due to the destructive nature of this action, NetConnect will require a confirmation from the user before it is executed.
 
 ### Adding a Remark to a Person : `remark`
 
 Adds a remark to a person in the address book.
 
-Format: `remark ID r/REMARK`
+Format: `remark i/ID r/REMARK`
 
 * Adds a remark to the person with the specified `ID`.
 * `ID` refers to the unique identification number assigned to each person when first added to the list.
 * `ID` **must refer to a person that exist within NetConnect**.
-* You can remove a remark from a person by typing `rmark ID` without specifying any remarks after it.
+* You can remove a remark from a person by typing `rmark i/ID` without specifying any remarks after it.
 
 Examples:
-* `remark 1 r/John is a very good client` Adds a remark to the person with ID of 1.
-* `remark 2 ` Removes the remark from the person with ID of 2.
+* `remark i/1 r/John is a very good client` Adds a remark to the person with ID of 1.
+* `remark i/2 ` Removes the remark from the person with ID of 2.
 
 ### Listing all persons : `list`
 
@@ -156,6 +156,7 @@ Format: `edit i/ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/ROLE] [t/TAG]…�
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `t/` without
     specifying any tags after it.
+* You cannot edit a field that is invalid to the current person type
 
 Examples:
 *  `edit i/1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the person with ID of 1 to be `91234567` and `johndoe@example.com` respectively.
@@ -165,7 +166,7 @@ Examples:
 
 Finds persons whose names contain any of the given name keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find NAME_KEYWORD [MORE_NAME_KEYWORDS]`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
@@ -179,24 +180,93 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
+**Tip:** You can concatenate all the names you are interested in finding. E.g. If you are interested in listing Alice, Bob and Charles in your list, you can use the following command
+`find alice bob charles`.
+
+### Locating persons by remark: `findrem`
+
+Finds persons who have remarks that matches the given keywords
+
+Format: `find REMARK_KEYWORD [MORE_REMARK_KEYWORDS]`
+
+* The search is case-insensitive. e.g `Friendly` will match `friendly`
+* The order of the keywords does not matter. e.g. `fish supply` will match `supply fish`
+* Only the remark is searched.
+* Only full words will be matched e.g. `fish` will not match `fishball`
+* Persons with remarks matching at least one keyword will be returned (i.e. `OR` search).
+
+Examples:
+* `findrem unfriendly` returns `john` who has a remark `unfriendly`
+* `findrem marketing IC`  returns `Alex Yeoh` who has a remark `publicity IC`, and `David Li` who has a remark `marketing head`.<br>
+
+### Locating persons by role: `findrole`
+
+Finds persons whose role matches the given role.
+
+Format: `findrole ROLE_KEYWORD [MORE_ROLE_KEYWORDS]`
+* The search is case-insensitive. e.g `client` will match `Client`
+* Only the role is searched.
+* the role must be an exact match of either `client`, `supplier` or `employee`
+
+
 ### Locating persons by phone number: `findnum`
 
 Finds persons whose phone number matches the given number.
 
-Format: `findnum PHONE_NUMBER`
+Format: `findnum CONTACT_NUMBER [CONTACT_NUMBERS]`
 
 * Only the full number is searched (i.e. no partial match). e.g. `83647382` or `8364` will not match `83641001`
-* The search will return at most one person since two people cannot share the same phone number.
+* The search will return at most one person for each number since two people cannot share the same phone number.
 
 Examples:
 * `findnum 83647382` returns `John Doe` who has the phone number `83647382`
 
+**Note:** NetConnect accepts phone numbers with three or more digits, to account for staff extensions in the company. This is not a bug.
 
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
 
 Format: `clear`
+
+**Warnings:** Due to the destructive nature of this action, NetConnect will require a confirmation from the user before it is executed.
+
+### Create Relations between Profiles : `relate`
+
+Creates a relation between two profiles in the address book.
+
+Format: `relate [i/ID][n/NAME] [i/ID][n/NAME]`
+
+Exampple: `relate i/1 i/2` creates a relation between the profiles with ID of 1 and 2.
+
+### Show Relations Associated to a Person : `showrelated`
+
+Shows all the relations associated to a person in the address book.
+
+Format: `showrelated [i/ID][n/NAME]`
+
+### Open on Last State
+With every change to the command input, NetConnect saves and updates the command input in a separate file.
+When the app closes and is opened again, the last command present before closure will be retrieved from the separate file and
+input into the command field (if any). This way, you never have to worry about losing progress!
+
+### Export Current View to CSV File
+Retrieve information on a group of profiles at once with this function! This can be useful for consolidating all the emails or contact number at once
+, or to share information with third parties.
+
+**To export all profiles in the address book to a CSV file:**
+Step 1: `list`
+Step 2: `export`
+* The `list` command in the first step is to pull all profiles into the current view.
+
+**To export a specific group of profiles to a CSV file:**
+Step 1: `find [KEYWORD]` or any other function that filters the profiles.
+Step 2: `export`
+* The first step is to filter the profiles you want to export into the current view.
+
+### Never Miss a Birthday!
+Celebrate your employees' birthdays to show that you care.
+NetConnect will remind you of the birthdays of your employees, so you never have to miss a birthday again!
 
 ### Exiting the program : `exit`
 
@@ -218,17 +288,6 @@ NetConnect data are saved automatically as a JSON file `[JAR file location]/data
 If your changes to the data file makes its format invalid, NetConnect will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
 Furthermore, certain edits can cause the NetConnect to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
-
-### Remembering States
-[TBA]
-
-### Export Contact Lists to CSV File
-[TBA]
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
