@@ -129,7 +129,6 @@ public class PersonTest {
                 + ALICE.getDateTime()
                 + ", salary="
                 + ALICE.getSalary() + ", tags=" + ALICE.getTags() + "}";
-      
         assertEquals(expected, ALICE.toString());
     }
 }

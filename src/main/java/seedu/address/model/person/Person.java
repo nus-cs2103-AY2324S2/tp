@@ -35,6 +35,7 @@ public class Person {
             CompanyName companyName, Name name, Phone phone, Email email, Address address,
             InterviewTime dateTime, Salary salary, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, salary, tags);
+        this.companyName = companyName;
         this.name = name;
         this.phone = phone;
         this.email = email;
