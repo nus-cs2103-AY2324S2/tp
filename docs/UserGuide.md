@@ -183,14 +183,16 @@ Format: `exit`
 
 Opens the desktop mail application to directly send an email to a specific contact.
 
-How to use: Click on the contact's email.
+**How to use:** Click on the contact's email.
 
 
 #### View your previous commands
 
-You can view the commands you have run previously by pressing the up and down arrow keys while the command input is focused.
-Any edits you make to a command will be saved while navigating through your history, so you can go to a another command 
-to refer to it, and return back to your edited command to finish typing.
+Any commands you have run previously are saved in the command history, so that you can easily refer to them if you need to.
+Any edits you make to a command will be saved while navigating through your history, so you can go to a another command
+to refer to it, and then return back to your edited command to finish typing.
+
+**How to use:** Use the up and down arrow keys to navigate through your history while the command input is focused,
 
 #### Saving the data
 
