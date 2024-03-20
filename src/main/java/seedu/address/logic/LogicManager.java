@@ -1,5 +1,7 @@
 package seedu.address.logic;
 
+import static seedu.address.logic.Messages.MESSAGE_CONFIRMATION;
+
 import java.io.IOException;
 import java.nio.file.AccessDeniedException;
 import java.nio.file.Path;
@@ -61,7 +63,7 @@ public class LogicManager implements Logic {
 
             Confirmation confirmation = new Confirmation(command);
             if (!confirmation.isToProceed()) {
-                return new CommandResult(Confirmation.CONFIRMATION_MESSAGE, true, false, false);
+                return new CommandResult(MESSAGE_CONFIRMATION, true, false, false);
             }
 
             commandResult = command.execute(model);
