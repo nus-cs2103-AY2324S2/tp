@@ -24,18 +24,21 @@ public class Person {
 
     // Data fields
     private final Address address;
+    private final Birthday birthday;
     private final Set<Tag> tags = new HashSet<>();
     private final Set<Attendance> attendances = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Set<Attendance> attendances) {
-        requireAllNonNull(name, phone, email, address, tags, attendances);
+    public Person(Name name, Phone phone, Email email, Address address, Birthday birthday,
+                  Set<Tag> tags, Set<Attendance> attendances) {
+        requireAllNonNull(name, phone, email, address, birthday, tags, attendances);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.birthday = birthday;
         this.tags.addAll(tags);
         this.attendances.addAll(attendances);
     }
@@ -54,6 +57,9 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+    public Birthday getBirthday() {
+        return birthday;
     }
 
     /**
@@ -106,6 +112,7 @@ public class Person {
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
+                && birthday.equals(otherPerson.birthday)
                 && tags.equals(otherPerson.tags)
                 && attendances.equals(otherPerson.attendances);
     }
@@ -113,7 +120,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags, attendances);
+        return Objects.hash(name, phone, email, address, birthday, tags, attendances);
     }
 
     @Override
@@ -123,6 +130,7 @@ public class Person {
                 .add("phone", phone)
                 .add("email", email)
                 .add("address", address)
+                .add("birthday", birthday)
                 .add("tags", tags)
                 .add("attendances", attendances)
                 .toString();
