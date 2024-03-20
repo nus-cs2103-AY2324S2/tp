@@ -8,9 +8,11 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; is valid as declared in {@link #isValidSubject(String)}
  */
 public class Subject {
+
     public static final String MESSAGE_CONSTANTS = "Subject should be string of at least of length of 1";
 
     public final String value;
+
     /**
      * Constructs a {@code Subject}.
      *
