@@ -41,6 +41,8 @@ public class ImportCommand extends Command {
 
     public static final String MESSAGE_FILE_NOT_FOUND = "Filename %s is not found!";
 
+    public static final String MESSAGE_INVALID_FILE = "Invalid file format!";
+
     private static final Logger logger = LogsCenter.getLogger(ImportCommand.class);
     private final Set<File> files;
 
@@ -130,6 +132,23 @@ public class ImportCommand extends Command {
                 .stream()
                 .map(JsonAdaptedPerson::new)
                 .collect(Collectors.toList());
+    }
+
+
+
+    /**
+     * Returns the file format of the {@code file}. Returns null if the file format is not found.
+     *
+     * @param file A File.
+     * @return The file format of the {@code file}. | null if the file format is not found.
+     */
+    private String getFileFormat(File file) {
+        String fileName = file.getName();
+        int index = fileName.lastIndexOf(".");
+        if (index == -1) {
+            return null;
+        }
+        return fileName.substring(index + 1);
     }
 
     @Override
