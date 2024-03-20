@@ -17,8 +17,8 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Id;
-import seedu.address.model.person.Person;
+import seedu.address.model.student.Id;
+import seedu.address.model.student.Student;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.PersonBuilder;
 
@@ -106,12 +106,12 @@ public class TagCommandTest {
         TagCommand tagCommand = new TagCommand(invalidId, tagList);
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        Person resultPerson = new PersonBuilder().withName("Alice Pauline").withId("A0251893P")
+        Student resultStudent = new PersonBuilder().withName("Alice Pauline").withId("A0251893P")
                 .withMajor("Computer Science").withIntake("2023")
                 .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
                 .withPhone("94351253")
                 .withTags("friends", "TopStudent").build();
-        expectedModel.setPerson(ALICE, resultPerson);
+        expectedModel.setPerson(ALICE, resultStudent);
         assertCommandSuccess(tagCommand, model, String.format(MESSAGE_ADD_TAG_SUCCESS, tagList), expectedModel);
     }
     @Test

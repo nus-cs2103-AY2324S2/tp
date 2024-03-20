@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.student;
 
 import java.util.function.Predicate;
 
@@ -8,7 +8,7 @@ import seedu.address.commons.util.ToStringBuilder;
 /**
  * Tests that a {@code Person}'s {@code Name} matches the query Name.
  */
-public class IdContainsQueryIdPredicate implements Predicate<Person> {
+public class IdContainsQueryIdPredicate implements Predicate<Student> {
 
     private final String queryId;
 
@@ -17,8 +17,8 @@ public class IdContainsQueryIdPredicate implements Predicate<Person> {
     }
 
     @Override
-    public boolean test(Person person) {
-        return StringUtil.containsIngnoreCase(person.getId().id, queryId);
+    public boolean test(Student student) {
+        return StringUtil.containsIngnoreCase(student.getId().id, queryId);
     }
 
     @Override

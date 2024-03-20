@@ -77,7 +77,7 @@
 
         </StackPane>
 
-        <VBox fx:id="personList" styleClass="stack-pane" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
+        <VBox fx:id="studentList" styleClass="stack-pane" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
           <padding>
             <Insets top="10" right="20" bottom="10" left="20" />
           </padding>

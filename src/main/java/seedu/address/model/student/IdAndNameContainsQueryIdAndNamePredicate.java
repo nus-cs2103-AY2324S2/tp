@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.student;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +10,7 @@ import seedu.address.commons.util.ToStringBuilder;
 /**
  * Tests that a {@code Person}'s {@code id} matches the query ID.
  */
-public class IdAndNameContainsQueryIdAndNamePredicate implements Predicate<Person> {
+public class IdAndNameContainsQueryIdAndNamePredicate implements Predicate<Student> {
 
     private final String queryId;
 
@@ -28,9 +28,9 @@ public class IdAndNameContainsQueryIdAndNamePredicate implements Predicate<Perso
     }
 
     @Override
-    public boolean test(Person person) {
-        return StringUtil.containsIngnoreCase(person.getId().id, queryId)
-                && StringUtil.containsOrderedSubstringIgnoreCase(person.getName().fullName, queryName);
+    public boolean test(Student student) {
+        return StringUtil.containsIngnoreCase(student.getId().id, queryId)
+                && StringUtil.containsOrderedSubstringIgnoreCase(student.getName().fullName, queryName);
     }
 
     @Override

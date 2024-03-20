@@ -11,8 +11,8 @@ import java.util.Set;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Id;
-import seedu.address.model.person.Person;
+import seedu.address.model.student.Id;
+import seedu.address.model.student.Student;
 import seedu.address.model.tag.Tag;
 /**
  * Adds tags to a student.
@@ -44,25 +44,25 @@ public class TagCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        List<Person> lastShownList = model.getFilteredPersonList();
-        Person personToEdit = null;
-        for (Person person:lastShownList) {
-            if (person.getId().equals(personToEditId)) {
-                personToEdit = person;
+        List<Student> lastShownList = model.getFilteredPersonList();
+        Student studentToEdit = null;
+        for (Student student :lastShownList) {
+            if (student.getId().equals(personToEditId)) {
+                studentToEdit = student;
             }
         }
-        if (personToEdit == null) {
+        if (studentToEdit == null) {
             throw new CommandException(MESSAGE_PERSON_NOTFOUND);
         }
-        Set<Tag> resultTags = personToEdit.getTags();
+        Set<Tag> resultTags = studentToEdit.getTags();
         Set<Tag> mergedSet = new HashSet<>(resultTags);
         mergedSet.addAll(tags);
 
-        Person editedPerson = new Person(personToEdit.getId(), personToEdit.getMajor(), personToEdit.getIntake(),
-                personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), mergedSet);
+        Student editedStudent = new Student(studentToEdit.getId(), studentToEdit.getMajor(), studentToEdit.getIntake(),
+                studentToEdit.getName(), studentToEdit.getPhone(), studentToEdit.getEmail(),
+                studentToEdit.getAddress(), mergedSet);
 
-        model.setPerson(personToEdit, editedPerson);
+        model.setPerson(studentToEdit, editedStudent);
         if (mergedSet.size() != resultTags.size() + tags.size()) {
             return new CommandResult(String.format(MESSAGE_ADD_TAG_SUCCESS, tags)
                     + " \n" + MESSAGE_DUPLICATE);

@@ -21,10 +21,10 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.IdAndNameContainsQueryIdAndNamePredicate;
-import seedu.address.model.person.IdContainsQueryIdPredicate;
-import seedu.address.model.person.NameContainsQueryNamePredicate;
-import seedu.address.model.person.Person;
+import seedu.address.model.student.IdAndNameContainsQueryIdAndNamePredicate;
+import seedu.address.model.student.IdContainsQueryIdPredicate;
+import seedu.address.model.student.NameContainsQueryNamePredicate;
+import seedu.address.model.student.Student;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
@@ -37,9 +37,9 @@ public class FindCommandTest {
     public void equals() {
 
         // TEST NAME ---------------------------------------
-        Predicate<Person> firstPredicate =
+        Predicate<Student> firstPredicate =
                 new NameContainsQueryNamePredicate("first");
-        Predicate<Person> secondPredicate =
+        Predicate<Student> secondPredicate =
                 new NameContainsQueryNamePredicate("second");
 
         FindCommand findFirstCommand = new FindCommand(firstPredicate);
@@ -207,7 +207,7 @@ public class FindCommandTest {
 
     @Test
     public void toStringMethod() {
-        Predicate<Person> predicate = new NameContainsQueryNamePredicate("first");
+        Predicate<Student> predicate = new NameContainsQueryNamePredicate("first");
         FindCommand findCommand = new FindCommand(predicate);
         String expected = FindCommand.class.getCanonicalName() + "{predicate=" + predicate + "}";
         assertEquals(expected, findCommand.toString());

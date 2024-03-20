@@ -7,7 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.person.Person;
+import seedu.address.model.student.Student;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -24,7 +24,7 @@ public class PersonCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Person person;
+    public final Student student;
 
     @FXML
     private HBox cardPane;
@@ -50,18 +50,18 @@ public class PersonCard extends UiPart<Region> {
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public PersonCard(Person person, int displayedIndex) {
+    public PersonCard(Student student, int displayedIndex) {
         super(FXML);
-        this.person = person;
+        this.student = student;
         id.setText(displayedIndex + ". ");
-        studentId.setText(person.getId().id);
-        name.setText(person.getName().fullName);
-        phone.setText(person.getPhone().value);
-        major.setText(person.getMajor().major);
-        intake.setText(person.getIntake().toString());
-        address.setText(person.getAddress().value);
-        email.setText(person.getEmail().value);
-        person.getTags().stream()
+        studentId.setText(student.getId().id);
+        name.setText(student.getName().fullName);
+        phone.setText(student.getPhone().value);
+        major.setText(student.getMajor().major);
+        intake.setText(student.getIntake().toString());
+        address.setText(student.getAddress().value);
+        email.setText(student.getEmail().value);
+        student.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }

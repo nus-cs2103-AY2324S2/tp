@@ -6,9 +6,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.IdAndNameContainsQueryIdAndNamePredicate;
-import seedu.address.model.person.IdContainsQueryIdPredicate;
-import seedu.address.model.person.NameContainsQueryNamePredicate;
+import seedu.address.model.student.IdAndNameContainsQueryIdAndNamePredicate;
+import seedu.address.model.student.IdContainsQueryIdPredicate;
+import seedu.address.model.student.NameContainsQueryNamePredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object

@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.student;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -14,7 +14,7 @@ import seedu.address.model.tag.Tag;
  * Represents a Person in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Person {
+public class Student {
 
     // Identity fields
 
@@ -34,7 +34,7 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Id id, Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Student(Id id, Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.id = id;
         this.major = new Major("");
@@ -49,7 +49,7 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Student(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.id = new Id("N1111111N");
         this.major = new Major("");
@@ -65,8 +65,8 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Id id, Major major, Intake intake, Name name, Phone phone, Email email,
-                  Address address, Set<Tag> tags) {
+    public Student(Id id, Major major, Intake intake, Name name, Phone phone, Email email,
+                   Address address, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags, id, major, intake);
         this.id = id;
         this.major = major;
@@ -120,13 +120,13 @@ public class Person {
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      */
-    public boolean isSamePerson(Person otherPerson) {
-        if (otherPerson == this) {
+    public boolean isSameStudent(Student otherStudent) {
+        if (otherStudent == this) {
             return true;
         }
 
-        return otherPerson != null
-                && otherPerson.getId().equals(getId());
+        return otherStudent != null
+                && otherStudent.getId().equals(getId());
     }
 
     /**
@@ -140,16 +140,16 @@ public class Person {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof Person)) {
+        if (!(other instanceof Student)) {
             return false;
         }
 
-        Person otherPerson = (Person) other;
-        return id.equals(otherPerson.id) && name.equals(otherPerson.name)
-                && phone.equals(otherPerson.phone)
-                && email.equals(otherPerson.email)
-                && address.equals(otherPerson.address)
-                && tags.equals(otherPerson.tags) && major.equals(otherPerson.major);
+        Student otherStudent = (Student) other;
+        return id.equals(otherStudent.id) && name.equals(otherStudent.name)
+                && phone.equals(otherStudent.phone)
+                && email.equals(otherStudent.email)
+                && address.equals(otherStudent.address)
+                && tags.equals(otherStudent.tags) && major.equals(otherStudent.major);
     }
 
     @Override

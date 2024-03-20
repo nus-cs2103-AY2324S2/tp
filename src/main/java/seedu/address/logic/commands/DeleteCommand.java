@@ -13,8 +13,8 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Id;
-import seedu.address.model.person.Person;
+import seedu.address.model.student.Id;
+import seedu.address.model.student.Student;
 
 /**
  * Deletes a person identified using it's displayed index from the address book or given student ID.
@@ -61,13 +61,13 @@ public class DeleteCommand extends Command {
     }
 
     private CommandResult handleIndexInput(Model model) throws CommandException {
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Student> lastShownList = model.getFilteredPersonList();
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
-        Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deletePerson(personToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
+        Student studentToDelete = lastShownList.get(targetIndex.getZeroBased());
+        model.deletePerson(studentToDelete);
+        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(studentToDelete)));
     }
 
     /**
@@ -79,8 +79,8 @@ public class DeleteCommand extends Command {
      * @throws CommandException If the specified student ID does not match any person in the model.
      */
     public CommandResult handleStudentIdInput(Model model) throws CommandException {
-        List<Person> lastShownList = model.getFilteredPersonList();
-        Optional<Person> personToDelete = lastShownList.stream()
+        List<Student> lastShownList = model.getFilteredPersonList();
+        Optional<Student> personToDelete = lastShownList.stream()
                 .filter(person -> person.getId().equals(targetStudentId))
                 .findFirst();
 

@@ -9,7 +9,7 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.TagCommand;
-import seedu.address.model.person.Id;
+import seedu.address.model.student.Id;
 import seedu.address.model.tag.Tag;
 
 public class TagCommandParserTest {
