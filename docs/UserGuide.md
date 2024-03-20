@@ -27,9 +27,9 @@ PayBack is a **desktop app for managing contacts, optimized for use via a Comman
 
    * `/list` : Lists all contacts.
 
-   * `/add John Doe, 98765432, johndoe@example.com, 2024` : Adds a contact named `John Doe` to the Address Book.
+   * `/add John Doe, 98765432, johndoe@example.com, street a, 2024` : Adds a contact named `John Doe` to the Address Book.
 
-   * `/remove 240001` : Deletes the contact with id 240001.
+   * `/delete 240001` : Deletes the contact with id 240001.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -203,9 +203,9 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `/add :name NAME :phone PHONE :email EMAIL [year joined]` <br> e.g., `/add John Doe, 98765432, johndoe@example.com, 2024`
-**Delete** | `/remove ID`<br> e.g., `/remove 240001`
-**Edit** | `/edit ID [:name NAME] [:phone PHONE] [:email EMAIL] [:tag TAG]`<br> e.g.,`/edit 240001 :phone 91234567 :email: johndoe@example.com`
+**Add** | `/add :name NAME :phone PHONE :email EMAIL :address ADDRESS :year YEAR` <br> e.g., `/add John Doe, 98765432, johndoe@example.com, street A, 2024`
+**Delete** | `/delete ID`<br> e.g., `/delete 240001`
+**Edit** | `/edit ID [:name NAME] [:phone PHONE] [:email EMAIL] [:address ADDRESS] [:tag TAG]`<br> e.g.,`/edit 240001 :phone 91234567 :email: johndoe@example.com`
 **Find** | `/find :name [name]`<br>`/find :email [email]`<br>`/find :phone [phone number]`<br>`/find :id [ID]`<br>`/find :year [year]`<br>`/find :tag [tag]`<br><br> e.g., `find :name John`
 **List** | `/list`
 **Help** | `/help`
