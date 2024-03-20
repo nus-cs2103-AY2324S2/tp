@@ -22,7 +22,18 @@ Class Name
 Class Phone
 Class Tag
 
+Class Nric
+Class AppointmentList
+Class Appointment
+Class Date
+Class TimePeriod
+Class Time
+Class AppointmentType
+Class Note
+
 Class I #FFFFFF
+Class J #FFFFFF
+
 }
 
 Class HiddenOutside #FFFFFF
@@ -57,5 +68,24 @@ Address -[hidden]right-> Phone
 Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
 
+AddressBook *--> "1" AppointmentList
+AppointmentList --> "~* all" Appointment
+Appointment *--> Nric
+Appointment *--> Date
+Appointment *--> TimePeriod
+TimePeriod *--> "2" Time
+Appointment *--> AppointmentType
+Appointment *--> Note
+
+Appointment -[hidden]up--> J
+AppointmentList -[hidden]right-> J
+
+Nric -[hidden]right-> Date
+Date -[hidden]right-> TimePeriod
+TimePeriod -[hidden]right-> AppointmentType
+AppointmentType -[hidden]right-> Note
+
+
 ModelManager --> "~* filtered" Person
+ModelManager --> "~* filtered" Appointment
 @enduml
