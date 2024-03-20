@@ -17,12 +17,15 @@ public class ExportCommand extends Command {
     
     public static final String COMMAND_WORD = "export";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows program usage instructions.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Exports all contacts currently shown.\n"
+    + "Usually used after 'filter' or 'find' command to export a subset of contacts. \n"
     + "Example: " + COMMAND_WORD;
 
     public static final String MESSAGE_SUCCESS = "Contacts have been exported!";
 
     private Path savePath = Paths.get("data", "exportedcontacts.json");
+
+    public static final String FILE_OPS_ERROR_FORMAT = "Could not save data due to the following error: %s";
 
 
     /**
@@ -42,8 +45,8 @@ public class ExportCommand extends Command {
         
         try {
             storage.saveAddressBook(book);
-        } catch (IOException e) {
-            System.out.println("life is liddat");
+        } catch (IOException ioe) {
+            throw new CommandException(String.format(FILE_OPS_ERROR_FORMAT, ioe.getMessage()), ioe);
         }
  
 
