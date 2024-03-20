@@ -104,14 +104,14 @@ startup investments!
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
 Format: `help`
 
 
-### Adding a person: `add`
+### Adding a startup: `add`
 
 Adds a startup to the address book.
 
@@ -119,7 +119,7 @@ Format: `add n/NAME p/PHONE_NUMBER i/INDUSTRY f/FUNDING_STAGE e/EMAIL a/ADDRESS 
 
 <box type="tip" seamless>
 
-**Tip:** A person can have any number of tags (including 0)
+**Tip:** A startup can have any number of tags (including 0)
 </box>
 
 <box type="tip" seamless>
@@ -145,7 +145,7 @@ Examples:
 * `add n/Google p/98765432 e/sundarpichal@example.com a/Menlo Park, block 123, #01-01 f/A i/tech`
 * `add n/FTX t/bankrupted e/sbf@example.com a/Newgate Prison p/1234567 t/criminal f/A i/web 3`
 
-### Listing all persons : `list`
+### Listing all startups : `list`
 
 Shows a list of all startups in the address book.
 
@@ -170,22 +170,22 @@ Examples:
 
 **Tip:** Indexes are taken with respect to the list! Warnings might show up if you give us a invalid index.
 
-### Editing a person : `edit`
+### Editing a startup : `edit`
 
 Edits an existing startup in the address book.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [f/FUNDING_STAGE] [i/INDUSTRY] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed startup list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the startup at the specified `INDEX`. The index refers to the index number shown in the displayed startup list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
+* When editing tags, the existing tags of the startup will be removed i.e adding of tags is not cumulative.
 * You can remove all the startup’s tags by typing `t/` without
     specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/stripe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Stripe t/` Edits the name of the 2nd person to be `Stripe` and clears all existing tags.
+*  `edit 1 p/91234567 e/stripe@example.com` Edits the phone number and email address of the 1st startup to be `91234567` and `johndoe@example.com` respectively.
+*  `edit 2 n/Stripe t/` Edits the name of the 2nd startup to be `Stripe` and clears all existing tags.
 
 
 <box type="tip" seamless>
