@@ -3,6 +3,7 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static seedu.address.testutil.TypicalCourseMates.getTypicalContactList;
+import static seedu.address.testutil.TypicalGroups.getTypicalGroupList;
 
 import java.nio.file.Path;
 
@@ -12,7 +13,9 @@ import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.ContactList;
+import seedu.address.model.GroupList;
 import seedu.address.model.ReadOnlyContactList;
+import seedu.address.model.ReadOnlyGroupList;
 import seedu.address.model.UserPrefs;
 
 public class StorageManagerTest {
@@ -66,4 +69,21 @@ public class StorageManagerTest {
         assertNotNull(storageManager.getContactListFilePath());
     }
 
+    @Test
+    public void groupListReadSave() throws Exception {
+        /*
+         * Note: This is an integration test that verifies the StorageManager is properly wired to the
+         * {@link JsonGroupListStorage} class.
+         * More extensive testing of UserPref saving/reading is done in {@link JsonGroupListStorageTest} class.
+         */
+        GroupList original = getTypicalGroupList();
+        storageManager.saveGroupList(original);
+        ReadOnlyGroupList retrieved = storageManager.readGroupList().get();
+        assertEquals(original, new GroupList(retrieved));
+    }
+
+    @Test
+    public void getGroupListFilePath() {
+        assertNotNull(storageManager.getGroupListFilePath());
+    }
 }

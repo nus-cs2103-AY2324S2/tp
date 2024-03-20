@@ -1,0 +1,14 @@
+{
+  "groups" : [ {
+    "name" : "group 1",
+    "members" : [ ]
+  }, {
+    "name" : "group 1",
+    "members" : [ {
+      "name" : "Alex Yeoh",
+      "phone" : "87438807",
+      "email" : "alexyeoh@example.com",
+      "skills" : [ "friends" ]
+    } ]
+  } ]
+}

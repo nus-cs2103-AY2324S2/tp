@@ -47,16 +47,16 @@ public class JsonAdaptedGroup {
      * @throws IllegalValueException if there were any data constraints violated in the adapted group.
      */
     public Group toModelType() throws IllegalValueException {
-        final List<CourseMate> modelMembers = new ArrayList<>();
-        for (JsonAdaptedCourseMate courseMate: this.members) {
-            modelMembers.add(courseMate.toModelType());
-        }
-
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
         if (!Name.isValidName(name)) {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+        }
+
+        final List<CourseMate> modelMembers = new ArrayList<>();
+        for (JsonAdaptedCourseMate courseMate: this.members) {
+            modelMembers.add(courseMate.toModelType());
         }
 
         Name modelName = new Name(name);

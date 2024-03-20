@@ -28,6 +28,7 @@ public class TypicalGroups {
     public static final Set<CourseMate> SAMPLE_MEMBER_SET_1 = new HashSet<>(Arrays.asList(ALICE, BENSON));
     public static final Set<CourseMate> SAMPLE_MEMBER_SET_2 = new HashSet<>(Arrays.asList(CARL, DANIEL));
     public static final Set<CourseMate> SAMPLE_MEMBER_SET_3 = new HashSet<>(Arrays.asList(ELLE, FIONA));
+    public static final Set<CourseMate> SAMPLE_UNINCLUDED_MEMBER_SET = new HashSet<>(Arrays.asList(ALICE, FIONA));
 
     // These contacts are not in the typicalContactList
     public static final Set<CourseMate> SAMPLE_INVALID_MEMBER_SET_1 = new HashSet<>(Arrays.asList(AMY, BOB));
@@ -41,11 +42,14 @@ public class TypicalGroups {
     public static final Name SAMPLE_GROUP_NAME_1 = new Name("Group 1");
     public static final Name SAMPLE_GROUP_NAME_2 = new Name("Group 2");
     public static final Name SAMPLE_GROUP_NAME_3 = new Name("Group 3");
-
+    public static final Name SAMPLE_UNINCLUDED_NAME = new Name("Unincluded group");
 
     public static final Group SAMPLE_GROUP_1 = new Group(SAMPLE_GROUP_NAME_1, SAMPLE_MEMBER_SET_1);
     public static final Group SAMPLE_GROUP_2 = new Group(SAMPLE_GROUP_NAME_2, SAMPLE_MEMBER_SET_2);
     public static final Group SAMPLE_GROUP_3 = new Group(SAMPLE_GROUP_NAME_3, SAMPLE_MEMBER_SET_3);
+    public static final Group SAMPLE_UNINCLUDED_GROUP =
+            new Group(SAMPLE_UNINCLUDED_NAME, SAMPLE_UNINCLUDED_MEMBER_SET);
+
 
     /**
      * Prevent instantiation.
