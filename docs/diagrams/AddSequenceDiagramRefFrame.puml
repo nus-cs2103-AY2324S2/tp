@@ -1,0 +1,42 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+mainframe **sd** AddDetails
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":ParserUtil" as ParserUtil MODEL_COLOR
+participant "ApptSet: Set<Appointment>" as apptSet #Green
+participant "a:Appointment" as Appointment #Green
+end box
+
+
+activate Model
+
+Model -> ParserUtil : parseAppointments(appointments)
+activate ParserUtil
+ParserUtil -> ParserUtil : requireNonNull(appointments)
+create apptSet
+ParserUtil -> apptSet : new
+activate apptSet
+
+loop Each String in appointments
+    create Appointment
+    apptSet -> Appointment : Appointment(a)
+    Activate Appointment
+    Appointment -> Appointment : checkArgument(appointment)
+    Appointment -> apptSet : add(a)
+    deactivate Appointment
+end
+
+apptSet -> ParserUtil : apptSet
+deactivate apptSet
+
+ParserUtil -> Model : apptSet
+
+deactivate ParserUtil
+
+deactivate Model
+
+@enduml

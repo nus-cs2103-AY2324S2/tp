@@ -155,6 +155,24 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Managing appointments
+
+#### Implementation
+
+One of the features of TutorRec is the capability of adding appointments to a user. They are added as a field (`/ap`) when doing an `add` or `edit` command, so something similar to:
+
+- `edit 1 /ap 12:00-13:00 MON` will edit the person on index 1 to have an appointment on Monday from 12:00 to 13:00
+
+The example shown below will describe the process for an appointment given during an `add` command, though the process is similar to that of an `edit` command.
+
+![AddSequenceDiagramAppointment](images/AddSequenceDiagramAppointment.png)
+
+![AddSequenceDiagramRefFrame](images/AddSequenceDiagramRefFrame.png)
+
+It can be seen here that each appointment, after being parsed, will be added to the list of appointments to each person.
+
+Note that certain details, such as other fields in a `Person` have been omitted for brevity.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
