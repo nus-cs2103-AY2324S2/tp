@@ -53,4 +53,24 @@ public class CourseTest {
         assertTrue(Course.isValidCourse("CS1999")); // last 3 digits greater than 8
         assertTrue(Course.isValidCourse("  Cs8970s    ")); // mixed of above properties
     }
+
+    @Test
+    public void equal() {
+        Course course = new Course("CS2103T");
+
+        // same values -> returns true
+        assertTrue(course.equals(new Course("CS2103T")));
+
+        // same object -> returns true
+        assertTrue(course.equals(course));
+
+        // null -> returns false
+        assertFalse(course.equals(null));
+
+        // different types -> returns false
+        assertFalse(course.equals("CS2103T"));
+
+        // different values -> returns false
+        assertFalse(course.equals(new Course("CS2103")));
+    }
 }
