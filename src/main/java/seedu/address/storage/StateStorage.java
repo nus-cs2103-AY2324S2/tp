@@ -152,6 +152,4 @@ public class StateStorage {
     public static Path getDirectoryPath() {
         return DIRECTORY_PATH;
     }
-
-
 }
