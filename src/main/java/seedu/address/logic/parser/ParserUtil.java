@@ -2,13 +2,17 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -124,4 +128,74 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
+    /**
+     * Parses a {@code String dateTime} into an {@code LocalDateTime}.
+     *
+     * @throws ParseException if the given {@code dateTime} is invalid.
+     */
+    public static LocalDateTime parseDateTime(String dateTime) throws ParseException {
+        requireNonNull(dateTime);
+        String trimmedDateTime = dateTime.trim();
+
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        LocalDateTime localDateTime;
+        try {
+            localDateTime = LocalDateTime.parse(trimmedDateTime, format);
+        } catch (Exception e) {
+            throw new ParseException(Appointment.MESSAGE_CONSTRAINTS);
+        }
+        return localDateTime;
+    }
+
+    /**
+     * Parses a {@code Collection<String> attend} into a {@code boolean}.
+     * By default, false will be returned if {@code attend} is empty.
+     *
+     * @throws ParseException if the given {@code attend} is invalid.
+     */
+    public static boolean parseHasAttended(String attend) throws ParseException {
+        requireNonNull(attend);
+        if (attend.isEmpty()) {
+            return false;
+        }
+
+        String trimmedAttend = attend.trim();
+        if (!trimmedAttend.equalsIgnoreCase("true")
+                && !trimmedAttend.equalsIgnoreCase("false")) {
+            throw new ParseException(Appointment.MESSAGE_CONSTRAINTS);
+        }
+        return Boolean.parseBoolean(trimmedAttend);
+    }
+
+    /**
+     * Parses a {@code Collection<String> description} into a {@code String}.
+     * Leading and trailing whitespaces will be trimmed.
+     * By default, an empty string will be returned if {@code description} is empty.
+     * TODO: remove after case log is implemented
+     */
+    public static String parseDescription(String description) {
+        requireNonNull(description);
+        if (description.isEmpty()) {
+            return "";
+        }
+        return description.trim();
+    }
+
+    /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    public static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
+    /**
+     * Returns true if any of the prefixes contains non-empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    public static boolean hasAtLeastOnePrefixPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
 }

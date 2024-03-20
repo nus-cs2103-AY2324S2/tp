@@ -1,21 +1,21 @@
 package seedu.address.ui;
 
 import javafx.scene.control.ListCell;
-import seedu.address.model.person.Person;
+import seedu.address.model.appointment.Appointment;
 
 /**
- * Custom {@code ListCell} that displays the graphics of a {@code Appointment} using a {@code PersonCard}.
+ * Custom {@code ListCell} that displays the graphics of a {@code Appointment} using an {@code AppointmentCard}.
  */
-public class AppointmentListViewCell extends ListCell<Person> {
+public class AppointmentListViewCell extends ListCell<Appointment> {
     @Override
-    protected void updateItem(Person person, boolean empty) {
-        super.updateItem(person, empty);
+    protected void updateItem(Appointment appointment, boolean empty) {
+        super.updateItem(appointment, empty);
 
-        if (empty || person == null) {
+        if (empty || appointment == null) {
             setGraphic(null);
             setText(null);
         } else {
-            setGraphic(new PersonCard(person, getIndex() + 1).getRoot());
+            setGraphic(new AppointmentCard(appointment).getRoot());
         }
     }
 }

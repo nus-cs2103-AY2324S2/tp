@@ -14,7 +14,6 @@ import seedu.address.model.appointment.AppointmentList;
 import seedu.address.testutil.TypicalAppointments;
 
 
-
 public class JsonSerializableAppointmentListTest {
 
     private static final Path TEST_DATA_FOLDER =

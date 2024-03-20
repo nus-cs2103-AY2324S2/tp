@@ -134,6 +134,10 @@ public class Appointment implements Comparable<Appointment> {
         return appointmentDescription;
     }
 
+    public static int getIdTracker() {
+        return idTracker;
+    }
+
     /**
      * Compares the appointment id of this appointment with another appointment.
      *
@@ -145,4 +149,19 @@ public class Appointment implements Comparable<Appointment> {
     public int compareTo(Appointment other) {
         return this.appointmentId - other.appointmentId;
     }
+
+    /**
+     * Returns true if both appointments have the same studentId and appointmentDateTime.
+     * This defines a weaker notion of equality between two appointments.
+     */
+    public boolean isSameAppointment(Appointment otherAppointment) {
+        if (otherAppointment == this) {
+            return true;
+        }
+
+        return otherAppointment != null
+                && otherAppointment.getStudentId() == getStudentId()
+                && otherAppointment.getAppointmentDateTime().equals(getAppointmentDateTime());
+    }
+
 }

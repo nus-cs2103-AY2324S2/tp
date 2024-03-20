@@ -7,10 +7,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Person;
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of persons, appointments and case logs.
  */
 public class ListPanel extends UiPart<Region> {
     private static final String FXML = "ListPanel.fxml";
@@ -19,20 +20,22 @@ public class ListPanel extends UiPart<Region> {
     @FXML
     private ListView<Person> personListView;
     @FXML
-    private ListView<Person> appointmentListView;
+    private ListView<Appointment> appointmentListView;
     @FXML
     private ListView<Person> caseLogListView;
     /**
-     * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
+     * Creates a {@code ListPanel} with the given {@code ObservableLists}.
      */
-    public ListPanel(ObservableList<Person> personList) {
+    public ListPanel(ObservableList<Person> personList, ObservableList<Appointment> appointmentList) {
         super(FXML);
         personListView.setItems(personList);
-        appointmentListView.setItems(personList);
-        caseLogListView.setItems(personList);
+        appointmentListView.setItems(appointmentList);
+        //Temporarily removed for v1.2
+        //caseLogListView.setItems(personList);
 
         personListView.setCellFactory(listView -> new PersonListViewCell());
         appointmentListView.setCellFactory(listView -> new AppointmentListViewCell());
-        caseLogListView.setCellFactory(listView -> new CaseLogListViewCell());
+        //Temporarily removed for v1.2
+        //caseLogListView.setCellFactory(listView -> new CaseLogListViewCell());
     }
 }
