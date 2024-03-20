@@ -17,7 +17,7 @@ public class DeleteCommandExecutor {
      * Deletes a client from the address book using their index in the last shown list.
      */
     public static Person deleteByIndex(List<Person> lastShownList, Index targetIndex) throws CommandException {
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
+        if (targetIndex.getZeroBased() >= lastShownList.size() || targetIndex.getZeroBased() < 0) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
