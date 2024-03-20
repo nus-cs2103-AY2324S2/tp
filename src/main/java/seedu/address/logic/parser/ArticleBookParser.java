@@ -8,21 +8,19 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.articlecommands.AddArticleCommand;
+import seedu.address.logic.commands.articlecommands.DeleteArticleCommand;
+import seedu.address.logic.commands.articlecommands.EditArticleCommand;
+import seedu.address.logic.commands.articlecommands.FindArticleCommand;
+import seedu.address.logic.commands.articlecommands.ListArticleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parses user input.
+ * Parses user input for Articles.
  */
-public class AddressBookParser {
+public class ArticleBookParser {
 
     /**
      * Used for initial separation of command word and args.
@@ -37,7 +35,7 @@ public class AddressBookParser {
      * @return the command based on the user input
      * @throws ParseException if the user input does not conform the expected format
      */
-    public Command parseCommand(String userInput) throws ParseException {
+    public static Command parseCommand(String userInput) throws ParseException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
@@ -46,10 +44,6 @@ public class AddressBookParser {
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
 
-        if (arguments.trim().startsWith("-a ")) {
-            return ArticleBookParser.parseCommand(commandWord + arguments.substring(3));
-        }
-
         // Note to developers: Change the log level in config.json to enable lower level (i.e., FINE, FINER and lower)
         // log messages such as the one below.
         // Lower level log messages are used sparingly to minimize noise in the code.
@@ -57,34 +51,24 @@ public class AddressBookParser {
 
         switch (commandWord) {
 
-        case AddCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
+        case AddArticleCommand.COMMAND_WORD:
+            return new AddArticleCommandParser().parse(arguments);
 
-        case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
+        case EditArticleCommand.COMMAND_WORD:
+            return new EditArticleCommandParser().parse(arguments);
 
-        case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
+        case DeleteArticleCommand.COMMAND_WORD:
+            return new DeleteArticleCommandParser().parse(arguments);
 
-        case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
+        case FindArticleCommand.COMMAND_WORD:
+            return new FindArticleCommandParser().parse(arguments);
 
-        case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
-
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
-
-        case ExitCommand.COMMAND_WORD:
-            return new ExitCommand();
-
-        case HelpCommand.COMMAND_WORD:
-            return new HelpCommand();
+        case ListArticleCommand.COMMAND_WORD:
+            return new ListArticleCommand();
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
-
 }
