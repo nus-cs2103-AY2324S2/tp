@@ -174,7 +174,7 @@ public class MainWindow extends UiPart<Stage> {
      *
      * @see seedu.address.logic.Logic#execute(String)
      */
-    private CommandResult executeCommand(String commandText ) throws CommandException, ParseException {
+    private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
 
 
         try {
