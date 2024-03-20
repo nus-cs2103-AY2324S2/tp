@@ -9,6 +9,14 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+## Purpose of this guide
+This guide has been created to help you understand and utilize the features and functionalities of our software
+ effectively. Whether you're a new user who is not familiar with command line interface or an expert looking to enhance 
+your skills, this guide aims to provide you with the information you need to make the most of our product. In this guide 
+you will find a quick start (guide to install and start using our product), a list of features and how to use them, and 
+a glossary to help you understand some jargon. This guide is designed to provide you with clear and concise instructions 
+and a reader-friendly format to enhance your experience in using our product.
+
 
 ## Quick start
 
