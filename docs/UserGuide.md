@@ -73,24 +73,24 @@ Format: `help`
 Adds a new employee to the address book.
 
 Format:
-* `/add NAME, PHONE, EMAIL, [YEAR_JOINED]`
-* `/add :name NAME :phone PHONE :email EMAIL [:year YEAR_JOINED]`
+* `/add NAME, PHONE, EMAIL, ADDRESS, YEAR_JOINED`
+* `/add :name NAME :phone PHONE :email EMAIL :address ADDRESS :year YEAR_JOINED`
 
 Examples:
-* `/add John Doe, 98765432, johndoe@example.com, 2024`
-* `/add :name John Doe :phone 98765432 :email johndoe@example.com :year 2024`
+* `/add John Doe, 98765432, johndoe@example.com, street A, 2024`
+* `/add :name John Doe :phone 98765432 :email johndoe@example.com :address street A :year 2024`
 
-### Listing all persons : `list`
+### Listing all persons : `/list`
 
 Show workers as a list. This can be used as “refresh” (e.g. after find command)
 
-**Format:** `list`
+**Format:** `/list`
 
 ### Editing a person : `/edit`
 
 Edits an existing employee in the address book.
 
-Format: `/edit ID [:name NAME] [:phone PHONE] [:email EMAIL] [:tag TAG]`
+Format: `/edit ID [:name NAME] [:phone PHONE] [:email EMAIL] [:address ADDRESS] [:tag TAG]`
 
 * Edits the person of the specified `ID`. The id refers to the 6-digits identity number. The id **must be 6 digits**: 240001, 240002...
 * At least one of the optional fields must be provided.
@@ -103,7 +103,7 @@ Examples:
 *  `/edit 240001 :phone 91234567 :email: johndoe@example.com` Edits the phone number and email address of the person with id 240001 to be `91234567` and `johndoe@example.com` respectively.
 *  `/edit 240002 :name Betsy Crower :tag` Edits the name of the person with id 240002 to be `Betsy Crower` and clears all existing tags.
 
-### Searching Workers by keyword: `find`
+### Searching Workers by keyword: `/find`
 
 Finds workers that contains any of the given keywords. It can be `ID`, `NAME`, `EMAIL` or `PHONE NUMBER`.
 
@@ -134,18 +134,18 @@ Examples:
 * `/find :year 2024` returns `2024`
 * `/find :tag intern` returns `intern`
 
-### Deleting a person : `delete`
+### Deleting a person : `/delete`
 
 Deletes the specified person from the address book.
 
-Format: `/remove ID`
+Format: `/delete ID`
 
 * Deletes the person with the specified `ID`.
 
 Examples:
-* `/remove 240001` deletes the person with `240001` ID.
+* `/delete 240001` deletes the person with `240001` ID.
 
-### Tagging a person: `tag`
+### Tagging a person: `/tag`
 
 Tags the specified person from the address book.
 
