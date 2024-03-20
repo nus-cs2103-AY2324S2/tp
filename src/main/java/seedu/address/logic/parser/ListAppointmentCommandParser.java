@@ -7,6 +7,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.function.Predicate;
 
+import seedu.address.logic.Messages;
 import seedu.address.logic.commands.ListAppointmentCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.Appointment;
@@ -15,13 +16,19 @@ import seedu.address.model.appointment.AppointmentContainsPatientIdPredicate;
 import seedu.address.model.appointment.AppointmentContainsPatientNamePredicate;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.util.RelationshipUtil;
 
 /**
  * Parses input arguments and creates a new ListCommand object
  */
 public class ListAppointmentCommandParser implements Parser<ListAppointmentCommand> {
+
+    private final List<Person> patients;
+    public ListAppointmentCommandParser(List<Person> patients) {
+        this.patients = patients;
+    }
     @Override
-    public ListAppointmentCommand parse(String args, List<Person> patients) throws ParseException {
+    public ListAppointmentCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args,
                                            CliSyntax.PREFIX_NAME,
@@ -56,6 +63,11 @@ public class ListAppointmentCommandParser implements Parser<ListAppointmentComma
         if (argMultimap.getValue(CliSyntax.PREFIX_PATIENT_ID).isPresent()) {
             int studentId = ParserUtil.parseIndex(argMultimap.getValue(CliSyntax.PREFIX_PATIENT_ID)
                                                           .get()).getOneBased();
+            if (!RelationshipUtil.personExists(studentId, patients)) {
+                throw new ParseException(
+                        String.format(Messages.MESSAGE_INVALID_PATIENT_ID, studentId)
+                );
+            }
             predicates.add(
                     new AppointmentContainsPatientIdPredicate(Collections.singletonList(String.valueOf(studentId)))
             );
@@ -76,10 +88,4 @@ public class ListAppointmentCommandParser implements Parser<ListAppointmentComma
 
         return new ListAppointmentCommand(combinedPredicate);
     }
-
-    @Override
-    public ListAppointmentCommand parse(String userInput) throws ParseException {
-        return null;
-    }
-
 }

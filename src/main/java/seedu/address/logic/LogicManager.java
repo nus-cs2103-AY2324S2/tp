@@ -3,7 +3,6 @@ package seedu.address.logic;
 import java.io.IOException;
 import java.nio.file.AccessDeniedException;
 import java.nio.file.Path;
-import java.util.List;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -41,7 +40,10 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        addressBookParser = new AddressBookParser();
+        addressBookParser = new AddressBookParser(
+                this.model.getAddressBook().getPersonList(),
+                this.model.getAppointmentList().getAppointmentList()
+        );
     }
 
     @Override
@@ -50,9 +52,7 @@ public class LogicManager implements Logic {
 
         CommandResult commandResult;
 
-        List<Person> filteredPatients = this.getFilteredPersonList();
-
-        Command command = addressBookParser.parseCommand(commandText, filteredPatients);
+        Command command = addressBookParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
         try {

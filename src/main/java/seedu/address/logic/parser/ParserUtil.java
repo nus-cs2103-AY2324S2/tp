@@ -11,8 +11,8 @@ import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.Messages;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -143,7 +143,7 @@ public class ParserUtil {
         try {
             localDateTime = LocalDateTime.parse(trimmedDateTime, format);
         } catch (Exception e) {
-            throw new ParseException(Appointment.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Messages.MESSAGE_INVALID_DATE_TIME);
         }
         return localDateTime;
     }
@@ -163,7 +163,7 @@ public class ParserUtil {
         String trimmedAttend = attend.trim();
         if (!trimmedAttend.equalsIgnoreCase("true")
                 && !trimmedAttend.equalsIgnoreCase("false")) {
-            throw new ParseException(Appointment.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Messages.MESSAGE_INVALID_BOOLEAN_VALUE);
         }
         return Boolean.parseBoolean(trimmedAttend);
     }
