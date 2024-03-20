@@ -54,6 +54,7 @@ a term in the glossary ([CLI](#cli)).
 1. Open a [command terminal](#terminal), and type in `cd` to navigate into the folder you placed the [jar](#jar) file in.
 
 1. Type in `java -jar HousekeepingHub-v1.2.0.jar` to run the application.<br>
+
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](./images/Ui.png)
 
@@ -63,7 +64,7 @@ a term in the glossary ([CLI](#cli)).
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * `list client` : Lists all clients.
+   * `list client` : Lists all client contacts.
 
    * `add housekeeper n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a housekeeper named `John Doe`.
 
@@ -202,8 +203,6 @@ Action | Format, Examples
 **Add** | `add TYPE n/NAME e/EMAIL p/PHONE_NUMBER a/ADDRESS …​` <br> e.g., `add client n/Elon e/elon@gmail.com p/88888888 a/Elon Street, Block 123, 101010 Singapore`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list [type]`
 **Help** | `help`                                                                                                                                                                                                                                 |
 

@@ -14,6 +14,14 @@ public class TypePredicate implements Predicate<Person> {
         this.type = type;
     }
 
+
+    /**
+     * Returns the type of the predicate.
+     */
+    public String getType() {
+        return type;
+    }
+
     @Override
     public boolean test(Person person) {
         if (type.equals("housekeeper")) {
