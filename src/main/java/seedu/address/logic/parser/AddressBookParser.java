@@ -40,6 +40,10 @@ public class AddressBookParser {
     private final List<Person> patients;
     private final List<Appointment> appointments;
 
+    /**
+     * @param patients List of patients
+     * @param appointments List of appointments
+     */
     public AddressBookParser(List<Person> patients, List<Appointment> appointments) {
         this.patients = patients;
         this.appointments = appointments;
