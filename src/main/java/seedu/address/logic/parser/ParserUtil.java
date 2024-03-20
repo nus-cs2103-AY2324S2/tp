@@ -129,7 +129,7 @@ public class ParserUtil {
      * @return a trimmed String if uuid given as arguments is valid
      * @throws ParseException
      */
-    public static String parseUUID(String uuid) throws ParseException {
+    public static String parseUuid(String uuid) throws ParseException {
         String trimmedUUID = uuid.trim();
         if (!StringUtil.isValidLastFourDigitsUuid(trimmedUUID)) {
             throw new ParseException(Messages.MESSAGE_INVALID_PERSON_UUID);

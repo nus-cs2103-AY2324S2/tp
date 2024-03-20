@@ -22,8 +22,8 @@ public class DeleteRelationshipCommandParser {
         requireNonNull(userInput);
         String[] parts = userInput.split(" ", 3);
         try {
-            String originUuid = ParserUtil.parseUUID(parts[0]);
-            String targetUuid = ParserUtil.parseUUID(parts[1]);
+            String originUuid = ParserUtil.parseUuid(parts[0]);
+            String targetUuid = ParserUtil.parseUuid(parts[1]);
             String relationshipDescriptor = parts[2];
             return new DeleteRelationshipCommand(originUuid, targetUuid, relationshipDescriptor);
         } catch (ParseException pe) {

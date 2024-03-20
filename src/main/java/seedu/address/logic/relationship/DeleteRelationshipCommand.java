@@ -37,14 +37,14 @@ public class DeleteRelationshipCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         UUID fullOriginUuid = model.getFullUuid(originUuid);
         UUID fullTargetUuid = model.getFullUuid(targetUuid);
-        if (fullOriginUuid == null || fullTargetUUID == null) {
+        if (fullOriginUuid == null || fullTargetUuid == null) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_UUID);
         }
-        if (fullOriginUuid == fullTargetUUID) {
+        if (fullOriginUuid == fullTargetUuid) {
             throw new CommandException("Relationships must be between 2 different people");
         }
         try {
-            Relationship toDelete = new Relationship(fullOriginUuid, fullTargetUUID, relationshipDescriptor);
+            Relationship toDelete = new Relationship(fullOriginUuid, fullTargetUuid, relationshipDescriptor);
             if (!model.hasRelationship(toDelete)) {
                 throw new CommandException(String.format("Sorry %s do not exist", toDelete));
             }
