@@ -11,7 +11,7 @@
 
 <VBox fx:id="detailsPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <GridPane>
+      <GridPane alignment="TOP_CENTER">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
@@ -25,12 +25,12 @@
                   <Insets bottom="5" left="15" right="5" top="5" />
                </padding>
                <children>
-                  <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
+                  <Label fx:id="name" styleClass="cell_big_label" text="" />
                   <FlowPane fx:id="tags" />
-                  <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
-                  <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
-                  <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
-                  <Label fx:id="note" styleClass="cell_small_label" text="\$note" />
+                  <Label fx:id="phone" styleClass="cell_small_label" text="" />
+                  <Label fx:id="address" styleClass="cell_small_label" text="" />
+                  <Label fx:id="email" styleClass="cell_small_label" text="" />
+                  <Label fx:id="note" styleClass="cell_small_label" text="" />
                </children>
             </VBox>
             <ImageView fx:id="qrcode" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="TOP" />
