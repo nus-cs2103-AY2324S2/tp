@@ -155,6 +155,12 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Points feature
+
+The addpoints command that comes along with the points feature is implemented like this:
+<img src="images/AddPointsSequenceDiagram.png" width="600" />
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
