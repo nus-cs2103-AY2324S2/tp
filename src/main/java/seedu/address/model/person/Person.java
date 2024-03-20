@@ -32,7 +32,7 @@ public class Person {
      */
     public Person(Name name, Set<Tag> tags,
                   Dob dob, Ic ic, AdmissionDate admissionDate, Ward ward) {
-        requireAllNonNull(name, tags, dob, ic, admissionDate, ward);
+        requireAllNonNull(name, dob, ic, admissionDate, ward);
         this.name = name;
         this.tags.addAll(tags);
         this.dob = dob;
