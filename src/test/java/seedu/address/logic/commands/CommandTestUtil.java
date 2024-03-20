@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -41,6 +42,9 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_CELINE = "Block 776, Cel Street 5";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_NOTE_AMY = "She likes aardvarks.";
+    public static final String VALID_NOTE_BOB = "Favourite pastime: Eating";
+    public static final String VALID_NOTE_CELINE = "Sleepy";
     public static final String VALID_APPOINTMENT_FRIDAY = "18:00-20:00 FRI";
     public static final String VALID_APPOINTMENT_SUNDAY = "08:00-10:00 SUN";
 
@@ -58,6 +62,9 @@ public class CommandTestUtil {
     public static final String ADDRESS_DESC_CELINE = " " + PREFIX_ADDRESS + VALID_ADDRESS_CELINE;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String NOTE_DESC_AMY = " " + PREFIX_NOTE + VALID_NOTE_AMY;
+    public static final String NOTE_DESC_BOB = " " + PREFIX_NOTE + VALID_NOTE_BOB;
+    public static final String NOTE_DESC_CELINE = " " + PREFIX_NOTE + VALID_NOTE_CELINE;
     public static final String APPOINTMENT_DESC_FRIDAY = " " + PREFIX_APPOINTMENT + VALID_APPOINTMENT_FRIDAY;
     public static final String APPOINTMENT_DESC_SUNDAY = " " + PREFIX_APPOINTMENT + VALID_APPOINTMENT_SUNDAY;
 
