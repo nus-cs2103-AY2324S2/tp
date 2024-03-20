@@ -12,5 +12,7 @@
     "email": "pauline@example.com",
     "department" : "IT",
     "address": "4th street"
-  } ]
+  } ],
+
+  "tasks": []
 }

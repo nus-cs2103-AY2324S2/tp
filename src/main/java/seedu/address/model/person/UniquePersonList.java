@@ -93,8 +93,19 @@ public class UniquePersonList implements Iterable<Person> {
         if (!personsAreUnique(persons)) {
             throw new DuplicatePersonException();
         }
-
         internalList.setAll(persons);
+    }
+
+    /**
+     * Gets a person by using the person's name.
+     */
+    public Person getPerson(Name name) {
+        for (Person person : internalList) {
+            if (person.getName().equals(name)) {
+                return person;
+            }
+        }
+        return null;
     }
 
     /**
