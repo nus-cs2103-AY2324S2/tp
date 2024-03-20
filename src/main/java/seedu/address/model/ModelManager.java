@@ -151,11 +151,11 @@ public class ModelManager implements Model {
         selectedClassAddressBook.addPerson(person);
         filteredPersons = new FilteredList<>(this.selectedClassAddressBook.getPersonList());
         try {
-            this.Storage.saveAddressBook(selectedClassAddressBook);
+            this.Storage.saveAddressBook(selectedClassAddressBook, selectedClass.getFilePath());
         } catch(IOException e){};
 
-        // Predicate<Person> predicate = updatedPerson -> selectedClassAddressBook.getPersonList().contains(updatedPerson);
-        updateFilteredPersonList(updatedPerson -> true);
+        Predicate<Person> predicate = updatedPerson -> selectedClassAddressBook.getPersonList().contains(updatedPerson);
+        updateFilteredPersonList(predicate);
     }
 
     @Override
@@ -176,7 +176,11 @@ public class ModelManager implements Model {
     }
     @Override
     public String getSelectedClassName() {
-        return this.selectedClass.getCourseCode().toString();
+        try {
+            return this.selectedClass.getCourseCode().toString();
+        } catch (NullPointerException e) {
+            return "No class selected!";
+        }
     }
     //=========== Filtered Person List Accessors =============================================================
 
@@ -237,6 +241,7 @@ public class ModelManager implements Model {
         selectedClass = classes;
         // selectedClassAddressBook = selectedClass.getAddressBook();
         this.Storage = new JsonAddressBookStorage(selectedClass.getFilePath());
+        userPrefs.setAddressBookFilePath(selectedClass.getFilePath());
 
         try {
             Optional<ReadOnlyAddressBook> optionalAddressBook = Storage.readAddressBook();

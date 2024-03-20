@@ -1,0 +1,9 @@
+{
+  "classes" : [ {
+    "courseCode" : "CS2103T"
+  }, {
+    "courseCode" : "CS2101"
+  }, {
+    "courseCode" : "nicOnlyClass"
+  } ]
+}
