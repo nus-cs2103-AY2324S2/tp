@@ -135,6 +135,9 @@ public class Person {
 
         if (noteDate == null) {
             return "";
+        } else if (!(noteDate.toLowerCase().equals("false") ||
+                noteDate.toLowerCase().equals("true"))) {
+            return noteDate;
         }
 
         if (noteDate.toLowerCase().equals("true")) {
