@@ -20,7 +20,6 @@ import seedu.address.commons.exceptions.DataLoadingException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.order.Order;
-import seedu.address.model.order.OrderList;
 import seedu.address.model.person.Person;
 
 public class JsonAddressBookStorageTest {
@@ -65,7 +64,7 @@ public class JsonAddressBookStorageTest {
     }
 
     @Test
-    public void readAndSaveAddressBook_CustomerOrderPairing_success() throws IOException, DataLoadingException {
+    public void readAndSaveAddressBook_customerOrderPairing_success() throws IOException, DataLoadingException {
         Path filePath = testFolder.resolve("TempAddressBook.json");
         AddressBook original = getTypicalAddressBook();
         JsonAddressBookStorage jsonAddressBookStorage = new JsonAddressBookStorage(filePath);
