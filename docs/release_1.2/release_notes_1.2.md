@@ -21,6 +21,8 @@ Avengers Assemble now supports importing data of up to 500 contacts stored in a 
 2. Once this message shows, imported contacts will be reflected in addressBook
 <img src="import_1.png" alt="Import Success">
 
+> Note: There might be some issues importing outside of IDEs for Mac users due to privacy setting issues. We recommend users testing on Mac to use the IDE to run the .jar file and import the csv file.
+
 ### 3. Find Feature
 Avengers Assemble now supports finding contacts by their various details, and not just their names!
 
