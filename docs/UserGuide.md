@@ -178,11 +178,25 @@ Format: `list -a`
 * No parameters necessary
 
 Examples:
-* `list -a ` returns 
+* `list -a ` returns
+``` 
+1. Make Education Great Again: Donald Trump Takes Helm as Dean of NUS, Introduces 'Art of the Deal' as Mandatory Reading
+  Maanish Murrigan
+  Straits Times
+  2023-07-18
+  Education
+  PUBLISHED
+  
+2. ChatGPT: NTU's New Dean, Pioneering AI-Led Education
+   Aiken Dueet
+   MotherShip
+   2024-02-18
+   Education
+   PUBLISHED
+* ```
+ 
 
- `1.Make Education Great Again: Donald Trump Takes Helm as Dean of NUS, Introduces 'Art of the Deal' as Mandatory Reading 06-06-2006 Straits Times`
 
-` 2.ChatGPT: NTU's New Dean, Pioneering AI-Led Education  12-12-2025 Mothership`
 
 
 ### Exiting the program : `exit`
