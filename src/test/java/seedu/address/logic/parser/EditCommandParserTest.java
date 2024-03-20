@@ -180,7 +180,6 @@ public class EditCommandParserTest {
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
         //assert(true);
-      
         // salary
         userInput = targetIndex.getOneBased() + SALARY_DESC_AMY;
         descriptor = new EditPersonDescriptorBuilder().withSalary(VALID_SALARY_AMY).build();

@@ -52,6 +52,10 @@ public class InterviewTime {
         return this.dateTime;
     }
 
+    public String rawToString() {
+        return dateTime.format(formatter);
+    }
+
     @Override
     public String toString() {
         DateTimeFormatter beautify = DateTimeFormatter.ofPattern("MMMM dd, yyyy hh:mm a", Locale.ENGLISH);

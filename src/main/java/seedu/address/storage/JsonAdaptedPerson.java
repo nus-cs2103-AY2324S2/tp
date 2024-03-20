@@ -1,6 +1,5 @@
 package seedu.address.storage;
 
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -63,7 +62,7 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
-        dateTime = source.getDateTime().dateTime.format(DateTimeFormatter.ofPattern("ddMMyyyyHHmm"));
+        dateTime = source.getDateTime().rawToString();
         salary = source.getSalary().toString();
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)

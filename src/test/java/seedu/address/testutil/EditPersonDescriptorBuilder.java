@@ -83,8 +83,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setDateTime(new InterviewTime(dateTime));
         return this;
     }
-  
-     /**
+    /**
      * Sets the {@code Salary} of the {@code EditPersonDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withSalary(String salary) {
