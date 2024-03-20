@@ -101,6 +101,21 @@ Shows a list of all startups in the address book.
 
 Format: `list`
 
+### Adding or Editing a Startup Note: `note`
+
+Adds or edits a note for an existing startup in the address book.
+
+Format: `note INDEX NOTE`
+
+- Adds or edits the note of the startup at the specified `INDEX`. The index refers to the index number shown in the displayed startup list. The index **must be a positive integer** 1, 2, 3, …​
+- The `NOTE` field must be provided and cannot be empty.
+- Existing note will be updated to the input value.
+
+Examples:
+- `note 1 Innovative e-commerce platform` Adds or edits the note of the 1st startup to be "Innovative e-commerce platform".
+- `note 2 Expanding to new markets in Q3` Adds or edits the note of the 2nd startup with the information about its expansion plans. <br>
+  ![result for 'note 1 Innovative e-commerce platform'](images/tracing/NoteCommand.png)
+
 ### Editing a person : `edit`
 
 Edits an existing startup in the address book.
