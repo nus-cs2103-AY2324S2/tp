@@ -154,9 +154,9 @@ Finds contacts whose tech stack contain all the given keywords.
 
 Format: `find-ts KEYWORD [MORE_KEYWORDS]`
 
-- The search is case-insensitive. e.g `school` will match `School`
+- The search is case-insensitive. e.g `java` will match `Java`
 - Only the tech stack are searched.
-- Only full words will be matched e.g. `school` will not match `schools`
+- Only full words will be matched e.g. `java` will not match `javascript`
 - contacts matching all keywords will be returned (i.e. `AND` search).
 
 Examples:
@@ -225,12 +225,13 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action     | Format, Examples                                                                                                                                                                                                                    |
-|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS g/GITHUB_USERNAME [t/TAG] [ts/TECH_STACK]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 g/Jamesho123 t/friend t/colleague ts/Java ts/C++` |
-| **Clear**  | `clear`                                                                                                                                                                                                                             |
-| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                 |
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GITHUB_USERNAME] [t/TAG]…​ [ts/TECH_STACK]…​ `<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                  |
-| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                          |
-| **List**   | `list`                                                                                                                                                                                                                              |
-| **Help**   | `help`                                                                                                                                                                                                                              |
+| Action              | Format, Examples                                                                                                                                                                                                                    |
+|---------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**             | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS g/GITHUB_USERNAME [t/TAG] [ts/TECH_STACK]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 g/Jamesho123 t/friend t/colleague ts/Java ts/C++` |
+| **Clear**           | `clear`                                                                                                                                                                                                                             |
+| **Delete**          | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                 |
+| **Edit**            | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GITHUB_USERNAME] [t/TAG]…​ [ts/TECH_STACK]…​ `<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                  |
+| **Find**            | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                          |
+| **Find Tech Stack** | `find-ts KEYWORD [MORE_KEYWORDS]`<br> e.g., `find-ts Java Python`                                                                                                                                                                   |
+| **List**            | `list`                                                                                                                                                                                                                              |
+| **Help**            | `help`                                                                                                                                                                                                                              |
