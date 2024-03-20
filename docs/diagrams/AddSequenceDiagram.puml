@@ -67,7 +67,6 @@ ArgumentMultimap --> AddCommandParser
 
 deactivate ArgumentMultimap
 
-ArgumentTokenizer --> AddCommandParser
 deactivate ArgumentTokenizer
 
 AddCommandParser -> ParserUtil : parseName(...)
@@ -107,7 +106,8 @@ create AddCommand
 AddCommandParser -> AddCommand
 activate AddCommand
 
-AddCommand --> AddCommandParser :
+AddCommand --> AddCommandParser
+deactivate AddCommand
 
 AddCommandParser --> AddressBookParser : a
 deactivate AddCommandParser
@@ -119,6 +119,7 @@ AddressBookParser --> LogicManager : a
 deactivate AddressBookParser
 
 LogicManager -> AddCommand : execute(m)
+activate AddCommand
 
 AddCommand -> Model : addPerson(p)
 activate Model
