@@ -1,13 +1,14 @@
 package seedu.address.ui;
 
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
-import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Person;
 
+/**
+ * Panel that contains a list of details.
+ *
+ * Code is adapted from PersonListPanel.java file due to similar functionality.
+ */
 public class DetailListPanel extends UiPart<Region> {
     private static final String FXML = "DetailListPanel.fxml";
 

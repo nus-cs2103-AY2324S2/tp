@@ -5,6 +5,11 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 
+/**
+ * UI component that acts as a section of information to be displayed in the DetailListPanel.
+ *
+ * Code is adapted from PersonCard.java file due to similar functionality.
+ */
 public class DetailCard extends UiPart<Region> {
     private static final String FXML = "DetailListCard.fxml";
 
