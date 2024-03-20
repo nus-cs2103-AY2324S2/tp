@@ -18,7 +18,7 @@ public class TsContainsKeywordsPredicate implements Predicate<Contact> {
 
     @Override
     public boolean test(Contact contact) {
-        return techKeywords.stream().allMatch(keyword -> 
+        return techKeywords.stream().allMatch(keyword ->
             contact.getTechStack().stream().anyMatch(ts ->
                 StringUtil.containsWordIgnoreCase(ts.techStackName, keyword)
             )
