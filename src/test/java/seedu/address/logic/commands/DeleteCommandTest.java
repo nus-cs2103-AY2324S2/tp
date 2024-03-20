@@ -83,6 +83,37 @@ public class DeleteCommandTest {
     }
 
     @Test
+    public void execute_validIndexLastUnfilteredList_success() {
+        // Assuming last index is calculated as the size of the list minus one
+        Index lastIndex = Index.fromOneBased(model.getFilteredPersonList().size());
+        Person personToDelete = model.getFilteredPersonList().get(lastIndex.getZeroBased());
+        DeleteCommand deleteCommand = new DeleteCommand(lastIndex);
+
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
+                Messages.format(personToDelete));
+
+        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel.deletePerson(personToDelete);
+
+        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_invalidIndexZero_throwsCommandException() {
+        assertParseFailure(DeleteCommand::of, "0",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void execute_deleteInEmptyList_throwsCommandException() {
+        Model emptyModel = new ModelManager(); // Assuming this creates an empty address book
+
+        Index someIndex = Index.fromOneBased(1);
+        DeleteCommand deleteCommand = new DeleteCommand(someIndex);
+
+        assertCommandFailure(deleteCommand, emptyModel, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    }
+    @Test
     public void of_validArgs_returnsDeleteCommand() {
         assertParseSuccess(DeleteCommand::of, "1", new DeleteCommand(INDEX_FIRST_PERSON));
     }
