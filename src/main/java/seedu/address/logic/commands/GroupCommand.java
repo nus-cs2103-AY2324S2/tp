@@ -42,7 +42,7 @@ public class GroupCommand extends Command {
             + "[" + PREFIX_NUSID + "NUSID] "
             + "[" + PREFIX_GROUP + "GROUP] "
             + "[" + PREFIX_TAG + "TAG] \n"
-            + "Example: " + COMMAND_WORD + PREFIX_NUSID + "eXXXXXXX "
+            + "Example: " + COMMAND_WORD + PREFIX_NUSID + "EXXXXXXX "
             + PREFIX_GROUP + "Class T15 "
             + PREFIX_TAG + "TA";
 
@@ -72,7 +72,7 @@ public class GroupCommand extends Command {
         Person personToGroup = lastShownList.stream().filter(person -> person.getNusId().equals(toGroup))
                         .findFirst().orElse(null);
 
-        //System.out.println(toGroup);
+
         if (personToGroup == null) {
             throw new CommandException(MESSAGE_GROUP_PERSON_INVALID);
         }

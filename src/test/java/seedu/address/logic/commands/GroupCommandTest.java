@@ -105,8 +105,6 @@ class GroupCommandTest {
         String expected = GroupCommand.class.getCanonicalName() + "{nusid=" + VALID_NUSID_BOB
                 + ", groupPersonDescriptor="
                 + groupPersonDescriptor + "}";
-        System.out.println(expected);
-        System.out.println(groupCommand.toString());
         assertEquals(expected, groupCommand.toString());
     }
 }

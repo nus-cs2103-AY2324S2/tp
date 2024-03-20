@@ -54,7 +54,6 @@ public class GroupCommandParser implements Parser<GroupCommand> {
         }
 
         parseGroupsForGroup(argMultimap.getAllValues(PREFIX_GROUP)).ifPresent(groupPersonDescriptor::setGroups);
-        System.out.println(new GroupCommand(nusid, groupPersonDescriptor).toString());
         return new GroupCommand(nusid, groupPersonDescriptor);
     }
 
