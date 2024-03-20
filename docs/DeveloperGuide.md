@@ -502,15 +502,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-  **Extensions**
+**Extensions**
   
-  * 1a. No tech stack is given.
-      * 1a1. CodeConnect shows an error message.
-        Use case ends.
+* 1a. No tech stack is given.
+    * 1a1. CodeConnect shows an error message.
+      Use case ends.
 
-  * 1b. There are no contacts in the list that match the criteria.
-      * 1b1. CodeConnect shows an empty list.
-        Use case ends.
+* 1b. There are no contacts in the list that match the criteria.
+    * 1b1. CodeConnect shows an empty list.
+      Use case ends.
         
 **Use case: UC08 - Sending an email to a specific contact**
 
@@ -523,7 +523,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-  **Extensions**
+**Extensions**
 
 * 1a. The default desktop mail application is not available on the system.
     * 1a1. CodeConnect displays an error message indicating that the desktop mail application is not supported.
