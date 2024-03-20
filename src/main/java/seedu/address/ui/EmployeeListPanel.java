@@ -13,7 +13,7 @@ import seedu.address.model.employee.Employee;
 /**
  * Panel containing the list of employees.
  */
-public class EmployeeListPanel extends UiPart<Region> {
+public class EmployeeListPanel extends UiPart<Region> implements Panel {
     private static final String FXML = "EmployeeListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(EmployeeListPanel.class);
 

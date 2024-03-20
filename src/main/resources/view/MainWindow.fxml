@@ -46,12 +46,11 @@
         </StackPane>
 
         <VBox fx:id="employeeList" styleClass="pane-with-border" minWidth="340" prefWidth="340"
-              minHeight="345" prefHeight="345" VBox.vgrow="NEVER">
+              minHeight="345" prefHeight="345" VBox.vgrow="ALWAYS">
           <padding>
             <Insets top="10" right="10" bottom="10" left="10" />
           </padding>
-          <StackPane fx:id="employeeListPanelPlaceholder" VBox.vgrow="NEVER" minHeight="340" layoutY="0"/>
-          <StackPane fx:id="taskListPanelPlaceholder" VBox.vgrow="NEVER" minHeight="340" translateY="-340"/>
+          <StackPane fx:id="panelPlaceholder" VBox.vgrow="ALWAYS" minHeight="340"/>
         </VBox>
 
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
