@@ -30,7 +30,7 @@
       <FlowPane fx:id="groups" />
       <Label fx:id="studentId" styleClass="cell_small_label" text="\$studentId" />
       <Label fx:id="grade" styleClass="cell_small_label" text="\$grade" />
-      <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+      <Label fx:id="email" styleClass="cell_small_label" text="\$email" style="-fx-text-fill: #64ace3; -fx-underline: true; -fx-cursor: hand;" />
     </VBox>
   </GridPane>
 </HBox>

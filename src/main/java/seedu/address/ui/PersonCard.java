@@ -1,7 +1,12 @@
 package seedu.address.ui;
 
+import java.awt.Desktop;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Comparator;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -55,5 +60,22 @@ public class PersonCard extends UiPart<Region> {
         person.getGroups().stream()
                 .sorted(Comparator.comparing(group -> group.groupName))
                 .forEach(group -> groups.getChildren().add(new Label(group.groupName)));
+
+        // Add event handler to the email label
+        email.setOnMouseClicked(event -> handleEmailClicked());
+    }
+
+    /*
+     * Event handler for mouse clicking on email
+     */
+    private void handleEmailClicked() {
+        String emailAddress = email.getText();
+        if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.MAIL)) {
+            try {
+                Desktop.getDesktop().mail(new URI("mailto:" + emailAddress));
+            } catch (IOException | URISyntaxException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
