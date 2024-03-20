@@ -43,7 +43,9 @@ public class AddressBookParserTest {
     @BeforeEach
     public void setUp() {
         model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        parser = new AddressBookParser(model.getFilteredPersonList());
+        parser = new AddressBookParser(
+                model.getAddressBook().getPersonList(),
+                model.getAppointmentList().getAppointmentList());
     }
 
     @Test

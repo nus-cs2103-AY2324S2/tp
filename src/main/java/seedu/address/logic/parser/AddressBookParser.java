@@ -23,6 +23,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListAppointmentCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Person;
 
 /**
@@ -37,9 +38,11 @@ public class AddressBookParser {
     private static final Logger logger = LogsCenter.getLogger(AddressBookParser.class);
 
     private final List<Person> patients;
+    private final List<Appointment> appointments;
 
-    public AddressBookParser(List<Person> patients) {
+    public AddressBookParser(List<Person> patients, List<Appointment> appointments) {
         this.patients = patients;
+        this.appointments = appointments;
     }
 
     /**
@@ -90,7 +93,7 @@ public class AddressBookParser {
             return new HelpCommand();
 
         case AddAppointmentCommand.COMMAND_WORD:
-            return new AddAppointmentCommandParser(this.patients).parse(arguments);
+            return new AddAppointmentCommandParser(this.patients, this.appointments).parse(arguments);
 
         case FindAppointmentCommand.COMMAND_WORD:
             return new FindAppointmentCommandParser().parse(arguments);

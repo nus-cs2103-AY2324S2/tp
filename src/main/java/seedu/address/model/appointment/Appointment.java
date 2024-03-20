@@ -12,6 +12,7 @@ import seedu.address.commons.util.ToStringBuilder;
  * TODO: check if need to enforcing immutable
  */
 public class Appointment implements Comparable<Appointment> {
+    public static final String MESSAGE_DATETIME_ALREADY_TAKEN = "There is already an appointment at that time";
     private static final boolean DEFAULT_ATTENDED_STATUS = false;
 
     private static int idTracker = 1;

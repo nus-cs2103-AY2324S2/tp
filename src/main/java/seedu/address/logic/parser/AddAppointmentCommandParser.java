@@ -10,7 +10,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PATIENT_ID;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import seedu.address.logic.Messages;
 import seedu.address.logic.commands.AddAppointmentCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.Appointment;
@@ -22,8 +21,17 @@ import seedu.address.model.util.RelationshipUtil;
  */
 public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand> {
     private final List<Person> patients;
-    public AddAppointmentCommandParser(List<Person> patients) {
+    private final List<Appointment> appointments;
+
+    /**
+     * Takes in multiple lists so as to perform validation checks against them
+     *
+     * @param patients List of patients
+     * @param appointments List of appointments
+     */
+    public AddAppointmentCommandParser(List<Person> patients, List<Appointment> appointments) {
         this.patients = patients;
+        this.appointments = appointments;
     }
     /**
      * Parses the given {@code String} of arguments in the context of the AddAppointmentCommand
@@ -52,8 +60,8 @@ public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand
         }
 
         LocalDateTime appointmentDateTime = ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_DATETIME).get());
-        if (appointmentDateTime.isBefore(LocalDateTime.now())) {
-            throw new ParseException(Messages.MESSAGE_DATETIME_IN_THE_PAST);
+        if (RelationshipUtil.isAppointmentDateTimeAlreadyTaken(appointmentDateTime, this.appointments)) {
+            throw new ParseException(Appointment.MESSAGE_DATETIME_ALREADY_TAKEN);
         }
         boolean hasAttended = ParserUtil.parseHasAttended(argMultimap.getValue(PREFIX_ATTEND).orElse(""));
         //TODO: remove after case log is implemented
