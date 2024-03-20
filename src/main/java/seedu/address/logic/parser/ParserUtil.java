@@ -105,7 +105,7 @@ public class ParserUtil {
     public static Optional<Address> parseOptionalAddress(String address) throws ParseException {
         requireNonNull(address);
         if (address.trim().isEmpty()) {
-            return Optional.of(new Address(""));
+            return Optional.empty();
         }
         return Optional.of(parseAddress(address));
     }
