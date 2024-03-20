@@ -32,7 +32,6 @@ public class ParserUtil {
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading
      * and trailing whitespaces will be
      * trimmed.
-     * 
      * @throws ParseException if the specified index is invalid (not non-zero
      *                        unsigned integer).
      */
@@ -48,7 +47,6 @@ public class ParserUtil {
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading
      * and trailing whitespaces will be
      * trimmed.
-     * 
      * @throws ParseException if the specified index is invalid (not non-zero
      *                        unsigned integer).
      */
@@ -162,7 +160,6 @@ public class ParserUtil {
     /**
      * Parses the given collections of strings into a set of tags.
      * Both the {@code tags} and {@code interests} collections are processed.
-     *
      * @param tags      A collection of strings representing tags.
      * @param interests A collection of strings representing interests.
      * @return A set of {@code Tag} objects representing the parsed tags and
@@ -184,7 +181,6 @@ public class ParserUtil {
 
     /**
      * Parses a {@code String name, startTime, endTime} into an {@code Schedule}.
-     * 
      * @param schedule
      * @return Schedule
      * @throws ParseException
@@ -209,7 +205,6 @@ public class ParserUtil {
 
     /**
      * Parses a List of Schedules Strings and convert them into Schedule objects
-     * 
      * @param schedules
      * @return ArrayList of Schedules
      * @throws ParseException
