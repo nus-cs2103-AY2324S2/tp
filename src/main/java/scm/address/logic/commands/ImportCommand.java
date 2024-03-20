@@ -162,6 +162,8 @@ public class ImportCommand extends Command {
                 String phone = info[1];
                 String email = info[2];
                 String address = info[3];
+                address = address.replaceFirst("^\"", "");
+                address = address.replaceFirst("\"$", "");
 
                 // If there are no tags, add the person without tags
                 if (info.length < 5) {
