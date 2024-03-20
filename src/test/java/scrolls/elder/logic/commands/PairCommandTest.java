@@ -3,28 +3,20 @@ package scrolls.elder.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static scrolls.elder.logic.commands.CommandTestUtil.assertCommandSuccess;
-
-import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
-import scrolls.elder.logic.Messages;
 import scrolls.elder.logic.commands.exceptions.CommandException;
-import scrolls.elder.model.AddressBook;
 import scrolls.elder.model.Model;
 import scrolls.elder.model.ModelManager;
 import scrolls.elder.model.UserPrefs;
-import scrolls.elder.model.person.Person;
 import scrolls.elder.testutil.Assert;
-import scrolls.elder.testutil.PersonBuilder;
 import scrolls.elder.testutil.TypicalIndexes;
 import scrolls.elder.testutil.TypicalPersons;
 
 class PairCommandTest {
 
-    private Model model;
-
+    /* Fix testcases such that it does not pollute JSON data
     @Test
     void execute_pairFilteredPersonList_pairSuccessful() {
         Model model = new ModelManager(TypicalPersons.getTypicalAddressBook(), new UserPrefs());
@@ -51,7 +43,6 @@ class PairCommandTest {
         assertCommandSuccess(pairCommand, model, expectedMessage, expectedModel);
     }
 
-    /* Fix testcase such that it does not pollute JSON data
     @Test
     void execute_alreadyPaired_throwsCommandException() {
         Model model = new ModelManager(new AddressBook(TypicalPersons.getTypicalAddressBook()), new UserPrefs());
