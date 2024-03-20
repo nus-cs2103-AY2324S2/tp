@@ -26,7 +26,7 @@ import seedu.address.model.tag.Tag;
 class JsonAdaptedEmployee {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Employee's %s field is missing!";
-    public static final String INVALID_FIELD_MESSAGE_FORMAT = "Employee's %s field is invalid!";
+    public static final String INVALID_FIELD_MESSAGE_FORMAT = "Employee's UID is invalid";
 
     private final String name;
     private final String phone;

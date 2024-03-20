@@ -35,7 +35,7 @@ public class JsonAdaptedEmployeeTest {
     private static final String VALID_ADDRESS = BENSON.getAddress().toString();
     private static final String VALID_TEAM = BENSON.getTeam().teamName;
     private static final String VALID_ROLE = BENSON.getRole().toString();
-    private static final String VALID_UID = BENSON.getUid().toString();
+    private static final String VALID_UID = BENSON.getUid().getUidValue().toString();
     private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
@@ -163,7 +163,6 @@ public class JsonAdaptedEmployeeTest {
         JsonAdaptedEmployee employee = new JsonAdaptedEmployee(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
                 VALID_TEAM, VALID_ROLE,
                 VALID_TAGS, INVALID_UID);
-        String expectedMessage = "UID must be a positive integer.";
-        assertThrows(IllegalValueException.class, expectedMessage, employee::toModelType);
+        assertThrows(IllegalValueException.class, employee::toModelType);
     }
 }

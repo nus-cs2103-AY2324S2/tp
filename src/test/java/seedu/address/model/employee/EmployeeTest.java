@@ -10,6 +10,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ROLE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TEAM_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_UID_AMY;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEmployees.ALICE;
 import static seedu.address.testutil.TypicalEmployees.BOB;
@@ -37,7 +38,7 @@ public class EmployeeTest {
         // same name, all other attributes different -> returns true
         Employee editedAlice = new EmployeeBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
                 .withAddress(VALID_ADDRESS_BOB).withTeam(VALID_TEAM_BOB).withRole(VALID_ROLE_BOB)
-                .withTags(VALID_TAG_HUSBAND).build();
+                .withTags(VALID_TAG_HUSBAND).withUid(VALID_UID_AMY).build();
         assertTrue(ALICE.isSameEmployee(editedAlice));
 
         // different name, all other attributes same -> returns false
@@ -97,7 +98,7 @@ public class EmployeeTest {
     public void toStringMethod() {
         String expected = Employee.class.getCanonicalName() + "{name=" + ALICE.getName() + ", phone=" + ALICE.getPhone()
                 + ", email=" + ALICE.getEmail() + ", address=" + ALICE.getAddress() + ", team=" + ALICE.getTeam()
-                + ", role=" + ALICE.getRole() + ", tags=" + ALICE.getTags() + "}";
+                + ", role=" + ALICE.getRole() + ", tags=" + ALICE.getTags() + ", uid=" + ALICE.getUid() + "}";
         assertEquals(expected, ALICE.toString());
     }
 }
