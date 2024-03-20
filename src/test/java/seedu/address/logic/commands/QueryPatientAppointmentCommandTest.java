@@ -17,7 +17,6 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.appointment.AppointmentContainsPatientPredicate;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
 
 public class QueryPatientAppointmentCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
@@ -82,7 +81,8 @@ public class QueryPatientAppointmentCommandTest {
 
     @Test
     public void toStringMethod() {
-        AppointmentContainsPatientPredicate predicate = new AppointmentContainsPatientPredicate(Arrays.asList("keyword"));
+        AppointmentContainsPatientPredicate predicate = new AppointmentContainsPatientPredicate(
+                Arrays.asList("keyword"));
         QueryPatientAppointmentCommand findCommand = new QueryPatientAppointmentCommand(predicate);
         String expected = QueryPatientAppointmentCommand.class.getCanonicalName() + "{predicate=" + predicate + "}";
         assertEquals(expected, findCommand.toString());
