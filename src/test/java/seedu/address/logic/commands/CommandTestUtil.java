@@ -3,9 +3,12 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_AGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_IC_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -55,11 +58,19 @@ public class CommandTestUtil {
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
-
+    public static final String IC_DESC_AMY = " " + PREFIX_IC_NUMBER + VALID_IDENTITY_CARD_NUMBER_AMY;
+    public static final String IC_DESC_BOB = " " + PREFIX_IC_NUMBER + VALID_IDENTITY_CARD_NUMBER_BOB;
+    public static final String AGE_DESC_AMY = " " + PREFIX_AGE + VALID_AGE_AMY;
+    public static final String AGE_DESC_BOB = " " + PREFIX_AGE + VALID_AGE_BOB;
+    public static final String SEX_DESC_AMY = " " + PREFIX_SEX + VALID_SEX_AMY;
+    public static final String SEX_DESC_BOB = " " + PREFIX_SEX + VALID_AGE_BOB;
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
+    public static final String INVALID_SEX = " " + PREFIX_SEX + "Z"; // Only 'M' and 'F' allowed in sex
+    public static final String INVALID_AGE = " " + PREFIX_AGE + "-15"; // Negative age not allowed in age
+    public static final String INVALID_IC = " " + PREFIX_IC_NUMBER + "P379@"; // @ not allowed in identification number
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
