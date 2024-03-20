@@ -153,7 +153,7 @@ public class ImportCommand extends Command {
 
             BufferedReader br = new BufferedReader(new FileReader(filePath));
             String line = "";
-            String splitBy = ",";
+            String splitBy = ",(?=([^\"]*\"[^\"]*\")*[^\"]*$)";
             String headers = br.readLine();
             while ((line = br.readLine()) != null)   //returns a Boolean value
             {
@@ -162,11 +162,21 @@ public class ImportCommand extends Command {
                 String phone = info[1];
                 String email = info[2];
                 String address = info[3];
+
+                // If there are no tags, add the person without tags
+                if (info.length < 5) {
+                    persons.add(new JsonAdaptedPerson(name, phone, email, address, new ArrayList<JsonAdaptedTag>()));
+                    continue;
+                }
+
                 List<JsonAdaptedTag> tags = Arrays.stream(info[4].split(" \\| "))
+                        .map(String::trim)
                         .map(JsonAdaptedTag::new)
                         .collect(Collectors.toList());
+                tags.stream().forEach(tag -> System.out.println("Tag: " + tag.getTagName()));
 
                 JsonAdaptedPerson person = new JsonAdaptedPerson(name, phone, email, address, tags);
+                System.out.println("Person: " + person.toString());
                 persons.add(person);
             }
         } catch (FileNotFoundException e) {
