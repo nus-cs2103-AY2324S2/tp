@@ -39,11 +39,11 @@ public class Messages {
         builder.append(person.getName())
                 .append("\n IC: ")
                 .append(person.getIc())
-                .append("\nDOB: ")
+                .append("\n DOB: ")
                 .append(person.getDob())
                 .append("\n Admitted: ")
                 .append(person.getAdmissionDate())
-                .append("\nWard: ")
+                .append("\n Ward: ")
                 .append(person.getWard())
                 .append("\n Tags: ")
                 .append(person.getTags());
