@@ -34,7 +34,7 @@ public class AddCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Allium "
             + PREFIX_INDUSTRY + "WEB3 "
-            + PREFIX_FUNDING_STAGE + "SEED "
+            + PREFIX_FUNDING_STAGE + "S "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "allium@gmail.com "
             + PREFIX_ADDRESS + "420, 23rd Street, #02-25 "
