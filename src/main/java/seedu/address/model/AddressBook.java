@@ -2,8 +2,8 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -20,21 +20,16 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
     private final UniquePersonList persons = new UniquePersonList();
     @JsonIgnore
-    private final ArrayList<UniquePersonList> personsList = new ArrayList<>();
-    @JsonIgnore
-    private int currIdx = 0;
+    private final Stack<UniquePersonList> undoList = new Stack<>();
 
     public AddressBook() {
-        personsList.add(new UniquePersonList());
     }
 
     /**
      * Creates an AddressBook using the Persons in the {@code toBeCopied}
      */
     public AddressBook(ReadOnlyAddressBook toBeCopied) {
-        this();
         persons.setPersons(toBeCopied.getPersonList());
-        personsList.get(0).setPersons(persons); // persons and personsList[0] need to be different objects
     }
 
     //// list overwrite operations
@@ -45,24 +40,24 @@ public class AddressBook implements ReadOnlyAddressBook {
     private void save() {
         UniquePersonList savedList = new UniquePersonList();
         savedList.setPersons(persons);
-        personsList.add(++currIdx, savedList);
+        undoList.add(savedList);
     }
 
     /**
      * Returns true if there are states to reverse to.
      */
     public boolean canUndo() {
-        return currIdx > 0;
+        return !undoList.empty();
     }
 
     /**
      * Undoes the latest change to address book.
      */
     public void undo() {
-        if (currIdx == 0) {
+        if (undoList.empty()) {
             throw new AddressBookUndoException();
         }
-        persons.setPersons(personsList.get(--currIdx));
+        persons.setPersons(undoList.pop());
     }
 
     /**
@@ -70,8 +65,8 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code persons} must not contain duplicate persons.
      */
     public void setPersons(List<Person> persons) {
-        this.persons.setPersons(persons);
         save();
+        this.persons.setPersons(persons);
     }
 
     /**
@@ -98,8 +93,8 @@ public class AddressBook implements ReadOnlyAddressBook {
      * The person must not already exist in the address book.
      */
     public void addPerson(Person p) {
-        persons.add(p);
         save();
+        persons.add(p);
     }
 
     /**
@@ -109,8 +104,8 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
-        persons.setPerson(target, editedPerson);
         save();
+        persons.setPerson(target, editedPerson);
     }
 
     /**
@@ -118,8 +113,8 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code key} must exist in the address book.
      */
     public void removePerson(Person key) {
-        persons.remove(key);
         save();
+        persons.remove(key);
     }
 
     //// util methods
