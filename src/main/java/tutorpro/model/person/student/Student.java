@@ -6,6 +6,7 @@ import java.util.Set;
 
 import javafx.scene.layout.Region;
 import tutorpro.commons.util.CollectionUtil;
+import tutorpro.commons.util.ToStringBuilder;
 import tutorpro.model.person.Address;
 import tutorpro.model.person.Email;
 import tutorpro.model.person.Name;
@@ -61,6 +62,19 @@ public class Student extends Person {
         }
         Student otherStudent = (Student) other;
         return level.equals(otherStudent.level) && subjects.equals(otherStudent.subjects);
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .add("name", super.getName())
+                .add("phone", super.getPhone())
+                .add("email", super.getEmail())
+                .add("address", super.getAddress())
+                .add("tags", super.getTags())
+                .add("level", level)
+                .add("subjects", subjects)
+                .toString();
     }
 
     /**

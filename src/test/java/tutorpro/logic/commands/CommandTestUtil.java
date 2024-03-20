@@ -43,6 +43,11 @@ public class CommandTestUtil {
     public static final String PHONE_DESC_AMY = " " + CliSyntax.PREFIX_PHONE + VALID_PHONE_AMY;
     public static final String PHONE_DESC_BOB = " " + CliSyntax.PREFIX_PHONE + VALID_PHONE_BOB;
     public static final String EMAIL_DESC_AMY = " " + CliSyntax.PREFIX_EMAIL + VALID_EMAIL_AMY;
+    public static final String LEVEL_DESC_P6 = " " + CliSyntax.PREFIX_LEVEL + VALID_LEVEL_P6;
+    public static final String LEVEL_DESC_UNI = " " + CliSyntax.PREFIX_LEVEL + VALID_LEVEL_UNI;
+
+    public static final String SUBJECT_DESC_MATH = " " + CliSyntax.PREFIX_SUBJECT + VALID_SUBJECT_MATH;
+    public static final String SUBJECT_DESC_ENGLISH = " " + CliSyntax.PREFIX_SUBJECT + VALID_SUBJECT_ENGLISH;
     public static final String EMAIL_DESC_BOB = " " + CliSyntax.PREFIX_EMAIL + VALID_EMAIL_BOB;
     public static final String ADDRESS_DESC_AMY = " " + CliSyntax.PREFIX_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + CliSyntax.PREFIX_ADDRESS + VALID_ADDRESS_BOB;

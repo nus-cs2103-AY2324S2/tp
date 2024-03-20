@@ -22,9 +22,10 @@ import tutorpro.model.Model;
 import tutorpro.model.ReadOnlyAddressBook;
 import tutorpro.model.ReadOnlyUserPrefs;
 import tutorpro.model.person.Person;
+import tutorpro.model.person.student.Student;
 import tutorpro.testutil.Assert;
-import tutorpro.testutil.PersonBuilder;
-import tutorpro.testutil.TypicalPersons;
+import tutorpro.testutil.StudentBuilder;
+import tutorpro.testutil.TypicalStudents;
 
 public class AddCommandTest {
 
@@ -36,7 +37,7 @@ public class AddCommandTest {
     @Test
     public void execute_personAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Person validPerson = new PersonBuilder().build();
+        Student validPerson = new StudentBuilder().build();
 
         CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
 
@@ -47,7 +48,7 @@ public class AddCommandTest {
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
-        Person validPerson = new PersonBuilder().build();
+        Student validPerson = new StudentBuilder().build();
         AddCommand addCommand = new AddCommand(validPerson);
         ModelStub modelStub = new ModelStubWithPerson(validPerson);
 
@@ -57,8 +58,8 @@ public class AddCommandTest {
 
     @Test
     public void equals() {
-        Person alice = new PersonBuilder().withName("Alice").build();
-        Person bob = new PersonBuilder().withName("Bob").build();
+        Student alice = new StudentBuilder().withName("Alice").build();
+        Student bob = new StudentBuilder().withName("Bob").build();
         AddCommand addAliceCommand = new AddCommand(alice);
         AddCommand addBobCommand = new AddCommand(bob);
 
@@ -81,8 +82,8 @@ public class AddCommandTest {
 
     @Test
     public void toStringMethod() {
-        AddCommand addCommand = new AddCommand(TypicalPersons.ALICE);
-        String expected = AddCommand.class.getCanonicalName() + "{toAdd=" + TypicalPersons.ALICE + "}";
+        AddCommand addCommand = new AddCommand(TypicalStudents.ALICE);
+        String expected = AddCommand.class.getCanonicalName() + "{toAdd=" + TypicalStudents.ALICE + "}";
         assertEquals(expected, addCommand.toString());
     }
 
