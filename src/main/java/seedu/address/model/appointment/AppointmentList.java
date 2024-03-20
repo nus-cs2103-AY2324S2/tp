@@ -2,25 +2,32 @@ package seedu.address.model.appointment;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 /**
  * Wraps all appointments in one list object.
- * Duplicates are not allowed (by {@code Appointment::equals} comparison).
+ * Duplicates are not allowed (by {@code .isSameAppointment} comparison).
  */
 public class AppointmentList implements ReadOnlyAppointmentList {
-    private final List<Appointment> appointments;
+    private final UniqueAppointmentList appointments;
+
+    /*
+     * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
+     * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
+     *
+     * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
+     *   among constructors.
+     */
+    {
+        appointments = new UniqueAppointmentList();
+    }
 
     /**
      * Creates an empty AppointmentList, ensure appointments to not be null.
      */
-    public AppointmentList() {
-        appointments = new ArrayList<>();
-    }
+    public AppointmentList() {}
     /**
      * Creates an AppointmentList using the Appointments in the {@code toBeCopied}.
      */
@@ -29,14 +36,22 @@ public class AppointmentList implements ReadOnlyAppointmentList {
         resetData(toBeCopied);
     }
 
+    //// list overwrite operations
+
     /**
      * Replaces the contents of the appointment list with {@code appointments}.
-     * {@code appointments} must not contain duplicate appointments.
+     * {@code appointments} must not contain duplicate persons.
+     */
+    public void setAppointments(List<Appointment> appointments) {
+        this.appointments.setAppointments(appointments);
+    }
+
+    /**
+     * Resets the existing data of this {@code AppointmentList} with {@code newData}.
      */
     public void resetData(ReadOnlyAppointmentList newData) {
         requireNonNull(newData);
-        appointments.clear();
-        appointments.addAll(newData.getAppointmentList());
+        setAppointments(newData.getAppointmentList());
     }
 
     /**
@@ -45,7 +60,7 @@ public class AppointmentList implements ReadOnlyAppointmentList {
      */
     @Override
     public ObservableList<Appointment> getAppointmentList() {
-        return FXCollections.observableList(appointments);
+        return appointments.asUnmodifiableObservableList();
     }
 
     /**
@@ -53,7 +68,7 @@ public class AppointmentList implements ReadOnlyAppointmentList {
      */
     public boolean hasAppointment(Appointment appointment) {
         requireNonNull(appointment);
-        return appointments.stream().anyMatch(appointment::equals);
+        return appointments.contains(appointment);
     }
 
     @Override
