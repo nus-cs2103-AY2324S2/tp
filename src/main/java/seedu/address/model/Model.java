@@ -94,4 +94,10 @@ public interface Model {
      * Returns the next unique ID for a person.
      */
     String getNextUniqueId();
+
+    /**
+     * Returns the person with the given unique ID.
+     * Returns null if the person does not exist.
+     */
+    Person getPersonByUniqueId(int uniqueId);
 }
