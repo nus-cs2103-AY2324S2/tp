@@ -3,9 +3,13 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Stack;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.exceptions.AddressBookUndoException;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -14,37 +18,54 @@ import seedu.address.model.person.UniquePersonList;
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
 public class AddressBook implements ReadOnlyAddressBook {
+    private final UniquePersonList persons = new UniquePersonList();
+    @JsonIgnore
+    private final Stack<UniquePersonList> undoList = new Stack<>();
 
-    private final UniquePersonList persons;
-
-    /*
-     * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
-     * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
-     *
-     * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
-     *   among constructors.
-     */
-    {
-        persons = new UniquePersonList();
+    public AddressBook() {
     }
-
-    public AddressBook() {}
 
     /**
      * Creates an AddressBook using the Persons in the {@code toBeCopied}
      */
     public AddressBook(ReadOnlyAddressBook toBeCopied) {
-        this();
-        resetData(toBeCopied);
+        persons.setPersons(toBeCopied.getPersonList());
     }
 
     //// list overwrite operations
+
+    /**
+     * Makes a copy of persons, and stores it in personsList.
+     */
+    private void save() {
+        UniquePersonList savedList = new UniquePersonList();
+        savedList.setPersons(persons);
+        undoList.add(savedList);
+    }
+
+    /**
+     * Returns true if there are states to reverse to.
+     */
+    public boolean canUndo() {
+        return !undoList.empty();
+    }
+
+    /**
+     * Undoes the latest change to address book.
+     */
+    public void undo() {
+        if (undoList.empty()) {
+            throw new AddressBookUndoException();
+        }
+        persons.setPersons(undoList.pop());
+    }
 
     /**
      * Replaces the contents of the person list with {@code persons}.
      * {@code persons} must not contain duplicate persons.
      */
     public void setPersons(List<Person> persons) {
+        save();
         this.persons.setPersons(persons);
     }
 
@@ -72,6 +93,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * The person must not already exist in the address book.
      */
     public void addPerson(Person p) {
+        save();
         persons.add(p);
     }
 
@@ -82,7 +104,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
-
+        save();
         persons.setPerson(target, editedPerson);
     }
 
@@ -91,6 +113,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code key} must exist in the address book.
      */
     public void removePerson(Person key) {
+        save();
         persons.remove(key);
     }
 
