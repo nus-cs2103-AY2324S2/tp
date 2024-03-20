@@ -18,7 +18,11 @@ public class TagsContainKeywordsPredicate implements Predicate<Contact> {
         if (tagKeywords.isEmpty()) {
             return false;
         } else {
-            return tagKeywords.stream().allMatch(keyword -> contact.getTags().stream().anyMatch(tag -> StringUtil.containsWordIgnoreCase(tag.tagName, keyword)));
+            return tagKeywords.stream().allMatch(keyword ->
+                    contact.getTags().stream().anyMatch(tag ->
+                            StringUtil.containsWordIgnoreCase(tag.tagName, keyword)
+                    )
+            );
         }
     }
 
