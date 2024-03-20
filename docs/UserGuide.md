@@ -86,6 +86,9 @@ Format: `add n/NAME id/STUDENT_ID p/PRIMARY_ PHONE_NUMBER [, SECONDARY_PHONE_NUM
 **Tip:** A person can have any number of tags (including 0)
 </box>
 
+* The `ID` refers to the alphanumeric string on the left of Name
+* The `ID` must start with an alphabet followed by 7 digits and ending with an alphabet e.g A0265901E
+
 Examples:
 * `add n/John Doe id/2023001 p/1234567890, 9876543210 e/john.doe@example.com, jdoe@example.com i/2023 m/Computer Science p/CS2103 Tut  g/A+ t/Honors`
 * `add n/Kumar Prabhat id/20414001 p/1234567890, 9876543210 e/john.doe@example.com`
@@ -100,7 +103,7 @@ Format: `list`
 
 Edits an existing person in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [id/ID] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -111,6 +114,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
+*  `edit 1 id/A9051615L e/johndoe@example.com` Edits the id and email address of the 1st person to be `A9051615L` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
 ### Locating persons by name: `find`
@@ -144,6 +148,20 @@ Format: `delete INDEX`
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+
+### Tagging a student : `tag`
+
+Tags the specified student from the address book.
+
+Format: `tag id/ID t/TAGS`
+
+* Tags the student with id `ID`.
+* The `ID` refers to the alphanumeric string on the left of Name
+* The `ID` must start with an alphabet followed by 7 digits and ending with an alphabet e.g A0265901E
+* `TAGS` can be alphabetic without spaces and multiple tags can be specified
+
+Examples:
+* `tag id/A0257418E t/Sincere, Good`
 
 ### Clearing all entries : `clear`
 
