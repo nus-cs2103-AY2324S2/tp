@@ -100,7 +100,8 @@ public class ModelManagerTest {
 
     @Test
     public void getFilteredAppointmentViewList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredAppointmentViewList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () ->
+            modelManager.getFilteredAppointmentViewList().remove(0));
     }
 
     @Test
