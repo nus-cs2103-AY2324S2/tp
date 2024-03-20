@@ -39,9 +39,8 @@ public class AddCommand extends Command {
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_GRADE + "A "
-            + PREFIX_SUBJECT + "Mathematics ";
             + PREFIX_SUBJECT + "Mathematics "
-            + PREFIX_DATETIME + "2024-03-02 1800"
+            + PREFIX_DATETIME + "2024-03-02 1800";
 
     public static final String MESSAGE_SUCCESS = "New Student added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This student already exists in the address book";
