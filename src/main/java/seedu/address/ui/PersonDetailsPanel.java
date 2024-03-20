@@ -39,20 +39,16 @@ public class PersonDetailsPanel extends UiPart<Region> {
      */
     public PersonDetailsPanel() {
         super(FXML);
-        name.setText("");
-        phone.setText("");
-        address.setText("");
-        email.setText("");
-        note.setText("");
+        clear();
     }
 
     /**
      * Set fields with information from the person
      *
-     * @param person the Person object containing the information to update the fields with
+     * @param person the Person object containing the information to update the fields with.
+     *               If null, details pane will not be updated.
      */
     public void update(Person person) {
-        // Person can be null if no selection is made in the person list.
         if (person == null) {
             return;
         }
@@ -81,5 +77,18 @@ public class PersonDetailsPanel extends UiPart<Region> {
         address.managedProperty().bind(address.visibleProperty());
         email.managedProperty().bind(email.visibleProperty());
         note.managedProperty().bind(note.visibleProperty());
+    }
+
+    /**
+     * Clears all fields
+     */
+    public void clear() {
+        name.setText("");
+        phone.setText("");
+        address.setText("");
+        email.setText("");
+        note.setText("");
+        tags.getChildren().clear();
+        qrcode.setImage(null);
     }
 }
