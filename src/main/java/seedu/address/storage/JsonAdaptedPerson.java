@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.InterviewTime;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -29,6 +30,7 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
+    private final String dateTime;
     private final String salary;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
@@ -38,12 +40,14 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
+            @JsonProperty("dateTime") String dateTime,
             @JsonProperty("salary") String salary,
             @JsonProperty("tags") List<JsonAdaptedTag> tags) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.dateTime = dateTime;
         this.salary = salary;
         if (tags != null) {
             this.tags.addAll(tags);
@@ -58,6 +62,7 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        dateTime = source.getDateTime().rawToString();
         salary = source.getSalary().toString();
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -106,6 +111,14 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
         final Address modelAddress = new Address(address);
+        if (dateTime == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    InterviewTime.class.getSimpleName()));
+        }
+        if (!InterviewTime.isValidInterviewTime(dateTime)) {
+            throw new IllegalValueException(InterviewTime.MESSAGE_CONSTRAINTS);
+        }
+        final InterviewTime modelDateTime = new InterviewTime(dateTime);
 
         if (salary == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Salary.class.getSimpleName()));
@@ -116,7 +129,7 @@ class JsonAdaptedPerson {
         final Salary modelSalary = new Salary(salary);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelSalary, modelTags);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelDateTime, modelSalary, modelTags);
     }
 
 }

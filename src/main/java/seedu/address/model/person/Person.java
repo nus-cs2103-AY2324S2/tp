@@ -25,16 +25,21 @@ public class Person {
     private final Address address;
     private final Salary salary;
     private final Set<Tag> tags = new HashSet<>();
+    private final InterviewTime dateTime;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Salary salary, Set<Tag> tags) {
+
+    public Person(
+            Name name, Phone phone, Email email, Address address,
+            InterviewTime dateTime, Salary salary, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, salary, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.dateTime = dateTime;
         this.salary = salary;
         this.tags.addAll(tags);
     }
@@ -55,6 +60,9 @@ public class Person {
         return address;
     }
 
+    public InterviewTime getDateTime() {
+        return dateTime;
+    }
     public Salary getSalary() {
         return salary;
     }
@@ -106,7 +114,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, tags, dateTime);
     }
 
     @Override
@@ -116,6 +124,7 @@ public class Person {
                 .add("phone", phone)
                 .add("email", email)
                 .add("address", address)
+                .add("interview-time", dateTime)
                 .add("salary", salary)
                 .add("tags", tags)
                 .toString();
