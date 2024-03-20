@@ -9,6 +9,8 @@ import static seedu.address.storage.StateStorage.loadState;
 import static seedu.address.storage.StateStorage.writeState;
 import static seedu.address.testutil.Assert.assertThrows;
 
+import java.nio.file.Paths;
+
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -33,10 +35,24 @@ public class StateStorageTest {
         assertNotNull(stateStorage);
     }
 
+
     @Test
     public void getFilePath_successfullyReturned() {
         assertNotNull(StateStorage.getFilePath());
+        assertEquals(Paths.get("./data/state.txt"), StateStorage.getFilePath());
+
     }
+
+    @Test
+    public void getFilePathString_successfullyReturned() {
+        assertEquals("./data/state.txt", StateStorage.getFilePathString());
+    }
+
+    @Test
+    public void getDirectoryPath_successfullyReturned() {
+        assertEquals(Paths.get("./data"), StateStorage.getDirectoryPath());
+    }
+
 
     @Test
     public void loadState_emptyFile_successfullyLoaded() throws DataLoadingException {
