@@ -3,8 +3,8 @@ package seedu.realodex.logic.parser;
 import static seedu.realodex.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.realodex.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.realodex.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
-import static seedu.realodex.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.realodex.testutil.Assert.assertThrows;
+import static seedu.realodex.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import org.junit.jupiter.api.Test;
 

@@ -249,11 +249,21 @@ public class AddCommandParserTest {
     @Test
     public void parse_optionalFieldMissing_success() {
         Person expectedPerson = new PersonBuilder(BOB).withRemark("").build();
-        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + INCOME_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + FAMILY_DESC_BOB
+        assertParseSuccess(parser, NAME_DESC_BOB
+                + PHONE_DESC_BOB
+                + INCOME_DESC_BOB
+                + EMAIL_DESC_BOB
+                + ADDRESS_DESC_BOB
+                + FAMILY_DESC_BOB
                 + TAG_DESC_BOB, new AddCommand(expectedPerson));
 
         expectedPerson = new PersonBuilder(AMY).build();
-        assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + INCOME_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + FAMILY_DESC_AMY
+        assertParseSuccess(parser, NAME_DESC_AMY
+                + PHONE_DESC_AMY
+                + INCOME_DESC_AMY
+                + EMAIL_DESC_AMY
+                + ADDRESS_DESC_AMY
+                + FAMILY_DESC_AMY
                 + TAG_DESC_AMY, new AddCommand(expectedPerson));
     }
 
