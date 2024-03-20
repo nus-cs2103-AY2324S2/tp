@@ -16,7 +16,7 @@ import seedu.address.model.person.Person;
 public class PersonListPanel extends UiPart<Region> {
     private static final String FXML = "PersonListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
-
+    private boolean isDisplayed;
     @FXML
     private ListView<Person> personListView;
 
@@ -25,8 +25,17 @@ public class PersonListPanel extends UiPart<Region> {
      */
     public PersonListPanel(ObservableList<Person> personList) {
         super(FXML);
+        isDisplayed = true;
         personListView.setItems(personList);
         personListView.setCellFactory(listView -> new PersonListViewCell());
+    }
+
+    /**
+     * Toggles display of the PersonListPanel.
+     */
+    public void toggleDisplay() {
+        getRoot().setVisible(!isDisplayed);
+        isDisplayed = !isDisplayed;
     }
 
     /**
