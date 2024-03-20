@@ -43,8 +43,8 @@ public class EditOrderCommand extends EditCommand {
     private final EditOrderDescriptor editOrderDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
-     * @param editOrderDescriptor details to edit the person with
+     * @param index of the order in the filtered order list to edit
+     * @param editOrderDescriptor details to edit the order with
      */
     public EditOrderCommand(Index index, EditOrderDescriptor editOrderDescriptor) {
         requireNonNull(index);
@@ -63,11 +63,13 @@ public class EditOrderCommand extends EditCommand {
             throw new CommandException(Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
         }
 
-        Order orderToEdit = lastShownList.get(index.getZeroBased());
+        Order orderToEdit = new Order(lastShownList.get(index.getZeroBased()));
         assert orderToEdit != null;
 
         Order editedOrder = model.editOrder(orderToEdit,
                 editOrderDescriptor.getProduct(), editOrderDescriptor.getQuantity());
+        //model.updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS);
+        model.setOrder(orderToEdit, editedOrder);
         model.updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS);
         return new CommandResult(String.format(MESSAGE_EDIT_ORDER_SUCCESS,
                 Messages.format(editedOrder)));

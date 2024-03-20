@@ -84,6 +84,12 @@ public interface Model {
     void setPerson(Person target, Person editedPerson);
 
     /**
+     * Replaces the given order {@code target} with {@code editedPerson}.
+     * {@code target} must exist in the order list.
+     */
+    void setOrder(Order target, Order editedOrder);
+
+    /**
      * Adds the given order {@code newOrder} to the given person {@code person} into the orderlist.
      * @param newOrder Order object to be added to the orderlist.
      * @param person Person object to be attached to the order, which will be added to the orderlist.

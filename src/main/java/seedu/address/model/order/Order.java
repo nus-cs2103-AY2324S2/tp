@@ -7,6 +7,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.Person;
 
 /**
@@ -43,6 +44,20 @@ public class Order implements Comparable<Order> {
      */
     public Order(Map<Product, Quantity> map) {
         productMap = map;
+    }
+
+    /**
+     * Contructs an {@code Order} object with {@code map}
+     * @param map Mappings of Products and Quantity
+     */
+    public Order(int id, Person customer, Map<Product, Quantity> map) {
+        productMap = map;
+    }
+
+    public Order(Order order) {
+        this.id = order.getId();
+        this.productMap = new HashMap<>(order.getProductMap());
+        this.customer = order.getCustomer();
     }
 
     /**
@@ -100,13 +115,13 @@ public class Order implements Comparable<Order> {
     /**
      * Sets the quantity values of the product in the order.
      *
-     * @param currProduct Product of which quantity to be editted.
+     * @param currProduct Product of which quantity to be edited.
      * @param newQuantity New Quantity of the specified product.
      * @return Updated order.
      */
     public Order changeQuantity(Product currProduct, Quantity newQuantity) {
         productMap.put(currProduct, newQuantity);
-        return new Order(productMap);
+        return new Order(this.id, this.customer, productMap);
     }
 
     /**
@@ -116,7 +131,7 @@ public class Order implements Comparable<Order> {
      */
     public Order deleteProduct(Product product) {
         productMap.remove(product);
-        return new Order(productMap);
+        return new Order(this.id, this.customer, productMap);
     }
 
     /**
