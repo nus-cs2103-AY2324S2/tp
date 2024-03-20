@@ -1,7 +1,9 @@
 package seedu.address.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.logic.Messages.*;
+import static seedu.address.logic.Messages.MESSAGE_CONFIRMATION;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.AVAILABILITY_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
@@ -121,8 +123,8 @@ public class LogicManagerTest {
      * Executes the command, confirms that the exception is thrown and that the result message is correct.
      * @see #assertCommandFailure(String, boolean, Class, String, Model)
      */
-    private void assertCommandFailure(String inputCommand, boolean isConfirmation, Class<? extends Throwable> expectedException,
-            String expectedMessage) {
+    private void assertCommandFailure(String inputCommand, boolean isConfirmation,
+                                      Class<? extends Throwable> expectedException, String expectedMessage) {
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         assertCommandFailure(inputCommand, isConfirmation, expectedException, expectedMessage, expectedModel);
     }
@@ -134,8 +136,9 @@ public class LogicManagerTest {
      * - the internal model manager state is the same as that in {@code expectedModel} <br>
      * @see #assertCommandSuccess(String, boolean, String, Model)
      */
-    private void assertCommandFailure(String inputCommand, boolean isConfirmation, Class<? extends Throwable> expectedException,
-            String expectedMessage, Model expectedModel) {
+    private void assertCommandFailure(String inputCommand, boolean isConfirmation,
+                                      Class<? extends Throwable> expectedException, String expectedMessage,
+                                      Model expectedModel) {
         assertThrows(expectedException, expectedMessage, () -> logic.execute(inputCommand, isConfirmation));
         assertEquals(expectedModel, model);
     }

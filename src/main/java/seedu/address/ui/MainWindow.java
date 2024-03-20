@@ -138,13 +138,6 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
-    @FXML
-    public void handleConfirmation() {
-//        if (true) {
-//        }
-        isConfirmation = true;
-    }
-
     /**
      * Opens the help window or focuses on it if it's already opened.
      */
@@ -188,7 +181,7 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
-            isConfirmation = commandResult.isConfirmation();  // to determine if next commandText is a confirmation
+            isConfirmation = commandResult.isConfirmation(); // to determine if next commandText is a confirmation
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
