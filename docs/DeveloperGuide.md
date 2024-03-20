@@ -277,16 +277,20 @@ centralised location. Also manage contacts faster than a typical mouse/GUI drive
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                     | I want to …​                                     | So that I can…​                                                    |
+|----------|-----------------------------|--------------------------------------------------|--------------------------------------------------------------------|
+| `* * *`  | Computer science job seeker | delete features                                  | delete information where necessary                                 |
+| `* * *`  | Computer science job seeker | add contact information of interviewer / company | contact the interviewer / company                                  |
+| `* * *`  | Computer science job seeker | add salary range                                 | check the salary range of the job                                  |
+| `* * *`  | Computer science job seeker | add company name                                 | check which company the job is from                                |
+| `* * *`  | Computer science job seeker | add interview time                               | check what is the interview time                                   |
+| `* *`    | Computer science job seeker | add programming language(s) related to the job   | identify which programming language(s) is/are required for the job |
+| `* *`    | Computer science job seeker | add job responsibilities                         | check what are the job responsibilities for the job                |
+| `* *`    | Computer science job seeker | categorise job postings according to industry    | filter information based on the different types of industries      |
+| `*`      | Computer science job seeker | receive notifications when I get a new interview | stay up-to-date with the interview offers and attend them          |
+| `*`      | Computer science job seeker | track the status of my job application           | follow up with any actions when necessary                          |
+| `*`      | Computer science job seeker | receive reminders for my interview timings       | be reminded about the interview                                    |
 
-*{More to be added}*
 
 ### Use cases
 
@@ -418,8 +422,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
+* **Computer Science job seeker** : Student / Unemployed / Working adult seeking employment opportunities in the field of Computer Science
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Private contact detail**: A contact detail that is not meant to be shared with others 
 
 --------------------------------------------------------------------------------------------------------------------
 
