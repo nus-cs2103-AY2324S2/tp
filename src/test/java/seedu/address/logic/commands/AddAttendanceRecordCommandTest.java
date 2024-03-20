@@ -18,7 +18,6 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.person.AttendanceStatus;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -26,6 +25,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyClassBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.person.AttendanceStatus;
 import seedu.address.model.person.Classes;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Attendance;
@@ -59,8 +59,8 @@ public class AddAttendanceRecordCommandTest {
 
         AddAttendanceRecordCommand addAttendanceRecordCommand = new AddAttendanceRecordCommand(validAttendance);
 
-        assertThrows(CommandException.class, Messages.MESSAGE_NO_PERSON_IN_THE_CLASS,
-                () -> addAttendanceRecordCommand.execute(model));
+        assertThrows(CommandException.class,
+                Messages.MESSAGE_NO_PERSON_IN_THE_CLASS, () -> addAttendanceRecordCommand.execute(model));
     }
 
     @Test

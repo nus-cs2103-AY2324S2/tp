@@ -151,10 +151,10 @@ public class ParserUtilTest {
         assertEquals(expectedEmail, ParserUtil.parseEmail(emailWithWhitespace));
     }
 
-//    @Test
-//    public void parseAttendance_null_throwsNullPointerException() {
-//        assertThrows(NullPointerException.class, () -> ParserUtil.parseAttendances(null));
-//    }
+    // @Test
+    // public void parseAttendance_null_throwsNullPointerException() {
+    //     assertThrows(NullPointerException.class, () -> ParserUtil.parseAttendances(null));
+    // }
     @Test
     public void parseAttendance_invalidValue_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseAttendances(INVALID_TAG));
@@ -173,10 +173,10 @@ public class ParserUtilTest {
         assertEquals(expectedAttendance, ParserUtil.parseAttendances(tagWithWhitespace));
     }
 
-//    @Test
-//    public void parseAttendances_null_throwsNullPointerException() {
-//        assertThrows(NullPointerException.class, () -> ParserUtil.parseAttendances(null));
-//    }
+    // @Test
+    // public void parseAttendances_null_throwsNullPointerException() {
+    //    assertThrows(NullPointerException.class, () -> ParserUtil.parseAttendances(null));
+    // }
     @Test
     public void parseAttendances_collectionWithInvalidTags_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseAttendances(Arrays.asList(VALID_DATE_1, INVALID_TAG)));
@@ -190,7 +190,8 @@ public class ParserUtilTest {
     @Test
     public void parseAttendances_collectionWithValidTags_returnsTagSet() throws Exception {
         Set<Attendance> actualAttendanceSet = ParserUtil.parseAttendances(Arrays.asList(VALID_DATE_1, VALID_DATE_2));
-        Set<Attendance> expectedAttendanceSet = new HashSet<Attendance>(Arrays.asList(new Attendance(new AttendanceStatus(VALID_DATE_1, VALID_STATUS_1)),
+        Set<Attendance> expectedAttendanceSet = new HashSet<Attendance>(Arrays.asList(new Attendance(
+                new AttendanceStatus(VALID_DATE_1, VALID_STATUS_1)),
                 new Attendance(new AttendanceStatus(VALID_DATE_2, VALID_STATUS_1))));
 
         assertEquals(expectedAttendanceSet, actualAttendanceSet);
