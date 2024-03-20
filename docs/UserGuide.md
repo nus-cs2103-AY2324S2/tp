@@ -6,7 +6,7 @@
 
 # CapitalConnect User Guide
 
-**Welcome to CapitalConnect: Your Portfolio Powerhouse!!**
+**Welcome to CapitalConnect: Your Portfolio Powerhouse!**
 
 Do you ever feel like your startup portfolio is a tangled mess of spreadsheets and endless documents? You're not alone. 
 As a Venture Capital Portfolio Manager, juggling diverse investments across industries can be a complex challenge.
