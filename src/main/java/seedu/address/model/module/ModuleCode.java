@@ -156,8 +156,10 @@ public class ModuleCode {
      * The tutorial has to exist to be used in this function.
      *
      * @param tutorialClass name of tutorial class to be deleted.
+     *
+     * @return true if tutorial class was successfully deleted
      */
-    public void deleteTutorialClass(TutorialClass tutorialClass) {
-        tutorialClasses.remove(tutorialClass);
+    public boolean deleteTutorialClass(TutorialClass tutorialClass) {
+        return tutorialClasses.remove(tutorialClass);
     }
 }

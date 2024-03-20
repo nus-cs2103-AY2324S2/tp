@@ -11,6 +11,8 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
 
+
+
 /**
  * Deletes a student identified using email from the address book.
  */
@@ -36,6 +38,7 @@ public class DeleteStudentByEmailCommand extends DeleteStudentCommand {
             throw new CommandException(String.format(PersonMessages.MESSAGE_PERSON_EMAIL_NOT_FOUND, email));
         }
         model.deletePerson(personToDelete);
+        deleteStudentFromTutorialClasses(model, personToDelete);
 
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
     }

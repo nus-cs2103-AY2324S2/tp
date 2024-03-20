@@ -11,6 +11,8 @@ import seedu.address.logic.messages.PersonMessages;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
+
+
 /**
  * Deletes a student identified using index from the address book.
  */
@@ -37,6 +39,7 @@ public class DeleteStudentByIndexCommand extends DeleteStudentCommand {
                     targetIndex.getOneBased()));
         }
         model.deletePerson(personToDelete);
+        deleteStudentFromTutorialClasses(model, personToDelete);
 
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
     }

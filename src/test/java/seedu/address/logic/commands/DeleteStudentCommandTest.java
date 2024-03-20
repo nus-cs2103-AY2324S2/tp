@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
@@ -22,6 +23,8 @@ import seedu.address.logic.commands.deletestudentcommands.DeleteStudentCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.module.ModuleCode;
+import seedu.address.model.module.TutorialClass;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.StudentId;
@@ -120,5 +123,50 @@ public class DeleteStudentCommandTest {
         model.updateFilteredPersonList(p -> false);
 
         assertTrue(model.getFilteredPersonList().isEmpty());
+    }
+
+    @Test
+    public void deleteStudentFromTutorialClasses_success() {
+        //Create modules, tutorial classes and student objects
+        ModuleCode cs2103T = new ModuleCode("CS2103T");
+        ModuleCode cs2101 = new ModuleCode("CS2101");
+        TutorialClass t01 = new TutorialClass("T01");
+        TutorialClass t02 = new TutorialClass("T02");
+        TutorialClass t03 = new TutorialClass("T03");
+        TutorialClass t04 = new TutorialClass("T04");
+
+        Person studentToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Person student2 = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
+
+        //assign students to tutorials and tutorials to modules
+        t01.addStudent(studentToDelete);
+        t02.addStudent(student2);
+        t03.addStudent(studentToDelete);
+        t03.addStudent(student2);
+
+        cs2103T.addTutorialClass(t01); //should have 0 people upon deletion
+        cs2103T.addTutorialClass(t02); //should have 1 person upon deletion
+        cs2101.addTutorialClass(t03); //should have 1 person upon deletion
+        cs2101.addTutorialClass(t04); //should have 0 people upon deletion
+
+        model.addModule(cs2103T);
+        model.addModule(cs2101);
+
+        DeleteStudentCommand deleteCommand = new DeleteStudentByIndexCommand(INDEX_FIRST_PERSON);
+
+        String expectedMessage = String.format(DeleteStudentCommand.MESSAGE_DELETE_PERSON_SUCCESS,
+                Messages.format(studentToDelete));
+
+        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel.deletePerson(studentToDelete);
+
+        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        assertEquals(0, t01.getStudents().size());
+        assertEquals(1, t02.getStudents().size());
+        assertEquals(1, t03.getStudents().size());
+        assertEquals(0, t04.getStudents().size());
+        assertEquals(student2, t02.getStudents().get(0));
+        assertEquals(student2, t03.getStudents().get(0));
+
     }
 }

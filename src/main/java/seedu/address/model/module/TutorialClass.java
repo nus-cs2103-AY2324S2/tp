@@ -99,6 +99,15 @@ public class TutorialClass {
     }
 
     /**
+     * Removes a student from the tutorial class if it exists.
+     *
+     * @return true if the student was removed
+     */
+    public boolean deleteStudent(Person student) {
+        return students.remove(student);
+    }
+
+    /**
      * Checks if the student is in the tutorial class.
      * @param student
      * @return true if the student is in the tutorial class

@@ -145,4 +145,46 @@ public class TutorialClassTest {
         assertTrue(tutorialClass.getStudents().contains(student1));
         assertTrue(tutorialClass.getStudents().contains(student2));
     }
+
+    @Test
+    void deleteStudent_notInList_failure() {
+        ArrayList<Person> students = new ArrayList<>();
+
+        // Creating Person objects
+        Name name1 = new Name("John");
+        Email email1 = new Email("john@example.com");
+        StudentId stuId1 = new StudentId("A0213333J");
+        Set<Tag> tags1 = new HashSet<>();
+        Person student1 = new Person(name1, email1, stuId1, tags1);
+
+        Name name2 = new Name("Alice");
+        Email email2 = new Email("alice@example.com");
+        StudentId stuId2 = new StudentId("A0145678A");
+        Set<Tag> tags2 = new HashSet<>();
+        Person student2 = new Person(name2, email2, stuId2, tags2);
+
+        students.add(student1);
+
+        TutorialClass tutorialClass = new TutorialClass(VALID_TUTORIAL, students);
+        assertFalse(tutorialClass.deleteStudent(student2));
+        assertEquals(1, tutorialClass.getStudents().size());
+    }
+
+    @Test
+    void deleteStudent_inList_success() {
+        ArrayList<Person> students = new ArrayList<>();
+
+        // Creating Person object
+        Name name1 = new Name("John");
+        Email email1 = new Email("john@example.com");
+        StudentId stuId1 = new StudentId("A0213333J");
+        Set<Tag> tags1 = new HashSet<>();
+        Person student1 = new Person(name1, email1, stuId1, tags1);
+
+        students.add(student1);
+
+        TutorialClass tutorialClass = new TutorialClass(VALID_TUTORIAL, students);
+        assertTrue(tutorialClass.deleteStudent(student1));
+        assertEquals(0, tutorialClass.getStudents().size());
+    }
 }

@@ -11,6 +11,8 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.StudentId;
 
+
+
 /**
  * Deletes a student identified using student ID from the address book.
  */
@@ -36,6 +38,7 @@ public class DeleteStudentByIdCommand extends DeleteStudentCommand {
         }
 
         model.deletePerson(personToDelete);
+        deleteStudentFromTutorialClasses(model, personToDelete);
 
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
     }
