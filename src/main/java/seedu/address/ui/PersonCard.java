@@ -4,7 +4,6 @@ import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
@@ -60,22 +59,8 @@ public class PersonCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().getValue());
         phone.setText(person.getPhone().getValue());
-        address.setText(person.getAddress().getValue());
-        email.setText(person.getEmail().getValue());
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.getValue()))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.getValue())));
-        note.setText(person.getNote().getValue());
-        qrcode.setImage(new Image(person.getQrCodePath().toUri().toString()));
-
-        // Bind manageability (presence) of node based on presence of value for optional
-        // fields
-        address.setVisible(!person.getAddress().getValue().isEmpty());
-        email.setVisible(!person.getEmail().getValue().isEmpty());
-        note.setVisible(!person.getNote().getValue().isEmpty());
-
-        address.managedProperty().bind(address.visibleProperty());
-        email.managedProperty().bind(email.visibleProperty());
-        note.managedProperty().bind(note.visibleProperty());
     }
 }
