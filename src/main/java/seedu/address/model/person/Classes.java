@@ -1,5 +1,7 @@
 package seedu.address.model.person;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import seedu.address.commons.util.ToStringBuilder;
@@ -66,4 +68,7 @@ public class Classes {
                 .toString();
     }
 
+    public List<String> getStudents() {
+        return new ArrayList<>();
+    }
 }

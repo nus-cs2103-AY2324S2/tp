@@ -40,6 +40,10 @@ public class ModelManager implements Model {
         this.classBook = new ClassBook(classBook);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredClasses = new FilteredList<>(this.classBook.getClassList());
+
+        // Set an initial predicate that always evaluates to false in order to hide people on startup
+        Predicate<Person> initialPredicate = person -> false;
+        filteredPersons.setPredicate(initialPredicate);
     }
 
     public ModelManager() {
@@ -175,6 +179,17 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
     }
+
+    @Override
+    public String getFormattedClassList() {
+        ObservableList<Classes> classesList = this.getFilteredClassList();
+        String returnString = "";
+        for (int i = 0; i < classesList.size(); i++) {
+            returnString += (i + 1) + ": " + classesList.get(i).getCourseCode() + "   ";
+        }
+        return returnString;
+    }
+
 
     @Override
     public boolean equals(Object other) {
