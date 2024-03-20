@@ -35,7 +35,7 @@ public class SampleDataUtil {
                 getTagSet("neighbours"), getAppointmentSet("14:20-15:00 SAT")),
             new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
                 new Address("Blk 436 Serangoon Gardens Street 26, #16-43"), EMPTY_NOTE,
-                getTagSet("family"), getAppointmentSet("19:22-18:00 THU", "19:00-20:00 WED")),
+                getTagSet("family"), getAppointmentSet("16:30-18:00 THU", "19:00-20:00 WED")),
             new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
                 new Address("Blk 47 Tampines Street 20, #17-35"), EMPTY_NOTE,
                 getTagSet("classmates"), getAppointmentSet("16:00-17:00 TUE")),
