@@ -100,6 +100,8 @@ public interface Model {
 
     boolean isAnEventSelected();
 
+    boolean isSameSelectedEvent(Event event);
+
     void selectEvent(Event event);
 
     void deselectEvent();

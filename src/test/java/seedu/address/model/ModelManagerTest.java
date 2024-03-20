@@ -108,6 +108,7 @@ public class ModelManagerTest {
         assertFalse(modelManager.hasEvent(getBingoEvent()));
     }
 
+
     @Test
     public void hasEvent_eventInEventBook_returnsTrue() {
         modelManager.addEvent(getBingoEvent());
@@ -173,6 +174,11 @@ public class ModelManagerTest {
         modelManager.addEvent(targetEvent);
         modelManager.setEvent(targetEvent, editedEvent);
         assertTrue(modelManager.getFilteredEventList().contains(editedEvent));
+    }
+
+    @Test
+    public void isEqualSelectedEvent_nullEvent_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.isSameSelectedEvent(null));
     }
 
     @Test
