@@ -171,6 +171,16 @@ public class EditCommand extends Command {
         public boolean isAnyTagEdited() {
             return CollectionUtil.isAnyNonNull(tags);
         }
+        /**
+         * Sets an entry in the entry list based on the specified category.
+         * If an entry with the given category exists, its description is updated.
+         * Otherwise, the new entry is added to the list.
+         *
+         * @param category the category of the entry to be set. This is used to find
+         *                 an existing entry in the list.
+         * @param entry the new entry to be added or used for updating the description of the
+         *              existing entry. It should not be {@code null}.
+         */
         public void set(String category, Entry entry) {
             Entry e = entryList.get(category);
             if (e == null) {
