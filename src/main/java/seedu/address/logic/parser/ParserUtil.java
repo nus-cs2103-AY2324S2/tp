@@ -175,21 +175,21 @@ public class ParserUtil {
      * Leading and trailing whitespaces will be trimmed.
      *
      * @param policyName the name
-     * @param policyID the id
+     * @param policyId the id
      * @return the policy
      * @throws ParseException if the given {@code policyName} or {@code policyId} is invalid.
      */
-    public static Policy parsePolicyInfo(String policyName, String policyID) throws ParseException {
-        requireNonNull(policyName, policyID);
+    public static Policy parsePolicyInfo(String policyName, String policyId) throws ParseException {
+        requireNonNull(policyName, policyId);
         String trimmedPolicyName = policyName.trim();
-        String trimmedPolicyID = policyID.trim();
+        String trimmedPolicyId = policyId.trim();
         if (!Policy.isValidName(trimmedPolicyName)) {
             throw new ParseException(Policy.MESSAGE_CONSTRAINTS_NAME);
         }
-        if (!Policy.isValidID(trimmedPolicyID)) {
+        if (!Policy.isValidId(trimmedPolicyId)) {
             throw new ParseException(Policy.MESSAGE_CONSTRAINTS_ID);
         }
-        return new Policy(trimmedPolicyName, trimmedPolicyID);
+        return new Policy(trimmedPolicyName, trimmedPolicyId);
     }
 
     /**
@@ -202,7 +202,7 @@ public class ParserUtil {
     public static String parsePolicyId(String policyId) throws ParseException {
         requireNonNull(policyId);
         String trimmedPolicyId = policyId.trim();
-        if (!Policy.isValidID(trimmedPolicyId)) {
+        if (!Policy.isValidId(trimmedPolicyId)) {
             throw new ParseException(Policy.MESSAGE_CONSTRAINTS_ID);
         }
         return trimmedPolicyId;
