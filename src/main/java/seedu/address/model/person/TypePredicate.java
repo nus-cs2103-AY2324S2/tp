@@ -32,12 +32,12 @@ public class TypePredicate implements Predicate<Person> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof NameContainsKeywordsPredicate)) {
+        if (!(other instanceof TypePredicate)) {
             return false;
         }
 
-        TypePredicate otherNameContainsKeywordsPredicate = (TypePredicate) other;
-        return type.equals(otherNameContainsKeywordsPredicate.type);
+        TypePredicate otherTypePredicate = (TypePredicate) other;
+        return type.equals(otherTypePredicate.type);
     }
 
     @Override
