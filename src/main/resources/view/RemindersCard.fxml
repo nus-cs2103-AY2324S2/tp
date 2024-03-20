@@ -8,7 +8,8 @@
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
     <AnchorPane HBox.hgrow="ALWAYS">
         <children>
-            <Label fx:id="phone" styleClass="cell_big_label" text="\$title" />
+            <Label fx:id="title" styleClass="cell_big_label" text="\$title" />
+            <Label fx:id="remindersCardList" styleClass="cell_small_label" text="\$remindersCardList" />
         </children>
     </AnchorPane>
 </HBox>
