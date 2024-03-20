@@ -333,7 +333,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. The input format is wrong and cannot be accepted
 
     * 1a1. Hi:Re shows an error message
-  
+
       Use case ends.
 
 
