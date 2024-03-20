@@ -79,16 +79,16 @@ Format: `help`
 
 Adds a person to the address book.
 
-Format: `patient n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]…​`
+Format: `patient n/NAME p/PHONE_NUMBER e/EMAIL [a/AFFLIATED_WITH]…​`
 
 <box type="tip" seamless>
 
-**Tip:** A person can have any number of tags (including 0)
+**Tip:** A person can have any number of affiliations (including 0)
 </box>
 
 Examples:
-* `patient n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `patient n/Jerome Chua p/98765432 e/jerome@example.com a/depression`
+* `patient n/Davinci Lim p/98731122 e/betsycrowe@example.com a/sad a/anxiety`
 
 
 <box type="tip" seamless>
@@ -109,10 +109,10 @@ Shows a list of all students in the address book that matches _ALL_ the conditio
 
 Format: `querystudents n/NAME p/PHONE_NUMBER e/EMAIL …​`
 
-For example: to find all the "Jeromes" that are stored in the addressbook, the user may use the command
+For example: to find all the "Jeromes" that are stored in the CogniCare application, the user may use the command
 Format: `querystudents n/Jerome …​`
 
-For example: to find all the "Jeromes" that are stored in the addressbook, have a phone number that contains 979, and email using outlook, the user may use the command
+For example: to find all the "Jeromes" that are stored in the CogniCare application, have a phone number that contains 979, and email using outlook, the user may use the command
 
 Format: `querystudents n/Jerome p/979 e/outlook.com …​`
 
@@ -123,10 +123,11 @@ Edits an existing person in the address book.
 
 Format: `edit STUDENT_ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
-* Edits the person at the specified `STUDENT_D`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the person at the specified `STUDENT_ID`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e. adding of tags is not cumulative.
+* The `STUDENT_ID` will not be changed when you edit an individual's information.
 * You can remove all the person’s tags by typing `t/` without
     specifying any tags after it.
 
@@ -134,27 +135,10 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
-
-Finds persons whose names contain any of the given keywords.
-
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
 
 ### Deleting a person : `delete`
 
-Deletes the specified person from the address book.
+Deletes the specified person from the address book from the specified student index.
 
 Format: `delete INDEX`
 
@@ -163,12 +147,11 @@ Format: `delete INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `delete 90` deletes the person with the studentId of 90 in the address book.
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all entries from the CogniCare application.
 
 Format: `clear`
 
