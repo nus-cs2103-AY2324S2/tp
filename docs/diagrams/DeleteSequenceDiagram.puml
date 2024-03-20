@@ -5,7 +5,9 @@ skinparam ArrowFontStyle plain
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
-participant ":CommandType" as CommandType LOGIC_COLOR
+participant "<<class>>\nCommandType" as CommandTypeClass LOGIC_COLOR
+participant "t:CommandType" as CommandType LOGIC_COLOR
+participant "<<class>>\nDeleteCommand" as DeleteCommandClass LOGIC_COLOR
 participant "d:DeleteCommand" as DeleteCommand LOGIC_COLOR
 end box
 
@@ -19,21 +21,41 @@ activate LogicManager
 LogicManager -> AddressBookParser : parseCommand("delete 1")
 activate AddressBookParser
 
-AddressBookParser -> CommandType : valueOf("DELETE")
+AddressBookParser -> CommandTypeClass : valueOf("DELETE")
+activate CommandTypeClass
+
+create CommandType
+CommandTypeClass -> CommandType
 activate CommandType
 
+CommandType -> CommandTypeClass : t
+deactivate CommandType
+
+CommandTypeClass -> AddressBookParser : t
+deactivate CommandTypeClass
+
+AddressBookParser -> CommandType : createCommand()
+activate CommandType
+
+CommandType -> DeleteCommandClass : of("1")
+activate DeleteCommandClass
+
 create DeleteCommand
-CommandType -> DeleteCommand
+DeleteCommandClass -> DeleteCommand
 activate DeleteCommand
 
-DeleteCommand --> CommandType : d
+DeleteCommand --> DeleteCommandClass : d
 deactivate DeleteCommand
+
+DeleteCommandClass --> CommandType : d
+deactivate DeleteCommandClass
 
 CommandType --> AddressBookParser : d
 deactivate CommandType
 
 AddressBookParser --> LogicManager : d
 deactivate AddressBookParser
+
 
 LogicManager -> DeleteCommand : execute(m)
 activate DeleteCommand
