@@ -88,8 +88,10 @@ public class EditCommand extends Command {
         if (model.shouldPurgeAddressBook()) {
             model.purgeAddressBook();
         }
-        model.commitAddressBook();
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson)));
+        CommandResult editCommandResult = new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS,
+                Messages.format(editedPerson)));
+        model.commitAddressBook(editCommandResult);
+        return editCommandResult;
     }
 
     /**

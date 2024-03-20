@@ -81,8 +81,10 @@ public class MarkCommand extends Command {
         if (model.shouldPurgeAddressBook()) {
             model.purgeAddressBook();
         }
-        model.commitAddressBook();
-        return new CommandResult(String.format(MESSAGE_MARK_PERSON_SUCCESS, Messages.format(personToMark)));
+        CommandResult markCommandResult = new CommandResult(String.format(MESSAGE_MARK_PERSON_SUCCESS,
+                Messages.format(personToMark)));
+        model.commitAddressBook(markCommandResult);
+        return markCommandResult;
     }
 
     /**

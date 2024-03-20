@@ -76,9 +76,10 @@ public class RemoveTagFromAllCommand extends Command {
         if (model.shouldPurgeAddressBook()) {
             model.purgeAddressBook();
         }
-        model.commitAddressBook();
-        return new CommandResult(String.format(MESSAGE_REMOVE_TAG_SUCCESS,
-            formatRemovedTags(removedTagList)));
+        CommandResult removeTagFromAllCommandResult = new CommandResult(String.format(MESSAGE_REMOVE_TAG_SUCCESS,
+                formatRemovedTags(removedTagList)));
+        model.commitAddressBook(removeTagFromAllCommandResult);
+        return removeTagFromAllCommandResult;
     }
 
     @Override

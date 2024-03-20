@@ -45,8 +45,10 @@ public class DeleteCommand extends Command {
         if (model.shouldPurgeAddressBook()) {
             model.purgeAddressBook();
         }
-        model.commitAddressBook();
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
+        CommandResult deleteCommandResult = new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS,
+                Messages.format(personToDelete)));
+        model.commitAddressBook(deleteCommandResult);
+        return deleteCommandResult;
     }
 
     @Override

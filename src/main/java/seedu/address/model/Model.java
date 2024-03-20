@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.person.Person;
 
 /**
@@ -87,7 +88,7 @@ public interface Model {
 
     ReadOnlyAddressBook getVersionedAddressBook();
 
-    void commitAddressBook();
+    void commitAddressBook(CommandResult commandResult);
 
     boolean canUndoAddressBook();
 
@@ -100,4 +101,9 @@ public interface Model {
     boolean shouldPurgeAddressBook();
 
     void purgeAddressBook();
+
+    CommandResult getAddressBookUndoneCommand();
+
+    CommandResult getAddressBookRedoneCommand();
+
 }

@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.person.Person;
 
 /**
@@ -161,8 +162,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void commitAddressBook() {
-        versionedAddressBook.commit(addressBook);
+    public void commitAddressBook(CommandResult commandResult) {
+        versionedAddressBook.commit(addressBook, commandResult);
     }
 
     @Override
@@ -195,5 +196,15 @@ public class ModelManager implements Model {
     @Override
     public void purgeAddressBook() {
         versionedAddressBook.purge();
+    }
+
+    @Override
+    public CommandResult getAddressBookUndoneCommand() {
+        return versionedAddressBook.getUndoneCommand();
+    }
+
+    @Override
+    public CommandResult getAddressBookRedoneCommand() {
+        return versionedAddressBook.getRedoneCommand();
     }
 }
