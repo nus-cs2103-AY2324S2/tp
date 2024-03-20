@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.exceptions.AddressBookException;
+import seedu.address.model.exceptions.AddressBookUndoException;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -18,7 +18,6 @@ import seedu.address.model.person.UniquePersonList;
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
 public class AddressBook implements ReadOnlyAddressBook {
-    private static final String UNDO_EXCEPTION = "No previous list to return to.";
     private final UniquePersonList persons = new UniquePersonList();
     @JsonIgnore
     private final ArrayList<UniquePersonList> personsList = new ArrayList<>();
@@ -50,11 +49,18 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Returns true if there are states to reverse to.
+     */
+    public boolean canUndo() {
+        return currIdx > 0;
+    }
+
+    /**
      * Undoes the latest change to address book.
      */
-    public void undo() throws AddressBookException {
+    public void undo() {
         if (currIdx == 0) {
-            throw new AddressBookException(UNDO_EXCEPTION);
+            throw new AddressBookUndoException();
         }
         persons.setPersons(personsList.get(--currIdx));
     }

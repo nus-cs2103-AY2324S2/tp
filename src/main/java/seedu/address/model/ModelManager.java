@@ -11,7 +11,6 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.exceptions.AddressBookException;
 import seedu.address.model.person.Person;
 
 /**
@@ -89,7 +88,12 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void undo() throws AddressBookException {
+    public boolean canUndo() {
+        return addressBook.canUndo();
+    }
+
+    @Override
+    public void undo() {
         addressBook.undo();
     }
 

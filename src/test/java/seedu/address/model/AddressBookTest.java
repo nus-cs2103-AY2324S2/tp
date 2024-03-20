@@ -1,5 +1,6 @@
 package seedu.address.model;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -18,6 +19,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.exceptions.AddressBookUndoException;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.testutil.PersonBuilder;
@@ -29,6 +31,17 @@ public class AddressBookTest {
     @Test
     public void constructor() {
         assertEquals(Collections.emptyList(), addressBook.getPersonList());
+    }
+
+    @Test
+    public void undo_undoRemaining_success() {
+        addressBook.addPerson(ALICE);
+        assertDoesNotThrow(addressBook::undo);
+    }
+
+    @Test
+    public void undo_noUndoRemaining_throwsAddressBookUndoException() {
+        assertThrows(AddressBookUndoException.class, addressBook::undo);
     }
 
     @Test

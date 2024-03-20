@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.exceptions.AddressBookException;
 
 /**
  * Undoes the latest command
@@ -14,14 +14,15 @@ public class UndoCommand extends Command {
             + "Example: " + COMMAND_WORD;
 
     public static final String MESSAGE_SUCCESS = "Undid the latest command.";
+    public static final String MESSAGE_UNDO_EXCEPTION = "No previous list to return to.";
 
     @Override
-    public String execute(Model model) {
-        try {
-            model.undo();
-            return MESSAGE_SUCCESS;
-        } catch (AddressBookException e) {
-            return e.getMessage();
+    public String execute(Model model) throws CommandException {
+        if (!model.canUndo()) {
+            throw new CommandException(MESSAGE_UNDO_EXCEPTION);
         }
+
+        model.undo();
+        return MESSAGE_SUCCESS;
     }
 }
