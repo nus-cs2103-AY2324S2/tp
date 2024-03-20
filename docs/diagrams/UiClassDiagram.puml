@@ -46,10 +46,12 @@ ResultDisplay --|> UiPart
 CommandBox --|> UiPart
 PersonListPanel --|> UiPart
 PersonCard --|> UiPart
+ApplicantCard --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow --|> UiPart
 
 PersonCard ..> Model
+ApplicantCard ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
