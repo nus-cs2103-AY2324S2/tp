@@ -11,13 +11,22 @@ Do you ever feel like your startup portfolio is a tangled mess of spreadsheets a
 As a Venture Capital Portfolio Manager, juggling diverse investments across industries can be a complex challenge.
 
 **Who are you?**
-Our application is build for the aspiring venture capitalist! 
+Our application is build for the aspiring venture capitalist! You are a professional on the lookout for the next Google. 
+You are passionate about innovative and new technologies. Most importantly, you want to **make your network your net-worth.**
 
 **Capital Connect is here to revolutionize your experience**.
 
 As a desktop app for managing startup investments and contacts, CapitalConnect is optimized
 for use via **a Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can
 type fast, CapitalConnect can get your investment management done faster than traditional GUI apps.
+
+We streamline and wrap **everything** in a sleek, easy to use platform. And by everything, we mean everything from
+
+- Adding new startups to your watch list!
+- Tracking the profile of various startups!
+- Categorising and searching for startups based on your requirements!
+
+and much, much, more!
 
 This user guide is your key to unlocking the full potential of the app.  We'll walk you through every step, from
 effortlessly adding new investments to categorizing them by industry and funding stage.  Forget the days of chasing
@@ -108,8 +117,16 @@ Format: `add n/NAME p/PHONE_NUMBER i/INDUSTRY f/FUNDING_STAGE e/EMAIL a/ADDRESS 
 
 <box type="tip" seamless>
 
+**Tip:** We will shoot a warning message when an invalid input occurs! Look out for the following!
+**Tip:** You can't give us blank inputs! We need you to give us a valid input for mandatory fields! Check that phone number again, 
+did you accidentally add a digit?
+**Tip:** We understand that profitable investments requires prospecting a large range of industries. Hence, we have no restrictions on `INDUSTRY`!
+We let **you** decide how specific you want to define your startup categories by! If `Tech` is too general, you can now use more specific industry categories, such as 
+`web 3`, `AI`, `IAAS`!
 **Tip:** We only support traditional funding stages, hence inputs for `FUNDING_STAGE` must be either `S`, `PS`, `A`, `B` or `C`!
 `A`, `B`, `C` represents the respective funding series whilst `P` refers to pre-seed and `S` refers to the seed stage.
+
+
 </box>
 
 Examples:
@@ -137,6 +154,8 @@ Examples:
 - `note 2 Expanding to new markets in Q3` Adds or edits the note of the 2nd startup with the information about its expansion plans. <br>
   ![result for 'note 1 Innovative e-commerce platform'](images/tracing/NoteCommand.png)
 
+**Tip:** Indexes are taken with respect to the list! Warnings might show up if you give us a invalid index.
+
 ### Editing a person : `edit`
 
 Edits an existing startup in the address book.
@@ -152,7 +171,9 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [f/FUNDING_STAGE] [i/INDUSTRY] [e/EMAIL] 
 
 Examples:
 *  `edit 1 p/91234567 e/stripe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-  *  `edit 2 n/Stripe t/` Edits the name of the 2nd person to be `Stripe` and clears all existing tags.
+*  `edit 2 n/Stripe t/` Edits the name of the 2nd person to be `Stripe` and clears all existing tags.
+
+**Tip:** The same input rules for `add` applies here! An invalid input will throw an error.
 
 ### Locating startups by name: `find`
 
@@ -265,14 +286,14 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action                    | Format, Examples                                                                                                                                                      |
-|---------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**                   | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Clear**                 | `clear`                                                                                                                                                               |
-| **Delete**                | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
-| **Edit**                  | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
-| **Find by Name**          | `find n/NAME [MORE_NAMES]`<br> e.g., `find n/apple`                                                                                                                   |
-| **Find by Funding Stage** | `find f/FUNDING_STAGE [MORE_FUNDING_STAGES]`<br> e.g., `find f/A`                                                                                                     |
-| **Find by Industry**      | `find i/INDUSTRY [MORE_INDUSTRIES]`<br> e.g., `find i/AI`                                                                                                             |
-| **List**                  | `list`                                                                                                                                                                |
-| **Help**                  | `help`                                                                                                                                                                |
+| Action                    | Format, Examples                                                                                                                                                                                 |
+|---------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**                   | `add n/NAME p/PHONE_NUMBER f/FUNDING_STAGE i/INDUSTRY e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/Google p/22224444 e/larrypage@example.com a/123, menlo park, 1234665 t/SV-based i/Tech f/A` |
+| **Clear**                 | `clear`                                                                                                                                                                                          |
+| **Delete**                | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                              |
+| **Edit**                  | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [i/INDUSTRY] [f/FUNDING_STAGE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                       |
+| **Find by Name**          | `find n/NAME [MORE_NAMES]`<br> e.g., `find n/apple`                                                                                                                                              |
+| **Find by Funding Stage** | `find f/FUNDING_STAGE [MORE_FUNDING_STAGES]`<br> e.g., `find f/A`, `find f/A B`                                                                                                                  |
+| **Find by Industry**      | `find i/INDUSTRY [MORE_INDUSTRIES]`<br> e.g., `find i/AI`, `find i/AI Robotics`                                                                                                                  |
+| **List**                  | `list`                                                                                                                                                                                           |
+| **Help**                  | `help`                                                                                                                                                                                           |
