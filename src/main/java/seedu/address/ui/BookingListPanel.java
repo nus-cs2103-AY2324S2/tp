@@ -10,7 +10,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.booking.Booking;
 
 /**
- * Panel containing the list of bookings.
+ * Represents a panel that displays a list of bookings in the UI.
  */
 public class BookingListPanel extends UiPart<Region> {
     private static final String FXML = "BookingListPanel.fxml";
