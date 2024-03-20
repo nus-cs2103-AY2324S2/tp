@@ -9,6 +9,7 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
@@ -40,7 +41,7 @@ public class TagCommandTest {
     }
 
     @Test
-    public void execute_MultipleTagAdd_success() {
+    public void execute_multipleTagAdd_success() {
         Set<Tag> tagStub = new HashSet<>();
         tagStub.add(new Tag("Finance"));
         tagStub.add(new Tag("Management"));
@@ -70,7 +71,8 @@ public class TagCommandTest {
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), expectedPerson);
 
-        assertThrows(CommandException.class, TagCommand.MESSAGE_DUPLICATE_TAGS, () -> tagCommand.execute(expectedModel));
+        assertThrows(CommandException.class, TagCommand.MESSAGE_DUPLICATE_TAGS,
+                () -> tagCommand.execute(expectedModel));
     }
 
     @Test
@@ -81,7 +83,8 @@ public class TagCommandTest {
 
         TagCommand tagCommand = new TagCommand(invalidId, new HashSet<Tag>());
 
-        assertThrows(CommandException.class, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_ID, () -> tagCommand.execute(expectedModel));
+        assertThrows(CommandException.class, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_ID,
+                () -> tagCommand.execute(expectedModel));
     }
 
     @Test
