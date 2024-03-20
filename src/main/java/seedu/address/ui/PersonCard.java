@@ -84,6 +84,10 @@ public class PersonCard extends UiPart<Region> {
         }
     }
 
+    /*
+     * Displays an error alert when there is a failure to open the email client.
+     * The alert prompts the user to ensure they have an email client configured.
+     */
     private void showEmailErrorAlert() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
