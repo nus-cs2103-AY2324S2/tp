@@ -6,12 +6,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_RELATIONSHIP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.List;
-import java.util.function.Predicate;
 
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.CombinedPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.RelationshipContainsKeywordsPredicate;
 import seedu.address.model.person.TagContainsKeywordsPredicate;
 
@@ -41,9 +40,11 @@ public class FindCommandParser implements Parser<FindCommand> {
         List<String> relationshipKeywords = argMultimap.getAllValues(PREFIX_RELATIONSHIP);
         List<String> tagKeywords = argMultimap.getAllValues(PREFIX_TAG);
 
-        Predicate<Person> combinedPredicate = new NameContainsKeywordsPredicate(nameKeywords)
-                .or(new RelationshipContainsKeywordsPredicate(relationshipKeywords))
-                .or(new TagContainsKeywordsPredicate(tagKeywords));
+        CombinedPredicate combinedPredicate =
+                new CombinedPredicate(
+                        new NameContainsKeywordsPredicate(nameKeywords),
+                        new RelationshipContainsKeywordsPredicate(relationshipKeywords),
+                        new TagContainsKeywordsPredicate(tagKeywords));
 
         return new FindCommand(combinedPredicate);
     }
