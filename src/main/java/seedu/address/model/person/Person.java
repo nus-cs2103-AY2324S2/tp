@@ -8,7 +8,6 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.house.PostalCode;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -22,21 +21,19 @@ public class Person {
     private final Phone phone;
     private final Email email;
 
-    // Data fields
-    private final Address address;
-    private final PostalCode postalCode;
+    // critically, this refers to what type the buyer WANTS, and what type the seller HAS
+    private final String housingType;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, PostalCode postalCode, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, String house, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, house, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.address = address;
-        this.postalCode = postalCode;
+        this.housingType = house;
         this.tags.addAll(tags);
     }
 
@@ -52,13 +49,10 @@ public class Person {
         return email;
     }
 
-    public Address getAddress() {
-        return address;
+    public String getHousingType() {
+        return housingType;
     }
 
-    public PostalCode getPostalCode() {
-        return postalCode;
-    }
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
@@ -100,15 +94,14 @@ public class Person {
         return name.equals(otherPerson.name)
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
-                && address.equals(otherPerson.address)
-                && postalCode.equals(otherPerson.postalCode)
+                && housingType.equals(otherPerson.housingType)
                 && tags.equals(otherPerson.tags);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, postalCode, tags);
+        return Objects.hash(name, phone, email, housingType, tags);
     }
 
     @Override
@@ -117,8 +110,7 @@ public class Person {
                 .add("name", name)
                 .add("phone", phone)
                 .add("email", email)
-                .add("address", address)
-                .add("postal code", postalCode)
+                .add("address", housingType)
                 .add("tags", tags)
                 .toString();
     }
