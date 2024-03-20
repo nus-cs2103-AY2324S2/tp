@@ -44,8 +44,7 @@ public class EditArticleCommandParser {
                     pe);
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_TITLE, PREFIX_AUTHOR, PREFIX_PUBLICATION_DATE, PREFIX_SOURCE,
-                PREFIX_CATEGORY, PREFIX_STATUS);
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_TITLE, PREFIX_PUBLICATION_DATE, PREFIX_CATEGORY, PREFIX_STATUS);
 
         EditArticleCommand.EditArticleDescriptor editArticleDescriptor = new EditArticleCommand.EditArticleDescriptor();
 

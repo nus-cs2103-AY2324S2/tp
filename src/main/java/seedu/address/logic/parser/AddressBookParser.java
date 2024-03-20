@@ -46,7 +46,7 @@ public class AddressBookParser {
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
 
-        if (arguments.trim().startsWith("-a ")) {
+        if (arguments.trim().endsWith("-a") || arguments.trim().startsWith("-a ")) {
             return ArticleBookParser.parseCommand(commandWord + arguments.substring(3));
         }
 

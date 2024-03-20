@@ -13,7 +13,9 @@ public class ListArticleCommand extends ArticleCommand {
 
     public static final String COMMAND_WORD = "list";
 
-    public static final String MESSAGE_SUCCESS = "Listed all persons";
+    public static final String COMMAND_PREFIX = "-a";
+
+    public static final String MESSAGE_SUCCESS = "Listed all articles";
 
 
     @Override

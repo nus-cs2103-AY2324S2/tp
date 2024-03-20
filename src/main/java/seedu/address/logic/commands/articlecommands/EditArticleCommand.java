@@ -38,7 +38,8 @@ public class EditArticleCommand extends ArticleCommand {
             + "PARAMETERS LISTED HERE"; // Parameters used in the example are added here.
 
     public static final String MESSAGE_EDIT_ARTICLE_SUCCESS = "Edited Article: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    //TODO: REMOVE Article:
+    public static final String MESSAGE_NOT_EDITED = "Article: At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_ARTICLE = "This article already exists in the article book.";
 
     private final Index index;
@@ -88,12 +89,12 @@ public class EditArticleCommand extends ArticleCommand {
         String[] authors = editArticleDescriptor.getAuthors().orElse(articleToEdit.getAuthors());
         LocalDateTime publicationDate = editArticleDescriptor.getPublicationDate()
                 .orElse(articleToEdit.getPublicationDate());
-        String[] source = editArticleDescriptor.getSource().orElse(articleToEdit.getSources());
+        String[] sources = editArticleDescriptor.getSources().orElse(articleToEdit.getSources());
         String category = editArticleDescriptor.getCategory().orElse(articleToEdit.getCategory());
         Status status = editArticleDescriptor.getStatus().orElse(articleToEdit.getStatus());
 
         return new Article(title, authors, publicationDate,
-                source, category, status); // Include all article attributes here.
+                sources, category, status); // Include all article attributes here.
     }
 
     @Override
@@ -129,7 +130,7 @@ public class EditArticleCommand extends ArticleCommand {
         private String title;
         private String[] authors;
         private LocalDateTime publicationDate;
-        private String[] source;
+        private String[] sources;
         private String category;
         private Status status;
 
@@ -142,7 +143,7 @@ public class EditArticleCommand extends ArticleCommand {
             setTitle(toCopy.title);
             setAuthors(toCopy.authors);
             setPublicationDate(toCopy.publicationDate);
-            setSource(toCopy.source);
+            setSource(toCopy.sources);
             setCategory(toCopy.category);
             setStatus(toCopy.status);
         }
@@ -151,7 +152,7 @@ public class EditArticleCommand extends ArticleCommand {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(); // Add article attributes as arguments here.
+            return CollectionUtil.isAnyNonNull(title, authors, publicationDate, sources, category, status);
         }
 
         public void setTitle(String title) {
@@ -178,12 +179,12 @@ public class EditArticleCommand extends ArticleCommand {
             return Optional.ofNullable(publicationDate);
         }
 
-        public void setSource(String[] source) {
-            this.source = source;
+        public void setSource(String[] sources) {
+            this.sources = sources;
         }
 
-        public Optional<String[]> getSource() {
-            return Optional.ofNullable(source);
+        public Optional<String[]> getSources() {
+            return Optional.ofNullable(sources);
         }
 
         public void setCategory(String category) {
@@ -219,7 +220,7 @@ public class EditArticleCommand extends ArticleCommand {
             return Objects.equals(title, otherEditArticleDescriptor.title)
                     && Arrays.equals(authors, otherEditArticleDescriptor.authors)
                     && Objects.equals(publicationDate, otherEditArticleDescriptor.publicationDate)
-                    && Arrays.equals(source, otherEditArticleDescriptor.source)
+                    && Arrays.equals(sources, otherEditArticleDescriptor.sources)
                     && Objects.equals(category, otherEditArticleDescriptor.category)
                     && Objects.equals(status, otherEditArticleDescriptor.status);
         }
