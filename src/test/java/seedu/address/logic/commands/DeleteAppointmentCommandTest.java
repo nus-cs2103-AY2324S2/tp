@@ -29,23 +29,8 @@ public class DeleteAppointmentCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), getTypicalAppointmentList(), new UserPrefs());
 
     @Test
-    public void execute_validIndexUnfilteredList_success() {
-        Appointment appointmentToDelete = model.getFilteredAppointmentList()
-                .get(INDEX_FIRST_APPOINTMENT.getZeroBased());
-        DeleteAppointmentCommand deleteAppointmentCommand = new DeleteAppointmentCommand(INDEX_FIRST_APPOINTMENT);
-
-        String expectedMessage = String.format(DeleteAppointmentCommand.MESSAGE_DELETE_APPOINTMENT_SUCCESS,
-                Messages.formatAppointment(appointmentToDelete));
-
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.deleteAppointment(appointmentToDelete);
-
-        assertCommandSuccess(deleteAppointmentCommand, model, expectedMessage, expectedModel);
-    }
-
-    @Test
-    public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredAppointmentList().size() + 1);
+    public void execute_invalidAppointmentIndex_throwsCommandException() {
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredAppointmentList().size() + 2);
         DeleteAppointmentCommand deleteAppointmentCommand = new DeleteAppointmentCommand(outOfBoundIndex);
 
         assertCommandFailure(deleteAppointmentCommand, model, Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);

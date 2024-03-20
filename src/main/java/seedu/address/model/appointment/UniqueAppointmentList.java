@@ -9,7 +9,6 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.appointment.exceptions.DuplicateAppointmentException;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 
 /**
@@ -45,7 +44,7 @@ public class UniqueAppointmentList implements Iterable<Appointment> {
     public void add(Appointment toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateAppointmentException();
         }
         internalList.add(toAdd);
     }
@@ -65,7 +64,7 @@ public class UniqueAppointmentList implements Iterable<Appointment> {
         }
 
         if (!target.isSameAppointment(editedAppointment) && contains(editedAppointment)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateAppointmentException();
         }
 
         internalList.set(index, editedAppointment);

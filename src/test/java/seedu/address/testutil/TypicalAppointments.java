@@ -13,37 +13,37 @@ import seedu.address.model.appointment.AppointmentList;
  */
 public class TypicalAppointments {
     public static final Appointment UNATTENDED_FIRST_APPOINTMENT = new AppointmentBuilder().withAppointmentId(1)
-            .withAppointmentDateTime(LocalDateTime.of(2022, 12, 12, 12, 12))
+            .withAppointmentDateTime(LocalDateTime.of(2022, 12, 12, 8, 0,0))
             .withStudentId(1)
             .withAppointmentDescription("First Appointment")
             .withHasAttended(false).build();
 
-    public static final Appointment ATTENDED_FIRST_APPOINTMENT = new AppointmentBuilder().withAppointmentId(2)
-            .withAppointmentDateTime(LocalDateTime.of(2022, 12, 12, 12, 12))
-            .withStudentId(2)
+    public static final Appointment ATTENDED_FIRST_APPOINTMENT = new AppointmentBuilder().withAppointmentId(1)
+            .withAppointmentDateTime(LocalDateTime.of(2022, 12, 12, 9, 0,0))
+            .withStudentId(1)
             .withAppointmentDescription("First Appointment")
             .withHasAttended(true).build();
 
     public static final Appointment ATTENDED_SECOND_APPOINTMENT = new AppointmentBuilder().withAppointmentId(2)
-            .withAppointmentDateTime(LocalDateTime.of(2022, 12, 12, 12, 12))
+            .withAppointmentDateTime(LocalDateTime.of(2022, 12, 12, 10, 0,0))
             .withStudentId(2)
             .withAppointmentDescription("Second Appointment")
             .withHasAttended(false).build();
 
     public static final Appointment THIRD_APPOINTMENT = new AppointmentBuilder().withAppointmentId(3)
-            .withAppointmentDateTime(LocalDateTime.of(2022, 12, 12, 12, 12))
+            .withAppointmentDateTime(LocalDateTime.of(2022, 12, 12, 11, 0,0))
             .withStudentId(3)
             .withAppointmentDescription("Third Appointment")
             .withHasAttended(false).build();
 
 
     public static final Appointment FORTH_APPOINTMENT = new AppointmentBuilder().withAppointmentId(4)
-            .withAppointmentDateTime(LocalDateTime.of(2022, 12, 12, 12, 12))
-            .withStudentId(3)
-            .withAppointmentDescription("Second Appointment")
+            .withAppointmentDateTime(LocalDateTime.of(2022, 12, 12, 12, 0,0))
+            .withStudentId(4)
+            .withAppointmentDescription("Fourth Appointment")
             .withHasAttended(false).build();
     public static final Appointment FIFTH_APPOINTMENT = new AppointmentBuilder().withAppointmentId(5)
-            .withAppointmentDateTime(LocalDateTime.of(2022, 12, 12, 12, 12))
+            .withAppointmentDateTime(LocalDateTime.of(2022, 12, 12, 13, 0,0))
             .withStudentId(5)
             .withAppointmentDescription("Final Appointment")
             .withHasAttended(false).build();
