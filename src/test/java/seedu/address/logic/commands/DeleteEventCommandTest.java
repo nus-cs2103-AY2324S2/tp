@@ -2,8 +2,11 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.testutil.TypicalEvents.getBingoEvent;
+import static seedu.address.testutil.TypicalEvents.getTypicalEventBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EVENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_EVENT;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
@@ -12,6 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -30,6 +34,24 @@ public class DeleteEventCommandTest {
         DeleteEventCommand deleteEventCommand = new DeleteEventCommand(outOfBoundIndex);
 
         assertCommandFailure(deleteEventCommand, model, Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_selectModel_throwsCommandException() {
+        SelectCommand selectCommand = new SelectCommand(Index.fromZeroBased(1));
+
+        assertThrows(CommandException.class, () -> new DeleteEventCommand(Index.fromZeroBased(1)).execute(model));
+    }
+
+    @Test
+    public void execute_deleteEventSuccessful() throws CommandException {
+        ModelManager model = new ModelManager();
+        model.setEventBook(getTypicalEventBook());
+        DeleteEventCommand deleteEventCommand = new DeleteEventCommand(Index.fromZeroBased(0));
+        CommandResult commandResult = deleteEventCommand.execute(model);
+        assertEquals(String.format(DeleteEventCommand.MESSAGE_DELETE_EVENT_SUCCESS,
+                Messages.format(getBingoEvent())),
+                commandResult.getFeedbackToUser());
     }
 
     @Test
@@ -63,7 +85,7 @@ public class DeleteEventCommandTest {
     }
 
     /**
-     * Updates {@code model}'s filtered list to show no one.
+     * Updates {@code model}'s filtered list to show no event.
      */
     private void showNoEvent(Model model) {
         model.updateFilteredPersonList(p -> false);
