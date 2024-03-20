@@ -32,12 +32,13 @@ public class AddOrderCommand extends Command {
     private final Order order;
 
     /**
-     * Creates an AddOrderCommand to add the specified {@code Order}
+     * Creates an AddOrderCommand to add the specified {@code Order}.
      */
     public AddOrderCommand(Order order) {
         requireAllNonNull(order);
         this.order = order;
     }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireAllNonNull(model);

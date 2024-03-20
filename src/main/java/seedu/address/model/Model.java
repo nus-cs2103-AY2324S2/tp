@@ -15,12 +15,12 @@ import seedu.address.model.person.Person;
  */
 public interface Model {
     /**
-     * {@code Predicate} that always evaluate to true
+     * {@code Predicate} that always evaluate to true.
      */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
     /**
-     * {@code Predicate} that always evaluate to true
+     * {@code Predicate} that always evaluate to true.
      */
     Predicate<Order> PREDICATE_SHOW_ALL_ORDERS = unused -> true;
 
@@ -55,7 +55,7 @@ public interface Model {
     void setAddressBookFilePath(Path addressBookFilePath);
 
     /**
-     * Returns the AddressBook
+     * Returns the AddressBook.
      */
     ReadOnlyAddressBook getAddressBook();
 
@@ -89,12 +89,12 @@ public interface Model {
     void setPerson(Person target, Person editedPerson);
 
     /**
-     * Returns an unmodifiable view of the filtered person list
+     * Returns an unmodifiable view of the filtered person list.
      */
     ObservableList<Person> getFilteredPersonList();
 
     /**
-     * Returns an unmodifiable view of the filtered order list
+     * Returns an unmodifiable view of the filtered order list.
      */
     ObservableList<Order> getFilteredOrderList();
 
@@ -116,9 +116,10 @@ public interface Model {
      */
     void deleteOrder(Order order) throws CommandException;
 
-    /** Returns an unmodifiable view of the order list */
+    /**
+     * Returns an unmodifiable view of the order list.
+     */
     public ObservableList<Order> getOrderList() throws CommandException;
-
 
 
     /**

@@ -32,9 +32,8 @@ public class DeleteOrderCommand extends Command {
     private final OrderId index;
 
 
-
     /**
-     * Creates an DeleteOrderCommand to delete the specified {@code Order}
+     * Creates an DeleteOrderCommand to delete the specified {@code Order}.
      */
     public DeleteOrderCommand(OrderId index) {
         this.index = index;
@@ -46,7 +45,7 @@ public class DeleteOrderCommand extends Command {
         List<Order> orderList = model.getOrderList();
         Order selectedOrderToDelete = null;
 
-        for (Order order: orderList) {
+        for (Order order : orderList) {
             if (order.getOrderId() == this.index) {
                 selectedOrderToDelete = order;
                 break;

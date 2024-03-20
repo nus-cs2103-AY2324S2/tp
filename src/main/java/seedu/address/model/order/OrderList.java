@@ -11,7 +11,7 @@ import javafx.collections.ObservableList;
 import seedu.address.model.order.exceptions.OrderNotFoundException;
 
 /**
- * A list of Orders
+ * A list of Orders.
  */
 public class OrderList implements Iterable<Order> {
 
