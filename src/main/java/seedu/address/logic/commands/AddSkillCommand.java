@@ -59,7 +59,8 @@ public class AddSkillCommand extends Command {
         requireNonNull(model);
         List<CourseMate> lastShownList = model.getFilteredCourseMateList();
 
-        if (queryableCourseMate.isIndex() && queryableCourseMate.getIndex().getZeroBased() >= lastShownList.size()) {
+        if (queryableCourseMate.isIndex() &&
+                queryableCourseMate.getIndex().getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_COURSE_MATE_DISPLAYED_INDEX);
         }
 
@@ -88,7 +89,7 @@ public class AddSkillCommand extends Command {
      */
     private static CourseMate addSkillToCourseMate(CourseMate courseMateToEdit,
                                                      AddSkillDescriptor addSkillDescriptor) {
-        assert courseMateToEdit != null;
+        requireNonNull(courseMateToEdit);
 
         addSkillDescriptor.mergeSkills(courseMateToEdit.getSkills());
         Set<Skill> updatedSkills = addSkillDescriptor.getSkills().orElse(courseMateToEdit.getSkills());

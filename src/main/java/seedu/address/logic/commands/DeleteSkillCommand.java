@@ -109,7 +109,7 @@ public class DeleteSkillCommand extends Command {
      */
     private static CourseMate deleteCourseMateSkills(CourseMate courseMateToEdit,
                                                      DeleteSkillDescriptor deleteSkillDescriptor) {
-        assert courseMateToEdit != null;
+        requireNonNull(courseMateToEdit);
 
         deleteSkillDescriptor.deleteSkills(courseMateToEdit.getSkills());
         Set<Skill> updatedSkills = deleteSkillDescriptor.getSkills().orElse(courseMateToEdit.getSkills());

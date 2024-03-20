@@ -114,7 +114,6 @@ public class MatchMateParser {
      * if every prefix occurence in {@code argsString} is lead and trailed by a whitespace.
      *
      * @param argsString Arguments string of the form: {@code preamble <prefix> value <prefix> value ...}
-     * @return Boolean object that indicates whether {@code argsString} is valid.
      */
     private boolean isValidArgument(String argsString) {
         // Iterate through the list of valid prefixes

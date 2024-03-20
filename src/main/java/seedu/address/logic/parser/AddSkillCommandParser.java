@@ -60,7 +60,12 @@ public class AddSkillCommandParser implements Parser<AddSkillCommand> {
         if (skills.isEmpty()) {
             return Optional.empty();
         }
-        Collection<String> skillSet = skills.size() == 1 && skills.contains("") ? Collections.emptySet() : skills;
+
+        Collection<String> skillSet = skills;
+        if (skills.size() == 1 && skills.contains("")) {
+            skillSet = Collections.emptySet();
+        }
+
         return Optional.of(ParserUtil.parseSkills(skillSet));
     }
 
