@@ -158,6 +158,8 @@ This section describes some noteworthy details on how certain features are imple
 ### \[Developed\] Edit_Applicant feature
 The edit_applicant functionality allows users to edit applicants' details. The details that can be edited include `Name`, `Phone`, `Email`, `Address`, `Stage`, `Role` and `Tag`. 
 
+![EditSequenceDiagram](images/EditSequenceDiagram.png)
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
