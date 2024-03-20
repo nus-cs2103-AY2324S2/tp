@@ -13,6 +13,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.order.Order;
 import seedu.address.model.order.Product;
 import seedu.address.model.order.Quantity;
+import seedu.address.model.person.Person;
 
 /**
  * Jackson friendly version of {@link Order}.
@@ -21,17 +22,22 @@ public class JsonAdaptedOrder {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Order's %s field is missing!";
     private int id;
     private Map<String, Integer> productMap;
-    private Integer customer;
+    private String customerName;
+    private String customerPhone;
 
     /**
      * Constructs a {@code JsonAdaptedOrder} with the given {@code order}.
      */
     @JsonCreator
     public JsonAdaptedOrder(@JsonProperty("id") Integer id,
-                            @JsonProperty("productMap") Map<String, Integer> productMap
+                            @JsonProperty("productMap") Map<String, Integer> productMap,
+                            @JsonProperty("customerName") String customerName,
+                            @JsonProperty("customerPhone") String customerPhone
                             ) {
         this.id = id;
         this.productMap = productMap;
+        this.customerName = customerName;
+        this.customerPhone = customerPhone;
     }
 
     /**
@@ -48,6 +54,9 @@ public class JsonAdaptedOrder {
             map.put(currProd.getName(), currQuant.getValue());
         }
         this.productMap = map;
+        Person orderCustomer = order.getCustomer();
+        this.customerName = orderCustomer.getName().fullName;
+        this.customerPhone = orderCustomer.getPhone().value;
 
     }
 
