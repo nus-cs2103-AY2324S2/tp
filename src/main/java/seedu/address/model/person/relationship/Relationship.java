@@ -14,6 +14,7 @@ public class Relationship {
     protected UUID person1;
     protected UUID person2;
     protected String relationshipDescriptor;
+    protected String type;
 
     /**
      * Creates a new Relationship object with the given UUIDs.

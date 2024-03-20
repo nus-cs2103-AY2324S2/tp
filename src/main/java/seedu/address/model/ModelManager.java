@@ -172,4 +172,22 @@ public class ModelManager implements Model {
                 && filteredPersons.equals(otherModelManager.filteredPersons);
     }
 
+    @Override
+    public void deleteAttribute(String uuid, String attributeName) {
+        addressBook.deleteAttribute(uuid, attributeName);
+    }
+
+    @Override
+    public UUID getFullUuid(String digits) {
+        return addressBook.getFullUuid(digits);
+    }
+
+    public Person getPersonByUuid(UUID id) {
+        return addressBook.getPersonByUuid(id);
+    }
+
+    @Override
+    public boolean hasAttribute(String uuidString, String attributeName) {
+        return addressBook.hasAttribute(uuidString, attributeName);
+    }
 }

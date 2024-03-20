@@ -161,7 +161,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public UUID getFullUuid(String Uuid) {
+        public void deleteAttribute(String uuid, String attributeName) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -184,9 +184,14 @@ public class AddCommandTest {
         public String getExistingRelationship(Relationship toGet) {
             throw new AssertionError("This method should not be called.");
         }
+      
         @Override
         public Person getPersonByUuid(UUID id) {
             throw new AssertionError("this method should not be called");
+        }
+      
+        public boolean hasAttribute(String uuidString, String attributeName) {
+            throw new AssertionError("This method should not be called.");
         }
     }
 

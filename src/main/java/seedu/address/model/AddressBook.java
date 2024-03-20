@@ -153,6 +153,34 @@ public class AddressBook implements ReadOnlyAddressBook {
     public int hashCode() {
         return persons.hashCode();
     }
+  
+    public void deleteAttribute(String uuid, String attributeName) {
+        persons.deleteAttribute(uuid, attributeName);
+    }
 
+    public Person getPersonByUuid(UUID id) {
+        requireNonNull(id);
+        return persons.getPersonByUuid(id);
+    }
 
+    public UUID getFullUuid(String digits) {
+        requireNonNull(digits);
+        return persons.getFullUuid(digits);
+    }
+
+    /**
+     * Checks if the specified person identified by their UUID string has a particular attribute.
+     * This method requires both the UUID of the person and the name of the attribute to be non-null.
+     * It delegates the actual search to the {@code persons} data structure's {@code hasAttribute} method.
+     *
+     * @param uuidString The UUID of the person as a String. Must not be null.
+     * @param attributeName The name of the attribute to check for. Must not be null.
+     * @return {@code true} if the person has the specified attribute, {@code false} otherwise.
+     * @throws NullPointerException if either {@code uuidString} or {@code attributeName} is null.
+     */
+    public boolean hasAttribute(String uuidString, String attributeName) {
+        requireNonNull(uuidString);
+        requireNonNull(attributeName);
+        return persons.hasAttribute(uuidString, attributeName);
+    }
 }

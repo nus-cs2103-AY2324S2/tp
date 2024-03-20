@@ -38,7 +38,7 @@ public class Person {
         requireAllNonNull(name, phone, email, address, tags);
         this.uuid = UUID.randomUUID();
         this.attributes.put("Name", new NameAttribute("Name", name.toString()));
-        this.attributes.put("Phone", new NameAttribute("Phone", phone.toString()));
+        this.attributes.put("Phone", new StringAttribute("Phone", phone.toString()));
         this.attributes.put("Email", new StringAttribute("Email", email.toString()));
         this.attributes.put("Address", new StringAttribute("Address", address.toString()));
 
@@ -180,13 +180,16 @@ public class Person {
      * Deletes an attribute from the person.
      *
      * @param attributeType The type of the attribute to delete.
+     * @return
      */
-    public void deleteAttribute(String attributeType) {
-        if (!attributes.containsKey(attributeType)) {
-            throw new IllegalArgumentException("Attribute with name " + attributeType + " does not exist");
+    public boolean deleteAttribute(String attributeType) {
+        if (attributes.containsKey(attributeType)) {
+            attributes.remove(attributeType);
+            return true;
         }
-        attributes.remove(attributeType);
+        return false;
     }
+
 
     private static void assertValidAttribute(Attribute attribute) {
         if (attribute == null) {
@@ -318,5 +321,9 @@ public class Person {
 
     public Set<Attribute> getAttributes() {
         return new HashSet<>(attributes.values());
+    }
+
+    public void setAttribute(String name, String str) {
+        attributes.put(name, new StringAttribute(name, str));
     }
 }
