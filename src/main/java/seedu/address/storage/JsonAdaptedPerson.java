@@ -1,11 +1,14 @@
 package seedu.address.storage;
 
+import java.util.Optional;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.DateOfBirth;
+import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
@@ -26,6 +29,7 @@ class JsonAdaptedPerson {
     private final String status;
     private final String address;
     private final String dateOfBirth;
+    private final Optional<String> email;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -34,7 +38,7 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("nric") String nric, @JsonProperty("name") String name,
                              @JsonProperty("phone") String phone, @JsonProperty("dateOfBirth") String dob,
                              @JsonProperty("sex") String sex, @JsonProperty("address") String address,
-                             @JsonProperty("status") String status) {
+                             @JsonProperty("status") String status, @JsonProperty("email") String email) {
         this.nric = nric;
         this.name = name;
         this.phone = phone;
@@ -42,6 +46,7 @@ class JsonAdaptedPerson {
         this.dateOfBirth = dob;
         this.sex = sex;
         this.status = status;
+        this.email = Optional.ofNullable(email);
     }
 
     /**
@@ -55,7 +60,7 @@ class JsonAdaptedPerson {
         this.dateOfBirth = source.getDateOfBirth().toString();
         this.sex = source.getEmail().toString();
         this.status = source.getStatus().toString();
-
+        this.email = Optional.ofNullable(source.getEmail().toString());
     }
 
     /**
@@ -64,6 +69,9 @@ class JsonAdaptedPerson {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Person toModelType() throws IllegalValueException {
+
+        Person person;
+
         // NRIC Check
         if (nric == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Nric.class.getSimpleName()));
@@ -121,7 +129,15 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(Sex.MESSAGE_CONSTRAINTS);
         }
         final Status modelStatus = new Status(status);
-        return new Person(modelNric, modelName, modelPhone, modelAddress, modelDateOfBirth, modelSex, modelStatus);
+
+        person = new Person(modelNric, modelName, modelPhone, modelAddress, modelDateOfBirth, modelSex, modelStatus);
+
+        // Email check
+        if (email.isPresent()) {
+            final Email modelEmail = new Email(email.get());
+            person.setEmail(modelEmail);
+        }
+        return person;
     }
 
 }

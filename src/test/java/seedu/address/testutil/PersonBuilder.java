@@ -48,6 +48,7 @@ public class PersonBuilder {
      */
     public PersonBuilder(Person personToCopy) {
         //TODO: Add the missing fields
+        nric = personToCopy.getNric();
         name = personToCopy.getName();
         phone = personToCopy.getPhone();
         address = personToCopy.getAddress();
