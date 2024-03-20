@@ -1,17 +1,23 @@
+/*
+/*
+  // ================================
+  // General
+  // ================================ */
+
 .background {
-    -fx-background-color: derive(#1d1d1d, 20%);
-    background-color: #383838; /* Used in the default.html file */
+    -fx-background-color: #EDEDED;
+    background-color: #EDEDED; /* Used in the default.html file */
 }
 
 .label {
-    -fx-font-size: 11pt;
+    -fx-font-size: 10pt;
     -fx-font-family: "Segoe UI Semibold";
     -fx-text-fill: #555555;
     -fx-opacity: 0.9;
 }
 
 .label-bright {
-    -fx-font-size: 11pt;
+    -fx-font-size: 10pt;
     -fx-font-family: "Segoe UI Semibold";
     -fx-text-fill: white;
     -fx-opacity: 1;
@@ -25,7 +31,7 @@
 }
 
 .text-field {
-    -fx-font-size: 12pt;
+    -fx-font-size: 10pt;
     -fx-font-family: "Segoe UI Semibold";
 }
 
@@ -56,11 +62,7 @@
     -fx-size: 35;
     -fx-border-width: 0 0 1 0;
     -fx-background-color: transparent;
-    -fx-border-color:
-        transparent
-        transparent
-        derive(-fx-base, 80%)
-        transparent;
+    -fx-border-color: transparent transparent derive(-fx-base, 80%) transparent;
     -fx-border-insets: 0 10 1 0;
 }
 
@@ -89,72 +91,68 @@
 
 .list-view {
     -fx-background-insets: 0;
+    -fx-background-color: #ededed;
+    -fx-background-radius: 10;
     -fx-padding: 0;
-    -fx-background-color: derive(#1d1d1d, 20%);
 }
 
 .list-cell {
     -fx-label-padding: 0 0 0 0;
-    -fx-graphic-text-gap : 0;
+    -fx-graphic-text-gap: 0;
     -fx-padding: 0 0 0 0;
+    -fx-background-radius: 10;
 }
 
 .list-cell:filled:even {
-    -fx-background-color: #3c3e3f;
+    -fx-background-color: #FFFFFF;
 }
 
 .list-cell:filled:odd {
-    -fx-background-color: #515658;
+    -fx-background-color: #f5f3f2;
 }
 
-.list-cell:filled:selected {
-    -fx-background-color: #424d5f;
-}
+/*.list-cell:filled:selected {*/
+/*    -fx-border-width: 1.5;*/
+/*    -fx-border-color: red;*/
+/*}*/
 
 .list-cell:filled:selected #cardPane {
-    -fx-border-color: #3e7b91;
-    -fx-border-width: 1;
+    -fx-border-color: #7333E0;
+    -fx-border-radius: 10;
+    -fx-border-width: 2;
 }
 
 .list-cell .label {
-    -fx-text-fill: white;
+    -fx-text-fill: #000000;
 }
 
 .cell_big_label {
     -fx-font-family: "Segoe UI Semibold";
-    -fx-font-size: 16px;
-    -fx-text-fill: #010504;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #000000;
 }
 
 .cell_small_label {
     -fx-font-family: "Segoe UI";
     -fx-font-size: 13px;
-    -fx-text-fill: #010504;
+    -fx-text-fill: #000000;
 }
 
 .stack-pane {
-     -fx-background-color: derive(#1d1d1d, 20%);
-}
-
-.pane-with-border {
-     -fx-background-color: derive(#1d1d1d, 20%);
-     -fx-border-color: derive(#1d1d1d, 10%);
-     -fx-border-top-width: 1px;
-}
-
-.status-bar {
-    -fx-background-color: derive(#1d1d1d, 30%);
-}
-
-.result-display {
-    -fx-background-color: transparent;
-    -fx-font-family: "Segoe UI Light";
-    -fx-font-size: 13pt;
-    -fx-text-fill: white;
+    -fx-background-color: #EDEDED;
 }
 
 .result-display .label {
-    -fx-text-fill: black !important;
+    -fx-text-fill: #000000 !important;
+}
+
+.results-container .text-area {
+    -fx-background-color: transparent;
+}
+
+.status-bar {
+    -fx-background-color: #7333E0;
 }
 
 .status-bar .label {
@@ -184,29 +182,6 @@
     -fx-background-color: derive(#1d1d1d, 30%);
 }
 
-.context-menu {
-    -fx-background-color: derive(#1d1d1d, 50%);
-}
-
-.context-menu .label {
-    -fx-text-fill: white;
-}
-
-.menu-bar {
-    -fx-background-color: derive(#1d1d1d, 20%);
-}
-
-.menu-bar .label {
-    -fx-font-size: 14pt;
-    -fx-font-family: "Segoe UI Light";
-    -fx-text-fill: white;
-    -fx-opacity: 0.9;
-}
-
-.menu .left-container {
-    -fx-background-color: black;
-}
-
 /*
  * Metro style Push Button
  * Author: Pedro Duque Vieira
@@ -229,8 +204,8 @@
 }
 
 .button:pressed, .button:default:hover:pressed {
-  -fx-background-color: white;
-  -fx-text-fill: #1d1d1d;
+    -fx-background-color: white;
+    -fx-text-fill: #1d1d1d;
 }
 
 .button:focused {
@@ -281,12 +256,39 @@
     -fx-text-fill: white;
 }
 
+#cardPane {
+    -fx-border-width: 0;
+}
+
+#filterField, #personListPanel, #personWebpage {
+    -fx-effect: innershadow(gaussian, black, 10, 0, 0, 0);
+}
+
+#tags {
+    -fx-hgap: 7;
+    -fx-vgap: 3;
+}
+
+#tags .label {
+    -fx-text-fill: white;
+    -fx-background-color: #7333E0;
+    -fx-padding: 1 3 1 3;
+    -fx-border-radius: 2;
+    -fx-background-radius: 2;
+    -fx-font-size: 13;
+}
+
+/*
+  // ================================
+  // Scroll Bar
+  // ================================ */
+
 .scroll-bar {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: #EDEDED;
 }
 
 .scroll-bar .thumb {
-    -fx-background-color: derive(#1d1d1d, 50%);
+    -fx-background-color: darkgray;
     -fx-background-insets: 3;
 }
 
@@ -300,53 +302,109 @@
 }
 
 .scroll-bar:vertical .increment-arrow, .scroll-bar:vertical .decrement-arrow {
-    -fx-padding: 1 8 1 8;
+    -fx-padding: 1 5 1 5;
+    -fx-pref-width: 12px;
 }
 
 .scroll-bar:horizontal .increment-arrow, .scroll-bar:horizontal .decrement-arrow {
-    -fx-padding: 8 1 8 1;
+    -fx-padding: 5 1 5 1;
+    -fx-pref-height: 12px;
 }
 
-#cardPane {
-    -fx-background-color: transparent;
-    -fx-border-width: 0;
+/*
+  // ================================
+  // Menu
+  // ================================ */
+
+.context-menu {
+    -fx-background-color: #A6A6A6;
+}
+
+.context-menu .label {
+    -fx-text-fill: white;
+}
+
+.menu-bar {
+    -fx-background-color: #FEFEFE;
+    -fx-padding: 5px;
+    -fx-background-radius: 15px;
+    /*-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 10, 0, 0, 1);*/
+}
+
+.menu-bar .label {
+    -fx-font-size: 10pt;
+    -fx-font-family: "Segoe UI Light";
+    -fx-text-fill: #000000;
+    -fx-opacity: 0.9;
+}
+
+.menu .left-container {
+    -fx-background-color: black;
+}
+
+/*
+  // ================================
+  // Logo
+  // ================================ */
+
+.logo-container {
+    -fx-background-color: #FEFEFE;
+    -fx-padding: 10px;
+    -fx-background-radius: 15px;
+    /*-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 10, 0, 0, 1);*/
+}
+
+/*
+  // ================================
+  // Command
+  // ================================ */
+
+.command-container {
+    -fx-background-color: #FEFEFE;
+    -fx-padding: 10px;
+    -fx-background-radius: 15px;
+    /*-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 10, 0, 0, 1);*/
 }
 
 #commandTypeLabel {
-    -fx-font-size: 11px;
+    -fx-font-size: 10pt;
     -fx-text-fill: #F70D1A;
 }
 
 #commandTextField {
-    -fx-background-color: transparent #383838 transparent #383838;
-    -fx-background-insets: 0;
-    -fx-border-color: #383838 #383838 #ffffff #383838;
-    -fx-border-insets: 0;
-    -fx-border-width: 1;
+    -fx-background-color: transparent;
     -fx-font-family: "Segoe UI Light";
-    -fx-font-size: 13pt;
-    -fx-text-fill: white;
+    -fx-font-size: 10pt;
+    -fx-text-fill: #000000;
 }
 
-#filterField, #personListPanel, #personWebpage {
-    -fx-effect: innershadow(gaussian, black, 10, 0, 0, 0);
+/*
+  // ================================
+  // Command Result
+  // ================================ */
+
+.results-container {
+    -fx-background-color: #FEFEFE;
+    -fx-background-radius: 15px;
+    -fx-padding: 10px;
+    /*-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 10, 0, 0, 1);*/
+}
+
+.result-display {
+    -fx-font-family: "Segoe UI Light";
+    -fx-font-size: 10pt;
+    -fx-text-fill: #000000;
 }
 
 #resultDisplay .content {
-    -fx-background-color: transparent, #383838, transparent, #383838;
-    -fx-background-radius: 0;
+    -fx-background-color: #FEFEFE;
 }
 
-#tags {
-    -fx-hgap: 7;
-    -fx-vgap: 3;
-}
+/*
+  // ================================
+  // Recent Command
+  // ================================ */
 
-#tags .label {
-    -fx-text-fill: white;
-    -fx-background-color: #3e7b91;
-    -fx-padding: 1 3 1 3;
-    -fx-border-radius: 2;
-    -fx-background-radius: 2;
-    -fx-font-size: 11;
+#recentCommandsPlaceholder {
+    -fx-content-display: none;
 }
