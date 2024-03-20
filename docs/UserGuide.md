@@ -44,14 +44,17 @@ The scope of the PressPlanner application is tailored to the specific needs of j
     - Download Java 11 from [the official Oracle website](https://www.oracle.com/java/technologies/downloads/#java11).
 1. Download the jar file from [our latest release](https://github.com/AY2324S2-CS2103T-F12-2/tp/releases).
 1. Move it to an **Empty** folder.
-    > [!WARNING] App data will be stored in sub-folders from where it is launched. While you could run the app from any location, we recommend making a dedicated folder for our app to avoid confusion.
+    > [!WARNING]
+   > App data will be stored in sub-folders from where it is launched. While you could run the app from any location, we recommend making a dedicated folder for our app to avoid confusion.
+
 ### [2.2.  Launching the App](#2-getting-started)
 1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.
 1. A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.
    ![Ui](images/Ui.png)
 
 ### [2.3. Basic Commands](#2-getting-started)
-> [!NOTE] This section covers commands first-time users might need. For the full commands list, refer to the [Features](#features) section.
+> [!NOTE] 
+> This section covers commands first-time users might need. For the full commands list, refer to the [Features](#features) section.
 
 Let's go over the basic PressPlanner workflow. Say you've just finished interviewing a certain Gill Bates about his company's latest product. You want to save his contact for later and keep track of your article. Let's fire up PressPlanner and get this task out of the way.
 
@@ -64,7 +67,8 @@ Let's go over the basic PressPlanner workflow. Say you've just finished intervie
     - For example: `add n/Gill Bates p/12345678 e/gillbates@sicromoft.com a/Sicromoft HQ`
 
 2. Next let's add that article you just wrote.
-   > [!NOTE] Adding an article uses the `add -a` command, the `-a` standing for article. The `-a` suffix is used for all commands pertaining to articles.
+   > [!NOTE] 
+   > Adding an article uses the `add -a` command, the `-a` standing for article. The `-a` suffix is used for all commands pertaining to articles.
     - To `add -a` an article we need the following information:
         - Title (`T/`)
         - Author (`A/`)
@@ -102,7 +106,7 @@ Now that you know the basic workflow, go ahead and try it out for yourself. If y
 * Items with `...` after them can be used multiple times. If the item is also in square brackets, it can even be used zero times.
   e.g. `[t/TAG]...` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
-* Parameters can be in any order.<br>
+* Parameters can be in any order.
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.
@@ -110,7 +114,6 @@ Now that you know the basic workflow, go ahead and try it out for yourself. If y
 
 > [!WARNING]
 > If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
-</box>
 
 ## [3.1. Managing Contacts](#3-features)
 
@@ -179,7 +182,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 
 Examples:
 * `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
+* `find alex david` returns `Alex Yeoh`, `David Li`
 
 ### [3.1.6. Clearing all entries : `clear`](#31-managing-contacts)
 
