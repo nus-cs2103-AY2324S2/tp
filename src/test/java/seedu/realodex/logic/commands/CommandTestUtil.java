@@ -80,7 +80,9 @@ public class CommandTestUtil {
                 .withEmail(VALID_EMAIL_AMY)
                 .withAddress(VALID_ADDRESS_AMY)
                 .withFamily(VALID_FAMILY_AMY)
-                .withTags(VALID_TAG_BOB).build();
+                .withTags(VALID_TAG_BOB)
+                .withRemark(VALID_REMARK_AMY)
+                .build();
         DESC_BOB = new EditPersonDescriptorBuilder()
                 .withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB)
@@ -88,7 +90,9 @@ public class CommandTestUtil {
                 .withEmail(VALID_EMAIL_BOB)
                 .withAddress(VALID_ADDRESS_BOB)
                 .withFamily(VALID_FAMILY_BOB)
-                .withTags(VALID_TAG_AMY, VALID_TAG_BOB).build();
+                .withTags(VALID_TAG_AMY, VALID_TAG_BOB)
+                .withRemark(VALID_REMARK_BOB)
+                .build();
     }
 
     /**

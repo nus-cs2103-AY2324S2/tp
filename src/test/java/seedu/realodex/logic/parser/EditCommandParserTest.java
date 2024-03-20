@@ -19,6 +19,7 @@ import static seedu.realodex.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.realodex.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.realodex.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static seedu.realodex.logic.commands.CommandTestUtil.REMARK_DESC_AMY;
+import static seedu.realodex.logic.commands.CommandTestUtil.REMARK_DESC_BOB;
 import static seedu.realodex.logic.commands.CommandTestUtil.TAG_DESC_AMY;
 import static seedu.realodex.logic.commands.CommandTestUtil.TAG_DESC_BOB;
 import static seedu.realodex.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
@@ -30,6 +31,7 @@ import static seedu.realodex.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.realodex.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.realodex.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.realodex.logic.commands.CommandTestUtil.VALID_REMARK_AMY;
+import static seedu.realodex.logic.commands.CommandTestUtil.VALID_REMARK_BOB;
 import static seedu.realodex.logic.commands.CommandTestUtil.VALID_TAG_AMY;
 import static seedu.realodex.logic.commands.CommandTestUtil.VALID_TAG_BOB;
 import static seedu.realodex.logic.parser.CliSyntax.PREFIX_ADDRESS;
@@ -37,6 +39,7 @@ import static seedu.realodex.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.realodex.logic.parser.CliSyntax.PREFIX_FAMILY;
 import static seedu.realodex.logic.parser.CliSyntax.PREFIX_INCOME;
 import static seedu.realodex.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.realodex.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.realodex.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.realodex.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.realodex.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -132,7 +135,8 @@ public class EditCommandParserTest {
                 + ADDRESS_DESC_AMY
                 + NAME_DESC_AMY
                 + FAMILY_DESC_BOB
-                + TAG_DESC_BOB;
+                + TAG_DESC_BOB
+                + REMARK_DESC_BOB;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder()
                 .withName(VALID_NAME_AMY)
@@ -141,7 +145,9 @@ public class EditCommandParserTest {
                 .withEmail(VALID_EMAIL_AMY)
                 .withAddress(VALID_ADDRESS_AMY)
                 .withFamily(VALID_FAMILY_BOB)
-                .withTags(VALID_TAG_BOB).build();
+                .withTags(VALID_TAG_BOB)
+                .withRemark(VALID_REMARK_BOB)
+                .build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -207,6 +213,8 @@ public class EditCommandParserTest {
         // remark
         userInput = targetIndex.getOneBased() + REMARK_DESC_AMY;
         descriptor = new EditPersonDescriptorBuilder().withRemark(VALID_REMARK_AMY).build();
+        expectedCommand = new EditCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
 
         // 2 tags
         userInput = targetIndex.getOneBased() + TAG_DESC_BOB + TAG_DESC_AMY;
@@ -250,11 +258,13 @@ public class EditCommandParserTest {
                         + PHONE_DESC_BOB
                         + ADDRESS_DESC_BOB
                         + EMAIL_DESC_BOB
+                        + REMARK_DESC_AMY
+                        + REMARK_DESC_BOB
                         + CommandTestUtil.TAG_DESC_BOB;
 
         assertParseFailure(parser, userInput,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                                                             PREFIX_INCOME, PREFIX_FAMILY));
+                                                             PREFIX_INCOME, PREFIX_FAMILY, PREFIX_REMARK));
 
         // multiple invalid values
         userInput = targetIndex.getOneBased()

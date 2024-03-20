@@ -4,10 +4,15 @@ import static seedu.realodex.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.realodex.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.realodex.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.realodex.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.realodex.logic.commands.CommandTestUtil.VALID_FAMILY_AMY;
+import static seedu.realodex.logic.commands.CommandTestUtil.VALID_FAMILY_BOB;
+import static seedu.realodex.logic.commands.CommandTestUtil.VALID_INCOME_AMY;
+import static seedu.realodex.logic.commands.CommandTestUtil.VALID_INCOME_BOB;
 import static seedu.realodex.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.realodex.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.realodex.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.realodex.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.realodex.logic.commands.CommandTestUtil.VALID_REMARK_BOB;
 import static seedu.realodex.logic.commands.CommandTestUtil.VALID_TAG_AMY;
 import static seedu.realodex.logic.commands.CommandTestUtil.VALID_TAG_BOB;
 
@@ -71,17 +76,17 @@ public class TypicalPersons {
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY)
             .withPhone(VALID_PHONE_AMY)
-            .withIncome("20000")
+            .withIncome(VALID_INCOME_AMY)
             .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-            .withFamily("4")
+            .withFamily(VALID_FAMILY_AMY)
             .withTags(VALID_TAG_AMY).build();
     public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB)
             .withPhone(VALID_PHONE_BOB)
-            .withIncome("30000")
+            .withIncome(VALID_INCOME_BOB)
             .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-            .withFamily("4")
+            .withFamily(VALID_FAMILY_BOB)
             .withTags(VALID_TAG_BOB)
-            .withRemark("Testing remark")
+            .withRemark(VALID_REMARK_BOB)
             .build();
 
     public static final String KEYPHRASE_MATCHING_MEIER = "Meier"; // A keyphrase that matches MEIER

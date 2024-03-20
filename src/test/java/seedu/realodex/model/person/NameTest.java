@@ -19,6 +19,7 @@ public class NameTest {
         assertThrows(IllegalArgumentException.class, () -> new Name(invalidName));
     }
 
+
     @Test
     public void isValidName() {
         // null name

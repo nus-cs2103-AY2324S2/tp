@@ -20,6 +20,7 @@ import seedu.realodex.model.person.Family;
 import seedu.realodex.model.person.Income;
 import seedu.realodex.model.person.Name;
 import seedu.realodex.model.person.Phone;
+import seedu.realodex.model.remark.Remark;
 import seedu.realodex.model.tag.Tag;
 
 public class ParserUtilTest {
@@ -40,6 +41,9 @@ public class ParserUtilTest {
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_TAG_1 = "buyer";
     private static final String VALID_TAG_2 = "seller";
+
+    private static final String VALID_REMARK_ONE = "I am Denzel Washington";
+    private static final String VALID_REMARK_TWO = "I am Al Pacino";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -268,5 +272,22 @@ public class ParserUtilTest {
         Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(tagSetWithMultipleDuplicates, expectedTagSet);
+    }
+
+    @Test
+    public void parseRemark_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseRemark((String) null));
+    }
+    @Test
+    public void parseRemark_validValueWithoutWhitespace_returnsRemark() throws Exception {
+        Remark expectedRemark = new Remark(VALID_REMARK_ONE);
+        assertEquals(expectedRemark, ParserUtil.parseRemark(VALID_REMARK_ONE));
+    }
+
+    @Test
+    public void parseRemark_validValueWithWhitespace_returnsTrimmedRemark() throws Exception {
+        String remarkWithWhitespace = WHITESPACE + VALID_REMARK_ONE + WHITESPACE;
+        Remark expectedRemark = new Remark(VALID_REMARK_ONE);
+        assertEquals(expectedRemark, ParserUtil.parseRemark(remarkWithWhitespace));
     }
 }

@@ -22,6 +22,7 @@ import static seedu.realodex.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.realodex.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static seedu.realodex.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.realodex.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.realodex.logic.commands.CommandTestUtil.REMARK_DESC_AMY;
 import static seedu.realodex.logic.commands.CommandTestUtil.REMARK_DESC_BOB;
 import static seedu.realodex.logic.commands.CommandTestUtil.TAG_DESC_AMY;
 import static seedu.realodex.logic.commands.CommandTestUtil.TAG_DESC_BOB;
@@ -39,8 +40,10 @@ import static seedu.realodex.logic.parser.CliSyntax.PREFIX_FAMILY;
 import static seedu.realodex.logic.parser.CliSyntax.PREFIX_INCOME;
 import static seedu.realodex.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.realodex.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.realodex.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.realodex.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.realodex.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.realodex.testutil.TypicalPersons.AMY;
 import static seedu.realodex.testutil.TypicalPersons.BOB;
 
 import org.junit.jupiter.api.Test;
@@ -99,7 +102,7 @@ public class AddCommandParserTest {
     @Test
     public void parse_repeatedNonTagValue_failure() {
         String validExpectedPersonString = NAME_DESC_BOB + PHONE_DESC_BOB + INCOME_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + FAMILY_DESC_BOB + TAG_DESC_BOB;
+                + ADDRESS_DESC_BOB + FAMILY_DESC_BOB + TAG_DESC_BOB + REMARK_DESC_BOB;
 
         // multiple names
         assertParseFailure(parser, NAME_DESC_AMY + validExpectedPersonString,
@@ -125,13 +128,17 @@ public class AddCommandParserTest {
         assertParseFailure(parser, FAMILY_DESC_AMY + validExpectedPersonString,
                            Messages.getErrorMessageForDuplicatePrefixes(PREFIX_FAMILY));
 
+        //multiple remarks
+        assertParseFailure(parser, REMARK_DESC_AMY + validExpectedPersonString,
+                           Messages.getErrorMessageForDuplicatePrefixes(PREFIX_REMARK));
+
         // multiple fields repeated
         assertParseFailure(parser,
                 validExpectedPersonString + PHONE_DESC_AMY + INCOME_DESC_AMY + EMAIL_DESC_AMY
-                        + NAME_DESC_AMY + ADDRESS_DESC_AMY + FAMILY_DESC_AMY
+                        + NAME_DESC_AMY + ADDRESS_DESC_AMY + FAMILY_DESC_AMY + REMARK_DESC_AMY
                         + validExpectedPersonString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NAME, PREFIX_INCOME, PREFIX_ADDRESS, PREFIX_EMAIL,
-                                                             PREFIX_PHONE, PREFIX_FAMILY));
+                                                             PREFIX_PHONE, PREFIX_FAMILY, PREFIX_REMARK));
 
         // invalid value followed by valid value
 
@@ -237,6 +244,27 @@ public class AddCommandParserTest {
                            VALID_NAME_BOB + VALID_PHONE_BOB + INCOME_DESC_BOB
                                    + VALID_EMAIL_BOB + VALID_ADDRESS_BOB + FAMILY_DESC_BOB + VALID_TAG_BOB,
                 expectedMessage);
+    }
+
+    @Test
+    public void parse_optionalFieldMissing_success() {
+        Person expectedPerson = new PersonBuilder(BOB).withRemark("").build();
+        assertParseSuccess(parser, NAME_DESC_BOB
+                + PHONE_DESC_BOB
+                + INCOME_DESC_BOB
+                + EMAIL_DESC_BOB
+                + ADDRESS_DESC_BOB
+                + FAMILY_DESC_BOB
+                + TAG_DESC_BOB, new AddCommand(expectedPerson));
+
+        expectedPerson = new PersonBuilder(AMY).build();
+        assertParseSuccess(parser, NAME_DESC_AMY
+                + PHONE_DESC_AMY
+                + INCOME_DESC_AMY
+                + EMAIL_DESC_AMY
+                + ADDRESS_DESC_AMY
+                + FAMILY_DESC_AMY
+                + TAG_DESC_AMY, new AddCommand(expectedPerson));
     }
 
     @Test

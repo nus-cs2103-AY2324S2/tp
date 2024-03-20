@@ -3,11 +3,14 @@ package seedu.realodex.logic.parser;
 import static seedu.realodex.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.realodex.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.realodex.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
+import static seedu.realodex.testutil.Assert.assertThrows;
 import static seedu.realodex.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.realodex.logic.commands.DeleteCommand;
+import seedu.realodex.logic.parser.exceptions.ParseException;
+import seedu.realodex.model.person.Name;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations
@@ -21,8 +24,20 @@ public class DeleteCommandParserTest {
     private DeleteCommandParser parser = new DeleteCommandParser();
 
     @Test
-    public void parse_validArgs_returnsDeleteCommand() {
+    public void parse_validIndex_returnsDeleteCommand() {
         assertParseSuccess(parser, "1", new DeleteCommand(INDEX_FIRST_PERSON));
+    }
+
+    @Test
+    public void parse_validName_returnsDeleteCommand() {
+        assertParseSuccess(parser, " n/James", new DeleteCommand(new Name("James")));
+    }
+
+    @Test
+    public void parse_invalidName_throwParseException() {
+        assertThrows(ParseException.class, Name.MESSAGE_CONSTRAINTS, () -> parser.parse(" n/peter*"));
+        assertThrows(ParseException.class, Name.MESSAGE_CONSTRAINTS, () -> parser.parse(" n/ "));
+        assertThrows(ParseException.class, Name.MESSAGE_CONSTRAINTS, () -> parser.parse(" n/^"));
     }
 
     @Test
