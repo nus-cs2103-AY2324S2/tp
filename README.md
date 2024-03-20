@@ -1,6 +1,6 @@
 [![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/AY2324S2-CS2103T-F11-3/tp/actions)
 
-![Ui](docs/images/Ui.png)
+![Ui](docs/images/UpdatedUi.png)
 
 This is a professional Applicant Tracking System (ATS) for hiring managers in small to mid range startups.<br>
 
