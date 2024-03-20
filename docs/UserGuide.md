@@ -44,8 +44,9 @@ The scope of the PressPlanner application is tailored to the specific needs of j
     - Download Java 11 from [the official Oracle website](https://www.oracle.com/java/technologies/downloads/#java11).
 1. Download the jar file from [our latest release](https://github.com/AY2324S2-CS2103T-F12-2/tp/releases).
 1. Move it to an **Empty** folder.
-    > [!WARNING]
-   > App data will be stored in sub-folders from where it is launched. While you could run the app from any location, we recommend making a dedicated folder for our app to avoid confusion.
+
+> [!WARNING]
+> App data will be stored in sub-folders from where it is launched. While you could run the app from any location, we recommend making a dedicated folder for our app to avoid confusion.
 
 ### [2.2.  Launching the App](#2-getting-started)
 1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.
@@ -66,9 +67,10 @@ Let's go over the basic PressPlanner workflow. Say you've just finished intervie
         - Address (`a/`)
     - For example: `add n/Gill Bates p/12345678 e/gillbates@sicromoft.com a/Sicromoft HQ`
 
+> [!NOTE] 
+> Adding an article uses the `add -a` command, the `-a` standing for article. The `-a` suffix is used for all commands pertaining to articles.
+
 2. Next let's add that article you just wrote.
-   > [!NOTE] 
-   > Adding an article uses the `add -a` command, the `-a` standing for article. The `-a` suffix is used for all commands pertaining to articles.
     - To `add -a` an article we need the following information:
         - Title (`T/`)
         - Author (`A/`)
@@ -281,7 +283,7 @@ Exits the program.
 
 Format: `exit`
 
-## [4. Command Quick Reference](#table-ofcontents)
+## [4. Command Quick Reference](#table-of-contents)
 | Action | Command Format                                                                                   | Example |
 | --- |--------------------------------------------------------------------------------------------------| --- |
 | Add Person | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]...`                                         | `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
