@@ -14,7 +14,7 @@ public class CompanyName {
     /*
      * Matches one or more alphanumeric characters
      */
-    public static final String VALIDATION_REGEX = "^\\p{Alnum}+$";
+    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
     public final String companyName;
 
