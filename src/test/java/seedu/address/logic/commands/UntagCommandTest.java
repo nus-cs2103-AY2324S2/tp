@@ -54,7 +54,7 @@ class UntagCommandTest {
         var expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(actualPerson, editedPerson);
 
-        assertCommandSuccess(command, model, new CommandHistory(),expectedMessage, expectedModel);
+        assertCommandSuccess(command, model, new CommandHistory(), expectedMessage, expectedModel);
     }
 
     @Test
@@ -77,7 +77,7 @@ class UntagCommandTest {
         var command = new UntagCommand(index, TAGS);
 
         var expectedMessage = Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
-        assertCommandFailure(command, model, new CommandHistory(),expectedMessage);
+        assertCommandFailure(command, model, new CommandHistory(), expectedMessage);
     }
 
     @Test

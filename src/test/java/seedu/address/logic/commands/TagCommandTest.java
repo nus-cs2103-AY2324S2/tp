@@ -48,7 +48,7 @@ class TagCommandTest {
         TagCommand command = new TagCommand(index, TAGS);
 
         String expectedMessage = Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
-        assertCommandFailure(command, model, new CommandHistory(),expectedMessage);
+        assertCommandFailure(command, model, new CommandHistory(), expectedMessage);
     }
 
     @Test
