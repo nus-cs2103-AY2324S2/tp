@@ -89,6 +89,16 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean canUndo() {
+        return addressBook.canUndo();
+    }
+
+    @Override
+    public void undo() {
+        addressBook.undo();
+    }
+
+    @Override
     public boolean hasPerson(Person person) {
         requireNonNull(person);
         return addressBook.hasPerson(person);

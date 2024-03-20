@@ -3,6 +3,7 @@ package seedu.address.testutil;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.fields.Address;
+import seedu.address.model.person.fields.Assets;
 import seedu.address.model.person.fields.Email;
 import seedu.address.model.person.fields.Name;
 import seedu.address.model.person.fields.Phone;
@@ -33,6 +34,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setEmail(person.getEmail());
         descriptor.setAddress(person.getAddress());
         descriptor.setTags(person.getTags());
+        descriptor.setAssets(person.getAssets());
     }
 
     /**
@@ -73,6 +75,15 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withTags(String... tags) {
         descriptor.setTags(new Tags(tags));
+        return this;
+    }
+
+    /**
+     * Parses the {@code assets} into a {@code Set<Assets>} and set it to the {@code EditPersonDescriptor}
+     * that we are building.
+     */
+    public EditPersonDescriptorBuilder withAssets(String... assets) {
+        descriptor.setAssets(new Assets(assets));
         return this;
     }
 
