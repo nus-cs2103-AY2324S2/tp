@@ -8,13 +8,22 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import java.util.List;
 
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.messages.Messages;
 import seedu.address.model.Model;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Commission;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Employment;
 import seedu.address.model.person.Maintainer;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Note;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.Salary;
+import seedu.address.model.person.Skill;
 import seedu.address.model.person.Staff;
 import seedu.address.model.person.Supplier;
+import seedu.address.model.tag.Tag;
 
 /**
  * Adds a note of an existing person in the address book.
@@ -49,14 +58,32 @@ public class NoteCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         List<Person> lastShownList = model.getFilteredPersonList();
 
-        Person personToEdit = model.findByName(name);
-        if (personToEdit instanceof Maintainer || personToEdit instanceof Staff
-                || personToEdit instanceof Supplier) {
-            throw new CommandException("Person is not of general person class");
+        Person personToEdit = findByName(lastShownList, name);
+        Person editedPerson;
+
+        if (personToEdit instanceof Maintainer) {
+            editedPerson = new Maintainer(
+                    personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
+                    personToEdit.getAddress(), personToEdit.getTags(), ((Maintainer) personToEdit).getSkill(),
+                    ((Maintainer) personToEdit).getCommission());
+            editedPerson.setNote(note);
+        } else if (personToEdit instanceof Staff) {
+            editedPerson = new Staff(
+                    personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
+                    personToEdit.getAddress(), personToEdit.getTags(), ((Staff) personToEdit).getSalary(),
+                    ((Staff) personToEdit).getEmployment());
+            editedPerson.setNote(note);
+        } else if (personToEdit instanceof Supplier) {
+            editedPerson = new Supplier(
+                    personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
+                    personToEdit.getAddress(), personToEdit.getTags(), ((Supplier) personToEdit).getProduct(),
+                    ((Supplier) personToEdit).getPrice());
+            editedPerson.setNote(note);
+        } else {
+            editedPerson = new Person(
+                    personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
+                    personToEdit.getAddress(), note, personToEdit.getTags());
         }
-        Person editedPerson = new Person(
-                personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), note, personToEdit.getTags());
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
@@ -71,6 +98,24 @@ public class NoteCommand extends Command {
     private String generateSuccessMessage(Person personToEdit) {
         String message = MESSAGE_ADD_NOTE_SUCCESS;
         return String.format(message, personToEdit);
+    }
+
+    /**
+     * Finds a person from a List of persons identified by its name.
+     *
+     * @param personList The list of persons to search from.
+     * @param targetName The name of the person to return.
+     *
+     * @return The person object with name equals to {@code targetName}.
+     * */
+    public Person findByName(List<Person> personList, Name targetName) {
+        for (Person person: personList) {
+            Name name = person.getName();
+            if (name.equals(targetName)) {
+                return person;
+            }
+        }
+        return null;
     }
 
     @Override

@@ -24,7 +24,7 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
-    private final Note note;
+    private Note note;
 
     /**
      * Every field must be present and not null.
@@ -78,6 +78,10 @@ public class Person {
 
         return otherPerson != null
                 && otherPerson.getName().equals(getName());
+    }
+
+    public void setNote(Note note) {
+        this.note = note;
     }
 
     /**
