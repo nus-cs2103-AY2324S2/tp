@@ -1,6 +1,7 @@
 package seedu.address.model.order;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents the Product in the Order of the Customer.
@@ -21,15 +22,10 @@ public class Product {
      * Constructs a {@code Product} with {@code name}.
      * @param name Name of the Product.
      */
-    public Product(@JsonProperty("order") String name) {
+    public Product(String name) {
+        requireNonNull(name);
+        checkArgument(isValidProduct(name), MESSAGE_CONSTRAINTS);
         this.name = name;
-    }
-
-    /**
-     * Returns true if a given string is a valid name.
-     */
-    public static boolean isValidProduct(String test) {
-        return test.matches(VALIDATION_REGEX);
     }
 
     @Override
@@ -70,5 +66,12 @@ public class Product {
      */
     public void rename(String newName) {
         this.name = newName;
+    }
+
+    /**
+     * Returns true if a given string is a valid product name.
+     */
+    public static boolean isValidProduct(String test) {
+        return test.matches(VALIDATION_REGEX);
     }
 }

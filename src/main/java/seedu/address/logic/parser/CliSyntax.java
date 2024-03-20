@@ -14,6 +14,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_ORDER = new Prefix("o/");
     public static final Prefix PREFIX_CUSTOMER_ID = new Prefix("c/");
     public static final Prefix PREFIX_PRODUCT_NAME = new Prefix("pn/");
-    public static final Prefix PREFIX_PRODUCT_QUANTITY = new Prefix("pq");
+    public static final Prefix PREFIX_PRODUCT_QUANTITY = new Prefix("pq/");
 
 }

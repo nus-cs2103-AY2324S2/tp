@@ -60,13 +60,13 @@ public class EditOrderCommand extends EditCommand {
         List<Order> lastShownList = model.getFilteredOrderList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
         }
 
         Order orderToEdit = lastShownList.get(index.getZeroBased());
         assert orderToEdit != null;
 
-        Order editedOrder = model.setOrder(orderToEdit,
+        Order editedOrder = model.editOrder(orderToEdit,
                 editOrderDescriptor.getProduct(), editOrderDescriptor.getQuantity());
         model.updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS);
         return new CommandResult(String.format(MESSAGE_EDIT_ORDER_SUCCESS,

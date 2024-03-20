@@ -8,8 +8,6 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.order.Order;
-import seedu.address.model.order.Product;
-import seedu.address.model.order.Quantity;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 
@@ -21,15 +19,18 @@ public class AddOrderCommand extends Command {
     public static final String MESSAGE_ARGUMENTS = "Index: %1$d";
     public static final String MESSAGE_ADD_ORDER_SUCCESS = "Added order to Person: %1$s";
     public static final String MESSAGE_DELETE_ORDER_SUCCESS = "Removed order from Person: %1$s";
+    public static final String MESSAGE_ADD_PRODUCTS = "Add products using this command:"
+            + "product pn/[PRODUCT] and pq/[QUANTITY]";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Edits the order of the person identified "
             + "by the phone number of person. "
             + "Existing orders will be overwritten by the input.\n"
             + "Parameters: phone number (must be a positive integer) "
             + "p/ [PHONE_NUMBER]\n"
-            + "Example: " + COMMAND_WORD + " 1 "
+            + "Example: " + COMMAND_WORD
             + "p/ 87438807.";
 
+    private static Order lastOrder;
     private final Phone phone;
     private Order order;
 
@@ -42,6 +43,7 @@ public class AddOrderCommand extends Command {
 
         this.phone = phone;
         this.order = new Order();
+        lastOrder = this.order;
     }
 
     @Override
@@ -58,16 +60,12 @@ public class AddOrderCommand extends Command {
         Person personToEdit = maybeEditablePerson.get();
         Person editedPerson = new Person(
                 personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), personToEdit.getTags());
+                personToEdit.getAddress(), personToEdit.getTags(), personToEdit.getOrders());
 
-        // CHANGE THIS!!!! Need add functionality for users to input products
-        // THIS IS A PLACEHOLDER
-        this.order.addProduct(new Product("cupcake"), new Quantity(2));
+        this.order.setCustomer(editedPerson);
+        AddProductCommand.setLastOrder(this.order);
+        AddProductCommand.setPersonToEdit(personToEdit);
 
-        editedPerson.addOrder(this.order);
-
-        model.setPerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
 
         return new CommandResult(generateSuccessMessage(editedPerson));
     }
@@ -78,7 +76,7 @@ public class AddOrderCommand extends Command {
      * @return
      */
     private String generateSuccessMessage(Person personToEdit) {
-        String message = !order.isEmpty() ? MESSAGE_ADD_ORDER_SUCCESS : MESSAGE_DELETE_ORDER_SUCCESS;
+        String message = !order.isEmpty() ? MESSAGE_ADD_ORDER_SUCCESS : MESSAGE_ADD_PRODUCTS;
         return String.format(message, personToEdit);
     }
 

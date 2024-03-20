@@ -17,6 +17,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.order.Order;
 import seedu.address.model.person.Person;
 
 /**
@@ -65,11 +66,17 @@ public class TypicalPersons {
      */
     public static AddressBook getTypicalAddressBook() {
         AddressBook ab = new AddressBook();
+        ArrayList<Person> typicalPersons = new ArrayList<>();
         for (Person person : getTypicalPersons()) {
-            ab.addPerson(person);
+            Person copy = new PersonBuilder(person).build();
+            ab.addPerson(copy);
+            typicalPersons.add(copy);
         }
         for (int k = 0; k < getTypicalOrders().size(); k++) {
-            ab.addOrder(getTypicalOrders().get(k), getTypicalPersons().get(k));
+            Order copy = new OrderBuilder(getTypicalOrders().get(k)).build();
+            copy.setCustomer(typicalPersons.get(k));
+            typicalPersons.get(k).addOrder(copy);
+            ab.addOrder(copy);
         }
         return ab;
     }

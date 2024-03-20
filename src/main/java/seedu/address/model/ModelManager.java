@@ -113,7 +113,7 @@ public class ModelManager implements Model {
 
     @Override
     public void addOrder(Order newOrder, Person person) {
-        addressBook.addOrder(newOrder, person);
+        addressBook.addOrder(newOrder);
         updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS);
     }
 
@@ -129,10 +129,10 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Order setOrder(Order target, Product currProduct, Quantity newQuantity) {
+    public Order editOrder(Order target, Product currProduct, Quantity newQuantity) {
         requireAllNonNull(target, currProduct, newQuantity);
 
-        return addressBook.setOrder(target, currProduct, newQuantity);
+        return addressBook.editOrder(target, currProduct, newQuantity);
     }
 
     @Override

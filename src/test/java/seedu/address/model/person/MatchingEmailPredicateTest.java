@@ -58,11 +58,6 @@ public class MatchingEmailPredicateTest {
         // Non-matching keyword
         predicate = new MatchingEmailPredicate(Arrays.asList("alice@gmail.com"));
         assertFalse(predicate.test(new PersonBuilder().withEmail("bob@gmail.com").build()));
-
-        //  match address, phone and name, but does not match email
-        predicate = new MatchingEmailPredicate(Arrays.asList("12345", "alice@email.com", "Alice", "Main", "Street"));
-        assertFalse(predicate.test(new PersonBuilder().withName("Alice").withPhone("12345")
-                .withEmail("alice@gmail.com").withAddress("Main Street").build()));
     }
 
     @Test

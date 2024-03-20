@@ -31,7 +31,7 @@ class JsonAdaptedPerson {
     private final String address;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
-    private final ArrayList<JsonAdaptedOrder> orders = new ArrayList<>();
+    private final ArrayList<Integer> orderID;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -40,7 +40,7 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("tags") List<JsonAdaptedTag> tags,
-            @JsonProperty("orders") ArrayList<JsonAdaptedOrder> orders) {
+            @JsonProperty("orderID") ArrayList<Integer> orderID) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -48,9 +48,7 @@ class JsonAdaptedPerson {
         if (tags != null) {
             this.tags.addAll(tags);
         }
-        if (orders != null) {
-            this.orders.addAll(orders);
-        }
+        this.orderID = orderID;
     }
 
     /**
@@ -64,9 +62,14 @@ class JsonAdaptedPerson {
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
-        orders.addAll(source.getOrders().stream()
-                .map(JsonAdaptedOrder::new)
-                .collect(Collectors.toList()));
+        orderID = new ArrayList<>();
+        for (Order order : source.getOrders()) {
+            orderID.add(order.getId());
+        }
+    }
+
+    public ArrayList<Integer> getOrderIdList() {
+        return this.orderID;
     }
 
     /**
@@ -78,11 +81,6 @@ class JsonAdaptedPerson {
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tags) {
             personTags.add(tag.toModelType());
-        }
-
-        final List<Order> personOrders = new ArrayList<>();
-        for (JsonAdaptedOrder order : orders) {
-            personOrders.add(order.toModelType());
         }
 
         if (name == null) {
@@ -119,9 +117,8 @@ class JsonAdaptedPerson {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
-        final ArrayList<Order> modelOrders = new ArrayList<>(personOrders);
         Person modelPerson = new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
-        modelPerson.setOrders(modelOrders);
+
         return modelPerson;
     }
 

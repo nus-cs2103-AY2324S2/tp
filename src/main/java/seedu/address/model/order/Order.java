@@ -156,6 +156,9 @@ public class Order implements Comparable<Order> {
         return productMap.isEmpty();
     }
 
+    public void setProducts(Map<Product, Quantity> products) {
+        this.productMap = products;
+    }
     /**
      * Gets the {@code Person} ordering the order
      *
@@ -197,7 +200,6 @@ public class Order implements Comparable<Order> {
         if (otherOrder == null) {
             return false;
         }
-
         if (otherOrder.equals(this)) {
             return true;
         }

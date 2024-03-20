@@ -59,16 +59,25 @@ public class OrderList implements Iterable<Order> {
     /**
      * Adds an order to the order list.
      * @param toAdd The order that is to be added.
-     * @param person The person that the order is tagged to.
      */
-    public void addOrder(Order toAdd, Person person) {
-        requireAllNonNull(toAdd, person);
-        toAdd.setCustomer(person);
+    public void addOrder(Order toAdd) {
+        requireAllNonNull(toAdd);
         toAdd.setID(orderIdCounter);
         orderList.put(toAdd.getId(), toAdd);
         internalList.add(toAdd);
-        person.addOrder(toAdd);
         orderIdCounter++;
+    }
+
+    /**
+     * Adds an {@code Order} to the {@code OrderList} of this addressbook with a predefined ID (for storage purposes).
+     * @param toAdd Order Object to be added into the Order List.
+     * @param iD Order ID to be used in the adding of the Order.
+     */
+    public void addOrderWithID(Order toAdd, int iD) {
+        requireNonNull(toAdd);
+        orderList.put(iD, toAdd);
+        internalList.add(toAdd);
+        orderIdCounter = iD + 1; //when restoring, makes sure that the next order id created is highest.
     }
 
     /**
@@ -84,6 +93,7 @@ public class OrderList implements Iterable<Order> {
         }
 
         internalList.set(index, editedOrder);
+        orderList.put(target.getId(), editedOrder);
     }
 
     /**
@@ -105,7 +115,7 @@ public class OrderList implements Iterable<Order> {
         //}
         orderList.remove(toDelete);
         internalList.remove(oldOrder);
-        respectiveCustomer.deleteOrder(oldOrder.getId());
+        //respectiveCustomer.deleteOrder(oldOrder.getId());
     }
 
     /**
@@ -127,7 +137,7 @@ public class OrderList implements Iterable<Order> {
         toEdit.setID(oldOrder.getId());
         internalList.set(oldOrderIndex, toEdit);
         orderList.put(orderId, toEdit);
-        respectiveCustomer.editOrder(oldOrder.getId(), toEdit);
+        //respectiveCustomer.editOrder(oldOrder.getId(), toEdit);
     }
 
     /**

@@ -6,19 +6,17 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.person.Phone;
-
 public class QuantityTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new Phone(null));
+        assertThrows(NullPointerException.class, () -> new Quantity(null));
     }
 
     @Test
     public void constructor_invalidQuantity_throwsIllegalArgumentException() {
-        String invalidPhone = "";
-        assertThrows(IllegalArgumentException.class, () -> new Phone(invalidPhone));
+        String invalidQuantity = "";
+        assertThrows(IllegalArgumentException.class, () -> new Quantity(Integer.parseInt(invalidQuantity)));
     }
 
     @Test
@@ -55,10 +53,10 @@ public class QuantityTest {
         // null -> returns false
         assertFalse(quantity.equals(null));
 
-        // different values -> returns false
+        // different types -> returns false
         assertFalse(quantity.equals(5.0f));
 
-        // different types -> returns false
-        assertFalse(quantity.equals(new Product("Cupcake")));
+        // same type, different value -> returns false
+        assertFalse(quantity.equals(new Quantity(5)));
     }
 }

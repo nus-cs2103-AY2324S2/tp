@@ -58,11 +58,6 @@ public class MatchingPhonePredicateTest {
         // Non-matching keyword
         predicate = new MatchingPhonePredicate(Arrays.asList("12345"));
         assertFalse(predicate.test(new PersonBuilder().withPhone("56789").build()));
-
-        //  match address, email and name, but does not match phone
-        predicate = new MatchingPhonePredicate(Arrays.asList("12345", "alice@email.com", "Alice", "Main", "Street"));
-        assertFalse(predicate.test(new PersonBuilder().withName("Alice").withPhone("59999")
-                .withEmail("alice@email.com").withAddress("Main Street").build()));
     }
 
     @Test

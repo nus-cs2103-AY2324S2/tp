@@ -66,7 +66,6 @@ public class AddressBook implements ReadOnlyAddressBook {
 
         setPersons(newData.getPersonList());
         setOrders(newData.getOrderList());
-        //we need to make setOrders
     }
 
     //// person-level operations
@@ -91,10 +90,19 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Adds an {@code Order} to the {@code OrderList} of this address book.
      *
      */
-    public void addOrder(Order order, Person person) {
+    public void addOrder(Order order) {
         int orderCounter = orders.getOrderIdCounter();
         order.setID(orderCounter);
-        orders.addOrder(order, person);
+        orders.addOrder(order);
+    }
+
+    /**
+     * Adds an {@code Order} to the {@code OrderList} of this addressbook with a predefined ID (for storage purposes).
+     * @param order Order Object to be added into the Order List.
+     */
+    public void addOrderWithID(Order order) {
+        int orderId = order.getId();
+        orders.addOrderWithID(order, orderId);
     }
 
     public Order findOrderByIndex(int id) {
@@ -112,12 +120,18 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.setPerson(target, editedPerson);
     }
 
+    public void setOrder(Order target, Order edittedOrder) {
+        requireNonNull(edittedOrder);
+
+        orders.setOrder(target, edittedOrder);
+    }
+
     /**
      * Replaces the given person {@code target} in the list with {@code editedPerson}.
      * {@code target} must exist in the address book.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
      */
-    public Order setOrder(Order target, Product currProduct, Quantity newQuantity) {
+    public Order editOrder(Order target, Product currProduct, Quantity newQuantity) {
         requireNonNull(target);
         return target.updateOrder(currProduct, newQuantity);
     }
@@ -157,6 +171,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     //Make sure to implement abstract method for this
     public ObservableList<Order> getOrderList() {
         return orders.asUnmodifiableObservableList();
+    }
+    public OrderList getOrderListClass() {
+        return orders;
     }
 
     public int getOrderListSize() {

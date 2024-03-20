@@ -42,6 +42,19 @@ public class Person {
         this.tags.addAll(tags);
     }
 
+    /**
+     * Every field must be present and not null.
+     */
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, ArrayList<Order> orders) {
+        requireAllNonNull(name, phone, email, address, tags, orders);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.orders = orders;
+    }
+
     public Name getName() {
         return name;
     }
