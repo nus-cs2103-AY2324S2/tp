@@ -198,11 +198,6 @@ public class MainWindow extends UiPart<Stage> {
                     articleListPanelPlaceholder.getChildren().add(articleListPanel.getRoot());
                 }
 
-                /* Show articleListPanel and hide personListPanel
-                articleListPanelPlaceholder.setVisible(true);
-                personListPanelPlaceholder.setVisible(false);
-                 */
-
             } else if (logic.commandType(commandText).equals("personCommand")) {
                 // Initialize personListPanel if not already initialized
                 if (personListPanel == null) {
@@ -210,10 +205,6 @@ public class MainWindow extends UiPart<Stage> {
                     personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
                 }
 
-                /* Show personListPanel and hide articleListPanel
-                personListPanelPlaceholder.setVisible(true);
-                articleListPanelPlaceholder.setVisible(false);
-                 */
             }
             return commandResult;
         } catch (CommandException | ParseException e) {
