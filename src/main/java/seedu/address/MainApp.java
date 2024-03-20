@@ -101,7 +101,7 @@ public class MainApp extends Application {
             groupListOptional = storage.readGroupList();
             if (!groupListOptional.isPresent()) {
                 logger.info("Creating a new data file " + storage.getGroupListFilePath()
-                        + " populated with a sample GroupList.");
+                        + " starting with an empty GroupList.");
             }
             initialGroupList = groupListOptional.orElseGet(GroupList::new);
         } catch (DataLoadingException e) {
