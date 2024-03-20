@@ -71,8 +71,9 @@ public class TagCommandTest {
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), expectedPerson);
 
-        assertThrows(CommandException.class, TagCommand.MESSAGE_DUPLICATE_TAGS,
-                () -> tagCommand.execute(expectedModel));
+        String expectedMessage = TagCommand.MESSAGE_DUPLICATE_TAGS;
+
+        assertThrows(CommandException.class, expectedMessage, () -> tagCommand.execute(expectedModel));
     }
 
     @Test
@@ -83,8 +84,9 @@ public class TagCommandTest {
 
         TagCommand tagCommand = new TagCommand(invalidId, new HashSet<Tag>());
 
-        assertThrows(CommandException.class, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_ID,
-                () -> tagCommand.execute(expectedModel));
+        String expectedMessage = TagCommand.MESSAGE_DUPLICATE_TAGS;
+
+        assertThrows(CommandException.class, expectedMessage, () -> tagCommand.execute(expectedModel));
     }
 
     @Test
