@@ -84,14 +84,14 @@ public class TypicalPersons {
             .withName("Elle Meyer")
             .withGender("F")
             .withBirthDate("03-02-1997")
-            .withPhone("9482224")
+            .withPhone("94822245")
             .withEmail("werner@example.com").build();
     public static final Person FIONA = new PersonBuilder()
             .withNric("F1234567A")
             .withName("Fiona Kunz")
             .withGender("F")
             .withBirthDate("03-06-1996")
-            .withPhone("9482427")
+            .withPhone("94824277")
             .withEmail("lydia@example.com")
             .build();
     public static final Person GEORGE = new PersonBuilder()
@@ -99,7 +99,7 @@ public class TypicalPersons {
             .withName("George Best")
             .withGender("M")
             .withBirthDate("01-03-2002")
-            .withPhone("9482442")
+            .withPhone("94824423")
             .withEmail("anna@example.com")
             .withIllnesses("Genetic Disorder").build();
 
@@ -109,14 +109,14 @@ public class TypicalPersons {
             .withGender("M")
             .withBirthDate("04-11-2000")
             .withName("Hoon Meier")
-            .withPhone("8482424")
+            .withPhone("84824242")
             .withEmail("stefan@example.com")
             .withIllnesses("Nutritional Deficiency").build();
     public static final Person IDA = new PersonBuilder()
             .withNric("G1234567A")
             .withName("Ida Mueller")
             .withGender("F")
-            .withPhone("8482131")
+            .withPhone("84821311")
             .withEmail("hans@example.com")
             .withDrugAllergy("Sulfonamides").build();
 

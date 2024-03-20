@@ -42,7 +42,7 @@ public class ParserUtilTest {
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_GENDER = "M";
     private static final String VALID_BIRTHDATE = "01-02-1999";
-    private static final String VALID_PHONE = "123456";
+    private static final String VALID_PHONE = "65435623";
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_DRUG_ALLERGY = "Penicillin";
     private static final String VALID_ILLNESS_1 = "Infectious Disease";

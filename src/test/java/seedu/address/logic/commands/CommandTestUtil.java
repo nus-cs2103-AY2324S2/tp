@@ -44,8 +44,8 @@ public class CommandTestUtil {
     public static final String VALID_GENDER_BOB = "M";
     public static final String VALID_BIRTHDATE_AMY = "01-05-2000";
     public static final String VALID_BIRTHDATE_BOB = "02-03-1999";
-    public static final String VALID_PHONE_AMY = "11111111";
-    public static final String VALID_PHONE_BOB = "22222222";
+    public static final String VALID_PHONE_AMY = "94505321";
+    public static final String VALID_PHONE_BOB = "84505322";
     public static final String VALID_EMAIL_AMY = "amy@example.com";
     public static final String VALID_EMAIL_BOB = "bob@example.com";
     public static final String VALID_DRUG_ALLERGY_AMY = "Penicillin";
@@ -99,9 +99,13 @@ public class CommandTestUtil {
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
-            .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).build();
+                .withGender(VALID_GENDER_AMY).withBirthDate(VALID_BIRTHDATE_AMY)
+                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY)
+                .withDrugAllergy(VALID_DRUG_ALLERGY_AMY).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
-            .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).build();
+                .withGender(VALID_GENDER_BOB).withBirthDate(VALID_BIRTHDATE_BOB)
+                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
+                .withDrugAllergy(VALID_DRUG_ALLERGY_BOB).build();
     }
 
     /**
