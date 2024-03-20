@@ -7,7 +7,6 @@ import static vitalconnect.logic.commands.CommandTestUtil.DESC_AMY;
 import static vitalconnect.logic.commands.CommandTestUtil.DESC_BOB;
 import static vitalconnect.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static vitalconnect.logic.commands.CommandTestUtil.VALID_NRIC_BOB;
-import static vitalconnect.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
 import org.junit.jupiter.api.Test;
 
@@ -41,10 +40,6 @@ public class EditPersonDescriptorTest {
         // different nric -> returns false
         editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withNric(VALID_NRIC_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
-
-        // different tags -> returns false
-        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_HUSBAND).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
     }
 
     @Test
@@ -52,8 +47,7 @@ public class EditPersonDescriptorTest {
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
         String expected = EditPersonDescriptor.class.getCanonicalName() + "{name="
                 + editPersonDescriptor.getName().orElse(null) + ", nric="
-                + editPersonDescriptor.getNric().orElse(null) + ", tags="
-                + editPersonDescriptor.getTags().orElse(null) + "}";
+                + editPersonDescriptor.getNric().orElse(null) + "}";
         assertEquals(expected, editPersonDescriptor.toString());
     }
 }

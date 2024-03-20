@@ -3,6 +3,7 @@ package vitalconnect.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import vitalconnect.model.allergytag.AllergyTag;
 import vitalconnect.model.person.Person;
 import vitalconnect.model.person.contactinformation.Address;
 import vitalconnect.model.person.contactinformation.ContactInformation;
@@ -11,7 +12,9 @@ import vitalconnect.model.person.contactinformation.Phone;
 import vitalconnect.model.person.identificationinformation.IdentificationInformation;
 import vitalconnect.model.person.identificationinformation.Name;
 import vitalconnect.model.person.identificationinformation.Nric;
-import vitalconnect.model.tag.Tag;
+import vitalconnect.model.person.medicalinformation.Height;
+import vitalconnect.model.person.medicalinformation.MedicalInformation;
+import vitalconnect.model.person.medicalinformation.Weight;
 import vitalconnect.model.util.SampleDataUtil;
 
 /**
@@ -24,13 +27,17 @@ public class PersonBuilder {
     public static final String DEFAULT_EMAIL = "";
     public static final String DEFAULT_PHONE = "";
     public static final String DEFAULT_ADDRESS = "";
+    public static final String DEFAULT_HEIGHT = "";
+    public static final String DEFAULT_WEIGHT = "";
 
     private Name name;
     private Nric nric;
     private Email email;
     private Phone phone;
     private Address address;
-    private Set<Tag> tags;
+    private Height height;
+    private Weight weight;
+    private Set<AllergyTag> allergyTags;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -41,7 +48,9 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         phone = new Phone(DEFAULT_PHONE);
         address = new Address(DEFAULT_ADDRESS);
-        tags = new HashSet<>();
+        height = new Height(DEFAULT_HEIGHT);
+        weight = new Weight(DEFAULT_WEIGHT);
+        allergyTags = new HashSet<>();
     }
 
     /**
@@ -53,7 +62,9 @@ public class PersonBuilder {
         email = personToCopy.getContactInformation().getEmail();
         phone = personToCopy.getContactInformation().getPhone();
         address = personToCopy.getContactInformation().getAddress();
-        tags = new HashSet<>(personToCopy.getTags());
+        height = personToCopy.getMedicalInformation().getHeight();
+        weight = personToCopy.getMedicalInformation().getWeight();
+        allergyTags = new HashSet<>(personToCopy.getMedicalInformation().getAllergyTag());
     }
 
     /**
@@ -65,10 +76,11 @@ public class PersonBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     * Parses the {@code allergyTags} into a {@code Set<AllergyTag>}
+     * and set it to the {@code Person} that we are building.
      */
     public PersonBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
+        this.allergyTags = SampleDataUtil.getTagSet(tags);
         return this;
     }
 
@@ -105,11 +117,26 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code Height} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withHeight(String height) {
+        this.height = new Height(height);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Weight} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withWeight(String weight) {
+        this.weight = new Weight(weight);
+        return this;
+    }
+    /**
      * Build a person.
      */
     public Person build() {
         return new Person(new IdentificationInformation(name, nric),
-            new ContactInformation(email, phone, address), tags);
+            new ContactInformation(email, phone, address), new MedicalInformation(height, weight, allergyTags));
     }
 
 }

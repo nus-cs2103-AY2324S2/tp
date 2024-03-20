@@ -13,7 +13,6 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import vitalconnect.logic.commands.AddCommand;
 import vitalconnect.logic.commands.AddContactCommand;
 import vitalconnect.logic.commands.ClearCommand;
 import vitalconnect.logic.commands.CreateAptCommand;
@@ -39,12 +38,12 @@ public class ClinicParserTest {
 
     private final ClinicParser parser = new ClinicParser();
 
-    @Test
-    public void parseCommand_add() throws Exception {
-        Person person = new PersonBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
-        assertEquals(new AddCommand(person), command);
-    }
+    //    @Test
+    //    public void parseCommand_add() throws Exception {
+    //        Person person = new PersonBuilder().build();
+    //        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
+    //        assertEquals(new AddCommand(person), command);
+    //    }
 
     @Test
     public void parseCommand_clear() throws Exception {

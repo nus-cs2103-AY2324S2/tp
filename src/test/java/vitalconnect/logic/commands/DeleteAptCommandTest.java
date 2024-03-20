@@ -23,6 +23,7 @@ import vitalconnect.model.ReadOnlyUserPrefs;
 import vitalconnect.model.person.Person;
 import vitalconnect.model.person.contactinformation.ContactInformation;
 import vitalconnect.model.person.identificationinformation.Nric;
+import vitalconnect.model.person.medicalinformation.MedicalInformation;
 
 public class DeleteAptCommandTest {
 
@@ -216,6 +217,15 @@ public class DeleteAptCommandTest {
 
         @Override
         public void updatePersonContactInformation(Nric nric, ContactInformation contactInformation) {
+
+        }
+
+        /**
+         * @param nric
+         * @param medicalInformation
+         */
+        @Override
+        public void updatePersonMedicalInformation(Nric nric, MedicalInformation medicalInformation) {
 
         }
 

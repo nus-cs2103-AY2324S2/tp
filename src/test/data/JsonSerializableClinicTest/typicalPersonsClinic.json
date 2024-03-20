@@ -3,51 +3,59 @@
   "persons" : [ {
     "name" : "Alice Pauline",
     "nric" : "S1234567D",
-    "tags" : [ "friends" ],
     "email": "email@e.com",
     "phone": "",
-    "address": ""
+    "address": "",
+    "height": "",
+    "weight": ""
   }, {
     "name" : "Benson Meier",
     "nric" : "S1234568B",
-    "tags" : [ "owesMoney", "friends" ],
     "email": "",
     "phone": "",
-    "address": ""
+    "address": "",
+    "height": "",
+    "weight": ""
   }, {
     "name" : "Carl Kurz",
     "nric" : "T1234567J",
-    "tags" : [ ],
     "email": "",
     "phone": "",
-    "address": ""
+    "address": "",
+    "height": "",
+    "weight": ""
   }, {
     "name" : "Daniel Meier",
     "nric" : "F1234567N",
-    "tags" : [ "friends" ],
     "email": "",
     "phone": "",
-    "address": ""
+    "address": "",
+    "height": "",
+    "weight": ""
   }, {
     "name" : "Elle Meyer",
     "nric" : "G1234567X",
-    "tags" : [ ],
     "email": "",
     "phone": "",
-    "address": ""
+    "address": "",
+    "height": "",
+    "weight": ""
   }, {
     "name" : "Fiona Kunz",
     "nric" : "M1234567K",
-    "tags" : [ ],
     "email": "",
     "phone": "",
-    "address": ""
+    "address": "",
+    "height": "",
+    "weight": ""
   }, {
     "name" : "George Best",
     "nric" : "F1234560R",
-    "tags" : [ ],
     "email": "",
     "phone": "",
-    "address": ""
+    "address": "",
+    "height": "160",
+    "weight": "160",
+    "tags" : [ "peanuts" ]
   } ]
 }

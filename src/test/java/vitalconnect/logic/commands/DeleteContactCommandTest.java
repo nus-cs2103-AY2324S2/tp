@@ -25,6 +25,7 @@ import vitalconnect.model.UserPrefs;
 import vitalconnect.model.person.Person;
 import vitalconnect.model.person.contactinformation.ContactInformation;
 import vitalconnect.model.person.identificationinformation.Nric;
+import vitalconnect.model.person.medicalinformation.MedicalInformation;
 import vitalconnect.testutil.PersonBuilder;
 
 
@@ -172,6 +173,15 @@ public class DeleteContactCommandTest {
 
         @Override
         public void updatePersonContactInformation(Nric nric, ContactInformation contactInformation) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        /**
+         * @param nric
+         * @param medicalInformation
+         */
+        @Override
+        public void updatePersonMedicalInformation(Nric nric, MedicalInformation medicalInformation) {
             throw new AssertionError("This method should not be called.");
         }
 

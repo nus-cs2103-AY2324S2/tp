@@ -20,6 +20,7 @@ import vitalconnect.model.ReadOnlyUserPrefs;
 import vitalconnect.model.person.Person;
 import vitalconnect.model.person.contactinformation.ContactInformation;
 import vitalconnect.model.person.identificationinformation.Nric;
+import vitalconnect.model.person.medicalinformation.MedicalInformation;
 
 
 public class ListAptCommandTest {
@@ -180,6 +181,14 @@ public class ListAptCommandTest {
 
         }
 
+        /**
+         * @param nric
+         * @param medicalInformation
+         */
+        @Override
+        public void updatePersonMedicalInformation(Nric nric, MedicalInformation medicalInformation) {
+
+        }
     }
 
 
