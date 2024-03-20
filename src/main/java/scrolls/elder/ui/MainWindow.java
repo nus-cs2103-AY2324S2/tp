@@ -31,7 +31,8 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private PersonListPanel befriendeeListPanel;
+    private PersonListPanel volunteerListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -42,7 +43,9 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane befriendeeListPanelPlaceholder;
+    @FXML
+    private StackPane volunteerListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -110,8 +113,8 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        befriendeeListPanel = new PersonListPanel(logic.getFilteredBefriendeeList());
+        befriendeeListPanelPlaceholder.getChildren().add(befriendeeListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -121,6 +124,9 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        volunteerListPanel = new PersonListPanel(logic.getFilteredVolunteerList());
+        volunteerListPanelPlaceholder.getChildren().add(volunteerListPanel.getRoot());
     }
 
     /**
@@ -163,8 +169,12 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    public PersonListPanel getBefriendeeListPanel() {
+        return befriendeeListPanel;
+    }
+
+    public PersonListPanel getVolunteerListPanel() {
+        return volunteerListPanel;
     }
 
     /**
