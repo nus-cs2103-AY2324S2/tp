@@ -15,6 +15,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.CommandHistory;
 import seedu.address.logic.Messages;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
@@ -53,7 +54,7 @@ class UntagCommandTest {
         var expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(actualPerson, editedPerson);
 
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertCommandSuccess(command, model, new CommandHistory(), expectedMessage, expectedModel);
     }
 
     @Test
@@ -67,7 +68,7 @@ class UntagCommandTest {
                 personName,
                 "owesMoney");
 
-        assertCommandFailure(command, model, expectedMessage);
+        assertCommandFailure(command, model, new CommandHistory(), expectedMessage);
     }
 
     @Test
@@ -76,7 +77,7 @@ class UntagCommandTest {
         var command = new UntagCommand(index, TAGS);
 
         var expectedMessage = Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
-        assertCommandFailure(command, model, expectedMessage);
+        assertCommandFailure(command, model, new CommandHistory(), expectedMessage);
     }
 
     @Test
