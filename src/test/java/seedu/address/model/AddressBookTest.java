@@ -21,7 +21,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentView;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
@@ -137,7 +136,8 @@ public class AddressBookTest {
         private final ObservableList<Appointment> appointments = FXCollections.observableArrayList();
         private final ObservableList<AppointmentView> appointmentView = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Person> persons, Collection<Appointment> appointments, Collection<AppointmentView> appointmentsView) {
+        AddressBookStub(Collection<Person> persons, Collection<Appointment> appointments,
+            Collection<AppointmentView> appointmentsView) {
             this.persons.setAll(persons);
             this.appointments.setAll(appointments);
             this.appointmentView.setAll(appointmentView);

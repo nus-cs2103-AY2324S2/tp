@@ -13,7 +13,7 @@ import seedu.address.model.person.Name;
  */
 public class AppointmentView {
 
-    private final Name name; 
+    private final Name name;
     private final Appointment appointment;
 
     /**
@@ -62,7 +62,7 @@ public class AppointmentView {
         }
 
         AppointmentView otherAppointment = (AppointmentView) other;
-        return  name.equals(otherAppointment.name)
+        return name.equals(otherAppointment.name)
                 && appointment.equals(otherAppointment.appointment);
     }
 

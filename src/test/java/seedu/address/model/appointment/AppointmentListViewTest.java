@@ -7,7 +7,6 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAppointmentViews.ALICE_APPT_VIEW;
 import static seedu.address.testutil.TypicalAppointmentViews.ALICE_APPT_VIEW_1;
 import static seedu.address.testutil.TypicalAppointmentViews.BOB_APPT_VIEW;
-import static seedu.address.testutil.TypicalPersons.getTypicalPersons;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -15,12 +14,9 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.core.date.Date;
 import seedu.address.model.appointment.exceptions.AppointmentNotFoundException;
 import seedu.address.model.appointment.exceptions.DuplicateAppointmentException;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Nric;
-import seedu.address.testutil.AppointmentBuilder;
 
 public class AppointmentListViewTest {
 
@@ -130,7 +126,8 @@ public class AppointmentListViewTest {
 
     @Test
     public void setAppointments_nullList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> appointmentListView.setAppointments((List<AppointmentView>) null));
+        assertThrows(NullPointerException.class, () ->
+            appointmentListView.setAppointments((List<AppointmentView>) null));
     }
 
     @Test

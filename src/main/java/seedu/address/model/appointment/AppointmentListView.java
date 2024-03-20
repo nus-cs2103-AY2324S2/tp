@@ -14,7 +14,6 @@ import seedu.address.model.appointment.exceptions.DuplicateAppointmentException;
 import seedu.address.model.person.Name;
 
 
-
 /**
  * A list of appointments that enforces uniqueness between its elements and does not allow nulls.
  * An appointment is considered unique by comparing using {@code Appointment#isSameAppointment(Appointment)}.
@@ -180,9 +179,7 @@ public class AppointmentListView implements Iterable<AppointmentView> {
      */
     private void sortList() {
         internalList.sort(
-            Comparator.comparing(
-                (AppointmentView appointmentView) -> appointmentView.getAppointment().getDate())
-                .thenComparing(
-                    (AppointmentView appointmentView) -> appointmentView.getAppointment().getTimePeriod()));
+            Comparator.comparing((AppointmentView appointmentView) -> appointmentView.getAppointment().getDate())
+                .thenComparing((AppointmentView appointmentView) -> appointmentView.getAppointment().getTimePeriod()));
     }
 }

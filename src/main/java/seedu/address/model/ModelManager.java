@@ -7,7 +7,6 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
@@ -16,7 +15,6 @@ import seedu.address.commons.core.date.Date;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentView;
 import seedu.address.model.appointment.TimePeriod;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 

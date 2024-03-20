@@ -2,11 +2,9 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
-
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.date.Date;
 import seedu.address.commons.util.ToStringBuilder;
@@ -143,7 +141,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void setAppointments(List<Appointment> appointments) {
         this.appointments.setAppointments(appointments);
         List<AppointmentView> apptListView = new ArrayList<AppointmentView>();
-        for (Appointment appointment : appointments) { 
+        for (Appointment appointment : appointments) {
             Name name = getPersonWithNric(appointment.getNric()).getName();
             apptListView.add(new AppointmentView(name, appointment));
         }
@@ -180,7 +178,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Replaces the given person {@code target} in the list with {@code editedAppointment}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedAppointment} must not be the same as another existing person in the address book.
+     * The person identity of {@code editedAppointment} must not be the same as another
+     * existing person in the address book.
      */
     public void setAppointment(Appointment target, Appointment editedAppointment) {
         requireNonNull(editedAppointment);
