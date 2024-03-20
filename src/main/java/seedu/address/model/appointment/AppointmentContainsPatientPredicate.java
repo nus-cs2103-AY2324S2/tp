@@ -1,11 +1,14 @@
 package seedu.address.model.appointment;
 
-import seedu.address.commons.util.StringUtil;
-import seedu.address.commons.util.ToStringBuilder;
-
 import java.util.List;
 import java.util.function.Predicate;
 
+import seedu.address.commons.util.StringUtil;
+import seedu.address.commons.util.ToStringBuilder;
+
+/**
+ * Represents a Predicate used to test if an Appointment contains specified patient keywords.
+ */
 public class AppointmentContainsPatientPredicate implements Predicate<Appointment> {
     private final List<String> keywords;
 

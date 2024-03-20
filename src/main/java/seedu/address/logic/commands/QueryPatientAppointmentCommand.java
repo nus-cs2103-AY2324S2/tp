@@ -7,7 +7,11 @@ import seedu.address.logic.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.appointment.AppointmentContainsPatientPredicate;
 
-
+/**
+ * Represents a command for querying appointments for a specific patient.
+ * The command searches for appointments of patients whose NRICs/names contain any of the specified keywords
+ * (case-insensitive) and displays them as a list with index numbers.
+ */
 public class QueryPatientAppointmentCommand extends Command {
     public static final String COMMAND_WORD = "appforpatient";
 
@@ -19,14 +23,17 @@ public class QueryPatientAppointmentCommand extends Command {
 
     private final AppointmentContainsPatientPredicate predicate;
 
-    public QueryPatientAppointmentCommand(AppointmentContainsPatientPredicate predicate) { this.predicate = predicate; }
+    public QueryPatientAppointmentCommand(AppointmentContainsPatientPredicate predicate) {
+        this.predicate = predicate;
+    }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredAppointmentList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_APPOINTMENTS_LISTED_OVERVIEW, model.getFilteredAppointmentList().size()));
+                String.format(Messages.MESSAGE_APPOINTMENTS_LISTED_OVERVIEW,
+                        model.getFilteredAppointmentList().size()));
     }
 
     @Override

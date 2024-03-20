@@ -1,16 +1,16 @@
 package seedu.address.model.appointment;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.model.person.*;
-import seedu.address.testutil.AppointmentBuilder;
-import seedu.address.testutil.PatientBuilder;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.TypicalAppointments.APPOINTMENT_1;
+import static seedu.address.testutil.TypicalAppointments.APPOINTMENT_4;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.address.testutil.TypicalAppointments.*;
+import org.junit.jupiter.api.Test;
 
 public class AppointmentContainsPatientPredicateTest {
     @Test
