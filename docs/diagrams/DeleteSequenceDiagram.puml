@@ -5,7 +5,9 @@ skinparam ArrowFontStyle plain
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
-participant ":DeleteCommandParser" as DeleteCommandParser LOGIC_COLOR
+participant "<<class>>\nCommandType" as CommandTypeClass LOGIC_COLOR
+participant "t:CommandType" as CommandType LOGIC_COLOR
+participant "<<class>>\nDeleteCommand" as DeleteCommandClass LOGIC_COLOR
 participant "d:DeleteCommand" as DeleteCommand LOGIC_COLOR
 end box
 
@@ -19,31 +21,41 @@ activate LogicManager
 LogicManager -> AddressBookParser : parseCommand("delete 1")
 activate AddressBookParser
 
-create DeleteCommandParser
-AddressBookParser -> DeleteCommandParser
-activate DeleteCommandParser
+AddressBookParser -> CommandTypeClass : valueOf("DELETE")
+activate CommandTypeClass
 
-DeleteCommandParser --> AddressBookParser
-deactivate DeleteCommandParser
+create CommandType
+CommandTypeClass -> CommandType
+activate CommandType
 
-AddressBookParser -> DeleteCommandParser : parse("1")
-activate DeleteCommandParser
+CommandType -> CommandTypeClass : t
+deactivate CommandType
+
+CommandTypeClass -> AddressBookParser : t
+deactivate CommandTypeClass
+
+AddressBookParser -> CommandType : createCommand()
+activate CommandType
+
+CommandType -> DeleteCommandClass : of("1")
+activate DeleteCommandClass
 
 create DeleteCommand
-DeleteCommandParser -> DeleteCommand
+DeleteCommandClass -> DeleteCommand
 activate DeleteCommand
 
-DeleteCommand --> DeleteCommandParser :
+DeleteCommand --> DeleteCommandClass : d
 deactivate DeleteCommand
 
-DeleteCommandParser --> AddressBookParser : d
-deactivate DeleteCommandParser
-'Hidden arrow to position the destroy marker below the end of the activation bar.
-DeleteCommandParser -[hidden]-> AddressBookParser
-destroy DeleteCommandParser
+DeleteCommandClass --> CommandType : d
+deactivate DeleteCommandClass
+
+CommandType --> AddressBookParser : d
+deactivate CommandType
 
 AddressBookParser --> LogicManager : d
 deactivate AddressBookParser
+
 
 LogicManager -> DeleteCommand : execute(m)
 activate DeleteCommand
@@ -54,7 +66,7 @@ activate Model
 Model --> DeleteCommand
 deactivate Model
 
-DeleteCommand --> LogicManager : r
+DeleteCommand --> LogicManager : result
 deactivate DeleteCommand
 
 [<--LogicManager

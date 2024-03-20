@@ -6,14 +6,19 @@ skinparam classBackgroundColor LOGIC_COLOR
 
 package Logic as LogicPackage {
 
-package "Parser Classes" as ParserClasses {
-}
+Class AddressBookParser
+
+Class CommandType
 Class XYZCommand
 Class "{abstract}\nCommand" as Command
 
 
 Class "<<interface>>\nLogic" as Logic
 Class LogicManager
+
+Class ArgumentMultimap
+Class ArgumentTokenizer
+Class ParserUtil
 }
 
 package Model {
@@ -27,17 +32,23 @@ Class HiddenOutside #FFFFFF
 HiddenOutside ..> Logic
 
 LogicManager .left.|> Logic
-LogicManager -->"1" ParserClasses
-ParserClasses ..> XYZCommand : <<create>>
+LogicManager -->"1" AddressBookParser
+
+AddressBookParser ..> CommandType : uses >
+
+CommandType .right.> XYZCommand : creates >
 
 XYZCommand -up-|> Command
-LogicManager ..> Command : <<call>>
+LogicManager ..> Command : executes >
 
 LogicManager --> Model
-LogicManager --> Storage
-Storage --[hidden] Model
-Command .[hidden]up.> Storage
+LogicManager -right-> Storage
+
 Command .right.> Model
 note right of XYZCommand: XYZCommand = AddCommand, \nFindCommand, etc
 
+XYZCommand ..> ArgumentMultimap
+XYZCommand ..> ArgumentTokenizer
+XYZCommand ..> ParserUtil
+ArgumentTokenizer .left.> ArgumentMultimap
 @enduml
