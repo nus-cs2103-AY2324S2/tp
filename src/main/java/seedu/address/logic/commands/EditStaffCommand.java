@@ -119,7 +119,6 @@ public class EditStaffCommand extends Command {
             return true;
         }
 
-        // instanceof handles nulls
         if (!(other instanceof EditStaffCommand)) {
             return false;
         }
@@ -246,20 +245,21 @@ public class EditStaffCommand extends Command {
                 return true;
             }
 
-            // instanceof handles nulls
             if (!(other instanceof EditStaffDescriptor)) {
                 return false;
             }
 
             EditStaffDescriptor otherEditStaffDescriptor = (EditStaffDescriptor) other;
 
-            // return true;
-            return Objects.equals(phone, otherEditStaffDescriptor.phone)
-                    && Objects.equals(email, otherEditStaffDescriptor.email)
-                    && Objects.equals(address, otherEditStaffDescriptor.address)
-                    && Objects.equals(tags, otherEditStaffDescriptor.tags)
-                    && Objects.equals(salary, otherEditStaffDescriptor.salary)
-                    && Objects.equals(employment, otherEditStaffDescriptor.employment);
+            boolean arePhoneEqual = Objects.equals(phone, otherEditStaffDescriptor.phone);
+            boolean areEmailEqual = Objects.equals(email, otherEditStaffDescriptor.email);
+            boolean areAddressEqual = Objects.equals(address, otherEditStaffDescriptor.address);
+            boolean areTagsEqual = Objects.equals(tags, otherEditStaffDescriptor.tags);
+            boolean areSalaryEqual = Objects.equals(salary, otherEditStaffDescriptor.salary);
+            boolean areEmploymentEqual = Objects.equals(employment, otherEditStaffDescriptor.employment);
+
+            return arePhoneEqual && areEmailEqual && areAddressEqual
+                    && areTagsEqual && areSalaryEqual && areEmploymentEqual;
         }
 
         @Override

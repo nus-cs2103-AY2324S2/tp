@@ -17,7 +17,6 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditSupplierCommand;
 import seedu.address.logic.commands.EditSupplierCommand.EditSupplierDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -36,49 +35,65 @@ public class EditSupplierCommandParser implements Parser<EditSupplierCommand> {
      */
     public EditSupplierCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_FIELD);
 
         Name name;
         String fieldArgs;
 
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_FIELD);
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_FIELD)) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditSupplierCommand.MESSAGE_USAGE));
         }
 
-        try {
-            name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    EditSupplierCommand.MESSAGE_USAGE), pe);
-        }
-
-        try {
-            fieldArgs = ParserUtil.parseField(argMultimap.getValue(PREFIX_FIELD).get());
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    EditSupplierCommand.MESSAGE_USAGE), pe);
-        }
+        name = mapName(argMultimap);
+        fieldArgs = mapFields(argMultimap);
 
         ArgumentMultimap fieldArgMultimap =
                 ArgumentTokenizer.tokenize(fieldArgs, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
                         PREFIX_PRODUCT, PREFIX_PRICE);
-
         fieldArgMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
 
         EditSupplierDescriptor editSupplierDescriptor = editSupplierDescription(fieldArgMultimap);
-
         if (!editSupplierDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditSupplierCommand.MESSAGE_NOT_EDITED);
         }
 
         Set<Tag> tags = new HashSet<>();
-        Tag tag = new Tag("supplier");
-        tags.add(tag);
+        tags.add(new Tag("supplier"));
         editSupplierDescriptor.setTags(tags);
 
-
         return new EditSupplierCommand(name, editSupplierDescriptor);
+    }
+
+    /**
+     * Returns name value using PREFIX.
+     * @param argMultimap Object that contains mapping of prefix to value.
+     * @return Returns object representing name.
+     * @throws ParseException Thrown when command is in invalid format.
+     */
+    public Name mapName(ArgumentMultimap argMultimap) throws ParseException {
+        try {
+            return ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+        } catch (ParseException pe) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditSupplierCommand.MESSAGE_USAGE), pe);
+        }
+
+    }
+
+    /**
+     * Returns field values using PREFIX.
+     * @param argMultimap Object that contains mapping of prefix to value.
+     * @return Returns object representing the respective fields.
+     * @throws ParseException Thrown when command is in invalid format.
+     */
+    public String mapFields(ArgumentMultimap argMultimap) throws ParseException {
+        try {
+            return ParserUtil.parseField(argMultimap.getValue(PREFIX_FIELD).get());
+        } catch (ParseException pe) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditSupplierCommand.MESSAGE_USAGE), pe);
+        }
     }
 
     /**

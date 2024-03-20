@@ -71,6 +71,7 @@ public class PersonUtil {
         return EditMaintainerCommand.COMMAND_WORD + " " + getMaintainerDetails(person);
     }
 
+
     /**
      * Returns the part of command string for the given {@code person}'s details.
      */
