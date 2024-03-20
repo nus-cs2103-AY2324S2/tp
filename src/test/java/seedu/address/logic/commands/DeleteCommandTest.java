@@ -19,6 +19,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.coursemate.CourseMate;
+import seedu.address.model.coursemate.Name;
 import seedu.address.model.coursemate.QueryableCourseMate;
 
 /**
@@ -50,6 +51,31 @@ public class DeleteCommandTest {
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_COURSE_MATE_DISPLAYED_INDEX);
         assertRecentlyProcessedCourseMateEdited(model, null);
+    }
+
+    @Test
+    public void execute_invalidNameUnfilteredList_throwsCommandException() {
+        Name name = new Name("Alice Paulin");
+        DeleteCommand deleteCommand = new DeleteCommand(new QueryableCourseMate(name));
+
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_COURSE_MATE_NAME);
+        assertRecentlyProcessedCourseMateEdited(model, null);
+    }
+
+    @Test
+    public void execute_validNameUnfilteredList_throwsCommandException() {
+        Name name = new Name("Alice Pauline");
+        QueryableCourseMate queryableCourseMate = new QueryableCourseMate(name);
+        CourseMate courseMateToDelete = model.findCourseMate(new QueryableCourseMate(name));
+        DeleteCommand deleteCommand = new DeleteCommand(queryableCourseMate);
+
+        String expectedMessage = DeleteCommand.MESSAGE_DELETE_COURSE_MATE_SUCCESS;
+
+        ModelManager expectedModel = new ModelManager(model.getContactList(), new UserPrefs());
+        expectedModel.deleteCourseMate(courseMateToDelete);
+
+        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel, true);
+        assertRecentlyProcessedCourseMateEdited(model, courseMateToDelete);
     }
 
     @Test

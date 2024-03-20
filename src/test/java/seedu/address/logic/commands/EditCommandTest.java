@@ -26,6 +26,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.coursemate.CourseMate;
+import seedu.address.model.coursemate.Name;
 import seedu.address.model.coursemate.QueryableCourseMate;
 import seedu.address.testutil.CourseMateBuilder;
 import seedu.address.testutil.EditCourseMateDescriptorBuilder;
@@ -138,6 +139,16 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand(new QueryableCourseMate(outOfBoundIndex), descriptor);
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_COURSE_MATE_DISPLAYED_INDEX);
+        assertRecentlyProcessedCourseMateEdited(model, null);
+    }
+
+    @Test
+    public void execute_invalidCourseMateNameUnfilteredList_failure() {
+        Name name = new Name("Bob");
+        EditCourseMateDescriptor descriptor = new EditCourseMateDescriptorBuilder().withName(VALID_NAME_BOB).build();
+        EditCommand editCommand = new EditCommand(new QueryableCourseMate(name), descriptor);
+
+        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_COURSE_MATE_NAME);
         assertRecentlyProcessedCourseMateEdited(model, null);
     }
 
