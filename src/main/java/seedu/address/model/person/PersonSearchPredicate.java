@@ -24,11 +24,11 @@ public class PersonSearchPredicate implements Predicate<Person> {
                            boolean nameContainsKeyword =
                                StringUtil.containsWordIgnoreCase(person.getName().toString(), keyword);
                            boolean tagsContainKeyword = person.getTags()
-                                .stream()
-                                .anyMatch(tag -> StringUtil.containsWordIgnoreCase(tag.get(), keyword));
+                                   .stream()
+                                   .anyMatch(tag -> StringUtil.containsWordIgnoreCase(tag.get(), keyword));
                            boolean assetsContainKeyword = person.getAssets()
-                                .stream()
-                                .anyMatch(asset -> StringUtil.containsWordIgnoreCase(asset.get(), keyword));
+                                   .stream()
+                                   .anyMatch(asset -> StringUtil.containsWordIgnoreCase(asset.get(), keyword));
                            return nameContainsKeyword || tagsContainKeyword || assetsContainKeyword;
                        });
     }
