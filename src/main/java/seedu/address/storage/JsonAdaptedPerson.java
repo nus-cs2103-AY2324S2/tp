@@ -11,6 +11,7 @@ import seedu.address.model.person.Allergies;
 import seedu.address.model.person.BloodType;
 import seedu.address.model.person.Condition;
 import seedu.address.model.person.Country;
+import seedu.address.model.person.DateOfAdmission;
 import seedu.address.model.person.DateOfBirth;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -19,8 +20,6 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Sex;
 import seedu.address.model.person.Status;
-
-import javax.swing.text.html.Option;
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -40,6 +39,7 @@ class JsonAdaptedPerson {
     private final Optional<String> allergies;
     private final Optional<String> bloodType;
     private final Optional<String> condition;
+    private final Optional<String> dateOfAdmission;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -50,7 +50,8 @@ class JsonAdaptedPerson {
                              @JsonProperty("dateOfBirth") String dob, @JsonProperty("sex") String sex,
                              @JsonProperty("status") String status, @JsonProperty("email") String email,
                              @JsonProperty("country") String country, @JsonProperty("allergies") String allergies,
-                             @JsonProperty("bloodType") String bloodType, @JsonProperty("condition") String condition) {
+                             @JsonProperty("bloodType") String bloodType, @JsonProperty("condition") String condition,
+                             @JsonProperty("dateOfAdmission") String doa) {
         this.nric = nric;
         this.name = name;
         this.phone = phone;
@@ -63,6 +64,7 @@ class JsonAdaptedPerson {
         this.allergies = Optional.ofNullable(allergies);
         this.bloodType = Optional.ofNullable(bloodType);
         this.condition = Optional.ofNullable(condition);
+        this.dateOfAdmission = Optional.ofNullable(doa);
     }
 
     /**
@@ -81,6 +83,7 @@ class JsonAdaptedPerson {
         this.allergies = Optional.ofNullable(source.getAllergies().toString());
         this.bloodType = Optional.ofNullable(source.getBloodType().toString());
         this.condition = Optional.ofNullable(source.getCondition().toString());
+        this.dateOfAdmission = Optional.ofNullable(source.getDateOfAdmission().toString());
     }
 
     /**
@@ -170,13 +173,18 @@ class JsonAdaptedPerson {
         // BloodType check
         if (bloodType.isPresent()) {
             String[] parts = bloodType.get().split("\\s+");
-            final BloodType modelBloodType = new BloodType(parts[0],parts[1]);
+            final BloodType modelBloodType = new BloodType(parts[0], parts[1]);
             person.setBloodType(modelBloodType);
         }
         //Condition check
         if (condition.isPresent()) {
             final Condition modelCondition = new Condition(condition.get());
             person.setCondition(modelCondition);
+        }
+        //Date of Admission check
+        if (dateOfAdmission.isPresent()) {
+            final DateOfAdmission modelDoa = new DateOfAdmission(dateOfAdmission.get());
+            person.setDateOfAdmission(modelDoa);
         }
         return person;
     }
