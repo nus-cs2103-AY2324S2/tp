@@ -346,14 +346,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is `OfficeHarbor` (OH) and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Remove a contact**
+**UC01: View contacts**
 
 **MSS**
 
-1.  User requests to list persons
-2.  OfficeHarbor shows a list of persons
-3.  User requests to remove a specific contact in the list
-4.  OfficeHarbor removes the contact
+1. User requests to list people.
+2. OH shows a list of people.
 
    Use case ends.
 
@@ -361,22 +359,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The list is empty.
 
-  Use case ends.
+    * 2a1. No list is shown.
 
-* 3a. The given index is invalid.
+      Use case ends.
 
-    * 3a1. AddressBook shows an error message.
-
-      Use case resumes at step 2.
-  
-
-
-**Use case: Add a contact**
+**UC02: Add a contact**
 
 **MSS**
 
-1.  User requests to add a person along with details 
-2.  AddressBook adds the person
+1.  User requests to add a person along with details.
+2.  OH adds the person.
 
     Use case ends.
 
@@ -388,76 +380,107 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
-Use case: Tagging contacts
-MSS
-1. User requests to list persons
-2. OH shows a list of persons
-3. User requests to add a tag to a specific contact in the list
-4. OH adds the tag to the contact
-
-Use case ends
-
-Extensions
-
-- 2a. The list is empty.
-
-Use case ends
-
-- 3a. The given contact is invalid
-    - 3a1. OH shows an error message
-    
-    Use case resumes at step 2
-
-- 4a. The given tag is empty or invalid
-    - 4a1. OH shows an error message
-
-    Use case resumes at step 2
-
-**Use case: Deleting a tag**
+**UC03: Remove a contact**
 
 **MSS**
 
-1. User requests to list people
-2. OfficeHarbor shows a list of people
-3. User requests to delete a specific tag of a person from the list.
-4. OfficeHarbor deletes the specified tag of that person
+1. User requests to list contacts (UC01).
+2. User requests to remove a specific contact in the list.
+3. OH removes the contact.
 
    Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
-
-  Use case ends.
-
 * 3a. The given index is invalid.
 
-    * 3a1. OfficeHarbor shows an error message.
+    * 3a1. OH shows an error message.
 
       Use case resumes at step 2.
 
-* 3b. The specified tag does not exist.
-
-    * 3b1. OfficeHarbor shows an error message.
-
-      Use case resumes at step 2.
-
-**Use case: View contacts**
+**UC04: Tagging contacts**
 
 **MSS**
 
-1.  User opens application
-2.  The system displays the contacts in a sidebar
+1. User requests to list contacts (UC01).
+2. User requests to add a tag to a specific contact in the list.
+3. OH adds the tag to the contact.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The user filters by tags
 
-    * 1a1. Only contacts with corresponding tags will be displayed
+* 2a. The given index is invalid.
 
-      Use case ends
+  * 2a1. OH shows an error message.
+    
+    Use case resumes at step 2.
+
+* 2b. The given tag is empty or invalid.
+
+  * 2b. OH shows an error message.
+
+    Use case resumes at step 2.
+
+**UC05: Deleting a tag**
+
+**MSS**
+
+1. User requests to list contacts (UC01).
+2. User requests to delete a specific tag of a person from the list.
+3. OH deletes the specified tag of that person.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The given index is invalid.
+
+    * 2a1. OH shows an error message.
+
+      Use case resumes at step 2.
+
+* 2b. The specified tag does not exist.
+
+    * 2b1. OH shows an error message.
+
+      Use case resumes at step 2.
+
+**UC06: Undoing a Command**
+
+**MSS**
+
+1. User requests to undo a command.
+2. OH resets to the state before the latest command.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. No command has been run since opening the app.
+  
+  * 2a1. OH shows an error message. 
+
+    Use case ends.
+
+**UC06: Redoing an Undo Command**
+
+**MSS**
+
+1. User requests to redo an undo.
+2. OH resets to the state before the latest command.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. No command has been run since opening the app.
+
+    * 2a1. OH shows an error message.
+
+      Use case ends.
+
 
 *{More to be added}*
 
