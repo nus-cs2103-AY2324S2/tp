@@ -15,12 +15,14 @@ import java.util.regex.Pattern;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddMemberCommand;
 import seedu.address.logic.commands.AddSkillCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CreateGroupCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteGroupCommand;
+import seedu.address.logic.commands.DeleteMemberCommand;
 import seedu.address.logic.commands.DeleteSkillCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
@@ -102,6 +104,12 @@ public class MatchMateParser {
 
         case DeleteGroupCommand.COMMAND_WORD:
             return new DeleteGroupCommandParser().parse(arguments);
+
+        case DeleteMemberCommand.COMMAND_WORD:
+            return new DeleteMemberCommandParser().parse(arguments);
+
+        case AddMemberCommand.COMMAND_WORD:
+            return new AddMemberCommandParser().parse(arguments);
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);

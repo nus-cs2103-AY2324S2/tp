@@ -41,7 +41,7 @@ public class CreateGroupCommand extends Command {
 
     /**
      * Basic constructor for {@code CreateGroupCommand}.
-     * Creates the details or a group to be created.
+     * Creates the details for a group to be created.
      * @param groupName name of the group
      * @param queryableCourseMateSet set containing the queryableCourseMate in the group
      */
