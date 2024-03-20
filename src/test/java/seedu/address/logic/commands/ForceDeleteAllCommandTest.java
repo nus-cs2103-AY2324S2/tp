@@ -13,7 +13,7 @@ import seedu.address.model.UserPrefs;
 /**
  * Contains integration and unit tests for DeleteAllCommand.
  */
-public class DeleteAllCommandTest {
+public class ForceDeleteAllCommandTest {
     /**
      * Tests when AddressBook is empty.
      */
@@ -22,7 +22,7 @@ public class DeleteAllCommandTest {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
 
-        assertCommandSuccess(new DeleteAllCommand(), model, DeleteAllCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ForceDeleteAllCommand(), model, ForceDeleteAllCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     /**
@@ -34,6 +34,6 @@ public class DeleteAllCommandTest {
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         expectedModel.setAddressBook(new AddressBook());
 
-        assertCommandSuccess(new DeleteAllCommand(), model, DeleteAllCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ForceDeleteAllCommand(), model, ForceDeleteAllCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }

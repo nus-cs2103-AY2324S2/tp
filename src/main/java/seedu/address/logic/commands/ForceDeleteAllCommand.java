@@ -5,15 +5,9 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 
-/**
- * Deletes all entries in the address book.
- */
-public class DeleteAllCommand extends Command {
-
-    public static final String COMMAND_WORD = "delete-all";
-    public static final String CONFIRMATION =
-            "Are you sure you want to delete all? This action is irreversible. If yes, enter ‘delete-all-f’. " +
-                    "If not, simply enter 'no'.";
+public class ForceDeleteAllCommand extends Command {
+    public static final String COMMAND_WORD = "delete-all-f";
+    public static final String MESSAGE_SUCCESS = "Successfully deleted all data";
 
     /**
      * Executes the command and returns the result message.
@@ -24,6 +18,8 @@ public class DeleteAllCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        return new CommandResult(CONFIRMATION);
+
+        model.setAddressBook(new AddressBook());
+        return new CommandResult(MESSAGE_SUCCESS);
     }
 }
