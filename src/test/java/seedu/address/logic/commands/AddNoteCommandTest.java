@@ -1,20 +1,56 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NOTE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NOTE_BOB;
+import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
 import seedu.address.model.person.IdentityCardNumber;
 import seedu.address.model.person.IdentityCardNumberMatchesPredicate;
 import seedu.address.model.person.Note;
+import seedu.address.model.person.Person;
+import seedu.address.testutil.PersonBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for AddNoteCommand.
  */
 public class AddNoteCommandTest {
+    @Test
+    public void testReplaceNote() throws CommandException {
+        // Setup
+        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        Person person = model.getFilteredPersonList().get(0);
+        Note originalNote = person.getNote();
+        AddNoteCommand command = new AddNoteCommand(
+                new IdentityCardNumberMatchesPredicate(person.getIdentityCardNumber()),
+                new Note("new note"), true);
+
+        // Action
+        command.execute(model);
+
+        // Verify
+        assertEquals(originalNote.toString(), person.getNote().toString());
+    }
+
+    @Test
+    public void generateSuccessMessage_noteAdded_successMessage() {
+        Person personToEdit = new PersonBuilder().withName("Alice").withIdentityCardNumber("S1234567A").build();
+        String expectedMessage = String.format(AddNoteCommand.MESSAGE_MODIFY_NOTE_SUCCESS,
+                personToEdit.getName(), personToEdit.getIdentityCardNumber());
+
+        assertEquals(expectedMessage, new AddNoteCommand(
+                new IdentityCardNumberMatchesPredicate(personToEdit.getIdentityCardNumber()),
+                new Note("new note"), false).generateSuccessMessage(personToEdit));
+    }
+
     @Test
     public void equals() {
         IdentityCardNumberMatchesPredicate firstPredicate =
