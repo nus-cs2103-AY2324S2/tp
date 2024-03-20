@@ -3,39 +3,46 @@ layout: page
 title: User Guide
 ---
 
-FitBook is a **desktop app for managing clients, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you are a personal trainer that prefers typing over mouse interactions, FitBook is the perfect application for you to manage your clients!
+FitBook is a **desktop app for managing clients, optimized for use via a Command Line Interface** (CLI) while still 
+having the benefits of a Graphical User Interface (GUI). If you are a personal trainer that prefers typing over mouse 
+interactions, FitBook is the perfect application for you to manage your clients!
 
 * Table of Contents
 {:toc}
 
---------------------------------------------------------------------------------------------------------------------
+<hr>
 
-## Quick start
+## Quick Start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11` or above installed.
 
-1. Download the latest `FitBook.jar` from [here](https://github.com/AY2324S2-CS2103T-T17-3/tp/releases).
+2. Download the latest version of `FitBook.jar` from [here](https://github.com/AY2324S2-CS2103T-T17-3/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your address book.
+3. Copy the file to the folder you want to use as the **home folder** for FitBook.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar FitBook.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Open a command terminal, `cd` into the folder with FitBook.jar, and run the `java -jar FitBook.jar` command 
+to launch the application.<br>
+
+5. A GUI similar to the one depicted below should appear in a few seconds. 
+The app might contain some sample data.<br><hr>
    ![Ui](images/Ui.png)
+<hr>
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
+6. Read through `help`, type any command listed into the input box and press `enter` <br>
+   These are some example commands you can try!
+ 
+   * `add n/John p/98765432` Adds a client named
+   `John Doe` with the number `98765432` to FitBook.
 
-   * `list` : Lists all contacts.
+   * `clear` : Clears all clients from the list.
 
-   * `add n/John p/98765432 e/john@example.com a/Street 77, Block 2, #01-01 note/John from work` : Adds a contact named `John Doe` to the Address Book.
-
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
-
-   * `clear` : Deletes all contacts.
-
+   * `delete 3` : Deletes the third client shown in the list.
+   
    * `exit` : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+   * `list` : Lists all clients.
+
+7. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
