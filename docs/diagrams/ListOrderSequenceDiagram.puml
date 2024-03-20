@@ -2,45 +2,79 @@
 !include style.puml
 skinparam ArrowFontStyle plain
 
-Actor User as user USER_COLOR
-Participant ":UI" as ui UI_COLOR
-Participant ":Logic" as logic LOGIC_COLOR
-Participant ":Model" as model MODEL_COLOR
-Participant "Person" as person PEOPLE_COLOR
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":ListOrderCommandParser" as ListOrderCommandParser LOGIC_COLOR
+participant "l:ListOrderCommand" as ListOrderCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
 
-user -[USER_COLOR]> ui : "listorder 1"
-activate ui UI_COLOR
+box Person PERSON_COLOR_T1
+participant ":Person" as Person PERSON_COLOR
+end box
 
-ui -[UI_COLOR]> logic : execute("listorder 1")
-activate logic LOGIC_COLOR
+box Model MODEL_COLOR_T1
+participant "m:Model" as Model MODEL_COLOR
+end box
 
-logic -[LOGIC_COLOR]> model : getFilteredPersonList()
-activate model MODEL_COLOR
+[-> LogicManager : execute(args)
+activate LogicManager
 
-model -[MODEL_COLOR]-> logic : personList
-deactivate model MODEL_COLOR
+LogicManager -> AddressBookParser : parseCommand(args)
+activate AddressBookParser
 
-logic -[LOGIC_COLOR]> model : getPerson(Index)
-activate model MODEL_COLOR
+create ListOrderCommandParser
+AddressBookParser -> ListOrderCommandParser :
+activate ListOrderCommandParser
 
-model -[MODEL_COLOR]-> logic : personTargeted
-deactivate model MODEL_COLOR
 
-logic -[LOGIC_COLOR]> person : getOrders()
-activate person PEOPLE_COLOR
+create ListOrderCommand
+ListOrderCommandParser --> ListOrderCommand :
+activate ListOrderCommand
+deactivate ListOrderCommandParser
 
-person -[PEOPLE_COLOR]-> logic : orders
-deactivate person PEOPLE_COLOR
+ListOrderCommand --> AddressBookParser : l
+deactivate ListOrderCommand
 
-logic -[LOGIC_COLOR]> logic : sortOrdersByDate(orders)
-activate logic LOGIC_COLOR
-logic --[LOGIC_COLOR]> logic
-deactivate logic LOGIC_COLOR
+AddressBookParser --> LogicManager : l
+deactivate AddressBookParser
 
-logic -[LOGIC_COLOR]> ui : createOrderListString(sortedOrders)
-deactivate logic LOGIC_COLOR
+LogicManager -> ListOrderCommand : execute(m)
+activate ListOrderCommand
 
-ui -[UI_COLOR]> user : display orders
-deactivate ui UI_COLOR
+ListOrderCommand -> Model : getFilteredPersonList()
+activate Model
 
+Model --> ListOrderCommand : lastShownList
+deactivate Model
+
+ListOrderCommand -> Model : getPerson(Index)
+activate Model
+
+Model --> ListOrderCommand : personTargeted
+deactivate Model
+
+ListOrderCommand -> Person : getOrders()
+activate Person
+
+Person --> ListOrderCommand : orders
+deactivate Person
+
+ListOrderCommand -> ListOrderCommand : createOrderListString(orders)
+activate ListOrderCommand #DarkSlateGray
+ListOrderCommand --> ListOrderCommand : sortedOrders
+deactivate ListOrderCommand #DarkSlateGray
+
+create CommandResult
+ListOrderCommand -> CommandResult :
+activate CommandResult #DarkSlateGray
+CommandResult --> ListOrderCommand
+deactivate CommandResult #DarkSlateGray
+
+ListOrderCommand --> LogicManager : r
+deactivate ListOrderCommand
+
+[<-- LogicManager : r
+deactivate LogicManager
 @enduml
