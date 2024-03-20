@@ -33,6 +33,7 @@ public class FindAndExportCommand extends Command {
     private final String name;
     private final String address;
     private final String filename;
+    private final String fileFormat;
 
     /**
      * Constructs a FindAndExportCommand to find and export users' information.
@@ -42,11 +43,12 @@ public class FindAndExportCommand extends Command {
      * @param address The address substring by which users are further filtered. Can be {@code null}.
      * @param filename The name of the file to which the filtered users are exported.
      */
-    public FindAndExportCommand(String tag, String name, String address, String filename) {
+    public FindAndExportCommand(String tag, String name, String address, String filename, String fileFormat){
         this.tag = tag;
         this.name = name;
         this.address = address;
         this.filename = filename;
+        this.fileFormat = fileFormat;
     }
 
     public String getTag() {
@@ -65,6 +67,10 @@ public class FindAndExportCommand extends Command {
         return filename;
     }
 
+    public String getFileFormat() {
+        return fileFormat;
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         Predicate<Person> predicate = createPredicateForFiltering(tag, name, address);
@@ -77,8 +83,8 @@ public class FindAndExportCommand extends Command {
         }
 
         try {
-            exportData(filteredList, filename);
-            return new CommandResult(String.format("Export successful to [%s].", filename));
+            exportData(filteredList, this.filename, this.fileFormat);
+            return new CommandResult(String.format("Export successful to [%s].", this.filename));
         } catch (IOException e) {
             throw new CommandException("Error exporting data: " + e.getMessage());
         }
@@ -101,7 +107,20 @@ public class FindAndExportCommand extends Command {
         return predicate;
     }
 
-    private void exportData(List<Person> users, String filename) throws IOException {
+    private void exportData(List<Person> users, String filename, String fileFormat) throws IOException {
+        switch (fileFormat) {
+        case "json":
+            exportDataAsJSON(users, filename);
+            break;
+        case "csv":
+            exportDataAsCSV(users, filename);
+            break;
+        default:
+            throw new IOException("Unsupported file format: " + fileFormat);
+        }
+    }
+
+    private void exportDataAsJSON(List<Person> users, String filename) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         mapper.registerModule(new JavaTimeModule());
         mapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
@@ -114,5 +133,23 @@ public class FindAndExportCommand extends Command {
             throw new IOException("File exists but is not writable: " + path);
         }
         mapper.writeValue(Files.newOutputStream(path), data);
+    }
+
+    private void exportDataAsCSV(List<Person> users, String filename) throws IOException {
+        Path path = Paths.get(filename);
+        if (Files.exists(path) && !Files.isWritable(path)) {
+            throw new IOException("File exists but is not writable: " + path);
+        }
+        StringBuilder csv = new StringBuilder();
+        csv.append("Name,Phone,Email,Address,Tags\n");
+        for (Person user : users) {
+            csv.append(user.getName().fullName).append(",");
+            csv.append(user.getPhone().value).append(",");
+            csv.append(user.getEmail().value).append(",");
+            csv.append(user.getAddress().value).append(",");
+            csv.append(user.getTags().stream().map(tag -> tag.tagName).reduce((a, b) -> a + "| " + b).orElse(""));
+            csv.append("\n");
+        }
+        Files.writeString(path, csv);
     }
 }
