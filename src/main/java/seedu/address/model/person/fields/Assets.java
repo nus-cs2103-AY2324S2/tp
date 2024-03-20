@@ -17,7 +17,7 @@ import seedu.address.model.asset.Asset;
 public class Assets implements Field {
 
     public static final Prefix PREFIX_ASSET = new Prefix("A/");
-    public final Set<Asset> assets;
+    public Set<Asset> assets;
 
     /**
      * Constructs a new {@code Assets} from a list of assets.
@@ -57,8 +57,9 @@ public class Assets implements Field {
     }
 
     public void update(Asset assetToEdit, Asset newAsset) {
-        assets.remove(assetToEdit);
-        assets.add(newAsset);
+        assets = assets.stream()
+                .map(asset -> asset.equals(assetToEdit) ? newAsset : asset)
+                .collect(Collectors.toUnmodifiableSet());
     }
 
     public Stream<Asset> stream() {

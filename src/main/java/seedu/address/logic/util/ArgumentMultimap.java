@@ -10,6 +10,8 @@ import java.util.stream.Stream;
 import seedu.address.logic.Messages;
 import seedu.address.model.person.fields.Prefix;
 
+import static seedu.address.model.person.fields.Assets.PREFIX_ASSET;
+
 /**
  * Stores mapping of prefixes to their respective arguments.
  * Each key may be associated with multiple argument values.
@@ -60,6 +62,13 @@ public class ArgumentMultimap {
      */
     public String getPreamble() {
         return getValue(new Prefix("")).orElse("");
+    }
+
+    /**
+     * Returns the asset to edit. Trims any leading/trailing spaces.
+     */
+    public String getAssetToEdit() {
+        return getValue(PREFIX_ASSET).orElse("");
     }
 
     /**

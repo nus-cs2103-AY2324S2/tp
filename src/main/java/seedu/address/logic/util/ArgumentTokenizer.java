@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.person.fields.Prefix;
 
+import static seedu.address.model.person.fields.Assets.PREFIX_ASSET;
 import static seedu.address.model.person.fields.Name.PREFIX_NAME;
 
 /**
@@ -42,7 +43,9 @@ public class ArgumentTokenizer {
     public static ArgumentMultimap tokenizeEditAsset(String argsString) {
         ArgumentMultimap argMultimap = new ArgumentMultimap();
 
-        argMultimap.put(PREFIX_NAME, argsString.substring(argsString.lastIndexOf(" ") + 1));
+        String trimmedArgsString = argsString.trim();
+        argMultimap.put(PREFIX_ASSET, trimmedArgsString.substring(0, trimmedArgsString.indexOf(" ")));
+        argMultimap.put(PREFIX_NAME, trimmedArgsString.substring(trimmedArgsString.lastIndexOf(" ") + 1));
 
         return argMultimap;
     }

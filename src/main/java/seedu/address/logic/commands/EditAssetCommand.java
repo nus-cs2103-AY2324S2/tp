@@ -103,7 +103,7 @@ public class EditAssetCommand extends Command {
         Asset asset;
 
         try {
-            asset = ParserUtil.parseAsset(argMultimap.getPreamble());
+            asset = ParserUtil.parseAsset(argMultimap.getAssetToEdit());
         } catch (IllegalArgumentException ie) {
             throw new IllegalArgumentException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditAssetCommand.MESSAGE_USAGE), ie);

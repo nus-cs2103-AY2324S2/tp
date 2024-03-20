@@ -32,7 +32,7 @@ public class ParserUtil {
      */
     public static Asset parseAsset(String assetToEdit) throws IllegalArgumentException {
         String trimmedAssetToEdit = assetToEdit.trim();
-        if (trimmedAssetToEdit.equals("")) {
+        if (trimmedAssetToEdit.isEmpty()) {
             throw new IllegalArgumentException(MESSAGE_INVALID_ASSET);
         }
         return Asset.of(trimmedAssetToEdit);
