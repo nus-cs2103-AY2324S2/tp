@@ -62,7 +62,7 @@ public class UnsortedTypicalCompanies {
     public static AddressBook getUnsortedTypicalAddressBook() {
         AddressBook ab = new AddressBook();
         for (Company company : getUnsortedTypicalPersons()) {
-            ab.addPerson(company);
+            ab.addCompany(company);
         }
         return ab;
     }
