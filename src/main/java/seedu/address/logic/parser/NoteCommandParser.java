@@ -20,7 +20,7 @@ public class NoteCommandParser implements Parser<NoteCommand> {
      */
     public NoteCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        NoteCommand.EditStartupDescriptor editStartupDescriptor = new NoteCommand.EditStartupDescriptor();
+        NoteCommand.NoteStartupDescriptor noteStartupDescriptor = new NoteCommand.NoteStartupDescriptor();
         String[] argParts = args.trim().split("\\s+", 2); // Split into index and note description
 
         if (argParts.length != 2 || !argParts[0].matches("\\d+")) {
@@ -31,11 +31,11 @@ public class NoteCommandParser implements Parser<NoteCommand> {
         try {
             index = ParserUtil.parseIndex(argParts[0]);
             Note newNote = new Note(argParts[1]);
-            editStartupDescriptor.setNote(newNote);
+            noteStartupDescriptor.setNote(newNote);
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, NoteCommand.MESSAGE_USAGE), pe);
         }
-        return new NoteCommand(index, new NoteCommand.EditStartupDescriptor(editStartupDescriptor));
+        return new NoteCommand(index, new NoteCommand.NoteStartupDescriptor(noteStartupDescriptor));
     }
 }
 

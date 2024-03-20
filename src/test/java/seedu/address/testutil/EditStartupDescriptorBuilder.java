@@ -41,6 +41,7 @@ public class EditStartupDescriptorBuilder {
         descriptor.setEmail(startup.getEmail());
         descriptor.setAddress(startup.getAddress());
         descriptor.setTags(startup.getTags());
+
     }
 
     /**
