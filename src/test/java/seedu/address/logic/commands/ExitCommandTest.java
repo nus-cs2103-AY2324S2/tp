@@ -14,6 +14,6 @@ public class ExitCommandTest {
 
     @Test
     public void execute_exit_success() {
-        assertCommandSuccess(new ExitCommand(), model, Messages.MESSAGE_EXIT_ACKNOWLEDGEMENT, expectedModel);
+        assertCommandSuccess(new ExitCommand(), model, Messages.MESSAGE_EXITING, expectedModel);
     }
 }

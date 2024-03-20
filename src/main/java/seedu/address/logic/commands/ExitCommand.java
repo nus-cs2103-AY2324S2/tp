@@ -12,7 +12,7 @@ public class ExitCommand extends Command {
 
     @Override
     public String execute(Model model) {
-        return Messages.MESSAGE_EXIT_ACKNOWLEDGEMENT;
+        return Messages.MESSAGE_EXITING;
     }
 
 }

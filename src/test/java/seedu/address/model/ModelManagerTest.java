@@ -1,5 +1,6 @@
 package seedu.address.model;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -15,6 +16,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.exceptions.AddressBookUndoException;
 import seedu.address.model.person.PersonMatchesKeywordsPredicate;
 import seedu.address.testutil.AddressBookBuilder;
 
@@ -70,6 +72,28 @@ public class ModelManagerTest {
         Path path = Paths.get("address/book/file/path");
         modelManager.setAddressBookFilePath(path);
         assertEquals(path, modelManager.getAddressBookFilePath());
+    }
+
+    @Test
+    public void canUndo_undoRemaining_returnTrue() {
+        modelManager.addPerson(ALICE);
+        assertTrue(modelManager.canUndo());
+    }
+
+    @Test
+    public void canUndo_noUndoRemaining_returnFalse() {
+        assertFalse(modelManager.canUndo());
+    }
+
+    @Test
+    public void undo_undoRemaining_success() {
+        modelManager.addPerson(ALICE);
+        assertDoesNotThrow(() -> modelManager.undo());
+    }
+
+    @Test
+    public void undo_noUndoRemaining_throwsAddressBookUndoException() {
+        assertThrows(AddressBookUndoException.class, () -> modelManager.undo());
     }
 
     @Test

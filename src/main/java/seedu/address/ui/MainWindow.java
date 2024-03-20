@@ -185,10 +185,10 @@ public class MainWindow extends UiPart<Stage> {
             throw e;
         }
 
-        if (commandResult.equals(Messages.MESSAGE_SHOWING_HELP)) {
+        if (commandResult == Messages.MESSAGE_SHOWING_HELP) {
             handleHelp();
         }
-        if (commandResult.equals(Messages.MESSAGE_EXIT_ACKNOWLEDGEMENT)) {
+        if (commandResult == Messages.MESSAGE_EXITING) {
             handleExit();
         }
         return commandResult;
