@@ -52,7 +52,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
@@ -68,7 +68,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
@@ -105,7 +105,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
+* When editing tags, the existing tags of the person will be removed i.e. adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `t/` without
     specifying any tags after it.
 
@@ -119,7 +119,7 @@ Finds persons whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
+* The search is case-insensitive. e.g. `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
@@ -150,6 +150,25 @@ Examples:
 Clears all entries from the address book.
 
 Format: `clear`
+
+### Locating articles by title: `find -a`
+
+Finds articles whose titles contain any of the given keywords.
+
+Format: `find -a KEYWORD [MORE_KEYWORDS]`
+
+* Mnemonics or technical terms that are widely used in Singapore like `HDB`, `CPF`, `NSF` would be allowed and treated as normal words during the search 
+* The search is case-insensitive. e.g `fire` will match `Fire`
+* The order of the keywords does not matter. e.g. `HDB Fire` will match `Fire HDB`
+* Only the title is searched
+* Only full words will be matched e.g. `Fire` will not match `Fires` 
+* Articles matching at least one keyword will be returned e.g. `find -a HDB Fire` will return an article with title: `HDB BTO prices on the rise and Fire at Coffee Shop in Bukit Batok`
+
+Examples:
+* `find -a Monkey King` returns two articles: `Monkey breaking window of NTU student’s hall after being aggravated` and `King Charles’ health crisis: the future of Britain becomes uncertain`
+
+
+* `find -a King` returns two articles: `King Charles’ health crisis: the future of Britain becomes uncertain` and `The king of the Jungle now reigns supreme in the state of Ohio`
 
 ### Exiting the program : `exit`
 
