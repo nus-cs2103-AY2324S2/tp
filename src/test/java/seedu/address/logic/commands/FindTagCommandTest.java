@@ -56,7 +56,7 @@ public class FindTagCommandTest {
     @Test
     public void execute_zeroKeywords_noContactFound() {
         String expectedMessage = String.format(MESSAGE_CONTACT_LISTED_OVERVIEW, 0);
-        List<String> tagKeywords = List.of(" ");
+        List<String> tagKeywords = List.of("Acquaintances");
         TagsContainKeywordsPredicate predicate = new TagsContainKeywordsPredicate(tagKeywords);
         FindTagCommand command = new FindTagCommand(tagKeywords);
         expectedModel.updateFilteredContactList(predicate);
@@ -77,7 +77,7 @@ public class FindTagCommandTest {
 
     @Test
     public void toStringMethod() {
-        List<String> tagKeywords= List.of("keyword");
+        List<String> tagKeywords= List.of("School", "Work");
         FindTagCommand FindTagCommand = new FindTagCommand(tagKeywords);
         String expected = FindTagCommand.class.getCanonicalName() + "{predicate=" + tagKeywords + "}";
         assertEquals(expected, FindTagCommand.toString());

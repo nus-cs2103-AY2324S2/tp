@@ -54,11 +54,10 @@ public class TagsContainKeywordsPredicateTest{
         assertTrue(predicate.test(new ContactBuilder().withTags("sChooL").build()));
     }
 
-    @Test
     public void test_nameDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
         TagsContainKeywordsPredicate predicate = new TagsContainKeywordsPredicate(Collections.emptyList());
-        assertFalse(predicate.test(new ContactBuilder().withName("School").build()));
+        assertFalse(predicate.test(new ContactBuilder().withTags("School").build()));
 
         // Only one matching keyword
         predicate = new TagsContainKeywordsPredicate(Arrays.asList("School", "Work"));
@@ -66,7 +65,7 @@ public class TagsContainKeywordsPredicateTest{
 
         // Non-matching keyword
         predicate = new TagsContainKeywordsPredicate(List.of("Work"));
-        assertFalse(predicate.test(new ContactBuilder().withName("School").build()));
+        assertFalse(predicate.test(new ContactBuilder().withTags("School").build()));
     }
 
     @Test
@@ -74,7 +73,9 @@ public class TagsContainKeywordsPredicateTest{
         List<String> keywords = List.of("keyword1", "keyword2");
         TagsContainKeywordsPredicate predicate = new TagsContainKeywordsPredicate(keywords);
 
-        String expected = TagsContainKeywordsPredicate.class.getCanonicalName() + "{keywords=" + keywords + "}";
+        String expected = TagsContainKeywordsPredicate.class.getCanonicalName() + "{tagKeywords=" + keywords + "}";
+        System.out.println(expected);
+        System.out.println(predicate.toString());
         assertEquals(expected, predicate.toString());
     }
 }

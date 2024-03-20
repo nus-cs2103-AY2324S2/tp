@@ -139,11 +139,11 @@ Examples:
 - `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Locating contacts by tags: `find-tag`
+### Locating contacts by tags: `find-tags`
 
 Finds contacts whose tags contain all the given keywords.
 
-Format: `find-tag KEYWORD [MORE_KEYWORDS]`
+Format: `find-tags KEYWORD [MORE_KEYWORDS]`
 
 - The search is case-insensitive. e.g `school` will match `School`
 - Only the tags are searched.
@@ -231,6 +231,7 @@ _Details coming soon ..._
 
 ## Command summary
 
+
 | Action              | Format, Examples                                                                                                                                                                                                                    |
 |---------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**             | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS g/GITHUB_USERNAME [t/TAG] [ts/TECH_STACK]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 g/Jamesho123 t/friend t/colleague ts/Java ts/C++` |
@@ -238,6 +239,7 @@ _Details coming soon ..._
 | **Delete**          | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                 |
 | **Edit**            | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GITHUB_USERNAME] [t/TAG]…​ [ts/TECH_STACK]…​ `<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                  |
 | **Find**            | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                          |
+| **Find by Tags**    | `find-tags KEYWORD [MORE_KEYWORDS]`<br> e.g., `find-tags School Work`                                                                                                                                                               |
 | **Find Tech Stack** | `find-ts KEYWORD [MORE_KEYWORDS]`<br> e.g., `find-ts Java Python`                                                                                                                                                                   |
 | **List**            | `list`                                                                                                                                                                                                                              |
 | **Help**            | `help`                                                                                                                                                                                                                              |
