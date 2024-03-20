@@ -168,7 +168,10 @@ Examples:
 
   ![result for 'note 1 Innovative e-commerce platform'](images/tracing/NoteCommand.png)
 
+<box type="tip" seamless>
+
 **Tip:** Indexes are taken with respect to the list! Warnings might show up if you give us a invalid index.
+</box>
 
 ### Editing a startup : `edit`
 
