@@ -35,8 +35,6 @@ public class ModuleTest {
         assertFalse(Module.isValidModule("CSCSC2103T")); // too many prefix
         assertFalse(Module.isValidModule("CS210310101010T")); // too many numbers
         assertFalse(Module.isValidModule("CS21T")); // too little numbers
-        assertFalse(Module.isValidModule("cs2103t")); // suffix not capitalised
-        assertFalse(Module.isValidModule("cs2103T")); // prefix not capitalised
 
         // valid module code
         assertTrue(Module.isValidModule("CS2103")); // 2 prefix, 4 letters without 1 optional suffix
@@ -45,6 +43,11 @@ public class ModuleTest {
         assertTrue(Module.isValidModule("GEN2050Y")); // 3 prefix, 4 letters with  1 optional suffix
         assertTrue(Module.isValidModule("GESS1035")); // 4 prefix, 4 letters without 1 optional suffix
         assertTrue(Module.isValidModule("GESS1035X")); // 4 prefix, 4 letters with  1 optional suffix
+        assertTrue(Module.isValidModule("cs2103t")); // suffix not capitalised
+        assertTrue(Module.isValidModule("cs2103T")); // prefix not capitalised
+        assertTrue(Module.isValidModule("cS2103t")); // prefix partial not capitalised
+        assertTrue(Module.isValidModule("cs2103t")); // both prefix and suffix not capitalised
+        assertTrue(Module.isValidModule("cs2103t")); // prefix partial not capitalised
     }
 
     @Test
