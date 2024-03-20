@@ -32,7 +32,7 @@ public class AddCommandParser implements Parser<AddCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_SKILL);
 
         try {
-            argMultimap = setPreambleAsName(args, argMultimap);
+            argMultimap = setPreambleAsName(argMultimap);
         } catch (ParseException e) {
             throw e;
         }
@@ -67,11 +67,11 @@ public class AddCommandParser implements Parser<AddCommand> {
      * @param argMultimap  ArgumentMultimap object that maps prefixes to their arguments
      * @return             ArgumentMultimap object that maps the name prefix to the name argument
      */
-    private static ArgumentMultimap setPreambleAsName(String argsString, ArgumentMultimap argMultimap)
+    private static ArgumentMultimap setPreambleAsName(ArgumentMultimap argMultimap)
             throws ParseException {
-        String name = (argsString.split("-", 2))[0];
-        if (name.isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+        String name = argMultimap.getPreamble();
+        if (name.isEmpty() || !Name.isValidName(name)) {
+            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
         argMultimap.put(PREFIX_NAME, name);
         return argMultimap;

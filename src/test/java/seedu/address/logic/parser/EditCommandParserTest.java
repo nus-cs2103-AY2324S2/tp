@@ -6,18 +6,17 @@ import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_SKILL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.SKILL_DESC_CPP;
 import static seedu.address.logic.commands.CommandTestUtil.SKILL_DESC_JAVA;
-import static seedu.address.logic.commands.CommandTestUtil.SKILL_DESC_REACT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SKILL_CPP;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SKILL_JAVA;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_SKILL_REACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SKILL;
@@ -37,7 +36,6 @@ import seedu.address.model.coursemate.Email;
 import seedu.address.model.coursemate.Name;
 import seedu.address.model.coursemate.Phone;
 import seedu.address.model.coursemate.QueryableCourseMate;
-import seedu.address.model.skill.Skill;
 import seedu.address.testutil.EditCourseMateDescriptorBuilder;
 
 public class EditCommandParserTest {
@@ -75,16 +73,9 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "#1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
         assertParseFailure(parser, "#1" + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS); // invalid phone
         assertParseFailure(parser, "#1" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
-        assertParseFailure(parser, "#1" + INVALID_SKILL_DESC, Skill.MESSAGE_CONSTRAINTS); // invalid skill
 
         // invalid phone followed by valid email
         assertParseFailure(parser, "#1" + INVALID_PHONE_DESC + EMAIL_DESC_AMY, Phone.MESSAGE_CONSTRAINTS);
-
-        // while parsing {@code PREFIX_SKILL} alone will reset the skills of the {@code CourseMate} being edited,
-        // parsing it together with a valid skill results in error
-        assertParseFailure(parser, "#1" + SKILL_DESC_REACT + SKILL_DESC_JAVA + SKILL_EMPTY, Skill.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "#1" + SKILL_DESC_REACT + SKILL_EMPTY + SKILL_DESC_JAVA, Skill.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "#1" + SKILL_EMPTY + SKILL_DESC_REACT + SKILL_DESC_JAVA, Skill.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "#1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_PHONE_AMY,
@@ -94,12 +85,13 @@ public class EditCommandParserTest {
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_COURSE_MATE;
+
         String userInput = "#" + targetIndex.getOneBased() + PHONE_DESC_BOB + SKILL_DESC_JAVA
-                + EMAIL_DESC_AMY + NAME_DESC_AMY + SKILL_DESC_REACT;
+                + EMAIL_DESC_AMY + NAME_DESC_AMY + SKILL_DESC_CPP;
 
         EditCourseMateDescriptor descriptor = new EditCourseMateDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY)
-                .withSkills(VALID_SKILL_JAVA, VALID_SKILL_REACT).build();
+                .withSkills(VALID_SKILL_JAVA, VALID_SKILL_CPP).build();
         EditCommand expectedCommand = new EditCommand(new QueryableCourseMate(targetIndex), descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -139,8 +131,8 @@ public class EditCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // skills
-        userInput = "#" + targetIndex.getOneBased() + SKILL_DESC_REACT;
-        descriptor = new EditCourseMateDescriptorBuilder().withSkills(VALID_SKILL_REACT).build();
+        userInput = "#" + targetIndex.getOneBased() + SKILL_DESC_CPP;
+        descriptor = new EditCourseMateDescriptorBuilder().withSkills(VALID_SKILL_CPP).build();
         expectedCommand = new EditCommand(new QueryableCourseMate(targetIndex), descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -163,7 +155,7 @@ public class EditCommandParserTest {
 
         // mulltiple valid fields repeated
         userInput = "#" + targetIndex.getOneBased() + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + SKILL_DESC_REACT + PHONE_DESC_AMY + EMAIL_DESC_AMY + SKILL_DESC_REACT
+                + SKILL_DESC_CPP + PHONE_DESC_AMY + EMAIL_DESC_AMY + SKILL_DESC_CPP
                 + PHONE_DESC_BOB + EMAIL_DESC_BOB + SKILL_DESC_JAVA;
 
         assertParseFailure(parser, userInput,

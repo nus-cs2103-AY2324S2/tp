@@ -8,6 +8,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SKILL;
 import java.util.Set;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddSkillCommand;
+import seedu.address.logic.commands.DeleteSkillCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.model.coursemate.CourseMate;
 import seedu.address.model.skill.Skill;
@@ -46,6 +48,38 @@ public class CourseMateUtil {
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(" ").append(name.fullName).append(" "));
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(" ").append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(" ").append(email.value).append(" "));
+        if (descriptor.getSkills().isPresent()) {
+            Set<Skill> skills = descriptor.getSkills().get();
+            if (skills.isEmpty()) {
+                sb.append(PREFIX_SKILL);
+            } else {
+                skills.forEach(s -> sb.append(PREFIX_SKILL).append(" ").append(s.skillName).append(" "));
+            }
+        }
+        return sb.toString();
+    }
+
+    /**
+     * Returns the part of command string for the given {@code AddSkillDescriptor}'s details.
+     */
+    public static String getAddSkillDescriptorDetails(AddSkillCommand.AddSkillDescriptor descriptor) {
+        StringBuilder sb = new StringBuilder();
+        if (descriptor.getSkills().isPresent()) {
+            Set<Skill> skills = descriptor.getSkills().get();
+            if (skills.isEmpty()) {
+                sb.append(PREFIX_SKILL);
+            } else {
+                skills.forEach(s -> sb.append(PREFIX_SKILL).append(" ").append(s.skillName).append(" "));
+            }
+        }
+        return sb.toString();
+    }
+
+    /**
+     * Returns the part of command string for the given {@code DeleteSkillDescriptor}'s details.
+     */
+    public static String getDeleteSkillDescriptorDetails(DeleteSkillCommand.DeleteSkillDescriptor descriptor) {
+        StringBuilder sb = new StringBuilder();
         if (descriptor.getSkills().isPresent()) {
             Set<Skill> skills = descriptor.getSkills().get();
             if (skills.isEmpty()) {

@@ -21,12 +21,11 @@ public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_EMAIL = "example.com";
-    private static final String INVALID_SKILL = "#friend";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
     private static final String VALID_EMAIL = "rachel@example.com";
-    private static final String VALID_SKILL_1 = "C";
+    private static final String VALID_SKILL_1 = "C++";
     private static final String VALID_SKILL_2 = "Python";
 
     private static final String WHITESPACE = " \t\r\n";
@@ -106,11 +105,6 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseSkill_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseSkill(INVALID_SKILL));
-    }
-
-    @Test
     public void parseSkill_validValueWithoutWhitespace_returnsSkill() throws Exception {
         Skill expectedSkill = new Skill(VALID_SKILL_1);
         assertEquals(expectedSkill, ParserUtil.parseSkill(VALID_SKILL_1));
@@ -126,11 +120,6 @@ public class ParserUtilTest {
     @Test
     public void parseSkills_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseSkills(null));
-    }
-
-    @Test
-    public void parseSkills_collectionWithInvalidSkills_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseSkills(Arrays.asList(VALID_SKILL_1, INVALID_SKILL)));
     }
 
     @Test

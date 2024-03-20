@@ -61,6 +61,22 @@ public class CourseMateBuilder {
     }
 
     /**
+     * Parses the {@code skills} into a {@code Set<Skill>} and
+     * remove it from the {@code CourseMate} that we are building.
+     */
+    public CourseMateBuilder removeSkills(String ... skills) {
+        Set<Skill> removeSet = SampleDataUtil.getSkillSet(skills);
+        Set<Skill> newSet = new HashSet<Skill>();
+        for (Skill skill : this.skills) {
+            if (!removeSet.contains(skill)) {
+                newSet.add(skill);
+            }
+        }
+        this.skills = newSet;
+        return this;
+    }
+
+    /**
      * Sets the {@code Phone} of the {@code CourseMate} that we are building.
      */
     public CourseMateBuilder withPhone(String phone) {

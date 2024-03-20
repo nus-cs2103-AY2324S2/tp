@@ -97,9 +97,6 @@ public class ParserUtil {
     public static Skill parseSkill(String skill) throws ParseException {
         requireNonNull(skill);
         String trimmedSkill = skill.trim();
-        if (!Skill.isValidSkillName(trimmedSkill)) {
-            throw new ParseException(Skill.MESSAGE_CONSTRAINTS);
-        }
         return new Skill(trimmedSkill);
     }
 
