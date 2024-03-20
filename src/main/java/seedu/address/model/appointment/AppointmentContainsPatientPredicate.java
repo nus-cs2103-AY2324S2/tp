@@ -18,7 +18,7 @@ public class AppointmentContainsPatientPredicate implements Predicate<Appointmen
     @Override
     public boolean test(Appointment appointment) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(appointment.get.fullName, keyword));
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(appointment.getPatientNric().nric, keyword));
     }
 
     @Override
