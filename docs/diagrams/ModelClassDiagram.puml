@@ -39,7 +39,6 @@ ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 AddressBook *--> "1" UniquePersonList
-UniquePersonList .right-> UniquePersonListDeserializer
 UniquePersonList --> "~* all" Person
 Person *--> Name
 Person *--> Phone
