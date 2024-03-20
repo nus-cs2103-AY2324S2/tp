@@ -1,17 +1,21 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENTID;
+
+import java.util.Set;
+
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.group.Group;
 import seedu.address.model.person.StudentId;
 
-import java.util.Set;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENTID;
-
+/**
+ * Creates a group with the given group name and IDs.
+ */
 public class GroupCommand extends Command {
 
     public static final String COMMAND_WORD = "group";
@@ -27,12 +31,10 @@ public class GroupCommand extends Command {
             + PREFIX_STUDENTID + "A0123456X "
             + PREFIX_STUDENTID + "A0123456H ";
 
+    public static final String MESSAGE_GROUP_SUCCESS = "All students were added!";
+    private static final String STUDENTS_NOT_FOUND = "The following IDs were not found (and not added to the group): ";
     private final Set<Group> group; //set with one group. for compatibility with edit command.
     private final Set<StudentId> studentIds;
-
-    public static final String MESSAGE_GROUP_SUCCESS = "All students were added!";
-
-    private final String STUDENTS_NOT_FOUND = "The following IDs were not found (and not added to the group): ";
 
     /**
      * @param group A Set of type Group with only one Group.

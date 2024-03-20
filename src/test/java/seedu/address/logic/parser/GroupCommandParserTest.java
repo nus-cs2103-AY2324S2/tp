@@ -1,29 +1,26 @@
 package seedu.address.logic.parser;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.GroupCommand;
-import seedu.address.model.group.Group;
-import seedu.address.model.person.StudentId;
-
-import java.util.HashSet;
-import java.util.Set;
-
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.GROUP_DESC_1;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_GROUP_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_STUDENTID_DESC;
-
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.commands.CommandTestUtil.STUDENTID_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.STUDENTID_DESC_BOB;
-
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GROUP_GROUP1;
-
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STUDENTID_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STUDENTID_BOB;
-
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+
+import java.util.HashSet;
+import java.util.Set;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.commands.GroupCommand;
+import seedu.address.model.group.Group;
+import seedu.address.model.person.StudentId;
 
 
 public class GroupCommandParserTest {
@@ -56,8 +53,8 @@ public class GroupCommandParserTest {
         assertParseFailure(parser, GROUP_DESC_1 + VALID_STUDENTID_AMY, expectedMessage);
 
         // all prefixes missing
-        assertParseFailure(parser, VALID_GROUP_GROUP1 + VALID_STUDENTID_AMY + VALID_STUDENTID_BOB
-                , expectedMessage);
+        assertParseFailure(parser, VALID_GROUP_GROUP1 + VALID_STUDENTID_AMY + VALID_STUDENTID_BOB,
+                expectedMessage);
     }
 
     @Test
