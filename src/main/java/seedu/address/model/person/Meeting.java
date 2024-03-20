@@ -10,6 +10,13 @@ import java.time.format.DateTimeFormatter;
  * Guarantees: immutable; is always valid
  */
 public class Meeting {
+
+    public static final String MESSAGE_CONSTRAINTS =
+            "Meeting has to be in yyyy-MM-dd HH:mm:ss format, and it should not be blank";
+    // The VALIDATION_REGEX for meeting time
+    public static final String VALIDATION_REGEX =
+            "^(\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}:\\d{2}| \\d{2}:\\d{2}:\\d{2})?)$";
+    public final String value;
     public final LocalDateTime meeting;
 
     /**
@@ -17,7 +24,15 @@ public class Meeting {
      */
     public Meeting(String meeting) {
         requireNonNull(meeting);
+        this.value = meeting;
         this.meeting = stringToDateTime(meeting);
+    }
+
+    /**
+     * Returns true if a given string is a valid meeting.
+     */
+    public static boolean isValidMeeting(String test) {
+        return test.matches(VALIDATION_REGEX);
     }
 
     /**

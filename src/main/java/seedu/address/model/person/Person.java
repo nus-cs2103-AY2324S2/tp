@@ -5,7 +5,6 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
@@ -13,28 +12,30 @@ import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Person in the address book.
- * Guarantees: field values are validated, immutable.
+ * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Person {
 
     // Identity fields
     private final Name name;
     private final Phone phone;
-    private final Optional<Email> email;
+    private final Email email;
 
     // Data fields
-    private final Optional<Address> address;
+    private final Address address;
+    private final Meeting meeting;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
-     * Name and tags must be present and not null.
+     * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, tags);
+    public Person(Name name, Phone phone, Email email, Address address, Meeting meeting, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, meeting, tags);
         this.name = name;
         this.phone = phone;
-        this.email = Optional.ofNullable(email);
-        this.address = Optional.ofNullable(address);
+        this.email = email;
+        this.address = address;
+        this.meeting = meeting;
         this.tags.addAll(tags);
     }
 
@@ -46,12 +47,16 @@ public class Person {
         return phone;
     }
 
-    public Optional<Email> getEmail() {
+    public Email getEmail() {
         return email;
     }
 
-    public Optional<Address> getAddress() {
+    public Address getAddress() {
         return address;
+    }
+
+    public Meeting getMeeting() {
+        return meeting;
     }
 
     /**
@@ -92,16 +97,17 @@ public class Person {
 
         Person otherPerson = (Person) other;
         return name.equals(otherPerson.name)
-                && Objects.equals(phone, otherPerson.phone)
-                && Objects.equals(email, otherPerson.email)
-                && Objects.equals(address, otherPerson.address)
+                && phone.equals(otherPerson.phone)
+                && email.equals(otherPerson.email)
+                && address.equals(otherPerson.address)
+                && meeting.equals(otherPerson.meeting)
                 && tags.equals(otherPerson.tags);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, meeting, tags);
     }
 
     @Override
@@ -111,6 +117,7 @@ public class Person {
                 .add("phone", phone)
                 .add("email", email)
                 .add("address", address)
+                .add("meeting", meeting)
                 .add("tags", tags)
                 .toString();
     }
