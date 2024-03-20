@@ -40,6 +40,8 @@ UniquePersonList --> "~* all" Person
 Person *--> Name
 Person *--> Phone
 Person *--> Email
+Person *--> Year
+Person *--> Telegram
 Person *--> Address
 Person *--> "*" Group
 
