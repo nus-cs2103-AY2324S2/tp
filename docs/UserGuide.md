@@ -134,10 +134,10 @@ Tags the specified contact with the input tag name.
 * The id refers to the index number shown in the displayed person list.
 * The id **must be a positive integer** 1, 2, 3, …​
 
-Format: `tag <id> | <tag name>`
+Format: `tag <id> t/<tag> [t/tag]...`
 
 Example:
-`tag 2 | friends`
+`tag 2 friends`
 
 Output:
 The message "The following contact has been tagged with `<tag name>`: `contact info`.” will be shown, 
@@ -145,7 +145,7 @@ where contact info is all the information of the contact.
 
 ![tag](images/user-guide/tag_mock_output.png)
 
-### Deleting a tag : `delete-tag`
+### Deleting a tag : `untag`
 
 Deletes the specified tag from the specified contact
 
@@ -153,10 +153,10 @@ Deletes the specified tag from the specified contact
 * The id refers to the index number shown in the displayed person list.
 * The id **must be a positive integer** 1, 2, 3, …​
 
-Format: `delete-tag <id> | <tag name>`
+Format: `untag <id> t/<tag> [t/tag]...`
 
 Output:
-The message "The tag `<tag name>` has been removed from contact: `contact info`." will be shown,
+The message "The tag `<tag>` has been removed from contact: `contact info`." will be shown,
 where contact info is all the information of the contact. 
 The list entry of the user with <id> will not have the tag anymore.
 
@@ -240,11 +240,9 @@ _Details coming soon ..._
 | **Add**        | `add n/<name> p/<phone number> e/<email address> a/<address>` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665` |
 | **Delete**     | `delete <id>`<br> e.g., `delete 3`                                                                                                                     |
 | **Clear**      | `clear`                                                                                                                                                |
-| **Tag**        | `tag <id> l <tag name>`  <br> e.g., `tag 2 l friends`                                                                                                  |
-| **Delete Tag** | `delete-tag <id> l <tag name>` <br> e.g., `delete-tag 2 l friends`                                                                                     |
+| **Tag**        | `tag <id> t/<tag> [t/tag]...`  <br> e.g., `tag 2 t/friends`                                                                                            |
+| **Delete Tag** | `untag <id> t/<tag> [t/tag]...` <br> e.g., `untag 2 t/friends`                                                                                         |
 | **List**       | `list`                                                                                                                                                 |
 | **Undo**       | `undo`                                                                                                                                                 |
 | **Redo**       | `redo`                                                                                                                                                 |
 | **Help**       | `help`                                                                                                                                                 |
-
-*Note*: `l` should be replaced with `|` in the command format.
