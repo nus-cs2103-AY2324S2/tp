@@ -1,6 +1,5 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.logic.messages.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -8,6 +7,7 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.SearchCommand;
+import seedu.address.logic.messages.SearchMessages;
 import seedu.address.model.person.KeywordPredicate;
 
 public class SearchCommandParserTest {
@@ -16,13 +16,12 @@ public class SearchCommandParserTest {
 
     @Test
     public void parse_emptyArg_throwsParseException() {
-        assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "     ", SearchMessages.MESSAGE_SEARCH_INVALID_FIELD);
     }
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
-        assertParseFailure(parser, " ;   name :   Poochie",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, " ;   name :   Poochie", SearchMessages.MESSAGE_SEARCH_INVALID_FIELD);
     }
 
     @Test
