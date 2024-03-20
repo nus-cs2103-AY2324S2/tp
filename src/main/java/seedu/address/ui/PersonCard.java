@@ -79,7 +79,7 @@ public class PersonCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         remark.setText("Remark: " + person.getRemark().value);
-            
+
         preferences.setVisible(false);
         department.setVisible(false);
         jobTitle.setVisible(false);

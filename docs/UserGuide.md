@@ -6,7 +6,7 @@
 
 # NetConnect User Guide
 
-NetConnect is a desktop app for managing contacts in SMEs, optimized for use via a Command Line Interface (CLI) while still 
+NetConnect is a desktop app for managing contacts in SMEs, optimized for use via a Command Line Interface (CLI) while still
 having the benefits of a Graphical User Interface (GUI). It enables managers to efficiently manage their employees, clients, as well as suppliers, **all in one place** ☝🏻.
 
 <!-- * Table of Contents -->
