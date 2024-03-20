@@ -67,7 +67,7 @@ public class DeleteCommandTest {
     @Test
     public void execute_validStudentIdFilteredList_success() {
         showPersonWithStudentId(model, ID_FIRST_PERSON);
-    
+
         boolean personFound = false;
         Person personToDelete = null;
         List<Person> filteredList = model.getFilteredPersonList();
@@ -78,21 +78,21 @@ public class DeleteCommandTest {
                 break;
             }
         }
-    
+
         assertTrue(personFound); // Ensure the person with the specified studentId exists
-    
+
         DeleteCommand deleteCommand = new DeleteCommand(new StudentId("00001"));
-    
+
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
                 Messages.format(personToDelete));
-    
+
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deletePerson(personToDelete);
         showNoPerson(expectedModel);
-    
+
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
-    
+
 
     @Test
     public void execute_invalidStudentIdFilteredList_throwsCommandException() {

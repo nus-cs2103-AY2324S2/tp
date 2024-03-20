@@ -37,7 +37,7 @@ public class EditCommandParser implements Parser<EditCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PARENT_PHONES,
                         PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_STUDENT_ID, PREFIX_TAG);
 
-        
+
         StudentId studentId = null;
 
         String preamble = argMultimap.getPreamble().trim();
