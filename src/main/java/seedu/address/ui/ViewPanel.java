@@ -34,6 +34,8 @@ public class ViewPanel extends UiPart<Region> {
     private Label internDuration;
     @FXML
     private Label salary;
+    @FXML
+    private Label note;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} to display.
@@ -50,5 +52,6 @@ public class ViewPanel extends UiPart<Region> {
         tag.setText(person.getTag().tagName);
         internDuration.setText(person.getInternDuration().value);
         salary.setText("$" + person.getSalary().value);
+        note.setText(person.getNote().value);
     }
 }

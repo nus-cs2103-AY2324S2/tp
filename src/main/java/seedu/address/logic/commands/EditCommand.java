@@ -28,6 +28,7 @@ import seedu.address.model.person.InternDuration;
 import seedu.address.model.person.InterviewDate;
 import seedu.address.model.person.JobDescription;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Note;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Salary;
@@ -120,9 +121,11 @@ public class EditCommand extends Command {
         Salary updatedSalary = editPersonDescriptor.getSalary().orElse(personToEdit.getSalary());
         Tag updatedTags = editPersonDescriptor.getTag().orElse(personToEdit.getTag());
 
+        Note updatedNote = editPersonDescriptor.getNote().orElse(personToEdit.getNote());
+
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags,
                 updatedJobDescription, updatedInterviewDate,
-                updatedInternDuration, updatedSalary);
+                updatedInternDuration, updatedSalary, updatedNote);
     }
 
     @Override
@@ -163,6 +166,7 @@ public class EditCommand extends Command {
         private InternDuration internDuration;
         private InterviewDate interviewDate;
         private Salary salary;
+        private Note note;
 
 
         public EditPersonDescriptor() {}
@@ -181,6 +185,7 @@ public class EditCommand extends Command {
             setInternDuration(toCopy.internDuration);
             setInterviewDate(toCopy.interviewDate);
             setSalary(toCopy.salary);
+            setNote(toCopy.note);
         }
 
         /**
@@ -188,7 +193,7 @@ public class EditCommand extends Command {
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(
-                    name, phone, email, address, tag, jobDescription, interviewDate, internDuration, salary
+                    name, phone, email, address, tag, jobDescription, interviewDate, internDuration, salary, note
             );
         }
 
@@ -263,6 +268,13 @@ public class EditCommand extends Command {
         public Optional<Tag> getTag() {
             return Optional.ofNullable(tag);
         }
+        public void setNote(Note note) {
+            this.note = note;
+        }
+
+        public Optional<Note> getNote() {
+            return Optional.ofNullable(note);
+        }
 
         @Override
         public boolean equals(Object other) {
@@ -299,6 +311,7 @@ public class EditCommand extends Command {
                     .add("intern duration", internDuration)
                     .add("interview date", interviewDate)
                     .add("salary", salary)
+                    .add("note", note)
                     .toString();
         }
     }

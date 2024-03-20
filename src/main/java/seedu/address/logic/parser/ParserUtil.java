@@ -11,6 +11,7 @@ import seedu.address.model.person.InternDuration;
 import seedu.address.model.person.InterviewDate;
 import seedu.address.model.person.JobDescription;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Note;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Salary;
 import seedu.address.model.tag.Tag;
@@ -162,5 +163,16 @@ public class ParserUtil {
             throw new ParseException(Salary.MESSAGE_CONSTRAINTS);
         }
         return new Salary(trimmedSalary);
+    }
+
+    /**
+     * Parses a {@code String note} into an {@code note}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code note} is invalid.
+     */
+    public static Note parseNote(String note) throws ParseException {
+        String trimmedNote = note.trim();
+        return new Note(trimmedNote);
     }
 }

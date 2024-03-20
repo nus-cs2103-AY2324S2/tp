@@ -16,5 +16,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_INTERVIEW_DATE = new Prefix("d/");
     public static final Prefix PREFIX_INTERN_DURATION = new Prefix("id/");
     public static final Prefix PREFIX_SALARY = new Prefix("s/");
+    public static final Prefix PREFIX_NOTE = new Prefix("n/");
 
 }
