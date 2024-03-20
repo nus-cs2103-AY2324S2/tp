@@ -11,6 +11,7 @@ import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.logic.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -46,6 +47,9 @@ public class FindNumCommandTest {
 
         // null -> returns false
         assertNotEquals(null, findNumFirstCommand);
+
+        // different instance -> returns false
+        assertFalse(firstPredicate.equals(model));
 
         // different person -> returns false
         assertNotEquals(findNumFirstCommand, findNumSecondCommand);

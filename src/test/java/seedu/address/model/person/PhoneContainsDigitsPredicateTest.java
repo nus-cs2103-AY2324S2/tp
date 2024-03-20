@@ -3,6 +3,7 @@ package seedu.address.model.person;
 import org.junit.jupiter.api.Test;
 import seedu.address.testutil.PersonBuilder;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -31,6 +32,9 @@ public class PhoneContainsDigitsPredicateTest {
 
         // null -> returns false
         assertNotEquals(null, firstPredicate);
+
+        // different instance -> returns false
+        assertFalse(firstPredicate.equals(new ArrayList<>()));
 
         // different person -> returns false
         assertNotEquals(firstPredicate, secondPredicate);
