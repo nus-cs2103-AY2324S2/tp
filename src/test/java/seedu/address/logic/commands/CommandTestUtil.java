@@ -5,7 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NUSID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHEDULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -20,6 +23,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.GroupPersonDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -38,7 +42,13 @@ public class CommandTestUtil {
     public static final String VALID_TAG_BOB = "Professor";
     public static final String VALID_GROUP_HUSBAND = "husband";
     public static final String VALID_GROUP_FRIEND = "friend";
+    public static final String VALID_SCHEDULE_AMY = "10-10-2020";
+    public static final String VALID_SCHEDULE_BOB = "11/11/2020";
+    public static final String VALID_REMARK_AMY = "Meeting at 3pm";
+    public static final String VALID_REMARK_BOB = "Lunch with Amy";
 
+    public static final String NUSID_DESC_AMY = " " + PREFIX_NUSID + VALID_NUSID_AMY;
+    public static final String NUSID_DESC_BOB = " " + PREFIX_NUSID + VALID_NUSID_BOB;
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
@@ -49,18 +59,32 @@ public class CommandTestUtil {
     public static final String TAG_DESC_BOB = " " + PREFIX_TAG + VALID_TAG_BOB;
     public static final String GROUP_DESC_FRIEND = " " + PREFIX_GROUP + VALID_GROUP_FRIEND;
     public static final String GROUP_DESC_HUSBAND = " " + PREFIX_GROUP + VALID_GROUP_HUSBAND;
-
+    public static final String SCHEDULE_DESC_AMY = " " + PREFIX_SCHEDULE + VALID_SCHEDULE_AMY;
+    public static final String SCHEDULE_DESC_BOB = " " + PREFIX_SCHEDULE + VALID_SCHEDULE_BOB;
+    public static final String REMARK_DESC_AMY = " " + PREFIX_REMARK + VALID_REMARK_AMY;
+    public static final String REMARK_DESC_BOB = " " + PREFIX_REMARK + VALID_REMARK_BOB;
+    public static final String INVALID_NUSID_DESC = " " + PREFIX_NUSID + "e1234567"; // 'e' not allowed in id
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG; // empty string not allowed for tags
     public static final String INVALID_GROUP_DESC = " " + PREFIX_GROUP + "hubby*"; // '*' not allowed in groups
+    public static final String INVALID_SCHEDULE_DESC = " " + PREFIX_SCHEDULE + "2024-12-12"; // wrong date format
+
+    public static final String INVALID_NUSID = "e1234567"; // lowercase not accepted
+    public static final String INVALID_SCHEDULE = "12-31-2020"; // Incorrect month
+
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
+
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
+
+    public static final GroupCommand.GroupPersonDescriptor DESC_AMY_GROUP;
+
+    public static final GroupCommand.GroupPersonDescriptor DESC_BOB_GROUP;
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
@@ -69,6 +93,10 @@ public class CommandTestUtil {
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withTag(VALID_TAG_BOB)
                 .withGroups(VALID_GROUP_HUSBAND, VALID_GROUP_FRIEND).build();
+        DESC_AMY_GROUP = new GroupPersonDescriptorBuilder().withNusId(VALID_NUSID_AMY).withTag(VALID_TAG_AMY)
+                .withGroups(VALID_GROUP_HUSBAND).build();
+        DESC_BOB_GROUP = new GroupPersonDescriptorBuilder().withNusId(VALID_NUSID_BOB).withTag(VALID_TAG_BOB)
+                .withGroups(VALID_GROUP_FRIEND).build();
     }
 
     /**
@@ -86,6 +114,8 @@ public class CommandTestUtil {
             throw new AssertionError("Execution of command should not fail.", ce);
         }
     }
+
+
 
     /**
      * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
@@ -108,7 +138,6 @@ public class CommandTestUtil {
         // only do so by copying its components.
         AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
         List<Person> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
-
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());

@@ -12,8 +12,12 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.group.Group;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.NusId;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Schedule;
 import seedu.address.model.person.Tag;
+
+
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -33,6 +37,21 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    /**
+     * Parses a {@code String nusId} into a {@code NusId}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code nusId} is invalid.
+     */
+    public static NusId parseNusId(String nusId) throws ParseException {
+        requireNonNull(nusId);
+        String trimmedNusId = nusId.trim();
+        if (!NusId.isValidNusId(trimmedNusId)) {
+            throw new ParseException(NusId.MESSAGE_CONSTRAINTS);
+        }
+        return new NusId(trimmedNusId);
     }
 
     /**
@@ -120,5 +139,20 @@ public class ParserUtil {
             groupSet.add(parseGroup(groupName));
         }
         return groupSet;
+    }
+
+    /**
+     * Parses a {@code String schedule} into a {@code Schedule}.
+     *
+     * @throws ParseException if the given {@code schedule} is invalid.
+     */
+    public static Schedule parseSchedule(String schedule) throws ParseException {
+        if (schedule == "") {
+            return new Schedule(schedule);
+        } else if (!Schedule.isValidSchedule(schedule)) {
+            throw new ParseException(Schedule.MESSAGE_CONSTRAINTS);
+        } else {
+            return new Schedule(schedule);
+        }
     }
 }

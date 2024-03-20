@@ -31,12 +31,12 @@ Description: `Delete` command allows you to delete existing contacts in the addr
 >Format: `delete id/NUSID`
 
 #### Filtering Existing Contacts
-Description: `Filter` command allows you to filter desired contacts in the address book based on group 
+Description: `Filter` command allows you to filter desired contacts in the address book based on group
 and tag specified
 >Format: `filter [n/NAME] [p/PHONE] [e/EMAIL] [g/GROUP] [t/TAG]`
 
 #### Assign contacts a tutorial group
-Description: `Assign` command allows you to assign students into their respective tutorial groups in the 
+Description: `Assign` command allows you to assign students into their respective tutorial groups in the
 address book
 >Format: `assign id/NUSID [g/GROUP] [t/TAG]`
 

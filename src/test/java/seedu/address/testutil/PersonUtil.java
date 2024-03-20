@@ -3,7 +3,10 @@ package seedu.address.testutil;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NUSID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHEDULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
@@ -30,6 +33,7 @@ public class PersonUtil {
      */
     public static String getPersonDetails(Person person) {
         StringBuilder sb = new StringBuilder();
+        sb.append(PREFIX_NUSID + person.getNusId().value + " ");
         sb.append(PREFIX_NAME + person.getName().fullName + " ");
         sb.append(PREFIX_PHONE + person.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
@@ -37,6 +41,15 @@ public class PersonUtil {
         person.getGroups().stream().forEach(
             s -> sb.append(PREFIX_GROUP + s.groupName + " ")
         );
+
+        return sb.toString();
+    }
+
+    public static String getPersonScheduleDetails(Person person) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(PREFIX_NUSID + person.getNusId().value + " ");
+        sb.append(PREFIX_SCHEDULE + person.getSchedule().date + " ");
+        sb.append(PREFIX_REMARK + person.getRemark().value + " ");
         return sb.toString();
     }
 
