@@ -13,14 +13,15 @@ import seedu.address.model.applicant.Role;
 import seedu.address.model.applicant.Stage;
 
 /**
- * Parses input arguments and creates a new AddCommand object
+ * Parses input arguments and creates a new FilterCommand object.
  */
 public class FilterCommandParser implements Parser<FilterCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddCommand
-     * and returns an AddCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     * Parses the given {@code String} of arguments in the context of the FilterCommand
+     * and returns a FilterCommand object for execution.
+     * 
+     * @throws ParseException if the user input does not conform to the expected format.
      */
     public FilterCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
@@ -33,12 +34,15 @@ public class FilterCommandParser implements Parser<FilterCommand> {
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_ROLE);
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_STAGE);
+
         Optional<Stage> filteredStage = Optional.empty();
         Optional<Role> filteredRole = Optional.empty();
-        if (!arePrefixesPresent(argMultimap, PREFIX_ROLE)) {
-            filteredStage = Optional.ofNullable((ParserUtil.parseStage(argMultimap.getValue(PREFIX_STAGE).get())));
-        } else if (!arePrefixesPresent(argMultimap, PREFIX_STAGE)) {
-            filteredRole = Optional.ofNullable((ParserUtil.parseRole(argMultimap.getValue(PREFIX_ROLE).get())));
+
+        if (arePrefixesPresent(argMultimap, PREFIX_STAGE)) {
+            filteredStage = Optional.ofNullable(ParserUtil.parseStage(argMultimap.getValue(PREFIX_STAGE).get()));
+        }
+        if (arePrefixesPresent(argMultimap, PREFIX_ROLE)) {
+            filteredRole = Optional.ofNullable(ParserUtil.parseRole(argMultimap.getValue(PREFIX_ROLE).get()));
         }
 
         return new FilterCommand(filteredRole, filteredStage);
@@ -52,3 +56,4 @@ public class FilterCommandParser implements Parser<FilterCommand> {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }
+
