@@ -109,7 +109,10 @@ class JsonAdaptedStudent {
         }
         final Email modelEmail = new Email(email);
 
-
+        if (link == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                Link.class.getSimpleName()));
+        }
         if (!Link.isValidLink(link)) {
             throw new IllegalValueException(Link.MESSAGE_CONSTRAINTS);
         }
