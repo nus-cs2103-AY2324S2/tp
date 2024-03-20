@@ -83,6 +83,9 @@ public class EditPersonDescriptorBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code DrugAllergy} of the {@code EditPersonDescriptor} that we are building.
+     */
     public EditPersonDescriptorBuilder withDrugAllergy(String drugAllergy) {
         descriptor.setDrugAllergy(new DrugAllergy(drugAllergy));
         return this;

@@ -11,13 +11,11 @@ public class DrugAllergy {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Drug Allergy must not be empty and can contain alphanumerics, spaces and special characters";
-
-    public final String drugAllergy;
-
     /*
      * drugAllergy must not be empty and contain alphanumerics, spaces and special characters
-    */
+     */
     public static final String VALIDATION_REGEX = "^(?!\\s*$).+";
+    public final String drugAllergy;
 
     /**
      * Constructs a {@code DrugAllergy}.
