@@ -21,7 +21,9 @@ import vitalconnect.model.person.Person;
 public class TypicalPersons {
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
         .withNric("S1234567D")
-        .withEmail("email@e.com").build();
+        .withEmail("email@e.com")
+        .withHeight("163")
+        .withWeight("50").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
         .withNric("S1234568B")
         .build();

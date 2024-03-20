@@ -25,8 +25,8 @@ public class Person {
     public Person(IdentificationInformation identificationInformation) {
         requireAllNonNull(identificationInformation);
         this.identificationInformation = identificationInformation;
-        this.contactInformation = null;
-        this.medicalInformation = null;
+        this.contactInformation = new ContactInformation();
+        this.medicalInformation = new MedicalInformation();
     }
 
     /**
@@ -37,7 +37,7 @@ public class Person {
         requireAllNonNull(identificationInformation);
         this.identificationInformation = identificationInformation;
         this.contactInformation = contactInformation;
-        this.medicalInformation = null;
+        this.medicalInformation = new MedicalInformation();
     }
 
     /**
@@ -47,7 +47,7 @@ public class Person {
                   MedicalInformation medicalInformation) {
         requireAllNonNull(identificationInformation);
         this.identificationInformation = identificationInformation;
-        this.contactInformation = null;
+        this.contactInformation = new ContactInformation();
         this.medicalInformation = medicalInformation;
     }
 
@@ -86,7 +86,7 @@ public class Person {
     }
 
     public boolean hasMedicalInformation() {
-        return this.medicalInformation != null;
+        return !this.medicalInformation.isEmpty();
     }
 
 
