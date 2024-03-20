@@ -37,6 +37,8 @@ public class EditContactDescriptorBuilder {
         descriptor.setPhone(contact.getPhone());
         descriptor.setEmail(contact.getEmail());
         descriptor.setAddress(contact.getAddress());
+        descriptor.setGitHubUsername(contact.getGitHubUsername());
+        descriptor.setTechStack(contact.getTechStack());
         descriptor.setTags(contact.getTags());
     }
 

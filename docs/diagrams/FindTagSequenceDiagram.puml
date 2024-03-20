@@ -1,0 +1,70 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":CodeConnectParser" as CodeConnectParser LOGIC_COLOR
+participant ":FindTagCommandParser" as FindTagCommandParser LOGIC_COLOR
+participant "ft:FindTagCommand" as FindTagCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "m:Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("find-tags School")
+activate LogicManager
+
+LogicManager -> CodeConnectParser : parseCommand("find-tags School")
+activate CodeConnectParser
+
+create FindTagCommandParser
+CodeConnectParser -> FindTagCommandParser
+activate FindTagCommandParser
+
+FindTagCommandParser --> CodeConnectParser
+deactivate FindTagCommandParser
+
+CodeConnectParser -> FindTagCommandParser : parse("School")
+activate FindTagCommandParser
+
+create FindTagCommand
+FindTagCommandParser -> FindTagCommand
+activate FindTagCommand
+
+FindTagCommand --> FindTagCommandParser :
+deactivate FindTagCommand
+
+FindTagCommandParser --> CodeConnectParser : ft
+deactivate FindTagCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+FindTagCommandParser -[hidden]-> CodeConnectParser
+destroy FindTagCommandParser
+
+CodeConnectParser --> LogicManager : ft
+deactivate CodeConnectParser
+
+LogicManager -> FindTagCommand : execute(m)
+activate FindTagCommand
+
+FindTagCommand -> Model : updateFilteredContactList(predicate)
+activate Model
+
+Model --> FindTagCommand
+deactivate Model
+
+create CommandResult
+FindTagCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> FindTagCommand
+deactivate CommandResult
+
+FindTagCommand --> LogicManager : r
+deactivate FindTagCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
