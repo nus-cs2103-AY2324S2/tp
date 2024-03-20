@@ -68,7 +68,7 @@ class UntagCommandTest {
                 personName,
                 "owesMoney");
 
-        assertCommandFailure(command, model, new CommandHistory(),expectedMessage);
+        assertCommandFailure(command, model, new CommandHistory(), expectedMessage);
     }
 
     @Test
