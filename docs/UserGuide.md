@@ -1,7 +1,7 @@
 ---
   layout: default.md
-  title: "User Guide"
-  pageNav: 3
+    title: "User Guide"
+    pageNav: 3
 ---
 
 # CogniCare User Guide
@@ -16,7 +16,7 @@ CogniCare is a **desktop app for managing all patients, optimized for use via a 
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
-   1. If you are on macOS on an Apple Silicon System, we recommend that you follow the guide on [CS2103 Course website](https://nus-cs2103-ay2324s2.github.io/website/admin/programmingLanguages.html#programming-language) using the Zulu version `zulu11.50.19-ca-fx-jdk11.0.12-macosx_aarch64.dmg`
+    1. If you are on macOS on an Apple Silicon System, we recommend that you follow the guide on [CS2103 Course website](https://nus-cs2103-ay2324s2.github.io/website/admin/programmingLanguages.html#programming-language) using the Zulu version `zulu11.50.19-ca-fx-jdk11.0.12-macosx_aarch64.dmg`
 
 2. Download the latest `cognicare.jar` from [here](https://github.com/AY2324S2-CS2103-F08-2/tp/releases).
 
@@ -29,15 +29,15 @@ CogniCare is a **desktop app for managing all patients, optimized for use via a 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * `querystudents` : Lists all students that are stored in CogniCare.
+    * `querystudents` : Lists all students that are stored in CogniCare.
 
-   * `patient n/Jerome Chua p/98765432 e/jerome@example.com a/depressed` : Adds a contact named `Jerome Chua` to the Address Book who is associated with having depression.
+    * `patient n/Jerome Chua p/98765432 e/jerome@example.com a/depressed` : Adds a contact named `Jerome Chua` to the Address Book who is associated with having depression.
 
-   * `delete 903` : Deletes the student that has the id of 903 (This is different from the natural ordering of the list).
+    * `delete 903` : Deletes the student that has the id of 903 (This is different from the natural ordering of the list).
 
-   * `clear` : Deletes all patient information from the CogniCare application.
+    * `clear` : Deletes all patient information from the CogniCare application.
 
-   * `exit` : Exits the app.
+    * `exit` : Exits the app.
 
 6. Refer to the [Features](#features) below for details of each command.
 
@@ -65,7 +65,7 @@ CogniCare is a **desktop app for managing all patients, optimized for use via a 
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 * If you are using a PDF version of this document, please be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
-</box>
+  </box>
 
 ### Viewing help : `help`
 
@@ -94,7 +94,7 @@ Examples:
 
 <box type="tip" seamless>
 
-**Tip:** Once the student is created, the student identifier `sid` will be permanently tagged to a student, 
+**Tip:** Once the student is created, the student identifier `sid` will be permanently tagged to a student,
 and is not coalesced when other entries are deleted.
 
 This means that if the CogniCare application initially contained of the items
@@ -115,7 +115,7 @@ When Khang Hou is deleted, the student identifier are as below:
 
 <box type="tip" seamless>
 
-**Second Tip:** You may not add two students with the same name even if they are in different case (i.e. "DAVINCI    Lim" vs "Davinci Lim"). 
+**Second Tip:** You may not add two students with the same name even if they are in different case (i.e. "DAVINCI    Lim" vs "Davinci Lim").
 This is similar to SQL database behaviour where the auto-increment primary key goes on to the next value even if the transaction has failed. [Read more](https://stackoverflow.com/questions/10108593/mysql-autoincrement-value-increases-even-when-insertion-fails-due-to-error)
 </box>
 
@@ -136,7 +136,7 @@ Format: `querystudents n/Jerome …​`
 
 For example: to find all the "Jeromes" that are stored in the CogniCare application, have a phone number that contains 979, and email using outlook, the user may use the command
 
-Format: `querystudents n/Jerome p/979 e/outlook.com …​`
+Format: `querystudents n/Jerome p/987 e/example.com ​`
 
 
 ### Editing a person : `edit`
@@ -151,7 +151,7 @@ Format: `edit STUDENT_ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [a/AFFLIATED_W
 * When editing tags, the existing tags of the person will be removed; i.e. adding of tags is not cumulative.
 * The `STUDENT_ID` will not be changed when you edit an individual's information.
 * You can remove all the person’s tags by typing `a/` without
-    specifying any tags after it.
+  specifying any tags after it.
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
@@ -225,7 +225,7 @@ _Details coming soon ..._
 | **Delete all entries from the CogniCare application** | `clear`                                                                                                                                                                                                                     |
 | **Delete**                                            | `delete STUDENT_ID`<br> e.g., `delete 3`                                                                                                                                                                                    |
 | **Edit**                                              | `edit STUDENT_ID [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/AFFLIATED_WITH]…​`edit 1 p/91234567 e/johndoe@example.com`                                                                                                          |
-| **Search**                                            | `querystudents [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] …​`<br> e.g., `querystudents n/Jerome p/61234567 e/outlook.com …​`                                                                                                       |
+| **Search**                                            | `querystudents [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] …​`<br> e.g., `querystudents n/Jerome p/987 e/example.com​`                                                                                                              |
 | **List**                                              | `list`                                                                                                                                                                                                                      |
 | **Help**                                              | `help`                                                                                                                                                                                                                      |
 
