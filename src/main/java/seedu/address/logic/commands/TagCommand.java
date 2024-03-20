@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.logic.CommandHistory;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -43,9 +44,12 @@ public class TagCommand extends Command {
         this.tags = new HashSet<>(tags);
     }
 
+
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
+        requireNonNull(history);
+
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
@@ -57,11 +61,18 @@ public class TagCommand extends Command {
         Person taggedPerson = addTag(personToTag);
         model.setPerson(personToTag, taggedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(
-                MESSAGE_TAG_CONTACT_SUCCESS,
-                Messages.format(taggedPerson),
-                showTags(tags)));
+
+        // Construct the command result message with the tag information
+        String tagInfo = String.format(MESSAGE_TAG_CONTACT_SUCCESS,
+                Messages.format(taggedPerson), showTags(tags));
+        CommandResult result = new CommandResult(tagInfo);
+
+        // Add the executed command to the command history
+        history.add(String.valueOf(this));
+
+        return result;
     }
+
 
     private static String showTags(Collection<Tag> tags) {
         return tags.stream().map((tag) -> tag.tagName)
