@@ -11,14 +11,15 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.order.Order;
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of orders.
  */
 public class OrderListPanel extends UiPart<Region> {
-    private static final String FXML = "PersonListPanel.fxml";
+    private static final String FXML = "OrderListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(OrderListPanel.class);
 
     @FXML
     private ListView<Order> orderListView;
+
 
     /**
      * Creates a {@code OrderListPanel} with the given {@code ObservableList}.
@@ -30,7 +31,7 @@ public class OrderListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Order} using a {@code OrderCard}.
      */
     class OrderListViewCell extends ListCell<Order> {
         @Override

@@ -21,7 +21,6 @@
                 </Label>
                 <Label fx:id="orderId" text="\$first" styleClass="cell_big_label"/>
             </HBox>
-            <FlowPane fx:id="tags"/>
             <Label fx:id="orderDate" styleClass="cell_small_label" text="\$orderDate"/>
             <Label fx:id="deadline" styleClass="cell_small_label" text="\$deadline"/>
             <Label fx:id="amount" styleClass="cell_small_label" text="\$amount"/>
