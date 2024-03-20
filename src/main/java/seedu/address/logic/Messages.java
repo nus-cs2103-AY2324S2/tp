@@ -42,14 +42,15 @@ public class Messages {
      */
     public static String format(Person person) {
         final StringBuilder builder = new StringBuilder();
-        builder.append("NRIC: ")
+        builder.append("; NRIC: ")
                 .append(person.getNric())
                 .append("; Name: ")
                 .append(person.getName())
                 .append("; DoB: ")
                 .append(person.getDoB())
                 .append("; Phone: ")
-                .append(person.getPhone());
+                .append(person.getPhone())
+                .append(";");
         return builder.toString();
     }
 
@@ -70,22 +71,4 @@ public class Messages {
                 .append(appointment.getAppointmentId());
         return builder.toString();
     }
-
-    /**
-     * Formats the {@code person} for display to the user.
-     */
-    public static String format(Doctor doctor) {
-        final StringBuilder builder = new StringBuilder();
-        builder.append("; NRIC: ")
-                .append(doctor.getNric())
-                .append("; Name: ")
-                .append(doctor.getName())
-                .append("; DoB: ")
-                .append(doctor.getDoB())
-                .append("; Phone: ")
-                .append(doctor.getPhone())
-                .append(";");
-        return builder.toString();
-    }
-
 }

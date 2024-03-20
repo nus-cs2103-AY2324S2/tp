@@ -189,6 +189,10 @@ public class AddDoctorCommandTest {
             //TODO: implement
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void updateFilteredAppointmentList(Predicate<Appointment> appointment) {
+        }
     }
 
     /**
