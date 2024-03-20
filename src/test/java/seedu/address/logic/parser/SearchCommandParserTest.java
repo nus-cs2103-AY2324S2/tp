@@ -11,6 +11,7 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_COUNTRY_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_STATUS_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
@@ -42,6 +43,7 @@ import seedu.address.model.person.Country;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Status;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.SearchPersonDescriptorBuilder;
 
@@ -57,7 +59,7 @@ public class SearchCommandParserTest {
     @Test
     public void parse_missingOrAdditionalParts_failure() {
         // nothing specified
-        assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "", SearchCommand.MESSAGE_NO_FIELD_PROVIDED);
 
         // preamble with no field specified
         assertParseFailure(parser, "1", MESSAGE_INVALID_FORMAT);
@@ -76,6 +78,7 @@ public class SearchCommandParserTest {
         assertParseFailure(parser, INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS); // invalid phone
         assertParseFailure(parser, INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
         assertParseFailure(parser, INVALID_COUNTRY_DESC, Country.MESSAGE_CONSTRAINTS); // invalid country
+        assertParseFailure(parser, INVALID_STATUS_DESC, Status.MESSAGE_CONSTRAINTS); // invalid status
         assertParseFailure(parser, INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
 
         // invalid phone followed by valid email

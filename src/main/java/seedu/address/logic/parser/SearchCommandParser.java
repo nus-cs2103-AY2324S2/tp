@@ -38,7 +38,10 @@ public class SearchCommandParser implements Parser<SearchCommand> {
                         PREFIX_COMMENT, PREFIX_TAG);
         String trimmedArgs = args.trim();
         String trimmedPreamble = argMultimap.getPreamble().trim();
-        if (trimmedArgs.isEmpty() || !trimmedPreamble.equals("")) {
+        if (trimmedArgs.isEmpty()) {
+            throw new ParseException(SearchCommand.MESSAGE_NO_FIELD_PROVIDED);
+        }
+        if (!trimmedPreamble.equals("")) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchCommand.MESSAGE_USAGE));
         }
 
