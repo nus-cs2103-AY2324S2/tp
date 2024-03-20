@@ -108,7 +108,6 @@ public class EditCommandTest {
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
-
     @Test
     public void execute_filteredList_success() {
         // Show only the person with the specified student ID in the filtered list
@@ -220,6 +219,15 @@ public class EditCommandTest {
 
         // different descriptor -> returns false
         assertFalse(standardCommand.equals(new EditCommand(ID_FIRST_PERSON, DESC_BOB)));
+    }
+
+    @Test
+    public void getEditedPhone_bothPhonesNull_returnsEmpty() {
+        EditPersonDescriptor descriptor = new EditPersonDescriptor();
+
+        Optional<Phone> result = descriptor.getEditedPhone();
+
+        assertFalse(result.isPresent());
     }
 
     @Test
