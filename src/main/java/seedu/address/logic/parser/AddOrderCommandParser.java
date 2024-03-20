@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.NoSuchElementException;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
@@ -46,14 +47,22 @@ public class AddOrderCommandParser implements Parser<AddOrderCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (IllegalValueException ive) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddOrderCommand.MESSAGE_USAGE), ive);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddOrderCommand.MESSAGE_USAGE), ive);
         }
-
         OrderId orderId = new OrderId();
         OrderDate orderDate = new OrderDate(getCurrentTime());
-        Deadline deadline = new Deadline(argMultimap.getValue(PREFIX_BY).get());
-        Remark remark = new Remark(argMultimap.getValue(PREFIX_DETAILS).get());
-        Amount amount = new Amount(argMultimap.getValue(PREFIX_PRICE).get());
+        Deadline deadline;
+        Remark remark;
+        Amount amount;
+        try {
+            deadline = new Deadline(argMultimap.getValue(PREFIX_BY).get());
+            remark = new Remark(argMultimap.getValue(PREFIX_DETAILS).get());
+            amount = new Amount(argMultimap.getValue(PREFIX_PRICE).get());
+        } catch (NoSuchElementException error) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddOrderCommand.MESSAGE_USAGE), error);
+        }
         Status status = new Status("pending");
         Order order = new Order(orderId, orderDate, deadline, amount, remark, status);
         return new AddOrderCommand(index, order);
