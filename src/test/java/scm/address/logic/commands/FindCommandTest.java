@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static scm.address.logic.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static scm.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static scm.address.testutil.TypicalPersons.CARL;
+import static scm.address.testutil.TypicalPersons.ALICE;
 import static scm.address.testutil.TypicalPersons.ELLE;
 import static scm.address.testutil.TypicalPersons.FIONA;
 import static scm.address.testutil.TypicalPersons.getTypicalAddressBook;
@@ -83,14 +83,14 @@ public class FindCommandTest {
     @Test
     public void execute_multipleKeywords_multiplePersonsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
-        NameContainsKeywordsPredicate namePredicate = prepareNamePredicate("Kurz Elle Kunz");
-        AddressContainsKeywordsPredicate addressPredicate = prepareAddressPredicate(" ");
-        TagsContainKeywordsPredicate tagsPredicate = prepareTagsPredicate(" ");
+        NameContainsKeywordsPredicate namePredicate = prepareNamePredicate("Kurz Elle Kunz Alice");
+        AddressContainsKeywordsPredicate addressPredicate = prepareAddressPredicate("Little Jurong Michegan");
+        TagsContainKeywordsPredicate tagsPredicate = prepareTagsPredicate("relatives friends");
 
         FindCommand command = new FindCommand(namePredicate, addressPredicate, tagsPredicate);
         expectedModel.updateFilteredPersonList(namePredicate.and(addressPredicate.and(tagsPredicate)));
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(ALICE, ELLE, FIONA), model.getFilteredPersonList());
     }
 
     @Test
