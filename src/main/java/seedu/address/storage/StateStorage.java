@@ -119,4 +119,17 @@ public class StateStorage {
         return lastCommand;
     }
 
+    /**
+     * Instantiates a stateStorage file if it does not exist. If it already exists, it will return the last command.
+     *
+     * @return The last input in the command box, or and empty string new file created.
+     * @throws DataLoadingException If the file is not found or cannot be read.
+     */
+    public static String getLastCommand() throws DataLoadingException {
+        StateStorage stateStorage = new StateStorage();
+        String lastCommand = loadState();
+
+        return lastCommand;
+    }
+
 }

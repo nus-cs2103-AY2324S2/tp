@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static seedu.address.storage.StateStorage.clearState;
 import static seedu.address.storage.StateStorage.deleteStateStorage;
+import static seedu.address.storage.StateStorage.getLastCommand;
 import static seedu.address.storage.StateStorage.loadState;
 import static seedu.address.storage.StateStorage.writeState;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -42,6 +43,14 @@ public class StateStorageTest {
         clearState();
         String expected = "";
         String actual = loadState();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void getLastCommand_emptyFile_successfullyLoaded() throws DataLoadingException {
+        clearState();
+        String expected = "";
+        String actual = getLastCommand();
         assertEquals(expected, actual);
     }
 
