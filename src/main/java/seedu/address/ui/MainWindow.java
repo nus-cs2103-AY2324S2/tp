@@ -135,7 +135,7 @@ public class MainWindow extends UiPart<Stage> {
         }
 
         remindersPanel = new RemindersPanel();
-        
+        addRemindersPanel();
 
         resultDisplay = new ResultDisplay();
 
