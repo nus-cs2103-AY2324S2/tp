@@ -2,12 +2,10 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_AGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_IC_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
@@ -17,20 +15,17 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.Age;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.IdentityCardNumber;
-import seedu.address.model.person.IdentityCardNumberMatchesPredicate;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.Sex;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -43,46 +38,45 @@ public class EditCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
             + "by the index number used in the displayed person list. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: IC (Personal Identification Number) "
+            + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_IC_NUMBER + "IC] "
-            + "[" + PREFIX_AGE + "AGE] "
-            + "[" + PREFIX_SEX + "SEX] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "Example: " + COMMAND_WORD + " T0123456A "
+            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+
+    private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
-    private final IdentityCardNumberMatchesPredicate predicate;
 
     /**
-     * @param predicate of the person in the filtered person list to edit
+     * @param index of the person in the filtered person list to edit
      * @param editPersonDescriptor details to edit the person with
      */
-    public EditCommand(IdentityCardNumberMatchesPredicate predicate, EditPersonDescriptor editPersonDescriptor) {
-        requireNonNull(predicate);
+    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
+        requireNonNull(index);
         requireNonNull(editPersonDescriptor);
 
-        this.predicate = predicate;
+        this.index = index;
         this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> allPatients = model.getAddressBook().getPersonList();
+        List<Person> lastShownList = model.getFilteredPersonList();
 
-        Person personToEdit = allPatients.stream()
-                .filter(predicate::test)
-                .findFirst()
-                .orElseThrow(() -> new CommandException(Messages.MESSAGE_NO_MATCHING_IC));
+        if (index.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        }
 
+        Person personToEdit = lastShownList.get(index.getZeroBased());
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
@@ -104,16 +98,13 @@ public class EditCommand extends Command {
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        IdentityCardNumber updatedIC = editPersonDescriptor.getIC().orElse(personToEdit.getIdentityCardNumber());
-        Age updatedAge = editPersonDescriptor.getAge().orElse(personToEdit.getAge());
-        Sex updatedSex = editPersonDescriptor.getSex().orElse(personToEdit.getSex());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
         // Use the same person for existing fields, but copies the object for every thing else
         // TODO: change this when the command is updated
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedIC,
-                updatedAge, updatedSex, updatedAddress, personToEdit.getNote(), updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, personToEdit.getIdentityCardNumber(),
+                personToEdit.getAge(), personToEdit.getSex(), updatedAddress, personToEdit.getNote(), updatedTags);
     }
 
     @Override
@@ -128,14 +119,14 @@ public class EditCommand extends Command {
         }
 
         EditCommand otherEditCommand = (EditCommand) other;
-        return predicate.equals(otherEditCommand.predicate)
+        return index.equals(otherEditCommand.index)
                 && editPersonDescriptor.equals(otherEditCommand.editPersonDescriptor);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("predicate", predicate)
+                .add("index", index)
                 .add("editPersonDescriptor", editPersonDescriptor)
                 .toString();
     }
@@ -150,9 +141,6 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private Set<Tag> tags;
-        private IdentityCardNumber ic;
-        private Age age;
-        private Sex sex;
 
         public EditPersonDescriptor() {}
 
@@ -164,9 +152,6 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
-            setIC(toCopy.ic);
-            setAge(toCopy.age);
-            setSex(toCopy.sex);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
         }
@@ -209,24 +194,6 @@ public class EditCommand extends Command {
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
         }
-        public void setIC(IdentityCardNumber ic) {
-            this.ic = ic;
-        }
-        public Optional<IdentityCardNumber> getIC() {
-            return Optional.ofNullable(ic);
-        }
-        public void setAge(Age age) {
-            this.age = age;
-        }
-        public Optional<Age> getAge() {
-            return Optional.ofNullable(age);
-        }
-        public void setSex(Sex sex) {
-            this.sex = sex;
-        }
-        public Optional<Sex> getSex() {
-            return Optional.ofNullable(sex);
-        }
 
         /**
          * Sets {@code tags} to this object's {@code tags}.
@@ -260,9 +227,6 @@ public class EditCommand extends Command {
             return Objects.equals(name, otherEditPersonDescriptor.name)
                     && Objects.equals(phone, otherEditPersonDescriptor.phone)
                     && Objects.equals(email, otherEditPersonDescriptor.email)
-                    && Objects.equals(ic, otherEditPersonDescriptor.ic)
-                    && Objects.equals(age, otherEditPersonDescriptor.age)
-                    && Objects.equals(sex, otherEditPersonDescriptor.sex)
                     && Objects.equals(address, otherEditPersonDescriptor.address)
                     && Objects.equals(tags, otherEditPersonDescriptor.tags);
         }
@@ -273,9 +237,6 @@ public class EditCommand extends Command {
                     .add("name", name)
                     .add("phone", phone)
                     .add("email", email)
-                    .add("ic", ic)
-                    .add("age", age)
-                    .add("sex", sex)
                     .add("address", address)
                     .add("tags", tags)
                     .toString();
