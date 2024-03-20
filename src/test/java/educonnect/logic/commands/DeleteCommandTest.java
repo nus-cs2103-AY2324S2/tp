@@ -11,6 +11,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 import educonnect.commons.core.index.Index;
@@ -22,6 +24,8 @@ import educonnect.model.student.Email;
 import educonnect.model.student.Student;
 import educonnect.model.student.StudentId;
 import educonnect.model.student.TelegramHandle;
+
+
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -196,7 +200,7 @@ public class DeleteCommandTest {
      * Updates {@code model}'s filtered list to show no one.
      */
     private void showNoStudent(Model model) {
-        model.updateFilteredStudentList(p -> false);
+        model.updateFilteredStudentList(List.of(p -> false));
 
         assertTrue(model.getFilteredStudentList().isEmpty());
     }

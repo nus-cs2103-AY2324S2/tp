@@ -19,8 +19,8 @@ import educonnect.commons.core.index.Index;
 import educonnect.logic.commands.exceptions.CommandException;
 import educonnect.model.AddressBook;
 import educonnect.model.Model;
-import educonnect.model.student.NameContainsKeywordsPredicate;
 import educonnect.model.student.Student;
+import educonnect.model.student.predicates.NameContainsKeywordsPredicate;
 import educonnect.testutil.EditStudentDescriptorBuilder;
 
 /**
@@ -149,7 +149,7 @@ public class CommandTestUtil {
 
         Student student = model.getFilteredStudentList().get(targetIndex.getZeroBased());
         final String name = student.getName().fullName;
-        model.updateFilteredStudentList(new NameContainsKeywordsPredicate(name));
+        model.updateFilteredStudentList(List.of(new NameContainsKeywordsPredicate(name)));
 
         assertEquals(1, model.getFilteredStudentList().size());
     }

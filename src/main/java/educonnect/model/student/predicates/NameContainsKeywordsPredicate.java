@@ -1,9 +1,10 @@
-package educonnect.model.student;
+package educonnect.model.student.predicates;
 
 import java.util.function.Predicate;
 
 import educonnect.commons.util.StringUtil;
 import educonnect.commons.util.ToStringBuilder;
+import educonnect.model.student.Student;
 
 /**
  * Tests that a {@code Student}'s {@code Name} matches any of the keywords given.

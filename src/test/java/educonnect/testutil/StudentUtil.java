@@ -13,7 +13,7 @@ import java.util.Set;
 import educonnect.logic.commands.AddCommand;
 import educonnect.logic.commands.EditCommand.EditStudentDescriptor;
 import educonnect.model.student.Student;
-import educonnect.model.tag.Tag;
+import educonnect.model.student.Tag;
 
 /**
  * A utility class for Student.

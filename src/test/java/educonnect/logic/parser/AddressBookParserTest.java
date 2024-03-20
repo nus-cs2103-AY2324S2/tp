@@ -9,6 +9,8 @@ import static educonnect.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 import educonnect.logic.commands.AddCommand;
@@ -21,12 +23,13 @@ import educonnect.logic.commands.FindCommand;
 import educonnect.logic.commands.HelpCommand;
 import educonnect.logic.commands.ListCommand;
 import educonnect.logic.parser.exceptions.ParseException;
-import educonnect.model.student.NameContainsKeywordsPredicate;
 import educonnect.model.student.Student;
 import educonnect.model.student.StudentId;
+import educonnect.model.student.predicates.NameContainsKeywordsPredicate;
 import educonnect.testutil.EditStudentDescriptorBuilder;
 import educonnect.testutil.StudentBuilder;
 import educonnect.testutil.StudentUtil;
+
 
 public class AddressBookParserTest {
 
@@ -74,8 +77,9 @@ public class AddressBookParserTest {
     public void parseCommand_find() throws Exception {
         String keyword = "foo bar baz";
         FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keyword);
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keyword)), command);
+                FindCommand.COMMAND_WORD + " n/" + keyword);
+        assertEquals(new FindCommand(List.of(new NameContainsKeywordsPredicate(keyword))).toString(),
+            command.toString());
     }
 
     @Test

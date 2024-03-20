@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+import educonnect.model.student.predicates.NameContainsKeywordsPredicate;
 import educonnect.testutil.StudentBuilder;
 
 public class NameContainsKeywordsPredicateTest {

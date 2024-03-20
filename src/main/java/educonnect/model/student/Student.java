@@ -9,7 +9,6 @@ import java.util.Set;
 
 import educonnect.commons.util.ToStringBuilder;
 import educonnect.model.student.timetable.Timetable;
-import educonnect.model.tag.Tag;
 
 /**
  * Represents a Student in the address book.

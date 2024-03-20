@@ -3,6 +3,7 @@ package educonnect.model;
 import static java.util.Objects.requireNonNull;
 
 import java.nio.file.Path;
+import java.util.Collection;
 import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -178,9 +179,14 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredStudentList(Predicate<Student> predicate) {
-        requireNonNull(predicate);
-        filteredStudents.setPredicate(predicate);
+    public void updateFilteredStudentList(Collection<Predicate<Student>> predicates) {
+        requireNonNull(predicates);
+        // Combine all predicates using logical AND
+        Predicate<Student> combinedPredicate = predicates.stream()
+                .reduce(Predicate::and)
+                .orElse(student -> true);
+
+        filteredStudents.setPredicate(combinedPredicate);
     }
 
     @Override
