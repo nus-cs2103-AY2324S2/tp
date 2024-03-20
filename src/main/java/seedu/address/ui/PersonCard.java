@@ -61,10 +61,10 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
-        dob.setText(person.getDob().value);
-        ic.setText(person.getIc().value);
-        admissionDate.setText(person.getAdmissionDate().value);
-        ward.setText(person.getWard().value);
+        dob.setText("DOB: " + person.getDob().value);
+        ic.setText("IC: " + person.getIc().value);
+        admissionDate.setText("Admitted: " + person.getAdmissionDate().value);
+        ward.setText("Ward: " + person.getWard().value);
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

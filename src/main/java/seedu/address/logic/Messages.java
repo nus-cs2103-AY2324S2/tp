@@ -37,13 +37,16 @@ public class Messages {
     public static String format(Person person) {
         final StringBuilder builder = new StringBuilder();
         builder.append(person.getName())
-                .append("; Phone: ")
-                .append(person.getPhone())
-                .append("; Email: ")
-                .append(person.getEmail())
-                .append("; Address: ")
-                .append(person.getAddress())
-                .append("; Tags: ");
+                .append("\n IC: ")
+                .append(person.getIc())
+                .append("   DOB: ")
+                .append(person.getDob())
+                .append("\n Admitted: ")
+                .append(person.getAdmissionDate())
+                .append("   Ward: ")
+                .append(person.getWard())
+                .append("\n Tags: ")
+                .append(person.getTags());
         person.getTags().forEach(builder::append);
         return builder.toString();
     }
