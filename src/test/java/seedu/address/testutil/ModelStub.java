@@ -148,6 +148,11 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public void deletePersonFromSelectedEvent(Person person) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public ObservableList<Event> getFilteredEventList() {
         throw new AssertionError("This method should not be called.");
     }
