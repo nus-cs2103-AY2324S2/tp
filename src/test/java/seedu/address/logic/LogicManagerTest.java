@@ -2,6 +2,7 @@ package seedu.address.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.Messages.MESSAGE_CONFIRMATION;
+import static seedu.address.logic.Messages.MESSAGE_CONFIRMATION_CANCELLED;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.AVAILABILITY_DESC_AMY;
@@ -62,14 +63,23 @@ public class LogicManagerTest {
     @Test
     public void execute_commandExecutionError_throwsCommandException() throws CommandException, ParseException {
         String deleteCommand = "delete 9";
+        String confirmation = "y";
         assertCommandSuccess(deleteCommand, false, MESSAGE_CONFIRMATION, model);
-        assertCommandException("y", true, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandException(confirmation, true, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test
     public void execute_validCommand_success() throws CommandException, ParseException {
         String listCommand = ListCommand.COMMAND_WORD;
         assertCommandSuccess(listCommand, false, ListCommand.MESSAGE_SUCCESS, model);
+    }
+
+    @Test
+    public void execute_validCommand_cancelled() throws CommandException, ParseException {
+        String deleteCommand = "delete 1";
+        String confirmation = "anything";
+        assertCommandSuccess(deleteCommand, false, MESSAGE_CONFIRMATION, model);
+        assertCommandSuccess(confirmation, true, MESSAGE_CONFIRMATION_CANCELLED, model);
     }
 
     @Test

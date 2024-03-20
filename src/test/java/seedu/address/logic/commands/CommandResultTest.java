@@ -8,13 +8,15 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 public class CommandResultTest {
+    public static final String DEFAULT_FEEDBACK_MESSAGE = "feedback";
+    public static final String DIFFERENT_FEEDBACK_MESSAGE = "different";
     @Test
     public void equals() {
-        CommandResult commandResult = new CommandResult("feedback");
+        CommandResult commandResult = new CommandResult(DEFAULT_FEEDBACK_MESSAGE);
 
         // same values -> returns true
-        assertTrue(commandResult.equals(new CommandResult("feedback")));
-        assertTrue(commandResult.equals(new CommandResult("feedback", false, false, false)));
+        assertTrue(commandResult.equals(new CommandResult(DEFAULT_FEEDBACK_MESSAGE)));
+        assertTrue(commandResult.equals(new CommandResult(DEFAULT_FEEDBACK_MESSAGE, false, false, false)));
 
         // same object -> returns true
         assertTrue(commandResult.equals(commandResult));
@@ -26,35 +28,40 @@ public class CommandResultTest {
         assertFalse(commandResult.equals(0.5f));
 
         // different feedbackToUser value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("different")));
+        assertFalse(commandResult.equals(new CommandResult(DIFFERENT_FEEDBACK_MESSAGE)));
+
+        // different confirmation value -> return false
+        assertFalse(commandResult.equals(new CommandResult(DEFAULT_FEEDBACK_MESSAGE, true, false, false)));
 
         // different showHelp value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("feedback", false, true, false)));
+        assertFalse(commandResult.equals(new CommandResult(DEFAULT_FEEDBACK_MESSAGE, false, true, false)));
 
         // different exit value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("feedback", false, false, true)));
+        assertFalse(commandResult.equals(new CommandResult(DEFAULT_FEEDBACK_MESSAGE, false, false, true)));
     }
 
     @Test
     public void hashcode() {
-        CommandResult commandResult = new CommandResult("feedback");
+        CommandResult commandResult = new CommandResult(DEFAULT_FEEDBACK_MESSAGE);
 
         // same values -> returns same hashcode
-        assertEquals(commandResult.hashCode(), new CommandResult("feedback").hashCode());
+        assertEquals(commandResult.hashCode(), new CommandResult(DEFAULT_FEEDBACK_MESSAGE).hashCode());
 
         // different feedbackToUser value -> returns different hashcode
-        assertNotEquals(commandResult.hashCode(), new CommandResult("different").hashCode());
+        assertNotEquals(commandResult.hashCode(), new CommandResult(DIFFERENT_FEEDBACK_MESSAGE).hashCode());
 
         // different showHelp value -> returns different hashcode
-        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false, true, false).hashCode());
+        assertNotEquals(commandResult.hashCode(), new CommandResult(DEFAULT_FEEDBACK_MESSAGE, false,
+                true, false).hashCode());
 
         // different exit value -> returns different hashcode
-        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false, false, true).hashCode());
+        assertNotEquals(commandResult.hashCode(), new CommandResult(DEFAULT_FEEDBACK_MESSAGE, false,
+                false, true).hashCode());
     }
 
     @Test
     public void toStringMethod() {
-        CommandResult commandResult = new CommandResult("feedback");
+        CommandResult commandResult = new CommandResult(DEFAULT_FEEDBACK_MESSAGE);
         String expected = CommandResult.class.getCanonicalName() + "{feedbackToUser="
                 + commandResult.getFeedbackToUser() + ", confirmation=" + commandResult.isConfirmation()
                 + ", showHelp=" + commandResult.isShowHelp() + ", exit=" + commandResult.isExit() + "}";

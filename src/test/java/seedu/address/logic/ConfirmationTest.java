@@ -1,7 +1,9 @@
 package seedu.address.logic;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.Messages.MESSAGE_CONFIRMATION;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 
 import org.junit.jupiter.api.Test;
@@ -29,5 +31,11 @@ public class ConfirmationTest {
     public void assertConfirmation() {
         Confirmation confirmation = new Confirmation(new DeleteCommand(Index.fromOneBased(RANDOM_INDEX)));
         assertFalse(confirmation.isToProceed());
+    }
+
+    @Test
+    public void assertConfirmationString() {
+        Confirmation confirmation = new Confirmation((new ListCommand()));
+        assertEquals(MESSAGE_CONFIRMATION, confirmation.toString());
     }
 }

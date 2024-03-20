@@ -21,6 +21,8 @@ public class Messages {
     public static final String MESSAGE_CONFIRMATION = "Are you sure that you want to proceed with that action? "
             + "[y/N]";
 
+    public static final String MESSAGE_CONFIRMATION_CANCELLED = "Command execution has been cancelled.";
+
     /**
      * Returns an error message indicating the duplicate prefixes.
      */

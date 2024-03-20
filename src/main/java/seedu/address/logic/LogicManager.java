@@ -1,6 +1,7 @@
 package seedu.address.logic;
 
 import static seedu.address.logic.Messages.MESSAGE_CONFIRMATION;
+import static seedu.address.logic.Messages.MESSAGE_CONFIRMATION_CANCELLED;
 
 import java.io.IOException;
 import java.nio.file.AccessDeniedException;
@@ -55,7 +56,7 @@ public class LogicManager implements Logic {
             if (commandText.equalsIgnoreCase("y")) {
                 commandResult = prevCommand.execute(model);
             } else {
-                commandResult = new CommandResult("Command execution has been cancelled.");
+                commandResult = new CommandResult(MESSAGE_CONFIRMATION_CANCELLED);
             }
         } else {
             Command command = addressBookParser.parseCommand(commandText);
