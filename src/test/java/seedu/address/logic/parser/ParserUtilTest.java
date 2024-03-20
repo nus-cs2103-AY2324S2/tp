@@ -195,7 +195,6 @@ public class ParserUtilTest {
                 Arrays.asList(VALID_INTEREST_1));
         Set<Tag> expectedTagSet = new HashSet<Tag>(
             Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2), new Interest(VALID_INTEREST_1))); // Include interest
-        
         assertEquals(expectedTagSet, actualTagSet);
     }
 }
