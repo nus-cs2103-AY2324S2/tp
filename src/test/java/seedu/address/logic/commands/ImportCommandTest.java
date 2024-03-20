@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.testutil.Assert.assertThrows;
 
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Map;
 
@@ -20,10 +21,11 @@ public class ImportCommandTest {
     @Test
     public void execute_import_success() throws CommandException, ParseException, DataLoadingException {
         Model model = new ModelManager(new AddressBook(), new UserPrefs());
-        ImportCommand importCommand = new ImportCommand(Paths.get("src/test/data/ImportCommandTest/valid.csv"));
+        Path filePath = Paths.get("src/test/data/ImportCommandTest/valid.csv");
+        ImportCommand importCommand = new ImportCommand(filePath);
         CommandResult commandResult = importCommand.execute(model);
-        assertEquals(String.format("Imported Contacts from: %s", "src\\test\\data\\ImportCommandTest\\valid.csv"),
-                commandResult.getFeedbackToUser());
+        assertEquals(
+                String.format("Imported Contacts from: %s", filePath.toString()), commandResult.getFeedbackToUser());
     }
     @Test
     public void execute_convertToAddCommandInput_success() {
