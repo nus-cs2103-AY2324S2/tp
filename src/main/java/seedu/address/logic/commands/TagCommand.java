@@ -29,7 +29,7 @@ public class TagCommand extends Command {
             + "Existing tags will not be overwritten by the input.\n"
             + "At least one tag must be present.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + PREFIX_TAG + "[tag]...\n"
+            + PREFIX_TAG + "[TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_TAG + "INTERNAL " + PREFIX_TAG + "WAITLIST";
 

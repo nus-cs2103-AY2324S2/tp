@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
@@ -30,7 +31,7 @@ public class StatusCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Updates recruitment status of a candidate"
             + " existing in the address book to one of the five status:\n"
             + "PRESCREEN, IN_PROGRESS, WAITLIST, ACCEPTED, REJECTED\n"
-            + "Parameters: INDEX(must be a positive integer) STATUS \n"
+            + "Parameters: INDEX (must be a positive integer) " + PREFIX_STATUS + "STATUS \n"
             + "Example: " + COMMAND_WORD + " 2 ACCEPTED";
 
     public static final String MESSAGE_STATUS_PERSON_SUCCESS = "Status of Candidate Number %1$d Successfully"

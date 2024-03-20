@@ -21,7 +21,7 @@ public class GetCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds a candidate at the specified "
             + "entry in the database displayed in the HireHub application\n"
-            + "Parameters: INDEX\n"
+            + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 3";
 
     public static final String MESSAGE_GET_PERSON_SUCCESS = "Candidate listed at entry number %1$d is successfully"

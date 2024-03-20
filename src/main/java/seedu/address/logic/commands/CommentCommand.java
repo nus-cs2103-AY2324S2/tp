@@ -26,7 +26,7 @@ public class CommentCommand extends Command {
             + "by the index number used in the last person listing. "
             + "Existing comment will be overwritten by the input.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + PREFIX_COMMENT + "[comment]\n"
+            + PREFIX_COMMENT + "COMMENT\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_COMMENT + "Likes to swim.";
     public static final String MESSAGE_ADD_COMMENT_SUCCESS = "Added comment to Person: %1$s";
