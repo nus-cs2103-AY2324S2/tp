@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.asset.Asset;
 import seedu.address.model.exceptions.AddressBookUndoException;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
@@ -115,6 +116,32 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void removePerson(Person key) {
         save();
         persons.remove(key);
+    }
+
+    //// asset-level operations
+
+    /**
+     * Returns true if an asset with the same identity as {@code asset} exists in the address book.
+     */
+    public boolean hasAsset(Asset asset) {
+        requireNonNull(asset);
+        return persons.asUnmodifiableObservableList()
+                .stream()
+                .anyMatch(person -> person.hasAsset(asset));
+    }
+
+    /**
+     * Changes all assets that equal target to editedAsset.
+     */
+    public void editAsset(Asset target, Asset editedAsset) {
+        requireNonNull(target);
+        save();
+        for (Person person : getPersonList()) {
+            if (person.getAssets().contains(target)) {
+                Person editedPerson = person.editAsset(target, editedAsset);
+                persons.setPerson(person, editedPerson);
+            }
+        }
     }
 
     //// util methods

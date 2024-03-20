@@ -17,7 +17,7 @@ import seedu.address.model.asset.Asset;
 public class Assets implements Field {
 
     public static final Prefix PREFIX_ASSET = new Prefix("A/");
-    public final Set<Asset> assets;
+    private final Set<Asset> assets;
 
     /**
      * Constructs a new {@code Assets} from a list of assets.
@@ -35,7 +35,7 @@ public class Assets implements Field {
      */
     public Assets(String... assetNames) {
         this.assets = Stream.of(assetNames)
-                            .map(Asset::of)
+                            .map(Asset::new)
                             .collect(Collectors.toUnmodifiableSet());
     }
 
@@ -50,6 +50,21 @@ public class Assets implements Field {
     @JsonValue
     private Set<Asset> get() {
         return assets;
+    }
+
+    public boolean contains(Asset asset) {
+        return assets.contains(asset);
+    }
+
+    /**
+     * Changes name of asset.
+     * @param target asset to be edited
+     * @param editedAsset new asset name
+     */
+    public Assets edit(Asset target, Asset editedAsset) {
+        return new Assets(assets.stream()
+                .map(asset -> asset.equals(target) ? editedAsset : asset)
+                .toArray(Asset[]::new));
     }
 
     public Stream<Asset> stream() {
