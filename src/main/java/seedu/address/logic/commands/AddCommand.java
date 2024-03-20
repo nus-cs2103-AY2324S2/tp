@@ -38,7 +38,7 @@ public class AddCommand extends Command {
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_SUBJECT + "Maths "
             + PREFIX_REMARK + "He is a slow learner. "
-            + PREFIX_LESSON + "Maths|23-05-2024|10:00";
+            + PREFIX_LESSON + "Maths|23-05-2024|10:00|1";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
