@@ -46,8 +46,8 @@ public class CommandTestUtil {
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
     public static final String STUDENT_ID_DESC_AMY = " " + PREFIX_STUDENTID + VALID_STUDENT_ID_AMY;
     public static final String STUDENT_ID_DESC_BOB = " " + PREFIX_STUDENTID + VALID_STUDENT_ID_BOB;
-    public static final String DATE_1 = " " + PREFIX_ATTENDANCE_RECORD + VALID_DATE_2;
-    public static final String DATE_2 = " " + PREFIX_ATTENDANCE_RECORD + VALID_DATE_1;
+    public static final String DATE_1 = " " + PREFIX_ATTENDANCE_RECORD + VALID_DATE_1;
+    public static final String DATE_2 = " " + PREFIX_ATTENDANCE_RECORD + VALID_DATE_2;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
