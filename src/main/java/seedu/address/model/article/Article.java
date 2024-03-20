@@ -9,13 +9,13 @@ public class Article {
     private final String title;
     private final String[] authors;
     private final LocalDateTime publicationDate;
-    private final String[] source;
+    private final String[] sources;
     private final String category;
 
     /**
      * Enumeration of Status of an article.
      */
-    private enum Status {
+    public enum Status {
         DRAFT, PUBLISHED, ARCHIVED
     }
 
@@ -27,16 +27,16 @@ public class Article {
      * @param title the title of the article.
      * @param authors the authors of the article.
      * @param publicationDate the date of publication.
-     * @param source the people interviewed.
+     * @param sources the people interviewed.
      * @param category the subject of the article.
      * @param status the current status of the article.
      */
     public Article(String title, String[] authors, LocalDateTime publicationDate,
-                   String[] source, String category, Status status) {
+                   String[] sources, String category, Status status) {
         this.title = title;
         this.authors = authors;
         this.publicationDate = publicationDate;
-        this.source = source;
+        this.sources = sources;
         this.category = category;
         this.status = status;
     }
@@ -53,8 +53,8 @@ public class Article {
         return this.publicationDate;
     }
 
-    public String[] getSource() {
-        return this.source;
+    public String[] getSources() {
+        return this.sources;
     }
 
     public String getCategory() {
