@@ -10,6 +10,7 @@ import static seedu.realodex.logic.commands.CommandTestUtil.VALID_INCOME_BOB;
 import static seedu.realodex.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.realodex.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.realodex.logic.commands.CommandTestUtil.VALID_REMARK_AMY;
+import static seedu.realodex.logic.commands.CommandTestUtil.VALID_REMARK_BOB;
 import static seedu.realodex.logic.commands.CommandTestUtil.VALID_TAG_AMY;
 import static seedu.realodex.testutil.Assert.assertThrows;
 import static seedu.realodex.testutil.TypicalPersons.ALICE;
@@ -105,6 +106,10 @@ public class PersonTest {
 
         // different tags -> returns false
         editedAlice = new PersonBuilder(ALICE).withTags("buyer").withTags("seller").build();
+        assertFalse(ALICE.equals(editedAlice));
+
+        // different remarks -> returns false
+        editedAlice = new PersonBuilder(ALICE).withRemark(VALID_REMARK_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
     }
 
