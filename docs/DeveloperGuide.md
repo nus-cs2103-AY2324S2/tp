@@ -336,6 +336,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case: Add notes for a person**
 
 **MSS**
+
 1.  User requests to list persons
 2.  ClinicMate shows a list of persons
 3.  User requests to add notes for a specific person in the list
