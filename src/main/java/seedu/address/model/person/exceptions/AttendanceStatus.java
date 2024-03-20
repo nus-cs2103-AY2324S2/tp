@@ -1,5 +1,9 @@
 package seedu.address.model.person.exceptions;
 
+import java.util.Objects;
+
+import seedu.address.model.tag.Attendance;
+
 public class AttendanceStatus {
 
     private String date;
@@ -26,5 +30,24 @@ public class AttendanceStatus {
         this.status = status;
     }
 
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof AttendanceStatus)) {
+            return false;
+        }
+
+        AttendanceStatus otherAttendance = (AttendanceStatus) other;
+        return date.equals(otherAttendance.date) && status.equals(otherAttendance.status);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(date, status);
+    }
 
 }

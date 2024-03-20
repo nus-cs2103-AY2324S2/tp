@@ -19,7 +19,7 @@ public class PersonBuilder {
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
-    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_ADDRESS = "A1111111D";
 
     private Name name;
     private Phone phone;
@@ -60,16 +60,16 @@ public class PersonBuilder {
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
      */
-    public PersonBuilder withTags(String ... tags) {
-        this.attendances = SampleDataUtil.getAttendanceSet(tags);
+    public PersonBuilder withDate(String ... dates) {
+        this.attendances = SampleDataUtil.getAttendanceSet(dates);
         return this;
     }
 
     /**
      * Sets the {@code Address} of the {@code Person} that we are building.
      */
-    public PersonBuilder withAddress(String address) {
-        this.studentId = new StudentId(address);
+    public PersonBuilder withStudentID(String studentID) {
+        this.studentId = new StudentId(studentID);
         return this;
     }
 

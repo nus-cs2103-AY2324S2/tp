@@ -7,6 +7,7 @@ import java.util.stream.Stream;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.person.Classes;
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.Attendance;
 
 /**
  * Container for user visible messages.
@@ -60,6 +61,12 @@ public class Messages {
         final StringBuilder builder = new StringBuilder();
         builder.append(classes.getCourseCode());
 
+        return builder.toString();
+    }
+
+    public static String attendanceFormat(Attendance attendance) {
+        final StringBuilder builder = new StringBuilder();
+        builder.append(attendance.attendanceName.getDate() + ", " + attendance.attendanceName.getStatus());
         return builder.toString();
     }
 

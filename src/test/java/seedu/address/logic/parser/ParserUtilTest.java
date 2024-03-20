@@ -30,7 +30,7 @@ public class ParserUtilTest {
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
-    private static final String VALID_ADDRESS = "123 Main Street #0505";
+    private static final String VALID_STUDENT_ID = "A1111111D";
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_DATE_1 = "02-02-2024";
     private static final String VALID_DATE_2 = "05-05-2024";
@@ -117,14 +117,14 @@ public class ParserUtilTest {
 
     @Test
     public void parseStudentId_validValueWithoutWhitespace_returnsAddress() throws Exception {
-        StudentId expectedStudentId = new StudentId(VALID_ADDRESS);
-        assertEquals(expectedStudentId, ParserUtil.parseStudentId(VALID_ADDRESS));
+        StudentId expectedStudentId = new StudentId(VALID_STUDENT_ID);
+        assertEquals(expectedStudentId, ParserUtil.parseStudentId(VALID_STUDENT_ID));
     }
 
     @Test
     public void parseStudentId_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
-        String addressWithWhitespace = WHITESPACE + VALID_ADDRESS + WHITESPACE;
-        StudentId expectedStudentId = new StudentId(VALID_ADDRESS);
+        String addressWithWhitespace = WHITESPACE + VALID_STUDENT_ID + WHITESPACE;
+        StudentId expectedStudentId = new StudentId(VALID_STUDENT_ID);
         assertEquals(expectedStudentId, ParserUtil.parseStudentId(addressWithWhitespace));
     }
 
