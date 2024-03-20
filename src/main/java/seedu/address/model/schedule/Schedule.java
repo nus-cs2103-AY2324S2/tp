@@ -78,12 +78,6 @@ public class Schedule {
      */
     public void addParticipants(ArrayList<Person> newParticipants) {
         for (Person p: newParticipants) {
-            //for (Person existingP: personList) {
-                //if (p.isSamePerson(existingP)) {
-                //    continue;
-                //}
-
-            //}
             personList.add(p);
         }
     }
