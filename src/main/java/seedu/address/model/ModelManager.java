@@ -153,10 +153,13 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public CourseMate findCourseMate(QueryableCourseMate query) {
-        // EVENTUALLY CHANGE TO HANDLE
+    public CourseMate findCourseMate(QueryableCourseMate query) throws CourseMateNotFoundException {
         if (query.isIndex()) {
-            throw new CourseMateNotFoundException();
+            if (query.getIndex().getZeroBased() == -1) {
+                return getRecentlyProcessedCourseMate();
+            } else {
+                return getFilteredCourseMateList().get(query.getIndex().getZeroBased());
+            }
         } else {
             return contactList.findCourseMate(query.getName());
         }
