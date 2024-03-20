@@ -27,12 +27,11 @@ public class FindAndExportCommandTest {
         FindAndExportCommand command = new FindAndExportCommand("friends", null, null, filePath.toString(), "json");
 
         command.execute(model);
-
         assertTrue(Files.exists(filePath), "The file was not created.");
     }
 
     @Test
-    public void execute_exportSuccessful() throws Exception {
+    public void execute_exportAsJsonSuccessful() throws Exception {
         Model model = new ModelManager();
         model.addPerson(ALICE);
 
@@ -43,6 +42,23 @@ public class FindAndExportCommandTest {
         String filename = tempFile.toString();
 
         FindAndExportCommand command = new FindAndExportCommand(tag, name, address, filename, "json");
+        CommandResult result = command.execute(model);
+        assertTrue(Files.exists(tempFile));
+        Files.deleteIfExists(tempFile);
+    }
+
+    @Test
+    public void execute_exportAsCSVSuccessful() throws Exception {
+        Model model = new ModelManager();
+        model.addPerson(ALICE);
+
+        String tag = "friends";
+        String name = ALICE.getName().toString();
+        String address = ALICE.getAddress().toString();
+        Path tempFile = Files.createTempFile("testExport", ".csv");
+        String filename = tempFile.toString();
+
+        FindAndExportCommand command = new FindAndExportCommand(tag, name, address, filename, "csv");
         CommandResult result = command.execute(model);
         assertTrue(Files.exists(tempFile));
         Files.deleteIfExists(tempFile);
