@@ -6,7 +6,24 @@
 
 # CapitalConnect User Guide
 
-Capital Connect is a AddressBook Level 3 (AB3), a **desktop app for managing your companies and contacts, optimized for use via a Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, CapitalConnect can get your contact management tasks done faster than traditional GUI apps.
+**Welcome to Capital Connect: Your Portfolio Powerhouse!!**
+Do you ever feel like your startup portfolio is a tangled mess of spreadsheets and endless documents? You're not alone. 
+As a Venture Capital Portfolio Manager, juggling diverse investments across industries can be a complex challenge.
+
+**Capital Connect is here to revolutionize your experience**.
+
+As a desktop app for managing startup investments and contacts, CapitalConnect is optimized
+for use via **a Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can
+type fast, CapitalConnect can get your investment management done faster than traditional GUI apps.
+
+This user guide is your key to unlocking the full potential of the app.  We'll walk you through every step, from
+effortlessly adding new investments to categorizing them by industry and funding stage.  Forget the days of chasing
+down data – CapitalConnect empowers you to track your startup investments with ease.
+
+Throughout this guide, we'll use clear, step-by-step instructions and helpful screenshots to ensure you master 
+CapitalConnect in no time.  So, buckle up and get ready to experience a smoother, more efficient way to manage your 
+startup investments!
+
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -17,11 +34,11 @@ Capital Connect is a AddressBook Level 3 (AB3), a **desktop app for managing you
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `capitalconnect.jar` from [here](https://github.com/AY2324S2-CS2103T-W09-2/tp).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for CapitalConnect.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar capitalconnect.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
@@ -30,11 +47,11 @@ Capital Connect is a AddressBook Level 3 (AB3), a **desktop app for managing you
 
    * `list` : Lists all contacts.
 
-   * `add n/capital connect p/98765432 i/finance f/B e/johnd@example.com a/John street, block 123, #01-01` : Adds a start up called `capital connect` to the Address Book.
+   * `add n/Pichu p/98765432 i/finance f/B e/johnd@example.com a/John street, block 123, #01-01` : Adds a start up called `Pichu` to CapitalConnect.
 
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
+   * `delete 3` : Deletes the 3rd startup shown in the current list.
 
-   * `clear` : Deletes all contacts.
+   * `clear` : Deletes all startups.
 
    * `exit` : Exits the app.
 
@@ -118,31 +135,60 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
   *  `edit 2 n/Stripe t/` Edits the name of the 2nd person to be `Stripe` and clears all existing tags.
 
-### Locating persons by name: `find`
+### Locating startups by name: `find`
 
-Finds persons whose names contain any of the given keywords.
+Finds startups with names that contain any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find n/NAME [MORE_NAME]`
 
 * The search is case-insensitive. e.g `apple` will match `Apple`
 * The order of the keywords does not matter. e.g. `Jane Street` will match `Street Jane`
 * Only the name is searched.
 * Only full words will be matched e.g. `Microsoft` will not match `Microsofts`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
+* Startups matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Jane Street` will return `Jane Technologies`, `State Street`
 
 Examples:
-* `find Google` returns `google` and `Google Deepmind`
-* `find apple` returns `apple pay`, `eat apple`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `find n/Google` returns `google` and `Google Deepmind`
+  ![result for 'find by name google'](images/findByNameGoogle.png)
+* `find n/apple` returns `apple pay`, `eat apple`<br>
+  ![result for 'find by name apple'](images/findByNameApple.png)
 
-### Deleting a person : `delete`
+### Locating startups by funding stage: `find`
 
-Deletes the specified startup from the address book.
+Finds startups that match the funding stages you are looking for.
+
+Format: `find f/FUNDING_STAGE [MORE_FUNDING_STAGES]`
+
+* The search is case-insensitive. e.g `a` will match `A`
+* The order of the keywords does not matter. e.g. `A B` will match `B A`
+* Only the funding stage is searched.
+
+Examples:
+* `find f/C` returns startups that are currently in Series C funding
+  ![result for 'find by fundingStage C'](images/findByFundingStage.png)
+
+### Locating startups by industry: `find`
+
+Finds startups with industries that match any of the given keywords.
+
+Format: `find f/INDUSTRY [MORE_INDUSTRIES]`
+
+* The search is case-insensitive. e.g `ai` will match `AI`
+* The order of the keywords does not matter. e.g. `AI WEB3` will match `WEB3 AI`
+* Only the industry is searched.
+
+Examples:
+* `find i/AI` returns startups that focus on AI development
+  ![result for 'find by fundingStage C'](images/findByIndustry.png)
+
+### Deleting a startup : `delete`
+
+Deletes the specified startup from CapitalConnect.
 
 Format: `delete INDEX`
 
-* Deletes the person at the specified `INDEX`.
+* Deletes the startup at the specified `INDEX`.
 * The index refers to the index number shown in the displayed startup list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
@@ -152,7 +198,7 @@ Examples:
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all entries from CapitalConnect.
 
 Format: `clear`
 
@@ -164,7 +210,7 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+CapitalConnect data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
@@ -198,12 +244,14 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action     | Format, Examples
------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear**  | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List**   | `list`
-**Help**   | `help`
+| Action                    | Format, Examples                                                                                                                                                      |
+|---------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**                   | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **Clear**                 | `clear`                                                                                                                                                               |
+| **Delete**                | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
+| **Edit**                  | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
+| **Find by Name**          | `find n/NAME [MORE_NAMES]`<br> e.g., `find n/apple`                                                                                                                   |
+| **Find by Funding Stage** | `find f/FUNDING_STAGE [MORE_FUNDING_STAGES]`<br> e.g., `find f/A`                                                                                                     |
+| **Find by Industry**      | `find i/INDUSTRY [MORE_INDUSTRIES]`<br> e.g., `find i/AI`                                                                                                             |
+| **List**                  | `list`                                                                                                                                                                |
+| **Help**                  | `help`                                                                                                                                                                |
