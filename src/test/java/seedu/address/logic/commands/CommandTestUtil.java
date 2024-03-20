@@ -31,8 +31,8 @@ public class CommandTestUtil {
 
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
-    public static final String VALID_TAG_HUSBAND = "husband";
-    public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_TAG_FALL_RISK = "Fall risk";
+    public static final String VALID_TAG_DIABETES = "Diabetes";
     public static final String VALID_DOB_AMY = "02/02/2012";
     public static final String VALID_DOB_BOB = "01/01/2010";
     public static final String VALID_IC_AMY = "M1111111W";
@@ -46,8 +46,8 @@ public class CommandTestUtil {
     // description + value
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
-    public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
-    public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String TAG_DESC_DIABETES = " " + PREFIX_TAG + VALID_TAG_DIABETES;
+    public static final String TAG_DESC_FALL_RISK = " " + PREFIX_TAG + VALID_TAG_FALL_RISK;
     public static final String DOB_DESC_AMY = " " + PREFIX_DOB + VALID_DOB_AMY;
     public static final String DOB_DESC_BOB = " " + PREFIX_DOB + VALID_DOB_BOB;
     public static final String IC_DESC_AMY = " " + PREFIX_IC + VALID_IC_AMY;
@@ -58,8 +58,7 @@ public class CommandTestUtil {
     public static final String WARD_DESC_BOB = " " + PREFIX_WARD + VALID_WARD_BOB;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
-    public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
-    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "diabetes*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -68,11 +67,10 @@ public class CommandTestUtil {
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
 
     static {
-        DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND).build();
+        DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY).withWard(VALID_WARD_AMY)
+                .withTags(VALID_TAG_DIABETES).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withAddress(VALID_ADDRESS_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withTags(VALID_TAG_FALL_RISK, VALID_TAG_DIABETES).build();
     }
 
     /**
