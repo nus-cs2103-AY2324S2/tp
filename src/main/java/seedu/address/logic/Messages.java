@@ -47,7 +47,9 @@ public class Messages {
                 .append(person.getGrade())
                 .append("; Subject: ")
                 .append(person.getSubject())
-                .append("; Tags: ");
+                .append("; DateTime: ");
+        person.getDateTimes().forEach(builder::append);
+        builder.append("; Tags: ");
         person.getTags().forEach(builder::append);
         return builder.toString();
     }
