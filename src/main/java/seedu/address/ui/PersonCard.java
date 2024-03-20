@@ -65,4 +65,32 @@ public class PersonCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(group -> group.groupName))
                 .forEach(group -> groups.getChildren().add(new Label(group.groupName)));
     }
+    public Label getIdLabel() {
+        return id;
+    }
+    public Label getNameLabel() {
+        return name;
+    }
+    public Label getPhoneLabel() {
+        return phone;
+    }
+    public Label getEmailLabel() {
+        return email;
+    }
+    public Label getYearLabel() {
+        return year;
+    }
+    public Label getMajorLabel() {
+        return major;
+    }
+    public Label getTelegramLabel() {
+        return telegram;
+    }
+    public Label getRemarkLabel() {
+        return remark;
+    }
+
+    public FlowPane getGroupsPane() {
+        return groups;
+    }
 }
