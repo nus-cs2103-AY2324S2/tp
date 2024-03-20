@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INFO;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
@@ -21,6 +22,7 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -28,6 +30,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Salary;
+import seedu.address.model.person.Info;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -46,6 +49,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_SALARY + "SALARY] "
+            + "[" + PREFIX_INFO + "INFO] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -103,11 +107,12 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Salary updatedSalary = editPersonDescriptor.getSalary().orElse(personToEdit.getSalary());
+        Info updatedInfo = editPersonDescriptor.getInfo().orElse(personToEdit.getInfo());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
         return new Person(
                 updatedName, updatedPhone, updatedEmail,
-                updatedAddress, updatedSalary, updatedTags);
+                updatedAddress, updatedSalary, updatedInfo, updatedTags);
     }
 
     @Override
@@ -144,6 +149,7 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private Salary salary;
+        private Info info;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -158,6 +164,7 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setSalary(toCopy.salary);
+            setInfo(toCopy.info);
             setTags(toCopy.tags);
         }
 
@@ -165,7 +172,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, salary, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, salary, info, tags);
         }
 
         public void setName(Name name) {
@@ -208,6 +215,10 @@ public class EditCommand extends Command {
             return Optional.ofNullable(salary);
         }
 
+        public void setInfo(Info info) {this.info = info; }
+
+        public Optional<Info> getInfo() { return Optional.ofNullable(info); }
+
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
@@ -242,6 +253,7 @@ public class EditCommand extends Command {
                     && Objects.equals(email, otherEditPersonDescriptor.email)
                     && Objects.equals(address, otherEditPersonDescriptor.address)
                     && Objects.equals(salary, otherEditPersonDescriptor.salary)
+                    && Objects.equals(info, otherEditPersonDescriptor.info)
                     && Objects.equals(tags, otherEditPersonDescriptor.tags);
         }
 
@@ -253,6 +265,7 @@ public class EditCommand extends Command {
                     .add("email", email)
                     .add("address", address)
                     .add("salary", salary)
+                    .add("info", info)
                     .add("tags", tags)
                     .toString();
         }

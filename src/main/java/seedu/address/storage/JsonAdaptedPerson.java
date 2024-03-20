@@ -16,6 +16,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Salary;
+import seedu.address.model.person.Info;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -30,6 +31,7 @@ class JsonAdaptedPerson {
     private final String email;
     private final String address;
     private final String salary;
+    private final String info;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
     /**
@@ -38,13 +40,14 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("salary") String salary,
+            @JsonProperty("salary") String salary, @JsonProperty("info") String info,
             @JsonProperty("tags") List<JsonAdaptedTag> tags) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.salary = salary;
+        this.info = info;
         if (tags != null) {
             this.tags.addAll(tags);
         }
@@ -59,6 +62,7 @@ class JsonAdaptedPerson {
         email = source.getEmail().value;
         address = source.getAddress().value;
         salary = source.getSalary().toString();
+        info = source.getInfo().value;
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -115,8 +119,10 @@ class JsonAdaptedPerson {
         }
         final Salary modelSalary = new Salary(salary);
 
+        final Info modelInfo = new Info(info);
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelSalary, modelTags);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelSalary, modelInfo, modelTags);
     }
 
 }

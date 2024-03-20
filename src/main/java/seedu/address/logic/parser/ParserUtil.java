@@ -14,6 +14,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Salary;
+import seedu.address.model.person.Info;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -136,5 +137,10 @@ public class ParserUtil {
             throw new ParseException(Salary.MESSAGE_CONSTRAINTS);
         }
         return new Salary(trimmedSalary);
+    }
+
+    public static Info parseInfo(String info) {
+        String trimmedInfo = info.trim();
+        return new Info(trimmedInfo);
     }
 }
