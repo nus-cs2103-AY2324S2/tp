@@ -350,7 +350,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 1a1. TutorHelperBot shows an error message.
 
   Use case ends.
-  
+
 
 **Use case: Select a student's profile (UC-03)**
 
@@ -365,12 +365,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. Enter an invalid command.
   * 1a1. TutorHelperBot shows an error message.
-  
-* 1b. Enter an invalid student 
+
+* 1b. Enter an invalid student
   * 1a1. TutorHelperBot shows an error message that stated student is not existed.
 
   Use case ends.
-  
+
 
 *{More to be added}*
 
@@ -380,7 +380,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  Should be able to hold up to 1000 students without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4.  Each class should accept up to 30 students without issue
-5.  No student should exist in more than 2 classes  
+5.  No student should exist in more than 2 classes 
 
 
 ### Glossary
