@@ -32,10 +32,9 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private EmployeeListPanel employeeListPanel;
+    private Panel panel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
-    private TaskListPanel taskListPanel;
 
     @FXML
     private VBox employeeList;
@@ -118,12 +117,9 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        employeeListPanel = new EmployeeListPanel(logic.getFilteredEmployeeList());
-        employeeListPanelPlaceholder.getChildren().add(employeeListPanel.getRoot());
-
-        taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
-        taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
-
+        panel = new EmployeeListPanel(logic.getFilteredEmployeeList());
+        EmployeeListPanel placeHolder = (EmployeeListPanel) panel;
+        employeeListPanelPlaceholder.getChildren().add(placeHolder.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -134,7 +130,6 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
-        taskListPanel.hide();
     }
 
     /**
@@ -166,10 +161,9 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleShowEmployees() {
-        if (!employeeListPanel.getRoot().isVisible()) {
-            employeeListPanel.getRoot().setVisible(true);
-            taskListPanel.getRoot().setVisible(false);
-        }
+        panel = new EmployeeListPanel(logic.getFilteredEmployeeList());
+        EmployeeListPanel placeHolder = (EmployeeListPanel) panel;
+        employeeListPanelPlaceholder.getChildren().add(placeHolder.getRoot());
     }
 
     /**
@@ -177,10 +171,9 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleShowTasks() {
-        if (!taskListPanel.getRoot().isVisible()) {
-            employeeListPanel.getRoot().setVisible(false);
-            taskListPanel.getRoot().setVisible(true);
-        }
+        panel = new TaskListPanel(logic.getFilteredTaskList());
+        TaskListPanel placeHolder = (TaskListPanel) panel;
+        employeeListPanelPlaceholder.getChildren().add(placeHolder.getRoot());
     }
 
     void show() {
@@ -200,7 +193,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     public EmployeeListPanel getEmployeeListPanel() {
-        return employeeListPanel;
+        return (EmployeeListPanel) panel;
     }
 
     /**
