@@ -3,6 +3,7 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.model.group.Group;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Major;
 import seedu.address.model.person.Name;
@@ -11,7 +12,6 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
 import seedu.address.model.person.Telegram;
 import seedu.address.model.person.Year;
-import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
@@ -33,7 +33,7 @@ public class PersonBuilder {
     private Major major;
     private Telegram telegram;
     private Remark remark;
-    private Set<Tag> tags;
+    private Set<Group> groups;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -46,7 +46,7 @@ public class PersonBuilder {
         major = new Major(DEFAULT_MAJOR);
         telegram = new Telegram(DEFAULT_TELEGRAM);
         remark = new Remark(DEFAULT_REMARK);
-        tags = new HashSet<>();
+        groups = new HashSet<>();
     }
 
     /**
@@ -60,7 +60,7 @@ public class PersonBuilder {
         major = personToCopy.getMajor();
         telegram = personToCopy.getTelegram();
         remark = personToCopy.getRemark();
-        tags = new HashSet<>(personToCopy.getTags());
+        groups = new HashSet<>(personToCopy.getGroups());
     }
 
     /**
@@ -72,10 +72,10 @@ public class PersonBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     * Parses the {@code groups} into a {@code Set<Group>} and set it to the {@code Person} that we are building.
      */
-    public PersonBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
+    public PersonBuilder withGroups(String ... groups) {
+        this.groups = SampleDataUtil.getGroupSet(groups);
         return this;
     }
 
@@ -128,7 +128,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, year, telegram, major, remark, tags);
+        return new Person(name, phone, email, year, telegram, major, remark, groups);
     }
 
 }
