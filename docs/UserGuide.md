@@ -6,7 +6,7 @@
 
 # CapitalConnect User Guide
 
-**Welcome to Capital Connect: Your Portfolio Powerhouse!!**
+**Welcome to CapitalConnect: Your Portfolio Powerhouse!!**
 
 Do you ever feel like your startup portfolio is a tangled mess of spreadsheets and endless documents? You're not alone. 
 As a Venture Capital Portfolio Manager, juggling diverse investments across industries can be a complex challenge.
@@ -16,7 +16,7 @@ As a Venture Capital Portfolio Manager, juggling diverse investments across indu
 Our application is build for the aspiring venture capitalist! You are a professional on the lookout for the next Google. 
 You are passionate about innovative and new technologies. Most importantly, you want to **make your network your net-worth.**
 
-**Capital Connect is here to revolutionize your experience**.
+**CapitalConnect is here to revolutionize your experience**.
 
 As a desktop app for managing startup investments and contacts, CapitalConnect is optimized
 for use via **a Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can
