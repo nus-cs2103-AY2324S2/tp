@@ -14,10 +14,7 @@ import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalAppointments.getTypicalAppointmentList;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SEVEN_HUNDRED_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
-
-import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
@@ -57,12 +54,10 @@ public class EditCommandTest {
 
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
-        Index indexLastPerson = Index.fromOneBased(INDEX_SEVEN_HUNDRED_PERSON);
-        Optional<Person> lastPerson = model.getFilteredPersonList().stream()
-                .filter(person -> person.getSid() == INDEX_SEVEN_HUNDRED_PERSON)
-                .findFirst();
+        Index indexLastPerson = Index.fromOneBased(model.getFilteredPersonList().size());
+        Person lastPerson = model.getFilteredPersonList().get(indexLastPerson.getZeroBased());
 
-        PersonBuilder personInList = new PersonBuilder(lastPerson.get());
+        PersonBuilder personInList = new PersonBuilder(lastPerson);
         Person editedPerson = personInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
 
@@ -72,11 +67,9 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson));
 
-
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
                 model.getAppointmentList(), new UserPrefs());
         expectedModel.setPerson(lastPerson, editedPerson);
-
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
