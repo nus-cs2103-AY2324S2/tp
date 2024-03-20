@@ -18,14 +18,14 @@ import seedu.address.model.person.Person;
  */
 public class AddBuyerCommand extends Command {
 
-    public static final String COMMAND_WORD = "addbuyer";
+    public static final String COMMAND_WORD = "addBuyer";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a buyer to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a buyer to EstateEase. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
-            + PREFIX_HOUSINGTYPE + "HOUSINGTYPE"
+            + PREFIX_HOUSINGTYPE + "HOUSING_TYPE "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
@@ -36,7 +36,7 @@ public class AddBuyerCommand extends Command {
             + PREFIX_TAG + "owesMoney";
 
     public static final String MESSAGE_SUCCESS = "New buyer added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This buyer already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_BUYER = "This buyer already exists in EstateEase";
 
     private final Person buyerToAdd;
 
@@ -46,7 +46,7 @@ public class AddBuyerCommand extends Command {
      */
     public AddBuyerCommand(Person person) {
         requireNonNull(person);
-        buyerToAdd = person;
+        this.buyerToAdd = person;
     }
     /**
      * Executes the command and returns the result message.
@@ -60,7 +60,7 @@ public class AddBuyerCommand extends Command {
         requireNonNull(model);
 
         if (model.hasPerson(buyerToAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_BUYER);
         }
 
         model.addPerson(buyerToAdd);

@@ -8,6 +8,7 @@ import static seedu.address.testutil.TypicalPersons.BOB;
 import org.junit.jupiter.api.Test;
 
 public class BuyerTest {
+
     @Test
     public void equals() {
 
