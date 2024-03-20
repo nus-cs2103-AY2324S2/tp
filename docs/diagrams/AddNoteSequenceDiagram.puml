@@ -15,7 +15,7 @@ participant ":Storage" as Storage STORAGE_COLOR
 User -[USER_COLOR]> Ui : "note 1 note/Likes to eat"
 activate Ui UI_COLOR
 
-Ui -[UI_COLOR]> LogicManager : execute("note 1 note/Likes to eat"
+Ui -[UI_COLOR]> LogicManager : execute("note 1 note/Likes to eat")
 activate LogicManager LOGIC_COLOR
 
 LogicManager -[LOGIC_COLOR]> AddressBookParser : parseCommand("note 1 note/Likes to eat")
