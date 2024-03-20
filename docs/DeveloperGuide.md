@@ -372,6 +372,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2/4.
 
+![Interactions Inside the Logic Component for the `assigntask 1 6` Command](images/AssignTaskSequenceDiagram.png)
+![Interactions for updating existing employee fields for the `assign 1 6` command](images/AssignTaskRefSequenceDiagram.png)
+Note that if none of the taskId == 1, an invalid taskId exception will be thrown.
+If none of the employeeId == 6, an invalid employeeId exception will be thrown.
+
 **Use case: Mark/unmark a task as done/not done**
 
 **MSS**
