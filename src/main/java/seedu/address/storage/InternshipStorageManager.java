@@ -25,15 +25,18 @@ public class InternshipStorageManager implements Storage {
     /**
      * Creates a {@code InternshipStorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
      */
-    public InternshipStorageManager(AddressBookStorage addressBookStorage, InternshipUserPrefsStorage userPrefsStorage) {
+    public InternshipStorageManager(AddressBookStorage addressBookStorage,
+                                    InternshipUserPrefsStorage userPrefsStorage) {
         this.addressBookStorage = addressBookStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
     /**
-     * Creates a {@code InternshipStorageManager} with the given {@code InternshipDataStorage} and {@code UserPrefStorage}.
+     * Creates a {@code InternshipStorageManager} with the given
+     * {@code InternshipDataStorage} and {@code UserPrefStorage}.
      */
-    public InternshipStorageManager(InternshipDataStorage internshipDataStorage, InternshipUserPrefsStorage userPrefsStorage) {
+    public InternshipStorageManager(InternshipDataStorage internshipDataStorage,
+                                    InternshipUserPrefsStorage userPrefsStorage) {
         this.internshipDataStorage = internshipDataStorage;
         this.userPrefsStorage = userPrefsStorage;
     }

@@ -23,11 +23,11 @@ import seedu.address.model.ReadOnlyInternshipData;
 import seedu.address.model.ReadOnlyInternshipUserPrefs;
 import seedu.address.model.util.InternshipSampleDataUtil;
 import seedu.address.storage.InternshipDataStorage;
+import seedu.address.storage.InternshipStorageManager;
+import seedu.address.storage.InternshipUserPrefsStorage;
 import seedu.address.storage.JsonInternshipDataStorage;
 import seedu.address.storage.JsonInternshipUserPrefsStorage;
 import seedu.address.storage.Storage;
-import seedu.address.storage.InternshipStorageManager;
-import seedu.address.storage.InternshipUserPrefsStorage;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
 

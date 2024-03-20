@@ -43,7 +43,8 @@ public class InternshipLogicManagerTest {
     public void setUp() {
         JsonInternshipDataStorage internshipDataStorage =
                 new JsonInternshipDataStorage(temporaryFolder.resolve("internshipdata.json"));
-        JsonInternshipUserPrefsStorage userPrefsStorage = new JsonInternshipUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
+        JsonInternshipUserPrefsStorage userPrefsStorage =
+                new JsonInternshipUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         InternshipStorageManager storage = new InternshipStorageManager(internshipDataStorage, userPrefsStorage);
         logic = new InternshipLogicManager(model, storage);
     }
