@@ -4,14 +4,14 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Tech Stack in the address book.
+ * Represents a Tech Stack in CodeConnect.
  * Guarantees: immutable; name is valid as declared in {@link #isValidTechStackName(String)}
  */
 public class TechStack {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tech stack names should be alphanumeric";
-    public static final String VALIDATION_REGEX = "\\p{Alnum}+";
-
+    public static final String MESSAGE_CONSTRAINTS = "Tech stack names should contain only alphanumeric characters," +
+            " underscores (_), number signs (#), hyphens (-), periods (.), and plus signs (+).";
+    public static final String VALIDATION_REGEX = "[\\p{Alnum}+.#-]+";
     public final String techStackName;
 
     /**
