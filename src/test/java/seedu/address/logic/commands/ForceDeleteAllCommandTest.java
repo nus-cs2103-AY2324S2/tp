@@ -10,23 +10,30 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 
-public class ClearCommandTest {
-
+/**
+ * Contains integration and unit tests for DeleteAllCommand.
+ */
+public class ForceDeleteAllCommandTest {
+    /**
+     * Tests when AddressBook is empty.
+     */
     @Test
     public void execute_emptyAddressBook_success() {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
 
-        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ForceDeleteAllCommand(), model, ForceDeleteAllCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
+    /**
+     * Tests when AddressBook is not empty.
+     */
     @Test
     public void execute_nonEmptyAddressBook_success() {
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         expectedModel.setAddressBook(new AddressBook());
 
-        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ForceDeleteAllCommand(), model, ForceDeleteAllCommand.MESSAGE_SUCCESS, expectedModel);
     }
-
 }
