@@ -39,19 +39,19 @@ public class TypicalPersons {
     public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("94824270")
             .withEmail("lydia@example.com").withId(6).build();
     public static final Person GEORGE = new PersonBuilder().withName("George Best").withPhone("94824420")
-            .withEmail("anna@example.com").withId(7).build();
+            .withEmail("anna@example.com").withId(700).build();
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withPhone("84824240")
-            .withEmail("stefan@example.com").withId(8).build();
+            .withEmail("stefan@example.com").withId(708).build();
     public static final Person IDA = new PersonBuilder().withName("Ida Mueller").withPhone("84821310")
-            .withEmail("hans@example.com").withId(9).build();
+            .withEmail("hans@example.com").withId(709).build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
-            .withEmail(VALID_EMAIL_AMY).withId(10).withTags(VALID_TAG_FRIEND).build();
+            .withEmail(VALID_EMAIL_AMY).withId(710).withTags(VALID_TAG_FRIEND).build();
     public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-            .withEmail(VALID_EMAIL_BOB).withId(11).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+            .withEmail(VALID_EMAIL_BOB).withId(711).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
