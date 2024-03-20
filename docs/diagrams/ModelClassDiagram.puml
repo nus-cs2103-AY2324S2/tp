@@ -18,7 +18,10 @@ Class Address
 Class Email
 Class Name
 Class Phone
+Class Membership
+Class Points
 Class Tag
+Class Order
 
 Class I #FFFFFF
 }
@@ -41,7 +44,10 @@ Person *--> Name
 Person *--> Phone
 Person *--> Email
 Person *--> Address
+Person *--> Membership
+Person *--> Points
 Person *--> "*" Tag
+Person *--> "*" Order
 
 Person -[hidden]up--> I
 UniquePersonList -[hidden]right-> I
