@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Allergies;
+import seedu.address.model.person.BloodType;
 import seedu.address.model.person.Country;
 import seedu.address.model.person.DateOfBirth;
 import seedu.address.model.person.Email;
@@ -34,6 +35,7 @@ class JsonAdaptedPerson {
     private final Optional<String> email;
     private final Optional<String> country;
     private final Optional<String> allergies;
+    private final Optional<String> bloodType;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -43,7 +45,8 @@ class JsonAdaptedPerson {
                              @JsonProperty("phone") String phone, @JsonProperty("address") String address,
                              @JsonProperty("dateOfBirth") String dob, @JsonProperty("sex") String sex,
                              @JsonProperty("status") String status, @JsonProperty("email") String email,
-                             @JsonProperty("country") String country, @JsonProperty("allergies") String allergies) {
+                             @JsonProperty("country") String country, @JsonProperty("allergies") String allergies,
+                             @JsonProperty("bloodType") String bloodType) {
         this.nric = nric;
         this.name = name;
         this.phone = phone;
@@ -54,6 +57,7 @@ class JsonAdaptedPerson {
         this.email = Optional.ofNullable(email);
         this.country = Optional.ofNullable(country);
         this.allergies = Optional.ofNullable(allergies);
+        this.bloodType = Optional.ofNullable(bloodType.toString());
     }
 
     /**
@@ -70,6 +74,7 @@ class JsonAdaptedPerson {
         this.email = Optional.ofNullable(source.getEmail().toString());
         this.country = Optional.ofNullable(source.getCountry().toString());
         this.allergies = Optional.ofNullable(source.getAllergies().toString());
+        this.bloodType = Optional.ofNullable(source.getBloodType().toString());
     }
 
     /**
@@ -155,6 +160,12 @@ class JsonAdaptedPerson {
         if (allergies.isPresent()) {
             final Allergies modelAllergies = new Allergies(allergies.get());
             person.setAllergies(modelAllergies);
+        }
+        // BloodType check
+        if (bloodType.isPresent()) {
+            String[] parts = bloodType.get().split("\\s+");
+            final BloodType modelBloodType = new BloodType(parts[0],parts[1]);
+            person.setBloodType(modelBloodType);
         }
         return person;
     }
