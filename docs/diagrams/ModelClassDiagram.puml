@@ -21,6 +21,7 @@ Class Name
 Class LastMet
 Class Schedule
 Class Priority
+Class Policy
 Class PolicyList
 Class Phone
 Class Tag
@@ -52,6 +53,8 @@ Person *--> Schedule
 Person *--> Priority
 Person *--> PolicyList
 Person *--> "*" Tag
+
+PolicyList --> "*" Policy
 
 Person -[hidden]up--> I
 UniquePersonList -[hidden]right-> I

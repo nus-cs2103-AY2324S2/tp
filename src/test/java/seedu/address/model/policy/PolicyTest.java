@@ -15,6 +15,21 @@ public class PolicyTest {
     private static final Policy policy = new Policy(VALID_NAME, VALID_ID);
 
     @Test
+    public void getPolicyId() {
+        assertEquals(policy.getPolicyId(), VALID_ID);
+    }
+
+    @Test
+    public void getPolicyName() {
+        assertEquals(policy.getPolicyName(), VALID_NAME);
+    }
+
+    @Test
+    public void getPolicyType() {
+        assertEquals(policy.getPolicyType(), PolicyType.DEFAULT);
+    }
+
+    @Test
     public void isIdTestTrue() {
         assertTrue(policy.isID(VALID_ID));
     }
@@ -35,22 +50,22 @@ public class PolicyTest {
 
     @Test
     public void isValidIdTestTrue() {
-        assertTrue(Policy.isValidID(VALID_ID));
+        assertTrue(Policy.isValidId(VALID_ID));
     }
 
     @Test
     public void isValidIdTestFalse() {
-        assertFalse(Policy.isValidID(INVALID_ID));
+        assertFalse(Policy.isValidId(INVALID_ID));
     }
 
     @Test
     public void hasSameIdTestTrue() {
-        assertTrue(policy.hasSameID(policy));
+        assertTrue(policy.hasSameId(policy));
     }
     @Test
     public void hasSameIdTestFalse() {
         Policy otherPolicy = new Policy("Health", "456");
-        assertFalse(policy.hasSameID(otherPolicy));
+        assertFalse(policy.hasSameId(otherPolicy));
     }
 
     @Test

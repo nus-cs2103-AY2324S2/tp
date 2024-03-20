@@ -1,6 +1,7 @@
 package seedu.address.ui;
 
 import seedu.address.model.person.Person;
+import seedu.address.model.person.PolicyList;
 
 /**
  * A UI Class that encapsulates {@code ClientDetailsCard} and {@code ClientPolicyTable}.
@@ -20,7 +21,7 @@ public class ClientViewPanel {
             this.clientPolicyTable = new ClientPolicyTable();
         } else {
             this.clientDetailsCard = new ClientDetailsCard(person);
-            this.clientPolicyTable = new ClientPolicyTable();
+            this.clientPolicyTable = new ClientPolicyTable(person.getPolicyList());
         }
     }
 
@@ -39,17 +40,18 @@ public class ClientViewPanel {
         clientDetailsCard = new ClientDetailsCard(person);
     }
 
-    /*
-    public void updateClientPolicyTable(xxx) {
-        clientPolicyTable = new ClientPolicyTable(xxx);
-    }
+    /**
+     * Updates the {@code ClientPolicyTable} with new {@code ObservableList<Policy>}
      */
+    public void updateClientPolicyTable(PolicyList policyList) {
+        clientPolicyTable = new ClientPolicyTable(policyList);
+    }
 
     /**
      * Updates the {@code ClientViewPanel} with new {@code Person}.
      */
     public void updateClientViewPanel(Person person) {
         updateClientDetailsCard(person);
-        // updateClientPolicyTable(xxx);
+        updateClientPolicyTable(person.getPolicyList());
     }
 }

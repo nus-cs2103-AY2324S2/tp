@@ -12,7 +12,7 @@ import seedu.address.model.policy.Policy;
 class JsonAdaptedPolicy {
 
     private final String policyName;
-    private final String policyID;
+    private final String policyId;
 
     /**
      * Constructs a {@code JsonAdaptedPolicy} with the given {@code policyName, policyID}.
@@ -21,7 +21,7 @@ class JsonAdaptedPolicy {
     public JsonAdaptedPolicy(String policyDetails) {
         String[] args = policyDetails.split(",");
         this.policyName = args[0];
-        this.policyID = args[1];
+        this.policyId = args[1];
     }
 
     /**
@@ -29,12 +29,12 @@ class JsonAdaptedPolicy {
      */
     public JsonAdaptedPolicy(Policy source) {
         policyName = source.policyName;
-        policyID = source.policyID;
+        policyId = source.policyId;
     }
 
     @JsonValue
     public String getPolicyDetails() {
-        return policyName + "," + policyID;
+        return policyName + "," + policyId;
     }
 
     /**
@@ -46,10 +46,10 @@ class JsonAdaptedPolicy {
         if (!Policy.isValidName(policyName)) {
             throw new IllegalValueException(Policy.MESSAGE_CONSTRAINTS_NAME);
         }
-        if (!Policy.isValidID(policyID)) {
+        if (!Policy.isValidId(policyId)) {
             throw new IllegalValueException(Policy.MESSAGE_CONSTRAINTS_ID);
         }
-        return new Policy(policyName, policyID);
+        return new Policy(policyName, policyId);
     }
 
 }
