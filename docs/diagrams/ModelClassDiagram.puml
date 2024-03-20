@@ -13,7 +13,12 @@ Class ModelManager
 Class UserPrefs
 
 Class UniqueEmployeeList
+Class TaskList
 Class Employee
+Class Task
+Class TaskId
+Class TaskName
+Class TaskStatus
 Class Address
 Class Email
 Class Name
@@ -37,13 +42,18 @@ ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 TaskMasterPro *--> "1" UniqueEmployeeList
+TaskMasterPro *--> "1" TaskList
 UniqueEmployeeList --> "~* all" Employee
+TaskList --> "~* all" Task
 Employee *--> Name
 Employee *--> Phone
 Employee *--> Email
 Employee *--> Address
 Employee *--> "*" Tasks
 Employee *--> "*" Tag
+Task *--> TaskName
+Task *--> TaskStatus
+Task *--> TaskId
 
 Employee -[hidden]up--> I
 UniqueEmployeeList -[hidden]right-> I
