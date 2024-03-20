@@ -104,7 +104,7 @@ public class DeleteCommandTest {
     public void toStringMethod() {
         int targetIndex = 1;
         DeleteCommand deleteCommand = new DeleteCommand(targetIndex);
-        String expected = DeleteCommand.class.getCanonicalName() + "{targetIndex=" + targetIndex + "}";
+        String expected = DeleteCommand.class.getCanonicalName() + "{targetUniqueId=" + targetIndex + "}";
         assertEquals(expected, deleteCommand.toString());
     }
 
