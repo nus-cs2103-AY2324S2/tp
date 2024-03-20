@@ -19,9 +19,6 @@ public class UndoCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-//        if (!model.canUndoAddressBook()) {
-//            throw new CommandException(MESSAGE_FAILURE);
-//        }
         try {
             model.undoAddressBook();
             model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
