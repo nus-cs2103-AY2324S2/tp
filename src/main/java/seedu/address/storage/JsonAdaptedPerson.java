@@ -13,6 +13,7 @@ import seedu.address.model.person.Condition;
 import seedu.address.model.person.Country;
 import seedu.address.model.person.DateOfAdmission;
 import seedu.address.model.person.DateOfBirth;
+import seedu.address.model.person.Diagnosis;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
@@ -40,6 +41,7 @@ class JsonAdaptedPerson {
     private final Optional<String> bloodType;
     private final Optional<String> condition;
     private final Optional<String> dateOfAdmission;
+    private final Optional<String> diagnosis;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -51,7 +53,8 @@ class JsonAdaptedPerson {
                              @JsonProperty("status") String status, @JsonProperty("email") String email,
                              @JsonProperty("country") String country, @JsonProperty("allergies") String allergies,
                              @JsonProperty("bloodType") String bloodType, @JsonProperty("condition") String condition,
-                             @JsonProperty("dateOfAdmission") String doa) {
+                             @JsonProperty("dateOfAdmission") String doa,
+                             @JsonProperty("diagnosis") String diagnosis) {
         this.nric = nric;
         this.name = name;
         this.phone = phone;
@@ -65,6 +68,7 @@ class JsonAdaptedPerson {
         this.bloodType = Optional.ofNullable(bloodType);
         this.condition = Optional.ofNullable(condition);
         this.dateOfAdmission = Optional.ofNullable(doa);
+        this.diagnosis = Optional.ofNullable(diagnosis);
     }
 
     /**
@@ -84,6 +88,7 @@ class JsonAdaptedPerson {
         this.bloodType = Optional.ofNullable(source.getBloodType().toString());
         this.condition = Optional.ofNullable(source.getCondition().toString());
         this.dateOfAdmission = Optional.ofNullable(source.getDateOfAdmission().toString());
+        this.diagnosis = Optional.ofNullable(source.getDiagnosis().toString());
     }
 
     /**
@@ -185,6 +190,11 @@ class JsonAdaptedPerson {
         if (dateOfAdmission.isPresent()) {
             final DateOfAdmission modelDoa = new DateOfAdmission(dateOfAdmission.get());
             person.setDateOfAdmission(modelDoa);
+        }
+        //Diagnosis check
+        if (diagnosis.isPresent()) {
+            final Diagnosis modelDiagnosis = new Diagnosis(diagnosis.get());
+            person.setDiagnosis(modelDiagnosis);
         }
         return person;
     }
