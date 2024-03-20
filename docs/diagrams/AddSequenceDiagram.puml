@@ -20,7 +20,7 @@ participant "p:Person" as Person MODEL_COLOR
 participant "m:Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("add n/Dohn Joe p/98765432 a/123 e/dohn@gm.com m/A1234567X s/S1 r/R1")
+[-> LogicManager : execute(...)
 activate LogicManager
 
 LogicManager -> AddressBookParser : parseCommand(...)
@@ -70,29 +70,29 @@ deactivate ArgumentMultimap
 ArgumentTokenizer --> AddCommandParser
 deactivate ArgumentTokenizer
 
-AddCommandParser -> ParserUtil : parseName("Dohn Joe")
+AddCommandParser -> ParserUtil : parseName(...)
 activate ParserUtil
 ParserUtil --> AddCommandParser
-AddCommandParser -> ParserUtil : parsePhone("98765432")
+AddCommandParser -> ParserUtil : parsePhone(...)
 ParserUtil --> AddCommandParser
-AddCommandParser -> ParserUtil : parseEmail("dohn@gm.com")
+AddCommandParser -> ParserUtil : parseEmail(...)
 ParserUtil --> AddCommandParser
-AddCommandParser -> ParserUtil : parseAddress("123")
+AddCommandParser -> ParserUtil : parseAddress(...)
 ParserUtil --> AddCommandParser
-AddCommandParser -> ParserUtil : parseTags(null)
+AddCommandParser -> ParserUtil : parseTags(...)
 ParserUtil --> AddCommandParser
 deactivate ParserUtil
 
 ' Callback
-AddCommandParser -> AddCommandParser : handleOptionalMatric(multi)
+AddCommandParser -> AddCommandParser : handleOptionalMatric(...)
 activate AddCommandParser
 AddCommandParser --> AddCommandParser
 deactivate AddCommandParser
-AddCommandParser -> AddCommandParser : handleOptionalReflection(multi)
+AddCommandParser -> AddCommandParser : handleOptionalReflection(...)
 activate AddCommandParser
 AddCommandParser --> AddCommandParser
 deactivate AddCommandParser
-AddCommandParser -> AddCommandParser : handleOptionalStudio(multi)
+AddCommandParser -> AddCommandParser : handleOptionalStudio(...)
 activate AddCommandParser
 AddCommandParser --> AddCommandParser
 deactivate AddCommandParser
