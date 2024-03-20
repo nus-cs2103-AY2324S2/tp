@@ -30,7 +30,8 @@ public class CompanyCommand extends Command {
     public static final String MESSAGE_DELETE_COMPANY_SUCCESS = "Removed the company tag from %1$s's contact";
     public static final String MESSAGE_NOT_IMPLEMENTED_YET =
             "Company command not implemented yet";
-    public static final String MESSAGE_PERSON_NOT_FOUND = "Oops, %1$s's contact does not exist.";
+    public static final String MESSAGE_PERSON_NOT_FOUND = "Oops, %1$s's contact does not exist. Unable to add "
+            + "company tag.";
     public static final String MESSAGE_EMPTY_NAME = "Oops, please state the name of the contact.";
 
     private final String name;

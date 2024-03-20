@@ -109,7 +109,7 @@ public class CompanyCommandTest {
         assertTrue(standardCommand.equals(standardCommand));
         // null -> returns false
         assertFalse(standardCommand.equals(null));
-        // different remark -> returns false
+        // different company tag -> returns false
         assertFalse(standardCommand.equals(new CompanyCommand("Bob Tan",
                 new Company(VALID_COMPANY_BOB))));
     }
