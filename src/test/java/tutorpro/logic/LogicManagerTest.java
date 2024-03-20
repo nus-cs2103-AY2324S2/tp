@@ -5,10 +5,12 @@ import static tutorpro.logic.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static tutorpro.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static tutorpro.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static tutorpro.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
+import static tutorpro.logic.commands.CommandTestUtil.LEVEL_DESC_P6;
 import static tutorpro.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static tutorpro.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
+import static tutorpro.logic.commands.CommandTestUtil.SUBJECT_DESC_MATH;
 import static tutorpro.testutil.Assert.assertThrows;
-import static tutorpro.testutil.TypicalPersons.AMY;
+import static tutorpro.testutil.TypicalStudents.AMY;
 
 import java.io.IOException;
 import java.nio.file.AccessDeniedException;
@@ -31,7 +33,7 @@ import tutorpro.model.person.Person;
 import tutorpro.storage.JsonAddressBookStorage;
 import tutorpro.storage.JsonUserPrefsStorage;
 import tutorpro.storage.StorageManager;
-import tutorpro.testutil.PersonBuilder;
+import tutorpro.testutil.StudentBuilder;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy IO exception");
@@ -167,8 +169,8 @@ public class LogicManagerTest {
 
         // Triggers the saveAddressBook method by executing an add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY
-                + EMAIL_DESC_AMY + ADDRESS_DESC_AMY;
-        Person expectedPerson = new PersonBuilder(AMY).withTags().build();
+                + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + LEVEL_DESC_P6 + SUBJECT_DESC_MATH;
+        Person expectedPerson = new StudentBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addPerson(expectedPerson);
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);

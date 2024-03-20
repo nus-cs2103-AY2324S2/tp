@@ -1,6 +1,6 @@
 package tutorpro.logic.commands;
 
-//import static tutorpro.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,8 +10,9 @@ import tutorpro.model.Model;
 import tutorpro.model.ModelManager;
 import tutorpro.model.UserPrefs;
 import tutorpro.model.person.Person;
-import tutorpro.testutil.PersonBuilder;
-import tutorpro.testutil.TypicalPersons;
+import tutorpro.model.person.student.Student;
+import tutorpro.testutil.StudentBuilder;
+import tutorpro.testutil.TypicalStudents;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code AddCommand}.
@@ -22,12 +23,12 @@ public class AddCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(TypicalPersons.getTypicalAddressBook(), new UserPrefs());
+        model = new ModelManager(TypicalStudents.getTypicalAddressBook(), new UserPrefs());
     }
 
     @Test
     public void execute_newPerson_success() {
-        Person validPerson = new PersonBuilder().build();
+        Student validPerson = new StudentBuilder().build();
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.addPerson(validPerson);
@@ -40,7 +41,11 @@ public class AddCommandIntegrationTest {
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
         Person personInList = model.getAddressBook().getPersonList().get(0);
-        CommandTestUtil.assertCommandFailure(new AddCommand(personInList), model,
+        if (!(personInList instanceof Student)) {
+            fail();
+        }
+        Student studentInList = (Student) personInList;
+        CommandTestUtil.assertCommandFailure(new AddCommand(studentInList), model,
                 AddCommand.MESSAGE_DUPLICATE_PERSON);
     }
 
