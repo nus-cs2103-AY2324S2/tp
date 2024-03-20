@@ -86,7 +86,7 @@ public class EditCommand extends Command {
         }
 
         if (!found) {
-            throw new CommandException("No person found with the given student ID.");
+            throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_ID);
         }
 
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);

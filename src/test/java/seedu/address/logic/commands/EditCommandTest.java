@@ -195,6 +195,19 @@ public class EditCommandTest {
         assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PERSON);
     }
 
+    @Test
+    public void execute_invalidStudentIdUnfilteredList_failure() {
+        // Create the edit command with an invalid student ID
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build();
+        EditCommand editCommand = new EditCommand(new StudentId("99999"), descriptor);
+
+        // Assert that executing this command results in failure with the expected error message
+        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_STUDENT_ID);
+    }
+
+
+
+
 
     @Test
     public void equals() {
