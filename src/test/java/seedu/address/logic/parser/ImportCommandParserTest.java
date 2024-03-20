@@ -11,9 +11,17 @@ import seedu.address.logic.commands.ImportCommand;
 public class ImportCommandParserTest {
     private ImportCommandParser parser = new ImportCommandParser();
     @Test
-    public void parse_invalidArgs_failure() {
+    public void parse_noArgsPassed_failure() {
         // filePath left empty
         assertParseFailure(
                 parser, "import ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, ImportCommand.MESSAGE_USAGE));
     }
+    @Test
+    public void parse_emptyPreamble_failure() {
+        // filePath left empty
+        assertParseFailure(
+                parser, " ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, ImportCommand.MESSAGE_USAGE));
+    }
 }
+
+
