@@ -17,6 +17,12 @@ public class Info {
         value = "";
     }
 
+    public static boolean isValidInfo(String test) {
+        return true;
+    }
+
+    public String getInfo() { return value; }
+
     @Override
     public String toString() {
         return value;

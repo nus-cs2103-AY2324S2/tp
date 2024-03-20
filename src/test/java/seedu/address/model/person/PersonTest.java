@@ -10,6 +10,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SALARY_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_INFO_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
@@ -37,7 +38,8 @@ public class PersonTest {
 
         // same name, all other attributes different -> returns true
         Person editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withAddress(VALID_ADDRESS_BOB).withSalary(VALID_SALARY_BOB).withTags(VALID_TAG_HUSBAND).build();
+                .withAddress(VALID_ADDRESS_BOB).withSalary(VALID_SALARY_BOB).withInfo(VALID_INFO_BOB)
+                .withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSamePerson(editedAlice));
 
         // different name, all other attributes same -> returns false
@@ -92,6 +94,10 @@ public class PersonTest {
         editedAlice = new PersonBuilder(ALICE).withSalary(VALID_SALARY_BOB).build();
         assertTrue(ALICE.equals(editedAlice));
 
+        // different info -> returns false
+        editedAlice = new PersonBuilder(ALICE).withInfo(VALID_INFO_BOB).build();
+        assertFalse(ALICE.equals(editedAlice));
+
         // different tags -> returns false
         editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(ALICE.equals(editedAlice));
@@ -101,15 +107,15 @@ public class PersonTest {
     public void hashCodeTest() {
         Person person1 = new PersonBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
                 .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withSalary(VALID_SALARY_BOB)
-                .withTags(VALID_TAG_HUSBAND).build();
+                .withInfo(VALID_INFO_BOB).withTags(VALID_TAG_HUSBAND).build();
         Person person2 = new PersonBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
                 .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withSalary(VALID_SALARY_BOB)
-                .withTags(VALID_TAG_HUSBAND).build();
+                .withInfo(VALID_INFO_BOB).withTags(VALID_TAG_HUSBAND).build();
         assertEquals(person1.hashCode(), person2.hashCode());
 
         person2 = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_BOB)
                 .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withSalary(VALID_SALARY_BOB)
-                .withTags(VALID_TAG_HUSBAND).build();
+                .withInfo(VALID_INFO_BOB).withTags(VALID_TAG_HUSBAND).build();
 
         assertNotEquals(person1.hashCode(), person2.hashCode());
     }
@@ -118,7 +124,7 @@ public class PersonTest {
     public void toStringMethod() {
         String expected = Person.class.getCanonicalName() + "{name=" + ALICE.getName() + ", phone=" + ALICE.getPhone()
                 + ", email=" + ALICE.getEmail() + ", address=" + ALICE.getAddress() + ", salary="
-                + ALICE.getSalary() + ", tags=" + ALICE.getTags() + "}";
+                + ALICE.getSalary() + ", info=" + ALICE.getInfo() + ", tags=" + ALICE.getTags() + "}";
         assertEquals(expected, ALICE.toString());
     }
 }
