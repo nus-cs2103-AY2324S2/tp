@@ -129,11 +129,23 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code note} is invalid.
      */
-
     public static Note parseNote(String note) throws ParseException {
-        requireNonNull(note);
+        if (note.isEmpty()) {
+            return new Note("");
+        }
         String trimmedNote = note;
         return new Note(trimmedNote);
+    }
+
+    /**
+     * Parses a {@code String noteWithDate} into an {@code boolean}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code note} is invalid.
+     */
+    public static String parseNoteWithDate(String noteWithDate) throws ParseException {
+        requireNonNull(noteWithDate);
+        return noteWithDate;
     }
 
     /**

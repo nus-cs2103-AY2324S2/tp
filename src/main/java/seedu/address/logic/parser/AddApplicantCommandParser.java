@@ -5,6 +5,8 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE_WITH_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STAGE;
@@ -38,7 +40,7 @@ public class AddApplicantCommandParser implements Parser<AddApplicantCommand> {
     public AddApplicantCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
-                    PREFIX_ADDRESS, PREFIX_ROLE, PREFIX_STAGE, PREFIX_TAG);
+                    PREFIX_ADDRESS, PREFIX_ROLE, PREFIX_STAGE, PREFIX_TAG, PREFIX_NOTE, PREFIX_NOTE_WITH_DATE);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ROLE)
             || !argMultimap.getPreamble().isEmpty()) {
@@ -55,10 +57,27 @@ public class AddApplicantCommandParser implements Parser<AddApplicantCommand> {
         Role role = ParserUtil.parseRole(argMultimap.getValue(PREFIX_ROLE).get());
         Stage stage = new Stage("initial_application");
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        Note note = new Note("");
-        Applicant applicant = new Applicant(name, phone, email, address, role, stage, tagList, note, "");
+        Note note = getOptionalNoteParameter(argMultimap);
+        String noteWithDate = getOptionalNoteDateParameter(argMultimap);
+
+        Applicant applicant = new Applicant(name, phone, email, address, role, stage, tagList, note, noteWithDate);
         return new AddApplicantCommand(applicant);
     }
+
+    private Note getOptionalNoteParameter(ArgumentMultimap argMultimap) throws ParseException {
+        if (argMultimap.getValue(PREFIX_NOTE).isPresent()) {
+            return ParserUtil.parseNote(argMultimap.getValue(PREFIX_NOTE).get());
+        }
+        return new Note("");
+    }
+
+    private String getOptionalNoteDateParameter(ArgumentMultimap argMultimap) throws ParseException {
+        if (argMultimap.getValue(PREFIX_NOTE_WITH_DATE).isPresent()) {
+            return ParserUtil.parseNoteWithDate(argMultimap.getValue(PREFIX_NOTE_WITH_DATE).get());
+        }
+        return "";
+    }
+
 
     /**
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given
