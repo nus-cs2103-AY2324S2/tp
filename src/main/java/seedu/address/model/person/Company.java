@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 /**
  * Represents a Person's company name in the address book.
- * Guarantees: immutable; is always valid
+ * Guarantees: immutable; is always valid.
  */
 public class Company {
     public final String value;

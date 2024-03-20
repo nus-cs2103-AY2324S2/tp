@@ -67,7 +67,7 @@ public class CompanyCommand extends Command {
         }
         Person editedPerson = new Person(
                 personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), company, personToEdit.getTags());
+                personToEdit.getAddress(), company, personToEdit.getPriority(), personToEdit.getTags());
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
@@ -99,7 +99,5 @@ public class CompanyCommand extends Command {
         CompanyCommand e = (CompanyCommand) other;
         return name.equals(e.name)
                 && company.equals(e.company);
-
     }
-
 }

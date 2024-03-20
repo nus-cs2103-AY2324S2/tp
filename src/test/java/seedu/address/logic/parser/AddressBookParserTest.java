@@ -20,12 +20,16 @@ import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FilterHighPriorityCommand;
+import seedu.address.logic.commands.FilterMedPriorityCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.PriorityCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Priority;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
@@ -89,6 +93,32 @@ public class AddressBookParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+    }
+
+    @Test
+    public void parseCommand_priorityHigh() throws Exception {
+        String testName = ALICE.getName().toString();
+        String userInput = PriorityCommand.COMMAND_WORD_HIGH + " Alice Pauline";
+        PriorityCommand command = (PriorityCommand) parser.parseCommand(userInput);
+        assertEquals(new PriorityCommand(testName, new Priority("high")), command);
+    }
+
+    @Test
+    public void parseCommand_priorityMed() throws Exception {
+        String testName = ALICE.getName().toString();
+        String userInput = PriorityCommand.COMMAND_WORD_MED + " Alice Pauline";
+        PriorityCommand command = (PriorityCommand) parser.parseCommand(userInput);
+        assertEquals(new PriorityCommand(testName, new Priority("med")), command);
+    }
+
+    @Test
+    public void parseCommand_filterHighPriority() throws Exception {
+        assertTrue(parser.parseCommand(FilterHighPriorityCommand.COMMAND_WORD) instanceof FilterHighPriorityCommand);
+    }
+
+    @Test
+    public void parseCommand_filterMedPriority() throws Exception {
+        assertTrue(parser.parseCommand(FilterMedPriorityCommand.COMMAND_WORD) instanceof FilterMedPriorityCommand);
     }
 
     @Test
