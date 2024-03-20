@@ -29,7 +29,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_ID);
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_ID);
-        
+
         if (argMultimap.getValue(PREFIX_ID).isPresent()) {
 
             String queryId = argMultimap.getValue(PREFIX_ID).get().trim();
@@ -46,7 +46,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);
             }
         }
-        
+
         try {
             Index index = ParserUtil.parseIndex(args);
             return new DeleteCommand(index);
