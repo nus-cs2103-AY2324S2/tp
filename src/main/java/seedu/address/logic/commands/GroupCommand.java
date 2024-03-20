@@ -31,18 +31,19 @@ public class GroupCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Creates a group with people corresponding to the selected IDs. "
-            + "Parameters: GROUP NAME "
-            + "[" + PREFIX_GROUP + "STUDENTID] "
-            + "... (multiple IDs allowed)"
+            + "Parameters: "
+            + "[" + PREFIX_GROUP + "GROUP_NAME] "
+            + "[" + PREFIX_STUDENTID + "STUDENTID] "
+            + "... (multiple IDs allowed) "
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_GROUP + "3 \n"
-            + PREFIX_STUDENTID + "A01234567R "
-            + PREFIX_STUDENTID + "A12345678R ";
+            + PREFIX_STUDENTID + "A0123456X "
+            + PREFIX_STUDENTID + "A0123456H ";
 
-    private final Group group;
+    private final Set<Group> group; //set with one group. for compatibility with edit command.
     private final Set<StudentId> studentIds;
 
-    public GroupCommand(Group group, Set<StudentId> studentIds) {
+    public GroupCommand(Set<Group> group, Set<StudentId> studentIds) {
         requireNonNull(group);
         requireNonNull(studentIds);
         this.group = group;
@@ -53,9 +54,12 @@ public class GroupCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         for (StudentId studentId : studentIds) {
-            EditCommand
+            EditCommand.EditPersonDescriptor editPersonDescriptor = new EditCommand.EditPersonDescriptor();
+            editPersonDescriptor.setGroups(group);
+            EditCommand editCommand = new EditCommand(studentId, editPersonDescriptor);
+            editCommand.execute(model);
         }
-        return
+        return new CommandResult("---");
     }
 
     @Override
