@@ -25,7 +25,7 @@ Class JsonAdaptedOrder
 
 }
 
-Class HiddenOutside #FFFFFF
+Class HiddenOutside #C4A484
 HiddenOutside ..> Storage
 
 StorageManager .up.|> Storage
@@ -39,6 +39,7 @@ JsonUserPrefsStorage .up.|> UserPrefsStorage
 JsonAddressBookStorage .up.|> AddressBookStorage
 JsonAddressBookStorage ..> JsonSerializableAddressBook
 JsonSerializableAddressBook --> "*" JsonAdaptedPerson
+JsonSerializableAddressBook --> "*" JsonAdaptedOrder
 JsonAdaptedPerson --> "*" JsonAdaptedTag
 JsonAdaptedTag -[hidden]right-> JsonAdaptedOrder
 JsonAdaptedPerson --> "*" JsonAdaptedOrder
