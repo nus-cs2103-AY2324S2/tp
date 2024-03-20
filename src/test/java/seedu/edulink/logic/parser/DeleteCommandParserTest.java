@@ -1,14 +1,16 @@
 package seedu.edulink.logic.parser;
 
 import static seedu.edulink.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.edulink.logic.commands.CommandTestUtil.ID_DESC_AMY;
+import static seedu.edulink.logic.commands.CommandTestUtil.VALID_ID_AMY;
 import static seedu.edulink.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.edulink.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.edulink.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.edulink.testutil.TypicalPersons.ALICE;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.edulink.logic.commands.DeleteCommand;
+import seedu.edulink.model.student.Id;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations
@@ -28,7 +30,7 @@ public class DeleteCommandParserTest {
 
     @Test
     public void parse_validStudentIdArgs_returnsDeleteCommand() {
-        assertParseSuccess(parser, " i/A0251893P", new DeleteCommand(ALICE.getId()));
+        assertParseSuccess(parser, ID_DESC_AMY , new DeleteCommand(new Id(VALID_ID_AMY)));
     }
 
     @Test
