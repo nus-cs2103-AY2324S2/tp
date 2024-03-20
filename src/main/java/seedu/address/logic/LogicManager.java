@@ -41,7 +41,8 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        addressBookParser = new AddressBookParser();
+        List<Person> filteredPatients = this.getFilteredPersonList();
+        addressBookParser = new AddressBookParser(filteredPatients);
     }
 
     @Override
@@ -50,9 +51,7 @@ public class LogicManager implements Logic {
 
         CommandResult commandResult;
 
-        List<Person> filteredPatients = this.getFilteredPersonList();
-
-        Command command = addressBookParser.parseCommand(commandText, filteredPatients);
+        Command command = addressBookParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
         try {
