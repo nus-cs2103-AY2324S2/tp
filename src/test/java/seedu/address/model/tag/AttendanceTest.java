@@ -17,7 +17,8 @@ public class AttendanceTest {
     public void constructor_invalidAttendanceDate_throwsIllegalArgumentException() {
         String invalidAttendanceDate = "32-02-2024";
         String invalidAttendanceStatus = "3";
-        assertThrows(IllegalArgumentException.class, () -> new Attendance(new AttendanceStatus(invalidAttendanceDate, invalidAttendanceStatus)));
+        assertThrows(IllegalArgumentException.class, () -> new Attendance(
+                new AttendanceStatus(invalidAttendanceDate, invalidAttendanceStatus)));
     }
 
     @Test

@@ -18,7 +18,8 @@ public class AddAttendanceRecordCommandParserTest {
     public void parse_validArgs_returnsAddAttendanceRecordCommand() {
         // Assume "19-03-2024" is a valid date for attendance and "ar/" is the prefix for attendance records
         String userInput = " ar/19-03-2024";
-        AddAttendanceRecordCommand expectedCommand = new AddAttendanceRecordCommand(new Attendance(new AttendanceStatus("19-03-2024", "1")));
+        AddAttendanceRecordCommand expectedCommand = new AddAttendanceRecordCommand(new Attendance(
+                new AttendanceStatus("19-03-2024", "1")));
         try {
             AddAttendanceRecordCommand command = parser.parse(userInput);
             assertEquals(expectedCommand, command);

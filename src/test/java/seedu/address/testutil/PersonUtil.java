@@ -42,7 +42,8 @@ public class PersonUtil {
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
         sb.append(PREFIX_STUDENTID + person.getStudentId().value + " ");
         person.getAttendances().stream().forEach(
-            s -> sb.append(PREFIX_ATTENDANCE_RECORD + s.attendanceName.getDate() + ", " + s.attendanceName.getStatus() + " ")
+            s -> sb.append(PREFIX_ATTENDANCE_RECORD + s.attendanceName.getDate() + ", "
+                    + s.attendanceName.getStatus() + " ")
         );
         return sb.toString();
     }

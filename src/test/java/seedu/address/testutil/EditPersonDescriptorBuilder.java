@@ -4,12 +4,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.model.person.AttendanceStatus;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.StudentId;
-import seedu.address.model.person.AttendanceStatus;
 import seedu.address.model.tag.Attendance;
 
 /**
@@ -76,7 +76,6 @@ public class EditPersonDescriptorBuilder {
      * that we are building.
      */
     public EditPersonDescriptorBuilder withAttendances(String... attendances) {
-//        Set<Attendance> attendanceSet = Stream.of(tags).map(Attendance::new).collect(Collectors.toSet());
         Set<Attendance> attendanceSet = new HashSet<>();
         for (String i : attendances) {
             attendanceSet.add(new Attendance(new AttendanceStatus(i, "1")));

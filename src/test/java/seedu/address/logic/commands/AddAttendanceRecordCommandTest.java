@@ -18,6 +18,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.person.AttendanceStatus;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -27,7 +28,6 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Classes;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.AttendanceStatus;
 import seedu.address.model.tag.Attendance;
 
 public class AddAttendanceRecordCommandTest {
@@ -47,7 +47,8 @@ public class AddAttendanceRecordCommandTest {
 
         CommandResult commandResult = new AddAttendanceRecordCommand(validAttendance).execute(model);
 
-        assertEquals(String.format(AddAttendanceRecordCommand.MESSAGE_SUCCESS, validAttendance), commandResult.getFeedbackToUser());
+        assertEquals(String.format(AddAttendanceRecordCommand.MESSAGE_SUCCESS, validAttendance),
+                commandResult.getFeedbackToUser());
         // Further assertions to check if the attendance was correctly added to all persons
     }
 
@@ -58,7 +59,8 @@ public class AddAttendanceRecordCommandTest {
 
         AddAttendanceRecordCommand addAttendanceRecordCommand = new AddAttendanceRecordCommand(validAttendance);
 
-        assertThrows(CommandException.class, Messages.MESSAGE_NO_PERSON_IN_THE_CLASS, () -> addAttendanceRecordCommand.execute(model));
+        assertThrows(CommandException.class, Messages.MESSAGE_NO_PERSON_IN_THE_CLASS,
+                () -> addAttendanceRecordCommand.execute(model));
     }
 
     @Test
@@ -173,8 +175,7 @@ public class AddAttendanceRecordCommandTest {
 
         @Override
         public ObservableList<Person> getFilteredPersonList() {
-//            throw new AssertionError("This method should not be called.");
-            return null;
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
