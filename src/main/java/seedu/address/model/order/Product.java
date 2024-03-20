@@ -3,8 +3,6 @@ package seedu.address.model.order;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 /**
  * Represents the Product in the Order of the Customer.
  */
@@ -24,7 +22,7 @@ public class Product {
      * Constructs a {@code Product} with {@code name}.
      * @param name Name of the Product.
      */
-    public Product(@JsonProperty("order") String name) {
+    public Product(String name) {
         requireNonNull(name);
         checkArgument(isValidProduct(name), MESSAGE_CONSTRAINTS);
         this.name = name;

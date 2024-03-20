@@ -8,7 +8,6 @@ import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.order.Order;
@@ -21,19 +20,18 @@ import seedu.address.model.order.Quantity;
 public class JsonAdaptedOrder {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Order's %s field is missing!";
     private int id;
-    private Map<JsonAdaptedProduct, JsonAdaptedQuantity> productMap;
-    private JsonAdaptedPerson customer;
+    private Map<String, Integer> productMap;
+    private Integer customer;
 
     /**
      * Constructs a {@code JsonAdaptedOrder} with the given {@code order}.
      */
     @JsonCreator
     public JsonAdaptedOrder(@JsonProperty("id") Integer id,
-                            @JsonProperty("productMap") Map<JsonAdaptedProduct, JsonAdaptedQuantity> productMap,
-                            @JsonProperty("orderCustomer") JsonAdaptedPerson orderCustomer) {
+                            @JsonProperty("productMap") Map<String, Integer> productMap
+                            ) {
         this.id = id;
         this.productMap = productMap;
-        this.customer = orderCustomer;
     }
 
     /**
@@ -41,12 +39,16 @@ public class JsonAdaptedOrder {
      */
     public JsonAdaptedOrder(Order order) {
         this.id = order.getId();
+        Map<Product, Quantity> productQuantityMap = order.getProductMap();
+        List<Product> productKeySet = productQuantityMap.keySet().stream().collect(Collectors.toList());
+        Map<String, Integer> map = new HashMap<>();
+        for (int k = 0; k < productKeySet.size(); k++) {
+            Product currProd = productKeySet.get(k);
+            Quantity currQuant = productQuantityMap.get(currProd);
+            map.put(currProd.getName(), currQuant.getValue());
+        }
+        this.productMap = map;
 
-    }
-
-    @JsonValue
-    public Map<JsonAdaptedProduct, JsonAdaptedQuantity> getOrder() {
-        return productMap;
     }
 
     /**
@@ -54,16 +56,17 @@ public class JsonAdaptedOrder {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted tag.
      */
-    public Order toModelType() throws IllegalValueException {
+    public Order toModelType() {
         Order modelOrder = new Order(this.id);
-        modelOrder.setCustomer(customer.toModelType());
         Map<Product, Quantity> map = new HashMap<>();
-        Set<JsonAdaptedProduct> jsonProduct = this.productMap.keySet();
-        List<JsonAdaptedProduct> productList = jsonProduct.stream().collect(Collectors.toList());
+        Set<String> jsonProduct = this.productMap.keySet();
+        List<String> productList = jsonProduct.stream().collect(Collectors.toList());
         for (int k = 0; k < jsonProduct.size(); k++) {
-            JsonAdaptedProduct currProd = productList.get(k);
-            JsonAdaptedQuantity currQuant = this.productMap.get(productList.get(k));
-            map.put(currProd.toModelType(), currQuant.toModelType());
+            String currProdString = productList.get(k);
+            Integer currQuantInt = this.productMap.get(productList.get(k));
+            Product currProd = new Product(currProdString);
+            Quantity currQuant = new Quantity(currQuantInt);
+            map.put(currProd, currQuant);
         }
         modelOrder.setProductMap(map);
         return modelOrder;
