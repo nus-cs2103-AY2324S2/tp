@@ -13,7 +13,6 @@ Class ModelManager
 Class UserPrefs
 
 Class UniquePersonList
-Class UniquePersonListDeserializer
 
 Class Person
 Class Address
