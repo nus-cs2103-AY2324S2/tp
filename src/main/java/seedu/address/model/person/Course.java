@@ -56,7 +56,7 @@ public class Course {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof Name)) {
+        if (!(other instanceof Course)) {
             return false;
         }
 
