@@ -44,7 +44,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseIndex_outOfRangeInput_throwsParseException() {
-        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, () -> 
+        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, () ->
                 ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
     }
 
@@ -179,7 +179,7 @@ public class ParserUtilTest {
 
     @Test //
     public void parseTags_collectionWithInvalidTags_throwsParseException() {
-        assertThrows(ParseException.class, () -> 
+        assertThrows(ParseException.class, () ->
             ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, INVALID_TAG), Arrays.asList(VALID_INTEREST_1)));
     }
 
