@@ -41,8 +41,10 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        List<Person> filteredPatients = this.getFilteredPersonList();
-        addressBookParser = new AddressBookParser(filteredPatients);
+        addressBookParser = new AddressBookParser(
+                this.model.getAddressBook().getPersonList(),
+                this.model.getAppointmentList().getAppointmentList()
+        );
     }
 
     @Override
