@@ -251,60 +251,6 @@ Expected failure outcome:
 History not cleared
 ```
 
-### Adding interest tag : `interest`
-
-Adding an interest tag to a specified person from the address book
-
-Format: `interest INDEX INTEREST [MORE_INTEREST]`
-
-* Adds an interest to the person at the specified 'INDEX'
-* The index refers to the index number shown in the displayed person list
-* The index **must be a positive integer** 1, 2, 3, …​
-* The interest **must not have any special characters** e.g. !, @, #, $, …​
-
-Examples:
-* `interest 3 swimming` adds the interest tag `swimming` to the 3rd person in the address book
-* `interest 1 cooking cycling` adds the interest tags `cooking` and `cycling` to the 1st person in the address book
-
-Expected success outcome:
-```
-Tagged on contact 1
-```
-
-Expected failure outcome:
-```
-Contact not available
-```
-
-### Locating persons by interest : `findInterest`
-
-Find persons whose interest tag contains any of the given keywords
-
-Format: `findInterest INTEREST [MORE_INTEREST]`
-
-* The search is case-insensitive. e.g. `cooking` will match `Cooking`
-* The order of the keywords does not matter. e.g. `cycling bikes` will match `bikes cycling`
-* Only the interest tag is searched
-* Only full words will be matched e.g. `Cycle` will not match `Cycling`
-* Persons matching at least one keyword will be returned (i.e. `OR` search)
-  e.g. `Ice Skating` will return `Ice Sculpting`, `Rollor Skating`
-* The interest **must not have any special characters** e.g. !, @, #, $, …​
-
-Examples:
-* `findInterest swimming` returns `Joseph Schooling` and `Joscelin Yeo Wei Ling` with tags for `swimming`
-* `findInterest cooking cycling` returns `Lance Armstrong` for `cycling`, `Andre Chiang` for `cooking`
-
-Expected success outcome:
-```
-Interests found:
-...
-```
-
-Expected failure outcome:
-```
-Interests not found
-```
-
 ### Adding persons to schedule : `addSched`
 
 Adds an event with contact from specified date with time
@@ -390,7 +336,5 @@ Action     | Format, Examples
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Clear**  | `clear`
-**Interest Tagging**   | `interest INDEX INTEREST [MORE_INTERESTS]` <br> e.g. `interest 3 swimming cooking`
-**Find Interest**   | `findInterest INTEREST [MORE_INTEREST]` <br> e.g. `findInterest cooking music`
 **Add Schedule**   | `addSched INDEX [MORE_INDEX] SCHEDULE_NAME` <br> e.g. `addSched 1,2,3 CSMeeting 18032024 1500 1900`
 **Exit**   | `exit`
