@@ -24,6 +24,7 @@ public class Person {
     // Data fields
     private final StudentId studentId;
     private final Set<Attendance> attendances = new HashSet<>();
+    private final String description;
 
     /**
      * Every field must be present and not null.

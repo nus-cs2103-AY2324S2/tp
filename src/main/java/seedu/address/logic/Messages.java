@@ -46,6 +46,7 @@ public class Messages {
                 .append(person.getStudentId())
                 .append("; Attendances: ");
         person.getAttendances().forEach(builder::append);
+        builder.append("; Description: ");
         return builder.toString();
     }
 
