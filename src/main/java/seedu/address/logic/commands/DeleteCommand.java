@@ -37,6 +37,7 @@ public class DeleteCommand extends Command {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
 
+        //  TODO: We possibly don't have to check for this anymore. It either exists or does not.
         if (targetIndex.getZeroBased() >= Person.getIdTracker()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
