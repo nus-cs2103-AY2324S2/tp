@@ -19,10 +19,10 @@ public class FindAppointmentCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds the appointment which contains "
             + "the specified indexes. Parameters: "
-            + CliSyntax.PREFIX_STUDENT_ID + "STUDENT_ID "
+            + CliSyntax.PREFIX_PATIENT_ID + "PATIENT_ID "
             + CliSyntax.PREFIX_APPOINTMENT_ID + "APPOINTMENT_ID\n"
             + "Example: " + COMMAND_WORD + " "
-            + CliSyntax.PREFIX_STUDENT_ID + "1 "
+            + CliSyntax.PREFIX_PATIENT_ID + "1 "
             + CliSyntax.PREFIX_APPOINTMENT_ID + "1";
 
     private final Predicate<Appointment> predicate;

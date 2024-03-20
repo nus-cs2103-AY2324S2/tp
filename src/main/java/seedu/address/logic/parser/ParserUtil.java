@@ -154,13 +154,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code attend} is invalid.
      */
-    public static boolean parseHasAttended(Collection<String> attend) throws ParseException {
+    public static boolean parseHasAttended(String attend) throws ParseException {
         requireNonNull(attend);
         if (attend.isEmpty()) {
             return false;
         }
 
-        String trimmedAttend = attend.iterator().next().trim();
+        String trimmedAttend = attend.trim();
         if (!trimmedAttend.equalsIgnoreCase("true")
                 && !trimmedAttend.equalsIgnoreCase("false")) {
             throw new ParseException(Appointment.MESSAGE_CONSTRAINTS);
@@ -174,12 +174,12 @@ public class ParserUtil {
      * By default, an empty string will be returned if {@code description} is empty.
      * TODO: remove after case log is implemented
      */
-    public static String parseDescription(Collection<String> description) {
+    public static String parseDescription(String description) {
         requireNonNull(description);
         if (description.isEmpty()) {
             return "";
         }
-        return description.iterator().next().trim();
+        return description.trim();
     }
 
     /**
