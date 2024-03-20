@@ -96,6 +96,12 @@ Shows a list of all contacts in the address book.
 
 Format: `list`
 
+### Sending an email to a specific contact
+
+Opens the desktop mail application to directly send an email to a specific contact.
+
+How to use: Click on the contact's email.
+
 ### Editing a contact : `edit`
 
 Edits an existing contact in the address book.
