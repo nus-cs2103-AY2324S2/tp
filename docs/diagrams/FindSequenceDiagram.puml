@@ -4,7 +4,7 @@ skinparam ArrowFontStyle plain
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":CodeConnectParser" as CodeConnectParser LOGIC_COLOR
 participant ":FindCommandParser" as FindCommandParser LOGIC_COLOR
 participant "f:FindCommand" as FindCommand LOGIC_COLOR
 participant "r:CommandResult" as CommandResult LOGIC_COLOR
@@ -17,17 +17,17 @@ end box
 [-> LogicManager : execute("find John")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("find John")
-activate AddressBookParser
+LogicManager -> CodeConnectParser : parseCommand("find John")
+activate CodeConnectParser
 
 create FindCommandParser
-AddressBookParser -> FindCommandParser
+CodeConnectParser -> FindCommandParser
 activate FindCommandParser
 
-FindCommandParser --> AddressBookParser
+FindCommandParser --> CodeConnectParser
 deactivate FindCommandParser
 
-AddressBookParser -> FindCommandParser : parse("John")
+CodeConnectParser -> FindCommandParser : parse("John")
 activate FindCommandParser
 
 create FindCommand
@@ -37,19 +37,19 @@ activate FindCommand
 FindCommand --> FindCommandParser :
 deactivate FindCommand
 
-FindCommandParser --> AddressBookParser : f
+FindCommandParser --> CodeConnectParser : f
 deactivate FindCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-FindCommandParser -[hidden]-> AddressBookParser
+FindCommandParser -[hidden]-> CodeConnectParser
 destroy FindCommandParser
 
-AddressBookParser --> LogicManager : f
-deactivate AddressBookParser
+CodeConnectParser --> LogicManager : f
+deactivate CodeConnectParser
 
 LogicManager -> FindCommand : execute(m)
 activate FindCommand
 
-FindCommand -> Model : updateFilteredPersonList(predicate)
+FindCommand -> Model : updateFilteredContactList(predicate)
 activate Model
 
 Model --> FindCommand

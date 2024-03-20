@@ -4,7 +4,7 @@ skinparam ArrowFontStyle plain
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":CodeConnectParser" as CodeConnectParser LOGIC_COLOR
 participant ":FindTagCommandParser" as FindTagCommandParser LOGIC_COLOR
 participant "ft:FindTagCommand" as FindTagCommand LOGIC_COLOR
 participant "r:CommandResult" as CommandResult LOGIC_COLOR
@@ -17,17 +17,17 @@ end box
 [-> LogicManager : execute("find-tags School")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("find-tags School")
-activate AddressBookParser
+LogicManager -> CodeConnectParser : parseCommand("find-tags School")
+activate CodeConnectParser
 
 create FindTagCommandParser
-AddressBookParser -> FindTagCommandParser
+CodeConnectParser -> FindTagCommandParser
 activate FindTagCommandParser
 
-FindTagCommandParser --> AddressBookParser
+FindTagCommandParser --> CodeConnectParser
 deactivate FindTagCommandParser
 
-AddressBookParser -> FindTagCommandParser : parse("School")
+CodeConnectParser -> FindTagCommandParser : parse("School")
 activate FindTagCommandParser
 
 create FindTagCommand
@@ -37,19 +37,19 @@ activate FindTagCommand
 FindTagCommand --> FindTagCommandParser :
 deactivate FindTagCommand
 
-FindTagCommandParser --> AddressBookParser : ft
+FindTagCommandParser --> CodeConnectParser : ft
 deactivate FindTagCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-FindTagCommandParser -[hidden]-> AddressBookParser
+FindTagCommandParser -[hidden]-> CodeConnectParser
 destroy FindTagCommandParser
 
-AddressBookParser --> LogicManager : ft
-deactivate AddressBookParser
+CodeConnectParser --> LogicManager : ft
+deactivate CodeConnectParser
 
 LogicManager -> FindTagCommand : execute(m)
 activate FindTagCommand
 
-FindTagCommand -> Model : updateFilteredPersonList(predicate)
+FindTagCommand -> Model : updateFilteredContactList(predicate)
 activate Model
 
 Model --> FindTagCommand
