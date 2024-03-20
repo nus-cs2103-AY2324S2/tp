@@ -1,0 +1,97 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":EditCommandParser" as EditCommandParser LOGIC_COLOR
+participant "d:EditCommandDescriptor" as EditCommandDescriptor LOGIC_COLOR
+participant "e:EditCommand" as EditCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "m:Model" as Model MODEL_COLOR
+participant "m:PersonList" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("edit 1 n/Alex Yeoh")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("edit 1 n/Alex Yeoh")
+activate AddressBookParser
+
+create EditCommandParser
+AddressBookParser -> EditCommandParser
+activate EditCommandParser
+
+EditCommandParser --> AddressBookParser
+deactivate EditCommandParser
+
+AddressBookParser -> EditCommandParser : parse("1 n/Alex Yeoh")
+activate EditCommandParser
+
+create EditCommandDescriptor
+EditCommandParser -> EditCommandDescriptor
+activate EditCommandDescriptor
+
+EditCommandDescriptor --> EditCommandParser :
+deactivate EditCommandDescriptor
+
+create EditCommand
+EditCommandParser -> EditCommand : EditCommand(1, d)
+activate EditCommand
+
+EditCommand --> EditCommandParser :
+deactivate EditCommand
+
+EditCommandParser --> AddressBookParser : e
+deactivate EditCommandParser
+
+EditCommandParser -[hidden]-> AddressBookParser
+destroy EditCommandParser
+
+AddressBookParser --> LogicManager : e
+deactivate AddressBookParser
+
+LogicManager -> EditCommand : execute(m)
+activate EditCommand
+
+EditCommand -> Model : getFilteredPersonList()
+activate Model
+
+Model --> EditCommand
+deactivate Model
+
+EditCommand -> EditCommand : createEditedPerson(p, d)
+activate EditCommand
+
+EditCommand --> EditCommand : edited_p
+deactivate EditCommand
+
+EditCommand -> Model : setPerson(edited_p)
+activate Model
+
+Model --> EditCommand :
+deactivate Model
+
+EditCommand -> Model : updateFilteredPersonList(true)
+activate Model
+
+Model --> EditCommand :
+deactivate Model
+
+create CommandResult
+EditCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> EditCommand
+deactivate CommandResult
+
+EditCommand --> LogicManager : r
+deactivate EditCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
