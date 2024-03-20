@@ -1,16 +1,17 @@
 package seedu.edulink.ui;
 
-import seedu.edulink.MainApp;
-import javafx.fxml.FXML;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.io.TempDir;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static seedu.edulink.testutil.Assert.assertThrows;
 
 import java.net.URL;
 import java.nio.file.Path;
 
-import static seedu.edulink.testutil.Assert.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
+
+import javafx.fxml.FXML;
+import seedu.edulink.MainApp;
 
 public class UiPartTest {
 
