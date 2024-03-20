@@ -1,7 +1,6 @@
 package seedu.address.model.person.relationship;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.UUID;
 
