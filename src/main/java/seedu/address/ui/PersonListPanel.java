@@ -8,7 +8,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.AppointmentView;
 import seedu.address.model.person.Person;
 
 /**
@@ -21,12 +21,12 @@ public class PersonListPanel extends UiPart<Region> {
     @FXML
     private ListView<Person> personListView;
     @FXML
-    private ListView<Appointment> appointmentListView;
+    private ListView<AppointmentView> appointmentListView;
 
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public PersonListPanel(ObservableList<Person> personList, ObservableList<Appointment> appointmentList) {
+    public PersonListPanel(ObservableList<Person> personList, ObservableList<AppointmentView> appointmentList) {
         super(FXML);
         personListView.setItems(personList);
         personListView.setCellFactory(listView -> new PersonListViewCell());
@@ -54,16 +54,16 @@ public class PersonListPanel extends UiPart<Region> {
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Appointment} using a {@code AppointmentCard}.
      */
-    class AppointmentListViewCell extends ListCell<Appointment> {
+    class AppointmentListViewCell extends ListCell<AppointmentView> {
         @Override
-        protected void updateItem(Appointment appt, boolean empty) {
-            super.updateItem(appt, empty);
+        protected void updateItem(AppointmentView apptView, boolean empty) {
+            super.updateItem(apptView, empty);
 
-            if (empty || appt == null) {
+            if (empty || apptView == null) {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new AppointmentCard(appt, getIndex() + 1).getRoot());
+                setGraphic(new AppointmentCard(apptView, getIndex() + 1).getRoot());
             }
         }
     }

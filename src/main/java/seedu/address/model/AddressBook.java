@@ -3,13 +3,19 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.ArrayList;
 
+
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.date.Date;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentList;
+import seedu.address.model.appointment.AppointmentListView;
+import seedu.address.model.appointment.AppointmentView;
 import seedu.address.model.appointment.TimePeriod;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
@@ -22,6 +28,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
     private final AppointmentList appointments;
+    private final AppointmentListView appointmentView;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -33,6 +40,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     {
         persons = new UniquePersonList();
         appointments = new AppointmentList();
+        appointmentView = new AppointmentListView();
     }
 
     public AddressBook() {}
@@ -134,6 +142,12 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setAppointments(List<Appointment> appointments) {
         this.appointments.setAppointments(appointments);
+        List<AppointmentView> apptListView = new ArrayList<AppointmentView>();
+        for (Appointment appointment : appointments) { 
+            Name name = getPersonWithNric(appointment.getNric()).getName();
+            apptListView.add(new AppointmentView(name, appointment));
+        }
+        this.appointmentView.setAppointments(apptListView);
     }
 
 
@@ -152,16 +166,31 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addAppointment(Appointment a) {
         appointments.add(a);
+        appointmentView.add(new AppointmentView(getPersonWithNric(a.getNric()).getName(), a));
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
+     * Adds an appointmentView to the address book.
+     * The appointment must not already exist in the address book.
+     */
+    public void addAppointmentView(AppointmentView a) {
+        appointmentView.add(a);
+    }
+
+    /**
+     * Replaces the given person {@code target} in the list with {@code editedAppointment}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The person identity of {@code editedAppointment} must not be the same as another existing person in the address book.
      */
     public void setAppointment(Appointment target, Appointment editedAppointment) {
         requireNonNull(editedAppointment);
         appointments.setAppointment(target, editedAppointment);
+        Name targetName = getPersonWithNric(target.getNric()).getName();
+        AppointmentView targetApptView = new AppointmentView(targetName, target);
+        Name editedName = getPersonWithNric(editedAppointment.getNric()).getName();
+        AppointmentView editedApptView = new AppointmentView(editedName, editedAppointment);
+        appointmentView.setAppointment(targetApptView, editedApptView);
+
     }
 
     /**
@@ -170,6 +199,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void cancelAppointment(Appointment key) {
         appointments.remove(key);
+        appointmentView.remove(new AppointmentView(getPersonWithNric(key.getNric()).getName(), key));
     }
 
     //// util methods
@@ -189,6 +219,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Appointment> getAppointmentList() {
         return appointments.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<AppointmentView> getAppointmentViewList() {
+        return appointmentView.asUnmodifiableObservableList();
     }
 
     public Appointment getMatchingAppointment(Nric nric, Date date, TimePeriod timePeriod) {

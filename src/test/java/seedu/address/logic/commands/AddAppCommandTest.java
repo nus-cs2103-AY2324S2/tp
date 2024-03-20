@@ -25,6 +25,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.AppointmentView;
 import seedu.address.model.appointment.TimePeriod;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
@@ -232,6 +233,11 @@ public class AddAppCommandTest {
         @Override
         public void deleteAppointmentsWithNric(Nric targetNric) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<AppointmentView> getFilteredAppointmentViewList() {
+            return null;
         }
     }
 
