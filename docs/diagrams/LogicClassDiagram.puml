@@ -15,6 +15,10 @@ Class "{abstract}\nCommand" as Command
 
 Class "<<interface>>\nLogic" as Logic
 Class LogicManager
+
+Class ArgumentMultimap
+Class ArgumentTokenizer
+Class ParserUtil
 }
 
 package Model {
@@ -26,8 +30,6 @@ package Storage {
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Logic
-
-Logic .[hidden]down.> AddressBookParser
 
 LogicManager .left.|> Logic
 LogicManager -->"1" AddressBookParser
@@ -42,10 +44,11 @@ LogicManager ..> Command : executes >
 LogicManager --> Model
 LogicManager -right-> Storage
 
-Storage --[hidden] Model
-
-Command .[hidden]up.> Storage
 Command .right.> Model
 note right of XYZCommand: XYZCommand = AddCommand, \nFindCommand, etc
 
+XYZCommand ..> ArgumentMultimap
+XYZCommand ..> ArgumentTokenizer
+XYZCommand ..> ParserUtil
+ArgumentTokenizer .left.> ArgumentMultimap
 @enduml
