@@ -40,7 +40,7 @@ public class AddCommandParser implements Parser<AddCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_YEAR,
                         PREFIX_TELEGRAM, PREFIX_MAJOR, PREFIX_REMARK, PREFIX_GROUP);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_MAJOR, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_YEAR)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_MAJOR, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_YEAR, PREFIX_GROUP)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
