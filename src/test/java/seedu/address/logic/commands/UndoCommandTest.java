@@ -1,15 +1,18 @@
 package seedu.address.logic.commands;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
+
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.TypicalPersons.AMY;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
 
 public class UndoCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
@@ -26,13 +29,13 @@ public class UndoCommandTest {
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
     }
     @Test
-    public void execute_undoWithoutCommandsToUndo_Failure() {
+    public void execute_undoWithoutCommandsToUndo_failure() {
         UndoCommand command = new UndoCommand();
         String expectedMessage = command.MESSAGE_FAILURE;
         assertCommandFailure(command, model, expectedMessage);
     }
     @Test
-    public void execute_undoAfterExecutingCommandsThatDoNotAffectAddressBook_Failure() {
+    public void execute_undoAfterExecutingCommandsThatDoNotAffectAddressBook_failure() {
         UndoCommand command = new UndoCommand();
         String expectedMessage = command.MESSAGE_FAILURE;
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
