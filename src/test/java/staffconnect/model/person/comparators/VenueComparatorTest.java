@@ -35,4 +35,15 @@ public class VenueComparatorTest {
         assertEquals(VENUE_COMPARATOR.compare(ELLE, ELLE), 0); // michegan ave = michegan ave
         assertEquals(VENUE_COMPARATOR.compare(GEORGE, GEORGE), 0); // 4th street = 4th street
     }
+
+    @Test
+    public void toStringTest() {
+        assertEquals(VENUE_COMPARATOR.toString(), "Venue by alphanumerical order");
+
+        assertNotEquals(VENUE_COMPARATOR.toString(), "Name by alphanumerical order");
+        assertNotEquals(VENUE_COMPARATOR.toString(), "Phone by ascending order");
+        assertNotEquals(VENUE_COMPARATOR.toString(), "Module by alphanumerical order");
+        assertNotEquals(VENUE_COMPARATOR.toString(), "Faculty by alphanumerical order");
+        assertNotEquals(VENUE_COMPARATOR.toString(), "random string");
+    }
 }

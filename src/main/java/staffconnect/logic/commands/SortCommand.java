@@ -10,17 +10,17 @@ import static staffconnect.logic.parser.CliSyntax.PREFIX_VENUE;
 import java.util.Comparator;
 
 import staffconnect.commons.util.ToStringBuilder;
-import staffconnect.logic.Messages;
 import staffconnect.model.Model;
 import staffconnect.model.person.Person;
 
 /**
  * Sorts and lists all persons in staff book in ascending order.
- * Attribute shorthand matching is not case insensitive.
+ * Attribute shorthand matching is not case-insensitive.
  */
 public class SortCommand extends Command {
 
     public static final String COMMAND_WORD = "sort";
+    public static final String MESSAGE_SORT_LIST_SUCCESS = "Sorted list: %1$s";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sort all persons by the attribute specified "
             + "and displays them as a list with index numbers.\n"
@@ -44,7 +44,7 @@ public class SortCommand extends Command {
         requireNonNull(comparator);
         model.updateSortedPersonList(comparator);
         return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+                String.format(MESSAGE_SORT_LIST_SUCCESS, comparator));
     }
 
     @Override
