@@ -17,6 +17,7 @@
         * [3.1.3 Listing all persons](#313-listing-all-persons--list)
         * [3.1.4 Editing a person](#314-editing-a-person--edit)
         * [3.1.5 Searching for a person](#315-searching-person-by-name-find)
+        * [3.1.6 Clearing all entries](#316-clearing-all-entries--clear)
 * [3.2 Managing Articles](#32-managing-articles)
     * [3.2.1 Adding an article](#321-adding-an-article)
     * [3.2.2 Deleting an article](#322-deleting-an-article)
@@ -44,9 +45,7 @@ The scope of the PressPlanner application is tailored to the specific needs of j
     - Download Java 11 from [the official Oracle website](https://www.oracle.com/java/technologies/downloads/#java11).
 1. Download the jar file from [our latest release](https://github.com/AY2324S2-CS2103T-F12-2/tp/releases).
 1. Move it to an **Empty** folder.
-
-> [!CAUTION]
-> App data will be stored in sub-folders from where it is launched. While you could run the app from any location, we recommend making a dedicated folder for our app to avoid confusion.
+    > :warning: App data will be stored in sub-folders from where it is launched. While you could run the app from any location, we recommend making a dedicated folder for our app to avoid confusion.
 
 ### [2.2.  Launching the App](#2-getting-started)
 1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.
@@ -55,8 +54,8 @@ The scope of the PressPlanner application is tailored to the specific needs of j
 <img src="images/Ui.png" alt="UI">
 
 ### [2.3. Basic Commands](#2-getting-started)
-> [!TIP] 
-> This section covers commands first-time users might need. For the full commands list, refer to the [Features](#features) section.
+
+> :bulb: This section covers commands first-time users might need. For the full commands list, refer to the [Features](#features) section.
 
 Let's go over the basic PressPlanner workflow. Say you've just finished interviewing a certain Gill Bates about his company's latest product. You want to save his contact for later and keep track of your article. Let's fire up PressPlanner and get this task out of the way.
 
@@ -68,18 +67,17 @@ Let's go over the basic PressPlanner workflow. Say you've just finished intervie
         - Address (`a/`)
     - For example: `add n/Gill Bates p/12345678 e/gillbates@sicromoft.com a/Sicromoft HQ`
 
-> [!NOTE] 
-> Adding an article uses the `add -a` command, the `-a` standing for article. The `-a` suffix is used for all commands pertaining to articles.
 
 2. Next let's add that article you just wrote.
-    - To `add -a` an article we need the following information:
-        - Title (`T/`)
-        - Author (`A/`)
-        - Source (`SRC/`)
-        - Date (`D/`)
-        - Category (`C/`)
-        - Status (`S/`)
-    - For example: `add -a T/My Article A/Myself SRC/Gill Bates D/2024-03-02T20:00:00 C/New Releases S/DRAFT`
+    > :bulb: Adding an article uses the `add -a` command, the `-a` standing for article. The `-a` suffix is used for all commands pertaining to articles.
+   - To `add -a` an article we need the following information:
+           - Title (`T/`)
+           - Author (`A/`)
+           - Source (`SRC/`)
+           - Date (`D/`)
+           - Category (`C/`)
+           - Status (`S/`)
+       - For example: `add -a T/My Article A/Myself SRC/Gill Bates D/2024-03-02T20:00:00 C/New Releases S/DRAFT`
 
 3. Now that that's done, let's say you need to find Gill Bate's number to arrange another interview
     - Typing the command `find Gill Bates` will pull up his contact
@@ -114,8 +112,7 @@ Now that you know the basic workflow, go ahead and try it out for yourself. If y
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-> [!WARNING]
-> If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
+> :warning: If you are using a PDF version of this document, be careful when copying and pasting commands with line breaks as they may not paste correctly.
 
 ## [3.1. Managing Contacts](#3-features)
 
@@ -125,8 +122,7 @@ Adds a person to the address book.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]...`
 
-> [!NOTE]
-> A person can have any number of tags (including 0)
+> :bulb: A person can have any number of tags (including 0)
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
