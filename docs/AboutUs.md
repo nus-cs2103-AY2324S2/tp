@@ -40,10 +40,9 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](http://github.com/gauravuj)]
 
-* Role: UI/UX, Frontend Developer, Backend (Backup)
-* Responsibilities: Maintaing the aesthetic of the product, 
-  improving functionality of the UI elements, making sure the 
-  backend respond efficiently with the frontend elements
+* Role: UI/UX & Frontend Developer
+* Responsibilities: Enhance product aesthetics, refine UI functionality,
+                    ensure seamless frontend-backend integration.
 
 ### Low Zheng Hui
 

@@ -121,6 +121,11 @@
     -fx-border-radius: 12px;
 }
 
+.list-cell:filled:selected #tags .label {
+    -fx-text-fill: black;
+    -fx-background-color: white;
+}
+
 /* Person Card UI */
 .list-cell .label {
     -fx-text-fill: white;
@@ -169,7 +174,6 @@
 
 .status-bar .label {
     -fx-font-family: "Avenir";
-    -fx-font-weight: light;
     -fx-text-fill: white;
     -fx-padding: 4px;
     -fx-pref-height: 30px;
@@ -267,6 +271,42 @@
     -fx-background-color: derive(-fx-focus-color, 30%);
 }
 
+/* Button style */
+.hbox-button {
+     /* Removes borders */
+    -fx-background-radius: 15px;
+    -fx-padding: 5 18 5 18;
+    -fx-background-color: transparent; /* Default background color */
+    -fx-text-fill: #fff; /* Text color */
+    -fx-font-family: Inter;
+    -fx-font-weight: bold;
+    -fx-border-color: transparent;
+    -fx-border-radius: 15px;
+    -fx-font-size: 16px;
+}
+
+/* Button hover effect */
+.hbox-button:hover {
+    -fx-border-width: 1;
+    -fx-border-color: #555;
+    -fx-border-radius: 15px;
+    -fx-background-color: #555; /* Background color on hover */
+}
+
+.hbox-button:selected {
+    -fx-background-color: #f6870c;
+}
+/* Active button style */
+.hbox-button.active {
+    -fx-background-color: #f6870c; /* Background color for the active button */
+    -fx-font-weight: bold; /* Optional: makes the text of the active button bold */
+}
+
+/* Ensures the text is always fully visible */
+.hbox-button .text {
+    -fx-text-overrun: clip; /* Prevents text from truncating */
+}
+
 .dialog-pane {
     -fx-background-color: #1d1d1d;
 }
@@ -361,7 +401,7 @@
 #tags .label {
     -fx-text-fill: white;
     -fx-background-color: #186ADD;
-    -fx-padding: 5;
+    -fx-padding: 5 12 5 12;
     -fx-border-radius: 15;
     -fx-background-radius: 15;
     -fx-font-size: 12;
