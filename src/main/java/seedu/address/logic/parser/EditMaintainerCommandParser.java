@@ -35,51 +35,64 @@ public class EditMaintainerCommandParser implements Parser<EditMaintainerCommand
      */
     public EditMaintainerCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_FIELD);
 
         Name name;
         String fieldArgs;
 
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_FIELD);
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_FIELD)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     EditMaintainerCommand.MESSAGE_USAGE));
         }
 
-        try {
-            name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    EditMaintainerCommand.MESSAGE_USAGE), pe);
-        }
+        name = mapName(argMultimap);
+        fieldArgs = mapFields(argMultimap);
 
-        try {
-            fieldArgs = ParserUtil.parseField(argMultimap.getValue(PREFIX_FIELD).get());
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    EditMaintainerCommand.MESSAGE_USAGE), pe);
-        }
-
-        ArgumentMultimap fieldArgMultimap =
-                ArgumentTokenizer.tokenize(fieldArgs, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                        PREFIX_SKILL, PREFIX_COMMISSION);
-
+        ArgumentMultimap fieldArgMultimap = ArgumentTokenizer.tokenize(fieldArgs, PREFIX_NAME,
+                PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_SKILL, PREFIX_COMMISSION);
         fieldArgMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
                 PREFIX_SKILL, PREFIX_COMMISSION);
 
         EditMaintainerDescriptor editMaintainerDescriptor = editMaintainerDescription(fieldArgMultimap);
-
         if (!editMaintainerDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditMaintainerCommand.MESSAGE_NOT_EDITED);
         }
 
         Set<Tag> tags = new HashSet<>();
-        Tag tag = new Tag("maintainer");
-        tags.add(tag);
+        tags.add(new Tag("maintainer"));
         editMaintainerDescriptor.setTags(tags);
 
-
         return new EditMaintainerCommand(name, editMaintainerDescriptor);
+    }
+
+    /**
+     * Returns name value using PREFIX.
+     * @param argMultimap Object that contains mapping of prefix to value.
+     * @return Returns object representing name.
+     * @throws ParseException Thrown when command is in invalid format.
+     */
+    public Name mapName(ArgumentMultimap argMultimap) throws ParseException {
+        try {
+            return ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+        } catch (ParseException pe) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditMaintainerCommand.MESSAGE_USAGE), pe);
+        }
+    }
+
+    /**
+     * Returns field values using PREFIX.
+     * @param argMultimap Object that contains mapping of prefix to value.
+     * @return Returns object representing the respective fields.
+     * @throws ParseException Thrown when command is in invalid format.
+     */
+    public String mapFields(ArgumentMultimap argMultimap) throws ParseException {
+        try {
+            return ParserUtil.parseField(argMultimap.getValue(PREFIX_FIELD).get());
+        } catch (ParseException pe) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditMaintainerCommand.MESSAGE_USAGE), pe);
+        }
     }
 
     /**
