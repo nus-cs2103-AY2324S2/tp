@@ -8,7 +8,6 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.person.Person;
 import seedu.address.model.task.exceptions.DuplicateTaskException;
 import seedu.address.model.task.exceptions.TaskNotFoundException;
 
@@ -51,9 +50,9 @@ public class UniqueTaskList implements Iterable<Task> {
 
     /**
      * Removes the equivalent task from the list.
-     * The person must exist in the list.
+     * The task must exist in the list.
      */
-    public void remove(Person toRemove) {
+    public void remove(Task toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
             throw new TaskNotFoundException();

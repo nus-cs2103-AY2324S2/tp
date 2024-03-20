@@ -101,7 +101,6 @@ public class UniquePersonList implements Iterable<Person> {
      */
     public Person getPerson(Name name) {
         for (Person person : internalList) {
-            System.out.println(person.getName().equals(name));
             if (person.getName().equals(name)) {
                 return person;
             }

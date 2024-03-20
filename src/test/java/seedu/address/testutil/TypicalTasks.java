@@ -26,7 +26,6 @@ public class TypicalTasks {
 
     private TypicalTasks() {} // prevents instantiation
     public static List<Task> getTypicalTasks() {
-        System.out.println(new ArrayList<>(Arrays.asList(TASK_ALICE, TASK_BENSON, TASK_CARL, TASK_DANIEL)));
         return new ArrayList<>(Arrays.asList(TASK_ALICE, TASK_BENSON, TASK_CARL, TASK_DANIEL));
     }
 }

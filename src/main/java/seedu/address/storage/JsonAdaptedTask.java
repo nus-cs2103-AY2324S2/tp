@@ -71,7 +71,6 @@ public class JsonAdaptedTask {
 
         // Find the Person object from the personList using the personName
         final Person modelPic = ab.getPerson(name);
-        System.out.println(modelPic.getName());
 
         if (modelPic == null) {
             throw new IllegalValueException("Person with name " + personInCharge + " not found!");
