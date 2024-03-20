@@ -11,7 +11,7 @@ participant "r:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Order ORDER_COLOR_T1
-participant "o:Order" as Order ORDER_COLOR
+participant ":Order" as Order ORDER_COLOR
 end box
 
 box Model MODEL_COLOR_T1
@@ -19,7 +19,7 @@ participant "m:Model" as Model MODEL_COLOR
 end box
 
 box Person PERSON_COLOR_T1
-participant "p:Person" as Person PERSON_COLOR
+participant ":Person" as Person PERSON_COLOR
 end box
 
 [-> LogicManager : execute(args)
@@ -63,7 +63,6 @@ deactivate AddressBookParser
 
 LogicManager -> AddOrderCommand : execute(m)
 activate AddOrderCommand
-
 
 AddOrderCommand -> Model : getFilteredPersonList()
 activate Model
