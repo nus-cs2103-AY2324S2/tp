@@ -1,7 +1,8 @@
-name,phone,email,address,tags
-"Alex Yeoh",87438807,alexyeoh@example.com,"Blk 30 Geylang Street 29, #06-40",friends
-"Bernice Yu",99272758,berniceyu@example.com,"Blk 30 Lorong 3 Serangoon Gardens, #07-18",colleagues;friends
-"Charlotte Oliveiro",93210283,charlotte@example.com,"Blk 11 Ang Mo Kio Street 74, #11-04",neighbours
-"David Li",91031282,lidavid@example.com,"Blk 436 Serangoon Gardens Street 26, #16-43",family
-"Irfan Ibrahim",92492021,irfan@example.com,"Blk 47 Tampines Street 20, #17-35",classmates
-"Roy Balakrishnan",92624417,royb@example.com,"Blk 45 Aljunied Street 85, #11-31",colleagues
+name,phone,email,address,matric,reflection,studio,tags
+"Alice Pauline",94351253,alice@example.com,"123, Jurong West Ave 6, #08-111",A1111111A,R1,S1,friends
+"Benson Meier",98765432,johnd@example.com,"311, Clementi Ave 2, #02-25",A2222222A,R2,S2,owesMoney;friends
+"Carl Kurz",95352563,heinz@example.com,"wall street",A3333333A,R3,S3,
+"Daniel Meier",87652533,cornelia@example.com,"10th street",A4444444A,R4,S4,friends
+"Elle Meyer",9482224,werner@example.com,"michegan ave",A5555555A,R5,S5,
+"Fiona Kunz",9482427,lydia@example.com,"little tokyo",A6666666A,R6,S6,
+"George Best",9482442,anna@example.com,"4th street",A7777777A,R7,S7,
