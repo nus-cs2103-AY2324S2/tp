@@ -114,7 +114,7 @@ public class UniqueId {
         if (uid == null) {
             throw new NullPointerException("ID is null while converting to string");
         }
-        return "UID: " + uid;
+        return uid.toString();
     }
 
     /**
