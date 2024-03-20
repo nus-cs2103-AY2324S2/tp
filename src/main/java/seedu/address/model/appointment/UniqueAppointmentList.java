@@ -8,8 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.appointment.exceptions.AppointmentNotFoundException;
 import seedu.address.model.appointment.exceptions.DuplicateAppointmentException;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
 
 /**
  * A list of appointments that enforces uniqueness between its elements and does not allow nulls.
@@ -60,7 +60,7 @@ public class UniqueAppointmentList implements Iterable<Appointment> {
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new PersonNotFoundException();
+            throw new AppointmentNotFoundException();
         }
 
         if (!target.isSameAppointment(editedAppointment) && contains(editedAppointment)) {
@@ -77,7 +77,7 @@ public class UniqueAppointmentList implements Iterable<Appointment> {
     public void remove(Appointment toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            throw new PersonNotFoundException();
+            throw new AppointmentNotFoundException();
         }
     }
 
