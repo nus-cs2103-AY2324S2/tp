@@ -37,7 +37,7 @@ You can reach us at the following emails `simkianseng28@gmail.com`, `bensonang36
 [[portfolio](team/xuwen-ho)]
 
 - Role: Developer
-- Responsibilities: In charge of deliverables and deadlines
+- Responsibilities: In charge of deliverables, deadlines and UI
 
 ### Tay Zi Yi
 
