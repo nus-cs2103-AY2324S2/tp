@@ -1,0 +1,26 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor LOGIC_COLOR_T4
+skinparam classBackgroundColor LOGIC_COLOR
+
+package "Commands Utility Classes" as CommandsUtil {
+Class DefinedParameter
+Class Parameter
+Class ParameterSyntax
+Class CommandMessageUsageUtil
+}
+
+Class Prefix
+
+Class HiddenOutside1 #FFFFFF
+Class HiddenOutside2 #FFFFFF
+HiddenOutside1 .down.> CommandMessageUsageUtil
+HiddenOutside2 .down.> ParameterSyntax
+
+CommandMessageUsageUtil .down.> Parameter
+DefinedParameter -right-> Prefix
+DefinedParameter .left.|> Parameter
+ParameterSyntax .down.> DefinedParameter
+ParameterSyntax .down.> Parameter
+@enduml
