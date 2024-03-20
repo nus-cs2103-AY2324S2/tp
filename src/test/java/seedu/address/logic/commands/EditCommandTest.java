@@ -6,6 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.ASSET_DESC_AIRCON;
+import static seedu.address.logic.commands.CommandTestUtil.ASSET_DESC_HAMMER;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
@@ -21,6 +23,8 @@ import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ASSET_AIRCON;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ASSET_HAMMER;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
@@ -34,6 +38,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertParseFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertParseSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.model.person.fields.Address.PREFIX_ADDRESS;
+import static seedu.address.model.person.fields.Assets.PREFIX_ASSET;
 import static seedu.address.model.person.fields.Email.PREFIX_EMAIL;
 import static seedu.address.model.person.fields.Phone.PREFIX_PHONE;
 import static seedu.address.model.person.fields.Tags.PREFIX_TAG;
@@ -61,6 +66,7 @@ import seedu.address.testutil.PersonBuilder;
 public class EditCommandTest {
 
     private static final String TAG_EMPTY = " " + PREFIX_TAG;
+    private static final String ASSET_EMPTY = " " + PREFIX_ASSET;
 
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);
@@ -222,6 +228,12 @@ public class EditCommandTest {
         assertParseFailure(EditCommand::of, "1" + TAG_DESC_FRIEND + TAG_EMPTY + TAG_DESC_HUSBAND);
         assertParseFailure(EditCommand::of, "1" + TAG_EMPTY + TAG_DESC_FRIEND + TAG_DESC_HUSBAND);
 
+        // while parsing {@code PREFIX_ASSET} alone will reset the assets of the {@code Person} being edited,
+        // parsing it together with a valid asset results in error
+        assertParseFailure(EditCommand::of, "1" + ASSET_DESC_AIRCON + ASSET_DESC_HAMMER + ASSET_EMPTY);
+        assertParseFailure(EditCommand::of, "1" + ASSET_DESC_AIRCON + ASSET_EMPTY + ASSET_DESC_HAMMER);
+        assertParseFailure(EditCommand::of, "1" + ASSET_EMPTY + ASSET_DESC_AIRCON + ASSET_DESC_HAMMER);
+
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(EditCommand::of, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC
                 + VALID_ADDRESS_AMY + VALID_PHONE_AMY);
@@ -231,11 +243,13 @@ public class EditCommandTest {
     public void of_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_PERSON;
         String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + TAG_DESC_HUSBAND
-                + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND;
+                + ASSET_DESC_AIRCON + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY
+                + TAG_DESC_FRIEND + ASSET_DESC_HAMMER;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+                .withAssets(VALID_ASSET_AIRCON, VALID_ASSET_HAMMER).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(EditCommand::of, userInput, expectedCommand);
@@ -285,6 +299,12 @@ public class EditCommandTest {
         descriptor = new EditPersonDescriptorBuilder().withTags(VALID_TAG_FRIEND).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(EditCommand::of, userInput, expectedCommand);
+
+        // assets
+        userInput = targetIndex.getOneBased() + ASSET_DESC_HAMMER;
+        descriptor = new EditPersonDescriptorBuilder().withAssets(VALID_ASSET_HAMMER).build();
+        expectedCommand = new EditCommand(targetIndex, descriptor);
+        assertParseSuccess(EditCommand::of, userInput, expectedCommand);
     }
 
     @Test
@@ -306,7 +326,8 @@ public class EditCommandTest {
         // mulltiple valid fields repeated
         userInput = targetIndex.getOneBased() + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY
                 + TAG_DESC_FRIEND + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY + TAG_DESC_FRIEND
-                + PHONE_DESC_BOB + ADDRESS_DESC_BOB + EMAIL_DESC_BOB + TAG_DESC_HUSBAND;
+                + PHONE_DESC_BOB + ASSET_DESC_HAMMER + ADDRESS_DESC_BOB + EMAIL_DESC_BOB
+                + TAG_DESC_HUSBAND + ASSET_DESC_HAMMER;
 
         assertParseFailure(EditCommand::of, userInput,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS));
@@ -325,6 +346,17 @@ public class EditCommandTest {
         String userInput = targetIndex.getOneBased() + TAG_EMPTY;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withTags().build();
+        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+
+        assertParseSuccess(EditCommand::of, userInput, expectedCommand);
+    }
+
+    @Test
+    public void of_resetAssets_success() {
+        Index targetIndex = INDEX_THIRD_PERSON;
+        String userInput = targetIndex.getOneBased() + ASSET_EMPTY;
+
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withAssets().build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(EditCommand::of, userInput, expectedCommand);
