@@ -1,6 +1,6 @@
 package seedu.address.logic.commands;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_IMPORT;
@@ -74,13 +74,13 @@ public class ImportCommand extends Command {
      * @param filePath absolute path of file (path starts from C:...)
      */
     public ImportCommand(Path filePath) {
-        requireAllNonNull(filePath);
+        requireNonNull(filePath);
 
         this.filePath = filePath;
     }
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        requireAllNonNull(model);
+        requireNonNull(model);
         try {
             List<Map<String, String>> data = readCsvFile();
             for (Map<String, String> personData : data) {

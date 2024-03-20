@@ -23,6 +23,12 @@ public class ImportCommandParser implements Parser<ImportCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_IMPORT);
 
+        if (!isPrefixPresent(
+                argMultimap)
+                || !argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ImportCommand.MESSAGE_USAGE));
+        }
+
         Path path;
         try {
             path = ParserUtil.parseFilePath(argMultimap.getValue(PREFIX_IMPORT).orElse(""));
@@ -30,5 +36,13 @@ public class ImportCommandParser implements Parser<ImportCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ImportCommand.MESSAGE_USAGE), ive);
         }
         return new ImportCommand(path);
+    }
+
+    /**
+     * Returns true if the prefix contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean isPrefixPresent(ArgumentMultimap argumentMultimap) {
+        return argumentMultimap.getValue(CliSyntax.PREFIX_IMPORT).isPresent();
     }
 }
