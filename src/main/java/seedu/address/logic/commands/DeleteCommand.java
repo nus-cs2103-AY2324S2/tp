@@ -79,11 +79,20 @@ public class DeleteCommand extends Command {
      * @throws CommandException If the specified student ID does not match any person in the model.
      */
     public CommandResult handleStudentIdInput(Model model) throws CommandException {
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         List<Person> lastShownList = model.getFilteredPersonList();
         Optional<Person> personToDelete = lastShownList.stream()
                 .filter(person -> person.getId().equals(targetStudentId))
                 .findFirst();
+
+        if (personToDelete.isEmpty()) {
+            model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+            lastShownList = model.getFilteredPersonList();
+
+            personToDelete = lastShownList.stream()
+                    .filter(person -> person.getId().equals(targetStudentId))
+                    .findFirst();
+        }
+
         if (personToDelete.isEmpty()) {
             throw new CommandException(Messages.MESSAGE_STUDENT_NOT_FOUND);
         }
