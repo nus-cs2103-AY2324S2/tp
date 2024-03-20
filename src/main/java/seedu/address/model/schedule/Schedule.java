@@ -17,7 +17,7 @@ import seedu.address.model.person.Person;
  */
 public class Schedule {
 
-    public static final String MESSAGE_CONSTRAINTS = "Schedule names should be alphanumeric";
+    public static final String MESSAGE_CONSTRAINTS = "i i i";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
     public static final DateTimeFormatter CUSTOM_DATETIME = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
     private static int schedIdCounter = 0;
@@ -40,7 +40,7 @@ public class Schedule {
     public Schedule(String schedName, LocalDateTime startTime,
                     LocalDateTime endTime) {
         requireNonNull(schedName);
-        checkArgument(isValidSchedName(schedName), MESSAGE_CONSTRAINTS);
+        //checkArgument(isValidSchedName(schedName), MESSAGE_CONSTRAINTS);
         checkArgument(isValidTiming(startTime, endTime));
         this.schedId = schedIdCounter++;
 
@@ -94,6 +94,19 @@ public class Schedule {
      */
     public static boolean isValidTiming(LocalDateTime startTime, LocalDateTime endTime) {
         return startTime.isBefore(endTime);
+    }
+
+    /**
+     * Returns true if both persons have the same name.
+     * This defines a weaker notion of equality between two persons.
+     */
+    public boolean isSameSchedule(Schedule otherSchedule) {
+        if (otherSchedule == this) {
+            return true;
+        }
+
+        return otherSchedule != null
+                && otherSchedule.getSchedName().equals(getSchedName());
     }
 
     /**
