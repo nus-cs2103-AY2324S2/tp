@@ -1,10 +1,21 @@
 {
-  "persons": [
-    {
-      "name": "Person with invalid name field: Ha!ns Mu@ster",
-      "phone": "9482424",
-      "email": "hans@example.com",
-      "address": "4th street"
-    }
-  ]
+  "persons" : [ {
+    "name" : "dwd&jsq-+",
+    "phone" : "98765432",
+    "email" : "johnd@example.com",
+    "address" : "John street, block 123, #01-01",
+    "tags" : [ "tag1", "tag2" ],
+    "role" : "client",
+    "products" : {
+      "products" : [ ]
+    },
+    "preferences" : "",
+    "department" : null,
+    "jobTitle" : null,
+    "termsOfService" : null,
+    "skills" : {
+      "skills" : [ ]
+    },
+    "remark" : ""
+  } ]
 }
