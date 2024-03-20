@@ -75,6 +75,8 @@ public class ModelManager implements Model {
         userPrefs.setGuiSettings(guiSettings);
     }
 
+    //=========== ContactList ================================================================================
+
     @Override
     public Path getContactListFilePath() {
         return userPrefs.getContactListFilePath();
@@ -85,8 +87,6 @@ public class ModelManager implements Model {
         requireNonNull(contactListFilePath);
         userPrefs.setContactListFilePath(contactListFilePath);
     }
-
-    //=========== ContactList ================================================================================
 
     @Override
     public void setContactList(ReadOnlyContactList contactList) {
@@ -123,6 +123,27 @@ public class ModelManager implements Model {
     }
 
     //=========== GroupList ================================================================================
+    @Override
+    public Path getGroupListFilePath() {
+        return userPrefs.getGroupListFilePath();
+    }
+
+    @Override
+    public void setGroupListFilePath(Path groupListFilePath) {
+        requireNonNull(groupListFilePath);
+        userPrefs.setGroupListFilePath(groupListFilePath);
+    }
+
+    @Override
+    public void setGroupList(ReadOnlyGroupList groupList) {
+        this.groupList.resetData(groupList);
+    }
+
+    @Override
+    public ReadOnlyGroupList getGroupList() {
+        return groupList;
+    }
+
     @Override
     public boolean hasGroup(Group group) {
         requireNonNull(group);
@@ -216,7 +237,9 @@ public class ModelManager implements Model {
         ModelManager otherModelManager = (ModelManager) other;
         return contactList.equals(otherModelManager.contactList)
                 && userPrefs.equals(otherModelManager.userPrefs)
-                && filteredCourseMates.equals(otherModelManager.filteredCourseMates);
+                && filteredCourseMates.equals(otherModelManager.filteredCourseMates)
+                && filteredGroups.equals(otherModelManager.filteredGroups)
+                && groupList.equals(otherModelManager.groupList);
     }
 
 }

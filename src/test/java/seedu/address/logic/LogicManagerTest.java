@@ -29,6 +29,7 @@ import seedu.address.model.ReadOnlyContactList;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.coursemate.CourseMate;
 import seedu.address.storage.JsonContactListStorage;
+import seedu.address.storage.JsonGroupListStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
 import seedu.address.testutil.CourseMateBuilder;
@@ -47,8 +48,11 @@ public class LogicManagerTest {
     public void setUp() {
         JsonContactListStorage contactListStorage =
                 new JsonContactListStorage(temporaryFolder.resolve("contactList.json"));
-        JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(contactListStorage, userPrefsStorage);
+        JsonUserPrefsStorage userPrefsStorage =
+                new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
+        JsonGroupListStorage groupListStorage =
+                new JsonGroupListStorage(temporaryFolder.resolve("groupList.json"));
+        StorageManager storage = new StorageManager(contactListStorage, userPrefsStorage, groupListStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -177,7 +181,9 @@ public class LogicManagerTest {
 
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(contactListStorage, userPrefsStorage);
+        JsonGroupListStorage groupListStorage =
+                new JsonGroupListStorage(temporaryFolder.resolve("ExceptionGroupList.json"));
+        StorageManager storage = new StorageManager(contactListStorage, userPrefsStorage, groupListStorage);
 
         logic = new LogicManager(model, storage);
 

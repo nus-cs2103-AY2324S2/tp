@@ -85,6 +85,24 @@ public interface Model {
     void setCourseMate(CourseMate target, CourseMate editedCourseMate);
 
     /**
+     * Returns the user prefs' contact list file path.
+     */
+    Path getGroupListFilePath();
+
+    /**
+     * Sets the user prefs' contact list file path.
+     */
+    void setGroupListFilePath(Path groupListFilePath);
+
+    /**
+     * Replaces contact list data with the data in {@code groupList}.
+     */
+    void setGroupList(ReadOnlyGroupList groupList);
+
+    /** Returns the GroupList */
+    ReadOnlyGroupList getGroupList();
+
+    /**
      * Returns true if a courseMate with the same identity as {@code courseMate} exists in the contact list.
      */
     boolean hasGroup(Group group);
