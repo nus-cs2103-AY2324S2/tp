@@ -11,7 +11,6 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.order.Order;
 import seedu.address.model.person.Person;
 
@@ -116,19 +115,25 @@ public class ModelManager implements Model {
     }
 
     //=========== Order ================================================================================
+
     @Override
-    public void addOrder(Order order) throws CommandException {
-        throw new CommandException("NOT IMPLEMENTED");
+    public ObservableList<Order> getOrderList() {
+        return this.addressBook.getOrderList();
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Order} backed by the internal list of.
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Order> getFilteredOrderList() {
+        return filteredOrders;
     }
 
     @Override
-    public void deleteOrder(Order order) throws CommandException {
-        throw new CommandException("NOT IMPLEMENTED");
-    }
-
-    @Override
-    public ObservableList<Order> getOrderList() throws CommandException {
-        throw new CommandException("NOT IMPLEMENTED");
+    public void updateFilteredOrderList(Predicate<Order> predicate) {
+        requireNonNull(predicate);
+        filteredOrders.setPredicate(predicate);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -140,15 +145,6 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Person> getFilteredPersonList() {
         return filteredPersons;
-    }
-
-    /**
-     * Returns an unmodifiable view of the list of {@code Order} backed by the internal list of
-     * {@code versionedAddressBook}.
-     */
-    @Override
-    public ObservableList<Order> getFilteredOrderList() {
-        return filteredOrders;
     }
 
     @Override
@@ -173,13 +169,4 @@ public class ModelManager implements Model {
                 && userPrefs.equals(otherModelManager.userPrefs)
                 && filteredPersons.equals(otherModelManager.filteredPersons);
     }
-
-    //=========== Filtered Person List Accessors =============================================================
-
-    @Override
-    public void updateFilteredOrderList(Predicate<Order> predicate) {
-        requireNonNull(predicate);
-        filteredOrders.setPredicate(predicate);
-    }
-
 }

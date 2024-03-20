@@ -2,7 +2,10 @@ package seedu.address.logic.commands.orders;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.Command;
@@ -11,6 +14,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.order.Order;
 import seedu.address.model.order.OrderId;
+import seedu.address.model.person.Person;
 
 
 /**
@@ -42,22 +46,54 @@ public class DeleteOrderCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireAllNonNull(model);
-        List<Order> orderList = model.getOrderList();
-        Order selectedOrderToDelete = null;
+        Order changeOrder = null;
+        Person personToEdit = null;
+        List<Person> personList = model.getAddressBook().getPersonList();
+        for (Person person : personList) {
+            if (changeOrder != null) {
+                break;
+            }
+            if (person.getOrders() != null) {
+                Set<Order> orders = person.getOrders();
+                for (Order order : orders) {
+                    if (order.checkId(this.index)) {
+                        changeOrder = order;
+                        personToEdit = person;
+                        break;
+                    }
+                }
+            }
+        }
+        if (changeOrder == null) {
+            throw new CommandException(Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
+        }
+        Person editedPerson = new Person(
+                personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
+                personToEdit.getAddress(), personToEdit.getTags(),
+                removeOrder(this.index, personToEdit.getOrders()));
+        model.setPerson(personToEdit, editedPerson);
+        return new CommandResult(generateSuccessMessage(editedPerson));
+    }
 
-        for (Order order : orderList) {
-            if (order.getOrderId() == this.index) {
-                selectedOrderToDelete = order;
+    private Set<Order> removeOrder(OrderId orderId, Set<Order> orders) {
+        orders = new HashSet<>(orders);
+        Iterator<Order> iterator = orders.iterator();
+        while (iterator.hasNext()) {
+            Order currentOrder = iterator.next();
+            if (currentOrder.getOrderId().equals(orderId)) {
+                iterator.remove();
                 break;
             }
         }
+        return orders;
+    }
 
-        if (selectedOrderToDelete == null) {
-            throw new CommandException(Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
-        }
-
-        model.deleteOrder(selectedOrderToDelete);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(selectedOrderToDelete)));
-
+    /**
+     * Generates a command execution success message based on whether
+     * the order is added to or removed from
+     * {@code personToEdit}.
+     */
+    private String generateSuccessMessage(Person personToEdit) {
+        return String.format(MESSAGE_SUCCESS, personToEdit);
     }
 }
