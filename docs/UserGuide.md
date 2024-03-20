@@ -134,13 +134,16 @@ Example: `edita L293D L293E` edits the asset `L293D`, changing its name to `L293
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Search : `search`
+### Locating persons by name or asset: `find`
 
-Search contacts or assets by any of their metadata.
+Finds persons whose names, tags or assets contain any of the given keywords.
 
-Format: `search <string>`
+Format: `find <keyword> [<keyword>]...`
 
-Example: `search John` searches all contacts and assets for the term `John`.
+Example: `find John` searches all contact names, tags and assets for the keyword `John`.
+
+* At least one keyword must be provided.
+* Keywords are case-insensitive.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -198,5 +201,5 @@ Action     | Format      |        Examples
 **Delete** | `delete <id>` | `delete 1`
 **Edit contact**   | `edit <id> [--email <email>] [--phone <phone>] [--asset <asset>]...` | `edit 1 --email newemail@example.com`
 **Edit asset**   | `edita <asset> <new_asset_name>` | `edita L293D L293E`
-**Search**   | `search <string>` | `search John`
+**Find**   | ``find <keyword> [<keyword>]...`` | `find John`
 **Exit**   | `exit` | `exit`
