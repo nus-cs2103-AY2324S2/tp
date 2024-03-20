@@ -24,6 +24,8 @@ public class TaskBuilder {
      * Creates a {@code TaskBuilder} with the default details.
      */
     public TaskBuilder() {
+        title = DEFAULT_TITLE;
+        deadline = new Deadline(LocalDateTime.parse(DEFAULT_DEADLINE, DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm")));
     }
 
     /**
@@ -33,6 +35,10 @@ public class TaskBuilder {
         title = taskToCopy.getTaskTitle();
         deadline = taskToCopy.getDeadline();
         personInCharge = taskToCopy.getPersonInCharge();
+    }
+
+    public Task buildTester() {
+        return new Task(DEFAULT_TITLE, deadline);
     }
 
     /**
@@ -70,4 +76,5 @@ public class TaskBuilder {
         personInCharge.setTask(t);
         return t;
     }
+
 }

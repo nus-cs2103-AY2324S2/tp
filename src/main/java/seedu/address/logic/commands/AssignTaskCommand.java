@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TO;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -67,5 +68,28 @@ public class AssignTaskCommand extends Command {
         model.assignTask(task, assignedTo);
         return new CommandResult(String.format(MESSAGE_ASSIGN_TASK_SUCCESS,
                 Messages.printTask(task), Messages.printName(assignedTo)));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof AssignTaskCommand)) {
+            return false;
+        }
+
+        AssignTaskCommand otherAssignCommand = (AssignTaskCommand) other;
+        return task.equals(otherAssignCommand.task) && index.equals(otherAssignCommand.index);
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .add("task", task)
+                .add("index", index)
+                .toString();
     }
 }
