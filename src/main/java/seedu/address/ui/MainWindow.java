@@ -29,6 +29,7 @@ public class MainWindow extends UiPart<Stage> {
 
     private Stage primaryStage;
     private Logic logic;
+    private boolean isConfirmation;
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
@@ -59,6 +60,8 @@ public class MainWindow extends UiPart<Stage> {
         // Set dependencies
         this.primaryStage = primaryStage;
         this.logic = logic;
+
+        isConfirmation = false;
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
@@ -135,6 +138,13 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    @FXML
+    public void handleConfirmation() {
+//        if (true) {
+//        }
+        isConfirmation = true;
+    }
+
     /**
      * Opens the help window or focuses on it if it's already opened.
      */
@@ -170,13 +180,15 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Executes the command and returns the result.
      *
-     * @see seedu.address.logic.Logic#execute(String)
+     * @see Logic#execute(String, boolean)
      */
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
-            CommandResult commandResult = logic.execute(commandText);
+            CommandResult commandResult = logic.execute(commandText, isConfirmation);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+
+            isConfirmation = commandResult.isConfirmation();  // to determine if next commandText is a confirmation
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

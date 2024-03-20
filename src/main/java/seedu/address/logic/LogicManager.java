@@ -33,6 +33,8 @@ public class LogicManager implements Logic {
     private final Storage storage;
     private final AddressBookParser addressBookParser;
 
+    private Command prevCommand;
+
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
      */
@@ -43,12 +45,27 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public CommandResult execute(String commandText) throws CommandException, ParseException {
+    public CommandResult execute(String commandText, boolean isConfirmation) throws CommandException, ParseException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
-        commandResult = command.execute(model);
+        if (isConfirmation) {
+            if (commandText.equalsIgnoreCase("y")) {
+                commandResult = prevCommand.execute(model);
+            } else {
+                commandResult = new CommandResult("Command execution has been cancelled.");
+            }
+        } else {
+            Command command = addressBookParser.parseCommand(commandText);
+            prevCommand = command;
+
+            Confirmation confirmation = new Confirmation(command);
+            if (!confirmation.isToProceed()) {
+                return new CommandResult(Confirmation.CONFIRMATION_MESSAGE, true, false, false);
+            }
+
+            commandResult = command.execute(model);
+        }
 
         try {
             storage.saveAddressBook(model.getAddressBook());
