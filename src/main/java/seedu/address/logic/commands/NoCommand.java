@@ -1,10 +1,11 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 
+/**
+ * No command, do nothing.
+ */
 public class NoCommand extends Command {
     public static final String COMMAND_WORD = "no";
 

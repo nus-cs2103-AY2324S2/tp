@@ -1,8 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 
 /**
@@ -12,8 +10,8 @@ public class DeleteAllCommand extends Command {
 
     public static final String COMMAND_WORD = "delete-all";
     public static final String CONFIRMATION =
-            "Are you sure you want to delete all? This action is irreversible. If yes, enter ‘delete-all-f’. " +
-                    "If not, simply enter 'no'.";
+            "Are you sure you want to delete all? This action is irreversible. If yes, enter ‘delete-all-f’. "
+                    + "If not, simply enter 'no'.";
 
     /**
      * Executes the command and returns the result message.

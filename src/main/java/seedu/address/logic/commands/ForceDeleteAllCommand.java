@@ -5,6 +5,9 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 
+/**
+ * Deletes all persons in the address book forcefully.
+ */
 public class ForceDeleteAllCommand extends Command {
     public static final String COMMAND_WORD = "delete-all-f";
     public static final String MESSAGE_SUCCESS = "Successfully deleted all data";
