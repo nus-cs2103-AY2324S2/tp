@@ -175,7 +175,7 @@ public class ModelManager implements Model {
      * @return boolean indicating if appointment is valid
      */
     public boolean isValidAppointment(Appointment appointment) {
-        Nric doctorNric = appointment.getDoctoNric();
+        Nric doctorNric = appointment.getDoctorNric();
         Nric patientNric = appointment.getPatientNric();
 
         Person doctor = addressBook.getPersonByNric(doctorNric);

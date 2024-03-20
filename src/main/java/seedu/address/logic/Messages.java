@@ -61,7 +61,7 @@ public class Messages {
         builder.append("Date: ")
                 .append(appointment.getAppointmentDate())
                 .append("; Doctor: ")
-                .append(appointment.getDoctoNric())
+                .append(appointment.getDoctorNric())
                 .append("; Patient: ")
                 .append(appointment.getPatientNric())
                 .append("; ID: ")

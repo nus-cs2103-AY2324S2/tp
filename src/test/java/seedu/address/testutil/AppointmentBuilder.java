@@ -35,7 +35,7 @@ public class AppointmentBuilder {
      */
     public AppointmentBuilder(Appointment apptToCopy) {
         this.appointmentDate = apptToCopy.getAppointmentDate();
-        this.doctorNric = apptToCopy.getDoctoNric();
+        this.doctorNric = apptToCopy.getDoctorNric();
         this.patientNric = apptToCopy.getPatientNric();
     }
 

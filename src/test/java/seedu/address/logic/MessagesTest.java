@@ -15,7 +15,7 @@ class MessagesTest {
         assertEquals(Messages.format(a), "Date: "
                 + a.getAppointmentDate()
                 + "; Doctor: "
-                + a.getDoctoNric()
+                + a.getDoctorNric()
                 + "; Patient: "
                 + a.getPatientNric()
                 + "; ID: "

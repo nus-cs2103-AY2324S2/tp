@@ -60,7 +60,7 @@ public class Appointment {
      * Gets doctor in charge
      * @return Doctor in charge
      */
-    public Nric getDoctoNric() {
+    public Nric getDoctorNric() {
         return doctorNric;
     }
 
