@@ -33,12 +33,10 @@ class AddRelationshipCommandTest {
 
         command = new AddRelationshipCommand(uuid1, uuid2, "family");
     }
-
     @Test
     void execute_validInputWithRoles_success() {
         String uuid1 = personMap.keySet().iterator().next();
         String uuid2 = personMap.keySet().iterator().next();
-
     }
 
     @Test
