@@ -2,35 +2,60 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.logic.commands.orders.DeleteOrderCommand.MESSAGE_SUCCESS;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.logic.Messages;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.orders.AddOrderCommand;
 import seedu.address.logic.commands.orders.DeleteOrderCommand;
+import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.order.Order;
-import seedu.address.model.order.OrderList;
+import seedu.address.model.order.OrderId;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.OrderBuilder;
+import seedu.address.testutil.PersonBuilder;
 
 public class DeleteOrderCommandTest {
 
     @Test
     public void execute_deleteOrderByModel_deleteSuccessful() throws Exception {
+        PersonBuilder personBuilder = new PersonBuilder();
+        Person person = personBuilder.build();
         OrderBuilder builder = new OrderBuilder();
         Order order = builder.build();
-        ModelStubDeletingOrder modelStub = new ModelStubDeletingOrder(order);
-        CommandResult commandResult = new DeleteOrderCommand(order.getOrderId()).execute(modelStub);
-        assertEquals(String.format(MESSAGE_SUCCESS, Messages.format(order)),
-                commandResult.getFeedbackToUser());
+        ModelStubDeletingOrder modelStub = new ModelStubDeletingOrder(order, person);
+        Index targetIndex = INDEX_FIRST_PERSON;
+        CommandResult commandResult = new AddOrderCommand(targetIndex, order).execute(modelStub);
+        commandResult = new DeleteOrderCommand(order.getOrderId()).execute(modelStub);
+        assertEquals(0, modelStub.getOrderList().size());
+    }
+
+    @Test
+    public void execute_deleteOrderByModel_deleteUnsuccessful() throws Exception {
+        PersonBuilder personBuilder = new PersonBuilder();
+        Person person = personBuilder.build();
+        OrderBuilder builder = new OrderBuilder();
+        Order order = builder.build();
+        ModelStubDeletingOrder modelStub = new ModelStubDeletingOrder(order, person);
+        Index targetIndex = INDEX_FIRST_PERSON;
+        CommandResult commandResult = new AddOrderCommand(targetIndex, order).execute(modelStub);
+        OrderId invalidId = new OrderId();
+        assertThrows(CommandException.class, () -> new DeleteOrderCommand(invalidId).execute(modelStub));
     }
 
     /**
@@ -118,16 +143,6 @@ public class DeleteOrderCommandTest {
         }
 
         @Override
-        public void addOrder(Order order) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void deleteOrder(Order order) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public ObservableList<Order> getOrderList() {
             throw new AssertionError("This method should not be called.");
         }
@@ -137,23 +152,40 @@ public class DeleteOrderCommandTest {
      * A Model stub that always accepts the order being added.
      */
     private class ModelStubDeletingOrder extends ModelStub {
-        private final Order order;
+        private Order order;
+        private Person person;
 
-        ModelStubDeletingOrder(Order order) {
+        ModelStubDeletingOrder(Order order, Person person) {
             requireNonNull(order);
             this.order = order;
+            this.person = person;
         }
 
         @Override
-        public void deleteOrder(Order order) {
-            requireNonNull(order);
+        public void setPerson(Person target, Person editedPerson) {
+            requireAllNonNull(target, editedPerson);
+            this.person = editedPerson;
+        }
+
+        @Override
+        public ObservableList<Person> getFilteredPersonList() {
+            List<Person> sampleList = new ArrayList<>();
+            sampleList.add(this.person);
+            ObservableList<Person> personList = FXCollections.observableArrayList(sampleList);
+            return personList;
         }
 
         @Override
         public ObservableList<Order> getOrderList() {
-            OrderList orderList = new OrderList();
-            orderList.add(order);
-            return orderList.asUnmodifiableObservableList();
+            ObservableList<Order> orderList = FXCollections.observableArrayList(this.person.getOrders());
+            return orderList;
+        }
+
+        @Override
+        public ReadOnlyAddressBook getAddressBook() {
+            AddressBook addressBook = new AddressBook();
+            addressBook.addPerson(this.person);
+            return addressBook;
         }
     }
 }

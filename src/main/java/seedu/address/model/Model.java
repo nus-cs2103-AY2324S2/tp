@@ -5,7 +5,6 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.order.Order;
 import seedu.address.model.person.Person;
 
@@ -106,21 +105,9 @@ public interface Model {
     void updateFilteredPersonList(Predicate<Person> predicate);
 
     /**
-     * Adds the given order.
-     */
-    void addOrder(Order order) throws CommandException;
-
-    /**
-     * Deletes the given Order.
-     * The order must exist in the order list.
-     */
-    void deleteOrder(Order order) throws CommandException;
-
-    /**
      * Returns an unmodifiable view of the order list.
      */
-    public ObservableList<Order> getOrderList() throws CommandException;
-
+    public ObservableList<Order> getOrderList();
 
     /**
      * Updates the filter of the filtered order list to filter by the given {@code predicate}.

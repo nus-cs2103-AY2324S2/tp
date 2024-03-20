@@ -98,7 +98,7 @@ public class AddressBookParserTest {
         String remarks = " d/1xRoses";
         String cost = " c/100";
         String date = " by/10-10-2024 00:00";
-        assertTrue(parser.parseCommand(AddOrderCommand.COMMAND_WORD
+        assertTrue(parser.parseCommand(AddOrderCommand.COMMAND_WORD + " 1"
                 + remarks + cost + date) instanceof AddOrderCommand);
     }
 
