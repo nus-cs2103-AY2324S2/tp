@@ -15,6 +15,13 @@ public class Skills {
     private final Set<String> skills;
 
     /**
+     * Represents the skills of a person.
+     */
+    public Skills() {
+        skills = new HashSet<>();
+    }
+
+    /**
      * Constructs a {@code Skills}.
      *
      * @param skills A valid set of skills.
@@ -35,7 +42,7 @@ public class Skills {
     }
 
     public static boolean isValidSkills(String test) {
-        return test.matches("\\p{Alnum}+");
+        return test.matches("[\\p{Alnum}+#\\- ]+");
     }
 
     public Set<String> getSkills() {

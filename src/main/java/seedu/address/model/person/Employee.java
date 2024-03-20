@@ -28,18 +28,59 @@ public class Employee extends Person {
         this.skills = skills;
     }
 
+    /**
+     * Returns the department of the employee.
+     *
+     * @return The department of the employee.
+     */
     public Department getDepartment() {
         return this.department;
     }
 
+    /**
+     * Returns the job title of the employee.
+     *
+     * @return The job title of the employee.
+     */
     public JobTitle getJobTitle() {
         return this.jobTitle;
     }
 
+    /**
+     * Returns the skills of the employee.
+     *
+     * @return The skills of the employee.
+     */
     public Skills getSkills() {
         return this.skills;
     }
 
+    public String getRole() {
+        return "Employee";
+    }
+
+    /**
+     * Checks if this employee is the same as another person.
+     * Two employees are considered the same if they have the same attributes.
+     *
+     * @param otherPerson The person to compare with.
+     * @return True if the employees are the same, false otherwise.
+     */
+    @Override
+    public boolean isSamePerson(Person otherPerson) {
+        if (!super.isSamePerson(otherPerson)) {
+            return false;
+        }
+        return otherPerson instanceof Employee;
+    }
+
+    /**
+     * Checks if this employee is equal to another object.
+     * Two employees are considered equal if they have the same attributes.
+     *
+     * @param other The object to compare with.
+     * @return True if the employees are equal, false otherwise.
+     */
     @Override
     public boolean equals(Object other) {
         return other == this
@@ -50,11 +91,21 @@ public class Employee extends Person {
                 && skills.equals(((Employee) other).skills));
     }
 
+    /**
+     * Returns the hash code of the employee.
+     *
+     * @return The hash code of the employee.
+     */
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), department, jobTitle, skills);
     }
 
+    /**
+     * Returns the string representation of the employee.
+     *
+     * @return The string representation of the employee.
+     */
     @Override
     public String toString() {
         return new ToStringBuilder(this)

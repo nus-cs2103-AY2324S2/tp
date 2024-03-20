@@ -60,6 +60,8 @@ public abstract class Person {
         return remark;
     }
 
+    public abstract String getRole();
+
     /**
      * Returns an immutable tag set, which throws
      * {@code UnsupportedOperationException}
@@ -102,7 +104,8 @@ public abstract class Person {
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
-                && tags.equals(otherPerson.tags);
+                && tags.equals(otherPerson.tags)
+                && remark.equals(otherPerson.remark);
     }
 
     @Override
