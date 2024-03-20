@@ -17,7 +17,7 @@ public class Asset {
      * Stores all unique assets created.
      */
     private static final HashMap<String, Asset> assetsHashMap = new HashMap<>();
-    private static final String MESSAGE_CONSTRAINTS = "Asset names can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Asset names can take any values, and it should not be blank";
     private static final String VALIDATION_REGEX = "\\S.*";
 
     private final String assetName;
