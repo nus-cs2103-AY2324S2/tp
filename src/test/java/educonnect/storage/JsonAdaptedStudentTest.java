@@ -31,7 +31,7 @@ public class JsonAdaptedStudentTest {
     private static final String VALID_STUDENT_ID = BENSON.getStudentId().toString();
     private static final String VALID_EMAIL = BENSON.getEmail().toString();
     private static final String VALID_TELEGRAM_HANDLE = BENSON.getTelegramHandle().toString();
-    private static final String VALID_LINK = BENSON.getLink().toString();
+    private static final String VALID_LINK = BENSON.getLink().get().toString();
     private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());

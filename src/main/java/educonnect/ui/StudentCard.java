@@ -65,9 +65,7 @@ public class StudentCard extends UiPart<Region> {
         telegram.setText(student.getTelegramHandle().value);
         hyperlink.setText("Project Link");
         // Set the visibility of the hyperlink based on whether the student has a non-empty URL
-        String url = student.getLink().url; // Assuming getLink().url returns a String
-        boolean isUrlPresent = url != null && !url.isEmpty();
-        hyperlink.setVisible(isUrlPresent);
+        hyperlink.setVisible(student.getLink().isPresent());
 
         student.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
@@ -77,11 +75,8 @@ public class StudentCard extends UiPart<Region> {
 
     @FXML
     void openLink(ActionEvent action) throws URISyntaxException, IOException {
-        String url = student.getLink().toString();
-        if (url != null || !url.isEmpty()) {
-
-            Desktop.getDesktop().browse(new URI(url));
-
+        if (student.getLink().isPresent()) {
+            Desktop.getDesktop().browse(new URI(student.getLink().get().url));
         } else {
             System.out.println("No Link has been added yet");
         }

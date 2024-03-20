@@ -66,7 +66,7 @@ public class AddCommandParserTest {
         Student expectedStudent = new StudentBuilder(BOB)
                 .withTags(VALID_TAG_FRIEND)
                 .withTimetable(VALID_TIMETABLE_1)
-                .build();
+                .buildNoLink();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + STUDENT_ID_DESC_BOB + EMAIL_DESC_BOB
@@ -76,7 +76,7 @@ public class AddCommandParserTest {
 
         // multiple tags - all accepted
         Student expectedStudentMultipleTags = new StudentBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
-                .build();
+                .buildNoLink();
         assertParseSuccess(parser,
                 NAME_DESC_BOB + STUDENT_ID_DESC_BOB + EMAIL_DESC_BOB
                 + TELEGRAM_HANDLE_DESC_BOB + TAG_DESC_HUSBAND
@@ -84,7 +84,8 @@ public class AddCommandParserTest {
                 new AddCommand(expectedStudentMultipleTags));
 
         // no timetable in command, defaults to empty timetable
-        Student expectedStudentWithNoTimetable = new StudentBuilder(AMY).withTimetable(DEFAULT_EMPTY_TIMETABLE).build();
+        Student expectedStudentWithNoTimetable = new StudentBuilder(AMY)
+                .withTimetable(DEFAULT_EMPTY_TIMETABLE).buildNoLink();
         assertParseSuccess(parser,
                 NAME_DESC_AMY + STUDENT_ID_DESC_AMY + EMAIL_DESC_AMY
                 + TELEGRAM_HANDLE_DESC_AMY + TAG_DESC_FRIEND,
@@ -164,7 +165,7 @@ public class AddCommandParserTest {
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
-        Student expectedStudent = new StudentBuilder(AMY).withTags().build();
+        Student expectedStudent = new StudentBuilder(AMY).withTags().buildNoLink();
         assertParseSuccess(parser, NAME_DESC_AMY + STUDENT_ID_DESC_AMY + EMAIL_DESC_AMY + TELEGRAM_HANDLE_DESC_AMY,
                 new AddCommand(expectedStudent));
     }

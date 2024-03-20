@@ -5,6 +5,7 @@ import static educonnect.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 import educonnect.commons.util.ToStringBuilder;
@@ -21,7 +22,7 @@ public class Student {
     private final StudentId studentId;
     private final TelegramHandle telegramHandle;
     private final Email email;
-    private final Link link;
+    private final Optional<Link> link;
 
     // Data fields
     private final Set<Tag> tags = new HashSet<>();
@@ -38,7 +39,7 @@ public class Student {
         this.studentId = studentId;
         this.email = email;
         this.telegramHandle = telegramHandle;
-        this.link = new Link("");
+        this.link = Optional.empty();
         this.tags.addAll(tags);
         this.timetable = timetable;
     }
@@ -47,7 +48,7 @@ public class Student {
      * Constructs an {@code Student}.
      * Every field must be present and not null.
      */
-    public Student(Name name, StudentId studentId, Email email, TelegramHandle telegramHandle, Link link,
+    public Student(Name name, StudentId studentId, Email email, TelegramHandle telegramHandle, Optional<Link> link,
                    Set<Tag> tags, Timetable timetable) {
         requireAllNonNull(name, studentId, email, telegramHandle, tags);
         this.name = name;
@@ -75,8 +76,10 @@ public class Student {
         return telegramHandle;
     }
 
-    public Link getLink() {
-        return link; }
+    public Optional<Link> getLink() {
+        return link;
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -198,13 +201,14 @@ public class Student {
                 && studentId.equals(otherStudent.studentId)
                 && email.equals(otherStudent.email)
                 && telegramHandle.equals(otherStudent.telegramHandle)
-                && tags.equals(otherStudent.tags);
+                && tags.equals(otherStudent.tags)
+                && link.equals(otherStudent.link);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, studentId, email, telegramHandle, tags);
+        return Objects.hash(name, studentId, email, telegramHandle, tags, link);
     }
 
     @Override

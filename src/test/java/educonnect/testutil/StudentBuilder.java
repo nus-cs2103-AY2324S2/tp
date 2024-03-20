@@ -1,6 +1,7 @@
 package educonnect.testutil;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import educonnect.model.student.Email;
@@ -29,15 +30,15 @@ public class StudentBuilder {
     public static final String ALTERNATE_EMAIL = "builderbob@gmail.com";
     public static final String ALTERNATE_TELEGRAM_HANDLE = "@bobthebuilder";
     public static final Timetable ALTERNATE_TIMETABLE = TypicalTimetableAndValues.VALID_TIMETABLE_1;
+    public static final String ALTERNATE_LINK = "https://www.youtube.com/";
 
-    public static final String ALTERNATIVE_LINK = "https://www.youtube.com/";
     private Name name;
     private StudentId studentId;
     private Email email;
     private TelegramHandle telegramHandle;
     private Set<Tag> tags;
     private Timetable timetable;
-    private Link link;
+    private Optional<Link> link;
 
     /**
      * Creates a {@code StudentBuilder} with the default details.
@@ -49,6 +50,7 @@ public class StudentBuilder {
         telegramHandle = new TelegramHandle(DEFAULT_TELEGRAM_HANDLE);
         tags = new HashSet<>();
         timetable = DEFAULT_TIMETABLE;
+        link = Optional.of(new Link(DEFAULT_LINK));
     }
 
 
@@ -75,7 +77,7 @@ public class StudentBuilder {
                 .withTelegramHandle(ALTERNATE_TELEGRAM_HANDLE)
                 .withEmail(ALTERNATE_EMAIL)
                 .withStudentId(ALTERNATE_STUDENT_ID)
-                .withLink(ALTERNATIVE_LINK)
+                .withLink(ALTERNATE_LINK)
                 .withTimetable(ALTERNATE_TIMETABLE);
     }
 
@@ -120,10 +122,10 @@ public class StudentBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code Student} that we are building.
+     * Sets the {@code Link} of the {@code Student} that we are building.
      */
     public StudentBuilder withLink(String l) {
-        this.link = new Link(l);
+        this.link = Optional.of(new Link(l));
         return this;
     }
 
@@ -138,7 +140,9 @@ public class StudentBuilder {
     public Student build() {
         return new Student(name, studentId, email, telegramHandle, link, tags, timetable);
     }
+
     public Student buildNoLink() {
-        return new Student(name, studentId, email, telegramHandle, tags, timetable); }
+        return new Student(name, studentId, email, telegramHandle, tags, timetable);
+    }
 
 }

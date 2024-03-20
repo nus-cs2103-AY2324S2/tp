@@ -116,7 +116,7 @@ public class EditCommand extends Command {
         Email updatedEmail = editStudentDescriptor.getEmail().orElse(studentToEdit.getEmail());
         TelegramHandle updatedTelegramHandle = editStudentDescriptor.getTelegramHandle().orElse(
                     studentToEdit.getTelegramHandle());
-        Link updatedLink = editStudentDescriptor.getLink().orElse(studentToEdit.getLink());
+        Optional<Link> updatedLink = editStudentDescriptor.getLink().or(() -> studentToEdit.getLink());
         Set<Tag> updatedTags = editStudentDescriptor.getTags().orElse(studentToEdit.getTags());
         Timetable timetable = editStudentDescriptor.getTimetable().orElse(studentToEdit.getTimetable());
 

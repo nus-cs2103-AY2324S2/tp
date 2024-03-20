@@ -45,7 +45,7 @@ public class Messages {
                 .append(";\nTelegram Handle: ")
                 .append(student.getTelegramHandle())
                 .append(";\nLink: ")
-                .append(student.getLink())
+                .append(student.getLink().map(link -> link.url).orElse(""))
                 .append(";\nTags: ");
         student.getTags().forEach(builder::append);
         builder.append(";\n").append(student.getTimetable());
