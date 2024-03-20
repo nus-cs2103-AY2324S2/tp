@@ -2,7 +2,8 @@ package seedu.address.testutil;
 
 import seedu.address.logic.commands.EditAssetCommand.EditAssetDescriptor;
 import seedu.address.model.asset.Asset;
-import seedu.address.model.person.fields.*;
+import seedu.address.model.person.fields.Name;
+
 
 /**
  * A utility class to help with building EditPersonDescriptor objects.

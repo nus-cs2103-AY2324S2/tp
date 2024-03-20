@@ -1,5 +1,13 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.person.fields.Name.PREFIX_NAME;
+
+import java.util.List;
+import java.util.Objects;
+
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -10,15 +18,12 @@ import seedu.address.logic.util.ParserUtil;
 import seedu.address.model.Model;
 import seedu.address.model.asset.Asset;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.fields.*;
-
-import java.util.List;
-import java.util.Objects;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
-import static seedu.address.model.person.fields.Name.PREFIX_NAME;
+import seedu.address.model.person.fields.Address;
+import seedu.address.model.person.fields.Assets;
+import seedu.address.model.person.fields.Email;
+import seedu.address.model.person.fields.Name;
+import seedu.address.model.person.fields.Phone;
+import seedu.address.model.person.fields.Tags;
 
 /**
  * Edits the details of an asset in the address book.
@@ -61,7 +66,7 @@ public class EditAssetCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_ASSET_DISPLAYED);
         }
 
-        for(Person p: lastShownList) {
+        for (Person p: lastShownList) {
             if (p.hasAsset(assetToEdit)) {
                 Person editedPersonWithAsset = createEditedPersonWithAsset(assetToEdit, p, editAssetDescriptor);
                 model.setPerson(p, editedPersonWithAsset);

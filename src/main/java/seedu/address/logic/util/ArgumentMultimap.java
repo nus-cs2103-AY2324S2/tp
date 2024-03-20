@@ -1,5 +1,7 @@
 package seedu.address.logic.util;
 
+import static seedu.address.model.person.fields.Assets.PREFIX_ASSET;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -9,8 +11,6 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.Messages;
 import seedu.address.model.person.fields.Prefix;
-
-import static seedu.address.model.person.fields.Assets.PREFIX_ASSET;
 
 /**
  * Stores mapping of prefixes to their respective arguments.

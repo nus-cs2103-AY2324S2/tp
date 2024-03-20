@@ -1,14 +1,14 @@
 package seedu.address.logic.util;
 
+import static seedu.address.model.person.fields.Assets.PREFIX_ASSET;
+import static seedu.address.model.person.fields.Name.PREFIX_NAME;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import seedu.address.model.person.fields.Prefix;
-
-import static seedu.address.model.person.fields.Assets.PREFIX_ASSET;
-import static seedu.address.model.person.fields.Name.PREFIX_NAME;
 
 /**
  * Tokenizes arguments string of the form: {@code preamble <prefix>value <prefix>value ...}<br>
