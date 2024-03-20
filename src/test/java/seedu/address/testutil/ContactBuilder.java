@@ -41,6 +41,7 @@ public class ContactBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         gitHubUsername = new GitHubUsername(DEFAULT_GITHUB_USERNAME);
+        techStack = new HashSet<>();
         tags = new HashSet<>();
     }
 
@@ -115,6 +116,5 @@ public class ContactBuilder {
     public Contact build() {
         return new Contact(name, phone, email, address, gitHubUsername, techStack, tags);
     }
-
 
 }
