@@ -147,7 +147,7 @@ public class FindAndExportCommand extends Command {
             csv.append(user.getName().fullName).append(",");
             csv.append(user.getPhone().value).append(",");
             csv.append(user.getEmail().value).append(",");
-            csv.append(user.getAddress().value).append(",");
+            csv.append('\"'+ user.getAddress().value).append("\",");
             csv.append(user.getTags().stream().map(tag -> tag.tagName).reduce((a, b) -> a + " | " + b).orElse(""));
             csv.append("\n");
         }
