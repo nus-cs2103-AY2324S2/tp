@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.beans.value.ChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
@@ -46,4 +47,10 @@ public class PersonListPanel extends UiPart<Region> {
         }
     }
 
+    /**
+     * Initializes the listener for the person list view.
+     */
+    public void initListener(ChangeListener<Person> listener) {
+        personListView.getSelectionModel().selectedItemProperty().addListener(listener);
+    }
 }

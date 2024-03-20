@@ -114,6 +114,12 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+
+        // Do stuff when a Person in the list is selected
+        personListPanel.initListener((observable, oldValue, newValue) -> {
+            System.out.println("Selected item: " + newValue);
+            personDetailsPanel.update(newValue.getName().getValue());
+        });
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -198,5 +204,9 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }
+    }
+
+    public void updateDetailPanel() {
+        personDetailsPanel.update("hi");
     }
 }
