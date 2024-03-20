@@ -18,6 +18,7 @@ public class Name {
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    private static final Name NONE = new Name("None");
 
     public final String fullName;
 
@@ -39,6 +40,9 @@ public class Name {
         return test.matches(VALIDATION_REGEX);
     }
 
+    public static Name getNone() {
+        return NONE;
+    }
 
     @Override
     public String toString() {
