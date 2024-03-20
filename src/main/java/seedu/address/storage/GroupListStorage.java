@@ -9,7 +9,7 @@ import seedu.address.model.GroupList;
 import seedu.address.model.ReadOnlyGroupList;
 
 /**
- * Represents a storage for {@link GroupList}
+ * Represents a storage for {@link GroupList}.
  */
 public interface GroupListStorage {
     /**
