@@ -24,7 +24,7 @@ public class FindAndExportCommandTest {
     @Test
     public void execute_validTagAndFilename_success() throws Exception {
         Path filePath = testFolder.resolve("output.json");
-        FindAndExportCommand command = new FindAndExportCommand("friends", null, null, filePath.toString());
+        FindAndExportCommand command = new FindAndExportCommand("friends", null, null, filePath.toString(), "json");
 
         command.execute(model);
 
@@ -42,7 +42,7 @@ public class FindAndExportCommandTest {
         Path tempFile = Files.createTempFile("testExport", ".txt");
         String filename = tempFile.toString();
 
-        FindAndExportCommand command = new FindAndExportCommand(tag, name, address, filename);
+        FindAndExportCommand command = new FindAndExportCommand(tag, name, address, filename, "json");
         CommandResult result = command.execute(model);
         assertTrue(Files.exists(tempFile));
         Files.deleteIfExists(tempFile);

@@ -15,7 +15,7 @@ public class FindAndExportCommandParserTest {
     public void parse_validArgs_returnsFindAndExportCommand() throws ParseException {
         String input = "friends n/John a/123 Main St f/output.json";
         FindAndExportCommand expectedCommand = new FindAndExportCommand("friends",
-                "John", "123 Main St", "output.json");
+                "John", "123 Main St", "output.json", "json");
 
         FindAndExportCommand resultCommand = parser.parse(input);
 

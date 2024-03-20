@@ -126,7 +126,7 @@ public class AddressBookParserTest {
                 + PREFIX_ADDRESS + address + " "
                 + PREFIX_FILENAME + filename;
 
-        FindAndExportCommand expectedCommand = new FindAndExportCommand(tag, name, address, filename);
+        FindAndExportCommand expectedCommand = new FindAndExportCommand(tag, name, address, filename, "json");
 
         FindAndExportCommand resultCommand = (FindAndExportCommand) parser.parseCommand(input);
         assertEquals(expectedCommand.getName(), resultCommand.getName());
