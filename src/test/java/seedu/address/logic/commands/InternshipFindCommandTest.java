@@ -5,19 +5,20 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.InternshipMessages.MESSAGE_INTERNSHIPS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.InternshipCommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalInternships.*;
+import static seedu.address.testutil.TypicalInternships.ALICE_MICROSOFT;
+import static seedu.address.testutil.TypicalInternships.CARL_OPENAI;
+import static seedu.address.testutil.TypicalInternships.HOON_APPLE;
+import static seedu.address.testutil.TypicalInternships.IDA_NETFLIX;
+import static seedu.address.testutil.TypicalInternships.getTypicalInternshipData;
 
 import java.util.Arrays;
 import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.InternshipData;
 import seedu.address.model.InternshipModel;
 import seedu.address.model.InternshipModelManager;
 import seedu.address.model.InternshipUserPrefs;
-import seedu.address.model.ReadOnlyInternshipData;
-import seedu.address.model.internship.CompanyNameContainsKeywordsPredicate;
 import seedu.address.model.internship.InternshipContainsKeywordsPredicate;
 
 /**
