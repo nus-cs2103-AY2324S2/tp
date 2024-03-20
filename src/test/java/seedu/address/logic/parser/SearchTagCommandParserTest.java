@@ -6,29 +6,29 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.SearchCommand;
+import seedu.address.logic.commands.SearchTagCommand;
 import seedu.address.model.tag.Tag;
 
-public class SearchCommandParserTest {
+public class SearchTagCommandParserTest {
     private SearchCommandParser parser = new SearchCommandParser();
 
     @Test
     public void parse_emptyArg_throwsParseException() {
         assertParseFailure(parser, "     ",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchTagCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void parse_moreThanOneArg_throwsParseException() {
         assertParseFailure(parser, "2222  3333   ",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchTagCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void parse_validArgs_returnsSearchCommand() {
         // no leading and trailing whitespaces
-        SearchCommand expectedFindCommand =
-                new SearchCommand(new Tag("friends"));
+        SearchTagCommand expectedFindCommand =
+                new SearchTagCommand(new Tag("friends"));
         assertParseSuccess(parser, "friends", expectedFindCommand);
     }
 }

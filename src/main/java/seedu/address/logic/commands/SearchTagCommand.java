@@ -10,7 +10,7 @@ import seedu.address.model.tag.Tag;
 /**
  * Format search instructions for every command for display.
  */
-public class SearchCommand extends Command {
+public class SearchTagCommand extends Command {
 
     public static final String COMMAND_WORD = "search";
 
@@ -23,7 +23,7 @@ public class SearchCommand extends Command {
             + "by listing the person that it is associated with.\n"
             + "Parameters: TAG (must be an existing tag) "
             + "[TAG]\n"
-            + "Example: " + COMMAND_WORD + " + school";
+            + "Example: " + COMMAND_WORD + " school";
 
     private final Tag tag;
 
@@ -31,7 +31,7 @@ public class SearchCommand extends Command {
      * The constructor for SearchCommand
      * @param tag the tag that you want to search the list for
      */
-    public SearchCommand(Tag tag) {
+    public SearchTagCommand(Tag tag) {
         requireAllNonNull(tag);
         this.tag = tag;
     }
@@ -53,11 +53,11 @@ public class SearchCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof SearchCommand)) {
+        if (!(other instanceof SearchTagCommand)) {
             return false;
         }
 
-        SearchCommand e = (SearchCommand) other;
+        SearchTagCommand e = (SearchTagCommand) other;
         return tag.equals(e.tag);
     }
 }

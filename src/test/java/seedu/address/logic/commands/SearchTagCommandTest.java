@@ -13,7 +13,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.tag.Tag;
 
-public class SearchCommandTest {
+public class SearchTagCommandTest {
     private Model model;
 
     @BeforeEach
@@ -23,14 +23,14 @@ public class SearchCommandTest {
 
     @Test
     public void execute_friendTagSearch_showSuccess() throws CommandException {
-        SearchCommand sc = new SearchCommand(new Tag("friends"));
+        SearchTagCommand sc = new SearchTagCommand(new Tag("friends"));
         CommandResult result = sc.execute(model);
-        assertEquals(SearchCommand.MESSAGE_SUCCESS, result.getFeedbackToUser());
+        assertEquals(SearchTagCommand.MESSAGE_SUCCESS, result.getFeedbackToUser());
     }
 
     @Test
     public void execute_unknownTagSearch_throws() {
-        SearchCommand sc = new SearchCommand(new Tag("Uzuzuzuz"));
+        SearchTagCommand sc = new SearchTagCommand(new Tag("Uzuzuzuz"));
         assertThrows(CommandException.class, () -> sc.execute(model));
     }
 }
