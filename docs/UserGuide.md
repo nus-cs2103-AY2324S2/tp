@@ -38,9 +38,10 @@ Start keeping track of your internships easily with <span style="color: #f66a0a;
 
     * `list` : Lists all contacts.
 
-   * `add /company Tiktok /email hr@tiktok.com /number 9089030 /location remote /status ongoing /description create new recommendation engine /role Software Intern` : Adds the internship entry to the CareerSync application.
+   * `add /com Tiktok /desc create new recommendation engine /status ongoing /poc jane yeo /email hr@tiktok.com 
+      /phone 90890301 /loc remote /role Software Intern` : Adds this internship entry to the CareerSync application.
 
-   * `delete 2` : Deletes the 2nd internship entry shown in the current list.
+   * `delete 2` : Deletes the 2nd internship entry shown in the current displayed list.
 
    * `clear` : Deletes all contacts.
 
@@ -58,7 +59,7 @@ Start keeping track of your internships easily with <span style="color: #f66a0a;
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `add /com COMPANY_NAME`, `COMPANY_NAME` is a parameter which can be used as `add /com Google`.
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
@@ -67,12 +68,13 @@ Start keeping track of your internships easily with <span style="color: #f66a0a;
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `/com COMPANY_NAME /desc DESCRIPTION`, `/desc DESCRIPTION /com COMPANY_NAME` is also acceptable.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-* If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
+* If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines 
+  as space characters surrounding line-breaks may be omitted when copied over to the application.
 </div>
 
 ### Viewing help : `help`
@@ -87,10 +89,12 @@ Format: `help`
 
 Add an internship entry and all the relevant fields
 
-Format: `add /company COMPANY_NAME /description DESCRIPTION /status STATUS [/pocname NAME_OF_CONTACT] [/email EMAIL_OF_CONTACT] [/number NUMBER_OF_CONTACT] [/location LOCATION_ENUM] [/role ROLE]​`
+Format: `add /com COMPANY_NAME /desc DESCRIPTION /status STATUS /poc CONTACT_NAME /email CONTACT_EMAIL 
+/phone CONTACT_NUMBER /loc LOCATION /role ROLE ​`
 
 Examples:
-* `add /company Titktok /email hr@tiktok.com /number 9089030 /location remote /status ongoing /description create new recommendation engine /role Software Intern`
+* `add /com Tiktok /desc create new recommendation engine /status ongoing /poc jane yeo /email hr@tiktok.com 
+/phone 90890301 /loc remote /role Software Intern`
 
 ### Deleting an internship: `delete`
 
