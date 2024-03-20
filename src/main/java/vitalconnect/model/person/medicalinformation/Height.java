@@ -31,6 +31,13 @@ public class Height {
     }
 
     /**
+     * Constructs a {@code Height}.
+     */
+    public Height() {
+        this.value = "";
+    }
+
+    /**
      * Returns true if a given string is a valid name.
      */
     public static boolean isValidHeight(String test) {
