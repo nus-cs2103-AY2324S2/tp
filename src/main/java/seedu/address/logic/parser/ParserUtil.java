@@ -10,6 +10,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.house.Block;
+import seedu.address.model.house.House;
 import seedu.address.model.house.Level;
 import seedu.address.model.house.PostalCode;
 import seedu.address.model.house.Street;
@@ -126,6 +127,21 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String housetype} into a {@code String housetype}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code String housetype} is invalid.
+     */
+    public static String parseHousing(String housetype) throws ParseException {
+        requireNonNull(housetype);
+        String trimmedName = housetype.trim();
+        if (!House.isValidName(trimmedName.toLowerCase())) {
+            throw new ParseException(House.MESSAGE_CONSTRAINTS);
+        }
+        return trimmedName;
     }
 
     /**
