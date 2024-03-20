@@ -33,8 +33,17 @@ public class PersonDetailsPanel extends UiPart<Region> {
     @FXML
     private Label note;
 
+    /**
+     * Creates a new PersonDetailsPanel and clears all fields.
+     * Labels in the {@code .FXML} file contain text with the field name for convenience.
+     */
     public PersonDetailsPanel() {
         super(FXML);
+        name.setText("");
+        phone.setText("");
+        address.setText("");
+        email.setText("");
+        note.setText("");
     }
 
     /**
