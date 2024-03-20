@@ -98,7 +98,7 @@ public class ImportCommand extends Command {
             throw new CommandException(String.format(MESSAGE_DATA_LOAD_ERROR, filePath));
         }
 
-        return new CommandResult(String.format(MESSAGE_IMPORT_SUCCESS, filePath));
+        return new CommandResult(String.format(MESSAGE_IMPORT_SUCCESS, filePath.toString()));
     }
     /**
      * Reads the csv file and returns a list of maps,
