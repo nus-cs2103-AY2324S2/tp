@@ -5,7 +5,10 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.model.person.BirthDate;
+import seedu.address.model.person.DrugAllergy;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -32,8 +35,11 @@ public class EditPersonDescriptorBuilder {
     public EditPersonDescriptorBuilder(Person person) {
         descriptor = new EditPersonDescriptor();
         descriptor.setName(person.getName());
+        descriptor.setGender(person.getGender());
+        descriptor.setBirthDate(person.getBirthDate());
         descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
+        descriptor.setDrugAllergy(person.getDrugAllergy());
         descriptor.setIllnesses(person.getIllnesses());
     }
 
@@ -42,6 +48,22 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withName(String name) {
         descriptor.setName(new Name(name));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Gender} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withGender(String gender) {
+        descriptor.setGender(new Gender(gender));
+        return this;
+    }
+
+    /**
+     * Sets the {@code BirthDate} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withBirthDate(String birthDate) {
+        descriptor.setBirthDate(new BirthDate(birthDate));
         return this;
     }
 
@@ -61,12 +83,17 @@ public class EditPersonDescriptorBuilder {
         return this;
     }
 
+    public EditPersonDescriptorBuilder withDrugAllergy(String drugAllergy) {
+        descriptor.setDrugAllergy(new DrugAllergy(drugAllergy));
+        return this;
+    }
+
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
+     * Parses the {@code illnesses} into a {@code Set<Illness>} and set it to the {@code EditPersonDescriptor}
      * that we are building.
      */
-    public EditPersonDescriptorBuilder withTags(String... tags) {
-        Set<Illness> illnessSet = Stream.of(tags).map(Illness::new).collect(Collectors.toSet());
+    public EditPersonDescriptorBuilder withIllnesses(String... illnesses) {
+        Set<Illness> illnessSet = Stream.of(illnesses).map(Illness::new).collect(Collectors.toSet());
         descriptor.setIllnesses(illnessSet);
         return this;
     }

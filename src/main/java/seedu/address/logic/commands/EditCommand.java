@@ -275,9 +275,12 @@ public class EditCommand extends Command {
 
             EditPersonDescriptor otherEditPersonDescriptor = (EditPersonDescriptor) other;
             return Objects.equals(name, otherEditPersonDescriptor.name)
-                && Objects.equals(phone, otherEditPersonDescriptor.phone)
-                && Objects.equals(email, otherEditPersonDescriptor.email)
-                && Objects.equals(illnesses, otherEditPersonDescriptor.illnesses);
+                    && Objects.equals(gender, otherEditPersonDescriptor.gender)
+                    && Objects.equals(birthDate, otherEditPersonDescriptor.birthDate)
+                    && Objects.equals(phone, otherEditPersonDescriptor.phone)
+                    && Objects.equals(email, otherEditPersonDescriptor.email)
+                    && Objects.equals(drugAllergy, otherEditPersonDescriptor.drugAllergy)
+                    && Objects.equals(illnesses, otherEditPersonDescriptor.illnesses);
         }
 
         @Override
