@@ -57,7 +57,7 @@ jobs:
         id: create_pre_release
         uses: softprops/action-gh-release@v1
         with:
-          body_path: ./RELEASE.md
+          #body_path: ./RELEASE.md
           draft: false
           prerelease: true
           files: build/libs/clinicmate.jar
