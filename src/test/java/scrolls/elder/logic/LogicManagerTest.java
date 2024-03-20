@@ -13,6 +13,7 @@ import org.junit.jupiter.api.io.TempDir;
 import scrolls.elder.logic.commands.AddCommand;
 import scrolls.elder.logic.commands.CommandResult;
 import scrolls.elder.logic.commands.CommandTestUtil;
+import scrolls.elder.logic.commands.DeleteCommand;
 import scrolls.elder.logic.commands.ListCommand;
 import scrolls.elder.logic.commands.exceptions.CommandException;
 import scrolls.elder.logic.parser.exceptions.ParseException;
@@ -56,7 +57,9 @@ public class LogicManagerTest {
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
         String deleteCommand = "delete 9";
-        assertCommandException(deleteCommand, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        String expectedMessage =
+                DeleteCommand.MESSAGE_DELETE_PERSON_ERROR + Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+        assertCommandException(deleteCommand, expectedMessage);
     }
 
     @Test
