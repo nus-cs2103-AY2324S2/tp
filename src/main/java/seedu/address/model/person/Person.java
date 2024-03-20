@@ -87,8 +87,14 @@ public class Person {
         this.meetings = meetings;
     }
 
-    public void addMeetings(Meeting meeting) {
+    /**
+     * Adds a meeting to the person's list of meetings.
+     * @param meeting
+     * @return
+     */
+    public Person addMeetings(Meeting meeting) {
         this.meetings.add(meeting);
+        return this;
     }
     /**
      * Returns true if the person has existing meeting.

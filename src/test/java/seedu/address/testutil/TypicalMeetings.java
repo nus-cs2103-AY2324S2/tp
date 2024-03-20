@@ -7,6 +7,7 @@ import static seedu.address.testutil.TypicalPersons.DANIEL;
 import static seedu.address.testutil.TypicalPersons.ELLE;
 import static seedu.address.testutil.TypicalPersons.FIONA;
 import static seedu.address.testutil.TypicalPersons.GEORGE;
+import static seedu.address.testutil.TypicalPersons.JAMAL;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -47,6 +48,10 @@ public class TypicalMeetings {
         .withDescription("Financial Aid Document Submission")
         .withDateTime("05-02-2024 17:00").build();
 
+    public static final Meeting MEETING_WITH_JAMAL = new MeetingBuilder()
+            .withClient(JAMAL)
+            .withDescription("Financial Aid Document Submission")
+            .withDateTime("05-02-2024 17:00").build();
     private TypicalMeetings() {} // prevents instantiation
 
     public static ArrayList<Meeting> getTypicalMeetings() {

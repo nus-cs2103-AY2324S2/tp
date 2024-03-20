@@ -107,6 +107,14 @@ public class PersonBuilder {
                 .withDateTime("05-02-2024 13:00").build());
         return this;
     }
+    /**
+     * Sets the {@code Meeting} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withMeeting(Meeting meeting) {
+        this.meetings.add(meeting);
+
+        return this;
+    }
 
     /**
      * Sets the {@code Meeting} of the {@code Person} that we are building.

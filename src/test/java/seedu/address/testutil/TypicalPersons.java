@@ -10,6 +10,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.testutil.TypicalMeetings.MEETING_WITH_JAMAL;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -57,7 +58,7 @@ public class TypicalPersons {
 
     // To for Clients with meetings
     public static final Person JAMAL = new PersonBuilder().withName("Jamal").withPhone("88888888")
-            .withEmail("jamal@example.com").withAddress("little india").withDefaultMeetingA().build();
+            .withEmail("jamal@example.com").withAddress("little india").build().addMeetings(MEETING_WITH_JAMAL);
     public static final Person CHAD = new PersonBuilder().withName("Chad").withPhone("88888888")
             .withEmail("chad@example.com").withAddress("little india").withDefaultMeetingB().build();
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER

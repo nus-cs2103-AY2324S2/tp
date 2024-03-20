@@ -40,7 +40,7 @@ public class CommandTestUtil {
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
-    public static final String VALID_DATETIME = "01-01-2024 00:00";
+    public static final String VALID_DATETIME = "01-01-2030 17:00";
     public static final String VALID_DESCRIPTION = "Project discussion";
 
     public static final String VALID_CLIENT_INDEX = "1";
@@ -61,10 +61,8 @@ public class CommandTestUtil {
     public static final String DESCRIPTION = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
-    public static final String INVALID_DATETIME_DESC = " "
-            + PREFIX_DATETIME + "not-a-datetime"; // 'string' not allowed in datetime
-    public static final String INVALID_DESCRIPTION_DESC = " "
-            + PREFIX_DESCRIPTION; // empty string not allowed for description
+    public static final String INVALID_DATETIME_DESC = " " + PREFIX_DATETIME + "not-a-datetime"; // 'string' not allowed in datetime
+    public static final String INVALID_DESCRIPTION_DESC = " " + PREFIX_DESCRIPTION; // empty string not allowed for description
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
