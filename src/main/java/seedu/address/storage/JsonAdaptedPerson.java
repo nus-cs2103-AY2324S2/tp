@@ -55,8 +55,7 @@ class JsonAdaptedPerson {
                              @JsonProperty("status") String status, @JsonProperty("email") String email,
                              @JsonProperty("country") String country, @JsonProperty("allergies") String allergies,
                              @JsonProperty("bloodType") String bloodType, @JsonProperty("condition") String condition,
-                             @JsonProperty("dateOfAdmission") String doa,
-                             @JsonProperty("diagnosis") String diagnosis,
+                             @JsonProperty("dateOfAdmission") String doa, @JsonProperty("diagnosis") String diagnosis,
                              @JsonProperty("symptom") String symptom) {
         this.nric = nric;
         this.name = name;
@@ -84,7 +83,7 @@ class JsonAdaptedPerson {
         this.phone = source.getPhone().toString();
         this.address = source.getAddress().toString();
         this.dateOfBirth = source.getDateOfBirth().toString();
-        this.sex = source.getEmail().toString();
+        this.sex = source.getSex().toString();
         this.status = source.getStatus().toString();
         this.email = Optional.ofNullable(source.getEmail().toString());
         this.country = Optional.ofNullable(source.getCountry().toString());
@@ -139,11 +138,11 @@ class JsonAdaptedPerson {
         final Address modelAddress = new Address(address);
         // Date of Birth Check
         if (dateOfBirth == null) {
-            throw new IllegalValueException(
-                    String.format(MISSING_FIELD_MESSAGE_FORMAT, DateOfBirth.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    DateOfBirth.class.getSimpleName()));
         }
         if (!DateOfBirth.isValidDateOfBirth(dateOfBirth)) {
-            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(DateOfBirth.MESSAGE_CONSTRAINTS);
         }
         final DateOfBirth modelDateOfBirth = new DateOfBirth(dateOfBirth);
         // Sex Check

@@ -65,7 +65,7 @@ public class JsonAdaptedPersonTest {
                         VALID_ADDRESS, VALID_DOB, VALID_SEX, VALID_STATUS, VALID_EMAIL, VALID_COUNTRY,
                         VALID_ALLERGIES, VALID_BLOODTYPE, VALID_CONDITION, VALID_DOA, VALID_DIAGNOSIS,
                         VALID_SYMPTOM);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Nric.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
     @Test
