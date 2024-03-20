@@ -80,7 +80,7 @@ public class JsonAdaptedTask {
         }
 
         Task task = new Task(modelTaskTitle, modelDeadline);
-        task.setPersonInCharge(modelPic);
+        ab.assignTask(task, modelPic);
         return task;
     }
 }

@@ -89,7 +89,7 @@ public class UniquePersonList implements Iterable<Person> {
      * Gets a person by using the person's name.
      */
     public Person getPerson(Name name) {
-        for (Person person : internalList) {
+        for (Person person : internalUnmodifiableList) {
             if (person.getName().equals(name)) {
                 return person;
             }
