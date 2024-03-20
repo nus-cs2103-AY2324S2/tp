@@ -21,6 +21,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Sex;
 import seedu.address.model.person.Status;
+import seedu.address.model.person.Symptom;
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -42,6 +43,7 @@ class JsonAdaptedPerson {
     private final Optional<String> condition;
     private final Optional<String> dateOfAdmission;
     private final Optional<String> diagnosis;
+    private final Optional<String> symptom;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -54,7 +56,8 @@ class JsonAdaptedPerson {
                              @JsonProperty("country") String country, @JsonProperty("allergies") String allergies,
                              @JsonProperty("bloodType") String bloodType, @JsonProperty("condition") String condition,
                              @JsonProperty("dateOfAdmission") String doa,
-                             @JsonProperty("diagnosis") String diagnosis) {
+                             @JsonProperty("diagnosis") String diagnosis,
+                             @JsonProperty("symptom") String symptom) {
         this.nric = nric;
         this.name = name;
         this.phone = phone;
@@ -69,6 +72,7 @@ class JsonAdaptedPerson {
         this.condition = Optional.ofNullable(condition);
         this.dateOfAdmission = Optional.ofNullable(doa);
         this.diagnosis = Optional.ofNullable(diagnosis);
+        this.symptom = Optional.ofNullable(symptom);
     }
 
     /**
@@ -89,6 +93,7 @@ class JsonAdaptedPerson {
         this.condition = Optional.ofNullable(source.getCondition().toString());
         this.dateOfAdmission = Optional.ofNullable(source.getDateOfAdmission().toString());
         this.diagnosis = Optional.ofNullable(source.getDiagnosis().toString());
+        this.symptom = Optional.ofNullable(source.getSymptom().toString());
     }
 
     /**
@@ -195,6 +200,11 @@ class JsonAdaptedPerson {
         if (diagnosis.isPresent()) {
             final Diagnosis modelDiagnosis = new Diagnosis(diagnosis.get());
             person.setDiagnosis(modelDiagnosis);
+        }
+        //Symptom check
+        if (symptom.isPresent()) {
+            final Symptom modelSymptom = new Symptom(symptom.get());
+            person.setSymptom(modelSymptom);
         }
         return person;
     }
