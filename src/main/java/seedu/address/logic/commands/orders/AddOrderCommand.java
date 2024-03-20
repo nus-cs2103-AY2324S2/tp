@@ -19,11 +19,7 @@ import seedu.address.model.person.Person;
  * Adds an order to an assigned person.
  */
 public class AddOrderCommand extends Command {
-    public static final String MESSAGE_NOT_IMPLEMENTED_YET =
-            "Index: 1, Details: Some order details, Deadline: 2024-07-23 00:00:00";
-
     public static final String COMMAND_WORD = "order";
-
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Creates an order that is associated to a client."
             + "Multiple orders will be appended to each other, "
@@ -32,7 +28,7 @@ public class AddOrderCommand extends Command {
             + "DETAILS (in formation related to order), "
             + "DEADLINE (the date the order is due"
             + "r/ [ORDER]\n"
-            + "Example: " + COMMAND_WORD + "1 d/1xRoses c/40 by/23-07-2024 00:00";
+            + "Example: " + COMMAND_WORD + " 1 d/1xRoses c/40 by/23-07-2024 00:00";
 
     public static final String MESSAGE_SUCCESS = "New Order added!";
     public static final String MESSAGE_FAILURE = "Failed to add new Order!";
