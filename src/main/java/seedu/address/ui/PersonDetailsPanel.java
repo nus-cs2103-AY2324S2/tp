@@ -46,13 +46,8 @@ public class PersonDetailsPanel extends UiPart<Region> {
      * Set fields with information from the person
      *
      * @param person the Person object containing the information to update the fields with.
-     *               If null, details pane will not be updated.
      */
     public void update(Person person) {
-        if (person == null) {
-            return;
-        }
-
         // Set fields with information from the person
         name.setText(person.getName().getValue());
         phone.setText(person.getPhone().getValue());
