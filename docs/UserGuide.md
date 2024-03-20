@@ -28,11 +28,11 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * `list` : Lists all contacts.
+   * `querystudents` : Lists all students that are stored in CogniCare.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * `patient n/Jerome Chua p/98765432 e/jerome@example.com a/depressed` : Adds a contact named `Jerome Chua` to the Address Book who is tagged with having depression.
 
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
+   * `delete 903` : Deletes the contact that has the id 903 (This is different from the natural ordering of the list).
 
    * `clear` : Deletes all contacts.
 
@@ -49,13 +49,13 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 **Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `patient n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g `n/NAME [t/TAG]` can be used as `n/Jerome t/depression` or as `n/Jerome`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/depressed`, `t/jobless t/sad` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -75,11 +75,11 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-### Adding a person: `add`
+### Adding a patient: `patient`
 
 Adds a person to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `patient n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]…​`
 
 <box type="tip" seamless>
 
@@ -87,25 +87,46 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 </box>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
+* `patient n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-### Listing all persons : `list`
 
-Shows a list of all persons in the address book.
+<box type="tip" seamless>
 
-Format: `list`
+**Tip:** Once the student is created, the student identifier `sid` will be permanently tagged to a student, 
+and is not coalesced when other entries are deleted.
+</box>
+
+
+### Listing all persons : `querystudents`
+
+Shows a list of all students in the address book.
+
+
+### Listing selected persons : `querystudents`
+
+Shows a list of all students in the address book that matches _ALL_ the conditions that are specified.
+
+Format: `querystudents n/NAME p/PHONE_NUMBER e/EMAIL …​`
+
+For example: to find all the "Jeromes" that are stored in the addressbook, the user may use the command
+Format: `querystudents n/Jerome …​`
+
+For example: to find all the "Jeromes" that are stored in the addressbook, have a phone number that contains 979, and email using outlook, the user may use the command
+
+Format: `querystudents n/Jerome p/979 e/outlook.com …​`
+
 
 ### Editing a person : `edit`
 
 Edits an existing person in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit STUDENT_ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the person at the specified `STUDENT_D`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
+* When editing tags, the existing tags of the person will be removed i.e. adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `t/` without
     specifying any tags after it.
 
