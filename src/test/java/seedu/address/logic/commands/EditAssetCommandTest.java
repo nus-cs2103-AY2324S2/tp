@@ -1,13 +1,17 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.EditAssetCommand.MESSAGE_EDIT_ASSET_SUCCESS;
+import static seedu.address.logic.commands.EditAssetCommand.MESSAGE_NOT_EDITED;
 import static seedu.address.model.person.fields.Tags.PREFIX_TAG;
+import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.Messages;
 import seedu.address.logic.commands.EditAssetCommand.EditAssetDescriptor;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -30,18 +34,25 @@ public class EditAssetCommandTest {
     private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
-    public void execute_success() {
-        Person editedPerson = new PersonBuilder().build();
+    public void execute_validEdit_success() throws CommandException {
+        Asset assetToEdit = Asset.of("Laptop");
+        Person personWithAsset = new PersonBuilder().withAssets(assetToEdit.get()).build();
+        model.addPerson(personWithAsset);
         Asset editedAsset = new AssetBuilder().build();
         EditAssetDescriptor descriptor = new EditAssetDescriptorBuilder(editedAsset).build();
-        EditAssetCommand editCommand = new EditAssetCommand(editedAsset, descriptor);
+        EditAssetCommand editCommand = new EditAssetCommand(assetToEdit, descriptor);
 
-        String expectedMessage = String.format(EditAssetCommand.MESSAGE_EDIT_ASSET_SUCCESS,
-                Messages.format(editedPerson));
+        String expectedMessage = String.format(MESSAGE_EDIT_ASSET_SUCCESS, assetToEdit.get());
 
-        //Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        //expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
-        //
-        //assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertEquals(expectedMessage, editCommand.execute(model));
+    }
+
+    @Test
+    public void execute_notEdited_throwsCommandException() {
+        Asset assetToEdit = Asset.of("Laptop");
+        EditAssetDescriptor descriptor = new EditAssetDescriptorBuilder(assetToEdit).build();
+
+        assertThrows(IllegalArgumentException.class, MESSAGE_NOT_EDITED, () ->
+                new EditAssetCommand(assetToEdit, descriptor));
     }
 }

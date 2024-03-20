@@ -8,7 +8,6 @@ import static seedu.address.model.person.fields.Name.PREFIX_NAME;
 import java.util.List;
 import java.util.Objects;
 
-import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -52,6 +51,10 @@ public class EditAssetCommand extends Command {
     public EditAssetCommand(Asset assetToEdit, EditAssetDescriptor editAssetDescriptor) {
         requireNonNull(assetToEdit);
         requireNonNull(editAssetDescriptor);
+
+        if (editAssetDescriptor.getName().toString().equals(assetToEdit.get())) {
+            throw new IllegalArgumentException(EditAssetCommand.MESSAGE_NOT_EDITED);
+        }
 
         this.assetToEdit = assetToEdit;
         this.editAssetDescriptor = new EditAssetDescriptor(editAssetDescriptor);
@@ -118,7 +121,7 @@ public class EditAssetCommand extends Command {
 
         editAssetDescriptor.setName(Name.of(argMultimap.getValue(PREFIX_NAME).get()));
 
-        if (!editAssetDescriptor.isAnyFieldEdited()) {
+        if (editAssetDescriptor.getName().toString().equals(asset.get())) {
             throw new IllegalArgumentException(EditAssetCommand.MESSAGE_NOT_EDITED);
         }
 
@@ -164,13 +167,6 @@ public class EditAssetCommand extends Command {
          */
         public EditAssetDescriptor(EditAssetDescriptor toCopy) {
             setName(toCopy.name);
-        }
-
-        /**
-         * Returns true if at least one field is edited.
-         */
-        public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name);
         }
 
         public void setName(Name name) {
