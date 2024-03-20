@@ -28,9 +28,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PARENT_PHONES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalStudentIds.ID_FIRST_PERSON;
 import static seedu.address.testutil.TypicalStudentIds.ID_SECOND_PERSON;
-import static seedu.address.testutil.TypicalStudentIds.ID_THIRD_PERSON;
 
 import org.junit.jupiter.api.Test;
 
@@ -41,8 +39,8 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
 import seedu.address.model.person.StudentId;
+import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 
@@ -153,7 +151,7 @@ public class EditCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // address
-        userInput = targetId+ ADDRESS_DESC_AMY;
+        userInput = targetId + ADDRESS_DESC_AMY;
         descriptor = new EditPersonDescriptorBuilder().withAddress(VALID_ADDRESS_AMY).build();
         expectedCommand = new EditCommand(targetId, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -199,7 +197,7 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_resetTags_success() {
-        StudentId targetId= ID_SECOND_PERSON;
+        StudentId targetId = ID_SECOND_PERSON;
         String userInput = targetId + TAG_EMPTY;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withTags().build();

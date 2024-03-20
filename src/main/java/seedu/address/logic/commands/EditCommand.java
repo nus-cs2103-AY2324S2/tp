@@ -16,7 +16,6 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -86,7 +85,7 @@ public class EditCommand extends Command {
             }
         }
 
-        if(!found) {
+        if (!found) {
             throw new CommandException("No person found with the given student ID.");
         }
 
@@ -211,7 +210,9 @@ public class EditCommand extends Command {
             return Optional.ofNullable(firstParentPhone);
         }
 
-        public Optional<Phone> getSecondParentPhone() { return Optional.ofNullable(secondParentPhone); }
+        public Optional<Phone> getSecondParentPhone() {
+            return Optional.ofNullable(secondParentPhone);
+        }
 
         public Optional<Phone> getEditedPhone() {
             if (firstParentPhone != null) {

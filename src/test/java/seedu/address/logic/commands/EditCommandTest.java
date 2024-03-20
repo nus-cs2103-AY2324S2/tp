@@ -15,7 +15,6 @@ import static seedu.address.logic.commands.CommandTestUtil.showPersonWithStudent
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalStudentIds.ID_FIRST_PERSON;
 import static seedu.address.testutil.TypicalStudentIds.ID_SECOND_PERSON;
-import static seedu.address.testutil.TypicalStudentIds.ID_THIRD_PERSON;
 
 import java.util.List;
 import java.util.Optional;
