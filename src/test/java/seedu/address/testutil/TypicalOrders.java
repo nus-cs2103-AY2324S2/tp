@@ -31,7 +31,7 @@ public class TypicalOrders {
     public static OrderList getTypicalOrderList() {
         OrderList ol = new OrderList();
         for (Order order : getTypicalOrders()) {
-            ol.addOrder(order, order.getCustomer());
+            ol.addOrder(order);
         }
         return ol;
     }

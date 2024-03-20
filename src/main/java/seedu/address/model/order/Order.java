@@ -200,7 +200,6 @@ public class Order implements Comparable<Order> {
         if (otherOrder == null) {
             return false;
         }
-
         if (otherOrder.equals(this)) {
             return true;
         }

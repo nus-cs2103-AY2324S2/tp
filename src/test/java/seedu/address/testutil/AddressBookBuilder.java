@@ -33,7 +33,7 @@ public class AddressBookBuilder {
      * Adds a new {@code Order} to the {@code AddressBook} that we are building.
      */
     public AddressBookBuilder withOrder(Order order) {
-        addressBook.addOrder(order, order.getCustomer());
+        addressBook.addOrder(order);
         return this;
     }
 
