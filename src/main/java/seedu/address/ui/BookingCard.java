@@ -7,7 +7,7 @@ import javafx.scene.layout.Region;
 import seedu.address.model.booking.Booking;
 
 /**
- * Represents a card displaying booking details in the UI.
+ * A UI component that displays information of a {@code Booking}.
  */
 public class BookingCard extends UiPart<Region> {
 
