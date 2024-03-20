@@ -10,7 +10,12 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.*;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Category;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -24,7 +29,8 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
-    private final Remark modelRemark = new Remark("");
+
+    private final String category;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
     /**
@@ -32,13 +38,14 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
+                             @JsonProperty("email") String email, @JsonProperty("address") String address,
+                             @JsonProperty("category") String category,
                              @JsonProperty("tags") List<JsonAdaptedTag> tags) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-
+        this.category = category;
         if (tags != null) {
             this.tags.addAll(tags);
         }
@@ -52,6 +59,7 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        category = source.getCategory().value;
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -99,11 +107,18 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
         final Address modelAddress = new Address(address);
-        final Remark modelRemark = new Remark(""); //TODO: Implement parsing and marshalling in the storage commit.
 
+        if (category == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Category.class.getSimpleName()));
+        }
+        if (!Category.isValidCategory(category)) {
+            throw new IllegalValueException(Category.MESSAGE_CONSTRAINTS);
+        }
+        final Category modelCategory = new Category(category);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelRemark, modelTags);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelCategory, modelTags);
     }
 
 }
