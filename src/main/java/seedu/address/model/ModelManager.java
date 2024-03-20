@@ -178,15 +178,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public UUID getFullUuid(String digits) {
-        return addressBook.getFullUuid(digits);
-    }
-
-    public Person getPersonByUuid(UUID id) {
-        return addressBook.getPersonByUuid(id);
-    }
-
-    @Override
     public boolean hasAttribute(String uuidString, String attributeName) {
         return addressBook.hasAttribute(uuidString, attributeName);
     }

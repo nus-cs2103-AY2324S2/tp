@@ -67,27 +67,6 @@ public class UniquePersonList implements Iterable<Person> {
 
         internalList.set(index, editedPerson);
     }
-    public UUID getFullUuid(String digits) {
-        for (Person p : internalList) {
-            String currentPersonUUID = p.getUuidString();
-            int len = currentPersonUUID.length();
-            String toMatch = currentPersonUUID.substring(len - 4);
-            boolean isMatch = toMatch.equals(digits);
-            if (isMatch) {
-                return p.getUuid();
-            }
-        }
-        return null;
-    }
-
-    public Person getPersonByUuid(UUID id) {
-        for (Person p : internalList) {
-            if (p.getUuid().equals(id)) {
-                return p;
-            }
-        }
-        return null;
-    }
     /**
      * Removes the equivalent person from the list.
      * The person must exist in the list.

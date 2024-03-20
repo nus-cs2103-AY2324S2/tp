@@ -127,13 +127,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     public String getExistingRelationship(Relationship toGet) {
         return relationships.getExistingRelationship(toGet);
     }
-    public UUID getFullUuid(String digits) {
-        return persons.getFullUuid(digits);
-    };
-    public Person getPersonByUuid (UUID id) {
-        return persons.getPersonByUuid(id);
-    }
-
     @Override
     public boolean equals(Object other) {
         if (other == this) {
