@@ -82,15 +82,6 @@
     "tags" : [ "classmate" ],
     "availabilities" : [ "FRIDAY" ]
   }, {
-    "name" : "Natasha Harrower",
-    "phone" : "8019394",
-    "email" : "harrower@example.com",
-    "module": "CS2102",
-    "faculty" : "Computing",
-    "venue" : "underworld avenue",
-    "tags" : [ "classmate" ],
-    "availabilities" : [ "FRIDAY" ]
-  }, {
     "name" : "Leonardo DiCaprio",
     "phone" : "88472234",
     "email" : "lcaprio@gmail.com",
@@ -108,5 +99,14 @@
     "venue" : "YSTCM-SR9",
     "tags" : [ ],
     "availabilities" : [ ]
+  }, {
+    "name" : "Natasha Harrower",
+    "phone" : "8019394",
+    "email" : "harrower@example.com",
+    "module": "CS2102",
+    "faculty" : "Computing",
+    "venue" : "underworld avenue",
+    "tags" : [ "classmate" ],
+    "availabilities" : [ "FRIDAY" ]
   } ]
 }
