@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.TypicalPatients.CARL;
 import static seedu.address.testutil.TypicalPatients.ELLE;
 import static seedu.address.testutil.TypicalPatients.FIONA;
@@ -15,7 +16,6 @@ import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.util.AlwaysTruePredicate;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -39,15 +39,15 @@ public class FindCommandTest {
         PhoneMatchesPredicate thirdPredicate =
                 new PhoneMatchesPredicate(new Phone("99999999"));
 
-        FindCommand findFirstCommand = new FindCommand(firstPredicate, new AlwaysTruePredicate<>());
-        FindCommand findSecondCommand = new FindCommand(secondPredicate, new AlwaysTruePredicate<>());
-        FindCommand findThirdCommand = new FindCommand(thirdPredicate, new AlwaysTruePredicate<>());
+        FindCommand findFirstCommand = new FindCommand(firstPredicate, PREDICATE_SHOW_ALL_PERSONS);
+        FindCommand findSecondCommand = new FindCommand(secondPredicate, PREDICATE_SHOW_ALL_PERSONS);
+        FindCommand findThirdCommand = new FindCommand(thirdPredicate, PREDICATE_SHOW_ALL_PERSONS);
 
         // same object -> returns true
         assertTrue(findFirstCommand.equals(findFirstCommand));
 
         // same values -> returns true
-        FindCommand findFirstCommandCopy = new FindCommand(firstPredicate, new AlwaysTruePredicate<>());
+        FindCommand findFirstCommandCopy = new FindCommand(firstPredicate, PREDICATE_SHOW_ALL_PERSONS);
         assertTrue(findFirstCommand.equals(findFirstCommandCopy));
 
         // different types -> returns false
@@ -65,7 +65,7 @@ public class FindCommandTest {
     public void execute_zeroKeywords_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
         NameContainsKeywordsPredicate namePredicate = prepareNamePredicate(" ");
-        FindCommand command = new FindCommand(namePredicate, new AlwaysTruePredicate<>());
+        FindCommand command = new FindCommand(namePredicate, PREDICATE_SHOW_ALL_PERSONS);
         expectedModel.updateFilteredPersonList(namePredicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredPersonList());
@@ -75,7 +75,7 @@ public class FindCommandTest {
     public void execute_multipleKeywords_multiplePersonsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
         NameContainsKeywordsPredicate namePredicate = prepareNamePredicate("Kurz Elle Kunz");
-        FindCommand command = new FindCommand(namePredicate, new AlwaysTruePredicate<>());
+        FindCommand command = new FindCommand(namePredicate, PREDICATE_SHOW_ALL_PERSONS);
         expectedModel.updateFilteredPersonList(namePredicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());

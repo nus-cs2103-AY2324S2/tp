@@ -3,12 +3,12 @@ package seedu.address.logic.parser;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.util.AlwaysTruePredicate;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.model.patient.NameContainsKeywordsPredicate;
 import seedu.address.model.patient.Phone;
@@ -41,11 +41,11 @@ public class FindCommandParserTest {
 
         expectedFindCommand =
                 new FindCommand(new NameContainsKeywordsPredicate(List.of("Alice")),
-                        new AlwaysTruePredicate<>());
+                        PREDICATE_SHOW_ALL_PERSONS);
         assertParseSuccess(parser, " n/Alice", expectedFindCommand);
 
         expectedFindCommand =
-                new FindCommand(new AlwaysTruePredicate<>(),
+                new FindCommand(PREDICATE_SHOW_ALL_PERSONS,
                         new PhoneMatchesPredicate(new Phone("99999999")));
         assertParseSuccess(parser, " p/99999999", expectedFindCommand);
     }
