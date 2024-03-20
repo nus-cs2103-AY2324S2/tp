@@ -180,6 +180,10 @@ public class ParserUtil {
             trimmedDrugAllergy = drugAllergy.trim();
         }
 
+        if (!DrugAllergy.isValidDrugAllergy(trimmedDrugAllergy)) {
+            throw new ParseException(DrugAllergy.MESSAGE_CONSTRAINTS);
+        }
+
         return new DrugAllergy(trimmedDrugAllergy);
     }
 

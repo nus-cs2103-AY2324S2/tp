@@ -1,6 +1,7 @@
 package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Person's drug allergy in the patient book.
@@ -9,9 +10,14 @@ import static java.util.Objects.requireNonNull;
 public class DrugAllergy {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Drug Allergy can only contain alphanumerics and spaces";
+            "Drug Allergy must not be empty and can contain alphanumerics, spaces and special characters";
 
     public final String drugAllergy;
+
+    /*
+     * drugAllergy must not be empty and contain alphanumerics, spaces and special characters
+    */
+    public static final String VALIDATION_REGEX = "^(?!\\s*$).+";
 
     /**
      * Constructs a {@code DrugAllergy}.
@@ -20,7 +26,15 @@ public class DrugAllergy {
      */
     public DrugAllergy(String drugAllergy) {
         requireNonNull(drugAllergy);
+        checkArgument(isValidDrugAllergy(drugAllergy), MESSAGE_CONSTRAINTS);
         this.drugAllergy = drugAllergy;
+    }
+
+    /**
+     * Returns true if a given string is a valid drugAllergy.
+     */
+    public static boolean isValidDrugAllergy(String test) {
+        return test.matches(VALIDATION_REGEX);
     }
 
     @Override
