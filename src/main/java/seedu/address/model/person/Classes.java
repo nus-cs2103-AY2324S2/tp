@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Objects;
 
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.AddressBook;
 
 /**
  * Represents a Class in the class book.
@@ -12,12 +13,14 @@ import seedu.address.commons.util.ToStringBuilder;
 public class Classes {
 
     private CourseCode courseCode; //tutorial grp
+    private AddressBook addressBook;
 
     /**
      * Constructor for Classes.
      */
     public Classes(CourseCode courseCode) {
         this.courseCode = courseCode;
+        this.addressBook = new AddressBook();
     }
 
     /**
@@ -70,5 +73,9 @@ public class Classes {
 
     public List<String> getStudents() {
         return new ArrayList<>();
+    }
+
+    public AddressBook getAddressBook(){
+        return this.addressBook;
     }
 }

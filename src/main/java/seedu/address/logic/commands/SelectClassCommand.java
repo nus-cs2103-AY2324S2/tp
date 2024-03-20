@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import javafx.collections.ObservableList;
 import seedu.address.logic.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.person.Classes;
@@ -26,10 +27,13 @@ public class SelectClassCommand extends Command{
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
+        ObservableList<Classes> lastShownList = model.getFilteredClassList();
+
         if (index < 1 || index > model.getFilteredClassList().size()) {
             throw new IllegalArgumentException(Messages.MESSAGE_INVALID_CLASS_DISPLAYED_INDEX);
         }
-        Classes selectedClass = model.getFilteredClassList().get(index);
+        Classes selectedClass = lastShownList.get(index);
+        model.selectClass(selectedClass);
         NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(selectedClass.getStudents());
         // getStudents is a stub, waiting on memory
         model.updateFilteredPersonList(predicate);
