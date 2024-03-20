@@ -36,13 +36,13 @@ AssetBook-3 is a desktop application for logistics managers to keep track point-
 **Notes about the command format:**<br>
 
 * Items in square brackets are optional.<br>
-  e.g `--name <name> [--asset <asset>]` can be used as `--name John Doe --asset CS2103T` or as `--name John Doe`.
+  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
-* Items with `…` after them can be used multiple times including zero times.<br>
-  e.g. `[--asset <asset>]...` can be used as ` ` (i.e. 0 times), `--asset a1`, `--asset a1 --asset a2` etc.
+* Items with `...` after them can be used multiple times including zero times.<br>
+  e.g. `[t/TAG]...` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `--name <name> --phone <phone>`, `--phone <phone> --name <name>` is also acceptable.
+  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
 * Extraneous parameters for commands that do not take in parameters (such as `exit`) will be ignored.<br>
   e.g. if the command specifies `exit 123`, it will be interpreted as `exit`.
@@ -56,7 +56,7 @@ AssetBook-3 is a desktop application for logistics managers to keep track point-
 
 Adds a new contact to the system, with 0 or more assets associated with the contact.
 
-Format: `add --name <name> [--email <email>] [--phone <phone>] [--address <address>] [--asset <asset>]...`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]... [A/ASSET]...`
 
 <box type="tip" seamless>
 
@@ -64,29 +64,29 @@ Format: `add --name <name> [--email <email>] [--phone <phone>] [--address <addre
 </box>
 
 #### Examples
-* Add a new contact associated with the asset `L293D`: `add --name John Doe --email johndoe@example.com --phone +12345678 --asset L293D`
+* Add a new contact associated with the asset `L293D`: `add n/John Doe e/johndoe@example.com p/+12345678 A/L293D`
 
 #### Options
-`--name`
+`NAME`
 * Name of the contact.
 * Case sensitive, i.e. John Doe ≠ John Doe.
 * Leading and trailing spaces are automatically removed.
 * Multiple people with the same name are allowed.
 
-`--email`
+`EMAIL`
 * Email of the contact.
 * Must have ‘@’.
 
-`--phone`
+`PHONE`
 * Phone number of the contact.
 * Only digits and ‘+’ is allowed.
 * Any number of digits are allowed.
 * ‘+’ is optional and must be the first character.
 
-`--address`
+`ADDRESS`
 * Address of the contact.
 
-`--asset`
+`ASSET`
 * Asset(s) associated with contact.
 * Contact can be created first without assets, then assets can be added later using the Edit command.
 * Case sensitive, i.e. NUS ≠ nus.
@@ -99,8 +99,8 @@ Format: `add --name <name> [--email <email>] [--phone <phone>] [--address <addre
 
 Delete a contact from the system by specifying its ID.
 
-Format: `delete <id>`
-* `id` refers to the unique contact index shown in the GUI.
+Format: `delete ID`
+* `ID` refers to the unique contact index shown in the GUI.
 * The asset(s) associated with the contact will not be deleted.
 
 #### Examples
@@ -112,21 +112,22 @@ Format: `delete <id>`
 
 Edit existing contacts without recreating them.
 
-Format: `edit <id> [--email <email>] [--phone <phone>] [--asset <asset>]...`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]... [A/ASSET]...`
 
-Example: `edit 1 --email newemail@example.com` edits the contact with id `123`, changing its email to `newemail@example.com`.
+Example: `edit 1 e/newemail@example.com` edits the contact with id `1`, changing its email to `newemail@example.com`.
 
 * Edits the contact with the specified `id`. The `id` refers to the unique contact id shown by the GUI in the contacts list.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing assets, the existing assets of the person will be removed i.e adding of assets is not cumulative.
-* You can remove all the person’s assets by typing `--asset` without specifying any assets after it.
+* You can remove all the person’s tags by typing `t/` without specifying any tags after it.
+* You can remove all the person’s assets by typing `A/` without specifying any assets after it.
 
 ### Editing an asset: `edita`
 
 Edit existing assets without recreating them.
 
-Format: `edita old/<old_asset_name> new/<new_asset_name>`
+Format: `edita old/OLD_ASSET_NAME new/NEW_ASSET_NAME`
 
 Example: `edita old/hammer new/screwdriver` edits the asset `hammer`, changing its name to `screwdriver`.
 
@@ -138,7 +139,7 @@ Example: `edita old/hammer new/screwdriver` edits the asset `hammer`, changing i
 
 Finds persons whose names, tags or assets contain any of the given keywords.
 
-Format: `find <keyword> [<keyword>]...`
+Format: `find KEYWORD [KEYWORD]...`
 
 Example: `find John` searches all contact names, tags and assets for the keyword `John`.
 
@@ -197,9 +198,9 @@ _Details coming soon ..._
 
 Action     | Format      |        Examples
 -----------|-------------|---------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**    | `add --name <name> [--email <email>] [--phone <phone>] [--address <address>] [--asset <asset>]...` | `add --name John Doe --email johndoe@example.com --phone +12345678 --asset L293D`
-**Delete** | `delete <id>` | `delete 1`
-**Edit contact**   | `edit <id> [--email <email>] [--phone <phone>] [--asset <asset>]...` | `edit 1 --email newemail@example.com`
-**Edit asset**   | `edita old/<old_asset_name> new/<new_asset_name>` | `dita old/hammer new/screwdriver`
-**Find**   | ``find <keyword> [<keyword>]...`` | `find John`
+**Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]... [A/ASSET]...` | `add n/John Doe e/johndoe@example.com p/+12345678 A/L293D`
+**Delete** | `delete ID` | `delete 1`
+**Edit contact**   | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]... [A/ASSET]...` | `edit 1 e/newemail@example.com`
+**Edit asset**   | `edita old/OLD_ASSET_NAME new/NEW_ASSET_NAME` | `edita old/hammer new/screwdriver`
+**Find**   | `find KEYWORD [KEYWORD]...` | `find John`
 **Exit**   | `exit` | `exit`
