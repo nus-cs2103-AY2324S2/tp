@@ -8,7 +8,7 @@
     "major": "Computer Science",
     "telegram": "alicepauline",
     "remark": "shy",
-    "tags" : [ "friends" ]
+    "groups" : [ "TUT10" ]
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
@@ -17,7 +17,7 @@
     "major": "Computer Science",
     "telegram": "bensonmeier",
     "remark": "always skip tutorials",
-    "tags" : [ "owesMoney", "friends" ]
+    "groups" : [ "TUT10", "LAB05" ]
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",
@@ -26,7 +26,7 @@
     "major": "Computer Science",
     "telegram": "carlkurz",
     "remark": "",
-    "tags" : [ ]
+    "groups" : [ "TUT10" ]
   }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",
@@ -35,7 +35,7 @@
     "major": "Computer Engineering",
     "telegram": "danielmeier",
     "remark": "hardworking",
-    "tags" : [ "friends" ]
+    "groups" : [ "TUT10" ]
   }, {
     "name" : "Elle Meyer",
     "phone" : "9482224",
@@ -44,7 +44,7 @@
     "major": "Computer Engineering",
     "telegram": "ellemeyer",
     "remark": "strong foundations",
-    "tags" : [ ]
+    "groups" : [ "TUT10" ]
   }, {
     "name" : "Fiona Kunz",
     "phone" : "9482427",
@@ -53,7 +53,7 @@
     "major": "Business Analytics",
     "telegram": "fionakunz1",
     "remark": "Always ask questions in class",
-    "tags" : [ ]
+    "groups" : [ "TUT10" ]
   }, {
     "name" : "George Best",
     "phone" : "9482442",
@@ -62,6 +62,6 @@
     "major": "Business Analytics",
     "telegram": "georgebest1",
     "remark": "",
-    "tags" : [ ]
+    "groups" : [ "TUT10" ]
   } ]
 }
