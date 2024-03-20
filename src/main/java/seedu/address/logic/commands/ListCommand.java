@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.TypePredicate;
 
 import java.util.function.Predicate;
@@ -16,15 +15,12 @@ public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
 
-    public static final String MESSAGE_SUCCESS = "Listed all persons";
+    public static final String MESSAGE_SUCCESS = "Listed ";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Show list of the contacts with the given type.\n"
             + "Parameters: TYPE\n"
             + "Example: " + COMMAND_WORD + " housekeeper";
-    private final Predicate<Person> predicate;
-    public ListCommand() {
-        this.predicate = PREDICATE_SHOW_ALL_PERSONS;
-    }
+    private final TypePredicate predicate;
 
     public ListCommand(TypePredicate predicate) {
         this.predicate = predicate;
@@ -33,6 +29,6 @@ public class ListCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredPersonList(predicate);
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(MESSAGE_SUCCESS + "all " + predicate.getType() + "s");
     }
 }
