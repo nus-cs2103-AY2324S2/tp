@@ -2,6 +2,10 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -14,6 +18,9 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
+
+import seedu.address.model.meeting.Description;
+
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -34,6 +41,7 @@ public class ParserUtil {
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
+
 
     /**
      * Parses a {@code String name} into a {@code Name}.
@@ -120,5 +128,42 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    public static String parseDescription(String description) throws ParseException {
+        requireNonNull(description);
+        String trimmedDescription = description.trim();
+        if (!Description.isValidDescription(trimmedDescription)) {
+            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        }
+        return trimmedDescription;
+    }
+
+    public static Index parseClientIndex(String oneBasedIndex) throws ParseException {
+        String trimmedIndex = oneBasedIndex.trim();
+        if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
+            throw new ParseException(MESSAGE_INVALID_INDEX);
+        }
+        return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    public static Index parseMeetingIndex(String oneBasedIndex) throws ParseException {
+        String trimmedIndex = oneBasedIndex.trim();
+        if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
+            throw new ParseException(MESSAGE_INVALID_INDEX);
+        }
+        return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    public static LocalDateTime parseDateTime(String dateTime) throws ParseException {
+        LocalDateTime currentDateTime = LocalDateTime.now();
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+            LocalDateTime parsedDateTime = LocalDateTime.parse(dateTime, formatter);
+
+            return parsedDateTime;
+        } catch (DateTimeParseException e) {
+            return currentDateTime;
+        }
     }
 }
