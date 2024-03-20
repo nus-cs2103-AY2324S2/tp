@@ -67,8 +67,8 @@
             </padding>
             <ScrollPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
               <content>
-                <StackPane fx:id="lastMetPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-                <StackPane fx:id="appointmentsPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+                <StackPane fx:id="lastMetCardPlaceholder" VBox.vgrow="ALWAYS"/>
+                <StackPane fx:id="appointmentsCardPlaceholder" VBox.vgrow="ALWAYS"/>
               </content>
             </ScrollPane>
           </VBox>
