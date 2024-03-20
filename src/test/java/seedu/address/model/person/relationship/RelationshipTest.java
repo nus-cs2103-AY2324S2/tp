@@ -15,7 +15,7 @@ public class RelationshipTest {
     public void setUp() {
         UUID person1 = UUID.randomUUID();
         UUID person2 = UUID.randomUUID();
-        relationship = new Relationship(person1, person2) {
+        relationship = new Relationship(person1, person2, "Family") {
         };
     }
 

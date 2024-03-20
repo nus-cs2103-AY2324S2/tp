@@ -7,17 +7,17 @@ import java.util.UUID;
 
 import org.junit.jupiter.api.Test;
 
-public class RelationshipManagerTest {
+public class RelationshipUtilTest {
 
     @Test
     public void addRelationship_getRelationships_returnsCorrectRelationships() {
-        RelationshipUtilManager manager = new RelationshipUtilManager();
+        RelationshipUtil manager = new RelationshipUtil();
         UUID person1 = UUID.randomUUID();
         UUID person2 = UUID.randomUUID();
-        Relationship relationship = new Relationship(person1, person2) {
+        Relationship relationship = new Relationship(person1, person2, "friend") {
         };
-        manager.addRelationship("friends", relationship);
-        assertEquals(1, manager.getRelationships("friends").size());
-        assertTrue(manager.getRelationships("family").isEmpty());
+        manager.addRelationship(relationship);
+        String expectedMsg = relationship.toString();
+        assertEquals(manager.getExistingRelationship(relationship), expectedMsg);
     }
 }

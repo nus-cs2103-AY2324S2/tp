@@ -86,10 +86,10 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
-    UUID getIdFromString(String digits);
+    UUID getFullUUID(String digits);
+    Person getPersonByUUID(UUID id);
     boolean hasRelationship(Relationship target);
     void addRelationship(Relationship toAdd);
     void deleteRelationship(Relationship toDelete);
     String getExistingRelationship(Relationship toGet);
-
 }

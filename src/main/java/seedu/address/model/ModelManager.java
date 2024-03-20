@@ -146,8 +146,13 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
     @Override
-    public UUID getIdFromString(String digits) {
-        return addressBook.getIdFromString(digits);
+    public UUID getFullUUID(String digits) {
+        return addressBook.getFullUUID(digits);
+    }
+
+    @Override
+    public Person getPersonByUUID(UUID id) {
+        return addressBook.getPersonByUUID(id);
     }
 
     @Override

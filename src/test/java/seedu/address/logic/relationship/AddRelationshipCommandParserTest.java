@@ -34,7 +34,7 @@ class AddRelationshipCommandParserTest {
         personMap.put(uuid1, person1);
         personMap.put(uuid2, person2);
 
-        parser = new AddRelationshipCommandParser(personMap);
+        parser = new AddRelationshipCommandParser();
 
     }
 

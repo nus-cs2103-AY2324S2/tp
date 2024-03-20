@@ -10,6 +10,7 @@ import static seedu.address.testutil.TypicalPersons.ALICE;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.UUID;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -23,6 +24,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.relationship.Relationship;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -157,6 +159,35 @@ public class AddCommandTest {
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public UUID getFullUUID(String Uuid) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasRelationship(Relationship target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addRelationship(Relationship target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteRelationship(Relationship toDelete) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public String getExistingRelationship(Relationship toGet) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public Person getPersonByUUID(UUID id) {
+            throw new AssertionError("this method should not be called");
+        }
     }
 
     /**
@@ -175,6 +206,8 @@ public class AddCommandTest {
             requireNonNull(person);
             return this.person.isSamePerson(person);
         }
+
+
     }
 
     /**

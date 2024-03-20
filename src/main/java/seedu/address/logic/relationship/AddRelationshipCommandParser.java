@@ -34,13 +34,13 @@ public class AddRelationshipCommandParser {
     public AddRelationshipCommand parse(String userInput) throws ParseException{
         requireNonNull(userInput);
         String[] parts = userInput.split(" ", 3);
-        String originUUID = parts[0];
-        String targetUUID = parts[1];
-        String relationshipDescriptor = parts[3];
-        if (!ParserUtil.isValidUUID(originUUID) || !ParserUtil.isValidUUID(targetUUID)) {
+        try {
+            String originUUID = ParserUtil.parseUUID(parts[0]);
+            String targetUUID = ParserUtil.parseUUID(parts[1]);
+            String relationshipDescriptor = parts[2];
+            return new AddRelationshipCommand(originUUID, targetUUID, relationshipDescriptor);
+        } catch (ParseException pe) {
             throw new ParseException(Messages.MESSAGE_INVALID_PERSON_UUID);
         }
-        return new AddRelationshipCommand(originUUID, targetUUID, relationshipDescriptor);
     }
-
 }

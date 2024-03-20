@@ -48,7 +48,6 @@ public class UniquePersonList implements Iterable<Person> {
         }
         internalList.add(toAdd);
     }
-
     /**
      * Replaces the person {@code target} in the list with {@code editedPerson}.
      * {@code target} must exist in the list.
@@ -68,14 +67,23 @@ public class UniquePersonList implements Iterable<Person> {
 
         internalList.set(index, editedPerson);
     }
-    public UUID getIdFromString(String digits) {
-        for (Person person : internalList) {
-            String currentPersonUUID = person.getUuidString();
-            int UUIDLen = currentPersonUUID.length();
-            String toMatch = currentPersonUUID.substring(UUIDLen -4);
+    public UUID getFullUUID(String digits) {
+        for (Person p : internalList) {
+            String currentPersonUUID = p.getUuidString();
+            int len = currentPersonUUID.length();
+            String toMatch = currentPersonUUID.substring(len - 4);
             boolean isMatch = toMatch.equals(digits);
             if (isMatch) {
-                return person.getUuid();
+                return p.getUuid();
+            }
+        }
+        return null;
+    }
+
+    public Person getPersonByUUID(UUID id) {
+        for (Person p : internalList) {
+            if (p.getUuid().equals(id)) {
+                return p;
             }
         }
         return null;

@@ -1,28 +1,19 @@
 package seedu.address.logic.relationship;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.Map;
 
+import seedu.address.logic.Messages;
+import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.relationship.RelationshipUtilManager;
+import seedu.address.model.person.relationship.RelationshipUtil;
 
 /**
  * Parses user input into a DeleteRelationshipCommand.
  */
 public class DeleteRelationshipCommandParser {
-    private final Map<String, Person> personMap;
-    private final RelationshipUtilManager relationshipManager;
-
-    /**
-     * Creates a new DeleteRelationshipCommandParser with the given person map and relationship manager.
-     *
-     * @param personMap           A map linking UUID strings to Person objects.
-     * @param relationshipManager The RelationshipManager instance managing the relationships.
-     */
-    public DeleteRelationshipCommandParser(Map<String, Person> personMap, RelationshipUtilManager relationshipManager) {
-        this.personMap = personMap;
-        this.relationshipManager = relationshipManager;
-    }
-
     /**
      * Parses the given user input and returns a DeleteRelationshipCommand.
      *
@@ -30,9 +21,16 @@ public class DeleteRelationshipCommandParser {
      * @return The DeleteRelationshipCommand corresponding to the user input.
      * @throws IllegalArgumentException If the user input is invalid.
      */
-    public DeleteRelationshipCommand parse(String userInput) throws IllegalArgumentException {
-        DeleteRelationshipCommand command = new DeleteRelationshipCommand(personMap, relationshipManager);
-        command.parseCommand(userInput);
-        return command;
+    public DeleteRelationshipCommand parse(String userInput) throws ParseException {
+        requireNonNull(userInput);
+        String[] parts = userInput.split(" ", 3);
+        try {
+            String originUUID = ParserUtil.parseUUID(parts[0]);
+            String targetUUID = ParserUtil.parseUUID(parts[1]);
+            String relationshipDescriptor = parts[2];
+            return new DeleteRelationshipCommand(originUUID, targetUUID, relationshipDescriptor);
+        } catch (ParseException pe) {
+            throw new ParseException(Messages.MESSAGE_INVALID_PERSON_UUID);
+        }
     }
 }

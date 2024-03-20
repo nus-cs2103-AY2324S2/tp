@@ -65,4 +65,10 @@ public class StringUtil {
             return false;
         }
     }
+
+    public static boolean isValidLastFourDigitsUUID(String s) {
+        String pattern = "^[a-zA-Z0-9]{4}$";
+        boolean isMatch = s.matches(pattern);
+        return isMatch;
+    }
 }

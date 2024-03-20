@@ -8,7 +8,6 @@ import java.util.UUID;
  * Represents a relationship between two persons with roles.
  */
 public class RoleBasedRelationship extends Relationship {
-    private static final int MAX_ROLES = 2;
     private Map<UUID, String> roles = new HashMap<>(); // Map of person UUID to their role in the relationship
 
     /**

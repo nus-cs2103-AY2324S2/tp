@@ -13,19 +13,19 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.attribute.Attribute;
 import seedu.address.model.person.attribute.NameAttribute;
 import seedu.address.model.person.relationship.BioParentsRelationship;
-import seedu.address.model.person.relationship.RelationshipUtilManager;
+import seedu.address.model.person.relationship.RelationshipUtil;
 
 class DeleteRelationshipCommandParserTest {
 
     private Map<String, Person> personMap;
-    private RelationshipUtilManager relationshipManager;
+    private RelationshipUtil relationshipManager;
     private DeleteRelationshipCommandParser parser;
 
     @BeforeEach
     void setUp() {
         personMap = new HashMap<>();
-        relationshipManager = new RelationshipUtilManager();
-        parser = new DeleteRelationshipCommandParser(personMap, relationshipManager);
+        relationshipManager = new RelationshipUtil();
+        parser = new DeleteRelationshipCommandParser();
     }
 
     @Test
@@ -41,7 +41,7 @@ class DeleteRelationshipCommandParserTest {
         Person person2 = new Person(attributes2);
         personMap.put(person1.getUuidString(), person1);
         personMap.put(person2.getUuidString(), person2);
-        relationshipManager.addRelationship("TestRelationship",
+        relationshipManager.addRelationship(
                 new BioParentsRelationship(person1.getUuid(), person2.getUuid()));
 
         // Parse a valid delete relationship command

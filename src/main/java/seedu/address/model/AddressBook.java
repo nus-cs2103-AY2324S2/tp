@@ -11,7 +11,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.relationship.Relationship;
 import seedu.address.model.person.relationship.RelationshipUtil;
 import seedu.address.model.person.UniquePersonList;
-import seedu.address.model.person.relationship.RelationshipUtilManager;
+import seedu.address.model.person.relationship.RelationshipUtil;
 
 /**
  * Wraps all data at the address-book level
@@ -100,10 +100,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
-    public UUID getIdFromString(String digits) {
-        return persons.getIdFromString(digits);
-    }
-
     //// util methods
 
     @Override
@@ -127,9 +123,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean hasRelationship(Relationship toFind) {
         return relationships.hasRelationship(toFind);
     };
-
     public String getExistingRelationship(Relationship toGet) {
         return relationships.getExistingRelationship(toGet);
+    }
+    public UUID getFullUUID(String digits) {
+        return persons.getFullUUID(digits);
+    };
+    public Person getPersonByUUID(UUID id) {
+        return persons.getPersonByUUID(id);
     }
 
     @Override

@@ -41,6 +41,7 @@ public class Relationship {
     public String getRoleDescriptor(UUID targetPerson) {
         return this.relationshipDescriptor;
     }
+
     @Override
     public boolean equals(Object o) {
         if (o == this) {
@@ -51,7 +52,7 @@ public class Relationship {
         }
         Relationship other = (Relationship) o;
         return (other.person1.equals(this.person1) && other.person2.equals(this.person2)) ||
-                (other.person1.equals(this.person2) && other.person1.equals(this.person2));
+                (other.person1.equals(this.person2) && other.person2.equals(this.person1));
     }
     @Override
     public String toString() {
