@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalCompanies.ALICE;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -149,12 +149,17 @@ public class AddCommandTest {
         }
 
         @Override
-        public ObservableList<Company> getFilteredPersonList() {
+        public ObservableList<Company> getFilteredCompanyList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredPersonList(Predicate<Company> predicate) {
+        public void updateFilteredCompanyList(Predicate<Company> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void sortCompanyList() {
             throw new AssertionError("This method should not be called.");
         }
     }
