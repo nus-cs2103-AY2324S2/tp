@@ -38,6 +38,10 @@ public class PersonUtil {
         sb.append(PREFIX_PHONE + person.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
         sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
+        sb.append(PREFIX_DOB + person.getDob().value + " ");
+        sb.append(PREFIX_IC + person.getIc().value + " ");
+        sb.append(PREFIX_WARD + person.getWard().value + " ");
+        sb.append(PREFIX_ADMISSION_DATE + person.getAdmissionDate().value + " ");
         person.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
