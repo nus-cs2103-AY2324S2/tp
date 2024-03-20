@@ -44,6 +44,11 @@ public class ArgumentTokenizer {
         ArgumentMultimap argMultimap = new ArgumentMultimap();
 
         String trimmedArgsString = argsString.trim();
+
+        if (!trimmedArgsString.contains(" ")) {
+            return argMultimap;
+        }
+
         argMultimap.put(PREFIX_ASSET, trimmedArgsString.substring(0, trimmedArgsString.indexOf(" ")));
         argMultimap.put(PREFIX_NAME, trimmedArgsString.substring(trimmedArgsString.lastIndexOf(" ") + 1));
 

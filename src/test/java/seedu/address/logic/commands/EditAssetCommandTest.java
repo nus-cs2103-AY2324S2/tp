@@ -1,7 +1,12 @@
 package seedu.address.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_ASSET_DISPLAYED;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.CommandTestUtil.assertParseFailure;
 import static seedu.address.logic.commands.EditAssetCommand.MESSAGE_EDIT_ASSET_SUCCESS;
 import static seedu.address.logic.commands.EditAssetCommand.MESSAGE_NOT_EDITED;
 import static seedu.address.model.asset.Asset.MESSAGE_CONSTRAINTS;
@@ -17,6 +22,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.asset.Asset;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.fields.Name;
 import seedu.address.testutil.AssetBuilder;
 import seedu.address.testutil.EditAssetDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
@@ -26,37 +32,42 @@ import seedu.address.testutil.PersonBuilder;
  */
 public class EditAssetCommandTest {
 
-    private final Asset assetToEdit = Asset.of("Laptop");
+    private static final String MESSAGE_INVALID_FORMAT =
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditAssetCommand.MESSAGE_USAGE);
+    private static final String MESSAGE_CONSTRAINT_NAME = "Names should only contain alphanumeric characters and "
+            + "spaces, and it should not be blank";
+    private final Asset asset1 = Asset.of("Laptop");
+    private final Asset asset2 = Asset.of("Desktop");
 
     private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void execute_validEdit_success() throws CommandException {
-        Person personWithAsset = new PersonBuilder().withAssets(assetToEdit.get()).build();
+        Person personWithAsset = new PersonBuilder().withAssets(asset1.get()).build();
         model.addPerson(personWithAsset);
         Asset editedAsset = new AssetBuilder().build();
         EditAssetDescriptor descriptor = new EditAssetDescriptorBuilder(editedAsset).build();
-        EditAssetCommand editCommand = new EditAssetCommand(assetToEdit, descriptor);
+        EditAssetCommand editCommand = new EditAssetCommand(asset1, descriptor);
 
-        String expectedMessage = String.format(MESSAGE_EDIT_ASSET_SUCCESS, assetToEdit.get());
+        String expectedMessage = String.format(MESSAGE_EDIT_ASSET_SUCCESS, asset1.get());
 
         assertEquals(expectedMessage, editCommand.execute(model));
     }
 
     @Test
     public void execute_notEdited_throwsCommandException() {
-        EditAssetDescriptor descriptor = new EditAssetDescriptorBuilder(assetToEdit).build();
+        EditAssetDescriptor descriptor = new EditAssetDescriptorBuilder(asset1).build();
 
         assertThrows(IllegalArgumentException.class, MESSAGE_NOT_EDITED, () ->
-                new EditAssetCommand(assetToEdit, descriptor));
+                new EditAssetCommand(asset1, descriptor));
     }
 
     @Test
     public void execute_invalidAsset_throwsCommandException() {
-        Person personWithAsset = new PersonBuilder().withAssets(assetToEdit.get()).build();
+        Person personWithAsset = new PersonBuilder().withAssets(asset1.get()).build();
         model.addPerson(personWithAsset);
         Asset invalidEditedAsset = new AssetBuilder().build();
-        EditAssetDescriptor descriptor = new EditAssetDescriptorBuilder(assetToEdit).build();
+        EditAssetDescriptor descriptor = new EditAssetDescriptorBuilder(asset1).build();
         EditAssetCommand editCommand = new EditAssetCommand(invalidEditedAsset, descriptor);
 
         assertThrows(CommandException.class, MESSAGE_INVALID_ASSET_DISPLAYED, () ->
@@ -65,38 +76,70 @@ public class EditAssetCommandTest {
 
     @Test
     public void execute_emptyDescriptor_throwsCommandException() {
-        EditAssetDescriptor descriptor = new EditAssetDescriptorBuilder(assetToEdit).build();
+        EditAssetDescriptor descriptor = new EditAssetDescriptorBuilder(asset1).build();
 
         assertThrows(IllegalArgumentException.class, MESSAGE_CONSTRAINTS, () ->
                 new EditAssetCommand(Asset.of(""), descriptor));
     }
 
     @Test
-    public void equals() {
-        Asset asset1 = Asset.of("Laptop");
-        Asset asset2 = Asset.of("Desktop");
-        EditAssetDescriptor descriptor1 = new EditAssetDescriptorBuilder(asset1).build();
-        EditAssetDescriptor descriptor2 = new EditAssetDescriptorBuilder(asset2).build();
+    public void execute_emptyAssetName_throwsCommandException() {
+        EditAssetDescriptor descriptor = new EditAssetDescriptor();
 
-        EditAssetCommand editCommand1 = new EditAssetCommand(asset1, descriptor2);
-        EditAssetCommand editCommand2 = new EditAssetCommand(asset1, descriptor2);
-        EditAssetCommand editCommand3 = new EditAssetCommand(asset2, descriptor1);
-        EditAssetCommand editCommand4 = new EditAssetCommand(asset2, descriptor1);
+        assertThrows(IllegalArgumentException.class, MESSAGE_CONSTRAINT_NAME, () ->
+                descriptor.setName(new Name("")));
+    }
 
-        // Same object -> returns true
-        assertTrue(editCommand1.equals(editCommand1));
+    @Test
+    public void execute_editAssetWithSameName_throwsCommandException() {
+        EditAssetDescriptor descriptor = new EditAssetDescriptorBuilder(asset1).build();
 
-        // Same values -> returns true
+        assertThrows(IllegalArgumentException.class, MESSAGE_NOT_EDITED, () ->
+                new EditAssetCommand(asset1, descriptor));
+    }
+
+    @Test
+    public void of_invalidInput_failure() {
+        // missing field
+        assertParseFailure(EditAssetCommand::of, "Laptop", MESSAGE_INVALID_FORMAT);
+        // missing field
+        assertParseFailure(EditAssetCommand::of, "", MESSAGE_INVALID_FORMAT);
+        // null
+        assertThrows(NullPointerException.class, () -> EditAssetCommand.of(null));
+        // unedited
+        assertThrows(IllegalArgumentException.class, () -> EditAssetCommand.of("Laptop Laptop"));
+        // only alphanum allowed for name
+        assertThrows(IllegalArgumentException.class, () -> EditAssetCommand.of("Laptop \uD83D\uDC4D"));
+    }
+
+    @Test
+    public void of_validInput_success() {
+        assertDoesNotThrow(() -> EditAssetCommand.of("Laptop Desktop"));
+    }
+
+    @Test
+    public void equals_sameObject_returnsTrue() {
+        EditAssetCommand editCommand = new EditAssetCommand(asset1, new EditAssetDescriptorBuilder(asset2).build());
+        assertTrue(editCommand.equals(editCommand));
+    }
+
+    @Test
+    public void equals_sameValues_returnsTrue() {
+        EditAssetCommand editCommand1 = new EditAssetCommand(asset1, new EditAssetDescriptorBuilder(asset2).build());
+        EditAssetCommand editCommand2 = new EditAssetCommand(asset1, new EditAssetDescriptorBuilder(asset2).build());
         assertTrue(editCommand1.equals(editCommand2));
+    }
 
-        // Different types -> returns false
-        assertFalse(editCommand1.equals(1));
+    @Test
+    public void equals_differentValues_returnsFalse() {
+        EditAssetCommand editCommand1 = new EditAssetCommand(asset1, new EditAssetDescriptorBuilder(asset2).build());
+        EditAssetCommand editCommand2 = new EditAssetCommand(asset2, new EditAssetDescriptorBuilder(asset1).build());
+        assertFalse(editCommand1.equals(editCommand2));
+    }
 
-        // null -> returns false
-        assertFalse(editCommand1.equals(null));
-
-        // Different command -> returns false
-        assertFalse(editCommand1.equals(editCommand3));
-        assertFalse(editCommand1.equals(editCommand4));
+    @Test
+    public void equals_differentObject_returnsFalse() {
+        EditAssetCommand editCommand = new EditAssetCommand(asset1, new EditAssetDescriptorBuilder(asset2).build());
+        assertFalse(editCommand.equals(new Object()));
     }
 }
