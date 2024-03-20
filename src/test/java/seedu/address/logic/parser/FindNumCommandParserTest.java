@@ -1,17 +1,14 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-
-import java.util.Arrays;
-
 import org.junit.jupiter.api.Test;
-
 import seedu.address.logic.commands.FindNumCommand;
 import seedu.address.model.person.PhoneContainsDigitsPredicate;
 
+import java.util.Arrays;
 
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 public class FindNumCommandParserTest {
 
@@ -19,8 +16,9 @@ public class FindNumCommandParserTest {
 
     @Test
     public void parse_emptyArg_throwsParseException() {
-        assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                FindNumCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "     "
+                           , String.format(MESSAGE_INVALID_COMMAND_FORMAT
+                           , FindNumCommand.MESSAGE_USAGE));
     }
 
     @Test

@@ -1,17 +1,13 @@
 package seedu.address.model.person;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Test;
+import seedu.address.testutil.PersonBuilder;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import org.junit.jupiter.api.Test;
-
-import seedu.address.testutil.PersonBuilder;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class PhoneContainsDigitsPredicateTest {
 
@@ -43,8 +39,7 @@ public class PhoneContainsDigitsPredicateTest {
     @Test
     public void test_numberContainsDigits_returnsTrue() {
         // One keyword
-        PhoneContainsDigitsPredicate predicate =
-                new PhoneContainsDigitsPredicate(Collections.singletonList("94351253"));
+        PhoneContainsDigitsPredicate predicate = new PhoneContainsDigitsPredicate(Collections.singletonList("94351253"));
         assertTrue(predicate.test(new PersonBuilder().withPhone("94351253").build()));
     }
 
