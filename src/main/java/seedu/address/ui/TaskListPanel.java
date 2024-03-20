@@ -12,7 +12,7 @@ import seedu.address.model.task.Task;
 /**
  * Panel containing the list of tasks.
  */
-public class TaskListPanel extends UiPart<Region> {
+public class TaskListPanel extends UiPart<Region> implements Panel {
 
     private static final String FXML = "TaskListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(TaskListPanel.class);
