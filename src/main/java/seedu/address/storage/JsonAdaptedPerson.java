@@ -24,7 +24,6 @@ import seedu.address.model.person.StudentId;
 class JsonAdaptedPerson {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
-
     private final String name;
     private final String studentId;
     private final String email;
