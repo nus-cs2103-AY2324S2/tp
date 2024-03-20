@@ -9,8 +9,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Tag {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric and " +
-            "                                               contain only single space";
+    public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric and "
+                                                        + "contain only single space";
     public static final String VALIDATION_REGEX = "\\b\\p{Alnum}+(?: \\p{Alnum}+)*\\b";
 
     public final String tagName;
@@ -67,8 +67,8 @@ public class Tag {
         String[] words = tagName.split(" ");
         StringBuilder result = new StringBuilder();
         for (String word : words) {
-            result.append(word.substring(0, 1).toUpperCase() +
-                    word.substring(1).toLowerCase() + " ");
+            result.append(word.substring(0, 1).toUpperCase()
+                    + word.substring(1).toLowerCase() + " ");
         }
         return result.toString().trim();
     }
