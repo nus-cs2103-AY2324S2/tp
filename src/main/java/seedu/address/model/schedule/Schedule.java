@@ -47,6 +47,7 @@ public class Schedule {
         this.schedName = schedName;
         this.startTime = startTime;
         this.endTime = endTime;
+        this.personList = new ArrayList<Person>();
 
     }
 
@@ -62,8 +63,12 @@ public class Schedule {
         return endTime;
     }
 
-    public ArrayList<Person> getParticipants() {
-        return personList;
+    public String getParticipants() {
+        StringBuilder participants = new StringBuilder();
+        for (Person person: personList) {
+            participants.append(person.getName());
+        }
+        return participants.toString();
     }
 
     /**
@@ -73,12 +78,13 @@ public class Schedule {
      */
     public void addParticipants(ArrayList<Person> newParticipants) {
         for (Person p: newParticipants) {
-            for (Person existingP: personList) {
-                if (p.isSamePerson(existingP)) {
-                    continue;
-                }
-                personList.add(p);
-            }
+            //for (Person existingP: personList) {
+                //if (p.isSamePerson(existingP)) {
+                //    continue;
+                //}
+
+            //}
+            personList.add(p);
         }
     }
 
@@ -142,7 +148,8 @@ public class Schedule {
     public String toString() {
         return schedName
                 + " start " + startTime.toString()
-                + " end " + endTime.toString();
+                + " end " + endTime.toString()
+                + " participants " + getParticipants();
     }
 
 }

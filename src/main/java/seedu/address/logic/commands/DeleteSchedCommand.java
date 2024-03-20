@@ -43,6 +43,9 @@ public class DeleteSchedCommand extends Command {
         requireNonNull(model);
         List<Schedule> scheduleList = model.getFilteredScheduleList();
 
+        if (targetIndex.getZeroBased() >= scheduleList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_SCHEDULE_DISPLAYED_INDEX);
+        }
         Schedule scheduleToDelete = scheduleList.get(targetIndex.getZeroBased());
         model.deleteSchedule(scheduleToDelete);
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(scheduleToDelete)));
@@ -66,7 +69,7 @@ public class DeleteSchedCommand extends Command {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("person indexes", targetIndex)
+                .add("Schedule index", targetIndex)
                 .toString();
     }
 }

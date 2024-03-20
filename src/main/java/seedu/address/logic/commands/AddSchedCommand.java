@@ -38,7 +38,7 @@ public class AddSchedCommand extends Command {
 
     private final ArrayList<Index> targetIndexes;
 
-    private final Schedule schedule;
+    private Schedule schedule;
 
     /**
      * Creates an AddCommand to add the specified {@code Person}
@@ -63,6 +63,7 @@ public class AddSchedCommand extends Command {
         }
 
         schedule.addParticipants(participants);
+        model.addSchedule(schedule);
 
         // !!!TO VERIFY WITH REST: is model implementation required for Schedule?
 
