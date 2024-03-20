@@ -32,9 +32,10 @@ public class FindCommandParser implements Parser<FindCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_RELATIONSHIP, PREFIX_TAG);
 
 
-        if (args.length() == 0) {
+        if (args.trim().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
+
 
         List<String> nameKeywords = argMultimap.getAllValues(PREFIX_NAME);
         List<String> relationshipKeywords = argMultimap.getAllValues(PREFIX_RELATIONSHIP);
