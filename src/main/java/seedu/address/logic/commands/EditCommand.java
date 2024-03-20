@@ -1,11 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE_RECORD;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENTID;
+import static seedu.address.logic.parser.CliSyntax.*;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
@@ -15,6 +11,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
+import jdk.jfr.Description;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.ToStringBuilder;
@@ -43,7 +40,8 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_STUDENTID + "STUDENTID] "
-            + "[" + PREFIX_ATTENDANCE_RECORD + "Attendance]...\n"
+            + "[" + PREFIX_ATTENDANCE_RECORD + "Attendance]"
+            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION]...\n "
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
@@ -139,6 +137,7 @@ public class EditCommand extends Command {
         private Email email;
         private StudentId studentId;
         private Set<Attendance> attendances;
+        private Description description;
 
         public EditPersonDescriptor() {}
 
@@ -208,6 +207,14 @@ public class EditCommand extends Command {
          */
         public Optional<Set<Attendance>> getTags() {
             return (attendances != null) ? Optional.of(Collections.unmodifiableSet(attendances)) : Optional.empty();
+        }
+
+        public void setDescription(String description) {
+            this.description = description;
+        }
+
+        public Optional<Description> getDescription() {
+            return Optional.ofNullable(this.description);
         }
 
         @Override
