@@ -1,5 +1,6 @@
 package seedu.address.model.techstack;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
@@ -22,6 +23,7 @@ public class TechStackTest {
     @Test
     public void isValidTechStackName() {
         assertThrows(NullPointerException.class, () -> TechStack.isValidTechStackName(null));
+        assertEquals(true, TechStack.isValidTechStackName("C++"));
     }
 
 }
