@@ -14,10 +14,10 @@ Class ModelManager
 Class UserPrefs
 
 Class UniquePersonList
+Class UniqueInterviewList
 Class Person
 Class Applicant
 Class Interviewer
-Class Address
 Class Email
 Class Name
 Class Phone
@@ -40,7 +40,10 @@ ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 AddressBook *--> "1" UniquePersonList
+AddressBook *--> "1" UniqueInterviewList
 UniquePersonList --> "~* all" Person
+UniqueInterviewList --> "~* all" Interview
+Interview --> "2" Person
 Person *--> Name
 Person *--> Phone
 Person *--> Email
@@ -54,8 +57,6 @@ Person -[hidden]up--> I
 UniquePersonList -[hidden]right-> I
 
 Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
 
 ModelManager --> "~* filtered" Person
 @enduml
