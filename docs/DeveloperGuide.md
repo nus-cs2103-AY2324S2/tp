@@ -126,7 +126,7 @@ How the `Logic` component works:
    a parser that matches the command (e.g., `DeleteCommandParser`) and uses it to parse the command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `DeleteCommand`) which
    is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to delete a person).<br>
+1. The command can communicate with the `Model` when it is executed (e.g. to delete a contact).<br>
    Note that although this is shown as a single step in the diagram above (for simplicity), in the code it can take
    several interactions (between the command object and the `Model`) to achieve.
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
@@ -221,14 +221,14 @@ initial address book state, and the `currentStatePointer` pointing to that singl
 
 <puml src="diagrams/UndoRedoState0.puml" alt="UndoRedoState0" />
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command
+Step 2. The user executes `delete 5` command to delete the 5th contact in the address book. The `delete` command
 calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes
 to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book
 state.
 
 <puml src="diagrams/UndoRedoState1.puml" alt="UndoRedoState1" />
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also
+Step 3. The user executes `add n/David …​` to add a new contact. The `add` command also
 calls `Model#commitAddressBook()`, causing another modified address book state to be saved into
 the `addressBookStateList`.
 
@@ -241,7 +241,7 @@ not be saved into the `addressBookStateList`.
 
 </box>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing
+Step 4. The user now decides that adding the contact was a mistake, and decides to undo that action by executing
 the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer`
 once to the left, pointing it to the previous address book state, and restores the address book to that state.
 
@@ -309,7 +309,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+    * Pros: Will use less memory (e.g. for `delete`, just save the contact being deleted).
     * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
@@ -518,7 +518,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  Should be portable, and be able to run without any installation process.
 3.  This program should only be used by a single user.
 4.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-5.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+5.  Should be able to hold up to 1000 contacts without a noticeable sluggishness in performance for typical usage.
 6.  Should be able to respond within 2 seconds of user input.
 7.  Should be able to launch and load its saved data below 10 seconds.
 8.  Should be able to run basic commands (add, list, update, delete) without a network connection.

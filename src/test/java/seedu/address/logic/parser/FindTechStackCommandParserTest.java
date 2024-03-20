@@ -9,7 +9,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.FindTechStackCommand;
-import seedu.address.model.person.TsContainsKeywordsPredicate;
+import seedu.address.model.contact.TsContainsKeywordsPredicate;
 
 public class FindTechStackCommandParserTest {
 
