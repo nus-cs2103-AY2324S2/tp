@@ -48,7 +48,7 @@ public class FindAndExportCommandTest {
     }
 
     @Test
-    public void execute_exportAsCSVSuccessful() throws Exception {
+    public void execute_exportAsCsvSuccessful() throws Exception {
         Model model = new ModelManager();
         model.addPerson(ALICE);
 

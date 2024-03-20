@@ -14,7 +14,7 @@ import scm.address.logic.commands.ImportCommand;
 import scm.address.logic.parser.exceptions.ParseException;
 
 public class ImportCommandParserTest {
-    private static final String IMPORT_SUCCESS_STRING = " f/filename";
+    private static final String IMPORT_SUCCESS_STRING = " f/filename.json";
     private static final String IMPORT_FAILURE_STRING_EMPTY = "";
     private static final String IMPORT_FAILURE_STRING_WHITESPACE = " ";
     private static final String IMPORT_SUCCESS_FILENAME = "./data/filename.json";

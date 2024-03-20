@@ -96,9 +96,9 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_import() throws Exception {
-        assertTrue(parser.parseCommand(ImportCommand.COMMAND_WORD + " f/filename")
+        assertTrue(parser.parseCommand(ImportCommand.COMMAND_WORD + " f/filename.json")
                 instanceof ImportCommand);
-        assertTrue(parser.parseCommand(ImportCommand.COMMAND_WORD + " f/filename1 f/filename2")
+        assertTrue(parser.parseCommand(ImportCommand.COMMAND_WORD + " f/filename1.json f/filename2.csv")
                 instanceof ImportCommand);
     }
 

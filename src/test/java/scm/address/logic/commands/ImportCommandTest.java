@@ -1,7 +1,8 @@
 package scm.address.logic.commands;
 
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static scm.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static scm.address.testutil.Assert.assertThrows;
 import static scm.address.testutil.TypicalPersons.JAMES;
@@ -29,7 +30,6 @@ public class ImportCommandTest {
     private static final String UNKNOWN_FILE_NAME = "./src/test/data/ImportCommandTest/abcdefgh_abcdefgh.json";
     private static final String ADDRESS_BOOK_PATH = "./src/test/data/ImportCommandTest/addressbook.json";
     private static final String TEST_CSV_FILE_PATH = "./src/test/data/ImportCommandTest/contacts.csv";
-
     private static final String ADDRESS_BOOK_CSV_PATH = "./src/test/data/ImportCommandTest/addressbook.csv";
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
@@ -40,7 +40,7 @@ public class ImportCommandTest {
     }
 
     @Test
-    public void execute_existingJSONFile_success() {
+    public void execute_existingJsonFile_success() {
         HashSet<File> curHashSet = new HashSet<>();
         curHashSet.add(new File(ADDRESS_BOOK_PATH));
         ImportCommand importCommand = new ImportCommand(curHashSet);
@@ -51,7 +51,7 @@ public class ImportCommandTest {
     }
 
     @Test
-    public void execute_importing_fromCSV_success() throws CommandException {
+    public void execute_importingFromCsv_success() throws CommandException {
         HashSet<File> curHashSet = new HashSet<>();
         curHashSet.add(new File(ADDRESS_BOOK_CSV_PATH));
 
