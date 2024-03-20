@@ -15,7 +15,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENTID;
 public class GroupCommandParser implements Parser<GroupCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddCommand
+     * Parses the given {@code String} of arguments in the context of the GroupCommand
      * and returns an GroupCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */

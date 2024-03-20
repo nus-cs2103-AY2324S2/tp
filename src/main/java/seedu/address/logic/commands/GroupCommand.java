@@ -43,6 +43,10 @@ public class GroupCommand extends Command {
     private final Set<Group> group; //set with one group. for compatibility with edit command.
     private final Set<StudentId> studentIds;
 
+    /**
+     * @param group A Set of type Group with only one Group.
+     * @param studentIds A Set of studentIds with possibly multiple Ids.
+     */
     public GroupCommand(Set<Group> group, Set<StudentId> studentIds) {
         requireNonNull(group);
         requireNonNull(studentIds);
