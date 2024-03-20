@@ -14,6 +14,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.NusId;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Schedule;
 import seedu.address.model.person.Tag;
 
 
@@ -138,5 +139,20 @@ public class ParserUtil {
             groupSet.add(parseGroup(groupName));
         }
         return groupSet;
+    }
+
+    /**
+     * Parses a {@code String schedule} into a {@code Schedule}.
+     *
+     * @throws ParseException if the given {@code schedule} is invalid.
+     */
+    public static Schedule parseSchedule(String schedule) throws ParseException {
+        if (schedule == "") {
+            return new Schedule(schedule);
+        } else if (!Schedule.isValidSchedule(schedule)) {
+            throw new ParseException(Schedule.MESSAGE_CONSTRAINTS);
+        } else {
+            return new Schedule(schedule);
+        }
     }
 }
