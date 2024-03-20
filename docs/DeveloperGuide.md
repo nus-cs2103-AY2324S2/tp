@@ -502,14 +502,32 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-**Extensions**
+  **Extensions**
+  
+  * 1a. No tech stack is given.
+      * 1a1. CodeConnect shows an error message.
+        Use case ends.
 
-* 1a. No tech stack is given.
-    * 1a1. CodeConnect shows an error message.
-      Use case ends.
+  * 1b. There are no contacts in the list that match the criteria.
+      * 1b1. CodeConnect shows an empty list.
+        Use case ends.
+        
+**Use case: UC08 - Sending an email to a specific contact**
 
-* 1b. There are no contacts in the list that match the criteria.
-    * 1b1. CodeConnect shows an empty list.
+**MSS**
+
+1. User clicks on the email address of a specific contact.
+2. CodeConnect detects the user action and retrieves the email address associated with the clicked contact.
+3. CodeConnect opens the default desktop mail application.
+4. CodeConnect populates the recipient field of the mail application with the retrieved email address.
+
+   Use case ends.
+
+  **Extensions**
+
+* 1a. The default desktop mail application is not available on the system.
+    * 1a1. CodeConnect displays an error message indicating that the desktop mail application is not supported.
+    
       Use case ends.
 
 *{More to be added}*
@@ -532,6 +550,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Contact**: An entry that holds information about someone that the user wants to save.
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Details of contact**:
+  * Name: The name of the contact (String).
+  * GitHub username: The username associated with the contact's GitHub account (String).
+  * Tags: Descriptive keywords or labels associated with the contact (List<String>).
+  * Phone number: The phone number of the contact (String).
+  * Address: The physical or mailing address of the contact (String).
+  * Email: The email address of the contact (String).
+  * Tech stack: The technologies or programming languages known or used by the contact (List<String>).
 
 --------------------------------------------------------------------------------------------------------------------
 
