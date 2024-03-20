@@ -19,6 +19,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.coursemate.CourseMate;
+import seedu.address.model.coursemate.Name;
 import seedu.address.model.coursemate.QueryableCourseMate;
 
 /**
@@ -49,6 +50,15 @@ public class DeleteCommandTest {
         DeleteCommand deleteCommand = new DeleteCommand(new QueryableCourseMate(outOfBoundIndex));
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_COURSE_MATE_DISPLAYED_INDEX);
+        assertRecentlyProcessedCourseMateEdited(model, null);
+    }
+
+    @Test
+    public void execute_invalidNameUnfilteredList_throwsCommandException() {
+        Name name = new Name("Alice Paulin");
+        DeleteCommand deleteCommand = new DeleteCommand(new QueryableCourseMate(name));
+
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_COURSE_MATE_NAME);
         assertRecentlyProcessedCourseMateEdited(model, null);
     }
 
