@@ -111,6 +111,7 @@ public class Person {
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
+                && subject.equals(otherPerson.subject)
                 && tags.equals(otherPerson.tags);
     }
 

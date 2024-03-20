@@ -22,12 +22,7 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Subject;
+import seedu.address.model.person.*;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -81,8 +76,15 @@ public class EditCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
+        if (personToEdit == null) {
+            // Handle the case where either personToEdit or editedPerson is null
+            throw new CommandException("person to edit is null.");
+        }
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
-
+        if (editedPerson == null) {
+            // Handle the case where either personToEdit or editedPerson is null
+            throw new CommandException("edited person is null.");
+        }
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
@@ -105,8 +107,9 @@ public class EditCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Subject updatedSubjects = editPersonDescriptor.getSubject().orElse(personToEdit.getSubject());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Id uniqueID = editPersonDescriptor.getId().orElse(personToEdit.getUniqueId());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedSubjects, null);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedSubjects, uniqueID);
     }
 
     @Override
@@ -144,6 +147,7 @@ public class EditCommand extends Command {
         private Address address;
         private Set<Tag> tags;
         private Subject subject;
+        private Id uniqueID;
 
         public EditPersonDescriptor() {}
 
@@ -158,6 +162,7 @@ public class EditCommand extends Command {
             setAddress(toCopy.address);
             setTags(toCopy.tags);
             setSubject(toCopy.subject);
+            setId(toCopy.uniqueID);
         }
 
         /**
@@ -203,6 +208,14 @@ public class EditCommand extends Command {
         }
         public Optional<Subject> getSubject() {
             return Optional.ofNullable(subject);
+        }
+
+        public void setId(Id uniqueID) {
+            this.uniqueID = uniqueID;
+        }
+
+        public Optional<Id> getId() {
+            return Optional.ofNullable(uniqueID);
         }
 
         /**
