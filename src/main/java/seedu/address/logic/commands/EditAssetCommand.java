@@ -117,4 +117,5 @@ public class EditAssetCommand extends Command {
                 .add("editedAsset", editedAsset)
                 .toString();
     }
+
 }

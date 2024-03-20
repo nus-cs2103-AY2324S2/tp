@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
@@ -86,14 +87,10 @@ public class EditAssetCommandTest {
         assertThrows(IllegalArgumentException.class, () -> EditAssetCommand.of("Laptop \uD83D\uDC4D"));
     }
 
-    /*
     @Test
     public void of_validInput_success() {
-        Person personWithAsset = new PersonBuilder().build();
-        model.addPerson(personWithAsset);
-        System.out.println(model.getFilteredPersonList());
-        assertDoesNotThrow(() -> EditAssetCommand.of("edita old/aircon new/desktop"));
-    }*/
+        assertDoesNotThrow(() -> EditAssetCommand.of(" old/aircon new/desktop"));
+    }
 
     @Test
     public void equals_sameValues_returnsTrue() {
@@ -114,4 +111,5 @@ public class EditAssetCommandTest {
         EditAssetCommand editCommand = new EditAssetCommand(asset1, asset2);
         assertNotEquals(editCommand, new Object());
     }
+
 }

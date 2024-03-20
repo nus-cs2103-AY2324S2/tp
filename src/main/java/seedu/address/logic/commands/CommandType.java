@@ -67,4 +67,5 @@ public enum CommandType {
     };
 
     public abstract Command createCommand(String arguments) throws IllegalArgumentException;
+
 }
