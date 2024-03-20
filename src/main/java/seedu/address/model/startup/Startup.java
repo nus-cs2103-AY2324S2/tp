@@ -42,7 +42,7 @@ public class Startup {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
-        this.note = new Note("Add a Note!");
+        this.note = new Note("Add a note!");
     }
 
     /**

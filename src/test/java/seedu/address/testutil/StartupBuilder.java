@@ -137,7 +137,7 @@ public class StartupBuilder {
 
 
     public Startup build() {
-        return new Startup(name, fundingStage, industry, phone, email, address, tags);
+        return new Startup(name, fundingStage, industry, phone, email, address, tags, note);
     }
 
 }

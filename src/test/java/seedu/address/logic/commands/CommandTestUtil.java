@@ -16,6 +16,7 @@ import seedu.address.model.Model;
 import seedu.address.model.startup.NameContainsKeywordsPredicate;
 import seedu.address.model.startup.Startup;
 import seedu.address.testutil.EditStartupDescriptorBuilder;
+import seedu.address.testutil.NoteStartupDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -78,6 +79,9 @@ public class CommandTestUtil {
     public static final EditCommand.EditStartupDescriptor DESC_AMY;
     public static final EditCommand.EditStartupDescriptor DESC_BOB;
 
+    public static final NoteCommand.NoteStartupDescriptor DESC_AMY_N;
+    public static final NoteCommand.NoteStartupDescriptor DESC_BOB_N;
+
     static {
         DESC_AMY = new EditStartupDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
@@ -87,6 +91,9 @@ public class CommandTestUtil {
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withFundingStage(VALID_FUNDING_BOB).withIndustry(VALID_INDUSTRY_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        DESC_AMY_N = new NoteStartupDescriptorBuilder().withNote("Add a note for Amy!").build();
+        DESC_BOB_N = new NoteStartupDescriptorBuilder().withNote("Add a note for Bob!").build();
+
     }
 
     /**
