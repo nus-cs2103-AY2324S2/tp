@@ -160,6 +160,28 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Add order feature
+
+The `addorder` feature allows users to add orders from a supplier. 
+
+#### Design considerations:
+
+**Aspect: How orders are stored:**
+
+- **Alternative 1 (current choice):** Orders are stored as a list in `Person` class.
+  - Pros: Make use of the current `Person` class by allowing it to store a list of orders.
+  - Cons: `Person` class become more complicated as more attributes are added.
+
+- **Alternative 2:** Orders are stored in a different storage class such as `OrderStorage`.
+  - Pros: `Person` class remains simple.
+  - Cons: Need to create a new `OrderStorage` storage class to store orders. This may result in duplicated code since the implementation of `AddressBookStorage` is similar.
+
+#### Sequence Diagram
+
+Below is the sequence diagram for the `addorder` command process:
+
+<puml src="diagrams/AddOrderSequenceDiagram.puml" alt="AddOrderSequenceDiagram" />
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
