@@ -268,7 +268,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: 
+**Value proposition**:
 * manage contacts faster than a typical mouse/GUI driven app
 * allow NUS students to save and search up contacts of students/tutors/instructors and the courses they are in. (e.g. tutorial/lecture groupings)
 
