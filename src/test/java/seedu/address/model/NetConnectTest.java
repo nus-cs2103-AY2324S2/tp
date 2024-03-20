@@ -1,10 +1,9 @@
 package seedu.address.model;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.getTypicalNetConnect;
@@ -18,9 +17,14 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.person.Client;
+import seedu.address.model.person.Employee;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Supplier;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.ClientBuilder;
+import seedu.address.testutil.EmployeeBuilder;
+import seedu.address.testutil.SupplierBuilder;
 
 public class NetConnectTest {
 
@@ -45,10 +49,8 @@ public class NetConnectTest {
 
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
-        // Two persons with the same identity fields
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-                .build();
-        List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
+        Client editedAliceClient = new ClientBuilder(ALICE).withPreferences("New Preferences").build();
+        List<Person> newPersons = Arrays.asList(ALICE, editedAliceClient);
         NetConnectStub newData = new NetConnectStub(newPersons);
 
         assertThrows(DuplicatePersonException.class, () -> netConnect.resetData(newData));
@@ -73,9 +75,8 @@ public class NetConnectTest {
     @Test
     public void hasPerson_personWithSameIdentityFieldsInNetConnect_returnsTrue() {
         netConnect.addPerson(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-                .build();
-        assertTrue(netConnect.hasPerson(editedAlice));
+        Client editedAliceClient = new ClientBuilder(ALICE).withPreferences("Different Preferences").build();
+        assertTrue(netConnect.hasPerson(editedAliceClient));
     }
 
     @Test
@@ -87,6 +88,48 @@ public class NetConnectTest {
     public void toStringMethod() {
         String expected = NetConnect.class.getCanonicalName() + "{persons=" + netConnect.getPersonList() + "}";
         assertEquals(expected, netConnect.toString());
+    }
+
+    /**
+     * Test case to verify that the `addPerson` method handles different roles with
+     * the same identity fields correctly.
+     * It adds an `ALICE` person to the `netConnect` object as an employee and then
+     * as a supplier.
+     * The method asserts that no exceptions are thrown during the process.
+     */
+    @Test
+    public void addPerson_differentRolesWithSameIdentityFields_handlesCorrectly() {
+        netConnect.addPerson(ALICE);
+        Employee aliceEmployee = new EmployeeBuilder().withName(ALICE.getName().toString())
+                .withPhone(ALICE.getPhone().toString())
+                .withEmail(ALICE.getEmail().toString())
+                .withAddress(ALICE.getAddress().toString())
+                .withDepartment("Engineering")
+                .withJobTitle("Engineer")
+                .build();
+
+        assertDoesNotThrow(() -> netConnect.addPerson(aliceEmployee));
+
+        Supplier aliceSupplier = new SupplierBuilder().withName(ALICE.getName().toString())
+                .withPhone(ALICE.getPhone().toString())
+                .withEmail(ALICE.getEmail().toString())
+                .withAddress(ALICE.getAddress().toString())
+                .withTermsOfService("1 Year Warranty")
+                .build();
+
+        assertDoesNotThrow(() -> netConnect.addPerson(aliceSupplier));
+    }
+
+    @Test
+    public void hasPerson_diffRolesWithSameIdentityFieldsInNetConnect_returnsFalse() {
+        netConnect.addPerson(ALICE);
+        Employee aliceEmployee = new EmployeeBuilder().withName(ALICE.getName().toString())
+                .withPhone(ALICE.getPhone().toString())
+                .withEmail(ALICE.getEmail().toString())
+                .withAddress(ALICE.getAddress().toString())
+                .withDepartment("Engineering")
+                .build();
+        assertFalse(netConnect.hasPerson(aliceEmployee));
     }
 
     /**

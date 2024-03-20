@@ -8,6 +8,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.address.testutil.TypicalPersons.DANIEL;
+import static seedu.address.testutil.TypicalPersons.FIONA;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -17,7 +19,9 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.ClientBuilder;
+import seedu.address.testutil.EmployeeBuilder;
+import seedu.address.testutil.SupplierBuilder;
 
 public class UniquePersonListTest {
 
@@ -40,12 +44,33 @@ public class UniquePersonListTest {
     }
 
     @Test
-    public void contains_personWithSameIdentityFieldsInList_returnsTrue() {
+    public void contains_clientWithSameIdentityFieldsInList_returnsTrue() {
         uniquePersonList.add(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Client editedAlice = new ClientBuilder(ALICE)
+                .withAddress(VALID_ADDRESS_BOB)
+                .withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(uniquePersonList.contains(editedAlice));
     }
+
+    @Test
+    public void contains_employeeWithSameIdentityFieldsInList_returnsTrue() {
+        uniquePersonList.add(DANIEL);
+        Employee editedDaniel = new EmployeeBuilder(DANIEL)
+                .withDepartment("New Department")
+                .build();
+        assertTrue(uniquePersonList.contains(editedDaniel));
+    }
+
+    @Test
+    public void contains_supplierWithSameIdentityFieldsInList_returnsTrue() {
+        uniquePersonList.add(FIONA);
+        Supplier editedFiona = new SupplierBuilder(FIONA)
+                .withTermsOfService("New Terms of Service")
+                .build();
+        assertTrue(uniquePersonList.contains(editedFiona));
+    }
+
 
     @Test
     public void add_nullPerson_throwsNullPointerException() {
@@ -83,15 +108,42 @@ public class UniquePersonListTest {
     }
 
     @Test
-    public void setPerson_editedPersonHasSameIdentity_success() {
+    public void setPerson_editedClientHasSameIdentity_success() {
         uniquePersonList.add(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Client editedAlice = new ClientBuilder(ALICE)
+                .withAddress(VALID_ADDRESS_BOB)
+                .withTags(VALID_TAG_HUSBAND)
                 .build();
         uniquePersonList.setPerson(ALICE, editedAlice);
         UniquePersonList expectedUniquePersonList = new UniquePersonList();
         expectedUniquePersonList.add(editedAlice);
         assertEquals(expectedUniquePersonList, uniquePersonList);
     }
+
+    @Test
+    public void setPerson_editedEmployeeHasSameIdentity_success() {
+        uniquePersonList.add(DANIEL);
+        Employee editedDaniel = new EmployeeBuilder(DANIEL)
+                .withDepartment("Updated Department")
+                .build();
+        uniquePersonList.setPerson(DANIEL, editedDaniel);
+        UniquePersonList expectedUniquePersonList = new UniquePersonList();
+        expectedUniquePersonList.add(editedDaniel);
+        assertEquals(expectedUniquePersonList, uniquePersonList);
+    }
+
+    @Test
+    public void setPerson_editedSupplierHasSameIdentity_success() {
+        uniquePersonList.add(FIONA);
+        Supplier editedFiona = new SupplierBuilder(FIONA)
+                .withTermsOfService("Updated Terms of Service")
+                .build();
+        uniquePersonList.setPerson(FIONA, editedFiona);
+        UniquePersonList expectedUniquePersonList = new UniquePersonList();
+        expectedUniquePersonList.add(editedFiona);
+        assertEquals(expectedUniquePersonList, uniquePersonList);
+    }
+
 
     @Test
     public void setPerson_editedPersonHasDifferentIdentity_success() {

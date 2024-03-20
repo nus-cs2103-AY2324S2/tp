@@ -3,9 +3,16 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEPARTMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_JOBTITLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PREFERENCES;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRODUCTS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SKILLS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -38,6 +45,15 @@ public class CommandTestUtil {
     public static final String VALID_REMARK_BOB = "Favourite pastime: Eating";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_ROLE_CLIENT = "client";
+    public static final String VALID_ROLE_EMPLOYEE = "employee";
+    public static final String VALID_PRODUCTS_LAPTOP = "Laptop";
+    public static final String VALID_PRODUCTS_SMARTPHONE = "Smartphone";
+    public static final String VALID_PREFERENCE_AMY = "Latest tech";
+    public static final String VALID_DEPARTMENT_BOB = "Sales";
+    public static final String VALID_JOB_TITLE_BOB = "Sales Manager";
+    public static final String VALID_SKILLS_NEGOTIATION = "Negotiation";
+    public static final String VALID_SKILLS_COMMUNICATION = "Communication";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -49,6 +65,17 @@ public class CommandTestUtil {
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String ROLE_DESC_CLIENT = " " + PREFIX_ROLE + VALID_ROLE_CLIENT;
+    public static final String ROLE_DESC_EMPLOYEE = " " + PREFIX_ROLE + VALID_ROLE_EMPLOYEE;
+    public static final String PRODUCTS_DESC_LAPTOP = " " + PREFIX_PRODUCTS + VALID_PRODUCTS_LAPTOP;
+    public static final String PRODUCTS_DESC_SMARTPHONE = " " + PREFIX_PRODUCTS + VALID_PRODUCTS_SMARTPHONE;
+    public static final String PREFERENCE_DESC_AMY = " " + PREFIX_PREFERENCES + VALID_PREFERENCE_AMY;
+    public static final String REMARK_DESC_AMY = " " + PREFIX_REMARK + VALID_REMARK_AMY;
+    public static final String DEPARTMENT_DESC_BOB = " " + PREFIX_DEPARTMENT + VALID_DEPARTMENT_BOB;
+    public static final String JOB_TITLE_DESC_BOB = " " + PREFIX_JOBTITLE + VALID_JOB_TITLE_BOB;
+    public static final String SKILLS_DESC_NEGOTIATION = " " + PREFIX_SKILLS + VALID_SKILLS_NEGOTIATION;
+    public static final String SKILLS_DESC_COMMUNICATION = " " + PREFIX_SKILLS + VALID_SKILLS_COMMUNICATION;
+    public static final String REMARK_DESC_BOB = " " + PREFIX_REMARK + VALID_REMARK_BOB;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones

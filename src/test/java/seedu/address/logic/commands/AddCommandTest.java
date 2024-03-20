@@ -22,7 +22,9 @@ import seedu.address.model.NetConnect;
 import seedu.address.model.ReadOnlyNetConnect;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Person;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.ClientBuilder;
+import seedu.address.testutil.EmployeeBuilder;
+import seedu.address.testutil.SupplierBuilder;
 
 public class AddCommandTest {
 
@@ -34,47 +36,70 @@ public class AddCommandTest {
     @Test
     public void execute_personAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Person validPerson = new PersonBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
+        // Assuming PersonBuilder can handle role-specific fields
+        Person validClient = new ClientBuilder().build();
+        Person validEmployee = new EmployeeBuilder().build();
+        Person validSupplier = new SupplierBuilder().build();
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, Messages.format(validPerson)),
-                commandResult.getFeedbackToUser());
-        assertEquals(List.of(validPerson), modelStub.personsAdded);
+        CommandResult commandResultClient = new AddCommand(validClient).execute(modelStub);
+        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, Messages.format(validClient)),
+                commandResultClient.getFeedbackToUser());
+        assertEquals(List.of(validClient), modelStub.personsAdded);
+
+        modelStub.personsAdded.clear();
+
+        CommandResult commandResultEmployee = new AddCommand(validEmployee).execute(modelStub);
+        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, Messages.format(validEmployee)),
+                commandResultEmployee.getFeedbackToUser());
+        assertEquals(List.of(validEmployee), modelStub.personsAdded);
+
+        modelStub.personsAdded.clear();
+
+        CommandResult commandResultSupplier = new AddCommand(validSupplier).execute(modelStub);
+        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, Messages.format(validSupplier)),
+                commandResultSupplier.getFeedbackToUser());
+        assertEquals(List.of(validSupplier), modelStub.personsAdded);
     }
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
-        Person validPerson = new PersonBuilder().build();
-        AddCommand addCommand = new AddCommand(validPerson);
-        ModelStub modelStub = new ModelStubWithPerson(validPerson);
+        Person validClient = new ClientBuilder().build();
+        AddCommand addCommand = new AddCommand(validClient);
+        ModelStub modelStub = new ModelStubWithPerson(validClient);
 
         assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Person alice = new PersonBuilder().withName("Alice").build();
-        Person bob = new PersonBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        Person aliceClient = new ClientBuilder().withName("Alice").build();
+        Person bobSupplier = new SupplierBuilder().withName("Bob").build();
+        Person aliceEmployee = new EmployeeBuilder().withName("Alice").build(); // Same name, different role
+        AddCommand addAliceClientCommand = new AddCommand(aliceClient);
+        AddCommand addBobSupplierCommand = new AddCommand(bobSupplier);
+        AddCommand addAliceEmployeeCommand = new AddCommand(aliceEmployee); // Same name, different role
 
         // same object -> returns true
-        assertEquals(addAliceCommand, addAliceCommand);
+        assertEquals(addAliceClientCommand, addAliceClientCommand);
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
-        assertEquals(addAliceCommand, addAliceCommandCopy);
+        AddCommand addAliceClientCommandCopy = new AddCommand(aliceClient);
+        assertEquals(addAliceClientCommand, addAliceClientCommandCopy);
 
         // different types -> returns false
-        assertNotEquals(1, addAliceCommand);
+        assertNotEquals(1, addAliceClientCommand);
 
         // null -> returns false
-        assertNotEquals(null, addAliceCommand);
+        assertNotEquals(null, addAliceClientCommand);
 
         // different person -> returns false
-        assertNotEquals(addAliceCommand, addBobCommand);
+        assertNotEquals(addAliceClientCommand, addBobSupplierCommand);
+
+        // same name, different role -> returns false
+        assertNotEquals(addAliceClientCommand, addAliceEmployeeCommand);
     }
+
 
     @Test
     public void toStringMethod() {
