@@ -11,13 +11,14 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.coursemate.CourseMate;
+import seedu.address.model.coursemate.QueryableCourseMate;
+import seedu.address.model.coursemate.exceptions.CourseMateNotFoundException;
 import seedu.address.model.skill.Skill;
 
 /**
@@ -40,17 +41,17 @@ public class DeleteSkillCommand extends Command {
     public static final String MESSAGE_DUPLICATE_COURSE_MATE = "This courseMate already exists in the contact list";
     public static final String MESSAGE_SKILL_NOT_PRESENT = "This courseMate does not have one of the skills provided.";
 
-    private final Index index;
+    private final QueryableCourseMate queryableCourseMate;
     private final DeleteSkillDescriptor deleteSkillDescriptor;
     /**
      * @param index of the courseMate in the filtered courseMate list to edit
      * @param deleteSkillDescriptor list of skills to edit the courseMate with
      */
-    public DeleteSkillCommand(Index index, DeleteSkillDescriptor deleteSkillDescriptor) {
-        requireNonNull(index);
+    public DeleteSkillCommand(QueryableCourseMate queryableCourseMate, DeleteSkillDescriptor deleteSkillDescriptor) {
+        requireNonNull(queryableCourseMate);
         requireNonNull(deleteSkillDescriptor);
 
-        this.index = index;
+        this.queryableCourseMate = queryableCourseMate;
         this.deleteSkillDescriptor = new DeleteSkillDescriptor(deleteSkillDescriptor);
     }
 
@@ -59,11 +60,17 @@ public class DeleteSkillCommand extends Command {
         requireNonNull(model);
         List<CourseMate> lastShownList = model.getFilteredCourseMateList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
+        if (queryableCourseMate.isIndex() && queryableCourseMate.getIndex().getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_COURSE_MATE_DISPLAYED_INDEX);
         }
 
-        CourseMate courseMateToEdit = lastShownList.get(index.getZeroBased());
+        CourseMate courseMateToEdit;
+        try {
+            courseMateToEdit = model.findCourseMate(queryableCourseMate);
+        } catch (CourseMateNotFoundException e) {
+            throw new CommandException(Messages.MESSAGE_INVALID_COURSE_MATE_NAME);
+        }
+
         if (!validSkillsToDelete(courseMateToEdit, deleteSkillDescriptor)) {
             throw new CommandException(MESSAGE_SKILL_NOT_PRESENT);
         }
@@ -123,14 +130,14 @@ public class DeleteSkillCommand extends Command {
         }
 
         DeleteSkillCommand otherDeleteSkillCommand = (DeleteSkillCommand) other;
-        return index.equals(otherDeleteSkillCommand.index)
+        return queryableCourseMate.getIndex().equals(otherDeleteSkillCommand.queryableCourseMate.getIndex())
                 && deleteSkillDescriptor.equals(otherDeleteSkillCommand.deleteSkillDescriptor);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("index", index)
+                .add("index", queryableCourseMate.getIndex())
                 .add("deleteSkillDescriptor", deleteSkillDescriptor)
                 .toString();
     }

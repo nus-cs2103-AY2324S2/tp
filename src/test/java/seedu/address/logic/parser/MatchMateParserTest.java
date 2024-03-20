@@ -45,10 +45,10 @@ public class MatchMateParserTest {
     public void parseCommand_addSkill() throws Exception {
         CourseMate courseMate = new CourseMateBuilder().build();
         AddSkillCommand.AddSkillDescriptor descriptor = new AddSkillDescriptorBuilder(courseMate).build();
-        AddSkillCommand command = (AddSkillCommand) parser.parseCommand(AddSkillCommand.COMMAND_WORD + " "
+        AddSkillCommand command = (AddSkillCommand) parser.parseCommand(AddSkillCommand.COMMAND_WORD + " #"
                 + INDEX_FIRST_COURSE_MATE.getOneBased() + " "
                 + CourseMateUtil.getAddSkillDescriptorDetails(descriptor));
-        assertEquals(new AddSkillCommand(INDEX_FIRST_COURSE_MATE, descriptor), command);
+        assertEquals(new AddSkillCommand(new QueryableCourseMate(INDEX_FIRST_COURSE_MATE), descriptor), command);
     }
 
     @Test
@@ -68,10 +68,10 @@ public class MatchMateParserTest {
     public void parseCommand_deleteSkill() throws Exception {
         CourseMate courseMate = new CourseMateBuilder().build();
         DeleteSkillCommand.DeleteSkillDescriptor descriptor = new DeleteSkillDescriptorBuilder(courseMate).build();
-        DeleteSkillCommand command = (DeleteSkillCommand) parser.parseCommand(DeleteSkillCommand.COMMAND_WORD + " "
+        DeleteSkillCommand command = (DeleteSkillCommand) parser.parseCommand(DeleteSkillCommand.COMMAND_WORD + " #"
                 + INDEX_FIRST_COURSE_MATE.getOneBased() + " "
                 + CourseMateUtil.getDeleteSkillDescriptorDetails(descriptor));
-        assertEquals(new DeleteSkillCommand(INDEX_FIRST_COURSE_MATE, descriptor), command);
+        assertEquals(new DeleteSkillCommand(new QueryableCourseMate(INDEX_FIRST_COURSE_MATE), descriptor), command);
     }
 
     @Test

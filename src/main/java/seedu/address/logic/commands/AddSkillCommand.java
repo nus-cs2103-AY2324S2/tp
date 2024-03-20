@@ -11,13 +11,14 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.coursemate.CourseMate;
+import seedu.address.model.coursemate.QueryableCourseMate;
+import seedu.address.model.coursemate.exceptions.CourseMateNotFoundException;
 import seedu.address.model.skill.Skill;
 
 /**
@@ -39,17 +40,17 @@ public class AddSkillCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_COURSE_MATE = "This courseMate already exists in the contact list";
 
-    private final Index index;
+    private final QueryableCourseMate queryableCourseMate;
     private final AddSkillDescriptor addSkillDescriptor;
     /**
-     * @param index of the courseMate in the filtered courseMate list to edit
+     * @param queryableCourseMate courseMate that we want to edit
      * @param addSkillDescriptor list of skills to edit the courseMate with
      */
-    public AddSkillCommand(Index index, AddSkillDescriptor addSkillDescriptor) {
-        requireNonNull(index);
+    public AddSkillCommand(QueryableCourseMate queryableCourseMate, AddSkillDescriptor addSkillDescriptor) {
+        requireNonNull(queryableCourseMate);
         requireNonNull(addSkillDescriptor);
 
-        this.index = index;
+        this.queryableCourseMate = queryableCourseMate;
         this.addSkillDescriptor = new AddSkillDescriptor(addSkillDescriptor);
     }
 
@@ -58,11 +59,17 @@ public class AddSkillCommand extends Command {
         requireNonNull(model);
         List<CourseMate> lastShownList = model.getFilteredCourseMateList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
+        if (queryableCourseMate.isIndex() && queryableCourseMate.getIndex().getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_COURSE_MATE_DISPLAYED_INDEX);
         }
 
-        CourseMate courseMateToEdit = lastShownList.get(index.getZeroBased());
+        CourseMate courseMateToEdit;
+        try {
+            courseMateToEdit = model.findCourseMate(queryableCourseMate);
+        } catch (CourseMateNotFoundException e) {
+            throw new CommandException(Messages.MESSAGE_INVALID_COURSE_MATE_NAME);
+        }
+
         CourseMate editedCourseMate = addSkillToCourseMate(courseMateToEdit, addSkillDescriptor);
 
         if (!courseMateToEdit.isSameCourseMate(editedCourseMate) && model.hasCourseMate(editedCourseMate)) {
@@ -102,14 +109,14 @@ public class AddSkillCommand extends Command {
         }
 
         AddSkillCommand otherAddSkillCommand = (AddSkillCommand) other;
-        return index.equals(otherAddSkillCommand.index)
+        return queryableCourseMate.getIndex().equals(otherAddSkillCommand.queryableCourseMate.getIndex())
                 && addSkillDescriptor.equals(otherAddSkillCommand.addSkillDescriptor);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("index", index)
+                .add("index", queryableCourseMate.getIndex())
                 .add("addSkillDescriptor", addSkillDescriptor)
                 .toString();
     }

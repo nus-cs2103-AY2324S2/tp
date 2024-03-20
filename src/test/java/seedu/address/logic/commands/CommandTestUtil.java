@@ -17,6 +17,8 @@ import seedu.address.model.ContactList;
 import seedu.address.model.Model;
 import seedu.address.model.coursemate.ContainsKeywordPredicate;
 import seedu.address.model.coursemate.CourseMate;
+import seedu.address.testutil.AddSkillDescriptorBuilder;
+import seedu.address.testutil.DeleteSkillDescriptorBuilder;
 import seedu.address.testutil.EditCourseMateDescriptorBuilder;
 
 /**
@@ -58,6 +60,11 @@ public class CommandTestUtil {
     public static final EditCommand.EditCourseMateDescriptor DESC_AMY;
     public static final EditCommand.EditCourseMateDescriptor DESC_BOB;
 
+    public static final AddSkillCommand.AddSkillDescriptor DESC_ADDSKILL_JAVA;
+    public static final AddSkillCommand.AddSkillDescriptor DESC_ADDSKILL_CPP_CSHARP;
+    public static final DeleteSkillCommand.DeleteSkillDescriptor DESC_DELSKILL_JAVA;
+    public static final DeleteSkillCommand.DeleteSkillDescriptor DESC_DELSKILL_CPP_CSHARP;
+
     static {
         DESC_AMY = new EditCourseMateDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY)
@@ -65,6 +72,14 @@ public class CommandTestUtil {
         DESC_BOB = new EditCourseMateDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
                 .withSkills(VALID_SKILL_JAVA, VALID_SKILL_CPP).build();
+        DESC_ADDSKILL_JAVA = new AddSkillDescriptorBuilder()
+                .withSkills(VALID_SKILL_JAVA).build();
+        DESC_ADDSKILL_CPP_CSHARP = new AddSkillDescriptorBuilder()
+                .withSkills(VALID_SKILL_CPP).withSkills(VALID_SKILL_CSHARP).build();
+        DESC_DELSKILL_JAVA = new DeleteSkillDescriptorBuilder()
+                .withSkills(VALID_SKILL_JAVA).build();
+        DESC_DELSKILL_CPP_CSHARP = new DeleteSkillDescriptorBuilder()
+                .withSkills(VALID_SKILL_CPP).withSkills(VALID_SKILL_CSHARP).build();
     }
 
     /**

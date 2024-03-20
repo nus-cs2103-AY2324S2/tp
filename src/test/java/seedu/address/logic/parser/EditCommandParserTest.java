@@ -36,7 +36,6 @@ import seedu.address.model.coursemate.Email;
 import seedu.address.model.coursemate.Name;
 import seedu.address.model.coursemate.Phone;
 import seedu.address.model.coursemate.QueryableCourseMate;
-import seedu.address.model.skill.Skill;
 import seedu.address.testutil.EditCourseMateDescriptorBuilder;
 
 public class EditCommandParserTest {
