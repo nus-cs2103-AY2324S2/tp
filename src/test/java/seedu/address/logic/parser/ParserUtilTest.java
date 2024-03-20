@@ -19,7 +19,6 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.tag.Interest;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
@@ -45,8 +44,8 @@ public class ParserUtilTest {
 
     @Test
     public void parseIndex_outOfRangeInput_throwsParseException() {
-        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX,
-                () -> ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
+        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, () -> 
+                ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
     }
 
     @Test
@@ -180,8 +179,8 @@ public class ParserUtilTest {
 
     @Test //
     public void parseTags_collectionWithInvalidTags_throwsParseException() {
-        assertThrows(ParseException.class,
-                () -> ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, INVALID_TAG), Arrays.asList(VALID_INTEREST_1)));
+        assertThrows(ParseException.class, () -> 
+            ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, INVALID_TAG), Arrays.asList(VALID_INTEREST_1)));
     }
 
     @Test //
