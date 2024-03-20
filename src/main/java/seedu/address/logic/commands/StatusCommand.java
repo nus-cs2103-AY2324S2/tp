@@ -32,7 +32,7 @@ public class StatusCommand extends Command {
             + " existing in the address book to one of the five status:\n"
             + "PRESCREEN, IN_PROGRESS, WAITLIST, ACCEPTED, REJECTED\n"
             + "Parameters: INDEX (must be a positive integer) " + PREFIX_STATUS + "STATUS \n"
-            + "Example: " + COMMAND_WORD + " 2 ACCEPTED";
+            + "Example: " + COMMAND_WORD + " 2 " + PREFIX_STATUS + "ACCEPTED";
 
     public static final String MESSAGE_STATUS_PERSON_SUCCESS = "Status of Candidate Number %1$d Successfully"
             + " Updated to %2$s";
