@@ -13,9 +13,9 @@ import seedu.address.commons.core.GuiSettings;
  */
 public class UserPrefs implements ReadOnlyUserPrefs {
 
+    private static boolean isSample = true;
     private GuiSettings guiSettings = new GuiSettings();
     private Path addressBookFilePath = Paths.get("data" , "addressbook.json");
-    private static boolean isSample = true;
     private boolean isSampleJson = isSample;
 
     /**

@@ -67,7 +67,7 @@ public class AddCommand extends Command {
         UserPrefs.setIsSample(false);
 
         model.addPerson(toAdd);
-        
+
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
     }
 
