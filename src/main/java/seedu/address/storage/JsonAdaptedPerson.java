@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Country;
 import seedu.address.model.person.DateOfBirth;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -30,15 +31,17 @@ class JsonAdaptedPerson {
     private final String address;
     private final String dateOfBirth;
     private final Optional<String> email;
+    private final Optional<String> country;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("nric") String nric, @JsonProperty("name") String name,
-                             @JsonProperty("phone") String phone, @JsonProperty("dateOfBirth") String dob,
-                             @JsonProperty("sex") String sex, @JsonProperty("address") String address,
-                             @JsonProperty("status") String status, @JsonProperty("email") String email) {
+                             @JsonProperty("phone") String phone, @JsonProperty("address") String address,
+                             @JsonProperty("dateOfBirth") String dob, @JsonProperty("sex") String sex,
+                             @JsonProperty("status") String status, @JsonProperty("email") String email,
+                             @JsonProperty("country") String country) {
         this.nric = nric;
         this.name = name;
         this.phone = phone;
@@ -47,6 +50,7 @@ class JsonAdaptedPerson {
         this.sex = sex;
         this.status = status;
         this.email = Optional.ofNullable(email);
+        this.country = Optional.ofNullable(country);
     }
 
     /**
@@ -61,6 +65,7 @@ class JsonAdaptedPerson {
         this.sex = source.getEmail().toString();
         this.status = source.getStatus().toString();
         this.email = Optional.ofNullable(source.getEmail().toString());
+        this.country = Optional.ofNullable(source.getCountry().toString());
     }
 
     /**
@@ -136,6 +141,11 @@ class JsonAdaptedPerson {
         if (email.isPresent()) {
             final Email modelEmail = new Email(email.get());
             person.setEmail(modelEmail);
+        }
+        // Country check
+        if (country.isPresent()) {
+            final Country modelCountry = new Country(country.get());
+            person.setCountry(modelCountry);
         }
         return person;
     }
