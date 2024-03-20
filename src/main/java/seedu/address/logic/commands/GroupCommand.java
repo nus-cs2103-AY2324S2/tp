@@ -18,14 +18,7 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.group.Group;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.NusId;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Tag;
-
-
+import seedu.address.model.person.*;
 
 
 /**
@@ -91,8 +84,10 @@ public class GroupCommand extends Command {
         Email email = personToGroup.getEmail();
         Tag updatedTag = GroupPersonDescriptor.getTag().orElse(personToGroup.getTag());
         Set<Group> updatedGroups = GroupPersonDescriptor.getGroups().orElse(personToGroup.getGroups());
+        Schedule schedule = personToGroup.getSchedule();
+        Remark remark = personToGroup.getRemark();
 
-        return new Person(nusId, name, phone, email, updatedTag, updatedGroups);
+        return new Person(nusId, name, phone, email, updatedTag, updatedGroups, schedule, remark);
     }
 
     @Override
