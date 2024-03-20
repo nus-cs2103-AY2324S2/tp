@@ -47,10 +47,10 @@ public class DeletePersonCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (!model.isAnEventSelected()) {
-            return deleteFromGlobal(model);
-        } else {
+        if (model.isAnEventSelected()) {
             return deleteFromEvent(model);
+        } else {
+            return deleteFromGlobal(model);
         }
     }
 
@@ -96,11 +96,8 @@ public class DeletePersonCommand extends Command {
         }
 
         Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
-        if (!model.isPersonInSelectedEvent(personToDelete)) {
-            throw new CommandException(MESSAGE_NO_SUCH_PERSON);
-        }
-
         model.deletePersonFromSelectedEvent(personToDelete);
+
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_EVENT_SUCCESS, personToDelete.getName()));
     }
 
