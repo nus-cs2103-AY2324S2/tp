@@ -35,7 +35,6 @@ public class Person {
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Subject subject,
                   Id uniqueId) {
-      
         requireAllNonNull(name, phone, email, address, tags, subject);
         this.name = name;
         this.phone = phone;
@@ -46,11 +45,10 @@ public class Person {
         this.uniqueId = uniqueId;
     }
 
-        /**
+    /**
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Subject subject) {
-      
         requireAllNonNull(name, phone, email, address, tags, subject);
         this.name = name;
         this.phone = phone;
@@ -92,10 +90,8 @@ public class Person {
     public Id getUniqueId() {
         return uniqueId;
     }
-      
     /** Sets the uniqueId of the person */
     public Id setUniqueId(Id uniqueId) {
-
         return this.uniqueId = uniqueId;
     }
 

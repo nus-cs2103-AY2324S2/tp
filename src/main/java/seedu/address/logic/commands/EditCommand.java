@@ -260,7 +260,6 @@ public class EditCommand extends Command {
                     && Objects.equals(address, otherEditPersonDescriptor.address)
                     && Objects.equals(subject, otherEditPersonDescriptor.subject)
                     && Objects.equals(tags, otherEditPersonDescriptor.tags);
-                    
         }
 
         @Override

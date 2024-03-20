@@ -25,11 +25,6 @@ import seedu.address.model.person.Person;
  */
 public class TypicalPersons {
 
-    private static int uniqueIdCounter = 1;
-
-    private static String getNextUniqueId() {
-        return String.format("#%06d", uniqueIdCounter++);
-    }
 
     public static final Person ALICE = new PersonBuilder()
             .withAddress("123, Jurong West Ave 6, #08-111")
@@ -138,7 +133,13 @@ public class TypicalPersons {
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
+    private static int uniqueIdCounter = 1;
+
     private TypicalPersons() {} // prevents instantiation
+
+    private static String getNextUniqueId() {
+        return String.format("#%06d", uniqueIdCounter++);
+    }
 
     /**
      * Returns an {@code AddressBook} with all the typical persons.

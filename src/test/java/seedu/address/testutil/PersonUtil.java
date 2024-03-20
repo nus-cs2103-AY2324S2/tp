@@ -60,7 +60,7 @@ public class PersonUtil {
                 tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
             }
         }
-        
+
         return sb.toString();
     }
 }
