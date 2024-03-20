@@ -19,6 +19,6 @@ public class FacultyComparator implements Comparator<Person> {
 
     @Override
     public String toString() {
-        return "Faculty by alphabetical order";
+        return "Faculty by alphanumerical order";
     }
 }

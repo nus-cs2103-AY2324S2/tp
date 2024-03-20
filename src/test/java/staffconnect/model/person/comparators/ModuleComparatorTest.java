@@ -34,4 +34,15 @@ public class ModuleComparatorTest {
         assertEquals(MODULE_COMPARATOR.compare(ALICE, ALICE), 0); // CS1101S = CS1101S
 
     }
+
+    @Test
+    public void toStringTest() {
+        assertEquals(MODULE_COMPARATOR.toString(), "Module by alphanumerical order");
+
+        assertNotEquals(MODULE_COMPARATOR.toString(), "Name by alphanumerical order");
+        assertNotEquals(MODULE_COMPARATOR.toString(), "Phone by ascending order");
+        assertNotEquals(MODULE_COMPARATOR.toString(), "Faculty by alphanumerical order");
+        assertNotEquals(MODULE_COMPARATOR.toString(), "Venue by alphanumerical order");
+        assertNotEquals(MODULE_COMPARATOR.toString(), "random string");
+    }
 }

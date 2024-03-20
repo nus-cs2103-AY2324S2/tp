@@ -18,6 +18,6 @@ public class ModuleComparator implements Comparator<Person> {
 
     @Override
     public String toString() {
-        return "Module by alphabetical order";
+        return "Module by alphanumerical order";
     }
 }

@@ -17,6 +17,6 @@ public class NameComparator implements Comparator<Person> {
 
     @Override
     public String toString() {
-        return "Name by alphabetical order";
+        return "Name by alphanumerical order";
     }
 }

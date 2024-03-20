@@ -18,6 +18,6 @@ public class VenueComparator implements Comparator<Person> {
 
     @Override
     public String toString() {
-        return "Venue by alphabetical order";
+        return "Venue by alphanumerical order";
     }
 }

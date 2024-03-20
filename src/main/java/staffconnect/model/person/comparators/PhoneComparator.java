@@ -18,6 +18,6 @@ public class PhoneComparator implements Comparator<Person> {
 
     @Override
     public String toString() {
-        return "Phone by alphabetical order";
+        return "Phone by ascending order";
     }
 }
