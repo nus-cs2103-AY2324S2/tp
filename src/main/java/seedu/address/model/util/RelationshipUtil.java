@@ -1,8 +1,9 @@
 package seedu.address.model.util;
 
+import java.util.List;
+
 import seedu.address.model.person.Person;
 
-import java.util.List;
 
 /**
  * In charge of enforcing relationship constraints between models
