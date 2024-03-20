@@ -4,9 +4,9 @@
   pageNav: 3
 ---
 
-# AB-3 User Guide
+# CogniCare User Guide
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a  Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+CogniCare is a **desktop app for managing all patients, optimized for use via a Command Line Interface** (CLI) while still retaining all the benefits of a Graphical User Interface (GUI). If you can type fast, CogniCare can get your patient management tasks done faster than other traditional GUI apps.
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -16,29 +16,30 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
+   1. If you are on macOS on an Apple Silicon System, we recommend that you follow the guide on [CS2103 Course website](https://nus-cs2103-ay2324s2.github.io/website/admin/programmingLanguages.html#programming-language) using the Zulu version `zulu11.50.19-ca-fx-jdk11.0.12-macosx_aarch64.dmg`
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+2. Download the latest `cognicare.jar` from [here](https://github.com/AY2324S2-CS2103-F08-2/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+3. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar cognicare.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * `querystudents` : Lists all students that are stored in CogniCare.
 
    * `patient n/Jerome Chua p/98765432 e/jerome@example.com a/depressed` : Adds a contact named `Jerome Chua` to the Address Book who is tagged with having depression.
 
-   * `delete 903` : Deletes the contact that has the id 903 (This is different from the natural ordering of the list).
+   * `delete 903` : Deletes the student that has the id of 903 (This is different from the natural ordering of the list).
 
    * `clear` : Deletes all contacts.
 
    * `exit` : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -52,10 +53,10 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
   e.g. in `patient n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/Jerome t/depression` or as `n/Jerome`.
+  e.g `n/NAME [t/TAG]` can be used as `n/Jerome a/depression` or as `n/Jerome`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/depressed`, `t/jobless t/sad` etc.
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `a/depressed`, `a/jobless a/sad` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -63,12 +64,12 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-* If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
+* If you are using a PDF version of this document, please be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </box>
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
@@ -95,6 +96,27 @@ Examples:
 
 **Tip:** Once the student is created, the student identifier `sid` will be permanently tagged to a student, 
 and is not coalesced when other entries are deleted.
+
+This means that if the CogniCare application initially contained of the items
+```
+1. Caitlyn
+2. Khang Hou
+3. Jerome
+```
+
+When Khang Hou is deleted, the student identifier are as below:
+
+```
+1. Caitlyn
+3. Jerome
+```
+
+</box>
+
+<box type="tip" seamless>
+
+**Second Tip:** You may not add two students with the same name even if they are in different case (i.e. "DAVINCI    Lim" vs "Davinci Lim"). 
+This is similar to SQL database behaviour where the auto-increment primary key goes on to the next value even if the transaction has failed. [Read more](https://stackoverflow.com/questions/10108593/mysql-autoincrement-value-increases-even-when-insertion-fails-due-to-error)
 </box>
 
 
@@ -103,13 +125,13 @@ and is not coalesced when other entries are deleted.
 Shows a list of all students in the address book.
 
 
-### Listing selected persons : `querystudents`
+### Listing selected persons that meets specified criterion / criteria : `querystudents`
 
 Shows a list of all students in the address book that matches _ALL_ the conditions that are specified.
 
 Format: `querystudents n/NAME p/PHONE_NUMBER e/EMAIL …​`
 
-For example: to find all the "Jeromes" that are stored in the CogniCare application, the user may use the command
+For example: to find all the "Jerome" that are stored in the CogniCare application, the user may use the command
 Format: `querystudents n/Jerome …​`
 
 For example: to find all the "Jeromes" that are stored in the CogniCare application, have a phone number that contains 979, and email using outlook, the user may use the command
@@ -121,19 +143,19 @@ Format: `querystudents n/Jerome p/979 e/outlook.com …​`
 
 Edits an existing person in the address book.
 
-Format: `edit STUDENT_ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit STUDENT_ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [a/AFFLIATED_WITH]…​`
 
 * Edits the person at the specified `STUDENT_ID`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e. adding of tags is not cumulative.
+* When editing tags, the existing tags of the person will be removed; i.e. adding of tags is not cumulative.
 * The `STUDENT_ID` will not be changed when you edit an individual's information.
-* You can remove all the person’s tags by typing `t/` without
+* You can remove all the person’s tags by typing `a/` without
     specifying any tags after it.
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit 2 n/Betsy Crower a/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
 
 ### Deleting a person : `delete`
