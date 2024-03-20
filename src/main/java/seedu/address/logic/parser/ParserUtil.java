@@ -11,8 +11,11 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Membership;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Points;
+import seedu.address.model.person.orders.Order;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -96,6 +99,21 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String membership} into a {@code Membership}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code membership} is invalid.
+     */
+    public static Membership parseMembership(String membership) throws ParseException {
+        requireNonNull(membership);
+        String trimmedMembership = membership.trim();
+        if (!Membership.isValidMembership(trimmedMembership)) {
+            throw new ParseException(Membership.MESSAGE_CONSTRAINTS);
+        }
+        return new Membership(trimmedMembership);
+    }
+
+    /**
      * Parses a {@code String tag} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -121,4 +139,35 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
+    /**
+     * Parses a {@code String points} into a {@code Points}.
+     * Leading and trailing whitespaces will be trimmed.
+     * @throws ParseException if the given {@code points} is invalid (not a non-negative integer).
+     */
+    public static Points parsePoints(String points) throws ParseException {
+        requireNonNull(points);
+        String trimmedPoints = points.trim();
+        if (!Points.isValidPoints(trimmedPoints)) {
+            throw new ParseException(Points.MESSAGE_CONSTRAINTS);
+        }
+        return new Points(trimmedPoints);
+    }
+
+    /**
+     * Parses a {@code String order} into an {@code Order}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code order} is invalid.
+     */
+    public static Order parseOrder(String order) throws ParseException {
+        requireNonNull(order);
+        String trimmedOrder = order.trim();
+        if (!Address.isValidAddress(trimmedOrder)) {
+            throw new ParseException(Order.MESSAGE_CONSTRAINTS);
+        }
+        return new Order(trimmedOrder);
+    }
+
+
 }

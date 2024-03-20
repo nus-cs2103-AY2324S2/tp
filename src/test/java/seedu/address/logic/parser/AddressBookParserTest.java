@@ -4,6 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ORDER_CUPCAKES;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_POINTS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
@@ -14,6 +17,8 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddOrderCommand;
+import seedu.address.logic.commands.AddPointsCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
@@ -23,8 +28,11 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Points;
+import seedu.address.model.person.orders.Order;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
@@ -59,7 +67,8 @@ public class AddressBookParserTest {
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
+        EditCommand expectedCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
+        assertEquals(expectedCommand, command);
     }
 
     @Test
@@ -86,6 +95,24 @@ public class AddressBookParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+    }
+
+    @Test
+    public void parseCommand_addpoints() throws Exception {
+        final Name name = new Name("Alice");
+        final Points points = new Points("50");
+        String input = AddPointsCommand.COMMAND_WORD + " " + PREFIX_NAME + " " + name.fullName + " " + PREFIX_POINTS
+                + " " + points.value;
+        AddPointsCommand command = (AddPointsCommand) parser.parseCommand(input);
+        assertEquals(new AddPointsCommand(name, points), command);
+    }
+
+    @Test
+    public void parseCommand_addorder() throws Exception {
+        AddOrderCommand command = (AddOrderCommand) parser.parseCommand("addorder n/Amy Bee o/Cupcakes x 1");
+        NameContainsKeywordsPredicate namePred = new NameContainsKeywordsPredicate(Arrays.asList("Amy", "Bee"));
+        Order order = new Order(VALID_ORDER_CUPCAKES, command.order.orderDateTime);
+        assertEquals(new AddOrderCommand(namePred, order), command);
     }
 
     @Test
