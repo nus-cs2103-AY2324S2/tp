@@ -12,6 +12,7 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
+import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Task;
 
 /**
@@ -31,7 +32,7 @@ public class AssignTaskCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_TASK + "Complete Project Proposal "
             + PREFIX_DEADLINE + "22-04-2024 2359 "
-            + PREFIX_TO + " 1";
+            + PREFIX_TO + "1";
 
     public static final String MESSAGE_PERSON_IS_BUSY = "A task has already been assigned for %1$s. "
             + "Please select another person.";
@@ -45,8 +46,8 @@ public class AssignTaskCommand extends Command {
      */
     public AssignTaskCommand(Task task, Index index) {
         requireNonNull(index);
-        this.index = index;
         this.task = task;
+        this.index = index;
     }
 
     @Override

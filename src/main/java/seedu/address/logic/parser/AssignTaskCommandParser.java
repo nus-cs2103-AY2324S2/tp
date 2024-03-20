@@ -31,7 +31,6 @@ public class AssignTaskCommandParser implements Parser<AssignTaskCommand> {
         Deadline deadline = ParserTaskUtil.parseDeadline(argMultimap.getValue(PREFIX_DEADLINE).get());
         Index personIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_TO).get());
 
-
         Task task = new Task(taskName, deadline);
         return new AssignTaskCommand(task, personIndex);
     }

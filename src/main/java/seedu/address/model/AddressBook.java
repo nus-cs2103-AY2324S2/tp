@@ -6,6 +6,7 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.task.Task;
@@ -111,6 +112,16 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removePerson(Person key) {
         persons.remove(key);
+    }
+
+    /**
+     * Gets {@code Person} from {@code AddressBook} using {@Name name}
+     * @param name
+     */
+    public Person getPerson(Name name) {
+        requireNonNull(name);
+
+        return persons.getPerson(name);
     }
 
     //// task-level operations

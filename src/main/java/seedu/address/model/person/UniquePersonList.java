@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -82,6 +83,18 @@ public class UniquePersonList implements Iterable<Person> {
     public void setPersons(UniquePersonList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
+    }
+
+    /**
+     * Gets a person by using the person's name.
+     */
+    public Person getPerson(Name name) {
+        for (Person person : internalList) {
+            if (person.getName().equals(name)) {
+                return person;
+            }
+        }
+        return null;
     }
 
     /**
