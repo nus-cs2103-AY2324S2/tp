@@ -49,8 +49,10 @@ deactivate AddressBookParser
 LogicManager -> DeleteCommand : execute(m)
 activate DeleteCommand
 
-DeleteCommand -> Model : deletePersonWithNric(new Nric("S1234567A"))
+DeleteCommand -> Model : deleteAppointmentsWithNric(new Nric("S1234567A"))
 activate Model
+
+DeleteCommand -> Model : deletePersonWithNric(new Nric("S1234567A"))
 
 Model --> DeleteCommand
 deactivate Model
