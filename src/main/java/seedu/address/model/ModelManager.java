@@ -50,7 +50,6 @@ public class ModelManager implements Model {
         this(new AddressBook(), new AppointmentList(), new UserPrefs());
     }
 
-    
     //=========== UserPrefs ==================================================================================
 
     @Override
