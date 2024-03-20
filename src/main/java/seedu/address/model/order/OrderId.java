@@ -28,7 +28,7 @@ public class OrderId {
     }
 
     /**
-     * Checks whether a OrderId string is valid
+     * Checks whether a OrderId string is valid.
      *
      * @param test String to be tested.
      * @return true if the string is a valid UUID, false otherwise.
