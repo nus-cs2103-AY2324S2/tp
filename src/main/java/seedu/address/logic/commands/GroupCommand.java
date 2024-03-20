@@ -23,6 +23,8 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.NusId;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Remark;
+import seedu.address.model.person.Schedule;
 import seedu.address.model.person.Tag;
 
 
@@ -91,8 +93,10 @@ public class GroupCommand extends Command {
         Email email = personToGroup.getEmail();
         Tag updatedTag = GroupPersonDescriptor.getTag().orElse(personToGroup.getTag());
         Set<Group> updatedGroups = GroupPersonDescriptor.getGroups().orElse(personToGroup.getGroups());
+        Schedule schedule = personToGroup.getSchedule();
+        Remark remark = personToGroup.getRemark();
 
-        return new Person(nusId, name, phone, email, updatedTag, updatedGroups);
+        return new Person(nusId, name, phone, email, updatedTag, updatedGroups, schedule, remark);
     }
 
     @Override
