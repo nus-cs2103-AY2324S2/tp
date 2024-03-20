@@ -46,10 +46,7 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane employeeListPanelPlaceholder;
-
-    @FXML
-    private StackPane taskListPanelPlaceholder;
+    private StackPane panelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -118,8 +115,8 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         panel = new EmployeeListPanel(logic.getFilteredEmployeeList());
-        EmployeeListPanel placeHolder = (EmployeeListPanel) panel;
-        employeeListPanelPlaceholder.getChildren().add(placeHolder.getRoot());
+        EmployeeListPanel placeholder = (EmployeeListPanel) panel;
+        panelPlaceholder.getChildren().add(placeholder.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -162,8 +159,8 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     public void handleShowEmployees() {
         panel = new EmployeeListPanel(logic.getFilteredEmployeeList());
-        EmployeeListPanel placeHolder = (EmployeeListPanel) panel;
-        employeeListPanelPlaceholder.getChildren().add(placeHolder.getRoot());
+        EmployeeListPanel placeholder = (EmployeeListPanel) panel;
+        panelPlaceholder.getChildren().add(placeholder.getRoot());
     }
 
     /**
@@ -172,8 +169,8 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     public void handleShowTasks() {
         panel = new TaskListPanel(logic.getFilteredTaskList());
-        TaskListPanel placeHolder = (TaskListPanel) panel;
-        employeeListPanelPlaceholder.getChildren().add(placeHolder.getRoot());
+        TaskListPanel placeholder = (TaskListPanel) panel;
+        panelPlaceholder.getChildren().add(placeholder.getRoot());
     }
 
     void show() {
