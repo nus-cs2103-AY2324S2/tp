@@ -4,26 +4,23 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE_RECORD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE_STATUS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENTID;
 
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditAttendanceCommand;
 import seedu.address.logic.commands.EditAttendanceCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.exceptions.AttendanceStatus;
+import seedu.address.model.person.AttendanceStatus;
 import seedu.address.model.tag.Attendance;
 
+/**
+ * Parses input arguments and creates a new EditAttendanceCommand object
+ */
 public class EditAttendanceCommandParser implements Parser<EditAttendanceCommand> {
 
     @Override
@@ -41,7 +38,8 @@ public class EditAttendanceCommandParser implements Parser<EditAttendanceCommand
         }
 
         if (!arePrefixesPresent(argMultimap, PREFIX_ATTENDANCE_RECORD, PREFIX_ATTENDANCE_STATUS)) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditAttendanceCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditAttendanceCommand.MESSAGE_USAGE));
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_ATTENDANCE_RECORD, PREFIX_ATTENDANCE_STATUS);

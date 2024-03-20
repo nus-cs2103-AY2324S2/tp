@@ -4,7 +4,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.person.exceptions.AttendanceStatus;
+import seedu.address.model.person.AttendanceStatus;
 
 public class AttendanceTest {
 

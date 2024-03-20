@@ -9,7 +9,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.StudentId;
-import seedu.address.model.person.exceptions.AttendanceStatus;
+import seedu.address.model.person.AttendanceStatus;
 import seedu.address.model.tag.Attendance;
 
 /**

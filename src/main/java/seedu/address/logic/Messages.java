@@ -64,10 +64,5 @@ public class Messages {
         return builder.toString();
     }
 
-    public static String attendanceFormat(Attendance attendance) {
-        final StringBuilder builder = new StringBuilder();
-        builder.append(attendance.attendanceName.getDate() + ", " + attendance.attendanceName.getStatus());
-        return builder.toString();
-    }
 
 }

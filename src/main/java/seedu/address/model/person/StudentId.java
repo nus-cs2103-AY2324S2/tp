@@ -9,7 +9,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class StudentId {
 
-    public static final String MESSAGE_CONSTRAINTS = "Student ID must be in this format: first letter is 'A' followed by 7 digits and lastly with any letter";
+    public static final String MESSAGE_CONSTRAINTS = "Student ID must be in this format: "
+            + "first letter is 'A' followed by 7 digits and lastly with any letter";
 
     /*
      * Format must be in: first letter is 'A' followed by 7 digits and lastly with any letter

@@ -27,7 +27,7 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Classes;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.exceptions.AttendanceStatus;
+import seedu.address.model.person.AttendanceStatus;
 import seedu.address.model.tag.Attendance;
 
 public class AddAttendanceRecordCommandTest {

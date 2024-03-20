@@ -1,14 +1,19 @@
-package seedu.address.model.person.exceptions;
+package seedu.address.model.person;
 
 import java.util.Objects;
 
-import seedu.address.model.tag.Attendance;
-
+/**
+ * Represents a Person's attendance record in the address book.
+ */
 public class AttendanceStatus {
 
     private String date;
     private String status;
 
+    /**
+     * @param date of the attendance
+     * @param status of the student
+     */
     public AttendanceStatus(String date, String status) {
         this.date = date;
         this.status = status;

@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddAttendanceRecordCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.exceptions.AttendanceStatus;
+import seedu.address.model.person.AttendanceStatus;
 import seedu.address.model.tag.Attendance;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

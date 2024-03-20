@@ -49,19 +49,10 @@ public class AddAttendanceRecordCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-//        requireAllNonNull(model);
-//        List<Person> lastShownList = model.getFilteredPersonList();
-
-//        for (int i = 0; i < lastShownList.size(); i++) {
-//            model.setPerson(lastShownList.get(i), createEditedPerson(lastShownList.get(i), this.date));
-//            model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
-//        }
-//        model.setPerson(lastShownList.get(0), createEditedPerson(lastShownList.get(0), this.date));
-//        model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
 
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
-        if (lastShownList.size() == 0 ){
+        if (lastShownList.size() == 0 ) {
             throw new CommandException(Messages.MESSAGE_NO_PERSON_IN_THE_CLASS);
         }
         for (Attendance i : lastShownList.get(0).getAttendances()) {
@@ -100,24 +91,8 @@ public class AddAttendanceRecordCommand extends Command {
         return new CommandResult(String.format(MESSAGE_SUCCESS, date));
     }
 
-    /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
-     */
-//    private static Person createEditedPerson(Person personToEdit, Attendance date) {
-//        assert personToEdit != null;
-//
-//        Name updatedName = personToEdit.getName();
-//        Phone updatedPhone = personToEdit.getPhone();
-//        Email updatedEmail = personToEdit.getEmail();
-//        StudentId updatedStudentId = personToEdit.getStudentId();
-//        personToEdit.getAttendances().add(date);
-//
-//
-//        return new Person(updatedName, updatedPhone, updatedEmail, updatedStudentId, personToEdit.getAttendances());
-//    }
-
-    private static Person createEditedPerson(Person personToEdit, EditCommand.EditPersonDescriptor editPersonDescriptor) {
+    private static Person createEditedPerson(Person personToEdit,
+                                             EditCommand.EditPersonDescriptor editPersonDescriptor) {
         assert personToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());

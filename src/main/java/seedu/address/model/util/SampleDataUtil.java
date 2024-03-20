@@ -1,9 +1,7 @@
 package seedu.address.model.util;
 
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ClassBook;
@@ -16,7 +14,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.StudentId;
-import seedu.address.model.person.exceptions.AttendanceStatus;
+import seedu.address.model.person.AttendanceStatus;
 import seedu.address.model.tag.Attendance;
 
 /**
@@ -58,9 +56,6 @@ public class SampleDataUtil {
      * Returns a tag set containing the list of strings given.
      */
     public static Set<Attendance> getAttendanceSet(String... strings) {
-//        return Arrays.stream(strings)
-//                .map(Attendance::new)
-//                .collect(Collectors.toSet());
 
         Set<Attendance> set = new HashSet<>();
         for (String i : strings) {
