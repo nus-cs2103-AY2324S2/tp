@@ -1,12 +1,12 @@
 package seedu.address.model.person;
 
+import static seedu.address.logic.commands.FindCommand.NOT_REQUIRED_VALUE;
+
 import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
 import seedu.address.commons.util.ToStringBuilder;
-
-import static seedu.address.logic.commands.FindCommand.NOT_REQUIRED_VALUE;
 
 /**
  * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.

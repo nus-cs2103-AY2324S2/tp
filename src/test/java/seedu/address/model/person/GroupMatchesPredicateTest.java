@@ -1,12 +1,13 @@
 package seedu.address.model.person;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.testutil.PersonBuilder;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Test;
+
+import seedu.address.testutil.PersonBuilder;
 
 public class GroupMatchesPredicateTest {
     @Test
@@ -34,7 +35,7 @@ public class GroupMatchesPredicateTest {
     public void test_toString() {
         List<String> keywords = List.of("CS2101", "CS2103T");
         GroupMatchesPredicate g = new GroupMatchesPredicate(keywords);
-        String expected = GroupMatchesPredicate.class.getCanonicalName() + "{groupKeywords=" + keywords +"}";
+        String expected = GroupMatchesPredicate.class.getCanonicalName() + "{groupKeywords=" + keywords + "}";
         assertEquals(g.toString(), expected);
     }
 }

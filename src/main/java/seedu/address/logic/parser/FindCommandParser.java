@@ -1,11 +1,11 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.logic.commands.FindCommand.NOT_REQUIRED_VALUE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.logic.commands.FindCommand.NOT_REQUIRED_VALUE;
 
 import java.util.Arrays;
 import java.util.List;
@@ -33,7 +33,8 @@ public class FindCommandParser implements Parser<FindCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_TAG, PREFIX_GROUP);
 
         argumentMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_TAG);
-        argumentMultimap.verifyAtLeastOnePrefixExists(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_TAG, PREFIX_GROUP);
+        argumentMultimap.verifyAtLeastOnePrefixExists(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_TAG,
+                PREFIX_GROUP);
         // Problems: Can't create Objects unless proper regex used.
         // Solution: Don't create objects
         String nameToMatch = argumentMultimap.getValue(PREFIX_NAME).orElse(NOT_REQUIRED_VALUE);

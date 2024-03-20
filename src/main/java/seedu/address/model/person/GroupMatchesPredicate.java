@@ -1,13 +1,13 @@
 package seedu.address.model.person;
 
-import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.logic.commands.FindCommand;
-import seedu.address.model.group.Group;
-
 import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+
+import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.logic.commands.FindCommand;
+import seedu.address.model.group.Group;
 
 /**
  * Tests if a keyword matches any {@code Person}'s {@code Groups}

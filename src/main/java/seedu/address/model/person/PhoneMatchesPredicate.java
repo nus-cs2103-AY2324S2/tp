@@ -1,9 +1,9 @@
 package seedu.address.model.person;
 
+import java.util.function.Predicate;
+
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.commands.FindCommand;
-
-import java.util.function.Predicate;
 
 /**
  * Tests if a {@code Person}'s {@code Phone} matches with the number given

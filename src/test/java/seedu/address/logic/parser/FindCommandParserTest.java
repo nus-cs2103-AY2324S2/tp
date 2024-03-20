@@ -18,14 +18,16 @@ public class FindCommandParserTest {
 
     @Test
     public void parse_emptyArg_throwsParseException() {
-        assertParseFailure(parser, "     ", String.format(MESSAGE_AT_LEAST_ONE_FIELD_REQUIRED + FindCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "     ",
+                String.format(MESSAGE_AT_LEAST_ONE_FIELD_REQUIRED + FindCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void parse_validArgs_returnsFindCommand() {
         // no leading and trailing whitespaces
         FindCommand expectedFindCommand =
-                new FindCommandBuilder().withNamePred(new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob"))).build();
+                new FindCommandBuilder().withNamePred(new NameContainsKeywordsPredicate(Arrays
+                        .asList("Alice", "Bob"))).build();
         assertParseSuccess(parser, " n/Alice Bob", expectedFindCommand);
 
         // multiple whitespaces between keywords
