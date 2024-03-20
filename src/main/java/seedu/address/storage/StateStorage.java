@@ -125,33 +125,4 @@ public class StateStorage {
 
         return lastCommand;
     }
-
-    /**
-     * Returns the location of the state file.
-     *
-     * @return The path of the state file.
-     */
-    public static Path getFilePath() {
-        return FILE_PATH;
-    }
-
-    /**
-     * Returns the location of the state file as a String.
-     *
-     * @return The path of the state file as a String.
-     */
-    public static String getFilePathString() {
-        return filePath;
-    }
-
-    /**
-     * Returns the location of the state directory.
-     *
-     * @return The path of the state directory.
-     */
-    public static Path getDirectoryPath() {
-        return DIRECTORY_PATH;
-    }
-
-
 }
