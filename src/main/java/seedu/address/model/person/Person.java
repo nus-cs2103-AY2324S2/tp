@@ -17,6 +17,7 @@ import seedu.address.model.tag.Tag;
 public class Person {
 
     // Identity fields
+    private final CompanyName companyName;
     private final Name name;
     private final Phone phone;
     private final Email email;
@@ -30,11 +31,11 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-
     public Person(
-            Name name, Phone phone, Email email, Address address,
+            CompanyName companyName, Name name, Phone phone, Email email, Address address,
             InterviewTime dateTime, Salary salary, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, salary, tags);
+        this.companyName = companyName;
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -43,7 +44,9 @@ public class Person {
         this.salary = salary;
         this.tags.addAll(tags);
     }
-
+    public CompanyName getCompanyName() {
+        return companyName;
+    }
     public Name getName() {
         return name;
     }
@@ -104,7 +107,8 @@ public class Person {
         }
 
         Person otherPerson = (Person) other;
-        return name.equals(otherPerson.name)
+        return companyName.equals(otherPerson.companyName)
+                && name.equals(otherPerson.name)
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
@@ -114,12 +118,13 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags, dateTime);
+        return Objects.hash(companyName, name, phone, email, address, tags, dateTime);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
+                .add("company name", companyName)
                 .add("name", name)
                 .add("phone", phone)
                 .add("email", email)

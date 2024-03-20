@@ -1,5 +1,6 @@
 {
   "persons": [ {
+    "companyName": "Google",
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "alice@example.com",
@@ -8,6 +9,7 @@
     "salary" : "0",
     "tags": [ "friends" ]
   }, {
+    "companyName": "Google",
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",
