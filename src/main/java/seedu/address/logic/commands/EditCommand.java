@@ -15,7 +15,6 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -36,46 +35,50 @@ public class EditCommand extends Command {
     public static final String COMMAND_WORD = "edit";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the index number used in the displayed person list. "
-            + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "by the student id. "
+            + "Parameters: STUDENT_ID (must be in format Axxxxxxx[A-Z] where x can be any digit, "
+            + "[A-Z] can be any capital letter) "
             + "[" + PREFIX_STUDENTID + "STUDENTID] "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_GRADE + "GRADE] "
             + "[" + PREFIX_GROUP + "GROUP]...\n"
-            + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + "Example: " + COMMAND_WORD + " A1234567A "
+            + PREFIX_EMAIL + "e1234567@u.nus.edu";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
 
-    private final Index index;
+    private final StudentId id;
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
+     * @param id of the person in the person list to edit
      * @param editPersonDescriptor details to edit the person with
      */
-    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
-        requireNonNull(index);
+    public EditCommand(StudentId id, EditPersonDescriptor editPersonDescriptor) {
+        requireNonNull(id);
         requireNonNull(editPersonDescriptor);
 
-        this.index = index;
+        this.id = id;
         this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Person> lastShownList = model.getAddressBook().getPersonList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        Optional<Person> personOptional = lastShownList.stream()
+                .filter(p -> p.getStudentId().equals(id))
+                .findFirst();
+
+        if (!personOptional.isPresent()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_DISPLAYED_STUDENT_ID);
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
+        Person personToEdit = personOptional.get();
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
@@ -117,14 +120,14 @@ public class EditCommand extends Command {
         }
 
         EditCommand otherEditCommand = (EditCommand) other;
-        return index.equals(otherEditCommand.index)
+        return id.equals(otherEditCommand.id)
                 && editPersonDescriptor.equals(otherEditCommand.editPersonDescriptor);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("index", index)
+                .add("student id", id)
                 .add("editPersonDescriptor", editPersonDescriptor)
                 .toString();
     }

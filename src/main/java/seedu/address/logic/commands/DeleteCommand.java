@@ -22,7 +22,7 @@ public class DeleteCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the person identified by their student id.\n"
             + "Parameters: STUDENT_ID (must be in format Axxxxxxx[A-Z] where x can be any digit, "
-            + "[A-Z] can be any capital letter)\n"
+            + "[A-Z] can be any capital letter).\n"
             + "Example: " + COMMAND_WORD + " A0123456A";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
@@ -36,7 +36,7 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Person> lastShownList = model.getAddressBook().getPersonList();
 
         Optional<Person> personOptional = lastShownList.stream()
                 .filter(p -> p.getStudentId().equals(targetId))
