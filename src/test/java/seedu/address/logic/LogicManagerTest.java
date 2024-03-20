@@ -101,8 +101,8 @@ public class LogicManagerTest {
         model.addPerson(ALICE);
         model.addPerson(BROWN);
         model.addAppointment(new Appointment(BROWN.getNric(), ALICE.getNric(), new AppointmentDate("2024-11-11")));
-        assertTrue(model.getAppointmentList() != null);
-        assertTrue(model.getAppointmentList().size() == 1);
+        assertTrue(model.getFilteredAppointmentList() != null);
+        assertTrue(model.getFilteredAppointmentList().size() == 1);
     }
 
     @Test

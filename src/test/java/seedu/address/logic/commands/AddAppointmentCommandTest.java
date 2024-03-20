@@ -26,7 +26,7 @@ class AddAppointmentCommandTest {
         Appointment appt = new Appointment(BROWN.getNric(), ALICE.getNric(), new AppointmentDate("2024-09-01"));
         AddAppointmentCommand ad = new AddAppointmentCommand(appt);
         CommandResult commandResult = ad.execute(modelManager);
-        assertTrue(modelManager.getAppointmentList().size() == 1);
+        assertTrue(modelManager.getFilteredAppointmentList().size() == 1);
     }
 
     @Test
