@@ -115,10 +115,11 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
 
-        // Do stuff when a Person in the list is selected
+        // Update the details panel when a Person in the list is selected
         personListPanel.initListener((observable, oldValue, newValue) -> {
             personDetailsPanel.update(newValue);
         });
+
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
