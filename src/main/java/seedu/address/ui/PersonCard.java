@@ -21,14 +21,6 @@ public class PersonCard extends UiPart<Region> {
 
     private static final String FXML = "PersonListCard.fxml";
 
-    /**
-     * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
-     * As a consequence, UI elements' variable names cannot be set to such keywords
-     * or an exception will be thrown by JavaFX during runtime.
-     *
-     * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
-     */
-
     public final Person person;
 
     @FXML
@@ -45,6 +37,12 @@ public class PersonCard extends UiPart<Region> {
     private FlowPane groups;
     @FXML
     private Label grade;
+
+    private DesktopInterface mockDesktop;
+
+    private boolean emailAlertShown;
+
+    private boolean isTestEnvironment = false;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -65,14 +63,32 @@ public class PersonCard extends UiPart<Region> {
         email.setOnMouseClicked(event -> handleEmailClicked());
     }
 
-    /*
-     * Event handler for mouse clicking on email
+    public void setTestEnvironment(boolean isTestEnvironment) {
+        this.isTestEnvironment = isTestEnvironment;
+    }
+
+    /**
+     * Event handler for mouse clicking on the email label.
+     * If the Desktop is supported and the MAIL action is supported, attempts to open the default mail client
+     * to compose an email to the address specified in the email label. If the application is running in a test
+     * environment or if the Desktop or the MAIL action is not supported, uses the provided DesktopInterface mock to
+     * simulate the mail action. Else displays an error alert.
      */
-    private void handleEmailClicked() {
+    public void handleEmailClicked() {
         String emailAddress = email.getText();
         if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.MAIL)) {
             try {
-                Desktop.getDesktop().mail(new URI("mailto:" + emailAddress));
+                if (!isTestEnvironment && Desktop.isDesktopSupported() && Desktop.getDesktop()
+                        .isSupported(Desktop.Action.MAIL)) {
+                    // Running in real environment, use Desktop class
+                    Desktop.getDesktop().mail(new URI("mailto:" + emailAddress));
+                } else if (isTestEnvironment) {
+                    // Running in test environment or Desktop not supported, use DesktopInterface
+                    mockDesktop.mail(new URI("mailto:" + emailAddress));
+                } else {
+                    // Neither Desktop nor DesktopInterface available, show error alert
+                    showEmailErrorAlert();
+                }
             } catch (IOException | URISyntaxException e) {
                 e.printStackTrace();
                 // Handle the exception
@@ -89,10 +105,25 @@ public class PersonCard extends UiPart<Region> {
      * The alert prompts the user to ensure they have an email client configured.
      */
     private void showEmailErrorAlert() {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Error");
-        alert.setHeaderText(null);
-        alert.setContentText("Unable to open email client. Please make sure you have an email client configured.");
-        alert.showAndWait();
+        if (isTestEnvironment) {
+            emailAlertShown = true;
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText(null);
+            alert.setContentText("Unable to open email client. Please make sure you have an email client configured.");
+            alert.showAndWait();
+        }
+    }
+
+    public boolean isEmailErrorAlertShown() {
+        return emailAlertShown;
+    }
+
+    /*
+     * Sets desktop stub for testing.
+     */
+    public void setDesktopWrapper(DesktopInterface desktopWrapper) {
+        this.mockDesktop = desktopWrapper;
     }
 }
