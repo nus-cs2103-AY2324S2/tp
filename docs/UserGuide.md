@@ -176,21 +176,22 @@ List out titles of all articles in database
 Format: `list -a`
 
 * No parameters necessary
+* If you add any extra letters in the command, the command will be ignored.
 
 Examples:
 * `list -a ` returns
 ``` 
 1. Make Education Great Again: Donald Trump Takes Helm as Dean of NUS, Introduces 'Art of the Deal' as Mandatory Reading
-  Maanish Murrigan
+  Aiken Dueet, Maanish Murrigan
   Straits Times
-  2023-07-18
+  2023-07-18 12:30:45
   Education
   PUBLISHED
   
 2. ChatGPT: NTU's New Dean, Pioneering AI-Led Education
    Aiken Dueet
    MotherShip
-   2024-02-18
+   2024-02-18 16:45:30
    Education
    PUBLISHED
 * ```

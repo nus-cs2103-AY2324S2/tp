@@ -18,7 +18,7 @@ We are a team based in the [School of Computing, National University of Singapor
 * Role: Developer
 * Responsibilities: Testing
 
-### Benny Loh Choon Keong
+### Benny Loh Choon Kiong
 
 <img src="images/bennylck.png" width="200px">
 
