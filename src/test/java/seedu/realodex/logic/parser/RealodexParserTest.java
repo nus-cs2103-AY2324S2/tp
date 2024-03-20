@@ -19,6 +19,7 @@ import seedu.realodex.logic.commands.FilterCommand;
 import seedu.realodex.logic.commands.HelpCommand;
 import seedu.realodex.logic.commands.ListCommand;
 import seedu.realodex.logic.parser.exceptions.ParseException;
+import seedu.realodex.model.person.Name;
 import seedu.realodex.model.person.NameContainsKeyphrasePredicate;
 import seedu.realodex.model.person.Person;
 import seedu.realodex.testutil.EditPersonDescriptorBuilder;
@@ -43,10 +44,21 @@ public class RealodexParserTest {
     }
 
     @Test
-    public void parseCommand_delete() throws Exception {
+    public void parseCommand_deleteByIndex() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
                 DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
         assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
+    }
+
+    @Test
+    public void parseCommand_deleteByName() throws Exception {
+        DeleteCommand command = (DeleteCommand) parser.parseCommand(
+                DeleteCommand.COMMAND_WORD + " " + "n/James");
+        assertEquals(new DeleteCommand(new Name("James")), command);
+
+        command = (DeleteCommand) parser.parseCommand(
+                DeleteCommand.COMMAND_WORD + " " + "n/ Denzel Untrimmed ");
+        assertEquals(new DeleteCommand(new Name("Denzel Untrimmed")), command);
     }
 
     @Test
