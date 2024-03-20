@@ -6,6 +6,7 @@ import seedu.address.model.person.InternDuration;
 import seedu.address.model.person.InterviewDate;
 import seedu.address.model.person.JobDescription;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Note;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Salary;
@@ -25,6 +26,7 @@ public class PersonBuilder {
     public static final String DEFAULT_INTERVIEW_DATE = null;
     public static final String DEFAULT_INTERN_DURATION = "6 months";
     public static final String DEFAULT_SALARY = "500";
+    public static final String DEFAULT_NOTE = "";
 
     private Name name;
     private Phone phone;
@@ -35,6 +37,7 @@ public class PersonBuilder {
     private InterviewDate interviewDate;
     private InternDuration internDuration;
     private Salary salary;
+    private Note note;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -48,7 +51,8 @@ public class PersonBuilder {
         jobDescription = new JobDescription(DEFAULT_JOB_DESCRIPTION);
         interviewDate = new InterviewDate(DEFAULT_INTERVIEW_DATE);;
         internDuration = new InternDuration(DEFAULT_INTERN_DURATION);;
-        salary = new Salary(DEFAULT_SALARY);;
+        salary = new Salary(DEFAULT_SALARY);
+        note = new Note(DEFAULT_NOTE);
     }
 
     /**
@@ -64,6 +68,7 @@ public class PersonBuilder {
         interviewDate = personToCopy.getInterviewDate();
         internDuration = personToCopy.getInternDuration();
         salary = personToCopy.getSalary();
+        note = personToCopy.getNote();
     }
 
     /**
@@ -137,13 +142,20 @@ public class PersonBuilder {
         this.salary = new Salary(salary);
         return this;
     }
+    /**
+     * Sets the {@code note} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withNote(String note) {
+        this.note = new Note(note);
+        return this;
+    }
 
     /**
      * Build the person
      */
     public Person build() {
         return new Person(name, phone, email, address, tag,
-                jobDescription, interviewDate, internDuration, salary);
+                jobDescription, interviewDate, internDuration, salary, note);
     }
 
 }
