@@ -1,28 +1,30 @@
 package seedu.address.logic.parser;
 
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Id;
-import seedu.address.model.tag.Tag;
-
-import java.util.*;
-import java.util.stream.Stream;
-
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.ParserUtil.parseTag;
 
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
+
 import seedu.address.logic.commands.TagCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Id;
+import seedu.address.model.tag.Tag;
+
 
 /**
  * Parses input arguments and creates a new TagCommand object
  */
 public class TagCommandParser implements Parser<TagCommand> {
 
+    @Override
     public TagCommand parse(String args) throws ParseException {
 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_TAG)
+        if (!isPrefixPresent(argMultimap, PREFIX_TAG)
                 || argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TagCommand.MESSAGE_USAGE));
         }
@@ -45,7 +47,10 @@ public class TagCommandParser implements Parser<TagCommand> {
         return new TagCommand(id, tags);
     }
 
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    /**
+     * Checks if {@Code Prefix} is present in {@Code ArgumentMultiMap}.
+     */
+    private static boolean isPrefixPresent(ArgumentMultimap argumentMultimap, Prefix prefix) {
+        return argumentMultimap.getValue(prefix).isPresent();
     }
 }

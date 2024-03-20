@@ -11,13 +11,19 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.*;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Id;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.YearJoined;
 import seedu.address.model.tag.Tag;
 
 /**
  * Tags an employee in the address book.
  */
-public class TagCommand extends Command{
+public class TagCommand extends Command {
 
     public static final String COMMAND_WORD = "/tag";
 
@@ -33,8 +39,12 @@ public class TagCommand extends Command{
 
     private final Id id;
 
-    Set<Tag> tags;
+    private Set<Tag> tags;
 
+    /**
+     * @param id Id of {@Code Person} to tag.
+     * @param tags Set of (@Code Tag} to tag {@Code Person} with.
+     */
     public TagCommand(Id id, Set<Tag> tags) {
         requireNonNull(id);
         this.id = id;
@@ -67,7 +77,6 @@ public class TagCommand extends Command{
     /**
      * Adds a set of tags to an existing {@Code Person}.
      * Returns a new (@Code Person} with the added set of tags.
-     *
      */
     private Person addTagsToPerson(Person personToTag, Set<Tag> tagsToAdd) throws CommandException {
         Id id = personToTag.getId();
