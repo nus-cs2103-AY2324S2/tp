@@ -90,7 +90,7 @@ Format: `add n/NAME id/STUDENT_ID p/PRIMARY_ PHONE_NUMBER [, SECONDARY_PHONE_NUM
 * The `ID` must start with an alphabet followed by 7 digits and ending with an alphabet e.g A0265901E
 
 Examples:
-* `add n/John Doe id/2023001 p/1234567890, 9876543210 e/john.doe@example.com, jdoe@example.com i/2023 m/Computer Science p/CS2103 Tut  g/A+ t/Honors`
+* `add n/John Doe id/A0265901E p/1234567890, 9876543210 e/john.doe@example.com, jdoe@example.com i/2023 m/Computer Science p/CS2103 Tut  g/A+ t/Honors`
 * `add n/Kumar Prabhat id/20414001 p/1234567890, 9876543210 e/john.doe@example.com`
 
 ### Listing all persons : `list`
