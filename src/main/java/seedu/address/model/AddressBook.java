@@ -18,8 +18,8 @@ import seedu.address.model.person.UniquePersonList;
  */
 public class AddressBook implements ReadOnlyAddressBook, Observable {
 
-    private final UniquePersonList persons;
     final InvalidationListenerManager invalidationListenerManager = new InvalidationListenerManager();
+    private final UniquePersonList persons;
 
 
 
