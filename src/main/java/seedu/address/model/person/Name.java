@@ -63,4 +63,9 @@ public class Name {
     public int hashCode() {
         return fullName.hashCode();
     }
+
+
+    public int compareToIgnoreCase(Name other) {
+        return this.fullName.compareToIgnoreCase(other.fullName);
+    }
 }

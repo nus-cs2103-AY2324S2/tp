@@ -3,7 +3,6 @@ package seedu.address;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
-import java.util.Stack;
 import java.util.logging.Logger;
 
 import javafx.application.Application;
@@ -45,7 +44,6 @@ public class MainApp extends Application {
     protected Logic logic;
     protected Storage storage;
     protected Model model;
-    protected Stack<Object> stack;
     protected Config config;
 
     @Override
@@ -67,8 +65,6 @@ public class MainApp extends Application {
         logic = new LogicManager(model, storage);
 
         ui = new UiManager(logic);
-
-        stack = new Stack<>();
     }
 
     /**

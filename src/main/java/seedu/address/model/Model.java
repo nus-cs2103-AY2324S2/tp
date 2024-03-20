@@ -78,13 +78,13 @@ public interface Model {
     void setPerson(Company target, Company editedCompany);
 
     /** Returns an unmodifiable view of the filtered company list */
-    ObservableList<Company> getFilteredPersonList();
+    ObservableList<Company> getFilteredCompanyList();
 
     /**
      * Updates the filter of the filtered company list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Company> predicate);
+    void updateFilteredCompanyList(Predicate<Company> predicate);
 
     /**
      * Sorts the list of companies
