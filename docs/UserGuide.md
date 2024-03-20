@@ -75,7 +75,7 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-### Adding a person: `add`
+### Adding a student: `add`
 
 Adds a Student to the EduLink NUS.
 
@@ -83,7 +83,7 @@ Format: `add n/NAME id/STUDENT_ID p/PRIMARY_ PHONE_NUMBER [, SECONDARY_PHONE_NUM
 
 <box type="tip" seamless>
 
-**Tip:** A person can have any number of tags (including 0)
+**Tip:** A student can have any number of tags (including 0)
 </box>
 
 * The `ID` refers to the alphanumeric string on the left of Name
@@ -93,61 +93,92 @@ Examples:
 * `add n/John Doe id/2023001 p/1234567890, 9876543210 e/john.doe@example.com, jdoe@example.com i/2023 m/Computer Science p/CS2103 Tut  g/A+ t/Honors`
 * `add n/Kumar Prabhat id/20414001 p/1234567890, 9876543210 e/john.doe@example.com`
 
-### Listing all persons : `list`
+### Listing all students : `list`
 
 Shows a list of all Students in the EduLink NUS.
 
 Format: `list`
 
-### Editing a person : `edit`
+### Editing a student : `edit`
 
-Edits an existing person in the address book.
+Edits an existing student in the address book.
 
 Format: `edit INDEX [id/ID] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
+* When editing tags, the existing tags of the student will be removed i.e adding of tags is not cumulative.
+* You can remove all the student’s tags by typing `t/` without
     specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 1 id/A9051615L e/johndoe@example.com` Edits the id and email address of the 1st person to be `A9051615L` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st student to be `91234567` and `johndoe@example.com` respectively.
+*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd student to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
 
-Finds persons whose names contain any of the given keywords.
+### Search students by name or ID: `find`
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Finds students whose names or IDs matches any of the given keywords. 
+Can search by both the IDs and name.
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+Formats: 
+* search by name: `find [n/NAME]`
+* search by student ID: `find [id/STUDENT_ID]`
+* * search by name: `find [n/NAME]`
+* search by student ID and name: `find [n/NAME] [id/STUDENT_ID]`
 
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
-
-### Deleting a person : `delete`
-
-Deletes the specified person from the address book.
-
-Format: `delete INDEX`
-
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The search is case-insensitive. e.g `john` will match `John`, `a1234567x` will match `A1234567X`
+* Only the name or student id is queried.
+* The search by name supports partial word matching, but must be in chronological order e.g. `John` will match `Jonathan`. And `nathan` will not match with `Jonathan`.
+* The search by ID supports partial word matching, does not need to be in chronological order e.g. `A123` will match `A1234567X`. And `2345` will match with `A1234567X`.
+* When querying student through name with multiple keywords, only names that match all will be returned.
+  e.g. `Hans Bo` will return `Hans Bober`, `Hans Bober` and not `Hans Mayer`
+* When searching by both id and name, only ids and names that match both will be returned. 
+ e.g. `Hans Bo` and `A1234` will return entries that has names starting with `Hans Bo` and id starting with `A1234`.
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `find n/John` returns `john`, `John Doe`, `Johnathan`
+* `find n/John` returns `john`, `John Doe`, `Johnathan`
+* `find n/alex david` returns `Alex David`
+* `find id/A1234567X` returns a person with ID `A12345678X`
+* `find id/A123` returns entries with IDs with `A123`
+* `find id/A1234567X n/John Doe` returns a person `John Doe` with ID `A12345678X`
+
+
+
+### Deleting a student : `delete`
+
+Deletes the specified individual from the EduLink NUS system.
+
+Format: `delete INDEX` **OR** `delete id/STUDENT_ID`
+
+* Deletes the student at the specified `INDEX` or deletes the student identified by the specified `STUDENT_ID`.
+* The INDEX refers to the index number shown in the displayed student list.
+* The STUDENT_ID refers to the unique identification string associated with individuals stored in EduLink NUS.
+* The INDEX **must be a positive integer** 1, 2, 3, …​ 
+* The STUDENT_ID **must exist within the system** 
+
+Examples:
+* `list` followed by `delete 2` deletes the 2nd student in the address book.
+* `find Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
+* `delete id/A026273X` deletes the student with Student ID A026273X.
+
+### Filtering displayed list : `filter`
+
+Filter displayed list of students based on a tag or tags.
+
+Format: `filter t/TAG [t/TAG] …​` 
+
+* Tag names are case-sensitive. e.g `TA` will **NOT** match `Ta`
+* The order of the tags does not matter. e.g. result for `TA` and `Knowledgeable` will match `Knowledgeable` and `TA`.
+* Only full words will be matched e.g. `High Priority` will not match `High Achieving`.
+* Persons matching all tags listed will be returned. E.g. Person with `TA` tag only will not be returned, if tags 
+  specified includes `TA` and `Year 2`.
+
+Examples:
+* `filter t/CS2103T` will display only people that have been tagged with `CS2103T`.
+* `filter t/CS2103T t/TA` wil display only people that have been tagged with `CS2103T` and `TA`.
 
 ### Tagging a student : `tag`
 
@@ -215,8 +246,9 @@ Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **Clear**  | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Delete** | `delete INDEX` **OR** `delete id/STUDENT_ID` <br> e.g., `delete 3`, `delete id/A026273X`
 **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Filter** | `filter t/TAG [t/TAG] …​`<br> e.g., `filter t/CS2103T`, `filter t/CS2103T t/TA` 
 **List**   | `list`
 **Help**   | `help`
