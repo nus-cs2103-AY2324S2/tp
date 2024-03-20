@@ -20,12 +20,14 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.FindStarsLessThanCommand;
 import seedu.address.logic.commands.FindTagCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.StarsLessThanPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
@@ -93,6 +95,13 @@ public class AddressBookParserTest {
     public void parseCommand_findtag() throws Exception {
         FindTagCommand cmd = (FindTagCommand) parser.parseCommand(FindTagCommand.COMMAND_WORD + " fren");
         assertEquals(new FindTagCommand("fren"), cmd);
+    }
+
+    @Test
+    public void parseCommand_findStarsLessThan() throws Exception {
+        FindStarsLessThanCommand command = (FindStarsLessThanCommand) parser.parseCommand(
+                FindStarsLessThanCommand.COMMAND_WORD + " 2");
+        assertEquals(new FindStarsLessThanCommand(new StarsLessThanPredicate(2)), command);
     }
 
     @Test
