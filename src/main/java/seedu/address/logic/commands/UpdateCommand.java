@@ -81,7 +81,7 @@ public class UpdateCommand extends Command {
         }
 
         if (personNotFound) {
-            throw new CommandException(Messages.MESSAGE_PERSON_NOT_FOUND_INDEX);
+            throw new CommandException(Messages.MESSAGE_PERSON_NOT_FOUND);
         }
 
         Person updatedPerson = createUpdatedPerson(personToUpdate, updatePersonDescriptor);
@@ -185,6 +185,10 @@ public class UpdateCommand extends Command {
             return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
         }
 
+        public void setNric(Nric nric) {
+            this.nric = nric;
+        }
+
         public Nric getNric() {
             return nric;
         }
@@ -211,6 +215,14 @@ public class UpdateCommand extends Command {
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
+        }
+
+        public void setDateOfBirth(DateOfBirth dateOfBirth) {
+            this.dateOfBirth = dateOfBirth;
+        }
+
+        public Optional<DateOfBirth> getDateOfBirth() {
+            return Optional.ofNullable(dateOfBirth);
         }
 
         public void setSex(Sex sex) {

@@ -217,6 +217,15 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(nric, name, phone, address, dateOfBirth, sex, status);
+        Person p = new Person(nric, name, phone, address, dateOfBirth, sex, status);
+        p.setEmail(email);
+        p.setCountry(country);
+        p.setAllergies(allergies);
+        p.setBloodType(bloodType);
+        p.setCondition(condition);
+        p.setDateOfAdmission(dateOfAdmission);
+        p.setDiagnosis(diagnosis);
+        p.setSymptom(symptom);
+        return p;
     }
 }
