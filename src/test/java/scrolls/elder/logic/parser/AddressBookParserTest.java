@@ -45,9 +45,30 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_delete() throws Exception {
+    public void parseCommand_delete1() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + TypicalIndexes.INDEX_FIRST_PERSON.getOneBased());
+                DeleteCommand.COMMAND_WORD_DELETE + " " + TypicalIndexes.INDEX_FIRST_PERSON.getOneBased());
+        assertEquals(new DeleteCommand(TypicalIndexes.INDEX_FIRST_PERSON), command);
+    }
+
+    @Test
+    public void parseCommand_delete2() throws Exception {
+        DeleteCommand command = (DeleteCommand) parser.parseCommand(
+                DeleteCommand.COMMAND_WORD_DEL + " " + TypicalIndexes.INDEX_FIRST_PERSON.getOneBased());
+        assertEquals(new DeleteCommand(TypicalIndexes.INDEX_FIRST_PERSON), command);
+    }
+
+    @Test
+    public void parseCommand_delete3() throws Exception {
+        DeleteCommand command = (DeleteCommand) parser.parseCommand(
+                DeleteCommand.COMMAND_WORD_RM + " " + TypicalIndexes.INDEX_FIRST_PERSON.getOneBased());
+        assertEquals(new DeleteCommand(TypicalIndexes.INDEX_FIRST_PERSON), command);
+    }
+
+    @Test
+    public void parseCommand_delete4() throws Exception {
+        DeleteCommand command = (DeleteCommand) parser.parseCommand(
+                DeleteCommand.COMMAND_WORD_REMOVE + " " + TypicalIndexes.INDEX_FIRST_PERSON.getOneBased());
         assertEquals(new DeleteCommand(TypicalIndexes.INDEX_FIRST_PERSON), command);
     }
 

@@ -16,15 +16,15 @@ import scrolls.elder.model.person.Person;
  */
 public class DeleteCommand extends Command {
 
-    public static final String COMMAND_WORD_DElETE = "delete";
+    public static final String COMMAND_WORD_DELETE = "delete";
     public static final String COMMAND_WORD_DEL = "del";
     public static final String COMMAND_WORD_RM = "rm";
     public static final String COMMAND_WORD_REMOVE = "remove";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD_DElETE
+    public static final String MESSAGE_USAGE = COMMAND_WORD_DELETE
             + ": Deletes the person identified by the index number used in the displayed person list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD_DElETE + " 1"
+            + "Example: " + COMMAND_WORD_DELETE + " 1"
             + "Alternatively, you can also delete a person using the following commands as well.\n"
             + "Example: " + COMMAND_WORD_DEL + " 1"
             + "Example: " + COMMAND_WORD_RM + " 1"
@@ -54,9 +54,7 @@ public class DeleteCommand extends Command {
 
         Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
 
-        /**
-         * Check if the person to be deleted is paired with another person.
-         */
+        //Check if the person to be deleted is paired with another person.
         if (personToDelete.isPairPresent(personToDelete)) {
             throw new CommandException(MESSAGE_DELETE_PERSON_ERROR + Messages.MESSAGE_CONTACT_PAIRED_BEFORE_DELETE);
         }
