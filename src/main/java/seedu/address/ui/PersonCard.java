@@ -7,6 +7,8 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import seedu.address.model.person.Person;
 
 /**
@@ -40,6 +42,10 @@ public class PersonCard extends UiPart<Region> {
     private Label email;
     @FXML
     private FlowPane tags;
+    @FXML
+    private Label company;
+    @FXML
+    private Circle priorityDot;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -52,6 +58,16 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
+        company.setText(person.getCompany().value);
+
+        String priorityValue = person.getPriority().value;
+        if ("high".equals(priorityValue)) {
+            priorityDot.setFill(Color.RED);
+        } else if ("med".equals(priorityValue)) {
+            priorityDot.setFill(Color.ORANGE);
+        } else {
+            priorityDot.setVisible(false);
+        }
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
