@@ -23,7 +23,7 @@ public class FindCommandParserTest {
 
     @Test
     public void parse_emptyId_throwsParseException() {
-        assertParseFailure(parser, "i/ ",
+        assertParseFailure(parser, "id/ ",
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
     }
 
@@ -35,7 +35,7 @@ public class FindCommandParserTest {
 
     @Test
     public void parse_emptyIdAndName_throwsParseException() {
-        assertParseFailure(parser, "i/    n/ ",
+        assertParseFailure(parser, "id/    n/ ",
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
     }
 
@@ -58,18 +58,18 @@ public class FindCommandParserTest {
         // Query by ID - no leading and trailing whitespaces
         FindCommand expectedFindIdCommand =
             new FindCommand(new IdContainsQueryIdPredicate("A1234567X"));
-        assertParseSuccess(parser, "find i/A1234567X", expectedFindIdCommand);
+        assertParseSuccess(parser, "find id/A1234567X", expectedFindIdCommand);
 
         // Query by ID - multiple whitespaces
-        assertParseSuccess(parser, "find i/    A1234567X   ", expectedFindIdCommand);
+        assertParseSuccess(parser, "find id/    A1234567X   ", expectedFindIdCommand);
 
         // Query by ID And Name - no leading and trailing whitespaces
         FindCommand expectedFindIdAndNameCommand =
             new FindCommand(new IdAndNameContainsQueryIdAndNamePredicate("A1234567X", "John Doe"));
-        assertParseSuccess(parser, "find i/A1234567X n/John Doe", expectedFindIdAndNameCommand);
+        assertParseSuccess(parser, "find id/A1234567X n/John Doe", expectedFindIdAndNameCommand);
 
         // Query by ID And Name - multiple whitespaces between keywords
-        assertParseSuccess(parser, "find i/    A1234567X    n/  John Doe   ", expectedFindIdAndNameCommand);
+        assertParseSuccess(parser, "find id/    A1234567X    n/  John Doe   ", expectedFindIdAndNameCommand);
 
     }
 

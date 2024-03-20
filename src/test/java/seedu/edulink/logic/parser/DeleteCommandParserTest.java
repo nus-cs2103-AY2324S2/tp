@@ -28,7 +28,7 @@ public class DeleteCommandParserTest {
 
     @Test
     public void parse_validStudentIdArgs_returnsDeleteCommand() {
-        assertParseSuccess(parser, " i/A0251893P", new DeleteCommand(ALICE.getId()));
+        assertParseSuccess(parser, " id/A0251893P", new DeleteCommand(ALICE.getId()));
     }
 
     @Test
