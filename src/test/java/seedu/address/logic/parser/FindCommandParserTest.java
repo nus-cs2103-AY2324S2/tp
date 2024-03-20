@@ -1,7 +1,7 @@
 package seedu.address.logic.parser;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.Arrays;
@@ -18,15 +18,15 @@ import seedu.address.model.person.RelationshipContainsKeywordsPredicate;
 import seedu.address.model.person.TagContainsKeywordsPredicate;
 import seedu.address.testutil.PersonBuilder;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 public class FindCommandParserTest {
 
     private FindCommandParser parser = new FindCommandParser();
 
     @Test
     public void parse_emptyArg_throwsParseException() {
-        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE), () -> parser.parse("     "));
+        assertThrows(ParseException.class,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE), ()
+                        -> parser.parse("     "));
     }
 
     @Test
@@ -50,7 +50,8 @@ public class FindCommandParserTest {
 
     @Test
     public void parse_validRelationshipKeywords_returnsFindCommand() throws ParseException {
-        Predicate<Person> combinedPredicate = new RelationshipContainsKeywordsPredicate(Arrays.asList("client", "partner"));
+        Predicate<Person> combinedPredicate =
+                new RelationshipContainsKeywordsPredicate(Arrays.asList("client", "partner"));
         FindCommand command = parser.parse(" r/client r/partner");
 
         List<Person> testPersons = Arrays.asList(
@@ -66,7 +67,8 @@ public class FindCommandParserTest {
 
     @Test
     public void parse_validTagKeywords_returnsFindCommand() throws ParseException {
-        Predicate<Person> combinedPredicate = new TagContainsKeywordsPredicate(Arrays.asList("friends", "colleagues"));
+        Predicate<Person> combinedPredicate =
+                new TagContainsKeywordsPredicate(Arrays.asList("friends", "colleagues"));
         FindCommand command = parser.parse(" t/friends t/colleagues");
 
         List<Person> testPersons = Arrays.asList(
@@ -105,7 +107,8 @@ public class FindCommandParserTest {
         Predicate<Person> combinedPredicate = new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob"))
                 .or(new RelationshipContainsKeywordsPredicate(Arrays.asList("client", "partner")))
                 .or(new TagContainsKeywordsPredicate(Arrays.asList("friends", "colleagues")));
-        FindCommand command = parser.parse(" \n n/Alice \n \t n/Bob \t r/client \n r/partner \t t/friends \n t/colleagues");
+        FindCommand command =
+                parser.parse(" \n n/Alice \n \t n/Bob \t r/client \n r/partner \t t/friends \n t/colleagues");
 
         List<Person> testPersons = Arrays.asList(
                 new PersonBuilder().withName("Alice").withRelationship("client").withTags("friends").build(),

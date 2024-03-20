@@ -19,14 +19,17 @@ public class RelationshipContainsKeywordsPredicateTest {
         List<String> firstPredicateKeywordList = Collections.singletonList("Client");
         List<String> secondPredicateKeywordList = Arrays.asList("Client", "Partner");
 
-        RelationshipContainsKeywordsPredicate firstPredicate = new RelationshipContainsKeywordsPredicate(firstPredicateKeywordList);
-        RelationshipContainsKeywordsPredicate secondPredicate = new RelationshipContainsKeywordsPredicate(secondPredicateKeywordList);
+        RelationshipContainsKeywordsPredicate firstPredicate =
+                new RelationshipContainsKeywordsPredicate(firstPredicateKeywordList);
+        RelationshipContainsKeywordsPredicate secondPredicate =
+                new RelationshipContainsKeywordsPredicate(secondPredicateKeywordList);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        RelationshipContainsKeywordsPredicate firstPredicateCopy = new RelationshipContainsKeywordsPredicate(firstPredicateKeywordList);
+        RelationshipContainsKeywordsPredicate firstPredicateCopy =
+                new RelationshipContainsKeywordsPredicate(firstPredicateKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -42,7 +45,8 @@ public class RelationshipContainsKeywordsPredicateTest {
     @Test
     public void test_relationshipContainsKeywords_returnsTrue() {
         // One keyword
-        RelationshipContainsKeywordsPredicate predicate = new RelationshipContainsKeywordsPredicate(Collections.singletonList("Client"));
+        RelationshipContainsKeywordsPredicate predicate =
+                new RelationshipContainsKeywordsPredicate(Collections.singletonList("Client"));
         assertTrue(predicate.test(new PersonBuilder().withRelationship("Client").build()));
 
         // Multiple keywords
@@ -59,7 +63,8 @@ public class RelationshipContainsKeywordsPredicateTest {
     @Test
     public void test_relationshipDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
-        RelationshipContainsKeywordsPredicate predicate = new RelationshipContainsKeywordsPredicate(Collections.emptyList());
+        RelationshipContainsKeywordsPredicate predicate =
+                new RelationshipContainsKeywordsPredicate(Collections.emptyList());
         assertFalse(predicate.test(new PersonBuilder().withRelationship("Client").build()));
 
         // Non-matching keyword
@@ -73,7 +78,8 @@ public class RelationshipContainsKeywordsPredicateTest {
         List<String> keywords = List.of("Client", "Partner");
         RelationshipContainsKeywordsPredicate predicate = new RelationshipContainsKeywordsPredicate(keywords);
 
-        String expected = RelationshipContainsKeywordsPredicate.class.getCanonicalName() + "{keywords=" + keywords + "}";
+        String expected =
+                RelationshipContainsKeywordsPredicate.class.getCanonicalName() + "{keywords=" + keywords + "}";
         assertEquals(expected, predicate.toString());
     }
 
