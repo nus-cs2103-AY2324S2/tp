@@ -21,6 +21,7 @@ Class JsonSerializableStaffBook
 Class JsonAdaptedPerson
 Class JsonAdaptedTag
 Class JsonAdaptedAvailability
+Class JsonAdaptedMeeting
 }
 
 }
@@ -41,5 +42,7 @@ JsonStaffBookStorage ..> JsonSerializableStaffBook
 JsonSerializableStaffBook --> "*" JsonAdaptedPerson
 JsonAdaptedPerson --> "*" JsonAdaptedTag
 JsonAdaptedPerson --> "*" JsonAdaptedAvailability
+JsonAdaptedPerson --> "*" JsonAdaptedMeeting
+
 
 @enduml
