@@ -1,6 +1,7 @@
 package seedu.address.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.order.Quantity;
@@ -19,7 +20,7 @@ public class JsonAdaptedQuantity {
      * @param quantityNumber Quantity number that the Quantity should have.
      */
     @JsonCreator
-    public JsonAdaptedQuantity(Integer quantityNumber) {
+    public JsonAdaptedQuantity(@JsonProperty("quantity") Integer quantityNumber) {
         this.quantityNumber = quantityNumber;
     }
 

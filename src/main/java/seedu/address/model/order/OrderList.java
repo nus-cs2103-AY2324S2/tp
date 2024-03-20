@@ -69,6 +69,18 @@ public class OrderList implements Iterable<Order> {
     }
 
     /**
+     * Adds an {@code Order} to the {@code OrderList} of this addressbook with a predefined ID (for storage purposes).
+     * @param toAdd Order Object to be added into the Order List.
+     * @param iD Order ID to be used in the adding of the Order.
+     */
+    public void addOrderWithID(Order toAdd, int iD) {
+        requireNonNull(toAdd);
+        orderList.put(iD, toAdd);
+        internalList.add(toAdd);
+        orderIdCounter = iD + 1; //when restoring, makes sure that the next order id created is highest.
+    }
+
+    /**
      * Replaces the order {@code target} in the list with {@code editedOrder}.
      * {@code target} must exist in the list.
      */
@@ -81,6 +93,7 @@ public class OrderList implements Iterable<Order> {
         }
 
         internalList.set(index, editedOrder);
+        orderList.put(target.getId(), editedOrder);
     }
 
     /**

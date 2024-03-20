@@ -153,7 +153,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public Order setOrder(Order order, Product product, Quantity quantity) {
+        public Order editOrder(Order order, Product product, Quantity quantity) {
             throw new AssertionError("This method should not be called.");
         }
 
