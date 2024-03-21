@@ -1,9 +1,18 @@
 package seedu.address.logic.commands;
 
-import javafx.collections.ObservableList;
+import static java.util.Objects.requireNonNull;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.Assert.assertThrows;
+
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.function.Predicate;
+
 import org.junit.jupiter.api.Test;
+
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.logic.Messages;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
@@ -11,68 +20,38 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.project.Task;
-import seedu.address.testutil.PersonBuilder;
 
-import java.nio.file.Path;
-import java.util.*;
-import java.util.function.Predicate;
+public class AddTaskCommandTest {
 
-import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-
-class AddTaskCommandTest {
-
-    Task tempTask = new Task("Presentation");
+    private Person taskProject = new Person(new Name("default"));
 
     @Test
-    public void constructor_nullProject_throwsNullPointerException() {
-        Person validPerson = new PersonBuilder().build();
-        assertThrows(NullPointerException.class, () -> new AddTaskCommand(null, validPerson));
-        assertThrows(NullPointerException.class, () -> new AddTaskCommand(tempTask, null));
-        assertThrows(NullPointerException.class, () -> new AddTaskCommand(null, null));
+    public void constructor_nullPerson_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new AddTaskCommand(null, taskProject));
     }
-
 
     @Test
     public void equals() {
-        Person presentation = new PersonBuilder().withName("Presentation").build();
-        Person duke = new PersonBuilder().withName("Duke chatbot").build();
-
-        Task rehearse = new Task("rehearse");
-        Task rehearseCopy = new Task("rehearse");
-        Task script = new Task("write scipt");
-        AddTaskCommand addTaskCommand = new AddTaskCommand(rehearse, presentation);
-        AddTaskCommand addTaskCommandCopy = new AddTaskCommand(rehearseCopy, presentation);
-        AddTaskCommand addTaskCommandScript = new AddTaskCommand(script, presentation);
-        AddTaskCommand addTaskCommandScript2 = new AddTaskCommand(rehearse, duke);
-
-        // different project, same task -> returns false
-        assertFalse(addTaskCommand.equals(addTaskCommandScript2));
+        Task alice = new Task("Alice");
+        Task bob = new Task("Bob");
+        AddTaskCommand addAliceCommand = new AddTaskCommand(alice, taskProject);
+        AddTaskCommand addBobCommand = new AddTaskCommand(bob, taskProject);
 
         // same object -> returns true
-        assertTrue(addTaskCommand.equals(addTaskCommand));
+        assertTrue(addAliceCommand.equals(addAliceCommand));
 
         // same values -> returns true
-        assertTrue(addTaskCommand.equals(addTaskCommandCopy));
+        AddTaskCommand addAliceCommandCopy = new AddTaskCommand(alice, taskProject);
+        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
 
         // different types -> returns false
-        assertFalse(addTaskCommand.equals(1));
+        assertFalse(addAliceCommand.equals(1));
 
         // null -> returns false
-        assertFalse(addTaskCommand.equals(null));
+        assertFalse(addAliceCommand.equals(null));
 
-        // different project -> returns false
-        assertFalse(addTaskCommand.equals(addTaskCommandScript));
-
-    }
-
-    @Test
-    void testToString() {
-        AddTaskCommand addTaskCommand = new AddTaskCommand(tempTask, ALICE);
-        String expected = AddTaskCommand.class.getCanonicalName() + "{toAdd=" + tempTask + "}";
-        assertEquals(expected, addTaskCommand.toString());
+        // different person -> returns false
+        assertFalse(addAliceCommand.equals(addBobCommand));
     }
 
     /**
@@ -158,9 +137,43 @@ class AddTaskCommandTest {
     /**
      * A Model stub that contains a single person.
      */
-    private class ModelStubWithTask extends AddTaskCommandTest.ModelStub {
-        private final Map<String, List<Task>> tasksByProject = new HashMap<>();
+    private class ModelStubWithPerson extends ModelStub {
+        private final Person person;
 
+        ModelStubWithPerson(Person person) {
+            requireNonNull(person);
+            this.person = person;
+        }
+
+        @Override
+        public boolean hasPerson(Person person) {
+            requireNonNull(person);
+            return this.person.isSamePerson(person);
+        }
+    }
+
+    /**
+     * A Model stub that always accept the person being added.
+     */
+    private class ModelStubAcceptingPersonAdded extends ModelStub {
+        final ArrayList<Person> personsAdded = new ArrayList<>();
+
+        @Override
+        public boolean hasPerson(Person person) {
+            requireNonNull(person);
+            return personsAdded.stream().anyMatch(person::isSamePerson);
+        }
+
+        @Override
+        public void addPerson(Person person) {
+            requireNonNull(person);
+            personsAdded.add(person);
+        }
+
+        @Override
+        public ReadOnlyAddressBook getAddressBook() {
+            return new AddressBook();
+        }
     }
 
 }

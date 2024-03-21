@@ -63,9 +63,6 @@ public class Person {
         return foundTask.get();
     }
 
-    /**
-     * Returns the name of the Person
-     */
     public Name getName() {
         return name;
     }
