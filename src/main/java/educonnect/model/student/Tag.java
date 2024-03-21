@@ -10,8 +10,8 @@ import static java.util.Objects.requireNonNull;
 public class Tag {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Tags names should be alphanumeric or with a '-' between two alphanumeric description";
-    public static final String VALIDATION_REGEX = "^[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)?";
+            "Tags should only contain alphanumeric characters, spaces and hyphens, and it should not be blank";
+    public static final String VALIDATION_REGEX = "^[\\p{Alnum}][\\p{Alnum} -]*";
 
     public final String tagName;
 
