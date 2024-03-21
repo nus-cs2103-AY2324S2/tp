@@ -106,6 +106,11 @@ How the `Logic` component works:
    Note that although this is shown as a single step in the diagram above (for simplicity), in the code it can take several interactions (between the command object and the `Model`) to achieve.
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
+Here are other sequence diagram to illustrate the interactions within the `Logic` component, taking `execute("list client")` API call:
+
+![Interactions Inside the Logic Component for the `list client` Command](images/ListSequenceDiagram.png)
+
+
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
 <img src="images/ParserClasses.png" width="600"/>
