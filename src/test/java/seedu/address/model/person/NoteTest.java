@@ -32,4 +32,31 @@ public class NoteTest {
         // different values -> returns false
         assertFalse(note.equals(new Note("Other Valid Note")));
     }
+
+
+    @Test
+    public void isMatch() {
+        Note note = new Note("Likes to eat");
+
+        // Exact match -> returns true
+        assertTrue(note.isMatch("Likes to eat"));
+
+        // Substring whole word -> returns true
+        assertTrue(note.isMatch(" Likes"));
+
+        // Substring partial word -> returns true
+        assertTrue(note.isMatch(" Lik"));
+
+        // Substring case mismatch -> returns true
+        assertTrue(note.isMatch(" lik"));
+
+        // Additional whitespace
+        assertTrue(note.isMatch(" Likes to eat\n"));
+
+        // Substring mismatch
+        assertFalse(note.isMatch("run"));
+
+        // Different type
+        assertFalse(note.isMatch(1));
+    }
 }
