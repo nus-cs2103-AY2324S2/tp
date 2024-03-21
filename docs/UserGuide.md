@@ -117,8 +117,9 @@ Examples:
 
 Finds persons whose names contain any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find [n/NAME] [a/ADDRESS] [t/TAG]`
 
+* `find` needs to have at least one of `n/NAME`, `a/ADDRESS`, or `t/TAG` to run.
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
@@ -127,24 +128,11 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
+* `find n/John` returns `john` and `John Doe`
+* `find n/alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
-
-### Search by tag: `find_by_tag`
-* Finds users by tag, optionally with another filter based on their other personal details.
-
-Format: `find_by_tag TAG [n/NAME] [a/ADDRESS]`
-
-* `TAG` needs to be a tag
-* `NAME` needs to be a substring of a person's name
-* `ADDRESS` needs to be a substring of a person's address
-
-Examples:
-* `find_by_tag cs2103t`
-* `find_by_tag n/zilong`
-* `find_by_tag a/ang mo kio avenue 10 `
-
+* `find n/alex david t/friends` will only return `Alex Yeoh`.
+* `find a/Serangoon` will return `Bernice Yu` and `David Li`.
 
 ### Exporting a subset of data: `find_and_export`
 Exports the users that are filtered by a tag and other optional parameters.
@@ -238,9 +226,8 @@ Furthermore, certain edits can cause Student Contact Manager to behave in unexpe
 | **Clear**           | `clear`                                                                                                                                                               |
 | **Delete**          | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
 | **Edit**            | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG] ...`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                         |
-| **Find**            | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
+| **Find**            | `find [n/NAME] [a/ADDRESS] [t/TAG]` <br> e.g., `find James Jake`                                                                                                      |
 | **List**            | `list`                                                                                                                                                                |
 | **Help**            | `help`                                                                                                                                                                |
-| **find_by_tag**     | `find_by_tag TAG [n/NAME] [a/ADDRESS]`                                                                                                                                |
 | **find_and_export** | `find_and_export TAG [n/NAME] [a/ADDRESS] [o/FILENAME]`                                                                                                               |
 | **import**          | `import f/FILENAME_1 [f/FILENAME_2] [f/FILENAME_3] ...`                                                                                                               |
