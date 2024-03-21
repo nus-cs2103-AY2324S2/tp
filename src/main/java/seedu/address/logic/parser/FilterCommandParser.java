@@ -1,6 +1,5 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.Arrays;
@@ -30,6 +29,12 @@ public class FilterCommandParser implements Parser<FilterCommand> {
         }
 
         String[] groupKeywords = trimmedArgs.split("\\s+");
+
+        for (String keyword : groupKeywords) {
+            if (!Group.isValidGroupName(keyword)) {
+                throw new ParseException(Group.MESSAGE_CONSTRAINTS);
+            }
+        }
 
         return new FilterCommand(new GroupContainsKeywordsPredicate(Arrays.asList(groupKeywords)));
     }

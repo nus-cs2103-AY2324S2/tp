@@ -1,16 +1,12 @@
 package seedu.address.logic.commands;
 
-import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNull;
 
-import static seedu.address.commons.util.AppUtil.checkArgument;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.group.GroupContainsKeywordsPredicate;
-import seedu.address.model.group.Group;
+
 
 
 /**
@@ -40,7 +36,6 @@ public class FilterCommand extends Command {
                 String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
     }
 
-
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -64,9 +59,4 @@ public class FilterCommand extends Command {
     }
 }
 
-//    @Override
-//    public boolean equals(Object other) {
-//        return other == this // short circuit if same object
-//                || (other instanceof FilterCommand // instanceof handles nulls
-//                && predicate.equals(((FilterCommand) other).predicate)); // state check
-//    }
+

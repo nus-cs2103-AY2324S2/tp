@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.person.Person;
-import seedu.address.model.group.Group;
 
 /**
  * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
@@ -49,29 +48,5 @@ public class GroupContainsKeywordsPredicate implements Predicate<Person> {
     public String toString() {
         return new ToStringBuilder(this).add("groups", groups).toString();
     }
-//    private final List<String> keywords;
-//
-//    public GroupContainsKeywordsPredicate(List<String> keywords) {
-//        this.keywords = keywords;
-//    }
-//
-//    @Override
-//    public boolean test(Person person) {
-//        for (Group group: person.getGroups()) {
-//            if (keywords.stream()
-//                    .anyMatch(keyword -> StringUtil.containsStartingWordIgnoreCase(group.groupName, keyword)) == true) {
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
-//
-//    @Override
-//    public boolean equals(Object other) {
-//        return other == this // short circuit if same object
-//                || (other instanceof GroupContainsKeywordsPredicate // instanceof handles nulls
-//                && keywords.equals(((GroupContainsKeywordsPredicate) other).keywords)); // state check
-//    }
-//
 
 }
