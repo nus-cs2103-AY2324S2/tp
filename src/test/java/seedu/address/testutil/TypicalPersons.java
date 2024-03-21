@@ -34,13 +34,11 @@ public class TypicalPersons {
             .withSex("M").withStatus("UNWELL").withEmail("test1@mail.com").withCountry("Malaysia")
             .withAllergies("rashes").withBloodType(new String[]{"B", "POSITIVE"}).withCondition("diabetes")
             .withDateOfAdmission("2023-01-01").withDiagnosis("good").withSymptom("runny nose").build();
-
     public static final Person CARL = new PersonBuilder().withNric("T0284994B").withName("Carl Kurz")
             .withPhone("95352563").withAddress("wall street").withDateOfBirth("2001-01-01")
             .withSex("M").withStatus("PENDING").withEmail("test1@mail.com").withCountry("Malaysia")
             .withAllergies("rashes").withBloodType(new String[]{"B", "POSITIVE"}).withCondition("diabetes")
             .withDateOfAdmission("2023-01-01").withDiagnosis("good").withSymptom("runny nose").build();
-
     public static final Person DANIEL = new PersonBuilder().withNric("S9839571A").withName("Daniel Meier")
             .withPhone("87652533").withAddress("10th street").withDateOfBirth("2001-01-01")
             .withSex("M").withStatus("HEALTHY").withEmail("test1@mail.com").withCountry("Malaysia")
