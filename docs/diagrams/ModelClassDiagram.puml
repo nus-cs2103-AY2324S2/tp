@@ -20,11 +20,13 @@ Class Name
 Class Phone
 Class Department
 Class Tag
+Class Efficiency
 
 Class UniqueTaskList
 Class Task
 Class Deadline
 Class Title
+Class IsDone
 
 Class I #FFFFFF
 }
@@ -50,12 +52,14 @@ Person *--> Address
 Person *--> Department
 Person *--> "*" Tag
 Person *--> Task
+Person *--> Efficiency
 
 AddressBook *--> "1" UniqueTaskList
 UniqueTaskList --> "~* all" Task
 Task *--> Title
 Task *--> Deadline
 Task *--> Person
+Task *--> IsDone
 
 Task -[hidden]up--> I
 UniqueTaskList -[hidden]right-> I
