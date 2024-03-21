@@ -118,5 +118,4 @@ public class ContactBuilder {
         return new Contact(name, phone, email, address, gitHubUsername, techStack, tags);
     }
 
-
 }
