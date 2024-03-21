@@ -37,7 +37,6 @@ public class EditPersonDescriptorBuilder {
         descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
         descriptor.setAddress(person.getAddress());
-        descriptor.setRelationship(person.getRelationship());
         descriptor.setTags(person.getTags());
     }
 
@@ -70,14 +69,6 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withAddress(String address) {
         descriptor.setAddress(new Address(address));
-        return this;
-    }
-
-    /**
-     * Sets the {@code Relationship} of the {@code EditPersonDescriptor} that we are building.
-     */
-    public EditPersonDescriptorBuilder withRelationship(String relationship) {
-        descriptor.setRelationship(new Relationship(relationship));
         return this;
     }
 
