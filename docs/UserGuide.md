@@ -163,6 +163,19 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+### Marking a task : `mark`
+
+Mark the specified task as done.
+
+Format: `mark task/TASKNAME o/INDEX`
+
+* Mark the specified task with `TASKNAME` as done.
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `mark task/Submit Project o/1` mark the task Submit Project assigned to the first person in the address book as done.
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.

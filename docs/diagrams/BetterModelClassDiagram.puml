@@ -29,6 +29,7 @@ Task *--> Deadline
 Task *--> Person
 Task *--> IsDone
 Task *--> Progress
+Task *--> Priority
 
 Department *--> HeadOfDepartment
 
