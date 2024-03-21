@@ -32,7 +32,6 @@ class FavouriteTest {
         // valid favourite
         assertTrue(Favourite.isValidFavourite("Favourite"));
         assertTrue(Favourite.isValidFavourite("Not favourite"));
-        assertTrue(Favourite.isValidFavourite("Arts and Social Sciences"));
     }
 
     @Test
