@@ -18,7 +18,9 @@ Class Address
 Class Email
 Class Name
 Class Phone
+Class GitHubUsername
 Class Tag
+Class TechStack
 
 Class I #FFFFFF
 }
@@ -41,7 +43,9 @@ Person *--> Name
 Person *--> Phone
 Person *--> Email
 Person *--> Address
+Person *--> GitHubUsername
 Person *--> "*" Tag
+Person *--> "*" TechStack
 
 Person -[hidden]up--> I
 UniquePersonList -[hidden]right-> I
