@@ -23,4 +23,14 @@ public class TagTest {
         assertThrows(NullPointerException.class, () -> Tag.isValidTagName(null));
     }
 
+    @Test
+    public void capitaliseTest() {
+        Tag tag = new Tag("software engineer");
+        assert(tag.capitalise().equals("Software Engineer"));
+
+        tag = new Tag("softWare EnginEEr");
+        assert(tag.capitalise().equals("Software Engineer"));
+
+    }
+
 }
