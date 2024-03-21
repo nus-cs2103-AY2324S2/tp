@@ -363,6 +363,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Freelance Tutor**: A tutor that teaches privately, such as a student that teaches on the side
 
 --------------------------------------------------------------------------------------------------------------------
 
