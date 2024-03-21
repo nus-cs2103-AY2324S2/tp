@@ -150,7 +150,7 @@ Format: `addremark INDEX [/remark REMARK]`
 
 Examples:
 *  `addremark 1 /remark This internship has a behavioural interview!` Adds or modifies the remark of the internship at index 1 to be `This internship has a behavioural interview!`.
-[/company COMPANY_NAME] [/pocname NAME_OF_CONTACT] [/email EMAIL_OF_CONTACT] [/number NUMBER_OF_CONTACT] [/location LOCATION_ENUM] [/status STATUS] [/description DESCRIPTION] [/role ROLE]
+
 ### Locating internships by keywords: `find`
 
 Finds internship entries whose specified fields contains the keywords.
