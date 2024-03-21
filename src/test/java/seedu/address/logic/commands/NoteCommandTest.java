@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPersons.getTypicalAddressBookWithoutEmail;
 
 import org.junit.jupiter.api.Test;
 
@@ -20,7 +21,7 @@ class NoteCommandTest {
     private static final String EMPTY_NOTE = "";
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-
+    private Model model_without_email = new ModelManager(getTypicalAddressBookWithoutEmail(), new UserPrefs());
     @Test
     public void execute_addNoteUnfilteredList_success() {
         Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
@@ -51,5 +52,21 @@ class NoteCommandTest {
         expectedModel.setPerson(firstPerson, editedPerson);
 
         assertCommandSuccess(noteCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_addNoteUnfilteredListWithoutEmail_success() {
+        Person firstPerson = model_without_email.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Person editedPerson = new PersonBuilder(firstPerson).withNote(NOTE_STUB).build();
+
+        NoteCommand noteCommand = new NoteCommand(INDEX_FIRST_PERSON, new Note(editedPerson.getNote().getValue()));
+
+        String expectedMessage = String.format(NoteCommand.MESSAGE_ADD_NOTE_SUCCESS,
+                NoteCommand.notePersonMessageGenerator(editedPerson));
+
+        Model expectedModel = new ModelManager(new AddressBook(model_without_email.getAddressBook()), new UserPrefs());
+        expectedModel.setPerson(firstPerson, editedPerson);
+
+        assertCommandSuccess(noteCommand, model_without_email, expectedMessage, expectedModel);
     }
 }
