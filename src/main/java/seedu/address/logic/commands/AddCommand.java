@@ -43,7 +43,7 @@ public class AddCommand extends Command {
             + PREFIX_NOTE + "BFF "
             + PREFIX_TAG + "friend ";
 
-    public static final String MESSAGE_SUCCESS = "Client successfully added!\n%1$s";
+    public static final String MESSAGE_SUCCESS = "Client successfully added!\n--------------------------\n%1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
     private final Person toAdd;
 
@@ -91,7 +91,7 @@ public class AddCommand extends Command {
         }
 
         if (!address.getValue().isEmpty()) {
-            sb.append("| Address: ").append(address);
+            sb.append("\nAddress: ").append(address);
         }
 
         if (!note.getValue().isEmpty()) {
