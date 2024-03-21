@@ -9,6 +9,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.person.Attribute;
 import seedu.address.model.person.Person;
 
 /**
@@ -58,14 +59,14 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
         // Set fields with information from the person
         id.setText(displayedIndex + ". ");
-        name.setText(person.getName().getValue());
-        phone.setText(person.getPhone().getValue());
-        address.setText(person.getAddress().getValue());
-        email.setText(person.getEmail().getValue());
+        name.setText(person.getName().getDisplayableValue());
+        phone.setText(person.getPhone().getDisplayableValue());
+        address.setText(person.getAddress().getDisplayableValue());
+        email.setText(person.getEmail().getDisplayableValue());
         person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.getValue()))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.getValue())));
-        note.setText(person.getNote().getValue());
+                .sorted(Comparator.comparing(Attribute::getDisplayableValue))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.getDisplayableValue())));
+        note.setText(person.getNote().getDisplayableValue());
         qrcode.setImage(new Image(person.getQrCodePath().toUri().toString()));
 
         // Bind manageability (presence) of node based on presence of value for optional

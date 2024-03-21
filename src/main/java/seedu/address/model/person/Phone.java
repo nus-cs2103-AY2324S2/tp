@@ -24,6 +24,12 @@ public class Phone extends Attribute<String> {
         checkArgument(isValidPhone(phone), MESSAGE_CONSTRAINTS);
     }
 
+    @Override
+    public String getDisplayableValue() {
+        final int midPoint = this.getValue().length() / 2;
+        return this.getValue().substring(0, midPoint) + " " + this.getValue().substring(midPoint);
+    }
+
     /**
      * Returns true if a given string is a valid phone number.
      */
