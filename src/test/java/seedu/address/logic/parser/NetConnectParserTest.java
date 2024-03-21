@@ -85,7 +85,7 @@ public class NetConnectParserTest {
 
     @Test
     public void parseCommand_findNum() throws Exception {
-        List<String> phones = Arrays.asList("87438807", "99272758", "foo");
+        List<String> phones = Arrays.asList("87438807", "99272758", "87652533");
         FindNumCommand command = (FindNumCommand) parser.parseCommand(
                 FindNumCommand.COMMAND_WORD + " " + phones.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindNumCommand(new PhoneContainsDigitsPredicate(phones)), command);
