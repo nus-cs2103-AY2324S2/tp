@@ -121,6 +121,11 @@ call as an example.
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline continues till the end of diagram.
 </div>
 
+Another sequence diagram below illustrates the interactions within the `Logic` component, taking
+`execute("tag 1 tag: example")` API call as an example.
+
+![](C:\Repos\TeamProject\docs\images\TagCommand.png)
+
 How the `Logic` component works:
 
 1. When `Logic` is called upon to execute a command, it is passed to an `AddressBookParser` object which in turn creates
