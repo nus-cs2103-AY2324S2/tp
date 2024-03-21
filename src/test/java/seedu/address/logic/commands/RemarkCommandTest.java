@@ -138,4 +138,20 @@ public class RemarkCommandTest {
         assertNotEquals(standardCommand, new RemarkCommand(INDEX_FIRST_PERSON,
                 new Remark(VALID_REMARK_BOB)));
     }
+
+    @Test
+    public void execute_editClientRemarkUnfilteredList_success() {
+        Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Person editedPerson = new ClientBuilder((Client) firstPerson).withRemark(REMARK_STUB).build();
+
+        RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_PERSON, new Remark(editedPerson.getRemark().value));
+
+        String expectedMessage = String.format(RemarkCommand.MESSAGE_ADD_REMARK_SUCCESS, Messages.format(editedPerson));
+
+        Model expectedModel = new ModelManager(new NetConnect(model.getNetConnect()), new UserPrefs());
+        expectedModel.setPerson(firstPerson, editedPerson);
+
+        assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel);
+    }
+
 }

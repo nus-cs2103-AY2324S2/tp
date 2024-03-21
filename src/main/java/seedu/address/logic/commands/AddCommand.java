@@ -109,8 +109,4 @@ public class AddCommand extends Command {
                 .toString();
     }
 
-    public Object getPerson() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getPerson'");
-    }
 }
