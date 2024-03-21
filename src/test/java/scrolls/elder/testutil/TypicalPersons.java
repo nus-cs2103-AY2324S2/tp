@@ -16,6 +16,7 @@ import static scrolls.elder.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import scrolls.elder.model.AddressBook;
 import scrolls.elder.model.person.Person;
@@ -46,10 +47,12 @@ public class TypicalPersons {
             .withEmail("anna@example.com").withAddress("4th street").withRole("befriendee").build();
 
     // Manually added
-    public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withPhone("8482424")
-            .withEmail("stefan@example.com").withAddress("little india").withRole("volunteer").build();
-    public static final Person IDA = new PersonBuilder().withName("Ida Mueller").withPhone("8482131")
-            .withEmail("hans@example.com").withAddress("chicago ave").withRole("befriendee").build();
+    public static final Person HOON = new PersonBuilder().withId(7).withName("Hoon Meier").withPhone("8482424")
+            .withEmail("stefan@example.com").withAddress("little india").withRole("volunteer")
+            .withPairedWith(Optional.of(8)).build();
+    public static final Person IDA = new PersonBuilder().withId(8).withName("Ida Mueller").withPhone("8482131")
+            .withEmail("hans@example.com").withAddress("chicago ave").withRole("befriendee")
+            .withPairedWith(Optional.of(HOON.getName())).build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     // AMY has role VOLUNTEER
@@ -79,6 +82,6 @@ public class TypicalPersons {
     }
 
     public static List<Person> getTypicalPersons() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE, HOON, IDA));
     }
 }
