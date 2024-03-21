@@ -33,4 +33,7 @@ Appointment *--> Notes
 AppointmentView *--> Name
 AppointmentView *--> Appointment
 
+TimePeriod *--> startTime
+TimePeriod *--> endTime
+
 @enduml
