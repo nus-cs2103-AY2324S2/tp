@@ -172,4 +172,15 @@ public class RelationshipUtilTest {
         // Assert that trying to retrieve a non-existing relationship throws an exception
         assertThrows(IllegalArgumentException.class, () -> relationshipUtil.getExistingRelationship(relationship));
     }
+    @Test
+    public void testEqualsMethodWithSameInstance() {
+        RelationshipUtil test = new RelationshipUtil();
+        assertEquals(test.equals(test), true);
+    }
+    @Test
+    public void testEqualsMethodReturnFalseWithDifferentInstance() {
+        RelationshipUtil test = new RelationshipUtil();
+        String test2 = "";
+        assertEquals(test.equals(test2), false);
+    }
 }
