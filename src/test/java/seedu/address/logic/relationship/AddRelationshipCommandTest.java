@@ -63,23 +63,23 @@ class AddRelationshipCommandTest {
         assertCommandFailure(addRelationshipCommand, model,
                 "The UUID provided is invalid.");
     }
-        @Test
-    void testExecute_AddingExistingRelationshipThrowsException() {
+    @Test
+    void testExecuteAddingExistingRelationshipThrowsException() {
         String testOriginUuid = "0001";
         String testTargetUuid = "0002";
         String relationshipDescriptor = "family";
         AddRelationshipCommand addRelationshipCommand =
                 new AddRelationshipCommand(testOriginUuid, testTargetUuid, relationshipDescriptor);
         UUID person1Uuid = UUID.fromString("00000000-0000-0000-0000-000000000001");
-        UUID person2Uuid =  UUID.fromString("00000000-0000-0000-0000-000000000002");
-        String FAMILY_RELATIONSHIP_DESCRIPTOR = "family";
-        model.addRelationship(new Relationship(person1Uuid, person2Uuid, FAMILY_RELATIONSHIP_DESCRIPTOR));
+        UUID person2Uuid = UUID.fromString("00000000-0000-0000-0000-000000000002");
+        String familyRelationshipDescriptor = "family";
+        model.addRelationship(new Relationship(person1Uuid, person2Uuid, familyRelationshipDescriptor));
         assertCommandFailure(addRelationshipCommand, model,
                 "Sorry, 00000000-0000-0000-0000-000000000001 and 00000000-0000-0000-0000-000000000002 are family");
 
     }
     @Test
-    void testExecute_AddInvalidRelationshipDescriptorThrowsException() {
+    void testExecuteAddInvalidRelationshipDescriptorThrowsException() {
         String testOriginUuid = "0001";
         String testTargetUuid = "0002";
         String relationshipDescriptor = "spouse";
