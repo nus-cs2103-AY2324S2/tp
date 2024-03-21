@@ -21,4 +21,5 @@ Person *--> Email
 Person *--> Major
 Person *--> Year
 Person *--> Telegram
+Person *--> "0..1" Remark
 @enduml

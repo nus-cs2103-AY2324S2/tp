@@ -20,6 +20,7 @@ Class Email
 Class Name
 Class Phone
 Class Group
+Class Remark
 
 Class I #FFFFFF
 }
@@ -45,6 +46,7 @@ Person *--> Year
 Person *--> Telegram
 Person *--> Major
 Person *--> "*" Group
+Person *--> "0..1" Remark
 
 Person -[hidden]up--> I
 UniquePersonList -[hidden]right-> I
