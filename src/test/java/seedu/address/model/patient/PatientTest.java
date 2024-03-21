@@ -8,6 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_DATEOFBIRTH_BOB
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SEX_BOB;
 import static seedu.address.testutil.TypicalPatients.ALICE;
 import static seedu.address.testutil.TypicalPatients.BOB;
 
@@ -77,6 +78,14 @@ public class PatientTest {
 
         // different address -> returns false
         editedAlice = new PatientBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
+        assertFalse(ALICE.equals(editedAlice));
+
+        // different date of birth -> returns false
+        editedAlice = new PatientBuilder(ALICE).withDateOfBirth(VALID_DATEOFBIRTH_BOB).build();
+        assertFalse(ALICE.equals(editedAlice));
+
+        // different sex -> returns false
+        editedAlice = new PatientBuilder(ALICE).withSex(VALID_SEX_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
     }
 

@@ -20,7 +20,7 @@ import seedu.address.model.patient.exceptions.PatientNotFoundException;
  *
  * Supports a minimal set of list operations.
  *
- * @see Patient#isSamePerson(Patient)
+ * @see Patient#isSamePatient(Patient)
  */
 public class UniquePatientList implements Iterable<Patient> {
 

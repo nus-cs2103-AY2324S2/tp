@@ -69,7 +69,8 @@ public class Patient {
         }
 
         return otherPatient != null
-                && otherPatient.getName().equals(getName());
+                && otherPatient.getName().equals(getName())
+                && otherPatient.getPhone().equals(getPhone());
     }
 
     /**
