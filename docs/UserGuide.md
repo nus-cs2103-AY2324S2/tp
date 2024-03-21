@@ -190,7 +190,7 @@ Parameters:
 Examples:
 - `find John`
 - `find C++`
-- `find CS2103T_G18`
+- `find CS2103T G18`
 
 ### Deleting a contact : `delete`
 
@@ -216,8 +216,8 @@ Parameters:
 - `COURSEMATE` (zero or multiple allowed): Name of the existing coursemates to be added to the group. Accepts aliases (substrings or in hashtag (#) notation).
 
 Examples:
-- `create-group CS2103T_G18`
-- `create-group CS2103T_G18 -cm John -cm #2`
+- `create-group CS2103T G18`
+- `create-group CS2103T G18 -cm John -cm #2`
 
 ### Add coursemates to group: `add-member`
 Adds some team members to an existing group.
@@ -229,8 +229,8 @@ Parameters:
 - `COURSEMATE`: Name of the existing coursemates to be added to the group. Accepts aliases (substrings or in hashtag (#) notation).
 
 Examples:
-- `add-member CS2103T_G18 -cm Ivan -cm #1`
-- `add-member CS2103T_G18 -cm ##`
+- `add-member CS2103T G18 -cm Ivan -cm #1`
+- `add-member CS2103T G18 -cm ##`
 
 <box type="tip" seamless>
 
@@ -248,15 +248,15 @@ Parameters:
 - `COURSEMATE`: Name of the existing coursemates to be deleted from the group. Accepts aliases (substrings or in hashtag (#) notation).
 
 Examples:
-- `delete-member CS2103T_G18 -cm Ivan -cm #1`
-- `delete-member CS2103T_G18 -cm ##`
+- `delete-member CS2103T G18 -cm Ivan -cm #1`
+- `delete-member CS2103T G18 -cm ##`
 
 ### Delete a group: `delete-group`
 Deletes a group.
 
 Format: `delete-group GROUP_NAME`
 
-Example: `delete-group CS2103T_G18`
+Example: `delete-group CS2103T G18`
 
 Parameters:
 - `GROUP_NAME`: Name of the existing group.
@@ -310,12 +310,12 @@ Furthermore, certain edits can cause the MatchMate to behave in unexpected ways 
 Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 **Add coursemate**    | `add NAME [-p PHONE_NUMBER] [-e EMAIL] [-s SKILL]…​` <br> e.g., `add John Doe -p 87654321 -e johndoe@example.com -s Leadership -s C++`
-**Add group member**    |   `add-member GROUP_NAME [-cm COURSEMATE]...` <br> e.g., `add-member CS2103T_G18 -cm Ivan -cm ##`
+**Add group member**    |   `add-member GROUP_NAME [-cm COURSEMATE]...` <br> e.g., `add-member CS2103T G18 -cm Ivan -cm ##`
 **Add skill**   |   ` add-skill COURSEMATE [-s SKILL]...` <br> e.g., `add-skill John Doe -s C++ -s Leadership`
 **Clear**  | `clear`
-**Create group**    |   `create-group GROUP_NAME [-cm COURSEMATE]` <br> e.g., `create-group CS2103T_G18 -cm John -cm #2`
+**Create group**    |   `create-group GROUP_NAME [-cm COURSEMATE]` <br> e.g., `create-group CS2103T G18 -cm John -cm #2`
 **Delete coursemate**  | `delete COURSEMATE` <br> e.g., `delete John`
-**Delete group**    | `delete-group GROUP_NAME` <br> e.g., `delete-group CS2103T_G18`
+**Delete group**    | `delete-group GROUP_NAME` <br> e.g., `delete-group CS2103T G18`
 **Delete group member**    |   `delete-member GROUP_NAME [-cm COURSEMATE]` <br> e.g., `delete-member -cm Ivan -cm #1`
 **Delete skill** | `delete-skill COURSEMATE [-s SKILL]...` <br> e.g., `delete-skill John Doe -s C++ -s Leadership `
 **Edit coursemate**   | `edit COURSEMATE [-n NEW_NAME] [-p NEW_PHONE_NUMBER] [-e NEW_EMAIL]…​`<br> e.g.,`edit John -p 98765432 -e johndoe@gmail.com`
