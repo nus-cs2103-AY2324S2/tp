@@ -1,0 +1,87 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+Actor User as User USER_COLOR
+participant ":Ui" as Ui UI_COLOR
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":NoteCommandParser" as NoteCommandParser LOGIC_COLOR
+participant "n:NoteCommand" as NoteCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+participant "m:Model" as Model MODEL_COLOR
+participant ":Storage" as Storage STORAGE_COLOR
+
+User -[USER_COLOR]> Ui : "note 1 note/Likes to eat"
+activate Ui UI_COLOR
+
+Ui -[UI_COLOR]> LogicManager : execute("note 1 note/Likes to eat")
+activate LogicManager LOGIC_COLOR
+
+LogicManager -[LOGIC_COLOR]> AddressBookParser : parseCommand("note 1 note/Likes to eat")
+activate AddressBookParser LOGIC_COLOR
+
+create NoteCommandParser
+AddressBookParser -[LOGIC_COLOR]> NoteCommandParser
+activate NoteCommandParser LOGIC_COLOR
+
+NoteCommandParser --[LOGIC_COLOR]> AddressBookParser
+deactivate NoteCommandParser
+
+AddressBookParser -[LOGIC_COLOR]> NoteCommandParser : parse(" 1 note/Likes to eat")
+activate NoteCommandParser LOGIC_COLOR
+
+create NoteCommand
+NoteCommandParser -[LOGIC_COLOR]> NoteCommand
+activate NoteCommand LOGIC_COLOR
+
+NoteCommand --[LOGIC_COLOR]> NoteCommandParser :
+deactivate NoteCommand
+
+NoteCommandParser --[LOGIC_COLOR]> AddressBookParser : n
+deactivate NoteCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+'This means that the instantiation of the parser is not saved in a variable.
+NoteCommandParser -[hidden]-> AddressBookParser
+destroy NoteCommandParser
+
+AddressBookParser --[LOGIC_COLOR]> LogicManager : n
+deactivate AddressBookParser
+
+LogicManager -[LOGIC_COLOR]> NoteCommand : execute(m)
+activate NoteCommand LOGIC_COLOR
+
+NoteCommand -[LOGIC_COLOR]> Model : setPerson(1, "Likes to eat");
+activate Model MODEL_COLOR
+
+Model --[MODEL_COLOR]> NoteCommand
+deactivate Model
+
+create CommandResult
+NoteCommand -[LOGIC_COLOR]> CommandResult
+activate CommandResult LOGIC_COLOR
+
+CommandResult --[LOGIC_COLOR]> NoteCommand
+deactivate CommandResult
+
+NoteCommand --[LOGIC_COLOR]> LogicManager : r
+deactivate NoteCommand
+
+LogicManager -[LOGIC_COLOR]> Storage : saveAddressBook(addressBook)
+activate Storage STORAGE_COLOR
+
+Storage -[STORAGE_COLOR]> Storage : Save to file
+activate Storage STORAGE_COLOR_T1
+
+Storage --[STORAGE_COLOR_T1]> Storage
+deactivate Storage
+
+Storage --[STORAGE_COLOR]> LogicManager
+deactivate Storage
+
+LogicManager --[LOGIC_COLOR]> Ui : r
+deactivate LogicManager
+
+Ui --[UI_COLOR]> User : r
+deactivate Ui
+@enduml

@@ -4,14 +4,18 @@ title: Developer Guide
 ---
 
 * Table of Contents
-  {:toc}
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the
-  original source as well}
+| Module                                  | Description                               |
+|-----------------------------------------|-------------------------------------------|
+| [JavaFX](https://openjfx.io/)                   | UI generation for Java |
+| [Jackson](https://github.com/FasterXML/jackson) | Json processing library for Java |
+| [JUnit5](https://github.com/junit-team/junit5)  | Automated testing library for Java |
+| [ZXing](https://github.com/zxing/zxing)         | Barcode image processing library for Java |
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -25,9 +29,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document `docs/diagrams` folder. Refer to the [
-_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create
-and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document are located in the `docs/diagrams` folder. Refer to the [PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 ### Architecture
@@ -38,7 +40,7 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 Given below is a quick overview of main components and how they interact with each other.
 
-**Main components of the architecture**
+**Main components of the architecture**<a name="main-components-of-the-architecture"></a>
 
 **`Main`** (consisting of
 classes [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java)
@@ -106,8 +108,7 @@ The `UI` component,
 
 ### Logic component
 
-**API
-** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -147,8 +148,7 @@ How the parsing works:
 
 ### Model component
 
-**API
-** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
@@ -168,12 +168,12 @@ The `Model` component,
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
+
 </div>
 
 ### Storage component
 
-**API
-** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -195,6 +195,24 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### QR Code Generation
+
+The following activity diagram summarizes what happens when a QR Code is generated for any `Person`.
+
+![QRGenerationActivityDiagram](images/QRGenerationActivityDiagram.png)
+
+_vCard_ is a data format for contact information. Detailed information can be found in [RFC 6350](https://datatracker.ietf.org/doc/html/rfc6350).
+
+### Adding a Note To An Existing Client
+
+The sequence diagram below shows how the components interact with each other when the user inputs the command `note 1 note/Likes to eat`.
+
+![AddNoteSequenceDiagram](images/AddNoteSequenceDiagram.png)
+
+The diagram highlights the four main components of FitBook, highlighted in their respective colors. For more information regarding the four main components, see [Main components of the architecture](#main-components-of-the-architecture).
+
+> The above sequence diagram also applies to the removal of a note from an existing client when no input string or prefix is entered for the `note` command. (i.e. `note 1`, or `note 1 note/`).
 
 ### \[Proposed\] Undo/redo feature
 
@@ -375,7 +393,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 3a1. FitBook shows an error message.
 
-      Use case resumes at step 2 
+      Use case resumes at step 2
 
 <hr>
 

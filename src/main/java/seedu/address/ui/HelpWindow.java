@@ -9,25 +9,31 @@ import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.Clipboard;
+import javafx.scene.input.ClipboardContent;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.util.AppUtil;
+import seedu.address.commons.util.AppUtil.OS;
 
 /**
  * Controller for a help page
  */
 public class HelpWindow extends UiPart<Stage> {
-
     public static final String USERGUIDE_URL = "https://ay2324s2-cs2103t-t17-3.github.io/tp/UserGuide.html";
     public static final String HELP_MESSAGE = "Available commands:\n"
             + "help \t- Shows this window.\n"
-            + "add \t- Adds a client to FitBook.\n"
+            + String.format("add %s\t- Adds a client to FitBook.\n",
+                    AppUtil.OS.isLinux() || AppUtil.OS.isWindows() ? "\t" : "")
             + "list \t\t- Shows a list of all clients saved in FitBook.\n"
-            + "edit \t- Edits an existing client in FitBook.\n"
+            + String.format("edit %s\t- Edits an existing client in FitBook.\n",
+                    AppUtil.OS.isLinux() || AppUtil.OS.isWindows() ? "\t" : "")
             + "note \t- Adds a new note to a client.\n"
-            + "find \t- Finds clients whose names contain any of the given keywords.\n"
+            + String.format("find %s\t- Finds all clients whose specified attribute contains the specified keyword.\n",
+                    AppUtil.OS.isWindows() ? "\t" : "")
             + "delete \t- Deletes the specified client from FitBook.\n"
             + "clear \t- Clears all entries from FitBook. USE WITH CAUTION.\n"
-            + "exit \t- Exits FitBook.\n"
+            + String.format("exit %s\t- Exits FitBook.\n", (AppUtil.OS.isLinux() || AppUtil.OS.isWindows()) ? "\t" : "")
             + "\n"
             + "To view more information about a specific command, enter the command into the input box and press "
             + "<Enter>.\n"
@@ -50,7 +56,13 @@ public class HelpWindow extends UiPart<Stage> {
      */
     public HelpWindow(Stage root) {
         super(FXML, root);
+
+        if (OS.isLinux()) {
+            copyButton.setText("Copy URL");
+        }
+
         helpMessage.setText(HELP_MESSAGE);
+
     }
 
     /**
@@ -62,24 +74,28 @@ public class HelpWindow extends UiPart<Stage> {
 
     /**
      * Shows the help window.
+     *
      * @throws IllegalStateException
-     *     <ul>
-     *         <li>
-     *             if this method is called on a thread other than the JavaFX Application Thread.
-     *         </li>
-     *         <li>
-     *             if this method is called during animation or layout processing.
-     *         </li>
-     *         <li>
-     *             if this method is called on the primary stage.
-     *         </li>
-     *         <li>
-     *             if {@code dialogStage} is already showing.
-     *         </li>
-     *     </ul>
+     *                               <ul>
+     *                               <li>
+     *                               if this method is called on a thread other than
+     *                               the JavaFX Application Thread.
+     *                               </li>
+     *                               <li>
+     *                               if this method is called during animation or
+     *                               layout processing.
+     *                               </li>
+     *                               <li>
+     *                               if this method is called on the primary stage.
+     *                               </li>
+     *                               <li>
+     *                               if {@code dialogStage} is already showing.
+     *                               </li>
+     *                               </ul>
      */
     public void show() {
         logger.fine("Showing help page about the application.");
+
         getRoot().show();
         getRoot().centerOnScreen();
     }
@@ -111,7 +127,14 @@ public class HelpWindow extends UiPart<Stage> {
     @FXML
     private void openUrl() {
         try {
-            Desktop.getDesktop().browse(new URI(USERGUIDE_URL));
+            if (AppUtil.OS.isLinux()) {
+                final Clipboard clipboard = Clipboard.getSystemClipboard();
+                final ClipboardContent url = new ClipboardContent();
+                url.putString(USERGUIDE_URL);
+                clipboard.setContent(url);
+            } else {
+                Desktop.getDesktop().browse(new URI(USERGUIDE_URL));
+            }
         } catch (URISyntaxException | IOException e) {
             logger.warning("Something went wrong when opening user guide URL.");
         }

@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-FitBook is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, FitBook can get your contact management tasks done faster than traditional GUI apps.
+FitBook is a **desktop app for managing clients, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you are a personal trainer that prefers typing over mouse interactions, FitBook is the perfect application for you to manage your clients!
 
 * Table of Contents
 {:toc}
@@ -109,23 +109,38 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st client to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd client to be `Betsy Crower` and clears all existing tags.
 
-### Locating clients by name: `find`
+### Adding a note to clients : `note`
 
-Finds clients whose names contain any of the given keywords.
+Format: `note INDEX note/NOTE`
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+* Edits the note of the client specified by `INDEX`. The index refers to the index number shown in the displayed client list. The index **must be a positive integer** 1, 2, 3, …​
+* Existing note will be updated to the input note.
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Clients matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+> While this can also be done using the `edit` command, this `note` command serves as a faster way for users to directly modify a note.
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+*  `note 1 note/History of asthma` - Edits the note of the 1st client to `History of asthma`.
+*  `edit 2 note/Previously sprained both ankles` - Edits the note of the 2nd client to `Previously sprained both ankles`.
+
+### Locating clients by name: `find`
+
+Finds all clients whose specified attribute contains the specified keyword.
+
+Format: `find [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [note/NOTE] [t/TAG]…​`
+
+* The search is case-insensitive. e.g `hans` will match `Hans`
+* Any fields can be searched.
+* Multiple fields can be search in one command
+  * All fields must match (e.g `find n/Wendy p/91234567` will match with a contact whose name contains `wendy` and phone number contains `91234567`)
+* All fields except `TAG` will be matched based on substring (e.g `Wen` will match `Wendy`)
+* `TAG` must be an exact match (case-insensitive)
+  * E.g `find t/fri` will not match the tag `friend`
+
+Examples:
+* `find n/Wendy` returns `Wendy Son` and `Wendy Kim`
+  ![result for 'find n/Wendy'](images/FindNameMultiple.png)
+* `find n/Wendy t/Lover` returns `Wendy` (`Name` contains `Wendy` and is tagged with `Lover`)
+  ![result for 'find n/Wendy t/Lover'](images/FindNameTag.png)
 
 ### Deleting a client : `delete`
 
@@ -143,9 +158,13 @@ Examples:
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all client information from the address book.
 
-Format: `clear`
+**NOTE: This command irreversibly clears all client information in FitBook. It should be used with caution.**
+
+If you are sure of your decision to clear all client information, use the `/confirm` prefix with this command to execute it.
+
+Format: `clear /confirm`
 
 ### Exiting the program : `exit`
 
@@ -165,6 +184,15 @@ Address book data is saved automatically as a JSON file `[JAR file location]/dat
 If your changes to the data file makes its format invalid, FitBook will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
 Furthermore, certain edits can cause FitBook to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
+
+### Save Contact to Phone
+
+![QrCodeContactCard](images/QrCodeContactCard.png)
+
+To save a contact to your mobile phone from FitBook, simply scan the QR code next to the contact.
+
+<img src="images/QRScanning.png" height="480">
+<img src="images/QRContact.png" height="480"> 
 
 ### Archiving data files `[coming in v2.0]`
 
