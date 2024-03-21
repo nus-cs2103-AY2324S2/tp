@@ -3,20 +3,26 @@ package scrolls.elder.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static scrolls.elder.logic.commands.CommandTestUtil.assertCommandSuccess;
+
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
+import scrolls.elder.logic.Messages;
 import scrolls.elder.logic.commands.exceptions.CommandException;
+import scrolls.elder.model.AddressBook;
 import scrolls.elder.model.Model;
 import scrolls.elder.model.ModelManager;
 import scrolls.elder.model.UserPrefs;
+import scrolls.elder.model.person.Person;
 import scrolls.elder.testutil.Assert;
+import scrolls.elder.testutil.PersonBuilder;
 import scrolls.elder.testutil.TypicalIndexes;
 import scrolls.elder.testutil.TypicalPersons;
-
 class PairCommandTest {
 
-    /* Fix testcases such that it does not pollute JSON data
+    // TODO Fix testcases such that it does not pollute JSON data
     @Test
     void execute_pairFilteredPersonList_pairSuccessful() {
         Model model = new ModelManager(TypicalPersons.getTypicalAddressBook(), new UserPrefs());
@@ -50,23 +56,6 @@ class PairCommandTest {
                 TypicalIndexes.INDEX_FIFTH_PERSON);
         Assert.assertThrows(
                 CommandException.class, PairCommand.MESSAGE_ALREADY_PAIRED, () -> pairCommand.execute(model));
-    }
-    */
-    @Test
-    void execute_duplicatePerson_throwsCommandException() {
-        Model model = new ModelManager(TypicalPersons.getTypicalAddressBook(), new UserPrefs());
-        PairCommand pairCommand = new PairCommand(TypicalIndexes.INDEX_FIRST_PERSON, TypicalIndexes.INDEX_FIRST_PERSON);
-        Assert.assertThrows(
-                CommandException.class, PairCommand.MESSAGE_DUPLICATE_PERSON, () -> pairCommand.execute(model));
-    }
-
-    @Test
-    void execute_samePersonType_throwsCommandException() {
-        Model model = new ModelManager(TypicalPersons.getTypicalAddressBook(), new UserPrefs());
-        PairCommand pairCommand = new PairCommand(TypicalIndexes.INDEX_FIRST_PERSON,
-                TypicalIndexes.INDEX_SECOND_PERSON);
-        Assert.assertThrows(
-                CommandException.class, PairCommand.MESSAGE_DIFFERENT_PERSON_TYPE, () -> pairCommand.execute(model));
     }
 
     @Test
