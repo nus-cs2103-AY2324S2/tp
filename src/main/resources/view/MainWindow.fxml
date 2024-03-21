@@ -11,6 +11,7 @@
 <?import javafx.scene.Scene?>
 <?import javafx.stage.Stage?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Label?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
          title="Elder Scrolls" minWidth="700" minHeight="600" onCloseRequest="#handleExit">
   <icons>
@@ -52,6 +53,7 @@
             <padding>
               <Insets top="10" right="10" bottom="10" left="10" />
             </padding>
+            <Label text="Befriendees"/>
             <StackPane fx:id="befriendeeListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
           </VBox>
 
@@ -60,6 +62,7 @@
             <padding>
               <Insets top="10" right="10" bottom="10" left="10" />
             </padding>
+            <Label text="Volunteers"/>
             <StackPane fx:id="volunteerListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
           </VBox>
         </HBox>
