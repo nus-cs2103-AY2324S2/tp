@@ -15,7 +15,6 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -64,18 +63,18 @@ public class UpdateCommand extends Command {
     public static final String MESSAGE_NOT_UPDATED = "At least one field to update must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
 
-    private final Index index;
+    private final Nric nric;
     private final UpdatePersonDescriptor updatePersonDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to update
+     * @param nric of the person in the filtered person list to update
      * @param updatePersonDescriptor details to update the person with
      */
-    public UpdateCommand(Index index, UpdatePersonDescriptor updatePersonDescriptor) {
-        requireNonNull(index);
+    public UpdateCommand(Nric nric, UpdatePersonDescriptor updatePersonDescriptor) {
+        requireNonNull(nric);
         requireNonNull(updatePersonDescriptor);
 
-        this.index = index;
+        this.nric = nric;
         this.updatePersonDescriptor = new UpdatePersonDescriptor(updatePersonDescriptor);
     }
 
@@ -85,10 +84,9 @@ public class UpdateCommand extends Command {
         List<Person> lastShownList = model.getFilteredPersonList();
 
         boolean personNotFound = true;
-        Nric targetNric = updatePersonDescriptor.getNric();
         Person personToUpdate = null;
         for (Person p : lastShownList) {
-            if (p.getNric().equals(targetNric)) {
+            if (p.getNric().equals(nric)) {
                 personToUpdate = p;
                 personNotFound = false;
                 break;
@@ -119,15 +117,32 @@ public class UpdateCommand extends Command {
         Nric nric = personToUpdate.getNric();
         Name updatedName = updatePersonDescriptor.getName().orElse(personToUpdate.getName());
         Phone updatedPhone = updatePersonDescriptor.getPhone().orElse(personToUpdate.getPhone());
-        //TODO: change personToEdit class to enable update of dob and sex
-        DateOfBirth dob = personToUpdate.getDateOfBirth();
-        Sex sex = personToUpdate.getSex();
-        Status status = updatePersonDescriptor.getStatus().orElse(personToUpdate.getStatus());
-        Email updatedEmail = updatePersonDescriptor.getEmail().orElse(personToUpdate.getEmail());
         Address updatedAddress = updatePersonDescriptor.getAddress().orElse(personToUpdate.getAddress());
-        Set<Tag> updatedTags = updatePersonDescriptor.getTags().orElse(personToUpdate.getTags());
+        DateOfBirth updatedDob = updatePersonDescriptor.getDateOfBirth().orElse(personToUpdate.getDateOfBirth());
+        Sex updatedSex = updatePersonDescriptor.getSex().orElse(personToUpdate.getSex());
+        Status updatedStatus = updatePersonDescriptor.getStatus().orElse(personToUpdate.getStatus());
 
-        return new Person(nric, updatedName, updatedPhone, updatedAddress, dob, sex, status);
+        Email updatedEmail = updatePersonDescriptor.getEmail().orElse(personToUpdate.getEmail());
+        Country updatedCountry = updatePersonDescriptor.getCountry().orElse(personToUpdate.getCountry());
+
+        Allergies updatedAllergies = updatePersonDescriptor.getAllergies().orElse(personToUpdate.getAllergies());
+        BloodType updatedBloodType = updatePersonDescriptor.getBloodType().orElse(personToUpdate.getBloodType());
+        Condition updatedCondition = updatePersonDescriptor.getCondition().orElse(personToUpdate.getCondition());
+        DateOfAdmission updatedDateOfAdmission =
+                updatePersonDescriptor.getDateOfAdmission().orElse(personToUpdate.getDateOfAdmission());
+        Diagnosis updatedDiagnosis = updatePersonDescriptor.getDiagnosis().orElse(personToUpdate.getDiagnosis());
+        Symptom updatedSymptom = updatePersonDescriptor.getSymptom().orElse(personToUpdate.getSymptom());
+
+        Person p = new Person(nric, updatedName, updatedPhone, updatedAddress, updatedDob, updatedSex, updatedStatus);
+        p.setEmail(updatedEmail);
+        p.setCountry(updatedCountry);
+        p.setAllergies(updatedAllergies);
+        p.setBloodType(updatedBloodType);
+        p.setCondition(updatedCondition);
+        p.setDateOfAdmission(updatedDateOfAdmission);
+        p.setDiagnosis(updatedDiagnosis);
+        p.setSymptom(updatedSymptom);
+        return p;
     }
 
     @Override
@@ -142,14 +157,12 @@ public class UpdateCommand extends Command {
         }
 
         UpdateCommand otherUpdateCommand = (UpdateCommand) other;
-        return index.equals(otherUpdateCommand.index)
-                && updatePersonDescriptor.equals(otherUpdateCommand.updatePersonDescriptor);
+        return updatePersonDescriptor.equals(otherUpdateCommand.updatePersonDescriptor);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("index", index)
                 .add("updatePersonDescriptor", updatePersonDescriptor)
                 .toString();
     }
@@ -186,10 +199,13 @@ public class UpdateCommand extends Command {
          * A defensive copy of {@code tags} is used internally.
          */
         public UpdatePersonDescriptor(UpdatePersonDescriptor toCopy) {
+            setNric(toCopy.nric);
             setName(toCopy.name);
             setPhone(toCopy.phone);
-            setEmail(toCopy.email);
             setAddress(toCopy.address);
+            setDateOfBirth(toCopy.dateOfBirth);
+            setSex(toCopy.sex);
+            setStatus(toCopy.status);
             setTags(toCopy.tags);
         }
 
@@ -197,7 +213,8 @@ public class UpdateCommand extends Command {
          * Returns true if at least one field is updated.
          */
         public boolean isAnyFieldUpdated() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, address, sex, status, email, country,
+                    allergies, bloodType, condition, dateOfAdmission, diagnosis, symptom, tags);
         }
 
         public void setNric(Nric nric) {
