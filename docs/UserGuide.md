@@ -159,6 +159,18 @@ Examples:
 * `addApp i/ T0123456A d/ 2024-02-20 from/ 11:00 to/ 11:30 t/ Medical Check-up note/ Routine check-in`
 * `addApp i/ S1234567A d/ 2024-02-20 from/ 15:00 to/ 15:30 t/ Blood Test note/ Follow-up from last consultation`
 
+### Cancelling an Appointment: `cancelApp`
+
+Cancels an appointment from the address book.
+
+Format: `cancelApp i/NRIC d/DATE from/STARTTIME to/ENDTIME`
+
+* Cancels an appointment for the person with specified `NRIC`, on `DATE` from `STARTTIME` to `ENDTIME`
+* Appointment with the following details **must exist within database**.
+
+Examples:
+* `cancelApp i/ S8743880A d/ 2024-02-20 from/ 11:00 to/ 11:30`
+
 ### Clearing all entries : `clear`
 
 Clears all entries from CLInic.
