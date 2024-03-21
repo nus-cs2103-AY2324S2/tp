@@ -112,11 +112,6 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
-    @Override
-    public void addSchedule(Schedule schedule) {
-        addressBook.addSchedule(schedule);
-    }
-
     //=========== Filtered Person List Accessors =============================================================
 
     /**
