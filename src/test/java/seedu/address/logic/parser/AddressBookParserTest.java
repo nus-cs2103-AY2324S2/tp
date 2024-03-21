@@ -16,6 +16,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CompanyCommand;
 import seedu.address.logic.commands.CountCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
@@ -28,6 +30,7 @@ import seedu.address.logic.commands.FindCompanyCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.PriorityCommand;
+import seedu.address.logic.commands.StarCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.CompanyContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
@@ -148,5 +151,20 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_unknownCommand_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
+    }
+
+    @Test
+    public void parseCommand_validStarCommand_returnsStarCommand() throws Exception {
+        AddressBookParser parser = new AddressBookParser();
+        String userInput = "star John Doe";
+        Command command = parser.parseCommand(userInput);
+        assertEquals(StarCommand.class, command.getClass());
+    }
+
+    @Test
+    public void parseCommand_invalidCommand_throwsParseException() {
+        AddressBookParser parser = new AddressBookParser();
+        String userInput = "invalid command";
+        assertThrows(ParseException.class, () -> parser.parseCommand(userInput));
     }
 }

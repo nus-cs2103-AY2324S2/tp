@@ -25,13 +25,14 @@ public class Person {
     private final Address address;
     private final Company company;
     private final Priority priority;
+    private boolean starred;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Name, phone, email, address, tags must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address,
-            Company company, Priority priority, Set<Tag> tags) {
+                  Company company, Priority priority, Boolean starred, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
@@ -39,6 +40,7 @@ public class Person {
         this.address = address;
         this.company = company;
         this.priority = priority;
+        this.starred = starred;
         this.tags.addAll(tags);
     }
 
@@ -63,6 +65,14 @@ public class Person {
     }
     public Priority getPriority() {
         return priority;
+    }
+
+    public void starContact() {
+        this.starred = true;
+    }
+
+    public boolean isStarred() {
+        return starred;
     }
 
     /**
@@ -117,13 +127,16 @@ public class Person {
 
     @Override
     public String toString() {
+        String starSymbol = starred ? " ★" : "";
+
         return new ToStringBuilder(this)
-                .add("name", name)
+                .add("name", name + starSymbol)
                 .add("phone", phone)
                 .add("email", email)
                 .add("address", address)
                 .add("company", company)
                 .add("priority", priority)
+                .add("starred", starred)
                 .add("tags", tags)
                 .toString();
     }
