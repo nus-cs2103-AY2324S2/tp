@@ -32,4 +32,11 @@ public class CollectionUtil {
     public static boolean isAnyNonNull(Object... items) {
         return items != null && Arrays.stream(items).anyMatch(Objects::nonNull);
     }
+
+    /**
+     * Returns the count of {@code items} that are non-null.
+     */
+    public static int countNonNull(Object... items) {
+        return (int) Stream.of(items).filter(Objects::nonNull).count();
+    }
 }

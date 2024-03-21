@@ -1,6 +1,7 @@
 package educonnect.logic.commands;
 
 import static educonnect.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static educonnect.logic.parser.CliSyntax.PREFIX_LINK;
 import static educonnect.logic.parser.CliSyntax.PREFIX_NAME;
 import static educonnect.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
 import static educonnect.logic.parser.CliSyntax.PREFIX_TAG;
@@ -40,7 +41,8 @@ public class CommandTestUtil {
     public static final String VALID_TELEGRAM_HANDLE_AMY = "@amyb";
     public static final String VALID_TELEGRAM_HANDLE_BOB = "@choobobco";
     public static final String VALID_TELEGRAM_HANDLE_JOHN = "@doedoejohnjohn.joe";
-
+    public static final String VALID_LINK_AMY = "https://www.youtube.com/";
+    public static final String VALID_LINK_BOB = "https://https://en.wikipedia.org/wiki/Code/";
     public static final String VALID_LINK_JOHN = "https://www.google.com/";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
@@ -54,11 +56,12 @@ public class CommandTestUtil {
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
     public static final String TELEGRAM_HANDLE_DESC_AMY = " " + PREFIX_TELEGRAM_HANDLE + VALID_TELEGRAM_HANDLE_AMY;
     public static final String TELEGRAM_HANDLE_DESC_BOB = " " + PREFIX_TELEGRAM_HANDLE + VALID_TELEGRAM_HANDLE_BOB;
+    public static final String LINK_DESC_AMY = " " + PREFIX_LINK + VALID_LINK_AMY;
+    public static final String LINK_DESC_BOB = " " + PREFIX_LINK + VALID_LINK_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
     public static final String TIMETABLE_DESC_VALID1 = " " + PREFIX_TIMETABLE + VALID_TIMETABLE_1;
     public static final String TIMETABLE_DESC_VALID2 = " " + PREFIX_TIMETABLE + VALID_TIMETABLE_2;
-
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_STUDENT_ID_DESC =
@@ -86,14 +89,17 @@ public class CommandTestUtil {
         DESC_AMY = new EditStudentDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withStudentId(VALID_STUDENT_ID_AMY).withEmail(VALID_EMAIL_AMY)
                 .withTelegramHandle(VALID_TELEGRAM_HANDLE_AMY)
+                .withLink(VALID_LINK_AMY)
                 .withTags(VALID_TAG_FRIEND).build();
         DESC_BOB = new EditStudentDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withStudentId(VALID_STUDENT_ID_BOB).withEmail(VALID_EMAIL_BOB)
                 .withTelegramHandle(VALID_TELEGRAM_HANDLE_BOB)
+                .withLink(VALID_LINK_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
         DESC_JOHN = new EditStudentDescriptorBuilder().withName(VALID_NAME_JOHN)
                 .withStudentId(VALID_STUDENT_ID_JOHN).withEmail(VALID_EMAIL_JOHN)
                 .withTelegramHandle(VALID_TELEGRAM_HANDLE_JOHN)
+                .withLink(VALID_LINK_JOHN)
                 .withTags(VALID_TAG_SMART).build();
     }
 

@@ -6,6 +6,7 @@ import java.util.stream.Stream;
 
 import educonnect.logic.commands.EditCommand.EditStudentDescriptor;
 import educonnect.model.student.Email;
+import educonnect.model.student.Link;
 import educonnect.model.student.Name;
 import educonnect.model.student.Student;
 import educonnect.model.student.StudentId;
@@ -38,7 +39,7 @@ public class EditStudentDescriptorBuilder {
         descriptor.setStudentId(student.getStudentId());
         descriptor.setEmail(student.getEmail());
         descriptor.setTelegramHandle(student.getTelegramHandle());
-        descriptor.setLink(student.getLink());
+        descriptor.setLink(student.getLink().orElse(null));
         descriptor.setTags(student.getTags());
         descriptor.setTimetable(student.getTimetable());
     }
@@ -72,6 +73,18 @@ public class EditStudentDescriptorBuilder {
      */
     public EditStudentDescriptorBuilder withTelegramHandle(String telegramHandle) {
         descriptor.setTelegramHandle(new TelegramHandle(telegramHandle));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Link} of the {@code EditStudentDescriptor} that we are building.
+     */
+    public EditStudentDescriptorBuilder withLink(String link) {
+        if (link == null) {
+            descriptor.setLink(null);
+        } else {
+            descriptor.setLink(new Link(link));
+        }
         return this;
     }
 

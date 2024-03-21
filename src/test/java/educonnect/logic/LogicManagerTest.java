@@ -168,7 +168,7 @@ public class LogicManagerTest {
         // Triggers the saveAddressBook method by executing an add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + STUDENT_ID_DESC_AMY
                 + EMAIL_DESC_AMY + TELEGRAM_HANDLE_DESC_AMY;
-        Student expectedStudent = new StudentBuilder(AMY).withTags().build();
+        Student expectedStudent = new StudentBuilder(AMY).withTags().buildNoLink();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addStudent(expectedStudent);
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);

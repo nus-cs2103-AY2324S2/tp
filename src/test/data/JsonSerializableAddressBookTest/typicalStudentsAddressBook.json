@@ -41,7 +41,7 @@
       } ],
       "numOfDays" : 5
     },
-    "link": "https://github.com/tanjiajiajun/tp"
+    "link": "https://en.wikipedia.org/wiki/LeBron_James"
   }, {
     "name" : "Benson Meier",
     "studentId" : "A1235678J",
@@ -67,7 +67,7 @@
       } ],
       "numOfDays" : 5
     },
-    "link": "https://github.com/tanjiajiajun/tp"
+    "link": "https://www.google.com/"
   }, {
     "name" : "Carl Kurz",
     "studentId" : "A9876543N",
@@ -135,7 +135,7 @@
       } ],
       "numOfDays" : 5
     },
-    "link": "https://github.com/tanjiajiajun/tp"
+    "link": "https://en.wikipedia.org/wiki/LeBron_James"
   }, {
     "name" : "Elle Meyer",
     "studentId" : "A9482224Y",
@@ -203,7 +203,7 @@
       } ],
       "numOfDays" : 5
     },
-    "link": "https://github.com/tanjiajiajun/tp"
+    "link": "https://en.wikipedia.org/wiki/LeBron_James"
   }, {
     "name" : "George Best",
     "studentId" : "A6482442L",
@@ -245,6 +245,6 @@
       } ],
       "numOfDays" : 5
     },
-    "link": "https://github.com/tanjiajiajun/tp"
+    "link": null
   } ]
 }

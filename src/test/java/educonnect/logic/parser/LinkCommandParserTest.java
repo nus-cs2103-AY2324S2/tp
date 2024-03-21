@@ -24,7 +24,7 @@ public class LinkCommandParserTest {
     private LinkCommandParser parser = new LinkCommandParser();
 
     @Test
-    public void parse_validArgsId_success() {
+    public void parse_validArgsStudentId_success() {
         LinkCommand.LinkStudentDescriptor linkStudentDescriptor = new LinkCommand.LinkStudentDescriptor();
         linkStudentDescriptor.setStudentId(new StudentId(VALID_STUDENT_ID_JOHN));
         linkStudentDescriptor.setLink(new Link(VALID_LINK_JOHN));
@@ -58,7 +58,6 @@ public class LinkCommandParserTest {
         LinkCommand.LinkStudentDescriptor linkStudentDescriptor = new LinkCommand.LinkStudentDescriptor();
         linkStudentDescriptor.setStudentId(new StudentId(VALID_STUDENT_ID_JOHN));
         linkStudentDescriptor.setLink(new Link(INVALID_LINK));
-        LinkCommand linkCommand = new LinkCommand(linkStudentDescriptor);
 
         CommandParserTestUtil.assertParseFailure(parser, " " + PREFIX_STUDENT_ID + VALID_STUDENT_ID_JOHN + " "
                 + PREFIX_LINK + INVALID_LINK, Link.MESSAGE_CONSTRAINTS);

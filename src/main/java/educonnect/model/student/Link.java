@@ -26,7 +26,22 @@ public class Link {
         return test.matches(VALIDATION_REGEX);
     }
 
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
 
+        // instanceof handles nulls
+        if (!(other instanceof Link)) {
+            return false;
+        }
+
+        Link otherLink = (Link) other;
+        return url.equals(otherLink.url);
+    }
+
+    @Override
     public String toString() {
         return url;
     }

@@ -3,6 +3,7 @@ package educonnect.storage;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -65,7 +66,7 @@ class JsonAdaptedStudent {
         studentId = source.getStudentId().value;
         email = source.getEmail().value;
         telegramHandle = source.getTelegramHandle().value;
-        link = source.getLink().url;
+        link = source.getLink().map(link -> link.url).orElse(null);
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -109,11 +110,15 @@ class JsonAdaptedStudent {
         }
         final Email modelEmail = new Email(email);
 
-
-        if (!Link.isValidLink(link)) {
-            throw new IllegalValueException(Link.MESSAGE_CONSTRAINTS);
+        final Optional<Link> modelLink;
+        if (link == null) {
+            modelLink = Optional.empty();
+        } else {
+            if (!Link.isValidLink(link)) {
+                throw new IllegalValueException(Link.MESSAGE_CONSTRAINTS);
+            }
+            modelLink = Optional.of(new Link(link));
         }
-        final Link modelLink = new Link(link);
 
         if (telegramHandle == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,

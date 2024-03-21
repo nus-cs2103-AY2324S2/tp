@@ -2,6 +2,8 @@ package educonnect.testutil;
 
 import static educonnect.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static educonnect.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static educonnect.logic.commands.CommandTestUtil.VALID_LINK_AMY;
+import static educonnect.logic.commands.CommandTestUtil.VALID_LINK_BOB;
 import static educonnect.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static educonnect.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static educonnect.logic.commands.CommandTestUtil.VALID_STUDENT_ID_AMY;
@@ -43,7 +45,7 @@ public class TypicalStudents {
             .withStudentId("A9876543N")
             .withEmail("heinz@example.com")
             .withTelegramHandle("@wallstreet")
-            .withLink("https://en.wikipedia.org/wiki/LeBron_James")
+            .withLink("https://github.com/tanjiajiajun/tp")
             .withTimetable(VALID_TIMETABLE_1).build();
 
     public static final Student DANIEL = new StudentBuilder()
@@ -59,7 +61,7 @@ public class TypicalStudents {
             .withStudentId("A9482224Y")
             .withEmail("werner@example.com")
             .withTelegramHandle("@michegan")
-            .withLink("https://en.wikipedia.org/wiki/LeBron_James")
+            .withLink("https://github.com/tanjiajiajun/tp")
             .withTimetable(VALID_TIMETABLE_2).build();
 
     public static final Student FIONA = new StudentBuilder()
@@ -74,8 +76,7 @@ public class TypicalStudents {
             .withStudentId("A6482442L")
             .withEmail("anna@example.com")
             .withTelegramHandle("@georgie")
-            .withLink("https://en.wikipedia.org/wiki/LeBron_James")
-            .withTimetable(VALID_TIMETABLE_2).build();
+            .withTimetable(VALID_TIMETABLE_2).buildNoLink();
 
     // Manually added
     public static final Student HOON = new StudentBuilder()
@@ -99,6 +100,7 @@ public class TypicalStudents {
             .withStudentId(VALID_STUDENT_ID_AMY)
             .withEmail(VALID_EMAIL_AMY)
             .withTelegramHandle(VALID_TELEGRAM_HANDLE_AMY)
+            .withLink(VALID_LINK_AMY)
             .withTags(VALID_TAG_FRIEND).build();
 
     public static final Student BOB = new StudentBuilder()
@@ -106,7 +108,7 @@ public class TypicalStudents {
             .withStudentId(VALID_STUDENT_ID_BOB)
             .withEmail(VALID_EMAIL_BOB)
             .withTelegramHandle(VALID_TELEGRAM_HANDLE_BOB)
-            .withLink("https://en.wikipedia.org/wiki/LeBron_James")
+            .withLink(VALID_LINK_BOB)
             .withTags(VALID_TAG_FRIEND).build();
 
 
