@@ -41,13 +41,17 @@ public class AddRelationshipCommand extends Command {
         if (fullOriginUuid == fullTargetUuid) {
             throw new CommandException("Relationships must be between 2 different people");
         }
-        Relationship toAdd = new Relationship(fullOriginUuid, fullTargetUuid, relationshipDescriptor);
-        if (model.hasRelationship(toAdd)) {
-            String existing = model.getExistingRelationship(toAdd);
-            throw new CommandException(String.format("Sorry, %s", existing));
+        try {
+            Relationship toAdd = new Relationship(fullOriginUuid, fullTargetUuid, relationshipDescriptor);
+            if (model.hasRelationshipWithDescriptor(toAdd)) {
+                String existing = model.getExistingRelationship(toAdd);
+                throw new CommandException(String.format("Sorry, %s", existing));
+            }
+            model.addRelationship(toAdd);
+            return new CommandResult(MESSAGE_ADD_RELATIONSHIP_SUCCESS);
+        } catch (IllegalArgumentException e) {
+            throw new CommandException(e.getMessage());
         }
-        model.addRelationship(toAdd);
-        return new CommandResult(MESSAGE_ADD_RELATIONSHIP_SUCCESS);
     }
     @Override
     public boolean equals(Object o) {

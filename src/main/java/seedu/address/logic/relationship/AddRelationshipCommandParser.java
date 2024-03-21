@@ -21,9 +21,8 @@ public class AddRelationshipCommandParser implements Parser<AddRelationshipComma
     public AddRelationshipCommand parse(String userInput) throws ParseException {
         requireNonNull(userInput);
         String[] parts = userInput.split(" ", 3);
-        boolean hasMissingArgument = parts.length < 3;
-        if (hasMissingArgument) {
-            throw new ParseException("You have missing arguments");
+        if (parts.length != 3) {
+            throw new ParseException(Messages.MESSAGE_INVALID_COMMAND_FORMAT);
         }
         try {
             String originUuid = ParserUtil.parseUuid(parts[0]);
