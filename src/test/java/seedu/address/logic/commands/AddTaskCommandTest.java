@@ -25,6 +25,7 @@ import static seedu.address.testutil.TypicalPersons.ALICE;
 class AddTaskCommandTest {
 
     Task tempTask = new Task("Presentation");
+
     @Test
     public void constructor_nullProject_throwsNullPointerException() {
         Person validPerson = new PersonBuilder().build();
@@ -33,17 +34,6 @@ class AddTaskCommandTest {
         assertThrows(NullPointerException.class, () -> new AddTaskCommand(null, null));
     }
 
-//    @Test
-//    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-//        AddTaskCommandTest.ModelStubAcceptingPersonAdded modelStub = new AddTaskCommandTest.ModelStubAcceptingPersonAdded();
-//        Person validPerson = new PersonBuilder().build();
-//
-//        CommandResult commandResult = new AddTaskCommand(tempTask, validPerson).execute(modelStub);
-//
-//        assertEquals(String.format(AddTaskCommand.MESSAGE_SUCCESS, Messages.format(validPerson)),
-//                commandResult.getFeedbackToUser());
-//        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
-//    }
 
     @Test
     public void equals() {
@@ -70,14 +60,11 @@ class AddTaskCommandTest {
         // different types -> returns false
         assertFalse(addTaskCommand.equals(1));
 
-
         // null -> returns false
         assertFalse(addTaskCommand.equals(null));
 
         // different project -> returns false
         assertFalse(addTaskCommand.equals(addTaskCommandScript));
-
-
 
     }
 
@@ -174,37 +161,6 @@ class AddTaskCommandTest {
     private class ModelStubWithTask extends AddTaskCommandTest.ModelStub {
         private final Map<String, List<Task>> tasksByProject = new HashMap<>();
 
-//        @Override
-//        public void addTaskToProject(String projectName, Task task) {
-//            tasksByProject.computeIfAbsent(projectName, k -> new ArrayList<>()).add(task);
-//        }
-//
-//        @Override
-//        public List<Task> getTasksByProject(String projectName) {
-//            return tasksByProject.getOrDefault(projectName, new ArrayList<>());
-//        }
     }
 
-    /**
-     * A Model stub that always accept the person being added.
-     */
-    private class ModelStubAcceptingPersonAdded extends AddTaskCommandTest.ModelStub {
-        final ArrayList<Task> personsAdded = new ArrayList<>();
-
-        public boolean hasTask(Task task) {
-            requireNonNull(task);
-            return personsAdded.stream().anyMatch(task::equals);
-        }
-
-
-        public void addTask(Task task) {
-            requireNonNull(task);
-            personsAdded.add(task);
-        }
-
-        @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
-        }
-    }
 }

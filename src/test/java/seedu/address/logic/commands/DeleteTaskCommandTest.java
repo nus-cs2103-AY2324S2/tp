@@ -43,6 +43,7 @@ class DeleteTaskCommandTest {
 
         // same project, different task -> returns false
         assertFalse(deleteFirstCommand.equals(deleteThirdCommand));
+
         // different project, different task -> returns false
         assertFalse(deleteSecondCommand.equals(deleteThirdCommand));
 
