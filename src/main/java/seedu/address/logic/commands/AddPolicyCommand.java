@@ -2,20 +2,22 @@ package seedu.address.logic.commands;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
-import seedu.address.logic.Messages;
 
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Policy;
-import seedu.address.commons.core.index.Index;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+/**
+ * Adds a policy to the client identified by the index number used in the last person listing
+ * and the policy name.
+ */
 public class AddPolicyCommand extends Command {
     public static final String COMMAND_WORD = "addPolicy";
 
@@ -35,6 +37,12 @@ public class AddPolicyCommand extends Command {
     private final Index index;
     private final String policyName;
 
+    /**
+     * Creates an AddPolicyCommand to add the specified {@code Policy} to the client at the specified index.
+     *
+     * @param index The index of the client in the filtered person list.
+     * @param policyName The name of the policy to be added.
+     */
     public AddPolicyCommand(Index index, String policyName) {
         requireAllNonNull(index, policyName);
 
