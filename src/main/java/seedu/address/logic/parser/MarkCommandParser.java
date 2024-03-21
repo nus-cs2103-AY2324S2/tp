@@ -19,7 +19,7 @@ public class MarkCommandParser implements Parser<MarkCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the {@code MarkCommand}
      * and returns a {@code MarkCommand} object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     * @throws ParseException if the user input does not conform to the expected format
      */
     public MarkCommand parse(String args) throws ParseException {
         requireNonNull(args);
