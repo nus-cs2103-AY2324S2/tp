@@ -49,30 +49,37 @@
                 </StackPane>
 
                 <VBox fx:id="personList" styleClass="pane-with-border" minWidth="360" prefWidth="360" VBox.vgrow="ALWAYS">
-                <padding>
-                    <Insets top="10" right="10" bottom="10" left="10" />
-                </padding>
-                <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+                    <padding>
+                        <Insets top="10" right="10" bottom="10" left="10" />
+                    </padding>
+                    <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
                 </VBox>
             </VBox>
-            <HBox>
-                <VBox>
-                    <VBox fx:id="undoneTaskList" styleClass="pane-with-border" minWidth="320" prefWidth="320" VBox.vgrow="ALWAYS">
+            <VBox>
+                <HBox fx:id="showingProjectName" styleClass="pane-with-border" minWidth="320" prefWidth="320" minHeight="64" prefHeight="64">
                     <padding>
-                        <Insets top="10" right="10" bottom="10" left="10" />
+                        <Insets top="20" right="10" bottom="20" left="10" />
                     </padding>
-                    <StackPane fx:id="undoneTaskListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+                </HBox>
+                <HBox fx:id="taskList" styleClass="pane-with-border" minHeight="536" prefHeight="536">
+                    <VBox>
+                        <VBox fx:id="undoneTaskList" styleClass="pane-with-border" minWidth="320" prefWidth="320" VBox.vgrow="ALWAYS">
+                        <padding>
+                            <Insets top="10" right="10" bottom="10" left="10" />
+                        </padding>
+                        <StackPane fx:id="undoneTaskListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+                        </VBox>
                     </VBox>
-                </VBox>
-                <VBox>
-                    <VBox fx:id="doneTaskList" styleClass="pane-with-border" minWidth="320" prefWidth="320" VBox.vgrow="ALWAYS">
-                    <padding>
-                        <Insets top="10" right="10" bottom="10" left="10" />
-                    </padding>
-                    <StackPane fx:id="doneTaskListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+                    <VBox>
+                        <VBox fx:id="doneTaskList" styleClass="pane-with-border" minWidth="320" prefWidth="320" VBox.vgrow="ALWAYS">
+                        <padding>
+                            <Insets top="10" right="10" bottom="10" left="10" />
+                        </padding>
+                        <StackPane fx:id="doneTaskListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+                        </VBox>
                     </VBox>
-                </VBox>
-            </HBox>
+                </HBox>
+            </VBox>
         </HBox>
       </VBox>
     </Scene>
