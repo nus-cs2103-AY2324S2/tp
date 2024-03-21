@@ -21,7 +21,8 @@ public class ClearCommand extends Command {
         if (model.shouldPurgeAddressBook()) {
             model.purgeAddressBook();
         }
-        model.commitAddressBook();
-        return new CommandResult(MESSAGE_SUCCESS);
+        CommandResult clearCommandResult = new CommandResult(MESSAGE_SUCCESS);
+        model.commitAddressBook(clearCommandResult);
+        return clearCommandResult;
     }
 }

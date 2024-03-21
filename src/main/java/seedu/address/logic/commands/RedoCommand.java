@@ -14,8 +14,7 @@ public class RedoCommand extends Command {
             + ": Redoes a previously undone command."
             + "Example: " + COMMAND_WORD;
 
-    //TODO: include information about redone command
-    public static final String MESSAGE_SUCCESS = "Redid previously undone command.";
+    public static final String MESSAGE_SUCCESS = "Redid previously undone command:\n\t";
 
     public static final String MESSAGE_CANNOT_REDO = "Unable to redo since there were no previously undone commands.";
     @Override
@@ -23,7 +22,8 @@ public class RedoCommand extends Command {
         requireNonNull(model);
         if (model.canRedoAddressBook()) {
             model.redoAddressBook();
-            return new CommandResult(MESSAGE_SUCCESS);
+            String redoneCommandMessage = model.getAddressBookRedoneCommand().getFeedbackToUser();
+            return new CommandResult(MESSAGE_SUCCESS + redoneCommandMessage);
         } else {
             throw new CommandException(MESSAGE_CANNOT_REDO);
         }

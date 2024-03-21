@@ -26,7 +26,8 @@ class UndoCommandTest {
         Person validPerson = new PersonBuilder().build();
         CommandResult commandResult = new AddCommand(validPerson).execute(model);
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        assertCommandSuccess(new UndoCommand(), model, UndoCommand.MESSAGE_SUCCESS, expectedModel);
+        String expectedMessage = UndoCommand.MESSAGE_SUCCESS + commandResult.getFeedbackToUser();
+        assertCommandSuccess(new UndoCommand(), model, expectedMessage, expectedModel);
     }
 
 }

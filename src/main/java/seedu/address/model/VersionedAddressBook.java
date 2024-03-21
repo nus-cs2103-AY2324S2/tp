@@ -1,6 +1,9 @@
 package seedu.address.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+
+import seedu.address.logic.commands.CommandResult;
 
 /**
  * A VersionedAddressBook to store Address Book states
@@ -8,6 +11,7 @@ import java.util.ArrayList;
 public class VersionedAddressBook extends AddressBook {
     private ArrayList<AddressBook> addressBookStateList;
     private int currentStatePointer;
+    private HashMap<Integer, CommandResult> commandResultList;
 
     /**
      * Creates a VersionedAddressBook
@@ -15,6 +19,7 @@ public class VersionedAddressBook extends AddressBook {
     public VersionedAddressBook() {
         addressBookStateList = new ArrayList<>();
         currentStatePointer = 0;
+        commandResultList = new HashMap<>();
     }
 
     /**
@@ -31,9 +36,10 @@ public class VersionedAddressBook extends AddressBook {
      *
      * @param currState the current state of the Address Book
      */
-    public void commit(AddressBook currState) {
+    public void commit(AddressBook currState, CommandResult commandResult) {
         currentStatePointer++;
         addressBookStateList.add(currentStatePointer, new AddressBook(currState));
+        commandResultList.put(currentStatePointer, commandResult);
     }
 
     /**
@@ -89,6 +95,15 @@ public class VersionedAddressBook extends AddressBook {
     public void purge() {
         while (addressBookStateList.size() > (currentStatePointer + 1)) {
             addressBookStateList.remove(addressBookStateList.size() - 1);
+            commandResultList.remove(commandResultList.size() - 1);
         }
+    }
+
+    public CommandResult getUndoneCommand() {
+        return commandResultList.get(currentStatePointer + 1);
+    }
+
+    public CommandResult getRedoneCommand() {
+        return commandResultList.get(currentStatePointer);
     }
 }
