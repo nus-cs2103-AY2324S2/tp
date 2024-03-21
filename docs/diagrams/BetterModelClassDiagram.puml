@@ -22,8 +22,10 @@ Person *--> Email
 Person *--> Address
 Person *--> Department
 Person *--> Task
+Person *--> Efficiency
 
 Task *--> Title
 Task *--> Deadline
 Task *--> Person
+Task *--> IsDone
 @enduml
