@@ -1,7 +1,6 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.person.Phone.DEFAULT_NUMBER;
 
 import java.util.Collection;
 import java.util.HashSet;
