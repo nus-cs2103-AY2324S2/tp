@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
@@ -23,14 +24,22 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEPARTMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_JOBTITLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PREFERENCES;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRODUCTS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SKILLS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TERMSOFSERVICE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
+
+import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
@@ -38,6 +47,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -49,8 +59,8 @@ public class EditCommandParserTest {
 
     private static final String TAG_EMPTY = " " + PREFIX_TAG;
 
-    private static final String MESSAGE_INVALID_FORMAT =
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);
+    private static final String MESSAGE_INVALID_FORMAT = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+            EditCommand.MESSAGE_USAGE);
 
     private final EditCommandParser parser = new EditCommandParser();
 
@@ -92,7 +102,8 @@ public class EditCommandParserTest {
         // invalid phone followed by valid email
         assertParseFailure(parser, "1" + INVALID_PHONE_DESC + EMAIL_DESC_AMY, Phone.MESSAGE_CONSTRAINTS);
 
-        // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Person} being edited,
+        // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code
+        // Person} being edited,
         // parsing it together with a valid tag results in error
         assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_DESC_HUSBAND + TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);
         assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_EMPTY + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
@@ -204,5 +215,66 @@ public class EditCommandParserTest {
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
+    @Test
+    public void parseOptionalFields_allFieldsPresent_success() throws ParseException {
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(" " + PREFIX_PREFERENCES + "pref1 pref2 "
+                + PREFIX_PRODUCTS + "product1 " + PREFIX_PRODUCTS + "product2 " + PREFIX_DEPARTMENT + "dept "
+                + PREFIX_JOBTITLE + "title " + PREFIX_SKILLS + "skill1 " + PREFIX_SKILLS + "skill2 "
+                + PREFIX_TERMSOFSERVICE + "terms");
+
+        EditPersonDescriptor descriptor = new EditPersonDescriptor();
+        descriptor.setPreferences(ParserUtil.parsePreferences("pref1 pref2"));
+        descriptor.setProducts(ParserUtil.parseProducts(Arrays.asList("product1", "product2")));
+        descriptor.setDepartment(ParserUtil.parseDepartment("dept"));
+        descriptor.setJobTitle(ParserUtil.parseJobTitle("title"));
+        descriptor.setSkills(ParserUtil.parseSkills(Arrays.asList("skill1", "skill2")));
+        descriptor.setTermsOfService(ParserUtil.parseTermsOfService("terms"));
+
+        parser.parseOptionalFields(argMultimap, descriptor);
+
+        EditPersonDescriptor expectedDescriptor = new EditPersonDescriptor();
+        expectedDescriptor.setPreferences(ParserUtil.parsePreferences("pref1 pref2"));
+        expectedDescriptor.setProducts(ParserUtil.parseProducts(Arrays.asList("product1", "product2")));
+        expectedDescriptor.setDepartment(ParserUtil.parseDepartment("dept"));
+        expectedDescriptor.setJobTitle(ParserUtil.parseJobTitle("title"));
+        expectedDescriptor.setSkills(ParserUtil.parseSkills(Arrays.asList("skill1", "skill2")));
+        expectedDescriptor.setTermsOfService(ParserUtil.parseTermsOfService("terms"));
+
+        assertEquals(expectedDescriptor, descriptor);
+    }
+
+    @Test
+    public void parseOptionalFields_someFieldsPresent_success() throws ParseException {
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(" " + PREFIX_PREFERENCES + "pref1 pref2 "
+                + PREFIX_DEPARTMENT + "dept " + PREFIX_SKILLS + "skill1 " + PREFIX_SKILLS + "skill2");
+
+        EditPersonDescriptor descriptor = new EditPersonDescriptor();
+        descriptor.setPreferences(ParserUtil.parsePreferences("pref1 pref2"));
+        descriptor.setDepartment(ParserUtil.parseDepartment("dept"));
+        descriptor.setSkills(ParserUtil.parseSkills(Arrays.asList("skill1", "skill2")));
+
+        parser.parseOptionalFields(argMultimap, descriptor);
+
+        EditPersonDescriptor expectedDescriptor = new EditPersonDescriptor();
+        expectedDescriptor.setPreferences(ParserUtil.parsePreferences("pref1 pref2"));
+        expectedDescriptor.setDepartment(ParserUtil.parseDepartment("dept"));
+        expectedDescriptor.setSkills(ParserUtil.parseSkills(Arrays.asList("skill1", "skill2")));
+
+        assertEquals(expectedDescriptor, descriptor);
+    }
+
+    @Test
+    public void parseOptionalFields_noFieldsPresent_success() throws ParseException {
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize("");
+
+        EditPersonDescriptor descriptor = new EditPersonDescriptor();
+
+        parser.parseOptionalFields(argMultimap, descriptor);
+
+        EditPersonDescriptor expectedDescriptor = new EditPersonDescriptor();
+
+        assertEquals(expectedDescriptor, descriptor);
     }
 }

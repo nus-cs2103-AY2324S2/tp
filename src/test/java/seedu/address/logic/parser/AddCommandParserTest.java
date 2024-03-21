@@ -66,8 +66,8 @@ public class AddCommandParserTest {
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + ROLE_DESC_EMPLOYEE + DEPARTMENT_DESC_BOB + JOB_TITLE_DESC_BOB
-                + SKILLS_DESC_NEGOTIATION + SKILLS_DESC_COMMUNICATION + REMARK_DESC_BOB,
+                        + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + ROLE_DESC_EMPLOYEE + DEPARTMENT_DESC_BOB
+                        + JOB_TITLE_DESC_BOB + SKILLS_DESC_NEGOTIATION + SKILLS_DESC_COMMUNICATION + REMARK_DESC_BOB,
                 new AddCommand(expectedPerson));
 
         // multiple tags - all accepted
@@ -212,4 +212,28 @@ public class AddCommandParserTest {
                         + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + ROLE_DESC_EMPLOYEE,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
+
+    @Test
+    public void parse_missingRequiredFields_failure() {
+        // Missing name
+        assertParseFailure(parser, "p/12345678 e/johndoe@example.com a/123, Main Street",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+
+        // Missing phone
+        assertParseFailure(parser, "n/John Doe e/johndoe@example.com a/123, Main Street",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+
+        // Missing email
+        assertParseFailure(parser, "n/John Doe p/12345678 a/123, Main Street",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+
+        // Missing address
+        assertParseFailure(parser, "n/John Doe p/12345678 e/johndoe@example.com",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+
+        // Missing role
+        assertParseFailure(parser, "n/John Doe p/12345678 e/johndoe@example.com a/123, Main Street r/",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+    }
+
 }
