@@ -9,11 +9,13 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.language.ProgrammingLanguage;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -192,5 +194,42 @@ public class ParserUtilTest {
         Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    @Test
+    public void parseProgrammingLanguage_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseProgrammingLanguage(null));
+    }
+
+    @Test
+    public void parseProgrammingLanguage_emptyString_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseProgrammingLanguage(""));
+    }
+
+    @Test
+    public void parseProgrammingLanguage_invalidValue_throwsParseException() {
+        // Testing with a language name containing invalid characters
+        assertThrows(ParseException.class, () -> ParserUtil.parseProgrammingLanguage("C++!"));
+    }
+
+    @Test
+    public void parseProgrammingLanguages_nullCollection_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseProgrammingLanguages(null));
+    }
+
+    @Test
+    public void parseProgrammingLanguages_emptyCollection_returnsEmptySet() throws ParseException {
+        Set<ProgrammingLanguage> result = ParserUtil.parseProgrammingLanguages(Collections.emptyList());
+        assertTrue(result.isEmpty());
+    }
+
+    @Test
+    public void parseProgrammingLanguages_validCollection_returnsProgrammingLanguageSet() throws ParseException {
+        List<String> validLanguages = Arrays.asList("Java", "Python", "JavaScript");
+        Set<ProgrammingLanguage> result = ParserUtil.parseProgrammingLanguages(validLanguages);
+        assertEquals(validLanguages.size(), result.size());
+        for (String language : validLanguages) {
+            assertTrue(result.contains(new ProgrammingLanguage(language)));
+        }
     }
 }
