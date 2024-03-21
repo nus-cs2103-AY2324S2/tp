@@ -1,15 +1,12 @@
 package seedu.address.ui;
 
 import java.util.Comparator;
-import java.util.Optional;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
 
 /**
@@ -53,18 +50,10 @@ public class PersonCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
-
-        // Handle Optional<Address>
-        Optional<Address> optionalAddress = person.getAddress();
-        address.setText(optionalAddress.isPresent() ? optionalAddress.get().value : "");
-
-        // Handle Optional<Email>
-        Optional<Email> optionalEmail = person.getEmail();
-        email.setText(optionalEmail.isPresent() ? optionalEmail.get().value : "");
-
+        address.setText(person.getAddress().value);
+        email.setText(person.getEmail().value);
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
-
 }
