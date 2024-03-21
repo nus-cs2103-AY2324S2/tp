@@ -1,16 +1,14 @@
 package seedu.address.ui;
 
-import java.awt.Desktop;
-import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.logging.Logger;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
+import javafx.scene.Scene;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 
@@ -25,6 +23,7 @@ public class HelpWindow extends UiPart<Stage> {
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
+    private WebView webView;
 
     @FXML
     private Button copyButton;
@@ -40,6 +39,11 @@ public class HelpWindow extends UiPart<Stage> {
     public HelpWindow(Stage root) {
         super(FXML, root);
         helpMessage.setText(HELP_MESSAGE);
+
+        webView = new WebView();
+        WebEngine webEngine = webView.getEngine();
+        String userGuidePath = getClass().getResource("/html/InternBook_UserGuide.html").toExternalForm();
+        webEngine.load(userGuidePath);
     }
 
     /**
@@ -105,13 +109,12 @@ public class HelpWindow extends UiPart<Stage> {
         clipboard.setContent(url);
     }
 
+    /**
+     * Opens the user guide in web view.
+     */
     @FXML
     private void openUserGuide() {
-        try {
-            Desktop.getDesktop().browse(new URI(USERGUIDE_URL));
-        } catch (IOException | URISyntaxException e) {
-            System.out.println("Error opening user guide: " + e.getMessage());
-        }
+        getRoot().setScene(new Scene(webView, 800, 600));
+        getRoot().show();
     }
-
 }
