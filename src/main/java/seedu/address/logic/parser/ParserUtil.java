@@ -164,20 +164,6 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code String dateTime} into a {@code LocalDateTime}.
-     */
-    public static LocalDateTime parseDateTime(String dateTime) throws ParseException {
-        LocalDateTime currentDateTime = LocalDateTime.now();
-        try {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
-            LocalDateTime parsedDateTime = LocalDateTime.parse(dateTime, formatter);
-
-            return parsedDateTime;
-        } catch (DateTimeParseException e) {
-            return currentDateTime;
-        }
-    }
-    /**
         * Parses a {@code String dateTime} into a {@code LocalDateTime}.
      */
     public static LocalDateTime parseDateTime(String dateTime) throws ParseException {
@@ -189,20 +175,6 @@ public class ParserUtil {
         }
         LocalDateTime parsedDateTime = LocalDateTime.parse(trimmedDateTime, formatter);
         return parsedDateTime;
-    }
-    /**
-     * Parses a {@code String description} into a {@code String}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code description} is invalid.
-     */
-    public static String parseDescription(String description) throws ParseException {
-        requireNonNull(description);
-        String trimmedDescription = description.trim();
-        if (!Meeting.isValidDescription(trimmedDescription)) {
-            throw new ParseException(Meeting.MESSAGE_CONSTRAINTS);
-        }
-        return trimmedDescription;
     }
 
 }
