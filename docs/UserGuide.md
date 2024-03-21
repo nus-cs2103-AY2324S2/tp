@@ -31,7 +31,7 @@ PatientSync is a **desktop app made for nurses to manage patient, optimized for 
 
    * `list` : Lists all contacts.
 
-   * `add /id 12345 n/ John Doe p/ Alex f/ Curry chicken c/ Stable, Has 2 sons visit him regularly h/ Singing karaoke t/ Diabetes` : Adds a patient named `John Doe` to the PatientSync.
+   * `add id/ 12345 n/ John Doe p/ Alex f/ Curry chicken c/ Stable, Has 2 sons visit him regularly h/ Singing karaoke t/ Diabetes` : Adds a patient named `John Doe` to the PatientSync.
 
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
@@ -98,8 +98,8 @@ Format: `add id/PATIENT_HOSPITAL_ID n/NAME p/PREFERRED_NAME f/FOOD_PREFERENCE c/
 </box>
 
 Examples:
-* `add /id 12345 n/ Alex Yeoh Jia Jun p/ Alex f/ Curry chicken c/ Stable, Has 2 sons visit him regularly h/ Singing karaoke t/ Diabetes`
-* `add /id 12347 n/ Mary Jane p/ Mary f/ Korean c/ Lives with only daughter, quarrels regularly with daughter h/ Watching Drama`
+* `add id/ 12345 n/ Alex Yeoh Jia Jun p/ Alex f/ Curry chicken c/ Stable, Has 2 sons visit him regularly h/ Singing karaoke t/ Diabetes`
+* `add id/ 12347 n/ Mary Jane p/ Mary f/ Korean c/ Lives with only daughter, quarrels regularly with daughter h/ Watching Drama`
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -133,21 +133,18 @@ Examples:
 
 ### Locating patients by name: `find`
 
-Finds patients whose names contain any of the given keywords.
+Finds patients whose hospital ID exactly match the given ID.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find [HOSPITAL_ID]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Patients matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* Only the Hospital ID is searched.
+* Only full IDs will be matched e.g. `1234` will not match `12345`
+* Patients with matching Hospital IDs will be returned.
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `find 12345` returns Patient with Hospital ID `12345`.
+* `find alex david` returns no patients as the search is based on Hospital IDs and not names.
+  ![result for 'find patient with hospital ID 12345'](images/findPatient12345Result.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -324,7 +321,7 @@ Furthermore, certain edits can cause the AddressBook to behave in unexpected way
 
 Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**    | `add id/PATIENT_HOSPITAL_ID n/NAME p/PREFERRED_NAME f/FOOD_PREFERENCE c/FAMILY_CONDITION h/HOBBY [t/TAG]…​` <br> e.g. `add /id 12345 n/ Alex Yeoh Jia Jun p/ Alex f/ Curry chicken c/ Stable, Has 2 sons visit him regularly h/ Singing karaoke t/ Diabetes`
+**Add**    | `add id/PATIENT_HOSPITAL_ID n/NAME p/PREFERRED_NAME f/FOOD_PREFERENCE c/FAMILY_CONDITION h/HOBBY [t/TAG]…​` <br> e.g. `add id/ 12345 n/ Alex Yeoh Jia Jun p/ Alex f/ Curry chicken c/ Stable, Has 2 sons visit him regularly h/ Singing karaoke t/ Diabetes`
 **Clear**  | `clear`
 **Delete** | `delete INDEX`<br> e.g. `delete 3`
 **Edit**   | `edit INDEX [id/PATIENT_HOSPITAL_ID] [n/NAME] [p/PREFERRED_NAME] [f/FOOD_PREFERENCE] [c/FAMILY_CONDITION] [h/HOBBY] [t/TAG]…​`<br> e.g.`edit 2 p/James t/HighCholesterol`
