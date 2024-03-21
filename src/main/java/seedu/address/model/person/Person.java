@@ -222,7 +222,7 @@ public class Person {
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields.
+     * Returns true if both persons have the same identity and all data fields.
      * This defines a stronger notion of equality between two persons.
      */
     @Override
@@ -241,7 +241,17 @@ public class Person {
                 && phone.equals(otherPerson.phone)
                 && address.equals(otherPerson.address)
                 && dateOfBirth.equals(otherPerson.dateOfBirth)
-                && sex.equals(otherPerson.sex);
+                && sex.equals(otherPerson.sex)
+                && status.equals(otherPerson.status)
+                && tags.equals(otherPerson.tags)
+                && email.equals(otherPerson.email)
+                && country.equals(otherPerson.country)
+                && allergies.equals(otherPerson.allergies)
+                && bloodType.equals(otherPerson.bloodType)
+                && condition.equals(otherPerson.condition)
+                && dateOfAdmission.equals(otherPerson.dateOfAdmission)
+                && diagnosis.equals(otherPerson.diagnosis)
+                && symptom.equals(otherPerson.symptom);
     }
 
     @Override
