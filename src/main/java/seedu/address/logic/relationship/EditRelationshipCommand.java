@@ -41,8 +41,7 @@ public class EditRelationshipCommand extends Command {
      * Executes the command to edit a relationship between two persons.
      * @param model {@code Model} which the command should operate on.
      * @return a CommandResult that contains the success message.
-     * @throws CommandException if the relationship does not exist or if
-     * the new relationship is the same as the old one.
+     * @throws CommandException if relationship does not exist or if the new relationship is the same as the old one.
      */
     public CommandResult execute(Model model) throws CommandException {
         UUID fullOriginUuid = model.getFullUuid(originUuid);
