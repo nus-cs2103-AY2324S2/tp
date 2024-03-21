@@ -18,10 +18,11 @@ public class FindArticleCommand extends ArticleCommand {
 
     public static final String COMMAND_PREFIX = "-a";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all articles whose titles contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " " + COMMAND_PREFIX + " HDB UDP TCP";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " " + COMMAND_PREFIX
+        + ": Finds all articles whose titles contain any of "
+        + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
+        + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
+        + "Example: " + COMMAND_WORD + " " + COMMAND_PREFIX + " HDB UDP TCP";
 
     private final TitleContainsKeywordsPredicate predicate;
 

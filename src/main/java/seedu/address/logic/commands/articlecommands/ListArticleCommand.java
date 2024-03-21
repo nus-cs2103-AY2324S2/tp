@@ -17,7 +17,6 @@ public class ListArticleCommand extends ArticleCommand {
 
     public static final String MESSAGE_SUCCESS = "Listed all articles";
 
-
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);

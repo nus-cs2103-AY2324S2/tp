@@ -29,7 +29,8 @@ public class EditArticleCommand extends ArticleCommand {
     public static final String COMMAND_PREFIX = "-a";
 
     // To be edited for use in test cases later on.
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the article identified "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " " + COMMAND_PREFIX
+            + ": Edits the details of the article identified "
             + "by the index number used in the displayed article list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "

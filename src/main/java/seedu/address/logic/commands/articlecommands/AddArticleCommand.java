@@ -19,7 +19,8 @@ public class AddArticleCommand extends ArticleCommand {
     public static final String COMMAND_PREFIX = "-a";
 
     // To be edited for use in test cases later on.
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an article to the article book. ";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " " + COMMAND_PREFIX
+            + ": Adds an article to the article book. ";
 
     public static final String MESSAGE_SUCCESS = "New article added: %1$s";
     public static final String MESSAGE_DUPLICATE_ARTICLE = "This article already exists in the article book";
