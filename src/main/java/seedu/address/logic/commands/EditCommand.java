@@ -11,13 +11,13 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
-import jdk.jfr.Description;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.Description;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -98,9 +98,10 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         StudentId updatedStudentId = editPersonDescriptor.getAddress().orElse(personToEdit.getStudentId());
         Set<Attendance> updatedAttendances = editPersonDescriptor.getTags().orElse(personToEdit.getAttendances());
+        Description updatedDescription = editPersonDescriptor.getDescription().orElse(personToEdit.getDescription());
 
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedStudentId, updatedAttendances);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedStudentId, updatedAttendances, updatedDescription);
     }
 
     @Override

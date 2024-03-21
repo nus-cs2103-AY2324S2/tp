@@ -12,7 +12,7 @@ public class Description {
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum} ]*";
 
-    public final String description;
+    public final String value;
 
     /**
      * Constructs a {@code Description}.
@@ -22,7 +22,7 @@ public class Description {
     public Description(String description) {
         requireNonNull(description);
         checkArgument(isValidName(description), MESSAGE_CONSTRAINTS);
-        this.description = description;
+        this.value = description;
     }
 
     /**
@@ -35,7 +35,7 @@ public class Description {
 
     @Override
     public String toString() {
-        return description;
+        return value;
     }
 
     @Override
@@ -50,11 +50,11 @@ public class Description {
         }
 
         Description otherDescription = (Description) other;
-        return description.equals(otherDescription.description);
+        return value.equals(otherDescription.value);
     }
 
     @Override
     public int hashCode() {
-        return description.hashCode();
+        return value.hashCode();
     }
 }

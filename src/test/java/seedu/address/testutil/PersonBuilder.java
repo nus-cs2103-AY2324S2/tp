@@ -3,11 +3,7 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.StudentId;
+import seedu.address.model.person.*;
 import seedu.address.model.tag.Attendance;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -20,12 +16,14 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_DESCRIPTION = "";
 
     private Name name;
     private Phone phone;
     private Email email;
     private StudentId studentId;
     private Set<Attendance> attendances;
+    private Description description;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -36,6 +34,7 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         studentId = new StudentId(DEFAULT_ADDRESS);
         attendances = new HashSet<>();
+        description = new Description(DEFAULT_DESCRIPTION);
     }
 
     /**
@@ -47,6 +46,7 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         studentId = personToCopy.getStudentId();
         attendances = new HashSet<>(personToCopy.getAttendances());
+        description = personToCopy.getDescription();
     }
 
     /**
@@ -89,8 +89,16 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Description} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withDescription(String description) {
+        this.description = new Description(description);
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, phone, email, studentId, attendances);
+        return new Person(name, phone, email, studentId, attendances, description);
     }
 
 }

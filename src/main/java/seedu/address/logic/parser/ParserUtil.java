@@ -9,13 +9,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.AttendanceDate;
-import seedu.address.model.person.Classes;
-import seedu.address.model.person.CourseCode;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.StudentId;
+import seedu.address.model.person.*;
 import seedu.address.model.tag.Attendance;
 
 /**
@@ -153,5 +147,16 @@ public class ParserUtil {
             attendanceSet.add(parseAttendances(attendanceName));
         }
         return attendanceSet;
+    }
+
+    /**
+     * Parses a {@code String description} into an {@code Description}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static Description parseDescription(String description) {
+        requireNonNull(description);
+        String trimmedDescription = description.trim();
+
+        return new Description(trimmedDescription);
     }
 }
