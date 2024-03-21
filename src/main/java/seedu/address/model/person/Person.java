@@ -15,7 +15,6 @@ import seedu.address.model.tag.Tag;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Person {
-
     //Mandatory fields
     //Identity fields
     private final Nric nric;
@@ -51,6 +50,7 @@ public class Person {
         this.sex = sex;
         this.status = status;
     }
+
     public Nric getNric() {
         return nric;
     }
