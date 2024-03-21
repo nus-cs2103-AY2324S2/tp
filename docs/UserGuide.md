@@ -67,7 +67,7 @@ TutorsContactsPro is a **desktop app for tutors teaching Computer Science course
    
    * `edit 1 p/93840823 y/3 tg/jiejfh203` : Edits the first student on the current list. 
    
-   * `find John` : Lists all the students with the name 'John'
+   * `find John Tan` : Lists all the students with names that matches 'John' or 'Tan'.
 
    * `filter TUT01` : Lists all the students in group 'TUT10'
 
@@ -124,16 +124,16 @@ You can add a student to the list.
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL y/YEAR m/MAJOR tg/TELEGRAM_HANDLE [r/REMARK] [g/Group]...`
 
 
-| Parameter         | Representation                               | Constraints                                                                        |
-|-------------------|----------------------------------------------|------------------------------------------------------------------------------------|
-| `NAME`            | Name of the student                          | Auto-capitalization will be handled. Extra/trailing/leading spaces will be removed |
-| `PHONE_NUMBER`    | Phone number of the student                  | Singapore phone number, 8 digits, without country code                             |
-| `EMAIL`           | Email of the student                         | Must be in email format `username`@`email`.com                                     |
-| `YEAR`            | Academic Year of the student                 | A number ranging from 1 - 6, inclusive                                             |
-| `MAJOR`           | Academic Major of the student contact        | String to represent the major                                                      |
-| `TELEGRAM_HANDLE` | Telegram handle of the student               | Telegram handle format (a-z, 0-9 and underscores, case-insensitive), without prefix “@” |
-| `REMARKS`         | (Optional) Additional remarks of the student | A case-sensitive string. This can be anything                                      |
-| `GROUP`           | Tutorial/Lab/Recitation slot                 | Must be in correct slot format TUT/LAB/REC`2-digit number`                         |
+| Parameter         | Representation                        | Constraints                                                                        |
+|-------------------|---------------------------------------|------------------------------------------------------------------------------------|
+| `NAME`            | Name of the student                   | Auto-capitalization will be handled. Extra/trailing/leading spaces will be removed |
+| `PHONE_NUMBER`    | Phone number of the student           | Singapore phone number, 8 digits, without country code                             |
+| `EMAIL`           | Email of the student                  | Must be in email format `username`@`email`.com                                     |
+| `YEAR`            | Academic Year of the student          | A number ranging from 1 - 6, inclusive                                             |
+| `MAJOR`           | Academic Major of the student contact | String to represent the major                                                      |
+| `TELEGRAM_HANDLE` | Telegram handle of the student        | Telegram handle format (a-z, 0-9 and underscores, case-insensitive), without prefix “@” |
+| `REMARKS`         | Additional remarks of the student     | A case-sensitive string. This can be anything                                      |
+| `GROUP`           | Tutorial/Lab/Recitation slot          | Must be in correct slot format TUT/LAB/REC`2-digit number`                         |
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com y/2 m/Computer Science tg/johndoe r/Very quiet student g/TUT04 g/LAB10 `
@@ -166,7 +166,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only student's name is searched.
+* Only the student's name is searched.
 * Students matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
