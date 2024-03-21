@@ -25,11 +25,13 @@ public class PersonBuilder {
     public static final String DEFAULT_NRIC = "T1234567B";
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
-    public static final String DEFAULT_EMAIL = "test@email.com";
     public static final String DEFAULT_DOB = "1998-07-03";
     public static final String DEFAULT_SEX = "M";
     // Data fields
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_STATUS = "HEALTHY";
+    /*
+    public static final String DEFAULT_EMAIL = "test@email.com";
     public static final String DEFAULT_ALLERGIES = "Peanuts";
     public static final String[] DEFAULT_BLOODTYPE = {"A", "POSITIVE"};
     public static final String DEFAULT_COUNTRY = "Singapore";
@@ -37,9 +39,8 @@ public class PersonBuilder {
     public static final String DEFAULT_CONDITION = "High blood pressure";
     public static final String DEFAULT_DOA = "2024-01-01";
     public static final String DEFAULT_DIAGNOSIS = "Runny nose";
-    public static final String DEFAULT_STATUS = "HEALTHY";
     public static final String DEFAULT_SYMPTOM = "Sneezing, sniffing";
-
+    */
     // Mandatory fields
     private Nric nric;
     private Name name;
@@ -69,8 +70,9 @@ public class PersonBuilder {
         address = new Address(DEFAULT_ADDRESS);
         dateOfBirth = new DateOfBirth(DEFAULT_DOB);
         sex = new Sex(DEFAULT_SEX);
+        status = new Status(DEFAULT_STATUS);
 
-        address = new Address(DEFAULT_ADDRESS);
+        /*
         allergies = new Allergies(DEFAULT_ALLERGIES);
         bloodType = new BloodType(DEFAULT_BLOODTYPE[0], DEFAULT_BLOODTYPE[1]);
         country = new Country(DEFAULT_COUNTRY);
@@ -79,8 +81,8 @@ public class PersonBuilder {
         condition = new Condition(DEFAULT_CONDITION);
         dateOfAdmission = new DateOfAdmission(DEFAULT_DOA);
         diagnosis = new Diagnosis(DEFAULT_DIAGNOSIS);
-        status = new Status(DEFAULT_STATUS);
         symptom = new Symptom(DEFAULT_SYMPTOM);
+        */
     }
 
     /**

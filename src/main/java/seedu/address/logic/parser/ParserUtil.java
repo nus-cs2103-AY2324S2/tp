@@ -57,7 +57,7 @@ public class ParserUtil {
     public static Nric parseNric(String nric) throws ParseException {
         requireNonNull(nric);
         String trimmedNric = nric.trim();
-        if (!Name.isValidName(trimmedNric)) {
+        if (!Nric.isValidNric(trimmedNric)) {
             throw new ParseException(Nric.MESSAGE_CONSTRAINTS);
         }
         return new Nric(trimmedNric);
@@ -133,7 +133,7 @@ public class ParserUtil {
         requireNonNull(sex);
         String trimmedSex = sex.trim();
         if (!Sex.isValidSex(trimmedSex)) {
-            throw new ParseException(Status.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Sex.MESSAGE_CONSTRAINTS);
         }
         return new Sex(sex);
     }
@@ -172,7 +172,7 @@ public class ParserUtil {
         requireNonNull(dateOfAdmission);
         String trimmedDateOfAdmission = dateOfAdmission.trim();
         if (!DateOfAdmission.isValidDateOfAdmission(trimmedDateOfAdmission)) {
-            throw new ParseException(DateOfBirth.MESSAGE_CONSTRAINTS);
+            throw new ParseException(DateOfAdmission.MESSAGE_CONSTRAINTS);
         }
         return new DateOfAdmission(trimmedDateOfAdmission);
     }
@@ -202,9 +202,6 @@ public class ParserUtil {
     public static Allergies parseAllergies(String allergies) throws ParseException {
         requireNonNull(allergies);
         String trimmedAllergies = allergies.trim();
-        if (!Address.isValidAddress(trimmedAllergies)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
-        }
         return new Allergies(trimmedAllergies);
     }
     /**
