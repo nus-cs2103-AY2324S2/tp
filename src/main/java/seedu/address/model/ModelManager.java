@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -134,10 +135,14 @@ public class ModelManager implements Model {
     public String getNextUniqueId() {
         int uniqueId = 0;
         // get max unique id with int parse
-        for (Person person : addressBook.getPersonList()) {
-            int currentId = person.getUniqueId().getInt();
-            if (currentId > uniqueId) {
-                uniqueId = currentId;
+
+        List listToProcess = addressBook.getPersonList();
+        if (!listToProcess.isEmpty()) {
+            for (Person person : addressBook.getPersonList()) {
+                int currentId = person.getUniqueId().getInt();
+                if (currentId > uniqueId) {
+                    uniqueId = currentId;
+                }
             }
         }
         // return 6 digit and append leading 0 if necessary

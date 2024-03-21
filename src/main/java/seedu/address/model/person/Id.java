@@ -30,8 +30,10 @@ public class Id {
     }
 
     public int getInt() {
-        return Integer.parseInt(id);
+        String results = id.substring(1);
+        return Integer.parseInt(results);
     }
+
 
     @Override
     public String toString() {

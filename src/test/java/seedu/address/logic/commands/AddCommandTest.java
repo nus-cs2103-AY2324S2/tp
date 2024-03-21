@@ -167,7 +167,7 @@ public class AddCommandTest {
 
         @Override
         public String getNextUniqueId() {
-            throw new AssertionError("This method should not be called.");
+            return String.format("%06d", 1); //This method should be called
         }
 
         @Override
