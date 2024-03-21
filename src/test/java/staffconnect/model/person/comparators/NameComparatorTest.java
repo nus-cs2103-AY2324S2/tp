@@ -36,4 +36,15 @@ public class NameComparatorTest {
         assertEquals(NAME_COMPARATOR.compare(BENSON, BENSON), 0); // BENSON = BENSON
         assertEquals(NAME_COMPARATOR.compare(ALICE, ALICE), 0); // ALICE = ALICE
     }
+
+    @Test
+    public void toStringTest() {
+        assertEquals(NAME_COMPARATOR.toString(), "Name by alphanumerical order");
+
+        assertNotEquals(NAME_COMPARATOR.toString(), "Phone by ascending order");
+        assertNotEquals(NAME_COMPARATOR.toString(), "Module by alphanumerical order");
+        assertNotEquals(NAME_COMPARATOR.toString(), "Faculty by alphanumerical order");
+        assertNotEquals(NAME_COMPARATOR.toString(), "Venue by alphanumerical order");
+        assertNotEquals(NAME_COMPARATOR.toString(), "random string");
+    }
 }
