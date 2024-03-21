@@ -64,7 +64,7 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]... [A/ASSET]...`
 </box>
 
 #### Examples
-* Add a new contact associated with the asset `L293D`: `add n/John Doe e/johndoe@example.com p/+12345678 A/L293D`
+* Add a new contact associated with the asset `L293D`: `add n/John Doe e/johndoe@example.com a/574 Ang Mo Kio Ave 10 p/12345678 A/L293D`
 
 #### Options
 `NAME`
