@@ -31,7 +31,7 @@ public class UnmarkTaskCommandTest {
                 Messages.formatTask(taskToMark));
 
         ModelManager expectedModel = new ModelManager(new AddressBook(), model.getTaskList(), new UserPrefs());
-        taskToMark.setAsUndone();
+        taskToMark.getStatus().setAsUndone();
 
         assertCommandSuccess(unmarkTaskCommand, model, expectedMessage, expectedModel);
     }

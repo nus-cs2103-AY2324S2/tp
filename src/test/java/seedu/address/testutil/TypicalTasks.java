@@ -7,9 +7,9 @@ import seedu.address.model.task.Task;
  * A utility class containing a list of {@code Task} objects to be used in tests.
  */
 public class TypicalTasks {
-    public static final Task TASK_1 = new Task("task1");
-    public static final Task TASK_2 = new Task("task2");
-    public static final Task TASK_3 = new Task("task3");
+    public static final Task TASK_1 = new TaskBuilder().withTaskName("task1").build();
+    public static final Task TASK_2 = new TaskBuilder().withTaskName("task2").build();
+    public static final Task TASK_3 = new TaskBuilder().withTaskName("task3").build();
 
     private static TaskList tasks = new TaskList();
 

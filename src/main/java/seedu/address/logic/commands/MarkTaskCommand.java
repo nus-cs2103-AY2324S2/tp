@@ -39,7 +39,7 @@ public class MarkTaskCommand extends Command {
         }
 
         Task taskToMark = lastShownList.get(targetIndex.getZeroBased());
-        taskToMark.setAsDone();
+        taskToMark.getStatus().setAsDone();;
 
         return new CommandResult(String.format(MESSAGE_MARK_TASK_SUCCESS, Messages.formatTask(taskToMark)));
     }

@@ -38,7 +38,7 @@ public class UnmarkTaskCommand extends Command {
         }
 
         Task taskToMark = lastShownList.get(targetIndex.getZeroBased());
-        taskToMark.setAsUndone();
+        taskToMark.getStatus().setAsUndone();
 
         return new CommandResult(String.format(MESSAGE_UNMARK_TASK_SUCCESS, Messages.formatTask(taskToMark)));
     }

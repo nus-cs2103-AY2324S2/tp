@@ -48,8 +48,8 @@ public class TaskCard extends UiPart<Region> {
         super(FXML);
         this.task = task;
         id.setText(displayedIndex + ". ");
-        //name.setText(task.getName().fullName);
+        name.setText(task.getName().taskName);
         //mark.setText(task.getMark().value);
-        description.setText(task.getDescription());
+        description.setText(task.getDescription().taskDescription);
     }
 }

@@ -54,7 +54,7 @@ public class Messages {
      * Formats the {@code task} for display to the user.
      */
     public static String formatTask(Task task) {
-        return task.getDescription();
+        return task.getName().toString();
     }
 
 }
