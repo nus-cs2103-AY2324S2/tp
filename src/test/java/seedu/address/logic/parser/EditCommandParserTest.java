@@ -260,16 +260,4 @@ public class EditCommandParserTest {
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }
-
-    /*
-    @Test
-    public void parse_resetProgrammingLanguages_success() {
-        Index targetIndex = INDEX_THIRD_PERSON;
-        String userInput = targetIndex.getOneBased() + PROGRAMMING_LANG_EMPTY;
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withProgrammingLanguages().build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
-
-        assertParseSuccess(parser, userInput, expectedCommand);
-    }
-    */
 }
