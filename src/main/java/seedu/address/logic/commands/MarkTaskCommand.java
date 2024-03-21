@@ -40,7 +40,7 @@ public class MarkTaskCommand extends Command {
         }
 
         Task taskToMark = lastShownList.get(targetIndex.getZeroBased());
-        taskToMark.getStatus().setAsDone();;
+        taskToMark.getStatus().setAsDone();
 
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
 

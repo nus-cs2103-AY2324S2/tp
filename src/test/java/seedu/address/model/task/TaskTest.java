@@ -71,4 +71,18 @@ public class TaskTest {
         task.getStatus().setAsUndone();
         assertFalse(task.getStatus().getTaskStatus());
     }
+
+    @Test
+    public void compare_differentName() {
+        Task task1 = new TaskBuilder().withTaskName("Task 1").build();
+        Task task2 = new TaskBuilder().withTaskName("Task 2").build();
+        assertEquals(-1, task1.compare(task2));
+    }
+
+    @Test
+    public void compare_differentDescription() {
+        Task task1 = new TaskBuilder().withTaskDescription("Task 1").build();
+        Task task2 = new TaskBuilder().withTaskDescription("Task 2").build();
+        assertEquals(-1, task1.compare(task2));
+    }
 }
