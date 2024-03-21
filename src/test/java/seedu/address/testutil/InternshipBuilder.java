@@ -8,6 +8,7 @@ import seedu.address.model.internship.ContactNumber;
 import seedu.address.model.internship.Description;
 import seedu.address.model.internship.Internship;
 import seedu.address.model.internship.Location;
+import seedu.address.model.internship.Remark;
 import seedu.address.model.internship.Role;
 
 /**
@@ -32,6 +33,7 @@ public class InternshipBuilder {
     private ApplicationStatus applicationStatus;
     private Description description;
     private Role role;
+    private Remark remark;
 
     /**
      * Creates an {@code InternshipBuilder} with the default details.
@@ -126,11 +128,19 @@ public class InternshipBuilder {
     }
 
     /**
+     * Sets the {@code Remark} of the {@code Internship} that we are building.
+     */
+    public InternshipBuilder withRemark(String remark) {
+        this.remark = new Remark(remark);
+        return this;
+    }
+
+    /**
      * Builds the Internship object.
      */
     public Internship build() {
         return new Internship(companyName, contactName, contactEmail, contactNumber, location, applicationStatus,
-                description, role);
+                description, role, remark);
     }
 
 }

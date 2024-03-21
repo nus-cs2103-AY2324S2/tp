@@ -32,7 +32,7 @@ public class JsonUserPrefsStorageTest {
     private Optional<InternshipUserPrefs> readUserPrefs(String userPrefsFileInTestDataFolder)
             throws DataLoadingException {
         Path prefsFilePath = addToTestDataPathIfNotNull(userPrefsFileInTestDataFolder);
-        return new JsonUserPrefsStorage(prefsFilePath).readUserPrefs(prefsFilePath);
+        return new JsonInternshipUserPrefsStorage(prefsFilePath).readUserPrefs(prefsFilePath);
     }
 
     @Test
@@ -94,7 +94,7 @@ public class JsonUserPrefsStorageTest {
      */
     private void saveUserPrefs(InternshipUserPrefs userPrefs, String prefsFileInTestDataFolder) {
         try {
-            new JsonUserPrefsStorage(addToTestDataPathIfNotNull(prefsFileInTestDataFolder))
+            new JsonInternshipUserPrefsStorage(addToTestDataPathIfNotNull(prefsFileInTestDataFolder))
                     .saveUserPrefs(userPrefs);
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file", ioe);
@@ -108,7 +108,7 @@ public class JsonUserPrefsStorageTest {
         original.setGuiSettings(new GuiSettings(1200, 200, 0, 2));
 
         Path pefsFilePath = testFolder.resolve("TempPrefs.json");
-        JsonUserPrefsStorage jsonUserPrefsStorage = new JsonUserPrefsStorage(pefsFilePath);
+        JsonInternshipUserPrefsStorage jsonUserPrefsStorage = new JsonInternshipUserPrefsStorage(pefsFilePath);
 
         //Try writing when the file doesn't exist
         jsonUserPrefsStorage.saveUserPrefs(original);
