@@ -2,7 +2,6 @@ package seedu.address.model.person;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
@@ -32,16 +31,16 @@ public class PhoneContainsDigitsPredicateTest {
         assertEquals(firstPredicate, firstPredicateCopy);
 
         // different types -> returns false
-        assertNotEquals(1, firstPredicate);
+        assertFalse(firstPredicate.equals(1));
 
         // null -> returns false
-        assertNotEquals(firstPredicate, null);
+        assertFalse(firstPredicate.equals(null));
 
         // different instance -> returns false
         assertFalse(firstPredicate.equals(new ArrayList<>()));
 
         // different person -> returns false
-        assertNotEquals(firstPredicate, secondPredicate);
+        assertFalse(firstPredicate.equals(secondPredicate));
     }
 
     @Test

@@ -2,7 +2,8 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 
@@ -61,27 +62,27 @@ public class AddCommandTest {
         AddCommand addBobCommand = new AddCommand(bob);
 
         // same object -> returns true
-        assertEquals(addAliceCommand, addAliceCommand);
+        assertTrue(addAliceCommand.equals(addAliceCommand));
 
         // same values -> returns true
         AddCommand addAliceCommandCopy = new AddCommand(alice);
-        assertEquals(addAliceCommand, addAliceCommandCopy);
+        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
 
         // different types -> returns false
-        assertNotEquals(1, addAliceCommand);
+        assertFalse(addAliceCommand.equals(1));
 
         // null -> returns false
-        assertNotEquals(null, addAliceCommand);
+        assertFalse(addAliceCommand.equals(null));
 
         // different person -> returns false
-        assertNotEquals(addAliceCommand, addBobCommand);
+        assertFalse(addAliceCommand.equals(addBobCommand));
     }
 
     @Test
     public void toStringMethod() {
         AddCommand addCommand = new AddCommand(ALICE);
         String expected = AddCommand.class.getCanonicalName() + "{toAdd=" + ALICE + "}";
-        assertEquals(expected, addCommand.toString());
+        assertTrue(expected.equals(addCommand.toString()));
     }
 
     /**
