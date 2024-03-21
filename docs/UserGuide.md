@@ -150,24 +150,29 @@ Format: `addremark INDEX [/remark REMARK]`
 
 Examples:
 *  `addremark 1 /remark This internship has a behavioural interview!` Adds or modifies the remark of the internship at index 1 to be `This internship has a behavioural interview!`.
+[/company COMPANY_NAME] [/pocname NAME_OF_CONTACT] [/email EMAIL_OF_CONTACT] [/number NUMBER_OF_CONTACT] [/location LOCATION_ENUM] [/status STATUS] [/description DESCRIPTION] [/role ROLE]
+### Locating internships by keywords: `find`
 
-### Locating internships by name: `find`
+Finds internship entries whose specified fields contains the keywords.
 
-Finds internship entries whose names contain any of the given keywords.
+Format: `find MODE [/com COMPANY_NAME_KEYWORDS] [/poc CONTACT_NAME_KEYWORDS] [/loc LOCATION_KEYWORDS] [/status STATUS_KEYWORDS] [/desc DESCRIPTION_KEYWORDS] [/role ROLE_KEYWORDS]`
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* MODE is either 'withall' or 'withany'.
+  * 'withall' returns internships that match each prefix-keyword predicate.
+    * Within each prefix field, the Internship just has to contain any of the keywords.
+  * 'withany' returns internships that match at least one prefix-keyword predicate.
+* The search is case-insensitive. e.g `google` will match `Google`
+* The order of the keywords does not matter. e.g. `Microsoft Google` will match `Google Microsoft`
 * Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* Only full words will be matched e.g. `Goo` will not match `Google`
+* Internship matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `Hewlett Song` will return `Hewlett Packard`, `Song Fa`
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `find withall /status accepted /loc local ` returns Internships with both status `accepted` and location `local`<br>
+  ![result for 'find withall /status accepted /loc local'](images/findWithallStatusAcceptedLocLocalResult.png)
+* `find withany /status rejected /loc remote <br> ` returns Internships with either status `rejected` or location `remote`
+  ![result for 'find withany /status rejected /loc remote'](images/findWithanyStatusRejectedLocRemoteResult.png)
 
 ### Clearing all internships: `clear`
 
