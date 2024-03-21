@@ -46,6 +46,10 @@ class JsonAdaptedPerson {
         if (tags != null) {
             this.tags.addAll(tags);
         }
+        // Add backwards compatibility for versions prior to v1.2
+        if (note == null) {
+            note = "";
+        }
         this.note = note;
     }
 
