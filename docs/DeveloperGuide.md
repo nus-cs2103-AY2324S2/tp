@@ -155,6 +155,24 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Edit Command
+
+
+
+
+
+
+
+
+
+In the current iteration, `ModelManager` is the only object that implements model outside of testing. The following 
+sequence diagram shows the interactions within `Model` when editing a person.
+
+![EditSequenceDiagram-Model](images/EditSequenceDiagram-Model.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The return arrows for void methods are deliberately left out in this diagram.
+</div>
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
