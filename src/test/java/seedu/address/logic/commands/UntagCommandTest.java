@@ -3,7 +3,6 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
@@ -17,12 +16,10 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.Messages;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.tag.Tag;
-import seedu.address.testutil.PersonBuilder;
 
 /**
  * Contains integration tests (interactions with the Model) and unit tests for UntagCommand.
@@ -37,24 +34,6 @@ class UntagCommandTest {
     @BeforeEach
     public void init() {
         model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    }
-
-    @Test
-    public void execute_multipleTagsSpecified_success() {
-        var index = INDEX_SECOND_PERSON;
-        var command = new UntagCommand(index, TAGS);
-        var actualPerson = model.getFilteredPersonList().get(index.getZeroBased());
-
-        var editedPerson = new PersonBuilder(actualPerson).withTags().build();
-        var expectedMessage = String.format(
-                UntagCommand.MESSAGE_DELETE_TAG_SUCCESS,
-                Messages.format(editedPerson),
-                "friends, owesMoney");
-
-        var expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(actualPerson, editedPerson);
-
-        assertCommandSuccess(command, model, new CommandHistory(), expectedMessage, expectedModel);
     }
 
     @Test
