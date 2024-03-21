@@ -10,4 +10,22 @@ participant "p:MarkCommand" as MarkCommand LOGIC_COLOR
 participant "r:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
+box Model MODEL_COLOR_T1
+participant "m:Model" as Model MODEL_COLOR
+end box
 
+[-> LogicManager : execute("mark 1 /t Assignment1 /ts cg")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("mark 1 /t Assignment1 /ts cg")
+activate AddressBookParser
+
+create MarkCommandParser
+AddressBookParser -> MarkCommandParser
+activate MarkCommandParser
+
+MarkCommandParser --> AddressBookParser
+deactivate MarkCommandParser
+
+AddressBookParser -> MarkCommandParser : parse("1 /t Assignment1 /ts cg")
+activate MarkCommandParser
