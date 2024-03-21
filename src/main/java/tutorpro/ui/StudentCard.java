@@ -10,7 +10,7 @@ import javafx.scene.layout.Region;
 import tutorpro.model.person.student.Student;
 
 /**
- * An UI component that displays information of a {@code Person}.
+ * An UI component that displays information of a {@code Student}.
  */
 public class StudentCard extends UiPart<Region> {
 
