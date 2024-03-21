@@ -80,7 +80,7 @@ public class AddSkillCommand extends Command {
             model.updateFilteredCourseMateList(predicate);
             return new CommandResult(
                     String.format(Messages.MESSAGE_SIMILAR_COURSE_MATE_NAME,
-                            model.getFilteredCourseMateList().size()));
+                            model.getFilteredCourseMateList().size()), false, false, true);
         }
 
         CourseMate courseMateToEdit = courseMateToEditList.get(0);

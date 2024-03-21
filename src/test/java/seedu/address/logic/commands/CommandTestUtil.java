@@ -17,6 +17,8 @@ import seedu.address.model.ContactList;
 import seedu.address.model.Model;
 import seedu.address.model.coursemate.ContainsKeywordPredicate;
 import seedu.address.model.coursemate.CourseMate;
+import seedu.address.model.coursemate.Name;
+import seedu.address.model.coursemate.QueryableCourseMate;
 import seedu.address.testutil.AddSkillDescriptorBuilder;
 import seedu.address.testutil.DeleteSkillDescriptorBuilder;
 import seedu.address.testutil.EditCourseMateDescriptorBuilder;
@@ -143,6 +145,17 @@ public class CommandTestUtil {
         model.updateFilteredCourseMateList(new ContainsKeywordPredicate(splitName[0]));
 
         assertEquals(1, model.getFilteredCourseMateList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show all coursemates with matching {@code targetName} in the
+     * {@code model}'s contact list.
+     */
+    public static void showAllCourseMates(Model model, Name targetName) {
+        List<CourseMate> courseMate = model.findCourseMate(new QueryableCourseMate(targetName));
+        ContainsKeywordPredicate predicate = new ContainsKeywordPredicate(
+                targetName.toString());
+        model.updateFilteredCourseMateList(predicate);
     }
 
 }

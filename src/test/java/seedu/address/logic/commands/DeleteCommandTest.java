@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.assertRecentlyProcessedCourseMateEdited;
+import static seedu.address.logic.commands.CommandTestUtil.showAllCourseMates;
 import static seedu.address.logic.commands.CommandTestUtil.showCourseMateAtIndex;
 import static seedu.address.testutil.TypicalCourseMates.getTypicalContactList;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_COURSE_MATE;
@@ -15,10 +16,12 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
+import seedu.address.model.ContactList;
 import seedu.address.model.GroupList;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.coursemate.ContainsKeywordPredicate;
 import seedu.address.model.coursemate.CourseMate;
 import seedu.address.model.coursemate.Name;
 import seedu.address.model.coursemate.QueryableCourseMate;
@@ -43,6 +46,22 @@ public class DeleteCommandTest {
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel, true);
         assertRecentlyProcessedCourseMateEdited(model, courseMateToDelete);
+    }
+
+    @Test
+    public void execute_similarCourseMates() {
+        showAllCourseMates(model, new Name("a"));
+        DeleteCommand deleteCommand = new DeleteCommand(new QueryableCourseMate(new Name("a")));
+        String expectedMessage = String.format(Messages.MESSAGE_SIMILAR_COURSE_MATE_NAME, 4);
+
+        Model expectedModel = new ModelManager(
+                new ContactList(model.getContactList()), new UserPrefs(), new GroupList());
+
+        ContainsKeywordPredicate predicate = new ContainsKeywordPredicate("a");
+        expectedModel.updateFilteredCourseMateList(predicate);
+
+        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel, true);
+        assertRecentlyProcessedCourseMateEdited(model, null);
     }
 
     @Test
