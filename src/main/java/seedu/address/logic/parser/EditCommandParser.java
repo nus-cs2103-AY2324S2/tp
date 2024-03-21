@@ -5,11 +5,11 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INFO;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERVIEWTIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_INFO;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Collection;
@@ -51,8 +51,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(
-                PREFIX_COMPANY_NAME, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_SALARY, PREFIX_INFO, PREFIX_ADDRESS,
-                PREFIX_INTERVIEWTIME);
+                PREFIX_COMPANY_NAME, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_SALARY, PREFIX_INFO,
+                PREFIX_ADDRESS, PREFIX_INTERVIEWTIME);
 
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
         if (argMultimap.getValue(PREFIX_COMPANY_NAME).isPresent()) {

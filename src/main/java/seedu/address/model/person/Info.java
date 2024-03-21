@@ -1,6 +1,8 @@
 package seedu.address.model.person;
 
-
+/**
+ * Represents a Person's info in the address book.
+ */
 public class Info {
     public final String value;
 
@@ -21,7 +23,9 @@ public class Info {
         return true;
     }
 
-    public String getInfo() { return value; }
+    public String getInfo() {
+        return value;
+    }
 
     @Override
     public String toString() {

@@ -4,11 +4,11 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INFO;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERVIEWTIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_INFO;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
@@ -24,17 +24,16 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.CompanyName;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Info;
 import seedu.address.model.person.InterviewTime;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Salary;
-import seedu.address.model.person.Info;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -239,9 +238,11 @@ public class EditCommand extends Command {
             return Optional.ofNullable(salary);
         }
 
-        public void setInfo(Info info) {this.info = info; }
+        public void setInfo(Info info) {
+            this.info = info; }
 
-        public Optional<Info> getInfo() { return Optional.ofNullable(info); }
+        public Optional<Info> getInfo() {
+            return Optional.ofNullable(info); }
 
         /**
          * Sets {@code tags} to this object's {@code tags}.
