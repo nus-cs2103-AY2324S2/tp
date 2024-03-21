@@ -86,6 +86,17 @@ Adds a person to the address book.
 
 Format: `patient n/NAME p/PHONE_NUMBER e/EMAIL [a/AFFLIATED_WITH]…​`
 
+**Validation**:
+1. NAME
+    1. No duplicate names are allowed. Names are lowercased and trimmed before duplicate comparison
+2. PHONE_NUMBER
+    1. Should be exactly 3 or 8 digits long
+    2. Should start with 6, 8 or 9. (We ignore 3 since those are numbers that people wouldn't normally have)
+    3. Note: This simplistic  validation allows for weird numbers like 666, but we allow thie anyway since comprehensive number validating is too technically complex
+3. EMAIL
+    1. Should be a valid email address with the form `local-part@domain` where domain is at least 2 letters long
+    2. All emails are stored in lowercase by default
+
 <box type="tip" seamless>
 
 **Tip:** A person can have any number of affiliations (including 0)
@@ -190,9 +201,28 @@ Examples:
 * `appointment pid/1 d/2022-12-12 13:00 att/false`
 * `appointment pid/1 d/2022-12-12 14:00 att/true ad/Patient attended the appointment.`
 
+**Validation**:
+1. PATIENT_ID
+   1. No duplicate patient IDs are allowed. Checks are made against the patient list
+   2. Patient ID given must exist in the current patient list.
+   3. Patient ID must be a positive integer.
+2. DATE_TIME
+   1. No two appointments can share the exact same date and time, even if they differ by other attributes like different patient IDs
+3. ATTEND
+   1. Must be either `true` or `false` (case-insensitive)
+
 ### Listing all persons : `queryappointments`
 
-Shows a list of all students in the address book.
+Shows a list of all students in the address book. Can be filtered by multiple criteria.
+
+Format: `queryappointments [pid/PATIENT_ID] [n/PATIENT_NAME] [aid/APPOINTMENT_ID]`
+
+Examples:
+* `queryappointments` shows all appointments in the address book.
+* `queryappointments pid/1` shows all appointments for the patient with the patientId of 1 in the address book.
+* `queryappointments aid/90` shows the appointment with the appointmentId of 90 in the address book.
+* `queryappointments n/Jer` shows all appointments whose patient's name contains "Jer" in the address book.
+
 
 ### Deleting an appointment : `deleteappointment`
 
@@ -234,9 +264,19 @@ If your changes to the data file makes its format invalid, CogniCare will discar
 Furthermore, certain edits can cause the CogniCare to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
 
+### Navigating through history of commands
+Press UP or DOWN to navigate your history of written commands. 
+
+UP - Goes to the previous command in the history
+DOWN - Goes to the next command in the history
+
+Note: Upon reaching the start of the history, pressing UP further will play a sound to indicate this fact
+
 ### Archiving data files `[coming in v2.0]`
 
 _Details coming soon ..._
+
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -255,15 +295,16 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action                                                | Format, Examples                                                                                                                                                                                                            |
-|-------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add a patient**                                     | `patient n/NAME p/PHONE_NUMBER e/EMAIL [a/AFFLIATED_WITH]…​` <br> e.g., `patient n/Jerome Chua p/98765432 e/jerome@example.com a/depression` or `patient n/Davinci Lim p/98731122 e/betsycrowe@example.com a/sad a/anxiety` |
+| Action                                               | Format, Examples                                                                                                                                                                                                            |
+|------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add a patient**                                    | `patient n/NAME p/PHONE_NUMBER e/EMAIL [a/AFFLIATED_WITH]…​` <br> e.g., `patient n/Jerome Chua p/98765432 e/jerome@example.com a/depression` or `patient n/Davinci Lim p/98731122 e/betsycrowe@example.com a/sad a/anxiety` |
 | **Delete all entries from the CogniCare application** | `clear`                                                                                                                                                                                                                     |
-| **Delete**                                            | `delete STUDENT_ID`<br> e.g., `delete 3`                                                                                                                                                                                    |
-| **Edit**                                              | `edit STUDENT_ID [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/AFFLIATED_WITH]…​`edit 1 p/91234567 e/johndoe@example.com`                                                                                                          |
-| **Search**                                            | `querystudents [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] …​`<br> e.g., `querystudents n/Jerome p/987 e/example.com​`                                                                                                              |
-| **Add an appointment**                                | `appointment pid/PATIENT_ID d/DATE_TIME [att/ATTEND] [ad/APPOINTMENT_DESCRIPTION]`                                                                                                                                          |
-| **Delete an appointment**                             | `delete aid/APPOINTMENT_ID`                                                                                                                                                                                                 |
-| **List**                                              | `list`                                                                                                                                                                                                                      |
-| **Help**                                              | `help`                                                                                                                                                                                                                      |
+| **Delete**                                           | `delete STUDENT_ID`<br> e.g., `delete 3`                                                                                                                                                                                    |
+| **Edit**                                             | `edit STUDENT_ID [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/AFFLIATED_WITH]…​`edit 1 p/91234567 e/johndoe@example.com`                                                                                                          |
+| **Search**                                           | `querystudents [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] …​`<br> e.g., `querystudents n/Jerome p/987 e/example.com​`                                                                                                              |
+| **Add an appointment**                               | `appointment pid/PATIENT_ID d/DATE_TIME [att/ATTEND] [ad/APPOINTMENT_DESCRIPTION]`                                                                                                                                          |
+| **Query appointments**                               | `queryappointments [pid/PATIENT_ID] [n/PATIENT_NAME] [aid/APPOINTMENT_ID]`                                                                                                                                                  |
+| **Delete an appointment**                            | `delete aid/APPOINTMENT_ID`                                                                                                                                                                                                 |
+| **List**                                             | `list`                                                                                                                                                                                                                      |
+| **Help**                                             | `help`                                                                                                                                                                                                                      |
 
