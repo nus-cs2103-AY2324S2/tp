@@ -1,0 +1,83 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":LinkLoanCommandParser" as LinkLoanCommandParser LOGIC_COLOR
+participant "<< class >>\nParserUtil" as ParserUtil LOGIC_COLOR
+participant "l:LinkLoanCommand" as LinkLoanCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "m:Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("linkloan ...")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("linkloan ...")
+activate AddressBookParser
+
+create LinkLoanCommandParser
+AddressBookParser -> LinkLoanCommandParser
+activate LinkLoanCommandParser
+
+LinkLoanCommandParser --> AddressBookParser
+deactivate LinkLoanCommandParser
+
+AddressBookParser -> LinkLoanCommandParser : parse(...)
+activate LinkLoanCommandParser
+
+LinkLoanCommandParser -> ParserUtil : << parseIndex(...) >>
+activate ParserUtil
+
+ParserUtil --> LinkLoanCommandParser :
+deactivate ParserUtil
+
+LinkLoanCommandParser -> ParserUtil : << parseLoan(...) >>
+activate ParserUtil
+
+ParserUtil --> LinkLoanCommandParser :
+deactivate ParserUtil
+
+create LinkLoanCommand
+LinkLoanCommandParser -> LinkLoanCommand
+activate LinkLoanCommand
+
+LinkLoanCommand --> LinkLoanCommandParser :
+deactivate LinkLoanCommand
+
+LinkLoanCommandParser --> AddressBookParser : l
+deactivate LinkLoanCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+LinkLoanCommandParser -[hidden]-> AddressBookParser
+destroy LinkLoanCommandParser
+
+AddressBookParser --> LogicManager : l
+deactivate AddressBookParser
+
+LogicManager -> LinkLoanCommand : execute(m)
+activate LinkLoanCommand
+
+LinkLoanCommand -> Model : getFilteredPersonList()
+activate Model
+
+Model --> LinkLoanCommand
+deactivate Model
+
+create CommandResult
+LinkLoanCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> LinkLoanCommand
+deactivate CommandResult
+
+LinkLoanCommand --> LogicManager : r
+deactivate LinkLoanCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
