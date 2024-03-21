@@ -14,11 +14,14 @@ Class UserPrefs
 
 Class UniquePersonList
 Class Person
-Class Address
-Class Email
 Class Name
 Class Phone
+Class Email
+Class LoanRecords
+Class Address
 Class Tag
+Class Loan
+
 
 Class I #FFFFFF
 }
@@ -40,8 +43,11 @@ UniquePersonList --> "~* all" Person
 Person *--> Name
 Person *--> Phone
 Person *--> Email
+Person *--> LoanRecords
 Person *--> Address
 Person *--> "*" Tag
+LoanRecords o-->"*" Loan
+
 
 Person -[hidden]up--> I
 UniquePersonList -[hidden]right-> I
