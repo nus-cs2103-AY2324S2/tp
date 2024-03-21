@@ -23,7 +23,7 @@ import seedu.address.model.person.exceptions.PersonNotFoundException;
  *
  * @see Company#isSameCompany(Company)
  */
-public class UniquePersonList implements Iterable<Company> {
+public class UniqueCompanyList implements Iterable<Company> {
 
     private final ObservableList<Company> internalList = FXCollections.observableArrayList();
     private final ObservableList<Company> internalUnmodifiableList =
@@ -80,7 +80,7 @@ public class UniquePersonList implements Iterable<Company> {
         }
     }
 
-    public void setPersons(UniquePersonList replacement) {
+    public void setCompany(UniqueCompanyList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
@@ -89,7 +89,7 @@ public class UniquePersonList implements Iterable<Company> {
      * Replaces the contents of this list with {@code persons}.
      * {@code persons} must not contain duplicate persons.
      */
-    public void setPersons(List<Company> companies) {
+    public void setCompany(List<Company> companies) {
         requireAllNonNull(companies);
         if (!companiesAreUnique(companies)) {
             throw new DuplicatePersonException();
@@ -117,12 +117,12 @@ public class UniquePersonList implements Iterable<Company> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof UniquePersonList)) {
+        if (!(other instanceof UniqueCompanyList)) {
             return false;
         }
 
-        UniquePersonList otherUniquePersonList = (UniquePersonList) other;
-        return internalList.equals(otherUniquePersonList.internalList);
+        UniqueCompanyList otherUniqueCompanyList = (UniqueCompanyList) other;
+        return internalList.equals(otherUniqueCompanyList.internalList);
     }
 
     @Override

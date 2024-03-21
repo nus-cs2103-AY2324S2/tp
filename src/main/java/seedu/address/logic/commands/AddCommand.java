@@ -19,21 +19,19 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a company to the address book. "
             + "Parameters: "
             + PREFIX_NAME + " NAME "
-            + PREFIX_PHONE + "PHONE "
-            + PREFIX_EMAIL + "EMAIL "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + PREFIX_TAG + " TAG "
+            + PREFIX_EMAIL + " EMAIL "
+            + "[" + PREFIX_PHONE + " PHONE]...\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "John Doe "
-            + PREFIX_PHONE + "98765432 "
-            + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";
-
-    public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
+            + PREFIX_NAME + " NUS "
+            + PREFIX_TAG + " SoftwareEngineer "
+            + PREFIX_EMAIL + " NUS@nus.edu.com "
+            + PREFIX_PHONE + " 91234567 ";
+    public static final String MESSAGE_SUCCESS = "New company added: %1$s";
+    public static final String MESSAGE_DUPLICATE_COMPANY = "This company already exists in the address book";
 
     private final Company toAdd;
 
@@ -49,11 +47,11 @@ public class AddCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasPerson(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        if (model.hasCompany(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_COMPANY);
         }
 
-        model.addPerson(toAdd);
+        model.addCompany(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
     }
 

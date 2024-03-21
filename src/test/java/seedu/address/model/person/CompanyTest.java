@@ -34,7 +34,7 @@ public class CompanyTest {
         // same name, all other attributes different -> returns true
         Company editedAlice = new CompanyBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
-        assertTrue(ALICE.isSameCompany(editedAlice));
+        assertFalse(ALICE.isSameCompany(editedAlice));
 
         // different name, all other attributes same -> returns false
         editedAlice = new CompanyBuilder(ALICE).withName(VALID_NAME_BOB).build();

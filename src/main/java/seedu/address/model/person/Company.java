@@ -67,7 +67,8 @@ public class Company {
         }
 
         return otherCompany != null
-                && otherCompany.getName().equals(getName());
+                && otherCompany.getName().equals(getName())
+                && otherCompany.getEmail().equals(getEmail());
     }
 
     /**
