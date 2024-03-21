@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.orders;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ORDERS;
 
 import java.util.HashSet;
 import java.util.List;
@@ -60,6 +61,7 @@ public class AddOrderCommand extends Command {
                 personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
                 personToEdit.getAddress(), personToEdit.getTags(), orders);
         model.setPerson(personToEdit, editedPerson, this.order);
+        model.updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS);
         return new CommandResult(generateSuccessMessage(editedPerson));
     }
 

@@ -87,7 +87,7 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
-    public void setPerson(Person target, Person editedPerson, Order order);
+    void setPerson(Person target, Person editedPerson, Order order);
 
     /**
      * Returns an unmodifiable view of the filtered person list.
@@ -105,11 +105,6 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
-
-    /**
-     * Returns an unmodifiable view of the order list.
-     */
-    public ObservableList<Order> getOrderList();
 
     /**
      * Updates the filter of the filtered order list to filter by the given {@code predicate}.

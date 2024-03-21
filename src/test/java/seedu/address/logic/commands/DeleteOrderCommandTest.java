@@ -147,10 +147,6 @@ public class DeleteOrderCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
-        @Override
-        public ObservableList<Order> getOrderList() {
-            throw new AssertionError("This method should not be called.");
-        }
     }
 
     /**
@@ -186,8 +182,7 @@ public class DeleteOrderCommandTest {
             return personList;
         }
 
-        @Override
-        public ObservableList<Order> getOrderList() {
+        private ObservableList<Order> getOrderList() {
             ObservableList<Order> orderList = FXCollections.observableArrayList(this.person.getOrders());
             return orderList;
         }
@@ -197,6 +192,11 @@ public class DeleteOrderCommandTest {
             AddressBook addressBook = new AddressBook();
             addressBook.addPerson(this.person);
             return addressBook;
+        }
+
+        @Override
+        public void updateFilteredOrderList(Predicate<Order> predicate) {
+            requireNonNull(predicate);
         }
     }
 }

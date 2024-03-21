@@ -23,7 +23,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
-    private final ObservableList<Order> filteredOrders;
+    private final FilteredList<Order> filteredOrders;
 
 
     /**
@@ -37,7 +37,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        filteredOrders = this.addressBook.getOrderList();
+        filteredOrders = new FilteredList<>(this.addressBook.getOrderList());
     }
 
     public ModelManager() {
@@ -120,17 +120,10 @@ public class ModelManager implements Model {
     public void setPerson(Person target, Person editedPerson, Order order) {
         requireAllNonNull(target, editedPerson);
 
-        addressBook.setPerson(target, editedPerson);
-        filteredOrders.add(order);
-
+        addressBook.setPerson(target, editedPerson, order);
     }
 
     //=========== Order ================================================================================
-
-    @Override
-    public ObservableList<Order> getOrderList() {
-        return this.addressBook.getOrderList();
-    }
 
     /**
      * Returns an unmodifiable view of the list of {@code Order} backed by the internal list of.
@@ -144,6 +137,7 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredOrderList(Predicate<Order> predicate) {
         requireNonNull(predicate);
+        filteredOrders.setPredicate(predicate);
     }
 
     //=========== Filtered Person List Accessors =============================================================

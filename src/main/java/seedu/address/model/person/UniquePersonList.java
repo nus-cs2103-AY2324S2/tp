@@ -28,6 +28,9 @@ public class UniquePersonList implements Iterable<Person> {
     private final ObservableList<Person> internalList = FXCollections.observableArrayList();
     private final ObservableList<Person> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
+    private final ObservableList<Order> internalOrderList = FXCollections.observableArrayList();
+    private final ObservableList<Order> internalUnmodifiableOrderList =
+            FXCollections.unmodifiableObservableList(internalOrderList);
 
     /**
      * Returns true if the list contains an equivalent person as the given argument.
@@ -69,6 +72,22 @@ public class UniquePersonList implements Iterable<Person> {
         internalList.set(index, editedPerson);
     }
 
+    public void setPerson(Person target, Person editedPerson, Order order) {
+        requireAllNonNull(target, editedPerson);
+
+        int index = internalList.indexOf(target);
+        if (index == -1) {
+            throw new PersonNotFoundException();
+        }
+
+        if (!target.isSamePerson(editedPerson) && contains(editedPerson)) {
+            throw new DuplicatePersonException();
+        }
+
+        internalList.set(index, editedPerson);
+        internalOrderList.add(order);
+    }
+
     /**
      * Removes the equivalent person from the list.
      * The person must exist in the list.
@@ -96,6 +115,9 @@ public class UniquePersonList implements Iterable<Person> {
         }
 
         internalList.setAll(persons);
+        internalOrderList.setAll(asUnmodifiableObservableListOrders());
+
+
     }
 
     /**
@@ -106,14 +128,23 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
+     * Adds an order to the list.
+     *
+     * @param order a valid order.
+     */
+    public void addOrder(Order order) {
+        requireNonNull(order);
+        internalOrderList.add(order);
+    }
+
+    /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Order> asUnmodifiableObservableListOrders() {
-        ObservableList<Order> allOrders = FXCollections.observableArrayList();
         for (Person person : internalList) {
-            allOrders.addAll(person.getOrdersList());
+            internalOrderList.addAll(person.getOrdersList());
         }
-        return allOrders;
+        return internalUnmodifiableOrderList;
     }
 
     @Override
