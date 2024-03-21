@@ -1,6 +1,6 @@
 {
   "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
-  "persons" : [ {
+  "sellers" : [ {
     "name" : "Alice Pauline",
     "phone" : "94351253",
     "email" : "alice@example.com",
@@ -18,7 +18,7 @@
     "tags" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
-    "phone" : "98765432",
+    "phone" : "94351253",
     "email" : "johnd@example.com",
     "housingType": "HDB",
     "houses": [
@@ -30,7 +30,7 @@
         "unitNumber": "150"
       }
     ],
-    "tags" : [ "owesMoney", "friends" ]
+    "tags" : [ "friends" ]
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",
@@ -66,7 +66,7 @@
   }, {
     "name" : "Elle Meyer",
     "phone" : "9482224",
-    "email" : "werner@example.com",
+    "email" : "heinz@example.com",
     "housingType": "HDB",
     "houses": [
       {
@@ -82,7 +82,7 @@
   }, {
     "name" : "Fiona Kunz",
     "phone" : "9482427",
-    "email" : "lydia@example.com",
+    "email" : "heinz@example.com",
     "housingType": "HDB",
     "houses": [
       {
@@ -98,7 +98,7 @@
   }, {
     "name" : "George Best",
     "phone" : "9482442",
-    "email" : "anna@example.com",
+    "email" : "heinz@example.com",
     "housingType": "HDB",
     "houses": [
       {

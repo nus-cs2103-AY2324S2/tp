@@ -54,7 +54,13 @@ public class JsonAdaptedSeller extends JsonAdaptedPerson {
 
         final ArrayList<House> sellerHouses = new ArrayList<>();
         for (JsonAdaptedHouse house : houses) {
-            sellerHouses.add(house.toModelType());
+            try {
+                sellerHouses.add(house.toModelType());
+            } catch (IllegalValueException ive) {
+                throw ive;
+            } catch (Exception e) {
+                throw new IllegalValueException("Error when converting houses: " + e.getMessage());
+            }
         }
 
         return new Seller(person.getName(), person.getPhone(), person.getEmail(),

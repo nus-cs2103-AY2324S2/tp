@@ -1,3 +1,6 @@
+// This whole test has been commented out because edit is not working properly yet, will only
+// do in the next iterations
+
 //package seedu.address.logic.commands;
 //
 //import static org.junit.jupiter.api.Assertions.assertEquals;
