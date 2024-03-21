@@ -20,7 +20,12 @@ public class UniqueTagListTest {
 
     @Test
     public void contains_nullTag_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueTagList.contains(null));
+        assertThrows(NullPointerException.class, () -> uniqueTagList.contains((Tag) null));
+    }
+
+    @Test
+    public void contains_nullTagString_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueTagList.contains((String) null));
     }
 
     @Test
@@ -29,9 +34,20 @@ public class UniqueTagListTest {
     }
 
     @Test
+    public void contains_tagNotInListString_returnsFalse() {
+        assertFalse(uniqueTagList.contains("friends"));
+    }
+
+    @Test
     public void contains_tagInList_returnsTrue() {
         uniqueTagList.add(new Tag("friends"));
         assertTrue(uniqueTagList.contains(new Tag("friends")));
+    }
+
+    @Test
+    public void contains_tagInListString_returnsTrue() {
+        uniqueTagList.add(new Tag("friends"));
+        assertTrue(uniqueTagList.contains("friends"));
     }
 
     @Test
@@ -53,12 +69,22 @@ public class UniqueTagListTest {
 
     @Test
     public void remove_nullTag_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueTagList.remove(null));
+        assertThrows(NullPointerException.class, () -> uniqueTagList.remove((Tag) null));
+    }
+
+    @Test
+    public void remove_nullTagString_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueTagList.remove((String) null));
     }
 
     @Test
     public void remove_tagDoesNotExist_throwsTagNotFoundException() {
         assertThrows(TagNotFoundException.class, () -> uniqueTagList.remove(new Tag("friends")));
+    }
+
+    @Test
+    public void remove_tagDoesNotExistString_throwsTagNotFoundException() {
+        assertThrows(TagNotFoundException.class, () -> uniqueTagList.remove("friends"));
     }
 
     @Test
@@ -69,6 +95,13 @@ public class UniqueTagListTest {
         assertEquals(expectedUniqueTagList, uniqueTagList);
     }
 
+    @Test
+    public void remove_existingTagString_removesTag() {
+        uniqueTagList.add(new Tag("friends"));
+        uniqueTagList.remove("friends");
+        UniqueTagList expectedUniqueTagList = new UniqueTagList();
+        assertEquals(expectedUniqueTagList, uniqueTagList);
+    }
     @Test
     public void setTags_nullUniqueTagList_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueTagList.setTags((UniqueTagList) null));

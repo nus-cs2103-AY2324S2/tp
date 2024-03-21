@@ -88,6 +88,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Returns true if a tag with name {@code tagName} exists in the address book.
+     */
+    public boolean hasTag(String tagName) {
+        requireNonNull(tagName);
+        return tagList.contains(tagName);
+    }
+
+    /**
      * Adds a person to the address book.
      * The person must not already exist in the address book.
      */
@@ -138,6 +146,9 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code key} must exist in the address book.
      */
     public void removeTag(Tag key) {
+        tagList.remove(key);
+    }
+    public void removeTag(String key) {
         tagList.remove(key);
     }
 

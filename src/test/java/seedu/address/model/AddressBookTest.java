@@ -72,7 +72,7 @@ public class AddressBookTest {
 
     @Test
     public void hasTag_nullTag_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasTag(null));
+        assertThrows(NullPointerException.class, () -> addressBook.hasTag((Tag) null));
     }
 
     @Test
@@ -86,6 +86,11 @@ public class AddressBookTest {
     }
 
     @Test
+    public void hasTag_tagNotInAddressBookString_returnsFalse() {
+        assertFalse(addressBook.hasTag("FRIEND"));
+    }
+
+    @Test
     public void hasPerson_personInAddressBook_returnsTrue() {
         addressBook.addPerson(ALICE);
         assertTrue(addressBook.hasPerson(ALICE));
@@ -95,6 +100,12 @@ public class AddressBookTest {
     public void hasTag_tagInAddressBook_returnsTrue() {
         addressBook.addTag(FRIEND);
         assertTrue(addressBook.hasTag(FRIEND));
+    }
+
+    @Test
+    public void hasTag_tagInAddressBookString_returnsTrue() {
+        addressBook.addTag(FRIEND);
+        assertTrue(addressBook.hasTag("friends"));
     }
 
     @Test
@@ -149,6 +160,11 @@ public class AddressBookTest {
     }
 
     @Test
+    public void removeTag_notExistingTagString_throwsTagNotFoundException() {
+        assertThrows(TagNotFoundException.class, () -> addressBook.removeTag("friends"));
+    }
+
+    @Test
     public void removePerson_existingPerson_success() {
         addressBook.addPerson(ALICE);
         assertDoesNotThrow(() -> addressBook.removePerson(ALICE));
@@ -158,6 +174,12 @@ public class AddressBookTest {
     public void removeTag_existingTag_success() {
         addressBook.addTag(FRIEND);
         assertDoesNotThrow(() -> addressBook.removeTag(FRIEND));
+    }
+
+    @Test
+    public void removeTag_existingTagString_success() {
+        addressBook.addTag(FRIEND);
+        assertDoesNotThrow(() -> addressBook.removeTag("friends"));
     }
 
     @Test

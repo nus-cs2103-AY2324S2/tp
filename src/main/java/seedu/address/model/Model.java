@@ -77,6 +77,27 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
+    /**
+     * Returns true if a tag with the same identity as {@code tag} exists in the address book.
+     */
+    boolean hasTag(Tag tag);
+
+    boolean hasTag(String tagName);
+
+    /**
+     * Deletes the given tag.
+     * The tag must exist in the address book.
+     */
+    void deleteTag(Tag tag);
+
+    void deleteTag(String tagName);
+
+    /**
+     * Adds the given tag.
+     * {@code tag} must not already exist in the address book.
+     */
+    void addTag(Tag tag);
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
