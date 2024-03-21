@@ -16,5 +16,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_DEADLINE = new Prefix("by/");
     public static final Prefix PREFIX_TO = new Prefix("to/");
     public static final Prefix PREFIX_EFFICIENCY = new Prefix("eff/");
+    public static final Prefix PREFIX_TASK_OWNER = new Prefix("o/");
 
 }

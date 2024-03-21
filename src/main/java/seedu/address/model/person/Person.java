@@ -85,6 +85,19 @@ public class Person {
     }
 
     /**
+     * Check if person has specified task assigned
+     * @param taskName
+     * @return boolean
+     */
+    public boolean hasTask(String taskName) {
+        if (this.task == null) {
+            return false;
+        } else {
+            return this.task.getTaskTitle().equals(taskName);
+        }
+    }
+
+    /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
