@@ -13,6 +13,8 @@ import scrolls.elder.model.Model;
 import scrolls.elder.model.ModelManager;
 import scrolls.elder.model.UserPrefs;
 import scrolls.elder.model.person.Person;
+import scrolls.elder.model.person.Role;
+import scrolls.elder.model.person.Volunteer;
 import scrolls.elder.testutil.EditPersonDescriptorBuilder;
 import scrolls.elder.testutil.PersonBuilder;
 import scrolls.elder.testutil.TypicalIndexes;
@@ -116,7 +118,7 @@ public class EditCommandTest {
 
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
         EditCommand.EditPersonDescriptor descriptor =
-                new EditPersonDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_BOB).build();
+                new EditPersonDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_BOB).withRole("befriendee").build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
         CommandTestUtil.assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
@@ -136,7 +138,7 @@ public class EditCommandTest {
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
-                new EditPersonDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_BOB).build());
+                new EditPersonDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_BOB).withRole("volunteer").build());
 
         CommandTestUtil.assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
