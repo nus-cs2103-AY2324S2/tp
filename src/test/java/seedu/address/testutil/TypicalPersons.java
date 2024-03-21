@@ -60,15 +60,15 @@ public class TypicalPersons {
             .build();
 
     public static final Person ALICE_WITHOUT_EMAIL = new PersonBuilder().withName("Alice Pauline")
-            .withAddress("123, Jurong West Ave 6, #08-111").withEmail("")
+            .withAddress("").withEmail("")
             .withPhone("94351253")
-            .withTags("friends")
+            .withTags()
             .withNote("Best friend").build();
 
     public static final Person BENSON_WITHOUT_EMAIL = new PersonBuilder().withName("Benson Meier")
-            .withAddress("311, Clementi Ave 2, #02-25")
+            .withAddress("")
             .withEmail("").withPhone("98765432")
-            .withTags("owesMoney", "friends").build();
+            .withTags().build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
