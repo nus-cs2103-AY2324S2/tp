@@ -28,7 +28,7 @@ It is optimized for Command Line Interface space(CLI) while still having the ben
    
    * `add John Doe -p 87654321 -e johndoe@example.com -s Leadership -s C++`: Adds a contact named `John Doe` to the contact list.
 
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
+   * `delete #3` : Deletes the 3rd contact shown in the current list.
 
    * `clear` : Deletes all contacts.
 
@@ -70,7 +70,7 @@ Format: `help`
 
 Adds a contact to the contact list. A name will be required, and all other information will be optional.
 
-Format: `add NAME [-p PHONE_NUMBER] [-e EMAIL] [-s SKILL]...`
+Format: `add NAME [-p PHONE_NUMBER] [-e EMAIL] [-s SKILL]…​`
 
 Parameters:
 - `NAME`: Name of the contact. It can be any string except that it cannot start with the hashtag (#) symbol , and words cannot start with the hyphen (-) character.
@@ -103,7 +103,7 @@ Expected output:
 
 Edits an existing contact with a given name. This command supports changing the name, phone number and email.
 
-Format: `edit NAME [-n NEW_NAME] [-p NEW_PHONE_NUMBER] [-e NEW_EMAIL]`
+Format: `edit COURSEMATE [-n NEW_NAME] [-p NEW_PHONE_NUMBER] [-e NEW_EMAIL]`
 
 Parameters:
 - `NAME`: Name of the existing contact. Accepts aliases (substrings or in hashtag (#) notation).
@@ -111,7 +111,8 @@ Parameters:
 - `NEW_PHONE_NUMBER` (optional): New phone number of the contact. Accepts strings with numeric characters only.
 - `NEW_EMAIL` (optional): New email of the contact. Accepts any strings without spaces.
 
-ℹ
+<box type="tip" seamless>
+
 **Tip:**
 
 When supplying a name to identify an existing contact, you can use the following shortcuts:
@@ -122,7 +123,8 @@ When supplying a name to identify an existing contact, you can use the following
 
 
 - A substring of the name instead of the full name.
-    - In the event of multiple matches (the substring appears in multiple contacts), you will receive the following message: `NOTICE: There are multiple contacts with this name shown below. Retry the command by specifying the index of the contact in the list, example: “#1”.` and the list of matching contacts will be displayed in the contact list panel.
+    - In the event of multiple matches (the substring appears in multiple contacts), you will receive the following message: `There are x course mates with similar names.
+      Retry the command by specifying the index of the contact in the list, example: #1.` and the list of matching contacts will be displayed in the contact list panel.
     - No side effects will be made by the current command.
     - You should retry the command by finding the contact on the list and using the hashtag notation (`#`) to identify the contact.
 
@@ -139,7 +141,7 @@ When supplying a name to identify an existing contact, you can use the following
         - Alternatively, you can use the alias `edit #1 ...`
     - Case 2 Edit Ben:
         - Type `edit #2 ...` as you must specify its index in the list.
-
+</box>
 
 Examples:
 - `edit John Doe -n Joe Schmo`
