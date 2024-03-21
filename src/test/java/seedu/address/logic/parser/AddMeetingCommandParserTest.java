@@ -67,4 +67,5 @@ public class AddMeetingCommandParserTest {
     }
 
     // Additional tests for other invalid scenarios, like invalid description, etc.
+
 }
