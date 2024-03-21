@@ -45,7 +45,7 @@ public class Products {
      * @return {@code true} if all products are alphanumeric, {@code false} otherwise.
      */
     public static boolean isValidProducts(List<String> test) {
-        return test.stream().allMatch(product -> product.matches("\\p{Alnum}+"));
+        return test.stream().allMatch(product -> product.matches("[\\p{Alnum} ]+"));
     }
 
     /**

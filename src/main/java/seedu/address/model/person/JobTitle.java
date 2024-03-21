@@ -12,7 +12,7 @@ public class JobTitle {
 
     public static final String MESSAGE_CONSTRAINTS = "Job titles should only contain "
             + "alphanumeric characters and spaces, and it should not be blank";
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}-][\\p{Alnum}- ]*";
+    public static final String VALIDATION_REGEX = "[\\p{Alpha}-][\\p{Alpha}- ]*";
     private final String title;
 
     /**
@@ -29,6 +29,7 @@ public class JobTitle {
      */
     public JobTitle(String title) {
         requireNonNull(title);
+        title = title.trim();
         checkArgument(isValidJobTitle(title), MESSAGE_CONSTRAINTS);
         this.title = title;
     }

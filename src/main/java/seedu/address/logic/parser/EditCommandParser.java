@@ -89,7 +89,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
     }
 
-    private void parseOptionalFields(ArgumentMultimap argMultimap, EditPersonDescriptor editPersonDescriptor)
+    void parseOptionalFields(ArgumentMultimap argMultimap, EditPersonDescriptor editPersonDescriptor)
             throws ParseException {
         // Parsing fields that are optional or specific to certain roles without
         // checking the role

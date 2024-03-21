@@ -187,28 +187,17 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String skills} into a {@code Skills}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code skills} is invalid.
-     */
-    public static String parseSkills(String skills) throws ParseException {
-        requireNonNull(skills);
-        String trimmedSkills = skills.trim();
-        if (!Skills.isValidSkills(trimmedSkills)) {
-            throw new ParseException(Skills.MESSAGE_CONSTRAINTS);
-        }
-        return trimmedSkills;
-    }
-
-    /**
      * Represents a set of skills.
      */
     public static Skills parseSkills(Collection<String> skills) throws ParseException {
         requireNonNull(skills);
         final Set<String> skillsSet = new HashSet<>();
         for (String skill : skills) {
-            skillsSet.add(parseSkills(skill).toString());
+            String trimmedSkills = skill.trim();
+            if (!Skills.isValidSkills(trimmedSkills)) {
+                throw new ParseException(Skills.MESSAGE_CONSTRAINTS);
+            }
+            skillsSet.add(trimmedSkills);
         }
         return new Skills(skillsSet);
     }
@@ -221,7 +210,11 @@ public class ParserUtil {
         requireNonNull(skills);
         final Set<String> skillsSet = new HashSet<>();
         for (String skill : skills) {
-            skillsSet.add(parseSkills(skill).toString());
+            String trimmedSkills = skill.trim();
+            if (!Skills.isValidSkills(trimmedSkills)) {
+                throw new ParseException(Skills.MESSAGE_CONSTRAINTS);
+            }
+            skillsSet.add(trimmedSkills);
         }
         return new Skills(skillsSet);
     }

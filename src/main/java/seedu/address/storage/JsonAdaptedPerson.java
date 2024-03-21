@@ -151,8 +151,6 @@ class JsonAdaptedPerson {
             personTags.add(tag.toModelType());
         }
 
-        final Products transformedProducts = new Products(this.products.getProducts());
-
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
@@ -191,6 +189,10 @@ class JsonAdaptedPerson {
         final Remark modelRemark = new Remark(remark);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
+
+        final Products transformedProducts = products == null ? new Products()
+            : new Products(this.products.getProducts());
+
         return new Client(modelName, modelPhone, modelEmail, modelAddress, modelRemark, modelTags, transformedProducts,
                 preferences);
     }
@@ -207,8 +209,6 @@ class JsonAdaptedPerson {
         for (JsonAdaptedTag tag : tags) {
             personTags.add(tag.toModelType());
         }
-
-        final Skills transformedSkills = this.skills.toModelType();
 
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
@@ -243,6 +243,8 @@ class JsonAdaptedPerson {
         final Address modelAddress = new Address(address);
 
         final Remark modelRemark = new Remark(remark);
+
+        final Skills transformedSkills = skills == null ? new Skills() : this.skills.toModelType();
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
         return new Employee(modelName, modelPhone, modelEmail, modelAddress, modelRemark, modelTags, department,
