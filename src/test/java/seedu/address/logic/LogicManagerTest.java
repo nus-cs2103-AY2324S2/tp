@@ -87,6 +87,20 @@ public class LogicManagerTest {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
     }
 
+    @Test
+    public void getPayBack_returnsModelPayBack() {
+        ReadOnlyPayBack expectedPayBack = model.getPayBack();
+        ReadOnlyPayBack actualPayBack = logic.getPayBack();
+        assertEquals(expectedPayBack, actualPayBack);
+    }
+
+    @Test
+    public void getPayBackFilePath_returnsModelFilePath() {
+        Path expectedPath = model.getPayBackFilePath();
+        Path actualPath = logic.getPayBackFilePath();
+        assertEquals(expectedPath, actualPath);
+    }
+
     /**
      * Executes the command and confirms that
      * - no exceptions are thrown <br>

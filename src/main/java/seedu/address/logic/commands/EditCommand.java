@@ -40,7 +40,7 @@ public class EditCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
             + "by the id number provided.\n"
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: ID (must be a positive 6-gidit number) "
+            + "Parameters: ID (must be a positive 6-digit number) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
@@ -107,7 +107,7 @@ public class EditCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(id, updatedName, updatedPhone, updatedEmail, yearJoined, updatedAddress, updatedTags);
+        return new Person(id, updatedName, updatedPhone, updatedEmail, updatedAddress, yearJoined, updatedTags);
     }
 
     @Override
