@@ -53,8 +53,8 @@ public class Person {
     }
 
     /**
-     * @param taskName name of the task which needs to be found in project list
-     * @return the found task or null
+     * @param taskName name to be matched with the tasks listed in my project
+     * @return task in the project with the matching taskName
      */
     public Task findTask(Name taskName) {
         Optional<Task> foundTask = taskList.stream()
