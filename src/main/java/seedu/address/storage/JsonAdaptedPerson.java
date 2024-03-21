@@ -30,6 +30,7 @@ class JsonAdaptedPerson {
     private final String email;
     private final String studentid;
     private final List<JsonAdaptedAttendance> attendances = new ArrayList<>();
+    private final String description;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -37,7 +38,7 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("studentid") String studentid,
-            @JsonProperty("attendances") List<JsonAdaptedAttendance> tags) {
+            @JsonProperty("attendances") List<JsonAdaptedAttendance> tags, @JsonProperty("description") String description) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -45,6 +46,7 @@ class JsonAdaptedPerson {
         if (tags != null) {
             this.attendances.addAll(tags);
         }
+        this.description = description;
     }
 
     /**
@@ -58,6 +60,7 @@ class JsonAdaptedPerson {
         attendances.addAll(source.getAttendances().stream()
                 .map(JsonAdaptedAttendance::new)
                 .collect(Collectors.toList()));
+        description = source.getDescription().value;
     }
 
     /**
@@ -106,7 +109,10 @@ class JsonAdaptedPerson {
 
         final Set<Attendance> modelAttendances = new HashSet<>(personAttendances);
 
-        final Description modelDescription = new Description("");
+        if (description == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Description.class.getSimpleName()));
+        }
+        final Description modelDescription = new Description(description);
 
         return new Person(modelName, modelPhone, modelEmail, modelStudentId, modelAttendances, modelDescription);
     }
