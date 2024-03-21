@@ -50,7 +50,7 @@ public class FindNumCommandTest {
         assertNotEquals(1, findNumFirstCommand);
 
         // null -> returns false
-        assertNotEquals(null, findNumFirstCommand);
+        assertNotEquals(findNumFirstCommand, null);
 
         // different instance -> returns false
         assertFalse(firstPredicate.equals(model));

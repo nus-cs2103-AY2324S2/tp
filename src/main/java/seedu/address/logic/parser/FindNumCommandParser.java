@@ -6,6 +6,7 @@ import java.util.Arrays;
 
 import seedu.address.logic.commands.FindNumCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Phone;
 import seedu.address.model.person.PhoneContainsDigitsPredicate;
 
 /**
@@ -27,6 +28,14 @@ public class FindNumCommandParser implements Parser<FindNumCommand> {
         }
 
         String[] phoneKeywords = trimmedArgs.split("\\s+");
+
+        // Check if all phone numbers in input are valid
+        for (String phoneKeyword : phoneKeywords) {
+            if (!Phone.isValidPhone(phoneKeyword)) {
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindNumCommand.MESSAGE_USAGE));
+            }
+        }
 
         return new FindNumCommand(new PhoneContainsDigitsPredicate(Arrays.asList(phoneKeywords)));
     }

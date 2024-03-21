@@ -35,7 +35,7 @@ public class PhoneContainsDigitsPredicateTest {
         assertNotEquals(1, firstPredicate);
 
         // null -> returns false
-        assertNotEquals(null, firstPredicate);
+        assertNotEquals(firstPredicate, null);
 
         // different instance -> returns false
         assertFalse(firstPredicate.equals(new ArrayList<>()));

@@ -23,6 +23,13 @@ public class FindNumCommandParserTest {
     }
 
     @Test
+    public void parse_invalidNum_throwsParseException() {
+        assertParseFailure(parser, "91b892e24",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        FindNumCommand.MESSAGE_USAGE));
+    }
+
+    @Test
     public void parse_validArgs_returnsFindNumCommand() {
         // no leading and trailing whitespaces
         FindNumCommand expectedFindNumCommand =
