@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.Optional;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.tag.Tag;
@@ -25,11 +26,13 @@ public class Person {
     private final Address address;
     private final Meeting meeting;
     private final Set<Tag> tags = new HashSet<>();
+    private final Set<Policy> policies = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Meeting meeting, Set<Tag> tags) {
+
+    public Person(Name name, Phone phone, Email email, Address address, Meeting meeting, Set<Tag> tags, Set<Policy> policies) {
         requireAllNonNull(name, phone, email, address, meeting, tags);
         this.name = name;
         this.phone = phone;
@@ -37,7 +40,9 @@ public class Person {
         this.address = address;
         this.meeting = meeting;
         this.tags.addAll(tags);
+        this.policies.addAll(policies); // Initialize with provided policies
     }
+
 
     public Name getName() {
         return name;
@@ -57,6 +62,17 @@ public class Person {
 
     public Meeting getMeeting() {
         return meeting;
+    }
+
+    public Set<Policy> getPolicies() {
+        return Collections.unmodifiableSet(policies);
+    }
+    /**
+     * Adds a policy to the set of policies.
+     * @param policy The policy to be added.
+     */
+    public void addPolicy(Policy policy) {
+        this.policies.add(policy);
     }
 
     /**
@@ -118,6 +134,7 @@ public class Person {
                 .add("email", email)
                 .add("address", address)
                 .add("meeting", meeting)
+//                .add("policyName", policyName)
                 .add("tags", tags)
                 .toString();
     }
