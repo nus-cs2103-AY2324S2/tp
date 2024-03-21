@@ -77,7 +77,7 @@ public class FindTechStackCommandTest {
 
     @Test
     public void toStringMethod() {
-        List<String> techKeywords= List.of("Java", "Python");
+        List<String> techKeywords = List.of("Java", "Python");
         FindTechStackCommand findTechStackCommand = new FindTechStackCommand(techKeywords);
         String expected = FindTechStackCommand.class.getCanonicalName() + "{predicate=" + techKeywords + "}";
         assertEquals(expected, findTechStackCommand.toString());
