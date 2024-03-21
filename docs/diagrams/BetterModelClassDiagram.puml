@@ -21,4 +21,6 @@ Person *--> Name
 Person *--> Phone
 Person *--> Email
 Person *--> Address
+Person *--> "0..1" pairedWith
+Person *--> Role
 @enduml

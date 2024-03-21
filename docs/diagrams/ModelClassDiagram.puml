@@ -46,8 +46,11 @@ Person *--> Name
 Person *--> Phone
 Person *--> Email
 Person *--> Address
-Person *--> "*" Tag
+Person *--> "0..1" pairedWith
+Person -up-> "*" Tag
+
 Person *--> Role
+
 
 Volunteer .up.|> Person
 Befriendee .up.|> Person
