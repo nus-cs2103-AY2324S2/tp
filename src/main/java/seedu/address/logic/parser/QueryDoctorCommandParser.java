@@ -9,7 +9,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.DoctorNameContainsKeywordsPredicate;
 
 /**
- * Parses input arguments and creates a new FindCommand object
+ * Parses input arguments and creates a new QueryDoctorCommand object
  */
 public class QueryDoctorCommandParser implements Parser<QueryDoctorCommand> {
 

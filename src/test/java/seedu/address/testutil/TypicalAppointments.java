@@ -1,6 +1,7 @@
 package seedu.address.testutil;
 
 import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.BENSON;
 import static seedu.address.testutil.TypicalPersons.BROWN;
 
 import java.util.ArrayList;
@@ -23,6 +24,8 @@ public class TypicalAppointments {
             .withDoctor((Doctor) BROWN).withPatient((Patient) ALICE).build();
     public static final Appointment APPOINTMENT_3 = new AppointmentBuilder().withDate("2124-03-25")
             .withDoctor((Doctor) BROWN).withPatient((Patient) ALICE).build();
+    public static final Appointment APPOINTMENT_4 = new AppointmentBuilder().withDate("2124-03-30")
+            .withDoctor((Doctor) BROWN).withPatient((Patient) BENSON).build();
     private TypicalAppointments() {} // prevents instantiation
 
     /**
@@ -38,7 +41,7 @@ public class TypicalAppointments {
 
     public static List<Appointment> getTypicalAppointments() {
         return new ArrayList<>(Arrays.asList(
-                APPOINTMENT_1, APPOINTMENT_2, APPOINTMENT_3
+                APPOINTMENT_1, APPOINTMENT_2, APPOINTMENT_3, APPOINTMENT_4
         ));
     }
 }

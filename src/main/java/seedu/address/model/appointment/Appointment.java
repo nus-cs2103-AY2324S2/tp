@@ -31,8 +31,8 @@ public class Appointment {
 
     /**
      * Constructs a new appointment instance
-     * @param doctor doctor in charge
-     * @param patient patient of the appointment
+     * @param doctorNric doctor in charge
+     * @param patientNric patient of the appointment
      * @param appointmentDate date of the appointment
      */
     public Appointment(Nric doctorNric, Nric patientNric, AppointmentDate appointmentDate) {
@@ -60,7 +60,7 @@ public class Appointment {
      * Gets doctor in charge
      * @return Doctor in charge
      */
-    public Nric getDoctoNric() {
+    public Nric getDoctorNric() {
         return doctorNric;
     }
 
@@ -95,7 +95,7 @@ public class Appointment {
         }
 
         return appt != null
-                && appt.getDoctoNric().equals(this.getDoctoNric())
+                && appt.getDoctorNric().equals(this.getDoctorNric())
                 && appt.getPatientNric().equals(this.getPatientNric())
                 && appt.getAppointmentDate().equals(this.getAppointmentDate());
     }
@@ -104,7 +104,7 @@ public class Appointment {
     public String toString() {
         return new ToStringBuilder(this)
                 .add("Date", getAppointmentDate())
-                .add("Doctor", getDoctoNric())
+                .add("Doctor", getDoctorNric())
                 .add("Patient", getPatientNric())
                 .add("Id", getAppointmentId())
                 .toString();

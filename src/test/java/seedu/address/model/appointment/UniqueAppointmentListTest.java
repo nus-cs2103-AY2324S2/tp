@@ -42,7 +42,7 @@ public class UniqueAppointmentListTest {
     public void contains_appointmentWithSameIdentityFieldsInList_returnsTrue() {
         uniqueAppointmentList.add(VALID_APPT);
         Appointment editedAppt = new Appointment(
-                VALID_APPT.getDoctoNric(),
+                VALID_APPT.getDoctorNric(),
                 VALID_APPT.getPatientNric(),
                 VALID_APPT.getAppointmentDate()
         );
@@ -90,7 +90,7 @@ public class UniqueAppointmentListTest {
     public void setAppointment_editedAppointmentHasSameIdentity_success() {
         uniqueAppointmentList.add(VALID_APPT);
         Appointment editedAppt = new Appointment(
-                VALID_APPT.getDoctoNric(),
+                VALID_APPT.getDoctorNric(),
                 VALID_APPT.getPatientNric(),
                 VALID_APPT.getAppointmentDate()
         );
@@ -174,7 +174,7 @@ public class UniqueAppointmentListTest {
     public void setAppointments_list_replacesOwnListWithProvidedList() {
         uniqueAppointmentList.add(VALID_APPT);
         Appointment editedAppt = new Appointment(
-                VALID_APPT.getDoctoNric(),
+                VALID_APPT.getDoctorNric(),
                 VALID_APPT.getPatientNric(),
                 VALID_APPT.getAppointmentDate()
         );

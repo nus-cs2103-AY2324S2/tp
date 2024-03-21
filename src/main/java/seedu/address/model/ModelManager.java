@@ -25,6 +25,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Appointment> filteredAppointments;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -37,6 +38,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredAppointments = new FilteredList<>(this.addressBook.getAppointmentList());
     }
 
     public ModelManager() {
@@ -121,6 +123,7 @@ public class ModelManager implements Model {
     @Override
     public void addAppointment(Appointment appointment) {
         addressBook.addAppointment(appointment);
+        updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
     }
 
     @Override
@@ -142,14 +145,20 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ObservableList<Appointment> getAppointmentList() {
-        return addressBook.getAppointmentList();
+    public ObservableList<Appointment> getFilteredAppointmentList() {
+        return filteredAppointments;
     }
 
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredAppointmentList(Predicate<Appointment> predicate) {
+        requireNonNull(predicate);
+        filteredAppointments.setPredicate(predicate);
     }
 
     @Override
@@ -175,7 +184,7 @@ public class ModelManager implements Model {
      * @return boolean indicating if appointment is valid
      */
     public boolean isValidAppointment(Appointment appointment) {
-        Nric doctorNric = appointment.getDoctoNric();
+        Nric doctorNric = appointment.getDoctorNric();
         Nric patientNric = appointment.getPatientNric();
 
         Person doctor = addressBook.getPersonByNric(doctorNric);

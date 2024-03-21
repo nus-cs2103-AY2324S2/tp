@@ -26,7 +26,7 @@ public class AppointmentUtil {
      */
     public static String getAppointmentDetails(Appointment appointment) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_DOCTORNRIC + appointment.getDoctoNric().nric + " ");
+        sb.append(PREFIX_DOCTORNRIC + appointment.getDoctorNric().nric + " ");
         sb.append(PREFIX_PATIENTNRIC + appointment.getPatientNric().nric + " ");
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         sb.append(PREFIX_DATE + appointment.getAppointmentDate().appointmentDate.format(formatter) + " ");

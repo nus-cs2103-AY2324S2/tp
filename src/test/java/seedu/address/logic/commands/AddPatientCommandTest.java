@@ -162,7 +162,7 @@ public class AddPatientCommandTest {
         }
 
         @Override
-        public ObservableList<Appointment> getAppointmentList() {
+        public ObservableList<Appointment> getFilteredAppointmentList() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -188,6 +188,10 @@ public class AddPatientCommandTest {
         public boolean hasAppointment(Appointment appt) {
             //TODO: implement
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredAppointmentList(Predicate<Appointment> appointment) {
         }
     }
 
