@@ -7,6 +7,8 @@ import seedu.address.logic.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.contact.TsContainsKeywordsPredicate;
 
+import java.util.List;
+
 /**
  * Finds and lists all contacts in address book whose tech stack contains any of the argument keywords.
  * Keyword matching is case insensitive.
@@ -20,15 +22,16 @@ public class FindTechStackCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " java python ";
 
-    private final TsContainsKeywordsPredicate predicate;
+    private final List<String> techKeywords;
 
-    public FindTechStackCommand(TsContainsKeywordsPredicate predicate) {
-        this.predicate = predicate;
+    public FindTechStackCommand(List<String> techKeywords) {
+        this.techKeywords = techKeywords;
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
+        TsContainsKeywordsPredicate predicate = new TsContainsKeywordsPredicate(techKeywords);
         model.updateFilteredContactList(predicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_CONTACT_LISTED_OVERVIEW, model.getFilteredContactList().size()));
@@ -41,18 +44,18 @@ public class FindTechStackCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof FindCommand)) {
+        if (!(other instanceof FindTechStackCommand)) {
             return false;
         }
 
         FindTechStackCommand otherFindTechStackCommand = (FindTechStackCommand) other;
-        return predicate.equals(otherFindTechStackCommand.predicate);
+        return techKeywords.equals(otherFindTechStackCommand.techKeywords);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("predicate", predicate)
+                .add("predicate", techKeywords)
                 .toString();
     }
 
