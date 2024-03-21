@@ -16,7 +16,6 @@ public class IllnessContainsKeywordsPredicate extends ContainsKeywordsPredicate 
     @Override
     public boolean test(Person person) {
         String illnessString = person.getIllnesses().toString().replaceAll("[\\[\\],]", "");
-        System.out.println(illnessString);
 
         return super.keywords.stream()
                 .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(illnessString, keyword));
