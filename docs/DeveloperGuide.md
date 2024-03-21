@@ -302,18 +302,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                   | search for a contact by any criteria                             | find their information when I need it.                           |
 | `* * *`  | user                   | import contacts                                                  | easily add multiple contacts at once from another source.        |
 | `* * *`  | user                   | export contacts                                                  | easily integrate with existing data.                             |
-| `* *`    | user                   | have my information be secure                                    | so that my contacts are not leaked to others.                    |
+| `*`      | user                   | have my information be secure                                    | so that my contacts are not leaked to others.                    |
 | `* *`    | busy user              | set reminders for specific contacts                              | connect with them better.                                        |
 | `* *`    | efficient user         | use keyboard shortcuts for frequently-used actions               | work more efficiently.                                           |
-| `* *`    | user                   | track the history of interactions with specific contacts         | personalize my communication and build stronger relationships.   |
+| `*`      | user                   | track the history of interactions with specific contacts         | personalize my communication and build stronger relationships.   |
 | `* *`    | user                   | have a user-friendly interface                                   | easily navigate the application.                                 |
-| `* *`    | user with many friends | know which people are in which friend groups                     | keep track of my friend groups.                                  |
-| `* *`    | user                   | import/export my contact list in a common format                 | back up my data and export/import it from/to other applications. |
+| `* * *`  | user with many friends | know which people are in which friend groups                     | keep track of my friend groups.                                  |
+| `* * *`  | user                   | import/export my contact list in a common format                 | back up my data and export/import it from/to other applications. |
 | `* *`    | user                   | change deadlines                                                 | manage my schedule more effectively.                             |
 | `* *`    | forgetful user         | use commands (possibly with aliases) that are easily remembered  | find the application easier to use.                              |
 | `*`      | user                   | find the people I have not interacted with in a long time        | maintain a good relationship with them.                          |
 | `*`      | user                   | look at the people I interact with the most                      | know who I spend the most time with.                             |
-| `* *`    | user                   | set data validation rules for certain fields                     | ensure the accuracy of my contact information.                   |
+| `*`      | user                   | set data validation rules for certain fields                     | ensure the accuracy of my contact information.                   |
 | `* *`    | user                   | make a clear schedule of what I will do in the future            | plan my schedule well.                                           |
 | `* *`    | user                   | set recurring tasks or reminders associated with contacts        | maintain the connections I have.                                 |
 
