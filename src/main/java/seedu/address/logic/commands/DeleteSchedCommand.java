@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHEDULE;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,8 +24,9 @@ public class DeleteSchedCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes a schedule in address book. "
             + "Parameters: "
             + "TASK INDEX(S) (must be positive integer) "
-            + "Example: " + COMMAND_WORD + " "
-            + "1";
+            + PREFIX_SCHEDULE + "TO DELETE PERSON "
+            + "Example: " + COMMAND_WORD + " " + "1"
+            + PREFIX_SCHEDULE + " 1, 2";
 
     public static final String MESSAGE_SUCCESS = "The schedule deleted: %1$s";
 
@@ -34,7 +36,7 @@ public class DeleteSchedCommand extends Command {
 
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an DeleteCommand to add the specified {@code Person}
      */
     public DeleteSchedCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
@@ -78,7 +80,8 @@ public class DeleteSchedCommand extends Command {
         model.deleteSchedule(scheduleToDelete, scheduleToDelete.getPersonList());
     }
 
-    private void deleteSchedForSpecificPersons(Model model, Schedule scheduleToDelete, UniquePersonList toDeleteParticipants) {
+    private void deleteSchedForSpecificPersons(Model model, Schedule scheduleToDelete,
+                                               UniquePersonList toDeleteParticipants) {
         Schedule scheduleToAdd = scheduleToDelete;
         model.deleteSchedule(scheduleToDelete, scheduleToDelete.getPersonList());
         ArrayList<Person> remainParticipants = new ArrayList<Person>();

@@ -10,7 +10,6 @@ import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.schedule.Schedule;
-import seedu.address.model.schedule.UniqueScheduleList;
 import seedu.address.model.tag.Tag;
 
 /**
