@@ -136,4 +136,52 @@ public class RelationshipUtilTest {
             relationshipUtil.getExistingRelationship(nonExistingRelationship);
         }, "Relationship does not exist.");
     }
+
+    @Test
+    public void hasRelationshipWithDescriptor_matchingRelationship_returnsTrue() {
+        // Create dummy people for testing
+        Attribute name1 = new NameAttribute("Name", "John Doe");
+        Attribute name2 = new NameAttribute("Name", "Jane Doe");
+        Attribute[] attributes1 = new Attribute[]{name1};
+        Attribute[] attributes2 = new Attribute[]{name2};
+        Person person1 = new Person(attributes1);
+        Person person2 = new Person(attributes2);
+        UUID uuid1 = person1.getUuid();
+        UUID uuid2 = person2.getUuid();
+
+        // Create two test relationships
+        Relationship matchingRelationship = new Relationship(uuid1, uuid2, "family");
+        Relationship nonMatchingRelationship = new Relationship(uuid1, uuid2, "friend");
+
+        // Create RelationshipUtil instance and add the relationships
+        RelationshipUtil relationshipUtil = new RelationshipUtil();
+        relationshipUtil.addRelationship(matchingRelationship);
+        relationshipUtil.addRelationship(nonMatchingRelationship);
+
+        // Check if the matching relationship exists with the correct descriptor
+        assertTrue(relationshipUtil.hasRelationshipWithDescriptor(matchingRelationship));
+    }
+
+    @Test
+    public void hasRelationshipWithDescriptor_existingRelationshipWithReversedPersons_returnsTrue() {
+        // Create dummy people for testing
+        Attribute name1 = new NameAttribute("Name", "John Doe");
+        Attribute name2 = new NameAttribute("Name", "Jane Doe");
+        Attribute[] attributes1 = new Attribute[]{name1};
+        Attribute[] attributes2 = new Attribute[]{name2};
+        Person person1 = new Person(attributes1);
+        Person person2 = new Person(attributes2);
+        UUID uuid1 = person1.getUuid();
+        UUID uuid2 = person2.getUuid();
+
+        // Create a test relationship with reversed persons
+        Relationship testRelationship = new Relationship(uuid2, uuid1, "family");
+
+        // Create RelationshipUtil instance and add the test relationship
+        RelationshipUtil relationshipUtil = new RelationshipUtil();
+        relationshipUtil.addRelationship(new Relationship(uuid1, uuid2, "family"));
+
+        // Check if the relationship exists with reversed persons but the same role descriptor
+        assertTrue(relationshipUtil.hasRelationshipWithDescriptor(testRelationship));
+    }
 }

@@ -213,4 +213,28 @@ public class ModelManagerTest {
 
         assertEquals(relationship.toString(), result);
     }
+
+    @Test
+    public void hasRelationshipWithDescriptor_validRelationship_trueReturned() {
+        // Create a new ModelManager
+        ModelManager modelManager = new ModelManager();
+        Attribute name1 = new NameAttribute("Name", "John Doe");
+        Attribute name2 = new NameAttribute("Name", "Jane Doe");
+        Attribute[] attributes1 = new Attribute[]{name1};
+        Attribute[] attributes2 = new Attribute[]{name2};
+
+        // Adding dummy people for testing
+        Person person1 = new Person(attributes1);
+        Person person2 = new Person(attributes2);
+        UUID uuid11 = person1.getUuid();
+        UUID uuid22 = person2.getUuid();
+        // Create a test relationship
+        Relationship relationship = new Relationship(uuid11, uuid22, "family");
+
+        // Add the relationship to the model manager
+        modelManager.addRelationship(relationship);
+
+        // Check if the model manager has the relationship with the same descriptor
+        assertTrue(modelManager.hasRelationshipWithDescriptor(relationship));
+    }
 }
