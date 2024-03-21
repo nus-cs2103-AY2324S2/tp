@@ -12,10 +12,13 @@ public class CliSyntax {
     public static final Prefix PREFIX_ADDRESS = new Prefix("a/");
     public static final Prefix PREFIX_TAG = new Prefix("t/");
 
+    public static final Prefix PREFIX_CLIENT = new Prefix("c/");
+
+    public static final Prefix PREFIX_CLIENT_INDEX = new Prefix("clientIndex/");
+
+    public static final Prefix PREFIX_MEETING_INDEX = new Prefix("meetingIndex/");
+
     public static final Prefix PREFIX_DATETIME = new Prefix("dt/");
     public static final Prefix PREFIX_DESCRIPTION = new Prefix("d/");
-
-    public static final Prefix PREFIX_CLIENT_INDEX = new Prefix("client/");
-    public static final Prefix PREFIX_MEETING_INDEX = new Prefix("meeting/");
 
 }
