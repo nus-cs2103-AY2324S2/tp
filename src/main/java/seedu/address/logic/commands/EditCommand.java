@@ -209,7 +209,7 @@ public class EditCommand extends Command {
             return (attendances != null) ? Optional.of(Collections.unmodifiableSet(attendances)) : Optional.empty();
         }
 
-        public void setDescription(String description) {
+        public void setDescription(Description description) {
             this.description = description;
         }
 

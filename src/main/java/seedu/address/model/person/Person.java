@@ -24,18 +24,20 @@ public class Person {
     // Data fields
     private final StudentId studentId;
     private final Set<Attendance> attendances = new HashSet<>();
-    private final String description;
+    private final Description description;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, StudentId studentId, Set<Attendance> attendances) {
-        requireAllNonNull(name, phone, email, studentId, attendances);
+    public Person(Name name, Phone phone, Email email, StudentId studentId, Set<Attendance> attendances,
+                  Description description) {
+        requireAllNonNull(name, phone, email, studentId, attendances, description);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.studentId = studentId;
         this.attendances.addAll(attendances);
+        this.description = description;
     }
 
     public Name getName() {

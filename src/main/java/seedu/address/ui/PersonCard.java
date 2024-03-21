@@ -40,6 +40,8 @@ public class PersonCard extends UiPart<Region> {
     private Label studentid;
     @FXML
     private FlowPane attendance;
+    @FXML
+    private Label description;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
