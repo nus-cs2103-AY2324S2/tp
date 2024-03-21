@@ -21,8 +21,9 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the courseMate identified by the index number used in the displayed courseMate list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + "NAME can be specified either by full name or by the '#' notation.\n"
+            + "Parameters: NAME\n"
+            + "Example: " + COMMAND_WORD + " #1";
 
     public static final String MESSAGE_DELETE_COURSE_MATE_SUCCESS = "Deleted CourseMate";
 

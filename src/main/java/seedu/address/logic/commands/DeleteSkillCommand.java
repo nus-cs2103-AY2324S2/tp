@@ -29,15 +29,16 @@ public class DeleteSkillCommand extends Command {
     public static final String COMMAND_WORD = "delete-skill";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes skills of a coursemate. "
-            + "Parameters: INDEX (must be a positive integer) "
+            + "NAME can be specified either by full name or by the '#' notation.\n"
+            + "Parameters: NAME "
             + PREFIX_SKILL + " SKILL "
             + "[" + PREFIX_SKILL + " SKILL]...\n"
-            + "Example: " + COMMAND_WORD + " 1 "
+            + "Example: " + COMMAND_WORD + " #1 "
             + PREFIX_SKILL + " Python "
             + PREFIX_SKILL + " Java";
 
     public static final String MESSAGE_SUCCESS = "Skills are successfully deleted";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    public static final String MESSAGE_NOT_EDITED = "At least one skill should be provided.";
     public static final String MESSAGE_DUPLICATE_COURSE_MATE = "This courseMate already exists in the contact list";
     public static final String MESSAGE_SKILL_NOT_PRESENT = "This courseMate does not have one of the skills provided.";
 
