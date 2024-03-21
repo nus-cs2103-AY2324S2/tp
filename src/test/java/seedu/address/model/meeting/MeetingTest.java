@@ -25,6 +25,7 @@ public class MeetingTest {
     public void equals() {
         // same values -> returns true
         Meeting meetingWithAliceCopy = TypicalMeetings.ALICE_WITH_MEETING.getMeetings().get(0);
+
         assertTrue(TypicalMeetings.ALICE_WITH_MEETING.equals(meetingWithAliceCopy));
 
         // same object -> returns true
@@ -43,8 +44,8 @@ public class MeetingTest {
     @Test
     public void toStringMethod() {
         String expected = Meeting.class.getCanonicalName()
-                + "{description=Financial Aid Application Review, dateTime=2024-01-01T09:00, "
+                + "{description=Financial Aid Application Review, dateTime=2030-01-01T12:00, "
                 + "client=Alice Pauline}";
-        assertEquals(expected, TypicalMeetings.ALICE_WITH_MEETING.toString());
+        assertEquals(expected, TypicalMeetings.ALICE_WITH_MEETING.getMeetings().get(0).toString());
     }
 }

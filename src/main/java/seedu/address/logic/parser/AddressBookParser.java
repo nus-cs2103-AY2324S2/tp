@@ -93,9 +93,9 @@ public class AddressBookParser {
                 throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
             }
         } else if (meetingCommandTwoArgsMatcher.matches()) {
-            final String commandWord = basicCommandMatcher.group("commandWord");
-            final String firstArgument = basicCommandMatcher.group("firstArgument");
-            final String secondArgument = basicCommandMatcher.group("secondArgument");
+            final String commandWord = meetingCommandTwoArgsMatcher.group("commandWord");
+            final String firstArgument = meetingCommandTwoArgsMatcher.group("firstArgument");
+            final String secondArgument = meetingCommandTwoArgsMatcher.group("secondArgument");
 
             switch (commandWord) {
             case DeleteMeetingCommand.COMMAND_WORD:
