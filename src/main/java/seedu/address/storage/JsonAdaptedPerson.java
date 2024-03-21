@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.person.Description;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -29,14 +30,15 @@ class JsonAdaptedPerson {
     private final String email;
     private final String studentid;
     private final List<JsonAdaptedAttendance> attendances = new ArrayList<>();
+    private final String description;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-                             @JsonProperty("email") String email, @JsonProperty("studentid") String studentid,
-                             @JsonProperty("attendances") List<JsonAdaptedAttendance> attendances) {
+            @JsonProperty("email") String email, @JsonProperty("studentid") String studentid,
+            @JsonProperty("attendances") List<JsonAdaptedAttendance> attendances, @JsonProperty("description") String description) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -44,6 +46,7 @@ class JsonAdaptedPerson {
         if (attendances != null) {
             this.attendances.addAll(attendances);
         }
+        this.description = description;
     }
 
     /**
@@ -58,6 +61,7 @@ class JsonAdaptedPerson {
                 .map(attendance -> new JsonAdaptedAttendance(attendance.attendanceName.getDate(),
                         attendance.attendanceName.getStatus()))
                 .collect(Collectors.toList()));
+        description = source.getDescription().value;
     }
 
     /**
@@ -105,7 +109,13 @@ class JsonAdaptedPerson {
         final StudentId modelStudentId = new StudentId(studentid);
 
         final Set<Attendance> modelAttendances = new HashSet<>(personAttendances);
-        return new Person(modelName, modelPhone, modelEmail, modelStudentId, modelAttendances);
+
+        if (description == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Description.class.getSimpleName()));
+        }
+        final Description modelDescription = new Description(description);
+
+        return new Person(modelName, modelPhone, modelEmail, modelStudentId, modelAttendances, modelDescription);
     }
 
 }

@@ -15,6 +15,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataLoadingException;
 import seedu.address.model.person.Classes;
+import seedu.address.model.person.CourseCode;
 import seedu.address.model.person.Person;
 import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.StorageManager;
@@ -160,6 +161,14 @@ public class ModelManager implements Model {
 
         Predicate<Person> predicate = updatedPerson -> selectedClassAddressBook.getPersonList().contains(updatedPerson);
         updateFilteredPersonList(predicate);
+    }
+
+    public void addPerson(Person person, CourseCode courseCode) {
+        Classes classes = new Classes(courseCode);
+        if (classBook.hasClass(classes)) {
+            classes.getAddressBook().addPerson(person);
+        }
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
