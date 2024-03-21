@@ -2,10 +2,12 @@ package educonnect.logic.commands;
 
 
 import static educonnect.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static educonnect.logic.parser.CliSyntax.PREFIX_LINK;
 import static educonnect.logic.parser.CliSyntax.PREFIX_NAME;
 import static educonnect.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
 import static educonnect.logic.parser.CliSyntax.PREFIX_TAG;
 import static educonnect.logic.parser.CliSyntax.PREFIX_TELEGRAM_HANDLE;
+import static educonnect.logic.parser.CliSyntax.PREFIX_TIMETABLE;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Collections;
@@ -45,6 +47,8 @@ public class EditCommand extends Command {
             + "[" + PREFIX_STUDENT_ID + "STUDENT_ID] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_TELEGRAM_HANDLE + "TELEGRAM_HANDLE] "
+            + "[" + PREFIX_LINK + "WEBLINK] "
+            + "[" + PREFIX_TIMETABLE + "TIMETABLE] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_TELEGRAM_HANDLE + "@john.doe "

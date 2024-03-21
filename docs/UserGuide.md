@@ -17,7 +17,7 @@ EduConnect is a **desktop app for managing student contacts, optimized for use v
     - [Listing all students : `list`](#listing-all-students--list)
     - [Editing a student : `edit`](#editing-a-student--edit)
     - [Locating students by name: `find`](#locating-students-by-name-find)
-    - [Linking a student to a weblink: `link`](#locating-students-by-name-find)
+    - [Linking a student to a weblink: `link`](#linking-a-student-to-a-weblink-link)
     - [Deleting a student : `delete`](#deleting-a-student--delete)
     - [Clearing all entries : `clear`](#clearing-all-entries--clear)
     - [Exiting the program : `exit`](#exiting-the-program--exit)
@@ -122,7 +122,7 @@ Format: `list`
 
 Edits an existing student in the address book.
 
-Format: `edit INDEX [n/NAME] [s/STUDENT_ID] [e/EMAIL] [h/TELEGRAM_HANDLE] [c/TIMETABLE] [t/TAG]…​ `
+Format: `edit INDEX [n/NAME] [s/STUDENT_ID] [e/EMAIL] [h/TELEGRAM_HANDLE] [l/WEBLINK] [c/TIMETABLE] [t/TAG]…​ `
 
 * Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -143,7 +143,7 @@ Examples:
 
 Find students whose criteria match any of the given keywords.
 
-Format: `find [n/NAME] [s/STUDENT_ID] [h/TELEGRAM_HANDLE] [t/TAG]...`
+Format: `find [n/NAME] [s/STUDENT_ID] [h/TELEGRAM_HANDLE] [t/TAG]…`
 
 * The search is case-insensitive. e.g `find n/hans` will match Hans
 * The order of the keywords does not matter. e.g. `find n/hans t/tutorial-1` will return the same result as `find t/tutorial-1 n/hans`
@@ -168,8 +168,11 @@ Examples:
 Links a student to a Website URL.
 
 Format: `link [s/STUDENT_ID] [e/EMAIL] [h/TELEGRAM_HANDLE] l/WEBLINK`
-* Users can choose to
-* Link must be a valid website URL.
+* Users can choose to use any of the 3 optional identifiers `s/STUDENT_ID` or `e/EMAIL` or `h/TELEGRAM_HANDLE`.
+  * At least one identifier must be supplied.
+* The identifiers are case-sensitive. e.g `h/@JOHNDOE` will only match a student with telegram handle `@JOHNDOE`.
+* The order of the keywords does not matter. e.g. `link l/https://www.google.com/ s/A1654327X` will return the same result as `link s/A1654327X l/https://www.google.com/`.
+* `l/WEBLINK` must be a valid website URL, starting with `https://` or `ftp://` or `file://`.
 * The weblink in the GUI will only be displayed if the student has a weblink attached.
 
 Examples:
@@ -245,8 +248,8 @@ Action     | Format, Examples
 **Add**    | `add n/NAME s/STUDENT_ID e/EMAIL h/TELEGRAM_HANDLE [c/TIMETABLE] [t/TAG]…​` <br> e.g., `add n/James Ho s/A2222444X e/jamesho@example.com h/@hohoho t/struggling t/3rd year c/mon: 8-10, 10-12 tue: 11-13 thu: 12-15, 15-17`
 **Clear**  | `clear`
 **Delete** | `delete [s/STUDENT_ID] [e/EMAIL] [h/TELEGRAM_HANDLE]`<br> e.g., `delete s/A1654327X`
-**Edit**   | `edit INDEX [n/NAME] [s/STUDENT_ID] [e/EMAIL] [h/TELEGRAM_HANDLE] [c/TIMETABLE] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com c/mon: 8-10, 10-12 tue: 11-13 thu: 12-15, 15-17`
-**Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Edit**   | `edit INDEX [n/NAME] [s/STUDENT_ID] [e/EMAIL] [h/TELEGRAM_HANDLE] [l/WEBLINK] [c/TIMETABLE] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com c/mon: 8-10, 10-12 tue: 11-13 thu: 12-15, 15-17`
+**Find**   | `find [n/NAME] [s/STUDENT_ID] [h/TELEGRAM_HANDLE] [t/TAG]…`<br> e.g., `find n/john t/tutorial-1`
 **Link**   | `link [s/STUDENT_ID] [e/EMAIL] [h/TELEGRAM_HANDLE] l/WEBLINK` <br> e.g. `link s/A1654327X l/https://nus-cs2103-ay2324s2.github.io/website/`
 **List**   | `list`
 **Help**   | `help`
