@@ -13,6 +13,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.meeting.Description;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -163,17 +164,17 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code String dateTime} into a {@code LocalDateTime}.
+        * Parses a {@code String dateTime} into a {@code LocalDateTime}.
      */
     public static LocalDateTime parseDateTime(String dateTime) throws ParseException {
-        LocalDateTime currentDateTime = LocalDateTime.now();
-        try {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
-            LocalDateTime parsedDateTime = LocalDateTime.parse(dateTime, formatter);
-
-            return parsedDateTime;
-        } catch (DateTimeParseException e) {
-            return currentDateTime;
+        requireNonNull(dateTime);
+        String trimmedDateTime = dateTime.trim();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+        if (!Meeting.isValidDateTime(trimmedDateTime)) {
+            throw new ParseException(Meeting.MESSAGE_INVALID_DATE_TIME);
         }
+        LocalDateTime parsedDateTime = LocalDateTime.parse(trimmedDateTime, formatter);
+        return parsedDateTime;
     }
+
 }

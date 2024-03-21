@@ -1,6 +1,8 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.logic.parser.CommandParserTestUtil.assertMeetingParseSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.CLIENT_INDEX;
+import static seedu.address.logic.commands.CommandTestUtil.MEETING_INDEX;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_MEETING;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
@@ -21,6 +23,7 @@ public class DeleteMeetingCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsDeleteCommand() {
-        assertMeetingParseSuccess(parser, "1", "1", new DeleteMeetingCommand(INDEX_FIRST_PERSON, INDEX_FIRST_MEETING));
+        String userInput = " " + CLIENT_INDEX + MEETING_INDEX;
+        assertParseSuccess(parser, userInput, new DeleteMeetingCommand(INDEX_FIRST_PERSON, INDEX_FIRST_MEETING));
     }
 }

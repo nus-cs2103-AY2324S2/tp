@@ -1,8 +1,5 @@
 package seedu.address.testutil;
 
-import static seedu.address.testutil.TypicalPersons.CHAD;
-import static seedu.address.testutil.TypicalPersons.JAMAL;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
@@ -19,6 +16,7 @@ import seedu.address.model.util.SampleDataUtil;
 /**
  * A utility class to help with building Person objects.
  */
+@SuppressWarnings("checkstyle:Regexp")
 public class PersonBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
@@ -96,29 +94,16 @@ public class PersonBuilder {
         this.email = new Email(email);
         return this;
     }
-
     /**
-     * Sets the {@code Meeting} of the {@code Person} that we are building.
+     * Adds a meeting to the person that we are building.
      */
-    public PersonBuilder withDefaultMeetingA() {
-        this.meetings.add(new MeetingBuilder()
-                .withClient(JAMAL)
-                .withDescription("Financial Aid Document Submission")
-                .withDateTime("05-02-2024 13:00").build());
+    public PersonBuilder withMeeting(Meeting meeting) {
+        this.meetings.add(meeting);
         return this;
     }
-
     /**
-     * Sets the {@code Meeting} of the {@code Person} that we are building.
+     * Builds the person with the meetings.
      */
-    public PersonBuilder withDefaultMeetingB() {
-        this.meetings.add(new MeetingBuilder()
-                .withClient(CHAD)
-                .withDescription("Financial Aid Application Review")
-                .withDateTime("01-01-2024 09:00").build());
-        return this;
-    }
-
     public Person build() {
         return new Person(name, phone, email, address, tags);
     }
