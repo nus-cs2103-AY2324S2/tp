@@ -37,9 +37,7 @@ public class Messages {
      */
     public static String format(Person person) {
         final StringBuilder builder = new StringBuilder();
-        builder.append("UUID: ")
-                .append(person.getUuidString())
-                .append("\nDetails:\n")
+        builder.append("Details:\n")
                 .append(person.allAttributesAsString());
         return builder.toString();
     }
