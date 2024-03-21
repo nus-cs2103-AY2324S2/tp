@@ -140,19 +140,17 @@ class JsonAdaptedPerson {
         }
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
+        Person p;
         if (modelRole.isVolunteer()) {
-            Person p = new Volunteer(modelName, modelPhone, modelEmail, modelAddress, modelTags);
-            p.setPairedWith(modelPairedWith);
-            p.setId(modelId);
-            return p;
+            p = new Volunteer(modelName, modelPhone, modelEmail, modelAddress, modelTags);
         } else {
             assert modelRole.isBefriendee();
-            Person p = new Befriendee(modelName, modelPhone, modelEmail, modelAddress, modelTags);
-            p.setPairedWith(modelPairedWith);
-            p.setId(modelId);
-            return p;
+            p = new Befriendee(modelName, modelPhone, modelEmail, modelAddress, modelTags);
         }
+        p.setPairedWith(modelPairedWith);
+        p.setId(modelId);
 
+        return p;
     }
 
 }

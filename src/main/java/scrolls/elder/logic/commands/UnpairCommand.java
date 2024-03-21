@@ -46,14 +46,15 @@ public class UnpairCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Person> lastShownBList = model.getFilteredBefriendeeList();
+        List<Person> lastShownVList = model.getFilteredVolunteerList();
 
-        if (index1.getZeroBased() >= lastShownList.size() || index2.getZeroBased() >= lastShownList.size()) {
+        if (index1.getZeroBased() >= lastShownBList.size() || index2.getZeroBased() >= lastShownVList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToUnpair1 = lastShownList.get(index1.getZeroBased());
-        Person personToUnpair2 = lastShownList.get(index2.getZeroBased());
+        Person personToUnpair1 = lastShownBList.get(index1.getZeroBased());
+        Person personToUnpair2 = lastShownVList.get(index2.getZeroBased());
 
         // Check if the two persons are the same person
         if (personToUnpair1.isSamePerson(personToUnpair2)) {
@@ -70,8 +71,8 @@ public class UnpairCommand extends Command {
         personToUnpair1.setPairedWith(Optional.empty());
         personToUnpair2.setPairedWith(Optional.empty());
 
-        model.setPerson(lastShownList.get(index1.getZeroBased()), personToUnpair1);
-        model.setPerson(lastShownList.get(index2.getZeroBased()), personToUnpair2);
+        model.setPerson(lastShownBList.get(index1.getZeroBased()), personToUnpair1);
+        model.setPerson(lastShownVList.get(index2.getZeroBased()), personToUnpair2);
         model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(
                 String.format(

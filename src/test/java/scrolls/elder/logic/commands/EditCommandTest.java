@@ -39,9 +39,9 @@ public class EditCommandTest {
         CommandTestUtil.assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
-    /* TODO: Re-enable this test once the Edit command is implemented with global ID
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
+        Model model = new ModelManager(TypicalPersons.getTypicalAddressBook(), new UserPrefs());
         Index indexLastPerson = Index.fromOneBased(model.getFilteredPersonList().size());
         Person lastPerson = model.getFilteredPersonList().get(indexLastPerson.getZeroBased());
 
@@ -64,8 +64,7 @@ public class EditCommandTest {
 
         CommandTestUtil.assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
-     */
-    /* TODO: Re-enable this test once the Pair command is saved in the model
+
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
         Model model = new ModelManager(TypicalPersons.getTypicalAddressBook(), new UserPrefs());
@@ -79,8 +78,7 @@ public class EditCommandTest {
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         CommandTestUtil.assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
-    */
-    /* TODO: Re-enable this test once the Pair command is saved in the model
+
     @Test
     public void execute_filteredList_success() {
         Model model = new ModelManager(TypicalPersons.getTypicalAddressBook(), new UserPrefs());
@@ -100,7 +98,6 @@ public class EditCommandTest {
 
         CommandTestUtil.assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
-    */
 
     @Test
     public void execute_duplicatePersonUnfilteredList_failure() {

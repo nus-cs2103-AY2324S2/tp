@@ -47,16 +47,15 @@ public class PersonCard extends UiPart<Region> {
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public PersonCard(Person person) {
+    public PersonCard(Person person, int displayedIndex) {
         super(FXML);
         this.person = person;
-        id.setText(String.valueOf(person.getId()));
+        id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
-        pairedWith.setText(person.isPaired()
-                ? "Paired with: " + person.getPairedWith().get() : "Not paired");
+        pairedWith.setText(person.getPairedWith().map(p -> "Paired with: " + p.fullName).orElse("Not paired"));
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
