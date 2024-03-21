@@ -1,0 +1,19 @@
+@startuml
+start
+:Student TA executes add command;
+
+
+if () then ([command is in invalid format])
+    :Show invalid command format as error message;
+
+else ([else])
+    if () then ([Student already exists in TutorsContactsPro])
+    : Show duplicate group error message;
+    else([else])
+    : Add student to the contact list;
+    : Displays student list in the GUI;
+    endif
+
+endif
+stop
+@enduml

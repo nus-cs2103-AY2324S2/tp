@@ -1,4 +1,5 @@
 @startuml
+!pragma layout smetana
 !include style.puml
 skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
@@ -42,7 +43,7 @@ Person *--> Phone
 Person *--> Email
 Person *--> Year
 Person *--> Telegram
-Person *--> Address
+Person *--> Major
 Person *--> "*" Group
 
 Person -[hidden]up--> I
