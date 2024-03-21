@@ -226,8 +226,8 @@ Furthermore, certain edits can cause Student Contact Manager to behave in unexpe
 | **Clear**           | `clear`                                                                                                                                                               |
 | **Delete**          | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
 | **Edit**            | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG] ...`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                         |
-| **Find**            | `find [n/NAME] [a/ADDRESS] [t/TAG]` <br> e.g., `find James Jake`                                                                                                      |
+| **Find**            | `find [n/NAME] [a/ADDRESS] [t/TAG]` <br> e.g., `find n/James Jake`                                                                                                    |
 | **List**            | `list`                                                                                                                                                                |
 | **Help**            | `help`                                                                                                                                                                |
-| **find_and_export** | `find_and_export TAG [n/NAME] [a/ADDRESS] [o/FILENAME]`                                                                                                               |
+| **find_and_export** | `find_and_export TAG [n/NAME] [a/ADDRESS] [f/FILENAME]`                                                                                                               |
 | **import**          | `import f/FILENAME_1 [f/FILENAME_2] [f/FILENAME_3] ...`                                                                                                               |
