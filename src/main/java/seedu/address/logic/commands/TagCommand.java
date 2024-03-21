@@ -69,6 +69,7 @@ public class TagCommand extends Command {
 
         // Add the executed command to the command history
         history.add(String.valueOf(this));
+        model.commitAddressBook();
 
         return result;
     }

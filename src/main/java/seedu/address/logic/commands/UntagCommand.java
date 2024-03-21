@@ -52,6 +52,7 @@ public class UntagCommand extends Command {
         var untaggedPerson = untag(personToUntag);
         model.setPerson(personToUntag, untaggedPerson);
         model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
+        model.commitAddressBook();
         return new CommandResult(String.format(
                 MESSAGE_DELETE_TAG_SUCCESS,
                 Messages.format(untaggedPerson),
