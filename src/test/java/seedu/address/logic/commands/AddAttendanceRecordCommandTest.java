@@ -189,6 +189,11 @@ public class AddAttendanceRecordCommandTest {
         }
 
         @Override
+        public String getFormattedClassList() {
+            return null;
+        }
+
+        @Override
         public void createClass(Classes classes) {
             throw new AssertionError("This method should not be called.");
         }
@@ -201,6 +206,16 @@ public class AddAttendanceRecordCommandTest {
         @Override
         public boolean hasClass(Classes classes) {
             return false;
+        }
+
+        @Override
+        public void selectClass(Classes classes) {
+
+        }
+
+        @Override
+        public String getSelectedClassName() {
+            return null;
         }
     }
 
