@@ -49,7 +49,7 @@ public class PersonUtil {
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
         sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
         person.getTags().stream().forEach(
-                s -> sb.append(PREFIX_TAG + s.tagName + " ")
+            s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
         person.getRemark().ifPresent(remark -> sb.append(PREFIX_REMARK).append(remark).append(" "));
         sb.append(PREFIX_ROLE + person.getRole() + " ");

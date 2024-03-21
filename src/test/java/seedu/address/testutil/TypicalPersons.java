@@ -88,8 +88,7 @@ public class TypicalPersons {
             .withDepartment(VALID_DEPARTMENT_BOB).withJobTitle(VALID_JOB_TITLE_BOB)
             .withSkills(VALID_SKILLS_NEGOTIATION, VALID_SKILLS_COMMUNICATION).build();
 
-    private TypicalPersons() {
-    } // prevents instantiation
+    private TypicalPersons() {} // prevents instantiation
 
     public static NetConnect getTypicalNetConnect() {
         NetConnect nc = new NetConnect();

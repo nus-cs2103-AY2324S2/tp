@@ -20,7 +20,7 @@ public class Supplier extends Person {
      */
     public Supplier(Name name, Phone phone, Email email, Address address, Remark remark, Set<Tag> tags,
                     Products products, TermsOfService termsOfService) {
-        super(name, phone, email, address, remark, tags);
+        super(name, phone, email, address, tags, remark);
         this.products = products;
         this.termsOfService = termsOfService;
     }
@@ -30,7 +30,7 @@ public class Supplier extends Person {
      */
     public Supplier(Id id, Name name, Phone phone, Email email, Address address, Remark remark, Set<Tag> tags,
                     Products products, TermsOfService termsOfService) {
-        super(id, name, phone, email, address, remark, tags);
+        super(id, name, phone, email, address, tags, remark);
         this.products = products;
         this.termsOfService = termsOfService;
     }

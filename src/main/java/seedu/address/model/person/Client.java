@@ -19,7 +19,7 @@ public class Client extends Person {
      */
     public Client(Name name, Phone phone, Email email, Address address, Remark remark,
                   Set<Tag> tags, Products products, String preferences) {
-        super(name, phone, email, address, remark, tags);
+        super(name, phone, email, address, tags, remark);
         this.products = products;
         this.preferences = preferences;
     }
@@ -29,7 +29,7 @@ public class Client extends Person {
      */
     public Client(Id id, Name name, Phone phone, Email email, Address address, Remark remark,
                   Set<Tag> tags, Products products, String preferences) {
-        super(id, name, phone, email, address, remark, tags);
+        super(id, name, phone, email, address, tags, remark);
         this.products = products;
         this.preferences = preferences;
     }

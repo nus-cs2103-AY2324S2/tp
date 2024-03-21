@@ -28,9 +28,9 @@ public class JsonAdaptedPersonTest {
     private static final String INVALID_TAG = "#friend";
 
     private static final int VALID_ID = BENSON.getId().value;
-    private static final String VALID_NAME = "Rachel Green";
-    private static final String VALID_PHONE = "12345678";
-    private static final String VALID_EMAIL = "rachel@example.com";
+    private static final String VALID_NAME = BENSON.getName().fullName;
+    private static final String VALID_PHONE = BENSON.getPhone().value;
+    private static final String VALID_EMAIL = BENSON.getEmail().value;
     private static final String VALID_ADDRESS = "Central Perk";
     private static final String VALID_ROLE_CLIENT = "client";
     private static final String VALID_ROLE_EMPLOYEE = "employee";

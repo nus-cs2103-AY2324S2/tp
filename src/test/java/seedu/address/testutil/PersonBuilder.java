@@ -47,6 +47,7 @@ public abstract class PersonBuilder<T extends PersonBuilder<T>> {
         address = new Address(DEFAULT_ADDRESS);
         remark = new Remark(DEFAULT_REMARK);
         tags = new HashSet<>();
+        remark = new Remark(DEFAULT_REMARK);
     }
 
     /**
@@ -58,8 +59,8 @@ public abstract class PersonBuilder<T extends PersonBuilder<T>> {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
-        remark = personToCopy.getRemark();
         tags = new HashSet<>(personToCopy.getTags());
+        remark = personToCopy.getRemark();
     }
 
     /**

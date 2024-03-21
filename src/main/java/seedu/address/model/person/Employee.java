@@ -22,7 +22,7 @@ public class Employee extends Person {
      */
     public Employee(Name name, Phone phone, Email email, Address address, Remark remark, Set<Tag> tags,
                     Department department, JobTitle jobTitle, Skills skills) {
-        super(name, phone, email, address, remark, tags);
+        super(name, phone, email, address, tags, remark);
         this.department = department;
         this.jobTitle = jobTitle;
         this.skills = skills;
@@ -33,7 +33,7 @@ public class Employee extends Person {
      */
     public Employee(Id id, Name name, Phone phone, Email email, Address address, Remark remark, Set<Tag> tags,
                     Department department, JobTitle jobTitle, Skills skills) {
-        super(id, name, phone, email, address, remark, tags);
+        super(id, name, phone, email, address, tags, remark);
         this.department = department;
         this.jobTitle = jobTitle;
         this.skills = skills;
