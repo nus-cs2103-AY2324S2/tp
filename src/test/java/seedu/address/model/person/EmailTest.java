@@ -1,8 +1,6 @@
 package seedu.address.model.person;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -73,18 +71,18 @@ public class EmailTest {
         Email email = new Email("valid@email");
 
         // same values -> returns true
-        assertEquals(email, new Email("valid@email"));
+        assertTrue(email.equals(new Email("valid@email")));
 
         // same object -> returns true
-        assertEquals(email, email);
+        assertTrue(email.equals(email));
 
         // null -> returns false
-        assertNotEquals(null, email);
+        assertFalse(email.equals(null));
 
         // different types -> returns false
         assertFalse(email.equals(0.5f));
 
         // different values -> returns false
-        assertNotEquals(email, new Email("other.valid@email"));
+        assertFalse(email.equals(new Email("other.valid@email")));
     }
 }

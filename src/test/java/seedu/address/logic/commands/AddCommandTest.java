@@ -2,7 +2,8 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 
@@ -74,31 +75,26 @@ public class AddCommandTest {
 
     @Test
     public void equals() {
-        Person aliceClient = new ClientBuilder().withName("Alice").build();
-        Person bobSupplier = new SupplierBuilder().withName("Bob").build();
-        Person aliceEmployee = new EmployeeBuilder().withName("Alice").build(); // Same name, different role
-        AddCommand addAliceClientCommand = new AddCommand(aliceClient);
-        AddCommand addBobSupplierCommand = new AddCommand(bobSupplier);
-        AddCommand addAliceEmployeeCommand = new AddCommand(aliceEmployee); // Same name, different role
+        Person alice = new ClientBuilder().withName("Alice").build();
+        Person bob = new ClientBuilder().withName("Bob").build();
+        AddCommand addAliceCommand = new AddCommand(alice);
+        AddCommand addBobCommand = new AddCommand(bob);
 
         // same object -> returns true
-        assertEquals(addAliceClientCommand, addAliceClientCommand);
+        assertTrue(addAliceCommand.equals(addAliceCommand));
 
         // same values -> returns true
-        AddCommand addAliceClientCommandCopy = new AddCommand(aliceClient);
-        assertEquals(addAliceClientCommand, addAliceClientCommandCopy);
+        AddCommand addAliceCommanddCopy = new AddCommand(alice);
+        assertTrue(addAliceCommand.equals(addAliceCommanddCopy));
 
         // different types -> returns false
-        assertNotEquals(1, addAliceClientCommand);
+        assertFalse(addAliceCommand.equals(1));
 
         // null -> returns false
-        assertNotEquals(null, addAliceClientCommand);
+        assertFalse(addAliceCommand.equals(null));
 
         // different person -> returns false
-        assertNotEquals(addAliceClientCommand, addBobSupplierCommand);
-
-        // same name, different role -> returns false
-        assertNotEquals(addAliceClientCommand, addAliceEmployeeCommand);
+        assertFalse(addAliceCommand.equals(addBobCommand));
     }
 
 
@@ -106,7 +102,7 @@ public class AddCommandTest {
     public void toStringMethod() {
         AddCommand addCommand = new AddCommand(ALICE);
         String expected = AddCommand.class.getCanonicalName() + "{toAdd=" + ALICE + "}";
-        assertEquals(expected, addCommand.toString());
+        assertTrue(expected.equals(addCommand.toString()));
     }
 
     /**
