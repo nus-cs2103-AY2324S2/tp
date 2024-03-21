@@ -44,6 +44,7 @@ public class PersonCard extends UiPart<Region> {
     private Label grade;
     @FXML
     private Label subject;
+    @FXML
     private Label attendance;
     @FXML
     private Label payment;
@@ -72,7 +73,7 @@ public class PersonCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(dateTime -> dateTime.value))
                 .forEach(dateTime -> dateTimes.getChildren()
                         .add(new Label(LocalDateTime.parse(dateTime.value,
-                                DateTimeFormatter.ofPattern("uuuu-MM-dd HHmm"))
+                                        DateTimeFormatter.ofPattern("uuuu-MM-dd HHmm"))
                                 .format(DateTimeFormatter.ofPattern("MMM d uuuu h:mma")))));
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))

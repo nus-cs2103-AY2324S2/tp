@@ -3,10 +3,12 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PAYMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -41,6 +43,10 @@ public class CommandTestUtil {
     public static final String VALID_GRADE_BOB = "B-";
     public static final String VALID_SUBJECT_AMY = "Mathematics";
     public static final String VALID_SUBJECT_BOB = "English";
+    public static final String VALID_ATTENDANCE_PRESENT = "Present";
+    public static final String VALID_ATTENDANCE_ABSENT = "Absent";
+    public static final String VALID_PAYMENT_PAID = "Paid";
+    public static final String VALID_PAYMENT_UNPAID = "Not Paid";
     public static final String VALID_DATETIME_MAR = "2024-03-04 1800";
     public static final String VALID_DATETIME_FEB = "2024-02-03 1800";
     public static final String VALID_TAG_HUSBAND = "husband";
@@ -58,6 +64,10 @@ public class CommandTestUtil {
     public static final String GRADE_DESC_BOB = " " + PREFIX_GRADE + VALID_GRADE_BOB;
     public static final String SUBJECT_DESC_AMY = " " + PREFIX_SUBJECT + VALID_SUBJECT_AMY;
     public static final String SUBJECT_DESC_BOB = " " + PREFIX_SUBJECT + VALID_SUBJECT_BOB;
+    public static final String ATTENDANCE_DESC_PRESENT = " " + PREFIX_ATTENDANCE + VALID_ATTENDANCE_PRESENT;
+    public static final String ATTENDANCE_DESC_ABSENT = " " + PREFIX_ATTENDANCE + VALID_ATTENDANCE_ABSENT;
+    public static final String PAYMENT_DESC_PAID = " " + PREFIX_PAYMENT + VALID_PAYMENT_PAID;
+    public static final String PAYMENT_DESC_UNPAID = " " + PREFIX_PAYMENT + VALID_PAYMENT_UNPAID;
     public static final String DATETIME_DESC_MAR = " " + PREFIX_DATETIME + VALID_DATETIME_MAR;
     public static final String DATETIME_DESC_FEB = " " + PREFIX_DATETIME + VALID_DATETIME_FEB;
 
@@ -70,6 +80,9 @@ public class CommandTestUtil {
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_GRADE_DESC = " " + PREFIX_GRADE + "C++"; // extra + not allowed
     public static final String INVALID_SUBJECT_DESC = " " + PREFIX_SUBJECT; // empty string not allowed for subject
+    public static final String INVALID_ATTENDANCE_DESC = " " + PREFIX_ATTENDANCE
+            + "Prasent"; // extra characters not allowed
+    public static final String INVALID_PAYMENT_DESC = " " + PREFIX_PAYMENT + "paid1"; // numbers not allowed
     public static final String INVALID_DATETIME_DESC = " " + PREFIX_DATETIME
             + "2024-02-31 1800"; // invalid date not allowed in tags
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags

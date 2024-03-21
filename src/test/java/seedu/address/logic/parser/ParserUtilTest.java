@@ -15,10 +15,12 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Attendance;
 import seedu.address.model.person.DateTime;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Grade;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Payment;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Subject;
 import seedu.address.model.tag.Tag;
@@ -30,6 +32,8 @@ public class ParserUtilTest {
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_GRADE = "C++";
     private static final String INVALID_SUBJECT = " ";
+    private static final String INVALID_ATTENDANCE = "Pressent";
+    private static final String INVALID_PAYMENT = "PAID50";
     private static final String INVALID_DATETIME = "2024-02-31 2500";
     private static final String INVALID_TAG = "#friend";
 
@@ -39,6 +43,8 @@ public class ParserUtilTest {
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_GRADE = "B-";
     private static final String VALID_SUBJECT = "English";
+    private static final String VALID_ATTENDANCE = "Present";
+    private static final String VALID_PAYMENT = "Paid";
     private static final String VALID_DATETIME_1 = "2024-02-03 1800";
     private static final String VALID_DATETIME_2 = "2024-03-04 1900";
     private static final String VALID_TAG_1 = "friend";
@@ -202,6 +208,39 @@ public class ParserUtilTest {
         String subjectWithWhitespace = WHITESPACE + VALID_SUBJECT + WHITESPACE;
         Subject expectedSubject = new Subject(VALID_SUBJECT);
         assertEquals(expectedSubject, ParserUtil.parseSubject(subjectWithWhitespace));
+    }
+
+    @Test
+    public void parseAttendance_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseAttendance(INVALID_ATTENDANCE));
+    }
+    @Test
+    public void parseAttendance_validValueWithoutWhitespace_returnsSubject() throws Exception {
+        Attendance expectedAttendance = new Attendance(VALID_ATTENDANCE);
+        assertEquals(expectedAttendance, ParserUtil.parseAttendance(VALID_ATTENDANCE));
+    }
+
+    @Test
+    void parseAttendance_validValueWithWhitespace_returnsTrimmedAttendance() throws Exception {
+        String attendanceWithWhitespace = WHITESPACE + VALID_ATTENDANCE + WHITESPACE;
+        Attendance expectedAttendance = new Attendance(VALID_ATTENDANCE);
+        assertEquals(expectedAttendance, ParserUtil.parseAttendance(attendanceWithWhitespace));
+    }
+    @Test
+    public void parsePayment_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parsePayment(INVALID_PAYMENT));
+    }
+    @Test
+    public void parsePayment_validValueWithoutWhitespace_returnsPayment() throws Exception {
+        Payment expectedPayment = new Payment(VALID_PAYMENT);
+        assertEquals(expectedPayment, ParserUtil.parsePayment(VALID_PAYMENT));
+    }
+
+    @Test
+    void parsePayment_validValueWithWhitespace_returnsTrimmedPayment() throws Exception {
+        String paymentWithWhitespace = WHITESPACE + VALID_PAYMENT + WHITESPACE;
+        Payment expectedPayment = new Payment(VALID_PAYMENT);
+        assertEquals(expectedPayment, ParserUtil.parsePayment(paymentWithWhitespace));
     }
 
     @Test
