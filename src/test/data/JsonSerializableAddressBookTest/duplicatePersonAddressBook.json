@@ -17,6 +17,7 @@
     "address": "4th street",
     "dateTime": "121220221400",
     "salary" : "0",
-    "Info" : "Friend of boss",
+    "info" : "Friend of boss",
+    "tags": [ "friends" ]
   } ]
 }
