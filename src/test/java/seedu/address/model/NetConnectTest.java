@@ -20,6 +20,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.model.person.exceptions.IdNotFoundException;
 import seedu.address.testutil.PersonBuilder;
 
 public class NetConnectTest {
@@ -79,6 +80,38 @@ public class NetConnectTest {
     }
 
     @Test
+    public void hasId_nullId_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> netConnect.hasId(null));
+    }
+
+    @Test
+    public void hasId_idNotInNetConnect_returnsFalse() {
+        assertFalse(netConnect.hasId(ALICE.getId()));
+    }
+
+    @Test
+    public void hasId_idInNetConnect_returnsTrue() {
+        netConnect.addPerson(ALICE);
+        assertTrue(netConnect.hasId(ALICE.getId()));
+    }
+
+    @Test
+    public void getPersonById_nullId_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> netConnect.getPersonById(null));
+    }
+
+    @Test
+    public void getPersonById_idNotInNetConnect_throwsIdNotFoundException() {
+        assertThrows(IdNotFoundException.class, () -> netConnect.getPersonById(ALICE.getId()));
+    }
+
+    @Test
+    public void getPersonById_idInNetConnect_returnsPerson() {
+        netConnect.addPerson(ALICE);
+        assertEquals(ALICE, netConnect.getPersonById(ALICE.getId()));
+    }
+
+    @Test
     public void getPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> netConnect.getPersonList().remove(0));
     }
@@ -105,5 +138,4 @@ public class NetConnectTest {
             return persons;
         }
     }
-
 }
