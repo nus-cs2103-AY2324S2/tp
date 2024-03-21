@@ -31,6 +31,10 @@ public class ListCommandParser implements Parser<ListCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
         }
 
+        if (!trimmedArgs.equals("client") && !trimmedArgs.equals("housekeeper")) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
+        }
 
         return new ListCommand(new TypePredicate(trimmedArgs));
     }

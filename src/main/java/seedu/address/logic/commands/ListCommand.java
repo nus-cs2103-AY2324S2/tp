@@ -31,4 +31,18 @@ public class ListCommand extends Command {
         model.updateFilteredPersonList(predicate);
         return new CommandResult(MESSAGE_SUCCESS + "all " + predicate.getType() + "s");
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof ListCommand)) {
+            return false;
+        }
+
+        ListCommand otherListCommand = (ListCommand) other;
+        return predicate.equals(otherListCommand.predicate);
+    }
 }
