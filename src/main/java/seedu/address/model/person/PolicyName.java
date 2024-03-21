@@ -23,16 +23,6 @@ public class PolicyName {
         value = policyName;
     }
 
-    /**
-     * Returns true if a given string is a valid policy name.
-     *
-     * @param test The policy name to validate.
-     * @return True if the policy name is valid, false otherwise.
-     */
-    public static boolean isValidPolicyName(String test) {
-        return test.matches(VALIDATION_REGEX);
-    }
-
     @Override
     public String toString() {
         return value;
