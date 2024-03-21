@@ -107,11 +107,6 @@ public interface Model {
     void updateFilteredPersonList(Predicate<Person> predicate);
 
     /**
-     * Returns an unmodifiable view of the order list.
-     */
-    ObservableList<Order> getOrderList();
-
-    /**
      * Updates the filter of the filtered order list to filter by the given {@code predicate}.
      *
      * @throws NullPointerException if {@code predicate} is null.
