@@ -28,7 +28,8 @@ class NoteCommandTest {
 
         NoteCommand noteCommand = new NoteCommand(INDEX_FIRST_PERSON, new Note(editedPerson.getNote().getValue()));
 
-        String expectedMessage = String.format(NoteCommand.MESSAGE_ADD_NOTE_SUCCESS, NoteCommand.notePersonMessageGenerator(editedPerson));
+        String expectedMessage = String.format(NoteCommand.MESSAGE_ADD_NOTE_SUCCESS,
+                NoteCommand.notePersonMessageGenerator(editedPerson));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(firstPerson, editedPerson);
@@ -43,7 +44,8 @@ class NoteCommandTest {
 
         NoteCommand noteCommand = new NoteCommand(INDEX_FIRST_PERSON, new Note(editedPerson.getNote().getValue()));
 
-        String expectedMessage = String.format(NoteCommand.MESSAGE_DELETE_NOTE_SUCCESS, NoteCommand.notePersonMessageGenerator(editedPerson));
+        String expectedMessage = String.format(NoteCommand.MESSAGE_DELETE_NOTE_SUCCESS,
+                NoteCommand.notePersonMessageGenerator(editedPerson));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(firstPerson, editedPerson);
