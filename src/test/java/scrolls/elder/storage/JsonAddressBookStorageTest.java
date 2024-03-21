@@ -71,7 +71,6 @@ public class JsonAddressBookStorageTest {
 
         // Modify data, overwrite exiting file, and read back
         Person hoon = TypicalPersons.HOON;
-        hoon.setId(original.getGlobalId());
         original.addPerson(hoon);
         original.removePerson(TypicalPersons.ALICE);
         jsonAddressBookStorage.saveAddressBook(original, filePath);
@@ -80,7 +79,6 @@ public class JsonAddressBookStorageTest {
 
         // Save and read without specifying file path
         Person ida = TypicalPersons.IDA;
-        ida.setId(original.getGlobalId());
         original.addPerson(ida);
         jsonAddressBookStorage.saveAddressBook(original); // file path not specified
         readBack = jsonAddressBookStorage.readAddressBook().get(); // file path not specified

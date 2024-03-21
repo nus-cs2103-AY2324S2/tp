@@ -26,10 +26,10 @@ class UnpairCommandTest {
     @Test
     void execute_unpairFilteredPersonList_unpairSuccessful() {
         Model model = new ModelManager(TypicalPersons.getTypicalAddressBook(), new UserPrefs());
-        Person personToUnpair1 = model.getFilteredPersonList().get(TypicalIndexes.INDEX_EIGHTH_PERSON.getZeroBased());
-        Person personToUnpair2 = model.getFilteredPersonList().get(TypicalIndexes.INDEX_NINTH_PERSON.getZeroBased());
+        Person personToUnpair1 = model.getFilteredPersonList().get(TypicalIndexes.INDEX_FIRST_PERSON.getZeroBased());
+        Person personToUnpair2 = model.getFilteredPersonList().get(TypicalIndexes.INDEX_FIFTH_PERSON.getZeroBased());
         UnpairCommand unpairCommand =
-                new UnpairCommand(TypicalIndexes.INDEX_EIGHTH_PERSON, TypicalIndexes.INDEX_NINTH_PERSON);
+                new UnpairCommand(TypicalIndexes.INDEX_FIRST_PERSON, TypicalIndexes.INDEX_FIFTH_PERSON);
 
         String expectedMessage = String.format(UnpairCommand.MESSAGE_UNPAIR_SUCCESS,
                 Messages.format(personToUnpair1), Messages.format(personToUnpair2));
@@ -38,9 +38,9 @@ class UnpairCommandTest {
         Person afterUnpairingPerson2 = new PersonBuilder(personToUnpair2).withPairedWith(Optional.empty()).build();
 
         ModelManager expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(model.getFilteredPersonList().get(TypicalIndexes.INDEX_EIGHTH_PERSON.getZeroBased()),
+        expectedModel.setPerson(model.getFilteredPersonList().get(TypicalIndexes.INDEX_FIRST_PERSON.getZeroBased()),
                 afterUnpairingPerson1);
-        expectedModel.setPerson(model.getFilteredPersonList().get(TypicalIndexes.INDEX_NINTH_PERSON.getZeroBased()),
+        expectedModel.setPerson(model.getFilteredPersonList().get(TypicalIndexes.INDEX_FIFTH_PERSON.getZeroBased()),
                 afterUnpairingPerson2);
 
         assertCommandSuccess(unpairCommand, model, expectedMessage, expectedModel);
@@ -58,8 +58,8 @@ class UnpairCommandTest {
     @Test
     void execute_contactsNotPaired_throwsCommandException() {
         Model model = new ModelManager(TypicalPersons.getTypicalAddressBook(), new UserPrefs());
-        UnpairCommand unpairCommand = new UnpairCommand(TypicalIndexes.INDEX_FIRST_PERSON,
-                TypicalIndexes.INDEX_FIFTH_PERSON);
+        UnpairCommand unpairCommand = new UnpairCommand(TypicalIndexes.INDEX_SECOND_PERSON,
+                TypicalIndexes.INDEX_THIRD_PERSON);
         Assert.assertThrows(
                 CommandException.class, UnpairCommand.MESSAGE_NOT_PAIRED, () -> unpairCommand.execute(model));
     }

@@ -30,7 +30,7 @@ public class TypicalPersons {
     public static final Person ALICE = new PersonBuilder().withId(0).withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253").withRole("volunteer")
-            .withTags("friends").build();
+            .withTags("friends").withPairedWith(Optional.of(new Name("Elle Meyer"))).build();
     public static final Person BENSON = new PersonBuilder().withId(1).withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25").withRole("volunteer")
             .withEmail("johnd@example.com").withPhone("98765432")
@@ -41,7 +41,8 @@ public class TypicalPersons {
             .withEmail("cornelia@example.com").withAddress("10th street").withTags("friends")
             .withRole("volunteer").build();
     public static final Person ELLE = new PersonBuilder().withId(4).withName("Elle Meyer").withPhone("9482224")
-            .withEmail("werner@example.com").withAddress("michegan ave").withRole("befriendee").build();
+            .withEmail("werner@example.com").withAddress("michegan ave").withRole("befriendee")
+            .withPairedWith(Optional.of(ALICE.getName())).build();
     public static final Person FIONA = new PersonBuilder().withId(5).withName("Fiona Kunz").withPhone("9482427")
             .withEmail("lydia@example.com").withAddress("little tokyo").withRole("befriendee").build();
     public static final Person GEORGE = new PersonBuilder().withId(6).withName("George Best").withPhone("9482442")
@@ -82,6 +83,6 @@ public class TypicalPersons {
     }
 
     public static List<Person> getTypicalPersons() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE, HOON, IDA));
+        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
 }
