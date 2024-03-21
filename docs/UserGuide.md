@@ -86,7 +86,8 @@ CulinaryContacts is a **desktop app for managing contacts, optimized for use via
 Shows the full command summary of CulinaryContacts at a glance.
 Press 'q' to close the help window.
 
-![help message](images/helpMessage.png)
+![image](https://github.com/AY2324S2-CS2103T-W09-3/tp/assets/61652399/f4b23a66-9ff7-4bec-902b-09c764b85fbb)
+
 
 Format: `help`
 
