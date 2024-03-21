@@ -149,6 +149,9 @@ public class ModelManagerTest {
         // different addressBook -> returns false
         assertFalse(modelManager.equals(new ModelManager(differentAddressBook, taskList, userPrefs)));
 
+        // different taskList -> returns false
+        assertFalse(modelManager.equals(new ModelManager(addressBook, differentTaskList, userPrefs)));
+
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
         modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
