@@ -111,4 +111,5 @@ public class ProductsTest {
         Products otherProducts = new Products(PRODUCT_LIST);
         assertEquals(products.hashCode(), otherProducts.hashCode());
     }
+
 }
