@@ -2,22 +2,14 @@ package seedu.address.model.house;
 
 /**
  * Represents a House.
+ * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class House {
-    /** Message for constraints of valid housing types. */
-    public static final String MESSAGE_CONSTRAINTS =
-            "Housing types can only be HDB, Condominium or Landed.";
-
-    /** Array of valid housing types regex patterns. */
-    public static final String[] VALIDATION_REGEX = {"hdb", "condominium", "landed"};
-
-    /** The postal code of the house. */
+    // I think we should take note this part, I believe that we should separate out House and Housing Type
+    public static final String MESSAGE_CONSTRAINTS = "Housing types can only be HDB, Condominium or Landed.";
+    public static final String[] VALIDATION_REGEX = {"HDB", "Condominium", "Landed"};
     public final PostalCode postalCode;
-
-    /** The street of the house. */
     public final Street street;
-
-    /** The unit number of the house. */
     public final UnitNumber unitNumber;
 
     /**
@@ -139,7 +131,7 @@ public class House {
         }
 
         House otherStreet = (House) other;
-        return this.toString().equals(other.toString());
+        return this.toString().equals(otherStreet.toString());
     }
 
     /**
@@ -147,7 +139,8 @@ public class House {
      *
      * @return A string representation of the house.
      */
+    @Override
     public String toString() {
-        return "House";
+        return "House Address: " + this.unitNumber + ", " + this.street + ", S" + this.postalCode;
     }
 }

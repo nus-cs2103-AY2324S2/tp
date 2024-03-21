@@ -44,4 +44,34 @@ public class NonLanded extends House {
         this.level = level;
         this.unitNumber = unitNumber;
     }
+
+    /**
+     * Retrieves the block of the house
+     *
+     * @return The block of the house
+     */
+    public Block getBlock() {
+        return this.block;
+    }
+
+    /**
+     * Retrieves the level of the house
+     *
+     * @return The level of the house
+     */
+    public Level getLevel() {
+        return this.level;
+    }
+
+    /**
+     * Returns a string representation of the non-landed house.
+     *
+     * @return A string representation of the non-landed house.
+     */
+    @Override
+    public String toString() {
+        String blockLevelInfo = (block != null ? "Block: " + block.value + ", " : "")
+                + (level != null ? "Level: " + level.value + ", " : "");
+        return "Non-Landed House: " + blockLevelInfo + super.toString();
+    }
 }
