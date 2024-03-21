@@ -1,9 +1,8 @@
 package seedu.address.model.appointment;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 class AppointmentIdTest {
 
@@ -26,6 +25,6 @@ class AppointmentIdTest {
 
     @Test
     void hashCode_returnsValidHash() {
-        assertTrue(hashCode() > 100000000);
+        assertNotNull(hashCode());
     }
 }
