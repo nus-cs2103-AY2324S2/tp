@@ -14,6 +14,7 @@ import seedu.address.model.task.Task;
  */
 public class TaskList {
     private ArrayList<Task> taskList;
+    private ObservableList<Task> observableList = FXCollections.observableArrayList();
 
     /**
      * Constructor of the class.
@@ -32,6 +33,7 @@ public class TaskList {
     }
 
     public void setTaskList(TaskList tasks) {
+        observableList.setAll(tasks.observableList);
         taskList = new ArrayList<>(tasks.getSerializeTaskList());
     }
 
@@ -42,6 +44,7 @@ public class TaskList {
      */
     public void addTask(Task task) {
         taskList.add(task);
+        observableList.add(task);
     }
 
     /**
@@ -64,7 +67,7 @@ public class TaskList {
     }
 
     public ObservableList<Task> getSerializeTaskList() {
-        return FXCollections.unmodifiableObservableList(FXCollections.observableArrayList(taskList));
+        return observableList;
     }
 
     public boolean hasTask(Task task) {
