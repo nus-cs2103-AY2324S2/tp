@@ -147,12 +147,12 @@ Examples:
 - `edit John -p 98765432 -e johndoe@gmail.com`
 
 ### Add a skill to a contact : `add-skill`
-Adds a skill to a contact.
+Adds a list of skills to a contact.
 
-Format: `add-skill NAME [-s SKILL]...`
+Format: `add-skill COURSENAME [-s SKILL]...`
 
 Parameters:
-- `NAME`: Name of the existing contact. Accepts aliases (substrings or in hashtag (#) notation).
+- `COURSENAME`: Name of the existing coursemate. Accepts aliases (substrings or in hashtag (#) notation).
 - `SKILL` (zero or multiple allowed): Skill(s) of the courseMate. Accepts any strings, except that words cannot start with the hyphen (-) character.
 
 Examples:
@@ -161,27 +161,13 @@ Examples:
 
   This command does nothing but it will be executed successfully.
   
-Possible outputs:
-- `Message: Skill(s) have been added`
-
-    The skills will be added.
-
-    The edited contact will be displayed on the detailed view panel.
-- `Message: WARNING: the following skill(s) has not been added to any other contacts, please ensure it is not misspelt: “V++”, “Leadershipp”. Skills have been added`
-
-    The skills will be added.
-
-    The edited contact will be displayed on the detailed view panel.
-- `Message: ERROR: Cannot find contact with name “Jane Doe”.`
-- `Message: ERROR: Cannot find contact with index “#10”.`
-
 ### Delete a skill from a contact  : `delete-skill`
-Deletes a skill from a contact.
+Deletes a list of skills from a contact.
 
-Format: `delete-skill NAME [-s SKILL]...`
+Format: `delete-skill COURSEMATE [-s SKILL]...`
 
 Parameters:
-- `NAME`: Name of the existing contact. Accepts aliases (substrings or in hashtag (#) notation).
+- `COURSEMATE`: Name of the existing coursemate. Accepts aliases (substrings or in hashtag (#) notation).
 - `SKILL`: (zero or multiple allowed): Skill(s) of the courseMate. These must be existing skills that the contact contains.
 
 Examples:
@@ -191,14 +177,15 @@ Examples:
     This command does nothing but it will be executed successfully.
 
 ### Search contacts with a keyword: `find`
-Searches contacts that include a matching keyword, in their name, skills or groups. More relevant fields can be supported in the future.
 
-To match a contact’s skill or group, the keyword should match exactly with the skill or group. To match a contact’s name, the keyword can be a case-insensitive substring of the name.
+Searches contacts that include a matching keyword, in their name or skills. More relevant fields can be supported in the future.
+
+To match a contact’s skill, the keyword should match exactly with the skill. To match a contact’s name, the keyword can be a case-insensitive substring of the name.
 
 Format: `find KEYWORD`
 
 Parameters:
-- `KEYWORD`: The keyword of the search. Accepts any strings, except that words cannot start with the hyphen (-) character. 
+- `KEYWORD`: The keyword of the search. Accepts any strings.
 
 Examples:
 - `find John`
@@ -209,10 +196,10 @@ Examples:
 
 Deletes a contact with a given name.
 
-Format: `delete NAME`
+Format: `delete COURSEMATE`
 
 Parameters:
-- `NAME`: Name of the existing contact. Accepts aliases (substrings or in hashtag (#) notation).
+- `COURSEMATE`: Name of the existing coursemate. Accepts aliases (substrings or in hashtag (#) notation).
 
 Examples:
 - `delete ##`
@@ -220,34 +207,52 @@ Examples:
 
 ### Create group project: `create-group`
 
-Creates an empty group project. Other team members can then be added once the group has been created.
+Creates a group project. You can specify the coursemates in the group when creating the group, or choose to add them later.
 
-Format: `create-group GROUP_NAME`
+Format: `create-group GROUP_NAME [-cm COURSEMATE]`
 
 Parameters:
 - `GROUP_NAME`: The group name. Accepts any strings, except that words cannot start with the hyphen (-) character.
-
-Example: `create-group CS2103T_G18`
-
-### Add contacts to group: `add-member`
-Adds a team member to an existing group.
-
-Format: `add-member GROUP_NAME -n CONTACT_NAME`
-
-Parameters:
-- `GROUP_NAME: Name of the existing group.`
-- `CONTACT_NAME: Name of the existing contact. Accepts aliases (substrings or in hashtag (#) notation).`
+- `COURSEMATE` (zero or multiple allowed): Name of the existing coursemates to be added to the group. Accepts aliases (substrings or in hashtag (#) notation).
 
 Examples:
-- `add-member CS2103T_G18 -n Ivan`
-- `add-member CS2103T_G18 -n #1`
+- `create-group CS2103T_G18`
+- `create-group CS2103T_G18 -cm John -cm #2`
 
-ℹ
-**Tip:**
-Different from names from the contact list, group names must be an exact match.
+### Add coursemates to group: `add-member`
+Adds some team members to an existing group.
+
+Format: `add-member GROUP_NAME [-cm COURSEMATE]...`
+
+Parameters:
+- `GROUP_NAME`: Name of the existing group.
+- `COURSEMATE`: Name of the existing coursemates to be added to the group. Accepts aliases (substrings or in hashtag (#) notation).
+
+Examples:
+- `add-member CS2103T_G18 -cm Ivan -cm #1`
+- `add-member CS2103T_G18 -cm ##`
+
+<box type="tip" seamless>
+
+**Tip:** Different from coursemate names, group names must be an exact match.
+</box>
+
+### Delete coursemates from group: `delete-member`
+
+Deletes some team members from an existing group.
+
+Format: `delete-member GROUP_NAME [-cm COURSEMATE]...`
+
+Parameters:
+- `GROUP_NAME`: Name of the existing group.
+- `COURSEMATE`: Name of the existing coursemates to be deleted from the group. Accepts aliases (substrings or in hashtag (#) notation).
+
+Examples:
+- `delete-member CS2103T_G18 -cm Ivan -cm #1`
+- `delete-member CS2103T_G18 -cm ##`
 
 ### Delete a group: `delete-group`
-Deletes a group
+Deletes a group.
 
 Format: `delete-group GROUP_NAME`
 
@@ -271,7 +276,8 @@ Format: `exit`
 
 ### Save and load the state of app
 
-Load the saved data when starting the app. Save the state of contacts and groups every time it is updated via adding or editing. This should run automatically on start and subsequently after a command that alters the state of the app (e.g. add, edit).
+Load the saved data when starting the app. Save the state of coursemates and groups every time it is updated via adding or editing. This should run automatically on start and subsequently after a command that alters the state of the app (e.g. add, edit).
+
 ### Editing the data file
 
 MatchMate data are saved automatically as a JSON file `[JAR file location]/data/matchmate.json`. Advanced users are welcome to update data directly by editing that data file.
@@ -303,15 +309,16 @@ Furthermore, certain edits can cause the MatchMate to behave in unexpected ways 
 
 Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add contact**    | `add NAME [-p PHONE_NUMBER] [-e EMAIL] [-s SKILL]…​` <br> e.g., `add John Doe -p 87654321 -e johndoe@example.com -s Leadership -s C++`
-**Add group member**    |   `add-member GROUP_NAME -n CONTACT_NAME` <br> e.g., `add-member CS2103T_G18 -n Ivan`
-**Add skill**   |   ` add-skill NAME [-s SKILL]...` <br> e.g., `add-skill John Doe -s C++ -s Leadership`
+**Add coursemate**    | `add NAME [-p PHONE_NUMBER] [-e EMAIL] [-s SKILL]…​` <br> e.g., `add John Doe -p 87654321 -e johndoe@example.com -s Leadership -s C++`
+**Add group member**    |   `add-member GROUP_NAME [-cm COURSEMATE]...` <br> e.g., `add-member CS2103T_G18 -cm Ivan -cm ##`
+**Add skill**   |   ` add-skill COURSEMATE [-s SKILL]...` <br> e.g., `add-skill John Doe -s C++ -s Leadership`
 **Clear**  | `clear`
-**Create group**    |   `create-group GROUP_NAME` <br> e.g., `create-group CS2103T_G18`
-**Delete Contact**  | `delete NAME` <br> e.g., `delete John`
+**Create group**    |   `create-group GROUP_NAME [-cm COURSEMATE]` <br> e.g., `create-group CS2103T_G18 -cm John -cm #2`
+**Delete coursemate**  | `delete COURSEMATE` <br> e.g., `delete John`
 **Delete group**    | `delete-group GROUP_NAME` <br> e.g., `delete-group CS2103T_G18`
-**Delete Skill** | `delete-skill NAME [-s SKILL]…​` <br> e.g., `delete-skill John Doe -s C++ -s Leadership `
-**Edit contact**   | `edit NAME [-n NEW_NAME] [-p NEW_PHONE_NUMBER] [-e NEW_EMAIL]…​`<br> e.g.,`edit John -p 98765432 -e johndoe@gmail.com`
+**Delete group member**    |   `delete-member GROUP_NAME [-cm COURSEMATE]` <br> e.g., `delete-member -cm Ivan -cm #1`
+**Delete skill** | `delete-skill COURSEMATE [-s SKILL]...` <br> e.g., `delete-skill John Doe -s C++ -s Leadership `
+**Edit coursemate**   | `edit COURSEMATE [-n NEW_NAME] [-p NEW_PHONE_NUMBER] [-e NEW_EMAIL]…​`<br> e.g.,`edit John -p 98765432 -e johndoe@gmail.com`
 **Find**   | `find KEYWORD`<br> e.g., `find John`
 **List**   | `list`
 **Help**   | `help`
