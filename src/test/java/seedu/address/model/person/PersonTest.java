@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_INFO_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_INTERVIEWTIME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
@@ -41,6 +42,7 @@ public class PersonTest {
                 .withAddress(VALID_ADDRESS_BOB)
                 .withDateTime(VALID_INTERVIEWTIME_BOB)
                 .withSalary(VALID_SALARY_BOB)
+                .withInfo(VALID_INFO_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSamePerson(editedAlice));
 
@@ -94,9 +96,14 @@ public class PersonTest {
 
         // different interview time -> returns true
         editedAlice = new PersonBuilder(ALICE).withDateTime(VALID_INTERVIEWTIME_BOB).build();
+        assertTrue(ALICE.equals(editedAlice));
 
         // different salary -> return true
         editedAlice = new PersonBuilder(ALICE).withSalary(VALID_SALARY_BOB).build();
+        assertTrue(ALICE.equals(editedAlice));
+
+        // different info -> returns true
+        editedAlice = new PersonBuilder(ALICE).withInfo(VALID_INFO_BOB).build();
         assertTrue(ALICE.equals(editedAlice));
 
         // different tags -> returns false
@@ -108,26 +115,30 @@ public class PersonTest {
     public void hashCodeTest() {
         Person person1 = new PersonBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
                 .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withSalary(VALID_SALARY_BOB)
-                .withTags(VALID_TAG_HUSBAND).build();
+                .withInfo(VALID_INFO_BOB).withTags(VALID_TAG_HUSBAND).build();
         Person person2 = new PersonBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
                 .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withSalary(VALID_SALARY_BOB)
-                .withTags(VALID_TAG_HUSBAND).build();
+                .withInfo(VALID_INFO_BOB).withTags(VALID_TAG_HUSBAND).build();
         assertEquals(person1.hashCode(), person2.hashCode());
 
         person2 = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_BOB)
                 .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withSalary(VALID_SALARY_BOB)
-                .withTags(VALID_TAG_HUSBAND).build();
+                .withInfo(VALID_INFO_BOB).withTags(VALID_TAG_HUSBAND).build();
 
         assertNotEquals(person1.hashCode(), person2.hashCode());
     }
 
     @Test
     public void toStringMethod() {
-        String expected = Person.class.getCanonicalName() + "{name=" + ALICE.getName() + ", phone=" + ALICE.getPhone()
-                + ", email=" + ALICE.getEmail() + ", address=" + ALICE.getAddress() + ", interview-time="
-                + ALICE.getDateTime()
-                + ", salary="
-                + ALICE.getSalary() + ", tags=" + ALICE.getTags() + "}";
+        String expected = Person.class.getCanonicalName() + "{company name=" + ALICE.getCompanyName()
+                + ", name=" + ALICE.getName() + ", phone=" + ALICE.getPhone()
+                + ", email=" + ALICE.getEmail() + ", address=" + ALICE.getAddress()
+                + ", interview-time=" + ALICE.getDateTime()
+                + ", salary=" + ALICE.getSalary()
+                + ", info=" + ALICE.getInfo()
+                + ", tags=" + ALICE.getTags()
+                + ", programming-languages=" + ALICE.getProgrammingLanguages()
+                + "}";
         assertEquals(expected, ALICE.toString());
     }
 }

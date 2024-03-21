@@ -9,8 +9,11 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.language.ProgrammingLanguage;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.CompanyName;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Info;
 import seedu.address.model.person.InterviewTime;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
@@ -35,6 +38,21 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    /**
+     * Parses a {@code String name} into a {@code Name}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static CompanyName parseCompanyName(String companyName) throws ParseException {
+        requireNonNull(companyName);
+        String trimmedName = companyName.trim();
+        if (!CompanyName.isValidName(trimmedName)) {
+            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        }
+        return new CompanyName(trimmedName);
     }
 
     /**
@@ -153,4 +171,49 @@ public class ParserUtil {
         }
         return new Salary(trimmedSalary);
     }
+
+    /**
+     * Parses a {@code String info} into an {@code Info}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static Info parseInfo(String info) {
+        String trimmedInfo = info.trim();
+        return new Info(trimmedInfo);
+    }
+
+    /**
+     * Parses a string representing a programming language into a {@code ProgrammingLanguage} object.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @param programmingLanguageString A string representing a programming language.
+     * @return A {@code ProgrammingLanguage} object parsed from the input string.
+     * @throws ParseException if the given {@code programmingLanguageString} is invalid.
+     */
+    public static ProgrammingLanguage parseProgrammingLanguage(String programmingLanguageString) throws ParseException {
+        requireNonNull(programmingLanguageString);
+        String trimmedProgrammingLanguage = programmingLanguageString.trim();
+        if (!ProgrammingLanguage.isValidLanguageName(trimmedProgrammingLanguage)) {
+            throw new ParseException(ProgrammingLanguage.MESSAGE_CONSTRAINTS);
+        }
+        return new ProgrammingLanguage(trimmedProgrammingLanguage);
+    }
+
+    /**
+     * Parses collection of strings representing programming languages into set of {@code ProgrammingLanguage} objects.
+     *
+     * @param programmingLanguages A collection of strings representing programming languages.
+     * @return A set of {@code ProgrammingLanguage} objects parsed from the input collection.
+     * @throws ParseException if any of the programming language strings are invalid.
+     */
+    public static Set<ProgrammingLanguage> parseProgrammingLanguages(Collection<String> programmingLanguages)
+            throws ParseException {
+        requireNonNull(programmingLanguages);
+        final Set<ProgrammingLanguage> programmingLanguageSet = new HashSet<>();
+        for (String programmingLanguage : programmingLanguages) {
+            programmingLanguageSet.add(parseProgrammingLanguage(programmingLanguage));
+        }
+        return programmingLanguageSet;
+    }
+
+
 }

@@ -129,4 +129,15 @@ public class ModelManagerTest {
         differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
         assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs)));
     }
+
+    @Test
+    public void toString_validModelManager_returnsStringRepresentation() {
+        AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
+        UserPrefs userPrefs = new UserPrefs();
+        ModelManager modelManager = new ModelManager(addressBook, userPrefs);
+
+        String expectedString = String.format("%s, %s, %s", addressBook, userPrefs, modelManager
+                .getFilteredPersonList());
+        assertEquals(expectedString, modelManager.toString());
+    }
 }

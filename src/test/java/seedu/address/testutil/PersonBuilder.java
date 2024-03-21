@@ -3,8 +3,11 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.model.language.ProgrammingLanguage;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.CompanyName;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Info;
 import seedu.address.model.person.InterviewTime;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -17,46 +20,64 @@ import seedu.address.model.util.SampleDataUtil;
  * A utility class to help with building Person objects.
  */
 public class PersonBuilder {
-
+    public static final String DEFAULT_COMPANY_NAME = "Google";
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_INTERVIEWTIME = "121220221400";
     public static final String DEFAULT_SALARY = "0";
+    public static final String DEFAULT_INFO = "";
 
+    private CompanyName companyName;
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
     private InterviewTime dateTime;
     private Salary salary;
+    private Info info;
     private Set<Tag> tags;
+    private Set<ProgrammingLanguage> programmingLanguages;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
      */
     public PersonBuilder() {
+        companyName = new CompanyName(DEFAULT_COMPANY_NAME);
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         dateTime = new InterviewTime(DEFAULT_INTERVIEWTIME);
         salary = new Salary(DEFAULT_SALARY);
+        info = new Info(DEFAULT_INFO);
         tags = new HashSet<>();
+        programmingLanguages = new HashSet<>();
     }
 
     /**
      * Initializes the PersonBuilder with the data of {@code personToCopy}.
      */
     public PersonBuilder(Person personToCopy) {
+        companyName = personToCopy.getCompanyName();
         name = personToCopy.getName();
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         dateTime = personToCopy.getDateTime();
         salary = personToCopy.getSalary();
+        info = personToCopy.getInfo();
         tags = new HashSet<>(personToCopy.getTags());
+        programmingLanguages = new HashSet<>(personToCopy.getProgrammingLanguages());
+    }
+
+    /**
+     * Sets the {@code CompanyName} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withCompanyName(String name) {
+        this.companyName = new CompanyName(name);
+        return this;
     }
 
     /**
@@ -92,6 +113,14 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code Info} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withInfo(String info) {
+        this.info = new Info(info);
+        return this;
+    }
+
+    /**
      * Sets the {@code Phone} of the {@code Person} that we are building.
      */
     public PersonBuilder withPhone(String phone) {
@@ -117,8 +146,25 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Parses the {@code programmingLanguages} into a {@code Set<ProgrammingLanguage>} and
+     * sets it to the {@code Person} that we are building.
+     * @param programmingLanguages The programming languages to be set.
+     * @return The updated {@code PersonBuilder} object.
+     */
+    public PersonBuilder withProgrammingLanguages(String... programmingLanguages) {
+        this.programmingLanguages = SampleDataUtil.getProgrammingLanguageSet(programmingLanguages);
+        return this;
+    }
+
+
+    /**
+     * Builds and returns a {@code Person} object with the current attributes set in this {@code PersonBuilder}.
+     * @return The {@code Person} object constructed with the current attributes set in this builder.
+     */
     public Person build() {
-        return new Person(name, phone, email, address, dateTime, salary, tags);
+        return new Person(companyName, name, phone, email, address, dateTime, salary, info, tags,
+                programmingLanguages);
     }
 
 }
