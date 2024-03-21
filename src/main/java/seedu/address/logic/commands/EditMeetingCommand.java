@@ -18,6 +18,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.meeting.Description;
 import seedu.address.model.meeting.Meeting;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 
 /**
@@ -34,17 +35,17 @@ public class EditMeetingCommand extends Command {
             + "[" + PREFIX_CLIENT_INDEX + "CLIENT INDEX] "
             + "[" + PREFIX_MEETING_INDEX + "MEETING INDEX] "
             + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_DATETIME + "PHONE] "
-            + "[" + PREFIX_CLIENT + "CLIENT] "
+            + "[" + PREFIX_DATETIME + "DATETIME] \n"
+            //+ "[" + PREFIX_CLIENT + "CLIENT] \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_CLIENT_INDEX + "1 "
             + PREFIX_MEETING_INDEX + "2 "
-            + PREFIX_NAME + "john "
-            + PREFIX_DATETIME + "01-01-2024 12:00 "
-            + PREFIX_CLIENT + "johndoe@example.com";
+            + PREFIX_NAME + "starbucks meeting "
+            + PREFIX_DATETIME + "01-01-2024 12:00 ";
+            //+ PREFIX_CLIENT + "johndoe@example.com";
 
     public static final String MESSAGE_EDIT_MEETING_SUCCESS = "Edited Meeting: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    public static final String MEETING_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_MEETING = "This meeting already exists in the address book.";
 
     private final Index meetingIndex;
@@ -71,9 +72,14 @@ public class EditMeetingCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Meeting> lastShownList = model.getFilteredMeetingList();
+        /*
+        lastShownList.add(new Meeting("a", LocalDateTime.now(), selectedClient));
+        lastShownList.add(new Meeting("b", LocalDateTime.now(), selectedClient));
+        lastShownList.add(new Meeting("c", LocalDateTime.now(), selectedClient));
+        */
 
         if (meetingIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_MEETING_DISPLAYED_INDEX);
         }
 
         Meeting meetingToEdit = lastShownList.get(meetingIndex.getZeroBased());
@@ -83,15 +89,16 @@ public class EditMeetingCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_MEETING);
         }
 
-        model.setMeeting(meetingToEdit, editedMeeting);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
         List<Person> clientList = model.getFilteredPersonList();
         Person selectedClient = clientList.get(this.clientIndex.getZeroBased());
+        editedMeeting = new Meeting(editedMeeting.getDescription(), editedMeeting.getDateTime(), selectedClient);
 
         ArrayList<Meeting> clientMeetingList = selectedClient.getMeetings();
         clientMeetingList.set(meetingIndex.getZeroBased(), editedMeeting);
         selectedClient.setMeetings(clientMeetingList);
+        model.setMeeting(meetingToEdit, editedMeeting);
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
         return new CommandResult(String.format(MESSAGE_EDIT_MEETING_SUCCESS, Messages.formatMeeting(editedMeeting)));
     }
@@ -147,6 +154,14 @@ public class EditMeetingCommand extends Command {
                 && editMeetingDescriptor.equals(otherEditMeeting.editMeetingDescriptor);
     }
 
+    public Index getClientIndex() {
+        return clientIndex;
+    }
+
+    public Index getMeetingIndex() {
+        return meetingIndex;
+    }
+
     @Override
     public String toString() {
         return new ToStringBuilder(this)
@@ -177,6 +192,7 @@ public class EditMeetingCommand extends Command {
             setDateTime(toCopy.dateTime);
             setClient(toCopy.client);
         }
+
 
         /**
          * Returns true if at least one field is edited.
