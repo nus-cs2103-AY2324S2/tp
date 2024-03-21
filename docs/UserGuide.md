@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-<span style="color: #f66a0a;">CareerSync</span> is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI).  
+<span style="color: #f66a0a;">CareerSync</span> is a **desktop app for managing internships, optimized for use via a Command Line Interface** (CLI).  
 It lets you effortlessly manage, search, and sift through your various internship applications!
 
 * Table of Contents

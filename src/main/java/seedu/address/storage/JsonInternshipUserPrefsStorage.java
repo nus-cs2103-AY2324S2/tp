@@ -12,11 +12,11 @@ import seedu.address.model.ReadOnlyInternshipUserPrefs;
 /**
  * A class to access UserPrefs stored in the hard disk as a json file
  */
-public class JsonUserPrefsStorage implements UserPrefsStorage {
+public class JsonInternshipUserPrefsStorage implements InternshipUserPrefsStorage {
 
     private Path filePath;
 
-    public JsonUserPrefsStorage(Path filePath) {
+    public JsonInternshipUserPrefsStorage(Path filePath) {
         this.filePath = filePath;
     }
 

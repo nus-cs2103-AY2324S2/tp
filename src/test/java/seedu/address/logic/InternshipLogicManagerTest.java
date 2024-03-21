@@ -23,9 +23,9 @@ import seedu.address.model.InternshipModelManager;
 import seedu.address.model.InternshipUserPrefs;
 import seedu.address.model.ReadOnlyInternshipData;
 import seedu.address.model.internship.Internship;
+import seedu.address.storage.InternshipStorageManager;
 import seedu.address.storage.JsonInternshipDataStorage;
-import seedu.address.storage.JsonUserPrefsStorage;
-import seedu.address.storage.StorageManager;
+import seedu.address.storage.JsonInternshipUserPrefsStorage;
 import seedu.address.testutil.InternshipBuilder;
 import seedu.address.testutil.InternshipUtil;
 
@@ -43,8 +43,9 @@ public class InternshipLogicManagerTest {
     public void setUp() {
         JsonInternshipDataStorage internshipDataStorage =
                 new JsonInternshipDataStorage(temporaryFolder.resolve("internshipdata.json"));
-        JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(internshipDataStorage, userPrefsStorage);
+        JsonInternshipUserPrefsStorage userPrefsStorage =
+                new JsonInternshipUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
+        InternshipStorageManager storage = new InternshipStorageManager(internshipDataStorage, userPrefsStorage);
         logic = new InternshipLogicManager(model, storage);
     }
 
@@ -155,9 +156,9 @@ public class InternshipLogicManagerTest {
             }
         };
 
-        JsonUserPrefsStorage userPrefsStorage =
-                new JsonUserPrefsStorage(temporaryFolder.resolve("ExceptionInternshipUserPrefs.json"));
-        StorageManager storage = new StorageManager(internshipDataStorage, userPrefsStorage);
+        JsonInternshipUserPrefsStorage userPrefsStorage =
+                new JsonInternshipUserPrefsStorage(temporaryFolder.resolve("ExceptionInternshipUserPrefs.json"));
+        InternshipStorageManager storage = new InternshipStorageManager(internshipDataStorage, userPrefsStorage);
 
         logic = new InternshipLogicManager(model, storage);
 
