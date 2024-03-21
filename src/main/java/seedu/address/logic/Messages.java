@@ -16,6 +16,7 @@ public class Messages {
     public static final String MESSAGE_INVALID_COURSE_MATE_NAME = "The courseMate name provided is not found!";
     public static final String MESSAGE_INVALID_COURSE_MATE_DISPLAYED_INDEX = "The courseMate index provided is invalid";
     public static final String MESSAGE_COURSE_MATES_LISTED_OVERVIEW = "%1$d course mates listed!";
+    public static final String MESSAGE_GROUPS_LISTED_OVERVIEW = "%1$d groups listed!";
     public static final String MESSAGE_INVALID_GROUP_NAME = "The group name provided is not found!";
     public static final String MESSAGE_MEMBERS_DONT_EXIST = "Some of the specified members could not be found.";
     public static final String MESSAGE_DUPLICATE_FIELDS =
