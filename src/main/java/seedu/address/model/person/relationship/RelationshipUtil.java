@@ -74,7 +74,7 @@ public class RelationshipUtil {
     public ArrayList<Relationship> getRelationshipsTracker() {
         return relationshipsTracker;
     }
-  
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -85,7 +85,7 @@ public class RelationshipUtil {
         }
         RelationshipUtil other = (RelationshipUtil) o;
         return relationshipsTracker.equals(other.relationshipsTracker);
-      
+ 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
