@@ -37,7 +37,7 @@ public class MarkCommandTest {
 
         Person personInFilteredList = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
 
-        Person updatedPerson = new PersonBuilder(personInFilteredList).withTag(VALID_TAG_FRIENDS,
+        Person updatedPerson = new PersonBuilder(personInFilteredList).addTag(VALID_TAG_FRIENDS,
                 TagStatus.COMPLETE_GOOD).build();
         MarkCommand markCommand = new MarkCommand(INDEX_FIRST_PERSON, VALID_TAG_FRIENDS,
                 TagStatus.COMPLETE_GOOD);

@@ -119,7 +119,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code Tag} of the {@code Person} that we are building.
      */
-    public PersonBuilder withTag(String tagName, TagStatus tagStatus) {
+    public PersonBuilder addTag(String tagName, TagStatus tagStatus) {
         this.tags = Tag.updateTagsWithNewTag(new HashSet<>(tags), tagName, tagStatus);
         return this;
     }
