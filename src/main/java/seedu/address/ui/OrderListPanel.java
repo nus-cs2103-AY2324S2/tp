@@ -45,4 +45,8 @@ public class OrderListPanel extends UiPart<Region> {
         }
     }
 
+    public void updateDisplayedOrders(ObservableList<Order> orders) {
+        orderListView.setItems(orders);
+    }
+
 }
