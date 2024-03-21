@@ -2,11 +2,17 @@ package seedu.address.ui;
 
 import java.util.Comparator;
 
+import javafx.animation.ScaleTransition;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.paint.Color;
+import javafx.util.Duration;
 import seedu.address.model.person.Person;
 
 /**
@@ -71,5 +77,29 @@ public class PersonCard extends UiPart<Region> {
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+
+        applyHoverEffect(cardPane);
+
     }
+
+
+
+
+    private void applyHoverEffect(Node node) {
+        DropShadow hoverShadow = new DropShadow();
+        hoverShadow.setColor(Color.CHARTREUSE);
+        hoverShadow.setRadius(30);
+        hoverShadow.setSpread(0.5);
+
+        node.addEventHandler(MouseEvent.MOUSE_ENTERED, e -> {
+            node.setEffect(hoverShadow);
+        });
+
+        node.addEventHandler(MouseEvent.MOUSE_EXITED, e -> {
+            node.setEffect(null);
+        });
+    }
+
+
+
 }
