@@ -6,7 +6,7 @@
     "email": "alice@example.com",
     "address": "123, Jurong West Ave 6, #08-111",
     "studentId": "12345",
-    "tags": [ "friends" ]
+    "tags": [ "Friends" ]
   }, {
     "name": "Bob ddd",
     "parent phone one": "94824242",

@@ -7,7 +7,7 @@
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
     "studentId": "00001",
-    "tags" : [ "friends" ]
+    "tags" : [ "Friends" ]
   }, {
     "name" : "Benson Meier",
     "parent phone one": "98765432",
@@ -15,13 +15,13 @@
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
     "studentId": "00002",
-    "tags" : [ "owesMoney", "friends" ]
+    "tags" : [ "OwesMoney", "Friends" ]
   }, {
     "name" : "Carl Kurz",
     "parent phone one": "95352563",
     "parent phone two": "86070439",
     "email" : "heinz@example.com",
-    "address" : "wall street",
+    "address" : "Wall Street",
     "studentId": "00003",
     "tags" : [ ]
   }, {
@@ -31,13 +31,13 @@
     "email" : "cornelia@example.com",
     "address" : "10th street",
     "studentId": "00004",
-    "tags" : [ "friends" ]
+    "tags" : [ "Friends" ]
   }, {
     "name" : "Elle Meyer",
     "parent phone one": "94822224",
     "parent phone two": "93846702",
     "email" : "werner@example.com",
-    "address" : "michegan ave",
+    "address" : "Michegan Ave",
     "studentId": "00005",
     "tags" : [ ]
   }, {
@@ -45,7 +45,7 @@
     "parent phone one": "94821427",
     "parent phone two": "85777773",
     "email" : "lydia@example.com",
-    "address" : "little tokyo",
+    "address" : "Little Tokyo",
     "studentId": "00006",
     "tags" : [ ]
   }, {
@@ -53,7 +53,7 @@
     "parent phone one": "94822442",
     "parent phone two": "92136499",
     "email" : "anna@example.com",
-    "address" : "4th street",
+    "address" : "4th Street",
     "studentId": "00007",
     "tags" : [ ]
   } ]

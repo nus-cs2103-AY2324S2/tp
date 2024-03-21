@@ -30,14 +30,14 @@ import seedu.address.model.person.StudentId;
 import seedu.address.model.tag.Tag;
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing student Pedagogue Pages.
  */
 public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the student id used in the displayed person list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the student identified "
+            + "by the student ID used in the displayed person list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: STUDENT_ID (must be positive 5-digit integers)  "
             + "[" + PREFIX_NAME + "NAME] "

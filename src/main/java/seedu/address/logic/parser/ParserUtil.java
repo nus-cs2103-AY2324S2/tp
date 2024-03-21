@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.commons.util.StringFormatter;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -33,7 +34,9 @@ public class ParserUtil {
         if (!Name.isValidName(trimmedName)) {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
-        return new Name(trimmedName);
+
+        String capitalisedName = StringFormatter.capitalizeWords(name);
+        return new Name(capitalisedName);
     }
 
     /**
@@ -125,7 +128,9 @@ public class ParserUtil {
         if (!Address.isValidAddress(trimmedAddress)) {
             throw new ParseException(Address.MESSAGE_CONSTRAINTS);
         }
-        return new Address(trimmedAddress);
+
+        String capitalizedAddress = StringFormatter.capitalizeWords(trimmedAddress);
+        return new Address(capitalizedAddress);
     }
 
     /**
@@ -155,7 +160,9 @@ public class ParserUtil {
         if (!Tag.isValidTagName(trimmedTag)) {
             throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
         }
-        return new Tag(trimmedTag);
+
+        String capitalizedTag = StringFormatter.capitalizeWords(trimmedTag);
+        return new Tag(capitalizedTag);
     }
 
     /**

@@ -31,8 +31,8 @@ public class ParserUtilTest {
     private static final String VALID_PHONE_TWO = "87654321";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
-    private static final String VALID_TAG_1 = "friend";
-    private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_TAG_1 = "Friend";
+    private static final String VALID_TAG_2 = "Neighbour";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -213,4 +213,47 @@ public class ParserUtilTest {
 
         assertEquals(expectedTagSet, actualTagSet);
     }
+
+    @Test
+    public void parseName_capitalizationCheck() throws Exception {
+        String inputName = "john doe";
+        Name expectedName = new Name("John Doe");
+        assertEquals(expectedName, ParserUtil.parseName(inputName));
+    }
+
+    @Test
+    public void parseName_capitalizationCheckWithNumbers() throws Exception {
+        String inputNameWithNumbers = "mary jane 2nd";
+        Name expectedNameWithNumbers = new Name("Mary Jane 2nd");
+        assertEquals(expectedNameWithNumbers, ParserUtil.parseName(inputNameWithNumbers));
+    }
+
+    @Test
+    public void parseAddress_capitalizationCheck() throws Exception {
+        String inputAddress = "123 baker street";
+        Address expectedAddress = new Address("123 Baker Street");
+        assertEquals(expectedAddress, ParserUtil.parseAddress(inputAddress));
+    }
+
+    @Test
+    public void parseAddress_capitalizationCheckWithSpecialCharacters() throws Exception {
+        String inputAddressWithSpecialChar = "4th avenue, #05-06";
+        Address expectedAddressWithSpecialChar = new Address("4th Avenue, #05-06");
+        assertEquals(expectedAddressWithSpecialChar, ParserUtil.parseAddress(inputAddressWithSpecialChar));
+    }
+
+    @Test
+    public void parseTag_capitalizationCheck() throws Exception {
+        String inputTag = "Friend";
+        Tag expectedTag = new Tag("Friend");
+        assertEquals(expectedTag, ParserUtil.parseTag(inputTag));
+    }
+
+    @Test
+    public void parseTag_capitalizationCheckWithNumbers() throws Exception {
+        String inputTag = "3a";
+        Tag expectedTag = new Tag("3a");
+        assertEquals(expectedTag, ParserUtil.parseTag(inputTag));
+    }
+
 }
