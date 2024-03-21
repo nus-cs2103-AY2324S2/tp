@@ -1,6 +1,8 @@
 package seedu.address.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
@@ -40,6 +42,7 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import static seedu.address.testutil.TypicalIds.ID_FIRST_PERSON;
 
 import java.util.Arrays;
+import java.util.HashSet;
 
 import org.junit.jupiter.api.Test;
 
@@ -48,10 +51,15 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Department;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Id;
+import seedu.address.model.person.JobTitle;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Products;
+import seedu.address.model.person.Skills;
+import seedu.address.model.person.TermsOfService;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
@@ -252,6 +260,19 @@ public class EditCommandParserTest {
         expectedDescriptor.setTermsOfService(ParserUtil.parseTermsOfService("terms"));
 
         assertEquals(expectedDescriptor, descriptor);
+
+
+        Products expectedProducts = new Products(Arrays.asList("product1", "product2"));
+        assertEquals(expectedProducts, descriptor.getProducts().get());
+
+        assertEquals(new Department("dept"), descriptor.getDepartment().get());
+        assertEquals(new JobTitle("title"), descriptor.getJobTitle().get());
+
+        Skills expectedSkills = new Skills();
+        expectedSkills.addSkills(new HashSet<>(Arrays.asList("skill1", "skill2")));
+        assertEquals(expectedSkills, descriptor.getSkills().get());
+
+        assertEquals(new TermsOfService("terms"), descriptor.getTermsOfService().get());
     }
 
     @Test
@@ -285,5 +306,12 @@ public class EditCommandParserTest {
         EditPersonDescriptor expectedDescriptor = new EditPersonDescriptor();
 
         assertEquals(expectedDescriptor, descriptor);
+
+        assertTrue(descriptor.getPreferences().isEmpty());
+        assertTrue(descriptor.getProducts().isEmpty());
+        assertNull(descriptor.getDepartment().orElse(null));
+        assertNull(descriptor.getJobTitle().orElse(null));
+        assertTrue(descriptor.getSkills().isEmpty());
+        assertNull(descriptor.getTermsOfService().orElse(null));
     }
 }
