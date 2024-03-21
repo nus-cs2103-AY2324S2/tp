@@ -10,7 +10,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Client;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.testutil.TypicalPersons;
 
@@ -26,7 +26,7 @@ public class CsvExporterTest {
     public void setUp() {
         UniquePersonList persons = new UniquePersonList();
         persons.setPersons(Arrays.asList(
-                TypicalPersons.ALICE, TypicalPersons.BENSON, TypicalPersons.CARL,
+                TypicalPersons.ALICE, TypicalPersons.BENSON,
                 TypicalPersons.DANIEL, TypicalPersons.ELLE, TypicalPersons.FIONA
         ));
         this.persons = persons;
@@ -52,9 +52,22 @@ public class CsvExporterTest {
 
     @Test
     public void convertPersonToStringArray() {
-        Person person = TypicalPersons.ALICE;
-        String[] expectedArray = {"Alice Pauline", "94351253", "alice@example.com",
-            "\"123, Jurong West Ave 6, #08-111\"", "She likes aardvarks.", "\"friends\""};
+        Client person = TypicalPersons.ALICE;
+        String[] expectedArray = new String[]{
+            person.getId().toString(),
+            person.getName().toString(),
+            person.getPhone().toString(),
+            person.getEmail().toString(),
+            "\"" + person.getAddress().toString() + "\"",
+            person.getRemark().toString(),
+            "\"" + person.getTagsAsString() + "\"",
+            "",
+            "",
+            "",
+            person.getProducts().toString(),
+            person.getPreferences().toString(),
+            ""
+        };
         assertArrayEquals(expectedArray, csvExporter.convertPersonToStringArray(person));
     }
 }
