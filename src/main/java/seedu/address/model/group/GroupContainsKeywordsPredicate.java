@@ -16,7 +16,7 @@ public class GroupContainsKeywordsPredicate implements Predicate<Person> {
     private final List<Group> groups;
 
     /**
-     * Returns a TagContainsKeywordsPredicate object by taking a list of the tag names.
+     * Returns a GroupContainsKeywordsPredicate object by taking a list of the group names.
      */
     public GroupContainsKeywordsPredicate(List<String> keywords) {
         this.groups = keywords.stream().map(Group::new).collect(Collectors.toList());
