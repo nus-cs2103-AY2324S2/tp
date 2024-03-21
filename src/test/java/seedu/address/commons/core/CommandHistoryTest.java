@@ -29,6 +29,17 @@ class CommandHistoryTest {
     }
 
     @Test
+    void undo_undoAndAddAndUndoAgain_returnsPrevCommand() {
+        commandHistory.addCommandToHistory("test1");
+        commandHistory.addCommandToHistory("test2");
+        commandHistory.addCommandToHistory("test3");
+        assertEquals("test3", commandHistory.undo());
+        commandHistory.undo();
+        commandHistory.addCommandToHistory("test4");
+        assertEquals("test4", commandHistory.undo());
+    }
+
+    @Test
     void redo_undoAndRedo_returnsNextCommand() {
         commandHistory.addCommandToHistory("test1");
         commandHistory.addCommandToHistory("test2");
