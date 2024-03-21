@@ -14,7 +14,7 @@ import seedu.address.model.patient.Patient;
 /**
  * Deletes a patient identified using it's displayed index from the address book.
  */
-public class DeleteCommand extends Command {
+public class DeleteByIndexCommand extends Command {
 
     public static final String COMMAND_WORD = "delete";
 
@@ -22,12 +22,11 @@ public class DeleteCommand extends Command {
             + ": Deletes the patient identified by the index number used in the displayed patient list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
-
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Patient: %1$s";
 
     private final Index targetIndex;
 
-    public DeleteCommand(Index targetIndex) {
+    public DeleteByIndexCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
@@ -52,12 +51,12 @@ public class DeleteCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof DeleteCommand)) {
+        if (!(other instanceof DeleteByIndexCommand)) {
             return false;
         }
 
-        DeleteCommand otherDeleteCommand = (DeleteCommand) other;
-        return targetIndex.equals(otherDeleteCommand.targetIndex);
+        DeleteByIndexCommand otherDeleteByIndexCommand = (DeleteByIndexCommand) other;
+        return targetIndex.equals(otherDeleteByIndexCommand.targetIndex);
     }
 
     @Override
