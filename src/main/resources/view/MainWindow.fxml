@@ -74,7 +74,6 @@
                         <Label text="Feature coming soon..." />
                      </children>
                   </StackPane>
-      
               <VBox fx:id="personList" alignment="CENTER_RIGHT" minWidth="340" prefWidth="340" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
                 <padding>
                   <Insets bottom="10" left="10" right="10" top="10" />
