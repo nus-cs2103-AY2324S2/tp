@@ -1,8 +1,12 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBookWithoutEmail;
 
@@ -78,5 +82,21 @@ class NoteCommandTest {
         Index invalidIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
         NoteCommand noteCommand = new NoteCommand(invalidIndex, new Note(NOTE_STUB));
         assertCommandFailure(noteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void equals() {
+        NoteCommand firstNote = new NoteCommand(INDEX_FIRST_PERSON, new Note(NOTE_STUB));
+        NoteCommand secondNote = new NoteCommand(INDEX_SECOND_PERSON, new Note(NOTE_STUB));
+        NoteCommand firstNoteClone = new NoteCommand(INDEX_FIRST_PERSON, new Note(NOTE_STUB));
+
+        // same note => return true
+        assertEquals(firstNote, firstNote);
+
+        // same note details => return true
+        assertEquals(firstNote, firstNoteClone);
+
+        // note not equal to number => return false
+        assertNotEquals(firstNote, 10);
     }
 }
