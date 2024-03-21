@@ -52,9 +52,9 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
-            if (command.commandType().equals("personCommand")) {
+            if (command.getCommandType().equals("personCommand")) {
                 storage.saveAddressBook(model.getAddressBook());
-            } else if (command.commandType().equals("articleCommand")) {
+            } else if (command.getCommandType().equals("articleCommand")) {
                 storage.saveArticleBook(model.getArticleBook());
             }
 
@@ -68,10 +68,10 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public String commandType(String commandText) throws ParseException {
+    public String getCommandType(String commandText) throws ParseException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
         Command command = addressBookParser.parseCommand(commandText);
-        return command.commandType();
+        return command.getCommandType();
     }
 
     @Override

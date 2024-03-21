@@ -24,7 +24,7 @@ public interface Logic {
      */
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
-    String commandType(String commandText) throws ParseException;
+    String getCommandType(String commandText) throws ParseException;
     /**
      * Returns the AddressBook.
      *
