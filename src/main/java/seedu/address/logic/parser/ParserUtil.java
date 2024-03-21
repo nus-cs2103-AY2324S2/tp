@@ -186,13 +186,10 @@ public class ParserUtil {
     public static BloodType parseBloodType(String bloodType) throws ParseException {
         requireNonNull(bloodType);
         String trimmedBloodType = bloodType.trim();
-        String type = trimmedBloodType.substring(0, 1);
-        String rh = trimmedBloodType.substring(1);
-        if (!BloodType.isValidBloodType(type, rh)) {
+        if (!BloodType.isValidBloodType(trimmedBloodType)) {
             throw new ParseException(BloodType.MESSAGE_CONSTRAINTS);
         }
-        rh = rh.equals("+") ? "POSITIVE" : "NEGATIVE";
-        return new BloodType(type, rh);
+        return new BloodType(trimmedBloodType);
     }
     /**
      * Parses a {@code String allergies} into an {@code Set<Allergies>}.

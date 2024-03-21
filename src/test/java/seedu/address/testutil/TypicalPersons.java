@@ -27,49 +27,49 @@ public class TypicalPersons {
     public static final Person ALICE = new PersonBuilder().withNric("T0139571B").withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withPhone("94351253").withDateOfBirth("2001-01-01")
             .withSex("F").withStatus("HEALTHY").withEmail("test1@mail.com").withCountry("Malaysia")
-            .withAllergies("rashes").withBloodType(new String[]{"B", "POSITIVE"}).withCondition("diabetes")
+            .withAllergies("rashes").withBloodType("AB+").withCondition("diabetes")
             .withDateOfAdmission("2023-01-01").withDiagnosis("good").withSymptom("runny nose").build();
     public static final Person BENSON = new PersonBuilder().withNric("T0439571C").withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25").withPhone("98765432").withDateOfBirth("2001-01-01")
             .withSex("M").withStatus("UNWELL").withEmail("test1@mail.com").withCountry("Malaysia")
-            .withAllergies("rashes").withBloodType(new String[]{"B", "POSITIVE"}).withCondition("diabetes")
+            .withAllergies("rashes").withBloodType("B+").withCondition("diabetes")
             .withDateOfAdmission("2023-01-01").withDiagnosis("good").withSymptom("runny nose").build();
     public static final Person CARL = new PersonBuilder().withNric("T0284994B").withName("Carl Kurz")
             .withPhone("95352563").withAddress("wall street").withDateOfBirth("2001-01-01")
             .withSex("M").withStatus("PENDING").withEmail("test1@mail.com").withCountry("Malaysia")
-            .withAllergies("rashes").withBloodType(new String[]{"B", "POSITIVE"}).withCondition("diabetes")
+            .withAllergies("rashes").withBloodType("B-").withCondition("diabetes")
             .withDateOfAdmission("2023-01-01").withDiagnosis("good").withSymptom("runny nose").build();
     public static final Person DANIEL = new PersonBuilder().withNric("S9839571A").withName("Daniel Meier")
             .withPhone("87652533").withAddress("10th street").withDateOfBirth("2001-01-01")
             .withSex("M").withStatus("HEALTHY").withEmail("test1@mail.com").withCountry("Malaysia")
-            .withAllergies("rashes").withBloodType(new String[]{"B", "POSITIVE"}).withCondition("diabetes")
+            .withAllergies("rashes").withBloodType("A-").withCondition("diabetes")
             .withDateOfAdmission("2023-01-01").withDiagnosis("good").withSymptom("runny nose").build();
     public static final Person ELLE = new PersonBuilder().withNric("S8913957B").withName("Elle Meyer")
-            .withPhone("9482224").withAddress("michigan ave").withDateOfBirth("2001-01-01")
+            .withPhone("94822241").withAddress("michigan ave").withDateOfBirth("2001-01-01")
             .withSex("F").withStatus("UNWELL").withEmail("test1@mail.com").withCountry("Malaysia")
-            .withAllergies("rashes").withBloodType(new String[]{"B", "POSITIVE"}).withCondition("diabetes")
+            .withAllergies("rashes").withBloodType("A-").withCondition("diabetes")
             .withDateOfAdmission("2023-01-01").withDiagnosis("good").withSymptom("runny nose").build();
     public static final Person FIONA = new PersonBuilder().withNric("T0536171Z").withName("Fiona Kunz")
-            .withPhone("9482427").withAddress("little tokyo").withDateOfBirth("2001-01-01")
+            .withPhone("94824271").withAddress("little tokyo").withDateOfBirth("2001-01-01")
             .withSex("F").withStatus("PENDING").withEmail("test1@mail.com").withCountry("Malaysia")
-            .withAllergies("rashes").withBloodType(new String[]{"B", "POSITIVE"}).withCondition("diabetes")
+            .withAllergies("rashes").withBloodType("O+").withCondition("diabetes")
             .withDateOfAdmission("2023-01-01").withDiagnosis("good").withSymptom("runny nose").build();
     public static final Person GEORGE = new PersonBuilder().withNric("T0829102Z").withName("George Best")
-            .withPhone("9482442").withAddress("4th street").withDateOfBirth("2001-01-01")
+            .withPhone("94824421").withAddress("4th street").withDateOfBirth("2001-01-01")
             .withSex("M").withStatus("HEALTHY").withEmail("test1@mail.com").withCountry("Malaysia")
-            .withAllergies("rashes").withBloodType(new String[]{"B", "POSITIVE"}).withCondition("diabetes")
+            .withAllergies("rashes").withBloodType("AB-").withCondition("diabetes")
             .withDateOfAdmission("2023-01-01").withDiagnosis("good").withSymptom("runny nose").build();
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withNric("T0123071C").withName("Hoon Meier")
-            .withPhone("8482424").withAddress("little india").withDateOfBirth("2001-01-01")
+            .withPhone("84824241").withAddress("little india").withDateOfBirth("2001-01-01")
             .withSex("M").withStatus("HEALTHY").withEmail("test1@mail.com").withCountry("Malaysia")
-            .withAllergies("rashes").withBloodType(new String[]{"B", "POSITIVE"}).withCondition("diabetes")
+            .withAllergies("rashes").withBloodType("AB+").withCondition("diabetes")
             .withDateOfAdmission("2023-01-01").withDiagnosis("good").withSymptom("runny nose").build();
     public static final Person IDA = new PersonBuilder().withNric("T0239521A").withName("Ida Mueller")
-            .withPhone("8482131").withAddress("chicago ave").withDateOfBirth("2001-01-01")
+            .withPhone("84829131").withAddress("chicago ave").withDateOfBirth("2001-01-01")
             .withSex("F").withStatus("PENDING").withEmail("test1@mail.com").withCountry("Malaysia")
-            .withAllergies("rashes").withBloodType(new String[]{"B", "POSITIVE"}).withCondition("diabetes")
+            .withAllergies("rashes").withBloodType("O-").withCondition("diabetes")
             .withDateOfAdmission("2023-01-01").withDiagnosis("good").withSymptom("runny nose").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
