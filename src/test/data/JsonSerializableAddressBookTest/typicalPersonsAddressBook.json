@@ -9,7 +9,8 @@
     "dateTime" : "121220221400",
     "salary" : "0",
     "info" : "Nil",
-    "tags" : [ "friends" ]
+    "tags" : [ "friends" ],
+    "programmingLanguages": [ "Java" ]
   }, {
     "companyName": "Amazon",
     "name" : "Benson Meier",
@@ -19,7 +20,8 @@
     "dateTime" : "121220221400",
     "salary" : "0",
     "info" : "Nil",
-    "tags" : [ "owesMoney", "friends" ]
+    "tags" : [ "owesMoney", "friends" ],
+    "programmingLanguages": [ "Java" ]
   }, {
     "companyName" : "Shopee",
     "name" : "Carl Kurz",
@@ -29,7 +31,8 @@
     "dateTime" : "121220221400",
     "salary" : "0",
     "info" : "Nil",
-    "tags" : [ ]
+    "tags" : [ ],
+    "programmingLanguages": [ "Java" ]
   }, {
     "companyName" : "Tiktok",
     "name" : "Daniel Meier",
@@ -39,7 +42,8 @@
     "dateTime" : "121220221400",
     "salary" : "0",
     "info" : "Nil",
-    "tags" : [ "friends" ]
+    "tags" : [ "friends" ],
+    "programmingLanguages": [ "Java" ]
   }, {
     "companyName" : "Shopback",
     "name" : "Elle Meyer",
@@ -49,7 +53,8 @@
     "dateTime" : "121220221400",
     "salary" : "0",
     "info" : "Nil",
-    "tags" : [ ]
+    "tags" : [ ],
+    "programmingLanguages": [ ]
   }, {
     "companyName" : "Apple",
     "name" : "Fiona Kunz",
@@ -59,7 +64,8 @@
     "dateTime" : "121220221400",
     "salary" : "0",
     "info" : "Nil",
-    "tags" : [ ]
+    "tags" : [ ],
+    "programmingLanguages": [ ]
   }, {
     "companyName" : "Microsoft",
     "name" : "George Best",
@@ -69,6 +75,7 @@
     "dateTime" : "121220221400",
     "salary" : "0",
     "info" : "Nil",
-    "tags" : [ ]
+    "tags" : [ ],
+    "programmingLanguages": [ ]
   } ]
 }

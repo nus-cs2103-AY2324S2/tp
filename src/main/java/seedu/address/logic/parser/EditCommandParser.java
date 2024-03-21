@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_INFO;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERVIEWTIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PROGRAMMING_LANGUAGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -21,6 +22,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.language.ProgrammingLanguage;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -39,8 +41,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(
                         args, PREFIX_COMPANY_NAME, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
-                        PREFIX_ADDRESS, PREFIX_INTERVIEWTIME,
-                        PREFIX_SALARY, PREFIX_INFO, PREFIX_TAG);
+                        PREFIX_ADDRESS, PREFIX_INTERVIEWTIME, PREFIX_SALARY, PREFIX_INFO,
+                        PREFIX_TAG, PREFIX_PROGRAMMING_LANGUAGE);
 
         Index index;
 
@@ -82,6 +84,8 @@ public class EditCommandParser implements Parser<EditCommand> {
             editPersonDescriptor.setInfo(ParserUtil.parseInfo(argMultimap.getValue(PREFIX_INFO).get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
+        parseProgrammingLanguagesForEdit(argMultimap.getAllValues(PREFIX_PROGRAMMING_LANGUAGE))
+                .ifPresent(editPersonDescriptor::setProgrammingLanguages);
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
@@ -103,4 +107,26 @@ public class EditCommandParser implements Parser<EditCommand> {
         Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
         return Optional.of(ParserUtil.parseTags(tagSet));
     }
+
+    /**
+     * Parses a collection of programming language names into a set of ProgrammingLanguages if the collection is
+     * non-empty. If the collection contains only one element which is an empty string, it will be parsed into a
+     * set containing zero programming languages.
+     *
+     * @param programmingLanguages A collection of programming language names to be parsed.
+     * @return An Optional containing set of ProgrammingLanguages if collection is non-empty, otherwise empty Optional.
+     * @throws ParseException If any of the programming language names is invalid.
+     */
+    private Optional<Set<ProgrammingLanguage>> parseProgrammingLanguagesForEdit(Collection<String> programmingLanguages)
+            throws ParseException {
+        assert programmingLanguages != null;
+
+        if (programmingLanguages.isEmpty()) {
+            return Optional.empty();
+        }
+        Collection<String> languageSet = programmingLanguages.size() == 1 && programmingLanguages.contains("")
+                ? Collections.emptySet() : programmingLanguages;
+        return Optional.of(ParserUtil.parseProgrammingLanguages(languageSet));
+    }
+
 }

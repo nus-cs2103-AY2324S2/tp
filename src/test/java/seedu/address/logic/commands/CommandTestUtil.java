@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_INFO;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERVIEWTIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PROGRAMMING_LANGUAGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -47,6 +48,7 @@ public class CommandTestUtil {
     public static final String VALID_INFO_BOB = "Cousin";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_PROGRAMMING_LANG_JAVA = "Java";
 
     public static final String COMPANY_NAME_DESC_AMY = " " + PREFIX_COMPANY_NAME + VALID_COMPANY_NAME_AMY;
     public static final String COMPANY_NAME_DESC_BOB = " " + PREFIX_COMPANY_NAME + VALID_COMPANY_NAME_BOB;
@@ -66,6 +68,8 @@ public class CommandTestUtil {
     public static final String INFO_DESC_BOB = " " + PREFIX_INFO + VALID_INFO_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String PROGRAMMING_LANG_DESC_DEFAULT =
+            " " + PREFIX_PROGRAMMING_LANGUAGE + VALID_PROGRAMMING_LANG_JAVA;
 
     public static final String INVALID_COMPANY_NAME_DESC = " " + PREFIX_COMPANY_NAME
             + "123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 1";

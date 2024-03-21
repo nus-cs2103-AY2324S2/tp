@@ -8,6 +8,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.language.ProgrammingLanguage;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -28,6 +29,7 @@ public class Person {
     private final Info info;
     private final Set<Tag> tags = new HashSet<>();
     private final InterviewTime dateTime;
+    private final Set<ProgrammingLanguage> programmingLanguages = new HashSet<>();
 
     /**
      * Every field must be present and not null.
@@ -35,7 +37,8 @@ public class Person {
 
     public Person(
             CompanyName companyName, Name name, Phone phone, Email email, Address address,
-            InterviewTime dateTime, Salary salary, Info info, Set<Tag> tags) {
+            InterviewTime dateTime, Salary salary, Info info, Set<Tag> tags,
+            Set<ProgrammingLanguage> programmingLanguages) {
         requireAllNonNull(name, phone, email, address, salary, tags);
         this.companyName = companyName;
         this.name = name;
@@ -46,6 +49,7 @@ public class Person {
         this.salary = salary;
         this.info = info;
         this.tags.addAll(tags);
+        this.programmingLanguages.addAll(programmingLanguages);
     }
     public CompanyName getCompanyName() {
         return companyName;
@@ -85,6 +89,16 @@ public class Person {
     }
 
     /**
+     * Returns an immutable set of programming languages.
+     * This set cannot be modified and any attempt to do so will result in an {@code UnsupportedOperationException}.
+     *
+     * @return An immutable set of programming languages.
+     */
+    public Set<ProgrammingLanguage> getProgrammingLanguages() {
+        return Collections.unmodifiableSet(programmingLanguages);
+    }
+
+    /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      */
@@ -118,13 +132,14 @@ public class Person {
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
-                && tags.equals(otherPerson.tags);
+                && tags.equals(otherPerson.tags)
+                && programmingLanguages.equals(otherPerson.programmingLanguages);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(companyName, name, phone, email, address, tags, dateTime);
+        return Objects.hash(companyName, name, phone, email, address, tags, dateTime, programmingLanguages);
     }
 
     @Override
@@ -139,6 +154,7 @@ public class Person {
                 .add("salary", salary)
                 .add("info", info)
                 .add("tags", tags)
+                .add("programming-languages", programmingLanguages)
                 .toString();
     }
 

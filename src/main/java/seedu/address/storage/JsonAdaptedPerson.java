@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.language.ProgrammingLanguage;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.CompanyName;
 import seedu.address.model.person.Email;
@@ -37,18 +38,19 @@ class JsonAdaptedPerson {
     private final String salary;
     private final String info;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
+    private final List<JsonAdaptedProgrammingLanguage> programmingLanguages = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("company name") String companyName, @JsonProperty("name") String name,
-                             @JsonProperty(
-            "phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("dateTime") String dateTime,
-            @JsonProperty("salary") String salary, @JsonProperty("info") String info,
-            @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+                             @JsonProperty("phone") String phone, @JsonProperty("email") String email,
+                             @JsonProperty("address") String address, @JsonProperty("dateTime") String dateTime,
+                             @JsonProperty("salary") String salary, @JsonProperty("info") String info,
+                             @JsonProperty("tags") List<JsonAdaptedTag> tags,
+                             @JsonProperty("programmingLanguages") List<JsonAdaptedProgrammingLanguage>
+                                         programmingLanguages) {
         this.companyName = companyName;
         this.name = name;
         this.phone = phone;
@@ -59,6 +61,9 @@ class JsonAdaptedPerson {
         this.info = info;
         if (tags != null) {
             this.tags.addAll(tags);
+        }
+        if (programmingLanguages != null) {
+            this.programmingLanguages.addAll(programmingLanguages);
         }
     }
 
@@ -77,6 +82,9 @@ class JsonAdaptedPerson {
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        programmingLanguages.addAll(source.getProgrammingLanguages().stream()
+                .map(JsonAdaptedProgrammingLanguage::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -88,6 +96,10 @@ class JsonAdaptedPerson {
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tags) {
             personTags.add(tag.toModelType());
+        }
+        final List<ProgrammingLanguage> personProgrammingLanguages = new ArrayList<>();
+        for (JsonAdaptedProgrammingLanguage language : programmingLanguages) {
+            personProgrammingLanguages.add(language.toModelType());
         }
         if (companyName == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
@@ -149,8 +161,9 @@ class JsonAdaptedPerson {
         final Info modelInfo = new Info(info);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
+        final Set<ProgrammingLanguage> modelProgrammingLanguages = new HashSet<>(personProgrammingLanguages);
 
         return new Person(modelCompanyName, modelName, modelPhone, modelEmail, modelAddress, modelDateTime,
-                modelSalary, modelInfo, modelTags);
+                modelSalary, modelInfo, modelTags, modelProgrammingLanguages);
     }
 }

@@ -136,7 +136,9 @@ public class PersonTest {
                 + ", interview-time=" + ALICE.getDateTime()
                 + ", salary=" + ALICE.getSalary()
                 + ", info=" + ALICE.getInfo()
-                + ", tags=" + ALICE.getTags() + "}";
+                + ", tags=" + ALICE.getTags()
+                + ", programming-languages=" + ALICE.getProgrammingLanguages()
+                + "}";
         assertEquals(expected, ALICE.toString());
     }
 }

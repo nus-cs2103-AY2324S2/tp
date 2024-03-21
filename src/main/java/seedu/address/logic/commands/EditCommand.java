@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_INFO;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERVIEWTIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PROGRAMMING_LANGUAGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
@@ -25,6 +26,7 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.language.ProgrammingLanguage;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.CompanyName;
 import seedu.address.model.person.Email;
@@ -56,6 +58,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_SALARY + "SALARY] "
             + "[" + PREFIX_INFO + "INFO] "
             + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_PROGRAMMING_LANGUAGE + "PROGRAMMING-LANGUAGE]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
@@ -115,10 +118,12 @@ public class EditCommand extends Command {
         Salary updatedSalary = editPersonDescriptor.getSalary().orElse(personToEdit.getSalary());
         Info updatedInfo = editPersonDescriptor.getInfo().orElse(personToEdit.getInfo());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Set<ProgrammingLanguage> updatedProgrammingLanguages = editPersonDescriptor.getProgrammingLanguages()
+                .orElse(personToEdit.getProgrammingLanguages());
 
         return new Person(
                 updatedCompanyName, updatedName, updatedPhone, updatedEmail,
-                updatedAddress, updatedDateTime, updatedSalary, updatedInfo, updatedTags);
+                updatedAddress, updatedDateTime, updatedSalary, updatedInfo, updatedTags, updatedProgrammingLanguages);
     }
 
     @Override
@@ -159,6 +164,7 @@ public class EditCommand extends Command {
         private Salary salary;
         private Info info;
         private Set<Tag> tags;
+        private Set<ProgrammingLanguage> programmingLanguages;
 
         public EditPersonDescriptor() {}
 
@@ -176,13 +182,15 @@ public class EditCommand extends Command {
             setSalary(toCopy.salary);
             setInfo(toCopy.info);
             setTags(toCopy.tags);
+            setProgrammingLanguages(toCopy.programmingLanguages);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, dateTime, salary, info, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, dateTime, salary, info, tags,
+                    programmingLanguages);
         }
         public void setCompanyName(CompanyName companyName) {
             this.companyName = companyName;
@@ -261,6 +269,24 @@ public class EditCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
+        /**
+         * Sets {@code programmingLanguages} to this object's {@code programmingLanguages}.
+         * A defensive copy of {@code programmingLanguages} is used internally.
+         */
+        public void setProgrammingLanguages(Set<ProgrammingLanguage> programmingLanguages) {
+            this.programmingLanguages = (programmingLanguages != null) ? new HashSet<>(programmingLanguages) : null;
+        }
+
+        /**
+         * Returns an unmodifiable programmingLanguages set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code programmingLanguages} is null.
+         */
+        public Optional<Set<ProgrammingLanguage>> getProgrammingLanguages() {
+            return (programmingLanguages != null) ? Optional.of(Collections
+                    .unmodifiableSet(programmingLanguages)) : Optional.empty();
+        }
+
         @Override
         public boolean equals(Object other) {
             if (other == this) {
@@ -281,7 +307,8 @@ public class EditCommand extends Command {
                     && Objects.equals(dateTime, otherEditPersonDescriptor.dateTime)
                     && Objects.equals(salary, otherEditPersonDescriptor.salary)
                     && Objects.equals(info, otherEditPersonDescriptor.info)
-                    && Objects.equals(tags, otherEditPersonDescriptor.tags);
+                    && Objects.equals(tags, otherEditPersonDescriptor.tags)
+                    && Objects.equals(programmingLanguages, otherEditPersonDescriptor.programmingLanguages);
         }
 
         @Override
@@ -296,6 +323,7 @@ public class EditCommand extends Command {
                     .add("salary", salary)
                     .add("info", info)
                     .add("tags", tags)
+                    .add("programmingLanguages", programmingLanguages)
                     .toString();
         }
 
