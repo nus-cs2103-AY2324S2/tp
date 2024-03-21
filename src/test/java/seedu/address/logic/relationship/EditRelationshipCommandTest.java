@@ -1,17 +1,25 @@
 package seedu.address.logic.relationship;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.UUID;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.person.relationship.Relationship;
+import seedu.address.testutil.TypicalPersonsUuid;
 
 public class EditRelationshipCommandTest {
+    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableAddressBookTest");
+
+    private static final Path TYPICAL_PERSONS_FILE = TEST_DATA_FOLDER.resolve("typicalPersonsAddressBook.json");
 
     @Test
     public void execute_editNonExistentRelationship_throwsCommandException() {
@@ -81,16 +89,22 @@ public class EditRelationshipCommandTest {
     public void execute_oldAndNewDescriptorsAreSame_throwsCommandException() {
         // Setup
         Model model = new ModelManager();
-        String originUuid = "person123";
-        String targetUuid = "person456";
+        AddressBook typicalPersonsAddressBook = TypicalPersonsUuid.getTypicalAddressBook();
+        model.setAddressBook(typicalPersonsAddressBook);
+        String originUuid = "0001";
+        String targetUuid = "0006";
         String oldRelationshipDescriptor = "family";
         String newRelationshipDescriptor = "family";
         EditRelationshipCommand editCommand = new EditRelationshipCommand(originUuid, targetUuid,
                 oldRelationshipDescriptor, newRelationshipDescriptor);
 
         // Verify
-        assertThrows(CommandException.class, () -> editCommand.execute(model),
-                "There's no need to edit the relationship");
+        CommandException exception = assertThrows(CommandException.class, () -> editCommand.execute(model),
+                "There's no need to edit the relationship if the new relationship is the same as the old one.");
+
+        // Check the exception message
+        assertEquals("There's no need to edit the relationship if the new relationship is the same as the old one.",
+                exception.getMessage());
     }
 
     @Test
