@@ -50,7 +50,7 @@ public class DeleteCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        if (targetUniqueId <= 0) {
+        if (targetUniqueId < 0) { // Positive Integer or 0, to discuss
             throw new CommandException(MESSAGE_POSITIVE_INTEGER);
         }
 
