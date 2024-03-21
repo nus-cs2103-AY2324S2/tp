@@ -20,7 +20,7 @@ public class JsonAdaptedSeller extends JsonAdaptedPerson {
     private final List<JsonAdaptedHouse> houses = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonAdaptedSeller}, extends from JsonAdaptedHouse.
+     * Constructs a {@code JsonAdaptedSeller}, extends from JsonAdaptedPerson.
      */
     @JsonCreator
     public JsonAdaptedSeller(@JsonProperty("name") String name,

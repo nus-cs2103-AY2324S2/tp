@@ -51,7 +51,7 @@ public class AddSellerCommand extends Command {
             + PREFIX_TAG + "owesMoney ";
 
     public static final String MESSAGE_SUCCESS = "New seller added= %1$s";
-    public static final String MESSAGE_DUPLICATE_SELLER = "This seller already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_SELLER = "This seller already exists in EstateEase";
 
     private final Person sellerToAdd;
 
