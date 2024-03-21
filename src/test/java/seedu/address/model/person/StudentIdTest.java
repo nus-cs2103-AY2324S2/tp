@@ -29,18 +29,18 @@ public class StudentIdTest {
         assertFalse(StudentId.isValidStudentId(" ")); // spaces only
 
         // valid addresses
-        assertTrue(StudentId.isValidStudentId("Blk 456, Den Road, #01-355"));
-        assertTrue(StudentId.isValidStudentId("-")); // one character
+        assertTrue(StudentId.isValidStudentId("A1111111D"));
+        assertTrue(StudentId.isValidStudentId("A3333333D"));
         assertTrue(StudentId
-                .isValidStudentId("Leng Inc; 1234 Market St; San Francisco CA 2349879; USA")); // long address
+                .isValidStudentId("A2222222D"));
     }
 
     @Test
     public void equals() {
-        StudentId studentId = new StudentId("Valid Address");
+        StudentId studentId = new StudentId("A1111111D");
 
         // same values -> returns true
-        assertTrue(studentId.equals(new StudentId("Valid Address")));
+        assertTrue(studentId.equals(new StudentId("A1111111D")));
 
         // same object -> returns true
         assertTrue(studentId.equals(studentId));
@@ -52,6 +52,6 @@ public class StudentIdTest {
         assertFalse(studentId.equals(5.0f));
 
         // different values -> returns false
-        assertFalse(studentId.equals(new StudentId("Other Valid Address")));
+        assertFalse(studentId.equals(new StudentId("A2222222D")));
     }
 }

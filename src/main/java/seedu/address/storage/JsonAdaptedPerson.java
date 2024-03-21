@@ -55,12 +55,9 @@ class JsonAdaptedPerson {
         email = source.getEmail().value;
         studentid = source.getStudentId().value;
         attendances.addAll(source.getAttendances().stream()
-                .map(attendance -> new JsonAdaptedAttendance(attendance.attendanceName.getDate(), attendance.attendanceName.getStatus()))
+                .map(attendance -> new JsonAdaptedAttendance(attendance.attendanceName.getDate(),
+                        attendance.attendanceName.getStatus()))
                 .collect(Collectors.toList()));
-
-//        for (JsonAdaptedAttendance i : attendances) {
-//            System.out.println(i.getAttendanceDate());
-//        }
     }
 
     /**

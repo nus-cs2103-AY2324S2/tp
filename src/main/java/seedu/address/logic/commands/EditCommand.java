@@ -98,7 +98,7 @@ public class EditCommand extends Command {
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        StudentId updatedStudentId = editPersonDescriptor.getAddress().orElse(personToEdit.getStudentId());
+        StudentId updatedStudentId = editPersonDescriptor.getStudentId().orElse(personToEdit.getStudentId());
         Set<Attendance> updatedAttendances = editPersonDescriptor.getTags().orElse(personToEdit.getAttendances());
 
 
@@ -189,7 +189,7 @@ public class EditCommand extends Command {
             this.studentId = studentId;
         }
 
-        public Optional<StudentId> getAddress() {
+        public Optional<StudentId> getStudentId() {
             return Optional.ofNullable(studentId);
         }
 
@@ -236,7 +236,6 @@ public class EditCommand extends Command {
                     .add("phone", phone)
                     .add("email", email)
                     .add("studentid", studentId)
-                    .add("attendance", attendances)
                     .toString();
         }
     }

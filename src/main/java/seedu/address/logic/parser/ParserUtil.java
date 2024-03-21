@@ -9,13 +9,13 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.AttendanceStatus;
 import seedu.address.model.person.Classes;
 import seedu.address.model.person.CourseCode;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.StudentId;
-import seedu.address.model.person.exceptions.AttendanceStatus;
 import seedu.address.model.tag.Attendance;
 
 /**
@@ -129,14 +129,14 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String tag} into a {@code Tag}.
+     * Parses a {@code String date} into a {@code Attendance}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code tag} is invalid.
+     * @throws ParseException if the given {@code attendance} is invalid.
      */
-    public static Attendance parseAttendances(String tag) throws ParseException {
-        requireNonNull(tag);
-        String trimmedTag = tag.trim();
+    public static Attendance parseAttendances(String date) throws ParseException {
+        requireNonNull(date);
+        String trimmedTag = date.trim();
         if (!Attendance.isValidDate(trimmedTag)) {
             throw new ParseException(Attendance.MESSAGE_CONSTRAINTS);
         }
@@ -144,7 +144,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     * Parses {@code Collection<String> attendances} into a {@code Set<Attendance>}.
      */
     public static Set<Attendance> parseAttendances(Collection<String> attendances) throws ParseException {
         requireNonNull(attendances);
@@ -155,6 +155,9 @@ public class ParserUtil {
         return attendanceSet;
     }
 
+    /**
+     * Parses {@code String date} and {@code String status} into a {@code AttendanceStatus}.
+     */
     public static AttendanceStatus parsesAttendanceStatus(String date, String status) throws ParseException {
         requireNonNull(date, status);
         String trimmedDate = date.trim();

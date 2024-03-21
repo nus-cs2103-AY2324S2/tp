@@ -68,7 +68,8 @@ public class PersonCard extends UiPart<Region> {
         studentid.setText(person.getStudentId().value);
         email.setText(person.getEmail().value);
         person.getAttendances().stream()
-                .sorted(Comparator.comparing(attendance -> LocalDate.parse(attendance.attendanceName.getDate(), DATE_TIME_FORMATTER)))
+                .sorted(Comparator.comparing(attendance -> LocalDate.parse(attendance.attendanceName.getDate(),
+                        DATE_TIME_FORMATTER)))
                 .forEach(attendance -> {
                     FontAwesomeIconView icon = createIconBasedOnStatus(attendance.attendanceName.getStatus());
                     // Creating an HBox to hold the label and the icon
@@ -87,13 +88,20 @@ public class PersonCard extends UiPart<Region> {
                     container.setPadding(new Insets(5)); // Padding inside the container
                     container.setBorder(new Border(new BorderStroke(Color.BLACK,
                             BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
-                    container.setBackground(new Background(new BackgroundFill(Color.TRANSPARENT, CornerRadii.EMPTY, Insets.EMPTY)));
+                    container.setBackground(new Background(new BackgroundFill(Color.TRANSPARENT, CornerRadii.EMPTY,
+                            Insets.EMPTY)));
 
                     // Add the container to the attendance FlowPane
                     this.attendance.getChildren().add(container);
                 });
     }
 
+    /**
+     * Create Icon based on the status of the attendance record.
+     *
+     * @param status of the attendance icon
+     * @return cross icon if the status is 0, tick icon if the status is 1, circle if the status is 2
+     */
     private FontAwesomeIconView createIconBasedOnStatus(String status) {
         FontAwesomeIconView iconView;
         switch (status) {
@@ -117,7 +125,7 @@ public class PersonCard extends UiPart<Region> {
             iconView.setFill(Color.GRAY);
         }
 
-        iconView.setSize("15");
+        iconView.setSize("16");
         return iconView;
     }
 }
