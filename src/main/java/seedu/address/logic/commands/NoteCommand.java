@@ -5,13 +5,14 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
+import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Note;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.*;
+import seedu.address.model.tag.Tag;
 
 /**
  * Changes the note of an existing person in the address book.
@@ -21,17 +22,16 @@ public class NoteCommand extends Command {
     public static final String COMMAND_WORD = "note";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Edits the note of the person identified "
-            + "by the index number used in the last person listing. "
-            + "Existing note will be overwritten by the input.\n"
+            + ": Updates and overrides the note of the client identified "
+            + "by their corresponding index.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NOTE + "NOTE]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + "note/ Likes to swim.";
 
-    public static final String MESSAGE_ADD_NOTE_SUCCESS = "Added note to Person: %1$s";
+    public static final String MESSAGE_ADD_NOTE_SUCCESS = "Successfully added note to client!\n%1$s";
 
-    public static final String MESSAGE_DELETE_NOTE_SUCCESS = "Removed note from Person: %1$s";
+    public static final String MESSAGE_DELETE_NOTE_SUCCESS = "Successfully removed note from client!\n%1$s";
 
     private final Index index;
     private final Note note;
@@ -73,7 +73,44 @@ public class NoteCommand extends Command {
      */
     private String generateSuccessMessage(Person personToEdit) {
         String message = !note.getValue().isEmpty() ? MESSAGE_ADD_NOTE_SUCCESS : MESSAGE_DELETE_NOTE_SUCCESS;
-        return String.format(message, Messages.format(personToEdit));
+        return String.format(message, notePersonMessageGenerator(personToEdit));
+    }
+
+    /**
+     * Takes a person object and only returns non-null fields
+     *
+     * @param person
+     * @return a String of non-null fields
+     */
+    public static String notePersonMessageGenerator(Person person) {
+        StringBuilder sb = new StringBuilder();
+        Name name = person.getName();
+        Phone phone = person.getPhone();
+        Email email = person.getEmail();
+        Address address = person.getAddress();
+        Note note = person.getNote();
+        Set<Tag> tags = person.getTags();
+
+        sb.append("Name: ").append(name);
+        sb.append(" | Phone: ").append(phone);
+
+        if (!email.getValue().isEmpty()) {
+            sb.append(" | Email: ").append(email);
+        }
+
+        if (!address.getValue().isEmpty()) {
+            sb.append(" | Address: ").append(address);
+        }
+
+        if (!note.getValue().isEmpty()) {
+            sb.append(" | Note: ").append(note);
+        }
+
+        if (!tags.isEmpty()) {
+            sb.append(" | Tags: ").append(tags);
+        }
+
+        return sb.toString();
     }
 
     @Override

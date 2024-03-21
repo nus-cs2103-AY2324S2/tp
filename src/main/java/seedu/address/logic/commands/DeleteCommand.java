@@ -26,11 +26,11 @@ public class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the client identified by the index number used in the displayed client list.\n"
+            + ": Deletes the client identified by their corresponding list index.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Client: %1$s";
+    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Successfully deleted client!\n%1$s";
 
     private final Index targetIndex;
 
@@ -69,23 +69,23 @@ public class DeleteCommand extends Command {
         Note note = person.getNote();
         Set<Tag> tags = person.getTags();
 
-        sb.append(name);
-        sb.append("; Phone: ").append(phone);
+        sb.append("Name: ").append(name);
+        sb.append(" | Phone: ").append(phone);
 
         if (!email.getValue().isEmpty()) {
-            sb.append("; Email: ").append(email);
+            sb.append(" | Email: ").append(email);
         }
 
         if (!address.getValue().isEmpty()) {
-            sb.append("; Address: ").append(address);
+            sb.append(" | Address: ").append(address);
         }
 
         if (!note.getValue().isEmpty()) {
-            sb.append("; Note: ").append(note);
+            sb.append(" | Note: ").append(note);
         }
 
         if (!tags.isEmpty()) {
-            sb.append("; Tags: ").append(tags);
+            sb.append(" | Tags: ").append(tags);
         }
 
         return sb.toString();

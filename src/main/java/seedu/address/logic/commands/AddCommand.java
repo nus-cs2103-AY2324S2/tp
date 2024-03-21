@@ -27,7 +27,7 @@ import seedu.address.model.tag.Tag;
 public class AddCommand extends Command {
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a client to FitBook. \n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
@@ -36,15 +36,14 @@ public class AddCommand extends Command {
             + "[" + PREFIX_NOTE + "NOTE] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "John Doe "
+            + PREFIX_NAME + "John "
             + PREFIX_PHONE + "98765432 "
-            + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
+            + PREFIX_EMAIL + "john@gmail.com "
+            + PREFIX_ADDRESS + "Clementi Ave 2 "
             + PREFIX_NOTE + "BFF "
-            + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";
+            + PREFIX_TAG + "friend ";
 
-    public static final String MESSAGE_SUCCESS = "New client added: %1$s";
+    public static final String MESSAGE_SUCCESS = "Client successfully added!\n%1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
     private final Person toAdd;
 
@@ -83,23 +82,24 @@ public class AddCommand extends Command {
         Note note = person.getNote();
         Set<Tag> tags = person.getTags();
 
-        sb.append(name);
-        sb.append("; Phone: ").append(phone);
+
+        sb.append("Name: ").append(name);
+        sb.append(" | Phone: ").append(phone);
 
         if (!email.getValue().isEmpty()) {
-            sb.append("; Email: ").append(email);
+            sb.append("| Email: ").append(email);
         }
 
         if (!address.getValue().isEmpty()) {
-            sb.append("; Address: ").append(address);
+            sb.append("| Address: ").append(address);
         }
 
         if (!note.getValue().isEmpty()) {
-            sb.append("; Note: ").append(note);
+            sb.append("| Note: ").append(note);
         }
 
         if (!tags.isEmpty()) {
-            sb.append("; Tags: ").append(tags);
+            sb.append("| Tags: ").append(tags);
         }
 
         return sb.toString();
