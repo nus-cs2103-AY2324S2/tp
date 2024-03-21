@@ -8,7 +8,7 @@ import java.io.StringWriter;
 import java.util.Arrays;
 
 /**
- * Helper functions for handling strings.
+ * Helper functions for handling strings without changing them.
  */
 public class StringUtil {
 

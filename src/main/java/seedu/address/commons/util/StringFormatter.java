@@ -1,5 +1,8 @@
 package seedu.address.commons.util;
 
+/**
+ * Helper functions to handle Strings while changing them.
+ */
 public class StringFormatter {
 
     /**
