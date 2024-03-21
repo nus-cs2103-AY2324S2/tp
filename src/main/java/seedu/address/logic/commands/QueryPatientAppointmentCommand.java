@@ -13,7 +13,7 @@ import seedu.address.model.appointment.AppointmentContainsPatientPredicate;
  * (case-insensitive) and displays them as a list with index numbers.
  */
 public class QueryPatientAppointmentCommand extends Command {
-    public static final String COMMAND_WORD = "appforpatient";
+    public static final String COMMAND_WORD = "apptforpatient";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all appointments of patients whose "
             + "nrics/names contain any of the specified keywords (case-insensitive) and displays them as a "
