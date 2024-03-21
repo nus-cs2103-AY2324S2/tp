@@ -34,9 +34,11 @@ class PairCommandTest {
                 Messages.format(personToPair1), Messages.format(personToPair2));
 
         Person afterPairingPerson1 = new PersonBuilder(personToPair1)
-                .withPairedWith(Optional.of(personToPair2.getName())).build();
+                .withPairedWithName(Optional.of(personToPair2.getName()))
+                .withPairedWithID(Optional.of(personToPair2.getId())).build();
         Person afterPairingPerson2 = new PersonBuilder(personToPair2)
-                .withPairedWith(Optional.of(personToPair1.getName())).build();
+                .withPairedWithName(Optional.of(personToPair1.getName()))
+                .withPairedWithID(Optional.of(personToPair1.getId())).build();
 
         ModelManager expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(

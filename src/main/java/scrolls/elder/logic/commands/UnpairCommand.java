@@ -71,14 +71,14 @@ public class UnpairCommand extends Command {
         }
 
         // Check if the two persons are paired
-        if (!personToUnpair1.getPairedWith().equals(Optional.of(personToUnpair2.getName()))
-                || !personToUnpair2.getPairedWith().equals(Optional.of(personToUnpair1.getName()))) {
+        if (!personToUnpair1.getPairedWithName().equals(Optional.of(personToUnpair2.getName()))
+                || !personToUnpair2.getPairedWithName().equals(Optional.of(personToUnpair1.getName()))) {
             throw new CommandException(MESSAGE_NOT_PAIRED);
         }
 
         // Unset the pairedWith attribute of the befriendee and volunteer
-        Person newPerson1 = createEditedPairedPerson(personToUnpair1, Optional.empty());
-        Person newPerson2 = createEditedPairedPerson(personToUnpair2, Optional.empty());
+        Person newPerson1 = createEditedPairedPerson(personToUnpair1, Optional.empty(), Optional.empty());
+        Person newPerson2 = createEditedPairedPerson(personToUnpair2, Optional.empty(), Optional.empty());
         model.setPerson(personToUnpair1, newPerson1);
         model.setPerson(personToUnpair2, newPerson2);
 
@@ -123,7 +123,8 @@ public class UnpairCommand extends Command {
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPairedPersonDescriptor}.
      */
-    private static Person createEditedPairedPerson(Person personToEdit, Optional<Name> updatedPair) {
+    private static Person createEditedPairedPerson(Person personToEdit,
+                                                   Optional<Name> updatedPairName, Optional<Integer> updatedPairID) {
         assert personToEdit != null;
 
         Name updatedName = personToEdit.getName();
@@ -135,9 +136,11 @@ public class UnpairCommand extends Command {
 
         Person p;
         if (role.isVolunteer()) {
-            p = new Volunteer(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedPair);
+            p = new Volunteer(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags,
+                    updatedPairName, updatedPairID);
         } else {
-            p = new Befriendee(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedPair);
+            p = new Befriendee(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags,
+                    updatedPairName, updatedPairID);
         }
         p.setId(personToEdit.getId());
         return p;

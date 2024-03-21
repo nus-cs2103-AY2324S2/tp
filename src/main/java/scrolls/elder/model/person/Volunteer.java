@@ -10,8 +10,9 @@ import scrolls.elder.model.tag.Tag;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Volunteer extends Person {
-    public Volunteer(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Optional<Name> pairedWith) {
-        super(name, phone, email, address, tags, new Role("volunteer"), pairedWith);
+    public Volunteer(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
+                     Optional<Name> pairedWithName, Optional<Integer> pairedWithID) {
+        super(name, phone, email, address, tags, new Role("volunteer"), pairedWithName, pairedWithID);
     }
 
     @Override
@@ -42,7 +43,8 @@ public class Volunteer extends Person {
                 && email.equals(otherVolunteer.email)
                 && address.equals(otherVolunteer.address)
                 && tags.equals(otherVolunteer.tags)
-                && pairedWith.equals(otherVolunteer.pairedWith);
+                && pairedWithName.equals(otherVolunteer.pairedWithName)
+                && pairedWithID.equals(otherVolunteer.pairedWithID);
     }
 
     @Override
@@ -54,7 +56,8 @@ public class Volunteer extends Person {
                 .add("address", address)
                 .add("tags", tags)
                 .add("role", role)
-                .add("pairedWith", pairedWith.orElse(Name.getNone()))
+                .add("pairedWithName", pairedWithName.orElse(Name.getNone()))
+                .add("pairedWithID", pairedWithID.orElse(-1))
                 .toString();
     }
 }

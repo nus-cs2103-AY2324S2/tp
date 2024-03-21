@@ -90,7 +90,7 @@ public class PersonTest {
                 + TypicalPersons.ALICE.getPhone()
                 + ", email=" + TypicalPersons.ALICE.getEmail() + ", address=" + TypicalPersons.ALICE.getAddress()
                 + ", tags=" + TypicalPersons.ALICE.getTags() + ", role=" + TypicalPersons.ALICE.getRole()
-                + ", pairedWith=" + (TypicalPersons.ALICE.getPairedWith().orElse(Name.getNone())) + "}";
+                + ", pairedWith=" + (TypicalPersons.ALICE.getPairedWithName().orElse(Name.getNone())) + "}";
         Assertions.assertEquals(expected, TypicalPersons.ALICE.toString());
     }
 }

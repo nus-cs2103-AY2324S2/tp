@@ -30,6 +30,7 @@ import scrolls.elder.model.person.Role;
 import scrolls.elder.model.person.Volunteer;
 import scrolls.elder.model.tag.Tag;
 
+
 /**
  * Edits the details of an existing person in the address book.
  */
@@ -83,16 +84,18 @@ public class EditCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Role role = editPersonDescriptor.getRole().orElse(personToEdit.getRole());
-        Optional<Name> pairedWith = personToEdit.getPairedWith();
+        Optional<Name> pairedWithName = personToEdit.getPairedWithName();
+        Optional<Integer> pairedWithID = personToEdit.getPairedWithID();
 
         Person p;
         if (role.isVolunteer()) {
-            p = new Volunteer(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, pairedWith);
+            p = new Volunteer(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags,
+                    pairedWithName, pairedWithID);
         } else {
-            p = new Befriendee(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, pairedWith);
+            p = new Befriendee(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags,
+                    pairedWithName, pairedWithID);
         }
         p.setId(personToEdit.getId());
-//      p.setPairedWithID(personToEdit.getPairedWithID());
         return p;
     }
 
@@ -106,17 +109,19 @@ public class EditCommand extends Command {
         Address updatedAddress = originalPair.getAddress();
         Set<Tag> updatedTags = originalPair.getTags();
         Role role = originalPair.getRole();
-        Optional<Name> updatedPairedWith = Optional.of(editedPerson.getName());
+        Optional<Name> updatedPairedWithName = Optional.of(editedPerson.getName());
+        Optional<Integer> updatedPairedWithID = Optional.of(editedPerson.getId());
 
         Person p;
         if (role.isVolunteer()) {
-            p = new Volunteer(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedPairedWith);
+            p = new Volunteer(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags,
+                    updatedPairedWithName, updatedPairedWithID);
         } else {
-            p = new Befriendee(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedPairedWith);
+            p = new Befriendee(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags,
+                    updatedPairedWithName, updatedPairedWithID);
         }
 
         p.setId(originalPair.getId());
-//      p.setPairedWithID(Optional.of(editedPerson.getId()));
         return p;
     }
 
