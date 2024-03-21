@@ -6,12 +6,14 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 
 import java.util.HashMap;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
 
 public class AddCommandParserTest {
     private AddCommandParser parser = new AddCommandParser();
@@ -41,5 +43,16 @@ public class AddCommandParserTest {
         assertParseSuccess(parser, "add /Name " + VALID_NAME_BOB + " /Phone " + VALID_PHONE_BOB + " /Email "
                 + VALID_EMAIL_BOB + " /Address " + VALID_ADDRESS_BOB + " /Tag "
                 + VALID_TAG_FRIEND, new AddCommand(expectedAttributeMap));
+    }
+
+    @Test
+    public void parse_incompleteAttribute_parseException() {
+        String command = "add /Name";
+        try {
+            parser.parse(command);
+        } catch (ParseException e) {
+            assert e.getMessage().equals("Invalid command format! \n" + AddCommand.MESSAGE_USAGE);
+        }
+
     }
 }
