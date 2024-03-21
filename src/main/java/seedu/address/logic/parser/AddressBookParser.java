@@ -64,16 +64,8 @@ public class AddressBookParser {
         case AddProjectCommand.COMMAND_WORD:
             return new AddProjectCommandParser().parse(arguments);
 
-<<<<<<< HEAD
-        case AddTaskCommand.COMMAND_WORD:
-            return new AddTaskCommandParser().parse(arguments.trim());
-=======
-            case SetDeadlineCommand.COMMAND_WORD:
-                return new SetDeadlineCommandParser().parse(arguments);
-
-            case AddProjectCommand.COMMAND_WORD:
-                return new AddProjectCommandParser().parse(arguments);
->>>>>>> 19e7dadd (Set the deadline command)
+        case SetDeadlineCommand.COMMAND_WORD:
+            return new SetDeadlineCommandParser().parse(arguments);
 
         case DeleteProjectCommand.COMMAND_WORD:
             return new DeleteProjectCommandParser().parse(arguments);
@@ -99,15 +91,9 @@ public class AddressBookParser {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
-<<<<<<< HEAD
         default:
             logger.finer("This user input caused a ParseException: " + userInput);
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
-=======
-            default:
-                logger.finer("This user input caused a ParseException: " + userInput);
-                throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
->>>>>>> 19e7dadd (Set the deadline command)
         }
     }
 }
