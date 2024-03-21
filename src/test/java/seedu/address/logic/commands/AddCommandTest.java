@@ -188,6 +188,11 @@ public class AddCommandTest {
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public boolean exportCsv(String filename) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

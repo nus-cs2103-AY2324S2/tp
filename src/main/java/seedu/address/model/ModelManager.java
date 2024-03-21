@@ -126,6 +126,12 @@ public class ModelManager implements Model {
         netConnect.setPerson(target, editedPerson);
     }
 
+    @Override
+    public boolean exportCsv(String filename) {
+        requireNonNull(filename);
+        return netConnect.exportCsv(filename);
+    }
+
     // =========== Filtered Person List Accessors
     // =============================================================
 

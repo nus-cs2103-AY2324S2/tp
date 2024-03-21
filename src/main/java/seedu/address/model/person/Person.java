@@ -92,6 +92,24 @@ public abstract class Person {
     }
 
     /**
+     * Returns a string representation of the tags associated with the person.
+     * The tags are concatenated with a comma and space separator.
+     *
+     * @return A string representation of the tags.
+     */
+    public String getTagsAsString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Tag tag : tags) {
+            stringBuilder.append(tag.getTagName()).append(", ");
+        }
+        // Remove the last comma and space if there are any tags
+        if (stringBuilder.length() > 0) {
+            stringBuilder.delete(stringBuilder.length() - 2, stringBuilder.length());
+        }
+        return stringBuilder.toString();
+    }
+
+    /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      */
