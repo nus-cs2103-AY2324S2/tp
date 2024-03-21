@@ -50,8 +50,8 @@ public class CommandTestUtil {
     public static final String VALID_COUNTRY_BOB = "Indonesia";
     public static final String VALID_ALLERGIES_AMY = "peanuts";
     public static final String VALID_ALLERGIES_BOB = "pollen";
-    public static final String[] VALID_BLOODTYPE_AMY = new String[]{"B", "POSITIVE"};
-    public static final String[] VALID_BLOODTYPE_BOB = new String[]{"B", "POSITIVE"};
+    public static final String VALID_BLOODTYPE_AMY = "B+";
+    public static final String VALID_BLOODTYPE_BOB = "B+";
     public static final String VALID_CONDITION_AMY = "diabetes";
     public static final String VALID_CONDITION_BOB = "high blood pressure";
     public static final String VALID_DATEOFADMISSION_AMY = "2023-01-01";

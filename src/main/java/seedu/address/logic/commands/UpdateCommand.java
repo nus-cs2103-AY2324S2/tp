@@ -85,6 +85,7 @@ public class UpdateCommand extends Command {
 
         boolean personNotFound = true;
         Person personToUpdate = null;
+        //TODO: change to new method to get person by nric
         for (Person p : lastShownList) {
             if (p.getNric().equals(nric)) {
                 personToUpdate = p;
