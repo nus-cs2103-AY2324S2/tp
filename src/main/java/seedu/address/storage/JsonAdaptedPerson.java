@@ -149,6 +149,7 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(Subject.MESSAGE_CONSTRAINTS);
         }
         final Subject modelSubject = new Subject(subject);
+
         if (attendance == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Attendance.class.getSimpleName()));
@@ -160,7 +161,7 @@ class JsonAdaptedPerson {
 
         if (payment == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    Attendance.class.getSimpleName()));
+                    Payment.class.getSimpleName()));
         }
         if (!Payment.isValidPayment(payment)) {
             throw new IllegalValueException(Payment.MESSAGE_CONSTRAINTS);
