@@ -40,10 +40,6 @@ public class Relationship {
         return person2;
     }
 
-    public String getRelationshipDescriptor() {
-        return relationshipDescriptor;
-    }
-
     public String getRoleDescriptor(UUID targetPerson) {
         return this.relationshipDescriptor;
     }

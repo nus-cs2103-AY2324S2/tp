@@ -1,7 +1,6 @@
 package seedu.address.model.person.relationship;
 
 import java.util.ArrayList;
-import java.util.UUID;
 
 /**
  * Represents a utility class for managing the relationships associated with a person.
@@ -39,8 +38,9 @@ public class RelationshipUtil {
         for (Relationship relationship : relationshipsTracker) {
             if ((relationship.getPerson1().equals(toFind.getPerson1()) && relationship.getPerson2()
                     .equals(toFind.getPerson2())
-                    || (relationship.getPerson1().equals(toFind.getPerson2()) && relationship.getPerson2().equals(toFind.getPerson1())))
-                    && relationship.getRelationshipDescriptor().equals(toFind.getRelationshipDescriptor())) {
+                    || (relationship.getPerson1().equals(toFind.getPerson2()) && relationship.getPerson2().
+                    equals(toFind.getPerson1()))) && relationship.getRoleDescriptor(
+                            toFind.getPerson1()).equals(toFind.getRoleDescriptor(toFind.getPerson2()))) {
                 return true;
             }
         }
