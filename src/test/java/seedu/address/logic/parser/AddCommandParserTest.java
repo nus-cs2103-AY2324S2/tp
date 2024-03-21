@@ -16,6 +16,10 @@ import seedu.address.logic.commands.AddCommand;
 public class AddCommandParserTest {
     private AddCommandParser parser = new AddCommandParser();
 
+    @Test void parse_emptyArgs_success() {
+        HashMap<String, String> expectedAttributeMap = new HashMap<>();
+        assertParseSuccess(parser, "add", new AddCommand(expectedAttributeMap));
+    }
     @Test
     public void parse_singleAttribute_success() {
         HashMap<String, String> expectedAttributeMap = new HashMap<>();
