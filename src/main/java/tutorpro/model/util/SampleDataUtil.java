@@ -91,4 +91,11 @@ public class SampleDataUtil {
                 .map(Subject::new)
                 .collect(Collectors.toSet());
     }
+
+    /**
+     * Returns a student set containing the list of students given.
+     */
+    public static Set<Student> getStudentSet(Student... students) {
+        return Arrays.stream(students).collect(Collectors.toSet());
+    }
 }
