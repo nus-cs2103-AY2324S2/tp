@@ -41,6 +41,7 @@ public class Meeting {
      * Constructor for Meeting instance
      * @param description Description of the meeting
      * @param dateTime Time and Date of the meeting
+     * @param client Client of the meeting
      */
     public Meeting(String description, LocalDateTime dateTime, Person client) {
         requireAllNonNull(description, dateTime);
@@ -50,7 +51,11 @@ public class Meeting {
         this.dateTime = dateTime;
         this.client = client.addMeeting(this);
     }
-
+    /**
+     * Constructor for Meeting instance
+     * @param description Description of the meeting
+     * @param dateTime Time and Date of the meeting
+     */
     public Meeting(String description, LocalDateTime dateTime) {
         requireAllNonNull(description, dateTime);
         checkArgument(isValidDescription(description), MESSAGE_CONSTRAINTS);
