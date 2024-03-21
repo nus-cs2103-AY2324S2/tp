@@ -28,8 +28,8 @@ public class TagCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Tags the contact identified by the index number"
             + " used in the displayed contact list with the specified tag.\n"
-            + "Parameters: INDEX (must be a positive integer) t/ TAG\n"
-            + "Example: " + COMMAND_WORD + " 1 t/ friends";
+            + "Parameters: INDEX (must be a positive integer) tag: TAG\n"
+            + "Example: " + COMMAND_WORD + " 1 tag: friends";
 
     public static final String MESSAGE_TAG_CONTACT_SUCCESS = "Tagged Contact: %1$s with %2$s";
 
