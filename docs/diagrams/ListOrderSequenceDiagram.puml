@@ -30,7 +30,7 @@ activate ListOrderCommandParser
 
 
 create ListOrderCommand
-ListOrderCommandParser --> ListOrderCommand :
+ListOrderCommandParser -> ListOrderCommand :
 activate ListOrderCommand
 deactivate ListOrderCommandParser
 
