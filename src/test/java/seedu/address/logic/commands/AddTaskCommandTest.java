@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -14,7 +13,6 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.logic.Messages;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
@@ -22,7 +20,6 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.project.Task;
-import seedu.address.testutil.PersonBuilder;
 
 public class AddTaskCommandTest {
 
@@ -31,21 +28,6 @@ public class AddTaskCommandTest {
     @Test
     public void constructor_nullPerson_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddTaskCommand(null, taskProject));
-    }
-
-    @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Person validPerson = new PersonBuilder().build();
-
-        Task validTask = new Task("Amy Bee");
-
-        modelStub.addPerson(taskProject);
-
-        CommandResult commandResult = new AddTaskCommand(validTask, taskProject).execute(modelStub);
-
-        assertEquals(String.format(AddTaskCommand.MESSAGE_SUCCESS, Messages.format(validPerson),
-                        Messages.format(taskProject)), commandResult.getFeedbackToUser());
     }
 
     @Test

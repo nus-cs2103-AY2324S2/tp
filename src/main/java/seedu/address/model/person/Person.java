@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.project.Task;
@@ -21,14 +22,8 @@ public class Person {
     private final List<Task> taskList;
 
     /**
-     * Every field must be present and not null.
+     * Constructs a Person object with empty taskList
      */
-    public Person(Name name, List<Task> taskList) {
-        requireAllNonNull(name);
-        this.name = name;
-        this.taskList = taskList;
-    }
-
     public Person(Name name) {
         requireAllNonNull(name);
         this.name = name;
@@ -36,15 +31,41 @@ public class Person {
         this.taskList = taskList;
     }
 
+    /**
+     * Adds task to the Person object
+     */
     public void addTask(Task task) {
         taskList.add(task);
+    }
+
+    /**
+     * Removes task from the Person object
+     */
+    public void removeTask(Task task) {
+        int i = 0;
+        for (Task t : taskList) {
+            if (t.equals(task)) {
+                taskList.remove(i);
+                break;
+            }
+            i += 1;
+        }
+    }
+
+    /**
+     * @param taskName name to be matched with the tasks listed in my project
+     * @return task in the project with the matching taskName
+     */
+    public Task findTask(Name taskName) {
+        Optional<Task> foundTask = taskList.stream()
+                .filter(task -> task.getName().toString().equals(taskName.toString()))
+                .findFirst();
+        return foundTask.get();
     }
 
     public Name getName() {
         return name;
     }
-
-
 
     /**
      * Returns true if both projects have the same name.
@@ -88,6 +109,19 @@ public class Person {
     public String toString() {
         return new ToStringBuilder(this)
                 .add("name", name).toString();
+    }
+
+    /**
+     * Returns true if the Person has a task that is equal to the specified task
+     */
+    public boolean hasTask(Task task) {
+        for (Task t : taskList) {
+            System.out.println(task.getName().fullName);
+            if (t.equals(task)) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }

@@ -1,18 +1,21 @@
 package seedu.address.model.project;
 
-import java.time.LocalDate;
-
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
+import java.time.LocalDate;
 
+import seedu.address.model.person.Name;
+
+/**
+ * Represents a Task of Project
+ * Guarantees: details are present and not null, field values are validated, immutable.
+ */
 public class Task {
 
     // Identity fields
     private final Name taskName;
 
-    private Person person;
+    private Member member;
 
     private boolean status;
     private Integer progressCounter = 0;
@@ -21,47 +24,95 @@ public class Task {
 
     private Integer priorityNumber;
 
+    /**
+     * Constructs a new task object
+     * @param name the task name
+     */
     public Task(String name) {
         requireAllNonNull(name);
         this.taskName = new Name(name);
         this.status = true;
     }
 
-    public void assignPerson(Person person) {
-        this.person = person;
+    /**
+     * Assigns a Person to the task
+     * @param member the person assigned to the task
+     */
+    public void assignPerson(Member member) {
+        this.member = member;
     }
 
+    /**
+     * Sets the task status as complete
+     */
     public void setComplete() {
         this.status = false;
     }
 
+    /**
+     * Sets the task status as incomplete
+     */
     public void setIncomplete() {
         this.status = true;
         progressCounter = progressCounter + 1;
     }
 
+    /**
+     * Gets the status of the task as a string
+     * @return the string represeting the status of the task
+     */
     public String getStatus() {
         if (status) {
-            if (progressCounter > 0) {
-                return "In progress";
-            } else {
-                return "Incomplete";
-            }
+            return "Incomplete";
         } else {
             return "Complete";
         }
     }
 
+    /**
+     * Sets the deadline of the task
+     * @param deadline the datetime string to be parsed and set as deadline
+     */
     public void setDeadline(String deadline) {
         this.deadlineDate = LocalDate.parse(deadline);
     }
 
+    /**
+     * Set the priority of the task
+     * @param priorityNumber the priorityNumber of the task
+     */
     public void setPriority(Integer priorityNumber) {
         this.priorityNumber = priorityNumber;
     }
 
+    /**
+     * Get the name of the task
+     * @return
+     */
+
     public Name getName() {
         return taskName;
+    }
+
+    /**
+     * Returns true if both tasks have the same identity and data fields.
+     * This defines a stronger notion of equality between two tasks.
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof Task)) {
+            return false;
+        }
+        Task other = (Task) obj;
+        return taskName.equals(other.taskName);
+    }
+
+    @Override
+    public String toString() {
+        return taskName.toString();
     }
 
 }
