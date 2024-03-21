@@ -1,16 +1,34 @@
 {
-  "persons": [ {
+  "sellers": [ {
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "alice@example.com",
-    "address": "123, Jurong West Ave 6, #08-111",
-    "postalCode": "678999",
+    "housingType": "HDB",
+    "houses": [
+      {
+        "type": "NonLanded",
+        "block": "10A",
+        "level": "15",
+        "postalCode": "654321",
+        "street": "Orchid Street",
+        "unitNumber": "150"
+      }
+    ],
     "tags": [ "friends" ]
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",
-    "address": "4th street",
-    "postalCode": "678999"
+    "housingType": "HDB",
+    "houses": [
+      {
+        "type": "NonLanded",
+        "block": "10A",
+        "level": "15",
+        "postalCode": "654321",
+        "street": "Orchid Street",
+        "unitNumber": "150"
+      }
+    ]
   } ]
 }

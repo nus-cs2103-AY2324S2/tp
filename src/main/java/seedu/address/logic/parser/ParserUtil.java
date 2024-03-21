@@ -10,6 +10,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.house.Block;
+import seedu.address.model.house.House;
 import seedu.address.model.house.Level;
 import seedu.address.model.house.PostalCode;
 import seedu.address.model.house.Street;
@@ -24,7 +25,6 @@ import seedu.address.model.tag.Tag;
  * Contains utility methods used for parsing strings in the various *Parser classes.
  */
 public class ParserUtil {
-
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
 
     /**
@@ -129,6 +129,21 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String houseType} into a {@code String houseType}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code String houseType} is invalid.
+     */
+    public static String parseHousing(String houseType) throws ParseException {
+        requireNonNull(houseType);
+        String trimmedName = houseType.trim();
+        if (!House.isValidName(trimmedName)) {
+            throw new ParseException(House.MESSAGE_CONSTRAINTS);
+        }
+        return trimmedName;
+    }
+
+    /**
      * Parses a {@code String street} into a {@code Street}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -172,6 +187,7 @@ public class ParserUtil {
         }
         return new UnitNumber(trimmedLevel);
     }
+
     /**
      * Parses a {@code String block} into an {@code Block}.
      * Leading and trailing whitespaces will be trimmed.
@@ -186,6 +202,7 @@ public class ParserUtil {
         }
         return new Block(trimmedBlock);
     }
+
     /**
      * Parses a {@code String postalCode} into a {@code postalCode}.
      * Leading and trailing whitespaces will be trimmed.

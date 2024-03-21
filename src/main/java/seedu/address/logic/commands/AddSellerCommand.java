@@ -1,12 +1,16 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BLOCK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_HOUSINGTYPE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LEVEL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_POSTALCODE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STREET;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_UNITNUMBER;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -26,31 +30,39 @@ public class AddSellerCommand extends Command {
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
-            + PREFIX_ADDRESS + "ADDRESS "
+            + PREFIX_HOUSINGTYPE + "HOUSINGTYPE "
+            + PREFIX_STREET + "STREET "
+            + PREFIX_BLOCK + "BLOCK "
+            + PREFIX_LEVEL + "LEVEL "
+            + PREFIX_UNITNUMBER + "UNIT NUMBER "
             + PREFIX_POSTALCODE + "POSTAL CODE "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
+            + PREFIX_HOUSINGTYPE + "HDB "
+            + PREFIX_STREET + "Clementi Ave 2 "
+            + PREFIX_BLOCK + "311 "
+            + PREFIX_LEVEL + "02 "
+            + PREFIX_UNITNUMBER + "25 "
             + PREFIX_POSTALCODE + "578578 "
             + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";
+            + PREFIX_TAG + "owesMoney ";
 
-    public static final String MESSAGE_SUCCESS = "New seller added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This seller already exists in the address book";
+    public static final String MESSAGE_SUCCESS = "New seller added= %1$s";
+    public static final String MESSAGE_DUPLICATE_SELLER = "This seller already exists in EstateEase";
 
     private final Person sellerToAdd;
 
     /**
-     * Creates an AddSellerCommand to add the specified seller.
-     * @param person The seller to be added.
+     * Creates an AddSellerCommand to add the specified {@code Seller}
      */
     public AddSellerCommand(Person person) {
         requireNonNull(person);
         sellerToAdd = person;
     }
+
     /**
      * Executes the command and returns the result message.
      *
@@ -63,7 +75,7 @@ public class AddSellerCommand extends Command {
         requireNonNull(model);
 
         if (model.hasPerson(sellerToAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_SELLER);
         }
 
         model.addPerson(sellerToAdd);

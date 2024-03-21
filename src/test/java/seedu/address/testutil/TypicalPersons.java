@@ -1,64 +1,90 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_HOUSINGTYPE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_HOUSINGTYPE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_POSTAL_CODE_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_POSTAL_CODE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.testutil.TypicalHouses.HOUSE2;
+import static seedu.address.testutil.TypicalHouses.HOUSE3;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.house.Block;
+import seedu.address.model.house.Level;
+import seedu.address.model.house.NonLanded;
+import seedu.address.model.house.PostalCode;
+import seedu.address.model.house.Street;
+import seedu.address.model.house.UnitNumber;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Seller;
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
+ * Currently, it has been replaced by sellers, need to add buyers too
  */
 public class TypicalPersons {
 
-    public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
-            .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
-            .withPhone("94351253").withPostalCode("789012")
+    public static final Seller ALICE_SELLER = new SellerBuilder().withName("Alice Pauline")
+            .withHousingType("HDB").withEmail("alice@example.com")
+            .withPhone("94351253").withHouses(new NonLanded(new Block("10A"), new Level("15"),
+                    new PostalCode("654321"), new Street("Orchard Street"), new UnitNumber("150")))
             .withTags("friends").build();
-    public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
-            .withAddress("311, Clementi Ave 2, #02-25")
-            .withEmail("johnd@example.com").withPhone("98765432").withPostalCode("578903")
-            .withTags("owesMoney", "friends").build();
-    public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
-            .withEmail("heinz@example.com").withAddress("wall street").withPostalCode("678999").build();
-    public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
-            .withEmail("cornelia@example.com").withAddress("10th street").withPostalCode("678999")
+    public static final Seller BENSON_SELLER = new SellerBuilder().withName("Benson Meier")
+            .withHousingType("HDB").withEmail("johnd@example.com")
+            .withPhone("94351253").withHouses(new NonLanded(new Level("16"), new PostalCode("654321"),
+                    new Street("Orchard Street"), new UnitNumber("150")))
             .withTags("friends").build();
-    public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("9482224")
-            .withEmail("werner@example.com").withAddress("michegan ave").withPostalCode("678999").build();
-    public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("9482427")
-            .withEmail("lydia@example.com").withAddress("little tokyo").withPostalCode("678999").build();
-    public static final Person GEORGE = new PersonBuilder().withName("George Best").withPhone("9482442")
-            .withEmail("anna@example.com").withAddress("4th street").withPostalCode("678999").build();
+    public static final Seller CARL_SELLER = new SellerBuilder().withName("Carl Kurz").withPhone("95352563")
+            .withHousingType("HDB").withEmail("heinz@example.com").withHouses(new NonLanded(new Block("10B"),
+                    new Level("17"), new PostalCode("654322"), new Street("Orchard Street 1"), new UnitNumber("150")))
+            .build();
+    public static final Seller DANIEL_SELLER = new SellerBuilder().withName("Daniel Meier").withPhone("87652533")
+            .withHousingType("HDB")
+            .withEmail("cornelia@example.com").withHouses(new NonLanded(new Block("10C"), new Level("18"),
+                    new PostalCode("654323"), new Street("Orchard Street 2"),
+                    new UnitNumber("150"))).withTags("friends").build();
+    public static final Seller ELLE_SELLER = new SellerBuilder().withName("Elle Meyer").withPhone("9482224")
+            .withHousingType("HDB")
+            .withEmail("heinz@example.com").withHouses(new NonLanded(new Block("10D"), new Level("19"),
+                    new PostalCode("654324"), new Street("Orchard Street 3"), new UnitNumber("150"))).build();
+    public static final Seller FIONA_SELLER = new SellerBuilder().withName("Fiona Kunz").withPhone("9482427")
+            .withHousingType("HDB")
+            .withEmail("heinz@example.com").withHouses(new NonLanded(new Block("10E"), new Level("20"),
+                    new PostalCode("654325"), new Street("Orchard Street 4"), new UnitNumber("150"))).build();
+    public static final Seller GEORGE_SELLER = new SellerBuilder().withName("George Best").withPhone("9482442")
+            .withHousingType("HDB")
+            .withEmail("heinz@example.com").withHouses(new NonLanded(new Block("10F"), new Level("21"),
+                    new PostalCode("654326"), new Street("Orchard Street 5"), new UnitNumber("150"))).build();
 
     // Manually added
-    public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withPhone("8482424")
-            .withEmail("stefan@example.com").withAddress("little india").withPostalCode("678999").build();
-    public static final Person IDA = new PersonBuilder().withName("Ida Mueller").withPhone("8482131")
-            .withEmail("hans@example.com").withAddress("chicago ave").withPostalCode("678999").build();
+    public static final Seller HOON_SELLER = new SellerBuilder().withName("Hoon Meier").withPhone("8482424")
+            .withHousingType("HDB")
+            .withEmail("stefan@example.com").withEmail("heinz@example.com").withHouses(new NonLanded(new Level("22"),
+                    new PostalCode("654327"), new Street("Orchard Street 6"), new UnitNumber("150"))).build();
+    public static final Seller IDA_SELLER = new SellerBuilder().withName("Ida Mueller").withPhone("8482131")
+            .withHousingType("HDB")
+            .withEmail("hans@example.com").withEmail("heinz@example.com").withHouses(new NonLanded(new Level("23"),
+                    new PostalCode("654328"), new Street("Orchard Street 7"), new UnitNumber("150"))).build();
 
-    // Manually added - Person's details found in {@code CommandTestUtil}
-    public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
-            .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withPostalCode(VALID_POSTAL_CODE_AMY)
-            .withTags(VALID_TAG_FRIEND).build();
-    public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-            .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withPostalCode(VALID_POSTAL_CODE_BOB)
-            .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
-            .build();
+    // Manually added - Seller's details found in {@code CommandTestUtil}
+    public static final Seller AMY_SELLER = new SellerBuilder().withName(VALID_NAME_AMY)
+            .withHousingType(VALID_HOUSINGTYPE_AMY).withEmail(VALID_EMAIL_AMY)
+            .withPhone(VALID_PHONE_AMY)
+            .withTags(VALID_TAG_FRIEND).withHouses(HOUSE2).build();
+
+    public static final Seller BOB_SELLER = new SellerBuilder().withName(VALID_NAME_BOB)
+            .withHousingType(VALID_HOUSINGTYPE_BOB).withEmail(VALID_EMAIL_BOB)
+            .withPhone(VALID_PHONE_BOB)
+            .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).withHouses(HOUSE3).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
@@ -76,6 +102,7 @@ public class TypicalPersons {
     }
 
     public static List<Person> getTypicalPersons() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+        return new ArrayList<>(Arrays.asList(ALICE_SELLER, BENSON_SELLER,
+                CARL_SELLER, DANIEL_SELLER, ELLE_SELLER, FIONA_SELLER, GEORGE_SELLER));
     }
 }
