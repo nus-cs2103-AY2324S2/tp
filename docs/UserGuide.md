@@ -132,7 +132,7 @@ Format: `note INDEX note/NOTE`
 
 Examples:
 *  `note 1 note/History of asthma` - Edits the note of the 1st client to `History of asthma`.
-*  `edit 2 note/Previously sprained both ankles` - Edits the note of the 2nd client to `Previously sprained both ankles`.
+*  `note 2 note/Previously sprained both ankles` - Edits the note of the 2nd client to `Previously sprained both ankles`.
 <hr>
 
 ### Locating clients by name: `find`
