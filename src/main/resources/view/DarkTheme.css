@@ -100,7 +100,7 @@
 }
 
 .list-header .label {
-  -fx-font-size: 11pt;
+  -fx-font-size: 12pt;
   -fx-font-family: "Segoe UI Bold";
   -fx-font-weight: 700;
   -fx-text-fill: white;
@@ -114,11 +114,17 @@
 }
 
 .list-cell:filled:even {
-  -fx-background-color: #3c3e3f;
+  -fx-background-color: #2c2d37;
+  -fx-border-color: #21222c;
+  /* bottom border only */
+  -fx-border-width: 0 0 1 0;
 }
 
 .list-cell:filled:odd {
-  -fx-background-color: #515658;
+  -fx-background-color: #2c2d37;
+  -fx-border-color: #21222c;
+  /* bottom border only */
+  -fx-border-width: 0 0 1 0;
 }
 
 .list-cell:filled:selected {
@@ -135,7 +141,7 @@
 }
 
 .list-container {
-  -fx-background-color: #2c2d37;
+  -fx-background-color: rgba(49, 51, 65, 0.2);
   -fx-border-width: 0;
   -fx-border-insets: 0;
   -fx-background-radius: 13 13 0 0;
@@ -307,11 +313,11 @@
 }
 
 .scroll-bar {
-  -fx-background-color: derive(#1d1d1d, 20%);
+  -fx-background-color: #21222c;
 }
 
 .scroll-bar .thumb {
-  -fx-background-color: derive(#1d1d1d, 50%);
+  -fx-background-color: #3f4047;
   -fx-background-insets: 3;
 }
 
@@ -343,9 +349,47 @@
   -fx-background-radius: 13 13 13 13;
 }
 
+.category-label {
+  -fx-background-color: transparent;
+  -fx-background-radius: 15 15 15 15;
+  -fx-border-radius: 15 15 15 15;
+  -fx-border-insets: 0;
+  -fx-border-width: 2;
+  -fx-font-size: 11pt;
+  -fx-font-family: "Segoe UI Bold";
+  -fx-font-weight: 700;
+  -fx-padding: 5 10 5 10;
+}
+
+.category-label-participant {
+  -fx-background-color: rgba(64, 186, 140, 0.15);
+  -fx-border-color: #40ba8c;
+  -fx-text-fill: #40ba8c !important; /* Important to override the default color */
+}
+
+.category-label-sponsor {
+  -fx-background-color: rgba(169, 186, 64, 0.15);
+  -fx-border-color: #a9ba40;
+  -fx-text-fill: #a9ba40 !important; /* Important to override the default color */
+}
+
+.category-label-staff {
+  -fx-background-color: rgba(103, 133, 193, 0.15);
+  -fx-border-color: #6785c1;
+  -fx-text-fill: #6785c1 !important; /* Important to override the default color */
+}
+
 #cardPane {
   -fx-background-color: transparent;
   -fx-border-width: 0;
+  -fx-padding: 10 0 10 0;
+}
+
+#cardPane .label {
+  -fx-font-size: 12pt;
+  -fx-font-family: "Segoe UI";
+  -fx-text-fill: white;
+  -fx-opacity: 1;
 }
 
 #commandTypeLabel {
