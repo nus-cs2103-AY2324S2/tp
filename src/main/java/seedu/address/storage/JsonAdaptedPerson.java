@@ -156,6 +156,9 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, DrugAllergy.class.getSimpleName()));
         }
+        if (!DrugAllergy.isValidDrugAllergy(drugAllergy)) {
+            throw new IllegalValueException(DrugAllergy.MESSAGE_CONSTRAINTS);
+        }
         final DrugAllergy modelDrugAllergy = new DrugAllergy(drugAllergy);
 
         final Set<Illness> modelIllnesses = new HashSet<>(illnesses);

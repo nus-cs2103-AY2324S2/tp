@@ -52,10 +52,15 @@ public class PersonUtil {
     public static String getEditPersonDescriptorDetails(EditPersonDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
+        descriptor.getGender().ifPresent(gender -> sb.append(PREFIX_GENDER).append(gender.gender).append(" "));
+        descriptor.getBirthDate().ifPresent(
+                birthDate -> sb.append(PREFIX_BIRTHDATE).append(birthDate.birthDate).append(" "));
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
-        if (descriptor.getTags().isPresent()) {
-            Set<Illness> illnesses = descriptor.getTags().get();
+        descriptor.getDrugAllergy().ifPresent(
+                drugAllergy -> sb.append(PREFIX_DRUG_ALLERGY).append(drugAllergy.drugAllergy).append(" "));
+        if (descriptor.getIllnesses().isPresent()) {
+            Set<Illness> illnesses = descriptor.getIllnesses().get();
             if (illnesses.isEmpty()) {
                 sb.append(PREFIX_ILLNESS);
             } else {

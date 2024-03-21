@@ -5,7 +5,9 @@ import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.ILLNESS_DESC_GENETIC;
 import static seedu.address.logic.commands.CommandTestUtil.ILLNESS_DESC_INFECTIOUS;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_BIRTHDATE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_GENDER_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ILLNESS_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
@@ -33,13 +35,14 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.model.person.BirthDate;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.illness.Illness;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
-// TODO: in edit command feature
 public class EditCommandParserTest {
 
     private static final String ILLNESS_EMPTY = " " + PREFIX_ILLNESS;
@@ -78,10 +81,18 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
-        assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
-        assertParseFailure(parser, "1" + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS); // invalid phone
-        assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
-        assertParseFailure(parser, "1" + INVALID_ILLNESS_DESC, Illness.MESSAGE_CONSTRAINTS); // invalid tag
+        assertParseFailure(parser, "1"
+                + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
+        assertParseFailure(parser, "1"
+                + INVALID_GENDER_DESC, Gender.MESSAGE_CONSTRAINTS); // invalid gender
+        assertParseFailure(parser, "1"
+                + INVALID_BIRTHDATE_DESC, BirthDate.MESSAGE_CONSTRAINTS); // invalid birthdate
+        assertParseFailure(parser, "1"
+                + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS); // invalid phone
+        assertParseFailure(parser, "1"
+                + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
+        assertParseFailure(parser, "1"
+                + INVALID_ILLNESS_DESC, Illness.MESSAGE_CONSTRAINTS); // invalid illness
 
         // invalid phone followed by valid email
         assertParseFailure(parser, "1" + INVALID_PHONE_DESC + EMAIL_DESC_AMY, Phone.MESSAGE_CONSTRAINTS);
@@ -112,7 +123,7 @@ public class EditCommandParserTest {
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY)
-                .withTags(VALID_ILLNESS_INFECTIOUS, VALID_ILLNESS_GENETIC).build();
+                .withIllnesses(VALID_ILLNESS_INFECTIOUS, VALID_ILLNESS_GENETIC).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -153,7 +164,7 @@ public class EditCommandParserTest {
 
         // illnesses
         userInput = targetIndex.getOneBased() + ILLNESS_DESC_INFECTIOUS;
-        descriptor = new EditPersonDescriptorBuilder().withTags(VALID_ILLNESS_INFECTIOUS).build();
+        descriptor = new EditPersonDescriptorBuilder().withIllnesses(VALID_ILLNESS_INFECTIOUS).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -195,7 +206,7 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_THIRD_PERSON;
         String userInput = targetIndex.getOneBased() + ILLNESS_EMPTY;
 
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withTags().build();
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withIllnesses().build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
