@@ -91,7 +91,7 @@ Output:
 The message “A new contact `name` has been added to the list. Name: `<name>`, Phone: `<phone number>`, Email: `<email>`, Address: `<address>`.” will be shown. 
 A new contact entry with the given user will be displayed in the list.
 
-![add](images/user-guidemail:add_mock_output.png)
+![add](images/user-guide/add_mock_output.png)
 
 ### Listing all persons : `list`
 
@@ -121,7 +121,7 @@ Output:
 The message "Contact `name` has been deleted. Name: `name`, Phone: `phone number`, Email: `email`, Address: `address`.” will be shown.
 The entry with the given id will disappear from the list.
 
-![delete](images/user-guidemail:delete_mock_output.png)
+![delete](images/user-guide/delete_mock_output.png)
 
 ### Clearing all entries : `clear`
 
@@ -149,7 +149,7 @@ Output:
 The message "The following contact has been tagged with `<tag name>`: `contact info`.” will be shown, 
 where contact info is all the information of the contact.
 
-![tag](images/user-guidemail:tag_mock_output.png)
+![tag](images/user-guide/tag_mock_output.png)
 
 ### Deleting a tag : `untag`
 
@@ -166,7 +166,7 @@ The message "The tag `<tag>` has been removed from contact: `contact info`." wil
 where contact info is all the information of the contact. 
 The list entry of the user with <id> will not have the tag anymore.
 
-![delete-tag](images/user-guidemail:delete-tag_mock_output.png)
+![delete-tag](images/user-guide/delete-tag_mock_output.png)
 
 ### Undoing a command : `undo`
 
@@ -182,10 +182,10 @@ If no command has been run at all, an error message "No more commands to undo!" 
 Example of undoing a delete command.
 
 Contact after a delete command:
-![delete_operation](images/user-guidemail:delete_operation-undo-mock.png)
+![delete_operation](images/user-guide/delete_operation-undo-mock.png)
 
 Contact after the delete command is undone:
-![undo](images/user-guidemail:undo_mock_output.png)
+![undo](images/user-guide/undo_mock_output.png)
 
 ### Redoing a command : `redo`
 
@@ -199,7 +199,7 @@ The list entry of the user will return to the state before the latest undo comma
 If no undo command has been run at all, an error message "No more commands to redo!" will be shown instead.
 
 Example of redoing the previous undo command:
-![redo](images/user-guidemail:redo_mock_output.png)
+![redo](images/user-guide/redo_mock_output.png)
 
 ### Exiting the program : `exit`
 
