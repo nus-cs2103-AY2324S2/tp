@@ -22,6 +22,7 @@ import scm.address.storage.JsonAddressBookStorage;
 public class FindAndExportCommand extends Command {
 
     public static final String COMMAND_WORD = "find_and_export";
+    public static final String DEFAULT_FILEPATH = "./data/default_filename.json";
     public static final String MESSAGE_USAGE = "find_and_export: Exports the users filtered by a tag "
             + "and other optional parameters.\n"
             + "Parameters: TAG [n/NAME] [a/ADDRESS] [f/FILENAME]\n"
@@ -40,6 +41,13 @@ public class FindAndExportCommand extends Command {
      * @param filename The name of the file to which the filtered users are exported.
      */
     public FindAndExportCommand(String tag, String name, String address, String filename) {
+        this.tag = tag;
+        this.name = name;
+        this.address = address;
+        this.filename = filename;
+    }
+
+    public FindAndExportCommand(String tag, String name, String address) {
         this.tag = tag;
         this.name = name;
         this.address = address;
