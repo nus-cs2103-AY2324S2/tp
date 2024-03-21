@@ -59,7 +59,7 @@ public class AddTaskCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AddCommand)) {
+        if (!(other instanceof AddTaskCommand)) {
             return false;
         }
 

@@ -6,7 +6,9 @@
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
     "tasks" : [ {
-      "description": "friends"
+      "taskName" : "Testing",
+      "taskDescription" : "Test to test the code",
+      "taskStatus" : "Not Done"
     } ]
   }, {
     "name" : "Benson Meier",
@@ -14,9 +16,13 @@
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
     "tasks" : [ {
-      "description": "owesMoney"
+      "taskName" : "Testing 1",
+      "taskDescription" : "Test to test the code",
+      "taskStatus" : "Not Done"
     }, {
-      "description": "friends"
+      "taskName" : "Testing 2",
+      "taskDescription" : "Test to test the code",
+      "taskStatus" : "Not Done"
     } ]
   }, {
     "name" : "Carl Kurz",
@@ -30,8 +36,10 @@
     "email" : "cornelia@example.com",
     "address" : "10th street",
     "tasks" : [ {
-      "description": "friends"
-    } ]
+      "taskName" : "Testing",
+      "taskDescription" : "Test to test the code",
+      "taskStatus" : "Not Done"
+    }]
   }, {
     "name" : "Elle Meyer",
     "phone" : "9482224",

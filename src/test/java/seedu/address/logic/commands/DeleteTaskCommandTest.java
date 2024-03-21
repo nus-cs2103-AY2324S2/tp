@@ -24,8 +24,8 @@ public class DeleteTaskCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), getTypicalTaskList(), new UserPrefs());
-        Task expectedTaskToDelete = expectedModel.getTaskList().getSerializeTaskList().get(INDEX_FIRST.getOneBased());
+        ModelManager expectedModel = new ModelManager(model.getAddressBook(), model.getTaskList(), new UserPrefs());
+        Task expectedTaskToDelete = expectedModel.getTaskList().getSerializeTaskList().get(INDEX_FIRST.getZeroBased());
         expectedModel.deleteTask(expectedTaskToDelete);
 
         Task taskToDelete = model.getTaskList().getSerializeTaskList().get(INDEX_FIRST.getZeroBased());

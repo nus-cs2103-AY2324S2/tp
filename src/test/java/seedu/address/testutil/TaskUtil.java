@@ -1,5 +1,8 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddTaskCommand;
 import seedu.address.logic.commands.DeleteTaskCommand;
@@ -14,7 +17,9 @@ public class TaskUtil {
      * Returns an add command string for adding the {@code person}.
      */
     public static String getAddTaskCommand(Task task) {
-        return AddTaskCommand.COMMAND_WORD + " " + task.getDescription();
+        return AddTaskCommand.COMMAND_WORD + " "
+                + PREFIX_NAME + task.getName() + " "
+                + PREFIX_TASK_DESCRIPTION + task.getDescription();
     }
 
     /**

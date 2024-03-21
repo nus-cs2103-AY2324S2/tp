@@ -37,6 +37,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskDescription;
 import seedu.address.model.task.TaskName;
+import seedu.address.model.task.TaskStatus;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
@@ -55,7 +56,9 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_addtask() throws Exception {
-        Task task = new Task(new TaskName("Implement test"), new TaskDescription("Test to test the code"));;
+        Task task = new Task(new TaskName("Implement test"),
+                new TaskDescription("Test to test the code"),
+                new TaskStatus());;
         AddTaskCommand command = (AddTaskCommand) parser.parseCommand(TaskUtil.getAddTaskCommand(task));
         assertNotNull(command);
     }

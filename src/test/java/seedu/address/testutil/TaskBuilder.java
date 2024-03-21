@@ -1,9 +1,9 @@
 package seedu.address.testutil;
 
-import seedu.address.model.person.Name;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskDescription;
 import seedu.address.model.task.TaskName;
+import seedu.address.model.task.TaskStatus;
 
 /**
  * A utility class to help with building Task objects.
@@ -31,7 +31,7 @@ public class TaskBuilder {
         taskName = taskToCopy.getName();
         taskDescription = taskToCopy.getDescription();
     }
-    
+
     /**
      * Sets the {@code TaskName} of the {@code Task} that we are building.
      */
@@ -49,6 +49,6 @@ public class TaskBuilder {
     }
 
     public Task build() {
-        return new Task(taskName, taskDescription);
+        return new Task(taskName, taskDescription, new TaskStatus());
     }
 }

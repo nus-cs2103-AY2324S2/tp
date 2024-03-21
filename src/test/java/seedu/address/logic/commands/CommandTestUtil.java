@@ -21,6 +21,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskDescription;
 import seedu.address.model.task.TaskName;
+import seedu.address.model.task.TaskStatus;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -39,10 +40,15 @@ public class CommandTestUtil {
 
     public static final TaskName VALID_TASK_NAME_FIRST = new TaskName("Implement Testing 1");
     public static final TaskName VALID_TASK_NAME_SECOND = new TaskName("Implement Testing 2");
-    public static final TaskDescription VALID_TASK_DESCRIPTION_FIRST = new TaskDescription("Code for testing of test 1");
-    public static final TaskDescription VALID_TASK_DESCRIPTION_SECOND = new TaskDescription("Code for testing of test 2");
-    public static final Task VALID_TASK_FIRST = new Task(VALID_TASK_NAME_FIRST, VALID_TASK_DESCRIPTION_FIRST);
-    public static final Task VALID_TASK_SECOND = new Task(VALID_TASK_NAME_SECOND, VALID_TASK_DESCRIPTION_SECOND);
+    public static final TaskDescription VALID_TASK_DESCRIPTION_FIRST =
+            new TaskDescription("Code for testing of test 1");
+    public static final TaskDescription VALID_TASK_DESCRIPTION_SECOND =
+            new TaskDescription("Code for testing of test 2");
+    public static final TaskStatus VALID_TASK_STATUS = new TaskStatus();
+    public static final Task VALID_TASK_FIRST = new Task(VALID_TASK_NAME_FIRST,
+            VALID_TASK_DESCRIPTION_FIRST, VALID_TASK_STATUS);
+    public static final Task VALID_TASK_SECOND = new Task(VALID_TASK_NAME_SECOND,
+            VALID_TASK_DESCRIPTION_SECOND, VALID_TASK_STATUS);
 
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;

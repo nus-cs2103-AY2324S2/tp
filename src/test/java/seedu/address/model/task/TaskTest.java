@@ -15,7 +15,7 @@ public class TaskTest {
         Task task = new TaskBuilder().withTaskName("Test").withTaskDescription("Test").build();
         assertEquals("Test", task.getName().taskName);
         assertEquals("Test", task.getDescription().taskDescription);
-        assertFalse(task.getStatus().taskStatus);
+        assertFalse(task.getStatus().getTaskStatus());
     }
 
     @Test
@@ -62,13 +62,13 @@ public class TaskTest {
     public void setAsDone_checkMarkStatus_true() {
         Task task = new TaskBuilder().build();
         task.getStatus().setAsDone();
-        assertTrue(task.getStatus().taskStatus);
+        assertTrue(task.getStatus().getTaskStatus());
     }
 
     @Test
     public void setAsUndone_checkUnmarkStatus_false() {
         Task task = new TaskBuilder().build();
         task.getStatus().setAsUndone();
-        assertFalse(task.getStatus().taskStatus);
+        assertFalse(task.getStatus().getTaskStatus());
     }
 }

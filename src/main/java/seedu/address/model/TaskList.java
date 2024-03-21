@@ -2,8 +2,6 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
-//import java.util.ArrayList;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.task.Task;
@@ -29,13 +27,11 @@ public class TaskList {
         this();
 
         requireNonNull(toBeCopied);
-        
         setTaskList(toBeCopied);
     }
 
     public void setTaskList(TaskList tasks) {
         observableList.setAll(tasks.observableList);
-        //taskList = new ArrayList<>(tasks.getSerializeTaskList());
     }
 
     /**
@@ -44,7 +40,6 @@ public class TaskList {
      * @param task The task to be added to the list.
      */
     public void addTask(Task task) {
-        //taskList.add(task);
         observableList.add(task);
     }
 

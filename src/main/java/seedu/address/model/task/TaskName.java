@@ -3,6 +3,9 @@ package seedu.address.model.task;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents a Task's name in the task list.
+ */
 public class TaskName {
 
     public static final String MESSAGE_CONSTRAINTS = "Task name can take any values, and it should not be blank";
@@ -18,7 +21,7 @@ public class TaskName {
     /**
      * Constructs an {@code TaskName}.
      *
-     * @param description A valid name.
+     * @param name A valid name.
      */
     public TaskName(String name) {
         requireNonNull(name);

@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.task.Task;
@@ -30,16 +31,9 @@ public class TaskCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label mark;
+    private FlowPane status;
     @FXML
     private Label description;
-
-    /*
-    @FXML
-    private Label email;
-    @FXML
-    private FlowPane tags;
-    */
 
     /**
      * Creates a {@code TaskCode} with the given {@code Task} and index to display.
@@ -49,7 +43,7 @@ public class TaskCard extends UiPart<Region> {
         this.task = task;
         id.setText(displayedIndex + ". ");
         name.setText(task.getName().taskName);
-        //mark.setText(task.getMark().value);
+        status.getChildren().add(new Label(task.getStatus().toString()));
         description.setText(task.getDescription().taskDescription);
     }
 }

@@ -8,16 +8,16 @@ import java.util.Objects;
 public class Task {
     private TaskName name;
     private TaskDescription description;
-    private TaskStatus isDone;
+    private TaskStatus status;
 
     /**
      * The constructor of the class.
      * @param description Description of the task.
      */
-    public Task(TaskName name, TaskDescription description) {
+    public Task(TaskName name, TaskDescription description, TaskStatus status) {
         this.name = name;
         this.description = description;
-        isDone = new TaskStatus();
+        this.status = status;
     }
 
     /**
@@ -41,7 +41,7 @@ public class Task {
      * @return The statis of the task.
      */
     public TaskStatus getStatus() {
-        return isDone;
+        return status;
     }
 
     @Override
@@ -66,8 +66,13 @@ public class Task {
         return Objects.hash(name, description);
     }
 
+    /**
+     * Compare with other tasks for sorting in tags
+     * @param otherTask Task to be compared to
+     * @return value of the comparison
+     */
     public int compare(Task otherTask) {
-        if(this.getName().taskName.compareTo(otherTask.getName().taskName) == 0) {
+        if (this.getName().taskName.compareTo(otherTask.getName().taskName) == 0) {
             return this.getDescription()
                     .taskDescription.compareTo(otherTask.getDescription().taskDescription);
         } else {

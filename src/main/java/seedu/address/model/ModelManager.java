@@ -189,7 +189,7 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredTasks.setPredicate(predicate);
     }
-  
+
     // =========== Filtered Person List Accessors
     // =============================================================
 
