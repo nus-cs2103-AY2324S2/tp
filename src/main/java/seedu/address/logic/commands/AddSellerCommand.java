@@ -30,11 +30,11 @@ public class AddSellerCommand extends Command {
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
-            + PREFIX_HOUSINGTYPE + "HOUSINGTYPE"
+            + PREFIX_HOUSINGTYPE + "HOUSINGTYPE "
             + PREFIX_STREET + "STREET "
             + PREFIX_BLOCK + "BLOCK "
             + PREFIX_LEVEL + "LEVEL "
-            + PREFIX_UNITNUMBER + "UNITNUMBER "
+            + PREFIX_UNITNUMBER + "UNIT NUMBER "
             + PREFIX_POSTALCODE + "POSTAL CODE "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
@@ -43,26 +43,26 @@ public class AddSellerCommand extends Command {
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_HOUSINGTYPE + "HDB "
             + PREFIX_STREET + "Clementi Ave 2 "
-            + PREFIX_BLOCK + "Block 311 "
-            + PREFIX_LEVEL + "Level 02"
-            + PREFIX_UNITNUMBER + "Unit 25"
+            + PREFIX_BLOCK + "311 "
+            + PREFIX_LEVEL + "02 "
+            + PREFIX_UNITNUMBER + "25 "
             + PREFIX_POSTALCODE + "578578 "
             + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";
+            + PREFIX_TAG + "owesMoney ";
 
-    public static final String MESSAGE_SUCCESS = "New seller added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This seller already exists in the address book";
+    public static final String MESSAGE_SUCCESS = "New seller added= %1$s";
+    public static final String MESSAGE_DUPLICATE_SELLER = "This seller already exists in the address book";
 
     private final Person sellerToAdd;
 
     /**
-     * Creates an AddSellerCommand to add the specified seller.
-     * @param person The seller to be added.
+     * Creates an AddSellerCommand to add the specified {@code Seller}
      */
     public AddSellerCommand(Person person) {
         requireNonNull(person);
         sellerToAdd = person;
     }
+
     /**
      * Executes the command and returns the result message.
      *
@@ -75,7 +75,7 @@ public class AddSellerCommand extends Command {
         requireNonNull(model);
 
         if (model.hasPerson(sellerToAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_SELLER);
         }
 
         model.addPerson(sellerToAdd);

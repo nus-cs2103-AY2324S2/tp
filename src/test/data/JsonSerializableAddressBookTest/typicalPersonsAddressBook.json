@@ -4,50 +4,112 @@
     "name" : "Alice Pauline",
     "phone" : "94351253",
     "email" : "alice@example.com",
-    "address" : "123, Jurong West Ave 6, #08-111",
-    "postalCode": "789012",
+    "housingType": "HDB",
+    "houses": [
+      {
+        "type": "NonLanded",
+        "block": "10A",
+        "level": "15",
+        "postalCode": "654321",
+        "street": "Orchard Street",
+        "unitNumber": "150"
+      }
+    ],
     "tags" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
     "email" : "johnd@example.com",
-    "address" : "311, Clementi Ave 2, #02-25",
-    "postalCode": "578903",
+    "housingType": "HDB",
+    "houses": [
+      {
+        "type": "NonLanded",
+        "level": "16",
+        "postalCode": "654321",
+        "street": "Orchard Street",
+        "unitNumber": "150"
+      }
+    ],
     "tags" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",
     "email" : "heinz@example.com",
-    "address" : "wall street",
-    "postalCode": "678999",
+    "housingType": "HDB",
+    "houses": [
+      {
+        "type": "NonLanded",
+        "block": "10B",
+        "level": "17",
+        "postalCode": "654322",
+        "street": "Orchard Street 1",
+        "unitNumber": "150"
+      }
+    ],
     "tags" : [ ]
   }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",
     "email" : "cornelia@example.com",
-    "address" : "10th street",
-    "postalCode": "678999",
+    "housingType": "HDB",
+    "houses": [
+      {
+        "type": "NonLanded",
+        "block": "10C",
+        "level": "18",
+        "postalCode": "654323",
+        "street": "Orchard Street 2",
+        "unitNumber": "150"
+      }
+    ],
     "tags" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
     "phone" : "9482224",
     "email" : "werner@example.com",
-    "address" : "michegan ave",
-    "postalCode": "678999",
+    "housingType": "HDB",
+    "houses": [
+      {
+        "type": "NonLanded",
+        "block": "10D",
+        "level": "19",
+        "postalCode": "654324",
+        "street": "Orchard Street 3",
+        "unitNumber": "150"
+      }
+    ],
     "tags" : [ ]
   }, {
     "name" : "Fiona Kunz",
     "phone" : "9482427",
     "email" : "lydia@example.com",
-    "address" : "little tokyo",
-    "postalCode": "678999",
+    "housingType": "HDB",
+    "houses": [
+      {
+        "type": "NonLanded",
+        "block": "10E",
+        "level": "20",
+        "postalCode": "654325",
+        "street": "Orchard Street 4",
+        "unitNumber": "150"
+      }
+    ],
     "tags" : [ ]
   }, {
     "name" : "George Best",
     "phone" : "9482442",
     "email" : "anna@example.com",
-    "address" : "4th street",
-    "postalCode": "678999",
+    "housingType": "HDB",
+    "houses": [
+      {
+        "type": "NonLanded",
+        "block": "10F",
+        "level": "21",
+        "postalCode": "654326",
+        "street": "Orchard Street 5",
+        "unitNumber": "150"
+      }
+    ],
     "tags" : [ ]
   } ]
 }

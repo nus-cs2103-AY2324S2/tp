@@ -23,6 +23,6 @@ public class Landed extends House {
      */
     @Override
     public String toString() {
-        return unitNumber.toString() + " " + street.toString() + postalCode.toString();
+        return "Landed House: " + super.toString();
     }
 }

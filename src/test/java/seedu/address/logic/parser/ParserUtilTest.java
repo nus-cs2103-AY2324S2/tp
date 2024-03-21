@@ -19,7 +19,6 @@ import seedu.address.model.house.Level;
 import seedu.address.model.house.PostalCode;
 import seedu.address.model.house.Street;
 import seedu.address.model.house.UnitNumber;
-import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
@@ -28,20 +27,18 @@ import seedu.address.model.tag.Tag;
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
-    private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
     private static final String INVALID_STREET = "t3$t!ng";
     private static final String INVALID_LEVEL = "aa";
     private static final String INVALID_UNIT_NUMBER = "1234";
     private static final String INVALID_BLOCK = "12a34";
-    private static final String INVALID_POSTALCODE = "5678990";
+    private static final String INVALID_POSTAL_CODE = "5678990";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
-    private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
-    private static final String VALID_POSTALCODE = "654321";
+    private static final String VALID_POSTAL_CODE = "654321";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
     private static final String VALID_STREET = "292A East Coast Rd";
@@ -122,24 +119,6 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseAddress_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseAddress(INVALID_ADDRESS));
-    }
-
-    @Test
-    public void parseAddress_validValueWithoutWhitespace_returnsAddress() throws Exception {
-        Address expectedAddress = new Address(VALID_ADDRESS);
-        assertEquals(expectedAddress, ParserUtil.parseAddress(VALID_ADDRESS));
-    }
-
-    @Test
-    public void parseAddress_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
-        String addressWithWhitespace = WHITESPACE + VALID_ADDRESS + WHITESPACE;
-        Address expectedAddress = new Address(VALID_ADDRESS);
-        assertEquals(expectedAddress, ParserUtil.parseAddress(addressWithWhitespace));
-    }
-
-    @Test
     public void parseEmail_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseEmail((String) null));
     }
@@ -169,19 +148,19 @@ public class ParserUtilTest {
 
     @Test
     public void parsePostalCode_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parsePostalCode(INVALID_POSTALCODE));
+        assertThrows(ParseException.class, () -> ParserUtil.parsePostalCode(INVALID_POSTAL_CODE));
     }
 
     @Test
     public void parsePostalCode_validValueWithoutWhitespace_returnsPostalCode() throws Exception {
-        PostalCode expectedPostalCode = new PostalCode(VALID_POSTALCODE);
-        assertEquals(expectedPostalCode, ParserUtil.parsePostalCode(VALID_POSTALCODE));
+        PostalCode expectedPostalCode = new PostalCode(VALID_POSTAL_CODE);
+        assertEquals(expectedPostalCode, ParserUtil.parsePostalCode(VALID_POSTAL_CODE));
     }
 
     @Test
     public void parsePostalCode_validValueWithWhitespace_returnsTrimmedPostalCode() throws Exception {
-        String postalCodeWithWhitespace = WHITESPACE + VALID_POSTALCODE + WHITESPACE;
-        PostalCode expectedPostalCode = new PostalCode(VALID_POSTALCODE);
+        String postalCodeWithWhitespace = WHITESPACE + VALID_POSTAL_CODE + WHITESPACE;
+        PostalCode expectedPostalCode = new PostalCode(VALID_POSTAL_CODE);
         assertEquals(expectedPostalCode, ParserUtil.parsePostalCode(postalCodeWithWhitespace));
     }
 
