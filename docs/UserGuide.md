@@ -73,11 +73,11 @@ Format: `help`
 Adds a new employee to the address book.
 
 Format:
-* `/add NAME, PHONE, EMAIL, ADDRESS, YEAR_JOINED`
-* `/add :name NAME :phone PHONE :email EMAIL :address ADDRESS :year YEAR_JOINED`
+* `/add NAME; PHONE; EMAIL; ADDRESS; YEAR_JOINED; [TAG]…`
+* `/add :name NAME :phone PHONE :email EMAIL :address ADDRESS :year YEAR_JOINED [:tag TAG]…`
 
 Examples:
-* `/add John Doe, 98765432, johndoe@example.com, street A, 2024`
+* `/add John Doe; 98765432; johndoe@example.com; street A; 2024; finance manager`
 * `/add :name John Doe :phone 98765432 :email johndoe@example.com :address street A :year 2024`
 
 ### Listing all persons : `/list`
