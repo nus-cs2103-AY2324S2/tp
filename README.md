@@ -1,6 +1,6 @@
 [![CI Status](https://github.com/AY2324S2-CS2103-T14-1/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2324S2-CS2103-T14-1/tp/actions)
 
-![Ui](docs/images/Ui.png)
+![Ui](docs/images/sampleUi.png)
 
 # EduConnect
 
