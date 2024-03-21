@@ -33,7 +33,7 @@ public class CompanyUtil {
         sb.append(PREFIX_PHONE + company.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + company.getEmail().value + " ");
         company.getTags().stream().forEach(
-            s -> sb.append(PREFIX_TAG + s.tagName + " ")
+            s -> sb.append(PREFIX_TAG + s.getTagName() + " ")
         );
         return sb.toString();
     }
@@ -51,7 +51,7 @@ public class CompanyUtil {
             if (tags.isEmpty()) {
                 sb.append(PREFIX_TAG);
             } else {
-                tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
+                tags.forEach(s -> sb.append(PREFIX_TAG).append(s.getTagName()).append(" "));
             }
         }
         return sb.toString();
