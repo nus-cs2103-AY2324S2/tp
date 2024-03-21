@@ -142,7 +142,6 @@
 .pane-with-border {
     -fx-background-color: #b9ecc4;
     -fx-border-color: #C0C2C0;
-
     -fx-border-top-width: 1px;
 }
 
@@ -151,10 +150,10 @@
 }
 
 .result-display {
-    -fx-background-color: #69866F;
+    -fx-background-color: #b9ecc4;
     -fx-font-family: "Segoe UI Light";
     -fx-font-size: 13pt;
-    -fx-text-fill: white;
+    -fx-text-fill: #69866F;
 }
 
 .result-display .label {
