@@ -6,6 +6,7 @@ import tutorpro.logic.commands.AddCommand;
 import tutorpro.logic.commands.EditCommand;
 import tutorpro.logic.parser.CliSyntax;
 import tutorpro.model.person.student.Student;
+import tutorpro.model.person.student.Subject;
 import tutorpro.model.tag.Tag;
 
 /**
@@ -49,6 +50,15 @@ public class PersonUtil {
         descriptor.getEmail().ifPresent(email -> sb.append(CliSyntax.PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getAddress().ifPresent(address -> sb.append(CliSyntax.PREFIX_ADDRESS)
                 .append(address.value).append(" "));
+        descriptor.getLevel().ifPresent(level -> sb.append(CliSyntax.PREFIX_LEVEL).append(level).append(" "));
+        if (descriptor.getSubjects().isPresent()) {
+            Set<Subject> subjects = descriptor.getSubjects().get();
+            if (subjects.isEmpty()) {
+                sb.append(CliSyntax.PREFIX_SUBJECT);
+            } else {
+                subjects.forEach(s -> sb.append(CliSyntax.PREFIX_SUBJECT).append(s.toString()).append(" "));
+            }
+        }
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {

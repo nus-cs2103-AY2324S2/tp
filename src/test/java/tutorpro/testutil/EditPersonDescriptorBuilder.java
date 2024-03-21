@@ -8,8 +8,10 @@ import tutorpro.logic.commands.EditCommand;
 import tutorpro.model.person.Address;
 import tutorpro.model.person.Email;
 import tutorpro.model.person.Name;
-import tutorpro.model.person.Person;
 import tutorpro.model.person.Phone;
+import tutorpro.model.person.student.Level;
+import tutorpro.model.person.student.Student;
+import tutorpro.model.person.student.Subject;
 import tutorpro.model.tag.Tag;
 
 /**
@@ -30,12 +32,14 @@ public class EditPersonDescriptorBuilder {
     /**
      * Returns an {@code EditPersonDescriptor} with fields containing {@code person}'s details
      */
-    public EditPersonDescriptorBuilder(Person person) {
+    public EditPersonDescriptorBuilder(Student person) {
         descriptor = new EditCommand.EditPersonDescriptor();
         descriptor.setName(person.getName());
         descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
         descriptor.setAddress(person.getAddress());
+        descriptor.setLevel(person.getLevel());
+        descriptor.setSubjects(person.getSubjects());
         descriptor.setTags(person.getTags());
     }
 
@@ -68,6 +72,24 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withAddress(String address) {
         descriptor.setAddress(new Address(address));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Level} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withLevel(String level) {
+        descriptor.setLevel(new Level(level));
+        return this;
+    }
+
+    /**
+     * Parses the {@code subjects} into a {@code Set<Subject>} and set it to the {@code EditPersonDescriptor}
+     * that we are building.
+     */
+    public EditPersonDescriptorBuilder withSubjects(String... subjects) {
+        Set<Subject> subjectSet = Stream.of(subjects).map(Subject::new).collect(Collectors.toSet());
+        descriptor.setSubjects(subjectSet);
         return this;
     }
 
