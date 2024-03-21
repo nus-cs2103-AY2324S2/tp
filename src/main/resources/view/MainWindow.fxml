@@ -11,6 +11,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.control.Label?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
          title="ClinicMate" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
   <icons>
@@ -46,14 +47,28 @@
           </padding>
         </StackPane>
 
-        <VBox fx:id="personList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
-          <padding>
-            <Insets top="10" right="10" bottom="10" left="10" />
-          </padding>
-          <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-        </VBox>
+        <SplitPane orientation="HORIZONTAL" minHeight="600" prefHeight="600" maxHeight="600" VBox.vgrow="ALWAYS">
+          <VBox fx:id="personList" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+            <padding>
+              <Insets top="10" right="10" bottom="10" left="10" />
+            </padding>
+            <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+          </VBox>
 
-        <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
+          <StackPane fx:id="patientDetails" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+            <VBox alignment="CENTER">
+              <Label text="Patient Details" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+              <Label text="Name: John Doe"/>
+              <Label text="Age: 35"/>
+              <Label text="Gender: Male"/>
+              <Label text="Address: 123 Main St"/>
+              <Label text="Phone: 555-1234"/>
+            </VBox>
+          </StackPane>
+        </SplitPane>
+
+        <StackPane fx:id="statusbarPlaceholder" minHeight="10" prefHeight="10" maxHeight="10"
+                   VBox.vgrow="ALWAYS" />
       </VBox>
     </Scene>
   </scene>
