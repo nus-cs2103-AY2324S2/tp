@@ -74,10 +74,6 @@ public class CommandBox extends UiPart<Region> {
         String currentText = commandTextField.getText();
         String autoCompleteText = autoCompleteExecutor.getAutoComplete(currentText);
 
-        if (autoCompleteText.isEmpty()) {
-            return;
-        }
-
         commandTextField.setText(currentText + autoCompleteText);
 
         // Request focus on the commandTextField
