@@ -41,9 +41,9 @@ It is optimized for a _Command Line Interface_ (CLI), but you can still use the 
 
    * `list` : Lists all contacts.
 
-   * `add Company -e company@gmail.com -n 61234567`: Adds a company contact with name ``Company``, email ``company@gmail.com`` and number ``61234567``.
+   * `add -n Company -e company@gmail.com -t Role`: Adds a company contact with name ``Company``, email ``company@gmail.com`` and tag ``Role``.
 
-   * `del Company` : Deletes the contact with name ``'Company'``.
+   * `delete 1` : Deletes the contact with index ``1``.
 
    * `exit` : Exits the app.<br><br>
 
@@ -59,16 +59,16 @@ It is optimized for a _Command Line Interface_ (CLI), but you can still use the 
 **Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `add -n COMPANY`, `COMPANY` is a parameter which can be used as `add -n DBS`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g `-n COMPANY [-p PHONE_NUMBER]` can be used as `-n DBS -p 61234567` or as `-n DBS`.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+* Items with `…`​ after them can be used multiple times.<br>
+  e.g. `-t TAG…​` can be used as `-t Software Engineer`, `-t Software Engineer -t Data Analyst` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `-n COMPANY -t Software Engineer`, `-t Software Engineer -n COMPANY` is also acceptable.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
@@ -89,16 +89,16 @@ Format: `help`
 
 Adds a company to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add -n COMPANY -e EMAIL -t TAG…​ [-p PHONE_NUMBER]`
 
 <box type="tip" seamless>
 
-**Tip:** A company can have any number of tags (including 0)
+**Tip:** A company can have a phone number (optional) and multiple tags.
 </box>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add -n DBS -t Software Engineer -e dbs@example.com`
+* `add -n Tiktok -t Data Analyst -e tiktok@example.com -p 61234567 -t AI Engineer`
 
 ### Listing all companies : `list`
 
@@ -110,18 +110,18 @@ Format: `list`
 
 Edits an existing company in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [-n NAME] [-p PHONE] [-e EMAIL] [-t TAG]…​`
 
 * Edits the company at the specified `INDEX`. The index refers to the index number shown in the displayed company list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the company will be removed i.e adding of tags is not cumulative.
-* You can remove all the company’s tags by typing `t/` without
+* You can remove all the company’s tags by typing `-t` without
     specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st company to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd company to be `Betsy Crower` and clears all existing tags.
+*  `edit 1 -p 91234567 -e dbs_hr@example.com` Edits the phone number and email address of the 1st company to be `91234567` and `dbs_hr@example.com` respectively.
+*  `edit 2 -n Meta -t` Edits the name of the 2nd company to be `Meta` and clears all existing tags.
 
 ### Locating companies by name: `find`
 

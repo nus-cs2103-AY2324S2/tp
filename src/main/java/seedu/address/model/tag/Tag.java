@@ -13,7 +13,7 @@ public class Tag {
                                                         + "contain only single space";
     public static final String VALIDATION_REGEX = "\\b\\p{Alnum}+(?: \\p{Alnum}+)*\\b";
 
-    public final String tagName;
+    private final String tagName;
 
     /**
      * Constructs a {@code Tag}.
@@ -54,16 +54,23 @@ public class Tag {
     }
 
     /**
+     * Returns the tag name.
+     */
+    public String getTagName() {
+        return tagName;
+    }
+
+    /**
      * Format state as text for viewing.
      */
     public String toString() {
-        return '[' + capitalise(tagName) + ']';
+        return '[' + capitalise() + ']';
     }
 
     /**
      * Capitalises the first letter of each word in the tag name.
      */
-    public String capitalise(String tagName) {
+    public String capitalise() {
         String[] words = tagName.split(" ");
         StringBuilder result = new StringBuilder();
         for (String word : words) {
