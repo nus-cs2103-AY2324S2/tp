@@ -7,6 +7,9 @@ import java.util.List;
 import tutorpro.model.person.parent.Parent;
 import tutorpro.model.util.SampleDataUtil;
 
+/**
+ * A utility class to help with building Parent objects.
+ */
 public class TypicalParents {
     public static final Parent JUCHIE = new ParentBuilder().withName("Ju Chie")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("jc@example.com")
