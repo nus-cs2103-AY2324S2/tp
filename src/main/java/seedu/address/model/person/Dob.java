@@ -10,7 +10,7 @@ import java.time.format.DateTimeFormatter;
  * Represents a patient's date of birth in the address book.
  */
 public class Dob {
-    public static final String MESSAGE_CONSTRAINTS = "Dates of birth takes in a date"
+    public static final String MESSAGE_CONSTRAINTS = "Dates of birth takes in a date. "
             + "Date of birth should not be later than date of recording";
     public static final String VALIDATION_REGEX = "^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/[0-9]{4}$";
 

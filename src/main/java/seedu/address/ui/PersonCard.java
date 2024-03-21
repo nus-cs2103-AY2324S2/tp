@@ -25,7 +25,6 @@ public class PersonCard extends UiPart<Region> {
      */
 
     public final Person person;
-
     @FXML
     private HBox cardPane;
     @FXML
@@ -43,6 +42,7 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
 
+
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
@@ -51,10 +51,10 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
-        dob.setText(person.getDob().value);
-        ic.setText(person.getIc().value);
-        admissionDate.setText(person.getAdmissionDate().value);
-        ward.setText(person.getWard().value);
+        dob.setText("DOB: " + person.getDob().value);
+        ic.setText("IC: " + person.getIc().value);
+        admissionDate.setText("Admission Date: " + person.getAdmissionDate().value);
+        ward.setText("Ward: " + person.getWard().value);
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
