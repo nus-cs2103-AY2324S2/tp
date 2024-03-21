@@ -34,12 +34,17 @@ public class RelationshipUtil {
         return !relationshipsTracker.isEmpty() && relationshipsTracker.contains(toFind);
     }
 
+    /**
+     * Checks if a specific relationship exists in the tracker.
+     * @param toFind The relationship to find.
+     * @return true if the relationship exists, false otherwise.
+     */
     public boolean hasRelationshipWithDescriptor(Relationship toFind) {
         for (Relationship relationship : relationshipsTracker) {
             if ((relationship.getPerson1().equals(toFind.getPerson1()) && relationship.getPerson2()
                     .equals(toFind.getPerson2())
-                    || (relationship.getPerson1().equals(toFind.getPerson2()) && relationship.getPerson2().
-                    equals(toFind.getPerson1()))) && relationship.getRoleDescriptor(
+                    || (relationship.getPerson1().equals(toFind.getPerson2()) && relationship.getPerson2()
+                            .equals(toFind.getPerson1()))) && relationship.getRoleDescriptor(
                             toFind.getPerson1()).equals(toFind.getRoleDescriptor(toFind.getPerson2()))) {
                 return true;
             }
