@@ -24,7 +24,7 @@ public class MailAppTest {
     @Test
     public void handleEmailClicked_noDesktopMailApp_throwsException() {
         // Create a mock object for the Desktop class
-        try (MockedStatic desktopMock = mockStatic(Desktop.class)) {
+        try (MockedStatic<Desktop> desktopMock = mockStatic(Desktop.class)) {
             desktopMock.when(Desktop::isDesktopSupported).thenReturn(false);
 
             MailApp mailApp = new MailApp(GEORGE);
