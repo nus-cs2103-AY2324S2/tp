@@ -203,7 +203,7 @@ public class MainWindow extends UiPart<Stage> {
     private void refreshRemindersPanel() {
         clearRemindersPanel();
         remindersPanel.updateRemindersPanel();
-        addClientViewPanel();
+        addRemindersPanel();
     }
 
     /**
@@ -258,6 +258,7 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
             refreshClientViewPanel();
+            refreshRemindersPanel();
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
