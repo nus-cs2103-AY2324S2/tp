@@ -51,7 +51,7 @@ public class StarCommand extends Command {
         contactToStar.starContact();
         Person starredContact = new Person(contactToStar.getName(), contactToStar.getPhone(), contactToStar.getEmail(),
                 contactToStar.getAddress(), contactToStar.getCompany(),
-                contactToStar.isStarred(), contactToStar.getTags());
+                contactToStar.getPriority(), contactToStar.isStarred(), contactToStar.getTags());
 
         model.setPerson(contactToStar, starredContact);
         model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
