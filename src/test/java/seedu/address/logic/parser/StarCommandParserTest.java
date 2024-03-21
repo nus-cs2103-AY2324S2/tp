@@ -1,9 +1,11 @@
 package seedu.address.logic.parser;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.logic.parser.exceptions.ParseException;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class StarCommandParserTest {
 

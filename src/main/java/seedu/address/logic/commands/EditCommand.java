@@ -104,7 +104,8 @@ public class EditCommand extends Command {
         Boolean updatedStar = personToEdit.isStarred();
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedCompany, updatedStar, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
+                updatedCompany, updatedStar, updatedTags);
     }
 
     @Override
