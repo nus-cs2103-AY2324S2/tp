@@ -21,6 +21,6 @@ public abstract class Command {
      * Returns the type of command.
      * @return the type of command as a string.
      */
-    public abstract String commandType();
+    public abstract String getCommandType();
 
 }

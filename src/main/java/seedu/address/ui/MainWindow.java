@@ -191,14 +191,14 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isExit()) {
                 handleExit();
             }
-            if (logic.commandType(commandText).equals("articleCommand")) {
+            if (logic.getCommandType(commandText).equals("articleCommand")) {
                 // Initialize articleListPanel if not already initialized
                 if (articleListPanel == null) {
                     articleListPanel = new ArticleListPanel(logic.getFilteredArticleList());
                     articleListPanelPlaceholder.getChildren().add(articleListPanel.getRoot());
                 }
 
-            } else if (logic.commandType(commandText).equals("personCommand")) {
+            } else if (logic.getCommandType(commandText).equals("personCommand")) {
                 // Initialize personListPanel if not already initialized
                 if (personListPanel == null) {
                     personListPanel = new PersonListPanel(logic.getFilteredPersonList());

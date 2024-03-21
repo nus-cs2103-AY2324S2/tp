@@ -5,7 +5,7 @@ package seedu.address.logic.commands;
  */
 public abstract class PersonCommand extends Command {
 
-    public String commandType() {
+    public String getCommandType() {
         return "personCommand";
     };
 
