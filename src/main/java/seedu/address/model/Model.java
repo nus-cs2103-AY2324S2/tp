@@ -122,7 +122,5 @@ public interface Model {
      */
     void deleteSpecificMeetingForClient(Index clientIndex, Index meetingIndex);
 
-    boolean hasMeeting(Meeting meeting);
-
     void setMeeting(Meeting target, Meeting meeting);
 }

@@ -5,16 +5,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLIENT_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_MEETING;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_MEETING;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -26,7 +23,6 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
-import seedu.address.testutil.EditMeetingDescriptorBuilder;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -36,18 +32,28 @@ public class CommandTestUtil {
 
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
+    public static final String VALID_NAME_CHAD = "Chad Doo";
+    public static final String VALID_NAME_JAMAL = "Jamal Eee";
     public static final String VALID_PHONE_AMY = "11111111";
     public static final String VALID_PHONE_BOB = "22222222";
+    public static final String VALID_PHONE_CHAD = "33333333";
+    public static final String VALID_PHONE_JAMAL = "44444444";
     public static final String VALID_EMAIL_AMY = "amy@example.com";
     public static final String VALID_EMAIL_BOB = "bob@example.com";
+    public static final String VALID_EMAIL_CHAD = "chad@example.com";
+    public static final String VALID_EMAIL_JAMAL = "jamal@example.com";
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
+    public static final String VALID_ADDRESS_CHAD = "Block 231, Chad Street 2";
+    public static final String VALID_ADDRESS_JAMAL = "Block 123, Jamal Street 3";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
-    public static final String VALID_DATETIME_BOB = "01-01-2024 12:00";
+    public static final String VALID_DATETIME = "01-01-2030 17:00";
+    public static final String VALID_DESCRIPTION = "Project discussion";
 
-    public static final String VALID_DATETIME_AMY = "11-09-2024 12:00";
+    public static final String VALID_CLIENT_INDEX = "1";
+    public static final String VALID_MEETING_INDEX = "1";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -59,15 +65,17 @@ public class CommandTestUtil {
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
-    public static final String CLIENT_INDEX_DESC_ONE = " " + PREFIX_CLIENT_INDEX + INDEX_FIRST_PERSON;
-    public static final String CLIENT_INDEX_DESC_TWO = " " + PREFIX_CLIENT_INDEX + INDEX_SECOND_PERSON;
-    public static final String MEETING_INDEX_DESC_ONE = " " + PREFIX_MEETING_INDEX + INDEX_FIRST_MEETING;
-    public static final String MEETING_INDEX_DESC_TWO = " " + PREFIX_MEETING_INDEX + INDEX_SECOND_MEETING;
-    public static final String DATETIME_DESC_ONE = " " + PREFIX_DATETIME + VALID_DATETIME_AMY;
-    public static final String DATETIME_DESC_TWO = " " + PREFIX_DATETIME + VALID_DATETIME_BOB;
 
+    public static final String CLIENT_INDEX = " " + PREFIX_CLIENT_INDEX + VALID_CLIENT_INDEX;
+    public static final String MEETING_INDEX = " " + PREFIX_MEETING_INDEX + VALID_MEETING_INDEX;
+    public static final String DATETIME = " " + PREFIX_DATETIME + VALID_DATETIME;
+    public static final String DESCRIPTION = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
+    public static final String INVALID_DATETIME_DESC = " " + PREFIX_DATETIME
+            + "not-a-datetime"; // 'string' not allowed in datetime
+    public static final String INVALID_DESCRIPTION_DESC = " "
+            + PREFIX_DESCRIPTION; // empty string not allowed for description
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
@@ -79,9 +87,6 @@ public class CommandTestUtil {
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
 
-    public static final EditMeetingCommand.EditMeetingDescriptor DESC_MEETING_AMY;
-    public static final EditMeetingCommand.EditMeetingDescriptor DESC_MEETING_BOB;
-
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
@@ -91,20 +96,13 @@ public class CommandTestUtil {
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 
-    static {
-        DESC_MEETING_AMY = new EditMeetingDescriptorBuilder().withDescription(VALID_NAME_AMY)
-                .withDateTime(VALID_DATETIME_AMY).build();
-        DESC_MEETING_BOB = new EditMeetingDescriptorBuilder().withDescription(VALID_NAME_BOB)
-                .withDateTime(VALID_DATETIME_BOB).build();
-    }
-
     /**
      * Executes the given {@code command}, confirms that <br>
      * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
      * - the {@code actualModel} matches {@code expectedModel}
      */
     public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
-            Model expectedModel) {
+                                            Model expectedModel) {
         try {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
@@ -119,7 +117,7 @@ public class CommandTestUtil {
      * that takes a string {@code expectedMessage}.
      */
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
-            Model expectedModel) {
+                                            Model expectedModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
