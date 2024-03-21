@@ -9,6 +9,9 @@ import java.util.List;
 
 import static java.util.Objects.requireNonNull;
 
+/**
+ * Command to star a contact in Connectify.
+ */
 public class StarCommand extends Command {
     public static final String COMMAND_WORD = "star";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Stars the contact in Connectify.\n"
@@ -17,6 +20,11 @@ public class StarCommand extends Command {
 
     private final String contactName;
 
+    /**
+     * Constructs a {@code StarCommand} to star the specified contact.
+     *
+     * @param contactName The name of the contact to be starred.
+     */
     public StarCommand(String contactName) {
         this.contactName = contactName;
     }

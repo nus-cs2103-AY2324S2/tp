@@ -22,12 +22,14 @@ public class PersonBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_COMPANY = "TikTok";
+    public static final Boolean DEFAULT_STAR = false;
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
     private Company company;
+    private Boolean starred;
     private Set<Tag> tags;
 
     /**
@@ -39,6 +41,7 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         company = new Company(DEFAULT_COMPANY);
+        starred = DEFAULT_STAR;
         tags = new HashSet<>();
     }
 
@@ -51,6 +54,7 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         company = personToCopy.getCompany();
+        starred = personToCopy.isStarred();
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -102,8 +106,16 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Star} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withStar(Boolean starred) {
+        this.starred = starred;
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, phone, email, address, company, tags);
+        return new Person(name, phone, email, address, company, starred, tags);
     }
 
 }

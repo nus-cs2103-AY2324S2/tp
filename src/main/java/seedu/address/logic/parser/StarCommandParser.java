@@ -5,10 +5,10 @@ import seedu.address.logic.commands.StarCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.AddCommandParser.arePrefixesPresent;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
+/**
+ * Parses input arguments and creates a new StarCommand object.
+ */
 public class StarCommandParser implements Parser<StarCommand> {
 
     /**
@@ -24,7 +24,6 @@ public class StarCommandParser implements Parser<StarCommand> {
             throw new ParseException(String.format(
                     Messages.MESSAGE_INVALID_COMMAND_FORMAT, StarCommand.MESSAGE_USAGE));
         }
-        //String contactName = argMultimap.getValue(PREFIX_NAME).orElseThrow();
 
         return new StarCommand(trimmedArgs);
     }
