@@ -23,13 +23,13 @@ public class AddPolicyCommand extends Command {
     public static final String COMMAND_WORD = "addPolicy";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Edits the remark of the person identified "
-            + "by the index number used in the last person listing. "
-            + "Existing remark will be overwritten by the input.\n"
+            + ": Adds a policy to the client identified "
+            + "by the index number used in the last person listing\n"
+            + "and the policy name. "
             + "Parameters: INDEX (must be a positive integer) "
-            + "r/ [REMARK]\n"
+            + "pn/ [POLICY NAME]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + "r/ Likes to swim.";
+            + "pn/ SuperSaver";
 
     public static final String MESSAGE_ARGUMENTS = "Index %1$d, Policy Name: %2$s";
     public static final String MESSAGE_ADD_POLICY_SUCCESS = "Added policy to Person: %1$s";
