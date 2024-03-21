@@ -26,7 +26,7 @@ public class InternshipRemarkCommand extends InternshipCommand {
             + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_REMARK + " [REMARK]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_REMARK + "Has a behavioural interview.";
+            + PREFIX_REMARK + " Has a behavioural interview.";
 
     public static final String MESSAGE_ADD_REMARK_SUCCESS = "Added remark to Internship: %1$s";
     public static final String MESSAGE_DELETE_REMARK_SUCCESS = "Removed remark from Internship: %1$s";
