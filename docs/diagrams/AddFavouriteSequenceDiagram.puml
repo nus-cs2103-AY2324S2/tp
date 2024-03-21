@@ -60,7 +60,7 @@ activate Model
 Model --> AddFavouriteCommand : lastShownList
 deactivate Model
 
-loop for each index
+loop iterate through all indices
     AddFavouriteCommand -> Person : addFavourite()
     activate Person
 
