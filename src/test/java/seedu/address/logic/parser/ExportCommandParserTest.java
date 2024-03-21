@@ -39,7 +39,7 @@ public class ExportCommandParserTest {
 
     @Test
     public void parse_emptyArgs_throwsParseException() {
-        String expectedErrorMessage = String.format(ExportCommandParser.MESSAGE_INVALID_FILENAME);
+        String expectedErrorMessage = String.format(ExportCommandParser.MESSAGE_NO_EXTENSION);
         assertParseFailure(parser, "   ", expectedErrorMessage);
     }
 

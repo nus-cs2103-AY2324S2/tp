@@ -54,7 +54,7 @@ public class CsvExporterTest {
     public void convertPersonToStringArray() {
         Person person = TypicalPersons.ALICE;
         String[] expectedArray = {"Alice Pauline", "94351253", "alice@example.com",
-            "\"123, Jurong West Ave 6, #08-111\"", "", "\"friends\""};
+            "\"123, Jurong West Ave 6, #08-111\"", "She likes aardvarks.", "\"friends\""};
         assertArrayEquals(expectedArray, csvExporter.convertPersonToStringArray(person));
     }
 }
