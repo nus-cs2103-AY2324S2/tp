@@ -165,7 +165,7 @@ public class MainApp extends Application {
             logger.warning("Failed to save config file : " + StringUtil.getDetails(e));
         }
 
-        return initializedPrefs;
+        return new UserPrefs();
     }
 
     @Override
