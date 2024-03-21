@@ -29,7 +29,7 @@ public class RemindersCard extends UiPart<Region> {
         // this.remindersList = remindersList;
         title.setText(remindersTitle);
         // remindersCardList.setText(remindersList.toString());
-        remindersCardList.setPrefHeight(60 + 14 * 20);
+        remindersCardList.setPrefHeight(60);
         // remindersCardList.setPrefHeight(60 + remindersList.getNumberOfReminders() * 20);
         cardPane.setPrefHeight(80);
         // cardPane.setPrefHeight(80 + remindersList.getNumberOfReminders() * 20);
