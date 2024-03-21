@@ -15,12 +15,26 @@ public class TypicalParents {
             .withStudents(SampleDataUtil.getSampleStudents())
             .build();
 
+    public static final Parent STARCEN = new ParentBuilder().withName("StarCen")
+            .withAddress("123, Jurong West Ave 6, #08-111").withEmail("sc@example.com")
+            .withPhone("94351253")
+            .withTags("friends")
+            .withStudents(SampleDataUtil.getSampleStudents())
+            .build();
+
+    public static final Parent YINXUAN = new ParentBuilder().withName("Yin Xuan")
+            .withAddress("123, Jurong West Ave 6, #08-111").withEmail("yx@example.com")
+            .withPhone("94351253")
+            .withTags("friends")
+            .withStudents(SampleDataUtil.getSampleStudents())
+            .build();
+
     private TypicalParents() {} // prevents instantiation
 
     /**
      * Returns an {@code List<Person>} with all the typical parents.
      */
     public static List<Parent> getTypicalPersons() {
-        return new ArrayList<>(Arrays.asList(JUCHIE));
+        return new ArrayList<>(Arrays.asList(JUCHIE, STARCEN, YINXUAN));
     }
 }
