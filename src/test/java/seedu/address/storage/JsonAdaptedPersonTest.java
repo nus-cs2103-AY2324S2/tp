@@ -17,7 +17,6 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Salary;
-import seedu.address.model.person.Info;
 
 public class JsonAdaptedPersonTest {
     private static final String INVALID_COMPANY_NAME = "123456789 123456789 123456789 123456789 123456789 123456789 "
@@ -78,7 +77,7 @@ public class JsonAdaptedPersonTest {
     public void toModelType_nullPhone_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(
                 VALID_COMPANY_NAME, VALID_NAME, null, VALID_EMAIL, VALID_ADDRESS, VALID_INTERVIEWTIME,
-                VALID_SALARY,  VALID_INFO, VALID_TAGS);
+                VALID_SALARY, VALID_INFO, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
