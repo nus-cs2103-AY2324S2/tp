@@ -12,6 +12,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.storage.AddressBookStorage;
 import seedu.address.storage.JsonAddressBookStorage;
 
+
 /**
  * Represents a Class in the class book.
  */
@@ -20,6 +21,8 @@ public class Classes {
     private CourseCode courseCode; //tutorial grp
     private AddressBook addressBook;
     private AddressBookStorage addressBookStorage;
+
+    public AddressBook addressBook = new AddressBook();
 
     /**
      * Constructor for Classes.

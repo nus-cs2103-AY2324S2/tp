@@ -49,7 +49,8 @@ public class Messages {
                 .append("; Email: ")
                 .append(person.getEmail())
                 .append("; StudentId: ")
-                .append(person.getStudentId());
+                .append(person.getStudentId()
+                .append("; Description: "));
         return builder.toString();
     }
 

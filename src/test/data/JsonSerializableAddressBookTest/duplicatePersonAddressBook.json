@@ -4,12 +4,14 @@
     "phone": "94351253",
     "email": "alice@example.com",
     "studentid": "A1111111D",
-    "attendances": [ ]
+    "attendances": [ ],
+    "description": ""
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",
     "studentid": "A1111111D",
-    "attendances": [ ]
+    "attendances": [ ],
+    "description": ""
   } ]
 }

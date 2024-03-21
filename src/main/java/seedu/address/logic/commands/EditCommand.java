@@ -1,11 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE_RECORD;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENTID;
+import static seedu.address.logic.parser.CliSyntax.*;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
@@ -21,6 +17,7 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.Description;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -43,7 +40,8 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_STUDENTID + "STUDENTID] "
-            + "[" + PREFIX_ATTENDANCE_RECORD + "Attendance]...\n"
+            + "[" + PREFIX_ATTENDANCE_RECORD + "Attendance]"
+            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION]...\n "
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
@@ -100,9 +98,10 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         StudentId updatedStudentId = editPersonDescriptor.getStudentId().orElse(personToEdit.getStudentId());
         Set<Attendance> updatedAttendances = editPersonDescriptor.getTags().orElse(personToEdit.getAttendances());
+        Description updatedDescription = editPersonDescriptor.getDescription().orElse(personToEdit.getDescription());
 
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedStudentId, updatedAttendances);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedStudentId, updatedAttendances, updatedDescription);
     }
 
     @Override
@@ -139,6 +138,7 @@ public class EditCommand extends Command {
         private Email email;
         private StudentId studentId;
         private Set<Attendance> attendances;
+        private Description description;
 
         public EditPersonDescriptor() {}
 
@@ -208,6 +208,14 @@ public class EditCommand extends Command {
          */
         public Optional<Set<Attendance>> getTags() {
             return (attendances != null) ? Optional.of(Collections.unmodifiableSet(attendances)) : Optional.empty();
+        }
+
+        public void setDescription(Description description) {
+            this.description = description;
+        }
+
+        public Optional<Description> getDescription() {
+            return Optional.ofNullable(this.description);
         }
 
         @Override
