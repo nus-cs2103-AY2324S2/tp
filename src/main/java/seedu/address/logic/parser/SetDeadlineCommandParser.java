@@ -30,7 +30,7 @@ public class SetDeadlineCommandParser implements Parser<SetDeadlineCommand> {
         }
         Person project = new Person(ParserUtil.parseName(projectName));
         Task newTask = new Task(taskName);
-        return new SetDeadlineCommand(deadline,newTask, project);
+        return new SetDeadlineCommand(deadline, newTask, project);
     }
 
     /**
