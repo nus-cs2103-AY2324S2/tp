@@ -2,12 +2,12 @@ package seedu.address.model.person;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
 public class DiagnosisTest {
 
+    /* commented as DateOfAdmission can be null, and doesn't have regex
     @Test
     public void constructor_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new Diagnosis(null));
@@ -18,6 +18,7 @@ public class DiagnosisTest {
         String invalidDiagnosis = "";
         assertThrows(IllegalArgumentException.class, () -> new Diagnosis(invalidDiagnosis));
     }
+     */
 
     @Test
     public void equals() {

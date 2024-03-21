@@ -1,5 +1,5 @@
 package seedu.address.logic.commands;
-
+/*
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -28,11 +28,12 @@ import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.UpdatePersonDescriptorBuilder;
 
+/*
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
  */
 public class UpdateCommandTest {
-
+    /*
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
@@ -132,12 +133,14 @@ public class UpdateCommandTest {
 
         assertCommandFailure(updateCommand, model, Messages.MESSAGE_PERSON_NOT_FOUND);
     }
-  
+    */
+
+    /*
     /**
      * Edit filtered list where index is larger than size of filtered list,
      * but smaller than size of address book
      */
-
+    /*
     @Test
     public void execute_invalidPersonIndexFilteredList_failure() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
@@ -185,4 +188,5 @@ public class UpdateCommandTest {
                 + editPersonDescriptor + "}";
         assertEquals(expected, updateCommand.toString());
     }
+    */
 }

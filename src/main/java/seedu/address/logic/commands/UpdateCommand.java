@@ -395,15 +395,6 @@ public class UpdateCommand extends Command {
                     .add("date of birth", dateOfBirth)
                     .add("sex", sex)
                     .add("status", status)
-                    .add("email", email)
-                    .add("country", country)
-                    .add("allergies", allergies)
-                    .add("bloodtype", bloodType)
-                    .add("condition", condition)
-                    .add("date of admission", dateOfAdmission)
-                    .add("diagnosis", diagnosis)
-                    .add("symptom", symptom)
-                    .add("tags", tags)
                     .toString();
         }
     }

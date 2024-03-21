@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
@@ -45,10 +44,6 @@ public class UpdatePersonDescriptorTest {
         updatedAmy = new UpdatePersonDescriptorBuilder(DESC_AMY).withPhone(VALID_PHONE_BOB).build();
         assertFalse(DESC_AMY.equals(updatedAmy));
 
-        // different email -> returns false
-        updatedAmy = new UpdatePersonDescriptorBuilder(DESC_AMY).withEmail(VALID_EMAIL_BOB).build();
-        assertFalse(DESC_AMY.equals(updatedAmy));
-
         // different address -> returns false
         updatedAmy = new UpdatePersonDescriptorBuilder(DESC_AMY).withAddress(VALID_ADDRESS_BOB).build();
         assertFalse(DESC_AMY.equals(updatedAmy));
@@ -60,13 +55,15 @@ public class UpdatePersonDescriptorTest {
 
     @Test
     public void toStringMethod() {
-        UpdatePersonDescriptor editPersonDescriptor = new UpdatePersonDescriptor();
-        String expected = UpdatePersonDescriptor.class.getCanonicalName() + "{name="
-                + editPersonDescriptor.getName().orElse(null) + ", phone="
-                + editPersonDescriptor.getPhone().orElse(null) + ", email="
-                + editPersonDescriptor.getEmail().orElse(null) + ", address="
-                + editPersonDescriptor.getAddress().orElse(null) + ", tags="
-                + editPersonDescriptor.getTags().orElse(null) + "}";
-        assertEquals(expected, editPersonDescriptor.toString());
+        UpdatePersonDescriptor updatePersonDescriptor = new UpdatePersonDescriptor();
+        String expected = UpdatePersonDescriptor.class.getCanonicalName() + "{nric="
+                + updatePersonDescriptor.getNric() + ", name="
+                + updatePersonDescriptor.getName().orElse(null) + ", phone="
+                + updatePersonDescriptor.getPhone().orElse(null) + ", address="
+                + updatePersonDescriptor.getAddress().orElse(null) + ", date of birth="
+                + updatePersonDescriptor.getDateOfBirth().orElse(null) + ", sex="
+                + updatePersonDescriptor.getSex().orElse(null) + ", status="
+                + updatePersonDescriptor.getStatus().orElse(null) + "}";
+        assertEquals(expected, updatePersonDescriptor.toString());
     }
 }

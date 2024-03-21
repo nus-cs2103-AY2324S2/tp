@@ -95,6 +95,7 @@ public class PersonBuilder {
         dateOfBirth = personToCopy.getDateOfBirth();
         sex = personToCopy.getSex();
 
+        /*
         address = personToCopy.getAddress();
         allergies = personToCopy.getAllergies();
         bloodType = personToCopy.getBloodType();
@@ -106,6 +107,7 @@ public class PersonBuilder {
         diagnosis = personToCopy.getDiagnosis();
         status = personToCopy.getStatus();
         symptom = personToCopy.getSymptom();
+         */
     }
 
     /**

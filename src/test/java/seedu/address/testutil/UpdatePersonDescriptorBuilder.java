@@ -6,10 +6,13 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.UpdateCommand.UpdatePersonDescriptor;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
+import seedu.address.model.person.DateOfBirth;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Sex;
+import seedu.address.model.person.Status;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -39,7 +42,7 @@ public class UpdatePersonDescriptorBuilder {
         descriptor.setDateOfBirth(person.getDateOfBirth());
         descriptor.setSex(person.getSex());
         descriptor.setStatus(person.getStatus());
-
+        /*
         descriptor.setTags(person.getTags());
         descriptor.setEmail(person.getEmail());
         descriptor.setCountry(person.getCountry());
@@ -50,6 +53,15 @@ public class UpdatePersonDescriptorBuilder {
         descriptor.setDateOfAdmission(person.getDateOfAdmission());
         descriptor.setDiagnosis(person.getDiagnosis());
         descriptor.setSymptom(person.getSymptom());
+        */
+    }
+
+    /**
+     * Sets the {@code Name} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public UpdatePersonDescriptorBuilder withNric(String nric) {
+        descriptor.setNric(new Nric(nric));
+        return this;
     }
 
     /**
@@ -71,8 +83,8 @@ public class UpdatePersonDescriptorBuilder {
     /**
      * Sets the {@code Email} of the {@code EditPersonDescriptor} that we are building.
      */
-    public UpdatePersonDescriptorBuilder withEmail(String email) {
-        descriptor.setEmail(new Email(email));
+    public UpdatePersonDescriptorBuilder withDateOfBirth(String dateOfBirth) {
+        descriptor.setDateOfBirth(new DateOfBirth(dateOfBirth));
         return this;
     }
 
@@ -81,6 +93,22 @@ public class UpdatePersonDescriptorBuilder {
      */
     public UpdatePersonDescriptorBuilder withAddress(String address) {
         descriptor.setAddress(new Address(address));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Address} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public UpdatePersonDescriptorBuilder withSex(String sex) {
+        descriptor.setSex(new Sex(sex));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Address} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public UpdatePersonDescriptorBuilder withStatus(String status) {
+        descriptor.setStatus(new Status(status));
         return this;
     }
 
