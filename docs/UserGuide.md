@@ -122,7 +122,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
+* Partial words will be matched e.g. `Han` will match `Hans`
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
@@ -130,6 +130,24 @@ Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
+
+### Locating persons by name: `find`
+
+Filter persons by their department or tags
+
+Format: `filter KEYWORD [MORE_KEYWORDS]`
+
+* The search is case-insensitive. e.g `finance` will match `Finance`
+* The order of the keywords does not matter. e.g. `Quantitative Finance` will match `Finance Quantitative`
+* Only the departments and tags are searched.
+* Partial words will be matched e.g. `Fin` will match `Finance`
+* Persons matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `Marketing Fiance` will return `Quantitative Finance`, `Marketing`
+
+Examples:
+* `filter Finance` returns `Finance` and `Quantitative Finance`
+* `filter resource` returns `Human Resource`, `Resource Management`<br>
+  ![result for 'filter finance'](images/findAlexDavidResult.png)
 
 ### Deleting a person : `delete`
 
