@@ -7,9 +7,9 @@ participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
 participant ":EditCommandParser" as EditCommandParser LOGIC_COLOR
 participant ":ArgumentTokenizer" as ArgumentTokenizer LOGIC_COLOR
-participant ":EditPersonDescriptor" as EditPersonDescriptor LOGIC_COLOR
-participant ":ParserUtil" as ParserUtil LOGIC_COLOR
-participant "d:EditCommand" as EditCommand LOGIC_COLOR
+participant "editPersonDescriptor:EditPersonDescriptor" as EditPersonDescriptor LOGIC_COLOR
+participant "<<class>>\nParserUtil" as ParserUtil LOGIC_COLOR
+participant "e:EditCommand" as EditCommand LOGIC_COLOR
 participant "r:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -40,52 +40,63 @@ activate ArgumentTokenizer
 ArgumentTokenizer -> EditCommandParser
 deactivate ArgumentTokenizer
 
-create ParserUtil
 EditCommandParser -> ParserUtil : parseNusId("E01234567")
 activate ParserUtil
 
-ParserUtil -> EditCommandParser
+ParserUtil --> EditCommandParser
+deactivate ParserUtil
+
+EditCommandParser -> ParserUtil : parseName("John")
+activate ParserUtil
+
+ParserUtil --> EditCommandParser
+deactivate ParserUtil
+
+EditCommandParser -> ParserUtil : parsePhone("90000001")
+activate ParserUtil
+
+ParserUtil --> EditCommandParser
 deactivate ParserUtil
 
 create EditPersonDescriptor
 EditCommandParser -> EditPersonDescriptor
 activate EditPersonDescriptor
 
-EditPersonDescriptor -> EditCommandParser
+EditPersonDescriptor --> EditCommandParser
 deactivate EditPersonDescriptor
 
-EditCommandParser -> EditPersonDescriptor
+EditCommandParser -> EditPersonDescriptor : setName(name)
 activate EditPersonDescriptor
 
-create EditCommand
-EditPersonDescriptor -> EditCommand : setName(name)
-activate EditCommand
-
-EditCommand -> EditPersonDescriptor
-deactivate EditCommand
-
-EditPersonDescriptor -> EditCommand : setPhone(phone)
-activate EditCommand
-
-EditCommand -> EditPersonDescriptor
-deactivate EditCommand
-
-EditPersonDescriptor -> EditCommandParser
+EditPersonDescriptor --> EditCommandParser
 deactivate EditPersonDescriptor
 
-EditCommandParser -> EditCommand : EditCommand(nusId)
+EditCommandParser -> EditPersonDescriptor : setPhone(phone)
+activate EditPersonDescriptor
+
+EditPersonDescriptor --> EditCommandParser
+deactivate EditPersonDescriptor
+
+EditCommandParser -> EditPersonDescriptor : setGroups(groups)
+activate EditPersonDescriptor
+
+EditPersonDescriptor --> EditCommandParser
+deactivate EditPersonDescriptor
+
+create EditCommand
+EditCommandParser -> EditCommand : EditCommand(nusId, editPersonDescriptor)
 activate EditCommand
 
 EditCommand --> EditCommandParser :
 deactivate EditCommand
 
-EditCommandParser --> AddressBookParser : d
+EditCommandParser --> AddressBookParser : e
 deactivate EditCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 EditCommandParser -[hidden]-> AddressBookParser
 destroy EditCommandParser
 
-AddressBookParser --> LogicManager : d
+AddressBookParser --> LogicManager : e
 deactivate AddressBookParser
 
 LogicManager -> EditCommand : execute(m)
@@ -105,7 +116,7 @@ CommandResult --> EditCommand
 deactivate CommandResult
 
 EditCommand --> LogicManager : r
-deactivate EditCommand
+destroy EditCommand
 
 [<--LogicManager
 deactivate LogicManager

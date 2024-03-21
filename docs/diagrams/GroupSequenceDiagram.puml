@@ -1,0 +1,117 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":GroupCommandParser" as GroupCommandParser LOGIC_COLOR
+participant "argMultimap:ArgumentTokenizer" as ArgumentTokenizer LOGIC_COLOR
+participant "groupPersonDescriptor:GroupPersonDescriptor" as GroupPersonDescriptor LOGIC_COLOR
+participant "<<class>>\nParserUtil" as ParserUtil LOGIC_COLOR
+participant "g:GroupCommand" as GroupCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "m:Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("group id/E01234567 g/T15 t/TA")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("group id/E01234567 g/T15 t/TA")
+activate AddressBookParser
+
+create GroupCommandParser
+AddressBookParser -> GroupCommandParser
+activate GroupCommandParser
+
+GroupCommandParser --> AddressBookParser
+deactivate GroupCommandParser
+
+AddressBookParser -> GroupCommandParser : parse("id/E01234567 g/T15 t/TA")
+activate GroupCommandParser
+
+create ArgumentTokenizer
+GroupCommandParser -> ArgumentTokenizer : tokenize((args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_TAG, PREFIX_GROUP))
+activate ArgumentTokenizer
+
+ArgumentTokenizer --> GroupCommandParser
+deactivate ArgumentTokenizer
+
+GroupCommandParser -> ParserUtil : parseNusId("E01234567")
+activate ParserUtil
+
+ParserUtil --> GroupCommandParser
+deactivate ParserUtil
+
+GroupCommandParser -> ParserUtil : parseTag("TA")
+activate ParserUtil
+
+ParserUtil --> GroupCommandParser
+deactivate ParserUtil
+
+GroupCommandParser -> ParserUtil : parseGroups("T15")
+activate ParserUtil
+
+ParserUtil --> GroupCommandParser
+deactivate ParserUtil
+
+create GroupPersonDescriptor
+GroupCommandParser -> GroupPersonDescriptor
+activate GroupPersonDescriptor
+
+GroupPersonDescriptor --> GroupCommandParser
+deactivate GroupPersonDescriptor
+
+GroupCommandParser -> GroupPersonDescriptor : setGroups(groups)
+activate GroupPersonDescriptor
+
+GroupPersonDescriptor --> GroupCommandParser
+deactivate GroupPersonDescriptor
+
+GroupCommandParser -> GroupPersonDescriptor : setTag(tag)
+activate GroupPersonDescriptor
+
+GroupPersonDescriptor --> GroupCommandParser
+deactivate GroupPersonDescriptor
+
+create GroupCommand
+GroupCommandParser -> GroupCommand : GroupCommand(nusId, GroupPersonDescriptor)
+activate GroupCommand
+
+GroupCommand --> GroupCommandParser :
+deactivate GroupCommand
+
+GroupCommandParser --> AddressBookParser : g
+deactivate GroupCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+GroupCommandParser -[hidden]-> AddressBookParser
+destroy GroupCommandParser
+
+AddressBookParser --> LogicManager : g
+deactivate AddressBookParser
+
+LogicManager -> GroupCommand : execute(m)
+activate GroupCommand
+
+GroupCommand -> Model : setPerson(personToGroup, groupedPerson);
+activate Model
+
+Model --> GroupCommand
+deactivate Model
+
+create CommandResult
+GroupCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> GroupCommand
+deactivate CommandResult
+
+GroupCommand --> LogicManager : r
+destroy GroupCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
