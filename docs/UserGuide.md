@@ -141,18 +141,27 @@ Examples:
 
 ### Locating students by name: `find`
 
-
-Find students whose names contain any of the given keywords.
-
+Find students whose criteria match any of the given keywords.
 
 Format: `find [n/NAME] [s/STUDENT_ID] [h/TELEGRAM_HANDLE] [t/TAG]...`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* The search is case-insensitive. e.g `find n/hans` will match Hans
+* The order of the keywords does not matter. e.g. `find n/hans t/tutorial-1` will return the same result as `find t/tutorial-1 n/hans`
+* Name and other criteria are searched using fuzzy matching
+  * Students with any part of the names matching the keyword will be returned.
+* Tag is searched as complete tag names. e.g. `find t/tutorial-1` will only return those with a tag 'tutorial-1'
+(tag 'tutorial-10', 'tutorial-11', etc. will NOT come out on the result)
+  * This is different from the fuzzy matching used in name and other criteria
+* When multiple criteria is used, searched students must match **ALL** criteria specified
 
 Examples:
-* `find n/John` returns `John Smith`<br>
-  ![result for 'find alex david'](images/findJohn.png)
+* `find n/John` returns john and John Doe
+* `find e/yahoo` returns Alex Yeoh and David Li (both uses yahoo email)
+* `find h/john` returns John Doe and John Lee (telegram handle @johnd and @johnlee respectively)
+* `find t/tutorial-1 t/high-ability` returns Samantha (is tagged with BOTH tutorial-1 and high-ability)
+* `find n/john t/tutorial-1` returns John Doe (name contains john and is tagged with tutorial-1)
+  <br>
+  ![result for 'find John'](images/findJohn.png)
 
 ### Linking a student to a weblink: `link`
 
