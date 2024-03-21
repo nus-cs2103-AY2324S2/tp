@@ -47,6 +47,10 @@ public class Messages {
                 .append(person.getGrade())
                 .append("; Subject: ")
                 .append(person.getSubject())
+                .append("; Attendance: ")
+                .append(person.getAttendance())
+                .append("; Payment: ")
+                .append(person.getPayment())
                 .append("; DateTime: ");
         person.getDateTimes().forEach(builder::append);
         builder.append("; Tags: ");

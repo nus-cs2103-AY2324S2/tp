@@ -44,6 +44,9 @@ public class PersonCard extends UiPart<Region> {
     private Label grade;
     @FXML
     private Label subject;
+    private Label attendance;
+    @FXML
+    private Label payment;
     @FXML
     private FlowPane dateTimes;
     @FXML
@@ -62,6 +65,8 @@ public class PersonCard extends UiPart<Region> {
         email.setText(person.getEmail().value);
         grade.setText(person.getGrade().value);
         subject.setText(person.getSubject().value);
+        attendance.setText(person.getAttendance().value);
+        payment.setText(person.getPayment().value);
         dateTimes.setHgap(5);
         person.getDateTimes().stream()
                 .sorted(Comparator.comparing(dateTime -> dateTime.value))

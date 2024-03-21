@@ -25,6 +25,8 @@ public class Person {
     private final Address address;
     private final Grade grade;
     private final Subject subject;
+    private final Attendance attendance;
+    private final Payment payment;
     private final Set<DateTime> dateTimes = new HashSet<>();
     private final Set<Tag> tags = new HashSet<>();
 
@@ -32,14 +34,16 @@ public class Person {
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, Grade grade, Subject subject,
-                  Set<DateTime> dateTimes, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, grade, subject, dateTimes, tags);
+                  Attendance attendance, Payment payment, Set<DateTime> dateTimes, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, grade, subject, attendance, payment, dateTimes, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.grade = grade;
         this.subject = subject;
+        this.attendance = attendance;
+        this.payment = payment;
         this.dateTimes.addAll(dateTimes);
         this.tags.addAll(tags);
     }
@@ -66,6 +70,13 @@ public class Person {
 
     public Subject getSubject() {
         return subject;
+    }
+    public Attendance getAttendance() {
+        return attendance;
+    }
+
+    public Payment getPayment() {
+        return payment;
     }
     public Set<DateTime> getDateTimes() {
         return Collections.unmodifiableSet(dateTimes);
@@ -131,6 +142,8 @@ public class Person {
                 .add("address", address)
                 .add("grade", grade)
                 .add("subject", subject)
+                .add("attendance", attendance)
+                .add("payment", payment)
                 .add("dateTimes", dateTimes)
                 .add("tags", tags)
                 .toString();
