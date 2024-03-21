@@ -3,8 +3,8 @@ package seedu.address.testutil;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEPARTMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_JOBTITLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_JOBTITLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PREFERENCES;
@@ -58,7 +58,7 @@ public class PersonUtil {
             client.getProducts().getProducts().stream().forEach(
                     s -> sb.append(PREFIX_PRODUCTS + s + " ")
             );
-            sb.append(PREFIX_PREFERENCES + client.getPreferences().toString() + " ");
+            sb.append(PREFIX_PREFERENCES + client.getPreferences() + " ");
         } else if (person instanceof Employee) {
             Employee employee = (Employee) person;
             sb.append(PREFIX_DEPARTMENT + employee.getDepartment().toString() + " ");

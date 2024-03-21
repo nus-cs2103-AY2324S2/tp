@@ -67,6 +67,6 @@ public class SupplierBuilder extends PersonBuilder<SupplierBuilder> {
      */
     @Override
     public Supplier build() {
-        return new Supplier(name, phone, email, address, remark, tags, products, termsOfService);
+        return new Supplier(id, name, phone, email, address, remark, tags, products, termsOfService);
     }
 }

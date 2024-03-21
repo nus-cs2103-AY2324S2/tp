@@ -28,13 +28,13 @@ public abstract class PersonBuilder<T extends PersonBuilder<T>> {
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_REMARK = "some remarks";
 
-    private Id id;
-    private Name name;
-    private Phone phone;
-    private Email email;
-    private Address address;
-    private Remark remark;
-    private Set<Tag> tags;
+    protected Id id;
+    protected Name name;
+    protected Phone phone;
+    protected Email email;
+    protected Address address;
+    protected Remark remark;
+    protected Set<Tag> tags;
 
     /**
      * Constructs a new PersonBuilder with default values.
@@ -70,6 +70,12 @@ public abstract class PersonBuilder<T extends PersonBuilder<T>> {
         return (T) this;
     }
 
+    /**
+     * Sets the id of the person that we are building.
+     *
+     * @param id The id of the person.
+     * @return The updated PersonBuilder object.
+     */
     public T withId(int id) {
         this.id = Id.generateId(id);
         return self();

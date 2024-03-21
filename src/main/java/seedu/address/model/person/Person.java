@@ -18,7 +18,7 @@ import seedu.address.model.tag.Tag;
 public abstract class Person {
 
     // Unique id
-    private final Id id;
+    protected final Id id;
 
     // Identity fields
     protected final Name name;

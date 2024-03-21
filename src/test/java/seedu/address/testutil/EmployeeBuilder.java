@@ -81,6 +81,6 @@ public class EmployeeBuilder extends PersonBuilder<EmployeeBuilder> {
      */
     @Override
     public Employee build() {
-        return new Employee(name, phone, email, address, remark, tags, department, jobTitle, skills);
+        return new Employee(id, name, phone, email, address, remark, tags, department, jobTitle, skills);
     }
 }

@@ -4,8 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEPARTMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_JOBTITLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_JOBTITLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PREFERENCES;
@@ -32,8 +32,8 @@ import seedu.address.model.person.Client;
 import seedu.address.model.person.Department;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Employee;
-import seedu.address.model.person.JobTitle;
 import seedu.address.model.person.Id;
+import seedu.address.model.person.JobTitle;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -80,7 +80,7 @@ public class EditCommand extends Command {
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
-     * @param id                of the person in the filtered person list to edit
+     * @param id                   of the person in the filtered person list to edit
      * @param editPersonDescriptor details to edit the person with
      */
     public EditCommand(Id id, EditPersonDescriptor editPersonDescriptor) {
@@ -136,8 +136,8 @@ public class EditCommand extends Command {
             String updatedPreferences = editPersonDescriptor.getPreferences()
                     .orElse(((Client) personToEdit).getPreferences());
             Products updatedProducts = editPersonDescriptor.getProducts().orElse(((Client) personToEdit).getProducts());
-            return new Client(idOfPerson, updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRemark, updatedTags,
-                    updatedProducts, updatedPreferences);
+            return new Client(idOfPerson, updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRemark,
+                    updatedTags, updatedProducts, updatedPreferences);
         } else if (personToEdit instanceof Employee) {
             if (editPersonDescriptor.getPreferences().isPresent() || editPersonDescriptor.getProducts().isPresent()
                     || editPersonDescriptor.getTermsOfService().isPresent()) {
@@ -148,8 +148,8 @@ public class EditCommand extends Command {
             JobTitle updatedJobTitle = editPersonDescriptor.getJobTitle()
                     .orElse(((Employee) personToEdit).getJobTitle());
             Skills updatedSkills = editPersonDescriptor.getSkills().orElse(((Employee) personToEdit).getSkills());
-            return new Employee(idOfPerson, updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRemark, updatedTags,
-                    updatedDepartment, updatedJobTitle, updatedSkills);
+            return new Employee(idOfPerson, updatedName, updatedPhone, updatedEmail, updatedAddress,
+                    updatedRemark, updatedTags, updatedDepartment, updatedJobTitle, updatedSkills);
         } else if (personToEdit instanceof Supplier) {
             if (editPersonDescriptor.getDepartment().isPresent() || editPersonDescriptor.getJobTitle().isPresent()
                     || editPersonDescriptor.getSkills().isPresent()) {
@@ -159,8 +159,8 @@ public class EditCommand extends Command {
                     .orElse(((Supplier) personToEdit).getTermsOfService());
             Products updatedProducts = editPersonDescriptor.getProducts()
                     .orElse(((Supplier) personToEdit).getProducts());
-            return new Supplier(idOfPerson, updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRemark, updatedTags,
-                    updatedProducts, updatedTermsOfService);
+            return new Supplier(idOfPerson, updatedName, updatedPhone, updatedEmail, updatedAddress,
+                    updatedRemark, updatedTags, updatedProducts, updatedTermsOfService);
         }
 
         return personToEdit;

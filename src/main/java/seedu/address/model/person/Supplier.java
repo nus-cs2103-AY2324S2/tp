@@ -25,6 +25,9 @@ public class Supplier extends Person {
         this.termsOfService = termsOfService;
     }
 
+    /**
+     * Every field must be present and not null.
+     */
     public Supplier(Id id, Name name, Phone phone, Email email, Address address, Remark remark, Set<Tag> tags,
                     Products products, TermsOfService termsOfService) {
         super(id, name, phone, email, address, remark, tags);
@@ -104,6 +107,7 @@ public class Supplier extends Person {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
+                .add("id", id)
                 .add("name", name)
                 .add("phone", phone)
                 .add("email", email)

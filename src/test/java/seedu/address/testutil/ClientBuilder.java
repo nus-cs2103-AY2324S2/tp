@@ -63,6 +63,6 @@ public class ClientBuilder extends PersonBuilder<ClientBuilder> {
      */
     @Override
     public Client build() {
-        return new Client(name, phone, email, address, remark, tags, products, preferences);
+        return new Client(id, name, phone, email, address, remark, tags, products, preferences);
     }
 }

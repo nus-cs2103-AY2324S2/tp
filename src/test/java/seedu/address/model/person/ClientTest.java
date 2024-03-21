@@ -153,10 +153,9 @@ public class ClientTest {
 
         Client client = new Client(name, phone, email, address, remark, tags, products, preferences);
 
-        String expected = Client.class.getCanonicalName() + "{name=John Doe, phone=12345678, "
-                + "email=johndoe@example.com, "
-                + "address=123, Main Street, Singapore, remark=Likes to swim, tags=[], "
-                + "products=, preferences=Swimming}";
+        String expected = Client.class.getCanonicalName() + "{id=" + client.getId() + ", name=" + name + ", phone="
+                + phone + ", email=" + email + ", address=" + address + ", remark=" + remark + ", tags=" + tags
+                + ", products=" + products + ", preferences=" + preferences + "}";
 
         assertEquals(expected, client.toString());
     }

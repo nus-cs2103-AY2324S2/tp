@@ -6,9 +6,15 @@
       "phone": "94351253",
       "email": "alice@example.com",
       "address": "123, Jurong West Ave 6, #08-111",
-      "tags": [
-        "friends"
-      ]
+      "tags": ["friends"],
+      "role": "client",
+      "products": {"products": ["Product1", "Product2"]},
+      "preferences": "Vegan",
+      "department": null,
+      "jobTitle": null,
+      "termsOfService": null,
+      "skills": {"skills": []},
+      "remark": "some remarks"
     },
     {
       "id": 1,
@@ -16,9 +22,15 @@
       "phone": "98765432",
       "email": "johnd@example.com",
       "address": "311, Clementi Ave 2, #02-25",
-      "tags": [
-        "owesMoney"
-      ]
+      "tags": ["owesMoney", "friends"],
+      "role": "client",
+      "products": {"products": ["Product3"]},
+      "preferences": "Gluten-Free",
+      "department": null,
+      "jobTitle": null,
+      "termsOfService": null,
+      "skills": {"skills": []},
+      "remark": "some remarks"
     }
   ]
 }

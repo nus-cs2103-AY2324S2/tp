@@ -22,10 +22,10 @@ import seedu.address.model.person.Employee;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Supplier;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.model.person.exceptions.IdNotFoundException;
 import seedu.address.testutil.ClientBuilder;
 import seedu.address.testutil.EmployeeBuilder;
 import seedu.address.testutil.SupplierBuilder;
-import seedu.address.model.person.exceptions.IdNotFoundException;
 
 public class NetConnectTest {
 

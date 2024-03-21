@@ -15,8 +15,8 @@ import seedu.address.model.person.Client;
 import seedu.address.model.person.Department;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Employee;
-import seedu.address.model.person.JobTitle;
 import seedu.address.model.person.Id;
+import seedu.address.model.person.JobTitle;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -54,17 +54,17 @@ class JsonAdaptedPerson {
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("id") int id, @JsonProperty("name") String name, 
-            @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tags") List<JsonAdaptedTag> tags, @JsonProperty("role") String role,
-            @JsonProperty("products") JsonAdaptedProducts products,
-            @JsonProperty("preferences") String preferences,
-            @JsonProperty("department") Department department,
-            @JsonProperty("jobTitle") JobTitle jobTitle,
-            @JsonProperty("termsOfService") TermsOfService termsOfService,
-            @JsonProperty("skills") JsonAdaptedSkills skills,
-            @JsonProperty("remark") String remark) {
+    public JsonAdaptedPerson(@JsonProperty("id") int id, @JsonProperty("name") String name,
+                             @JsonProperty("phone") String phone,
+                             @JsonProperty("email") String email, @JsonProperty("address") String address,
+                             @JsonProperty("tags") List<JsonAdaptedTag> tags, @JsonProperty("role") String role,
+                             @JsonProperty("products") JsonAdaptedProducts products,
+                             @JsonProperty("preferences") String preferences,
+                             @JsonProperty("department") Department department,
+                             @JsonProperty("jobTitle") JobTitle jobTitle,
+                             @JsonProperty("termsOfService") TermsOfService termsOfService,
+                             @JsonProperty("skills") JsonAdaptedSkills skills,
+                             @JsonProperty("remark") String remark) {
         this.id = id;
         this.name = name;
         this.phone = phone;
@@ -201,10 +201,10 @@ class JsonAdaptedPerson {
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
         final Products transformedProducts = products == null ? new Products()
-            : new Products(this.products.getProducts());
+                : new Products(this.products.getProducts());
 
-        return new Client(modelId, modelName, modelPhone, modelEmail, modelAddress, modelRemark, modelTags, transformedProducts,
-                preferences);
+        return new Client(modelId, modelName, modelPhone, modelEmail, modelAddress, modelRemark, modelTags,
+                transformedProducts, preferences);
     }
 
     /**
@@ -262,8 +262,8 @@ class JsonAdaptedPerson {
         final Skills transformedSkills = skills == null ? new Skills() : this.skills.toModelType();
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Employee(modelId, modelName, modelPhone, modelEmail, modelAddress, modelRemark, modelTags, department,
-                jobTitle, transformedSkills);
+        return new Employee(modelId, modelName, modelPhone, modelEmail, modelAddress, modelRemark, modelTags,
+                department, jobTitle, transformedSkills);
     }
 
     /**

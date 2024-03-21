@@ -49,7 +49,7 @@ public class EditCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Person editedPerson = new ClientBuilder().withId(1).build();
+        Person editedPerson = new ClientBuilder().withId(1).withName("New Name").build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedPerson).build();
         EditCommand editCommand = new EditCommand(ID_FIRST_PERSON, descriptor);
 
@@ -66,7 +66,7 @@ public class EditCommandTest {
         Id idLastPerson = Id.generateId(model.getFilteredPersonList().size());
         Person lastPerson = model.getPersonById(idLastPerson);
 
-        ClientBuilder personInList = new ClientBuilder((Client) lastPerson);
+        EmployeeBuilder personInList = new EmployeeBuilder((Employee) lastPerson);
         Person editedPerson = personInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
 

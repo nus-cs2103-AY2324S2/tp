@@ -65,9 +65,9 @@ public class JsonAdaptedPersonTest {
 
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
-        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_ID, INVALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                Collections.emptyList(), VALID_ROLE_CLIENT, VALID_PRODUCTS, VALID_PREFERENCES, null, null,
-                null, null, VALID_REMARK);
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_ID, INVALID_NAME, VALID_PHONE, VALID_EMAIL,
+                VALID_ADDRESS, Collections.emptyList(), VALID_ROLE_CLIENT, VALID_PRODUCTS, VALID_PREFERENCES, null,
+                null, null, null, VALID_REMARK);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -83,9 +83,9 @@ public class JsonAdaptedPersonTest {
 
     @Test
     public void toModelType_invalidPhone_throwsIllegalValueException() {
-        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_ID, VALID_NAME, INVALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                Collections.emptyList(), VALID_ROLE_CLIENT, VALID_PRODUCTS, VALID_PREFERENCES, null, null,
-                null, null, VALID_REMARK);
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_ID, VALID_NAME, INVALID_PHONE, VALID_EMAIL,
+                VALID_ADDRESS, Collections.emptyList(), VALID_ROLE_CLIENT, VALID_PRODUCTS, VALID_PREFERENCES, null,
+                null, null, null, VALID_REMARK);
         String expectedMessage = Phone.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -101,9 +101,9 @@ public class JsonAdaptedPersonTest {
 
     @Test
     public void toModelType_invalidEmail_throwsIllegalValueException() {
-        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_ID, VALID_NAME, VALID_PHONE, INVALID_EMAIL, VALID_ADDRESS,
-                Collections.emptyList(), VALID_ROLE_CLIENT, VALID_PRODUCTS, VALID_PREFERENCES, null, null,
-                null, null, VALID_REMARK);
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_ID, VALID_NAME, VALID_PHONE, INVALID_EMAIL,
+                VALID_ADDRESS, Collections.emptyList(), VALID_ROLE_CLIENT, VALID_PRODUCTS, VALID_PREFERENCES, null,
+                null, null, null, VALID_REMARK);
         String expectedMessage = Email.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -119,9 +119,9 @@ public class JsonAdaptedPersonTest {
 
     @Test
     public void toModelType_invalidAddress_throwsIllegalValueException() {
-        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_ID, VALID_NAME, VALID_PHONE, VALID_EMAIL, INVALID_ADDRESS,
-                Collections.emptyList(), VALID_ROLE_CLIENT, VALID_PRODUCTS, VALID_PREFERENCES, null, null,
-                null, null, VALID_REMARK);
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_ID, VALID_NAME, VALID_PHONE, VALID_EMAIL,
+                INVALID_ADDRESS, Collections.emptyList(), VALID_ROLE_CLIENT, VALID_PRODUCTS, VALID_PREFERENCES, null,
+                null, null, null, VALID_REMARK);
         String expectedMessage = Address.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -154,9 +154,9 @@ public class JsonAdaptedPersonTest {
 
     @Test
     public void toEmployeeModelType_invalidName_throwsIllegalValueException() {
-        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_ID, INVALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                Collections.emptyList(), VALID_ROLE_CLIENT, VALID_PRODUCTS, VALID_PREFERENCES, null, null,
-                null, null, VALID_REMARK);
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_ID, INVALID_NAME, VALID_PHONE, VALID_EMAIL,
+                VALID_ADDRESS, Collections.emptyList(), VALID_ROLE_CLIENT, VALID_PRODUCTS, VALID_PREFERENCES, null,
+                null, null, null, VALID_REMARK);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toEmployeeModelType);
     }
@@ -172,9 +172,9 @@ public class JsonAdaptedPersonTest {
 
     @Test
     public void toEmployeeModelType_invalidPhone_throwsIllegalValueException() {
-        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_ID, VALID_NAME, INVALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                Collections.emptyList(), VALID_ROLE_EMPLOYEE, VALID_PRODUCTS, VALID_PREFERENCES, null, null,
-                null, null, VALID_REMARK);
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_ID, VALID_NAME, INVALID_PHONE, VALID_EMAIL,
+                VALID_ADDRESS, Collections.emptyList(), VALID_ROLE_EMPLOYEE, VALID_PRODUCTS, VALID_PREFERENCES, null,
+                null, null, null, VALID_REMARK);
         String expectedMessage = Phone.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toEmployeeModelType);
     }
@@ -190,9 +190,9 @@ public class JsonAdaptedPersonTest {
 
     @Test
     public void toEmployeeModelType_invalidEmail_throwsIllegalValueException() {
-        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_ID, VALID_NAME, VALID_PHONE, INVALID_EMAIL, VALID_ADDRESS,
-                Collections.emptyList(), VALID_ROLE_EMPLOYEE, VALID_PRODUCTS, VALID_PREFERENCES, null, null,
-                null, null, VALID_REMARK);
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_ID, VALID_NAME, VALID_PHONE, INVALID_EMAIL,
+                VALID_ADDRESS, Collections.emptyList(), VALID_ROLE_EMPLOYEE, VALID_PRODUCTS, VALID_PREFERENCES, null,
+                null, null, null, VALID_REMARK);
         String expectedMessage = Email.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toEmployeeModelType);
     }
@@ -208,9 +208,9 @@ public class JsonAdaptedPersonTest {
 
     @Test
     public void toEmployeeModelType_invalidAddress_throwsIllegalValueException() {
-        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_ID, VALID_NAME, VALID_PHONE, VALID_EMAIL, INVALID_ADDRESS,
-                Collections.emptyList(), VALID_ROLE_EMPLOYEE, VALID_PRODUCTS, VALID_PREFERENCES, null, null,
-                null, null, VALID_REMARK);
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_ID, VALID_NAME, VALID_PHONE, VALID_EMAIL,
+                INVALID_ADDRESS, Collections.emptyList(), VALID_ROLE_EMPLOYEE, VALID_PRODUCTS, VALID_PREFERENCES, null,
+                null, null, null, VALID_REMARK);
         String expectedMessage = Address.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toEmployeeModelType);
     }
@@ -234,9 +234,9 @@ public class JsonAdaptedPersonTest {
 
     @Test
     public void toSupplierModelType_invalidName_throwsIllegalValueException() {
-        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_ID, INVALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                Collections.emptyList(), VALID_ROLE_SUPPLIER, VALID_PRODUCTS, VALID_PREFERENCES, null, null,
-                null, null, VALID_REMARK);
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_ID, INVALID_NAME, VALID_PHONE, VALID_EMAIL,
+                VALID_ADDRESS, Collections.emptyList(), VALID_ROLE_SUPPLIER, VALID_PRODUCTS, VALID_PREFERENCES, null,
+                null, null, null, VALID_REMARK);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toSupplierModelType);
     }
@@ -252,9 +252,9 @@ public class JsonAdaptedPersonTest {
 
     @Test
     public void toSupplierModelType_invalidPhone_throwsIllegalValueException() {
-        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_ID, VALID_NAME, INVALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                Collections.emptyList(), VALID_ROLE_SUPPLIER, VALID_PRODUCTS, VALID_PREFERENCES, null, null,
-                null, null, VALID_REMARK);
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_ID, VALID_NAME, INVALID_PHONE, VALID_EMAIL,
+                VALID_ADDRESS, Collections.emptyList(), VALID_ROLE_SUPPLIER, VALID_PRODUCTS, VALID_PREFERENCES, null,
+                null, null, null, VALID_REMARK);
         String expectedMessage = Phone.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toSupplierModelType);
     }
@@ -270,9 +270,9 @@ public class JsonAdaptedPersonTest {
 
     @Test
     public void toSupplierModelType_invalidEmail_throwsIllegalValueException() {
-        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_ID, VALID_NAME, VALID_PHONE, INVALID_EMAIL, VALID_ADDRESS,
-                Collections.emptyList(), VALID_ROLE_SUPPLIER, VALID_PRODUCTS, VALID_PREFERENCES, null, null,
-                null, null, VALID_REMARK);
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_ID, VALID_NAME, VALID_PHONE, INVALID_EMAIL,
+                VALID_ADDRESS, Collections.emptyList(), VALID_ROLE_SUPPLIER, VALID_PRODUCTS, VALID_PREFERENCES, null,
+                null, null, null, VALID_REMARK);
         String expectedMessage = Email.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toSupplierModelType);
     }
@@ -288,9 +288,9 @@ public class JsonAdaptedPersonTest {
 
     @Test
     public void toSupplierModelType_invalidAddress_throwsIllegalValueException() {
-        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_ID, VALID_NAME, VALID_PHONE, VALID_EMAIL, INVALID_ADDRESS,
-                Collections.emptyList(), VALID_ROLE_SUPPLIER, VALID_PRODUCTS, VALID_PREFERENCES, null, null,
-                null, null, VALID_REMARK);
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_ID, VALID_NAME, VALID_PHONE, VALID_EMAIL,
+                INVALID_ADDRESS, Collections.emptyList(), VALID_ROLE_SUPPLIER, VALID_PRODUCTS, VALID_PREFERENCES, null,
+                null, null, null, VALID_REMARK);
         String expectedMessage = Address.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toSupplierModelType);
     }

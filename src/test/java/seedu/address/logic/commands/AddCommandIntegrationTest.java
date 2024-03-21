@@ -33,8 +33,8 @@ public class AddCommandIntegrationTest {
     @Test
     public void execute_newClient_success() {
         Model expectedModel = new ModelManager(model.getNetConnect(), new UserPrefs());
-        
-        Person validClient = new ClientBuilder().withName("John").build();        
+
+        Person validClient = new ClientBuilder().withName("John").build();
         expectedModel.addPerson(validClient);
 
         assertCommandSuccess(new AddCommand(validClient), model,

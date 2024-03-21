@@ -20,8 +20,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Department;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.JobTitle;
 import seedu.address.model.person.Id;
+import seedu.address.model.person.JobTitle;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Products;
@@ -321,12 +321,12 @@ public class ParserUtilTest {
     @Test
     public void parseSkills_collectionWithInvalidSkills_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseSkills(
-            Arrays.asList(VALID_SKILLS_1, INVALID_SKILLS, VALID_SKILLS_2)));
+                Arrays.asList(VALID_SKILLS_1, INVALID_SKILLS, VALID_SKILLS_2)));
     }
 
     @Test
     public void parseSkillsLists_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseSkills((List<String>) null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseSkills(null));
     }
 
     @Test

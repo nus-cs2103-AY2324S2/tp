@@ -5,9 +5,9 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DEPARTMENT_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_JOB_TITLE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ID_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ID_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_JOB_TITLE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
@@ -76,13 +76,14 @@ public class TypicalPersons {
             .withProducts("Computer Hardware", "Printers").withTermsOfService("Returns within 30 days").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
-    public static final Client AMY = new ClientBuilder().withId(VALID_ID_AMY).withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
-            .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND)
-            .withRemark(VALID_REMARK_AMY).withProducts(VALID_PRODUCTS_LAPTOP, VALID_PRODUCTS_SMARTPHONE)
+    public static final Client AMY = new ClientBuilder().withId(VALID_ID_AMY).withName(VALID_NAME_AMY)
+            .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
+            .withTags(VALID_TAG_FRIEND).withRemark(VALID_REMARK_AMY)
+            .withProducts(VALID_PRODUCTS_LAPTOP, VALID_PRODUCTS_SMARTPHONE)
             .withPreferences(VALID_PREFERENCE_AMY).build();
 
-    public static final Employee BOB = new EmployeeBuilder().withId(VALID_ID_BOB).withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-            .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
+    public static final Employee BOB = new EmployeeBuilder().withId(VALID_ID_BOB).withName(VALID_NAME_BOB)
+            .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).withRemark(VALID_REMARK_BOB)
             .withDepartment(VALID_DEPARTMENT_BOB).withJobTitle(VALID_JOB_TITLE_BOB)
             .withSkills(VALID_SKILLS_NEGOTIATION, VALID_SKILLS_COMMUNICATION).build();
