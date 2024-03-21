@@ -26,16 +26,16 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_PERSON_NOT_FOUND = "This person does not exist in the address book";
 
+
     public static final String MESSAGE_POSITIVE_INTEGER_AND_ZERO = "The unique ID must be "
             + "a positive integer and/or zero";
-
+  
     private final int targetUniqueId;
 
     /**
      * Creates a DeleteCommand to delete the person with the specified unique ID.
      */
     public DeleteCommand(int targetUniqueId) {
-        requireNonNull(targetUniqueId);
         this.targetUniqueId = targetUniqueId;
     }
 
