@@ -2,8 +2,8 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
@@ -27,8 +27,8 @@ public class DeleteCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_EMPLOYEE_SUCCESS = "Deleted Employee: %1$s";
-    public static final String MESSAGE_DELETE_EMPLOYEE_DUPLICATE = "Multiple employees with the same name found. " +
-            "Please use the unique ID to delete the employee.";
+    public static final String MESSAGE_DELETE_EMPLOYEE_DUPLICATE = "Multiple employees with the same name found. "
+            + "Please use the unique ID to delete the employee.";
 
     private final Index targetIndex;
     private final String targetName;
@@ -123,8 +123,8 @@ public class DeleteCommand extends Command {
         }
 
         if (employeesWithTargetName.size() > 1) {
-            throw new CommandException("Multiple employees with this name found. Please delete by uid.\n" +
-                    "Format: delete uid/UID_NUMBER\n" + "Example: delete uid/101");
+            throw new CommandException("Multiple employees with this name found. Please delete by uid.\n"
+                    + "Format: delete uid/UID_NUMBER\n" + "Example: delete uid/101");
         } else if (employeesWithTargetName.size() == 1) {
             model.deleteEmployee(employeesWithTargetName.get(0));
             return new CommandResult(
