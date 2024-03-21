@@ -64,19 +64,19 @@ activate Model
 Model --> EditCommand
 deactivate Model
 
-EditCommand -> EditCommand : createEditedPerson(p, d)
+EditCommand -> EditCommand : createEditedPerson(personToEdit, d)
 activate EditCommand
 
-EditCommand --> EditCommand : edited_p
+EditCommand --> EditCommand : editedPerson
 deactivate EditCommand
 
-EditCommand -> Model : setPerson(edited_p)
+EditCommand -> Model : setPerson(personToEdit, editedPerson)
 activate Model
 
 Model --> EditCommand :
 deactivate Model
 
-EditCommand -> Model : updateFilteredPersonList(true)
+EditCommand -> Model : updateFilteredPersonList(unused -> true)
 activate Model
 
 Model --> EditCommand :
