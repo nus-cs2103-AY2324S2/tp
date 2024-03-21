@@ -44,8 +44,8 @@ public class AddMeetingCommandTest {
     }
     @Test
     public void execute_duplicateMeeting_throwsCommandException() {
-        Meeting validMeeting = new MeetingBuilder().build();
-        Person client = validMeeting.getPerson();
+        Person client = new MeetingBuilder().build();
+        Meeting validMeeting = new MeetingBuilder().build().getMeetings().get(0);
         ModelStubWithMeeting modelStub = new ModelStubWithMeeting(validMeeting, client);
 
         AddMeetingCommand addMeetingCommand = new AddMeetingCommand(validMeeting.getDateTime(),
@@ -180,6 +180,14 @@ public class AddMeetingCommandTest {
         @Override
         public boolean hasMeeting(Meeting meeting) {
             throw new AssertionError("This Meeting method should not be called.");
+        }
+        @Override
+        public void deleteAllMeetingsForClient(Index clientIndex) {
+            throw new AssertionError("This Meeting method should not be called.");
+        }
+        @Override
+        public void deleteSpecificMeetingForClient(Index clientIndex, Index meetingIndex) {
+            throw new AssertionError("This method should not be called.");
         }
     }
 

@@ -185,8 +185,10 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteSpecificMeetingForClient(Index clientIndex, Index meetingIndex) {
-        Person targetClient = filteredPersons.get(clientIndex.getZeroBased());
+        Person targetClient = addressBook.getPersonList().get(clientIndex.getZeroBased());
         ArrayList<Meeting> targetClientMeetings = targetClient.getMeetings();
+        Meeting targetMeeting = targetClientMeetings.get(meetingIndex.getZeroBased());
+        addressBook.deleteMeeting(targetMeeting);
         targetClientMeetings.remove(meetingIndex.getZeroBased());
     }
 

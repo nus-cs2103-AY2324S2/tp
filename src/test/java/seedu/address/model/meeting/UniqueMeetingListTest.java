@@ -4,9 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.testutil.TypicalMeetings.MEETING_WITH_ALICE;
-import static seedu.address.testutil.TypicalMeetings.MEETING_WITH_BENSON;
-import static seedu.address.testutil.TypicalMeetings.MEETING_WITH_CARL;
+//import static seedu.address.testutil.TypicalMeetings.ALICE_WITH_MEETING;
+import static seedu.address.testutil.TypicalMeetings.ALICE_WITH_MEETING;
+import static seedu.address.testutil.TypicalMeetings.BENSON_WITH_MEETING;
+import static seedu.address.testutil.TypicalMeetings.CARL_WITH_MEETING;
 
 import java.util.Arrays;
 import java.util.List;
@@ -15,6 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.model.meeting.exceptions.DuplicateMeetingException;
 import seedu.address.model.meeting.exceptions.MeetingNotFoundException;
+import seedu.address.model.person.Person;
 import seedu.address.testutil.MeetingBuilder;
 
 public class UniqueMeetingListTest {
@@ -28,13 +30,13 @@ public class UniqueMeetingListTest {
 
     @Test
     public void contains_meetingNotInList_returnsFalse() {
-        assertFalse(uniqueMeetingList.contains(MEETING_WITH_ALICE));
+        assertFalse(uniqueMeetingList.contains(ALICE_WITH_MEETING.getMeetings().get(0)));
     }
 
     @Test
     public void contains_meetingInList_returnsTrue() {
-        uniqueMeetingList.add(MEETING_WITH_ALICE);
-        assertTrue(uniqueMeetingList.contains(MEETING_WITH_ALICE));
+        uniqueMeetingList.add(ALICE_WITH_MEETING.getMeetings().get(0));
+        assertTrue(uniqueMeetingList.contains(ALICE_WITH_MEETING.getMeetings().get(0)));
     }
 
     @Test
@@ -44,62 +46,67 @@ public class UniqueMeetingListTest {
 
     @Test
     public void add_duplicateMeeting_throwsDuplicateMeetingException() {
-        uniqueMeetingList.add(MEETING_WITH_ALICE);
-        assertThrows(DuplicateMeetingException.class, () -> uniqueMeetingList.add(MEETING_WITH_ALICE));
+        uniqueMeetingList.add(ALICE_WITH_MEETING.getMeetings().get(0));
+        assertThrows(DuplicateMeetingException.class, () -> uniqueMeetingList
+                .add(ALICE_WITH_MEETING.getMeetings().get(0)));
     }
 
     @Test
     public void setMeeting_nullTargetMeeting_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueMeetingList.setMeeting(null, MEETING_WITH_ALICE));
+        assertThrows(NullPointerException.class, () -> uniqueMeetingList.setMeeting(null,
+                ALICE_WITH_MEETING.getMeetings().get(0)));
     }
 
     @Test
     public void setMeeting_nullEditedMeeting_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueMeetingList.setMeeting(MEETING_WITH_ALICE, null));
+        assertThrows(NullPointerException.class, () -> uniqueMeetingList.setMeeting(ALICE_WITH_MEETING
+                .getMeetings().get(0), null));
     }
 
     @Test
     public void setMeeting_targetMeetingNotInList_throwsMeetingNotFoundException() {
-        assertThrows(MeetingNotFoundException.class, () -> uniqueMeetingList.setMeeting(MEETING_WITH_ALICE,
-                MEETING_WITH_ALICE));
+        assertThrows(MeetingNotFoundException.class, () -> uniqueMeetingList.setMeeting(ALICE_WITH_MEETING
+                        .getMeetings().get(0),
+                        ALICE_WITH_MEETING.getMeetings().get(0)));
     }
 
     @Test
     public void setMeeting_editedMeetingIsSameMeeting_success() {
-        uniqueMeetingList.add(MEETING_WITH_ALICE);
-        uniqueMeetingList.setMeeting(MEETING_WITH_ALICE, MEETING_WITH_ALICE);
+        uniqueMeetingList.add(ALICE_WITH_MEETING.getMeetings().get(0));
+        uniqueMeetingList.setMeeting(ALICE_WITH_MEETING.getMeetings().get(0), ALICE_WITH_MEETING.getMeetings().get(0));
         UniqueMeetingList expectedUniqueMeetingList = new UniqueMeetingList();
-        expectedUniqueMeetingList.add(MEETING_WITH_ALICE);
+        expectedUniqueMeetingList.add(ALICE_WITH_MEETING.getMeetings().get(0));
         assertEquals(expectedUniqueMeetingList, uniqueMeetingList);
     }
 
     @Test
     public void setMeeting_editedMeetingHasSameIdentity_success() {
-        uniqueMeetingList.add(MEETING_WITH_ALICE);
-        Meeting editedAlice = new MeetingBuilder(MEETING_WITH_ALICE)
+        uniqueMeetingList.add(ALICE_WITH_MEETING.getMeetings().get(0));
+        Person editedAlice = new MeetingBuilder(ALICE_WITH_MEETING.getMeetings().get(0))
                 .withDescription("Updated Description")
                 .build();
-        uniqueMeetingList.setMeeting(MEETING_WITH_ALICE, editedAlice);
+        uniqueMeetingList.setMeeting(ALICE_WITH_MEETING.getMeetings().get(0), editedAlice.getMeetings().get(0));
         UniqueMeetingList expectedUniqueMeetingList = new UniqueMeetingList();
-        expectedUniqueMeetingList.add(editedAlice);
+        expectedUniqueMeetingList.add(editedAlice.getMeetings().get(0));
         assertEquals(expectedUniqueMeetingList, uniqueMeetingList);
     }
 
     @Test
     public void setMeeting_editedMeetingHasDifferentIdentity_success() {
-        uniqueMeetingList.add(MEETING_WITH_ALICE);
-        uniqueMeetingList.setMeeting(MEETING_WITH_ALICE, MEETING_WITH_BENSON);
+        uniqueMeetingList.add(ALICE_WITH_MEETING.getMeetings().get(0));
+        uniqueMeetingList.setMeeting(ALICE_WITH_MEETING.getMeetings().get(0), BENSON_WITH_MEETING.getMeetings().get(0));
         UniqueMeetingList expectedUniqueMeetingList = new UniqueMeetingList();
-        expectedUniqueMeetingList.add(MEETING_WITH_BENSON);
+        expectedUniqueMeetingList.add(BENSON_WITH_MEETING.getMeetings().get(0));
         assertEquals(expectedUniqueMeetingList, uniqueMeetingList);
     }
 
     @Test
     public void setMeeting_editedMeetingHasNonUniqueIdentity_throwsDuplicateMeetingException() {
-        uniqueMeetingList.add(MEETING_WITH_ALICE);
-        uniqueMeetingList.add(MEETING_WITH_BENSON);
-        assertThrows(DuplicateMeetingException.class, () -> uniqueMeetingList.setMeeting(MEETING_WITH_ALICE,
-                MEETING_WITH_BENSON));
+        uniqueMeetingList.add(ALICE_WITH_MEETING.getMeetings().get(0));
+        uniqueMeetingList.add(BENSON_WITH_MEETING.getMeetings().get(0));
+        assertThrows(DuplicateMeetingException.class, () -> uniqueMeetingList.setMeeting(
+                ALICE_WITH_MEETING.getMeetings().get(0),
+                BENSON_WITH_MEETING.getMeetings().get(0)));
     }
 
     @Test
@@ -109,13 +116,14 @@ public class UniqueMeetingListTest {
 
     @Test
     public void remove_meetingDoesNotExist_throwsMeetingNotFoundException() {
-        assertThrows(MeetingNotFoundException.class, () -> uniqueMeetingList.remove(MEETING_WITH_ALICE));
+        assertThrows(MeetingNotFoundException.class, () -> uniqueMeetingList.remove(
+                ALICE_WITH_MEETING.getMeetings().get(0)));
     }
 
     @Test
     public void remove_existingMeeting_removesMeeting() {
-        uniqueMeetingList.add(MEETING_WITH_ALICE);
-        uniqueMeetingList.remove(MEETING_WITH_ALICE);
+        uniqueMeetingList.add(ALICE_WITH_MEETING.getMeetings().get(0));
+        uniqueMeetingList.remove(ALICE_WITH_MEETING.getMeetings().get(0));
         UniqueMeetingList expectedUniqueMeetingList = new UniqueMeetingList();
         assertEquals(expectedUniqueMeetingList, uniqueMeetingList);
     }
@@ -127,9 +135,9 @@ public class UniqueMeetingListTest {
 
     @Test
     public void setMeetings_uniqueMeetingList_replacesOwnListWithProvidedUniqueMeetingList() {
-        uniqueMeetingList.add(MEETING_WITH_ALICE);
+        uniqueMeetingList.add(ALICE_WITH_MEETING.getMeetings().get(0));
         UniqueMeetingList expectedUniqueMeetingList = new UniqueMeetingList();
-        expectedUniqueMeetingList.add(MEETING_WITH_BENSON);
+        expectedUniqueMeetingList.add(BENSON_WITH_MEETING.getMeetings().get(0));
         uniqueMeetingList.setMeetings(expectedUniqueMeetingList);
         assertEquals(expectedUniqueMeetingList, uniqueMeetingList);
     }
@@ -141,18 +149,20 @@ public class UniqueMeetingListTest {
 
     @Test
     public void setMeetings_list_replacesOwnListWithProvidedList() {
-        uniqueMeetingList.add(MEETING_WITH_ALICE);
-        List<Meeting> meetingList = Arrays.asList(MEETING_WITH_BENSON, MEETING_WITH_CARL);
+        uniqueMeetingList.add(ALICE_WITH_MEETING.getMeetings().get(0));
+        List<Meeting> meetingList = Arrays.asList(BENSON_WITH_MEETING.getMeetings().get(0),
+                CARL_WITH_MEETING.getMeetings().get(0));
         uniqueMeetingList.setMeetings(meetingList);
         UniqueMeetingList expectedUniqueMeetingList = new UniqueMeetingList();
-        expectedUniqueMeetingList.add(MEETING_WITH_BENSON);
-        expectedUniqueMeetingList.add(MEETING_WITH_CARL);
+        expectedUniqueMeetingList.add(BENSON_WITH_MEETING.getMeetings().get(0));
+        expectedUniqueMeetingList.add(CARL_WITH_MEETING.getMeetings().get(0));
         assertEquals(expectedUniqueMeetingList, uniqueMeetingList);
     }
 
     @Test
     public void setMeetings_listWithDuplicateMeetings_throwsDuplicateMeetingException() {
-        List<Meeting> listWithDuplicateMeetings = Arrays.asList(MEETING_WITH_ALICE, MEETING_WITH_ALICE);
+        List<Meeting> listWithDuplicateMeetings = Arrays.asList(ALICE_WITH_MEETING.getMeetings().get(0),
+                ALICE_WITH_MEETING.getMeetings().get(0));
         assertThrows(DuplicateMeetingException.class, () -> uniqueMeetingList.setMeetings(listWithDuplicateMeetings));
     }
 

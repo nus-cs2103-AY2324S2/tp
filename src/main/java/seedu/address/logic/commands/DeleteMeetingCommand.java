@@ -18,7 +18,7 @@ import seedu.address.model.person.Person;
  */
 public class DeleteMeetingCommand extends Command {
 
-    public static final String COMMAND_WORD = "delete meeting";
+    public static final String COMMAND_WORD = "deleteMeeting";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the meeting of a particular client identified by the "

@@ -92,7 +92,7 @@ public class Person {
      * @param meeting
      * @return
      */
-    public Person addMeetings(Meeting meeting) {
+    public Person addMeeting(Meeting meeting) {
         this.meetings.add(meeting);
         return this;
     }

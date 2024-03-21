@@ -101,7 +101,9 @@ public class PersonBuilder {
         this.meetings.add(meeting);
         return this;
     }
-
+    /**
+     * Builds the person with the meetings.
+     */
     public Person build() {
         return new Person(name, phone, email, address, tags);
     }

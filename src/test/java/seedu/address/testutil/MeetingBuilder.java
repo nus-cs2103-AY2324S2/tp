@@ -28,6 +28,14 @@ public class MeetingBuilder {
         dateTime = LocalDateTime.parse(DEFAULT_DATE, formatter);
         client = DEFAULT_CLIENT;
     }
+    /**
+     * Creates a {@code MeetingBuilder} with the default details, but with the specified person.
+     */
+    public MeetingBuilder(Person person) {
+        description = DEFAULT_DESCRIPTION;
+        dateTime = LocalDateTime.parse(DEFAULT_DATE, formatter);
+        client = person;
+    }
 
     /**
      * Constructs a {@code MeetingBuilder} with the specified meeting to copy.
@@ -68,5 +76,9 @@ public class MeetingBuilder {
     /**
      * Builds and returns a {@code Meeting} object with the specified details.
      */
-    public Meeting build() { return new Meeting(description, dateTime, client); }
+    public Person build() {
+        Meeting meeting = new Meeting(description, dateTime, client);
+        client.addMeeting(meeting);
+        return client;
+    }
 }
