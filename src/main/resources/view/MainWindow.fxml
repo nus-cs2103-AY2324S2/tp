@@ -10,6 +10,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
 
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
          title="Address App" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
@@ -32,28 +33,53 @@
             <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
           </Menu>
         </MenuBar>
+        <HBox>
+            <VBox>
+                <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
+                <padding>
+                    <Insets top="5" right="10" bottom="5" left="10" />
+                </padding>
+                </StackPane>
 
-        <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
-          <padding>
-            <Insets top="5" right="10" bottom="5" left="10" />
-          </padding>
-        </StackPane>
+                <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
+                        minHeight="100" prefHeight="100" maxHeight="100">
+                <padding>
+                    <Insets top="5" right="10" bottom="5" left="10" />
+                </padding>
+                </StackPane>
 
-        <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
-                   minHeight="100" prefHeight="100" maxHeight="100">
-          <padding>
-            <Insets top="5" right="10" bottom="5" left="10" />
-          </padding>
-        </StackPane>
+                <VBox fx:id="personList" styleClass="pane-with-border" minWidth="250" prefWidth="250" VBox.vgrow="ALWAYS">
+                <padding>
+                    <Insets top="10" right="10" bottom="10" left="10" />
+                </padding>
+                <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+                </VBox>
 
-        <VBox fx:id="personList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
-          <padding>
-            <Insets top="10" right="10" bottom="10" left="10" />
-          </padding>
-          <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-        </VBox>
+                <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
+            </VBox>
+            <HBox>
+                <VBox>
+                    <VBox fx:id="undoneTaskList" styleClass="pane-with-border" minWidth="200" prefWidth="200" VBox.vgrow="ALWAYS">
+                    <padding>
+                        <Insets top="10" right="10" bottom="10" left="10" />
+                    </padding>
+                    <StackPane fx:id="undoneTaskListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+                    </VBox>
 
-        <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
+                    <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
+                </VBox>
+                <VBox>
+                    <VBox fx:id="doneTaskList" styleClass="pane-with-border" minWidth="200" prefWidth="200" VBox.vgrow="ALWAYS">
+                    <padding>
+                        <Insets top="10" right="10" bottom="10" left="10" />
+                    </padding>
+                    <StackPane fx:id="doneTaskListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+                    </VBox>
+
+                    <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
+                </VBox>
+            </HBox>
+        </HBox>
       </VBox>
     </Scene>
   </scene>
