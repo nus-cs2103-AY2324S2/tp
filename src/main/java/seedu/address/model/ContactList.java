@@ -92,7 +92,7 @@ public class ContactList implements ReadOnlyContactList {
     /**
      * Finds a {@code CourseMate} with the exact same name.
      */
-    public CourseMate findCourseMate(Name name) {
+    public List<CourseMate> findCourseMate(Name name) {
         requireNonNull(name);
 
         return courseMates.findCourseMate(name);

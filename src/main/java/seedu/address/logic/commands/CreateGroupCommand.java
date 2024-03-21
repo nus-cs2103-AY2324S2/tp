@@ -59,6 +59,7 @@ public class CreateGroupCommand extends Command {
             courseMateList = queryableCourseMateSet
                     .stream()
                     .map(model::findCourseMate)
+                    .map(x -> x.get(0))
                     .collect(Collectors.toSet());
         } catch (CourseMateNotFoundException e) {
             throw new CommandException(MESSAGE_MEMBERS_DONT_EXIST);

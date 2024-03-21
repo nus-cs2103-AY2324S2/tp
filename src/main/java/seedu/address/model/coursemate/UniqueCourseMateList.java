@@ -3,6 +3,7 @@ package seedu.address.model.coursemate;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -58,14 +59,20 @@ public class UniqueCourseMateList implements Iterable<CourseMate> {
      * The courseMate must already exist in the list. Throws an exception otherwise.
      */
 
-    public CourseMate findCourseMate(Name name) {
+    public List<CourseMate> findCourseMate(Name name) {
         requireNonNull(name);
+        ArrayList<CourseMate> arrayList = new ArrayList<>();
+        boolean foundCourseMate = false;
         for (CourseMate courseMate: internalList) {
-            if (courseMate.getName().equals(name)) {
-                return courseMate;
+            if (courseMate.getName().toString().contains(name.toString())) {
+                arrayList.add(courseMate);
+                foundCourseMate = true;
             }
         }
 
+        if (foundCourseMate) {
+            return arrayList;
+        }
         throw new CourseMateNotFoundException();
     }
 

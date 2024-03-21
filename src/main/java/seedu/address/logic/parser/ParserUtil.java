@@ -33,7 +33,7 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
 
-        if (trimmedIndex.charAt(1) == '#') {
+        if (trimmedIndex.equals("##")) {
             return Index.fromOneBased(0);
         }
 

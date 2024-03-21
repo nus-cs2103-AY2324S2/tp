@@ -16,6 +16,7 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.coursemate.ContainsKeywordPredicate;
 import seedu.address.model.coursemate.CourseMate;
 import seedu.address.model.coursemate.QueryableCourseMate;
 import seedu.address.model.coursemate.exceptions.CourseMateNotFoundException;
@@ -65,12 +66,24 @@ public class AddSkillCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_COURSE_MATE_DISPLAYED_INDEX);
         }
 
-        CourseMate courseMateToEdit;
+        List<CourseMate> courseMateToEditList;
         try {
-            courseMateToEdit = model.findCourseMate(queryableCourseMate);
+            courseMateToEditList = model.findCourseMate(queryableCourseMate);
         } catch (CourseMateNotFoundException e) {
             throw new CommandException(Messages.MESSAGE_INVALID_COURSE_MATE_NAME);
         }
+
+        //If there are more than 1 matching names
+        if (courseMateToEditList.size() > 1) {
+            ContainsKeywordPredicate predicate = new ContainsKeywordPredicate(
+                    queryableCourseMate.getName().toString());
+            model.updateFilteredCourseMateList(predicate);
+            return new CommandResult(
+                    String.format(Messages.MESSAGE_SIMILAR_COURSE_MATE_NAME,
+                            model.getFilteredCourseMateList().size()), false, false, true);
+        }
+
+        CourseMate courseMateToEdit = courseMateToEditList.get(0);
 
         CourseMate editedCourseMate = addSkillToCourseMate(courseMateToEdit, addSkillDescriptor);
 

@@ -11,6 +11,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_SKILL_JAVA;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.assertRecentlyProcessedCourseMateEdited;
+import static seedu.address.logic.commands.CommandTestUtil.showAllCourseMates;
 import static seedu.address.logic.commands.CommandTestUtil.showCourseMateAtIndex;
 import static seedu.address.testutil.TypicalCourseMates.getTypicalContactList;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_COURSE_MATE;
@@ -26,6 +27,7 @@ import seedu.address.model.GroupList;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.coursemate.ContainsKeywordPredicate;
 import seedu.address.model.coursemate.CourseMate;
 import seedu.address.model.coursemate.Name;
 import seedu.address.model.coursemate.QueryableCourseMate;
@@ -114,12 +116,29 @@ public class EditCommandTest {
     }
 
     @Test
+    public void execute_similarCourseMates() {
+        showAllCourseMates(model, new Name("a"));
+        EditCommand editCommand = new EditCommand(new QueryableCourseMate(new Name("a")),
+                new EditCourseMateDescriptorBuilder().withName(VALID_NAME_BOB).build());
+        String expectedMessage = String.format(Messages.MESSAGE_SIMILAR_COURSE_MATE_NAME, 4);
+
+        Model expectedModel = new ModelManager(
+                new ContactList(model.getContactList()), new UserPrefs(), new GroupList());
+
+        ContainsKeywordPredicate predicate = new ContainsKeywordPredicate("a");
+        expectedModel.updateFilteredCourseMateList(predicate);
+
+        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel, true);
+        assertRecentlyProcessedCourseMateEdited(model, null);
+    }
+
+    @Test
     public void execute_duplicateCourseMateUnfilteredList_failure() {
         CourseMate firstCourseMate = model.getFilteredCourseMateList().get(INDEX_FIRST_COURSE_MATE.getZeroBased());
         EditCourseMateDescriptor descriptor = new EditCourseMateDescriptorBuilder(firstCourseMate).build();
         EditCommand editCommand = new EditCommand(new QueryableCourseMate(INDEX_SECOND_COURSE_MATE), descriptor);
 
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_COURSE_MATE);
+        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_COURSE_MATE_NAME);
         assertRecentlyProcessedCourseMateEdited(model, null);
     }
 
@@ -133,7 +152,7 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand(new QueryableCourseMate(INDEX_FIRST_COURSE_MATE),
                 new EditCourseMateDescriptorBuilder(courseMateInList).build());
 
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_COURSE_MATE);
+        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_COURSE_MATE_NAME);
         assertRecentlyProcessedCourseMateEdited(model, null);
     }
 

@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -174,12 +176,16 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public CourseMate findCourseMate(QueryableCourseMate query) throws CourseMateNotFoundException {
+    public List<CourseMate> findCourseMate(QueryableCourseMate query) throws CourseMateNotFoundException {
         if (query.isIndex()) {
             if (query.getIndex().getZeroBased() == -1) {
-                return getRecentlyProcessedCourseMate();
+                ArrayList<CourseMate> arrayList = new ArrayList<>();
+                arrayList.add(getRecentlyProcessedCourseMate());
+                return arrayList;
             } else {
-                return getFilteredCourseMateList().get(query.getIndex().getZeroBased());
+                ArrayList<CourseMate> arrayList = new ArrayList<>();
+                arrayList.add(getFilteredCourseMateList().get(query.getIndex().getZeroBased()));
+                return arrayList;
             }
         } else {
             return contactList.findCourseMate(query.getName());
