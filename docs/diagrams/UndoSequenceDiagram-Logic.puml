@@ -31,8 +31,14 @@ LogicManager -> UndoCommand : execute()
 activate UndoCommand
 
 UndoCommand -> Model : undoAddressBook()
+
 activate Model
 
+Model --> UndoCommand
+deactivate Model
+
+UndoCommand -> Model : updateFilteredPersonList(show_all)
+activate Model
 Model --> UndoCommand
 deactivate Model
 
