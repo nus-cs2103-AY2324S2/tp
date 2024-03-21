@@ -55,6 +55,8 @@ public class PersonUtil {
         descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
         descriptor.getBirthday().ifPresent(birthday ->
                 sb.append(PREFIX_BIRTHDAY).append(birthday.toString()).append(" "));
+        descriptor.getMoneyOwed().ifPresent(moneyOwed -> sb.append(PREFIX_MONEY_OWED)
+                .append(moneyOwed.toString()).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {
@@ -63,8 +65,6 @@ public class PersonUtil {
                 tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
             }
         }
-        descriptor.getMoneyOwed().ifPresent(moneyOwed -> sb.append(PREFIX_MONEY_OWED)
-                .append(moneyOwed.toString()).append(" "));
         return sb.toString();
     }
 }

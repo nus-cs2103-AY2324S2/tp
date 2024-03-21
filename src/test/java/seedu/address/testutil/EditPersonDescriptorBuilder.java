@@ -38,6 +38,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setAddress(person.getAddress());
         descriptor.setTags(person.getTags());
         descriptor.setBirthday(person.getBirthday());
+        descriptor.setMoneyOwed((person.getMoneyOwed()));
     }
 
     /**

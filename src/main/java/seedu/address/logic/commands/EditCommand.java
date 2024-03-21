@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MONEY_OWED;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -46,6 +47,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_MONEY_OWED + "MONEY_OWED] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -177,7 +179,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, birthday);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, birthday, moneyOwed);
         }
 
         public void setName(Name name) {
@@ -254,7 +256,8 @@ public class EditCommand extends Command {
                     && Objects.equals(email, otherEditPersonDescriptor.email)
                     && Objects.equals(address, otherEditPersonDescriptor.address)
                     && Objects.equals(tags, otherEditPersonDescriptor.tags)
-                    && Objects.equals(birthday, otherEditPersonDescriptor.birthday);
+                    && Objects.equals(birthday, otherEditPersonDescriptor.birthday)
+                    && Objects.equals(moneyOwed, otherEditPersonDescriptor.moneyOwed);
         }
 
         @Override
@@ -266,6 +269,7 @@ public class EditCommand extends Command {
                     .add("address", address)
                     .add("birthday", birthday)
                     .add("tags", tags)
+                    .add("moneyOwed", moneyOwed)
                     .toString();
         }
     }
