@@ -37,21 +37,21 @@ public class TypicalPersons {
             .withName("Daniel Meier").withPhone("87652533")
             .withAddress("10th street").withSex("M").withStatus("HEALTHY").build();
     public static final Person ELLE = new PersonBuilder().withNric("S8913957B")
-            .withName("Elle Meyer").withPhone("9482224")
+            .withName("Elle Meyer").withPhone("94821224")
             .withAddress("michegan ave").withSex("F").withStatus("UNWELL").build();
     public static final Person FIONA = new PersonBuilder().withNric("T0536171Z")
-            .withName("Fiona Kunz").withPhone("9482427")
+            .withName("Fiona Kunz").withPhone("94820427")
             .withAddress("little tokyo").withSex("F").withStatus("PENDING").build();
     public static final Person GEORGE = new PersonBuilder().withNric("T0829102Z")
-            .withName("George Best").withPhone("9482442")
+            .withName("George Best").withPhone("94824421")
             .withAddress("4th street").withSex("M").withStatus("HEALTHY").build();
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withNric("T0123071C").withName("Hoon Meier")
-            .withPhone("8482424").withAddress("little india")
+            .withPhone("81482424").withAddress("little india")
             .withSex("M").withStatus("HEALTHY").build();
     public static final Person IDA = new PersonBuilder().withNric("T0239521A").withName("Ida Mueller")
-            .withPhone("8482131").withAddress("chicago ave")
+            .withPhone("84820131").withAddress("chicago ave")
             .withSex("F").withStatus("PENDING").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
