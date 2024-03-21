@@ -16,9 +16,6 @@ import seedu.address.model.person.attribute.Attribute;
  * Jackson-friendly version of {@link Person}.
  */
 class JsonAdaptedPersonAttr {
-
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
-
     private final List<JsonAdaptedAttribute> attributes = new ArrayList<>();
 
     private final String uuid;
@@ -54,10 +51,6 @@ class JsonAdaptedPersonAttr {
         final List<Attribute> personAttributes = new ArrayList<>();
         for (JsonAdaptedAttribute attribute : attributes) {
             personAttributes.add(attribute.toModelType());
-        }
-
-        if (personAttributes.isEmpty()) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Attributes"));
         }
 
         return new Person(UUID.fromString(uuid), personAttributes.toArray(new Attribute[0]));
