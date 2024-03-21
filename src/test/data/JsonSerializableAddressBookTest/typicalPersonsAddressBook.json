@@ -8,7 +8,8 @@
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
     "role" : "volunteer",
-    "tags" : [ "friends" ]
+    "tags" : [ "friends" ],
+    "pairedWith" : "Elle Meyer"
   }, {
     "id" : "1",
     "name" : "Benson Meier",
@@ -40,7 +41,9 @@
     "email" : "werner@example.com",
     "address" : "michegan ave",
     "role" : "befriendee",
-    "tags" : [ ]
+    "tags" : [ ],
+    "pairedWith" : "Alice Pauline"
+
   }, {
     "id" : "5",
     "name" : "Fiona Kunz",
@@ -57,5 +60,6 @@
     "address" : "4th street",
     "role" : "befriendee",
     "tags" : [ ]
-  } ]
+  }
+  ]
 }

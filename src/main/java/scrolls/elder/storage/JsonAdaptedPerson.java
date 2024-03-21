@@ -3,6 +3,7 @@ package scrolls.elder.storage;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -34,6 +35,7 @@ class JsonAdaptedPerson {
     private final String address;
     private final String role;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
+    private final String pairedWith;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -46,7 +48,8 @@ class JsonAdaptedPerson {
             @JsonProperty("email") String email,
             @JsonProperty("address") String address,
             @JsonProperty("role") String role,
-            @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+            @JsonProperty("tags") List<JsonAdaptedTag> tags,
+            @JsonProperty("pairedWith") String pairedWith) {
 
         this.id = id;
         this.name = name;
@@ -54,6 +57,7 @@ class JsonAdaptedPerson {
         this.email = email;
         this.address = address;
         this.role = role;
+        this.pairedWith = pairedWith;
         if (tags != null) {
             this.tags.addAll(tags);
         }
@@ -72,6 +76,7 @@ class JsonAdaptedPerson {
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        pairedWith = source.getPairedWith().map(p -> p.fullName).orElse(null);
     }
 
     /**
@@ -122,6 +127,9 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
+        final Optional<Name> modelPairedWith;
+        modelPairedWith = Optional.ofNullable(pairedWith).map(Name::new);
+
         Role modelRole;
         if (role == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Role.class.getSimpleName()));
@@ -134,11 +142,13 @@ class JsonAdaptedPerson {
 
         if (modelRole.isVolunteer()) {
             Person p = new Volunteer(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+            p.setPairedWith(modelPairedWith);
             p.setId(modelId);
             return p;
         } else {
             assert modelRole.isBefriendee();
             Person p = new Befriendee(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+            p.setPairedWith(modelPairedWith);
             p.setId(modelId);
             return p;
         }
