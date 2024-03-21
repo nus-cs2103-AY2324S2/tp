@@ -57,6 +57,17 @@ public class DeleteCommand extends Command {
         this.uid = null; // UniqueId is not used in this context
     }
 
+    /**
+     * Constructor for unique id-based deletion
+     *
+     * @param uid unique id of the employee to delete
+     */
+    public DeleteCommand(UniqueId uid) {
+        this.targetIndex = null; // Index is not used in this context
+        this.targetName = null; // Name is not used in this context
+        this.uid = uid;
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -67,6 +78,9 @@ public class DeleteCommand extends Command {
         } else if (targetName != null && !targetName.isEmpty()) {
             // Implement name-based deletion logic
             return deleteByName(model);
+        } else if (uid != null) {
+            // Implement unique id-based deletion logic
+            return deleteByUid(model);
         } else {
             throw new CommandException(Messages.MESSAGE_INVALID_COMMAND_FORMAT);
         }
@@ -109,7 +123,8 @@ public class DeleteCommand extends Command {
         }
 
         if (employeesWithTargetName.size() > 1) {
-            throw new CommandException("Multiple employees with this name found. Please delete by uid.");
+            throw new CommandException("Multiple employees with this name found. Please delete by uid.\n" +
+                    "Format: delete uid/UID_NUMBER\n" + "Example: delete uid/101");
         } else if (employeesWithTargetName.size() == 1) {
             model.deleteEmployee(employeesWithTargetName.get(0));
             return new CommandResult(
