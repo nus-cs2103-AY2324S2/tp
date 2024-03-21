@@ -31,13 +31,13 @@ deactivate LinkLoanCommandParser
 AddressBookParser -> LinkLoanCommandParser : parse(...)
 activate LinkLoanCommandParser
 
-LinkLoanCommandParser -> ParserUtil : << parseIndex(...) >>
+LinkLoanCommandParser -> ParserUtil : parseIndex(...)
 activate ParserUtil
 
 ParserUtil --> LinkLoanCommandParser :
 deactivate ParserUtil
 
-LinkLoanCommandParser -> ParserUtil : << parseLoan(...) >>
+LinkLoanCommandParser -> ParserUtil : parseLoan(...)
 activate ParserUtil
 
 ParserUtil --> LinkLoanCommandParser :
