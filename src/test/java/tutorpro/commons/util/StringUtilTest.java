@@ -127,6 +127,73 @@ public class StringUtilTest {
         assertTrue(StringUtil.containsWordIgnoreCase("AAA bBb ccc  bbb", "bbB"));
     }
 
+    //---------------- Tests for containsSubstringIgnoreCase --------------------------------------
+
+    /*
+     * Invalid equivalence partitions for substring: null, empty
+     * Invalid equivalence partitions for sentence: null
+     * The three test cases below test one invalid input at a time.
+     */
+    @Test
+    public void containsSubstringIgnoreCase_nullSubstring_throwsNullPointerException() {
+        Assert.assertThrows(NullPointerException.class, () -> StringUtil
+                .containsSubstringIgnoreCase("typical sentence", null));
+    }
+
+    @Test
+    public void containsSubtringIgnoreCase_emptySubstring_throwsIllegalArgumentException() {
+        Assert.assertThrows(IllegalArgumentException.class, "Substring cannot be empty", ()
+                -> StringUtil.containsSubstringIgnoreCase("typical sentence", "  "));
+    }
+
+    @Test
+    public void containsSubstringIgnoreCase_nullSentence_throwsNullPointerException() {
+        Assert.assertThrows(NullPointerException.class, () -> StringUtil
+                .containsSubstringIgnoreCase(null, "abc"));
+    }
+
+    /*
+     * Valid equivalence partitions for substring:
+     *   - any word
+     *   - word with leading/trailing spaces
+     *
+     * Valid equivalence partitions for sentence:
+     *   - empty string
+     *   - one word
+     *   - multiple words
+     *   - sentence with extra spaces
+     *
+     * Possible scenarios returning true:
+     *   - matches any substring in sentence
+     *   - matches multiple substrings
+     *
+     * Possible scenarios returning false:
+     *   - query substring does not match nay substring of the sentence
+     *
+     * The test method below tries to verify all above with a reasonably low number of test cases.
+     */
+
+    @Test
+    public void containsSubstringIgnoreCase_validInputs_correctResult() {
+
+        // Empty sentence
+        assertFalse(StringUtil.containsSubstringIgnoreCase("", "abc")); // Boundary case
+        assertFalse(StringUtil.containsSubstringIgnoreCase("    ", "123"));
+
+        // Matches a partial substring only
+        assertFalse(StringUtil.containsSubstringIgnoreCase("aaa bbb ccc", "bbbb")); // Query substring bigger than sentence substring
+
+        // Matches substring in the sentence, different upper/lower case letters
+        assertTrue(StringUtil.containsSubstringIgnoreCase("aaa bBb ccc", "Bbb")); // First word (boundary case)
+        assertTrue(StringUtil.containsSubstringIgnoreCase("aaa bBb ccc@1", "CCc@1")); // Last word (boundary case)
+        assertTrue(StringUtil.containsSubstringIgnoreCase("  AAA   bBb   ccc  ", "aaa")); // Sentence has extra spaces
+        assertTrue(StringUtil.containsSubstringIgnoreCase("Aaa", "aaa")); // Only one word in sentence (boundary case)
+        assertTrue(StringUtil.containsSubstringIgnoreCase("aaa bbb ccc", "  ccc  ")); // Leading/trailing spaces
+
+        // Matches multiple substrings in sentence
+        assertTrue(StringUtil.containsSubstringIgnoreCase("AAA bBb ccc  bbb", "bbB"));
+    }
+
     //---------------- Tests for getDetails --------------------------------------
 
     /*
