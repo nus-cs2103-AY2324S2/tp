@@ -93,7 +93,7 @@ public class ModelManager implements Model {
     /**
      * Sets the user prefs' task list file path.
      *
-     * @param taskListFilePath
+     * @param taskListFilePath File path to task list.
      */
     @Override
     public void setTaskListFilePath(Path taskListFilePath) {
@@ -172,7 +172,7 @@ public class ModelManager implements Model {
     /**
      * Replaces task list data with the data in {@code taskList}.
      *
-     * @param tasks
+     * @param tasks Instance of the tasklist.
      */
     public void setTaskList(TaskList tasks) {
         taskList.setTaskList(tasks);

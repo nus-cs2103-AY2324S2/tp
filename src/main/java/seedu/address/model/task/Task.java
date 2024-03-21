@@ -5,6 +5,7 @@ package seedu.address.model.task;
  */
 public class Task {
     private String description;
+    private boolean isDone;
 
     /**
      * The constructor of the class.
@@ -12,6 +13,7 @@ public class Task {
      */
     public Task(String description) {
         this.description = description;
+        isDone = false;
     }
 
     /**
@@ -20,6 +22,18 @@ public class Task {
      */
     public String getDescription() {
         return description;
+    }
+
+    public void setAsDone() {
+        isDone = true;
+    }
+
+    public void setAsUndone() {
+        isDone = false;
+    }
+
+    public boolean getStatus() {
+        return isDone;
     }
 
     @Override
@@ -34,7 +48,7 @@ public class Task {
         }
 
         Task otherTask = (Task) other;
-        return this.getDescription().equals(((Task) other).getDescription());
+        return this.getDescription().equals((otherTask).getDescription());
     }
 
     @Override
