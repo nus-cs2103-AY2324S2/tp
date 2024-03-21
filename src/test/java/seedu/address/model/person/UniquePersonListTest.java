@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.model.task.Task;
 import seedu.address.testutil.PersonBuilder;
 
 public class UniquePersonListTest {
@@ -71,6 +72,14 @@ public class UniquePersonListTest {
     @Test
     public void setPerson_targetPersonNotInList_throwsPersonNotFoundException() {
         assertThrows(PersonNotFoundException.class, () -> uniquePersonList.setPerson(ALICE, ALICE));
+    }
+
+    @Test
+    public void deletes_assignedTask_success() {
+        ALICE.addTask(new Task("test"));
+        uniquePersonList.add(ALICE);
+        uniquePersonList.deleteAssignedTask(new Task("test"));
+        assertFalse(ALICE.hasTask(new Task("test")));
     }
 
     @Test

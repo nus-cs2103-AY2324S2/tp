@@ -32,6 +32,12 @@ public class PersonTest {
     }
 
     @Test
+    public void hasTask() {
+        Person person = new PersonBuilder().withTasks("prepare-presentation").build();
+        assertTrue(person.hasTask(new Task("prepare-presentation")));
+    }
+
+    @Test
     public void isSamePerson() {
         // same object -> returns true
         assertTrue(ALICE.isSamePerson(ALICE));

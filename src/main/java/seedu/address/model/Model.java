@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
 
@@ -102,9 +103,22 @@ public interface Model {
 
     /**
      * Adds the given task.
-     * {@code task} must not already exist in the address book.
+     * {@code task} must not already exist in the task list.
      */
     void addTask(Task task);
+
+    /**
+     * Deletes the given task.
+     * {@code task} the task must exist in the task list.
+     */
+    void deleteTask(Task task);
+
+    /**
+     * Gets the task based on the given index.
+     * {@code index} the index in the task list.
+     */
+    Task getTask(Index index);
+
 
     /**
      * Returns true if a task has the same description as a {@code task} in the task list.
@@ -119,6 +133,11 @@ public interface Model {
 
     /** Returns an unmodifiable view of the filtered task list */
     ObservableList<Task> getFilteredTaskList();
+  
+    /**
+     * Returns true if the {@code index} is within the task list.
+     */
+    boolean isValidTaskIndex(Index index);
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
