@@ -95,6 +95,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasTag(Tag tag) {
+        requireNonNull(tag);
+        return addressBook.hasTag(tag);
+    }
+
+    @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
     }
@@ -154,6 +160,11 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
+    @Override
+    public void updateTagPersonList(Tag t) {
+        requireNonNull(t);
+        filteredPersons.setPredicate(person -> person.containsTag(t));
+    }
     @Override
     public boolean equals(Object other) {
         if (other == this) {
