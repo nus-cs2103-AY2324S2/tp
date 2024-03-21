@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPersons.getTypicalPayBack;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
+import seedu.address.model.PayBack;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -22,7 +22,7 @@ import seedu.address.model.tag.Tag;
 import seedu.address.testutil.PersonBuilder;
 
 public class TagCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalPayBack(), new UserPrefs());
     @Test
     public void execute_singleTagAdd_success() {
         Set<Tag> tagStub = new HashSet<>();
@@ -32,7 +32,7 @@ public class TagCommandTest {
 
         TagCommand tagCommand = new TagCommand(new Id(PersonBuilder.DEFAULT_ID), tagStub);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new PayBack(model.getPayBack()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), expectedPerson);
 
         String expectedMessage = TagCommand.MESSAGE_SUCCESS;
@@ -51,7 +51,7 @@ public class TagCommandTest {
 
         TagCommand tagCommand = new TagCommand(new Id(PersonBuilder.DEFAULT_ID), tagStub);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new PayBack(model.getPayBack()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), expectedPerson);
 
         String expectedMessage = TagCommand.MESSAGE_SUCCESS;
@@ -68,7 +68,7 @@ public class TagCommandTest {
         Person expectedPerson = new PersonBuilder().withTags("Finance", "Management").build();
         TagCommand tagCommand = new TagCommand(new Id(PersonBuilder.DEFAULT_ID), tagStub);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new PayBack(model.getPayBack()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), expectedPerson);
 
         String expectedMessage = TagCommand.MESSAGE_DUPLICATE_TAGS;
@@ -78,7 +78,7 @@ public class TagCommandTest {
 
     @Test
     public void execute_invalidId_throwsCommandException() {
-        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalPayBack(), new UserPrefs());
         int size = expectedModel.getFilteredPersonList().size();
         Id invalidId = new Id(size + 240001);
 

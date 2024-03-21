@@ -14,7 +14,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
 /**
- * Adds an employee to the address book.
+ * Adds an employee to PayBack.
  */
 public class AddCommand extends Command {
 
@@ -39,7 +39,7 @@ public class AddCommand extends Command {
             + PREFIX_YEAR_JOINED + " 2024";
 
     public static final String MESSAGE_SUCCESS = "New employee added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This employee already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This employee already exists in PayBack";
 
     private final Person toAdd;
 

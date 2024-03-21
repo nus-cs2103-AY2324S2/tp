@@ -27,7 +27,7 @@ PayBack is a **desktop app for managing contacts, optimized for use via a Comman
 
    * `/list` : Lists all contacts.
 
-   * `/add John Doe, 98765432, johndoe@example.com, street a, 2024` : Adds a contact named `John Doe` to the Address Book.
+   * `/add John Doe, 98765432, johndoe@example.com, street a, 2024` : Adds a contact named `John Doe` to the PayBack.
 
    * `/delete 240001` : Deletes the contact with id 240001.
 
@@ -70,7 +70,7 @@ Format: `help`
 
 ### Adding a new employee: `/add`
 
-Adds a new employee to the address book.
+Adds a new employee to PayBack.
 
 Format:
 * `/add NAME, PHONE, EMAIL, ADDRESS, YEAR_JOINED`

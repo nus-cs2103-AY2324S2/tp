@@ -14,7 +14,7 @@ import seedu.address.model.person.YearJoined;
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
-public class AddressBook implements ReadOnlyAddressBook {
+public class PayBack implements ReadOnlyPayBack {
 
     private final UniquePersonList persons;
 
@@ -29,12 +29,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons = new UniquePersonList();
     }
 
-    public AddressBook() {}
+    public PayBack() {}
 
     /**
      * Creates an AddressBook using the Persons in the {@code toBeCopied}
      */
-    public AddressBook(ReadOnlyAddressBook toBeCopied) {
+    public PayBack(ReadOnlyPayBack toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -52,7 +52,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void resetData(ReadOnlyPayBack newData) {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
@@ -124,12 +124,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AddressBook)) {
+        if (!(other instanceof PayBack)) {
             return false;
         }
 
-        AddressBook otherAddressBook = (AddressBook) other;
-        return persons.equals(otherAddressBook.persons);
+        PayBack otherPayBack = (PayBack) other;
+        return persons.equals(otherPayBack.persons);
     }
 
     @Override
