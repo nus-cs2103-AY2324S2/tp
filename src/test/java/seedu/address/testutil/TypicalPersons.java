@@ -33,7 +33,7 @@ public class TypicalPersons {
             .withMajor("Computer Science").withEmail("alice@example.com")
             .withYear("1").withTelegram("alicepauline")
             .withPhone("94351253").withRemark("shy")
-            .withGroups("TUT10").build();
+            .withGroups("TUT10", "LAB05").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withMajor("Computer Science")
             .withYear("1").withTelegram("bensonmeier")
