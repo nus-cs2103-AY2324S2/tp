@@ -2,7 +2,7 @@ package seedu.address.model.person;
 
 import java.util.Set;
 
-import seedu.address.model.house.House;
+import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -21,5 +21,16 @@ public class Buyer extends Person {
      */
     public Buyer(Name name, Phone phone, Email email, String housingType, Set<Tag> tags) {
         super(name, phone, email, housingType, tags);
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .add("name", super.getName())
+                .add("phone", super.getPhone())
+                .add("email", super.getEmail())
+                .add("housing type", super.getHousingType())
+                .add("tags", super.getTags())
+                .toString();
     }
 }

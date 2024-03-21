@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BLOCK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_HOUSINGTYPE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_HOUSING_TYPE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LEVEL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -30,7 +30,7 @@ public class AddSellerCommand extends Command {
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
-            + PREFIX_HOUSINGTYPE + "HOUSINGTYPE"
+            + PREFIX_HOUSING_TYPE + "HOUSINGTYPE"
             + PREFIX_STREET + "STREET "
             + PREFIX_BLOCK + "BLOCK "
             + PREFIX_LEVEL + "LEVEL "
@@ -41,7 +41,7 @@ public class AddSellerCommand extends Command {
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_HOUSINGTYPE + "HDB "
+            + PREFIX_HOUSING_TYPE + "HDB "
             + PREFIX_STREET + "Clementi Ave 2 "
             + PREFIX_BLOCK + "Block 311 "
             + PREFIX_LEVEL + "Level 02"

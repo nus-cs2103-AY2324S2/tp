@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_HOUSINGTYPE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_HOUSING_TYPE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
@@ -34,7 +34,7 @@ public class PersonTest {
 
         // same name, all other attributes different -> returns true
         Person editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withHousingType(VALID_HOUSINGTYPE_BOB).withTags(VALID_TAG_HUSBAND).build();
+                .withHousingType(VALID_HOUSING_TYPE_BOB).withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSamePerson(editedAlice));
 
         // different name, all other attributes same -> returns false
@@ -82,7 +82,7 @@ public class PersonTest {
         assertFalse(ALICE.equals(editedAlice));
 
         // different housingtype -> returns false
-        editedAlice = new PersonBuilder(ALICE).withHousingType(VALID_HOUSINGTYPE_BOB).build();
+        editedAlice = new PersonBuilder(ALICE).withHousingType(VALID_HOUSING_TYPE_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different tags -> returns false

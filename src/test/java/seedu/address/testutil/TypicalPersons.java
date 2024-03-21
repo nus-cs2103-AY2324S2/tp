@@ -1,22 +1,14 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_HOUSINGTYPE_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_HOUSINGTYPE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.person.Buyer;
 import seedu.address.model.person.Person;
+
+import static seedu.address.logic.commands.CommandTestUtil.*;
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
@@ -27,6 +19,9 @@ public class TypicalPersons {
             .withHousingType("HDB").withEmail("alice@example.com")
             .withPhone("94351253").withPostalCode("789012")
             .withTags("friends").build();
+
+    public static final Person ALI = new BuyerBuilder().withName("Ali York")
+            .withPhone("82937163").withEmail("ali@gmail.com").withHousingType("HDB").withTags("friends").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withHousingType("Condominium")
             .withEmail("johnd@example.com").withPhone("98765432").withPostalCode("578903")
@@ -51,10 +46,15 @@ public class TypicalPersons {
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
-            .withEmail(VALID_EMAIL_AMY).withHousingType(VALID_HOUSINGTYPE_AMY)
+            .withEmail(VALID_EMAIL_AMY).withHousingType(VALID_HOUSING_TYPE_AMY)
             .withTags(VALID_TAG_FRIEND).build();
     public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-            .withEmail(VALID_EMAIL_BOB).withHousingType(VALID_HOUSINGTYPE_BOB)
+            .withEmail(VALID_EMAIL_BOB).withHousingType(VALID_HOUSING_TYPE_BOB)
+            .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+            .build();
+
+    public static final Person BEN = new BuyerBuilder().withName(VALID_NAME_BEN).withPhone(VALID_PHONE_BOB)
+            .withEmail(VALID_EMAIL_BOB).withHousingType(VALID_HOUSING_TYPE_BOB)
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
             .build();
 
