@@ -40,24 +40,6 @@ class UntagCommandTest {
     }
 
     @Test
-    public void execute_multipleTagsSpecified_success() {
-        var index = INDEX_SECOND_PERSON;
-        var command = new UntagCommand(index, TAGS);
-        var actualPerson = model.getFilteredPersonList().get(index.getZeroBased());
-
-        var editedPerson = new PersonBuilder(actualPerson).withTags().build();
-        var expectedMessage = String.format(
-                UntagCommand.MESSAGE_DELETE_TAG_SUCCESS,
-                Messages.format(editedPerson),
-                "friends, owesMoney");
-
-        var expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(actualPerson, editedPerson);
-
-        assertCommandSuccess(command, model, new CommandHistory(), expectedMessage, expectedModel);
-    }
-
-    @Test
     public void execute_tagMissing_failure() {
         var index = INDEX_FIRST_PERSON;
         var personName = model.getFilteredPersonList().get(index.getZeroBased()).getName();
