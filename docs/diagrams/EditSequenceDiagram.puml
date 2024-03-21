@@ -1,0 +1,112 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":EditCommandParser" as EditCommandParser LOGIC_COLOR
+participant ":ArgumentTokenizer" as ArgumentTokenizer LOGIC_COLOR
+participant ":EditPersonDescriptor" as EditPersonDescriptor LOGIC_COLOR
+participant ":ParserUtil" as ParserUtil LOGIC_COLOR
+participant "d:EditCommand" as EditCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "m:Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("edit E01234567 n/John p/90000001")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("edit E01234567 n/John p/90000001")
+activate AddressBookParser
+
+create EditCommandParser
+AddressBookParser -> EditCommandParser
+activate EditCommandParser
+
+EditCommandParser --> AddressBookParser
+deactivate EditCommandParser
+
+AddressBookParser -> EditCommandParser : parse("n/John p/90000001")
+activate EditCommandParser
+
+create ArgumentTokenizer
+EditCommandParser -> ArgumentTokenizer : tokenize((args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_TAG, PREFIX_GROUP))
+activate ArgumentTokenizer
+
+ArgumentTokenizer -> EditCommandParser
+deactivate ArgumentTokenizer
+
+create ParserUtil
+EditCommandParser -> ParserUtil : parseNusId("E01234567")
+activate ParserUtil
+
+ParserUtil -> EditCommandParser
+deactivate ParserUtil
+
+create EditPersonDescriptor
+EditCommandParser -> EditPersonDescriptor
+activate EditPersonDescriptor
+
+EditPersonDescriptor -> EditCommandParser
+deactivate EditPersonDescriptor
+
+EditCommandParser -> EditPersonDescriptor
+activate EditPersonDescriptor
+
+create EditCommand
+EditPersonDescriptor -> EditCommand : setName(name)
+activate EditCommand
+
+EditCommand -> EditPersonDescriptor
+deactivate EditCommand
+
+EditPersonDescriptor -> EditCommand : setPhone(phone)
+activate EditCommand
+
+EditCommand -> EditPersonDescriptor
+deactivate EditCommand
+
+EditPersonDescriptor -> EditCommandParser
+deactivate EditPersonDescriptor
+
+EditCommandParser -> EditCommand : EditCommand(nusId)
+activate EditCommand
+
+EditCommand --> EditCommandParser :
+deactivate EditCommand
+
+EditCommandParser --> AddressBookParser : d
+deactivate EditCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+EditCommandParser -[hidden]-> AddressBookParser
+destroy EditCommandParser
+
+AddressBookParser --> LogicManager : d
+deactivate AddressBookParser
+
+LogicManager -> EditCommand : execute(m)
+activate EditCommand
+
+EditCommand -> Model : setPerson(personToEdit, editedPerson);
+activate Model
+
+Model --> EditCommand
+deactivate Model
+
+create CommandResult
+EditCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> EditCommand
+deactivate CommandResult
+
+EditCommand --> LogicManager : r
+deactivate EditCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
