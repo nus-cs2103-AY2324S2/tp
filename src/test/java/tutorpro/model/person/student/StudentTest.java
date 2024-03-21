@@ -9,6 +9,10 @@ import static tutorpro.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static tutorpro.logic.commands.CommandTestUtil.VALID_SUBJECT_ENGLISH;
 import static tutorpro.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -87,5 +91,13 @@ public class StudentTest {
         } catch (NoClassDefFoundError e) {
             return;
         }
+    }
+
+
+    @Test
+    public void getSubjects() {
+        Set<Subject> subjects = new HashSet<>(Arrays.asList(new Subject("Math"), new Subject("English")));
+        Student student = new StudentBuilder().withSubjects("Math", "English").build();
+        Assertions.assertEquals(subjects, student.getSubjects());
     }
 }

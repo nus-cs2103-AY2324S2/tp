@@ -39,6 +39,10 @@ public class Student extends Person {
         this.subjects.addAll(subjects);
     }
 
+    /**
+     * Creates a copy of the given Student.
+     * @return The level of the student.
+     */
     public Level getLevel() {
         return level;
     }
@@ -46,6 +50,7 @@ public class Student extends Person {
     /**
      * Returns an immutable subject set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
+     * @return The subjects of the student as an immutable set.
      */
     public Set<Subject> getSubjects() {
         return Collections.unmodifiableSet(subjects);
