@@ -1,6 +1,7 @@
 package seedu.address.model.article;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Represents an article in the address book.
@@ -51,6 +52,11 @@ public class Article {
 
     public LocalDateTime getPublicationDate() {
         return this.publicationDate;
+    }
+
+    public String getPublicationDateAsString() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        return this.publicationDate.format(formatter);
     }
 
     public String[] getSources() {

@@ -58,7 +58,7 @@ public class ArticleCard extends UiPart<Region> {
         Arrays.stream(article.getSources())
                 .sorted()
                 .forEach(source -> sources.getChildren().add(new Label(source)));
-        publicationDate.setText(article.getPublicationDate().toString());
+        publicationDate.setText(article.getPublicationDateAsString());
         category.setText(article.getCategory());
         status.setText(article.getStatus().toString());
     }

@@ -7,6 +7,7 @@ import seedu.address.logic.commands.Command;
  */
 public abstract class ArticleCommand extends Command {
 
+    @Override
     public String getCommandType() {
         return "articleCommand";
     };

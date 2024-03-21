@@ -22,7 +22,7 @@ public class DeleteArticleCommand extends ArticleCommand {
     public static final String COMMAND_PREFIX = "-a";
 
     // To be edited for use in test cases later on.
-    public static final String MESSAGE_USAGE = COMMAND_WORD
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " " + COMMAND_PREFIX
             + ": Deletes the article identified by the index number used in the displayed article list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " " + COMMAND_PREFIX + " 1";
