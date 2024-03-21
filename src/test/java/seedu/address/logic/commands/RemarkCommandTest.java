@@ -15,8 +15,8 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.student.Student;
 import seedu.address.model.student.Remark;
+import seedu.address.model.student.Student;
 import seedu.address.testutil.StudentBuilder;
 
 class RemarkCommandTest {
@@ -28,7 +28,8 @@ class RemarkCommandTest {
         Student firstStudent = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
         Student editedStudent = new StudentBuilder(firstStudent).withRemark(REMARK_STUB).build();
 
-        RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_STUDENT, new Remark(editedStudent.getRemark().value));
+        RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_STUDENT,
+                new Remark(editedStudent.getRemark().value));
 
         String expectedMessage = String.format(RemarkCommand.MESSAGE_ADD_REMARK_SUCCESS, editedStudent);
 
@@ -43,10 +44,12 @@ class RemarkCommandTest {
         showStudentAtIndex(model, INDEX_FIRST_STUDENT);
 
         Student firstStudent = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
-        Student editedStudent = new StudentBuilder(model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased()))
+        Student editedStudent = new StudentBuilder(
+                model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased()))
                 .withRemark(REMARK_STUB).build();
 
-        RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_STUDENT, new Remark(editedStudent.getRemark().value));
+        RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_STUDENT,
+                new Remark(editedStudent.getRemark().value));
 
         String expectedMessage = String.format(RemarkCommand.MESSAGE_ADD_REMARK_SUCCESS, editedStudent);
 

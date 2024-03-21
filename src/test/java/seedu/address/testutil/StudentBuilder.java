@@ -7,14 +7,14 @@ import seedu.address.model.student.Address;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Lesson;
 import seedu.address.model.student.Name;
-import seedu.address.model.student.Person;
 import seedu.address.model.student.Phone;
 import seedu.address.model.student.Remark;
+import seedu.address.model.student.Student;
 import seedu.address.model.student.Subject;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
- * A utility class to help with building Person objects.
+ * A utility class to help with building Student objects.
  */
 public class StudentBuilder {
 
@@ -34,7 +34,7 @@ public class StudentBuilder {
     private Remark remark;
 
     /**
-     * Creates a {@code PersonBuilder} with the default details.
+     * Creates a {@code StudentBuilder} with the default details.
      */
     public StudentBuilder() {
         name = new Name(DEFAULT_NAME);
@@ -47,9 +47,9 @@ public class StudentBuilder {
     }
 
     /**
-     * Initializes the PersonBuilder with the data of {@code personToCopy}.
+     * Initializes the StudentBuilder with the data of {@code personToCopy}.
      */
-    public StudentBuilder(Person personToCopy) {
+    public StudentBuilder(Student personToCopy) {
         name = personToCopy.getName();
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
@@ -60,7 +60,7 @@ public class StudentBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code Person} that we are building.
+     * Sets the {@code Name} of the {@code Student} that we are building.
      */
     public StudentBuilder withName(String name) {
         this.name = new Name(name);
@@ -68,7 +68,7 @@ public class StudentBuilder {
     }
 
     /**
-     * Parses the {@code lessons} into a {@code Set<Lesson>} and set it to the {@code Person} that we are building.
+     * Parses the {@code lessons} into a {@code Set<Lesson>} and set it to the {@code Student} that we are building.
      */
     public StudentBuilder withLessons(String ... lessons) {
         this.lessons = SampleDataUtil.getLessonSet(lessons);
@@ -76,7 +76,7 @@ public class StudentBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code Person} that we are building.
+     * Sets the {@code Address} of the {@code Student} that we are building.
      */
     public StudentBuilder withAddress(String address) {
         this.address = new Address(address);
@@ -84,7 +84,7 @@ public class StudentBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code Person} that we are building.
+     * Sets the {@code Phone} of the {@code Student} that we are building.
      */
     public StudentBuilder withPhone(String phone) {
         this.phone = new Phone(phone);
@@ -92,7 +92,7 @@ public class StudentBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code Person} that we are building.
+     * Sets the {@code Email} of the {@code Student} that we are building.
      */
     public StudentBuilder withEmail(String email) {
         this.email = new Email(email);
@@ -100,7 +100,7 @@ public class StudentBuilder {
     }
 
     /**
-     * Sets the {@code Remark} of the {@code Person} that being built.
+     * Sets the {@code Remark} of the {@code Student} that being built.
      */
     public StudentBuilder withRemark(String remark) {
         this.remark = new Remark(remark);
@@ -108,14 +108,14 @@ public class StudentBuilder {
     }
 
     /**
-     * Sets the {@code Subject} of the {@code Person} that being built.
+     * Sets the {@code Subject} of the {@code Student} that being built.
      */
     public StudentBuilder withSubject(String subject) {
         this.subject = new Subject(subject);
         return this;
     }
 
-    public Person build() {
-        return new Person(name, phone, email, address, subject, remark, lessons);
+    public Student build() {
+        return new Student(name, phone, email, address, subject, remark, lessons);
     }
 }

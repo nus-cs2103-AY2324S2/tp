@@ -13,7 +13,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.EditCommand.EditStudentDescriptor;
 import seedu.address.testutil.EditStudentDescriptorBuilder;
 
 public class EditStudentDescriptorTest {
@@ -21,7 +21,7 @@ public class EditStudentDescriptorTest {
     @Test
     public void equals() {
         // same values -> returns true
-        EditPersonDescriptor descriptorWithSameValues = new EditPersonDescriptor(DESC_AMY);
+        EditStudentDescriptor descriptorWithSameValues = new EditStudentDescriptor(DESC_AMY);
         assertTrue(DESC_AMY.equals(descriptorWithSameValues));
 
         // same object -> returns true
@@ -37,7 +37,7 @@ public class EditStudentDescriptorTest {
         assertFalse(DESC_AMY.equals(DESC_BOB));
 
         // different name -> returns false
-        EditPersonDescriptor editedAmy = new EditStudentDescriptorBuilder(DESC_AMY).withName(VALID_NAME_BOB).build();
+        EditStudentDescriptor editedAmy = new EditStudentDescriptorBuilder(DESC_AMY).withName(VALID_NAME_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different phone -> returns false
@@ -59,15 +59,15 @@ public class EditStudentDescriptorTest {
 
     @Test
     public void toStringMethod() {
-        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
-        String expected = EditPersonDescriptor.class.getCanonicalName() + "{name="
-                + editPersonDescriptor.getName().orElse(null) + ", phone="
-                + editPersonDescriptor.getPhone().orElse(null) + ", email="
-                + editPersonDescriptor.getEmail().orElse(null) + ", address="
-                + editPersonDescriptor.getAddress().orElse(null) + ", subject="
-                + editPersonDescriptor.getSubject().orElse(null) + ", remark="
-                + editPersonDescriptor.getRemark().orElse(null) + ", lessons="
-                + editPersonDescriptor.getLessons().orElse(null) + "}";
-        assertEquals(expected, editPersonDescriptor.toString());
+        EditStudentDescriptor editStudentDescriptor = new EditStudentDescriptor();
+        String expected = EditStudentDescriptor.class.getCanonicalName() + "{name="
+                + editStudentDescriptor.getName().orElse(null) + ", phone="
+                + editStudentDescriptor.getPhone().orElse(null) + ", email="
+                + editStudentDescriptor.getEmail().orElse(null) + ", address="
+                + editStudentDescriptor.getAddress().orElse(null) + ", subject="
+                + editStudentDescriptor.getSubject().orElse(null) + ", remark="
+                + editStudentDescriptor.getRemark().orElse(null) + ", lessons="
+                + editStudentDescriptor.getLessons().orElse(null) + "}";
+        assertEquals(expected, editStudentDescriptor.toString());
     }
 }

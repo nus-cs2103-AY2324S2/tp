@@ -10,14 +10,14 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.student.Lesson;
-import seedu.address.model.student.Person;
+import seedu.address.model.student.Student;
 
 public class SampleDataUtilTest {
 
     @Test
-    void getSamplePersons() {
-        Person[] samplePersons = SampleDataUtil.getSamplePersons();
-        assertEquals(6, samplePersons.length);
+    void getSampleStudents() {
+        Student[] sampleStudents = SampleDataUtil.getSampleStudents();
+        assertEquals(6, sampleStudents.length);
     }
 
     @Test

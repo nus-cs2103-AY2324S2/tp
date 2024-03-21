@@ -9,8 +9,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.student.Student;
 import seedu.address.model.student.Remark;
+import seedu.address.model.student.Student;
 
 /**
  * Changes the remark of an existing student in the address book.
