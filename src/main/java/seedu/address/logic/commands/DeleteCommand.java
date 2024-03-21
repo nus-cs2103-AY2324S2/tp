@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -36,28 +35,26 @@ public class DeleteCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
-        Index targetIndex = null;
+        boolean found = false;
 
-        for (int i = 0; i < lastShownList.size(); i++) {
-            Person candidate = lastShownList.get(i);
+        // Iterate through the list to find the person with the target student ID
+        for (Person candidate : lastShownList) {
             if (candidate.getStudentId().equals(targetId)) {
-                targetIndex = Index.fromZeroBased(i);
-                break;
+                // If the person with the target student ID is found, delete it
+                model.deletePerson(candidate);
+                found = true;
+                return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(candidate)));
             }
         }
 
-        if (targetIndex == null) {
+        // If the person with the target student ID is not found, throw an exception
+        if (!found) {
             throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_ID);
         }
 
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-        }
-
-        Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deletePerson(personToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
+        return new CommandResult(MESSAGE_DELETE_PERSON_SUCCESS);
     }
+
 
     @Override
     public boolean equals(Object other) {

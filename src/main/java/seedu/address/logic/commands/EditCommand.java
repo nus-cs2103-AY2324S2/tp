@@ -16,7 +16,6 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -38,9 +37,9 @@ public class EditCommand extends Command {
     public static final String COMMAND_WORD = "edit";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the index number used in the displayed person list. "
+            + "by the student id used in the displayed person list. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters: STUDENT_ID (must be positive 5-digit integers)  "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PARENT_PHONES + "PHONE, WHICH PHONE NUMBER TO EDIT] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
@@ -54,19 +53,19 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
-
-    private final Index index;
+    private final StudentId studentId;
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
+     * @param studentId of the person in the filtered person list to edit
      * @param editPersonDescriptor details to edit the person with
      */
-    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
-        requireNonNull(index);
+    public EditCommand(StudentId studentId, EditPersonDescriptor editPersonDescriptor) {
+        requireNonNull(studentId);
         requireNonNull(editPersonDescriptor);
 
-        this.index = index;
+        this.studentId = studentId;
+
         this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
     }
 
@@ -75,11 +74,21 @@ public class EditCommand extends Command {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        Person personToEdit = null;
+        boolean found = false;
+
+        for (Person person : lastShownList) {
+            if (person.getStudentId().equals(this.studentId)) {
+                personToEdit = person;
+                found = true;
+                break;
+            }
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
+        if (!found) {
+            throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_ID);
+        }
+
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
@@ -124,14 +133,14 @@ public class EditCommand extends Command {
         }
 
         EditCommand otherEditCommand = (EditCommand) other;
-        return index.equals(otherEditCommand.index)
+        return studentId.equals(otherEditCommand.studentId)
                 && editPersonDescriptor.equals(otherEditCommand.editPersonDescriptor);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("index", index)
+                .add("studentId", studentId)
                 .add("editPersonDescriptor", editPersonDescriptor)
                 .toString();
     }
@@ -201,7 +210,9 @@ public class EditCommand extends Command {
             return Optional.ofNullable(firstParentPhone);
         }
 
-        public Optional<Phone> getSecondParentPhone() { return Optional.ofNullable(secondParentPhone); }
+        public Optional<Phone> getSecondParentPhone() {
+            return Optional.ofNullable(secondParentPhone);
+        }
 
         public Optional<Phone> getEditedPhone() {
             if (firstParentPhone != null) {

@@ -5,11 +5,12 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.logic.commands.CommandTestUtil.showPersonWithStudentId;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalStudentIds.ID_FIRST_PERSON;
 import static seedu.address.testutil.TypicalStudentIds.ID_SECOND_PERSON;
+
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -30,7 +31,19 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        boolean personFound = false;
+        Person personToDelete = null;
+        List<Person> filteredList = model.getFilteredPersonList();
+        for (Person person : filteredList) {
+            if (person.getStudentId().equals(new StudentId("00001"))) {
+                personFound = true;
+                personToDelete = person;
+                break;
+            }
+        }
+
+        assertTrue(personFound); // Ensure the person with the specified studentId exists
+
         DeleteCommand deleteCommand = new DeleteCommand(new StudentId("00001"));
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
@@ -42,6 +55,7 @@ public class DeleteCommandTest {
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
 
+
     @Test
     public void execute_invalidStudentIdUnfilteredList_throwsCommandException() {
         StudentId invalidId = new StudentId("99999");
@@ -52,9 +66,21 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_validStudentIdFilteredList_success() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showPersonWithStudentId(model, ID_FIRST_PERSON);
 
-        Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        boolean personFound = false;
+        Person personToDelete = null;
+        List<Person> filteredList = model.getFilteredPersonList();
+        for (Person person : filteredList) {
+            if (person.getStudentId().equals(new StudentId("00001"))) {
+                personFound = true;
+                personToDelete = person;
+                break;
+            }
+        }
+
+        assertTrue(personFound); // Ensure the person with the specified studentId exists
+
         DeleteCommand deleteCommand = new DeleteCommand(new StudentId("00001"));
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
@@ -67,9 +93,10 @@ public class DeleteCommandTest {
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
 
+
     @Test
     public void execute_invalidStudentIdFilteredList_throwsCommandException() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showPersonWithStudentId(model, ID_FIRST_PERSON);
 
         StudentId invalidId = new StudentId("99999");
 
