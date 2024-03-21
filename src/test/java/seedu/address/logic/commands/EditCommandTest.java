@@ -1,8 +1,8 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
@@ -159,22 +159,22 @@ public class EditCommandTest {
         // same values -> returns true
         EditPersonDescriptor copyDescriptor = new EditPersonDescriptor(DESC_AMY);
         EditCommand commandWithSameValues = new EditCommand(ID_FIRST_PERSON, copyDescriptor);
-        assertTrue(standardCommand.equals(commandWithSameValues));
+        assertEquals(standardCommand, commandWithSameValues);
 
         // same object -> returns true
-        assertTrue(standardCommand.equals(standardCommand));
+        assertEquals(standardCommand, standardCommand);
 
         // null -> returns false
-        assertFalse(standardCommand.equals(null));
+        assertNotEquals(null, standardCommand);
 
         // different types -> returns false
-        assertFalse(standardCommand.equals(new ClearCommand()));
+        assertNotEquals(standardCommand, new ClearCommand());
 
         // different id -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(ID_SECOND_PERSON, DESC_AMY)));
+        assertNotEquals(standardCommand, new EditCommand(ID_SECOND_PERSON, DESC_AMY));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(ID_FIRST_PERSON, DESC_BOB)));
+        assertNotEquals(standardCommand, new EditCommand(ID_FIRST_PERSON, DESC_BOB));
     }
 
     @Test
@@ -211,7 +211,7 @@ public class EditCommandTest {
         assertEquals(new HashSet<>(Arrays.asList(new Tag("tag1"), new Tag("tag2"))), editedPerson.getTags());
         assertTrue(editedPerson instanceof Client);
         Client editedClient = (Client) editedPerson;
-        assertEquals("Updated Preferences", editedClient.getPreferences().toString());
+        assertEquals("Updated Preferences", editedClient.getPreferences());
         assertEquals(Arrays.asList("Product A", "Product B"), editedClient.getProducts().getProducts());
     }
 
