@@ -5,8 +5,11 @@ import static seedu.address.model.article.Article.Status.ARCHIVED;
 import static seedu.address.model.article.Article.Status.DRAFT;
 import static seedu.address.model.article.Article.Status.PUBLISHED;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -165,10 +168,18 @@ public class ParserUtil {
      */
     public static LocalDateTime parsePublicationDate(String publicationDate) throws ParseException {
         requireNonNull(publicationDate);
-        String trimmedPublicationDate = publicationDate.trim();
-        LocalDateTime parsedDate = LocalDateTime.parse(trimmedPublicationDate);
-        //removed the check for publication date validity
-        return parsedDate;
+        try {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+            String trimmedPublicationDate = publicationDate.trim();
+            Date tempDate = dateFormat.parse(trimmedPublicationDate);
+            LocalDateTime parsedDate = tempDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+            parsedDate.withSecond(0);
+            //removed the check for publication date validity
+            return parsedDate;
+        } catch (java.text.ParseException e) {
+            throw new ParseException("Invalid publication date");
+        }
+
     }
 
     /**

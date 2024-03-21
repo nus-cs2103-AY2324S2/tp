@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
-import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 import seedu.address.model.article.TitleContainsKeywordsPredicate;
@@ -13,16 +12,17 @@ import seedu.address.model.article.TitleContainsKeywordsPredicate;
  * Finds and lists all articles in article book whose title contains any of the argument keywords.
  * Keyword matching is case-insensitive.
  */
-public class FindArticleCommand extends Command {
+public class FindArticleCommand extends ArticleCommand {
 
     public static final String COMMAND_WORD = "find";
 
     public static final String COMMAND_PREFIX = "-a";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all articles whose titles contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " " + COMMAND_PREFIX + " HDB UDP TCP";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " " + COMMAND_PREFIX
+        + ": Finds all articles whose titles contain any of "
+        + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
+        + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
+        + "Example: " + COMMAND_WORD + " " + COMMAND_PREFIX + " HDB UDP TCP";
 
     private final TitleContainsKeywordsPredicate predicate;
 

@@ -32,6 +32,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
+    private ArticleListPanel articleListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -43,6 +44,8 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane personListPanelPlaceholder;
+    @FXML
+    private StackPane articleListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -112,6 +115,9 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+
+        articleListPanel = new ArticleListPanel(logic.getFilteredArticleList());
+        articleListPanelPlaceholder.getChildren().add(articleListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -185,7 +191,21 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isExit()) {
                 handleExit();
             }
+            if (logic.getCommandType(commandText).equals("articleCommand")) {
+                // Initialize articleListPanel if not already initialized
+                if (articleListPanel == null) {
+                    articleListPanel = new ArticleListPanel(logic.getFilteredArticleList());
+                    articleListPanelPlaceholder.getChildren().add(articleListPanel.getRoot());
+                }
 
+            } else if (logic.getCommandType(commandText).equals("personCommand")) {
+                // Initialize personListPanel if not already initialized
+                if (personListPanel == null) {
+                    personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+                    personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+                }
+
+            }
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("An error occurred while executing command: " + commandText);

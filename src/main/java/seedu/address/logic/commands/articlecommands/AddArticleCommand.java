@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
-import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -13,14 +12,15 @@ import seedu.address.model.article.Article;
 /**
  * Adds an article to the article book.
  */
-public class AddArticleCommand extends Command {
+public class AddArticleCommand extends ArticleCommand {
 
     public static final String COMMAND_WORD = "add";
 
     public static final String COMMAND_PREFIX = "-a";
 
     // To be edited for use in test cases later on.
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an article to the article book. ";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " " + COMMAND_PREFIX
+            + ": Adds an article to the article book. ";
 
     public static final String MESSAGE_SUCCESS = "New article added: %1$s";
     public static final String MESSAGE_DUPLICATE_ARTICLE = "This article already exists in the article book";
