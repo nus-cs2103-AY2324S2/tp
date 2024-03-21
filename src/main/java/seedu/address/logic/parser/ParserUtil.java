@@ -55,7 +55,10 @@ public class ParserUtil {
         String trimmedIndexes = oneBasedIndex.trim();
         String[] indexArray = trimmedIndexes.split(",");
         ArrayList<Index> indexArrayList = new ArrayList<>();
+
         for (String index : indexArray) {
+            System.out.println(index);
+
             if (!StringUtil.isNonZeroUnsignedInteger(index)) {
                 throw new ParseException(MESSAGE_INVALID_INDEX);
             }

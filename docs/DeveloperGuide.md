@@ -291,8 +291,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​ | I want to …​ | So that I can…​ |
 |----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *` | busy student | quickly check my friends' schedules | find a suitable time to plan a meetup. |
+| `* * *` | busy student | view my friends' schedules | find a suitable time to plan a meetup. |
 | `* * *` | NUS student | view my schedule | access my personalized schedule, manage my contacts, and utilize other features of the platform.|
+| `* * *` | NUS student | categorize my friends by interests  | quickly identify individuals who share similar hobbies or preferences.|
+| `* * *` | NUS student | categorize my friends by module | easily identify classmates and organize study groups.|
 | `* * *` | NUS student who likes **---** | find who has similar hobbies/interests with me | know who might want to go to a **---** related activities with me.|
 | `* * *` | NUS student who prefers command line interface | have a GUI to include commands | add details with convenience |
 | `* * *` | NUS student working part time | utilise Moddie to store contact details for team members, advisor | optimise my time management with school and work. |
@@ -301,7 +303,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *` | unmotivated student who needs to catch up on my studies|manage my timetable with my friends |easily arrange a study session with them |
 | `* * *` | lonely NUS Student| find contacts of people with similar interests as myself| get to know them better and make friends.|
 | `* * *` | NUS graduate|find my lecturer’s contact email and phone number | ask them to be a reference in my resume when applying for a job.|
-| `* * *` |NUS Student| save my friends’ interests in the contact book| plan outings with them.|
+| `* * *` |NUS Student| save my friends tagged interest| easily reference and remember their hobbies and preferences.|
+| `* * *` |NUS Student| edit my tagged interests| keep my profile updated with my current interests and preferences|
 | `* * *` |busy NUS student | easily add my schedule to Moddie|efficiently manage my academic, extracurricular, and personal commitments in one centralized platform.|
 | `* * *` | NUS student| delete both my friends' and my own schedule details| maintain privacy and control over the information|
 | `* * *` | NUS student| view my friends' and their schedule details |easily coordinate plans, schedule meetings |
