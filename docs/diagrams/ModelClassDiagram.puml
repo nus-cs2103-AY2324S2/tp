@@ -21,7 +21,6 @@ Class Phone
 Class Tag
 
 class Note
-'TODO: Add note fields
 
 Class I #FFFFFF
 }
@@ -45,8 +44,6 @@ Person *--> Phone
 Person *--> Email
 Person *--> Address
 Person *--> "*" Tag
-
-Person *--> "*" Note
 
 Person -[hidden]up--> I
 UniquePersonList -[hidden]right-> I
