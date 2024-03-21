@@ -1,0 +1,91 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":AddPointsCommandParser" as AddPointsCommandParser LOGIC_COLOR
+participant "p:Points" as Points LOGIC_COLOR
+participant "a:AddPointsCommand" as AddPointsCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+participant "alice:Person" as Person LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "m:Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute(\n"addpoints \nn/Alice \np/50")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand(\n"addpoints \nn/Alice \np/50")
+activate AddressBookParser
+
+create AddPointsCommandParser
+AddressBookParser -> AddPointsCommandParser
+activate AddPointsCommandParser
+
+AddPointsCommandParser --> AddressBookParser
+deactivate AddPointsCommandParser
+
+AddressBookParser -> AddPointsCommandParser : parse(\n"n/Alice \np/50")
+activate AddPointsCommandParser
+
+create Points
+AddPointsCommandParser -> Points
+activate Points
+
+Points --> AddPointsCommandParser : p
+deactivate Points
+
+create AddPointsCommand
+AddPointsCommandParser -> AddPointsCommand : AddPointsCommand(name, p)
+activate AddPointsCommand
+
+AddPointsCommand --> AddPointsCommandParser : a
+deactivate AddPointsCommand
+
+AddPointsCommandParser --> AddressBookParser : a
+deactivate AddPointsCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddPointsCommandParser -[hidden]-> AddressBookParser
+destroy AddPointsCommandParser
+
+AddressBookParser --> LogicManager : a
+deactivate AddressBookParser
+
+LogicManager -> AddPointsCommand : execute(m)
+activate AddPointsCommand
+
+AddPointsCommand -> Model : getFilteredPersonList()
+activate Model
+
+Model --> AddPointsCommand : fpl
+deactivate Model
+
+alt "Alice" matches name in fpl
+    AddPointsCommand -> Person : addPoints(p)
+activate Person
+
+Person --> AddPointsCommand
+deactivate Person
+
+create CommandResult
+AddPointsCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddPointsCommand
+deactivate CommandResult
+
+AddPointsCommand --> LogicManager : r
+deactivate AddPointsCommand
+
+[<--LogicManager
+deactivate LogicManager
+
+else
+    [<-- AddPointsCommand : commandException
+    deactivate AddPointsCommand
+end
+@enduml
