@@ -1,0 +1,70 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":RainbowDragonParser" as RainbowDragonParser LOGIC_COLOR
+participant ":DeleteCategoryCommandParser" as DeleteCategoryCommandParser LOGIC_COLOR
+participant "d:DeleteCategoryCommand" as DeleteCategoryCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "m:Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("deleteCategory 1 c/Clan")
+activate LogicManager
+
+LogicManager -> RainbowDragonParser : parseCommand("deleteCategory 1 c/Clan")
+activate RainbowDragonParser
+
+create DeleteCategoryCommandParser
+RainbowDragonParser -> DeleteCategoryCommandParser
+activate DeleteCategoryCommandParser
+
+DeleteCategoryCommandParser --> RainbowDragonParser
+deactivate DeleteCategoryCommandParser
+
+RainbowDragonParser -> DeleteCategoryCommandParser : parse("1 c/Clan")
+activate DeleteCategoryCommandParser
+
+create DeleteCategoryCommand
+DeleteCategoryCommandParser -> DeleteCategoryCommand
+activate DeleteCategoryCommand
+
+DeleteCategoryCommand --> DeleteCategoryCommandParser :
+deactivate DeleteCategoryCommand
+
+DeleteCategoryCommandParser --> RainbowDragonParser : d
+deactivate DeleteCategoryCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+DeleteCategoryCommandParser -[hidden]-> RainbowDragonParser
+destroy DeleteCategoryCommandParser
+
+RainbowDragonParser --> LogicManager : d
+deactivate RainbowDragonParser
+
+LogicManager -> DeleteCategoryCommand : execute(m)
+activate DeleteCategoryCommand
+
+DeleteCategoryCommand -> Model : deleteEntry(Clan)
+activate Model
+
+Model --> DeleteCategoryCommand
+deactivate Model
+
+create CommandResult
+DeleteCategoryCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> DeleteCategoryCommand
+deactivate CommandResult
+
+DeleteCategoryCommand --> LogicManager : r
+deactivate DeleteCategoryCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

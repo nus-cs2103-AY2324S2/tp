@@ -142,6 +142,21 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+### Deleting a category of a person : `deleteCategory`
+
+Deletes the specified category of a person.
+
+Format: `deleteCategory INDEX c/CATEGORY`
+
+* Deletes the `CATEGORY` of a person at the specified `INDEX`.
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* The category **must exist**.
+
+Examples:
+* `list` followed by `deleteCategory 2 c/Email` deletes the category "Email" of the 2nd person in the list.
+* `find Jack` followed by `deleteCategory 1 c/Address` deletes the category "Address" of the 1st person in the results of the `find` command.
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
