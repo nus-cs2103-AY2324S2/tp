@@ -85,6 +85,7 @@ public class RelationshipUtil {
         }
         RelationshipUtil other = (RelationshipUtil) o;
         return relationshipsTracker.equals(other.relationshipsTracker);
+    }
 
     @Override
     public String toString() {
