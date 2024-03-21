@@ -147,7 +147,7 @@ public class ModelManager implements Model {
 
     @Override
     public void addModuleToStudent(ModuleCode m, Student s) {
-        addressBook.addModuleToStudent(m,s);
+        addressBook.addModuleToStudent(m, s);
     }
 
     @Override

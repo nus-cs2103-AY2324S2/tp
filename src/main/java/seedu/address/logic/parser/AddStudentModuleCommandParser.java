@@ -22,7 +22,7 @@ public class AddStudentModuleCommandParser implements Parser<AddStudentModuleCom
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddStudentModuleCommand parse(String args) throws ParseException {
-       ArgumentMultimap argMultimap =
+        ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_STUDENT_ID, PREFIX_MODULE_CODE);
         if (!arePrefixesPresent(argMultimap, PREFIX_STUDENT_ID, PREFIX_MODULE_CODE)
                 || !argMultimap.getPreamble().isEmpty()) {
