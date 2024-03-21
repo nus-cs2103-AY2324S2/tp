@@ -31,29 +31,29 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Model model, Name name, Phone phone, Email email, YearJoined yearJoined,
-            Address address, Set<Tag> tags) {
-        requireAllNonNull(model, name, phone, email, yearJoined, address, tags);
+    public Person(Model model, Name name, Phone phone, Email email, Address address,
+                  YearJoined yearJoined, Set<Tag> tags) {
+        requireAllNonNull(model, name, phone, email, address, yearJoined, tags);
         this.id = new Id(model, yearJoined);
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.yearJoined = yearJoined;
         this.address = address;
+        this.yearJoined = yearJoined;
         this.tags.addAll(tags);
     }
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Id id, Name name, Phone phone, Email email, YearJoined yearJoined, Address address, Set<Tag> tags) {
-        requireAllNonNull(id, name, phone, email, address, tags);
+    public Person(Id id, Name name, Phone phone, Email email, Address address, YearJoined yearJoined, Set<Tag> tags) {
+        requireAllNonNull(id, name, phone, email, address, yearJoined, tags);
         this.id = id;
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.yearJoined = yearJoined;
         this.address = address;
+        this.yearJoined = yearJoined;
         this.tags.addAll(tags);
     }
 
@@ -118,19 +118,19 @@ public class Person {
         }
 
         Person otherPerson = (Person) other;
-        return name.equals(otherPerson.name)
-                && id.equals(otherPerson.id)
+        return id.equals(otherPerson.id)
+                && name.equals(otherPerson.name)
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
-                && yearJoined.equals(otherPerson.yearJoined)
                 && address.equals(otherPerson.address)
+                && yearJoined.equals(otherPerson.yearJoined)
                 && tags.equals(otherPerson.tags);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, yearJoined, address, tags);
+        return Objects.hash(name, phone, email, address, yearJoined, tags);
     }
 
     @Override
@@ -140,8 +140,8 @@ public class Person {
                 .add("name", name)
                 .add("phone", phone)
                 .add("email", email)
-                .add("year joined", yearJoined)
                 .add("address", address)
+                .add("year joined", yearJoined)
                 .add("tags", tags)
                 .toString();
     }

@@ -97,7 +97,7 @@ public class TagCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_TAGS);
         }
 
-        Person editedPerson = new Person(id, name, phone, email, yearJoined, address, tagsToAdd);
+        Person editedPerson = new Person(id, name, phone, email, address, yearJoined, tagsToAdd);
 
         return editedPerson;
     }
