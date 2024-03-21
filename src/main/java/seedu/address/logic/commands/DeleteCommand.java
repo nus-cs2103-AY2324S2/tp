@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.ArrayList;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
@@ -26,6 +27,8 @@ public class DeleteCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_EMPLOYEE_SUCCESS = "Deleted Employee: %1$s";
+    public static final String MESSAGE_DELETE_EMPLOYEE_DUPLICATE = "Multiple employees with the same name found. " +
+            "Please use the unique ID to delete the employee.";
 
     private final Index targetIndex;
     private final String targetName;
@@ -97,13 +100,23 @@ public class DeleteCommand extends Command {
      */
     private CommandResult deleteByName(Model model) throws CommandException {
         List<Employee> lastShownList = model.getFilteredEmployeeList();
+        List<Employee> employeesWithTargetName = new ArrayList<>();
+
         for (Employee employee : lastShownList) {
             if (employee.getName().fullName.equalsIgnoreCase(targetName)) {
-                model.deleteEmployee(employee);
-                return new CommandResult(String.format(MESSAGE_DELETE_EMPLOYEE_SUCCESS, Messages.format(employee)));
+                employeesWithTargetName.add(employee);
             }
         }
-        throw new CommandException(Messages.MESSAGE_EMPLOYEE_NOT_FOUND);
+
+        if (employeesWithTargetName.size() > 1) {
+            throw new CommandException("Multiple employees with this name found. Please delete by uid.");
+        } else if (employeesWithTargetName.size() == 1) {
+            model.deleteEmployee(employeesWithTargetName.get(0));
+            return new CommandResult(
+                    String.format(MESSAGE_DELETE_EMPLOYEE_SUCCESS, Messages.format(employeesWithTargetName.get(0))));
+        } else {
+            throw new CommandException(Messages.MESSAGE_EMPLOYEE_NOT_FOUND);
+        }
     }
 
     /**
