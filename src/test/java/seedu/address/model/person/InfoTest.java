@@ -1,10 +1,17 @@
 package seedu.address.model.person;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
+
 public class InfoTest {
+
+    @Test
+    public void emptyConstructorTest() {
+        // empty info constructor
+        Info info = new Info();
+        assertEquals("", info.value);
+    }
 
     @Test
     public void isValidInfo() {
@@ -36,5 +43,24 @@ public class InfoTest {
         // Test with info as a string of numbers
         info = new Info("1233456");
         assertEquals("1233456", info.toString());
+    }
+
+    @Test
+    public void equalsTest() {
+        Info info1 = new Info("Test");
+        Info info2 = new Info("Test");
+        String info3 = "Hello";
+
+        assertTrue(info1.equals(info1));
+        assertTrue(info1.equals(info2));
+        assertFalse(info1.equals(info3));
+    }
+
+    @Test
+    public void hashCodeTest() {
+        Info info1 = new Info("Test");
+        int hash1 = info1.hashCode();
+        int hash2 = "Test".hashCode();
+        assertEquals(hash1, hash2);
     }
 }
