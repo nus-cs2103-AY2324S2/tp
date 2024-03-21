@@ -45,7 +45,7 @@ public class SampleDataUtil {
             new Person(new Name("Roy Balakrishnan"), Optional.of(new Phone("92624417")), new Email("royb@nus.edu.sg"),
                 new Role("PROFESSOR"),
                 new Address("COM1-0203, 13 Computing Drive, NUS"),
-                getTagSet("head of department"))
+                getTagSet("DepartmentHead"))
         };
     }
 
