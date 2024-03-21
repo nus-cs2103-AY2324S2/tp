@@ -25,6 +25,6 @@ public class AddPolicyCommandParser implements Parser<AddPolicyCommand> {
 
         String policyName = argMultimap.getValue(PREFIX_POLICY_NAME).orElse("");
 
-        return new AddPolicyCommand(index, new PolicyName(policyName));
+        return new AddPolicyCommand(index, policyName);
     }
 }

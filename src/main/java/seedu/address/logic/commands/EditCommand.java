@@ -22,13 +22,7 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Meeting;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.PolicyName;
+import seedu.address.model.person.*;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -106,12 +100,9 @@ public class EditCommand extends Command {
         Meeting updatedMeeting = editPersonDescriptor.getMeeting().orElse(personToEdit.getMeeting());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        // Handle Optional<PolicyName>
-        Optional<PolicyName> optionalPolicyName = personToEdit.getPolicyName();
-        PolicyName updatedPolicyName = optionalPolicyName.isPresent()
-                ? editPersonDescriptor.getPolicyName().orElse(optionalPolicyName.get()) : null;
+        Set<Policy> updatedPolicies = editPersonDescriptor.getPolicies().orElse(personToEdit.getPolicies());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedMeeting, updatedPolicyName, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedMeeting, updatedTags, updatedPolicies);
 
     }
 
@@ -149,9 +140,9 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
-        private PolicyName policyName;
         private Meeting meeting;
         private Set<Tag> tags;
+        private Set<Policy> policies;
 
         public EditPersonDescriptor() {}
 
@@ -166,7 +157,7 @@ public class EditCommand extends Command {
             setAddress(toCopy.address);
             setMeeting(toCopy.meeting);
             setTags(toCopy.tags);
-            setPolicyName(toCopy.policyName);
+            setPolicies(toCopy.policies);
         }
 
         /**
@@ -207,10 +198,10 @@ public class EditCommand extends Command {
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
         }
-        public Optional<PolicyName> getPolicyName() {
-            return Optional.ofNullable(policyName);
+        public Optional<Set<Policy>> getPolicies() {
+            return (tags != null) ? Optional.of(Collections.unmodifiableSet(policies)) : Optional.empty();
         }
-        public void setPolicyName(PolicyName policyName) { this.policyName = policyName; }
+        public void setPolicies(Set<Policy> policies) { this.policies = policies; }
 
         public void setMeeting(Meeting meeting) {
             this.meeting = meeting;

@@ -79,9 +79,9 @@ public class ParserUtil {
 
     public static PolicyName parsePolicyName(String policyName) throws ParseException {
         requireNonNull(policyName);
-        String trimmedAddress = policyName.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+        String trimmedPolicyName = policyName.trim();
+        if (!PolicyName.isValidPolicyName(trimmedPolicyName)) {
+            throw new ParseException(PolicyName.MESSAGE_CONSTRAINTS);
         }
         return new PolicyName(policyName);
     }

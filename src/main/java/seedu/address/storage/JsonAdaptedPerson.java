@@ -11,13 +11,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Meeting;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.PolicyName;
+import seedu.address.model.person.*;
 import seedu.address.model.tag.Tag;
 
 
@@ -32,9 +26,10 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
-    private final String policyName;
     private final String meeting;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
+    private final List<JsonAdaptedPolicyTag> policies = new ArrayList<>();
+
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -42,15 +37,17 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
-                             @JsonProperty("meeting") String meeting, @JsonProperty("policyName") String policyName, @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+                             @JsonProperty("meeting") String meeting, @JsonProperty("tags") List<JsonAdaptedTag> tags, @JsonProperty("policies") List<JsonAdaptedPolicyTag> policies) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.policyName = policyName;
         this.meeting = meeting;
         if (tags != null) {
             this.tags.addAll(tags);
+        }
+        if (policies != null) {
+            this.policies.addAll(policies);
         }
     }
 
@@ -63,12 +60,13 @@ class JsonAdaptedPerson {
         email = source.getEmail().value;
         address = source.getAddress().value;
         meeting = source.getMeeting().value;
-        // Handle Optional<PolicyName>
-        Optional<PolicyName> optionalPolicyName = source.getPolicyName();
-        policyName = optionalPolicyName.isPresent() ? optionalPolicyName.get().value : null;
 
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
+                .collect(Collectors.toList()));
+
+        policies.addAll(source.getPolicies().stream()
+                .map(JsonAdaptedPolicyTag::new)
                 .collect(Collectors.toList()));
     }
 
@@ -79,6 +77,12 @@ class JsonAdaptedPerson {
      */
     public Person toModelType() throws IllegalValueException {
         final List<Tag> personTags = new ArrayList<>();
+        final List<Policy> personPolicies = new ArrayList<>();
+
+        for (JsonAdaptedPolicyTag policy : policies) {
+            personPolicies.add(policy.toModelType());
+        }
+
         for (JsonAdaptedTag tag : tags) {
             personTags.add(tag.toModelType());
         }
@@ -124,12 +128,10 @@ class JsonAdaptedPerson {
         final Meeting modelMeeting = new Meeting(meeting);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        if (policyName == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, PolicyName.class.getSimpleName()));
-        }
-        final PolicyName modelPolicyName = new PolicyName(policyName);
 
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelMeeting, modelPolicyName, modelTags);
+        final Set<Policy> modelPolicies = new HashSet<>(personPolicies);
+
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelMeeting, modelTags, modelPolicies);
     }
 
 }

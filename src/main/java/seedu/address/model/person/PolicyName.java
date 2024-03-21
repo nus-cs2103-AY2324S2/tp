@@ -8,10 +8,16 @@ import static java.util.Objects.requireNonNull;
  */
 public class PolicyName {
     public final String value;
+    public static final String MESSAGE_CONSTRAINTS = "Policy Name can take any values, and it should not be blank";
+    public static final String VALIDATION_REGEX =  "[^\\s].*";
 
     public PolicyName(String policyName) {
         requireNonNull(policyName);
         value = policyName;
+    }
+
+    public static boolean isValidPolicyName(String test) {
+        return test.matches(VALIDATION_REGEX);
     }
 
     @Override
