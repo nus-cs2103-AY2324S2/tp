@@ -29,6 +29,15 @@ public class ParserUtilTest {
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = "Rachel Walker";
+    private static final String VALID_QUARTER_FIRST_PHONE = "88";
+    private static final String VALID_QUARTER_SECOND_PHONE = "90";
+    private static final String VALID_QUARTER_THIRD_PHONE = "38";
+
+    private static final String VALID_QUARTER_FOURTH_PHONE = "27";
+
+    private static final String VALID_HALF_FIRST_PHONE = "8890";
+    private static final String VALID_HALF_SECOND_PHONE = "3827";
+
     private static final String VALID_PHONE = "88903827";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
@@ -97,7 +106,22 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parsePhone_validValueWithWhitespace_returnsTrimmedPhone() throws Exception {
+    public void parsePhone_validValueWithMiddleWhitespace_returnsTrimmedPhone() throws Exception {
+        String phoneWithWhitespace = VALID_HALF_FIRST_PHONE + WHITESPACE + VALID_HALF_SECOND_PHONE;
+        Phone expectedPhone = new Phone(VALID_PHONE);
+        assertEquals(expectedPhone, ParserUtil.parsePhone(phoneWithWhitespace));
+    }
+
+    @Test
+    public void parsePhone_validValueWithMiddleWhitespaces_returnsTrimmedPhone() throws Exception {
+        String phoneWithWhitespace = VALID_QUARTER_FIRST_PHONE + WHITESPACE + VALID_QUARTER_SECOND_PHONE + WHITESPACE
+            + VALID_QUARTER_THIRD_PHONE + WHITESPACE + VALID_QUARTER_FOURTH_PHONE;
+        Phone expectedPhone = new Phone(VALID_PHONE);
+        assertEquals(expectedPhone, ParserUtil.parsePhone(phoneWithWhitespace));
+    }
+
+    @Test
+    public void parsePhone_validValueWithTrailingWhitespace_returnsTrimmedPhone() throws Exception {
         String phoneWithWhitespace = WHITESPACE + VALID_PHONE + WHITESPACE;
         Phone expectedPhone = new Phone(VALID_PHONE);
         assertEquals(expectedPhone, ParserUtil.parsePhone(phoneWithWhitespace));
