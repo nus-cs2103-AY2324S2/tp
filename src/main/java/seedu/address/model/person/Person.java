@@ -12,10 +12,12 @@ import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Person in the address book.
- * Guarantees: details are present and not null, field values are validated,
- * immutable.
+ * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Person {
+
+    // Unique id
+    private final Id id;
 
     // Identity fields
     private final Name name;
@@ -24,20 +26,39 @@ public class Person {
 
     // Data fields
     private final Address address;
-    private final Remark remark;
     private final Set<Tag> tags = new HashSet<>();
+    private final Remark remark;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Remark remark, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Remark remark) {
         requireAllNonNull(name, phone, email, address, tags);
+        this.id = Id.generateNextId();
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.remark = remark;
+    }
+
+    /**
+     * Create a {@code Person} object with a specified id.
+     */
+    public Person(Id id, Name name, Phone phone, Email email, Address address, Set<Tag> tags, Remark remark) {
+        requireAllNonNull(name, phone, email, address, tags);
+        this.id = id;
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.remark = remark;
         this.tags.addAll(tags);
+    }
+
+    public Id getId() {
+        return id;
     }
 
     public Name getName() {
@@ -56,13 +77,8 @@ public class Person {
         return address;
     }
 
-    public Remark getRemark() {
-        return remark;
-    }
-
     /**
-     * Returns an immutable tag set, which throws
-     * {@code UnsupportedOperationException}
+     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
     public Set<Tag> getTags() {
@@ -82,6 +98,10 @@ public class Person {
     }
 
 
+    public Remark getRemark() {
+        return remark;
+    }
+
     /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
@@ -93,6 +113,18 @@ public class Person {
 
         return otherPerson != null
                 && otherPerson.getName().equals(getName());
+    }
+
+    /**
+     * Returns true if both persons have the same id.
+     */
+    public boolean hasSameId(Person otherPerson) {
+        if (otherPerson == this) {
+            return true;
+        }
+
+        return otherPerson != null
+                && otherPerson.getId().equals(getId());
     }
 
     /**
@@ -127,11 +159,11 @@ public class Person {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
+                .add("id", id)
                 .add("name", name)
                 .add("phone", phone)
                 .add("email", email)
                 .add("address", address)
-                .add("remark", remark)
                 .add("tags", tags)
                 .toString();
     }

@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.person.Id;
 import seedu.address.model.person.Person;
 
 /**
@@ -96,6 +97,18 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasId(Id id) {
+        requireNonNull(id);
+        return netConnect.hasId(id);
+    }
+
+    @Override
+    public Person getPersonById(Id id) {
+        requireNonNull(id);
+        return netConnect.getPersonById(id);
+    }
+
+    @Override
     public void deletePerson(Person target) {
         netConnect.removePerson(target);
     }
@@ -124,8 +137,7 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the
-     * internal list of
-     * {@code versionedNetConnect}
+     * internal list of {@code versionedNetConnect}
      */
     @Override
     public ObservableList<Person> getFilteredPersonList() {

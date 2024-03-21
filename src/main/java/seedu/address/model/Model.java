@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.person.Id;
 import seedu.address.model.person.Person;
 
 /**
@@ -37,17 +38,17 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' netconnect file path.
      */
     Path getNetConnectFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' netconnect file path.
      */
     void setNetConnectFilePath(Path netConnectFilePath);
 
     /**
-     * Replaces address book data with the data in {@code netConnect}.
+     * Replaces netconnect data with the data in {@code netConnect}.
      */
     void setNetConnect(ReadOnlyNetConnect netConnect);
 
@@ -58,9 +59,20 @@ public interface Model {
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in
-     * the address book.
+     * the netconnect.
      */
     boolean hasPerson(Person person);
+
+    /**
+     * Returns true if a person with the same id as {@code Id} exists in
+     * the netconnect.
+     */
+    boolean hasId(Id id);
+
+    /**
+     * Returns the Person with the given {@code Id}.
+     */
+    Person getPersonById(Id id);
 
     /**
      * Deletes the given person.
