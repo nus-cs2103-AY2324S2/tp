@@ -26,7 +26,7 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_PERSON_NOT_FOUND = "This person does not exist in the address book";
 
-    public static final String MESSAGE_POSITIVE_INTEGER = "The unique ID must be a positive integer";
+    public static final String MESSAGE_POSITIVE_INTEGER_AND_ZERO = "The unique ID must be a positive integer and/or zero";
 
     private final int targetUniqueId;
 
@@ -46,8 +46,8 @@ public class DeleteCommand extends Command {
         if (targetUniqueId >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
-        if (targetUniqueId < 0) {
-            throw new CommandException(MESSAGE_POSITIVE_INTEGER);
+        if (targetUniqueId < 0) { // Positive integer or 0, should discuss
+            throw new CommandException(MESSAGE_POSITIVE_INTEGER_AND_ZERO);
         }
         if (personToDelete == null) {
             throw new CommandException(MESSAGE_PERSON_NOT_FOUND);
