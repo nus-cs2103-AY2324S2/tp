@@ -29,7 +29,7 @@ public class LogicManager implements Logic {
 
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
 
-    private final Model model;
+    private final Model model; // model
     private final Storage storage;
     private final AddressBookParser addressBookParser;
 
