@@ -96,6 +96,7 @@ public class EditCommandTest {
     public void execute_duplicatePersonUnfilteredList_failure() {
         Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(firstPerson).withName("Benson Meier").build();
+
         EditCommand editCommand = new EditCommand(
                 model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()).getId(), descriptor);
 
