@@ -15,7 +15,6 @@ import tutorpro.model.util.SampleDataUtil;
  * A utility class to help with building Parent objects.
  */
 public class ParentBuilder {
-    
     public static final String DEFAULT_NAME = "Xin Yuan Senior";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "xys@gmail.com";
