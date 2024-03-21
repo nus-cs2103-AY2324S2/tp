@@ -65,20 +65,21 @@ public class TypicalPersons {
     public static final Person IDA = new PersonBuilder().withName("Ida Mueller").withPhone("8482131")
             .withEmail("hans@example.com").withModule("CS2103T")
             .withFaculty("Computing").withVenue("chicago ave").build();
+    // End of manually added
 
     public static final Person KAFKA = new PersonBuilder().withName("Kafka Apache").withPhone("9452413")
             .withEmail("apache@example.com").withModule("CS2102").withFaculty("Business")
             .withVenue("pteruges avenue").withTags("classmate").withAvailabilities("FRIDAY").build();
-    public static final Person NATASHA = new PersonBuilder().withName("Natasha Harrower").withPhone("8019394")
-            .withEmail("harrower@example.com").withModule("CS2102")
-            .withFaculty("Computing").withVenue("underworld avenue")
-            .withTags("classmate").withAvailabilities("FRIDAY").build();
     public static final Person LEONARDO = new PersonBuilder().withName("Leonardo DiCaprio").withPhone("88472234")
             .withEmail("lcaprio@gmail.com").withModule("TS2237")
             .withFaculty("Arts and Social Sciences").withVenue("LT13").build();
     public static final Person MICHAEL = new PersonBuilder().withName("Michael Jackson").withPhone("92347123")
             .withEmail("heehee@gmail.com").withModule("MUA1163")
             .withFaculty("Music").withVenue("YSTCM-SR9").build();
+    public static final Person NATASHA = new PersonBuilder().withName("Natasha Harrower").withPhone("8019394")
+            .withEmail("harrower@example.com").withModule("CS2102")
+            .withFaculty("Computing").withVenue("underworld avenue")
+            .withTags("classmate").withAvailabilities("FRIDAY").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
@@ -107,7 +108,7 @@ public class TypicalPersons {
     }
 
     public static List<Person> getTypicalPersons() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, CLARA, DANIEL, ELLE, FIONA, GEORGE, KAFKA, NATASHA,
-                LEONARDO, MICHAEL));
+        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, CLARA, DANIEL, ELLE, FIONA, GEORGE, KAFKA,
+                LEONARDO, MICHAEL, NATASHA));
     }
 }

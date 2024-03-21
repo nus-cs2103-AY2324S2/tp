@@ -35,4 +35,15 @@ public class PhoneComparatorTest {
         assertEquals(PHONE_COMPARATOR.compare(BENSON, BENSON), 0); // 98765432 = 98765432
         assertEquals(PHONE_COMPARATOR.compare(ELLE, ELLE), 0); // 9482224 = 9482224
     }
+
+    @Test
+    public void toStringTest() {
+        assertEquals(PHONE_COMPARATOR.toString(), "Phone by ascending order");
+
+        assertNotEquals(PHONE_COMPARATOR.toString(), "Name by alphanumerical order");
+        assertNotEquals(PHONE_COMPARATOR.toString(), "Module by alphanumerical order");
+        assertNotEquals(PHONE_COMPARATOR.toString(), "Faculty by alphanumerical order");
+        assertNotEquals(PHONE_COMPARATOR.toString(), "Venue by alphanumerical order");
+        assertNotEquals(PHONE_COMPARATOR.toString(), "random string");
+    }
 }

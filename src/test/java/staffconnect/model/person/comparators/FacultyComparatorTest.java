@@ -36,4 +36,15 @@ public class FacultyComparatorTest {
         // Arts and Social Sciences = Arts and Social Sciences
         assertEquals(FACULTY_COMPARATOR.compare(MICHAEL, MICHAEL), 0); // Music = Music
     }
+
+    @Test
+    public void toStringTest() {
+        assertEquals(FACULTY_COMPARATOR.toString(), "Faculty by alphanumerical order");
+
+        assertNotEquals(FACULTY_COMPARATOR.toString(), "Name by alphanumerical order");
+        assertNotEquals(FACULTY_COMPARATOR.toString(), "Phone by ascending order");
+        assertNotEquals(FACULTY_COMPARATOR.toString(), "Module by alphanumerical order");
+        assertNotEquals(FACULTY_COMPARATOR.toString(), "Venue by alphanumerical order");
+        assertNotEquals(FACULTY_COMPARATOR.toString(), "random string");
+    }
 }

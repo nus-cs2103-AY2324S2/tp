@@ -15,4 +15,9 @@ public class VenueComparator implements Comparator<Person> {
     public int compare(Person p1, Person p2) {
         return p1.getVenue().toString().compareToIgnoreCase(p2.getVenue().toString());
     }
+
+    @Override
+    public String toString() {
+        return "Venue by alphanumerical order";
+    }
 }
