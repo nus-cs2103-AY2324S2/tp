@@ -1,8 +1,13 @@
 package seedu.address.ui;
 
+import java.io.IOException;
+
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentView;
@@ -58,14 +63,9 @@ public class AppointmentCard extends UiPart<Region> {
         note.setText("Notes: " + appt.getNote().toString());
 
         //make appointment green depending on mark status
-        cardPane.styleProperty().bind(
-            javafx.beans.binding.Bindings.when(
-                javafx.beans.binding.Bindings.createBooleanBinding(() -> (
-                    appt.getMark().mark)
-                )
-            )
-            .then("-fx-background-color: #33B864")
-            .otherwise("-fx-background-color: defaultColor")
-        );
+
+        if (appt.getMark().mark) {
+            cardPane.setStyle("-fx-background-color: #33B864;");
+        }
     }
 }

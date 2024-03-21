@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_END_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_START_TIME;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_APPOINTMENTS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_APPOINTMENTS_VIEW;
 
 import seedu.address.commons.core.date.Date;
 import seedu.address.commons.util.ToStringBuilder;
@@ -31,7 +32,7 @@ public class MarkCommand extends Command {
             + PREFIX_START_TIME + "START_TIME "
             + PREFIX_END_TIME + "END_TIME";
 
-    public static final String MESSAGE_MARK_PERSON_SUCCESS = "This appointment has been marked: %1$s";
+    public static final String MESSAGE_MARK_PERSON_SUCCESS = "Appointment successfully marked as seen: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
 
     private final Nric nric;
@@ -60,7 +61,7 @@ public class MarkCommand extends Command {
 
         appt.setMark("true");
 
-        model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
+        model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS, PREDICATE_SHOW_ALL_APPOINTMENTS_VIEW);
         return new CommandResult(String.format(MESSAGE_MARK_PERSON_SUCCESS, Messages.format(appt)));
     }
 

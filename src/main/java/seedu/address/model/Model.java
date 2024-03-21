@@ -19,6 +19,7 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
     Predicate<Appointment> PREDICATE_SHOW_ALL_APPOINTMENTS = unused -> true;
+    Predicate<AppointmentView> PREDICATE_SHOW_ALL_APPOINTMENTS_VIEW = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -141,7 +142,7 @@ public interface Model {
      * Updates the filter of the filtered appointment list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredAppointmentList(Predicate<Appointment> predicate);
+    void updateFilteredAppointmentList(Predicate<Appointment> predicate, Predicate<AppointmentView> predicateView);
 
     /** Returns an Appointment that matches based on Nric, Date and TimePeriod given **/
     Appointment getMatchingAppointment(Nric nric, Date date, TimePeriod timePeriod);

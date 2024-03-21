@@ -222,7 +222,7 @@ public class AddAppCommandTest {
         }
 
         @Override
-        public void updateFilteredAppointmentList(Predicate<Appointment> predicate) {
+        public void updateFilteredAppointmentList(Predicate<Appointment> predicate, Predicate<AppointmentView> predicateView) {
         }
 
         @Override
