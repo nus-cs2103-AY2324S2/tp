@@ -12,18 +12,18 @@ import static seedu.address.testutil.TypicalPersonsUuid.ALICE;
 import static seedu.address.testutil.TypicalPersonsUuid.HOON;
 import static seedu.address.testutil.TypicalPersonsUuid.getTypicalAddressBook;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.attribute.Attribute;
+import seedu.address.model.person.attribute.NameAttribute;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.testutil.PersonBuilder;
+import seedu.address.model.person.relationship.Relationship;
 
 public class AddressBookTest {
 
@@ -150,4 +150,117 @@ public class AddressBookTest {
         }
     }
 
+    @Test
+    public void hasRelationshipWithDescriptor_existingRelationship_returnsTrue() {
+        Attribute name1 = new NameAttribute("Name", "John Doe");
+        Attribute name2 = new NameAttribute("Name", "Jane Doe");
+        Attribute[] attributes1 = new Attribute[]{name1};
+        Attribute[] attributes2 = new Attribute[]{name2};
+
+        // Adding dummy people for testing
+        Person person1 = new Person(attributes1);
+        Person person2 = new Person(attributes2);
+        UUID uuid11 = person1.getUuid();
+        UUID uuid22 = person2.getUuid();
+        // Create an instance of AddressBook
+        AddressBook addressBook = new AddressBook();
+
+        // Create a test relationship
+        Relationship testRelationship = new Relationship(uuid11, uuid22, "family");
+
+        // Add the test relationship to the address book
+        addressBook.addRelationship(testRelationship);
+
+        // Check if the address book has the test relationship with the descriptor
+        assertTrue(addressBook.hasRelationshipWithDescriptor(testRelationship));
+    }
+
+    @Test
+    public void getExistingRelationship_existingRelationship_returnsStringRepresentation() {
+        Attribute name1 = new NameAttribute("Name", "John Doe");
+        Attribute name2 = new NameAttribute("Name", "Jane Doe");
+        Attribute[] attributes1 = new Attribute[]{name1};
+        Attribute[] attributes2 = new Attribute[]{name2};
+
+        // Adding dummy people for testing
+        Person person1 = new Person(attributes1);
+        Person person2 = new Person(attributes2);
+        UUID uuid11 = person1.getUuid();
+        UUID uuid22 = person2.getUuid();
+        // Create an instance of AddressBook
+        AddressBook addressBook = new AddressBook();
+
+        // Create a test relationship
+        Relationship testRelationship = new Relationship(uuid11, uuid22, "family");
+
+        // Add the test relationship to the address book
+        addressBook.addRelationship(testRelationship);
+
+        // Check if the address book has the test relationship with the descriptor
+        assertEquals(testRelationship.toString(), addressBook.getExistingRelationship(testRelationship));
+    }
+
+    @Test
+    public void hasRelationshipWithDescriptor_nonExistingRelationship_returnsFalse() {
+        Attribute name1 = new NameAttribute("Name", "John Doe");
+        Attribute name2 = new NameAttribute("Name", "Jane Doe");
+        Attribute[] attributes1 = new Attribute[]{name1};
+        Attribute[] attributes2 = new Attribute[]{name2};
+
+        // Adding dummy people for testing
+        Person person1 = new Person(attributes1);
+        Person person2 = new Person(attributes2);
+        UUID uuid11 = person1.getUuid();
+        UUID uuid22 = person2.getUuid();
+        // Create an instance of AddressBook
+        AddressBook addressBook = new AddressBook();
+
+        // Create a test relationship
+        Relationship testRelationship = new Relationship(uuid11, uuid22, "family");
+
+        // Check if the address book has the test relationship with the descriptor
+        assertFalse(addressBook.hasRelationshipWithDescriptor(testRelationship));
+    }
+
+    @Test
+    public void getExistingRelationship_nonExistingRelationship_throwsException() {
+        // Create an instance of AddressBook
+        Attribute name1 = new NameAttribute("Name", "John Doe");
+        Attribute name2 = new NameAttribute("Name", "Jane Doe");
+        Attribute[] attributes1 = new Attribute[]{name1};
+        Attribute[] attributes2 = new Attribute[]{name2};
+
+        // Adding dummy people for testing
+        Person person1 = new Person(attributes1);
+        Person person2 = new Person(attributes2);
+        UUID uuid11 = person1.getUuid();
+        UUID uuid22 = person2.getUuid();
+        // Create an instance of AddressBook
+        AddressBook addressBook = new AddressBook();
+
+        // Create a test relationship
+        Relationship testRelationship = new Relationship(uuid11, uuid22, "family");
+
+        // Check if invoking getExistingRelationship with the non-existing relationship throws an exception
+        assertThrows(IllegalArgumentException.class, () -> addressBook.getExistingRelationship(testRelationship));
+    }
+
+    @Test
+    public void equals_sameObject_returnsTrue() {
+        AddressBook addressBook = new AddressBook();
+        assertTrue(addressBook.equals(addressBook));
+    }
+
+    @Test
+    public void equals_differentObject_returnsFalse() {
+        AddressBook addressBook = new AddressBook();
+        assertFalse(addressBook.equals(new Object()));
+    }
+
+    @Test
+    public void equals_equalAddressBooks_returnsTrue() {
+        AddressBook addressBook1 = new AddressBook();
+        AddressBook addressBook2 = new AddressBook();
+        assertTrue(addressBook1.equals(addressBook2));
+    }
 }

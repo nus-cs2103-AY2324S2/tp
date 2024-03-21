@@ -44,11 +44,11 @@ public class EditRelationshipCommand extends Command {
      * @throws CommandException if relationship does not exist or if the new relationship is the same as the old one.
      */
     public CommandResult execute(Model model) throws CommandException {
-        UUID fullOriginUuid = model.getFullUuid(originUuid);
-        UUID fullTargetUuid = model.getFullUuid(targetUuid);
-        if (fullOriginUuid == null || fullTargetUuid == null) {
+        if (originUuid == null || targetUuid == null) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_UUID);
         }
+        UUID fullOriginUuid = model.getFullUuid(originUuid);
+        UUID fullTargetUuid = model.getFullUuid(targetUuid);
         if (fullOriginUuid == fullTargetUuid) {
             throw new CommandException("Relationships must be between 2 different people");
         }

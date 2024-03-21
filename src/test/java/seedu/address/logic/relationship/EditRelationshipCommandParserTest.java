@@ -17,13 +17,13 @@ public class EditRelationshipCommandParserTest {
 
     @Test
     public void parse_invalidInputInvalidUuid_throwsParseException() {
-        String userInput = "invalidUuid uuid2 family friends";
+        String userInput = "invalidUuid uuid2 family friend";
         assertThrows(ParseException.class, () -> parser.parse(userInput));
     }
 
     @Test
     public void parse_invalidInputInvalidRelationshipDescriptors_throwsParseException() {
-        String userInput = "uuid1 uuid2 invalidRelationship friends";
+        String userInput = "uuid1 uuid2 invalidRelationship friend";
         assertThrows(ParseException.class, () -> parser.parse(userInput));
     }
 
