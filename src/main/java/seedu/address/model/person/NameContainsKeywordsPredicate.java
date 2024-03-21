@@ -1,5 +1,7 @@
 package seedu.address.model.person;
 
+import static seedu.address.logic.commands.FindCommand.NOT_REQUIRED_VALUE;
+
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -18,6 +20,9 @@ public class NameContainsKeywordsPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
+        if (keywords.contains(NOT_REQUIRED_VALUE)) {
+            return true;
+        }
         return keywords.stream()
                 .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getName().fullName, keyword));
     }
@@ -39,6 +44,6 @@ public class NameContainsKeywordsPredicate implements Predicate<Person> {
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this).add("keywords", keywords).toString();
+        return new ToStringBuilder(this).add("nameKeywords", keywords).toString();
     }
 }
