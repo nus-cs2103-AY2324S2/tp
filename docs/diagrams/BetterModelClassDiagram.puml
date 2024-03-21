@@ -14,8 +14,12 @@ UniqueStudentList -right-> Student
 
 Student -up-> "*" Tag
 
-Student *--> Name
-Student *--> StudentId
-Student *--> Email
-Student *--> TelegramHandle
+Student *--> "1" Name
+Student *--> "1" StudentId
+Student *--> "1" TelegramHandle
+Student *--> "1" Email
+Student *--> "0..1" Link
+Student *--> "1" Timetable
+Timetable *--> "*" Day
+Day *--> "*" Period
 @enduml

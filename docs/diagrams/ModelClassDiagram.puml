@@ -19,6 +19,10 @@ Class Email
 Class Name
 Class StudentId
 Class Tag
+Class Link
+Class Timetable
+Class Day
+Class Period
 
 Class I #FFFFFF
 }
@@ -37,11 +41,15 @@ UserPrefs .up.|> ReadOnlyUserPrefs
 
 AddressBook *--> "1" UniqueStudentList
 UniqueStudentList --> "~* all" Student
-Student *--> Name
-Student *--> StudentId
-Student *--> TelegramHandle
-Student *--> Email
+Student *--> "1" Name
+Student *--> "1" StudentId
+Student *--> "1" TelegramHandle
+Student *--> "1" Email
 Student *--> "*" Tag
+Student *--> "0..1" Link
+Student *--> "1" Timetable
+Timetable *--> "*" Day
+Day *--> "*" Period
 
 Student -[hidden]up--> I
 UniqueStudentList -[hidden]right-> I
