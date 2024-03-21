@@ -1,11 +1,21 @@
 package seedu.address.model.person;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.address.logic.commands.CommandTestUtil.*;
-import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_HOUSING_TYPE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BEN;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.testutil.TypicalPersons.ALI;
+import static seedu.address.testutil.TypicalPersons.BEN;
+import static seedu.address.testutil.TypicalPersons.BOB;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.testutil.BuyerBuilder;
 
 public class BuyerTest {
@@ -45,13 +55,6 @@ public class BuyerTest {
 
     @Test
     public void equals() {
-
-        Buyer buyerAlice =
-                new Buyer(ALICE.getName(), ALICE.getPhone(), ALICE.getEmail(), ALICE.getHousingType(),
-                        ALICE.getTags());
-        Buyer buyerBob =
-                new Buyer(BOB.getName(), BOB.getPhone(), BOB.getEmail(), BOB.getHousingType(),
-                        BOB.getTags());
 
         Person buyerAliCopy = new BuyerBuilder(ALI).build();
 

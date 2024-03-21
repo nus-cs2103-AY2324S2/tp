@@ -1,12 +1,16 @@
 package seedu.address.testutil;
 
-import seedu.address.model.house.PostalCode;
-import seedu.address.model.person.*;
+import java.util.HashSet;
+import java.util.Set;
+
+import seedu.address.model.person.Buyer;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * A Utility class to help with building Buyer objects.
@@ -37,7 +41,7 @@ public class BuyerBuilder {
     /**
      * Initializes the BuyerBuilder with the data of {@code personToCopy}
      */
-    public BuyerBuilder(Person personToCopy) {      //TODO: need to figure this out if need Person or Buyer only)
+    public BuyerBuilder(Person personToCopy) { //TODO: need to figure this out if need Person or Buyer only)
         name = personToCopy.getName();
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
