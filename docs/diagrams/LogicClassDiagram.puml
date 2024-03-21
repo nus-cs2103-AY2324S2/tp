@@ -1,8 +1,8 @@
 @startuml
 !include style.puml
 skinparam arrowThickness 1.1
-skinparam arrowColor LOGIC_COLOR_T4
-skinparam classBackgroundColor LOGIC_COLOR
+skinparam arrowColor LOGIC_COLOR_T5
+skinparam classBackgroundColor LOGIC_COLOR_T6
 
 package Logic as LogicPackage {
 
