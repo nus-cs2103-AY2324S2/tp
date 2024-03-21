@@ -8,7 +8,7 @@ import static java.util.Objects.requireNonNull;
  */
 public class Note extends Attribute<String> {
 
-    public static final String MESSAGE_CONSTRAINTS = "Notes can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Notes can take any values";
 
     /**
      * Constructs a {@code note}.
@@ -36,7 +36,7 @@ public class Note extends Attribute<String> {
 
         String other = (String) otherValue;
 
-        return this.getValue().toLowerCase().contains(other.toLowerCase());
+        return this.getValue().trim().toLowerCase().contains(other.trim().toLowerCase());
     }
 
     @Override
