@@ -63,16 +63,6 @@ public class Person {
         return foundTask.get();
     }
 
-    /**
-     * Returns the name of the Person
-     */
-    public Task findTask(Name taskName) {
-        Optional<Task> foundTask = taskList.stream()
-                .filter(task -> task.getName().toString().equals(taskName.toString()))
-                .findFirst();
-        return foundTask.get();
-    }
-
     public Name getName() {
         return name;
     }
