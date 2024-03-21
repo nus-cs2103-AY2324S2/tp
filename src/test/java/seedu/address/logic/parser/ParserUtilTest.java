@@ -33,6 +33,9 @@ public class ParserUtilTest {
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
+    private static final String INVALID_UUID_1 = "?909";
+    private static final String INVALID_UUID_2 ="99990";
+    private static final String VALID_UUID_1 = "789d";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -192,5 +195,19 @@ public class ParserUtilTest {
         Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+    @Test
+    public void parseUuid_invalidValue1_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseUuid(INVALID_UUID_1));
+    }
+    @Test
+    public void parseUuid_invalidValue2_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseUuid(INVALID_UUID_2));
+    }
+    @Test
+    public void parseUuid_ValidValue_returnsUuid() throws Exception {
+        String expected = VALID_UUID_1;
+        String test = ParserUtil.parseUuid(expected);
+        assertEquals(expected, test);
     }
 }

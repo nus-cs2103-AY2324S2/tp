@@ -3,6 +3,7 @@ package seedu.address.logic.relationship;
 import static java.util.Objects.requireNonNull;
 
 import seedu.address.logic.Messages;
+import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -10,7 +11,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 /**
  * Parses input arguments and creates a new AddRelationshipCommand object
  */
-public class AddRelationshipCommandParser {
+public class AddRelationshipCommandParser implements Parser<AddRelationshipCommand> {
     /**
      * Parses a userInput into the arguments to add a relationship to AB3
      * @param userInput user-input command
@@ -20,6 +21,10 @@ public class AddRelationshipCommandParser {
     public AddRelationshipCommand parse(String userInput) throws ParseException {
         requireNonNull(userInput);
         String[] parts = userInput.split(" ", 3);
+        boolean hasMissingArgument = parts.length < 3;
+        if (hasMissingArgument) {
+            throw new ParseException("You have missing arguments");
+        }
         try {
             String originUuid = ParserUtil.parseUuid(parts[0]);
             String targetUuid = ParserUtil.parseUuid(parts[1]);

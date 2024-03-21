@@ -49,4 +49,16 @@ public class AddRelationshipCommand extends Command {
         model.addRelationship(toAdd);
         return new CommandResult(MESSAGE_ADD_RELATIONSHIP_SUCCESS);
     }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof AddRelationshipCommand)) {
+            return false;
+        }
+        AddRelationshipCommand other = (AddRelationshipCommand) o;
+        return other.originUuid.equals(this.originUuid) && other.targetUuid.equals(targetUuid)
+                && other.relationshipDescriptor.equals(this.relationshipDescriptor);
+    }
 }

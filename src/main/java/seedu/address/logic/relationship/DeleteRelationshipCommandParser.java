@@ -3,6 +3,7 @@ package seedu.address.logic.relationship;
 import static java.util.Objects.requireNonNull;
 
 import seedu.address.logic.Messages;
+import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -10,7 +11,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 /**
  * Parses user input into a DeleteRelationshipCommand.
  */
-public class DeleteRelationshipCommandParser {
+public class DeleteRelationshipCommandParser implements Parser<DeleteRelationshipCommand> {
     /**
      * Parses the given user input and returns a DeleteRelationshipCommand.
      *
