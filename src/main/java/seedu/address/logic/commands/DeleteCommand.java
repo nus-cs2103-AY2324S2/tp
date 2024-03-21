@@ -2,6 +2,8 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.List;
+
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -39,12 +41,14 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
-        Person personToDelete = model.getPersonByUniqueId(targetUniqueId);
-        if (targetUniqueId <= 0) {
+        List<Person> lastShownList = model.getFilteredPersonList();
+        Person personToDelete = lastShownList.get(targetUniqueId - 1);
+        if (targetUniqueId >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        }
+        if (targetUniqueId < 0) {
             throw new CommandException(MESSAGE_POSITIVE_INTEGER);
         }
-
         if (personToDelete == null) {
             throw new CommandException(MESSAGE_PERSON_NOT_FOUND);
         }

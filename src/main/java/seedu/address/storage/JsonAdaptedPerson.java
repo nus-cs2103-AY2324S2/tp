@@ -110,7 +110,7 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
         if (!Subject.isValidSubject(subject)) {
-            throw new IllegalValueException(Subject.MESSAGE_CONSTANTS);
+            throw new IllegalValueException(Subject.MESSAGE_CONSTRAINTS);
         }
         if (uniqueId == null) {
             throw new IllegalValueException("Missing Unique Id");

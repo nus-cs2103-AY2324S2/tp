@@ -9,7 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Subject {
 
-    public static final String MESSAGE_CONSTANTS = "Subject should be string of at least of length of 1";
+    public static final String MESSAGE_CONSTRAINTS = "Subject should be string of at least of length of 1";
 
     public final String value;
 
@@ -20,7 +20,7 @@ public class Subject {
      */
     public Subject(String value) {
         requireNonNull(value);
-        checkArgument(isValidSubject(value), MESSAGE_CONSTANTS);
+        checkArgument(isValidSubject(value), MESSAGE_CONSTRAINTS);
         this.value = value;
     }
 
