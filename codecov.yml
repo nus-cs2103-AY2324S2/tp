@@ -1,2 +1,12 @@
 ignore:
   - "src/main/java/seedu/address/ui/*"
+coverage:
+  status:
+    patch:
+      default:
+        target: 0.0
+        threshold: 10.0
+    project:
+      default:
+        target: auto
+        threshold: 10.0
