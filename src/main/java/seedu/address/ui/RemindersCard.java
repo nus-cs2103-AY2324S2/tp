@@ -22,16 +22,16 @@ public class RemindersCard extends UiPart<Region> {
     private Label remindersCardList;
 
     /**
-     * Creates a {@code ClientListCard} with the given {@code Person} and index to display.
+     * Creates a {@code ClientListCard} with the given {@code }.
      */
     public RemindersCard(String remindersTitle) {
         super(FXML);
         // this.remindersList = remindersList;
         title.setText(remindersTitle);
         // remindersCardList.setText(remindersList.toString());
-        remindersCardList.setPrefHeight(40);
-        // remindersCardList.setPrefHeight(40 + remindersList.getNumberOfReminders() * 20);
-        cardPane.setPrefHeight(60);
-        // cardPane.setPrefHeight(60 + remindersList.getNumberOfReminders() * 20);
+        remindersCardList.setPrefHeight(60 + 14 * 20);
+        // remindersCardList.setPrefHeight(60 + remindersList.getNumberOfReminders() * 20);
+        cardPane.setPrefHeight(80);
+        // cardPane.setPrefHeight(80 + remindersList.getNumberOfReminders() * 20);
     }
 }

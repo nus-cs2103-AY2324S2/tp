@@ -63,19 +63,15 @@
             <StackPane fx:id="clientDetailsCardPlaceholder" VBox.vgrow="ALWAYS"/>
             <StackPane fx:id="clientPolicyTablePlaceholder" VBox.vgrow="ALWAYS"/>
           </VBox>
-          <VBox fx:id="remindersView" styleClass="pane-with-border" minWidth="250" prefWidth="300" maxWidth="350" HBox.hgrow="ALWAYS">
+          <VBox fx:id="remindersView" styleClass="pane-with-border" minWidth="350" prefWidth="350" maxWidth="350" HBox.hgrow="ALWAYS">
+            <padding>
+              <Insets top="10" right="10" bottom="10" left="10" />
+            </padding>
             <ScrollPane VBox.vgrow="ALWAYS">
               <content>
-                <VBox minWidth="250" prefWidth="300" maxWidth="350">
-                  <padding>
-                    <Insets top="10" right="10" bottom="10" left="10" />
-                  </padding>
+                <VBox minWidth="310" prefWidth="310" maxWidth="310">
                   <StackPane fx:id="lastMetCardPlaceholder" VBox.vgrow="ALWAYS"/>
-                  <Region>
-                    <padding>
-                      <Insets top="10" right="10" bottom="10" left="10" />
-                    </padding>
-                  </Region>
+                  <Region prefWidth="310" prefHeight="20"/>
                   <StackPane fx:id="appointmentsCardPlaceholder" VBox.vgrow="ALWAYS"/>
                 </VBox>
               </content>
