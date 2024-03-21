@@ -106,4 +106,10 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Exports the data from the address book as a CSV file with the specified filename.
+     * Returns {@code true} if the export operation is successful, {@code false} otherwise.
+     */
+    boolean exportCsv(String filename);
 }
