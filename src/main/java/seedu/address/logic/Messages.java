@@ -50,14 +50,16 @@ public class Messages {
         return builder.toString();
     }
 
+    /**
+     * Formats the {@code meeting} for display to the user.
+     */
     public static String formatMeeting(Meeting meeting) {
         final StringBuilder builder = new StringBuilder();
         builder.append(meeting.getDescription())
                 .append("; Date & Time: ")
                 .append(meeting.getDateTime())
                 .append("; Client: ")
-                .append(meeting.getClientName())
-                ;
+                .append(meeting.getClientName());
         return builder.toString();
     }
 

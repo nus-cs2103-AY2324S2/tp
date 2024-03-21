@@ -3,9 +3,14 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.*;
-import static seedu.address.testutil.TypicalIndexes.*;
-import static seedu.address.testutil.TypicalPersons.JAMAL;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_MEETING;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_MEETING;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
@@ -22,7 +27,6 @@ import seedu.address.model.person.Person;
 import seedu.address.testutil.EditMeetingDescriptorBuilder;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.MeetingBuilder;
-import seedu.address.testutil.PersonBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditMeetingCommand.
@@ -35,9 +39,11 @@ public class EditMeetingCommandTest {
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
         Meeting editedMeeting = new MeetingBuilder().build();
         EditMeetingCommand.EditMeetingDescriptor descriptor = new EditMeetingDescriptorBuilder(editedMeeting).build();
-        EditMeetingCommand editMeetingCommand = new EditMeetingCommand(INDEX_FIRST_PERSON, descriptor, INDEX_SECOND_MEETING);
+        EditMeetingCommand editMeetingCommand = new EditMeetingCommand(INDEX_FIRST_PERSON, descriptor,
+                INDEX_SECOND_MEETING);
 
-        String expectedMessage = String.format(EditMeetingCommand.MESSAGE_EDIT_MEETING_SUCCESS, Messages.formatMeeting(editedMeeting));
+        String expectedMessage = String.format(EditMeetingCommand.MESSAGE_EDIT_MEETING_SUCCESS,
+                Messages.formatMeeting(editedMeeting));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setMeeting(model.getFilteredMeetingList().get(0), editedMeeting);
@@ -54,7 +60,8 @@ public class EditMeetingCommandTest {
         Meeting editedMeeting = meetingInList.withDescription(VALID_NAME_BOB).withDateTime(VALID_DATETIME_BOB)
                 .withClient(JAMAL).build();
 
-        EditMeetingCommand.EditMeetingDescriptor descriptor = new EditMeetingDescriptorBuilder().withDescription(VALID_NAME_BOB)
+        EditMeetingCommand.EditMeetingDescriptor descriptor = new EditMeetingDescriptorBuilder()
+                .withDescription(VALID_NAME_BOB)
                 .withDateTime(VALID_DATETIME_BOB)
                 .withClient(JAMAL).build();
         EditMeetingCommand editMeetingCommand = new EditMeetingCommand(indexLastMeeting, descriptor);
@@ -69,10 +76,12 @@ public class EditMeetingCommandTest {
     */
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
-        EditMeetingCommand editMeetingCommand = new EditMeetingCommand(INDEX_FIRST_PERSON, new EditMeetingCommand.EditMeetingDescriptor(), INDEX_FIRST_MEETING);
+        EditMeetingCommand editMeetingCommand = new EditMeetingCommand(INDEX_FIRST_PERSON,
+                new EditMeetingCommand.EditMeetingDescriptor(), INDEX_FIRST_MEETING);
         Meeting editedMeeting = model.getFilteredMeetingList().get(INDEX_FIRST_MEETING.getZeroBased());
 
-        String expectedMessage = String.format(EditMeetingCommand.MESSAGE_EDIT_MEETING_SUCCESS, Messages.formatMeeting(editedMeeting));
+        String expectedMessage = String.format(EditMeetingCommand.MESSAGE_EDIT_MEETING_SUCCESS,
+                Messages.formatMeeting(editedMeeting));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
 
@@ -88,7 +97,8 @@ public class EditMeetingCommandTest {
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
                 new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson));
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS,
+            Messages.format(editedPerson));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
@@ -100,7 +110,8 @@ public class EditMeetingCommandTest {
     public void execute_duplicateMeetingUnfilteredList_failure() {
         Meeting firstMeeting = model.getFilteredMeetingList().get(INDEX_FIRST_MEETING.getZeroBased());
         EditMeetingCommand.EditMeetingDescriptor descriptor = new EditMeetingDescriptorBuilder(firstMeeting).build();
-        EditMeetingCommand editMeetingCommand = new EditMeetingCommand(INDEX_SECOND_PERSON, descriptor, INDEX_SECOND_MEETING);
+        EditMeetingCommand editMeetingCommand = new EditMeetingCommand(INDEX_SECOND_PERSON,
+                descriptor, INDEX_SECOND_MEETING);
 
         assertCommandFailure(editMeetingCommand, model, EditMeetingCommand.MESSAGE_DUPLICATE_MEETING);
     }
@@ -145,11 +156,13 @@ public class EditMeetingCommandTest {
 
     @Test
     public void equals() {
-        final EditMeetingCommand standardCommand = new EditMeetingCommand(INDEX_FIRST_PERSON, new EditMeetingCommand.EditMeetingDescriptor(), INDEX_FIRST_MEETING);
+        final EditMeetingCommand standardCommand = new EditMeetingCommand(INDEX_FIRST_PERSON,
+                new EditMeetingCommand.EditMeetingDescriptor(), INDEX_FIRST_MEETING);
 
         // same values -> returns true
         EditMeetingCommand.EditMeetingDescriptor copyDescriptor = new EditMeetingCommand.EditMeetingDescriptor();
-        EditMeetingCommand commandWithSameValues = new EditMeetingCommand(INDEX_FIRST_PERSON, copyDescriptor, INDEX_FIRST_MEETING);
+        EditMeetingCommand commandWithSameValues = new EditMeetingCommand(INDEX_FIRST_PERSON,
+                copyDescriptor, INDEX_FIRST_MEETING);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true
@@ -162,10 +175,12 @@ public class EditMeetingCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new EditMeetingCommand(INDEX_SECOND_PERSON, new EditMeetingCommand.EditMeetingDescriptor(), INDEX_FIRST_MEETING)));
+        assertFalse(standardCommand.equals(new EditMeetingCommand(INDEX_SECOND_PERSON,
+                new EditMeetingCommand.EditMeetingDescriptor(), INDEX_FIRST_MEETING)));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new EditMeetingCommand(INDEX_FIRST_PERSON, new EditMeetingCommand.EditMeetingDescriptor(), INDEX_SECOND_MEETING)));
+        assertFalse(standardCommand.equals(new EditMeetingCommand(INDEX_FIRST_PERSON,
+                new EditMeetingCommand.EditMeetingDescriptor(), INDEX_SECOND_MEETING)));
     }
 
     @Test
@@ -173,8 +188,10 @@ public class EditMeetingCommandTest {
         Index clientIndex = Index.fromOneBased(1);
         Index meetingIndex = Index.fromOneBased(2);
         EditMeetingCommand.EditMeetingDescriptor editMeetingDescriptor = new EditMeetingCommand.EditMeetingDescriptor();
-        EditMeetingCommand editMeetingCommand = new EditMeetingCommand(clientIndex, editMeetingDescriptor, meetingIndex);
-        String expected = EditMeetingCommand.class.getCanonicalName() + "{clientIndex=" + clientIndex + ", editMeetingDescriptor="
+        EditMeetingCommand editMeetingCommand = new EditMeetingCommand(clientIndex,
+                editMeetingDescriptor, meetingIndex);
+        String expected = EditMeetingCommand.class.getCanonicalName() + "{clientIndex="
+                + clientIndex + ", editMeetingDescriptor="
                 + editMeetingDescriptor + ", meetingIndex="
                 + meetingIndex + "}";
         assertEquals(expected, editMeetingCommand.toString());

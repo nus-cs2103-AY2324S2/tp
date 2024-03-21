@@ -3,7 +3,6 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Collection;
@@ -13,13 +12,12 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.meeting.Description;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
-
-import seedu.address.model.meeting.Description;
 
 
 /**
@@ -130,6 +128,9 @@ public class ParserUtil {
         return tagSet;
     }
 
+    /**
+     * Parses {@code String description} into a {@code String}.
+     */
     public static String parseDescription(String description) throws ParseException {
         requireNonNull(description);
         String trimmedDescription = description.trim();
@@ -139,6 +140,9 @@ public class ParserUtil {
         return trimmedDescription;
     }
 
+    /**
+     * Parses {@code String oneBasedIndex} into a {@code Index}.
+     */
     public static Index parseClientIndex(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
@@ -147,6 +151,9 @@ public class ParserUtil {
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
 
+    /**
+     * Parses {@code String oneBasedIndex} into a {@code Index}.
+     */
     public static Index parseMeetingIndex(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
@@ -155,6 +162,9 @@ public class ParserUtil {
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
 
+    /**
+     * Parses {@code String dateTime} into a {@code LocalDateTime}.
+     */
     public static LocalDateTime parseDateTime(String dateTime) throws ParseException {
         LocalDateTime currentDateTime = LocalDateTime.now();
         try {
