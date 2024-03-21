@@ -16,6 +16,15 @@ public class Condition {
         return condition;
     }
 
+    /**
+     * Returns given placeholder string if value field is not initialised
+     * @param alt
+     * @return placeholder string
+     */
+    public String orElse(String alt) {
+        return condition == null ? alt : condition;
+    }
+
     @Override
     public String toString() {
         return this.condition;

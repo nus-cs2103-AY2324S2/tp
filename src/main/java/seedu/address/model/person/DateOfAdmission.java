@@ -30,6 +30,15 @@ public class DateOfAdmission {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns given placeholder string if value field is not initialised
+     * @param alt
+     * @return placeholder string
+     */
+    public String orElse(String alt) {
+        return dateOfAdmission == null ? alt : dateOfAdmission.toString();
+    }
+
     @Override
     public String toString() {
         return this.dateOfAdmission.toString();

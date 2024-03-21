@@ -191,8 +191,8 @@ public class PersonBuilder {
     /**
      * Sets the {@code Phone} of the {@code Person} that we are building.
      */
-    public PersonBuilder withBloodType(String[] bloodType) {
-        this.bloodType = new BloodType(bloodType[0], bloodType[1]);
+    public PersonBuilder withBloodType(String bloodType) {
+        this.bloodType = new BloodType(bloodType);
         return this;
     }
 
@@ -228,7 +228,19 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Returns a Person object with fields initialised to that of PersonBuilder object.
+     */
     public Person build() {
-        return new Person(nric, name, phone, address, dateOfBirth, sex, status);
+        Person p = new Person(nric, name, phone, address, dateOfBirth, sex, status);
+        p.setEmail(email);
+        p.setCountry(country);
+        p.setAllergies(allergies);
+        p.setBloodType(bloodType);
+        p.setCondition(condition);
+        p.setDateOfAdmission(dateOfAdmission);
+        p.setDiagnosis(diagnosis);
+        p.setSymptom(symptom);
+        return p;
     }
 }

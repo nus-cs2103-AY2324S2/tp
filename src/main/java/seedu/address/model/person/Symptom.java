@@ -15,6 +15,15 @@ public class Symptom {
         return symptom;
     }
 
+    /**
+     * Returns given placeholder string if value field is not initialised
+     * @param alt
+     * @return placeholder string
+     */
+    public String orElse(String alt) {
+        return symptom == null ? alt : symptom;
+    }
+
     @Override
     public String toString() {
         return this.symptom;

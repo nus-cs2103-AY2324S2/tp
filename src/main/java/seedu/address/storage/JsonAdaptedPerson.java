@@ -180,8 +180,7 @@ class JsonAdaptedPerson {
         }
         // BloodType check
         if (bloodType.isPresent()) {
-            String[] parts = bloodType.get().split("(?<=\\D)(?=\\d)|(?<=\\d)(?=\\D)");
-            final BloodType modelBloodType = new BloodType(parts[0], parts[1]);
+            final BloodType modelBloodType = new BloodType(bloodType.get());
             person.setBloodType(modelBloodType);
         }
         //Condition check
