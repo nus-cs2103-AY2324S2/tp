@@ -32,7 +32,7 @@ class JsonAdaptedPerson {
     private final String address;
     private final String company;
     private final String priority;
-    private final Boolean starred;
+    private Boolean starred;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
     /**
