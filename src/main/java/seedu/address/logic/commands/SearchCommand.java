@@ -26,6 +26,9 @@ public class SearchCommand extends Command {
             + "/search ; product : [full/partial product name]\n"
             + "/search ; employment : [employment]";
 
+    public static final String MESSAGE_SEARCH_INVALID_FIELD =
+            "Failed to find Pooch Contact - Pooch doesn't recognise the field \uD83D\uDC3E";
+
     private final KeywordPredicate predicate;
 
     public SearchCommand(KeywordPredicate predicate) {
