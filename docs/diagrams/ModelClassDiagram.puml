@@ -15,7 +15,6 @@ Class UserPrefs
 Class UniqueAppointmentList
 Class UniquePersonList
 Class Person
-Class Appointment
 Class Address
 Class Email
 Class Name
@@ -24,6 +23,9 @@ class LocalTime
 Class Phone
 Class Tag
 Class UUID
+
+Class Appointment
+Class AppointmentTime
 
 Class I #FFFFFF
 }
@@ -42,17 +44,18 @@ UserPrefs .up.|> ReadOnlyUserPrefs
 
 AddressBook *--> "1" UniqueAppointmentList
 UniqueAppointmentList --> "~* all" Appointment
-Appointment *--> LocalDate
-Appointment *--> LocalTime
-Appointment *--> UUID
+Appointment *--> "1" UUID
+Appointment *--> "1" AppointmentTime
+AppointmentTime *--> LocalDate
+AppointmentTime *--> LocalTime
 
 AddressBook *--> "1" UniquePersonList
 UniquePersonList --> "~* all" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> UUID
+Person *--> "1" Name
+Person *--> "1" Phone
+' Person *--> Email
+Person *--> "1" Address
+Person *--> "1" UUID
 Person *--> "*" Tag
 
 Person -[hidden]up--> I
@@ -64,4 +67,6 @@ Address -[hidden]right-> Email
 
 ModelManager --> "~* filtered" Person
 ModelManager --> "~* filtered" Appointment
+Person "1" -- "0..*" Appointment : has >
+
 @enduml
