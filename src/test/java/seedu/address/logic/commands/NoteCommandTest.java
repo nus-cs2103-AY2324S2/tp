@@ -27,7 +27,7 @@ class NoteCommandTest {
     private static final String EMPTY_NOTE = "";
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private Model model_without_email = new ModelManager(getTypicalAddressBookWithoutEmail(), new UserPrefs());
+    private Model modelWithoutEmail = new ModelManager(getTypicalAddressBookWithoutEmail(), new UserPrefs());
     @Test
     public void execute_addNoteUnfilteredList_success() {
         Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
@@ -62,7 +62,7 @@ class NoteCommandTest {
 
     @Test
     public void execute_addNoteUnfilteredListWithoutEmail_success() {
-        Person firstPerson = model_without_email.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Person firstPerson = modelWithoutEmail.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Person editedPerson = new PersonBuilder(firstPerson).withNote(NOTE_STUB).build();
 
         NoteCommand noteCommand = new NoteCommand(INDEX_FIRST_PERSON, new Note(editedPerson.getNote().getValue()));
@@ -70,10 +70,10 @@ class NoteCommandTest {
         String expectedMessage = String.format(NoteCommand.MESSAGE_ADD_NOTE_SUCCESS,
                 NoteCommand.notePersonMessageGenerator(editedPerson));
 
-        Model expectedModel = new ModelManager(new AddressBook(model_without_email.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new AddressBook(modelWithoutEmail.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(firstPerson, editedPerson);
 
-        assertCommandSuccess(noteCommand, model_without_email, expectedMessage, expectedModel);
+        assertCommandSuccess(noteCommand, modelWithoutEmail, expectedMessage, expectedModel);
     }
 
     @Test
