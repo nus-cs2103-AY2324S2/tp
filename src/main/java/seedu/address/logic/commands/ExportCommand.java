@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.ExportCommand;
 import seedu.address.model.Model;
 
 /**
@@ -64,7 +65,7 @@ public class ExportCommand extends Command {
             return false;
         }
 
-        seedu.address.logic.commands.ExportCommand otherAddCommand = (seedu.address.logic.commands.ExportCommand) other;
+        ExportCommand otherAddCommand = (ExportCommand) other;
         return filename.equals(otherAddCommand.filename);
     }
 
