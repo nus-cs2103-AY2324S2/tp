@@ -120,16 +120,14 @@ public class ModelManager implements Model {
     public void setPerson(Person target, Person editedPerson, Order order) {
         requireAllNonNull(target, editedPerson);
 
-        addressBook.setPerson(target, editedPerson);
-        addressBook.addOrder(order);
-
+        addressBook.setPerson(target, editedPerson, order);
     }
 
     //=========== Order ================================================================================
 
     @Override
     public ObservableList<Order> getOrderList() {
-        return this.addressBook.getOrderList();
+        return filteredOrders;
     }
 
     /**
@@ -144,6 +142,7 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredOrderList(Predicate<Order> predicate) {
         requireNonNull(predicate);
+        filteredOrders.setPredicate(predicate);
     }
 
     //=========== Filtered Person List Accessors =============================================================
