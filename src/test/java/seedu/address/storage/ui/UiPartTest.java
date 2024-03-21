@@ -1,5 +1,6 @@
-package seedu.address.ui;
+package seedu.address.storage.ui;
 
+import org.junit.jupiter.api.Assertions;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -12,6 +13,7 @@ import org.junit.jupiter.api.io.TempDir;
 
 import javafx.fxml.FXML;
 import seedu.address.MainApp;
+import seedu.address.ui.UiPart;
 
 public class UiPartTest {
 
@@ -47,14 +49,14 @@ public class UiPartTest {
     @Test
     public void constructor_validFileUrl_loadsFile() {
         URL validFileUrl = getTestFileUrl(VALID_FILE_PATH);
-        assertEquals(VALID_FILE_ROOT, new TestUiPart<TestFxmlObject>(validFileUrl).getRoot());
+        Assertions.assertEquals(VALID_FILE_ROOT, new TestUiPart<TestFxmlObject>(validFileUrl).getRoot());
     }
 
     @Test
     public void constructor_validFileWithFxRootUrl_loadsFile() {
         URL validFileUrl = getTestFileUrl(VALID_FILE_WITH_FX_ROOT_PATH);
         TestFxmlObject root = new TestFxmlObject();
-        assertEquals(VALID_FILE_ROOT, new TestUiPart<TestFxmlObject>(validFileUrl, root).getRoot());
+        Assertions.assertEquals(VALID_FILE_ROOT, new TestUiPart<TestFxmlObject>(validFileUrl, root).getRoot());
     }
 
     @Test
