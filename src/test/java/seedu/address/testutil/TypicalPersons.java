@@ -32,19 +32,19 @@ public class TypicalPersons {
             .withFirstParentPhone("94351253")
             .withSecondParentPhone("88312868")
             .withStudentId("00001")
-            .withTags("friends").build();
+            .withTags("Friends").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com")
             .withFirstParentPhone("98765432")
             .withSecondParentPhone("83789072")
             .withStudentId("00002")
-            .withTags("owesMoney", "friends").build();
+            .withTags("OwesMoney", "Friends").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz")
             .withFirstParentPhone("95352563")
             .withSecondParentPhone("86070439")
             .withEmail("heinz@example.com")
-            .withAddress("wall street")
+            .withAddress("Wall Street")
             .withStudentId("00003").build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier")
             .withFirstParentPhone("87652533")
@@ -52,25 +52,25 @@ public class TypicalPersons {
             .withEmail("cornelia@example.com")
             .withStudentId("00004")
             .withAddress("10th street")
-            .withTags("friends").build();
+            .withTags("Friends").build();
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer")
             .withFirstParentPhone("94822224")
             .withSecondParentPhone("93846702")
             .withStudentId("00005")
             .withEmail("werner@example.com")
-            .withAddress("michegan ave").build();
+            .withAddress("Michegan Ave").build();
     public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz")
             .withFirstParentPhone("94821427")
             .withSecondParentPhone("85777773")
             .withStudentId("00006")
             .withEmail("lydia@example.com")
-            .withAddress("little tokyo").build();
+            .withAddress("Little Tokyo").build();
     public static final Person GEORGE = new PersonBuilder().withName("George Best")
             .withFirstParentPhone("94822442")
             .withSecondParentPhone("92136499")
             .withStudentId("00007")
             .withEmail("anna@example.com")
-            .withAddress("4th street").build();
+            .withAddress("4th Street").build();
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier")
@@ -78,13 +78,13 @@ public class TypicalPersons {
             .withSecondParentPhone("89058882")
             .withStudentId("00008")
             .withEmail("stefan@example.com")
-            .withAddress("little india").build();
+            .withAddress("Little India").build();
     public static final Person IDA = new PersonBuilder().withName("Ida Mueller")
             .withFirstParentPhone("84821531")
             .withSecondParentPhone("90434552")
             .withStudentId("00009")
             .withEmail("hans@example.com")
-            .withAddress("chicago ave").build();
+            .withAddress("Chicago Ave").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY)

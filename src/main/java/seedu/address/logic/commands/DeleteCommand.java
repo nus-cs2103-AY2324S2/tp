@@ -12,14 +12,14 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.StudentId;
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Deletes a student identified with their student ID from the contact list.
  */
 public class DeleteCommand extends Command {
 
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the person identified by the index number used in the displayed person list.\n"
+            + ": Deletes the person identified by student ID used in the displayed person list.\n"
             + "Parameters: INDEX (must be a 5 digit student ID)\n"
             + "Example: " + COMMAND_WORD + " 12345";
 
