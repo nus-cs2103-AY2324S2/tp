@@ -49,17 +49,14 @@ CommandBox --|> UiPart
 PersonListPanel --|> UiPart
 PersonCard --|> UiPart
 NoteListPanel --|> UiPart
-NoteCard --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow --|> UiPart
 
 PersonCard ..> Model
-NoteCard ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
 PersonListPanel -[hidden]left- HelpWindow
-NoteListPanel -[hidden]left- PersonListPanel
 HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
 ResultDisplay -[hidden]left- StatusBarFooter
