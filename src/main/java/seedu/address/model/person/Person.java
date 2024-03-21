@@ -140,6 +140,7 @@ public class Person {
                 .add("address", address)
                 .add("company", company)
                 .add("priority", priority)
+                .add("starred", starred)
                 .add("tags", tags)
                 .toString();
     }
