@@ -30,14 +30,15 @@ import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
 
-public class AddressBookParserTest {
+public class ImmuniMateParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final ImmuniMateParser parser = new ImmuniMateParser();
 
     @Test
-    public void parseCommand_add() throws Exception {
+    public void parseCommand_create() throws Exception {
+        //TODO for create command
         Person person = new PersonBuilder().build();
-        CreateCommand command = (CreateCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
+        CreateCommand command = (CreateCommand) parser.parseCommand(PersonUtil.getCreateCommand(person));
         assertEquals(new CreateCommand(person), command);
     }
 
@@ -49,7 +50,6 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_delete() throws Exception {
-        //TODO modify test (DeleteCommand no longer takes in index)
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
                 DeleteCommand.COMMAND_WORD + " " + BOB.getNric());
         assertEquals(new DeleteCommand(BOB.getNric()), command);
