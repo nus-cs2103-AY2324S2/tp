@@ -90,9 +90,7 @@ public class Employee {
         if (otherEmployee == this) {
             return true;
         }
-        // TODO: Remove dead code
-        return otherEmployee != null
-                && otherEmployee.getName().equals(getName())
+        return otherEmployee != null && otherEmployee.getName().equals(getName())
                 && this.uid.equals(otherEmployee.getUid());
     }
 

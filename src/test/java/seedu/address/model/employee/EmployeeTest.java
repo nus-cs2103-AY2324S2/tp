@@ -35,11 +35,11 @@ public class EmployeeTest {
         // null -> returns false
         assertFalse(ALICE.isSameEmployee(null));
 
-        // same name, all other attributes different -> returns true
+        // same name, all other attributes different -> returns false
         Employee editedAlice = new EmployeeBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
                 .withAddress(VALID_ADDRESS_BOB).withTeam(VALID_TEAM_BOB).withRole(VALID_ROLE_BOB)
                 .withTags(VALID_TAG_HUSBAND).withUid(VALID_UID_AMY).build();
-        assertTrue(ALICE.isSameEmployee(editedAlice));
+        assertFalse(ALICE.isSameEmployee(editedAlice));
 
         // different name, all other attributes same -> returns false
         editedAlice = new EmployeeBuilder(ALICE).withName(VALID_NAME_BOB).build();

@@ -11,7 +11,7 @@
       "tags": [
         "friends"
       ],
-      "uid": "100"
+      "uid": "1000"
     },
     {
       "name": "Benson Meier",
@@ -24,7 +24,7 @@
         "owesMoney",
         "friends"
       ],
-      "uid": "101"
+      "uid": "1001"
     },
     {
       "name": "Carl Kurz",
@@ -34,7 +34,7 @@
       "team": "C",
       "role": "IT",
       "tags": [],
-      "uid": "102"
+      "uid": "1002"
     },
     {
       "name": "Daniel Meier",
@@ -46,7 +46,7 @@
       "tags": [
         "friends"
       ],
-      "uid": "103"
+      "uid": "1003"
     },
     {
       "name": "Elle Meyer",
@@ -56,7 +56,7 @@
       "team": "2",
       "role": "Cleaner",
       "tags": [],
-      "uid": "104"
+      "uid": "1004"
     },
     {
       "name": "Fiona Kunz",
@@ -66,7 +66,7 @@
       "team": "3",
       "role": "Cook",
       "tags": [],
-      "uid": "105"
+      "uid": "1005"
     },
     {
       "name": "George Best",
@@ -76,7 +76,7 @@
       "team": "4",
       "role": "Planner",
       "tags": [],
-      "uid": "106"
+      "uid": "1006"
     }
   ]
 }
