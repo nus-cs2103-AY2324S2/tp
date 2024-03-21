@@ -20,7 +20,7 @@ public class Client extends Person {
      * Name must be present and not null.
      */
     public Client(Name name, Phone phone, Email email, Address address, Meeting meeting, Set<Tag> tags) {
-        super(name, phone, email, address, tags);
+        super(name, phone, email, address, new PolicyName("Josh Testing"), tags);
         this.meeting = Optional.ofNullable(meeting);
     }
 

@@ -26,6 +26,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.PolicyName;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -110,7 +111,12 @@ public class EditCommand extends Command {
 
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        // Handle Optional<PolicyName>
+        Optional<PolicyName> optionalPolicyName = personToEdit.getPolicyName();
+        PolicyName updatedPolicyName = optionalPolicyName.isPresent()
+                ? editPersonDescriptor.getPolicyName().orElse(optionalPolicyName.get()) : null;
+
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedPolicyName, updatedTags);
     }
 
 
@@ -147,6 +153,7 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
+        private PolicyName policyName;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -161,6 +168,7 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
+            setPolicyName(toCopy.policyName);
         }
 
         /**
@@ -201,6 +209,10 @@ public class EditCommand extends Command {
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
         }
+        public Optional<PolicyName> getPolicyName() {
+            return Optional.ofNullable(policyName);
+        }
+        public void setPolicyName(PolicyName policyName) { this.policyName = policyName; }
 
         /**
          * Sets {@code tags} to this object's {@code tags}.

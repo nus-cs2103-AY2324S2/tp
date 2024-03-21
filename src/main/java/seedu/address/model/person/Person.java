@@ -24,17 +24,19 @@ public class Person {
 
     // Data fields
     private final Optional<Address> address;
+    private final Optional<PolicyName> policyName;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Name and tags must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Email email, Address address, PolicyName policyName, Set<Tag> tags) {
         requireAllNonNull(name, tags);
         this.name = name;
         this.phone = phone;
         this.email = Optional.ofNullable(email);
         this.address = Optional.ofNullable(address);
+        this.policyName = Optional.ofNullable(policyName);
         this.tags.addAll(tags);
     }
 
@@ -52,6 +54,9 @@ public class Person {
 
     public Optional<Address> getAddress() {
         return address;
+    }
+    public Optional<PolicyName> getPolicyName() {
+        return policyName;
     }
 
     /**
@@ -111,6 +116,7 @@ public class Person {
                 .add("phone", phone)
                 .add("email", email)
                 .add("address", address)
+                .add("policyName", policyName)
                 .add("tags", tags)
                 .toString();
     }

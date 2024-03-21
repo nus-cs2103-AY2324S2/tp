@@ -16,7 +16,9 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.PolicyName;
 import seedu.address.model.tag.Tag;
+
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -29,6 +31,7 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
+    private final String policyName;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
     /**
@@ -36,12 +39,13 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
+            @JsonProperty("email") String email, @JsonProperty("address") String address, @JsonProperty("policyName") String policyName,
             @JsonProperty("tags") List<JsonAdaptedTag> tags) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.policyName = policyName;
         if (tags != null) {
             this.tags.addAll(tags);
         }
@@ -61,6 +65,10 @@ class JsonAdaptedPerson {
         // Handle Optional<Address>
         Optional<Address> optionalAddress = source.getAddress();
         address = optionalAddress.isPresent() ? optionalAddress.get().value : null;
+
+        // Handle Optional<PolicyName>
+        Optional<PolicyName> optionalPolicyName = source.getPolicyName();
+        policyName = optionalPolicyName.isPresent() ? optionalPolicyName.get().value : null;
 
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -112,7 +120,13 @@ class JsonAdaptedPerson {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+
+
+        if (policyName == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, PolicyName.class.getSimpleName()));
+        }
+        final PolicyName modelPolicyName = new PolicyName(policyName);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelPolicyName, modelTags);
     }
 
 }
