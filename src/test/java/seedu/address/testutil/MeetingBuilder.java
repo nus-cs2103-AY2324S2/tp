@@ -12,7 +12,7 @@ import seedu.address.model.person.Person;
 public class MeetingBuilder {
 
     public static final String DEFAULT_DESCRIPTION = "Description of Meeting";
-    public static final String DEFAULT_DATE = "01-01-2024 00:00";
+    public static final String DEFAULT_DATE = "01-01-2030 17:00";
     public static final Person DEFAULT_CLIENT = new PersonBuilder().build();
     private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
 
@@ -68,7 +68,5 @@ public class MeetingBuilder {
     /**
      * Builds and returns a {@code Meeting} object with the specified details.
      */
-    public Meeting build() {
-        return new Meeting(description, dateTime, client);
-    }
+    public Meeting build() { return new Meeting(description, dateTime, client); }
 }

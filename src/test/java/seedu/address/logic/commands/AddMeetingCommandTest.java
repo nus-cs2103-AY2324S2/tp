@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
@@ -25,7 +24,6 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.MeetingBuilder;
-import seedu.address.testutil.PersonBuilder;
 
 public class AddMeetingCommandTest {
 
@@ -44,40 +42,18 @@ public class AddMeetingCommandTest {
         assertThrows(NullPointerException.class, () -> new AddMeetingCommand(null, null, INDEX_FIRST_PERSON));
         assertThrows(NullPointerException.class, () -> new AddMeetingCommand(null, null, null));
     }
+    @Test
+    public void execute_duplicateMeeting_throwsCommandException() {
+        Meeting validMeeting = new MeetingBuilder().build();
+        Person client = validMeeting.getPerson();
+        ModelStubWithMeeting modelStub = new ModelStubWithMeeting(validMeeting, client);
 
-//    @Test
-//    public void execute_meetingAcceptedByModel_addSuccessful() throws Exception {
-//        Person validPerson = new PersonBuilder().build();
-//        ModelStubWithIndexedPerson modelStub = new ModelStubWithIndexedPerson(validPerson);
-//        Index clientIndex = Index.fromZeroBased(0); // Assuming validPerson is the first and only person
-//        Meeting validMeeting = new MeetingBuilder()
-//                .withDescription("Project discussion")
-//                .withDateTime("01-01-2024 00:00")
-//                .withClient(validPerson)
-//                .build();
-//
-//        CommandResult commandResult = new AddMeetingCommand(
-//                validMeeting.getDateTime(),
-//                validMeeting.getDescription(), clientIndex)
-//                .execute(modelStub);
-//
-//        assertEquals(String.format(AddMeetingCommand.MESSAGE_SUCCESS, validMeeting),
-//                commandResult.getFeedbackToUser());
-//        assertTrue(modelStub.hasMeeting(validMeeting));
-//    }
+        AddMeetingCommand addMeetingCommand = new AddMeetingCommand(validMeeting.getDateTime(),
+                validMeeting.getDescription(), INDEX_FIRST_PERSON);
 
-
-//    @Test
-//    public void execute_duplicateMeeting_throwsCommandException() {
-//        Meeting validMeeting = new MeetingBuilder().build();
-//        ModelStubWithMeeting modelStub = new ModelStubWithMeeting(validMeeting);
-//
-//        AddMeetingCommand addMeetingCommand = new AddMeetingCommand(validMeeting.getDateTime(),
-//                validMeeting.getDescription(), INDEX_FIRST_PERSON);
-//
-//        assertThrows(CommandException.class,
-//                AddMeetingCommand.MESSAGE_DUPLICATE_MEETING, () -> addMeetingCommand.execute(modelStub));
-//  }
+        assertThrows(CommandException.class,
+                AddMeetingCommand.MESSAGE_DUPLICATE_MEETING, () -> addMeetingCommand.execute(modelStub));
+    }
 
     @Test
     public void equals() {
@@ -198,12 +174,12 @@ public class AddMeetingCommandTest {
 
         @Override
         public void addMeeting(Meeting meeting) {
-            throw new AssertionError("This method should not be called.");
+            throw new AssertionError("This Meeting method should not be called.");
         }
 
         @Override
         public boolean hasMeeting(Meeting meeting) {
-            throw new AssertionError("This method should not be called.");
+            throw new AssertionError("This Meeting method should not be called.");
         }
     }
 
@@ -247,18 +223,28 @@ public class AddMeetingCommandTest {
      */
 
     private class ModelStubWithMeeting extends ModelStub {
-        private final Meeting meeting;
+        private ObservableList<Meeting> meetings = FXCollections.observableArrayList();
+        private ObservableList<Person> persons = FXCollections.observableArrayList();
 
-        ModelStubWithMeeting(Meeting meeting) {
+        ModelStubWithMeeting(Meeting meeting, Person... persons) {
             requireNonNull(meeting);
-            this.meeting = meeting;
+            this.meetings.add(meeting);
+            this.persons.addAll(Arrays.asList(persons));
         }
 
         @Override
         public boolean hasMeeting(Meeting meeting) {
-            requireNonNull(meeting);
-            return this.meeting.isSameMeeting(meeting);
+            return meetings.stream().anyMatch(meeting::isSameMeeting);
         }
+        @Override
+        public void addMeeting(Meeting meeting) {
+            meetings.add(meeting);
+        }
+        @Override
+        public ObservableList<Person> getFilteredPersonList() {
+            return persons;
+        }
+
 
     }
 

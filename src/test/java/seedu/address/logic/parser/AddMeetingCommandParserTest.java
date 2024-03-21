@@ -22,19 +22,18 @@ import seedu.address.model.meeting.Meeting;
 
 public class AddMeetingCommandParserTest {
 
-    private AddMeetingParser parser = new AddMeetingParser();
+    private AddMeetingCommandParser parser = new AddMeetingCommandParser();
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
-//    @Test
-//    public void parse_allFieldsPresent_success() {
-//        Index targetIndex = Index.fromOneBased(1);
-//        String description = "Project Meeting";
-//        String dateTimeStr = "01-01-2030 17:00";
-//        LocalDateTime dateTime = LocalDateTime.parse(dateTimeStr, formatter);
-//        String userInput = " " + CLIENT_INDEX + DATETIME + DESCRIPTION;
-//
-//        AddMeetingCommand expectedCommand = new AddMeetingCommand(dateTime, description, targetIndex);
-//        assertParseSuccess(parser, userInput, expectedCommand);
-//    }
+    @Test
+    public void parse_allFieldsPresent_success() {
+        Index targetIndex = Index.fromOneBased(1);
+        String description = "Project discussion";
+        String dateTimeStr = "01-01-2030 17:00";
+        LocalDateTime dateTime = LocalDateTime.parse(dateTimeStr, formatter);
+        String userInput = " " + CLIENT_INDEX + DATETIME + DESCRIPTION;
+
+        assertParseSuccess(parser, userInput, new AddMeetingCommand(dateTime, description, targetIndex));
+    }
 
 
     @Test
@@ -51,21 +50,21 @@ public class AddMeetingCommandParserTest {
         assertParseFailure(parser, DATETIME + CLIENT_INDEX, expectedMessage);
     }
 
-//    @Test
-//    public void parse_invalidValue_failure() {
-//        // Invalid client index
-//        assertParseFailure(parser, PREFIX_CLIENT_INDEX + "0"
-//                + PREFIX_DATETIME + "01-01-2024 12:00" + PREFIX_DESCRIPTION + "Project Meeting", MESSAGE_INVALID_INDEX);
-//
-//        // Invalid date time
-//        assertParseFailure(parser, CLIENT_INDEX
-//                + "not-a-date-time" + PREFIX_DESCRIPTION + "Project Meeting", Meeting.MESSAGE_INVALID_DATE_TIME);
-//
-//        // Invalid description
-//        assertParseFailure(parser, CLIENT_INDEX
-//                + "01-01-2024 12:00" + PREFIX_DESCRIPTION + " ", Meeting.MESSAGE_CONSTRAINTS);
-//
-//    }
+    @Test
+    public void parse_invalidValue_failure() {
+        String userInput = " " + PREFIX_CLIENT_INDEX + "0 " + DATETIME + DESCRIPTION;
+        // Invalid client index
+        assertParseFailure(parser, userInput, MESSAGE_INVALID_INDEX);
+
+        String userInputDateTime = " " + CLIENT_INDEX + " " + PREFIX_DATETIME + "01-01-2024 17:00 " + DESCRIPTION;
+        // Invalid date time
+        assertParseFailure(parser, userInputDateTime, Meeting.MESSAGE_INVALID_DATE_TIME);
+
+        String userInputDescription = " " + CLIENT_INDEX + DATETIME + " " + PREFIX_DESCRIPTION + " ";
+        // Invalid description
+        assertParseFailure(parser, userInputDescription, Meeting.MESSAGE_CONSTRAINTS);
+
+    }
 
     // Additional tests for other invalid scenarios, like invalid description, etc.
 }

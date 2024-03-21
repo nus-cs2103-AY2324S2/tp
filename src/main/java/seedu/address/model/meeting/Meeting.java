@@ -48,7 +48,7 @@ public class Meeting {
         checkArgument(isValidDateTime(dateTime.format(formatter)), MESSAGE_INVALID_DATE_TIME);
         this.description = description;
         this.dateTime = dateTime;
-        this.client = client;
+        this.client = client.addMeetings(this);
     }
 
     /**

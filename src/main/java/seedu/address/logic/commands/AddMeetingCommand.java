@@ -84,7 +84,6 @@ public class AddMeetingCommand extends Command {
         if (model.hasMeeting(meetingToAdd) && client.hasExistingMeeting(meetingToAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_MEETING);
         }
-        client.addMeetings(meetingToAdd);
         model.addMeeting(meetingToAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(meetingToAdd)));
     }

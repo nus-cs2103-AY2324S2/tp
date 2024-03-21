@@ -15,7 +15,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 /**
  * Parses input arguments and creates a new AddMeetingCommand object
  */
-public class AddMeetingParser implements Parser<AddMeetingCommand> {
+public class AddMeetingCommandParser implements Parser<AddMeetingCommand> {
 
     /**
     * Parses the given {@code String} of arguments in the context of the AddMeetingCommand
@@ -25,6 +25,8 @@ public class AddMeetingParser implements Parser<AddMeetingCommand> {
     public AddMeetingCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_CLIENT_INDEX, PREFIX_DATETIME, PREFIX_DESCRIPTION);
+        System.out.println(!arePrefixesPresent(argMultimap, PREFIX_CLIENT_INDEX, PREFIX_DATETIME, PREFIX_DESCRIPTION));
+        System.out.println(!argMultimap.getPreamble().isEmpty());
         if (!arePrefixesPresent(argMultimap, PREFIX_CLIENT_INDEX, PREFIX_DATETIME, PREFIX_DESCRIPTION)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddMeetingCommand.MESSAGE_USAGE));
