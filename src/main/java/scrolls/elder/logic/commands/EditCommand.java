@@ -83,15 +83,15 @@ public class EditCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Role role = editPersonDescriptor.getRole().orElse(personToEdit.getRole());
+        Optional<Name> pairedWith = personToEdit.getPairedWith();
 
         Person p;
         if (role.isVolunteer()) {
-            p = new Volunteer(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+            p = new Volunteer(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, pairedWith);
         } else {
-            p = new Befriendee(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+            p = new Befriendee(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, pairedWith);
         }
         p.setId(personToEdit.getId());
-        p.setPairedWith(personToEdit.getPairedWith());
         return p;
     }
 

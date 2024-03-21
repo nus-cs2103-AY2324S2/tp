@@ -145,16 +145,11 @@ public class PairCommand extends Command {
 
         Person p;
         if (role.isVolunteer()) {
-            p = new Volunteer(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+            p = new Volunteer(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedPair);
         } else {
-            p = new Befriendee(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+            p = new Befriendee(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedPair);
         }
         p.setId(personToEdit.getId());
-        p.setPairedWith(personToEdit.getPairedWith());
-
-        // TODO: Change pairedWith to be immutable,
-        // Need to change Persons and subclasses to instantiate with final pairedWith.
-        p.setPairedWith(updatedPair);
         return p;
     }
 
