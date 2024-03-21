@@ -5,7 +5,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_COLLECTION;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.SearchCommand;
-import seedu.address.logic.messages.SearchMessages;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.KeywordPredicate;
 
@@ -25,12 +24,12 @@ public class SearchCommandParser implements Parser<SearchCommand> {
 
         // invalid command syntax
         if (!argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(SearchMessages.MESSAGE_SEARCH_INVALID_FIELD);
+            throw new ParseException(SearchCommand.MESSAGE_SEARCH_INVALID_FIELD);
         }
 
         // no prefixes present
         if (!atLeastOnePrefixPresent(argMultimap, PREFIX_COLLECTION)) {
-            throw new ParseException(SearchMessages.MESSAGE_SEARCH_INVALID_FIELD);
+            throw new ParseException(SearchCommand.MESSAGE_SEARCH_INVALID_FIELD);
         }
 
         // check for duplicate field entries
