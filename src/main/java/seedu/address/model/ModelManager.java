@@ -112,7 +112,15 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void setPerson(Person target, Person editedPerson) {
+        requireAllNonNull(target, editedPerson);
+
+        addressBook.setPerson(target, editedPerson);
+    }
+
+    @Override
     public void addOrder(Order newOrder, Person person) {
+        newOrder.setCustomer(person);
         addressBook.addOrder(newOrder);
         updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS);
     }
@@ -121,11 +129,15 @@ public class ModelManager implements Model {
     public void deleteOrder(int id) {
         addressBook.removeOrder(id);
     }
-    @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
 
-        addressBook.setPerson(target, editedPerson);
+    /**
+     * Replaces the given order {@code target} with {@code editedPerson}.
+     * {@code target} must exist in the order list.
+     */
+    public void setOrder(Order target, Order editedOrder) {
+        requireAllNonNull(target, editedOrder);
+
+        addressBook.setOrder(target, editedOrder);
     }
 
     @Override
@@ -199,7 +211,8 @@ public class ModelManager implements Model {
         ModelManager otherModelManager = (ModelManager) other;
         return addressBook.equals(otherModelManager.addressBook)
                 && userPrefs.equals(otherModelManager.userPrefs)
-                && filteredPersons.equals(otherModelManager.filteredPersons);
+                && filteredPersons.equals(otherModelManager.filteredPersons)
+                && filteredOrders.equals(otherModelManager.filteredOrders);
     }
 
 }

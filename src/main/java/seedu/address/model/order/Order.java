@@ -46,6 +46,26 @@ public class Order implements Comparable<Order> {
     }
 
     /**
+     * Contructs an {@code Order} object with {@code map}
+     * @param map Mappings of Products and Quantity
+     */
+    public Order(int id, Person customer, Map<Product, Quantity> map) {
+        this.id = id;
+        this.customer = customer;
+        productMap = map;
+    }
+
+    /**
+     * Contructs an {@code Order} object copied from another {@code order}
+     * @param order The other order to copy from
+     */
+    public Order(Order order) {
+        this.id = order.getId();
+        this.productMap = new HashMap<>(order.getProductMap());
+        this.customer = order.getCustomer();
+    }
+
+    /**
      * Sets the Order ID.
      * @param id ID of the Order.
      */
@@ -100,13 +120,14 @@ public class Order implements Comparable<Order> {
     /**
      * Sets the quantity values of the product in the order.
      *
-     * @param currProduct Product of which quantity to be editted.
+     * @param currProduct Product of which quantity to be edited.
      * @param newQuantity New Quantity of the specified product.
      * @return Updated order.
      */
     public Order changeQuantity(Product currProduct, Quantity newQuantity) {
-        productMap.put(currProduct, newQuantity);
-        return new Order(productMap);
+        Map<Product, Quantity> newMap = new HashMap<>(productMap);
+        newMap.put(currProduct, newQuantity);
+        return new Order(this.id, this.customer, newMap);
     }
 
     /**
@@ -116,7 +137,7 @@ public class Order implements Comparable<Order> {
      */
     public Order deleteProduct(Product product) {
         productMap.remove(product);
-        return new Order(productMap);
+        return new Order(this.id, this.customer, productMap);
     }
 
     /**

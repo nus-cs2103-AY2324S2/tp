@@ -27,10 +27,9 @@ public class EditOrderCommand extends EditCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Edits the details of the order identified "
-            + "by the index number used in the displayed person list. "
+            + "by the index number used in the displayed order list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: [" + PREFIX_ORDER + "INDEX (must be a positive integer)] "
-            + "[" + PREFIX_PRODUCT_NAME + "PRODUCT_NAME] "
             + "[" + PREFIX_PRODUCT_QUANTITY + "PRODUCT_QUANTITY] "
             + "Example: " + COMMAND_WORD + " " + PREFIX_ORDER + "1 "
             + PREFIX_PRODUCT_NAME + "cupcake "
@@ -44,8 +43,8 @@ public class EditOrderCommand extends EditCommand {
     private final EditOrderDescriptor editOrderDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
-     * @param editOrderDescriptor details to edit the person with
+     * @param index of the order in the filtered order list to edit
+     * @param editOrderDescriptor details to edit the order with
      */
     public EditOrderCommand(Index index, EditOrderDescriptor editOrderDescriptor) {
         requireNonNull(index);
@@ -64,11 +63,12 @@ public class EditOrderCommand extends EditCommand {
             throw new CommandException(Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
         }
 
-        Order orderToEdit = lastShownList.get(index.getZeroBased());
-        assert orderToEdit != null;
+        Order orderToEdit = new Order(lastShownList.get(index.getZeroBased()));
 
         Order editedOrder = model.editOrder(orderToEdit,
                 editOrderDescriptor.getProduct(), editOrderDescriptor.getQuantity());
+        //model.updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS);
+        model.setOrder(orderToEdit, editedOrder);
         model.updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS);
         return new CommandResult(String.format(MESSAGE_EDIT_ORDER_SUCCESS,
                 Messages.format(editedOrder)));

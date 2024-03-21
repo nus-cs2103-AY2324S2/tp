@@ -60,6 +60,5 @@ public class PersonCard extends UiPart<Region> {
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         person.getOrders().stream()
                 .forEach(order -> orders.getChildren().add(new Label("Order " + order.getId())));
-
     }
 }

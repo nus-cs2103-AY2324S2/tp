@@ -22,9 +22,9 @@ public class OrderListPanel extends UiPart<Region> {
     /**
      * Creates a {@code OrderListPanel} with the given {@code ObservableList}.
      */
-    public OrderListPanel(ObservableList<Order> personList) {
+    public OrderListPanel(ObservableList<Order> orderList) {
         super(FXML);
-        orderListView.setItems(personList);
+        orderListView.setItems(orderList);
         orderListView.setCellFactory(listView -> new OrderListPanel.OrderListViewCell());
     }
 

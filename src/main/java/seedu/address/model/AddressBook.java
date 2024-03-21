@@ -172,6 +172,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public ObservableList<Order> getOrderList() {
         return orders.asUnmodifiableObservableList();
     }
+
     public OrderList getOrderListClass() {
         return orders;
     }
