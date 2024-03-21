@@ -1,9 +1,8 @@
 package seedu.address.commons.core;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class CommandHistoryTest {
 
@@ -15,7 +14,7 @@ class CommandHistoryTest {
     @Test
     void addCommandToHistory() {
         commandHistory.addCommandToHistory("Test");
-        assertEquals("Test", commandHistory.undo());
+        Assertions.assertEquals("Test", commandHistory.undo());
     }
 
     @Test
@@ -23,9 +22,9 @@ class CommandHistoryTest {
         commandHistory.addCommandToHistory("test1");
         commandHistory.addCommandToHistory("test2");
         commandHistory.addCommandToHistory("test3");
-        assertEquals("test3", commandHistory.undo());
+        Assertions.assertEquals("test3", commandHistory.undo());
         commandHistory.undo();
-        assertEquals("test1", commandHistory.undo());
+        Assertions.assertEquals("test1", commandHistory.undo());
     }
 
     @Test
@@ -33,10 +32,10 @@ class CommandHistoryTest {
         commandHistory.addCommandToHistory("test1");
         commandHistory.addCommandToHistory("test2");
         commandHistory.addCommandToHistory("test3");
-        assertEquals("test3", commandHistory.undo());
+        Assertions.assertEquals("test3", commandHistory.undo());
         commandHistory.undo();
         commandHistory.addCommandToHistory("test4");
-        assertEquals("test4", commandHistory.undo());
+        Assertions.assertEquals("test4", commandHistory.undo());
     }
 
     @Test
@@ -44,8 +43,8 @@ class CommandHistoryTest {
         commandHistory.addCommandToHistory("test1");
         commandHistory.addCommandToHistory("test2");
         commandHistory.addCommandToHistory("test3");
-        assertEquals("test3", commandHistory.undo());
-        assertEquals("test3", commandHistory.redo());
+        Assertions.assertEquals("test3", commandHistory.undo());
+        Assertions.assertEquals("test3", commandHistory.redo());
     }
 
     @Test
@@ -53,6 +52,6 @@ class CommandHistoryTest {
         commandHistory.addCommandToHistory("test1");
         commandHistory.addCommandToHistory("test2");
         commandHistory.addCommandToHistory("test3");
-        assertEquals("", commandHistory.redo());
+        Assertions.assertEquals("", commandHistory.redo());
     }
 }
