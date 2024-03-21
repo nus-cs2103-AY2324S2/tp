@@ -26,9 +26,10 @@ class PairCommandTest {
     @Test
     void execute_pairFilteredPersonList_pairSuccessful() {
         Model model = new ModelManager(TypicalPersons.getTypicalAddressBook(), new UserPrefs());
-        Person personToPair1 = model.getFilteredPersonList().get(TypicalIndexes.INDEX_FIRST_PERSON.getZeroBased());
-        Person personToPair2 = model.getFilteredPersonList().get(TypicalIndexes.INDEX_FIFTH_PERSON.getZeroBased());
-        PairCommand pairCommand = new PairCommand(TypicalIndexes.INDEX_FIRST_PERSON, TypicalIndexes.INDEX_FIFTH_PERSON);
+        Person personToPair1 = model.getFilteredBefriendeeList().get(TypicalIndexes.INDEX_SECOND_PERSON.getZeroBased());
+        Person personToPair2 = model.getFilteredVolunteerList().get(TypicalIndexes.INDEX_SECOND_PERSON.getZeroBased());
+        PairCommand pairCommand = new PairCommand(TypicalIndexes.INDEX_SECOND_PERSON,
+                TypicalIndexes.INDEX_SECOND_PERSON);
 
         String expectedMessage = String.format(PairCommand.MESSAGE_PAIR_SUCCESS,
                 Messages.format(personToPair1), Messages.format(personToPair2));
@@ -42,10 +43,10 @@ class PairCommandTest {
 
         ModelManager expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(
-                expectedModel.getFilteredPersonList().get(TypicalIndexes.INDEX_FIRST_PERSON.getZeroBased()),
+                expectedModel.getFilteredBefriendeeList().get(TypicalIndexes.INDEX_SECOND_PERSON.getZeroBased()),
                 afterPairingPerson1);
         expectedModel.setPerson(
-                expectedModel.getFilteredPersonList().get(TypicalIndexes.INDEX_FIFTH_PERSON.getZeroBased()),
+                expectedModel.getFilteredVolunteerList().get(TypicalIndexes.INDEX_SECOND_PERSON.getZeroBased()),
                 afterPairingPerson2);
 
         assertCommandSuccess(pairCommand, model, expectedMessage, expectedModel);
@@ -55,7 +56,7 @@ class PairCommandTest {
     void execute_alreadyPaired_throwsCommandException() {
         Model model = new ModelManager(new AddressBook(TypicalPersons.getTypicalAddressBook()), new UserPrefs());
         PairCommand pairCommand = new PairCommand(TypicalIndexes.INDEX_FIRST_PERSON,
-                TypicalIndexes.INDEX_FIFTH_PERSON);
+                TypicalIndexes.INDEX_FIRST_PERSON);
         Assert.assertThrows(
                 CommandException.class, PairCommand.MESSAGE_ALREADY_PAIRED, () -> pairCommand.execute(model));
     }

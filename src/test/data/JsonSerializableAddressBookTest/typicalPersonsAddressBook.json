@@ -9,7 +9,8 @@
     "address" : "123, Jurong West Ave 6, #08-111",
     "role" : "volunteer",
     "tags" : [ "friends" ],
-    "pairedWith" : "Elle Meyer"
+    "pairedWithName" : "Elle Meyer",
+    "pairedWithID" : "4"
   }, {
     "id" : "1",
     "name" : "Benson Meier",
@@ -42,7 +43,8 @@
     "address" : "michegan ave",
     "role" : "befriendee",
     "tags" : [ ],
-    "pairedWith" : "Alice Pauline"
+    "pairedWithName" : "Alice Pauline",
+    "pairedWithID" : "0"
 
   }, {
     "id" : "5",
