@@ -37,12 +37,12 @@ public class ViewCommandParserTest {
     }
 
     @Test
-    public void parse_invalidNumberOfArgs_viewClient_throwsParseException() {
+    public void parse_invalidArgsViewClient_throwsParseException() {
         assertParseFailure(parser, "c", String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewClientCommand.MESSAGE_USAGE));
     }
 
     @Test
-    public void parse_invalidNumberOfArgs_viewMeeting_throwsParseException() {
+    public void parse_invalidArgsViewMeeting_throwsParseException() {
         assertParseFailure(parser, "m", String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewClientCommand.MESSAGE_USAGE));
     }
 
