@@ -137,7 +137,7 @@ Examples:
 ### Exporting a subset of data: `find_and_export`
 Exports the users that are filtered by a tag and other optional parameters.
 
-Format: `find_and_export TAG [n/NAME] [a/ADDRESS] [o/FILENAME]`
+Format: `find_and_export TAG [n/NAME] [a/ADDRESS] [f/FILENAME]`
 
 * `TAG` needs to be a tag
 * `NAME` needs to be a substring of a person's name
@@ -146,7 +146,7 @@ Format: `find_and_export TAG [n/NAME] [a/ADDRESS] [o/FILENAME]`
 
 Examples:
 * `find_and_export cs2103t`
-* `find_and_export cs2103t n/john a/olive street 42 o/output1`
+* `find_and_export cs2103t n/john a/olive street 42 f/output1`
 
 
 ### Importing a datafile: `import`
