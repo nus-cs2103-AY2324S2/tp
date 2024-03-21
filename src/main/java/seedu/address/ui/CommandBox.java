@@ -7,7 +7,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Region;
-
 import seedu.address.commons.core.CommandHistory;
 import seedu.address.commons.util.UiUtil;
 import seedu.address.logic.commands.CommandResult;

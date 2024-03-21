@@ -39,7 +39,7 @@ public class CommandHistory {
      * Returns the previous command in the history and decrements the current command index.
      * If there are no more commands to iterate through, it will play an error sound.
      */
-    public String undo(String currentCommand) {
+    public String undo() {
         if (lastCommandType == CommandHistoryType.REDO && currentCommandIndex < commandHistory.size() - 1) {
             currentCommandIndex--;
         }
@@ -59,7 +59,7 @@ public class CommandHistory {
      * Returns the next command in history and increments the current command index.
      * Returns an empty string if there the currentCommandIndex is at the end of the history.
      */
-    public String redo(String currentCommand) {
+    public String redo() {
         if (lastCommandType == CommandHistoryType.UNDO) {
             currentCommandIndex++;
         }
