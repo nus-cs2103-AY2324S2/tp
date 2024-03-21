@@ -20,6 +20,7 @@ public class Messages {
     public static final String MESSAGE_MEMBERS_DONT_EXIST = "Some of the specified members could not be found.";
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
+    public static final String MESSAGE_SIMILAR_COURSE_MATE_NAME = "There are %1$d course mates with similar names";
 
     /**
      * Returns an error message indicating the duplicate prefixes.

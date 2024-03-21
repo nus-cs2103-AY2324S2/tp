@@ -56,7 +56,7 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_invalidNameUnfilteredList_throwsCommandException() {
-        Name name = new Name("Alice Paulin");
+        Name name = new Name("Alice Paulines");
         DeleteCommand deleteCommand = new DeleteCommand(new QueryableCourseMate(name));
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_COURSE_MATE_NAME);

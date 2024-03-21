@@ -119,7 +119,7 @@ public class EditCommandTest {
         EditCourseMateDescriptor descriptor = new EditCourseMateDescriptorBuilder(firstCourseMate).build();
         EditCommand editCommand = new EditCommand(new QueryableCourseMate(INDEX_SECOND_COURSE_MATE), descriptor);
 
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_COURSE_MATE);
+        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_COURSE_MATE_NAME);
         assertRecentlyProcessedCourseMateEdited(model, null);
     }
 
@@ -133,7 +133,7 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand(new QueryableCourseMate(INDEX_FIRST_COURSE_MATE),
                 new EditCourseMateDescriptorBuilder(courseMateInList).build());
 
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_COURSE_MATE);
+        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_COURSE_MATE_NAME);
         assertRecentlyProcessedCourseMateEdited(model, null);
     }
 

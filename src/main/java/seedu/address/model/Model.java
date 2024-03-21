@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -135,7 +136,7 @@ public interface Model {
     /**
      * Finds a {@code CourseMate} with the exact same name.
      */
-    CourseMate findCourseMate(QueryableCourseMate query);
+    List<CourseMate> findCourseMate(QueryableCourseMate query);
 
     /** Returns an unmodifiable view of the filtered courseMate list */
     ObservableList<CourseMate> getFilteredCourseMateList();
