@@ -87,12 +87,18 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.add(p);
     }
 
+
     /**
      * Adds a schedule to the address book.
      * The schedule must not already exist in the address book.
      */
-    public void addSchedule(Schedule s) {
-        schedules.add(s);
+    public void addSchedule(Schedule newSchedule, ArrayList<Person> participantsList) {
+        schedules.add(newSchedule);
+        for (Person toEditPerson: participantsList) {
+            Person edittedPerson = toEditPerson;
+            edittedPerson.addSchedule(newSchedule);
+            setPerson(toEditPerson, edittedPerson);
+        }
     }
 
     /**
@@ -129,8 +135,13 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
-    public void removeSchedule(Schedule key) {
+    public void removeSchedule(Schedule key, ArrayList<Person> toDeleteParticipants) {
         schedules.remove(key);
+        for (Person p: toDeleteParticipants) {
+            Person personDeletedSched = p;
+            p.deleteSchedule(key);
+            setPerson(p, personDeletedSched);
+        }
     }
 
     //// util methods

@@ -28,7 +28,7 @@ public class Schedule {
     private final String schedName;
     private final LocalDateTime startTime;
     private final LocalDateTime endTime;
-    private final UniquePersonList personList;
+    private ArrayList<Person> personList;
 
     /**
      * Constructs a {@code Schedule}.
@@ -47,7 +47,7 @@ public class Schedule {
         this.schedName = schedName;
         this.startTime = startTime;
         this.endTime = endTime;
-        this.personList = new UniquePersonList();
+        this.personList = new ArrayList<Person>();
     }
 
     public String getSchedName() {
@@ -62,7 +62,11 @@ public class Schedule {
         return endTime;
     }
 
-    public UniquePersonList getPersonList() {
+    public void setPersonList(ArrayList<Person> newPersonList) {
+        personList = newPersonList;
+    }
+
+    public ArrayList<Person> getPersonList() {
         return personList;
     }
 
@@ -70,8 +74,13 @@ public class Schedule {
         StringBuilder participants = new StringBuilder();
         for (Person person: personList) {
             participants.append(person.getName());
+            participants.append(", ");
         }
-        return participants.toString();
+        String res = participants.toString();
+        if (!res.isEmpty()) {
+            return res.substring(0, res.length() - 2);
+        }
+        return res;
     }
 
     /**
@@ -87,6 +96,10 @@ public class Schedule {
             }
         }
         return addedParticipants;
+    }
+
+    public void removePerson(Person p) {
+        personList.remove(p);
     }
 
     /**

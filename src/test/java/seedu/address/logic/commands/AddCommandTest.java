@@ -23,6 +23,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.schedule.Schedule;
 import seedu.address.testutil.PersonBuilder;
 
@@ -125,12 +126,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void deleteSchedule(Schedule target) {
+        public void deleteSchedule(Schedule target, ArrayList<Person> toDeleteParticipants) {
             String s;
         }
 
         @Override
-        public void addSchedule(Schedule schedule) {
+        public void addSchedule(Schedule schedule, ArrayList<Person> participantsList) {
             String s;
         }
 

@@ -1,11 +1,13 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.schedule.Schedule;
 
 /**
@@ -76,13 +78,13 @@ public interface Model {
      * Deletes the given schedule.
      * The schedule must exist in the address book.
      */
-    void deleteSchedule(Schedule target);
+    void deleteSchedule(Schedule target, ArrayList<Person> toDeleteParticipants);
 
     /**
      * Adds the given schedule.
      * {@code schedule} must not already exist in the address book.
      */
-    void addSchedule(Schedule schedule);
+    void addSchedule(Schedule schedule, ArrayList<Person> participantsList);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
