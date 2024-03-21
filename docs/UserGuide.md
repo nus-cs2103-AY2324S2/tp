@@ -100,18 +100,17 @@ Format: `list`
 
 Edits an existing person in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit nusId [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG] [g/GROUP]` 
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the person with a specified `nusId`. The nusId refers to the nusId shown in the displayed person list. The nusId **must be a 7-digit number following an 'E'**
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+* When editing tags, the valid forms have to be either 1 of these:  Professor, TA, Student, None 
+
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit E0123456 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the person with `nusId` E0123456 to be `91234567` and `johndoe@example.com` respectively.
+*  `edit E1234567 n/Betsy t/Professor` Edits the name and the tag of the person with `nusId` E1234567 to be `Betsy` and `Professor` respectively.
 
 ### Locating persons by name: `find`
 
@@ -135,15 +134,15 @@ Examples:
 
 Deletes the specified person from the address book.
 
-Format: `delete INDEX`
+Format: `delete nusId`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* Deletes the person of a specified `nusId`.
+* The nusId refers to the nusId shown in the displayed person list.
+* The nusId **must be a 7-digit number following an 'E'** 
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `delete E0123456` will delete an existing person with `nusId` of "E0123456".
+
 
 ### Clearing all entries : `clear`
 
