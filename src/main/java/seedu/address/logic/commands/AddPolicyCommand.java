@@ -77,7 +77,7 @@ public class AddPolicyCommand extends Command {
     }
 
     private String generateSuccessMessage(Person editedPerson) {
-        String message = !policyName.isEmpty() ? MESSAGE_ADD_POLICY_SUCCESS : MESSAGE_DELETE_POLICY_SUCCESS;
+        String message = !editedPerson.getPolicies().isEmpty() ? MESSAGE_ADD_POLICY_SUCCESS : MESSAGE_DELETE_POLICY_SUCCESS;
         return String.format(message, editedPerson);
     }
 }

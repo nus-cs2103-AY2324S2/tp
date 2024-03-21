@@ -2,6 +2,7 @@ package seedu.address.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Policy;
 
@@ -12,11 +13,16 @@ public class JsonAdaptedPolicyTag {
     public final String premium;
     public final String benefit;
 
+
     /**
      * Constructs a {@code JsonAdaptedTag} with the given {@code tagName}.
      */
     @JsonCreator
-    public JsonAdaptedPolicyTag(String policyName, String policyNumber, String premiumTerm, String premium, String benefit) {
+    public JsonAdaptedPolicyTag(@JsonProperty("policyName") String policyName,
+                                @JsonProperty("policyNumber") String policyNumber,
+                                @JsonProperty("premiumTerm") String premiumTerm,
+                                @JsonProperty("premium") String premium,
+                                @JsonProperty("benefit") String benefit) {
         this.policyName = policyName;
         this.policyNumber = policyNumber;
         this.premiumTerm = premiumTerm;
@@ -35,10 +41,6 @@ public class JsonAdaptedPolicyTag {
         benefit = source.benefit;
     }
 
-    @JsonValue
-    public String getPolicyName() {
-        return policyName;
-    }
 
     /**
      * Converts this Jackson-friendly adapted tag object into the model's {@code Tag} object.

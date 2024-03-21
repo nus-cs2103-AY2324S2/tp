@@ -138,9 +138,24 @@ public class Person {
                 .append(getAddress())
                 .append(" Remark: ")
                 .append(" Tags: ");
-        getTags().forEach(builder::append);
+        if (getTags().isEmpty()) {
+            builder.append("None");
+        } else {
+            getTags().forEach(tag -> builder.append("[").append(tag.tagName).append("] ")); // Assuming Tag objects have a tagName field
+        }
+
         builder.append(" Policies: ");
-        getPolicies().forEach(policy -> builder.append("[").append(policy.policyName).append("]").append(" "));
-        return builder.toString();
+        if (getPolicies().isEmpty()) {
+            builder.append("None");
+        } else {
+            getPolicies().forEach(policy -> builder.append("[").append(policy.policyName)
+                    // Include additional policy details here, if applicable
+                    .append(", Number: ").append(policy.policyNumber) // Example for additional details
+                    .append(", Premium Term: ").append(policy.premiumTerm)
+                    .append(", Premium: ").append(policy.premium)
+                    .append(", Benefit: ").append(policy.benefit)
+                    .append("] "));
+        }
+        return builder.toString().trim(); // Trim to remove any trailing spaces
     }
 }

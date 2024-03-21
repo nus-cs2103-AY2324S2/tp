@@ -77,15 +77,6 @@ public class ParserUtil {
         return new Address(trimmedAddress);
     }
 
-    public static PolicyName parsePolicyName(String policyName) throws ParseException {
-        requireNonNull(policyName);
-        String trimmedPolicyName = policyName.trim();
-        if (!PolicyName.isValidPolicyName(trimmedPolicyName)) {
-            throw new ParseException(PolicyName.MESSAGE_CONSTRAINTS);
-        }
-        return new PolicyName(policyName);
-    }
-
     /**
      * Parses a {@code String email} into an {@code Email}.
      * Leading and trailing whitespaces will be trimmed.

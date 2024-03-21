@@ -32,11 +32,21 @@ public class Policy {
         return field.matches(NUMBER_VALIDATION_REGEX);
     }
 
-    //    @Override
-//    public String toString() {
-//        return value;
-//    }
-//
+    @Override
+    public String toString() {
+        final StringBuilder builder = new StringBuilder();
+        builder.append(policyName)
+                .append(" Phone: ")
+                .append(policyNumber)
+                .append(" Email: ")
+                .append(premiumTerm)
+                .append(" Address: ")
+                .append(premium)
+                .append(" Remark: ")
+                .append(benefit);
+        return builder.toString();
+    }
+
 //    @Override
 //    public boolean equals(Object other) {
 //        return other == this // short circuit if same object
