@@ -1,4 +1,5 @@
 package scrolls.elder.model.person;
+import java.util.Optional;
 import java.util.Set;
 
 import scrolls.elder.commons.util.ToStringBuilder;
@@ -9,8 +10,8 @@ import scrolls.elder.model.tag.Tag;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Volunteer extends Person {
-    public Volunteer(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        super(name, phone, email, address, tags, new Role("volunteer"));
+    public Volunteer(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Optional<Name> pairedWith) {
+        super(name, phone, email, address, tags, new Role("volunteer"), pairedWith);
     }
 
     @Override

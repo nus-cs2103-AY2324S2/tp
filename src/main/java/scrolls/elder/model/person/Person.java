@@ -26,20 +26,21 @@ public abstract class Person {
     // Data fields
     protected final Address address;
     protected final Set<Tag> tags = new HashSet<>();
-    protected Optional<Name> pairedWith;
+    protected final Optional<Name> pairedWith;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Role role) {
-        CollectionUtil.requireAllNonNull(name, phone, email, address, tags, role);
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Role role,
+                  Optional<Name> pairedWith) {
+        CollectionUtil.requireAllNonNull(name, phone, email, address, tags, role, pairedWith);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
         this.role = role;
-        this.pairedWith = Optional.empty();
+        this.pairedWith = pairedWith;
     }
 
     public int getId() {
@@ -78,9 +79,10 @@ public abstract class Person {
         return pairedWith;
     }
 
-    public void setPairedWith(Optional<Name> pairedWith) {
-        this.pairedWith = pairedWith;
-    }
+    // TODO REMOVE DEAD CODE
+//    public void setPairedWith(Optional<Name> pairedWith) {
+//        this.pairedWith = pairedWith;
+//    }
 
 
     public boolean isPairPresent(Person person) {
