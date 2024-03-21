@@ -18,4 +18,11 @@ Person *--> Name
 Person *--> Phone
 Person *--> Email
 Person *--> Address
+
+Person *--> MeritScore
+Person *--> BookList
+
+BookList --> Book
+
+Book *--> BookTitle
 @enduml
