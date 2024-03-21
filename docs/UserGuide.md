@@ -6,19 +6,42 @@
 
 # NetConnect User Guide
 
-NetConnect is a desktop app for managing contacts in SMEs, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). It enables managers to efficiently manage their employees, clients, as well as suppliers, **all in one place** ☝🏻.
+NetConnect is a desktop app for managing contacts in SMEs, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). It enables HR and relations managers to efficiently manage their employees, clients, as well as suppliers, **all in one place** ☝🏻.
 
 The inspiration behind NetConnect lies in solving a specific set of challenges faced by the food business managers demographic. Specifically, we aim to address the challenge of managing various contact types: clients, suppliers, and employees.
 
 If you relate to this problem we identified, then NetConnect might be just right for you. This user guide will accompany you in maximising the capabilities of this product, freeing time for more pressing issues.
 
 
-<!-- * Table of Contents -->
-<page-nav-print />
+<div style="page-break-after: always;"></div>
 
---------------------------------------------------------------------------------------------------------------------
+# Table of Contents
+* [Quick start](#quick-start)
+* [Features](#features)
+  + [Viewing help : `help`](#help)
+  + [Adding a person: `add` ](#add)
+  + [Deleting a person : `delete`](#delete) 
+  + [Adding a Remark to a Person : `remark`](#remark)
+  + [Listing all persons : `list`](#list)
+  + [Editing a person : `edit`](#edit)
+  + [Locating persons by name: `find`](#find)
+  + [Locating persons by remark: `findrem`](#findrem)
+  + [Locating persons by role: `findrole`](#findrole)
+  + [Locating persons by phone number: `findnum`](#findnum)
+  + [Clearing all entries : `clear`](#clear)
+  + [Create Relations between Profiles : `relate`](#relate)
+  + [Show Relations Associated to a Person : `showrelated`](#showrelated)
+  + [Open on Last State](#open-on-last-state)
+  + [Export Current View to CSV File : `export`](#export)
+  + [Never Miss a Birthday!](#birthday)
+  + [Exiting the program : `exit`](#exit-program)
+  + [Saving the data](#saving-the-data)
+  + [Editing the data file](#editing-the-data-file)
+* [FAQ](#faq)
+* [Known issues](#known-issues)
+* [Command summary](#command-summary)
 
-## Quick start
+# Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -47,7 +70,7 @@ If you relate to this problem we identified, then NetConnect might be just right
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+# Features
 
 <box type="info" seamless>
 
@@ -71,7 +94,9 @@ If you relate to this problem we identified, then NetConnect might be just right
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </box>
 
-### Viewing help : `help`
+<section id="help">
+
+## Viewing help : `help` 
 
 Shows a message explaining how to access the help page.
 
@@ -79,8 +104,12 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
+</section>
 
-### Adding a person: `add`
+
+<section id="add">
+
+## Adding a person: `add` 
 
 Adds a person (Client, Supplier or Employee) to the address book.
 
@@ -91,8 +120,12 @@ Examples:
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 r/supplier`
 
 **Info:** NetConnect checks for unique profiles by its NAME, PHONE and EMAIL. It does not allow you to create two profiles with identical name, phone number and email.
+</section>
 
-### Deleting a person : `delete`
+
+<section id="delete">
+
+## Deleting a person : `delete`
 
 Deletes the specified person from the address book.
 
@@ -110,8 +143,11 @@ Examples:
 **Info:** Instead of completely deleting the profile from the database, NetConnect does a soft delete of the profile instead. What this means is that the profile still exists in the database, but is marked as inactive, and will not appear in your current list or searches.
 
 **Warnings:** Due to the destructive nature of this action, NetConnect will require a confirmation from the user before it is executed.
+</section>
 
-### Adding a Remark to a Person : `remark`
+<section id="remark">
+
+## Adding a Remark to a Person : `remark`
 
 Adds a remark to a person in the address book.
 
@@ -120,19 +156,26 @@ Format: `remark i/ID r/REMARK`
 * Adds a remark to the person with the specified `ID`.
 * `ID` refers to the unique identification number assigned to each person when first added to the list.
 * `ID` **must refer to a person that exist within NetConnect**.
-* You can remove a remark from a person by typing `rmark i/ID` without specifying any remarks after it.
+* You can remove a remark from a person by typing `remark i/ID` without specifying any remarks after it.
 
 Examples:
 * `remark i/2 r/John is a very good client` Adds a remark to the person with ID of 2.
 * `remark i/2` Removes the remark from the person with ID of 2.
 
-### Listing all persons : `list`
+</section>
+
+<section id="list">
+
+## Listing all persons : `list`
 
 Shows a list of all persons in the address book.
 
 Format: `list`
+</section>
 
-### Editing a person : `edit`
+<section id="edit">
+
+## Editing a person : `edit`
 
 Edits an existing person in the address book.
 
@@ -150,7 +193,11 @@ Examples:
 *  `edit i/1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the person with ID of 1 to be `91234567` and `johndoe@example.com` respectively.
 *  `edit i/2 n/Betsy Crower t/` Edits the name of the person with ID of 2 to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
+</section>
+
+<section id="find">
+
+## Locating persons by name: `find`
 
 Finds persons whose names contain any of the given name keywords.
 
@@ -170,7 +217,11 @@ Examples:
 
 **Tip:** You can concatenate all the names you are interested in finding. E.g. If you are interested in listing Alice, Bob and Charles in your list, you can use the following command `find alice bob charles`.
 
-### Locating persons by remark: `findrem`
+</section>
+
+<section id="findrem">
+
+## Locating persons by remark: `findrem`
 
 Finds persons who have remarks that matches the given keywords.
 
@@ -186,7 +237,11 @@ Examples:
 * `findrem unfriendly` returns all persons who have the remark `unfriendly`.
 * `findrem marketing IC`  returns all persons who have the remark `publicity IC`, as well as persons who have the remark `marketing head`.<br>
 
-### Locating persons by role: `findrole`
+</section>
+
+<section id="findrole">
+
+## Locating persons by role: `findrole`
 
 Finds persons whose role matches the given role - Client, Supplier or Employee.
 
@@ -199,7 +254,11 @@ Examples:
 * `findrole client` returns all persons who have the role `employee`.
 * `findrole supplier clients` returns all persons who have the role `supplier` or `client`.
 
-### Locating persons by phone number: `findnum`
+</section>
+
+<section id="findnum">
+
+## Locating persons by phone number: `findnum`
 
 Finds persons whose phone number matches the given number.
 
@@ -212,8 +271,11 @@ Examples:
 * `findnum 83647382` returns `John Doe` who has the phone number `83647382`.
 
 **Note:** NetConnect accepts phone numbers with three or more digits, to account for staff extensions in the company. This is not a bug.
+</section>
 
-### Clearing all entries : `clear`
+<section id="clear">
+
+## Clearing all entries : `clear`
 
 Clears all entries from the address book.
 
@@ -221,7 +283,11 @@ Format: `clear`
 
 **Warnings:** Due to the destructive nature of this action, NetConnect will require a confirmation from the user before it is executed.
 
-### Create Relations between Profiles : `relate`
+</section>
+
+<section id="relate">
+
+## Create Relations between Profiles : `relate`
 
 Creates a relation between two profiles in the address book.
 
@@ -231,16 +297,28 @@ Example: `relate i/1 i/2` creates a relation between the profiles with ID of 1 a
 
 **Info:** The relation is stored in a field within Person object, which contains the IDs of any suppliers or clients that they are connected to.
 
-### Show Relations Associated to a Person : `showrelated`
+</section>
+
+<section id="showrelated">
+
+## Show Relations Associated to a Person : `showrelated`
 
 Shows all the relations associated to a person in the address book.
 
 Format: `showrelated [i/ID][n/NAME]`
 
-### Open on Last State
+</section>
+
+<section id="open-on-last-state">
+
+## Open on Last State
 With every change to the command input, NetConnect saves and updates the command input in a separate file. When the app closes and is opened again, the last command present before closure will be retrieved from the separate file and input into the command field (if any). This way, you never have to worry about losing progress!
 
-### Export Current View to CSV File
+</section>
+
+<section id="export">
+
+## Export Current View to CSV File : `export`
 Retrieve information on a group of profiles at once with this function! This can be useful for consolidating all the emails or contact number at once, or to share information with third parties.
 
 **To export all profiles in the address book to a CSV file:** 
@@ -260,29 +338,48 @@ Step 2: `export`
 
 * The first step is to filter the profiles you want to export into the current view.
 
-### Never Miss a Birthday!
+</section>
+
+<section id="birthday">
+
+## Never Miss a Birthday!
 Celebrate your employees' birthdays to show that you care. NetConnect will remind you of the birthdays of your employees, so you never have to miss a birthday again!
 
-### Exiting the program : `exit`
+</section>
+
+<section id="exit-program">
+
+## Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
 
-### Saving the data
+</section>
+
+<section id="saving-the-data">
+
+## Saving the data
 
 NetConnect data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-### Editing the data file
+</section>
+
+<section id="editing-the-data-file">
+
+## Editing the data file
 
 NetConnect data are saved automatically as a JSON file `[JAR file location]/data/netconnect.json`. Advanced users are welcome to update data directly by editing that data file.
 
 **Caution:**
 If your changes to the data file makes its format invalid, NetConnect will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
 Furthermore, certain edits can cause the NetConnect to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
+
+</section>
+
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ
+# FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous NetConnect home folder.
@@ -301,20 +398,21 @@ Furthermore, certain edits can cause the NetConnect to behave in unexpected ways
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Known issues
+# Known issues
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+# Command summary
 
 | Action                   | Format                                                                                                                                                                                                                      | Examples                                                        |
 |--------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------|
+| **Help**                 | `help`                                                                                                                                                                                                                      | `help`                                                          |
 | **Add**                  | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS r/ROLE [t/TAG]… [r/someremark] [dob/yyyy-mm-dd] [prod/allproducts] [dept/departments] [job/jobtitle] [tos/termsofservice] [skills/employeeskills] [pref/clientpreferences] ​ ` | `add n/pika p/98329432 e/chu@example.com a/Unova role/EMPLOYEE` |
+| **List**                 | `list`                                                                                                                                                                                                                      | `list`                                                          || **Add**                  | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS r/ROLE [t/TAG]… [r/someremark] [dob/yyyy-mm-dd] [prod/allproducts] [dept/departments] [job/jobtitle] [tos/termsofservice] [skills/employeeskills] [pref/clientpreferences] ​ ` | `add n/pika p/98329432 e/chu@example.com a/Unova role/EMPLOYEE` |
 | **Delete**               | `delete [i/ID] [n/NAME]`                                                                                                                                                                                                    | `delete i/123`, `delete n/John Doe`                             |
 | **Edit**                 | `edit i/ID [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/ROLE] [t/TAG]…​`                                                                                                                                              | `edit i/123 n/James Lee e/jameslee@example.com`                 |
-| **List**                 | `list`                                                                                                                                                                                                                      | `list`                                                          |
 | **Remark**               | `remark i/ID r/REMARK`                                                                                                                                                                                                      | `remark i/1 r/Has a dog called Bob`                             |
 | **Tag**                  | `tag i/ID t/TAG…​`                                                                                                                                                                                                          | `tag i/123 t/friend t/colleague`                                |
 | **Find**                 | `find NAME_KEYWORD [MORE_NAME_KEYWORD]`                                                                                                                                                                                     | `find James Jake`                                               |
@@ -325,5 +423,4 @@ Furthermore, certain edits can cause the NetConnect to behave in unexpected ways
 | **Relate Profiles**      | `relate [i/ID][n/NAME] [i/ID][n/NAME]`                                                                                                                                                                                      | `relate i/1 i/2`, `relate n/Alice i/2`                          |
 | **Show related Profile** | `showrelated [i/ID][n/NAME]`                                                                                                                                                                                                | `showrelate i/33`, `showrelate n/Alice`                         |
 | **Export**               | `export [filename]`                                                                                                                                                                                                         | `export ClientInfo.csv`                                         |
-| **Help**                 | `help`                                                                                                                                                                                                                      | `help`                                                          |
 | **Exit**                 | `exit`                                                                                                                                                                                                                      | `exit`                                                                |
