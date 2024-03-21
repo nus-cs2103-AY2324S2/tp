@@ -171,6 +171,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasRelationshipWithDescriptor(Relationship target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addRelationship(Relationship target) {
             throw new AssertionError("This method should not be called.");
         }
