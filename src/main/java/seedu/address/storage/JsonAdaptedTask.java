@@ -24,16 +24,19 @@ public class JsonAdaptedTask {
     private final String title;
     private final LocalDateTime deadline;
     private final String personInCharge;
+    private final Boolean isDone;
 
     /**
      * Constructs a {@code JsonAdaptedTask} with the given task details.
      */
     @JsonCreator
     public JsonAdaptedTask(@JsonProperty("title") String title, @JsonProperty("deadline") String deadline,
-                           @JsonProperty("personInCharge") String personInCharge) {
+                           @JsonProperty("personInCharge") String personInCharge,
+                           @JsonProperty("isDone") Boolean isDone) {
         this.title = title;
         this.deadline = LocalDateTime.parse(deadline, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss"));
         this.personInCharge = personInCharge;
+        this.isDone = isDone;
     }
 
     /**
@@ -43,6 +46,7 @@ public class JsonAdaptedTask {
         title = source.getTaskTitle();
         deadline = source.getDeadline().dateTime;
         personInCharge = source.getPersonInCharge().getName().toString();
+        isDone = source.isDone();
     }
 
     /**
@@ -64,6 +68,11 @@ public class JsonAdaptedTask {
         if (personInCharge == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "personInCharge"));
         }
+
+        if (isDone == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "isDone"));
+        }
+
         if (!Name.isValidName(personInCharge)) {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
@@ -76,7 +85,7 @@ public class JsonAdaptedTask {
             throw new IllegalValueException("Person with name " + personInCharge + " not found!");
         }
 
-        Task task = new Task(modelTaskTitle, modelDeadline);
+        Task task = new Task(modelTaskTitle, modelDeadline, isDone);
         ab.assignTask(task, modelPic);
         return task;
     }

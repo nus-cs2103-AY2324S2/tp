@@ -57,7 +57,7 @@ public class Department {
      * Format state as text for viewing.
      */
     public String toString() {
-        return '{' + department.toUpperCase() + '}';
+        return department;
     }
 
 }

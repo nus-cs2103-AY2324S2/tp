@@ -15,6 +15,7 @@ public class Task {
     private final Deadline deadline;
 
     private Person personInCharge;
+    private boolean isDone;
 
 
     /**
@@ -25,6 +26,19 @@ public class Task {
     public Task(String taskTitle, Deadline deadline) {
         this.taskTitle = taskTitle;
         this.deadline = deadline;
+    }
+
+
+    /**
+     * Constructs a {@code Task} with a specified status.
+     * @param taskTitle A task name.
+     * @param deadline Deadline for the specific task.
+     * @param isDone The status of the task (true if done, false otherwise).
+     */
+    public Task(String taskTitle, Deadline deadline, Boolean isDone) {
+        this.taskTitle = taskTitle;
+        this.deadline = deadline;
+        this.isDone = isDone;
     }
 
     public String getTaskTitle() {
@@ -45,6 +59,14 @@ public class Task {
      */
     public void setPersonInCharge(Person pic) {
         this.personInCharge = pic;
+    }
+
+    public boolean isDone() {
+        return this.isDone;
+    }
+
+    public void setDone() {
+        this.isDone = true;
     }
 
     /**

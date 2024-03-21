@@ -27,11 +27,13 @@ public class Person {
     private final Department department;
     private final Set<Tag> tags = new HashSet<>();
     private transient Task task = null;
+    private Efficiency efficiency;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Department department, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Email email, Address address, Department department, Set<Tag> tags,
+                  Efficiency efficiency) {
         requireAllNonNull(name, phone, email, address, department, tags);
         this.name = name;
         this.phone = phone;
@@ -39,6 +41,7 @@ public class Person {
         this.address = address;
         this.department = department;
         this.tags.addAll(tags);
+        this.efficiency = efficiency;
     }
 
     public Name getName() {
@@ -60,6 +63,10 @@ public class Person {
     public Department getDepartment() {
         return department;
     }
+    public Efficiency getEfficiency() {
+        return efficiency;
+    }
+
 
     public Task getTask() {
         return task;

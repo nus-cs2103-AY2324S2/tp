@@ -5,13 +5,15 @@
     "email": "alice@example.com",
     "address": "123, Jurong West Ave 6, #08-111",
     "department" : "IT",
-    "tags": [ "friends" ]
+    "tags": [ "friends" ],
+    "efficiency": "80"
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",
     "department" : "IT",
-    "address": "4th street"
+    "address": "4th street",
+    "efficiency": "80"
   } ],
 
   "tasks": []

@@ -6,65 +6,76 @@
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
     "department" : "Finance",
-    "tags" : [ "friends" ]
+    "tags" : [ "friends" ],
+    "efficiency": "80"
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
     "department" : "IT",
-    "tags" : [ "owesMoney", "friends" ]
+    "tags" : [ "owesMoney", "friends" ],
+    "efficiency": "50"
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",
     "email" : "heinz@example.com",
     "address" : "wall street",
     "department" : "Marketing",
-    "tags" : [ ]
+    "tags" : [ ],
+    "efficiency": "90"
   }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",
     "email" : "cornelia@example.com",
     "address" : "10th street",
     "department" : "Production",
-    "tags" : [ "friends" ]
+    "tags" : [ "friends" ],
+    "efficiency": "40"
   }, {
     "name" : "Elle Meyer",
     "phone" : "9482224",
     "email" : "werner@example.com",
     "address" : "michegan ave",
     "department" : "IT",
-    "tags" : [ ]
+    "tags" : [ ],
+    "efficiency": "30"
   }, {
     "name" : "Fiona Kunz",
     "phone" : "9482427",
     "email" : "lydia@example.com",
     "address" : "little tokyo",
     "department" : "Business Development",
-    "tags" : [ ]
+    "tags" : [ ],
+    "efficiency": "20"
   }, {
     "name" : "George Best",
     "phone" : "9482442",
     "email" : "anna@example.com",
     "address" : "4th street",
     "department" : "Administration",
-    "tags" : [ ]
+    "tags" : [ ],
+    "efficiency": "0"
   } ],
   "tasks": [ {
     "title" : "Complete Project Proposal",
     "deadline" : "2024-03-25T23:59:00",
-    "personInCharge": "Alice Pauline"
+    "personInCharge": "Alice Pauline",
+    "isDone": "False"
   }, {
     "title" : "Prepare Presentation Slides",
     "deadline" : "2024-05-05T09:00:00",
-    "personInCharge": "Benson Meier"
+    "personInCharge": "Benson Meier",
+    "isDone": "False"
   }, {
     "title" : "Submit Year End Report",
     "deadline" : "2024-11-30T17:00:00",
-    "personInCharge": "Carl Kurz"
+    "personInCharge": "Carl Kurz",
+    "isDone": "False"
   }, {
     "title" : "Organize Team Meeting",
     "deadline" : "2024-08-04T14:00:00",
-    "personInCharge": "Daniel Meier"
+    "personInCharge": "Daniel Meier",
+    "isDone": "False"
   }]
 }

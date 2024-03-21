@@ -24,6 +24,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Department;
+import seedu.address.model.person.Efficiency;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -104,8 +105,10 @@ public class EditCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Department updatedDepartment = editPersonDescriptor.getDepartment().orElse(personToEdit.getDepartment());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Efficiency updatedEfficiency = editPersonDescriptor.getEfficiency().orElse(personToEdit.getEfficiency());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedDepartment, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedDepartment, updatedTags,
+                updatedEfficiency);
     }
 
     @Override
@@ -143,6 +146,7 @@ public class EditCommand extends Command {
         private Address address;
         private Department department;
         private Set<Tag> tags;
+        private Efficiency efficiency;
 
         public EditPersonDescriptor() {}
 
@@ -157,6 +161,7 @@ public class EditCommand extends Command {
             setAddress(toCopy.address);
             setDepartment(toCopy.department);
             setTags(toCopy.tags);
+
         }
 
         /**
@@ -221,6 +226,14 @@ public class EditCommand extends Command {
          */
         public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        }
+
+        public void setEfficiency(Efficiency efficiency) {
+            this.efficiency = efficiency;
+        }
+
+        public Optional<Efficiency> getEfficiency() {
+            return Optional.ofNullable(efficiency);
         }
 
         @Override

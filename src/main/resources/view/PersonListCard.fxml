@@ -21,16 +21,29 @@
       <HBox spacing="5" alignment="CENTER_LEFT">
         <Label fx:id="id" styleClass="cell_big_label">
           <minWidth>
-            <!-- Ensures that the label text is never truncated -->
             <Region fx:constant="USE_PREF_SIZE" />
           </minWidth>
         </Label>
         <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
       </HBox>
       <FlowPane fx:id="tags" />
-      <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
-      <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
-      <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+
+      <HBox spacing="5">
+        <VBox alignment="CENTER_LEFT">
+          <Label fx:id="phoneLabel" styleClass="cell_small_label" text="Phone:" />
+          <Label fx:id="addressLabel" styleClass="cell_small_label" text="Address:" />
+          <Label fx:id="emailLabel" styleClass="cell_small_label" text="Email:" />
+          <Label fx:id="efficiencyLabel" styleClass="cell_small_label" text="Efficiency:" />
+        </VBox>
+
+        <VBox alignment="CENTER_LEFT">
+          <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
+          <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
+          <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+          <Label fx:id="efficiency" styleClass="cell_small_label" text="\$efficiency" />
+        </VBox>
+      </HBox>
+
     </VBox>
   </GridPane>
 </HBox>
