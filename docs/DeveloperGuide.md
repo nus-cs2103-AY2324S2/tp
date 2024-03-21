@@ -159,6 +159,28 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+### Add favourite feature
+
+The `addfav` feature allows users to add suppliers as favourites.
+
+#### Design considerations:
+
+**Aspect: How a contact being set as favourite is represented:**
+
+- **Alternative 1 (current choice):** A boolean field in the `Person` class is used to indicate whether a `Person` is a favourite 
+    - Pros: Make use of the current `Person` class by adding a simple primitive boolean to store information about favourites.
+    - Cons: Not a uniform way of representing information in the `Person` class given that all other fields are their own defined classes.
+
+- **Alternative 2:** A custom class field is created in the `Person` class to indicate whether a `Person` is a favourite
+    - Pros: Aligns with the information representation of other fields in the `Person` class
+    - Cons: Need to create a new `Favourite` wrapper class to store information on whether a person is a favourite. This may result in unnecessary abstraction given that the field and information to be stored are quite rudimentary.
+
+#### Sequence Diagram
+
+Below is the sequence diagram for the `addfav` command process:
+
+<puml src="diagrams/AddFavouriteSequenceDiagram.puml" alt="AddFavouriteSequenceDiagram" />
+
 
 ### \[Proposed\] Undo/redo feature
 
