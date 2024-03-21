@@ -13,6 +13,8 @@ import tutorpro.model.person.Address;
 import tutorpro.model.person.Email;
 import tutorpro.model.person.Name;
 import tutorpro.model.person.Phone;
+import tutorpro.model.person.student.Level;
+import tutorpro.model.person.student.Subject;
 import tutorpro.model.tag.Tag;
 
 /**
@@ -120,5 +122,47 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String email} into an {@code Email}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code email} is invalid.
+     */
+    public static Level parseLevel(String level) throws ParseException {
+        requireNonNull(level);
+        String trimmedLevel = level.trim();
+        if (!Level.isValidLevel(trimmedLevel)) {
+            throw new ParseException(Level.MESSAGE_CONSTRAINTS);
+        }
+        return new Level(trimmedLevel);
+    }
+
+    /**
+     * Parses a {@code String tag} into a {@code Tag}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code tag} is invalid.
+     */
+    public static Subject parseSubject(String subject) throws ParseException {
+        requireNonNull(subject);
+        String trimmedSubject = subject.trim();
+        if (!Subject.isValidSubject(trimmedSubject)) {
+            throw new ParseException(Subject.MESSAGE_CONSTRAINTS);
+        }
+        return new Subject(trimmedSubject);
+    }
+
+    /**
+     * Parses {@code Collection<String> subjects} into a {@code Set<Subject>}.
+     */
+    public static Set<Subject> parseSubjects(Collection<String> subjects) throws ParseException {
+        requireNonNull(subjects);
+        final Set<Subject> subjectSet = new HashSet<>();
+        for (String subjectName : subjects) {
+            subjectSet.add(parseSubject(subjectName));
+        }
+        return subjectSet;
     }
 }

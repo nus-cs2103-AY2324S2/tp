@@ -6,6 +6,7 @@ import java.util.Set;
 
 import javafx.scene.layout.Region;
 import tutorpro.commons.util.CollectionUtil;
+import tutorpro.commons.util.ToStringBuilder;
 import tutorpro.model.person.Address;
 import tutorpro.model.person.Email;
 import tutorpro.model.person.Name;
@@ -38,6 +39,10 @@ public class Student extends Person {
         this.subjects.addAll(subjects);
     }
 
+    /**
+     * Creates a copy of the given Student.
+     * @return The level of the student.
+     */
     public Level getLevel() {
         return level;
     }
@@ -45,6 +50,7 @@ public class Student extends Person {
     /**
      * Returns an immutable subject set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
+     * @return The subjects of the student as an immutable set.
      */
     public Set<Subject> getSubjects() {
         return Collections.unmodifiableSet(subjects);
@@ -61,6 +67,19 @@ public class Student extends Person {
         }
         Student otherStudent = (Student) other;
         return level.equals(otherStudent.level) && subjects.equals(otherStudent.subjects);
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .add("name", super.getName())
+                .add("phone", super.getPhone())
+                .add("email", super.getEmail())
+                .add("address", super.getAddress())
+                .add("tags", super.getTags())
+                .add("level", level)
+                .add("subjects", subjects)
+                .toString();
     }
 
     /**

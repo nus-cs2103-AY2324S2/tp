@@ -22,10 +22,12 @@ import tutorpro.logic.commands.ListCommand;
 import tutorpro.logic.parser.exceptions.ParseException;
 import tutorpro.model.person.NameContainsKeywordsPredicate;
 import tutorpro.model.person.Person;
+import tutorpro.model.person.student.Student;
 import tutorpro.testutil.Assert;
 import tutorpro.testutil.EditPersonDescriptorBuilder;
 import tutorpro.testutil.PersonBuilder;
 import tutorpro.testutil.PersonUtil;
+import tutorpro.testutil.StudentBuilder;
 import tutorpro.testutil.TypicalIndexes;
 
 public class AddressBookParserTest {
@@ -34,7 +36,7 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        Person person = new PersonBuilder().build();
+        Student person = new StudentBuilder().build();
         AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
         assertEquals(new AddCommand(person), command);
     }
