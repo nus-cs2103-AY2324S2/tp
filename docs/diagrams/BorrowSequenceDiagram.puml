@@ -36,4 +36,40 @@ end ref
 PersonToEdit --> BorrowCommand
 deactivate PersonToEdit
 
+BorrowCommand -> MeritScore : decrementScore()
+activate MeritScore
+
+MeritScore --> BorrowCommand :
+deactivate MeritScore
+
+create BookList
+BorrowCommand -> BookList
+activate BookList
+
+create Book
+BookList -> Book
+activate Book
+
+Book --> BookList
+deactivate Book
+
+BookList --> BorrowCommand
+deactivate BookList
+
+create EditedPerson
+BorrowCommand -> EditedPerson
+activate EditedPerson
+
+EditedPerson --> BorrowCommand : editedPerson
+deactivate EditedPerson
+
+BorrowCommand -> Model : setPerson(personToEdit, editedPerson)
+activate Model
+
+Model -[hidden]-> BorrowCommand
+deactivate Model
+
+[<--BorrowCommand
+deactivate BorrowCommand
+
 @enduml
