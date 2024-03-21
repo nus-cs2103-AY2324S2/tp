@@ -12,6 +12,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.CompanyName;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Info;
 import seedu.address.model.person.InterviewTime;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
@@ -168,5 +169,14 @@ public class ParserUtil {
             throw new ParseException(Salary.MESSAGE_CONSTRAINTS);
         }
         return new Salary(trimmedSalary);
+    }
+
+    /**
+     * Parses a {@code String info} into an {@code Info}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static Info parseInfo(String info) {
+        String trimmedInfo = info.trim();
+        return new Info(trimmedInfo);
     }
 }

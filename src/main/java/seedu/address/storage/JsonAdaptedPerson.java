@@ -13,6 +13,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.CompanyName;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Info;
 import seedu.address.model.person.InterviewTime;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -34,6 +35,7 @@ class JsonAdaptedPerson {
     private final String address;
     private final String dateTime;
     private final String salary;
+    private final String info;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
     /**
@@ -45,7 +47,7 @@ class JsonAdaptedPerson {
             "phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("dateTime") String dateTime,
-            @JsonProperty("salary") String salary,
+            @JsonProperty("salary") String salary, @JsonProperty("info") String info,
             @JsonProperty("tags") List<JsonAdaptedTag> tags) {
         this.companyName = companyName;
         this.name = name;
@@ -54,6 +56,7 @@ class JsonAdaptedPerson {
         this.address = address;
         this.dateTime = dateTime;
         this.salary = salary;
+        this.info = info;
         if (tags != null) {
             this.tags.addAll(tags);
         }
@@ -70,6 +73,7 @@ class JsonAdaptedPerson {
         address = source.getAddress().value;
         dateTime = source.getDateTime().rawToString();
         salary = source.getSalary().toString();
+        info = source.getInfo().value;
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -142,9 +146,11 @@ class JsonAdaptedPerson {
         }
         final Salary modelSalary = new Salary(salary);
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelCompanyName, modelName, modelPhone, modelEmail, modelAddress, modelDateTime,
-                modelSalary, modelTags);
-    }
+        final Info modelInfo = new Info(info);
 
+        final Set<Tag> modelTags = new HashSet<>(personTags);
+
+        return new Person(modelCompanyName, modelName, modelPhone, modelEmail, modelAddress, modelDateTime,
+                modelSalary, modelInfo, modelTags);
+    }
 }

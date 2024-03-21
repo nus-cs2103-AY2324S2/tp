@@ -8,6 +8,7 @@
     "address" : "123, Jurong West Ave 6, #08-111",
     "dateTime" : "121220221400",
     "salary" : "0",
+    "info" : "Nil",
     "tags" : [ "friends" ]
   }, {
     "companyName": "Amazon",
@@ -17,6 +18,7 @@
     "address" : "311, Clementi Ave 2, #02-25",
     "dateTime" : "121220221400",
     "salary" : "0",
+    "info" : "Nil",
     "tags" : [ "owesMoney", "friends" ]
   }, {
     "companyName" : "Shopee",
@@ -26,6 +28,7 @@
     "address" : "wall street",
     "dateTime" : "121220221400",
     "salary" : "0",
+    "info" : "Nil",
     "tags" : [ ]
   }, {
     "companyName" : "Tiktok",
@@ -35,6 +38,7 @@
     "address" : "10th street",
     "dateTime" : "121220221400",
     "salary" : "0",
+    "info" : "Nil",
     "tags" : [ "friends" ]
   }, {
     "companyName" : "Shopback",
@@ -44,6 +48,7 @@
     "address" : "michegan ave",
     "dateTime" : "121220221400",
     "salary" : "0",
+    "info" : "Nil",
     "tags" : [ ]
   }, {
     "companyName" : "Apple",
@@ -53,6 +58,7 @@
     "address" : "little tokyo",
     "dateTime" : "121220221400",
     "salary" : "0",
+    "info" : "Nil",
     "tags" : [ ]
   }, {
     "companyName" : "Microsoft",
@@ -62,6 +68,7 @@
     "address" : "4th street",
     "dateTime" : "121220221400",
     "salary" : "0",
+    "info" : "Nil",
     "tags" : [ ]
   } ]
 }

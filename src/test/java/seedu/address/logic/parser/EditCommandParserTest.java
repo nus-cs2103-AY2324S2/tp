@@ -5,6 +5,8 @@ import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.INFO_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.INFO_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.INTERVIEWTIME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.INTERVIEWTIME_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
@@ -23,6 +25,7 @@ import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_INFO_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_INTERVIEWTIME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
@@ -32,6 +35,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INFO;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERVIEWTIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
@@ -90,7 +94,7 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_FORMAT);
 
         // invalid prefix being parsed as preamble
-        assertParseFailure(parser, "1 i/ string", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "1 k/ string", MESSAGE_INVALID_FORMAT);
     }
 
     @Test
@@ -118,7 +122,7 @@ public class EditCommandParserTest {
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC
-                        + VALID_ADDRESS_AMY + VALID_PHONE_AMY + INVALID_SALARY_DESC,
+                        + VALID_ADDRESS_AMY + VALID_PHONE_AMY + INVALID_SALARY_DESC + VALID_INFO_AMY,
                 Name.MESSAGE_CONSTRAINTS);
     }
 
@@ -186,6 +190,12 @@ public class EditCommandParserTest {
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assert(true);
 
+        // info
+        userInput = targetIndex.getOneBased() + INFO_DESC_AMY;
+        descriptor = new EditPersonDescriptorBuilder().withInfo(VALID_INFO_AMY).build();
+        expectedCommand = new EditCommand(targetIndex, descriptor);
+        assert(true);
+
         // tags
         userInput = targetIndex.getOneBased() + TAG_DESC_FRIEND;
         descriptor = new EditPersonDescriptorBuilder().withTags(VALID_TAG_FRIEND).build();
@@ -224,11 +234,12 @@ public class EditCommandParserTest {
                 + TAG_DESC_FRIEND + PHONE_DESC_AMY + ADDRESS_DESC_AMY
                 + EMAIL_DESC_AMY + SALARY_DESC_AMY + TAG_DESC_FRIEND
                 + PHONE_DESC_BOB + ADDRESS_DESC_BOB + EMAIL_DESC_BOB
-                + SALARY_DESC_BOB + TAG_DESC_HUSBAND;
+                + SALARY_DESC_BOB + TAG_DESC_HUSBAND + INFO_DESC_BOB
+                + INFO_DESC_AMY;
 
         assertParseFailure(parser, userInput,
                 Messages.getErrorMessageForDuplicatePrefixes(
-                        PREFIX_PHONE, PREFIX_SALARY, PREFIX_EMAIL, PREFIX_ADDRESS));
+                        PREFIX_PHONE, PREFIX_SALARY, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_INFO));
 
         // multiple invalid values
         userInput = targetIndex.getOneBased() + INVALID_PHONE_DESC + INVALID_ADDRESS_DESC + INVALID_EMAIL_DESC

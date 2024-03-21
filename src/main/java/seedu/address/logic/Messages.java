@@ -48,6 +48,7 @@ public class Messages {
                 .append("; Salary: ")
                 .append(person.getSalary())
                 .append("$")
+                .append(person.getInfo())
                 .append("; Tags: ");
         person.getTags().forEach(builder::append);
         return builder.toString();

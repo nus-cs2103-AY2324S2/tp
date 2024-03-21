@@ -25,15 +25,17 @@ public class Person {
     // Data fields
     private final Address address;
     private final Salary salary;
+    private final Info info;
     private final Set<Tag> tags = new HashSet<>();
     private final InterviewTime dateTime;
 
     /**
      * Every field must be present and not null.
      */
+
     public Person(
             CompanyName companyName, Name name, Phone phone, Email email, Address address,
-            InterviewTime dateTime, Salary salary, Set<Tag> tags) {
+            InterviewTime dateTime, Salary salary, Info info, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, salary, tags);
         this.companyName = companyName;
         this.name = name;
@@ -42,6 +44,7 @@ public class Person {
         this.address = address;
         this.dateTime = dateTime;
         this.salary = salary;
+        this.info = info;
         this.tags.addAll(tags);
     }
     public CompanyName getCompanyName() {
@@ -68,6 +71,9 @@ public class Person {
     }
     public Salary getSalary() {
         return salary;
+    }
+    public Info getInfo() {
+        return info;
     }
 
     /**
@@ -131,6 +137,7 @@ public class Person {
                 .add("address", address)
                 .add("interview-time", dateTime)
                 .add("salary", salary)
+                .add("info", info)
                 .add("tags", tags)
                 .toString();
     }

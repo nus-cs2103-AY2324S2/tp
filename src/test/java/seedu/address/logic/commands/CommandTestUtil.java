@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INFO;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERVIEWTIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -42,6 +43,8 @@ public class CommandTestUtil {
     public static final String VALID_INTERVIEWTIME_BOB = "111220221400";
     public static final String VALID_SALARY_AMY = "100";
     public static final String VALID_SALARY_BOB = "50";
+    public static final String VALID_INFO_AMY = "Uni Friend";
+    public static final String VALID_INFO_BOB = "Cousin";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
@@ -59,6 +62,8 @@ public class CommandTestUtil {
     public static final String INTERVIEWTIME_DESC_BOB = " " + PREFIX_INTERVIEWTIME + VALID_INTERVIEWTIME_BOB;
     public static final String SALARY_DESC_AMY = " " + PREFIX_SALARY + VALID_SALARY_AMY;
     public static final String SALARY_DESC_BOB = " " + PREFIX_SALARY + VALID_SALARY_BOB;
+    public static final String INFO_DESC_AMY = " " + PREFIX_INFO + VALID_INFO_AMY;
+    public static final String INFO_DESC_BOB = " " + PREFIX_INFO + VALID_INFO_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
@@ -89,6 +94,7 @@ public class CommandTestUtil {
                 .withAddress(VALID_ADDRESS_AMY)
                 .withInterviewTime(VALID_INTERVIEWTIME_AMY)
                 .withSalary(VALID_SALARY_AMY)
+                .withInfo(VALID_INFO_AMY)
                 .withTags(VALID_TAG_FRIEND).build();
         DESC_BOB = new EditPersonDescriptorBuilder()
                 .withCompanyName(VALID_COMPANY_NAME_BOB)
@@ -97,6 +103,7 @@ public class CommandTestUtil {
                 .withAddress(VALID_ADDRESS_BOB)
                 .withInterviewTime(VALID_INTERVIEWTIME_BOB)
                 .withSalary(VALID_SALARY_BOB)
+                .withInfo(VALID_INFO_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 

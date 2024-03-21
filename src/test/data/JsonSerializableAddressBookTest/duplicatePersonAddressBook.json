@@ -7,6 +7,7 @@
     "address": "123, Jurong West Ave 6, #08-111",
     "dateTime": "121220221400",
     "salary" : "0",
+    "info" : "Friend of boss",
     "tags": [ "friends" ]
   }, {
     "companyName": "Google",
@@ -15,6 +16,8 @@
     "email": "pauline@example.com",
     "address": "4th street",
     "dateTime": "121220221400",
-    "salary" : "0"
+    "salary" : "0",
+    "info" : "Friend of boss",
+    "tags": [ "friends" ]
   } ]
 }
