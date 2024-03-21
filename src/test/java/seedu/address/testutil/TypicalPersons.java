@@ -138,7 +138,7 @@ public class TypicalPersons {
     private TypicalPersons() {} // prevents instantiation
 
     private static String getNextUniqueId() {
-        return String.format("#%06d", uniqueIdCounter++);
+        return String.format("%06d", uniqueIdCounter++);
     }
 
     /**
