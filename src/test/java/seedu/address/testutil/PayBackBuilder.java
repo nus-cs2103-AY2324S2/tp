@@ -6,7 +6,7 @@ import seedu.address.model.person.Person;
 /**
  * A utility class to help with building PayBack objects.
  * Example usage: <br>
- *     {@code AddressBook ab = new AddressBookBuilder().withPerson("John", "Doe").build();}
+ *     {@code PayBack ab = new PayBackBuilder().withPerson("John", "Doe").build();}
  */
 public class PayBackBuilder {
 
@@ -21,7 +21,7 @@ public class PayBackBuilder {
     }
 
     /**
-     * Adds a new {@code Person} to the {@code AddressBook} that we are building.
+     * Adds a new {@code Person} to the {@code PayBack} that we are building.
      */
     public PayBackBuilder withPerson(Person person) {
         payBack.addPerson(person);

@@ -24,7 +24,7 @@ class JsonSerializablePayBack {
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given persons.
+     * Constructs a {@code JsonSerializablePayBack} with the given persons.
      */
     @JsonCreator
     public JsonSerializablePayBack(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
@@ -32,16 +32,16 @@ class JsonSerializablePayBack {
     }
 
     /**
-     * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
+     * Converts a given {@code ReadOnlyPayBack} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
+     * @param source future changes to this will not affect the created {@code JsonSerializablePayBack}.
      */
     public JsonSerializablePayBack(ReadOnlyPayBack source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
     }
 
     /**
-     * Converts this address book into the model's {@code AddressBook} object.
+     * Converts this address book into the model's {@code PayBack} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */

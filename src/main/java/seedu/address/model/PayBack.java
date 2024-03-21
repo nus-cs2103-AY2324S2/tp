@@ -32,7 +32,7 @@ public class PayBack implements ReadOnlyPayBack {
     public PayBack() {}
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates an PayBack using the Persons in the {@code toBeCopied}
      */
     public PayBack(ReadOnlyPayBack toBeCopied) {
         this();
@@ -50,7 +50,7 @@ public class PayBack implements ReadOnlyPayBack {
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code PayBack} with {@code newData}.
      */
     public void resetData(ReadOnlyPayBack newData) {
         requireNonNull(newData);
@@ -88,7 +88,7 @@ public class PayBack implements ReadOnlyPayBack {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
+     * Removes {@code key} from this {@code PayBack}.
      * {@code key} must exist in the address book.
      */
     public void removePerson(Person key) {

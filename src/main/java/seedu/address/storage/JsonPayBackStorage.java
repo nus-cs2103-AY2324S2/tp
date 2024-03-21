@@ -15,7 +15,7 @@ import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.ReadOnlyPayBack;
 
 /**
- * A class to access AddressBook data stored as a json file on the hard disk.
+ * A class to access PayBack data stored as a json file on the hard disk.
  */
 public class JsonPayBackStorage implements PayBackStorage {
 
@@ -45,14 +45,14 @@ public class JsonPayBackStorage implements PayBackStorage {
     public Optional<ReadOnlyPayBack> readPayBack(Path filePath) throws DataLoadingException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializablePayBack> jsonAddressBook = JsonUtil.readJsonFile(
+        Optional<JsonSerializablePayBack> jsonPayBack = JsonUtil.readJsonFile(
                 filePath, JsonSerializablePayBack.class);
-        if (!jsonAddressBook.isPresent()) {
+        if (!jsonPayBack.isPresent()) {
             return Optional.empty();
         }
 
         try {
-            return Optional.of(jsonAddressBook.get().toModelType());
+            return Optional.of(jsonPayBack.get().toModelType());
         } catch (IllegalValueException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataLoadingException(ive);

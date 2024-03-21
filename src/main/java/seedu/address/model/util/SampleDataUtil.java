@@ -16,7 +16,7 @@ import seedu.address.model.person.YearJoined;
 import seedu.address.model.tag.Tag;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code PayBack} with sample data.
  */
 public class SampleDataUtil {
     public static Person[] getSamplePersons() {
