@@ -125,8 +125,7 @@ class JsonAdaptedPerson {
         final Priority modelPriority = new Priority(priority);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-      
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, 
+        return new Person(modelName, modelPhone, modelEmail, modelAddress,
                           modelCompany, modelPriority, starred, modelTags);
     }
 }
