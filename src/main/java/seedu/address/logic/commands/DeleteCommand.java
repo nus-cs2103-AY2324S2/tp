@@ -58,6 +58,7 @@ public class DeleteCommand extends Command {
             return false;
         }
 
+
         DeleteCommand otherDeleteCommand = (DeleteCommand) other;
         return targetIndex.equals(otherDeleteCommand.targetIndex);
     }
