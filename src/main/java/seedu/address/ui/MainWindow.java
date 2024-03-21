@@ -127,7 +127,7 @@ public class MainWindow extends UiPart<Stage> {
         // By default, the person list panel is shown
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
-        loanListPanel = new LoanListPanel(logic.getLoanList());
+        loanListPanel = new LoanListPanel(logic.getLoanList(), logic.getFilteredPersonList());
 
         this.isLoansTab.addListener((observable, oldValue, newValue) -> {
             if (newValue) {

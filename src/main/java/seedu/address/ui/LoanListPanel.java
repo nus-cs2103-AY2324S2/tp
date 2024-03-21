@@ -9,6 +9,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Loan;
+import seedu.address.model.person.Person;
 
 /**
  * Panel containing the list of persons.
@@ -20,13 +21,18 @@ public class LoanListPanel extends UiPart<Region> {
     @FXML
     private ListView<Loan> loanListView;
 
+    @FXML
+    private ListView<Person> personListView;
+
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public LoanListPanel(ObservableList<Loan> loanList) {
+    public LoanListPanel(ObservableList<Loan> loanList, ObservableList<Person> personList) {
         super(FXML);
         loanListView.setItems(loanList);
         loanListView.setCellFactory(listView -> new LoanListViewCell());
+        personListView.setItems(personList);
+        personListView.setCellFactory(listView -> new PersonListViewCell());
     }
 
     /**
@@ -43,6 +49,20 @@ public class LoanListPanel extends UiPart<Region> {
                 setText(null);
             } else {
                 setGraphic(new LoanCard(loan, getIndex() + 1).getRoot());
+            }
+        }
+    }
+
+    class PersonListViewCell extends ListCell<Person> {
+        @Override
+        protected void updateItem(Person person, boolean empty) {
+            super.updateItem(person, empty);
+
+            if (empty || person == null) {
+                setGraphic(null);
+                setText(null);
+            } else {
+                setGraphic(new PersonCard(person, getIndex() + 1).getRoot());
             }
         }
     }

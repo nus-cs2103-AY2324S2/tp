@@ -16,6 +16,8 @@ public class LoanCard extends UiPart<Region> {
     private static final String DEFAULT_START_DATE_PREFIX = "Start Date: ";
     private static final String DEFAULT_END_DATE_PREFIX = "End Date: ";
 
+    private static final String DEFAULT_RETURNED_STATUS_PREFIX = "Returned: ";
+
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
      * As a consequence, UI elements' variable names cannot be set to such keywords
@@ -37,6 +39,9 @@ public class LoanCard extends UiPart<Region> {
     @FXML
     private Label endDate;
 
+    @FXML
+    private Label returned;
+
     /**
      * Creates a {@code LoanCard} with the given {@code Loan} and index to display.
      */
@@ -47,5 +52,6 @@ public class LoanCard extends UiPart<Region> {
         amount.setText(DEFAULT_AMOUNT_PREFIX + String.valueOf(loan.getValue()));
         startDate.setText(DEFAULT_START_DATE_PREFIX + loan.getStartDate().toString());
         endDate.setText(DEFAULT_END_DATE_PREFIX + loan.getReturnDate().toString());
+        returned.setText(DEFAULT_RETURNED_STATUS_PREFIX + (loan.isReturned() ? "Yes" : "No"));
     }
 }

@@ -40,6 +40,7 @@ public class ViewLoanCommand extends Command {
         }
 
         Person personToShowLoan = lastShownList.get(targetIndex.getZeroBased());
+        model.updateFilteredPersonList(person -> person.equals(personToShowLoan));
         LoanRecords loanRecords = personToShowLoan.getLoanRecords();
 
         // TODO model.updateLoanList or something
