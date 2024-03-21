@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.autocomplete.AutoComplete;
 import seedu.address.logic.autocomplete.AutoCompleteCommand;
 import seedu.address.logic.commands.AddPersonCommand;
 import seedu.address.logic.commands.ClearCommand;
@@ -77,7 +78,13 @@ public class LogicManager implements Logic {
 
     @Override
     public String autoComplete(String commandText) {
-        return addressBookParser.parseAutoComplete(commandText);
+        AutoComplete ac = addressBookParser.parseAutoComplete(commandText);
+
+        if (ac == null) {
+            return "";
+        }
+
+        return ac.getAutoComplete(commandText);
     }
 
     /**

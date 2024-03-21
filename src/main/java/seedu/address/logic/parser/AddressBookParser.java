@@ -99,11 +99,11 @@ public class AddressBookParser {
     /**
      * Parses the full input text and dispatches the appropriate autocomplete.
      */
-    public String parseAutoComplete(String userInput) {
+    public AutoComplete parseAutoComplete(String userInput) {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
             logger.finer("Unable to parse user input for autocomplete: " + userInput);
-            return "";
+            return null;
         }
 
         final String commandWord = matcher.group("commandWord");
@@ -111,10 +111,9 @@ public class AddressBookParser {
 
         // no arguments, return autocomplete for command word
         if (arguments.isEmpty()) {
-            AutoComplete autoComplete = new AutoCompleteCommand();
-            return autoComplete.getAutoComplete(commandWord);
+            return new AutoCompleteCommand();
         }
 
-        return "";
+        return null;
     }
 }
