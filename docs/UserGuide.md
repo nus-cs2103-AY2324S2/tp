@@ -294,5 +294,5 @@ _Details coming soon ..._
 | **Find**      | `find KEYWORD/ [KEYWORD]`<br> e.g., `find n/ James n/ T t/ friend t/ rich`                                                                                                                      |
 | **Add Order** | `addorder INDEX d/DATE r/REMARK`<br> e.g., `addorder 1 d/ 2020-01-01 r/ 100 chicken wings`                                                                                                      |
 | **Add Favourite** | `addfav [i/INDICES]`                                                                                                                                                                            |
-| **List**      | `list`                                                                                                                                                                                          |
-| **Help**      | `help`
+| **List**      | `list`        
+| **Help**      | `help`      

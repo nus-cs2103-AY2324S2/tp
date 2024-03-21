@@ -43,6 +43,9 @@
 !define STORAGE_COLOR_T3 #806600
 !define STORAGE_COLOR_T2 #544400
 
+!define BOOK_COLOR #B42DDA
+!define BOOK_COLOR_T1 #B49DDD
+
 !define USER_COLOR #000000
 
 skinparam Package {
