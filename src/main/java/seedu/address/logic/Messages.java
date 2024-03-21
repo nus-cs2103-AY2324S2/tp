@@ -17,6 +17,9 @@ public class Messages {
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid";
     public static final String MESSAGE_DATE_NOT_FOUND = "The entered date is not found";
+    public static final String MESSAGE_NO_PERSON_IN_THE_CLASS = "Currently no one in the class";
+    public static final String MESSAGE_DUPLICATE_DATE_ATTENDANCE = "The entered date already exists in the "
+            + "Attendance Record";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
@@ -46,9 +49,7 @@ public class Messages {
                 .append("; Email: ")
                 .append(person.getEmail())
                 .append("; StudentId: ")
-                .append(person.getStudentId())
-                .append("; Attendances: ");
-        person.getAttendances().forEach(builder::append);
+                .append(person.getStudentId());
         return builder.toString();
     }
 
@@ -61,5 +62,6 @@ public class Messages {
 
         return builder.toString();
     }
+
 
 }

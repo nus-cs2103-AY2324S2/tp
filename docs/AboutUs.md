@@ -39,7 +39,7 @@ You can reach us at the email `E0957568@u.nus.edu`
 [[github](http://github.com/faaheem13)] [[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: 
+* Responsibilities:
 
 ### Tania Tan Shu Qi
 
