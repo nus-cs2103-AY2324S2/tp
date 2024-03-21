@@ -21,8 +21,8 @@ import seedu.address.logic.commands.FilterMedPriorityCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.StarCommand;
 import seedu.address.logic.commands.PriorityCommand;
+import seedu.address.logic.commands.StarCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
