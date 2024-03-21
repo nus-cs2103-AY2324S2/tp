@@ -40,15 +40,13 @@ public class Schedule {
     public Schedule(String schedName, LocalDateTime startTime,
                     LocalDateTime endTime) {
         requireNonNull(schedName);
-        checkArgument(isValidSchedName(schedName), MESSAGE_CONSTRAINTS);
+        //checkArgument(isValidSchedName(schedName), MESSAGE_CONSTRAINTS);
         checkArgument(isValidTiming(startTime, endTime));
         this.schedId = schedIdCounter++;
-
         this.schedName = schedName;
         this.startTime = startTime;
         this.endTime = endTime;
-        this.personList = new ArrayList<>();
-
+        this.personList = new ArrayList<Person>();
     }
 
     public String getSchedName() {
@@ -63,8 +61,25 @@ public class Schedule {
         return endTime;
     }
 
-    public ArrayList<Person> getParticipants() {
+    public void setPersonList(ArrayList<Person> newPersonList) {
+        personList = newPersonList;
+    }
+
+    public ArrayList<Person> getPersonList() {
         return personList;
+    }
+
+    public String getParticipantsName() {
+        StringBuilder participants = new StringBuilder();
+        for (Person person: personList) {
+            participants.append(person.getName());
+            participants.append(", ");
+        }
+        String res = participants.toString();
+        if (!res.isEmpty()) {
+            return res.substring(0, res.length() - 2);
+        }
+        return res;
     }
 
     /**
@@ -75,15 +90,15 @@ public class Schedule {
     public ArrayList<Person> addParticipants(ArrayList<Person> newParticipants) {
         ArrayList<Person> addedParticipants = new ArrayList<>();
         for (Person p: newParticipants) {
-            for (Person existingP: personList) {
-                if (p.isSamePerson(existingP)) {
-                    continue;
-                }
+            if (!personList.contains(p)) {
                 personList.add(p);
-                addedParticipants.add(p);
             }
         }
         return addedParticipants;
+    }
+
+    public void removePerson(Person p) {
+        personList.remove(p);
     }
 
     /**
@@ -98,6 +113,19 @@ public class Schedule {
      */
     public static boolean isValidTiming(LocalDateTime startTime, LocalDateTime endTime) {
         return startTime.isBefore(endTime);
+    }
+
+    /**
+     * Returns true if both persons have the same name.
+     * This defines a weaker notion of equality between two persons.
+     */
+    public boolean isSameSchedule(Schedule otherSchedule) {
+        if (otherSchedule == this) {
+            return true;
+        }
+
+        return otherSchedule != null
+                && otherSchedule.getSchedName().equals(getSchedName());
     }
 
     /**
@@ -134,7 +162,7 @@ public class Schedule {
         return schedName
                 + " start " + startTime.toString()
                 + " end " + endTime.toString()
-                + "people" + getParticipants().toString();
+                + " participants " + getParticipantsName();
     }
 
 }

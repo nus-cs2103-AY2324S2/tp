@@ -328,124 +328,149 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `Moddie` and the **Actor** is the `user`, unless specified otherwise)
 
-#### **Use case: Add a person**
+**Use case: UC01 - Add a contact**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to add a specific person in the list
-4.  AddressBook adds the person
+1.  User requests to add a contact to the address book.
+2.  AddressBook adds the contact.
 
     Use case ends.
 
 **Extensions**
 
-* 3a. The given information of person is invalid.
+* 1a. Format of the entered contact is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 1a1. AddressBook shows an error message: Values not accepted.
 
       Use case ends.
 
-#### **Use case: Delete a person**
+
+#### **Use case: UC02 - Delete a contact**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to delete a contact in the address book.
+2.  AddressBook deletes the contact.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The given index is invalid.
 
-  Use case ends.
+    * 1a1. AddressBook shows an error message: Contact not found in address book.
 
-* 3a. The given index is invalid.
+      Use case ends.
 
-    * 3a1. AddressBook shows an error message.
 
-      Use case resumes at step 2.
-
-#### **Use case: Edit contact of a person**
+**Use case: UC03 - Edit a contact**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to edit contact information of a specific person in the list
-4.  AddressBook edits contact information of the specific person as required by user
+1.  User requests to edit contact of a specific person in the address book.
+2.  AddressBook edits contact information of the specific person.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The given index is invalid.
 
-  Use case ends.
+    * 1a1. AddressBook shows an error message: Contact not found in address book.
 
-* 3a. The given index is invalid.
+      Use case ends.
 
-    * 3a1. AddressBook shows an error message.
+* 1b. Format of the entered new contact is invalid.
 
-      Use case resumes at step 2.
+    * 1b1. AddressBook shows an error message: Update values not accepted.
 
-* 3b. The given contact information is invalid.
+      Use case ends.
 
-    * 3b1. AddressBook shows an error message.
 
-      Use case resumes at step 2.
-
-#### **Use case: List all contacts**
+**Use case: UC04 - List all contacts**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
+1.  User requests to list contacts in the address book.
+2.  AddressBook shows the list of all contacts.
+
+    Use case ends.
+
+
+**Use case: UC05 - Find contacts of a specific person**
+
+**MSS**
+
+1.  User requests to find a person with the enetred keyword in name.
+2.  AddressBook shows founded persons.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The entered keyword is invalid.
 
-  Use case ends.
+    * 1a1. AddressBook shows an error message: Values not accepted.
 
-#### **Use case: Find contacts of a specific person**
+    Use case ends.
+
+* 2a. There is no matched result
+
+    * 2a1. AddressBook shows a message: Contacts not found.
+
+    Use case ends.
+
+
+**Use case: UC06 - Help**
 
 **MSS**
 
-1.  User requests to find a person
-2.  AddressBook shows persons with the keyword
+1.  User requests to read guidance.
+2.  AddressBook shows guidance page.
+
+    Use case ends.
+
+
+**Use case: UC07 - Exit**
+
+**MSS**
+
+1.  User requests to exit the programme.
+2.  AddressBook exits.
+
+    Use case ends.
+
+
+**Use case: UC08 - Add schedule**
+
+**MSS**
+
+1.  User requests to add an event with contact from specified date with time.
+2.  AddressBook adds the event to the specific contact.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. There is no matching result
+* 1a. The entered date format is invalid
 
-  AddressBook shows a message of no person found in contact list.
+    * 1a1. AddressBook shows an error message: Date format is wrong!
 
-#### **Use case: Find contacts of a specific person**
+      Use case ends.
 
-**MSS**
+* 1b. The entered time format is invalid
 
-1.  User requests to find a person
-2.  AddressBook shows persons with the keyword
+    * 1b1. AddressBook shows a message: Time format is wrong!
 
-    Use case ends.
+      Use case ends.
 
-**Extensions**
+* 1c. The entered index is invalid
 
-* 2a. There is no matching result
+    * 1c1. AddressBook shows a message: Contact not found in address book.
 
-  AddressBook shows a message of no person found in contact list.
+      Use case ends.
 
-
-*{More to be added}*
 
 ### Non-Functional Requirements
 

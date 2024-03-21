@@ -53,7 +53,7 @@ public class ParserUtil {
      */
     public static ArrayList<Index> parseIndexArrayList(String oneBasedIndex) throws ParseException {
         String trimmedIndexes = oneBasedIndex.trim();
-        String[] indexArray = trimmedIndexes.split(",");
+        String[] indexArray = trimmedIndexes.split(", ");
         ArrayList<Index> indexArrayList = new ArrayList<>();
 
         for (String index : indexArray) {
