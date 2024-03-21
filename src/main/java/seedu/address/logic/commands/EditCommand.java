@@ -142,7 +142,7 @@ public class EditCommand extends Command {
         private Address address;
         private Set<Tag> tags;
 
-        private List<ModuleCode> modules;
+        private List<ModuleCode> modules = new ArrayList<>();
 
         public EditStudentDescriptor() {}
 
@@ -159,7 +159,7 @@ public class EditCommand extends Command {
             setModules(toCopy.modules);
         }
 
-        private void setModules(List<ModuleCode> modules) {
+        public void setModules(List<ModuleCode> modules) {
             this.modules = new ArrayList<>(modules);
         }
 
@@ -239,7 +239,8 @@ public class EditCommand extends Command {
                     && Objects.equals(phone, otherEditStudentDescriptor.phone)
                     && Objects.equals(email, otherEditStudentDescriptor.email)
                     && Objects.equals(address, otherEditStudentDescriptor.address)
-                    && Objects.equals(tags, otherEditStudentDescriptor.tags);
+                    && Objects.equals(tags, otherEditStudentDescriptor.tags)
+                    && Objects.equals(modules, otherEditStudentDescriptor.modules);
         }
 
         @Override

@@ -37,6 +37,7 @@ public class EditStudentDescriptorBuilder {
         descriptor.setEmail(student.getEmail());
         descriptor.setAddress(student.getAddress());
         descriptor.setTags(student.getTags());
+        descriptor.setModules(student.getModules());
     }
 
     /**
