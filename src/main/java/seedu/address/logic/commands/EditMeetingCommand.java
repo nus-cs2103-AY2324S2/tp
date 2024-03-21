@@ -1,7 +1,10 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CLIENT_INDEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_INDEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.time.LocalDateTime;
@@ -16,9 +19,7 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.meeting.Description;
 import seedu.address.model.meeting.Meeting;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 
 /**
@@ -36,13 +37,11 @@ public class EditMeetingCommand extends Command {
             + "[" + PREFIX_MEETING_INDEX + "MEETING INDEX] "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_DATETIME + "DATETIME] \n"
-            //+ "[" + PREFIX_CLIENT + "CLIENT] \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_CLIENT_INDEX + "1 "
             + PREFIX_MEETING_INDEX + "2 "
             + PREFIX_NAME + "starbucks meeting "
             + PREFIX_DATETIME + "01-01-2024 12:00 ";
-            //+ PREFIX_CLIENT + "johndoe@example.com";
 
     public static final String MESSAGE_EDIT_MEETING_SUCCESS = "Edited Meeting: %1$s";
     public static final String MEETING_NOT_EDITED = "At least one field to edit must be provided.";
