@@ -22,7 +22,6 @@ import static seedu.address.testutil.TypicalAppointments.BOB_APPT;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.date.Date;
-import seedu.address.logic.commands.CancelAppCommand;
 import seedu.address.logic.commands.MarkCommand;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.TimePeriod;

@@ -12,6 +12,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_BOB;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAppointments.ALICE_APPT;
 import static seedu.address.testutil.TypicalAppointments.ALICE_APPT_1;
+import static seedu.address.testutil.TypicalAppointments.ALICE_APPT_TRUE;
 
 import org.junit.jupiter.api.Test;
 
@@ -97,8 +98,7 @@ public class AppointmentTest {
         assertFalse(ALICE_APPT.equals(editedAliceAppt));
 
         // different mark -> returns false
-        editedAliceAppt = new AppointmentBuilder(ALICE_APPT).withMark("true").build();
-        assertFalse(ALICE_APPT.equals(editedAliceAppt));
+        assertFalse(ALICE_APPT.equals(ALICE_APPT_TRUE));
     }
 
     @Test

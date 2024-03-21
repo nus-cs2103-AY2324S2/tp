@@ -17,12 +17,12 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 
 public class MarkCommandTest {
+    private Model model = new ModelManager(getTypicalAddressBookWithAppointments(), new UserPrefs());
+
     @Test
     public void constructor_nullAppointment_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new MarkCommand(null, null, null));
     }
-
-    private Model model = new ModelManager(getTypicalAddressBookWithAppointments(), new UserPrefs());
 
     @Test
     public void execute_mark_success() {
@@ -89,6 +89,5 @@ public class MarkCommandTest {
                 + "timePeriod=" + ALICE_APPT.getTimePeriod() + "}";
         assertEquals(expected, markCommand.toString());
     }
-    
 
 }
