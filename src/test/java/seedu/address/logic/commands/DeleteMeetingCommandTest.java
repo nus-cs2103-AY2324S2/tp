@@ -48,7 +48,7 @@ public class DeleteMeetingCommandTest {
         DeleteMeetingCommand deleteMeetingCommand = new DeleteMeetingCommand(testClientIndex,
                 testMeetingIndex);
 
-        String expectedMessage = "Meeting 3 deleted successfully ";
+        String expectedMessage = "Meeting 2 deleted successfully ";
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         assertCommandSuccess(deleteMeetingCommand, model, expectedMessage, expectedModel);
@@ -81,7 +81,7 @@ public class DeleteMeetingCommandTest {
                 JAMAL_WITH_MEETING.getMeetings().size()).getOneBased());
         DeleteMeetingCommand deleteMeetingCommand = new DeleteMeetingCommand(testClientIndex, testMeetingIndex);
         System.out.println(JAMAL_WITH_MEETING.getMeetings());
-        String expectedMessage = "Error: Meeting 4 not found";
+        String expectedMessage = "Error: Meeting 3 not found";
         assertCommandFailure(deleteMeetingCommand, model, expectedMessage);
         model.deletePerson(JAMAL_WITH_MEETING);
     }

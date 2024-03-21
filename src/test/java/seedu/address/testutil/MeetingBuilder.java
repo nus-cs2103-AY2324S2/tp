@@ -78,7 +78,6 @@ public class MeetingBuilder {
      */
     public Person build() {
         Meeting meeting = new Meeting(description, dateTime, client);
-        client.addMeeting(meeting);
         return client;
     }
 }
