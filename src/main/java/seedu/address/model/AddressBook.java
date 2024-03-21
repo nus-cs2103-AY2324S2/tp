@@ -4,10 +4,12 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.person.note.Note;
 
 /**
  * Wraps all data at the address-book level
@@ -16,6 +18,7 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    private final ObservableList<Note> notes = FXCollections.observableArrayList();
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -31,7 +34,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public AddressBook() {}
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates an AddressBook using the Persons and Notes in the {@code toBeCopied}
      */
     public AddressBook(ReadOnlyAddressBook toBeCopied) {
         this();
@@ -39,7 +42,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     //// list overwrite operations
-
     /**
      * Replaces the contents of the person list with {@code persons}.
      * {@code persons} must not contain duplicate persons.
@@ -55,12 +57,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
+        updateNoteList();
     }
 
     //// person-level operations
-
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a person with the same identity as {@code person} exists in the addrgetNoteListess book.
      */
     public boolean hasPerson(Person person) {
         requireNonNull(person);
@@ -92,6 +94,25 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removePerson(Person key) {
         persons.remove(key);
+        updateNoteList();
+    }
+
+    //// note-level operations
+    /**
+     * Updates and reloads appointment note lists for the {@code AddressBook}
+     */
+    public void updateNoteList() {
+        notes.clear();
+        for (Person person : getPersonList()) {
+            notes.addAll(person.getNotes());
+        }
+    }
+
+    /**
+     * Adds a note to the address book.
+     */
+    public void addNote(Note n) {
+        notes.add(n);
     }
 
     //// util methods
@@ -106,6 +127,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Person> getPersonList() {
         return persons.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Note> getNoteList() {
+        return notes;
     }
 
     @Override
