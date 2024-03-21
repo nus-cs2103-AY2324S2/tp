@@ -3,9 +3,9 @@ package seedu.address.storage;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.Optional;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -13,6 +13,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Meeting;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -32,6 +33,7 @@ class JsonAdaptedPerson {
     private final String email;
     private final String address;
     private final String policyName;
+    private final String meeting;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
     /**
@@ -39,13 +41,14 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address, @JsonProperty("policyName") String policyName,
-            @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+                             @JsonProperty("email") String email, @JsonProperty("address") String address,
+                             @JsonProperty("meeting") String meeting, @JsonProperty("policyName") String policyName, @JsonProperty("tags") List<JsonAdaptedTag> tags) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.policyName = policyName;
+        this.meeting = meeting;
         if (tags != null) {
             this.tags.addAll(tags);
         }
@@ -57,15 +60,9 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(Person source) {
         name = source.getName().fullName;
         phone = source.getPhone().value;
-
-        // Handle Optional<Email>
-        Optional<Email> optionalEmail = source.getEmail();
-        email = optionalEmail.isPresent() ? optionalEmail.get().value : null;
-
-        // Handle Optional<Address>
-        Optional<Address> optionalAddress = source.getAddress();
-        address = optionalAddress.isPresent() ? optionalAddress.get().value : null;
-
+        email = source.getEmail().value;
+        address = source.getAddress().value;
+        meeting = source.getMeeting().value;
         // Handle Optional<PolicyName>
         Optional<PolicyName> optionalPolicyName = source.getPolicyName();
         policyName = optionalPolicyName.isPresent() ? optionalPolicyName.get().value : null;
@@ -74,7 +71,6 @@ class JsonAdaptedPerson {
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
     }
-
 
     /**
      * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
@@ -119,14 +115,21 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
+        if (meeting == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Meeting.class.getSimpleName()));
+        }
+        if (!Meeting.isValidMeeting(meeting)) {
+            throw new IllegalValueException(Meeting.MESSAGE_CONSTRAINTS);
+        }
+        final Meeting modelMeeting = new Meeting(meeting);
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
-
-
         if (policyName == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, PolicyName.class.getSimpleName()));
         }
         final PolicyName modelPolicyName = new PolicyName(policyName);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelPolicyName, modelTags);
+
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelMeeting, modelPolicyName, modelTags);
     }
 
 }

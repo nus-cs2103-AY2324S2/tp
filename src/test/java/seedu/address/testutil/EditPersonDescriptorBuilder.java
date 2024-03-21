@@ -1,6 +1,5 @@
 package seedu.address.testutil;
 
-import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -8,6 +7,7 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Meeting;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -35,15 +35,9 @@ public class EditPersonDescriptorBuilder {
         descriptor = new EditPersonDescriptor();
         descriptor.setName(person.getName());
         descriptor.setPhone(person.getPhone());
-
-        // Handle Optional<Email>
-        Optional<Email> optionalEmail = person.getEmail();
-        descriptor.setEmail(optionalEmail.isPresent() ? optionalEmail.get() : null);
-
-        // Handle Optional<Address>
-        Optional<Address> optionalAddress = person.getAddress();
-        descriptor.setAddress(optionalAddress.isPresent() ? optionalAddress.get() : null);
-
+        descriptor.setEmail(person.getEmail());
+        descriptor.setAddress(person.getAddress());
+        descriptor.setMeeting(person.getMeeting());
         descriptor.setTags(person.getTags());
     }
 
@@ -77,6 +71,14 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withAddress(String address) {
         descriptor.setAddress(new Address(address));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Meeting} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withMeeting(String meeting) {
+        descriptor.setMeeting(new Meeting(meeting));
         return this;
     }
 

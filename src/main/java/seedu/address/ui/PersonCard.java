@@ -8,8 +8,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.PolicyName;
 
@@ -57,14 +55,8 @@ public class PersonCard extends UiPart<Region> {
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
 
-        // Handle Optional<Address>
-        Optional<Address> optionalAddress = person.getAddress();
-        address.setText(optionalAddress.isPresent() ? optionalAddress.get().value : "");
-
-        // Handle Optional<Email>
-        Optional<Email> optionalEmail = person.getEmail();
-        email.setText(optionalEmail.isPresent() ? optionalEmail.get().value : "");
-
+        address.setText(person.getAddress().value);
+        email.setText(person.getEmail().value);
 
         Optional<PolicyName> optionalPolicyName = person.getPolicyName();
         policyName.setText(optionalPolicyName.isPresent() ? optionalPolicyName.get().value : "");
@@ -73,5 +65,4 @@ public class PersonCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
-
 }

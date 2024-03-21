@@ -102,6 +102,21 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String meeting} into an {@code Meeting}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code meeting} is invalid.
+     */
+    public static Meeting parseMeeting(String meeting) throws ParseException {
+        requireNonNull(meeting);
+        String trimmedMeeting = meeting.trim();
+        if (!Meeting.isValidMeeting(trimmedMeeting)) {
+            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+        }
+        return new Meeting(trimmedMeeting);
+    }
+
+    /**
      * Parses a {@code String tag} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
      *
