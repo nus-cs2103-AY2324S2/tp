@@ -1,7 +1,7 @@
 package seedu.address.storage;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.HOON;
@@ -69,20 +69,20 @@ public class JsonNetConnectStorageTest {
         // Save in new file and read back
         jsonNetConnectStorage.saveNetConnect(original, filePath);
         ReadOnlyNetConnect readBack = jsonNetConnectStorage.readNetConnect(filePath).get();
-        assertTrue(original.equals(new NetConnect(readBack)));
+        assertEquals(original, new NetConnect(readBack));
 
         // Modify data, overwrite exiting file, and read back
         original.addPerson(HOON);
         original.removePerson(ALICE);
         jsonNetConnectStorage.saveNetConnect(original, filePath);
         readBack = jsonNetConnectStorage.readNetConnect(filePath).get();
-        assertTrue(original.equals(new NetConnect(readBack)));
+        assertEquals(original, new NetConnect(readBack));
 
         // Save and read without specifying file path
         original.addPerson(IDA);
         jsonNetConnectStorage.saveNetConnect(original); // file path not specified
         readBack = jsonNetConnectStorage.readNetConnect().get(); // file path not specified
-        assertTrue(original.equals(new NetConnect(readBack)));
+        assertEquals(original, new NetConnect(readBack));
 
     }
 

@@ -1,5 +1,6 @@
 package seedu.address.model.person;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
@@ -54,7 +55,7 @@ public class PersonTest {
     @Test
     public void hasSameId() {
         // same object -> returns true
-        assertTrue(ALICE.hasSameId(ALICE));
+        assertEquals(ALICE, ALICE);
 
         // null -> returns false
         assertFalse(ALICE.hasSameId(null));
@@ -113,6 +114,6 @@ public class PersonTest {
         String expected = Person.class.getCanonicalName() + "{id=" + ALICE.getId() + ", name=" + ALICE.getName()
                 + ", phone=" + ALICE.getPhone() + ", email=" + ALICE.getEmail() + ", address=" + ALICE.getAddress()
                 + ", tags=" + ALICE.getTags() + "}";
-        assertTrue(expected.equals(ALICE.toString()));
+        assertEquals(expected, ALICE.toString());
     }
 }

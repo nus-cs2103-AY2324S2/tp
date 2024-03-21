@@ -76,7 +76,7 @@ public class FindNumCommandTest {
         FindNumCommand command = new FindNumCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertTrue(model.getFilteredPersonList().equals(Arrays.asList(ALICE, ELLE, GEORGE)));
+        assertEquals(Arrays.asList(ALICE, ELLE, GEORGE), model.getFilteredPersonList());
     }
 
     @Test
@@ -84,7 +84,7 @@ public class FindNumCommandTest {
         PhoneContainsDigitsPredicate predicate = new PhoneContainsDigitsPredicate(List.of("keyword"));
         FindNumCommand findNumCommand = new FindNumCommand(predicate);
         String expected = FindNumCommand.class.getCanonicalName() + "{predicate=" + predicate + "}";
-        assertTrue(expected.equals(findNumCommand.toString()));
+        assertEquals(expected, findNumCommand.toString());
     }
 
     /**

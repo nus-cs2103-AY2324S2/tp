@@ -1,6 +1,6 @@
 package seedu.address.storage;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
@@ -27,7 +27,7 @@ public class JsonSerializableNetConnectTest {
                 JsonSerializableNetConnect.class).get();
         NetConnect netConnectFromFile = dataFromFile.toModelType();
         NetConnect typicalPersonsNetConnect = TypicalPersons.getTypicalNetConnect();
-        assertTrue(netConnectFromFile.equals(typicalPersonsNetConnect));
+        assertEquals(netConnectFromFile, typicalPersonsNetConnect);
     }
 
     @Test

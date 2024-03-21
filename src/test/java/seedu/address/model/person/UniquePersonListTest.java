@@ -1,5 +1,6 @@
 package seedu.address.model.person;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
@@ -77,7 +78,7 @@ public class UniquePersonListTest {
     @Test
     public void getPersonById_idInList_returnsPerson() {
         uniquePersonList.add(ALICE);
-        assertTrue(ALICE.equals(uniquePersonList.getPersonById(ALICE.getId())));
+        assertEquals(ALICE, uniquePersonList.getPersonById(ALICE.getId()));
     }
 
     @Test
@@ -119,7 +120,7 @@ public class UniquePersonListTest {
         uniquePersonList.setPerson(ALICE, ALICE);
         UniquePersonList expectedUniquePersonList = new UniquePersonList();
         expectedUniquePersonList.add(ALICE);
-        assertTrue(expectedUniquePersonList.equals(uniquePersonList));
+        assertEquals(expectedUniquePersonList, uniquePersonList);
     }
 
     @Test
@@ -130,7 +131,7 @@ public class UniquePersonListTest {
         uniquePersonList.setPerson(ALICE, editedAlice);
         UniquePersonList expectedUniquePersonList = new UniquePersonList();
         expectedUniquePersonList.add(editedAlice);
-        assertTrue(expectedUniquePersonList.equals(uniquePersonList));
+        assertEquals(expectedUniquePersonList, uniquePersonList);
     }
 
     @Test
@@ -139,7 +140,7 @@ public class UniquePersonListTest {
         uniquePersonList.setPerson(ALICE, BOB);
         UniquePersonList expectedUniquePersonList = new UniquePersonList();
         expectedUniquePersonList.add(BOB);
-        assertTrue(expectedUniquePersonList.equals(uniquePersonList));
+        assertEquals(expectedUniquePersonList, uniquePersonList);
     }
 
     @Test
@@ -172,7 +173,7 @@ public class UniquePersonListTest {
         uniquePersonList.add(ALICE);
         uniquePersonList.remove(ALICE);
         UniquePersonList expectedUniquePersonList = new UniquePersonList();
-        assertTrue(expectedUniquePersonList.equals(uniquePersonList));
+        assertEquals(expectedUniquePersonList, uniquePersonList));
     }
 
     @Test
@@ -186,7 +187,7 @@ public class UniquePersonListTest {
         UniquePersonList expectedUniquePersonList = new UniquePersonList();
         expectedUniquePersonList.add(BOB);
         uniquePersonList.setPersons(expectedUniquePersonList);
-        assertTrue(expectedUniquePersonList.equals(uniquePersonList));
+        assertEquals(expectedUniquePersonList, uniquePersonList));
     }
 
     @Test
@@ -201,7 +202,7 @@ public class UniquePersonListTest {
         uniquePersonList.setPersons(personList);
         UniquePersonList expectedUniquePersonList = new UniquePersonList();
         expectedUniquePersonList.add(BOB);
-        assertTrue(expectedUniquePersonList.equals(uniquePersonList));
+        assertEquals(expectedUniquePersonList, uniquePersonList);
     }
 
     @Test
@@ -225,6 +226,6 @@ public class UniquePersonListTest {
 
     @Test
     public void toStringMethod() {
-        assertTrue(uniquePersonList.asUnmodifiableObservableList().toString().equals(uniquePersonList.toString()));
+        assertEquals(uniquePersonList.asUnmodifiableObservableList().toString(), uniquePersonList.toString());
     }
 }

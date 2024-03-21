@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -113,7 +114,7 @@ public class DeleteCommandTest {
         Id targetId = ID_FIRST_PERSON;
         DeleteCommand deleteCommand = new DeleteCommand(targetId);
         String expected = DeleteCommand.class.getCanonicalName() + "{targetId=" + targetId + "}";
-        assertTrue(expected.equals(deleteCommand.toString()));
+        assertEquals(expected, deleteCommand.toString());
     }
 
     /**

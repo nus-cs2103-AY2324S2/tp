@@ -41,7 +41,7 @@ public class NetConnectTest {
     public void resetData_withValidReadOnlyNetConnect_replacesData() {
         NetConnect newData = getTypicalNetConnect();
         netConnect.resetData(newData);
-        assertTrue(newData.equals(netConnect));
+        assertEquals(newData, netConnect);
     }
 
     @Test

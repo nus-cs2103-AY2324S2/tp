@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
@@ -62,7 +63,7 @@ public class FindCommandTest {
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertTrue(model.getFilteredPersonList().equals(Collections.emptyList()));
+        assertEquals(model.getFilteredPersonList(), Collections.emptyList());
     }
 
     @Test
@@ -72,7 +73,7 @@ public class FindCommandTest {
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertTrue(model.getFilteredPersonList().equals(Arrays.asList(CARL, ELLE, FIONA)));
+        assertEquals(model.getFilteredPersonList(), Arrays.asList(CARL, ELLE, FIONA));
     }
 
     @Test
@@ -80,7 +81,7 @@ public class FindCommandTest {
         NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(List.of("keyword"));
         FindCommand findCommand = new FindCommand(predicate);
         String expected = FindCommand.class.getCanonicalName() + "{predicate=" + predicate + "}";
-        assertTrue(expected.equals(findCommand.toString()));
+        assertEquals(expected, findCommand.toString());
     }
 
     /**

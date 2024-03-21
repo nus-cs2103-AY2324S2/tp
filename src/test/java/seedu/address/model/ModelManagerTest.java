@@ -1,5 +1,6 @@
 package seedu.address.model;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
@@ -25,9 +26,9 @@ public class ModelManagerTest {
 
     @Test
     public void constructor() {
-        assertTrue(new UserPrefs().equals(modelManager.getUserPrefs()));
-        assertTrue(new GuiSettings().equals(modelManager.getGuiSettings()));
-        assertTrue(new NetConnect().equals(new NetConnect(modelManager.getNetConnect())));
+        assertEquals(new UserPrefs(), modelManager.getUserPrefs());
+        assertEquals(new GuiSettings(), modelManager.getGuiSettings());
+        assertEquals(new NetConnect(), new NetConnect(modelManager.getNetConnect()));
     }
 
     @Test
@@ -41,12 +42,12 @@ public class ModelManagerTest {
         userPrefs.setNetConnectFilePath(Paths.get("address/book/file/path"));
         userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4));
         modelManager.setUserPrefs(userPrefs);
-        assertTrue(userPrefs.equals(modelManager.getUserPrefs()));
+        assertEquals(userPrefs, modelManager.getUserPrefs());
 
         // Modifying userPrefs should not modify modelManager's userPrefs
         UserPrefs oldUserPrefs = new UserPrefs(userPrefs);
         userPrefs.setNetConnectFilePath(Paths.get("new/address/book/file/path"));
-        assertTrue(oldUserPrefs.equals(modelManager.getUserPrefs()));
+        assertEquals(oldUserPrefs, modelManager.getUserPrefs());
     }
 
     @Test
@@ -58,7 +59,7 @@ public class ModelManagerTest {
     public void setGuiSettings_validGuiSettings_setsGuiSettings() {
         GuiSettings guiSettings = new GuiSettings(1, 2, 3, 4);
         modelManager.setGuiSettings(guiSettings);
-        assertTrue(guiSettings.equals(modelManager.getGuiSettings()));
+        assertEquals(guiSettings, modelManager.getGuiSettings());
     }
 
     @Test
@@ -70,8 +71,9 @@ public class ModelManagerTest {
     public void setNetConnectFilePath_validPath_setsNetConnectFilePath() {
         Path path = Paths.get("address/book/file/path");
         modelManager.setNetConnectFilePath(path);
-        assertTrue(modelManager.getNetConnectFilePath().equals(path));
+        assertEquals(path, modelManager.getNetConnectFilePath());
     }
+
 
     @Test
     public void hasPerson_nullPerson_throwsNullPointerException() {
@@ -118,7 +120,7 @@ public class ModelManagerTest {
     @Test
     public void getPersonById_idInNetConnect_returnsPerson() {
         modelManager.addPerson(ALICE);
-        assertTrue(ALICE.equals(modelManager.getPersonById(ALICE.getId())));
+        assertEquals(ALICE, modelManager.getPersonById(ALICE.getId()));
     }
 
     @Test

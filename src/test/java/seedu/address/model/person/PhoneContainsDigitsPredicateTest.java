@@ -73,6 +73,6 @@ public class PhoneContainsDigitsPredicateTest {
         PhoneContainsDigitsPredicate predicate = new PhoneContainsDigitsPredicate(phones);
 
         String expected = PhoneContainsDigitsPredicate.class.getCanonicalName() + "{phones=" + phones + "}";
-        assertTrue(expected.equals(predicate.toString()));
+        assertEquals(expected, predicate.toString());
     }
 }

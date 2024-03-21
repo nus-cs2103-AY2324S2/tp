@@ -1,5 +1,6 @@
 package seedu.address.logic;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_PERSON_ID;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
@@ -97,8 +98,8 @@ public class LogicManagerTest {
     private void assertCommandSuccess(String inputCommand, String expectedMessage,
             Model expectedModel) throws CommandException, ParseException {
         CommandResult result = logic.execute(inputCommand);
-        assertTrue(result.getFeedbackToUser().equals(expectedMessage));
-        assertTrue(model.equals(expectedModel));
+        assertEquals(result.getFeedbackToUser(), expectedMessage);
+        assertEquals(model, expectedModel);
     }
 
     /**
@@ -137,7 +138,7 @@ public class LogicManagerTest {
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage, Model expectedModel) {
         assertThrows(expectedException, expectedMessage, () -> logic.execute(inputCommand));
-        assertTrue(model.equals(expectedModel));
+        assertEquals(model, expectedModel);
     }
 
     /**
