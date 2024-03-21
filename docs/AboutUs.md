@@ -15,7 +15,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](https://github.com/cyqjoseph)]
 
-* Role: Developer 
+* Role: DevOps
 
 ### Wang Minhong
 
