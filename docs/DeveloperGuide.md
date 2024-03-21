@@ -257,6 +257,15 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### Add command
+
+The `add` command allows users to create and add a new contact to the list.
+
+Its process largely follows from the previous address book implementation, but with slight modifications for GourmetGrid's unique functions.
+Below is the sequence diagram modelling the process of running an `add` command:
+
+
+
 ---
 
 ## **Documentation, logging, testing, configuration, dev-ops**
