@@ -6,7 +6,7 @@
 
 # AssetBook-3 User Guide
 
-AssetBook-3 is a desktop application for logistics managers to keep track point-of-contacts' (POCs) contact information, along with their relevant assets. It is meant for those who have too many POCs and assets, and wish to easily retrieve contact details based on name and/or asset.
+AssetBook-3 is a desktop application for logistics managers to keep track of contacts, along with assets for which they are responsible. It is meant for those who wish to easily retrieve contact details based on contact details and/or asset.
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -15,11 +15,11 @@ AssetBook-3 is a desktop application for logistics managers to keep track point-
 
 ## Quick start
 
-1. Ensure you have Java `11` in your Computer.
+1. Ensure you have Java `11` installed on your Computer.
 
 1. Download the latest `assetbook.jar` from [here](https://github.com/AY2324S2-CS2103T-W12-3/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_.
+1. Copy the file into the folder you want to use as the _home folder_.
 
 1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar assetbook.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
