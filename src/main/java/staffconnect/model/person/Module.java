@@ -12,7 +12,7 @@ public class Module {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Module code should contain 2-4 capital letters followed by 4 digits long and at most 1 capitalised suffix";
-    public static final String VALIDATION_REGEX = "[A-Z]{2,4}\\d{4}[A-Z]{0,1}";
+    public static final String VALIDATION_REGEX = "[a-zA-Z]{2,4}\\d{4}[a-zA-Z]{0,1}";
 
     public final String value;
 
@@ -24,7 +24,7 @@ public class Module {
     public Module(String module) {
         requireNonNull(module);
         checkArgument(isValidModule(module), MESSAGE_CONSTRAINTS);
-        value = module;
+        value = module.toUpperCase();
     }
 
     /**
@@ -33,6 +33,11 @@ public class Module {
     public static boolean isValidModule(String test) {
         return test.matches(VALIDATION_REGEX);
     }
+
+    /**
+     * Returns true if a given string is a valid module code.
+     */
+
 
     @Override
     public String toString() {
