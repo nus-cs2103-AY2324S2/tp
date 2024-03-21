@@ -3,10 +3,10 @@ package seedu.address.model.person.relationship;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.UUID;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.person.Person;
@@ -88,56 +88,6 @@ public class RelationshipUtilTest {
     }
 
     @Test
-    public void getExistingRelationship_existingRelationship_returnsStringRepresentation() {
-        Attribute name1 = new NameAttribute("Name", "John Doe");
-        Attribute name2 = new NameAttribute("Name", "Jane Doe");
-        Attribute[] attributes1 = new Attribute[]{name1};
-        Attribute[] attributes2 = new Attribute[]{name2};
-
-        // Adding dummy people for testing
-        Person person1 = new Person(attributes1);
-        Person person2 = new Person(attributes2);
-        UUID uuid11 = person1.getUuid();
-        UUID uuid22 = person2.getUuid();
-        // Create a test relationship
-        Relationship testRelationship = new Relationship(uuid11, uuid22, "family");
-
-        // Create RelationshipUtil instance and add the test relationship
-        RelationshipUtil relationshipUtil = new RelationshipUtil();
-        relationshipUtil.addRelationship(testRelationship);
-
-        // Retrieve the string representation of the existing relationship
-        String stringRepresentation = relationshipUtil.getExistingRelationship(testRelationship);
-
-        // Check if the retrieved string representation matches the expected format
-        assertEquals(testRelationship.toString(), stringRepresentation);
-    }
-
-    @Test
-    public void getExistingRelationship_nonExistingRelationship_throwsIllegalArgumentException() {
-        Attribute name1 = new NameAttribute("Name", "John Doe");
-        Attribute name2 = new NameAttribute("Name", "Jane Doe");
-        Attribute[] attributes1 = new Attribute[]{name1};
-        Attribute[] attributes2 = new Attribute[]{name2};
-
-        // Adding dummy people for testing
-        Person person1 = new Person(attributes1);
-        Person person2 = new Person(attributes2);
-        UUID uuid11 = person1.getUuid();
-        UUID uuid22 = person2.getUuid();
-        // Create an instance of RelationshipUtil
-        RelationshipUtil relationshipUtil = new RelationshipUtil();
-
-        // Create a test relationship (not added to the tracker)
-        Relationship nonExistingRelationship = new Relationship(uuid11, uuid22, "friend");
-
-        // Assert that an IllegalArgumentException is thrown when trying to retrieve the non-existing relationship
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            relationshipUtil.getExistingRelationship(nonExistingRelationship);
-        }, "Relationship does not exist.");
-    }
-
-    @Test
     public void hasRelationshipWithDescriptor_matchingRelationship_returnsTrue() {
         // Create dummy people for testing
         Attribute name1 = new NameAttribute("Name", "John Doe");
@@ -183,5 +133,43 @@ public class RelationshipUtilTest {
 
         // Check if the relationship exists with reversed persons but the same role descriptor
         assertTrue(relationshipUtil.hasRelationshipWithDescriptor(testRelationship));
+    }
+
+    @Test
+    public void getExistingRelationship_existingRelationship_returnsStringRepresentation() {
+        // Create a RelationshipUtil instance
+        RelationshipUtil relationshipUtil = new RelationshipUtil();
+
+        // Create UUIDs for two persons
+        UUID person1Uuid = UUID.randomUUID();
+        UUID person2Uuid = UUID.randomUUID();
+
+        // Create a relationship and add it to the RelationshipUtil
+        Relationship relationship = new Relationship(person1Uuid, person2Uuid, "family");
+        relationshipUtil.addRelationship(relationship);
+
+        // Retrieve the string representation using getExistingRelationship
+        String expectedString = String.format("%s and %s are %s",
+                person1Uuid, person2Uuid, "family");
+        String actualString = relationshipUtil.getExistingRelationship(relationship);
+
+        // Assert that the retrieved string matches the expected string representation
+        assertEquals(expectedString, actualString);
+    }
+
+    @Test
+    public void getExistingRelationship_nonExistingRelationship_throwsIllegalArgumentException() {
+        // Create a RelationshipUtil instance
+        RelationshipUtil relationshipUtil = new RelationshipUtil();
+
+        // Create UUIDs for two persons
+        UUID person1Uuid = UUID.randomUUID();
+        UUID person2Uuid = UUID.randomUUID();
+
+        // Create a relationship without adding it to the RelationshipUtil
+        Relationship relationship = new Relationship(person1Uuid, person2Uuid, "family");
+
+        // Assert that trying to retrieve a non-existing relationship throws an exception
+        assertThrows(IllegalArgumentException.class, () -> relationshipUtil.getExistingRelationship(relationship));
     }
 }
