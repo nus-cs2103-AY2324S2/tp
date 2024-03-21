@@ -47,13 +47,6 @@ public class FindAndExportCommand extends Command {
         this.filename = filename;
     }
 
-    public FindAndExportCommand(String tag, String name, String address) {
-        this.tag = tag;
-        this.name = name;
-        this.address = address;
-        this.filename = filename;
-    }
-
     public String getTag() {
         return tag;
     }
