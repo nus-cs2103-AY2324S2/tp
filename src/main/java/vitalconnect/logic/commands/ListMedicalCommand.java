@@ -9,9 +9,9 @@ import vitalconnect.model.Model;
  * List all the medical information of a person with their name
  */
 public class ListMedicalCommand extends Command {
-    public static final String COMMAND_WORD = "listmi";
+    public static final String COMMAND_WORD = "listm";
 
-    public static final String MESSAGE_SUCCESS = "Listed all persons medical information";
+    public static final String MESSAGE_SUCCESS = "Listed all persons with their medical information";
 
     /**
      * @param model {@code Model} which the command should operate on.

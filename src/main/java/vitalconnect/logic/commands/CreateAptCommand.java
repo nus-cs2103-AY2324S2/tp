@@ -14,9 +14,9 @@ import vitalconnect.model.Model;
  */
 public class CreateAptCommand extends Command {
 
-    public static final String COMMAND_WORD = "createApt";
+    public static final String COMMAND_WORD = "adda";
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Creates an appointment for a person in the address book. "
+            + ": Adds an appointment for a person in the address book. "
             + "Parameters: NAME /time DATE TIME\n"
             + "Example: " + COMMAND_WORD + " "
             + "John Doe /time 02/02/2024 1330\n"

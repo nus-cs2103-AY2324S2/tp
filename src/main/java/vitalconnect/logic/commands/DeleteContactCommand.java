@@ -20,11 +20,11 @@ import vitalconnect.model.person.identificationinformation.Nric;
  * Deletes a person's contact from the clinic.
  */
 public class DeleteContactCommand extends Command {
-    public static final String COMMAND_WORD = "delContact";
-    public static final String MESSAGE_SUCCESS = "Contact deleted successfully";
+    public static final String COMMAND_WORD = "deletec";
+    public static final String MESSAGE_SUCCESS = "Contacts deleted successfully";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Delete a contact of a person. "
-        + "Parameters: (required field)\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Delete the contact information of a person. "
+        + "Parameter: \n"
         + PREFIX_NRIC + "NRIC\n"
         + "Example: " + COMMAND_WORD + " "
         + PREFIX_NRIC + "S1234567D ";

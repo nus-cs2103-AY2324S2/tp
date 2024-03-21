@@ -19,21 +19,21 @@ import vitalconnect.model.person.medicalinformation.MedicalInformation;
  * Adds medication information for a person.
  */
 public class AddMedInfoCommand extends Command {
-    public static final String COMMAND_WORD = "addmi";
-    public static final String MESSAGE_SUCCESS = "Medical Information added successfully";
+    public static final String COMMAND_WORD = "addm";
+    public static final String MESSAGE_SUCCESS = "Medical information added successfully";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a medical information of a person. "
-            + "Parameters: (required field)\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds the medical information of a person. "
+            + "Parameters: (required fields)\n"
             + PREFIX_NRIC + "NRIC "
-            + PREFIX_HEIGHT + "Height "
-            + PREFIX_WEIGHT + "Weight \n"
+            + PREFIX_HEIGHT + "Height(in cm) "
+            + PREFIX_WEIGHT + "Weight(in kg) \n"
             + "(optional but at least specify one)"
             + PREFIX_ALLERGYTAG + "Allergy\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NRIC + "S1234567A "
             + PREFIX_HEIGHT + "175 "
             + PREFIX_WEIGHT + "60 "
-            + PREFIX_ALLERGYTAG + "MergeConflict ";
+            + PREFIX_ALLERGYTAG + "Amoxicillin ";
 
     private final Nric nric;
     private final MedicalInformation medicalInformation;
