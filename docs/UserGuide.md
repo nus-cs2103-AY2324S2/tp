@@ -225,6 +225,7 @@ Action     | Format, Examples
 **Clear**  | `clear`
 **Delete** | `delete NRIC`<br> e.g., `delete T0123456A`
 **AddApp** | `addApp i/NRIC d/DATE from/STARTTIME to/ENDTIME t/APPOINTMENTTYPE note/NOTE`<br> e.g., `addApp i/ T0123456A d/ 2024-02-20 from/ 11:00 to/ 11:30 t/ Medical Check-up note/ Routine check-in`
+**CancelApp** | `cancelApp i/NRIC d/DATE from/STARTTIME to/ENDTIME` <br> e.g., `cancelApp i/ S8743880A d/ 2024-02-20 from/ 11:00 to/ 11:30`
 **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List**   | `list`
