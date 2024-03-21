@@ -7,12 +7,12 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<?import javafx.scene.layout.HBox?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
-         title="ClientCare" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
+         title="ClientCare" minWidth="1000" minHeight="600" onCloseRequest="#handleExit">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
@@ -53,13 +53,30 @@
             </padding>
             <StackPane fx:id="clientListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
           </VBox>
-          <VBox fx:id="clientView" styleClass="pane-with-border" minWidth="300" prefWidth="800" HBox.hgrow="ALWAYS">
+          <VBox fx:id="clientView" styleClass="pane-with-border" minWidth="300" prefWidth="700" HBox.hgrow="ALWAYS">
             <padding>
               <Insets top="10" right="10" bottom="10" left="10" />
             </padding>
             <StackPane fx:id="clientDetailsCardPlaceholder" VBox.vgrow="ALWAYS"/>
             <StackPane fx:id="clientPolicyTablePlaceholder" VBox.vgrow="ALWAYS"/>
           </VBox>
+          
+          <!--
+          <VBox fx:id="remindersView" styleClass="pane-with-border" minWidth="350" prefWidth="350" maxWidth="350" HBox.hgrow="ALWAYS">
+            <padding>
+              <Insets top="10" right="10" bottom="10" left="10" />
+            </padding>
+            <ScrollPane VBox.vgrow="ALWAYS">
+              <content>
+                <VBox minWidth="310" prefWidth="310" maxWidth="310">
+                  <StackPane fx:id="lastMetCardPlaceholder" VBox.vgrow="ALWAYS"/>
+                  <Region prefWidth="310" prefHeight="20"/>
+                  <StackPane fx:id="appointmentsCardPlaceholder" VBox.vgrow="ALWAYS"/>
+                </VBox>
+              </content>
+            </ScrollPane>
+          </VBox>
+        -->
         </HBox>
 
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />

@@ -77,7 +77,7 @@
 }
 
 .scroll-pane {
-    -fx-background: #3c3e3f;
+    -fx-background: transparent;
     -fx-background-color: transparent;
 }
 
@@ -160,6 +160,14 @@
 
 .result-display .label {
     -fx-text-fill: black !important;
+}
+
+.client-details {
+    -fx-background-color: #3c3e3f;
+}
+
+.reminders-card {
+    -fx-background-color: #3c3e3f;
 }
 
 .status-bar .label {
