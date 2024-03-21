@@ -63,7 +63,7 @@ TutorsContactsPro is a **desktop app for tutors teaching Computer Science course
 
    * `add n/John Doe p/98765432 e/johnd@example.com y/2 m/Computer Science tg/johndoe r/Very quiet student g/TUT04 g/LAB10 ` : Adds a student named `John Doe` to the list.
    
-   * `edit 1 /name John /email john@example.com /year 2 /major Computer science /tut T02 /tg` : Edits the first student on the current list. 
+   * `edit 1 p/93840823 y/3 tg/jiejfh203` : Edits the first student on the current list. 
    
    * `Find John` : Lists all the students with the name 'John'
 
@@ -139,18 +139,18 @@ Examples:
 
 Edits an existing student you have selected.
 
-Format: `edit INDEX [name/NAME] [email/EMAIL] [year/NUMBER] [major/MAJOR] [tut/TUTORIAL_SLOT] [phone/PHONE_NUMBER] [tg/TELEGRAM_HANDLE] [rem/REMARKS]`
+Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [y/YEAR] [m/MAJOR] [tg/TELEGRAM_HANDLE] [r/REMARK] [g/Group]`
 
 * Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing groups, the existing groups of the student will be removed i.e adding of groups is not cumulative.
-* You can remove all the student’s groups by typing `t/` without
+* You can remove all the student’s groups by typing `g/` without
     specifying any groups after it.
 
 Examples:
-*  `edit 1 name/John email/john01@example.com` Edits the name of the first student to `John` and email to `john01@example.com` respectively.
-*  `edit 2 name/Betty tg/` Edits the name of the 2nd student to be `Betsy` and clears her telegram handle.
+*  `edit 1 n/John e/john01@example.com` Edits the name of the first student to `John` and email to `john01@example.com` respectively.
+*  `edit 2 n/Betty tg/` Edits the name of the 2nd student to be `Betsy` and clears her telegram handle.
 
 ### <span id='feature-find'> Locating students by keyword: `find` <span>
 
@@ -237,7 +237,7 @@ _Details coming soon ..._
 | **Help**   | `help`                                                                                                                                                                                                                              |
 | **List**   | `list`                                                                                                                                                                                                                              |
 | **Add**    | `add n/NAME p/PHONE e/EMAIL y/YEAR m/MAJOR tg/TELEGRAM [r/REMARK] [g/Group]...` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com y/2 m/Computer Science tg/johndoe r/Very quiet student g/TUT04 g/LAB10 ` |                                                                                                                                                                                                                            |
-| **Edit**   | `edit INDEX [name/NAME] [email/EMAIL] [year/NUMBER] [major/MAJOR] [tut/TUTORIAL_SLOT] [phone/PHONE_NUMBER] [tg/TELEGRAM_HANDLE] [rem/REMARKS]`<br> e.g., `edit 1 name/John email/john01@example.com`                                |
+| **Edit**   | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [y/NUMBER] [m/MAJOR] [tg/TELEGRAM] [r/REMARK] [g/Group]`<br> e.g., `edit 1 n/John e/john01@example.com`                                |
 | **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g.,`find john`                                                                                                                                                                                 |
 | **Delete** | `delete INDEX`<br> e.g., `delete 1`                                                                                                                                                                                                 |  
 | **Clear**  | `clear`                                                                                                                                                                                                                             |
