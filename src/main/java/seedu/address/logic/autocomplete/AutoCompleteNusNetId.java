@@ -35,8 +35,6 @@ public class AutoCompleteNusNetId implements AutoComplete {
     public String getAutoComplete(String input) {
         assert nusNetIdTrie != null;
 
-        System.out.println("AutoCompleteNusNetId: " + input);
-
         Matcher m = NUSNET_ID_FORMAT.matcher(input);
         boolean isNusNetId = m.find();
         assert isNusNetId;
