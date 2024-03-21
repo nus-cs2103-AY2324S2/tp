@@ -17,21 +17,23 @@ TutorsContactsPro is a **desktop app for tutors teaching Computer Science course
 
 * [Features ](#feature-features)
 
-  * [`help` : Viewing help](#feature-help)
+  * [Viewing help: `help` ](#feature-help)
 
-  * [`list` : Listing all students ](#feature-list)
+  * [Listing all students: `list` ](#feature-list)
 
-  * [`add` : Adding a student](#feature-add)
+  * [Adding a student: `add`](#feature-add)
 
-  * [`edit` : Editing a student](#feature-edit)
+  * [Editing a student: `edit`](#feature-edit)
 
-  * [`find` : Locating students using keyword](#feature-find)
+  * [Locating students using keyword: `find`](#feature-find)
 
-  * [`delete` : Deleting a student](#feature-delete)
+  * [Filtering students using group: `filter`](#feature-filter)
 
-  * [`clear` : Clearing all entries](#feature-clear)
+  * [Deleting a student: `delete`](#feature-delete)
 
-  * [`exit` : Exiting the program](#feature-exit)
+  * [Clearing all entries: `clear`](#feature-clear)
+
+  * [Exiting the program: `exit` ](#feature-exit)
 
 * [FAQ](#feature-faq)
 
@@ -54,7 +56,7 @@ TutorsContactsPro is a **desktop app for tutors teaching Computer Science course
 
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+   ![Ui](images/UpdatedUi.png)
 
 4. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -65,7 +67,9 @@ TutorsContactsPro is a **desktop app for tutors teaching Computer Science course
    
    * `edit 1 p/93840823 y/3 tg/jiejfh203` : Edits the first student on the current list. 
    
-   * `Find John` : Lists all the students with the name 'John'
+   * `find John` : Lists all the students with the name 'John'
+
+   * `filter TUT01` : Lists all the students in group 'TUT10'
 
    * `delete 3` : Deletes the 3rd student shown in the current list.
 
@@ -133,7 +137,8 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL y/YEAR m/MAJOR tg/TELEGRAM_HANDLE [r/
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com y/2 m/Computer Science tg/johndoe r/Very quiet student g/TUT04 g/LAB10 `
-
+* `add n/Kendra Huetta p/98765367 e/Kendra@example.com y/1 m/Computer Science tg/KendraHuetta r/quiet student g/LAB10 `
+  ![result for 'add Kendra Huetta'](images/addFeature.png)
 
 ### <span id='feature-edit'> Editing a student : `edit` <span>
 
@@ -155,20 +160,38 @@ Examples:
 ### <span id='feature-find'> Locating students by keyword: `find` <span>
 
 Finds students whose details contain any of the given keywords.
-You can find the student even if the keywords matches partially. 
+You can find the student even if the keywords **matches partially**. 
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
+* Only student's name is searched.
+* Students matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
 * `find John` returns `john` and `John Doe`
-* `find ale` returns `Alex Yeoh`, `Alexia Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `find Jo` returns `John Doe`, `Johan Louis`<br>
+  ![result for 'find Jo'](images/findFeature.png)
+
+### <span id='feature-filter'> Filtering students using group: `filter` <span>
+
+Filters and list students belonging to any of the given group name keyword.
+You can filter students when the keywords **matches fully**.
+
+Format: `filter KEYWORD [MORE_KEYWORDS]`
+
+* The search is case-insensitive. e.g `hans` will match `Hans`
+* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* Only student's group name is searched.
+* Students matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+
+Examples:
+* `filter TUT04 ` returns `John Doe` and `Johan Louis` belonging to the tutorial group `TUT04`
+  ![result for 'filter TU'](images/filterFeature.png)
+
 
 ### <span id='feature-delete'> Deleting a student : `delete` <span>
 
@@ -176,13 +199,13 @@ Deletes your specified student from the current list.
 
 Format: `delete INDEX`
 
-* Deletes the person at the specified `INDEX`.
+* Deletes the student at the specified `INDEX`.
 * The index refers to the index number shown in the current displayed student list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the major book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `delete 2` deletes the 2nd student in the major book.
+* `find Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
 
 ### <span id='feature-clear'> Clearing all entries : `clear` <span>
 
@@ -202,12 +225,12 @@ TutorsContactsPro data are saved in the hard disk automatically after any comman
 
 ### Editing the data file
 
-TutorsContactsPro data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+TutorsContactsPro data are saved automatically as a JSON file `[JAR file location]/data/TutorsContactsPro.json`. Advanced users are welcome to update data directly by editing that data file.
 
 [//]: # (<box type="warning" seamless>)
 
-**Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
+> [**Caution:**]
+If your changes to the data file makes its format invalid, TutorsContactsPro will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
 Furthermore, certain edits can cause the TutorsContactsPro to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
 
@@ -220,7 +243,7 @@ _Details coming soon ..._
 ## <span id='feature-faq'> FAQ <span>
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous TutorsContactsPro home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -232,12 +255,13 @@ _Details coming soon ..._
 
 ## <span id='feature-summary'> Command summary <span>
 
-| Action     | Format, Examples                                                                                                                                                                                                                    |
-|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Help**   | `help`                                                                                                                                                                                                                              |
-| **List**   | `list`                                                                                                                                                                                                                              |
-| **Add**    | `add n/NAME p/PHONE e/EMAIL y/YEAR m/MAJOR tg/TELEGRAM [r/REMARK] [g/Group]...` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com y/2 m/Computer Science tg/johndoe r/Very quiet student g/TUT04 g/LAB10 ` |                                                                                                                                                                                                                            |
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [y/NUMBER] [m/MAJOR] [tg/TELEGRAM] [r/REMARK] [g/Group]`<br> e.g., `edit 1 n/John e/john01@example.com`                                |
-| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g.,`find john`                                                                                                                                                                                 |
-| **Delete** | `delete INDEX`<br> e.g., `delete 1`                                                                                                                                                                                                 |  
-| **Clear**  | `clear`                                                                                                                                                                                                                             |
+| Action     | Format, Examples                                                                                                                                                                                                   |
+|------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Help**   | `help`                                                                                                                                                                                                             |
+| **List**   | `list`                                                                                                                                                                                                             |
+| **Add**    | `add n/NAME p/PHONE e/EMAIL y/YEAR m/MAJOR tg/TELEGRAM [r/REMARK] [g/Group]...` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com y/2 m/Computer Science tg/johndoe r/Very quiet student g/TUT04 g/LAB10 ` |
+| **Edit**   | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [y/NUMBER] [m/MAJOR] [tg/TELEGRAM] [r/REMARK] [g/Group]`<br> e.g., `edit 1 n/John e/john01@example.com`                                                                   |
+| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g.,`find john`                                                                                                                                                                |
+| **Filter** | `filter KEYWORD [MORE_KEYWORDS]`<br> e.g.,`filter TUT01`                                                                                                                                                           |
+| **Delete** | `delete INDEX`<br> e.g., `delete 1`                                                                                                                                                                                |  
+| **Clear**  | `clear`                                                                                                                                                                                                            |
