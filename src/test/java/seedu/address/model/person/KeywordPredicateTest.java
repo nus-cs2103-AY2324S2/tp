@@ -222,10 +222,16 @@ public class KeywordPredicateTest {
     @Test
     public void test_combinationFields_returnsFalse() {
         // Test cases where combination of fields don't match
-        // For example, name matches but phone doesn't match
+        // For example, only name matches
         KeywordPredicate predicate = new KeywordPredicate(
                 ArgumentTokenizer.tokenize(" ; name : Alice ; phone : 12345678", PREFIX_NAME, PREFIX_PHONE));
-        assertFalse(predicate.test(new PersonBuilder().withName("Alice").withPhone("98765432").build()));
+        Person person = new PersonBuilder()
+                .withName("Alice")
+                .withPhone("98765432")
+                .withEmail("alice@abc.com")
+                .withAddress("Pooch123")
+                .build();
+        assertFalse(predicate.test(person));
     }
 
     @Test
