@@ -38,7 +38,7 @@ CCA Manager is a **desktop app for managing contacts, optimized for use via a  L
 
    ▶️All commands you can try:
 
-   * [`add` : Adds a contact to the CCA Manager](#feature-add)
+   * [`add` : Adds a contact/CCA group to the CCA Manager](#feature-add)
 
    * [`list` : Lists all contacts](#feature-list)
 
@@ -49,10 +49,14 @@ CCA Manager is a **desktop app for managing contacts, optimized for use via a  L
    * [`delete` : Delete a contact in the current list](#feature-delete)
 
    * [`clear` : Deletes all contacts](#feature-clear)
+ 
+   * [`filter` : Filter by tags](#feature-filter)
+ 
+   * [`assign` : Assign roles to contact](#feature-assign)
 
    * [`exit` : Exits the app](#feature-exit)
      
-   * $${\color{green}More \space features \space will \space be \space coming \space in \space v1.2}$$
+   * $${\color{green}More \space features \space will \space be \space coming \space in \space future \space update}$$
 
 ### Further Help
  Refer to the [Features](#features) below for details of each command.⬇️⬇️⬇️⬇️
@@ -108,6 +112,11 @@ _Adds a person to the CCA Manager._
 
 **Format**: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
+_Adds a CCA group to the CCA manager._
+
+**Format**: `add c/CCA GROUP`
+
+
 <box type="tip" seamless>
   
 > [!TIP]
@@ -118,11 +127,15 @@ _Adds a person to the CCA Manager._
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
+**[Images with example is TBD]**
+
 ### <span id='feature-list'> Listing all persons : `list` </span>
 
 _Shows a list of all persons in the CCA Manager._
 
 **Format**: `list`
+
+**[Images with example is TBD]**
 
 ### <span id='feature-edit'> Editing a person : `edit` </span>
 
@@ -140,6 +153,8 @@ _Edits an existing person in the CCA Manager._
 **Examples**:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+  
+**[Images with example is TBD]**
 
 ### <span id='feature-find'> Locating persons by name: `find` </span>
 
@@ -173,11 +188,31 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the CCA Manager.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+**[Images with example is TBD]**
+
 ### <span id='feature-clear'> Clearing all entries : `clear` </span>
 
 _Clears all entries from the CCA Manager._
 
 **Format**: `clear`
+
+### <span id='feature-filter'> Filter by tags : `filter` </span>
+
+_Filter people with existing tags._
+
+**Format**: `filter Tags`
+
+**[Images with example is TBD]**
+
+### <span id='feature-assign'> assign roles to contact: `assign` </span>
+
+_Assign roles to contact._
+
+**Format**: `assign INDEX r/ ROLE`
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+**[Images with example is TBD]**
 
 ### <span id='feature-exit'> Exiting the program : `exit` </span>
 
@@ -200,19 +235,6 @@ CCA Manager data are saved automatically as a JSON file `[JAR file location]/dat
 Furthermore, certain edits can cause the CCA Manager to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
 
-### Assign roles to contacts`[coming in v1.2]`
-
-_Manage CCA personnel_
-
-### Identify the exco members`[coming in v1.2]`
-
-_Inform them if I am unable to make it for the CCA session_
-
-### form groups of contacts`[coming in v1.2]`
-
-_Associate who belongs to what CCA_
-
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -231,11 +253,13 @@ _Associate who belongs to what CCA_
 ## Command summary
 
 Action     | Format, Examples
------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+-----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+**Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] c/CCA GROUP…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague c/CCA Cycling`
 **Clear**  | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List**   | `list`
+**Filter** | `filter Tags` e.g. `filter friends`
+**Assign** | `Assign INDEX /r ROLE` e.g. `Assign 2 /r Member`
 **Help**   | `help`
