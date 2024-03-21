@@ -23,7 +23,6 @@ import scrolls.elder.testutil.TypicalPersons;
 
 class UnpairCommandTest {
 
-    /* To fix test case */
     @Test
     void execute_unpairFilteredPersonList_unpairSuccessful() {
         Model model = new ModelManager(TypicalPersons.getTypicalAddressBook(), new UserPrefs());
