@@ -71,7 +71,8 @@ public class AddTaskCommand extends Command {
         }
 
         AddTaskCommand otherAddTaskCommand = (AddTaskCommand) other;
-        return toAdd.equals(otherAddTaskCommand.toAdd);
+        return toAdd.equals(otherAddTaskCommand.toAdd)
+                && taskProject.equals(otherAddTaskCommand.taskProject);
     }
 
     @Override
