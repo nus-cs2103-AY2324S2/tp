@@ -39,7 +39,7 @@ public class ClearCommandTest {
     @Test
     public void getMessageUsage() {
         Command command = new ClearCommand();
-        assertEquals("clear: Clears the address book.\n"
+        assertEquals("clear: Clears the patient book.\n"
                 + "Example: clear", command.getMessageUsage());
     }
 
