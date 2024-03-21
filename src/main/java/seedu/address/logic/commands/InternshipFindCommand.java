@@ -36,7 +36,7 @@ public class InternshipFindCommand extends InternshipCommand {
             + "[" + PREFIX_ROLE + " ROLE_KEYWORD [MORE_ROLE_KEYWORDS]\n"
             + "Example: " + COMMAND_WORD + " withany "
             + PREFIX_COMPANY + " Tiktok Google " + PREFIX_STATUS + " accepted";
-    public static final String NO_SEARCH_KEY_SPECIFIED = "At least one field and keyword "
+    public static final String NO_SEARCH_KEY_SPECIFIED = "At least one field prefix and keyword "
             + "must be specified to be searched.";
     public static final String INVALID_MODE_SPECIFIED = "Invalid mode specified. "
             + "Please specify either 'withall' or 'withany'.";
