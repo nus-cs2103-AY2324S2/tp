@@ -19,6 +19,7 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.SetDeadlineCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -45,7 +46,9 @@ public class AddressBookParser {
         if (userInput.length() == 0) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
+
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
+
         if (!matcher.matches()) {
             throw new ParseException(String.format(MESSAGE_UNKNOWN_COMMAND, HelpCommand.MESSAGE_USAGE));
         }
@@ -61,8 +64,16 @@ public class AddressBookParser {
         case AddProjectCommand.COMMAND_WORD:
             return new AddProjectCommandParser().parse(arguments);
 
+<<<<<<< HEAD
         case AddTaskCommand.COMMAND_WORD:
             return new AddTaskCommandParser().parse(arguments.trim());
+=======
+            case SetDeadlineCommand.COMMAND_WORD:
+                return new SetDeadlineCommandParser().parse(arguments);
+
+            case AddProjectCommand.COMMAND_WORD:
+                return new AddProjectCommandParser().parse(arguments);
+>>>>>>> 19e7dadd (Set the deadline command)
 
         case DeleteProjectCommand.COMMAND_WORD:
             return new DeleteProjectCommandParser().parse(arguments);
@@ -88,10 +99,15 @@ public class AddressBookParser {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
+<<<<<<< HEAD
         default:
             logger.finer("This user input caused a ParseException: " + userInput);
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+=======
+            default:
+                logger.finer("This user input caused a ParseException: " + userInput);
+                throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+>>>>>>> 19e7dadd (Set the deadline command)
         }
     }
-
 }
