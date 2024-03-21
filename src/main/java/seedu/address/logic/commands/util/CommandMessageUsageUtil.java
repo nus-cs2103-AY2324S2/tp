@@ -65,9 +65,12 @@ public class CommandMessageUsageUtil {
         StringBuilder stringBuilder = new StringBuilder(commandWord + " ");
 
         for (Parameter p : parameters) {
-            stringBuilder
-                    .append(p.getParameterWithExampleValues())
-                    .append(" ");
+            String exampleValue = p.getParameterWithExampleValues();
+            if (!exampleValue.isBlank()) {
+                stringBuilder
+                        .append(exampleValue)
+                        .append(" ");
+            }
         }
 
         return stringBuilder.toString().trim();

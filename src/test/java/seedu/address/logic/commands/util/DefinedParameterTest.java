@@ -23,7 +23,7 @@ class DefinedParameterTest {
 
     @Test
     void asOptional_examplePresent() {
-        assertEquals("[cde/fgh] 135", parameter.asOptional(true).toString());
+        assertEquals("[cde/fgh] cde/135", parameter.asOptional(true).toString());
     }
 
     @Test
@@ -38,11 +38,11 @@ class DefinedParameterTest {
 
     @Test
     void asMultiple_oneExampleRepetitions() {
-        assertEquals("[cde/fgh]... 135", parameter.asMultiple(1).toString());
+        assertEquals("[cde/fgh]... cde/135", parameter.asMultiple(1).toString());
     }
 
     @Test
     void asMultiple_twoExampleRepetitions() {
-        assertEquals("[cde/fgh]... 135 791", parameter.asMultiple(2).toString());
+        assertEquals("[cde/fgh]... cde/135 cde/791", parameter.asMultiple(2).toString());
     }
 }

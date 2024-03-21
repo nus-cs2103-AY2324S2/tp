@@ -70,7 +70,8 @@ public class Parameter {
      * Gets the details of the parameter, which are the parameter name and hint appended behind.
      */
     public String getParameterDetails() {
-        return (getParameterName() + " " + getParameterHint()).trim();
+        String details = getParameterName() + " " + getParameterHint();
+        return details.trim();
     }
 
     /**
@@ -134,6 +135,10 @@ public class Parameter {
 
     @Override
     public String toString() {
-        return (getFormattedParameterDetails() + " " + getParameterWithExampleValues()).trim();
+        return String.format(
+                "%s %s",
+                getFormattedParameterDetails(),
+                getParameterWithExampleValues()
+        ).trim();
     }
 }
