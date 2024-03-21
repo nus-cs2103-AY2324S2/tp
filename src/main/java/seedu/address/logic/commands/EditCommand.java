@@ -171,6 +171,16 @@ public class EditCommand extends Command {
         public boolean isAnyTagEdited() {
             return CollectionUtil.isAnyNonNull(tags);
         }
+        /**
+         * Sets an entry in the entry list based on the specified category.
+         * If an entry with the given category exists, its description is updated.
+         * Otherwise, the new entry is added to the list.
+         *
+         * @param category the category of the entry to be set. This is used to find
+         *                 an existing entry in the list.
+         * @param entry the new entry to be added or used for updating the description of the
+         *              existing entry. It should not be {@code null}.
+         */
         public void set(String category, Entry entry) {
             Entry e = entryList.get(category);
             if (e == null) {
@@ -178,6 +188,9 @@ public class EditCommand extends Command {
             } else {
                 e.setDescription(entry.getDescription());
             }
+        }
+        public EntryList getEntryList() {
+            return entryList;
         }
 
         /**
@@ -220,20 +233,15 @@ public class EditCommand extends Command {
             }
 
             EditPersonDescriptor otherEditPersonDescriptor = (EditPersonDescriptor) other;
-            return Objects.equals(get("Name"), otherEditPersonDescriptor.get("Name"))
-                    && Objects.equals(get("Phone"), otherEditPersonDescriptor.get("Phone"))
-                    && Objects.equals(get("Email"), otherEditPersonDescriptor.get("Email"))
-                    && Objects.equals(get("Address"), otherEditPersonDescriptor.get("Address"))
+            return Objects.equals(entryList, otherEditPersonDescriptor.getEntryList())
                     && Objects.equals(tags, otherEditPersonDescriptor.tags);
         }
 
         @Override
         public String toString() {
             return new ToStringBuilder(this)
-                    .add("name", get("Name"))
-                    .add("phone", get("Phone"))
-                    .add("email", get("Email"))
-                    .add("address", get("Address"))
+                    .add("Category", category)
+                    .add("Description", description)
                     .add("tags", tags)
                     .toString();
         }

@@ -1,8 +1,4 @@
----
-  layout: default.md
-  title: "Developer Guide"
-  pageNav: 3
----
+
 
 # AB-3 Developer Guide
 
@@ -158,6 +154,16 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Edit function
+The new edit function allows user to be able to edit any category based they want.<br>
+The sequence diagram below illustrates the interaction within the `Logic` component, taking `execute("edit 1 c/Clan d/rainbow")` API call as an example.
+
+<puml src="diagrams/EditSequenceDiagram.puml" alt="Interactions Inside the Logic Component for the `edit 1 c/Clan d/rainbow` Command" />
+
+<box type="info" seamless>
+
+**Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline continues till the end of diagram.
+</box>
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation

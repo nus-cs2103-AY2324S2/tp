@@ -1,6 +1,9 @@
 package seedu.address.model.person;
 import java.util.ArrayList;
 
+import seedu.address.commons.util.ToStringBuilder;
+
+
 /**
  * class for entryList
  */
@@ -38,5 +41,15 @@ public class EntryList {
 
     public void delete(String category) {
         entryList.remove(this.get(category));
+    }
+
+    @Override
+    public String toString() {
+        ToStringBuilder builder = new ToStringBuilder(this);
+        for (Entry entry : entryList) {
+            builder.add("Category", entry.getCategory())
+                    .add("Description", entry.getDescription());
+        }
+        return builder.toString();
     }
 }
