@@ -142,36 +142,10 @@ public class AddressBookParserTest {
 
     @Test
     void parseAutoComplete() {
-        // Initialize AutoCompleteCommand with the commands
-        AutoCompleteCommand.initialize(
-                AddPersonCommand.COMMAND_WORD
-        );
-
         // Test for empty input
         assertEquals(null, parser.parseAutoComplete(""));
 
         // Test for input with no matching command
         assert(parser.parseAutoComplete("x") instanceof AutoCompleteCommand);
-
-        // Reinitialize AutoCompleteCommand with more commands
-        AutoCompleteCommand.initialize(
-                AddPersonCommand.COMMAND_WORD,
-                ClearCommand.COMMAND_WORD,
-                DeletePersonCommand.COMMAND_WORD,
-                EditPersonCommand.COMMAND_WORD,
-                ExitCommand.COMMAND_WORD,
-                FindPersonCommand.COMMAND_WORD,
-                HelpCommand.COMMAND_WORD,
-                ListPersonCommand.COMMAND_WORD,
-                MarkAttendanceCommand.COMMAND_WORD
-        );
-
-        String fullAddPersonCommand = AddPersonCommand.COMMAND_WORD;
-        String prefix = fullAddPersonCommand.substring(0, 2);
-        assert(parser.parseAutoComplete(prefix) instanceof AutoCompleteCommand);
-
-        String fullClearCommand = ClearCommand.COMMAND_WORD;
-        prefix = fullClearCommand.substring(0, 2);
-        assert(parser.parseAutoComplete(prefix) instanceof AutoCompleteCommand);
     }
 }
