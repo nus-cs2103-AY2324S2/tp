@@ -95,12 +95,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasTag(Tag tag) {
-        requireNonNull(tag);
-        return addressBook.hasTag(tag);
-    }
-
-    @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
     }

@@ -109,8 +109,4 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
-    /**
-     * Returns true if the model contains a certain tag.
-     */
-    boolean hasTag(Tag tag);
 }
