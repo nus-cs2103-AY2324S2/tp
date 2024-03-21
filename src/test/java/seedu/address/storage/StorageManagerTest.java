@@ -23,16 +23,16 @@ public class StorageManagerTest {
     @TempDir
     public Path testFolder;
 
-    private StorageManager addressBookStorageManager;
-    private StorageManager internshipDataStorageManager;
+    private InternshipStorageManager addressBookStorageManager;
+    private InternshipStorageManager internshipDataStorageManager;
 
     @BeforeEach
     public void setUp() {
         JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(getTempFilePath("ab"));
         JsonInternshipDataStorage internshipDataStorage = new JsonInternshipDataStorage(getTempFilePath("id"));
-        JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        addressBookStorageManager = new StorageManager(addressBookStorage, userPrefsStorage);
-        internshipDataStorageManager = new StorageManager(internshipDataStorage, userPrefsStorage);
+        JsonInternshipUserPrefsStorage userPrefsStorage = new JsonInternshipUserPrefsStorage(getTempFilePath("prefs"));
+        addressBookStorageManager = new InternshipStorageManager(addressBookStorage, userPrefsStorage);
+        internshipDataStorageManager = new InternshipStorageManager(internshipDataStorage, userPrefsStorage);
     }
 
     private Path getTempFilePath(String fileName) {
@@ -42,8 +42,8 @@ public class StorageManagerTest {
     @Test
     public void prefsReadSave() throws Exception {
         /*
-         * Note: This is an integration test that verifies the StorageManager is properly wired to the
-         * {@link JsonUserPrefsStorage} class.
+         * Note: This is an integration test that verifies the InternshipStorageManager is properly wired to the
+         * {@link JsonInternshipUserPrefsStorage} class.
          * More extensive testing of UserPref saving/reading is done in {@link JsonUserPrefsStorageTest} class.
          */
         InternshipUserPrefs original = new InternshipUserPrefs();
@@ -58,7 +58,7 @@ public class StorageManagerTest {
     @Test
     public void addressBookReadSave() throws Exception {
         /*
-         * Note: This is an integration test that verifies the StorageManager is properly wired to the
+         * Note: This is an integration test that verifies the InternshipStorageManager is properly wired to the
          * {@link JsonAddressBookStorage} class.
          * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
          */
@@ -79,7 +79,7 @@ public class StorageManagerTest {
     @Test
     public void internshipDataReadSave() throws Exception {
         /*
-         * Note: This is an integration test that verifies the StorageManager is properly wired to the
+         * Note: This is an integration test that verifies the InternshipStorageManager is properly wired to the
          * {@link JsonInternshipDataStorage} class.
          * More extensive testing of UserPref saving/reading is done in {@link JsonInternshipDataStorageTest} class.
          */

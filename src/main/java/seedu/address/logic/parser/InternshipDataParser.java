@@ -17,6 +17,7 @@ import seedu.address.logic.commands.InternshipExitCommand;
 import seedu.address.logic.commands.InternshipFindCommand;
 import seedu.address.logic.commands.InternshipHelpCommand;
 import seedu.address.logic.commands.InternshipListCommand;
+import seedu.address.logic.commands.InternshipRemarkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -77,6 +78,9 @@ public class InternshipDataParser {
 
         case InternshipHelpCommand.COMMAND_WORD:
             return new InternshipHelpCommand();
+
+        case InternshipRemarkCommand.COMMAND_WORD:
+            return new InternshipRemarkCommandParser().parse(arguments);
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);

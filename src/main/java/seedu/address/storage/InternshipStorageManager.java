@@ -15,25 +15,28 @@ import seedu.address.model.ReadOnlyInternshipUserPrefs;
 /**
  * Manages storage of AddressBook data in local storage.
  */
-public class StorageManager implements Storage {
+public class InternshipStorageManager implements Storage {
 
-    private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
+    private static final Logger logger = LogsCenter.getLogger(InternshipStorageManager.class);
     private AddressBookStorage addressBookStorage;
     private InternshipDataStorage internshipDataStorage;
-    private UserPrefsStorage userPrefsStorage;
+    private InternshipUserPrefsStorage userPrefsStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
+     * Creates a {@code InternshipStorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
+    public InternshipStorageManager(AddressBookStorage addressBookStorage,
+                                    InternshipUserPrefsStorage userPrefsStorage) {
         this.addressBookStorage = addressBookStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
     /**
-     * Creates a {@code StorageManager} with the given {@code InternshipDataStorage} and {@code UserPrefStorage}.
+     * Creates a {@code InternshipStorageManager} with the given
+     * {@code InternshipDataStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(InternshipDataStorage internshipDataStorage, UserPrefsStorage userPrefsStorage) {
+    public InternshipStorageManager(InternshipDataStorage internshipDataStorage,
+                                    InternshipUserPrefsStorage userPrefsStorage) {
         this.internshipDataStorage = internshipDataStorage;
         this.userPrefsStorage = userPrefsStorage;
     }

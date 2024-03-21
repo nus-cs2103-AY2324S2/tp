@@ -181,183 +181,72 @@ public class UniqueInternshipListTest {
     @Test
     public void testContains() {
         UniqueInternshipList internshipList = new UniqueInternshipList();
-        Internship internship = new Internship(
-                new CompanyName("Amazon"),
-                new ContactName("Mark Johnson"),
-                new ContactEmail("markjohnson@example.com"),
-                new ContactNumber("45678901"),
-                new Location("remote"),
-                new ApplicationStatus("rejected"),
-                new Description("Business Development Internship"),
-                new Role("Business Development Associate")
-        );
-        internshipList.add(internship);
-        assertTrue(internshipList.contains(internship));
+        internshipList.add(ALICE_MICROSOFT);
+        assertTrue(internshipList.contains(ALICE_MICROSOFT));
     }
 
     @Test
     public void testAddInternship() {
         UniqueInternshipList internshipList = new UniqueInternshipList();
-        Internship internship = new Internship(
-                new CompanyName("Google"),
-                new ContactName("John Doe"),
-                new ContactEmail("johndoe@example.com"),
-                new ContactNumber("12345678"),
-                new Location("remote"),
-                new ApplicationStatus("pending"),
-                new Description("Software Engineering Internship"),
-                new Role("Software Engineer")
-        );
-        internshipList.add(internship);
-        assertTrue(internshipList.contains(internship));
+        internshipList.add(ALICE_MICROSOFT);
+        assertTrue(internshipList.contains(ALICE_MICROSOFT));
     }
 
     @Test
     public void testSetInternship() {
         UniqueInternshipList internshipList = new UniqueInternshipList();
-        Internship originalInternship = new Internship(
-                new CompanyName("Google"),
-                new ContactName("John Doe"),
-                new ContactEmail("johndoe@example.com"),
-                new ContactNumber("12345678"),
-                new Location("remote"),
-                new ApplicationStatus("pending"),
-                new Description("Software Engineering Internship"),
-                new Role("Software Engineer")
-        );
-        Internship editedInternship = new Internship(
-                new CompanyName("Google"),
-                new ContactName("Jane Smith"),
-                new ContactEmail("janesmith@example.com"),
-                new ContactNumber("98765432"),
-                new Location("remote"),
-                new ApplicationStatus("accepted"),
-                new Description("Product Management Internship"),
-                new Role("Product Manager")
-        );
-
-        internshipList.add(originalInternship);
-        internshipList.setInternship(originalInternship, editedInternship);
-        assertFalse(internshipList.contains(originalInternship));
-        assertTrue(internshipList.contains(editedInternship));
+        internshipList.add(ALICE_MICROSOFT);
+        internshipList.setInternship(ALICE_MICROSOFT, BENSON_GOOGLE);
+        assertFalse(internshipList.contains(ALICE_MICROSOFT));
+        assertTrue(internshipList.contains(BENSON_GOOGLE));
     }
 
     @Test
     public void testRemoveInternship() {
         UniqueInternshipList internshipList = new UniqueInternshipList();
-        Internship internship = new Internship(
-                new CompanyName("Google"),
-                new ContactName("John Doe"),
-                new ContactEmail("johndoe@example.com"),
-                new ContactNumber("12345678"),
-                new Location("remote"),
-                new ApplicationStatus("pending"),
-                new Description("Software Engineering Internship"),
-                new Role("Software Engineer")
-        );
-        internshipList.add(internship);
-        internshipList.remove(internship);
-        assertFalse(internshipList.contains(internship));
+        internshipList.add(ALICE_MICROSOFT);
+        internshipList.remove(ALICE_MICROSOFT);
+        assertFalse(internshipList.contains(ALICE_MICROSOFT));
     }
 
     @Test
     public void testSetInternships() {
         UniqueInternshipList internshipList = new UniqueInternshipList();
-        Internship internship1 = new Internship(
-                new CompanyName("Facebook"),
-                new ContactName("Alice Smith"),
-                new ContactEmail("alicesmith@example.com"),
-                new ContactNumber("98765432"),
-                new Location("remote"),
-                new ApplicationStatus("accepted"),
-                new Description("Marketing Internship"),
-                new Role("Marketing Intern")
-        );
-        Internship internship2 = new Internship(
-                new CompanyName("Microsoft"),
-                new ContactName("Bob Brown"),
-                new ContactEmail("bobbrown@example.com"),
-                new ContactNumber("87654321"),
-                new Location("remote"),
-                new ApplicationStatus("pending"),
-                new Description("Software Development Internship"),
-                new Role("Software Developer")
-        );
-        internshipList.add(internship1);
+        internshipList.add(ALICE_MICROSOFT);
         UniqueInternshipList replacement = new UniqueInternshipList();
-        replacement.add(internship2);
+        replacement.add(BENSON_GOOGLE);
         internshipList.setInternships(replacement);
-        assertFalse(internshipList.contains(internship1));
-        assertTrue(internshipList.contains(internship2));
+        assertFalse(internshipList.contains(ALICE_MICROSOFT));
+        assertTrue(internshipList.contains(BENSON_GOOGLE));
     }
 
     @Test
     public void testEquals() {
         UniqueInternshipList internshipList1 = new UniqueInternshipList();
         UniqueInternshipList internshipList2 = new UniqueInternshipList();
-        Internship internship1 = new Internship(
-                new CompanyName("Facebook"),
-                new ContactName("Alice Smith"),
-                new ContactEmail("alicesmith@example.com"),
-                new ContactNumber("98765432"),
-                new Location("remote"),
-                new ApplicationStatus("accepted"),
-                new Description("Marketing Internship"),
-                new Role("Marketing Intern")
-        );
-        internshipList1.add(internship1);
-        internshipList2.add(internship1);
+        internshipList1.add(ALICE_MICROSOFT);
+        internshipList2.add(ALICE_MICROSOFT);
         assertEquals(internshipList1, internshipList2);
     }
 
     @Test
     public void asUnmodifiableObservableList() {
         UniqueInternshipList internshipList = new UniqueInternshipList();
-        Internship internship = new Internship(
-                new CompanyName("Google"),
-                new ContactName("John Doe"),
-                new ContactEmail("johndoe@example.com"),
-                new ContactNumber("12345678"),
-                new Location("remote"),
-                new ApplicationStatus("pending"),
-                new Description("Software Engineering Internship"),
-                new Role("Software Engineer")
-        );
-        internshipList.add(internship);
+        internshipList.add(ALICE_MICROSOFT);
         assertEquals(internshipList.asUnmodifiableObservableList().size(), 1);
     }
 
     @Test
     public void testHashCode() {
         UniqueInternshipList internshipList = new UniqueInternshipList();
-        Internship internship = new Internship(
-                new CompanyName("Google"),
-                new ContactName("John Doe"),
-                new ContactEmail("johndoe@example.com"),
-                new ContactNumber("12345678"),
-                new Location("remote"),
-                new ApplicationStatus("pending"),
-                new Description("Software Engineering Internship"),
-                new Role("Software Engineer")
-        );
-        internshipList.add(internship);
+        internshipList.add(ALICE_MICROSOFT);
         assertEquals(internshipList.hashCode(), internshipList.asUnmodifiableObservableList().hashCode());
     }
 
     @Test
     public void testToString() {
         UniqueInternshipList internshipList = new UniqueInternshipList();
-        Internship internship = new Internship(
-                new CompanyName("Google"),
-                new ContactName("John Doe"),
-                new ContactEmail("johndoe@example.com"),
-                new ContactNumber("12345678"),
-                new Location("remote"),
-                new ApplicationStatus("pending"),
-                new Description("Software Engineering Internship"),
-                new Role("Software Engineer")
-        );
-        internshipList.add(internship);
+        internshipList.add(ALICE_MICROSOFT);
         assertEquals(internshipList.toString(), internshipList.asUnmodifiableObservableList().toString());
     }
 }

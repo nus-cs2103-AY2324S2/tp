@@ -23,11 +23,11 @@ import seedu.address.model.ReadOnlyInternshipData;
 import seedu.address.model.ReadOnlyInternshipUserPrefs;
 import seedu.address.model.util.InternshipSampleDataUtil;
 import seedu.address.storage.InternshipDataStorage;
+import seedu.address.storage.InternshipStorageManager;
+import seedu.address.storage.InternshipUserPrefsStorage;
 import seedu.address.storage.JsonInternshipDataStorage;
-import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.storage.JsonInternshipUserPrefsStorage;
 import seedu.address.storage.Storage;
-import seedu.address.storage.StorageManager;
-import seedu.address.storage.UserPrefsStorage;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
 
@@ -55,11 +55,11 @@ public class MainApp extends Application {
         config = initConfig(appParameters.getConfigPath());
         initLogging(config);
 
-        UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
+        InternshipUserPrefsStorage userPrefsStorage = new JsonInternshipUserPrefsStorage(config.getUserPrefsFilePath());
         InternshipUserPrefs userPrefs = initPrefs(userPrefsStorage);
         InternshipDataStorage internshipDataStorage =
                 new JsonInternshipDataStorage(userPrefs.getInternshipDataFilePath());
-        storage = new StorageManager(internshipDataStorage, userPrefsStorage);
+        storage = new InternshipStorageManager(internshipDataStorage, userPrefsStorage);
 
         model = initModelManager(storage, userPrefs);
 
@@ -142,7 +142,7 @@ public class MainApp extends Application {
      * or a new {@code InternshipUserPrefs} with default configuration if errors occur when
      * reading from the file.
      */
-    protected InternshipUserPrefs initPrefs(UserPrefsStorage storage) {
+    protected InternshipUserPrefs initPrefs(InternshipUserPrefsStorage storage) {
         Path prefsFilePath = storage.getUserPrefsFilePath();
         logger.info("Using preference file : " + prefsFilePath);
 

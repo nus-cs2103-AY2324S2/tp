@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-<span style="color: #f66a0a;">CareerSync</span> is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI).  
+<span style="color: #f66a0a;">CareerSync</span> is a **desktop app for managing internships, optimized for use via a Command Line Interface** (CLI).  
 It lets you effortlessly manage, search, and sift through your various internship applications!
 
 * Table of Contents
@@ -38,9 +38,10 @@ Start keeping track of your internships easily with <span style="color: #f66a0a;
 
     * `list` : Lists all contacts.
 
-   * `add /company Tiktok /email hr@tiktok.com /number 9089030 /location remote /status ongoing /description create new recommendation engine /role Software Intern` : Adds the internship entry to the CareerSync application.
+   * `add /com Tiktok /desc create new recommendation engine /status ongoing /poc jane yeo /email hr@tiktok.com 
+      /phone 90890301 /loc remote /role Software Intern` : Adds this internship entry to the CareerSync application.
 
-   * `delete 2` : Deletes the 2nd internship entry shown in the current list.
+   * `delete 2` : Deletes the 2nd internship entry shown in the current displayed list.
 
    * `clear` : Deletes all contacts.
 
@@ -58,7 +59,7 @@ Start keeping track of your internships easily with <span style="color: #f66a0a;
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `add /com COMPANY_NAME`, `COMPANY_NAME` is a parameter which can be used as `add /com Google`.
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
@@ -67,12 +68,13 @@ Start keeping track of your internships easily with <span style="color: #f66a0a;
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `/com COMPANY_NAME /desc DESCRIPTION`, `/desc DESCRIPTION /com COMPANY_NAME` is also acceptable.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-* If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
+* If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines 
+  as space characters surrounding line-breaks may be omitted when copied over to the application.
 </div>
 
 ### Viewing help : `help`
@@ -87,10 +89,12 @@ Format: `help`
 
 Add an internship entry and all the relevant fields
 
-Format: `add /company COMPANY_NAME /description DESCRIPTION /status STATUS [/pocname NAME_OF_CONTACT] [/email EMAIL_OF_CONTACT] [/number NUMBER_OF_CONTACT] [/location LOCATION_ENUM] [/role ROLE]​`
+Format: `add /com COMPANY_NAME /desc DESCRIPTION /status STATUS /poc CONTACT_NAME /email CONTACT_EMAIL 
+/phone CONTACT_NUMBER /loc LOCATION /role ROLE​`
 
 Examples:
-* `add /company Titktok /email hr@tiktok.com /number 9089030 /location remote /status ongoing /description create new recommendation engine /role Software Intern`
+* `add /com Tiktok /desc create new recommendation engine /status ongoing /poc jane yeo /email hr@tiktok.com 
+/phone 90890301 /loc remote /role Software Intern`
 
 ### Deleting an internship: `delete`
 
@@ -147,23 +151,28 @@ Format: `addremark INDEX [/remark REMARK]`
 Examples:
 *  `addremark 1 /remark This internship has a behavioural interview!` Adds or modifies the remark of the internship at index 1 to be `This internship has a behavioural interview!`.
 
-### Locating internships by name: `find`
+### Locating internships by keywords: `find`
 
-Finds internship entries whose names contain any of the given keywords.
+Finds internship entries whose specified fields contains the keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find MODE [/com COMPANY_NAME_KEYWORDS] [/poc CONTACT_NAME_KEYWORDS] [/loc LOCATION_KEYWORDS] [/status STATUS_KEYWORDS] [/desc DESCRIPTION_KEYWORDS] [/role ROLE_KEYWORDS]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* MODE is either 'withall' or 'withany'.
+  * 'withall' returns internships that match each prefix-keyword predicate.
+    * Within each prefix field, the Internship just has to contain any of the keywords.
+  * 'withany' returns internships that match at least one prefix-keyword predicate.
+* The search is case-insensitive. e.g `google` will match `Google`
+* The order of the keywords does not matter. e.g. `Microsoft Google` will match `Google Microsoft`
 * Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* Only full words will be matched e.g. `Goo` will not match `Google`
+* Internship matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `Hewlett Song` will return `Hewlett Packard`, `Song Fa`
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `find withall /status accepted /loc local ` returns Internships with both status `accepted` and location `local`<br>
+  ![result for 'find withall /status accepted /loc local'](images/findWithallStatusAcceptedLocLocalResult.png)
+* `find withany /status rejected /loc remote <br> ` returns Internships with either status `rejected` or location `remote`
+  ![result for 'find withany /status rejected /loc remote'](images/findWithanyStatusRejectedLocRemoteResult.png)
 
 ### Clearing all internships: `clear`
 

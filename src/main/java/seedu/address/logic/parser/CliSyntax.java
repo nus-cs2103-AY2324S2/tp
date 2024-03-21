@@ -21,5 +21,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_STATUS = new Prefix("/status");
     public static final Prefix PREFIX_DESCRIPTION = new Prefix("/desc");
     public static final Prefix PREFIX_ROLE = new Prefix("/role");
-
+    public static final Prefix PREFIX_REMARK = new Prefix("/remark");
 }
