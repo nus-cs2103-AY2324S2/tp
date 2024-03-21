@@ -74,13 +74,13 @@ public class ContactInformation {
     public String toString() {
         String result = "";
         if (phone != null) {
-            result += phone + "\n";
+            result += "phone: " + phone + "\n";
         }
         if (email != null) {
-            result += email + "\n";
+            result += "email: " + email + "\n";
         }
         if (address != null) {
-            result += address.toString();
+            result += "address: " + address + "\n";
         }
         return result;
     }

@@ -1,8 +1,12 @@
 package vitalconnect.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static vitalconnect.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.function.Predicate;
 
@@ -19,7 +23,6 @@ import vitalconnect.model.person.Person;
 import vitalconnect.model.person.contactinformation.ContactInformation;
 import vitalconnect.model.person.identificationinformation.Nric;
 import vitalconnect.model.person.medicalinformation.MedicalInformation;
-
 
 public class CreateAptCommandTest {
 
@@ -45,7 +48,7 @@ public class CreateAptCommandTest {
                 + "empty or not in the correct format.", () -> createAptCommand.execute(modelStub));
     }
 
-    /*@Test
+    @Test
     public void execute_appointmentCreatedSuccessfully() throws Exception {
         ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
         String patientName = "John Doe";
@@ -57,12 +60,12 @@ public class CreateAptCommandTest {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
         LocalDateTime dateTime = LocalDateTime.parse(dateTimeStr, formatter);
 
-        assertEquals("Created an appointment successfully!\nName: John Doe\nTime: 2 Feb. 2024 13:30",
-                commandResult.getFeedbackToUser());
+        String successString = "Created an appointment successfully!\nName: John Doe\nTime: 2 Feb 2024 13:30";
+        assertEquals(successString, commandResult.getFeedbackToUser());
         assertTrue(modelStub.appointmentsAdded.stream().anyMatch(appointment ->
                 appointment.getPatientName().equals(patientName)
                         && appointment.getDateTime().equals(dateTime)));
-    }*/
+    }
 
 
     private class ModelStub implements Model {

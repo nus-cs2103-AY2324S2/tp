@@ -10,9 +10,9 @@ import vitalconnect.model.allergytag.AllergyTag;
  * Represents the medical information of a person, including height, weight, and allergies.
  */
 public class MedicalInformation {
-    private final Height height;
-    private final Weight weight;
-    private final Set<AllergyTag> allergyTag;
+    private Height height;
+    private Weight weight;
+    private Set<AllergyTag> allergyTag;
 
     /**
      * Constructs a MedicalInformation object with the specified height, weight, and set of allergy tags.
@@ -38,6 +38,19 @@ public class MedicalInformation {
         this.height = height;
         this.weight = weight;
         this.allergyTag = new HashSet<>();
+    }
+
+    /**
+     * Constructs a MedicalInformation object with the specified height and weight,
+     */
+    public MedicalInformation() {
+        this.height = new Height("");
+        this.weight = new Weight("");
+        this.allergyTag = new HashSet<>();
+    }
+
+    public boolean isEmpty() {
+        return height.isEmpty() && weight.isEmpty() && allergyTag.isEmpty();
     }
 
     /**
@@ -76,7 +89,8 @@ public class MedicalInformation {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(" Height: ").append(getHeight()).append(" Weight: ").append(getWeight()).append("Allergic to: ");
+        builder.append(" Height: ").append(getHeight()).append("cm")
+               .append("\n Weight: ").append(getWeight()).append("kg");
         return builder.toString();
     }
 

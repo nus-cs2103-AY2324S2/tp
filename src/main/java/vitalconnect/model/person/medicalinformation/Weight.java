@@ -30,6 +30,13 @@ public class Weight {
         this.value = weight;
     }
 
+    public Weight() {
+        this.value = "";
+    }
+
+    public boolean isEmtpy() {
+        return value.isEmpty();
+    }
     /**
      * Returns true if a given string is a valid weight.
      */

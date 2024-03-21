@@ -54,12 +54,12 @@ public class PersonCard extends UiPart<Region> {
         ContactInformation ci = person.getContactInformation();
         MedicalInformation mi = person.getMedicalInformation();
         String contactInformationText = "";
-        if (ci != null) {
+        if (!ci.isEmptyContact()) {
             contactInformationText = ci.toString();
         }
         String medicalInformationText = "";
-        if (mi != null) {
-            contactInformationText = mi.toString();
+        if (!mi.isEmpty()) {
+            medicalInformationText = mi.toString();
             allergy.setText("Allergic to: ");
         } else {
             allergy.setText("");
@@ -71,7 +71,7 @@ public class PersonCard extends UiPart<Region> {
         medicalInformation.setText(medicalInformationText);
 
 
-        if (mi != null && mi.getAllergyTag() != null) {
+        if (!mi.isEmpty() && mi.getAllergyTag() != null) {
             mi.getAllergyTag().stream()
                     .sorted(Comparator.comparing(tag -> tag.tagName))
                     .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

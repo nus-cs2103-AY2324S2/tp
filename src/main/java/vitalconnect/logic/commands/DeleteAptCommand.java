@@ -14,7 +14,7 @@ import vitalconnect.model.Model;
  * list of all displayed appointments and the patient's name.
  */
 public class DeleteAptCommand extends Command {
-    public static final String COMMAND_WORD = "deleteApt";
+    public static final String COMMAND_WORD = "deletea";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes an appointment of a patient by the index "
             + "in the list and patient name.\n"
             + "Parameters: INDEX (must be a positive integer) /name NAME\n"

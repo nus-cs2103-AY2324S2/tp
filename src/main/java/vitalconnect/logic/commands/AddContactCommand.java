@@ -19,10 +19,10 @@ import vitalconnect.model.person.identificationinformation.Nric;
  * Adds a person to the clinic.
  */
 public class AddContactCommand extends Command {
-    public static final String COMMAND_WORD = "addContact";
-    public static final String MESSAGE_SUCCESS = "Contact added successfully";
+    public static final String COMMAND_WORD = "addc";
+    public static final String MESSAGE_SUCCESS = "Contacts added successfully";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a contact of a person. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds the contact information of a person. "
         + "Parameters: (required field)\n"
         + PREFIX_NRIC + "NRIC "
         + "(optional but at least specify one)\n"
@@ -30,7 +30,7 @@ public class AddContactCommand extends Command {
         + PREFIX_EMAIL + "EMAIL "
         + PREFIX_ADDRESS + "ADDRESS \n"
         + "Example: " + COMMAND_WORD + " "
-        + PREFIX_NRIC + "A12345678 "
+        + PREFIX_NRIC + "S1234567D "
         + PREFIX_PHONE + "98765432 ";
 
     private final Nric nric;
