@@ -40,7 +40,7 @@ public class AddOrderCommandTest {
 
         Index targetIndex = INDEX_FIRST_PERSON;
         CommandResult commandResult = new AddOrderCommand(targetIndex, order).execute(modelStub);
-        assertEquals(1, modelStub.getOrderList().size());
+        assertEquals(1, modelStub.getFilteredOrderList().size());
     }
 
     @Test
@@ -179,9 +179,15 @@ public class AddOrderCommandTest {
             return personList;
         }
 
-        private ObservableList<Order> getOrderList() {
+        @Override
+        public ObservableList<Order> getFilteredOrderList() {
             ObservableList<Order> orderList = FXCollections.observableArrayList(this.person.getOrders());
             return orderList;
+        }
+
+        @Override
+        public void updateFilteredOrderList(Predicate<Order> predicate) {
+            requireNonNull(predicate);
         }
     }
 }

@@ -125,10 +125,6 @@ public class ModelManager implements Model {
 
     //=========== Order ================================================================================
 
-    public ObservableList<Order> getOrderList() {
-        return filteredOrders;
-    }
-
     /**
      * Returns an unmodifiable view of the list of {@code Order} backed by the internal list of.
      * {@code versionedAddressBook}

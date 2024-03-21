@@ -193,5 +193,10 @@ public class DeleteOrderCommandTest {
             addressBook.addPerson(this.person);
             return addressBook;
         }
+
+        @Override
+        public void updateFilteredOrderList(Predicate<Order> predicate) {
+            requireNonNull(predicate);
+        }
     }
 }

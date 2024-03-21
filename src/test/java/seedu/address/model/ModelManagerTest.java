@@ -95,7 +95,7 @@ public class ModelManagerTest {
 
     @Test
     public void getOrderList_anyOrder_throwsCommandException() {
-        assertEquals(0, modelManager.getOrderList().size());
+        assertEquals(0, modelManager.getFilteredOrderList().size());
     }
 
     @Test
