@@ -38,13 +38,13 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("studentid") String studentid,
-            @JsonProperty("attendances") List<JsonAdaptedAttendance> tags, @JsonProperty("description") String description) {
+            @JsonProperty("attendances") List<JsonAdaptedAttendance> attendances, @JsonProperty("description") String description) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.studentid = studentid;
-        if (tags != null) {
-            this.attendances.addAll(tags);
+        if (attendances != null) {
+            this.attendances.addAll(attendances);
         }
         this.description = description;
     }
@@ -58,7 +58,8 @@ class JsonAdaptedPerson {
         email = source.getEmail().value;
         studentid = source.getStudentId().value;
         attendances.addAll(source.getAttendances().stream()
-                .map(JsonAdaptedAttendance::new)
+                .map(attendance -> new JsonAdaptedAttendance(attendance.attendanceName.getDate(),
+                        attendance.attendanceName.getStatus()))
                 .collect(Collectors.toList()));
         description = source.getDescription().value;
     }

@@ -19,8 +19,8 @@ You can reach us at the email `E0957568@u.nus.edu`
 [[github](https://github.com/nichee)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Code Monkey
-* Responsibilities: Coding :)
+* Role: Coder
+* Responsibilities: Coding
 
 ### Andrew Ong Pang Woon
 
@@ -39,7 +39,7 @@ You can reach us at the email `E0957568@u.nus.edu`
 [[github](http://github.com/faaheem13)] [[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: 
+* Responsibilities:
 
 ### Tania Tan Shu Qi
 

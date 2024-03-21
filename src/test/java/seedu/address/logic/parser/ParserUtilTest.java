@@ -14,6 +14,7 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.AttendanceStatus;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
@@ -29,10 +30,12 @@ public class ParserUtilTest {
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
-    private static final String VALID_ADDRESS = "123 Main Street #0505";
+    private static final String VALID_STUDENT_ID = "A1111111D";
     private static final String VALID_EMAIL = "rachel@example.com";
-    private static final String VALID_TAG_1 = "friend";
-    private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_DATE_1 = "02-02-2024";
+    private static final String VALID_DATE_2 = "05-05-2024";
+    private static final String VALID_STATUS_1 = "1";
+    private static final String VALID_STATUS_2 = "0";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -114,14 +117,14 @@ public class ParserUtilTest {
 
     @Test
     public void parseStudentId_validValueWithoutWhitespace_returnsAddress() throws Exception {
-        StudentId expectedStudentId = new StudentId(VALID_ADDRESS);
-        assertEquals(expectedStudentId, ParserUtil.parseStudentId(VALID_ADDRESS));
+        StudentId expectedStudentId = new StudentId(VALID_STUDENT_ID);
+        assertEquals(expectedStudentId, ParserUtil.parseStudentId(VALID_STUDENT_ID));
     }
 
     @Test
     public void parseStudentId_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
-        String addressWithWhitespace = WHITESPACE + VALID_ADDRESS + WHITESPACE;
-        StudentId expectedStudentId = new StudentId(VALID_ADDRESS);
+        String addressWithWhitespace = WHITESPACE + VALID_STUDENT_ID + WHITESPACE;
+        StudentId expectedStudentId = new StudentId(VALID_STUDENT_ID);
         assertEquals(expectedStudentId, ParserUtil.parseStudentId(addressWithWhitespace));
     }
 
@@ -148,10 +151,11 @@ public class ParserUtilTest {
         assertEquals(expectedEmail, ParserUtil.parseEmail(emailWithWhitespace));
     }
 
-//    @Test
-//    public void parseAttendance_null_throwsNullPointerException() {
-//        assertThrows(NullPointerException.class, () -> ParserUtil.parseAttendances(null));
-//    }
+    // @Test
+    // public void parseAttendance_null_throwsNullPointerException() {
+    //     assertThrows(NullPointerException.class, () -> ParserUtil.parseAttendances(null));
+    // }
+
     @Test
     public void parseAttendance_invalidValue_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseAttendances(INVALID_TAG));
@@ -159,24 +163,25 @@ public class ParserUtilTest {
 
     @Test
     public void parseAttendance_validValueWithoutWhitespace_returnsTag() throws Exception {
-        Attendance expectedAttendance = new Attendance(VALID_TAG_1);
-        assertEquals(expectedAttendance, ParserUtil.parseAttendances(VALID_TAG_1));
+        Attendance expectedAttendance = new Attendance(new AttendanceStatus(VALID_DATE_1, VALID_STATUS_1));
+        assertEquals(expectedAttendance, ParserUtil.parseAttendances(VALID_DATE_1));
     }
 
     @Test
     public void parseTag_validValueWithWhitespace_returnsTrimmedTag() throws Exception {
-        String tagWithWhitespace = WHITESPACE + VALID_TAG_1 + WHITESPACE;
-        Attendance expectedAttendance = new Attendance(VALID_TAG_1);
+        String tagWithWhitespace = WHITESPACE + VALID_DATE_1 + WHITESPACE;
+        Attendance expectedAttendance = new Attendance(new AttendanceStatus(VALID_DATE_1, VALID_STATUS_1));
         assertEquals(expectedAttendance, ParserUtil.parseAttendances(tagWithWhitespace));
     }
 
-//    @Test
-//    public void parseAttendances_null_throwsNullPointerException() {
-//        assertThrows(NullPointerException.class, () -> ParserUtil.parseAttendances(null));
-//    }
+    // @Test
+    // public void parseAttendances_null_throwsNullPointerException() {
+    //    assertThrows(NullPointerException.class, () -> ParserUtil.parseAttendances(null));
+    // }
+
     @Test
     public void parseAttendances_collectionWithInvalidTags_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseAttendances(Arrays.asList(VALID_TAG_1, INVALID_TAG)));
+        assertThrows(ParseException.class, () -> ParserUtil.parseAttendances(Arrays.asList(VALID_DATE_1, INVALID_TAG)));
     }
 
     @Test
@@ -186,9 +191,10 @@ public class ParserUtilTest {
 
     @Test
     public void parseAttendances_collectionWithValidTags_returnsTagSet() throws Exception {
-        Set<Attendance> actualAttendanceSet = ParserUtil.parseAttendances(Arrays.asList(VALID_TAG_1, VALID_TAG_2));
-        Set<Attendance> expectedAttendanceSet = new HashSet<Attendance>(Arrays.asList(new Attendance(VALID_TAG_1),
-                new Attendance(VALID_TAG_2)));
+        Set<Attendance> actualAttendanceSet = ParserUtil.parseAttendances(Arrays.asList(VALID_DATE_1, VALID_DATE_2));
+        Set<Attendance> expectedAttendanceSet = new HashSet<Attendance>(Arrays.asList(new Attendance(
+                new AttendanceStatus(VALID_DATE_1, VALID_STATUS_1)),
+                new Attendance(new AttendanceStatus(VALID_DATE_2, VALID_STATUS_1))));
 
         assertEquals(expectedAttendanceSet, actualAttendanceSet);
     }

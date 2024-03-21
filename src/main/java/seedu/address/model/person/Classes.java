@@ -1,9 +1,17 @@
 package seedu.address.model.person;
 
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.AddressBook;
+import seedu.address.storage.AddressBookStorage;
+import seedu.address.storage.JsonAddressBookStorage;
+
 
 /**
  * Represents a Class in the class book.
@@ -11,6 +19,8 @@ import seedu.address.model.AddressBook;
 public class Classes {
 
     private CourseCode courseCode; //tutorial grp
+    private AddressBook addressBook;
+    private AddressBookStorage addressBookStorage;
 
     public AddressBook addressBook = new AddressBook();
 
@@ -19,6 +29,8 @@ public class Classes {
      */
     public Classes(CourseCode courseCode) {
         this.courseCode = courseCode;
+        this.addressBook = new AddressBook();
+        this.addressBookStorage = new JsonAddressBookStorage(getFilePath());
     }
 
     /**
@@ -69,4 +81,19 @@ public class Classes {
                 .toString();
     }
 
+    public List<String> getStudents() {
+        return new ArrayList<>();
+    }
+
+    public AddressBook getAddressBook(){
+        return this.addressBook;
+    }
+    public Path getFilePath() {
+        // Modify this method to generate the file path based on class name, etc.
+        String fileName = courseCode.getCourseCode() + ".json";
+        return Paths.get("data/classbook", fileName);
+    }
+
+//    public Object getPersons() {
+//    }
 }

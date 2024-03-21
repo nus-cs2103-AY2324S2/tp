@@ -9,7 +9,14 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.*;
+import seedu.address.model.person.AttendanceStatus;
+import seedu.address.model.person.Classes;
+import seedu.address.model.person.CourseCode;
+import seedu.address.model.person.Description;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.StudentId;
 import seedu.address.model.tag.Attendance;
 
 /**
@@ -113,32 +120,32 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code date} is invalid.
      */
-    public static AttendanceDate parseDate(String date) throws ParseException {
+    public static Attendance parseDate(String date) throws ParseException {
         requireNonNull(date);
         String trimmedDate = date.trim();
-        if (!AttendanceDate.isValidDate(trimmedDate)) {
-            throw new ParseException(AttendanceDate.MESSAGE_CONSTRAINTS);
-        }
-        return new AttendanceDate(trimmedDate);
-    }
-
-    /**
-     * Parses a {@code String tag} into a {@code Tag}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code tag} is invalid.
-     */
-    public static Attendance parseAttendances(String tag) throws ParseException {
-        requireNonNull(tag);
-        String trimmedTag = tag.trim();
-        if (!Attendance.isValidTagName(trimmedTag)) {
+        if (!Attendance.isValidDate(trimmedDate)) {
             throw new ParseException(Attendance.MESSAGE_CONSTRAINTS);
         }
-        return new Attendance(trimmedTag);
+        return new Attendance(new AttendanceStatus(trimmedDate, "1"));
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     * Parses a {@code String date} into a {@code Attendance}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code attendance} is invalid.
+     */
+    public static Attendance parseAttendances(String date) throws ParseException {
+        requireNonNull(date);
+        String trimmedTag = date.trim();
+        if (!Attendance.isValidDate(trimmedTag)) {
+            throw new ParseException(Attendance.MESSAGE_CONSTRAINTS);
+        }
+        return new Attendance(new AttendanceStatus(trimmedTag, "1"));
+    }
+
+    /**
+     * Parses {@code Collection<String> attendances} into a {@code Set<Attendance>}.
      */
     public static Set<Attendance> parseAttendances(Collection<String> attendances) throws ParseException {
         requireNonNull(attendances);
@@ -158,5 +165,17 @@ public class ParserUtil {
         String trimmedDescription = description.trim();
 
         return new Description(trimmedDescription);
+
+    /**
+     * Parses {@code String date} and {@code String status} into a {@code AttendanceStatus}.
+     */
+    public static AttendanceStatus parsesAttendanceStatus(String date, String status) throws ParseException {
+        requireNonNull(date, status);
+        String trimmedDate = date.trim();
+        String trimmedStatus = status.trim();
+        if (!Attendance.isValidDate(trimmedDate) || !Attendance.isValidStatus(trimmedStatus)) {
+            throw new ParseException(Attendance.MESSAGE_CONSTRAINTS);
+        }
+        return new AttendanceStatus(date, status);
     }
 }

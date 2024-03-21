@@ -115,7 +115,6 @@ public class Person {
                 .add("phone", phone)
                 .add("email", email)
                 .add("student id", studentId)
-                .add("attendance", attendances)
                 .add("description", description)
                 .toString();
     }

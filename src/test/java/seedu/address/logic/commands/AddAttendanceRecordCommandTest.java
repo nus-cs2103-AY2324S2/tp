@@ -5,11 +5,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPersons.getTypicalClassBook;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -20,76 +20,79 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyClassBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.UserPrefs;
+import seedu.address.model.person.AttendanceStatus;
 import seedu.address.model.person.Classes;
 import seedu.address.model.person.Person;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.model.tag.Attendance;
 
-public class AddCommandTest {
+public class AddAttendanceRecordCommandTest {
+
+
 
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null));
+    public void constructor_nullAttendance_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new AddAttendanceRecordCommand((null)));
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Person validPerson = new PersonBuilder().build();
+    public void execute_addAttendance_success() throws Exception {
+        // Setup your model with a few persons
+        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalClassBook());
+        Attendance validAttendance = new Attendance(new AttendanceStatus("19-03-2024", "1"));
 
-        CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
+        CommandResult commandResult = new AddAttendanceRecordCommand(validAttendance).execute(model);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, Messages.format(validPerson)),
+        assertEquals(String.format(AddAttendanceRecordCommand.MESSAGE_SUCCESS, validAttendance),
                 commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
+        // Further assertions to check if the attendance was correctly added to all persons
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Person validPerson = new PersonBuilder().build();
-        AddCommand addCommand = new AddCommand(validPerson);
-        ModelStub modelStub = new ModelStubWithPerson(validPerson);
+    public void execute_emptyPersonList_throwsCommandException() {
+        Model model = new ModelManager(); // No persons in the model
+        Attendance validAttendance = new Attendance(new AttendanceStatus("19-03-2024", "1"));
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        AddAttendanceRecordCommand addAttendanceRecordCommand = new AddAttendanceRecordCommand(validAttendance);
+
+        assertThrows(CommandException.class,
+                Messages.MESSAGE_NO_PERSON_IN_THE_CLASS, () -> addAttendanceRecordCommand.execute(model));
     }
 
     @Test
     public void equals() {
-        Person alice = new PersonBuilder().withName("Alice").build();
-        Person bob = new PersonBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        Attendance attendance1 = new Attendance(new AttendanceStatus("19-03-2024", "1"));
+        Attendance attendance2 = new Attendance(new AttendanceStatus("20-03-2024", "1"));
+        AddAttendanceRecordCommand addAttendance1Command = new AddAttendanceRecordCommand(attendance1);
+        AddAttendanceRecordCommand addAttendance2Command = new AddAttendanceRecordCommand(attendance2);
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(addAttendance1Command.equals(addAttendance1Command));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        AddAttendanceRecordCommand addAttendance1CommandCopy = new AddAttendanceRecordCommand(attendance1);
+        assertTrue(addAttendance1Command.equals(addAttendance1CommandCopy));
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertFalse(addAttendance1Command.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertFalse(addAttendance1Command.equals(null));
 
-        // different person -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        // different attendance -> returns false
+        assertFalse(addAttendance1Command.equals(addAttendance2Command));
     }
 
-    @Test
-    public void toStringMethod() {
-        AddCommand addCommand = new AddCommand(ALICE);
-        String expected = AddCommand.class.getCanonicalName() + "{toAdd=" + ALICE + "}";
-        assertEquals(expected, addCommand.toString());
-    }
 
-    /**
-     * A default model stub that have all of the methods failing.
-     */
+
+
+
     private class ModelStub implements Model {
+
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");
@@ -216,28 +219,11 @@ public class AddCommandTest {
         }
     }
 
-    /**
-     * A Model stub that contains a single person.
-     */
-    private class ModelStubWithPerson extends ModelStub {
-        private final Person person;
-
-        ModelStubWithPerson(Person person) {
-            requireNonNull(person);
-            this.person = person;
-        }
-
-        @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return this.person.isSamePerson(person);
-        }
-    }
 
     /**
      * A Model stub that always accept the person being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
+    private class ModelStubAcceptingPersonAdded extends AddAttendanceRecordCommandTest.ModelStub {
         final ArrayList<Person> personsAdded = new ArrayList<>();
 
         @Override

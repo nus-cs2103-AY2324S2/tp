@@ -42,7 +42,8 @@ public class PersonUtil {
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
         sb.append(PREFIX_STUDENTID + person.getStudentId().value + " ");
         person.getAttendances().stream().forEach(
-            s -> sb.append(PREFIX_ATTENDANCE_RECORD + s.attendanceName + " ")
+            s -> sb.append(PREFIX_ATTENDANCE_RECORD + s.attendanceName.getDate() + ", "
+                    + s.attendanceName.getStatus() + " ")
         );
         return sb.toString();
     }
@@ -55,7 +56,7 @@ public class PersonUtil {
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
-        descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_STUDENTID).append(address.value).append(" "));
+        descriptor.getStudentId().ifPresent(address -> sb.append(PREFIX_STUDENTID).append(address.value).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Attendance> attendances = descriptor.getTags().get();
             if (attendances.isEmpty()) {
