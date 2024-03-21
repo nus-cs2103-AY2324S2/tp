@@ -20,8 +20,10 @@ interactions, FitBook is the perfect application for you to manage your clients!
 
 3. Copy the file to the folder you want to use as the **home folder** for FitBook.
 
-4. Open a command terminal, `cd` into the folder with FitBook.jar, and run the `java -jar FitBook.jar` command 
-to launch the application.<br>
+4. Double-click the FitBook.jar file to launch it
+
+5. If (4) doesn't work, open a command terminal, `cd` into the folder with FitBook.jar, and run the 
+`java -jar FitBook.jar` command to launch the application.<br>
 
 5. A GUI similar to the one depicted below should appear in a few seconds. 
 The app might contain some sample data.<br><hr>
