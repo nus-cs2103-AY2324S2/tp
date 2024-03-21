@@ -33,6 +33,6 @@ class AddRelationshipCommandParserTest {
     @Test
     void parse_invalidInputMissingParts_throwsIllegalArgumentException() {
         String userInput = "0001 family";
-        assertParseFailure(parser, userInput, "You have missing arguments");
+        assertParseFailure(parser, userInput, "Invalid command format! \n%1$s");
     }
 }

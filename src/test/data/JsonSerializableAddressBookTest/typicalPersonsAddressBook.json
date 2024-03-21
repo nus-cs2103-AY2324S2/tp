@@ -7,7 +7,7 @@
       { "name": "Phone", "value": "94351253" },
       { "name": "Email", "value": "alice@example.com" },
       { "name": "Address", "value": "123, Jurong West Ave 6, #08-111" }
-      ]
+    ]
   }, {
     "uuid" : "00000000-0000-0000-0000-000000000002",
     "attributes" : [
@@ -15,7 +15,7 @@
       { "name": "Phone", "value": "98765432" },
       { "name": "Email", "value": "johnd@example.com" },
       { "name": "Address", "value": "311, Clementi Ave 2, #02-25" }
-      ]
+    ]
   }, {
     "uuid" : "00000000-0000-0000-0000-000000000003",
     "attributes" : [

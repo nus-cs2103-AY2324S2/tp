@@ -109,6 +109,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public String toString() {
         return new ToStringBuilder(this)
                 .add("persons", persons)
+                .add("relationships", relationships)
                 .toString();
     }
 
@@ -124,12 +125,15 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     public void addRelationship(Relationship toAdd) {
         relationships.addRelationship(toAdd);
-    };
+    }
     public void deleteRelationship(Relationship toDelete) {
         relationships.deleteRelationship(toDelete);
     };
     public boolean hasRelationship(Relationship toFind) {
         return relationships.hasRelationship(toFind);
+    };
+    public boolean hasRelationshipWithDescriptor(Relationship toFind) {
+        return relationships.hasRelationshipWithDescriptor(toFind);
     };
     public String getExistingRelationship(Relationship toGet) {
         return relationships.getExistingRelationship(toGet);

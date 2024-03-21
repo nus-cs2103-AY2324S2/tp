@@ -94,6 +94,8 @@ public interface Model {
 
     String getExistingRelationship(Relationship toGet);
 
+    boolean hasRelationshipWithDescriptor(Relationship target);
+
     void deleteAttribute(String uuid, String attributeName);
 
     UUID getFullUuid(String digits);
