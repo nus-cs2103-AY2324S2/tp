@@ -80,7 +80,8 @@ public class PersonCard extends UiPart<Region> {
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        remark.setText("Remark: " + person.getRemark().value);
+        String remarkValue = person.getRemark() != null ? person.getRemark().value : "";
+        remark.setText("Remark: " + remarkValue);
         id.setText("ID: " + String.valueOf(person.getId().value));
 
         preferences.setVisible(false);
