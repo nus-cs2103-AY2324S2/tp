@@ -30,7 +30,6 @@ class JsonAdaptedPerson {
     private final String email;
     private final String address;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
-    @JsonProperty(defaultValue = "")
     private final String note;
 
     /**
