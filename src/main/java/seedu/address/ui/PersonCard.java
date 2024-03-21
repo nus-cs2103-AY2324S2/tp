@@ -43,6 +43,10 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private FlowPane subjectWithGrade;
     @FXML
+    private Label attendance;
+    @FXML
+    private Label payment;
+    @FXML
     private FlowPane dateTimes;
     @FXML
     private FlowPane tags;
@@ -60,12 +64,14 @@ public class PersonCard extends UiPart<Region> {
         email.setText(person.getEmail().value);
         subjectWithGrade.getChildren().add(new Label(person.getSubject().value));
         subjectWithGrade.getChildren().add(new Label(person.getGrade().value));
+        attendance.setText(person.getAttendance().value);
+        payment.setText(person.getPayment().value);
         dateTimes.setHgap(5);
         person.getDateTimes().stream()
                 .sorted(Comparator.comparing(dateTime -> dateTime.value))
                 .forEach(dateTime -> dateTimes.getChildren()
                         .add(new Label(LocalDateTime.parse(dateTime.value,
-                                DateTimeFormatter.ofPattern("uuuu-MM-dd HHmm"))
+                                        DateTimeFormatter.ofPattern("uuuu-MM-dd HHmm"))
                                 .format(DateTimeFormatter.ofPattern("MMM d uuuu h:mma")))));
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))

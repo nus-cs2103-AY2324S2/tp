@@ -2,10 +2,12 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PAYMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -31,6 +33,8 @@ public class AddCommand extends Command {
             + PREFIX_ADDRESS + "ADDRESS "
             + "[" + PREFIX_GRADE + "GRADE] "
             + "[" + PREFIX_SUBJECT + "SUBJECT] "
+            + "[" + PREFIX_GRADE + "ATTENDANCE] "
+            + "[" + PREFIX_SUBJECT + "PAYMENT] "
             + "[" + PREFIX_DATETIME + "DATETIME] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
@@ -40,6 +44,8 @@ public class AddCommand extends Command {
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_GRADE + "A "
             + PREFIX_SUBJECT + "Mathematics "
+            + PREFIX_ATTENDANCE + "Present "
+            + PREFIX_PAYMENT + "Paid "
             + PREFIX_DATETIME + "2024-03-02 1800";
 
     public static final String MESSAGE_SUCCESS = "New Student added: %1$s";
