@@ -1,6 +1,7 @@
 package seedu.address.model.person.predicates;
 
 import java.util.List;
+
 import seedu.address.commons.util.StringUtil;
 import seedu.address.model.person.Person;
 
