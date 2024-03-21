@@ -69,7 +69,7 @@ TutorsContactsPro is a **desktop app for tutors teaching Computer Science course
    
    * `find John Tan` : Lists all the students with names that matches 'John' or 'Tan'.
 
-   * `filter TUT01` : Lists all the students in group 'TUT10'
+   * `filter TUT10` : Lists all the students in group 'TUT10'
 
    * `delete 3` : Deletes the 3rd student shown in the current list.
 
