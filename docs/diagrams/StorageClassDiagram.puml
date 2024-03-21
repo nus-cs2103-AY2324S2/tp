@@ -14,10 +14,10 @@ Class JsonUserPrefsStorage
 Class "<<interface>>\nStorage" as Storage
 Class StorageManager
 
-package "AddressBook Storage" #F4F6F6{
-Class "<<interface>>\nAddressBookStorage" as AddressBookStorage
-Class JsonAddressBookStorage
-Class JsonSerializableAddressBook
+package "Clinic Storage" #F4F6F6{
+Class "<<interface>>\nClinicStorage" as AddressBookStorage
+Class JsonClinicStorage
+Class JsonSerializableClinic
 Class JsonAdaptedPerson
 Class JsonAdaptedTag
 }
@@ -35,9 +35,9 @@ Storage -left-|> UserPrefsStorage
 Storage -right-|> AddressBookStorage
 
 JsonUserPrefsStorage .up.|> UserPrefsStorage
-JsonAddressBookStorage .up.|> AddressBookStorage
-JsonAddressBookStorage ..> JsonSerializableAddressBook
-JsonSerializableAddressBook --> "*" JsonAdaptedPerson
+JsonClinicStorage .up.|> AddressBookStorage
+JsonClinicStorage ..> JsonSerializableClinic
+JsonSerializableClinic --> "*" JsonAdaptedPerson
 JsonAdaptedPerson --> "*" JsonAdaptedTag
 
 @enduml
