@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -21,6 +22,7 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.module.ModuleCode;
 import seedu.address.model.student.Address;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Name;
@@ -100,8 +102,9 @@ public class EditCommand extends Command {
         Email updatedEmail = editStudentDescriptor.getEmail().orElse(studentToEdit.getEmail());
         Address updatedAddress = editStudentDescriptor.getAddress().orElse(studentToEdit.getAddress());
         Set<Tag> updatedTags = editStudentDescriptor.getTags().orElse(studentToEdit.getTags());
+        List<ModuleCode> updatedModules = editStudentDescriptor.getModules().orElse(studentToEdit.getModules());
 
-        return new Student(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Student(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedModules);
     }
 
     @Override
@@ -139,6 +142,8 @@ public class EditCommand extends Command {
         private Address address;
         private Set<Tag> tags;
 
+        private List<ModuleCode> modules = new ArrayList<>();
+
         public EditStudentDescriptor() {}
 
         /**
@@ -151,6 +156,11 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
+            setModules(toCopy.modules);
+        }
+
+        public void setModules(List<ModuleCode> modules) {
+            this.modules = new ArrayList<>(modules);
         }
 
         /**
@@ -174,6 +184,10 @@ public class EditCommand extends Command {
 
         public Optional<Phone> getPhone() {
             return Optional.ofNullable(phone);
+        }
+
+        public Optional<List<ModuleCode>> getModules() {
+            return (modules != null) ? Optional.of(modules) : Optional.empty();
         }
 
         public void setEmail(Email email) {
@@ -225,7 +239,8 @@ public class EditCommand extends Command {
                     && Objects.equals(phone, otherEditStudentDescriptor.phone)
                     && Objects.equals(email, otherEditStudentDescriptor.email)
                     && Objects.equals(address, otherEditStudentDescriptor.address)
-                    && Objects.equals(tags, otherEditStudentDescriptor.tags);
+                    && Objects.equals(tags, otherEditStudentDescriptor.tags)
+                    && Objects.equals(modules, otherEditStudentDescriptor.modules);
         }
 
         @Override

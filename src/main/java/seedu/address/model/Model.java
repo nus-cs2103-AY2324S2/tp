@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ModuleMap;
 import seedu.address.model.student.Student;
 
@@ -88,4 +89,19 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredStudentList(Predicate<Student> predicate);
+
+    /**
+     * Checks if student `s` has moduleCode `m`
+     * @param s Student
+     * @param m Module
+     * @return Whether student has that module or not
+     */
+    boolean doesStudentHaveModule(Student s, ModuleCode m);
+
+    /**
+     * Adds module to the specified student
+     * @param m Module to add
+     * @param s Student to add module to
+     */
+    void addModuleToStudent(ModuleCode m, Student s);
 }

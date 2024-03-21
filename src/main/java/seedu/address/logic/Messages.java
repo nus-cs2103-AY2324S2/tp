@@ -47,5 +47,4 @@ public class Messages {
         student.getTags().forEach(builder::append);
         return builder.toString();
     }
-
 }

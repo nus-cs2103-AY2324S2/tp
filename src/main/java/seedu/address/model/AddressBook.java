@@ -6,6 +6,7 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.module.ModuleCode;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.UniqueStudentList;
 
@@ -95,6 +96,24 @@ public class AddressBook implements ReadOnlyAddressBook {
         students.remove(key);
     }
 
+    /**
+     * Adds a module to a student in the address book.
+     *
+     * @param m The module code to be added.
+     * @param s The student to whom the module is to be added.
+     */
+    public void addModuleToStudent(ModuleCode m, Student s) {
+        requireNonNull(m);
+        requireNonNull(s);
+        for (Student candidate : students) {
+            if (candidate.equals(s) && !candidate.hasModule(m)) {
+                Student editedStudent = candidate.copy();
+                editedStudent.getModules().add(m);
+                students.setStudent(candidate, editedStudent);
+                return;
+            }
+        }
+    }
     //// util methods
 
     @Override

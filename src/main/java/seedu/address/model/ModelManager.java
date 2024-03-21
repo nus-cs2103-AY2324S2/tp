@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ModuleMap;
 import seedu.address.model.student.Student;
 
@@ -120,6 +121,8 @@ public class ModelManager implements Model {
         addressBook.setStudent(target, editedStudent);
     }
 
+
+
     //=========== Filtered Student List Accessors =============================================================
 
     /**
@@ -135,6 +138,16 @@ public class ModelManager implements Model {
     public void updateFilteredStudentList(Predicate<Student> predicate) {
         requireNonNull(predicate);
         filteredStudents.setPredicate(predicate);
+    }
+
+    @Override
+    public boolean doesStudentHaveModule(Student s, ModuleCode m) {
+        return s.hasModule(m);
+    }
+
+    @Override
+    public void addModuleToStudent(ModuleCode m, Student s) {
+        addressBook.addModuleToStudent(m, s);
     }
 
     @Override
