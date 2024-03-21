@@ -23,14 +23,14 @@ import seedu.address.model.person.Person;
  */
 public class AddSellerCommand extends Command {
 
-    public static final String COMMAND_WORD = "addseller";
+    public static final String COMMAND_WORD = "addSeller";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a seller to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a seller to EstateEase. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
-            + PREFIX_HOUSING_TYPE + "HOUSINGTYPE "
+            + PREFIX_HOUSING_TYPE + "HOUSING_TYPE "
             + PREFIX_STREET + "STREET "
             + PREFIX_BLOCK + "BLOCK "
             + PREFIX_LEVEL + "LEVEL "
