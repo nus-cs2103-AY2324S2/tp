@@ -20,7 +20,7 @@ public class FindCompanyCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + "TikTok";
 
-    public static final String MESSAGE_FIND_COMPANY_SUCCESS = "Found %1$d %2$s with matching company tag.";
+    public static final String MESSAGE_FIND_COMPANY_SUCCESS = "Found %1$d %2$s with matching company tag(s).";
 
     private final CompanyContainsKeywordsPredicate predicate;
 
