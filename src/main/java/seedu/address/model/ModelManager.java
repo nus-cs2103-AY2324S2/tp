@@ -101,7 +101,7 @@ public class ModelManager implements Model {
     @Override
     public void addPerson(Company company) {
         addressBook.addPerson(company);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredCompanyList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
@@ -118,14 +118,19 @@ public class ModelManager implements Model {
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Company> getFilteredPersonList() {
+    public ObservableList<Company> getFilteredCompanyList() {
         return filteredCompanies;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Company> predicate) {
+    public void updateFilteredCompanyList(Predicate<Company> predicate) {
         requireNonNull(predicate);
         filteredCompanies.setPredicate(predicate);
+    }
+
+    @Override
+    public void sortCompanyList() {
+        addressBook.sortPersonList();
     }
 
     @Override

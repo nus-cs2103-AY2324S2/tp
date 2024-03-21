@@ -70,18 +70,24 @@ public interface Model {
     void addPerson(Company company);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
+     * Replaces the given company {@code target} with {@code editedCompany}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The person identity of {@code editedCompany} must not be the same as another existing company
+     * in the address book.
      */
     void setPerson(Company target, Company editedCompany);
 
-    /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Company> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered company list */
+    ObservableList<Company> getFilteredCompanyList();
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered company list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Company> predicate);
+    void updateFilteredCompanyList(Predicate<Company> predicate);
+
+    /**
+     * Sorts the list of companies
+     */
+    void sortCompanyList();
 }
