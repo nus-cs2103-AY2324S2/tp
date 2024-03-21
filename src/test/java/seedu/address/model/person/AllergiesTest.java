@@ -2,22 +2,23 @@ package seedu.address.model.person;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
 public class AllergiesTest {
 
+    /* commented as Allergies can be null, and doesn't have regex
     @Test
     public void constructor_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new Allergies(null));
     }
 
     @Test
-    public void constructor_invalidAddress_throwsIllegalArgumentException() {
+    public void constructor_invalidAllergies_throwsIllegalArgumentException() {
         String invalidAllergies = "";
         assertThrows(IllegalArgumentException.class, () -> new Allergies(invalidAllergies));
     }
+    */
 
     @Test
     public void equals() {

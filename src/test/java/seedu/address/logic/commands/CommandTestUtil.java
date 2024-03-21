@@ -97,12 +97,12 @@ public class CommandTestUtil {
     public static final UpdateCommand.UpdatePersonDescriptor DESC_BOB;
 
     static {
-        DESC_AMY = new UpdatePersonDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withTags(VALID_TAG_FRIEND).build();
-        DESC_BOB = new UpdatePersonDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        DESC_AMY = new UpdatePersonDescriptorBuilder().withNric(VALID_NRIC_AMY).withName(VALID_NAME_AMY)
+                .withPhone(VALID_PHONE_AMY).withAddress(VALID_ADDRESS_AMY).withDateOfBirth(VALID_DATEOFBIRTH_AMY)
+                .withSex(VALID_SEX_AMY).withStatus(VALID_STATUS_AMY).build();
+        DESC_BOB = new UpdatePersonDescriptorBuilder().withNric(VALID_NRIC_BOB).withName(VALID_NAME_BOB)
+                .withPhone(VALID_PHONE_BOB).withAddress(VALID_ADDRESS_BOB).withDateOfBirth(VALID_DATEOFBIRTH_BOB)
+                .withSex(VALID_SEX_BOB).withStatus(VALID_STATUS_BOB).build();
     }
 
     /**

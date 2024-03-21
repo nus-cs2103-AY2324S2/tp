@@ -25,24 +25,24 @@ public class DateOfBirthTest {
         assertThrows(NullPointerException.class, () -> DateOfAdmission.isValidDateOfAdmission(null));
 
         // invalid addresses
-        assertFalse(DateOfBirth.isValidDateOfBirth("")); // empty string
-        assertFalse(DateOfBirth.isValidDateOfBirth(" ")); // spaces only
-        assertFalse(DateOfBirth.isValidDateOfBirth("13122023")); // numbers only
-        assertFalse(DateOfBirth.isValidDateOfBirth("13/122023")); // one slash
-        assertFalse(DateOfBirth.isValidDateOfBirth("1312/2023")); // one slash
-        assertFalse(DateOfBirth.isValidDateOfBirth("1/3/2023")); // shortened date and month
-        assertFalse(DateOfBirth.isValidDateOfBirth("2023/12/13")); // reverse format
+        assertFalse(DateOfAdmission.isValidDateOfAdmission("")); // empty string
+        assertFalse(DateOfAdmission.isValidDateOfAdmission(" ")); // spaces only
+        assertFalse(DateOfAdmission.isValidDateOfAdmission("20231213")); // numbers only
+        assertFalse(DateOfAdmission.isValidDateOfAdmission("2023-1213")); // one slash
+        assertFalse(DateOfAdmission.isValidDateOfAdmission("202312-13")); // one slash
+        assertFalse(DateOfAdmission.isValidDateOfAdmission("2023-1-3")); // shortened date and month
+        assertFalse(DateOfAdmission.isValidDateOfAdmission("13-12-2023")); // reverse format
 
         // valid addresses
-        assertTrue(DateOfBirth.isValidDateOfBirth("13/12/2023"));
+        assertTrue(DateOfAdmission.isValidDateOfAdmission("2023-12-13"));
     }
 
     @Test
     public void equals() {
-        DateOfBirth date = new DateOfBirth("13/12/2020");
+        DateOfBirth date = new DateOfBirth("2020-12-13");
 
         // same values -> returns true
-        assertTrue(date.equals(new DateOfBirth("13/12/2020")));
+        assertTrue(date.equals(new DateOfBirth("2020-12-13")));
 
         // same object -> returns true
         assertTrue(date.equals(date));
@@ -54,6 +54,6 @@ public class DateOfBirthTest {
         assertFalse(date.equals(5.0f));
 
         // different values -> returns false
-        assertFalse(date.equals(new DateOfBirth("13/12/2023")));
+        assertFalse(date.equals(new DateOfBirth("2023-12-13")));
     }
 }
