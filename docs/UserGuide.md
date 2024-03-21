@@ -4,9 +4,11 @@
   pageNav: 3
 ---
 
-# AB-3 User Guide
+# Connectify User Guide
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a  Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+Connectify is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) 
+while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Connectify can get your 
+contact management tasks done faster than traditional GUI apps.
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -19,7 +21,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your Connectify application.
 
 1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
@@ -30,9 +32,12 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` 
+   to Connectify.
 
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
+   * `delete John Doe` : Deletes the contact with the specified contact name.
+   
+   * `edit John Doe n/John Tan` : edits the name attribute of the contact of `John Doe` to `John Tan`
 
    * `clear` : Deletes all contacts.
 
@@ -100,9 +105,10 @@ Format: `list`
 
 Edits an existing person in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit NAME [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the contact with the specified `NAME`. The specified `NAME` of the contact to edit is case-insensitive. 
+    e.g `edit John Doe n/John` is the same as `edit john doe n/John`
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
@@ -110,8 +116,10 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
     specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit John Doe p/91234567 e/johndoe@example.com` Edits the phone number and email address of the contact named 
+    `John Doe` to be `91234567` and `johndoe@example.com` respectively.
+*  `edit Betsy n/Betsy Crower t/` Edits the name of the contact named `Betsy` to be `Betsy Crower` and clears all 
+    existing tags.
 
 ### Locating persons by name: `find`
 
@@ -135,15 +143,72 @@ Examples:
 
 Deletes the specified person from the address book.
 
-Format: `delete INDEX`
+Format: `delete NAME`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* Deletes the contact with the specified `NAME`. The specified `NAME` of the contact to delete is case-insensitive.
+  e.g `delete John Doe` is the same as `delete john doe`
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `delete Betsy` deletes the contact with the contact name `Betsy` in the address book.
+
+### Adding a company tag to a person : `co`
+
+Adds the specified company tag name to the specified contact.
+
+Format: `co NAME c/COMPANY_NAME`
+
+* Adds the company tag to the person's contact. The specified `NAME` of the contact to add the company tag is 
+case-insensitive. e.g `co John Doe c/TikTok` is the same as `co john doe c/TikTok`
+
+Examples:
+* `co Betsy c/Google` adds the company tag `Google` to the contact name `Betsy` in the address book.
+
+### Assigning priority level to a contact : `pr/PRIORITY_LEVEL`
+
+Assigns the specified priority level to the specified contact.
+
+Format: `pr/PRIORITY_LEVEL NAME`
+
+* Assigns the specified priority level to the person's contact. The specified `NAME` of the contact to assign the 
+priority level is case-insensitive. e.g `pr/high Alex Tan` is the same as `pr/high alex tan`
+* Acceptable values for PRIORITY_LEVEL are `high` and `med`.
+
+Examples:
+* `pr/high Alex Tan` assigns `HIGH` priority level to the contact name `Alex Tan` in the address book.
+
+### Filtering contacts by priority : `filter-PRIORITY_LEVEL`
+
+Filters the contacts in the address book by the specified priority level.
+
+Format: `filter-PRIORITY_LEVEL`
+
+Examples:
+* `filter-high` returns a list of contacts with priority assigned as `high`.
+* `filter-med` returns a list of contacts with priority assigned as `med`.
+
+### Getting the number of contacts : `count`
+
+Counts the number of contacts in the address book.
+
+Format: `count`
+
+### Starring a contact : `star`
+
+Stars the specified contact in the address book.
+
+Format: `star NAME`
+
+* Stars the contact with the specified `NAME`. The specified `NAME` of the contact to star is case-insensitive.
+  e.g `star John Doe` is the same as `star john doe`
+
+Examples:
+* `star Betsy` stars the contact with the contact name `Betsy` in the address book.
+
+### Undoing the last command : `undo`
+
+Undoes the most recent add command by removing the most recently added contact.
+
+Format: `undo`
 
 ### Clearing all entries : `clear`
 
@@ -159,17 +224,17 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+The address book data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+The address book data is saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <box type="warning" seamless>
 
 **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
-Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
+If your changes to the data file makes its format invalid, Connectify will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
+Furthermore, certain edits can cause Connectify to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
 
 ### Archiving data files `[coming in v2.0]`
@@ -181,7 +246,7 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Connectify home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -194,11 +259,17 @@ _Details coming soon ..._
 ## Command summary
 
 Action     | Format, Examples
------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------
 **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **Clear**  | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Delete** | `delete NAME`<br> e.g., `delete John Doe`
+**Edit**   | `edit NAME [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit James n/James Lee e/jameslee@example.com`
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Add Company Tag**  | `co NAME c/COMPANY_NAME`<br> e.g., `co James Doe c/TikTok`
+**Assign Priority**  | `pr/PRIORITY_LEVEL NAME`<br> e.g., `pr/high Alex Tan`
+**Filter** | `filter-PRIORITY_LEVEL`<br> e.g., `filter-high`
+**Count**  | `count`
+**Star**   | `star NAME`<br> e.g., `star John Doe`
+**Undo**   | `undo`
 **List**   | `list`
 **Help**   | `help`

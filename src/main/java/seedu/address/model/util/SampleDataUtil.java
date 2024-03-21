@@ -12,6 +12,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Priority;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -20,26 +21,27 @@ import seedu.address.model.tag.Tag;
 public class SampleDataUtil {
 
     public static final Company EMPTY_COMPANY = new Company("");
+    public static final Priority EMPTY_PRIORITY = new Priority("");
 
     public static Person[] getSamplePersons() {
         return new Person[] {
             new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
-                new Address("Blk 30 Geylang Street 29, #06-40"), EMPTY_COMPANY, false,
+                new Address("Blk 30 Geylang Street 29, #06-40"), EMPTY_COMPANY, EMPTY_PRIORITY, false,
                 getTagSet("friends")),
             new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
-                new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"), EMPTY_COMPANY, false,
+                new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"), EMPTY_COMPANY, EMPTY_PRIORITY, false,
                 getTagSet("colleagues", "friends")),
             new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
-                new Address("Blk 11 Ang Mo Kio Street 74, #11-04"), EMPTY_COMPANY, false,
+                new Address("Blk 11 Ang Mo Kio Street 74, #11-04"), EMPTY_COMPANY, EMPTY_PRIORITY, false,
                 getTagSet("neighbours")),
             new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
-                new Address("Blk 436 Serangoon Gardens Street 26, #16-43"), EMPTY_COMPANY, false,
+                new Address("Blk 436 Serangoon Gardens Street 26, #16-43"), EMPTY_COMPANY, EMPTY_PRIORITY, false,
                 getTagSet("family")),
             new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
-                new Address("Blk 47 Tampines Street 20, #17-35"), EMPTY_COMPANY, false,
+                new Address("Blk 47 Tampines Street 20, #17-35"), EMPTY_COMPANY, EMPTY_PRIORITY, false,
                 getTagSet("classmates")),
             new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
-                new Address("Blk 45 Aljunied Street 85, #11-31"), EMPTY_COMPANY, false,
+                new Address("Blk 45 Aljunied Street 85, #11-31"), EMPTY_COMPANY, EMPTY_PRIORITY, false,
                 getTagSet("colleagues"))
         };
     }
@@ -60,5 +62,4 @@ public class SampleDataUtil {
                 .map(Tag::new)
                 .collect(Collectors.toSet());
     }
-
 }
