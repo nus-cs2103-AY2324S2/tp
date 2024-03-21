@@ -56,8 +56,8 @@ public class PersonCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
-        setAddress();
-        setEmail();
+        address.setText(person.getAddress().value);
+        email.setText(person.getEmail().value);
         setCompany();
 
         String priorityValue = person.getPriority().value;
@@ -71,24 +71,6 @@ public class PersonCard extends UiPart<Region> {
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-    }
-
-    private void setAddress() {
-        if (!person.getAddress().value.equals("")) {
-            address.setText(person.getAddress().value);
-            address.setVisible(true);
-        } else {
-            address.setPrefHeight(0.0);
-        }
-    }
-
-    private void setEmail() {
-        if (!person.getEmail().value.equals("")) {
-            email.setText(person.getEmail().value);
-            email.setVisible(true);
-        } else {
-            email.setPrefHeight(0.0);
-        }
     }
 
     private void setCompany() {
