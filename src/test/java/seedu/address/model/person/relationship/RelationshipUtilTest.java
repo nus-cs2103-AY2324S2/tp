@@ -4,14 +4,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.UUID;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.person.Person;
 import seedu.address.model.person.attribute.Attribute;
 import seedu.address.model.person.attribute.NameAttribute;
-
-import java.util.UUID;
 
 public class RelationshipUtilTest {
 

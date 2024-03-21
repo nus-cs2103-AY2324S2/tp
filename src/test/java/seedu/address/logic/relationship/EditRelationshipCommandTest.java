@@ -1,19 +1,15 @@
 package seedu.address.logic.relationship;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import java.util.UUID;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.attribute.Attribute;
-import seedu.address.model.person.attribute.NameAttribute;
 import seedu.address.model.person.relationship.Relationship;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 public class EditRelationshipCommandTest {
     @Test

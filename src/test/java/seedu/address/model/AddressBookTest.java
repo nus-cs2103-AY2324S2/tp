@@ -12,7 +12,11 @@ import static seedu.address.testutil.TypicalPersonsUuid.ALICE;
 import static seedu.address.testutil.TypicalPersonsUuid.HOON;
 import static seedu.address.testutil.TypicalPersonsUuid.getTypicalAddressBook;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import java.util.UUID;
 
 import org.junit.jupiter.api.Test;
 
@@ -22,8 +26,8 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.attribute.Attribute;
 import seedu.address.model.person.attribute.NameAttribute;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
-import seedu.address.testutil.PersonBuilder;
 import seedu.address.model.person.relationship.Relationship;
+import seedu.address.testutil.PersonBuilder;
 
 public class AddressBookTest {
 
