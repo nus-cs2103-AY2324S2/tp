@@ -61,7 +61,7 @@ public class AppointmentCard extends UiPart<Region> {
         cardPane.styleProperty().bind(
             javafx.beans.binding.Bindings.when(
                 javafx.beans.binding.Bindings.createBooleanBinding(() -> (
-                    appt.getMark().isMarked())
+                    appt.getMark().mark)
                 )
             )
             .then("-fx-background-color: #33B864")

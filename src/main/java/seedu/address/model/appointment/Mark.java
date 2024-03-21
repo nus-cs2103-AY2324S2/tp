@@ -1,5 +1,6 @@
 package seedu.address.model.appointment;
 
+import java.util.Objects;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -32,14 +33,6 @@ public class Mark {
             return false;
         }
         return true;
-    }
-
-    /**
-     * Returns current boolean value
-     */
-
-    public boolean isMarked() {
-        return mark;
     }
 
     @Override

@@ -97,8 +97,7 @@ public class AppointmentTest {
         assertFalse(ALICE_APPT.equals(editedAliceAppt));
 
         // different mark -> returns false
-        editedAliceAppt = new AppointmentBuilder(ALICE_APPT).build();
-        editedAliceAppt.setMark("true");
+        editedAliceAppt = new AppointmentBuilder(ALICE_APPT).withMark("true").build();
         assertFalse(ALICE_APPT.equals(editedAliceAppt));
     }
 
