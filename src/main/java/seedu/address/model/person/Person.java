@@ -62,6 +62,19 @@ public class Person {
     }
 
     /**
+     * Returns true if a person contains a tag, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public boolean containsTag(Tag tag) {
+        for (Tag t: tags) {
+            if (t.isSameTag(tag)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      */
