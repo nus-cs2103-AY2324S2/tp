@@ -65,15 +65,6 @@ public class Meeting {
         this.client = null;
     }
 
-    public Meeting(String description, LocalDateTime dateTime) {
-        requireAllNonNull(description, dateTime);
-        checkArgument(isValidDescription(description), MESSAGE_CONSTRAINTS);
-        checkArgument(isValidDateTime(dateTime.format(formatter)), MESSAGE_INVALID_DATE_TIME);
-        this.description = description;
-        this.dateTime = dateTime;
-        this.client = null;
-    }
-
     /**
      * Returns true if a given string is a valid descrption
      * @param test String to be tested

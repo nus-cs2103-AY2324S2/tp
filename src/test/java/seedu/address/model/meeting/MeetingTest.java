@@ -26,19 +26,21 @@ public class MeetingTest {
         // same values -> returns true
         Meeting meetingWithAliceCopy = TypicalMeetings.ALICE_WITH_MEETING.getMeetings().get(0);
 
-        assertTrue(TypicalMeetings.ALICE_WITH_MEETING.equals(meetingWithAliceCopy));
+        assertTrue(TypicalMeetings.ALICE_WITH_MEETING.getMeetings().get(0).equals(meetingWithAliceCopy));
 
         // same object -> returns true
-        assertTrue(TypicalMeetings.ALICE_WITH_MEETING.equals(TypicalMeetings.ALICE_WITH_MEETING));
+        assertTrue(TypicalMeetings.ALICE_WITH_MEETING.getMeetings().get(0)
+                .equals(TypicalMeetings.ALICE_WITH_MEETING.getMeetings().get(0)));
 
         // null -> returns false
-        assertFalse(TypicalMeetings.ALICE_WITH_MEETING.equals(null));
+        assertFalse(TypicalMeetings.ALICE_WITH_MEETING.getMeetings().get(0).equals(null));
 
         // different type -> returns false
-        assertFalse(TypicalMeetings.ALICE_WITH_MEETING.equals(5));
+        assertFalse(TypicalMeetings.ALICE_WITH_MEETING.getMeetings().get(0).equals(5));
 
         // different meeting -> returns false
-        assertFalse(TypicalMeetings.ALICE_WITH_MEETING.equals(TypicalMeetings.BENSON_WITH_MEETING));
+        assertFalse(TypicalMeetings.ALICE_WITH_MEETING.getMeetings().get(0)
+                .equals(TypicalMeetings.BENSON_WITH_MEETING));
     }
 
     @Test

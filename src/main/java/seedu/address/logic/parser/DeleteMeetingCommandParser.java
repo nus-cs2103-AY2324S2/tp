@@ -4,12 +4,11 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLIENT_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_INDEX;
 
+import java.util.stream.Stream;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.DeleteMeetingCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-
-import java.time.LocalDateTime;
-import java.util.stream.Stream;
 
 /**
  * Parses input arguments and creates a new DeleteCommand object
