@@ -4,8 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.UUID;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -13,18 +11,18 @@ import org.junit.jupiter.api.Test;
 
 public class RelationshipUtilTest {
     private static final UUID PERSON_1_UUID = UUID.fromString("00000000-0000-0000-0000-000000000001");
-    private static final UUID PERSON_2_UUID =  UUID.fromString("00000000-0000-0000-0000-000000000002");
-    private static final UUID PERSON_3_UUID =  UUID.fromString("00000000-0000-0000-0000-000000000003");
-    private static final UUID PERSON_4_UUID =  UUID.fromString("00000000-0000-0000-0000-000000000004");
+    private static final UUID PERSON_2_UUID = UUID.fromString("00000000-0000-0000-0000-000000000002");
+    private static final UUID PERSON_3_UUID = UUID.fromString("00000000-0000-0000-0000-000000000003");
+    private static final UUID PERSON_4_UUID = UUID.fromString("00000000-0000-0000-0000-000000000004");
     private static final String FAMILY_RELATIONSHIP_DESCRIPTOR = "family";
     private static final String FRIEND_RELATIONSHIP_DESCRIPTOR = "friend";
     private static final Relationship[] testData = new Relationship[] {
         new Relationship(PERSON_1_UUID, PERSON_2_UUID, FAMILY_RELATIONSHIP_DESCRIPTOR),
-                new Relationship(PERSON_1_UUID, PERSON_2_UUID, FRIEND_RELATIONSHIP_DESCRIPTOR),
-                new Relationship(PERSON_3_UUID, PERSON_4_UUID, FAMILY_RELATIONSHIP_DESCRIPTOR),
-                new Relationship(PERSON_4_UUID, PERSON_3_UUID, FRIEND_RELATIONSHIP_DESCRIPTOR),
-                new Relationship(PERSON_1_UUID, PERSON_3_UUID, FRIEND_RELATIONSHIP_DESCRIPTOR),
-                new Relationship(PERSON_1_UUID, PERSON_4_UUID, FAMILY_RELATIONSHIP_DESCRIPTOR)
+        new Relationship(PERSON_1_UUID, PERSON_2_UUID, FRIEND_RELATIONSHIP_DESCRIPTOR),
+        new Relationship(PERSON_3_UUID, PERSON_4_UUID, FAMILY_RELATIONSHIP_DESCRIPTOR),
+        new Relationship(PERSON_4_UUID, PERSON_3_UUID, FRIEND_RELATIONSHIP_DESCRIPTOR),
+        new Relationship(PERSON_1_UUID, PERSON_3_UUID, FRIEND_RELATIONSHIP_DESCRIPTOR),
+        new Relationship(PERSON_1_UUID, PERSON_4_UUID, FAMILY_RELATIONSHIP_DESCRIPTOR)
     };
     private RelationshipUtil relationships;
     @BeforeEach

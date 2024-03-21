@@ -10,16 +10,16 @@ import org.junit.jupiter.api.Test;
 
 public class RelationshipTest {
     private static final UUID PERSON_1_UUID = UUID.fromString("00000000-0000-0000-0000-000000000001");
-    private static final UUID PERSON_2_UUID =  UUID.fromString("00000000-0000-0000-0000-000000000002");
+    private static final UUID PERSON_2_UUID = UUID.fromString("00000000-0000-0000-0000-000000000002");
     private static final String FAMILY_RELATIONSHIP_DESCRIPTOR = "family";
     private static final String FRIEND_RELATIONSHIP_DESCRIPTOR = "friend";
     private static final String INVALID_RELATIONSHIP_DESCRIPTOR = "spouse";
     @Test
-    public void test_Constructor_WithValidFamilyDescriptorDoesNotThrowIllegalArgumentException() {
+    public void testConstructorWithValidFamilyDescriptorDoesNotThrowIllegalArgumentException() {
         assertDoesNotThrow(() -> new Relationship(PERSON_1_UUID, PERSON_2_UUID, FAMILY_RELATIONSHIP_DESCRIPTOR));
     }
     @Test
-    public void test_Constructor_WithInvalidFamilyDescriptorDoesThrowIllegalArgumentException() {
+    public void testConstructorWithInvalidFamilyDescriptorDoesThrowIllegalArgumentException() {
         assertThrows(IllegalArgumentException.class, () ->
                 new Relationship(PERSON_1_UUID, PERSON_2_UUID, INVALID_RELATIONSHIP_DESCRIPTOR));
     }
@@ -34,7 +34,7 @@ public class RelationshipTest {
         assertEquals(PERSON_2_UUID, test.getPerson2());
     }
     @Test
-    public void test_EqualsMethod() {
+    public void testEqualsMethod() {
         Relationship test1 = new Relationship(PERSON_1_UUID, PERSON_2_UUID, FAMILY_RELATIONSHIP_DESCRIPTOR);
         Relationship test2 = new Relationship(PERSON_1_UUID, PERSON_2_UUID, FAMILY_RELATIONSHIP_DESCRIPTOR);
         Relationship test3 = new Relationship(PERSON_2_UUID, PERSON_1_UUID, FAMILY_RELATIONSHIP_DESCRIPTOR);

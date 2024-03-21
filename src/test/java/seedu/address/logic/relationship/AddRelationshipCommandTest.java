@@ -1,9 +1,8 @@
 package seedu.address.logic.relationship;
 
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersonsUuid.getTypicalAddressBook;
-
 
 import java.util.UUID;
 
@@ -35,9 +34,9 @@ class AddRelationshipCommandTest {
         String expectedMessage = "Add success";
         UUID person1Uuid = UUID.fromString("00000000-0000-0000-0000-000000000001");
         UUID person2Uuid = UUID.fromString("00000000-0000-0000-0000-000000000002");
-        String FAMILY_RELATIONSHIP_DESCRIPTOR = "family";
+        String familyRelationshipDescriptor = "family";
         expectedModel.addRelationship(
-                new Relationship(person1Uuid, person2Uuid, FAMILY_RELATIONSHIP_DESCRIPTOR));
+                new Relationship(person1Uuid, person2Uuid, familyRelationshipDescriptor));
         assertCommandSuccess(addRelationshipCommand, model, expectedMessage, expectedModel);
     }
 

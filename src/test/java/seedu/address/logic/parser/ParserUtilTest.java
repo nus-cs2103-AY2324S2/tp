@@ -205,7 +205,7 @@ public class ParserUtilTest {
         assertThrows(ParseException.class, () -> ParserUtil.parseUuid(INVALID_UUID_2));
     }
     @Test
-    public void parseUuid_ValidValue_ReturnsUuid() throws Exception {
+    public void parseUuid_validValue_returnsUuid() throws Exception {
         String expected = VALID_UUID_1;
         String test = ParserUtil.parseUuid(expected);
         assertEquals(expected, test);
