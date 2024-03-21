@@ -23,10 +23,10 @@ public class SampleDataUtil {
     public static Person[] getSamplePersons() {
         return new Person[] {
             new Person(new Name("Alex Yeoh"), Optional.of(new Phone("87438807")), new Email("alexyeoh@u.nus.edu"),
-                new Role("STUDENT"), new Address(""), 
+                new Role("STUDENT"), new Address(""),
                 new Course("CS2103T"), getTagSet("friends")),
             new Person(new Name("Bernice Yu"), Optional.of(new Phone("99272758")), new Email("berniceyu@u.nus.edu"),
-                new Role("STUDENT"), new Address(""), 
+                new Role("STUDENT"), new Address(""),
                 new Course("CS2103"), getTagSet("classmates", "friends")),
             new Person(new Name("Charlotte Oliveiro"), Optional.of(new Phone("93210283")),
                 new Email("charlotte@example.com"),
