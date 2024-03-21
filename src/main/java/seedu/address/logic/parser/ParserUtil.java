@@ -172,12 +172,16 @@ public class ParserUtil {
      * Leading and trailing whitespaces will be trimmed.
      *
      */
-    public static DrugAllergy parseDrugAllergy(String drugAllergy) {
+    public static DrugAllergy parseDrugAllergy(String drugAllergy) throws ParseException {
         String trimmedDrugAllergy;
         if (drugAllergy == null) {
             trimmedDrugAllergy = "No allergy";
         } else {
             trimmedDrugAllergy = drugAllergy.trim();
+        }
+
+        if (!DrugAllergy.isValidDrugAllergy(trimmedDrugAllergy)) {
+            throw new ParseException(DrugAllergy.MESSAGE_CONSTRAINTS);
         }
 
         return new DrugAllergy(trimmedDrugAllergy);

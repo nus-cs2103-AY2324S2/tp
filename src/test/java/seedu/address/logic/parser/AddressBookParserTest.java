@@ -102,6 +102,7 @@ public class AddressBookParserTest {
         AddNoteCommand command = (AddNoteCommand) parser.parseCommand("add-an 1 d/19-02-2024 t/1130 n/New note");
         assertEquals(new AddNoteCommand(Index.fromOneBased(1), note), command);
     }
+
     @Test
     public void parseCommand_listNote() throws Exception {
         assertTrue(parser.parseCommand(ListNoteCommand.COMMAND_WORD) instanceof ListNoteCommand);

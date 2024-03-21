@@ -2,7 +2,10 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTHDATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DRUG_ALLERGY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ILLNESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -16,6 +19,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.DrugAllergy;
+import seedu.address.model.person.Gender;
 import seedu.address.model.person.illness.Illness;
 
 /**
@@ -31,7 +36,14 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ILLNESS);
+                ArgumentTokenizer.tokenize(args,
+                        PREFIX_NAME,
+                        PREFIX_GENDER,
+                        PREFIX_BIRTHDATE,
+                        PREFIX_PHONE,
+                        PREFIX_EMAIL,
+                        PREFIX_DRUG_ALLERGY,
+                        PREFIX_ILLNESS);
 
         Index index;
 
@@ -41,27 +53,65 @@ public class EditCommandParser implements Parser<EditCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL);
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_GENDER,
+                PREFIX_BIRTHDATE, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_DRUG_ALLERGY);
 
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            editPersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
+            editPersonDescriptor.setName(
+                    ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
+        }
+        if (argMultimap.getValue(PREFIX_GENDER).isPresent()) {
+            editPersonDescriptor.setGender(
+                    parseGenderForEdit(
+                            argMultimap.getValue(PREFIX_GENDER).get()));
+        }
+        if (argMultimap.getValue(PREFIX_BIRTHDATE).isPresent()) {
+            editPersonDescriptor.setBirthDate(
+                    ParserUtil.parseBirthDate(argMultimap.getValue(PREFIX_BIRTHDATE).get()));
         }
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
-            editPersonDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
+            editPersonDescriptor.setPhone(
+                    ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
         }
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
-            editPersonDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
+            editPersonDescriptor.setEmail(
+                    ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
+        }
+        if (argMultimap.getValue(PREFIX_DRUG_ALLERGY).isPresent()) {
+            editPersonDescriptor.setDrugAllergy(
+                    parseDrugAllergyForEdit(argMultimap.getValue(PREFIX_DRUG_ALLERGY).get()));
         }
 
-        parseIllnessesForEdit(argMultimap.getAllValues(PREFIX_ILLNESS)).ifPresent(editPersonDescriptor::setIllnesses);
+        parseIllnessesForEdit(
+                argMultimap.getAllValues(PREFIX_ILLNESS)).ifPresent(editPersonDescriptor::setIllnesses);
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
 
         return new EditCommand(index, editPersonDescriptor);
+    }
+
+    private Gender parseGenderForEdit(String gender) throws ParseException {
+        String genderStr = null;
+
+        if (!gender.trim().isEmpty()) {
+            genderStr = gender;
+        }
+
+        return ParserUtil.parseGender(genderStr);
+    }
+
+    private DrugAllergy parseDrugAllergyForEdit(String drugAllergy) throws ParseException {
+        String drugAllergyStr = null;
+
+        if (!drugAllergy.trim().isEmpty()) {
+            drugAllergyStr = drugAllergy;
+        }
+
+        return ParserUtil.parseDrugAllergy(drugAllergyStr);
     }
 
     /**
@@ -79,5 +129,4 @@ public class EditCommandParser implements Parser<EditCommand> {
                 illnesses.size() == 1 && illnesses.contains("") ? Collections.emptySet() : illnesses;
         return Optional.of(ParserUtil.parseIllnesses(illnessSet));
     }
-
 }
