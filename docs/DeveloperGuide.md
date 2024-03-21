@@ -201,6 +201,15 @@ This section describes some noteworthy details on how certain features are imple
 
 ### \[Proposed\] Undo/redo feature
 
+### Send email directly feature
+c
+
+The following sequence diagram shows what happens as the user double clicks on the email address
+<puml src="diagrams/SendEmailSequenceDiagram.puml" alt="Sequence Diagram for sending an email" />
+
+#### Possible enhancements
+* There can be a feature where multiple emails can be selected to send a mass email to them.
+
 #### Proposed Implementation
 
 The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo
