@@ -234,6 +234,11 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Displays all orders in the order list panel.
+     * This method checks if the list of all orders is not empty before attempting to update the
+     * displayed orders in the order list panel. If the list is empty, no action is taken.
+     */
     public void showAllOrders() {
         if (!allOrders.isEmpty()) {
             orderListPanel.updateDisplayedOrders(allOrders);
