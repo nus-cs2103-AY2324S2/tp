@@ -53,6 +53,17 @@ public class Person {
     }
 
     /**
+     * @param taskName name of the task which needs to be found in project list
+     * @return the found task or null
+     */
+    public Task findTask(Name taskName) {
+        Optional<Task> foundTask = taskList.stream()
+                .filter(task -> task.getName().toString().equals(taskName.toString()))
+                .findFirst();
+        return foundTask.get();
+    }
+
+    /**
      * Returns the name of the Person
      */
     public Task findTask(Name taskName) {

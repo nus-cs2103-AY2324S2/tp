@@ -20,6 +20,7 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.SetDeadlineCommand;
+import seedu.address.logic.commands.SetStatusCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -62,6 +63,9 @@ public class AddressBookParser {
         logger.fine("Command word: " + commandWord + "; Arguments: " + arguments);
 
         switch (commandWord) {
+
+        case SetStatusCommand.COMMAND_WORD:
+            return new SetStatusCommandParser().parse(arguments);
 
         case AddProjectCommand.COMMAND_WORD:
             return new AddProjectCommandParser().parse(arguments);
