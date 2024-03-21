@@ -10,6 +10,7 @@ import scrolls.elder.logic.Messages;
 import scrolls.elder.logic.commands.exceptions.CommandException;
 import scrolls.elder.model.Model;
 import scrolls.elder.model.person.Person;
+import scrolls.elder.model.person.Role;
 
 /**
  * Deletes a person identified using its displayed index from the address book.
@@ -31,22 +32,33 @@ public class DeleteCommand extends Command {
             + "Example: " + COMMAND_WORD_REMOVE + " 1";
 
 
-
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
     public static final String MESSAGE_DELETE_PERSON_ERROR = "Unable to delete contact: ";
     public static final String MESSAGE_CONFIRM_DELETE =
             "Valid contact inputted. Are you sure you want to delete this contact?";
+    public static final String MESSAGE_NO_ROLE = "Role must be specified when editing a person.";
 
     private final Index targetIndex;
+    private final Role role;
 
-    public DeleteCommand(Index targetIndex) {
+    /**
+     * Creates a DeleteCommand to delete the person at the specified {@code targetIndex}.
+     */
+    public DeleteCommand(Index targetIndex, Role role) {
         this.targetIndex = targetIndex;
+        this.role = role;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+
+        List<Person> lastShownList;
+        if (role.isVolunteer()) {
+            lastShownList = model.getFilteredVolunteerList();
+        } else {
+            lastShownList = model.getFilteredBefriendeeList();
+        }
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(MESSAGE_DELETE_PERSON_ERROR + Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
@@ -82,6 +94,7 @@ public class DeleteCommand extends Command {
     public String toString() {
         return new ToStringBuilder(this)
                 .add("targetIndex", targetIndex)
+                .add("role", role)
                 .toString();
     }
 }

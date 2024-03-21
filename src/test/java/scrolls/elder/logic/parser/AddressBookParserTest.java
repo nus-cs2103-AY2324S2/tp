@@ -21,6 +21,7 @@ import scrolls.elder.logic.commands.ListCommand;
 import scrolls.elder.logic.parser.exceptions.ParseException;
 import scrolls.elder.model.person.NameContainsKeywordsPredicate;
 import scrolls.elder.model.person.Person;
+import scrolls.elder.model.person.Role;
 import scrolls.elder.testutil.Assert;
 import scrolls.elder.testutil.EditPersonDescriptorBuilder;
 import scrolls.elder.testutil.PersonBuilder;
@@ -29,6 +30,7 @@ import scrolls.elder.testutil.TypicalIndexes;
 
 public class AddressBookParserTest {
 
+    private static final String ROLE_STRING = "volunteer";
     private final AddressBookParser parser = new AddressBookParser();
 
     @Test
@@ -46,30 +48,34 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_delete1() throws Exception {
-        DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD_DELETE + " " + TypicalIndexes.INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteCommand(TypicalIndexes.INDEX_FIRST_PERSON), command);
+        String userInput = String.format("%s %d r/%s", DeleteCommand.COMMAND_WORD_DELETE,
+                TypicalIndexes.INDEX_FIRST_PERSON.getOneBased(), ROLE_STRING);
+        DeleteCommand command = (DeleteCommand) parser.parseCommand(userInput);
+        assertEquals(new DeleteCommand(TypicalIndexes.INDEX_FIRST_PERSON, new Role(ROLE_STRING)), command);
     }
 
     @Test
     public void parseCommand_delete2() throws Exception {
-        DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD_DEL + " " + TypicalIndexes.INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteCommand(TypicalIndexes.INDEX_FIRST_PERSON), command);
+        String userInput = String.format("%s %d r/%s", DeleteCommand.COMMAND_WORD_DEL,
+                TypicalIndexes.INDEX_FIRST_PERSON.getOneBased(), ROLE_STRING);
+        DeleteCommand command = (DeleteCommand) parser.parseCommand(userInput);
+        assertEquals(new DeleteCommand(TypicalIndexes.INDEX_FIRST_PERSON, new Role(ROLE_STRING)), command);
     }
 
     @Test
     public void parseCommand_delete3() throws Exception {
-        DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD_RM + " " + TypicalIndexes.INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteCommand(TypicalIndexes.INDEX_FIRST_PERSON), command);
+        String userInput = String.format("%s %d r/%s", DeleteCommand.COMMAND_WORD_RM,
+                TypicalIndexes.INDEX_FIRST_PERSON.getOneBased(), ROLE_STRING);
+        DeleteCommand command = (DeleteCommand) parser.parseCommand(userInput);
+        assertEquals(new DeleteCommand(TypicalIndexes.INDEX_FIRST_PERSON, new Role(ROLE_STRING)), command);
     }
 
     @Test
     public void parseCommand_delete4() throws Exception {
-        DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD_REMOVE + " " + TypicalIndexes.INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteCommand(TypicalIndexes.INDEX_FIRST_PERSON), command);
+        String userInput = String.format("%s %d r/%s", DeleteCommand.COMMAND_WORD_REMOVE,
+                TypicalIndexes.INDEX_FIRST_PERSON.getOneBased(), ROLE_STRING);
+        DeleteCommand command = (DeleteCommand) parser.parseCommand(userInput);
+        assertEquals(new DeleteCommand(TypicalIndexes.INDEX_FIRST_PERSON, new Role(ROLE_STRING)), command);
     }
 
     @Test
