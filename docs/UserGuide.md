@@ -17,11 +17,11 @@ CodeConnect (CC) is a **desktop app for managing student contacts, optimized for
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `codeconnect.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your CodeConnect.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar codeconnect.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
@@ -43,6 +43,8 @@ CodeConnect (CC) is a **desktop app for managing student contacts, optimized for
 ---
 
 ## Features
+
+### Commands
 
 <box type="info" seamless>
 
@@ -66,7 +68,7 @@ CodeConnect (CC) is a **desktop app for managing student contacts, optimized for
 - If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
   </box>
 
-### Viewing help : `help`
+#### Viewing help : `help`
 
 Shows a message explaning how to access the help page.
 
@@ -74,7 +76,7 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
-### Adding a contact: `add`
+#### Adding a contact: `add`
 
 Adds a contact to the address book.
 
@@ -90,13 +92,13 @@ Examples:
 - `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 g/johnDoee`
 - `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 g/betBetty t/criminal ts/Flutter`
 
-### Listing all contacts : `list`
+#### Listing all contacts : `list`
 
 Shows a list of all contacts in the address book.
 
 Format: `list`
 
-### Editing a contact : `edit`
+#### Editing a contact : `edit`
 
 Edits an existing contact in the address book.
 
@@ -114,7 +116,7 @@ Examples:
 - `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st contact to be `91234567` and `johndoe@example.com` respectively.
 - `edit 2 n/Betsy Crower t/` Edits the name of the 2nd contact to be `Betsy Crower` and clears all existing tags.
 
-### Locating contacts by name: `find`
+#### Locating contacts by name: `find`
 
 Finds contacts whose names contain any of the given keywords.
 
@@ -133,11 +135,11 @@ Examples:
 - `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Locating contacts by tags: `find-tag`
+#### Locating contacts by tags: `find-tags`
 
 Finds contacts whose tags contain all the given keywords.
 
-Format: `find-tag KEYWORD [MORE_KEYWORDS]`
+Format: `find-tags KEYWORD [MORE_KEYWORDS]`
 
 - The search is case-insensitive. e.g `school` will match `School`
 - Only the tags are searched.
@@ -148,7 +150,21 @@ Examples:
 - image to be replaced
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a contact : `delete`
+#### Locating contacts by tech stack: `find-ts`
+
+Finds contacts whose tech stack contain all the given keywords.
+
+Format: `find-ts KEYWORD [MORE_KEYWORDS]`
+
+- The search is case-insensitive. e.g `java` will match `Java`
+- Only the tech stack are searched.
+- Only full words will be matched e.g. `java` will not match `javascript`
+- contacts matching all keywords will be returned (i.e. `AND` search).
+
+Examples:
+- image to be inserted
+
+#### Deleting a contact : `delete`
 
 Deletes the specified contact from the address book.
 
@@ -163,34 +179,51 @@ Examples:
 - `list` followed by `delete 2` deletes the 2nd contact in the address book.
 - `find Betsy` followed by `delete 1` deletes the 1st contact in the results of the `find` command.
 
-### Clearing all entries : `clear`
+#### Clearing all entries : `clear`
 
 Clears all entries from the address book.
 
 Format: `clear`
 
-### Exiting the program : `exit`
+#### Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
 
-### Saving the data
+### Other features
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+#### Sending an email to a specific contact
 
-### Editing the data file
+Opens the desktop mail application to directly send an email to a specific contact.
 
-AddressBook data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+**How to use:** Click on the contact's email.
+
+
+#### View your previous commands
+
+Any commands you have run previously are saved in the command history, so that you can easily refer to them if you need to.
+Any edits you make to a command will be saved while navigating through your history, so you can go to a another command
+to refer to it, and then return back to your edited command to finish typing.
+
+**How to use:** Use the up and down arrow keys to navigate through your history while the command input is focused,
+
+#### Saving the data
+
+CodeConnect data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+#### Editing the data file
+
+CodeConnect data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <box type="warning" seamless>
 
 **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
-Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
+If your changes to the data file makes its format invalid, CodeConnect will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
+Furthermore, certain edits can cause the CodeConnect to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
 
-### Archiving data files `[coming in v2.0]`
+#### Archiving data files `[coming in v2.0]`
 
 _Details coming soon ..._
 
@@ -199,7 +232,7 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous CodeConnect home folder.
 
 ---
 
@@ -211,12 +244,15 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action     | Format, Examples                                                                                                                                                                                                                    |
-|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS g/GITHUB_USERNAME [t/TAG] [ts/TECH_STACK]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 g/Jamesho123 t/friend t/colleague ts/Java ts/C++` |
-| **Clear**  | `clear`                                                                                                                                                                                                                             |
-| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                 |
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GITHUB_USERNAME] [t/TAG]…​ [ts/TECH_STACK]…​ `<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                  |
-| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                          |
-| **List**   | `list`                                                                                                                                                                                                                              |
-| **Help**   | `help`                                                                                                                                                                                                                              |
+
+| Action              | Format, Examples                                                                                                                                                                                                                    |
+|---------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**             | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS g/GITHUB_USERNAME [t/TAG] [ts/TECH_STACK]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 g/Jamesho123 t/friend t/colleague ts/Java ts/C++` |
+| **Clear**           | `clear`                                                                                                                                                                                                                             |
+| **Delete**          | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                 |
+| **Edit**            | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GITHUB_USERNAME] [t/TAG]…​ [ts/TECH_STACK]…​ `<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                  |
+| **Find**            | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                          |
+| **Find by Tags**    | `find-tags KEYWORD [MORE_KEYWORDS]`<br> e.g., `find-tags School Work`                                                                                                                                                               |
+| **Find Tech Stack** | `find-ts KEYWORD [MORE_KEYWORDS]`<br> e.g., `find-ts Java Python`                                                                                                                                                                   |
+| **List**            | `list`                                                                                                                                                                                                                              |
+| **Help**            | `help`                                                                                                                                                                                                                              |
