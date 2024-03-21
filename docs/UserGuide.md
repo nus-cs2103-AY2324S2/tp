@@ -1,10 +1,9 @@
 ---
 layout: page
-title: User Guide
+title: Housekeeping Hub User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
-
+Welcome to HouseKeeping Hub, the premier **desktop solution for managing client and housekeeper contacts**. Combining the **efficiency of a Command Line Interface ([CLI](#cli)) with the convenience of a Graphical User Interface ([GUI](#gui))**, HouseKeeping Hub offers unparalleled speed and ease of use. Whether you're a typist or a clicker, HouseKeeping Hub ensures swift completion of all your contact management tasks. Bid farewell to the sluggishness of traditional GUI apps - with HouseKeeping Hub, managing your contacts has never been faster or simpler.
 * Table of Contents
 {:toc}
 
@@ -17,27 +16,59 @@ you will find a quick start (guide to install and start using our product), a li
 a glossary to help you understand some jargon. This guide is designed to provide you with clear and concise instructions 
 and a reader-friendly format to enhance your experience in using our product.
 
+## How to use this guide
 
-## Quick start
+Let's get started! Here's a rundown of every section in this guide:
+
+If you have yet to install Housekeeping Hub, you can refer to the [installation instructions](#installation).
+
+After installing the application, you can start off by following our [tutorial](#tutorial) to familiarise yourself
+with the basic features of the app.
+
+The [features](#features) section provides the detailed overview of each command, command formats and examples.
+
+If you'd like a quick reference of all available commands, check out the [command summary](#command-summary).
+
+You can head over to the [Frequently Asked Questions](#faq) section to view answers to common queries regarding the app.
+
+Finally, we have the [glossary](#glossary) section to clarify any technical jargon used.
+
+Now you have successfully mastered how to use this guide! One last thing: learn how to **navigate the guide**
+in the section below.
+
+## Navigating our guide
+
+Words highlighted in blue in our guide can direct you to a specific section in our guide ([FAQ](#faq)), 
+an external link ([download link](https://github.com/AY2324S2-CS2103T-W09-1/tp/releases)), or to an explanation of
+a term in the glossary ([CLI](#cli)).
+
+## Installation
+<a id="installation"></a>
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `HousekeepingHub-v1.2.0.jar` from [here](https://github.com/AY2324S2-CS2103T-W09-1/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your HouseKeeping Hub.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+1. Open a [command terminal](#terminal), and type in `cd` to navigate into the folder you placed the [jar](#jar) file in.
+
+1. Type in `java -jar HousekeepingHub-v1.2.0.jar` to run the application.<br>
+
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](./docs/images/Ui.png)
+   ![Ui](./images/Ui.png)
+
+## Tutorial
+<a id="tutorial"></a>
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * `list` : Lists all contacts.
+   * `list client` : Lists all client contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * `add housekeeper n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a housekeeper named `John Doe`.
 
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
+   * `delete 3` : Deletes the 3rd contact shown in the last shown list.
 
    * `clear` : Deletes all contacts.
 
@@ -48,6 +79,7 @@ and a reader-friendly format to enhance your experience in using our product.
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
+<a id="features"></a>
 
 <div markdown="block" class="alert alert-info">
 
@@ -75,7 +107,7 @@ and a reader-friendly format to enhance your experience in using our product.
 
 Shows a message explaning how to access the help page.
 
-![help message](./docs/images/helpMessage.png)
+![help message](./images/helpMessage.png)
 
 Format: `help`
 
@@ -84,7 +116,7 @@ Format: `help`
 
 Adds a client or housekeeper to the address book.
 
-Format: `add TYPE n/NAME e/EMAIL p/NUMBER a/ADDRESS [t/TAG]…​`
+Format: `add TYPE n/NAME e/EMAIL p/PHONE_NUMBER a/ADDRESS [t/TAG]…​`
 
 Notes: `TYPE` can be either 'client' or 'housekeeper'
 
@@ -141,52 +173,61 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+HouseKeeping Hub data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+HouseKeeping Hub data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
-Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
+If your changes to the data file makes its format invalid, HouseKeeping Hub will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
+Furthermore, certain edits can cause the HouseKeeping Hub to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
 
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
+<a id="faq"></a>
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous HouseKeeping Hub home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
+<a id="command-summary"></a>
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add TYPE /name NAME /email EMAIL /country_code CODE /number NUMBER /address ADDRESS …​` <br> e.g., `add client /name Elon /email elon@gmail.com /country_code +60 /number 88888888 /address Elon Street, Block 123, 101010 Singapore`
+**Add** | `add TYPE n/NAME e/EMAIL p/PHONE_NUMBER a/ADDRESS …​` <br> e.g., `add client n/Elon e/elon@gmail.com p/88888888 a/Elon Street, Block 123, 101010 Singapore`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list [type]`
 **Help** | `help`                                                                                                                                                                                                                                 |
 
 ----------------------------------------------------------------------------------------------------------------------
 ## Glossary
+<a id="glossary"></a>
 
 **JAR**
+<a id="jar"></a>
 : JAR stands for Java Archive. It is based on the ZIP file format that is commonly used to store java programs.
 
 **CLI**
+<a id="cli"></a>
 : CLI stands for Command Line Interface. It refers to programs that are primarily **text-based** where users interact with the program by typing **commands**. 
 As such, users will use their keyboards more, in contrast to a Graphical User Interface (GUI) where users will use their mouse to interact with the graphical elements.
 
+**GUI**
+<a id="gui"></a>
+: GUI stands for Graphical User Interface. It refers to programs that are primarily **graphical** where users interact with the program by clicking on **buttons** and **menus**.
+
 **Terminal**
+<a id="terminal"></a>
 : A terminal is a Command Line Interface (CLI) that allows users to interact with computers by executing commands and viewing the results. 
 Popular terminals in mainstream operating systems include command prompt (CMD) for windows and Terminal in macOS and Linux.<br>
+
 **CMD**<br>
 <img src="https://www.auslogics.com/en/articles/wp-content/uploads/2023/07/Command-Prompt-PING.png" alt="drawing" width="500"/>
 <br> **Terminal (macOS)** <br>
