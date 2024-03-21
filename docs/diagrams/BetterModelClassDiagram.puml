@@ -6,11 +6,15 @@ skinparam classBackgroundColor MODEL_COLOR
 
 AddressBook *-right-> "1" UniquePersonList
 AddressBook *-right-> "1" UniqueTagList
+AddressBook *-down-> "1" UniqueAppointmentList
+AddressBook *-down-> "1" UniqueAppointmentViewList
 UniqueTagList -[hidden]down- UniquePersonList
 UniqueTagList -[hidden]down- UniquePersonList
 
 UniqueTagList -right-> "*" Tag
 UniquePersonList -right-> Person
+UniqueAppointmentList -down-> Appointment
+UniqueAppointmentViewList -down-> AppointmentView
 
 Person -up-> "*" Tag
 
@@ -20,4 +24,16 @@ Person *--> DateOfBirth
 Person *--> Phone
 Person *--> Email
 Person *--> Address
+
+Appointment *--> Nric
+Appointment *--> Date
+Appointment *--> TimePeriod
+Appointment *--> Notes
+
+AppointmentView *--> Name
+AppointmentView *--> Appointment
+
+TimePeriod *--> startTime
+TimePeriod *--> endTime
+
 @enduml

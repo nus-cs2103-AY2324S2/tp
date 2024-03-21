@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.date.Date;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.AppointmentView;
 import seedu.address.model.appointment.TimePeriod;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
@@ -132,6 +133,9 @@ public interface Model {
 
     /** Returns an unmodifiable view of the filtered appointment list */
     ObservableList<Appointment> getFilteredAppointmentList();
+
+    /** Returns an unmodifiable view of the filtered appointment view list */
+    ObservableList<AppointmentView> getFilteredAppointmentViewList();
 
     /**
      * Updates the filter of the filtered appointment list to filter by the given {@code predicate}.

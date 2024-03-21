@@ -20,6 +20,7 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.AppointmentView;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
@@ -34,6 +35,7 @@ public class AddressBookTest {
     public void constructor() {
         assertEquals(Collections.emptyList(), addressBook.getPersonList());
         assertEquals(Collections.emptyList(), addressBook.getAppointmentList());
+        assertEquals(Collections.emptyList(), addressBook.getAppointmentViewList());
     }
 
     @Test
@@ -55,7 +57,8 @@ public class AddressBookTest {
                 .build();
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
         List<Appointment> newAppointments = List.of();
-        AddressBookStub newData = new AddressBookStub(newPersons, newAppointments);
+        List<AppointmentView> newAppointmentViews = List.of();
+        AddressBookStub newData = new AddressBookStub(newPersons, newAppointments, newAppointmentViews);
 
         assertThrows(DuplicatePersonException.class, () -> addressBook.resetData(newData));
     }
@@ -132,10 +135,13 @@ public class AddressBookTest {
     private static class AddressBookStub implements ReadOnlyAddressBook {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
         private final ObservableList<Appointment> appointments = FXCollections.observableArrayList();
+        private final ObservableList<AppointmentView> appointmentView = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Person> persons, Collection<Appointment> appointments) {
+        AddressBookStub(Collection<Person> persons, Collection<Appointment> appointments,
+            Collection<AppointmentView> appointmentsView) {
             this.persons.setAll(persons);
             this.appointments.setAll(appointments);
+            this.appointmentView.setAll(appointmentView);
         }
 
         @Override
@@ -147,5 +153,11 @@ public class AddressBookTest {
         public ObservableList<Appointment> getAppointmentList() {
             return appointments;
         }
+
+        @Override
+        public ObservableList<AppointmentView> getAppointmentViewList() {
+            return appointmentView;
+        }
+
     }
 }

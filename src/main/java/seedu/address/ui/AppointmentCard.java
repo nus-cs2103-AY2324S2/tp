@@ -5,6 +5,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.AppointmentView;
 
 /**
  * An UI component that displays information of a {@code Appointment}.
@@ -22,9 +23,12 @@ public class AppointmentCard extends UiPart<Region> {
      */
 
     public final Appointment appt;
+    public final AppointmentView apptView;
 
     @FXML
     private HBox cardPane;
+    @FXML
+    private Label name;
     @FXML
     private Label nric;
     @FXML
@@ -41,9 +45,11 @@ public class AppointmentCard extends UiPart<Region> {
     /**
      * Creates a {@code AppointmentCode} with the given {@code Appointment} and index to display.
      */
-    public AppointmentCard(Appointment appt, int displayedIndex) {
+    public AppointmentCard(AppointmentView apptView, int displayedIndex) {
         super(FXML);
-        this.appt = appt;
+        this.apptView = apptView;
+        this.appt = apptView.getAppointment();
+        name.setText(apptView.getName().fullName);
         id.setText(displayedIndex + ". ");
         nric.setText(appt.getNric().toString() + " - ");
         date.setText(appt.getDate().value.toString());

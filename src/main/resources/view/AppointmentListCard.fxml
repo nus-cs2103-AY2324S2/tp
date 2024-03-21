@@ -26,6 +26,7 @@
             <Region fx:constant="USE_PREF_SIZE" />
           </minWidth>
         </Label>
+        <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
          <Label fx:id="nric" text="\$first" styleClass="cell_big_label" />
          <Label fx:id="date" text="\$date" />
          <Label fx:id="timePeriod" text="\$timePeriod" />
