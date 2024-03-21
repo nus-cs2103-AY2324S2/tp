@@ -44,7 +44,7 @@ public class DeleteRelationshipCommand extends Command {
         }
         try {
             Relationship toDelete = new Relationship(fullOriginUuid, fullTargetUuid, relationshipDescriptor);
-            if (!model.hasRelationship(toDelete)) {
+            if (!model.hasRelationshipWithDescriptor(toDelete)) {
                 throw new CommandException(String.format("Sorry %s do not exist", toDelete));
             }
             model.deleteRelationship(toDelete);

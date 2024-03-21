@@ -52,17 +52,24 @@ public class EditRelationshipCommand extends Command {
         if (fullOriginUuid == fullTargetUuid) {
             throw new CommandException("Relationships must be between 2 different people");
         }
-        if (oldRelationshipDescriptor.equals(newRelationshipDescriptor)) {
-            throw new CommandException("There's no need to edit the relationship " +
-                    "if the new relationship is the same as the old one.");
+        try {
+            if (oldRelationshipDescriptor.equals(newRelationshipDescriptor)) {
+                throw new CommandException("There's no need to edit the relationship " +
+                        "if the new relationship is the same as the old one.");
+            }
+            Relationship toEditOff = new Relationship(fullOriginUuid, fullTargetUuid, oldRelationshipDescriptor);
+            Relationship toEditIn = new Relationship(fullOriginUuid, fullTargetUuid, newRelationshipDescriptor);
+            if (!model.hasRelationshipWithDescriptor(toEditOff)) {
+                throw new CommandException(String.format("Sorry %s do not exist", toEditOff));
+            }
+            if (model.hasRelationshipWithDescriptor(toEditIn)) {
+                throw new CommandException(String.format("%s already exists", toEditIn));
+            }
+            model.deleteRelationship(toEditOff);
+            model.addRelationship(toEditIn);
+            return new CommandResult(MESSAGE_EDIT_RELATIONSHIP_SUCCESS);
+        } catch (IllegalArgumentException e) {
+            throw new CommandException(String.format(e.getMessage()));
         }
-        Relationship toEditOff = new Relationship(fullOriginUuid, fullTargetUuid, oldRelationshipDescriptor);
-        if (!model.hasRelationship(toEditOff)) {
-            throw new CommandException(String.format("Sorry %s do not exist", toEditOff));
-        }
-        model.deleteRelationship(toEditOff);
-        Relationship toEditIn = new Relationship(fullOriginUuid, fullTargetUuid, newRelationshipDescriptor);
-        model.addRelationship(toEditIn);
-        return new CommandResult(MESSAGE_EDIT_RELATIONSHIP_SUCCESS);
     }
 }

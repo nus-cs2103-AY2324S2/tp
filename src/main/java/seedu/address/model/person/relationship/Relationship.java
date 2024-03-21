@@ -39,6 +39,11 @@ public class Relationship {
     public UUID getPerson2() {
         return person2;
     }
+
+    public String getRelationshipDescriptor() {
+        return relationshipDescriptor;
+    }
+
     public String getRoleDescriptor(UUID targetPerson) {
         return this.relationshipDescriptor;
     }

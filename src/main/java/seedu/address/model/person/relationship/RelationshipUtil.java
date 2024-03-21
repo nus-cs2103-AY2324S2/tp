@@ -1,6 +1,7 @@
 package seedu.address.model.person.relationship;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 /**
  * Represents a utility class for managing the relationships associated with a person.
@@ -34,6 +35,18 @@ public class RelationshipUtil {
         return !relationshipsTracker.isEmpty() && relationshipsTracker.contains(toFind);
     }
 
+    public boolean hasRelationshipWithDescriptor(Relationship toFind) {
+        for (Relationship relationship : relationshipsTracker) {
+            if ((relationship.getPerson1().equals(toFind.getPerson1()) && relationship.getPerson2()
+                    .equals(toFind.getPerson2())
+                    || (relationship.getPerson1().equals(toFind.getPerson2()) && relationship.getPerson2().equals(toFind.getPerson1())))
+                    && relationship.getRelationshipDescriptor().equals(toFind.getRelationshipDescriptor())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     /**
      * Retrieves a string representation of an existing relationship in the tracker.
      * @param toGet The relationship to retrieve.
@@ -41,10 +54,11 @@ public class RelationshipUtil {
      * @throws IndexOutOfBoundsException if the relationship does not exist in the tracker.
      */
     public String getExistingRelationship(Relationship toGet) {
-        int index = relationshipsTracker.indexOf(toGet);
-        if (index == -1) {
-            throw new IndexOutOfBoundsException("Relationship does not exist.");
+        for (Relationship relationship : relationshipsTracker) {
+            if (relationship.equals(toGet)) {
+                return relationship.toString();
+            }
         }
-        return relationshipsTracker.get(index).toString();
+        throw new IllegalArgumentException("Relationship does not exist.");
     }
 }

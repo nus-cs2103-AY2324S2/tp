@@ -118,6 +118,10 @@ public class ModelManager implements Model {
         return addressBook.hasRelationship(target);
     }
     @Override
+    public boolean hasRelationshipWithDescriptor(Relationship target) {
+        return addressBook.hasRelationshipWithDescriptor(target);
+    }
+    @Override
     public void addRelationship(Relationship toAdd) {
         addressBook.addRelationship(toAdd);
     }
