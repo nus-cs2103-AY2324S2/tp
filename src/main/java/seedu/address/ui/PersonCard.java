@@ -43,6 +43,9 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label borrow;
 
+    @FXML
+    private Label meritScore;
+
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
@@ -54,7 +57,12 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
-        borrow.setText(person.getBookList().value.bookTitle);
+        meritScore.setText(person.getMeritScore().meritScore);
+        String bookTitle = person.getBookList().value.bookTitle;
+        if (bookTitle == "") {
+            bookTitle = "This user is not borrowing any books at the moment!";
+        }
+        borrow.setText(bookTitle);
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
