@@ -11,12 +11,11 @@ import seedu.address.commons.core.GuiSettings;
 /**
  * Represents User's preferences.
  */
-public class UserPrefs implements ReadOnlyUserPrefs {
+public class UserPrefs implements ReadOnlyUserPrefs, ReadAndWriteUserPrefs {
 
-    private static boolean isSample = true;
+    private boolean isSample = true;
     private GuiSettings guiSettings = new GuiSettings();
     private Path addressBookFilePath = Paths.get("data" , "addressbook.json");
-    private boolean isSampleJson = isSample;
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -38,7 +37,6 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
         setAddressBookFilePath(newUserPrefs.getAddressBookFilePath());
-        setIsSample(true);
     }
 
     public GuiSettings getGuiSettings() {
@@ -59,15 +57,16 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.addressBookFilePath = addressBookFilePath;
     }
 
-    public static boolean getIsSample() {
+    public boolean getIsSample() {
         return isSample;
     }
 
     /**
      * Sets true if the data is sample data. Otherwise, false.
      */
-    public static void setIsSample(boolean status) {
+    public void setIsSample(boolean status) {
         isSample = status;
+        
     }
 
     @Override
