@@ -31,12 +31,10 @@
       <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
       <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
       <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
-      <Label fx:id="meritScore" styleClass="cell_small_label" text="\$meritScore" />
-      <!-- Uncomment below if we are trying to make it Merit Score: $meritScore -->
-      <!-- <HBox fx:id="meritScoreHBox">-->
-      <!--  <Label text="Merit Score: " />-->
-      <!--  <Label fx:id="meritScore" styleClass="cell_small_label" text="$meritScore" />-->
-      <!-- </HBox>-->
+       <HBox fx:id="meritScoreHBox">
+        <Label text="Merit Score: " />
+        <Label fx:id="meritScore" styleClass="cell_small_label" text="$meritScore" />
+       </HBox>
       <Label fx:id="borrow" styleClass="cell_small_label" text="\$borrow" />
 
     </VBox>
