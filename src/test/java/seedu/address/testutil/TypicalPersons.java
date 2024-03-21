@@ -40,8 +40,8 @@ public class TypicalPersons {
             .withIc("A4756976B").withAdmissionDate("05/02/2024").withWard("E1").build();
     public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withDob("20/02/2006")
             .withIc("A5739485B").withAdmissionDate("11/03/2024").withWard("F1").build();
-    public static final Person GEORGE = new PersonBuilder().withName("George Best").withDob("20/05/2000").withIc("A0987654B")
-            .withAdmissionDate("16/03/2024").withWard("G1").build();
+    public static final Person GEORGE = new PersonBuilder().withName("George Best").withDob("20/05/2000")
+            .withIc("A0987654B").withAdmissionDate("16/03/2024").withWard("G1").build();
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier").build();

@@ -46,21 +46,21 @@ public class IcTest {
 
     @Test
     public void equals() {
-        Ic Ic = new Ic("A1234567B");
+        Ic ic = new Ic("A1234567B");
 
         // same values -> returns true
-        assertTrue(Ic.equals(new Ic("A1234567B")));
+        assertTrue(ic.equals(new Ic("A1234567B")));
 
         // same object -> returns true
-        assertTrue(Ic.equals(Ic));
+        assertTrue(ic.equals(ic));
 
         // null -> returns false
-        assertFalse(Ic.equals(null));
+        assertFalse(ic.equals(null));
 
         // different types -> returns false
-        assertFalse(Ic.equals(5));
+        assertFalse(ic.equals(5));
 
         // different values -> returns false
-        assertFalse(Ic.equals(new Ic("W5678901X")));
+        assertFalse(ic.equals(new Ic("W5678901X")));
     }
 }

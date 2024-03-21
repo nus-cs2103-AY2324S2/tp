@@ -6,21 +6,20 @@ import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Dob;
 import seedu.address.model.person.Ic;
-import seedu.address.model.person.AdmissionDate;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Ward;
-import seedu.address.model.person.Dob;
 import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
@@ -29,7 +28,8 @@ public class ParserUtilTest {
     private static final String INVALID_WARD = " ";
     private static final String INVALID_ADMISSION_DATE = "123/12/20300";
     private static final String INVALID_TAG = "#Diabetes";
-    private static final String INVALID_DOB_FUTURE = LocalDate.now().plusDays(1).format(DateTimeFormatter.ofPattern("dd/MM/yyyy")); // A future date
+    private static final String INVALID_DOB_FUTURE = LocalDate.now().plusDays(1)
+            .format(DateTimeFormatter.ofPattern("dd/MM/yyyy")); // A future date
     private static final String INVALID_DOB_FORMAT = "12-31-2000"; // Wrong format
 
     private static final String VALID_NAME = "Rachel Walker";

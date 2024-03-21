@@ -55,21 +55,21 @@ public class DobTest {
 
     @Test
     public void equals() {
-        Dob Dob = new Dob("17/03/2024");
+        Dob dob = new Dob("17/03/2024");
 
         // same values -> returns true
-        assertTrue(Dob.equals(new Dob("17/03/2024")));
+        assertTrue(dob.equals(new Dob("17/03/2024")));
 
         // same object -> returns true
-        assertTrue(Dob.equals(Dob));
+        assertTrue(dob.equals(dob));
 
         // null -> returns false
-        assertFalse(Dob.equals(null));
+        assertFalse(dob.equals(null));
 
         // different types -> returns false
-        assertFalse(Dob.equals(17));
+        assertFalse(dob.equals(17));
 
         // different values -> returns false
-        assertFalse(Dob.equals(new Dob("16/03/2024")));
+        assertFalse(dob.equals(new Dob("16/03/2024")));
     }
 }

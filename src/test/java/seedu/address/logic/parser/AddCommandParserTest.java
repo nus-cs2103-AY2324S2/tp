@@ -30,12 +30,11 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.model.person.Dob;
+import seedu.address.model.person.Ic;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Ic;
-import seedu.address.model.person.AdmissionDate;
 import seedu.address.model.person.Ward;
-import seedu.address.model.person.Dob;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.PersonBuilder;
 
@@ -93,8 +92,8 @@ public class AddCommandParserTest {
     public void parse_optionalFieldsMissing_success() {
         // zero tags
         Person expectedPerson = new PersonBuilder(AMY).withTags().build();
-        assertParseSuccess(parser, NAME_DESC_AMY + DOB_DESC_AMY + IC_DESC_AMY +
-                        ADMISSION_DATE_DESC_AMY + WARD_DESC_AMY,
+        assertParseSuccess(parser, NAME_DESC_AMY + DOB_DESC_AMY + IC_DESC_AMY
+                       + ADMISSION_DATE_DESC_AMY + WARD_DESC_AMY,
                 new AddCommand(expectedPerson));
     }
 
