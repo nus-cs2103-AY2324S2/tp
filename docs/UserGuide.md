@@ -106,16 +106,16 @@ Edits an existing contact with a given name. This command supports changing the 
 Format: `edit COURSEMATE [-n NEW_NAME] [-p NEW_PHONE_NUMBER] [-e NEW_EMAIL]`
 
 Parameters:
-- `NAME`: Name of the existing contact. Accepts aliases (substrings or in hashtag (#) notation).
+- `COURSEMATE`: Name of the existing contact or aliases (substrings or in hashtag (#) notation).
 - `NEW_NAME` (optional): New name of the contact. It can be any string except that it cannot start with the hashtag (#) symbol, and words cannot start with the hyphen (-) character.
 - `NEW_PHONE_NUMBER` (optional): New phone number of the contact. Accepts strings with numeric characters only.
 - `NEW_EMAIL` (optional): New email of the contact. Accepts any strings without spaces.
-
+    
 <box type="tip" seamless>
 
 **Tip:**
 
-When supplying a name to identify an existing contact, you can use the following shortcuts:
+Instead of supplying a full name to identify an existing contact, you can use the following shortcuts:
 - `#1`, `#2`, …, `#n` (where n is the number of contacts currently displayed in the contact list panel) – `#k` references the k-th contact currently displayed in the contact list panel.
 
 
