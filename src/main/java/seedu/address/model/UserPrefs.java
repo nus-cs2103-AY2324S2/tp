@@ -66,7 +66,7 @@ public class UserPrefs implements ReadOnlyUserPrefs, ReadAndWriteUserPrefs {
      */
     public void setIsSample(boolean status) {
         isSample = status;
-        
+
     }
 
     @Override

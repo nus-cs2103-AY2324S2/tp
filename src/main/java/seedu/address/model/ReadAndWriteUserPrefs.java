@@ -6,7 +6,7 @@ package seedu.address.model;
 public interface ReadAndWriteUserPrefs {
 
     boolean getIsSample();
-    
+
     void setIsSample(boolean status);
-    
+
 }
