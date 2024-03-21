@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.project.Task;
@@ -49,6 +50,17 @@ public class Person {
             }
             i += 1;
         }
+    }
+
+    /**
+     * @param taskName name of the task which needs to be found in project list
+     * @return the found task or null
+     */
+    public Task findTask(Name taskName) {
+        Optional<Task> foundTask = taskList.stream()
+                .filter(task -> task.getName().toString().equals(taskName.toString()))
+                .findFirst();
+        return foundTask.get();
     }
 
     /**
