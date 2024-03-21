@@ -15,10 +15,6 @@ public class Policy {
     public static final String MESSAGE_CONSTRAINTS = "Policy Name must be alphanumeric";
 
     public final String policyName;
-    //    public final String policyNumber;
-    //    public final String premiumTerm;
-    //    public final String premium;
-    //    public final String benefit;
 
     /**
      * Constructs a {@code Policy}.
@@ -26,15 +22,9 @@ public class Policy {
      * @param policyName A valid policy name.
      */
     public Policy(String policyName) {
-        //    public Policy(String policyName, String policyNumber,
-        //    String premiumTerm, String premium, String benefit) {
         requireAllNonNull(policyName);
         checkArgument(isValidField(policyName), MESSAGE_CONSTRAINTS);
         this.policyName = policyName;
-        //        this.policyNumber = policyNumber;
-        //        this.premiumTerm = premiumTerm;
-        //        this.premium = premium;
-        //        this.benefit = benefit;
     }
 
     /**
@@ -51,20 +41,4 @@ public class Policy {
         return field.matches(NUMBER_VALIDATION_REGEX);
     }
 
-    //    @Override
-    //    public String toString() {
-    //        return value;
-    //    }
-    //
-    //    @Override
-    //    public boolean equals(Object other) {
-    //        return other == this // short circuit if same object
-    //                || (other instanceof PolicyName // instanceof handles nulls
-    //                && value.equals(((PolicyName) other).value)); // state check
-    //    }
-    //
-    //    @Override
-    //    public int hashCode() {
-    //        return value.hashCode();
-    //    }
 }
