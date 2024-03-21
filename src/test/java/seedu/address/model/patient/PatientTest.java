@@ -6,8 +6,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATEOFBIRTH_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SEX_BOB;
 import static seedu.address.testutil.TypicalPatients.ALICE;
 import static seedu.address.testutil.TypicalPatients.BOB;
 
@@ -19,15 +22,15 @@ public class PatientTest {
 
 
     @Test
-    public void isSamePerson() {
+    public void isSamePatient() {
         // same object -> returns true
         assertTrue(ALICE.isSamePatient(ALICE));
 
         // null -> returns false
         assertFalse(ALICE.isSamePatient(null));
 
-        // same name, all other attributes different -> returns true
-        Patient editedAlice = new PatientBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
+        // same name and phone number, all other attributes different -> returns true
+        Patient editedAlice = new PatientBuilder(ALICE).withEmail(VALID_EMAIL_BOB)
                 .withAddress(VALID_ADDRESS_BOB).withDateOfBirth(VALID_DATEOFBIRTH_BOB).build();
         assertTrue(ALICE.isSamePatient(editedAlice));
 
@@ -39,9 +42,12 @@ public class PatientTest {
         Patient editedBob = new PatientBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
         assertFalse(BOB.isSamePatient(editedBob));
 
-        // name has trailing spaces, all other attributes same -> returns false
-        String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
-        editedBob = new PatientBuilder(BOB).withName(nameWithTrailingSpaces).build();
+        // different phone number, all other attributes same -> returns false
+        editedBob = new PatientBuilder(BOB).withPhone(VALID_PHONE_AMY).build();
+        assertFalse(BOB.isSamePatient(editedBob));
+
+        // different phone number and different name, all other attributes same -> returns false
+        editedBob = new PatientBuilder(BOB).withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY).build();
         assertFalse(BOB.isSamePatient(editedBob));
     }
 
@@ -77,6 +83,14 @@ public class PatientTest {
 
         // different address -> returns false
         editedAlice = new PatientBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
+        assertFalse(ALICE.equals(editedAlice));
+
+        // different date of birth -> returns false
+        editedAlice = new PatientBuilder(ALICE).withDateOfBirth(VALID_DATEOFBIRTH_BOB).build();
+        assertFalse(ALICE.equals(editedAlice));
+
+        // different sex -> returns false
+        editedAlice = new PatientBuilder(ALICE).withSex(VALID_SEX_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
     }
 
