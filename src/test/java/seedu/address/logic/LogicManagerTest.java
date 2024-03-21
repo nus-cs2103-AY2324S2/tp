@@ -191,7 +191,8 @@ public class LogicManagerTest {
 
     /**
      * Tests the Logic component's handling of an {@code IOException} thrown by the
-     * Storage component.
+     * Storage component. This is invert of the
+     * assertCommandFailureForExceptionFromStorage method.
      *
      * @param e               the exception to be thrown by the Storage component
      * @param expectedMessage the message expected inside exception thrown by the
