@@ -15,7 +15,12 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.*;
+import seedu.address.model.contact.Address;
+import seedu.address.model.contact.Email;
+import seedu.address.model.contact.GitHubUsername;
+import seedu.address.model.contact.Name;
+import seedu.address.model.contact.Contact;
+import seedu.address.model.contact.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.techstack.TechStack;
 
@@ -52,9 +57,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         ProfilePicture profilePicture = ParserUtil.parseProfilePicture(argMultimap.getValue(PREFIX_PROFILE_PICTURE).orElse(""));
 
-        Person person = new Person(name, phone, email, address, gitHubUsername, techStackList, tagList, profilePicture );
+        Contact contact = new Contact(name, phone, email, address, gitHubUsername, techStackList, tagList, profilePicture);
 
-        return new AddCommand(person);
+        return new AddCommand(contact);
     }
 
     /**

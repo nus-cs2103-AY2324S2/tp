@@ -7,33 +7,33 @@ import java.net.URISyntaxException;
 
 import javafx.fxml.FXML;
 
-import seedu.address.model.person.Person;
+import seedu.address.model.contact.Contact;
 
 public class MailApp {
 
-    private Person person; // The person associated with this MailApp
+    private Contact contact; // The contact associated with this MailApp
 
     /**
-     * Initializes a new instance of the MailApp class with the provided person object.
-     * The person object contains the contact information, including the email address,
+     * Initializes a new instance of the MailApp class with the provided contact object.
+     * The contact object contains the contact information, including the email address,
      * to whom the email will be sent.
      *
-     * @param person The Person object representing the contact information of the recipient.
+     * @param contact The Contact object representing the contact information of the recipient.
      */
-    public MailApp(Person person) {
-        this.person = person;
+    public MailApp(Contact contact) {
+        this.contact = contact;
     }
 
 
     /**
-     * Handles the event when the email label is clicked. If the associated person
+     * Handles the event when the email label is clicked. If the associated contact
      * has a valid email address, opens the default mail application with a new
-     * email composition window addressed to the person's email address.
+     * email composition window addressed to the contact's email address.
      */
     @FXML
     public void handleEmailClicked() {
-        if (person != null && person.getEmail() != null) {
-            openDefaultMailApp(person.getEmail().toString());
+        if (contact != null && contact.getEmail() != null) {
+            openDefaultMailApp(contact.getEmail().toString());
         }
     }
 
