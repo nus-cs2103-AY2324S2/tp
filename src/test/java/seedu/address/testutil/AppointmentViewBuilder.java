@@ -1,14 +1,8 @@
 package seedu.address.testutil;
 
-import seedu.address.commons.core.date.Date;
 import seedu.address.model.appointment.Appointment;
-import seedu.address.model.appointment.AppointmentType;
 import seedu.address.model.appointment.AppointmentView;
-import seedu.address.model.appointment.Note;
-import seedu.address.model.appointment.Time;
-import seedu.address.model.appointment.TimePeriod;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Nric;
 
 /**
  * A utility class to help with building Appointment objects.
@@ -32,15 +26,9 @@ public class AppointmentViewBuilder {
      */
     public AppointmentViewBuilder() {
         name = new Name(DEFAULT_NAME);
-        Nric nric = new Nric(DEFAULT_NRIC);
-        Date date = new Date(DEFAULT_DATE);
-        Time startTime = new Time(DEFAULT_START_TIME);
-        Time endTime = new Time(DEFAULT_END_TIME);
-
-        TimePeriod timePeriod = new TimePeriod(startTime, endTime);
-        AppointmentType appointmentType = new AppointmentType(DEFAULT_APPOINTMENT_TYPE);
-        Note note = new Note(DEFAULT_NOTE);
-        appt = new Appointment(nric, date, timePeriod, appointmentType, note);
+        appt = new AppointmentBuilder().withNric(DEFAULT_NRIC).withDate(DEFAULT_DATE).withStartTime(DEFAULT_START_TIME)
+        .withEndTime(DEFAULT_END_TIME).withAppointmentType(DEFAULT_APPOINTMENT_TYPE)
+        .withNote(DEFAULT_NOTE).build();
     }
 
     /**

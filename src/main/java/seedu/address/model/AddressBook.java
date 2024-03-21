@@ -10,10 +10,9 @@ import seedu.address.commons.core.date.Date;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentList;
-import seedu.address.model.appointment.AppointmentListView;
 import seedu.address.model.appointment.AppointmentView;
+import seedu.address.model.appointment.AppointmentViewList;
 import seedu.address.model.appointment.TimePeriod;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
@@ -26,7 +25,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
     private final AppointmentList appointments;
-    private final AppointmentListView appointmentView;
+    private final AppointmentViewList appointmentView;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -38,7 +37,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     {
         persons = new UniquePersonList();
         appointments = new AppointmentList();
-        appointmentView = new AppointmentListView();
+        appointmentView = new AppointmentViewList();
     }
 
     public AddressBook() {}
@@ -142,10 +141,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.appointments.setAppointments(appointments);
         List<AppointmentView> apptListView = new ArrayList<AppointmentView>();
         for (Appointment appointment : appointments) {
-            Name name = getPersonWithNric(appointment.getNric()).getName();
-            apptListView.add(new AppointmentView(name, appointment));
+            AppointmentView apptView = createAppointmentView(appointment);
+            apptListView.add(apptView);
         }
-        this.appointmentView.setAppointments(apptListView);
+        this.appointmentView.setAppointmentViews(apptListView);
     }
 
 
@@ -162,17 +161,18 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Adds an appointment to the address book.
      * The appointment must not already exist in the address book.
      */
-    public void addAppointment(Appointment a) {
-        appointments.add(a);
-        appointmentView.add(new AppointmentView(getPersonWithNric(a.getNric()).getName(), a));
+    public void addAppointment(Appointment appt) {
+        appointments.add(appt);
+        AppointmentView apptView = createAppointmentView(appt);
+        appointmentView.add(apptView);
     }
 
     /**
      * Adds an appointmentView to the address book.
      * The appointment must not already exist in the address book.
      */
-    public void addAppointmentView(AppointmentView a) {
-        appointmentView.add(a);
+    public void addAppointmentView(AppointmentView apptView) {
+        appointmentView.add(apptView);
     }
 
     /**
@@ -184,11 +184,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void setAppointment(Appointment target, Appointment editedAppointment) {
         requireNonNull(editedAppointment);
         appointments.setAppointment(target, editedAppointment);
-        Name targetName = getPersonWithNric(target.getNric()).getName();
-        AppointmentView targetApptView = new AppointmentView(targetName, target);
-        Name editedName = getPersonWithNric(editedAppointment.getNric()).getName();
-        AppointmentView editedApptView = new AppointmentView(editedName, editedAppointment);
-        appointmentView.setAppointment(targetApptView, editedApptView);
+        AppointmentView targetApptView = createAppointmentView(target);
+        AppointmentView editedApptView = createAppointmentView(editedAppointment);
+        appointmentView.setAppointmentView(targetApptView, editedApptView);
 
     }
 
@@ -231,6 +229,14 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     public void deleteAppointmentsWithNric(Nric targetNric) {
         appointments.deleteAppointmentsWithNric(targetNric);
+    }
+
+    /**
+     * Create AppointmentView from appointment
+     */
+    public AppointmentView createAppointmentView(Appointment appointment) {
+        Person person = getPersonWithNric(appointment.getNric());
+        return new AppointmentView(person.getName(), appointment);
     }
 
     @Override

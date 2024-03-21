@@ -18,9 +18,9 @@ import seedu.address.model.appointment.exceptions.AppointmentNotFoundException;
 import seedu.address.model.appointment.exceptions.DuplicateAppointmentException;
 import seedu.address.model.person.Name;
 
-public class AppointmentListViewTest {
+public class AppointmentViewListTest {
 
-    private final AppointmentListView appointmentListView = new AppointmentListView();
+    private final AppointmentViewList appointmentListView = new AppointmentViewList();
 
     @Test
     public void contains_nullAppointment_throwsNullPointerException() {
@@ -50,46 +50,46 @@ public class AppointmentListViewTest {
     }
 
     @Test
-    public void setAppointment_nullTargetAppointment_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> appointmentListView.setAppointment(null, ALICE_APPT_VIEW));
+    public void setAppointmentView_nullTargetAppointment_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> appointmentListView.setAppointmentView(null, ALICE_APPT_VIEW));
     }
 
     @Test
-    public void setAppointment_nullEditedAppointment_throwsNullPointerException() {
+    public void setAppointmentView_nullEditedAppointment_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> appointmentListView
-                .setAppointment(ALICE_APPT_VIEW, null));
+                .setAppointmentView(ALICE_APPT_VIEW, null));
     }
 
     @Test
-    public void setAppointment_targetAppointmentNotInList_throwsAppointmentNotFoundException() {
+    public void setAppointmentView_targetAppointmentNotInList_throwsAppointmentNotFoundException() {
         assertThrows(AppointmentNotFoundException.class, () -> appointmentListView
-                .setAppointment(ALICE_APPT_VIEW, ALICE_APPT_VIEW));
+                .setAppointmentView(ALICE_APPT_VIEW, ALICE_APPT_VIEW));
     }
 
     @Test
-    public void setAppointment_editedAppointmentIsSameAppointment_success() {
+    public void setAppointmentView_editedAppointmentIsSameAppointment_success() {
         appointmentListView.add(ALICE_APPT_VIEW);
-        appointmentListView.setAppointment(ALICE_APPT_VIEW, ALICE_APPT_VIEW);
-        AppointmentListView expectedAppointmentList = new AppointmentListView();
+        appointmentListView.setAppointmentView(ALICE_APPT_VIEW, ALICE_APPT_VIEW);
+        AppointmentViewList expectedAppointmentList = new AppointmentViewList();
         expectedAppointmentList.add(ALICE_APPT_VIEW);
         assertEquals(expectedAppointmentList, appointmentListView);
     }
 
     @Test
-    public void setAppointment_editedAppointmentHasDifferentIdentity_success() {
+    public void setAppointmentView_editedAppointmentHasDifferentIdentity_success() {
         appointmentListView.add(ALICE_APPT_VIEW);
-        appointmentListView.setAppointment(ALICE_APPT_VIEW, BOB_APPT_VIEW);
-        AppointmentListView expectedAppointmentList = new AppointmentListView();
+        appointmentListView.setAppointmentView(ALICE_APPT_VIEW, BOB_APPT_VIEW);
+        AppointmentViewList expectedAppointmentList = new AppointmentViewList();
         expectedAppointmentList.add(BOB_APPT_VIEW);
         assertEquals(expectedAppointmentList, appointmentListView);
     }
 
     @Test
-    public void setAppointment_editedAppointmentHasNonUniqueIdentity_throwsDuplicateAppointmentException() {
+    public void setAppointmentView_editedAppointmentHasNonUniqueIdentity_throwsDuplicateAppointmentException() {
         appointmentListView.add(ALICE_APPT_VIEW);
         appointmentListView.add(BOB_APPT_VIEW);
         assertThrows(DuplicateAppointmentException.class, () -> appointmentListView
-                .setAppointment(ALICE_APPT_VIEW, BOB_APPT_VIEW));
+                .setAppointmentView(ALICE_APPT_VIEW, BOB_APPT_VIEW));
     }
 
     @Test
@@ -106,45 +106,46 @@ public class AppointmentListViewTest {
     public void remove_existingAppointment_removesAppointment() {
         appointmentListView.add(ALICE_APPT_VIEW);
         appointmentListView.remove(ALICE_APPT_VIEW);
-        AppointmentListView expectedAppointmentList = new AppointmentListView();
+        AppointmentViewList expectedAppointmentList = new AppointmentViewList();
         assertEquals(expectedAppointmentList, appointmentListView);
     }
 
     @Test
-    public void setAppointments_nullAppointmentList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> appointmentListView.setAppointments((AppointmentListView) null));
-    }
-
-    @Test
-    public void setAppointments_appointmentList_replacesOwnListWithProvidedAppointmentViewList() {
-        appointmentListView.add(ALICE_APPT_VIEW);
-        AppointmentListView expectedAppointmentList = new AppointmentListView();
-        expectedAppointmentList.add(BOB_APPT_VIEW);
-        appointmentListView.setAppointments(expectedAppointmentList);
-        assertEquals(expectedAppointmentList, appointmentListView);
-    }
-
-    @Test
-    public void setAppointments_nullList_throwsNullPointerException() {
+    public void setAppointmentViews_nullAppointmentList_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () ->
-            appointmentListView.setAppointments((List<AppointmentView>) null));
+            appointmentListView.setAppointmentViews((AppointmentViewList) null));
     }
 
     @Test
-    public void setAppointments_list_replacesOwnListWithProvidedList() {
+    public void setAppointmentViews_appointmentList_replacesOwnListWithProvidedAppointmentViewList() {
+        appointmentListView.add(ALICE_APPT_VIEW);
+        AppointmentViewList expectedAppointmentList = new AppointmentViewList();
+        expectedAppointmentList.add(BOB_APPT_VIEW);
+        appointmentListView.setAppointmentViews(expectedAppointmentList);
+        assertEquals(expectedAppointmentList, appointmentListView);
+    }
+
+    @Test
+    public void setAppointmentViews_nullList_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () ->
+            appointmentListView.setAppointmentViews((List<AppointmentView>) null));
+    }
+
+    @Test
+    public void setAppointmentViews_list_replacesOwnListWithProvidedList() {
         appointmentListView.add(ALICE_APPT_VIEW);
         List<AppointmentView> listOfAppointments = Collections.singletonList(BOB_APPT_VIEW);
-        appointmentListView.setAppointments(listOfAppointments);
-        AppointmentListView expectedAppointmentList = new AppointmentListView();
+        appointmentListView.setAppointmentViews(listOfAppointments);
+        AppointmentViewList expectedAppointmentList = new AppointmentViewList();
         expectedAppointmentList.add(BOB_APPT_VIEW);
         assertEquals(expectedAppointmentList, appointmentListView);
     }
 
     @Test
-    public void setAppointments_listWithDuplicateAppointments_throwsDuplicateAppointmentException() {
+    public void setAppointmentViews_listWithDuplicateAppointments_throwsDuplicateAppointmentException() {
         List<AppointmentView> listWithDuplicateAppointments = Arrays.asList(ALICE_APPT_VIEW, ALICE_APPT_VIEW);
         assertThrows(DuplicateAppointmentException.class, () -> appointmentListView
-                .setAppointments(listWithDuplicateAppointments));
+                .setAppointmentViews(listWithDuplicateAppointments));
     }
 
     @Test
