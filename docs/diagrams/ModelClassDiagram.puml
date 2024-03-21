@@ -27,6 +27,7 @@ Class Task
 Class Deadline
 Class Title
 Class IsDone
+Class Priority
 
 Class I #FFFFFF
 }
@@ -60,6 +61,7 @@ Task *--> Title
 Task *--> Deadline
 Task *--> Person
 Task *--> IsDone
+Task *--> Priority
 
 Task -[hidden]up--> I
 UniqueTaskList -[hidden]right-> I
