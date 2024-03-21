@@ -1,20 +1,19 @@
 package seedu.address.model.person.relationship;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.UUID;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class RelationshipTest {
-    private final UUID PERSON_1_UUID = UUID.fromString("00000000-0000-0000-0000-000000000001");
-    private final UUID PERSON_2_UUID =  UUID.fromString("00000000-0000-0000-0000-000000000002");
-    private final String FAMILY_RELATIONSHIP_DESCRIPTOR = "family";
-    private final String FRIEND_RELATIONSHIP_DESCRIPTOR = "friend";
-    private final String INVALID_RELATIONSHIP_DESCRIPTOR = "spouse";
+    private static final UUID PERSON_1_UUID = UUID.fromString("00000000-0000-0000-0000-000000000001");
+    private static final UUID PERSON_2_UUID =  UUID.fromString("00000000-0000-0000-0000-000000000002");
+    private static final String FAMILY_RELATIONSHIP_DESCRIPTOR = "family";
+    private static final String FRIEND_RELATIONSHIP_DESCRIPTOR = "friend";
+    private static final String INVALID_RELATIONSHIP_DESCRIPTOR = "spouse";
     @Test
     public void test_Constructor_WithValidFamilyDescriptorDoesNotThrowIllegalArgumentException() {
         assertDoesNotThrow(() -> new Relationship(PERSON_1_UUID, PERSON_2_UUID, FAMILY_RELATIONSHIP_DESCRIPTOR));

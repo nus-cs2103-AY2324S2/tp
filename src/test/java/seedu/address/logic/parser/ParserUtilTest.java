@@ -34,7 +34,7 @@ public class ParserUtilTest {
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
     private static final String INVALID_UUID_1 = "?909";
-    private static final String INVALID_UUID_2 ="99990";
+    private static final String INVALID_UUID_2 = "99990";
     private static final String VALID_UUID_1 = "789d";
 
     private static final String WHITESPACE = " \t\r\n";
@@ -205,7 +205,7 @@ public class ParserUtilTest {
         assertThrows(ParseException.class, () -> ParserUtil.parseUuid(INVALID_UUID_2));
     }
     @Test
-    public void parseUuid_ValidValue_returnsUuid() throws Exception {
+    public void parseUuid_ValidValue_ReturnsUuid() throws Exception {
         String expected = VALID_UUID_1;
         String test = ParserUtil.parseUuid(expected);
         assertEquals(expected, test);

@@ -1,8 +1,9 @@
 package seedu.address.logic.relationship;
 
-import static seedu.address.testutil.TypicalPersonsUuid.getTypicalAddressBook;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.testutil.TypicalPersonsUuid.getTypicalAddressBook;
+
 
 import java.util.UUID;
 
@@ -17,11 +18,13 @@ import seedu.address.model.person.relationship.Relationship;
 class AddRelationshipCommandTest {
     private Model model;
     private Model expectedModel;
+
     @BeforeEach
     void setUp() {
         model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     }
+
     @Test
     void execute_validInput_success() {
         String testOriginUuid = "0001";
@@ -30,16 +33,16 @@ class AddRelationshipCommandTest {
         AddRelationshipCommand addRelationshipCommand =
                 new AddRelationshipCommand(testOriginUuid, testTargetUuid, relationshipDescriptor);
         String expectedMessage = "Add success";
-        UUID PERSON_1_UUID = UUID.fromString("00000000-0000-0000-0000-000000000001");
-        UUID PERSON_2_UUID =  UUID.fromString("00000000-0000-0000-0000-000000000002");
+        UUID person1Uuid = UUID.fromString("00000000-0000-0000-0000-000000000001");
+        UUID person2Uuid = UUID.fromString("00000000-0000-0000-0000-000000000002");
         String FAMILY_RELATIONSHIP_DESCRIPTOR = "family";
         expectedModel.addRelationship(
-                new Relationship(PERSON_1_UUID, PERSON_2_UUID, FAMILY_RELATIONSHIP_DESCRIPTOR));
+                new Relationship(person1Uuid, person2Uuid, FAMILY_RELATIONSHIP_DESCRIPTOR));
         assertCommandSuccess(addRelationshipCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
-    void testExecute_DuplicateInputThrowsException() {
+    void testExecute_duplicateInputThrowsException() {
         String testOriginUuid = "0001";
         String testTargetUuid = "0001";
         String relationshipDescriptor = "family";
@@ -50,7 +53,7 @@ class AddRelationshipCommandTest {
     }
 
     @Test
-    void testExecute_InvalidUuidInputThrowsException() {
+    void testExecute_invalidUuidInputThrowsException() {
         String testOriginUuid = "0001";
         String testTargetUuid = "0019";
         String relationshipDescriptor = "family";
@@ -59,6 +62,7 @@ class AddRelationshipCommandTest {
         assertCommandFailure(addRelationshipCommand, model,
                 "The UUID provided is invalid.");
     }
+}
 //    @Test
 //    void testExecute_AddingExistingRelationshipThrowsException() {
 //        String testOriginUuid = "0001";
@@ -74,4 +78,4 @@ class AddRelationshipCommandTest {
 //                "Sorry, 00000000-0000-0000-0000-000000000001 and 00000000-0000-0000-0000-000000000002 are family");
 //
 //    }
-}
+
