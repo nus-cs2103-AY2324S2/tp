@@ -20,7 +20,7 @@ import seedu.address.model.person.relationship.Relationship;
 import seedu.address.model.person.relationship.RoleBasedRelationship;
 
 /**
- * A utility class containing a list of {@code Person} objects with UUID to be used in tests.
+ * A utility class containing a list of {@code Person} objects to be used in tests.
  */
 public class TypicalPersonsUuid {
 

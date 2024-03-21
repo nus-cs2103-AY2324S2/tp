@@ -130,6 +130,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean hasRelationship(Relationship toFind) {
         return relationships.hasRelationship(toFind);
     };
+    public boolean hasRelationshipWithDescriptor(Relationship toFind) {
+        return relationships.hasRelationshipWithDescriptor(toFind);
+    };
     public String getExistingRelationship(Relationship toGet) {
         return relationships.getExistingRelationship(toGet);
     }

@@ -20,6 +20,9 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.attribute.Attribute;
+import seedu.address.model.person.attribute.NameAttribute;
+import seedu.address.model.person.relationship.Relationship;
 import seedu.address.testutil.AddressBookBuilder;
 
 public class ModelManagerTest {
@@ -165,5 +168,73 @@ public class ModelManagerTest {
         modelManager.deleteAttribute(HOON.getUuidString(), "Name");
         assertFalse(HOON.hasAttribute("Name"));
         HOON.setAttribute("Name", "Hoon Meier");
+    }
+
+    @Test
+    public void deleteRelationship_validRelationship_relationshipDeleted() {
+        ModelManager modelManager = new ModelManager();
+        Attribute name1 = new NameAttribute("Name", "John Doe");
+        Attribute name2 = new NameAttribute("Name", "Jane Doe");
+        Attribute[] attributes1 = new Attribute[]{name1};
+        Attribute[] attributes2 = new Attribute[]{name2};
+
+        // Adding dummy people for testing
+        Person person1 = new Person(attributes1);
+        Person person2 = new Person(attributes2);
+        UUID uuid11 = person1.getUuid();
+        UUID uuid22 = person2.getUuid();
+
+        // Create a test relationship
+        Relationship relationship = new Relationship(uuid11, uuid22, "family");
+
+        modelManager.deleteRelationship(relationship);
+
+        assertFalse(modelManager.hasRelationship(relationship));
+    }
+
+    @Test
+    public void getExistingRelationship_validRelationship_relationshipReturned() {
+        ModelManager modelManager = new ModelManager();
+        Attribute name1 = new NameAttribute("Name", "John Doe");
+        Attribute name2 = new NameAttribute("Name", "Jane Doe");
+        Attribute[] attributes1 = new Attribute[]{name1};
+        Attribute[] attributes2 = new Attribute[]{name2};
+
+        // Adding dummy people for testing
+        Person person1 = new Person(attributes1);
+        Person person2 = new Person(attributes2);
+        UUID uuid11 = person1.getUuid();
+        UUID uuid22 = person2.getUuid();
+        // Create a test relationship
+        Relationship relationship = new Relationship(uuid11, uuid22, "family");
+
+        modelManager.addRelationship(relationship);
+        String result = modelManager.getExistingRelationship(relationship);
+
+        assertEquals(relationship.toString(), result);
+    }
+
+    @Test
+    public void hasRelationshipWithDescriptor_validRelationship_trueReturned() {
+        // Create a new ModelManager
+        ModelManager modelManager = new ModelManager();
+        Attribute name1 = new NameAttribute("Name", "John Doe");
+        Attribute name2 = new NameAttribute("Name", "Jane Doe");
+        Attribute[] attributes1 = new Attribute[]{name1};
+        Attribute[] attributes2 = new Attribute[]{name2};
+
+        // Adding dummy people for testing
+        Person person1 = new Person(attributes1);
+        Person person2 = new Person(attributes2);
+        UUID uuid11 = person1.getUuid();
+        UUID uuid22 = person2.getUuid();
+        // Create a test relationship
+        Relationship relationship = new Relationship(uuid11, uuid22, "family");
+
+        // Add the relationship to the model manager
+        modelManager.addRelationship(relationship);
+
+        // Check if the model manager has the relationship with the same descriptor
+        assertTrue(modelManager.hasRelationshipWithDescriptor(relationship));
     }
 }
