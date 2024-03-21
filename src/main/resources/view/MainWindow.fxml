@@ -33,9 +33,9 @@
         </MenuBar>
             <HBox fx:id="labelCommandHolder" prefHeight="18.0" prefWidth="340.0">
                <children>
-                  <HBox fx:id="titleLogoLabel" alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="126.0">
+                  <HBox fx:id="titleLogoLabel" alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="136.0">
                      <children>
-                        <Label contentDisplay="CENTER" prefHeight="17.0" prefWidth="75.0" text="TutorTrack" textAlignment="RIGHT">
+                        <Label contentDisplay="CENTER" prefHeight="22.0" prefWidth="86.0" text="TutorTrack" textAlignment="RIGHT">
                            <font>
                               <Font name="System Bold" size="15.0" />
                            </font>
