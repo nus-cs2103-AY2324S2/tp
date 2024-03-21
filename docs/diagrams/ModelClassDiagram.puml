@@ -12,13 +12,17 @@ Class AddressBook
 Class ModelManager
 Class UserPrefs
 
-Class UniquePersonList
-Class Person
-Class Address
+Class UniqueStudentList
+Class Student
+Class TelegramHandle
 Class Email
 Class Name
-Class Phone
+Class StudentId
 Class Tag
+Class Link
+Class Timetable
+Class Day
+Class Period
 
 Class I #FFFFFF
 }
@@ -35,20 +39,25 @@ ModelManager -left-> "1" AddressBook
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList --> "~* all" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+AddressBook *--> "1" UniqueStudentList
+UniqueStudentList --> "~* all" Student
+Student *--> "1" Name
+Student *--> "1" StudentId
+Student *--> "1" TelegramHandle
+Student *--> "1" Email
+Student *--> "*" Tag
+Student *--> "0..1" Link
+Student *--> "1" Timetable
+Timetable *--> "*" Day
+Day *--> "*" Period
 
-Person -[hidden]up--> I
-UniquePersonList -[hidden]right-> I
+Student -[hidden]up--> I
+UniqueStudentList -[hidden]right-> I
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+Name -[hidden]right-> StudentId
+StudentId -[hidden]right-> TelegramHandle
+TelegramHandle -[hidden]right-> Email
+Email -[hidden]right-> Tag
 
-ModelManager --> "~* filtered" Person
+ModelManager --> "~* filtered" Student
 @enduml
