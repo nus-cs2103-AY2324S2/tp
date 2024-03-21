@@ -39,18 +39,18 @@ public class StateStorageTest {
     @Test
     public void getFilePath_successfullyReturned() {
         assertNotNull(StateStorage.getFilePath());
-        assertEquals(StateStorage.getFilePath(), Paths.get("./data/state.txt"));
+        assertEquals(Paths.get("./data/state.txt"), StateStorage.getFilePath());
 
     }
 
     @Test
     public void getFilePathString_successfullyReturned() {
-        assertEquals(StateStorage.getFilePathString(), "./data/state.txt");
+        assertEquals("./data/state.txt", StateStorage.getFilePathString());
     }
 
     @Test
     public void getDirectoryPath_successfullyReturned() {
-        assertEquals(StateStorage.getDirectoryPath(), Paths.get("./data"));
+        assertEquals(Paths.get("./data"), StateStorage.getDirectoryPath());
     }
 
 
@@ -100,6 +100,6 @@ public class StateStorageTest {
     @Test
     public void isStateStorageExists_fileDoesNotExist_returnsFalse() {
         deleteStateStorage();
-        assertEquals(StateStorage.isStateStorageExists(), false);
+        assertEquals(false, StateStorage.isStateStorageExists());
     }
 }
