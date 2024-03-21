@@ -34,6 +34,10 @@ CogniCare is a **desktop app for managing all patients, optimized for use via a 
     * `patient n/Jerome Chua p/98765432 e/jerome@example.com a/depressed` : Adds a contact named `Jerome Chua` to the Address Book who is associated with having depression.
 
     * `delete 903` : Deletes the student that has the id of 903 (This is different from the natural ordering of the list).
+   
+    * `appointment pid/1 d/2022-12-12 12:00 att/true ad/This is a dummy appointment` : Adds an appointment for patient index 1 to the address book at 12pm on 12 December 2022.
+   
+    * `deleteappointment 900` : Deletes the appointment that has the id of 900 (This is different from the natural ordering of the list).
 
     * `clear` : Deletes all patient information from the CogniCare application.
 
@@ -171,6 +175,38 @@ Format: `delete INDEX`
 Examples:
 * `list` followed by `delete 90` deletes the person with the studentId of 90 in the address book.
 
+### Adding an appointment: `appointment`
+
+Adds an appointment to the address book.
+
+Format: `appointment pid/PATIENT_ID d/DATE_TIME [att/ATTEND] [ad/APPOINTMENT_DESCRIPTION]`
+
+* Format of date time is yyyy-MM-dd HH:mm.
+* Once the student is created, the appointment identifier `aid` will be permanently tagged to an appointment, and is not coalesced when other entries are deleted.
+* You may not add two appointments with the same date and time even if they are for different students.
+
+Examples:
+* `appointment pid/1 d/2022-12-12 12:00`
+* `appointment pid/1 d/2022-12-12 13:00 att/false`
+* `appointment pid/1 d/2022-12-12 14:00 att/true ad/Patient attended the appointment.`
+
+### Listing all persons : `queryappointments`
+
+Shows a list of all students in the address book.
+
+### Deleting an appointment : `deleteappointment`
+
+Deletes the specified appointment from the address book using the specified appointment index.
+
+Format: `deleteappointment INDEX`
+
+* Deletes the appointment at the specified `INDEX`.
+* The index refers to the index number shown in the displayed appointment list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `queryappointment` followed by `deleteappointment 90` deletes the appointment with the appointmentId of 90 in the address book.
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the CogniCare application.
@@ -226,6 +262,8 @@ _Details coming soon ..._
 | **Delete**                                            | `delete STUDENT_ID`<br> e.g., `delete 3`                                                                                                                                                                                    |
 | **Edit**                                              | `edit STUDENT_ID [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/AFFLIATED_WITH]…​`edit 1 p/91234567 e/johndoe@example.com`                                                                                                          |
 | **Search**                                            | `querystudents [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] …​`<br> e.g., `querystudents n/Jerome p/987 e/example.com​`                                                                                                              |
+| **Add an appointment**                                | `appointment pid/PATIENT_ID d/DATE_TIME [att/ATTEND] [ad/APPOINTMENT_DESCRIPTION]`                                                                                                                                          |
+| **Delete an appointment**                             | `delete aid/APPOINTMENT_ID`                                                                                                                                                                                                 |
 | **List**                                              | `list`                                                                                                                                                                                                                      |
 | **Help**                                              | `help`                                                                                                                                                                                                                      |
 
