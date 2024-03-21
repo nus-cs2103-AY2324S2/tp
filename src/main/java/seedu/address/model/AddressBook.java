@@ -144,6 +144,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void deleteMeeting(Meeting meeting) {
         meetings.delete(meeting);
     }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {

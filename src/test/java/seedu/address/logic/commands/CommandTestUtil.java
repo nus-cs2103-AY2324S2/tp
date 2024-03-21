@@ -3,7 +3,11 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CLIENT_INDEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -29,18 +33,31 @@ public class CommandTestUtil {
 
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
+    public static final String VALID_NAME_CHAD = "Chad Doo";
+    public static final String VALID_NAME_JAMAL = "Jamal Eee";
     public static final String VALID_PHONE_AMY = "11111111";
     public static final String VALID_PHONE_BOB = "22222222";
+    public static final String VALID_PHONE_CHAD = "33333333";
+    public static final String VALID_PHONE_JAMAL = "44444444";
     public static final String VALID_EMAIL_AMY = "amy@example.com";
     public static final String VALID_EMAIL_BOB = "bob@example.com";
+    public static final String VALID_EMAIL_CHAD = "chad@example.com";
+    public static final String VALID_EMAIL_JAMAL = "jamal@example.com";
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
+    public static final String VALID_ADDRESS_CHAD = "Block 231, Chad Street 2";
+    public static final String VALID_ADDRESS_JAMAL = "Block 123, Jamal Street 3";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
     public static final String VALID_DATETIME_BOB = "01-01-2024 12:00";
 
     public static final String VALID_DATETIME_AMY = "11-09-2024 12:00";
+    public static final String VALID_DATETIME = "01-01-2030 17:00";
+    public static final String VALID_DESCRIPTION = "Project discussion";
+
+    public static final String VALID_CLIENT_INDEX = "1";
+    public static final String VALID_MEETING_INDEX = "1";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -53,7 +70,16 @@ public class CommandTestUtil {
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
+    public static final String CLIENT_INDEX = " " + PREFIX_CLIENT_INDEX + VALID_CLIENT_INDEX;
+    public static final String MEETING_INDEX = " " + PREFIX_MEETING_INDEX + VALID_MEETING_INDEX;
+    public static final String DATETIME = " " + PREFIX_DATETIME + VALID_DATETIME;
+    public static final String DESCRIPTION = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION;
+
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
+    public static final String INVALID_DATETIME_DESC = " " + PREFIX_DATETIME
+            + "not-a-datetime"; // 'string' not allowed in datetime
+    public static final String INVALID_DESCRIPTION_DESC = " "
+            + PREFIX_DESCRIPTION; // empty string not allowed for description
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses

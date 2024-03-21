@@ -56,6 +56,15 @@ Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
 
+Person "1" -- "0..*" Meeting
+
+' AddMeetingCommand Class and its relation to Meeting
+Class AddMeetingCommand {
+    +execute(): CommandResult
+}
+AddMeetingCommand ..> Meeting : creates
+
 ModelManager --> "~* filtered" Person
 ModelManager --> "~* filtered" Meeting
 @enduml
+```
