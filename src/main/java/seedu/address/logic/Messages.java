@@ -44,7 +44,9 @@ public class Messages {
                 .append("; Address: ")
                 .append(patient.getAddress())
                 .append("; Date Of birth: ")
-                .append(patient.getDateOfBirth());
+                .append(patient.getDateOfBirth())
+                .append("; Sex: ")
+                .append(patient.getSex());
         return builder.toString();
     }
 
