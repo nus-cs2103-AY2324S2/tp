@@ -13,7 +13,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Justin Leng Chern Harn
 
-<img src="images/justinlengch.png.jpg" width="200px">
+<img src="images/justinlengch.png" width="200px">
 
 [[github](https://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
