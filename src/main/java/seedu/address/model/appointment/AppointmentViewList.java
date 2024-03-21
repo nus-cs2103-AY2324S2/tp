@@ -15,25 +15,26 @@ import seedu.address.model.person.Name;
 
 
 /**
- * A list of appointments that enforces uniqueness between its elements and does not allow nulls.
- * An appointment is considered unique by comparing using {@code Appointment#isSameAppointment(Appointment)}.
- * As such, adding and updating of appointments uses Appointment#isSameAppointment(Appointment) for equality
- * to ensure that the appointment being added or updated is unique and not duplicated.
- * However, the removal of an appointment uses Person#equals(Object) to ensure that the
- * appointment with exactly the same fields will be removed.
+ * A list of appointmentViews that enforces uniqueness between its elements and does not allow nulls.
+ * An appointmentView is considered unique by comparing using
+ * {@code AppointmentView#isSameAppointment(AppointmentView)}.
+ * As such, adding and updating of appointments uses AppointmentView#isSameAppointment(AppointmentView) for equality
+ * to ensure that the appointmentView being added or updated is unique and not duplicated.
+ * However, the removal of an appointmentView uses Person#equals(Object) to ensure that the
+ * appointmentView with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *
  * @see AppointmentView#isSameAppointmentView(AppointmentView)
  */
-public class AppointmentListView implements Iterable<AppointmentView> {
+public class AppointmentViewList implements Iterable<AppointmentView> {
 
     private final ObservableList<AppointmentView> internalList = FXCollections.observableArrayList();
     private final ObservableList<AppointmentView> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent appointment as the given argument.
+     * Returns true if the list contains an equivalent appointmentView as the given argument.
      */
     public boolean contains(AppointmentView toCheck) {
         requireNonNull(toCheck);
@@ -41,8 +42,8 @@ public class AppointmentListView implements Iterable<AppointmentView> {
     }
 
     /**
-     * Adds an appointment to the list.
-     * The appointment must not already exist in the list.
+     * Adds an appointmentView to the list.
+     * The appointmentView must not already exist in the list.
      */
     public void add(AppointmentView toAdd) {
         requireNonNull(toAdd);
@@ -54,11 +55,12 @@ public class AppointmentListView implements Iterable<AppointmentView> {
     }
 
     /**
-     * Replaces the appointment {@code target} in the list with {@code editedAppointment}.
+     * Replaces the appointmentView {@code target} in the list with {@code editedAppointment}.
      * {@code target} must exist in the list.
-     * The appointment of {@code editedAppointment} must not be the same as another existing appointment in the list.
+     * The appointmentView of {@code editedAppointment} must not be the same as
+     * another existing appointmentView in the list.
      */
-    public void setAppointment(AppointmentView target, AppointmentView editedAppointment) {
+    public void setAppointmentView(AppointmentView target, AppointmentView editedAppointment) {
         requireAllNonNull(target, editedAppointment);
 
         int index = internalList.indexOf(target);
@@ -75,8 +77,8 @@ public class AppointmentListView implements Iterable<AppointmentView> {
     }
 
     /**
-     * Removes the equivalent appointment from the list.
-     * The appointment must exist in the list.
+     * Removes the equivalent appointmentView from the list.
+     * The appointmentView must exist in the list.
      */
     public void remove(AppointmentView toRemove) {
         requireNonNull(toRemove);
@@ -85,17 +87,17 @@ public class AppointmentListView implements Iterable<AppointmentView> {
         }
     }
 
-    public void setAppointments(AppointmentListView replacement) {
+    public void setAppointmentViews(AppointmentViewList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
         sortList();
     }
 
     /**
-     * Replaces the contents of this list with {@code appointments}.
-     * {@code appointments} must not contain duplicate appointments.
+     * Replaces the contents of this list with {@code appointmentViews}.
+     * {@code appointmentViews} must not contain duplicate appointmentViews.
      */
-    public void setAppointments(List<AppointmentView> appointments) {
+    public void setAppointmentViews(List<AppointmentView> appointments) {
         requireAllNonNull(appointments);
         if (!appointmentViewsAreUnique(appointments)) {
             throw new DuplicateAppointmentException();
@@ -118,8 +120,9 @@ public class AppointmentListView implements Iterable<AppointmentView> {
     }
 
     /**
-     * Returns an Appointment that matches from the Appointment list based on {@code Nric, Date, TimePeriod} given.
-     * Throws an {@code AppointmentNotFoundException} if no matching appointment is found.
+     * Returns an AppointmentView that matches from the AppointmentView list based on
+     * {@code Nric, Date, TimePeriod} given.
+     * Throws an {@code AppointmentNotFoundException} if no matching appointmentView is found.
      */
     public AppointmentView getMatchingAppointment(Name name, Appointment appointment) {
         requireNonNull(name);
@@ -142,11 +145,11 @@ public class AppointmentListView implements Iterable<AppointmentView> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AppointmentListView)) {
+        if (!(other instanceof AppointmentViewList)) {
             return false;
         }
 
-        AppointmentListView otherAppointmentList = (AppointmentListView) other;
+        AppointmentViewList otherAppointmentList = (AppointmentViewList) other;
         return internalList.equals(otherAppointmentList.internalList);
     }
 
@@ -161,7 +164,7 @@ public class AppointmentListView implements Iterable<AppointmentView> {
     }
 
     /**
-     * Returns true if {@code appointments} contains only unique appointments.
+     * Returns true if {@code appointmentViews} contains only unique appointmentViews.
      */
     private boolean appointmentViewsAreUnique(List<AppointmentView> appointments) {
         for (int i = 0; i < appointments.size() - 1; i++) {
