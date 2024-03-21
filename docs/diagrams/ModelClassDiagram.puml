@@ -23,6 +23,9 @@ Class Email
 Class DrugAllergy
 Class Illness
 
+Class Note
+Class Description
+
 Class I #FFFFFF
 }
 
@@ -48,6 +51,8 @@ Person *--> Phone
 Person *--> Email
 Person *--> DrugAllergy
 Person *--> "*" Illness
+Person *--> "*" Note
+Note *--> Description
 
 Person -[hidden]up--> I
 UniquePersonList -[hidden]right-> I
