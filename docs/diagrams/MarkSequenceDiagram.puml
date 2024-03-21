@@ -29,3 +29,42 @@ deactivate MarkCommandParser
 
 AddressBookParser -> MarkCommandParser : parse("1 /t Assignment1 /ts cg")
 activate MarkCommandParser
+
+create MarkCommand
+MarkCommandParser -> MarkCommand
+activate MarkCommand
+
+MarkCommand --> MarkCommandParser :
+deactivate MarkCommand
+
+MarkCommandParser --> AddressBookParser : p
+deactivate MarkCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+MarkCommandParser -[hidden]-> AddressBookParser
+destroy MarkCommandParser
+
+AddressBookParser --> LogicManager : p
+deactivate AddressBookParser
+
+LogicManager -> MarkCommand : execute(m)
+activate MarkCommand
+
+MarkCommand -> Model : setPerson(personToEdit, editedPerson)
+activate Model
+
+Model --> MarkCommand
+deactivate Model
+
+create CommandResult
+MarkCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> MarkCommand
+deactivate CommandResult
+
+MarkCommand --> LogicManager : r
+deactivate MarkCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
