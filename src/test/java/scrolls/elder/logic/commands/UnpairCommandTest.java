@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static scrolls.elder.logic.commands.CommandTestUtil.assertCommandSuccess;
 
+import java.util.Optional;
+
 import org.junit.jupiter.api.Test;
 
 import scrolls.elder.logic.Messages;
@@ -18,8 +20,6 @@ import scrolls.elder.testutil.Assert;
 import scrolls.elder.testutil.PersonBuilder;
 import scrolls.elder.testutil.TypicalIndexes;
 import scrolls.elder.testutil.TypicalPersons;
-
-import java.util.Optional;
 
 class UnpairCommandTest {
 
@@ -46,7 +46,6 @@ class UnpairCommandTest {
 
         assertCommandSuccess(unpairCommand, model, expectedMessage, expectedModel);
     }
-
 
     @Test
     void execute_duplicatePerson_throwsCommandException() {

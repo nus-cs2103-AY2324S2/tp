@@ -61,8 +61,8 @@ public class UnpairCommand extends Command {
         }
 
         // Check if the two persons are paired
-        if (!personToUnpair1.getPairedWith().equals(Optional.of(personToUnpair2.getId()))
-                || !personToUnpair2.getPairedWith().equals(Optional.of(personToUnpair1.getId()))) {
+        if (!personToUnpair1.getPairedWith().equals(Optional.of(personToUnpair2.getName()))
+                || !personToUnpair2.getPairedWith().equals(Optional.of(personToUnpair1.getName()))) {
             throw new CommandException(MESSAGE_NOT_PAIRED);
         }
 

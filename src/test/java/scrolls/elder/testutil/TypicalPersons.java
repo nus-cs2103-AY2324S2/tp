@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.Optional;
 
 import scrolls.elder.model.AddressBook;
+import scrolls.elder.model.person.Name;
 import scrolls.elder.model.person.Person;
 
 /**
@@ -49,11 +50,10 @@ public class TypicalPersons {
     // Manually added
     public static final Person HOON = new PersonBuilder().withId(7).withName("Hoon Meier").withPhone("8482424")
             .withEmail("stefan@example.com").withAddress("little india").withRole("volunteer")
-            .withPairedWith(Optional.of(8)).build();
+            .withPairedWith(Optional.of(new Name("Ida Mueller"))).build();
     public static final Person IDA = new PersonBuilder().withId(8).withName("Ida Mueller").withPhone("8482131")
             .withEmail("hans@example.com").withAddress("chicago ave").withRole("befriendee")
             .withPairedWith(Optional.of(HOON.getName())).build();
-
     // Manually added - Person's details found in {@code CommandTestUtil}
     // AMY has role VOLUNTEER
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)

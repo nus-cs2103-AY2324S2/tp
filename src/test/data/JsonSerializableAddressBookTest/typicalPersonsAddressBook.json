@@ -57,5 +57,22 @@
     "address" : "4th street",
     "role" : "befriendee",
     "tags" : [ ]
-  } ]
+  }, {
+    "id" : "7",
+    "name" : "Hoon Meier",
+    "phone" : "8482424",
+    "email" : "stefan@example.com",
+    "address" : "little india",
+    "role" : "volunteer",
+    "pairedWith" : "Ida Mueller"
+  }, {
+    "id" : "8",
+    "name" : "Ida Mueller",
+    "phone" : "8482131",
+    "email" : "hans@example.com",
+    "address" : "chicago ave",
+    "role" : "befriendee",
+    "pairedWith" : "Hoon Meier"
+  }
+  ]
 }
