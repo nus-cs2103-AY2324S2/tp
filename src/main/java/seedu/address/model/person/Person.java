@@ -8,6 +8,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.grade.Grade;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -25,16 +26,19 @@ public class Person {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
 
+    private final Set<Grade> grades = new HashSet<>();
+
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Set<Grade> grades) {
+        requireAllNonNull(name, phone, email, address, tags, grades);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.grades.addAll(grades);
     }
 
     public Name getName() {
@@ -59,6 +63,14 @@ public class Person {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    /**
+     * Returns an immutable grade set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Grade> getGrades() {
+        return Collections.unmodifiableSet(grades);
     }
 
     /**
@@ -94,13 +106,14 @@ public class Person {
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
-                && tags.equals(otherPerson.tags);
+                && tags.equals(otherPerson.tags)
+                && grades.equals(otherPerson.grades);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, tags, grades);
     }
 
     @Override
@@ -111,6 +124,7 @@ public class Person {
                 .add("email", email)
                 .add("address", address)
                 .add("tags", tags)
+                .add("grades", grades)
                 .toString();
     }
 

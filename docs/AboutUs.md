@@ -29,3 +29,12 @@ We are a team based in the [School of Computing, National University of Singapor
 * Role: Developer
 * Responsibilities: Add features
 
+
+### Aman Zainal
+
+<img src="images/amanzainal.png" width="200px">
+
+[[github](http://github.com/amanzainal)] [[portfolio](team/amanzainal.md)]
+
+* Role: Code quality
+* Responsibilities: Looks after code quality, ensures adherence to coding standards, etc.

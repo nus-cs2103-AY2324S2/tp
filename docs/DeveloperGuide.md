@@ -312,45 +312,174 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the System is the `TutorTrack` and the Actor is the `Tutor`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case:** UC01 - View all students.<br>
 
-**MSS**
-
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+**MSS:**
+1. User requests to list students.
+2. System displays the list of students.
 
     Use case ends.
 
-**Extensions**
+**Extensions:**
+
+* 2a. The list is empty. 
+  * 2a1. System shows an error message.
+
+    Use case ends.
+
+**Use case:** UC02 - Add a student.<br>
+
+**MSS:**
+1. User requests to add a specific student information.
+2. System adds the student information.
+
+   Use case ends.
+
+**Extensions:**
+
+* 2a. Required fields are left empty.
+    * 2a1. System shows an error message.
+      
+      Use case ends.
+* 2b. The given phone number is invalid.
+    * 2b1. System shows an error message.
+
+      Use case ends.
+* 2c. The given email is invalid.
+    * 2c1. System shows an error message.
+
+      Use case ends.
+* 2d. The given grades are invalid.
+    * 2d1. System shows an error message.
+
+      Use case ends.
+* 2e. The student exists in the database already.
+    * 2e1. System shows an error message.
+
+      Use case ends.
+
+**Use case:** UC03 - Update a student.<br>
+
+**MSS:**
+1. User requests to list students.
+2. System displays the list of students.
+3. User requests to update a specific student information.
+4. System updates the student information.
+
+   Use case ends.
+
+**Extensions:**
 
 * 2a. The list is empty.
+    * 2a1. System shows an error message.
 
-  Use case ends.
+      Use case ends.
+* 3a. The given phone number is invalid.
+    * 3a1. System shows an error message.
 
+      Use case ends.
+* 3b. The given email is invalid.
+    * 3b1. System shows an error message.
+
+      Use case ends.
+* 3c. The given grades are invalid.
+    * 3c1. System shows an error message.
+
+      Use case ends.
+* 3d. The given index is invalid.
+    * 3d1. System shows an error message.
+
+      Use case ends.
+
+**Use case:** UC04 - Delete a student.<br>
+
+**MSS:**
+1. User requests to list students.
+2. System displays the list of students.
+3. User requests to delete a specific student information.
+4. System request for confirmation.
+5. User give confirmation.
+6. System delete the student information from the database.
+
+   Use case ends.
+
+**Extensions:**
+
+* 2a. The list is empty.
+    * 2a1. System shows an error message.
+
+      Use case ends.
 * 3a. The given index is invalid.
+    * 3a1. System shows an error message.
+    * 3a2. System requests for the correct index.
+    * 3a3. User enters new index.
 
-    * 3a1. AddressBook shows an error message.
+      Steps 3a2-3a3 are repeated until the data entered are correct.
 
-      Use case resumes at step 2.
+      Use case resumes from step 4.
+* 4a. User cancels deletion.
+    * 4a1. System displays confirmation message.
+* 4b. User enters invalid syntax for confirmation.
+    * 4a1. System displays error message.
+    * 4a2. System requests for the correct data.
+    * 4a3. User enters new data.
 
-*{More to be added}*
+      Steps 4a2-4a3 are repeated until the data entered is correct.
+
+      Use case continues from step 5.
+
+**Use case:** UC05 - Find a student.<br>
+
+**MSS:**
+1. User requests to list students.
+2. System displays the list of students.
+3. User requests to find a specific student information.
+4. System show the student information.
+
+   Use case ends.
+
+**Extensions:**
+
+* 2a. The list is empty.
+    * 2a1. System shows an error message.
+
+      Use case ends.
+* 3a. The given keyword is invalid.
+    * 3a1. System shows an error message.
+    * 3a2. System requests for the correct index.
+    * 3a3. User enters new index.
+
+      Steps 3a2-3a3 are repeated until the data entered are correct.
+
+      Use case resumes from step 4.
+* 3b. The given keyword is not found.
+    * 3a1. System shows an error message.
+
+      Use case ends.
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+4.  Should not take a lot of memory while in operation.
+5.  Should be able to view and load 100 contacts without a noticeable lag.
+6.  Should not lose the result of the latest execution of an instruction in the case of connectivity loss.
+7.  Should allow use only by authorized users.
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Tutor**: A user who wants to keep track of their students' contacts
+* **Tutee**: A student that is assigned to a tutor
+* **Contact List**: A collection of tutees' personal and contact information accessible by the tutor.
+* **Assessment Record**: A log of scores from quizzes, tests, assignments, and other forms of assessment for a tutee.
+* **Grade Entry**: The action or feature that allows a tutor to input a student's grade into the system.
+* **Grade Reporting**: The functionality to generate reports or summaries of tutees' grades for review by tutees.
+* **Grading Scale**: The standard by which tutees' performance is measured, such as A-F, 1-10, or percentage.
 
 --------------------------------------------------------------------------------------------------------------------
 
