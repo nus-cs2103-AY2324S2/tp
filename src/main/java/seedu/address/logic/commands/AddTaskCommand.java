@@ -48,14 +48,10 @@ public class AddTaskCommand extends Command {
                 Messages.format(toAdd),
                 Messages.format(taskProject)));
         }
+
         Person combineTask = model.findPerson(taskProject.getName());
-        if (combineTask.hasTask(toAdd)) {
-            throw new CommandException(String.format(
-                MESSAGE_DUPLICATE_TASK,
-                Messages.format(toAdd),
-                Messages.format(taskProject)));
-        }
         combineTask.addTask(toAdd);
+
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd), Messages.format(combineTask)));
     }
 
@@ -71,7 +67,8 @@ public class AddTaskCommand extends Command {
         }
 
         AddTaskCommand otherAddTaskCommand = (AddTaskCommand) other;
-        return toAdd.equals(otherAddTaskCommand.toAdd);
+        return toAdd.equals(otherAddTaskCommand.toAdd)
+                && taskProject.equals(otherAddTaskCommand.taskProject);
     }
 
     @Override

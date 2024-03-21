@@ -63,11 +63,7 @@ public class Task {
      */
     public String getStatus() {
         if (status) {
-            if (progressCounter > 0) {
-                return "In progress";
-            } else {
-                return "Incomplete";
-            }
+            return "Incomplete";
         } else {
             return "Complete";
         }
@@ -93,6 +89,7 @@ public class Task {
      * Get the name of the task
      * @return
      */
+
     public Name getName() {
         return taskName;
     }

@@ -20,10 +20,6 @@ checkstyle {
     toolVersion = '10.2'
 }
 
-tasks.withType(Checkstyle) {
-    ignoreFailures = true
-}
-
 test {
     useJUnitPlatform()
     finalizedBy jacocoTestReport
