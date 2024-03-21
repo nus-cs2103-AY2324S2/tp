@@ -181,7 +181,8 @@ public class StringUtilTest {
         assertFalse(StringUtil.containsSubstringIgnoreCase("    ", "123"));
 
         // Matches a partial substring only
-        assertFalse(StringUtil.containsSubstringIgnoreCase("aaa bbb ccc", "bbbb")); // Query substring bigger than sentence substring
+        // Query substring bigger than sentence substring
+        assertFalse(StringUtil.containsSubstringIgnoreCase("aaa bbb ccc", "bbbb"));
 
         // Matches substring in the sentence, different upper/lower case letters
         assertTrue(StringUtil.containsSubstringIgnoreCase("aaa bBb ccc", "Bbb")); // First word (boundary case)
