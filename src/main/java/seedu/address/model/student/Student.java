@@ -2,13 +2,12 @@ package seedu.address.model.student;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
-
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleCode;
 import seedu.address.model.tag.Tag;
+
+import java.util.*;
 
 /**
  * Represents a Student in the address book.
@@ -25,15 +24,18 @@ public class Student {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
 
+    private final List<ModuleCode> modules = new ArrayList<>();
+
     /**
      * Every field must be present and not null.
      */
-    public Student(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Student(Name name, Phone phone, Email email, Address address, Set<Tag> tags, List<ModuleCode> modules) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.modules.addAll(modules);
         this.tags.addAll(tags);
     }
 
@@ -61,6 +63,21 @@ public class Student {
         return Collections.unmodifiableSet(tags);
     }
 
+    /**
+     * Returns list of modules student is taking
+     */
+    public List<ModuleCode> getModules() {
+        return modules;
+    }
+
+    /**
+     * Checks if module `m` is held within the student
+     * @param m Module to check
+     * @return true if module is taken by student
+     */
+    public boolean hasModule(ModuleCode m) {
+        return modules.contains(m);
+    }
     /**
      * Returns true if both students have the same name.
      * This defines a weaker notion of equality between two students.
@@ -94,13 +111,26 @@ public class Student {
                 && phone.equals(otherStudent.phone)
                 && email.equals(otherStudent.email)
                 && address.equals(otherStudent.address)
-                && tags.equals(otherStudent.tags);
+                && tags.equals(otherStudent.tags)
+                && modules.equals(otherStudent.modules);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, tags, modules);
+    }
+
+    public Student copy() {
+        Student s1 = new Student(
+                this.name,
+                this.phone,
+                this.email,
+                this.address,
+                this.tags,
+                this.modules
+        );
+        return s1;
     }
 
     @Override
@@ -111,6 +141,7 @@ public class Student {
                 .add("email", email)
                 .add("address", address)
                 .add("tags", tags)
+                .add("modules", modules)
                 .toString();
     }
 

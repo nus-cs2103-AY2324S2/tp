@@ -2,10 +2,13 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Collections;
 import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleCode;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.UniqueStudentList;
 
@@ -95,6 +98,18 @@ public class AddressBook implements ReadOnlyAddressBook {
         students.remove(key);
     }
 
+    public void addModuleToStudent(ModuleCode m, Student s) {
+        requireNonNull(m);
+        requireNonNull(s);
+        for (Student candidate : students) {
+            if (candidate.equals(s) && !candidate.hasModule(m)) {
+                Student editedStudent = candidate.copy();
+                editedStudent.getModules().add(m);
+                students.setStudent(candidate, editedStudent);
+                return;
+            }
+        }
+    }
     //// util methods
 
     @Override

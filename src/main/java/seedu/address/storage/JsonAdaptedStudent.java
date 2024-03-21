@@ -1,15 +1,14 @@
 package seedu.address.storage;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import com.fasterxml.jackson.annotation.JsonValue;
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.module.ModuleCode;
 import seedu.address.model.student.Address;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Name;
@@ -28,6 +27,7 @@ class JsonAdaptedStudent {
     private final String phone;
     private final String email;
     private final String address;
+    private final List<JsonAdaptedModuleCode> moduleCodes = new ArrayList<>();
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
     /**
@@ -36,15 +36,21 @@ class JsonAdaptedStudent {
     @JsonCreator
     public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+            @JsonProperty("tags") List<JsonAdaptedTag> tags,
+                              @JsonProperty("modules") List<JsonAdaptedModuleCode> moduleCodes) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        if (moduleCodes != null) {
+            this.moduleCodes.addAll(moduleCodes);
+        }
+
         if (tags != null) {
             this.tags.addAll(tags);
         }
     }
+
 
     /**
      * Converts a given {@code Student} into this class for Jackson use.
@@ -56,6 +62,11 @@ class JsonAdaptedStudent {
         address = source.getAddress().value;
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
+                .collect(Collectors.toList()));
+        moduleCodes.addAll(source
+                .getModules()
+                .stream()
+                .map(JsonAdaptedModuleCode::new)
                 .collect(Collectors.toList()));
     }
 
@@ -103,7 +114,13 @@ class JsonAdaptedStudent {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(studentTags);
-        return new Student(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+
+        final List<ModuleCode> modelModuleCodes = new ArrayList<>();
+        for (JsonAdaptedModuleCode moduleCode : moduleCodes) {
+            modelModuleCodes.add(moduleCode.toModelType());
+        }
+
+        return new Student(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelModuleCodes);
     }
 
 }
