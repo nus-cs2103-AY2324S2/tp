@@ -96,6 +96,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         students.remove(key);
     }
 
+    /**
+     * Adds a module to a student in the address book.
+     *
+     * @param m The module code to be added.
+     * @param s The student to whom the module is to be added.
+     */
     public void addModuleToStudent(ModuleCode m, Student s) {
         requireNonNull(m);
         requireNonNull(s);
