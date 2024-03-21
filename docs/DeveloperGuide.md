@@ -107,6 +107,10 @@ How the `Logic` component works:
    Note that although this is shown as a single step in the diagram above (for simplicity), in the code it can take several interactions (between the command object and the `Model`) to achieve.
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
+The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("policy 1 po/Policy XYZ")` API call as an example.
+
+<puml src="diagrams/PolicySequenceDiagram.puml" alt="Interactions Inside the Logic Component for the `policy 1 po/Policy XYZ` Command" />
+
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
 <puml src="diagrams/ParserClasses.puml" width="600"/>
