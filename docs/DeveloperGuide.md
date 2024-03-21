@@ -332,14 +332,15 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                          | So that I can…​                            |
-|----------|--------------------------------------------|---------------------------------------|--------------------------------------------|
-| `* * *`  | secretary                                  | view the added contact list           | I can see the details of the added contact |
-| `* * *`  | secretary                                  | add contacts to a list                | I can record contact details               |
-| `* * *`  | secretary                                  | remove contacts from a list           | I can clean up old/unused records          |
-| `* *`    | secretary                                  | tag individual contacts               | I can organize the contact based on tags   |
-| `* *`    | secretary                                  | delete a tag of an individual contact | the tag only is for the necessary users    |
-
+| Priority | As a …​   | I want to …​                          | So that I can…​                                        |
+|----------|-----------|---------------------------------------|--------------------------------------------------------|
+| `* * *`  | secretary | view the added contact list           | see the details of the added contact                   |
+| `* * *`  | secretary | add contacts to a list                | record contact details                                 |
+| `* * *`  | secretary | remove contacts from a list           | clean up old/unused records                            |
+| `* *`    | secretary | tag individual contacts               | organize the contact based on tags                     |
+| `* *`    | secretary | delete a tag of an individual contact | make sure that the tag only is for the necessary users |
+| `*`      | user      | undo my command                       | save time on undoing the effects of a wrong command    |
+| `*`      | user      | redo my undo                          | save time on undoing the effects of a wrong undo       |
 *{More to be added}*
 
 ### Use cases
