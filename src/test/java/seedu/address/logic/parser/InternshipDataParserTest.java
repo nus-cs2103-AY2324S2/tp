@@ -4,11 +4,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.InternshipMessages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.InternshipMessages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.InternshipTypicalIndexes.INDEX_FIRST_INTERNSHIP;
-
-import java.util.Arrays;
-import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -22,7 +22,6 @@ import seedu.address.logic.commands.InternshipFindCommand;
 import seedu.address.logic.commands.InternshipHelpCommand;
 import seedu.address.logic.commands.InternshipListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.internship.CompanyNameContainsKeywordsPredicate;
 import seedu.address.model.internship.Internship;
 import seedu.address.testutil.EditInternshipDescriptorBuilder;
 import seedu.address.testutil.InternshipBuilder;
@@ -70,10 +69,13 @@ public class InternshipDataParserTest {
 
     @Test
     public void parseCommand_find() throws Exception {
-        List<String> keywords = Arrays.asList("foo", "bar", "baz");
-        InternshipFindCommand command = (InternshipFindCommand) parser.parseCommand(
-                InternshipFindCommand.COMMAND_WORD + " " + String.join(" ", keywords));
-        assertEquals(new InternshipFindCommand(new CompanyNameContainsKeywordsPredicate(keywords)), command);
+        assertTrue(parser.parseCommand(
+                InternshipFindCommand.COMMAND_WORD + " " + InternshipFindCommand.MODE_WITHALL
+                        + " " + PREFIX_COMPANY + " Microsoft Google ") instanceof InternshipFindCommand);
+        assertTrue(parser.parseCommand(
+                InternshipFindCommand.COMMAND_WORD + " " + InternshipFindCommand.MODE_WITHANY
+                        + " " + PREFIX_LOCATION + " remote local " + PREFIX_CONTACT_NAME + " tom dick harry ")
+                instanceof InternshipFindCommand);
     }
 
     @Test

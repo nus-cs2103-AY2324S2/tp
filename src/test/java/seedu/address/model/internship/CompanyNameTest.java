@@ -26,9 +26,15 @@ public class CompanyNameTest {
         // invalid companyNames
         assertFalse(CompanyName.isValidCompanyName(""));
         assertFalse(CompanyName.isValidCompanyName(" "));
+        assertFalse(CompanyName.isValidCompanyName("^"));
+        assertFalse(CompanyName.isValidCompanyName("Facebook*"));
+        assertFalse(CompanyName.isValidCompanyName(" Microsoft")); // leading space
+
 
         // valid companyNames
         assertTrue(CompanyName.isValidCompanyName("Microsoft"));
+        assertTrue(CompanyName.isValidCompanyName("Hewlett Packard"));
+        assertTrue(CompanyName.isValidCompanyName("Kentucky Fried Chicken"));
     }
 
     @Test
