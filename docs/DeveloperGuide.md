@@ -77,7 +77,6 @@ The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `Re
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
-
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
@@ -155,19 +154,17 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Membership feature
+The addmembership command that comes along with the membership feature is implemented like this:
+<img src="images/AddMembershipSequenceDiagram.png" width="600" />
 
 ### Points feature
-
 The addpoints command that comes along with the points feature is implemented like this:
 <img src="images/AddPointsSequenceDiagram.png" width="600" />
 
 ### Orders feature
-
 The addorder command that comes along with the orders feature is implemented like this:
 <img src="images/AddOrderSequenceDiagram.png" width="600" />
-
-
-### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
 
