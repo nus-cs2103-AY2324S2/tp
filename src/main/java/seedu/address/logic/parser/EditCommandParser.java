@@ -62,7 +62,7 @@ public class EditCommandParser implements Parser<EditCommand> {
                     ParserUtil.parseGitHubUsername(argMultimap.getValue(PREFIX_GITHUB_USERNAME).get()));
         }
         if (argMultimap.getValue(PREFIX_PROFILE_PICTURE).isPresent()) {
-            editPersonDescriptor.setProfilePicture(ParserUtil.parseProfilePicture(argMultimap.
+            editContactDescriptor.setProfilePicture(ParserUtil.parseProfilePicture(argMultimap.
                     getValue(PREFIX_PROFILE_PICTURE).get()));
         }
         parseTechStackForEdit(argMultimap.getAllValues(PREFIX_TECH_STACK))

@@ -9,6 +9,8 @@ import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.contact.ProfilePicture;
+
 import seedu.address.model.techstack.TechStack;
 
 /**

@@ -10,6 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TECH_STACK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROFILE_PICTURE;
 
+
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -21,6 +22,7 @@ import seedu.address.model.contact.GitHubUsername;
 import seedu.address.model.contact.Name;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.contact.Phone;
+import seedu.address.model.contact.ProfilePicture;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.techstack.TechStack;
 

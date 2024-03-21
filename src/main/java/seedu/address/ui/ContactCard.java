@@ -6,16 +6,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.FlowPane;
 
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.logic.MailApp;
-import seedu.address.model.person.Person;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
-import java.net.URLConnection;
 import seedu.address.model.contact.Contact;
 
 /**
@@ -64,7 +58,7 @@ public class ContactCard extends UiPart<Region> {
     public ContactCard(Contact contact, int displayedIndex) {
         super(FXML);
         this.contact = contact;
-        profilePicture.setImage(new Image(person.getProfilePicture().get()));
+        profilePicture.setImage(new Image(contact.getProfilePicture().get()));
         id.setText(displayedIndex + ". ");
         name.setText(contact.getName().fullName);
         phone.setText("Phone: " + contact.getPhone().value);

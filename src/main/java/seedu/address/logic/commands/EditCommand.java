@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TECH_STACK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PROFILE_PICTURE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CONTACTS;
 
 import java.util.Collections;
@@ -31,6 +32,7 @@ import seedu.address.model.contact.Name;
 import seedu.address.model.contact.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.techstack.TechStack;
+import seedu.address.model.contact.ProfilePicture;
 
 /**
  * Edits the details of an existing contact in the address book.
@@ -108,12 +110,12 @@ public class EditCommand extends Command {
         Email updatedEmail = editContactDescriptor.getEmail().orElse(contactToEdit.getEmail());
         Address updatedAddress = editContactDescriptor.getAddress().orElse(contactToEdit.getAddress());
         GitHubUsername updatedGitHubUsername =
-                editPersonDescriptor.getGitHubUsername().orElse(personToEdit.getGitHubUsername());
-        Set<TechStack> updatedTechStack = editPersonDescriptor.getTechStack().orElse(personToEdit.getTechStack());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-        ProfilePicture updatedProfilePicture = editPersonDescriptor.getProfilePicture().orElse(personToEdit.getProfilePicture());
+                editContactDescriptor.getGitHubUsername().orElse(contactToEdit.getGitHubUsername());
+        Set<TechStack> updatedTechStack = editContactDescriptor.getTechStack().orElse(contactToEdit.getTechStack());
+        Set<Tag> updatedTags = editContactDescriptor.getTags().orElse(contactToEdit.getTags());
+        ProfilePicture updatedProfilePicture = editContactDescriptor.getProfilePicture().orElse(contactToEdit.getProfilePicture());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedGitHubUsername,
+        return new Contact(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedGitHubUsername,
                 updatedTechStack, updatedTags, updatedProfilePicture);
     }
 
@@ -156,7 +158,6 @@ public class EditCommand extends Command {
 
         private ProfilePicture profilePicture;
 
-        public EditPersonDescriptor() {}
 
         /**
          * Copy constructor.
@@ -172,6 +173,8 @@ public class EditCommand extends Command {
             setTags(toCopy.tags);
             setProfilePicture(toCopy.profilePicture);
         }
+
+        public EditContactDescriptor() {}
 
         /**
          * Returns true if at least one field is edited.
@@ -269,15 +272,15 @@ public class EditCommand extends Command {
                 return false;
             }
 
-            EditPersonDescriptor otherEditPersonDescriptor = (EditPersonDescriptor) other;
-            return Objects.equals(name, otherEditPersonDescriptor.name)
-                    && Objects.equals(phone, otherEditPersonDescriptor.phone)
-                    && Objects.equals(email, otherEditPersonDescriptor.email)
-                    && Objects.equals(address, otherEditPersonDescriptor.address)
-                    && Objects.equals(gitHubUsername, otherEditPersonDescriptor.gitHubUsername)
-                    && Objects.equals(techStack, otherEditPersonDescriptor.techStack)
-                    && Objects.equals(tags, otherEditPersonDescriptor.tags)
-                    && Objects.equals(profilePicture, otherEditPersonDescriptor.profilePicture);
+            EditContactDescriptor otherEditContactDescriptor = (EditContactDescriptor) other;
+            return Objects.equals(name, otherEditContactDescriptor.name)
+                    && Objects.equals(phone, otherEditContactDescriptor.phone)
+                    && Objects.equals(email, otherEditContactDescriptor.email)
+                    && Objects.equals(address, otherEditContactDescriptor.address)
+                    && Objects.equals(gitHubUsername, otherEditContactDescriptor.gitHubUsername)
+                    && Objects.equals(techStack, otherEditContactDescriptor.techStack)
+                    && Objects.equals(tags, otherEditContactDescriptor.tags)
+                    && Objects.equals(profilePicture, otherEditContactDescriptor.profilePicture);
         }
 
         @Override

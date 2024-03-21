@@ -14,6 +14,7 @@ import seedu.address.model.contact.Email;
 import seedu.address.model.contact.GitHubUsername;
 import seedu.address.model.contact.Name;
 import seedu.address.model.contact.Phone;
+import seedu.address.model.contact.ProfilePicture;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.techstack.TechStack;
 

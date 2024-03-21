@@ -3,12 +3,7 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.contact.Address;
-import seedu.address.model.contact.Contact;
-import seedu.address.model.contact.Email;
-import seedu.address.model.contact.GitHubUsername;
-import seedu.address.model.contact.Name;
-import seedu.address.model.contact.Phone;
+import seedu.address.model.contact.*;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.techstack.TechStack;
 import seedu.address.model.util.SampleDataUtil;
@@ -31,6 +26,7 @@ public class ContactBuilder {
     private GitHubUsername gitHubUsername;
     private Set<TechStack> techStack;
     private Set<Tag> tags;
+    private ProfilePicture profilePicture;
 
     /**
      * Creates a {@code ContactBuilder} with the default details.
@@ -43,6 +39,7 @@ public class ContactBuilder {
         gitHubUsername = new GitHubUsername(DEFAULT_GITHUB_USERNAME);
         techStack = new HashSet<>();
         tags = new HashSet<>();
+        profilePicture = new ProfilePicture("");
     }
 
     /**
@@ -56,6 +53,7 @@ public class ContactBuilder {
         gitHubUsername = contactToCopy.getGitHubUsername();
         techStack = new HashSet<>(contactToCopy.getTechStack());
         tags = new HashSet<>(contactToCopy.getTags());
+        profilePicture = new ProfilePicture("");
     }
 
     /**
@@ -114,8 +112,13 @@ public class ContactBuilder {
         return this;
     }
 
+    public ContactBuilder withProfilePicture(String url) {
+        this.profilePicture = new ProfilePicture(url);
+        return this;
+    }
+
     public Contact build() {
-        return new Contact(name, phone, email, address, gitHubUsername, techStack, tags);
+        return new Contact(name, phone, email, address, gitHubUsername, techStack, tags, profilePicture);
     }
 
 
