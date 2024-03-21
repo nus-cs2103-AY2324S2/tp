@@ -79,7 +79,7 @@ public class AddBuyerCommandTest {
     @Test
     public void toStringMethod() {
         AddBuyerCommand addBuyerCommand = new AddBuyerCommand(ALI);
-        String expected = AddBuyerCommand.class.getCanonicalName() + "{toAdd=" + ALI + "}";
+        String expected = AddBuyerCommand.class.getCanonicalName() + "{buyerToAdd=" + ALI + "}";
         assertEquals(expected, addBuyerCommand.toString());
     }
 

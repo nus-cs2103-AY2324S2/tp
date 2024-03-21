@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_HOUSING_TYPE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.ALICE_SELLER;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.Arrays;
@@ -20,7 +20,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.SellerBuilder;
 
 public class AddressBookTest {
 
@@ -45,11 +45,12 @@ public class AddressBookTest {
 
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
+        // TODO: add buyer
         // Two persons with the same identity fields
-        Person editedAlice = new PersonBuilder(ALICE).withHousingType(VALID_HOUSING_TYPE_BOB)
-                .withTags(VALID_TAG_HUSBAND)
+        Person editedAlice = new SellerBuilder(ALICE_SELLER)
+                .withHousingType(VALID_HOUSING_TYPE_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
+        List<Person> newPersons = Arrays.asList(ALICE_SELLER, editedAlice);
         AddressBookStub newData = new AddressBookStub(newPersons);
 
         assertThrows(DuplicatePersonException.class, () -> addressBook.resetData(newData));
@@ -62,20 +63,21 @@ public class AddressBookTest {
 
     @Test
     public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasPerson(ALICE));
+        assertFalse(addressBook.hasPerson(ALICE_SELLER));
     }
 
     @Test
     public void hasPerson_personInAddressBook_returnsTrue() {
-        addressBook.addPerson(ALICE);
-        assertTrue(addressBook.hasPerson(ALICE));
+        addressBook.addPerson(ALICE_SELLER);
+        assertTrue(addressBook.hasPerson(ALICE_SELLER));
     }
 
     @Test
     public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addPerson(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withHousingType(VALID_HOUSING_TYPE_BOB)
-                .withTags(VALID_TAG_HUSBAND)
+        // TODO: add buyer
+        addressBook.addPerson(ALICE_SELLER);
+        Person editedAlice = new SellerBuilder(ALICE_SELLER)
+                .withHousingType(VALID_HOUSING_TYPE_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(addressBook.hasPerson(editedAlice));
     }

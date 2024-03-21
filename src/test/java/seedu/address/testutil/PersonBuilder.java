@@ -3,13 +3,13 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.house.PostalCode;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
+
 
 /**
  * A utility class to help with building Person objects.
@@ -19,13 +19,12 @@ public class PersonBuilder {
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
-    public static final String DEFAULT_HOUSINGTYPE = "HDB";
+    public static final String DEFAULT_HOUSING_TYPE = "HDB";
 
     private Name name;
     private Phone phone;
     private Email email;
     private String housingType;
-    private PostalCode postalCode;
     private Set<Tag> tags;
 
     /**
@@ -35,7 +34,7 @@ public class PersonBuilder {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
-        housingType = DEFAULT_HOUSINGTYPE;
+        housingType = DEFAULT_HOUSING_TYPE;
         tags = new HashSet<>();
     }
 
@@ -67,26 +66,10 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code Person} that we are building.
-     */
-    public PersonBuilder withHousingType(String housingType) {
-        this.housingType = housingType;
-        return this;
-    }
-
-    /**
      * Sets the {@code Phone} of the {@code Person} that we are building.
      */
     public PersonBuilder withPhone(String phone) {
         this.phone = new Phone(phone);
-        return this;
-    }
-
-    /**
-     * Sets the {@code Postal Code} of the {@code Person} that we are building.
-     */
-    public PersonBuilder withPostalCode(String postalCode) {
-        this.postalCode = new PostalCode(postalCode);
         return this;
     }
 
@@ -98,8 +81,15 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Address} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withHousingType(String housingType) {
+        this.housingType = housingType;
+        return this;
+    }
+
     public Person build() {
         return new Person(name, phone, email, housingType, tags);
     }
-
 }

@@ -2,11 +2,16 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BLOCK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_HOUSING_TYPE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LEVEL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_POSTALCODE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STREET;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_UNITNUMBER;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -37,6 +42,16 @@ public class CommandTestUtil {
     public static final String VALID_HOUSING_TYPE_BOB = "Condominium";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_BLOCK_AMY = "99B";
+    public static final String VALID_BLOCK_BOB = "99A";
+    public static final String VALID_LEVEL_AMY = "10";
+    public static final String VALID_LEVEL_BOB = "11";
+    public static final String VALID_POSTAL_CODE_AMY = "654321";
+    public static final String VALID_POSTAL_CODE_BOB = "654321";
+    public static final String VALID_STREET_AMY = "Orchard Road";
+    public static final String VALID_STREET_BOB = "Toa Payoh Road";
+    public static final String VALID_UNIT_NUMBER_AMY = "38";
+    public static final String VALID_UNIT_NUMBER_BOB = "38";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -48,6 +63,16 @@ public class CommandTestUtil {
     public static final String HOUSING_TYPE_DESC_BOB = " " + PREFIX_HOUSING_TYPE + VALID_HOUSING_TYPE_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String BLOCK_DESC_AMY = " " + PREFIX_BLOCK + VALID_BLOCK_AMY;
+    public static final String BLOCK_DESC_BOB = " " + PREFIX_BLOCK + VALID_BLOCK_BOB;
+    public static final String LEVEL_DESC_AMY = " " + PREFIX_LEVEL + VALID_LEVEL_AMY;
+    public static final String LEVEL_DESC_BOB = " " + PREFIX_LEVEL + VALID_LEVEL_BOB;
+    public static final String POSTAL_CODE_DESC_AMY = " " + PREFIX_POSTALCODE + VALID_POSTAL_CODE_AMY;
+    public static final String POSTAL_CODE_DESC_BOB = " " + PREFIX_POSTALCODE + VALID_POSTAL_CODE_BOB;
+    public static final String STREET_DESC_AMY = " " + PREFIX_STREET + VALID_STREET_AMY;
+    public static final String STREET_DESC_BOB = " " + PREFIX_STREET + VALID_STREET_BOB;
+    public static final String UNIT_NUMBER_DESC_AMY = " " + PREFIX_UNITNUMBER + VALID_UNIT_NUMBER_AMY;
+    public static final String UNIT_NUMBER_DESC_BOB = " " + PREFIX_UNITNUMBER + VALID_UNIT_NUMBER_BOB;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones

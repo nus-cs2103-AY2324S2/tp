@@ -25,7 +25,6 @@ import seedu.address.model.tag.Tag;
  * Contains utility methods used for parsing strings in the various *Parser classes.
  */
 public class ParserUtil {
-
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
 
     /**
@@ -130,15 +129,15 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String housetype} into a {@code String housetype}.
+     * Parses a {@code String houseType} into a {@code String houseType}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code String housetype} is invalid.
+     * @throws ParseException if the given {@code String houseType} is invalid.
      */
-    public static String parseHousing(String housetype) throws ParseException {
-        requireNonNull(housetype);
-        String trimmedName = housetype.trim();
-        if (!House.isValidName(trimmedName.toLowerCase())) {
+    public static String parseHousing(String houseType) throws ParseException {
+        requireNonNull(houseType);
+        String trimmedName = houseType.trim();
+        if (!House.isValidName(trimmedName)) {
             throw new ParseException(House.MESSAGE_CONSTRAINTS);
         }
         return trimmedName;
@@ -188,6 +187,7 @@ public class ParserUtil {
         }
         return new UnitNumber(trimmedLevel);
     }
+
     /**
      * Parses a {@code String block} into an {@code Block}.
      * Leading and trailing whitespaces will be trimmed.
@@ -202,6 +202,7 @@ public class ParserUtil {
         }
         return new Block(trimmedBlock);
     }
+
     /**
      * Parses a {@code String postalCode} into a {@code postalCode}.
      * Leading and trailing whitespaces will be trimmed.
