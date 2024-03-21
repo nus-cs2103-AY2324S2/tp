@@ -47,7 +47,7 @@ public class StarCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException { // executes the starring
-        List<Person> lastShownList = model.getFilteredPersonList(); // get the list of persons
+        List<Person> lastShownList = model.getCorrectPersonList(); // get the list of persons
 
         if (index.getZeroBased() >= lastShownList.size()) { // if index out of range
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
