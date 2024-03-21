@@ -12,7 +12,7 @@ enum CommandHistoryType {
 
 /**
  * An abstraction for command history operations like viewing the previous and next command in history.
- * Offers a similar experience to navigating through history of c ommands in a shell terminal..
+ * Offers a similar experience to navigating through history of commands in a shell terminal.
  */
 public class CommandHistory {
     private final List<String> commandHistory;
