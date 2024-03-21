@@ -182,6 +182,56 @@ Below is the sequence diagram for the `addfav` command process:
 <puml src="diagrams/AddFavouriteSequenceDiagram.puml" alt="AddFavouriteSequenceDiagram" />
 
 
+### Add order feature
+
+The `addorder` feature allows users to add orders from a supplier. 
+
+#### Design considerations:
+
+**Aspect: How orders are stored:**
+
+- **Alternative 1 (current choice):** Orders are stored as a list in `Person` class.
+  - Pros: Make use of the current `Person` class by allowing it to store a list of orders.
+  - Cons: `Person` class become more complicated as more attributes are added.
+
+- **Alternative 2:** Orders are stored in a different storage class such as `OrderStorage`.
+  - Pros: `Person` class remains simple.
+  - Cons: Need to create a new `OrderStorage` storage class to store orders. This may result in duplicated code since the implementation of `AddressBookStorage` is similar.
+
+#### Sequence Diagram
+
+Below is the sequence diagram for the `addorder` command process:
+
+<puml src="diagrams/AddOrderSequenceDiagram.puml" alt="AddOrderSequenceDiagram" />
+
+### ListOrder Feature
+
+The `listorder` feature allows users to list all orders associated with a person in the address book, sorted by date in ascending order. This is particularly useful for users who wish to track the order history of suppliers efficiently.
+
+#### Design Considerations
+
+- **Aspect:** Sorting orders by date.
+    - **Motivation:** Users are likely interested in the most recent orders. Sorting orders by date in ascending order allows users to see the most relevant orders first.
+- **Aspect:** Integration with existing data models.
+    - **Motivation:** Utilising the existing `Person` and new implemented `Order` models minimizes code redundancy and maintains consistency within the application.
+
+#### Implementation
+
+1. **Command Parsing:** The `ListOrderCommandParser` interprets the user input, extracts the index of the specified person, and creates an instance of `ListOrderCommand`.
+2. **Data Retrieval and Sorting:** Upon execution, `ListOrderCommand` fetches the selected person's orders from the model, sorts them by date, and prepares the output string.
+3. **Output Generation:** A summarising message that includes the sorted orders is then displayed to the user.
+
+#### Sequence Diagram
+
+Below is the sequence diagram for the `listorder` command process:
+
+<puml src="diagrams/ListOrderSequenceDiagram.puml" alt="ListOrderSequenceDiagram" />
+
+#### Future Enhancements
+
+- **Sorting by Status:** Introduce functionality to sort orders by their status (e.g., pending, completed), providing users with more flexibility in viewing order information.
+- **Filtering Options:** Implement filters to allow users to view orders within a specific date range or with particular characteristics, such as orders over a certain value.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
