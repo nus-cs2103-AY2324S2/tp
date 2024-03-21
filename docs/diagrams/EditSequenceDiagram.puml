@@ -7,6 +7,7 @@ participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
 participant ":EditCommandParser" as EditCommandParser LOGIC_COLOR
 participant "e:EditCommand" as EditCommand LOGIC_COLOR
+participant "d:EditPersonDescriptor" as EditPersonDescriptor LOGIC_COLOR
 participant "r:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -50,7 +51,20 @@ LogicManager -> EditCommand : execute(m)
 activate EditCommand
 
 'I have to change this from here on out EditPersonDescriptor class
-EditCommand -> Model : deletePerson(1)
+create EditPersonDescriptor
+EditCommand -> EditPersonDescriptor
+activate EditPersonDescriptor
+
+EditPersonDescriptor --> EditCommand
+deactivate EditPersonDescriptor
+
+EditCommand -> EditPersonDescriptor : createEditedPerson()
+activate EditPersonDescriptor
+
+EditPersonDescriptor --> EditCommand
+deactivate EditPersonDescriptor
+
+EditCommand -> Model : setPerson()
 activate Model
 
 Model --> EditCommand
@@ -63,9 +77,10 @@ activate CommandResult
 CommandResult --> EditCommand
 deactivate CommandResult
 
-EditCommand --> LogicManager : r
+EditCommand --> LogicManager
 deactivate EditCommand
 
 [<--LogicManager
 deactivate LogicManager
+
 @enduml
