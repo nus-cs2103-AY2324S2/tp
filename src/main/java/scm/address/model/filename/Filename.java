@@ -10,7 +10,7 @@ public class Filename {
     public static final String MESSAGE_CONSTRAINTS = "Filenames should be alphanumeric.";
 
     public static final String MESSAGE_DUPLICATE = "Filenames should be unique.";
-    public static final String VALIDATION_REGEX = "\\p{Alnum}+";
+    public static final String VALIDATION_REGEX = "[\\p{Alnum}_\\-]+";
     public final String filename;
 
     /**
