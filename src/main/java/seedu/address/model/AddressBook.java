@@ -61,8 +61,9 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
-
         setPersons(newData.getPersonList());
+        relationships.getRelationshipsTracker().clear();
+        relationships.getRelationshipsTracker().addAll(newData.getRelationshipList());
     }
 
     //// person-level operations
