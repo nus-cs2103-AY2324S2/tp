@@ -89,7 +89,7 @@ EduConnect is a **desktop app for managing student contacts, optimized for use v
 
 * Unique identifiers are `e/EMAIL`, `s/STUDENT_ID` and `h/TELEGRAM_HANDLE`
 
-* There can only be one unique indentifier at each time. Which means no two students can share the same unique identifiers above
+* There can only be one unique indentifier at each time. Which means no two students can share the same unique identifiers above.
 
 ### Viewing help : `help`
 
