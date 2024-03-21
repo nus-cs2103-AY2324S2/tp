@@ -20,6 +20,9 @@ public class AddRelationshipCommandParser {
     public AddRelationshipCommand parse(String userInput) throws ParseException {
         requireNonNull(userInput);
         String[] parts = userInput.split(" ", 3);
+        if (parts.length != 3) {
+            throw new ParseException(Messages.MESSAGE_INVALID_COMMAND_FORMAT);
+        }
         try {
             String originUuid = ParserUtil.parseUuid(parts[0]);
             String targetUuid = ParserUtil.parseUuid(parts[1]);

@@ -35,17 +35,36 @@ public class RelationshipUtil {
     }
 
     /**
+     * Checks if a specific relationship exists in the tracker.
+     * @param toFind The relationship to find.
+     * @return true if the relationship exists, false otherwise.
+     */
+    public boolean hasRelationshipWithDescriptor(Relationship toFind) {
+        for (Relationship relationship : relationshipsTracker) {
+            if ((relationship.getPerson1().equals(toFind.getPerson1()) && relationship.getPerson2()
+                    .equals(toFind.getPerson2())
+                    || (relationship.getPerson1().equals(toFind.getPerson2()) && relationship.getPerson2()
+                            .equals(toFind.getPerson1()))) && relationship.getRoleDescriptor(
+                            toFind.getPerson1()).equals(toFind.getRoleDescriptor(toFind.getPerson2()))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
      * Retrieves a string representation of an existing relationship in the tracker.
      * @param toGet The relationship to retrieve.
      * @return A string representation of the specified relationship if it exists.
      * @throws IndexOutOfBoundsException if the relationship does not exist in the tracker.
      */
     public String getExistingRelationship(Relationship toGet) {
-        int index = relationshipsTracker.indexOf(toGet);
-        if (index == -1) {
-            throw new IndexOutOfBoundsException("Relationship does not exist.");
+        for (Relationship relationship : relationshipsTracker) {
+            if (relationship.equals(toGet)) {
+                return relationship.toString();
+            }
         }
-        return relationshipsTracker.get(index).toString();
+        throw new IllegalArgumentException("Relationship does not exist.");
     }
 
     /**
@@ -54,5 +73,16 @@ public class RelationshipUtil {
      */
     public ArrayList<Relationship> getRelationshipsTracker() {
         return relationshipsTracker;
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (Relationship relationship : relationshipsTracker) {
+            sb.append(relationship.toString());
+            sb.append("\n");
+        }
+        return sb.toString();
     }
 }
