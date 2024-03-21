@@ -2,14 +2,7 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CLIENT_INDEX;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.*;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -52,6 +45,7 @@ public class CommandTestUtil {
     public static final String VALID_DESCRIPTION = "Project discussion";
 
     public static final String VALID_CLIENT_INDEX = "1";
+    public static final String VALID_MEETING_INDEX = "1";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -65,6 +59,7 @@ public class CommandTestUtil {
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
     public static final String CLIENT_INDEX = " " + PREFIX_CLIENT_INDEX + VALID_CLIENT_INDEX;
+    public static final String MEETING_INDEX = " " + PREFIX_MEETING_INDEX + VALID_MEETING_INDEX;
     public static final String DATETIME = " " + PREFIX_DATETIME + VALID_DATETIME;
     public static final String DESCRIPTION = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION;
 
