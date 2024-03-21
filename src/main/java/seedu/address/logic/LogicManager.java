@@ -64,6 +64,18 @@ public class LogicManager implements Logic {
     Command command = addressBookParser.parseCommand(commandText);
     CommandResult commandResult = command.execute(model);
 
+    if (command instanceof AddPersonCommand
+        || command instanceof DeletePersonCommand
+        || command instanceof EditPersonCommand) { // Update the autocomplete for the NUSNET IDs if the command
+                                                   // potentially modifies the NUSNET IDs
+      AutoCompleteNusNetId.update(
+          getAddressBook()
+              .getPersonList()
+              .stream()
+              .map(person -> person.getNusNet().value)
+              .toArray(String[]::new));
+    }
+
     try {
       storage.saveAddressBook(model.getAddressBook());
       storage.saveCourse(model.getCourseName());
