@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.commons.core.Theme;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -167,5 +168,26 @@ public class ParserUtil {
             throw new ParseException(EndTime.MESSAGE_CONSTRAINTS);
         }
         return new EndTime(trimmedEnd);
+    }
+
+    /**
+     * Parses a theme string into a Theme enum value.
+     *
+     * @param theme The theme string to parse.
+     * @return The corresponding Theme enum value.
+     * @throws ParseException If the theme string does not match any known theme.
+     */
+    public static Theme parseTheme(String theme) throws ParseException {
+        Theme guiTheme;
+        switch(theme.toUpperCase()) {
+        case "LIGHT":
+            guiTheme = Theme.LIGHTTHEME;
+            break;
+        case "DARK":
+            // Fall through
+        default:
+            guiTheme = Theme.DARKTHEME;
+        }
+        return guiTheme;
     }
 }

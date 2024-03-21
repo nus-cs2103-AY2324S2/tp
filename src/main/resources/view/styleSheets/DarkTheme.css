@@ -3,6 +3,10 @@
     background-color: #141421; /* Used in the default.html file */
 }
 
+.BG {
+    -fx-background-color: black;
+}
+
 .label {
     -fx-font-size: 11pt;
     -fx-font-family: "Lato";
