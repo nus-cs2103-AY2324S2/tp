@@ -88,9 +88,6 @@ public class AddAttendanceRecordCommandTest {
     }
 
 
-
-
-
     private class ModelStub implements Model {
 
         @Override
