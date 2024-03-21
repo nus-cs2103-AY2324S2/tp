@@ -58,7 +58,7 @@ public class EditCommand extends Command {
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
-     * @param id                of the person in the filtered person list to edit
+     * @param id of the person in the NetConnect to edit
      * @param editPersonDescriptor details to edit the person with
      */
     public EditCommand(Id id, EditPersonDescriptor editPersonDescriptor) {
@@ -102,11 +102,10 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Remark updatedRemark = personToEdit.getRemark();
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Remark remark = personToEdit.getRemark();
 
-        return new Person(idOfPerson, updatedName, updatedPhone, updatedEmail, updatedAddress,
-                updatedRemark, updatedTags);
+        return new Person(idOfPerson, updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, remark);
     }
 
     @Override
@@ -134,8 +133,8 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will
-     * replace the corresponding field value of the person.
+     * Stores the details to edit the person with. Each non-empty field value will replace the
+     * corresponding field value of the person.
      */
     public static class EditPersonDescriptor {
         private Name name;
@@ -144,8 +143,7 @@ public class EditCommand extends Command {
         private Address address;
         private Set<Tag> tags;
 
-        public EditPersonDescriptor() {
-        }
+        public EditPersonDescriptor() {}
 
         /**
          * Copy constructor.
@@ -207,8 +205,7 @@ public class EditCommand extends Command {
         }
 
         /**
-         * Returns an unmodifiable tag set, which throws
-         * {@code UnsupportedOperationException}
+         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code tags} is null.
          */

@@ -1,31 +1,35 @@
 package seedu.address.model.person;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
 public class RemarkTest {
+    @Test
+    public void constructor_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new Remark(null));
+    }
 
     @Test
     public void equals() {
-        Remark remark = new Remark("Hello");
-
-        // same object -> returns true
-        assertTrue(remark.equals(remark));
+        Remark remark = new Remark("Valid Remark");
 
         // same values -> returns true
-        Remark remarkCopy = new Remark(remark.value);
-        assertTrue(remark.equals(remarkCopy));
+        assertEquals(remark, new Remark("Valid Remark"));
 
-        // different types -> returns false
-        assertFalse(remark.equals(1));
+        // same object -> returns true
+        assertEquals(remark, remark);
 
         // null -> returns false
-        assertFalse(remark.equals(null));
+        assertNotEquals(null, remark);
 
-        // different remark -> returns false
-        Remark differentRemark = new Remark("Bye");
-        assertFalse(remark.equals(differentRemark));
+        // different types -> returns false
+        assertFalse(remark.equals(0.5f));
+
+        // different values -> returns false
+        assertNotEquals(remark, new Remark("Other Valid Remark"));
     }
 }
