@@ -1,0 +1,113 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":FindCommandParser" as FindCommandParser LOGIC_COLOR
+participant "<<class>>\nArgumentTokenizer" as ArgumentTokenizer LOGIC_COLOR
+participant ":ArgumentMultimap" as ArgumentMultimap LOGIC_COLOR
+participant "<<class>>\nParserUtil" as ParserUtil LOGIC_COLOR
+participant "a:FindCommand" as FindCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "m:Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute(\
+"find n/John t/tutorial-1")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand(\
+"find n/John t/tutorial-1")
+activate AddressBookParser
+
+create FindCommandParser
+AddressBookParser -> FindCommandParser
+activate FindCommandParser
+
+FindCommandParser --> AddressBookParser
+deactivate FindCommandParser
+
+AddressBookParser -> FindCommandParser : parse(\
+"find n/John t/tutorial-1")
+activate FindCommandParser
+
+FindCommandParser -> ArgumentTokenizer : \
+tokenize(findArguments, PREFIXES, ...)
+activate ArgumentTokenizer
+
+ArgumentTokenizer -> ArgumentTokenizer : \
+findAllPrefixPositions(findArguments, PREFIXES, ...)
+activate ArgumentTokenizer
+deactivate ArgumentTokenizer
+
+create ArgumentMultimap
+ArgumentTokenizer -> ArgumentMultimap
+activate ArgumentMultimap
+
+ArgumentMultimap --> ArgumentTokenizer
+deactivate ArgumentMultimap
+
+ArgumentTokenizer -> ArgumentTokenizer : \
+extractArgumentValue(findArguments, \n\
+currentPrefixPosition, nextPrefixPosition)
+activate ArgumentTokenizer
+deactivate ArgumentTokenizer
+
+ArgumentTokenizer --> FindCommandParser : ArgumentMultimap
+deactivate ArgumentTokenizer
+
+FindCommandParser -> ArgumentMultimap : get_value(PREFIX)
+activate ArgumentMultimap
+
+ArgumentMultimap --> FindCommandParser : name, email, student_id, telegram_handle
+deactivate ArgumentMultimap
+
+FindCommandParser -> ParserUtil : parseTags
+activate ParserUtil
+
+ParserUtil --> FindCommandParser
+deactivate ParserUtil
+
+create FindCommand
+FindCommandParser -> FindCommand : FindCommand(predicates)
+activate FindCommand
+
+FindCommand --> FindCommandParser
+deactivate FindCommand
+
+FindCommandParser --> AddressBookParser : d
+deactivate FindCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+FindCommandParser -[hidden]-> AddressBookParser
+destroy FindCommandParser
+
+AddressBookParser --> LogicManager : d
+deactivate AddressBookParser
+
+LogicManager -> FindCommand : execute(m)
+activate FindCommand
+
+FindCommand -> Model : updateFilteredStudentList(predicates)
+activate Model
+
+Model --> FindCommand
+deactivate Model
+
+create CommandResult
+FindCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> FindCommand
+deactivate CommandResult
+
+FindCommand --> LogicManager : r
+deactivate FindCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
