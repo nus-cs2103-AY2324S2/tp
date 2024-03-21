@@ -6,7 +6,10 @@
     "id" : "A0111111A",
     "email": "alice@example.com",
     "address": "123, Jurong West Ave 6, #08-111",
-    "tags": [ "friends" ]
+    "tags" : [ {
+      "tagName" : "friends",
+      "tagStatus" : "INCOMPLETE_GOOD"
+    } ]
   }, {
     "type" : "stu",
     "name": "Alicia Pauline",

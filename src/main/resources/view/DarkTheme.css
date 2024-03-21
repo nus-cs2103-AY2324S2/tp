@@ -369,3 +369,18 @@
     -fx-font-size: 11;
 }
 
+#tags .label.complete_good {
+    -fx-background-color: green; /* Green color for tags with complete_good status */
+}
+
+#tags .label.complete_bad {
+    -fx-background-color: red; /* Red color for tags with complete_bad status */
+}
+
+#tags .label.incomplete_good {
+    -fx-background-color: blue; /* Blue color for tags with incomplete_good status */
+}
+
+#tags .label.incomplete_bad {
+    -fx-background-color: orange; /* Orange color for tags with incomplete_bad status */
+}
