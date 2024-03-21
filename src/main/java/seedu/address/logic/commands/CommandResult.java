@@ -19,6 +19,8 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
+    private final boolean theme;
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
@@ -26,6 +28,17 @@ public class CommandResult {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
+        this.theme = false;
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified fields for theme
+     */
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean theme) {
+        this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.showHelp = showHelp;
+        this.exit = exit;
+        this.theme = theme;
     }
 
     /**
@@ -46,6 +59,10 @@ public class CommandResult {
 
     public boolean isExit() {
         return exit;
+    }
+
+    public boolean isTheme() {
+        return theme;
     }
 
     @Override
