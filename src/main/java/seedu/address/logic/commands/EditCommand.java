@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SKILL;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_COURSE_MATES;
 
 import java.util.Collections;
@@ -37,12 +36,12 @@ public class EditCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the courseMate identified "
             + "by the index number used in the displayed courseMate list. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME + " NAME] "
-            + "[" + PREFIX_PHONE + " PHONE] "
-            + "[" + PREFIX_EMAIL + " EMAIL] "
-            + "[" + PREFIX_SKILL + " SKILL]...\n"
-            + "Example: " + COMMAND_WORD + " 1 "
+            + "NAME can be specified either by full name or by the '#' notation.\n"
+            + "Parameters: NAME "
+            + "[" + PREFIX_NAME + " NEW_NAME] "
+            + "[" + PREFIX_PHONE + " NEW_PHONE_NUMBER] "
+            + "[" + PREFIX_EMAIL + " NEW_EMAIL]\n"
+            + "Example: " + COMMAND_WORD + " John Doe "
             + PREFIX_PHONE + " 91234567 "
             + PREFIX_EMAIL + " johndoe@example.com";
 

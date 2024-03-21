@@ -19,9 +19,8 @@ public class AddCommand extends Command {
     public static final String COMMAND_WORD = "add";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a courseMate to the contact list. "
-            + "Parameters: "
-            + PREFIX_NAME + " NAME "
-            + PREFIX_PHONE + " PHONE "
+            + "Parameters: NAME"
+            + PREFIX_PHONE + " PHONE_NUMBER "
             + PREFIX_EMAIL + " EMAIL "
             + "[" + PREFIX_SKILL + " SKILL]...\n"
             + "Example: " + COMMAND_WORD + " "
