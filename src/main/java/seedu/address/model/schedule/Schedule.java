@@ -43,12 +43,10 @@ public class Schedule {
         //checkArgument(isValidSchedName(schedName), MESSAGE_CONSTRAINTS);
         checkArgument(isValidTiming(startTime, endTime));
         this.schedId = schedIdCounter++;
-
         this.schedName = schedName;
         this.startTime = startTime;
         this.endTime = endTime;
-        this.personList = new ArrayList<Person>();
-
+        this.personList = new ArrayList<>();
     }
 
     public String getSchedName() {
@@ -76,10 +74,19 @@ public class Schedule {
      *
      * @param newParticipants
      */
-    public void addParticipants(ArrayList<Person> newParticipants) {
+    public ArrayList<Person> addParticipants(ArrayList<Person> newParticipants) {
+        ArrayList<Person> addedParticipants = new ArrayList<>();
         for (Person p: newParticipants) {
             personList.add(p);
+            /*for (Person existingP: personList) {
+                if (p.isSamePerson(existingP)) {
+                    continue;
+                }
+                personList.add(p);
+                addedParticipants.add(p);
+            }*/
         }
+        return addedParticipants;
     }
 
     /**

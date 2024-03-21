@@ -109,5 +109,7 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
+
     void updateFilteredScheduleList(Predicate<Schedule> predicate);
+
 }

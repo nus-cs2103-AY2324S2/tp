@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javafx.collections.ObservableList;
@@ -11,6 +12,7 @@ import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.schedule.Schedule;
 import seedu.address.model.schedule.UniqueScheduleList;
 
+
 /**
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSamePerson comparison)
@@ -18,6 +20,7 @@ import seedu.address.model.schedule.UniqueScheduleList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    private final ArrayList<Schedule> schedules;
 
 
     /*
@@ -29,6 +32,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
+        schedules = new ArrayList<>();
     }
 
     private final UniqueScheduleList schedules;

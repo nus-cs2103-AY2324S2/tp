@@ -17,19 +17,24 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.schedule.Schedule;
+import seedu.address.model.tag.Interest;
 import seedu.address.model.tag.Tag;
 
+
 /**
- * Contains utility methods used for parsing strings in the various *Parser classes.
+ * Contains utility methods used for parsing strings in the various *Parser
+ * classes.
  */
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
 
     /**
-     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
+     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading
+     * and trailing whitespaces will be
      * trimmed.
-     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
+     * @throws ParseException if the specified index is invalid (not non-zero
+     *                        unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
@@ -40,15 +45,20 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
+     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading
+     * and trailing whitespaces will be
      * trimmed.
-     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
+     * @throws ParseException if the specified index is invalid (not non-zero
+     *                        unsigned integer).
      */
     public static ArrayList<Index> parseIndexArrayList(String oneBasedIndex) throws ParseException {
         String trimmedIndexes = oneBasedIndex.trim();
         String[] indexArray = trimmedIndexes.split(",");
         ArrayList<Index> indexArrayList = new ArrayList<>();
-        for (String index: indexArray) {
+
+        for (String index : indexArray) {
+            System.out.println(index);
+
             if (!StringUtil.isNonZeroUnsignedInteger(index)) {
                 throw new ParseException(MESSAGE_INVALID_INDEX);
             }
@@ -94,7 +104,7 @@ public class ParserUtil {
      * @throws ParseException if the given {@code address} is invalid.
      */
     public static Address parseAddress(String address) throws ParseException {
-        //requireNonNull(address);
+        // requireNonNull(address);
         if (Objects.equals(address, "")) {
             return new Address("");
         } else {
@@ -137,13 +147,38 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     * Parses a {@code String interest} into a {@code Interest}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code interest} is invalid.
      */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
+    public static Tag parseInterest(String interest) throws ParseException {
+        requireNonNull(interest);
+        String trimmedTag = interest.trim();
+        if (!Interest.isValidTagName(trimmedTag)) {
+            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+        }
+        return new Interest(trimmedTag);
+    }
+
+    /**
+     * Parses the given collections of strings into a set of tags.
+     * Both the {@code tags} and {@code interests} collections are processed.
+     * @param tags      A collection of strings representing tags.
+     * @param interests A collection of strings representing interests.
+     * @return A set of {@code Tag} objects representing the parsed tags and
+     *         interests.
+     * @throws ParseException If there is any error parsing the tags or interests.
+     */
+    public static Set<Tag> parseTags(Collection<String> tags, Collection<String> interests) throws ParseException {
         requireNonNull(tags);
+        requireNonNull(interests);
         final Set<Tag> tagSet = new HashSet<>();
         for (String tagName : tags) {
             tagSet.add(parseTag(tagName));
+        }
+        for (String interestName : interests) {
+            tagSet.add(parseInterest(interestName));
         }
         return tagSet;
     }

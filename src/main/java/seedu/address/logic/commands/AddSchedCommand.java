@@ -62,10 +62,14 @@ public class AddSchedCommand extends Command {
             participants.add(lastShownList.get(index.getZeroBased()));
         }
 
+
         schedule.addParticipants(participants);
         model.addSchedule(schedule);
 
         // !!!TO VERIFY WITH REST: is model implementation required for Schedule?
+
+        //ArrayList<Person> addedParticipants = schedule.addParticipants(participants);
+
 
         return new CommandResult(generateSuccessMessage());
     }
@@ -102,6 +106,5 @@ public class AddSchedCommand extends Command {
     private String generateSuccessMessage() {
         return String.format(MESSAGE_SUCCESS, schedule);
     }
-
 }
 
