@@ -9,30 +9,30 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Remark;
+import seedu.address.model.student.Student;
+import seedu.address.model.student.Remark;
 
 /**
- * Changes the remark of an existing person in the address book.
+ * Changes the remark of an existing student in the address book.
  */
 public class RemarkCommand extends Command {
 
     public static final String COMMAND_WORD = "remark";
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Edits the remark of the person identified "
-            + "by the index number used in the last person listing. "
+            + ": Edits the remark of the student identified "
+            + "by the index number used in the last student listing. "
             + "Existing remark will be overwritten by the input.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "r/ [REMARK]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + "r/ Likes to swim.";
-    public static final String MESSAGE_ADD_REMARK_SUCCESS = "Added remark to Person: %1$s";
-    public static final String MESSAGE_DELETE_REMARK_SUCCESS = "Deleted remark from Person: %1$s";
+    public static final String MESSAGE_ADD_REMARK_SUCCESS = "Added remark to Student: %1$s";
+    public static final String MESSAGE_DELETE_REMARK_SUCCESS = "Deleted remark from Student: %1$s";
     private final Index index;
     private final Remark remark;
 
     /***
-     * Creates a RemarkCommand to change the remark of the specified {@code Person}
+     * Creates a RemarkCommand to change the remark of the specified {@code Student}
      */
     public RemarkCommand(Index index, Remark remark) {
         requireAllNonNull(index, remark);
@@ -42,21 +42,21 @@ public class RemarkCommand extends Command {
     }
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Student> lastShownList = model.getFilteredStudentList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), personToEdit.getSubject(),
-                personToEdit.getRemark(), personToEdit.getLessons());
+        Student studentToEdit = lastShownList.get(index.getZeroBased());
+        Student editedStudent = new Student(studentToEdit.getName(), studentToEdit.getPhone(), studentToEdit.getEmail(),
+                studentToEdit.getAddress(), studentToEdit.getSubject(),
+                studentToEdit.getRemark(), studentToEdit.getLessons());
 
-        model.setPerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.setStudent(studentToEdit, editedStudent);
+        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
 
-        return new CommandResult(generateSuccessMessage(editedPerson));
+        return new CommandResult(generateSuccessMessage(editedStudent));
     }
     @Override
     public boolean equals(Object other) {
@@ -76,10 +76,10 @@ public class RemarkCommand extends Command {
     /**
      * Generates a command execution success message based on whether
      * the remark is added to or removed from
-     * {@code personToEdit}.
+     * {@code studentToEdit}.
      */
-    private String generateSuccessMessage(Person personToEdit) {
+    private String generateSuccessMessage(Student studentToEdit) {
         String message = !remark.value.isEmpty() ? MESSAGE_ADD_REMARK_SUCCESS : MESSAGE_DELETE_REMARK_SUCCESS;
-        return String.format(message, personToEdit);
+        return String.format(message, studentToEdit);
     }
 }

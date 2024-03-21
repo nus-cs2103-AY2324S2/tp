@@ -42,27 +42,27 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.AddCommand;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Lesson;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.model.student.Address;
+import seedu.address.model.student.Email;
+import seedu.address.model.student.Lesson;
+import seedu.address.model.student.Name;
+import seedu.address.model.student.Person;
+import seedu.address.model.student.Phone;
+import seedu.address.testutil.StudentBuilder;
 
 public class AddCommandParserTest {
     private AddCommandParser parser = new AddCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Person expectedPerson = new PersonBuilder(BOB).build();
+        Person expectedPerson = new StudentBuilder(BOB).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + SUBJECT_DESC_SCIENCE
                 + REMARK_DESC_BOB + LESSON_DESC_COMPLETED, new AddCommand(expectedPerson));
         // multiple lesson - all accepted
-        Person expectedPersonMultipleLessons = new PersonBuilder(BOB)
+        Person expectedPersonMultipleLessons = new StudentBuilder(BOB)
                 .withLessons(VALID_LESSON_BOB, VALID_LESSON_AMY).build();
         assertParseSuccess(parser,
                 NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + SUBJECT_DESC_SCIENCE
@@ -138,7 +138,7 @@ public class AddCommandParserTest {
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero lessons
-        Person expectedPerson = new PersonBuilder(AMY).build();
+        Person expectedPerson = new StudentBuilder(AMY).build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
                          + ADDRESS_DESC_AMY + SUBJECT_DESC_MATHS,
                 new AddCommand(expectedPerson));
