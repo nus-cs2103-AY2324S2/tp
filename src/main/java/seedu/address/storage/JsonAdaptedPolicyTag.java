@@ -6,26 +6,38 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Policy;
 
 public class JsonAdaptedPolicyTag {
-    private final String tagName;
+    public final String policyName;
+    public final String policyNumber;
+    public final String premiumTerm;
+    public final String premium;
+    public final String benefit;
 
     /**
      * Constructs a {@code JsonAdaptedTag} with the given {@code tagName}.
      */
     @JsonCreator
-    public JsonAdaptedPolicyTag(String tagName) {
-        this.tagName = tagName;
+    public JsonAdaptedPolicyTag(String policyName, String policyNumber, String premiumTerm, String premium, String benefit) {
+        this.policyName = policyName;
+        this.policyNumber = policyNumber;
+        this.premiumTerm = premiumTerm;
+        this.premium = premium;
+        this.benefit = benefit;
     }
 
     /**
      * Converts a given {@code Tag} into this class for Jackson use.
      */
     public JsonAdaptedPolicyTag(Policy source) {
-        tagName = source.policyName;
+        policyName = source.policyName;
+        policyNumber = source.policyNumber;
+        premiumTerm = source.premiumTerm;
+        premium = source.premium;
+        benefit = source.benefit;
     }
 
     @JsonValue
-    public String getTagName() {
-        return tagName;
+    public String getPolicyName() {
+        return policyName;
     }
 
     /**
@@ -34,9 +46,21 @@ public class JsonAdaptedPolicyTag {
      * @throws IllegalValueException if there were any data constraints violated in the adapted tag.
      */
     public Policy toModelType() throws IllegalValueException {
-        if (!Policy.isValidField(tagName)) {
+        if (!Policy.isValidField(policyName)) {
             throw new IllegalValueException(Policy.MESSAGE_CONSTRAINTS);
         }
-        return new Policy(tagName);
+        if (!Policy.isValidNumber(policyNumber)) {
+            throw new IllegalValueException(Policy.MESSAGE_CONSTRAINTS);
+        }
+        if (!Policy.isValidField(premiumTerm)) {
+            throw new IllegalValueException(Policy.MESSAGE_CONSTRAINTS);
+        }
+        if (!Policy.isValidNumber(premium)) {
+            throw new IllegalValueException(Policy.MESSAGE_CONSTRAINTS);
+        }
+        if (!Policy.isValidNumber(benefit)) {
+            throw new IllegalValueException(Policy.MESSAGE_CONSTRAINTS);
+        }
+        return new Policy(policyName, policyNumber, premiumTerm, premium, benefit);
     }
 }

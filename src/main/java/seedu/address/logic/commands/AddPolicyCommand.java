@@ -2,21 +2,24 @@ package seedu.address.logic.commands;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Messages;
 
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Logger;
 
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.AddCommandParser;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Policy;
 import seedu.address.commons.core.index.Index;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 public class AddPolicyCommand extends Command {
+    private final Logger logger = LogsCenter.getLogger(AddPolicyCommand.class);
     public static final String COMMAND_WORD = "addPolicy";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
@@ -34,12 +37,20 @@ public class AddPolicyCommand extends Command {
 
     private final Index index;
     private final String policyName;
+    public final String policyNumber;
+    public final String premiumTerm;
+    public final String premium;
+    public final String benefit;
 
-    public AddPolicyCommand(Index index, String policyName) {
+    public AddPolicyCommand(Index index, String policyName, String policyNumber, String premiumTerm, String premium, String benefit) {
         requireAllNonNull(index, policyName);
 
         this.index = index;
         this.policyName = policyName;
+        this.policyNumber = policyNumber;
+        this.premiumTerm = premiumTerm;
+        this.premium = premium;
+        this.benefit = benefit;
     }
 
     @Override
@@ -52,7 +63,7 @@ public class AddPolicyCommand extends Command {
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
         Set<Policy> currentPolicies = new HashSet<>(personToEdit.getPolicies());
-        Policy newPolicy = new Policy(policyName);
+        Policy newPolicy = new Policy(policyName, policyNumber, premiumTerm, premium, benefit);
         currentPolicies.add(newPolicy);
 
         Person editedPerson = new Person(
@@ -65,8 +76,8 @@ public class AddPolicyCommand extends Command {
         return new CommandResult(generateSuccessMessage(editedPerson));
     }
 
-    private String generateSuccessMessage(Person personToEdit) {
+    private String generateSuccessMessage(Person editedPerson) {
         String message = !policyName.isEmpty() ? MESSAGE_ADD_POLICY_SUCCESS : MESSAGE_DELETE_POLICY_SUCCESS;
-        return String.format(message, personToEdit);
+        return String.format(message, editedPerson);
     }
 }

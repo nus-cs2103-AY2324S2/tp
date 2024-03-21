@@ -134,8 +134,8 @@ public class Person {
                 .add("email", email)
                 .add("address", address)
                 .add("meeting", meeting)
-//                .add("policyName", policyName)
                 .add("tags", tags)
+                .add("policies", policies)
                 .toString();
     }
 
