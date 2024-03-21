@@ -47,4 +47,10 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    /**
+     * Retrieves the last viewed person after a successful "view" command.
+     * @return The last viewed person, or null if no view command has been executed yet.
+     */
+    Person getLastViewedPerson();
 }

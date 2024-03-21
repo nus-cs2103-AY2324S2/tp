@@ -16,6 +16,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Person;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -34,6 +35,7 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private SidePanel sidePanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -49,6 +51,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private StackPane sidePanelPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -121,6 +126,9 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        sidePanel = new SidePanel();
+        sidePanelPlaceholder.getChildren().add(sidePanel.getRoot());
     }
 
     /**
@@ -177,15 +185,15 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-            /*
-            // Check for a successful view command based on the feedback message
+
+            // If it's a successful view command, display the person in the SidePanel
             if (commandResult.getFeedbackToUser().startsWith("View Person:")) {
-                // Extract the person's index from the commandText
-                // Assuming the commandText is in the format "view INDEX"
-                int index = Integer.parseInt(commandText.split("\\s+")[1]); // splits by whitespace and gets the second part
-                updateSidePanel(index - 1); // Adjust for zero-based index if necessary
+                Person viewedPerson = logic.getLastViewedPerson();
+                if (viewedPerson != null) {
+                    sidePanel.displayPerson(viewedPerson);
+                }
             }
-             */
+
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }

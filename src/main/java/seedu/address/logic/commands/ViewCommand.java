@@ -55,6 +55,15 @@ public class ViewCommand extends Command {
     }
 
     /**
+     * Gets targetIndex.
+     *
+     * @return targetIndex
+     */
+    public Index getTargetIndex() {
+        return targetIndex;
+    }
+
+    /**
      * Checks if this ViewCommand is equal to another object.
      *
      * @param other The other object to compare with.
