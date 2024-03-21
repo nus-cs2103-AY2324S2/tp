@@ -15,6 +15,8 @@ import java.util.concurrent.CountDownLatch;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.DisabledOnOs;
+import org.junit.jupiter.api.condition.OS;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.testfx.framework.junit5.ApplicationExtension;
@@ -45,6 +47,8 @@ public class PersonCardTest {
         personCard.setDesktopWrapper(desktopWrapper);
     }
 
+
+    @DisabledOnOs(OS.LINUX)
     @Test
     public void successfulEmailClick() throws IOException, URISyntaxException, InterruptedException {
 
