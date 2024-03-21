@@ -14,26 +14,30 @@ import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
- * A utility class to help with building Person objects.
+ * Represents a builder class for creating instances of the Person class.
+ * This class provides methods for setting the attributes of a Person object.
+ * The builder pattern is used to allow for a flexible and fluent way of constructing Person objects.
+ *
+ * @param <T> The type of the builder class.
  */
-public class PersonBuilder {
+public abstract class PersonBuilder<T extends PersonBuilder<T>> {
 
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-    public static final String DEFAULT_REMARK = "";
+    public static final String DEFAULT_REMARK = "some remarks";
 
-    private Id id;
-    private Name name;
-    private Phone phone;
-    private Email email;
-    private Address address;
-    private Set<Tag> tags;
-    private Remark remark;
+    protected Id id;
+    protected Name name;
+    protected Phone phone;
+    protected Email email;
+    protected Address address;
+    protected Remark remark;
+    protected Set<Tag> tags;
 
     /**
-     * Creates a {@code PersonBuilder} with the default details.
+     * Constructs a new PersonBuilder with default values.
      */
     public PersonBuilder() {
         id = Id.generateNextId();
@@ -41,6 +45,7 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
+        remark = new Remark(DEFAULT_REMARK);
         tags = new HashSet<>();
         remark = new Remark(DEFAULT_REMARK);
     }
@@ -59,63 +64,91 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code Person} that we are building.
+     * Initializes the PersonBuilder with the data of {@code personToCopy}.
      */
-    public PersonBuilder withId(int id) {
-        this.id = Id.generateId(id);
-        return this;
+    @SuppressWarnings("unchecked")
+    private T self() {
+        return (T) this;
     }
 
     /**
-     * Sets the {@code Name} of the {@code Person} that we are building.
+     * Sets the id of the person that we are building.
+     *
+     * @param id The id of the person.
+     * @return The updated PersonBuilder object.
      */
-    public PersonBuilder withName(String name) {
+    public T withId(int id) {
+        this.id = Id.generateId(id);
+        return self();
+    }
+
+    /**
+     * Sets the name of the person that we are building.
+     *
+     * @param name The name of the person.
+     * @return The updated PersonBuilder object.
+     */
+    public T withName(String name) {
         this.name = new Name(name);
-        return this;
+        return self();
+    }
+
+    /**
+     * Sets the phone number of the person that we are building.
+     *
+     * @param phone The phone number of the person.
+     * @return The updated PersonBuilder object.
+     */
+    public T withPhone(String phone) {
+        this.phone = new Phone(phone);
+        return self();
+    }
+
+    /**
+     * Sets the email of the person that we are building.
+     *
+     * @param email The email of the person.
+     * @return The updated PersonBuilder object.
+     */
+    public T withEmail(String email) {
+        this.email = new Email(email);
+        return self();
+    }
+
+    /**
+     * Sets the address of the person that we are building.
+     *
+     * @param address The address of the person.
+     * @return The updated PersonBuilder object.
+     */
+    public T withAddress(String address) {
+        this.address = new Address(address);
+        return self();
+    }
+
+    /**
+     * Sets the remark of the person that we are building.
+     *
+     * @param remark The remark of the person.
+     * @return The updated PersonBuilder object.
+     */
+    public T withRemark(String remark) {
+        this.remark = new Remark(remark);
+        return self();
     }
 
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
      */
-    public PersonBuilder withTags(String ... tags) {
+    public T withTags(String... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
-        return this;
+        return self();
     }
 
     /**
-     * Sets the {@code Address} of the {@code Person} that we are building.
+     * Builds the person object.
+     *
+     * @return The person object.
      */
-    public PersonBuilder withAddress(String address) {
-        this.address = new Address(address);
-        return this;
-    }
-
-    /**
-     * Sets the {@code Phone} of the {@code Person} that we are building.
-     */
-    public PersonBuilder withPhone(String phone) {
-        this.phone = new Phone(phone);
-        return this;
-    }
-
-    /**
-     * Sets the {@code Email} of the {@code Person} that we are building.
-     */
-    public PersonBuilder withEmail(String email) {
-        this.email = new Email(email);
-        return this;
-    }
-
-    /**
-     * Sets the {@code Remark} of the {@code Person} that we are building.
-     */
-    public PersonBuilder withRemark(String remark) {
-        this.remark = new Remark(remark);
-        return this;
-    }
-
-    public Person build() {
-        return new Person(id, name, phone, email, address, tags, remark);
-    }
-
+    public abstract Person build();
 }

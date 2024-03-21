@@ -2,11 +2,18 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEPARTMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_JOBTITLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PREFERENCES;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRODUCTS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SKILLS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TERMSOFSERVICE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
@@ -21,12 +28,20 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Client;
+import seedu.address.model.person.Department;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Employee;
 import seedu.address.model.person.Id;
+import seedu.address.model.person.JobTitle;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Products;
 import seedu.address.model.person.Remark;
+import seedu.address.model.person.Skills;
+import seedu.address.model.person.Supplier;
+import seedu.address.model.person.TermsOfService;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -45,7 +60,14 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_TAG + "TAG]..."
+            + "[" + PREFIX_REMARK + "REMARK] "
+            + "[" + PREFIX_DEPARTMENT + "DEPARTMENT] "
+            + "[" + PREFIX_JOBTITLE + "JOBTITLE] "
+            + "[" + PREFIX_SKILLS + "SKILLS] "
+            + "[" + PREFIX_PRODUCTS + "PRODUCTS] "
+            + "[" + PREFIX_TERMSOFSERVICE + "TERMSOFSERVICE] "
+            + "[" + PREFIX_PREFERENCES + "PREFERENCES]\n"
             + "Example: " + COMMAND_WORD + " i/1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
@@ -94,7 +116,8 @@ public class EditCommand extends Command {
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
+    static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor)
+            throws CommandException {
         assert personToEdit != null;
 
         Id idOfPerson = personToEdit.getId();
@@ -102,10 +125,45 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
+        Remark updatedRemark = editPersonDescriptor.getRemark().orElse(personToEdit.getRemark());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-        Remark remark = personToEdit.getRemark();
 
-        return new Person(idOfPerson, updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, remark);
+        if (personToEdit instanceof Client) {
+            if (editPersonDescriptor.getDepartment().isPresent() || editPersonDescriptor.getJobTitle().isPresent()
+                    || editPersonDescriptor.getSkills().isPresent()) {
+                throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_PROPERTY);
+            }
+            String updatedPreferences = editPersonDescriptor.getPreferences()
+                    .orElse(((Client) personToEdit).getPreferences());
+            Products updatedProducts = editPersonDescriptor.getProducts().orElse(((Client) personToEdit).getProducts());
+            return new Client(idOfPerson, updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRemark,
+                    updatedTags, updatedProducts, updatedPreferences);
+        } else if (personToEdit instanceof Employee) {
+            if (editPersonDescriptor.getPreferences().isPresent() || editPersonDescriptor.getProducts().isPresent()
+                    || editPersonDescriptor.getTermsOfService().isPresent()) {
+                throw new CommandException(Messages.MESSAGE_INVALID_EMPLOYEE_PROPERTY);
+            }
+            Department updatedDepartment = editPersonDescriptor.getDepartment()
+                    .orElse(((Employee) personToEdit).getDepartment());
+            JobTitle updatedJobTitle = editPersonDescriptor.getJobTitle()
+                    .orElse(((Employee) personToEdit).getJobTitle());
+            Skills updatedSkills = editPersonDescriptor.getSkills().orElse(((Employee) personToEdit).getSkills());
+            return new Employee(idOfPerson, updatedName, updatedPhone, updatedEmail, updatedAddress,
+                    updatedRemark, updatedTags, updatedDepartment, updatedJobTitle, updatedSkills);
+        } else if (personToEdit instanceof Supplier) {
+            if (editPersonDescriptor.getDepartment().isPresent() || editPersonDescriptor.getJobTitle().isPresent()
+                    || editPersonDescriptor.getSkills().isPresent()) {
+                throw new CommandException(Messages.MESSAGE_INVALID_SUPPLIER_PROPERTY);
+            }
+            TermsOfService updatedTermsOfService = editPersonDescriptor.getTermsOfService()
+                    .orElse(((Supplier) personToEdit).getTermsOfService());
+            Products updatedProducts = editPersonDescriptor.getProducts()
+                    .orElse(((Supplier) personToEdit).getProducts());
+            return new Supplier(idOfPerson, updatedName, updatedPhone, updatedEmail, updatedAddress,
+                    updatedRemark, updatedTags, updatedProducts, updatedTermsOfService);
+        }
+
+        return personToEdit;
     }
 
     @Override
@@ -142,6 +200,13 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private Set<Tag> tags;
+        private Remark remark;
+        private Department department;
+        private JobTitle jobTitle;
+        private Skills skills;
+        private Products products;
+        private TermsOfService termsOfService;
+        private String preferences;
 
         public EditPersonDescriptor() {}
 
@@ -155,13 +220,21 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
+            setRemark(toCopy.remark);
+            setDepartment(toCopy.department);
+            setJobTitle(toCopy.jobTitle);
+            setSkills(toCopy.skills);
+            setProducts(toCopy.products);
+            setTermsOfService(toCopy.termsOfService);
+            setPreferences(toCopy.preferences);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, remark, department, jobTitle, skills,
+                    products, termsOfService, preferences);
         }
 
         public void setName(Name name) {
@@ -213,6 +286,62 @@ public class EditCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
+        public void setRemark(Remark remark) {
+            this.remark = remark;
+        }
+
+        public Optional<Remark> getRemark() {
+            return Optional.ofNullable(remark);
+        }
+
+        public void setDepartment(Department department) {
+            this.department = department;
+        }
+
+        public Optional<Department> getDepartment() {
+            return Optional.ofNullable(department);
+        }
+
+        public void setJobTitle(JobTitle jobTitle) {
+            this.jobTitle = jobTitle;
+        }
+
+        public Optional<JobTitle> getJobTitle() {
+            return Optional.ofNullable(jobTitle);
+        }
+
+        public void setSkills(Skills skills) {
+            this.skills = skills;
+        }
+
+        public Optional<Skills> getSkills() {
+            return Optional.ofNullable(skills);
+        }
+
+        public void setProducts(Products products) {
+            this.products = products;
+        }
+
+        public Optional<Products> getProducts() {
+            return Optional.ofNullable(products);
+        }
+
+        public void setTermsOfService(TermsOfService termsOfService) {
+            this.termsOfService = termsOfService;
+        }
+
+        public Optional<TermsOfService> getTermsOfService() {
+            return Optional.ofNullable(termsOfService);
+        }
+
+        public void setPreferences(String preferences) {
+            this.preferences = preferences;
+        }
+
+        public Optional<String> getPreferences() {
+            return Optional.ofNullable(preferences);
+        }
+
         @Override
         public boolean equals(Object other) {
             if (other == this) {
@@ -229,7 +358,14 @@ public class EditCommand extends Command {
                     && Objects.equals(phone, otherEditPersonDescriptor.phone)
                     && Objects.equals(email, otherEditPersonDescriptor.email)
                     && Objects.equals(address, otherEditPersonDescriptor.address)
-                    && Objects.equals(tags, otherEditPersonDescriptor.tags);
+                    && Objects.equals(tags, otherEditPersonDescriptor.tags)
+                    && Objects.equals(remark, otherEditPersonDescriptor.remark)
+                    && Objects.equals(department, otherEditPersonDescriptor.department)
+                    && Objects.equals(jobTitle, otherEditPersonDescriptor.jobTitle)
+                    && Objects.equals(skills, otherEditPersonDescriptor.skills)
+                    && Objects.equals(products, otherEditPersonDescriptor.products)
+                    && Objects.equals(termsOfService, otherEditPersonDescriptor.termsOfService)
+                    && Objects.equals(preferences, otherEditPersonDescriptor.preferences);
         }
 
         @Override
@@ -240,6 +376,13 @@ public class EditCommand extends Command {
                     .add("email", email)
                     .add("address", address)
                     .add("tags", tags)
+                    .add("remark", remark)
+                    .add("department", department)
+                    .add("jobTitle", jobTitle)
+                    .add("skills", skills)
+                    .add("products", products)
+                    .add("termsOfService", termsOfService)
+                    .add("preferences", preferences)
                     .toString();
         }
     }

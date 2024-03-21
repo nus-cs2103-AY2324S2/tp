@@ -6,7 +6,10 @@ import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
 
+import seedu.address.model.person.Client;
+import seedu.address.model.person.Employee;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Supplier;
 import seedu.address.model.person.UniquePersonList;
 
 /**
@@ -56,7 +59,8 @@ public class CsvExporter {
      */
     private List<String[]> createDataList() {
         List<String[]> dataList = new ArrayList<>();
-        String[] fieldNames = {"Name", "Phone", "Email", "Address", "Remark", "Tags"};
+        String[] fieldNames = {"ID", "Name", "Phone", "Email", "Address", "Remark", "Tags", "Department",
+            "Job Title", "Skills", "Products", "Preferences", "Terms of Service"};
         dataList.add(fieldNames);
 
         for (Person person : this.persons) {
@@ -74,14 +78,40 @@ public class CsvExporter {
      * @return A string array representing the data of the Person object.
      */
     public String[] convertPersonToStringArray(Person person) {
-        String[] personStringArray = new String[6];
+        String[] personStringArray = new String[13];
 
-        personStringArray[0] = person.getName().toString();
-        personStringArray[1] = person.getPhone().toString();
-        personStringArray[2] = person.getEmail().toString();
-        personStringArray[3] = "\"" + person.getAddress().toString() + "\"";
-        personStringArray[4] = (person.getRemark() != null) ? person.getRemark().toString() : "";
-        personStringArray[5] = "\"" + person.getTagsAsString() + "\"";
+        personStringArray[0] = person.getId().toString();
+        personStringArray[1] = person.getName().toString();
+        personStringArray[2] = person.getPhone().toString();
+        personStringArray[3] = person.getEmail().toString();
+        personStringArray[4] = "\"" + person.getAddress().toString() + "\"";
+        personStringArray[5] = (person.getRemark() != null) ? person.getRemark().toString() : "";
+        personStringArray[6] = "\"" + person.getTagsAsString() + "\"";
+        if (person instanceof Employee) {
+            Employee employee = (Employee) person;
+            personStringArray[7] = employee.getDepartment().toString();
+            personStringArray[8] = employee.getJobTitle().toString();
+            personStringArray[9] = employee.getSkills().toString();
+            personStringArray[10] = "";
+            personStringArray[11] = "";
+            personStringArray[12] = "";
+        } else if (person instanceof Client) {
+            Client client = (Client) person;
+            personStringArray[7] = "";
+            personStringArray[8] = "";
+            personStringArray[9] = "";
+            personStringArray[10] = client.getProducts().toString();
+            personStringArray[11] = client.getPreferences();
+            personStringArray[12] = "";
+        } else if (person instanceof Supplier) {
+            Supplier supplier = (Supplier) person;
+            personStringArray[7] = "";
+            personStringArray[8] = "";
+            personStringArray[9] = "";
+            personStringArray[10] = supplier.getProducts().toString();
+            personStringArray[11] = "";
+            personStringArray[12] = supplier.getTermsOfService().toString();
+        }
 
         return personStringArray;
     }

@@ -11,7 +11,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.ClientBuilder;
 
 public class PhoneContainsDigitsPredicateTest {
 
@@ -48,22 +48,22 @@ public class PhoneContainsDigitsPredicateTest {
         // One keyword
         PhoneContainsDigitsPredicate predicate =
                 new PhoneContainsDigitsPredicate(Collections.singletonList("94351253"));
-        assertTrue(predicate.test(new PersonBuilder().withPhone("94351253").build()));
+        assertTrue(predicate.test(new ClientBuilder().withPhone("94351253").build()));
     }
 
     @Test
     public void test_phoneDoesNotContainDigits_returnsFalse() {
         // Zero keywords
         PhoneContainsDigitsPredicate predicate = new PhoneContainsDigitsPredicate(Collections.emptyList());
-        assertFalse(predicate.test(new PersonBuilder().withPhone("94351253").build()));
+        assertFalse(predicate.test(new ClientBuilder().withPhone("94351253").build()));
 
         // Non-matching keyword
         predicate = new PhoneContainsDigitsPredicate(List.of("95352563"));
-        assertFalse(predicate.test(new PersonBuilder().withPhone("98765432").build()));
+        assertFalse(predicate.test(new ClientBuilder().withPhone("98765432").build()));
 
         // Keywords match name, email and address, but does not match phone
         predicate = new PhoneContainsDigitsPredicate(Arrays.asList("Alice", "alice@email.com", "Main", "Street"));
-        assertFalse(predicate.test(new PersonBuilder().withName("Alice").withPhone("12345")
+        assertFalse(predicate.test(new ClientBuilder().withName("Alice").withPhone("12345")
                 .withEmail("alice@email.com").withAddress("Main Street").build()));
     }
 

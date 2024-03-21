@@ -10,8 +10,11 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.Client;
+import seedu.address.model.person.Employee;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Remark;
+import seedu.address.model.person.Supplier;
 
 /**
  * Changes the remark of an existing person in the address book.
@@ -36,7 +39,7 @@ public class RemarkCommand extends Command {
     private final Remark remark;
 
     /**
-     * @param index of the person in the filtered person list to edit the remark
+     * @param index  of the person in the filtered person list to edit the remark
      * @param remark of the person to be updated to
      */
     public RemarkCommand(Index index, Remark remark) {
@@ -55,8 +58,24 @@ public class RemarkCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = new Person(personToEdit.getId(), personToEdit.getName(), personToEdit.getPhone(),
-                personToEdit.getEmail(), personToEdit.getAddress(), personToEdit.getTags(), remark);
+        Person editedPerson;
+        if (personToEdit instanceof Client) {
+            editedPerson = new Client(personToEdit.getId(), personToEdit.getName(), personToEdit.getPhone(),
+                    personToEdit.getEmail(), personToEdit.getAddress(), remark, personToEdit.getTags(), (
+                    (Client) personToEdit).getProducts(), ((Client) personToEdit).getPreferences());
+        } else if (personToEdit instanceof Supplier) {
+            editedPerson = new Supplier(personToEdit.getId(), personToEdit.getName(), personToEdit.getPhone(),
+                    personToEdit.getEmail(), personToEdit.getAddress(), remark, personToEdit.getTags(), (
+                    (Supplier) personToEdit).getProducts(), ((Supplier) personToEdit).getTermsOfService());
+        } else if (personToEdit instanceof Employee) {
+            editedPerson = new Employee(personToEdit.getId(), personToEdit.getName(), personToEdit.getPhone(),
+                    personToEdit.getEmail(), personToEdit.getAddress(), remark, personToEdit.getTags(), (
+                    (Employee) personToEdit).getDepartment(), ((Employee) personToEdit).getJobTitle(), (
+                    (Employee) personToEdit).getSkills());
+        } else {
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        }
+
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);

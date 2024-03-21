@@ -1,9 +1,24 @@
 {
-  "persons": [ {
-    "id": 1,
-    "name": "Hans Muster",
-    "phone": "9482424",
-    "email": "invalid@email!3e",
-    "address": "4th street"
-  } ]
+  "persons": [
+    {
+      "id": 1,
+      "name": "Hans Muster",
+      "phone": "9482424",
+      "email": "invalid@email!3e",
+      "address": "4th street",
+      "tags": [],
+      "role": "client",
+      "products": {
+        "products": []
+      },
+      "preferences" : "",
+      "department" : null,
+      "jobTitle" : null,
+      "termsOfService" : null,
+      "skills" : {
+        "skills" : [ ]
+      },
+      "remark" : ""
+    }
+  ]
 }

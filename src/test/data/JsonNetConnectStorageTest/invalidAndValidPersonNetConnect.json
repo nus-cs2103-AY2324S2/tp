@@ -1,15 +1,59 @@
 {
-  "persons": [ {
-    "id": 1,
-    "name": "Valid Person",
-    "phone": "9482424",
-    "email": "hans@example.com",
-    "address": "4th street"
-  }, {
-    "id": 2,
-    "name": "Person With Invalid Phone Field",
-    "phone": "948asdf2424",
-    "email": "hans@example.com",
-    "address": "4th street"
-  } ]
+  "persons": [
+    {
+      "id": 1,
+      "name": "Valid Client",
+      "phone": "9482424",
+      "email": "client@example.com",
+      "address": "123 Client St",
+      "role": "client",
+      "products": {
+        "products": ["Laptop", "Smartphone"]
+      },
+      "preferences": "Latest tech"
+    },
+    {
+      "id": 2,
+      "name": "Valid Supplier",
+      "phone": "1111111",
+      "email": "supplier@example.com",
+      "address": "1 Supplier Ave",
+      "role": "supplier",
+      "products": {
+        "products": ["Office Supplies", "Furniture"]
+      },
+      "termsOfService": {
+        "terms": "Delivery within 2 weeks"
+      }
+    },
+    {
+      "id": 3,
+      "name": "Valid Employee",
+      "phone": "2222222",
+      "email": "employee@example.com",
+      "address": "2 Employee Blvd",
+      "role": "employee",
+      "department": {
+        "departmentName": "Sales"
+      },
+      "jobTitle": {
+        "title": "Sales Manager"
+      },
+      "skills": {
+        "skills": ["Negotiation", "Communication"]
+      }
+    },
+    {
+      "id": 4,
+      "name": "Person With Invalid Phone Field",
+      "phone": "948asdf2424",
+      "email": "invalid@example.com",
+      "address": "4th street",
+      "role": "client",
+      "products": {
+        "products": ["Laptop"]
+      },
+      "preferences": "Budget"
+    }
+  ]
 }

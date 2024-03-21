@@ -14,20 +14,20 @@ import seedu.address.model.tag.Tag;
  * Represents a Person in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Person {
+public abstract class Person {
 
     // Unique id
-    private final Id id;
+    protected final Id id;
 
     // Identity fields
-    private final Name name;
-    private final Phone phone;
-    private final Email email;
+    protected final Name name;
+    protected final Phone phone;
+    protected final Email email;
 
     // Data fields
-    private final Address address;
-    private final Set<Tag> tags = new HashSet<>();
-    private final Remark remark;
+    protected final Address address;
+    protected final Remark remark;
+    protected final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
@@ -77,6 +77,12 @@ public class Person {
         return address;
     }
 
+    public Remark getRemark() {
+        return remark;
+    }
+
+    public abstract String getRole();
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -85,6 +91,12 @@ public class Person {
         return Collections.unmodifiableSet(tags);
     }
 
+    /**
+     * Returns a string representation of the tags associated with the person.
+     * The tags are concatenated with a comma and space separator.
+     *
+     * @return A string representation of the tags.
+     */
     public String getTagsAsString() {
         StringBuilder stringBuilder = new StringBuilder();
         for (Tag tag : tags) {
@@ -95,11 +107,6 @@ public class Person {
             stringBuilder.delete(stringBuilder.length() - 2, stringBuilder.length());
         }
         return stringBuilder.toString();
-    }
-
-
-    public Remark getRemark() {
-        return remark;
     }
 
     /**
@@ -147,7 +154,8 @@ public class Person {
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
-                && tags.equals(otherPerson.tags);
+                && tags.equals(otherPerson.tags)
+                && remark.equals(otherPerson.remark);
     }
 
     @Override

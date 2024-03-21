@@ -1,18 +1,30 @@
 package seedu.address.testutil;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEPARTMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_JOBTITLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PREFERENCES;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRODUCTS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SKILLS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TERMSOFSERVICE;
 
 import java.util.Set;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.model.person.Client;
+import seedu.address.model.person.Employee;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Products;
+import seedu.address.model.person.Supplier;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -39,6 +51,26 @@ public class PersonUtil {
         person.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
+        person.getRemark().ifPresent(remark -> sb.append(PREFIX_REMARK).append(remark).append(" "));
+        sb.append(PREFIX_ROLE + person.getRole() + " ");
+        if (person instanceof Client) {
+            Client client = (Client) person;
+            client.getProducts().getProducts().stream().forEach(
+                    s -> sb.append(PREFIX_PRODUCTS + s + " ")
+            );
+            sb.append(PREFIX_PREFERENCES + client.getPreferences() + " ");
+        } else if (person instanceof Employee) {
+            Employee employee = (Employee) person;
+            sb.append(PREFIX_DEPARTMENT + employee.getDepartment().toString() + " ");
+            sb.append(PREFIX_JOBTITLE + employee.getJobTitle().toString() + " ");
+            sb.append(PREFIX_SKILLS + employee.getSkills().toString() + " ");
+        } else if (person instanceof Supplier) {
+            Supplier supplier = (Supplier) person;
+            supplier.getProducts().getProducts().stream().forEach(
+                    s -> sb.append(PREFIX_PRODUCTS + s + " ")
+            );
+            sb.append(PREFIX_TERMSOFSERVICE + supplier.getTermsOfService().toString() + " ");
+        }
         return sb.toString();
     }
 
@@ -54,11 +86,27 @@ public class PersonUtil {
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {
-                sb.append(PREFIX_TAG);
+                sb.append(PREFIX_TAG).append(" ");
             } else {
                 tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
             }
         }
+        descriptor.getRemark().ifPresent(remark -> sb.append(PREFIX_REMARK).append(remark).append(" "));
+        if (descriptor.getProducts().isPresent()) {
+            Products products = descriptor.getProducts().get();
+            if (products.isEmpty()) {
+                sb.append(PREFIX_PRODUCTS);
+            } else {
+                products.getProducts().forEach(s -> sb.append(PREFIX_PRODUCTS).append(s).append(" "));
+            }
+        }
+        descriptor.getPreferences().ifPresent(preferences -> sb.append(PREFIX_PREFERENCES)
+                .append(preferences).append(" "));
+        descriptor.getDepartment().ifPresent(department -> sb.append(PREFIX_DEPARTMENT).append(department).append(" "));
+        descriptor.getJobTitle().ifPresent(jobTitle -> sb.append(PREFIX_JOBTITLE).append(jobTitle).append(" "));
+        descriptor.getSkills().ifPresent(skills -> sb.append(PREFIX_SKILLS).append(skills).append(" "));
+        descriptor.getTermsOfService().ifPresent(termsOfService -> sb.append(PREFIX_TERMSOFSERVICE)
+                .append(termsOfService).append(" "));
         return sb.toString();
     }
 
