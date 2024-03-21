@@ -4,9 +4,9 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-StaffConnect *-right-> "1" UniquePersonList
-StaffConnect *-right-> "1" UniqueTagList
-StaffConnect *-right-> "1" UniqueMeetingList
+StaffBook *-right-> "1" UniquePersonList
+StaffBook *-right-> "1" UniqueTagList
+StaffBook *-right-> "1" UniqueMeetingList
 UniqueMeetingList -[hidden]down- UniqueTagList
 UniqueTagList -[hidden]down- UniquePersonList
 
