@@ -56,7 +56,7 @@ TutorsContactsPro is a **desktop app for tutors teaching Computer Science course
 
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+   ![Ui](images/UpdatedUi.png)
 
 4. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -137,7 +137,8 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL y/YEAR m/MAJOR tg/TELEGRAM_HANDLE [r/
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com y/2 m/Computer Science tg/johndoe r/Very quiet student g/TUT04 g/LAB10 `
-
+* `add n/Kendra Huetta p/98765367 e/Kendra@example.com y/1 m/Computer Science tg/KendraHuetta r/quiet student g/LAB10 `
+  ![result for 'add Kendra Huetta'](images/addFeature.png)
 
 ### <span id='feature-edit'> Editing a student : `edit` <span>
 
@@ -171,8 +172,8 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 
 Examples:
 * `find John` returns `john` and `John Doe`
-* `find ale` returns `Alex Yeoh`, `Alexia Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `find Jo` returns `John Doe`, `Johan Louis`<br>
+  ![result for 'find Jo'](images/findFeature.png)
 
 ### <span id='feature-filter'> Filtering students using group: `filter` <span>
 
@@ -188,8 +189,8 @@ Format: `filter KEYWORD [MORE_KEYWORDS]`
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
-* `filter TUT01 ` returns `john` and `John Doe` belonging to the tutorial group `TUT01`
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `filter TUT04 ` returns `John Doe` and `Johan Louis` belonging to the tutorial group `TUT04`
+  ![result for 'filter TU'](images/filterFeature.png)
 
 
 ### <span id='feature-delete'> Deleting a student : `delete` <span>
