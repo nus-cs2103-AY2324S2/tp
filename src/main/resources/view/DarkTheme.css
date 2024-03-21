@@ -337,20 +337,17 @@
     -fx-background-radius: 0;
 }
 
+#email.label {
+ -fx-text-fill: #FFFFFF;
+    -fx-font-size: 12px;
+    -fx-underline: true;
+    -fx-cursor: hand;
+}
 
 #githubUsername.label {
     -fx-text-fill: white;
     -fx-background-color: #002372;
     -fx-padding: 2 2 2 2;
-    -fx-border-radius: 5;
-    -fx-background-radius: 5;
-    -fx-font-size: 11;
-}
-
-#techStacks .label {
-    -fx-text-fill: white;
-    -fx-background-color: #AD0000;
-    -fx-padding: 1 2 1 3;
     -fx-border-radius: 5;
     -fx-background-radius: 5;
     -fx-font-size: 11;
@@ -365,4 +362,11 @@
     -fx-font-size: 11;
 }
 
-
+#techStacks .label {
+    -fx-text-fill: white;
+    -fx-background-color: #AD0000;
+    -fx-padding: 1 2 1 3;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-font-size: 11;
+}
