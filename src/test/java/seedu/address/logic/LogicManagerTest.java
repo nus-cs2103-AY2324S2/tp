@@ -1,6 +1,8 @@
 package seedu.address.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.address.logic.Messages.MESSAGE_CONFIRMATION;
+import static seedu.address.logic.Messages.MESSAGE_CONFIRMATION_CANCELLED;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.AVAILABILITY_DESC_AMY;
@@ -55,19 +57,29 @@ public class LogicManagerTest {
     @Test
     public void execute_invalidCommandFormat_throwsParseException() {
         String invalidCommand = "uicfhmowqewca";
-        assertParseException(invalidCommand, MESSAGE_UNKNOWN_COMMAND);
+        assertParseException(invalidCommand, false, MESSAGE_UNKNOWN_COMMAND);
     }
 
     @Test
-    public void execute_commandExecutionError_throwsCommandException() {
+    public void execute_commandExecutionError_throwsCommandException() throws CommandException, ParseException {
         String deleteCommand = "delete 9";
-        assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        String confirmation = "y";
+        assertCommandSuccess(deleteCommand, false, MESSAGE_CONFIRMATION, model);
+        assertCommandException(confirmation, true, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test
-    public void execute_validCommand_success() throws Exception {
+    public void execute_validCommand_success() throws CommandException, ParseException {
         String listCommand = ListCommand.COMMAND_WORD;
-        assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
+        assertCommandSuccess(listCommand, false, ListCommand.MESSAGE_SUCCESS, model);
+    }
+
+    @Test
+    public void execute_validCommand_cancelled() throws CommandException, ParseException {
+        String deleteCommand = "delete 1";
+        String confirmation = "anything";
+        assertCommandSuccess(deleteCommand, false, MESSAGE_CONFIRMATION, model);
+        assertCommandSuccess(confirmation, true, MESSAGE_CONFIRMATION_CANCELLED, model);
     }
 
     @Test
@@ -92,39 +104,39 @@ public class LogicManagerTest {
      * - no exceptions are thrown <br>
      * - the feedback message is equal to {@code expectedMessage} <br>
      * - the internal model manager state is the same as that in {@code expectedModel} <br>
-     * @see #assertCommandFailure(String, Class, String, Model)
+     * @see #assertCommandFailure(String, boolean, Class, String, Model)
      */
-    private void assertCommandSuccess(String inputCommand, String expectedMessage,
-            Model expectedModel) throws CommandException, ParseException {
-        CommandResult result = logic.execute(inputCommand);
+    private void assertCommandSuccess(String inputCommand, boolean isConfirmation, String expectedMessage,
+                                      Model expectedModel) throws CommandException, ParseException {
+        CommandResult result = logic.execute(inputCommand, isConfirmation);
         assertEquals(expectedMessage, result.getFeedbackToUser());
         assertEquals(expectedModel, model);
     }
 
     /**
      * Executes the command, confirms that a ParseException is thrown and that the result message is correct.
-     * @see #assertCommandFailure(String, Class, String, Model)
+     * @see #assertCommandFailure(String, boolean, Class, String, Model)
      */
-    private void assertParseException(String inputCommand, String expectedMessage) {
-        assertCommandFailure(inputCommand, ParseException.class, expectedMessage);
+    private void assertParseException(String inputCommand, boolean isConfirmation, String expectedMessage) {
+        assertCommandFailure(inputCommand, isConfirmation, ParseException.class, expectedMessage);
     }
 
     /**
      * Executes the command, confirms that a CommandException is thrown and that the result message is correct.
-     * @see #assertCommandFailure(String, Class, String, Model)
+     * @see #assertCommandFailure(String, boolean, Class, String, Model)
      */
-    private void assertCommandException(String inputCommand, String expectedMessage) {
-        assertCommandFailure(inputCommand, CommandException.class, expectedMessage);
+    private void assertCommandException(String inputCommand, boolean isConfirmation, String expectedMessage) {
+        assertCommandFailure(inputCommand, isConfirmation, CommandException.class, expectedMessage);
     }
 
     /**
      * Executes the command, confirms that the exception is thrown and that the result message is correct.
-     * @see #assertCommandFailure(String, Class, String, Model)
+     * @see #assertCommandFailure(String, boolean, Class, String, Model)
      */
-    private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
-            String expectedMessage) {
+    private void assertCommandFailure(String inputCommand, boolean isConfirmation,
+                                      Class<? extends Throwable> expectedException, String expectedMessage) {
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
+        assertCommandFailure(inputCommand, isConfirmation, expectedException, expectedMessage, expectedModel);
     }
 
     /**
@@ -132,11 +144,12 @@ public class LogicManagerTest {
      * - the {@code expectedException} is thrown <br>
      * - the resulting error message is equal to {@code expectedMessage} <br>
      * - the internal model manager state is the same as that in {@code expectedModel} <br>
-     * @see #assertCommandSuccess(String, String, Model)
+     * @see #assertCommandSuccess(String, boolean, String, Model)
      */
-    private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
-            String expectedMessage, Model expectedModel) {
-        assertThrows(expectedException, expectedMessage, () -> logic.execute(inputCommand));
+    private void assertCommandFailure(String inputCommand, boolean isConfirmation,
+                                      Class<? extends Throwable> expectedException, String expectedMessage,
+                                      Model expectedModel) {
+        assertThrows(expectedException, expectedMessage, () -> logic.execute(inputCommand, isConfirmation));
         assertEquals(expectedModel, model);
     }
 
@@ -170,6 +183,6 @@ public class LogicManagerTest {
         Person expectedPerson = new PersonBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addPerson(expectedPerson);
-        assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
+        assertCommandFailure(addCommand, false, CommandException.class, expectedMessage, expectedModel);
     }
 }
