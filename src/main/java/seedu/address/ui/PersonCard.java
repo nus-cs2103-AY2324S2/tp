@@ -63,7 +63,7 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
-        company.setText(person.getCompany().value);
+        setCompany();
 
         String priorityValue = person.getPriority().value;
         if ("high".equals(priorityValue)) {
@@ -76,6 +76,15 @@ public class PersonCard extends UiPart<Region> {
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+    }
+
+    private void setCompany() {
+        if (!person.getCompany().value.equals("")) {
+            company.setText(person.getCompany().value);
+            company.setVisible(true);
+        } else {
+            company.setPrefHeight(0.0);
+        }
     }
 
 }

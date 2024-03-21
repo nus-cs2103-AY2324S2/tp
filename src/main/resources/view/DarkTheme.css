@@ -361,3 +361,11 @@
     -fx-background-radius: 10;
     -fx-font-size: 11;
 }
+.company {
+    -fx-text-fill: white;
+    -fx-background-color: #69866F;
+    -fx-padding: 1 3 1 3;
+    -fx-border-radius: 3;
+    -fx-background-radius: 2;
+    -fx-font-size: 11;
+}
