@@ -120,16 +120,16 @@ You can add a student to the list.
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL y/YEAR m/MAJOR tg/TELEGRAM_HANDLE [r/REMARK] [g/Group]...`
 
 
-| Parameter         | Representation                        | Constraints                                                                             |
-|-------------------|---------------------------------------|-----------------------------------------------------------------------------------------|
-| `NAME`            | Name of the student                   | Auto Auto-capitalization will be handled. Extra/trailing/leading spaces will be removed |
-| `PHONE_NUMBER`    | Phone number of the student           | Singapore phone number, 8 digits, without country code                                  |
-| `EMAIL`           | Email of the student                  | Must be in email format `username`@`email`.com                                          |
-| `YEAR`            | Academic Year of the student          | A number ranging from 1 - 6, inclusive                                                  |
-| `MAJOR`           | Academic Major of the student contact | String to represent the major                                                           |
-| `TELEGRAM_HANDLE` | Telegram handle of the student        | Telegram handle format (a-z, 0-9 and underscores, case-insensitive), without prefix “@” |
-| `REMARKS`         | Addition remarks of the student       | 100 characters, case-sensitive. This can be anything                                    |
-| `GROUP`           | Tutorial/Lab/Recitation slot          | Must be in correct slot format TUT/LAB/REC`2-digit number`                              |
+| Parameter         | Representation                               | Constraints                                                                        |
+|-------------------|----------------------------------------------|------------------------------------------------------------------------------------|
+| `NAME`            | Name of the student                          | Auto-capitalization will be handled. Extra/trailing/leading spaces will be removed |
+| `PHONE_NUMBER`    | Phone number of the student                  | Singapore phone number, 8 digits, without country code                             |
+| `EMAIL`           | Email of the student                         | Must be in email format `username`@`email`.com                                     |
+| `YEAR`            | Academic Year of the student                 | A number ranging from 1 - 6, inclusive                                             |
+| `MAJOR`           | Academic Major of the student contact        | String to represent the major                                                      |
+| `TELEGRAM_HANDLE` | Telegram handle of the student               | Telegram handle format (a-z, 0-9 and underscores, case-insensitive), without prefix “@” |
+| `REMARKS`         | (Optional) Additional remarks of the student | A case-sensitive string. This can be anything                                      |
+| `GROUP`           | Tutorial/Lab/Recitation slot                 | Must be in correct slot format TUT/LAB/REC`2-digit number`                         |
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com y/2 m/Computer Science tg/johndoe r/Very quiet student g/TUT04 g/LAB10 `
