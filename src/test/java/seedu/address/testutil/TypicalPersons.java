@@ -26,12 +26,12 @@ import seedu.address.model.person.Person;
  */
 public class TypicalPersons {
 
-    public static final Person ALICE = new PersonBuilder().withId(1).withName("Alice Pauline")
-            .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
-            .withPhone("94351253").withTags("friends").build();
-    public static final Person BENSON = new PersonBuilder().withId(2).withName("Benson Meier")
-            .withAddress("311, Clementi Ave 2, #02-25").withEmail("johnd@example.com").withPhone("98765432")
-            .withTags("owesMoney", "friends").build();
+    public static final Person ALICE = new PersonBuilder().withId(1).withName("Alice Pauline").withPhone("94351253")
+            .withEmail("alice@example.com").withAddress("123, Jurong West Ave 6, #08-111")
+            .withTags("friends").withRemark("She likes aardvarks.").build();
+    public static final Person BENSON = new PersonBuilder().withId(2).withName("Benson Meier").withPhone("98765432")
+            .withEmail("johnd@example.com").withAddress("311, Clementi Ave 2, #02-25")
+            .withTags("owesMoney", "friends").withRemark("He can't take beer!").build();
     public static final Person CARL = new PersonBuilder().withId(3).withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street").build();
     public static final Person DANIEL = new PersonBuilder().withId(4).withName("Daniel Meier").withPhone("87652533")
@@ -59,8 +59,7 @@ public class TypicalPersons {
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
-    private TypicalPersons() {
-    } // prevents instantiation
+    private TypicalPersons() {} // prevents instantiation
 
     /**
      * Returns an {@code NetConnect} with all the typical persons.

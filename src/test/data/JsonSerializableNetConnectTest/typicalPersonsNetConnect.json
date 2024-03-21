@@ -9,7 +9,8 @@
       "address": "123, Jurong West Ave 6, #08-111",
       "tags": [
         "friends"
-      ]
+      ],
+      "remark" : ""
     },
     {
       "id": 2,
@@ -20,7 +21,8 @@
       "tags": [
         "owesMoney",
         "friends"
-      ]
+      ],
+      "remark" : ""
     },
     {
       "id": 3,
@@ -28,7 +30,8 @@
       "phone": "95352563",
       "email": "heinz@example.com",
       "address": "wall street",
-      "tags": []
+      "tags": [],
+      "remark" : ""
     },
     {
       "id": 4,
@@ -38,7 +41,8 @@
       "address": "10th street",
       "tags": [
         "friends"
-      ]
+      ],
+      "remark" : ""
     },
     {
       "id": 5,
@@ -46,7 +50,8 @@
       "phone": "9482224",
       "email": "werner@example.com",
       "address": "michegan ave",
-      "tags": []
+      "tags": [],
+      "remark" : ""
     },
     {
       "id": 6,
@@ -54,7 +59,8 @@
       "phone": "9482427",
       "email": "lydia@example.com",
       "address": "little tokyo",
-      "tags": []
+      "tags": [],
+      "remark" : ""
     },
     {
       "id": 7,
@@ -62,7 +68,8 @@
       "phone": "9482442",
       "email": "anna@example.com",
       "address": "4th street",
-      "tags": []
+      "tags": [],
+      "remark" : ""
     }
   ]
 }
