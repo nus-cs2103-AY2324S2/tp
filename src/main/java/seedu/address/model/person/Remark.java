@@ -7,6 +7,8 @@ import static java.util.Objects.requireNonNull;
  * Guarantees: immutable; is always valid
  */
 public class Remark {
+    public static final String MESSAGE_CONSTRAINTS = "Remarks can take any values, and it should not be blank";
+
     public final String value;
     /**
      * Constructs a {@code Remark}.
@@ -17,6 +19,7 @@ public class Remark {
         requireNonNull(remark);
         value = remark;
     }
+
     @Override
     public String toString() {
         return value;

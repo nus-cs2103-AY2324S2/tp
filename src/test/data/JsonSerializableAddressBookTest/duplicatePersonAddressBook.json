@@ -4,13 +4,16 @@
     "phone": "94351253",
     "email": "alice@example.com",
     "address": "123, Jurong West Ave 6, #08-111",
+    "subject": "Science",
     "remark": "",
-    "tags": [ "friends" ]
+    "lessons": [ "Maths|10-05-2004|12:29|1" ]
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",
     "address": "4th street",
-    "remark": ""
+    "subject": "Science",
+    "remark": "",
+    "lessons": [ "Maths|10-05-2004|12:29|1" ]
   } ]
 }

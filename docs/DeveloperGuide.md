@@ -291,33 +291,33 @@ with TutorTrack – the ultimate solution for private tutors.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​         | I want to …​                      | So that I can…​           |
-|----------|-----------------|-----------------------------------|---------------------------|
-| `* * *`  | new user        | view a guide of useful commands   | refer to instructions when I forget how to use TutorTrack |
-| `* * *`  | freelance tutor | add a new student                 |                           |
-| `* * *`  | freelance tutor | delete an existing                | remove entries that I no longer need |
-| `* * *`  | freelance tutor | find a student by name            | locate details of persons without having to go through the entire list |
-| `* *`    | freelance tutor | view all my students' information | view all my students at the same time |
-| `* * *`  | freelance tutor | view a specific student's information | specifically refer to a particular student's information |
-| `* *`    | freelance tutor | edit student information   | student information can be edited and changed |
-| `* *`    | freelance tutor | schedule meeting times with students | set lessons |
-| `* * *`  | freelance tutor | delete meeting times with students                | cancel lessons |
-| `* *`    | freelance tutor | edit meeting times with students            | reschedule lessons |
-| `* *`    | freelance tutor | view meeting times in a calender view with students | track when I have scheduled lessons |
-| `*`      | freelance tutor | mark attendance for each week              | keep an accurate record of student attendance and participation over time |
-| `*`      | freelance tutor | edit milestones on the progress tracker               | change milestone plans anytime |
-| `* *`    | freelance tutor | add milestones to a progress tracker                | keep track of topics covered |
-| `*`      | student         | access a summary page with my progress information | keep track of my progress |
-| `*`      | freelance tutor | view my schedule in a calendar form | keep track of lessons for the week/day |
-| `*`      | freelance tutor | view a progress tracking meter  | have a visual representation of a students progress |
-| `* *`    | new user        | create account using email | have an account that stores all the information |
-| `* *`    | registered user | login to my account | all the information is tracked and stored properly in the account |
-| `* *`    | freelance tutor | upload files and materials  | students can access to them |
-| `*`      | student         | download files and materials  | review and revise the materials |
-| `*`      | freelance tutor | send message to students | chat with them |
-| `*`      | student         | receive message from tutor | be informed with any announcements |
-| `*`      | student         | receive notification from messages  | be aware of messages send by tutors |
-| `*`      | freelance tutor | note down basic lesson plans (remarks) for each lesson  | have a structure to follow for each lesson |
+| Priority | As a …​         | I want to …​                                           | So that I can…​                                                           |
+|----------|-----------------|--------------------------------------------------------|---------------------------------------------------------------------------|
+| `* * *`  | new user        | view a guide of useful commands                        | refer to instructions when I forget how to use TutorTrack                 |
+| `* * *`  | freelance tutor | add a new student                                      |                                                                           |
+| `* * *`  | freelance tutor | delete an existing                                     | remove entries that I no longer need                                      |
+| `* * *`  | freelance tutor | find a student by name                                 | locate details of persons without having to go through the entire list    |
+| `* *`    | freelance tutor | view all my students' information                      | view all my students at the same time                                     |
+| `* * *`  | freelance tutor | view a specific student's information                  | specifically refer to a particular student's information                  |
+| `* *`    | freelance tutor | edit student information                               | student information can be edited and changed                             |
+| `* *`    | freelance tutor | schedule meeting times with students                   | set lessons                                                               |
+| `* * *`  | freelance tutor | delete meeting times with students                     | cancel lessons                                                            |
+| `* *`    | freelance tutor | edit meeting times with students                       | reschedule lessons                                                        |
+| `* *`    | freelance tutor | view meeting times in a calender view with students    | track when I have scheduled lessons                                       |
+| `*`      | freelance tutor | mark attendance for each week                          | keep an accurate record of student attendance and participation over time |
+| `*`      | freelance tutor | edit milestones on the progress tracker                | change milestone plans anytime                                            |
+| `* *`    | freelance tutor | add milestones to a progress tracker                   | keep track of topics covered                                              |
+| `*`      | student         | access a summary page with my progress information     | keep track of my progress                                                 |
+| `*`      | freelance tutor | view my schedule in a calendar form                    | keep track of lessons for the week/day                                    |
+| `*`      | freelance tutor | view a progress tracking meter                         | have a visual representation of a students progress                       |
+| `* *`    | new user        | create account using email                             | have an account that stores all the information                           |
+| `* *`    | registered user | login to my account                                    | all the information is tracked and stored properly in the account         |
+| `* *`    | freelance tutor | upload files and materials                             | students can access to them                                               |
+| `*`      | student         | download files and materials                           | review and revise the materials                                           |
+| `*`      | freelance tutor | send message to students                               | chat with them                                                            |
+| `*`      | student         | receive message from tutor                             | be informed with any announcements                                        |
+| `*`      | student         | receive notification from messages                     | be aware of messages send by tutors                                       |
+| `*`      | freelance tutor | note down basic lesson plans (remarks) for each lesson | have a structure to follow for each lesson                                |
 
 ### Use cases
 
