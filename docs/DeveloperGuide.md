@@ -219,6 +219,14 @@ the command is executed:
 * The history size could be made to be configurable by the user.
 * The history could be saved to disk so that it persists between app launches.
 
+### Send email directly feature
+
+The following sequence diagram shows what happens as the user double clicks on the email address
+<puml src="diagrams/SendEmailSequenceDiagram.puml" alt="Sequence Diagram for sending an email" />
+
+#### Possible enhancements
+* There can be a feature where multiple emails can be selected to send a mass email to them.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation 

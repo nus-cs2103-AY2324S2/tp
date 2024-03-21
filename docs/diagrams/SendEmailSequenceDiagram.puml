@@ -1,0 +1,17 @@
+@startuml
+actor User
+participant "ContactList View" as ContactListView
+participant "MailApp" as MailApp
+participant "Mail Application" as MailApplication
+
+User -> ContactListView : Clicks on email address
+activate ContactListView
+ContactListView -> MailApp : handleEmailClicked()
+activate MailApp
+MailApp -> MailApplication : openDefaultMailApp(email)
+activate MailApplication
+MailApplication --> User : Mail application opens with selected email
+deactivate MailApplication
+deactivate MailApp
+deactivate ContactListView
+@enduml
