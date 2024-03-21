@@ -350,3 +350,18 @@
     -fx-background-radius: 2;
     -fx-font-size: 11;
 }
+
+#grades {
+    -fx-hgap: 4;
+    -fx-vgap: 3;
+}
+
+#grades .label {
+    -fx-text-fill: white;
+    -fx-background-color: #8B0000;
+    -fx-padding: 1 3 1 3;
+    -fx-border-radius: 2;
+    -fx-background-radius: 2;
+    -fx-font-size: 11;
+    -fx-margin: 0 0 0 10;
+}
