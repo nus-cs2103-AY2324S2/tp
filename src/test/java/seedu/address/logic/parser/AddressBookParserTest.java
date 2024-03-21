@@ -89,7 +89,7 @@ public class AddressBookParserTest {
                 ListCommand.COMMAND_WORD + " " + ALLOWED_PREAMBLES[0]) instanceof ListCommand);
         assertTrue(parser.parseCommand(
                 ListCommand.COMMAND_WORD + " " + ALLOWED_PREAMBLES[1]) instanceof ListCommand);
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " client") instanceof ListCommand);
     }
 
     @Test

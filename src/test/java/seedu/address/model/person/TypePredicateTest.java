@@ -2,14 +2,9 @@ package seedu.address.model.person;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.testutil.TypicalPersons.AMY;
-import static seedu.address.testutil.TypicalPersons.BOB;
-import static seedu.address.testutil.TypicalPersons.HOON;
 
 import org.junit.jupiter.api.Test;
-
-import seedu.address.testutil.PersonBuilder;
 
 public class TypePredicateTest {
     private static final TypePredicate TEST_PREDICATE_CLIENT = new TypePredicate("client");
@@ -49,10 +44,12 @@ public class TypePredicateTest {
         assertTrue(TEST_PREDICATE_CLIENT.toString().equals("seedu.address.model.person.TypePredicate{type=client}"));
 
         // prints correct type (housekeeper) -> return true
-        assertTrue(TEST_PREDICATE_HOUSEKEEPER.toString().equals("seedu.address.model.person.TypePredicate{type=housekeeper}"));
+        assertTrue(TEST_PREDICATE_HOUSEKEEPER.toString()
+                .equals("seedu.address.model.person.TypePredicate{type=housekeeper}"));
 
         //prints wrong type -> return false
-        assertFalse(TEST_PREDICATE_CLIENT_2.toString().equals("seedu.address.model.person.TypePredicate{type=housekeeper}"));
+        assertFalse(TEST_PREDICATE_CLIENT_2.toString()
+                .equals("seedu.address.model.person.TypePredicate{type=housekeeper}"));
 
         // prints wrong string -> return false
         assertFalse(TEST_PREDICATE_CLIENT.toString().equals("{type=client}"));
