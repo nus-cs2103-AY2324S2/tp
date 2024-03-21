@@ -61,8 +61,8 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
-
         setPersons(newData.getPersonList());
+        relationships.getRelationshipsTracker().clear();
         relationships.getRelationshipsTracker().addAll(newData.getRelationshipList());
     }
 
@@ -150,7 +150,8 @@ public class AddressBook implements ReadOnlyAddressBook {
         }
 
         AddressBook otherAddressBook = (AddressBook) other;
-        return persons.equals(otherAddressBook.persons);
+        return persons.equals(otherAddressBook.persons)
+                && relationships.equals(otherAddressBook.relationships);
     }
 
     @Override

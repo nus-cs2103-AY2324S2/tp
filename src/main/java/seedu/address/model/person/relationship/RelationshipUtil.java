@@ -75,6 +75,17 @@ public class RelationshipUtil {
         return relationshipsTracker;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof RelationshipUtil)) {
+            return false;
+        }
+        RelationshipUtil other = (RelationshipUtil) o;
+        return relationshipsTracker.equals(other.relationshipsTracker);
+    }
 
     @Override
     public String toString() {
