@@ -2,7 +2,7 @@
   "baseUrl": "",
   "titlePrefix": "EduConnect",
   "titleSuffix": "",
-  "faviconPath": "images/SeEduLogo.png",
+  "faviconPath": "images/EduConnectLogo.png",
   "style": {
     "codeTheme": "light"
   },

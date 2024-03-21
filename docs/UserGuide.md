@@ -145,18 +145,14 @@ Examples:
 Find students whose names contain any of the given keywords.
 
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find [n/NAME] [s/STUDENT_ID] [h/TELEGRAM_HANDLE] [t/TAG]...`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-  * Students with names matching any parts of the keyword will be returned.
-    e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`,`J` will return `John Doe`, `Jimmy Lim`.
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlex.png)
+* `find n/John` returns `John Smith`<br>
+  ![result for 'find alex david'](images/findJohn.png)
 
 ### Linking a student to a weblink: `link`
 
