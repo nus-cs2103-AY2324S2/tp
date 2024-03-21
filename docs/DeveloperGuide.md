@@ -160,6 +160,35 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+
+### ListOrder Feature
+
+The `listorder` feature allows users to list all orders associated with a person in the address book, sorted by date in ascending order. This is particularly useful for users who wish to track the order history of suppliers efficiently.
+
+#### Design Considerations
+
+- **Aspect:** Sorting orders by date.
+    - **Motivation:** Users are likely interested in the most recent orders. Sorting orders by date in ascending order allows users to see the most relevant orders first.
+- **Aspect:** Integration with existing data models.
+    - **Motivation:** Utilising the existing `Person` and new implemented `Order` models minimizes code redundancy and maintains consistency within the application.
+
+#### Implementation
+
+1. **Command Parsing:** The `ListOrderCommandParser` interprets the user input, extracts the index of the specified person, and creates an instance of `ListOrderCommand`.
+2. **Data Retrieval and Sorting:** Upon execution, `ListOrderCommand` fetches the selected person's orders from the model, sorts them by date, and prepares the output string.
+3. **Output Generation:** A summarising message that includes the sorted orders is then displayed to the user.
+
+#### Sequence Diagram
+
+Below is the sequence diagram for the `listorder` command process:
+
+<puml src="diagrams/ListOrderSequenceDiagram.puml" alt="ListOrderSequenceDiagram" />
+
+#### Future Enhancements
+
+- **Sorting by Status:** Introduce functionality to sort orders by their status (e.g., pending, completed), providing users with more flexibility in viewing order information.
+- **Filtering Options:** Implement filters to allow users to view orders within a specific date range or with particular characteristics, such as orders over a certain value.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
