@@ -44,6 +44,7 @@ Person *--> Phone
 Person *--> Email
 Person *--> Address
 Person *--> "*" Tag
+Person *--> "*" Meeting
 
 AddressBook *--> "1" UniqueMeetingList
 UniqueMeetingList --> "~* all" Meeting
@@ -57,13 +58,13 @@ Address -[hidden]right-> Email
 
 Person "1" -- "0..*" Meeting
 
-ModelManager --> "~* filtered" Person
-
 ' AddMeetingCommand Class and its relation to Meeting
 Class AddMeetingCommand {
     +execute(): CommandResult
 }
 AddMeetingCommand ..> Meeting : creates
 
+ModelManager --> "~* filtered" Person
+ModelManager --> "~* filtered" Meeting
 @enduml
 ```

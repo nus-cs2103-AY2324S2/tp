@@ -21,31 +21,31 @@ public class TypicalMeetings {
     public static final Meeting MEETING_WITH_ALICE = new MeetingBuilder()
         .withClient(ALICE)
         .withDescription("Financial Aid Application Review")
-        .withDateTime("01-01-2024 09:00").build();
+        .withDateTime("01-01-2030 12:00").build();
     public static final Meeting MEETING_WITH_BENSON = new MeetingBuilder()
         .withClient(BENSON)
         .withDescription("Financial Aid Eligibility Check")
-        .withDateTime("01-11-2023 11:00").build();
+        .withDateTime("01-11-2030 11:00").build();
     public static final Meeting MEETING_WITH_CARL = new MeetingBuilder()
         .withClient(CARL)
         .withDescription("Financial Aid Document Submission")
-        .withDateTime("05-02-2024 13:00").build();
+        .withDateTime("05-02-2030 13:00").build();
     public static final Meeting MEETING_WITH_DANIEL = new MeetingBuilder()
         .withClient(DANIEL)
         .withDescription("Financial Aid Interview")
-        .withDateTime("05-02-2024 15:00").build();
+        .withDateTime("05-02-2030 15:00").build();
     public static final Meeting MEETING_WITH_ELLE = new MeetingBuilder()
         .withClient(ELLE)
         .withDescription("Financial Aid Consultation")
-        .withDateTime("05-02-2024 12:00").build();
+        .withDateTime("05-02-2029 12:00").build();
     public static final Meeting MEETING_WITH_FIONA = new MeetingBuilder()
         .withClient(FIONA)
         .withDescription("Financial Aid Application Review")
-        .withDateTime("05-02-2024 11:00").build();
+        .withDateTime("05-02-2028 11:00").build();
     public static final Meeting MEETING_WITH_GEORGE = new MeetingBuilder()
         .withClient(GEORGE)
         .withDescription("Financial Aid Document Submission")
-        .withDateTime("05-02-2024 17:00").build();
+        .withDateTime("05-02-2029 17:00").build();
 
     private TypicalMeetings() {} // prevents instantiation
 
