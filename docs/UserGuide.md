@@ -86,9 +86,12 @@ Format: `add n/NAME id/STUDENT_ID p/PRIMARY_ PHONE_NUMBER [, SECONDARY_PHONE_NUM
 **Tip:** A student can have any number of tags (including 0)
 </box>
 
+* The `ID` refers to the alphanumeric string on the left of Name
+* The `ID` must start with an alphabet followed by 7 digits and ending with an alphabet e.g A0265901E
+
 Examples:
-* `add n/John Doe id/2023001 p/1234567890, 9876543210 e/john.doe@example.com, jdoe@example.com i/2023 m/Computer Science p/CS2103 Tut  g/A+ t/Honors`
-* `add n/Kumar Prabhat id/20414001 p/1234567890, 9876543210 e/john.doe@example.com`
+* `add n/John Doe id/A0265901E p/1234567890, 9876543210 e/john.doe@example.com, jdoe@example.com i/2023 m/Computer Science p/CS2103 Tut  g/A+ t/Honors`
+* `add n/Kumar Prabhat id/A0041400M p/1234567890, 9876543210 e/john.doe@example.com`
 
 ### Listing all students : `list`
 
@@ -100,7 +103,7 @@ Format: `list`
 
 Edits an existing student in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [id/ID] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
 * Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -112,6 +115,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st student to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd student to be `Betsy Crower` and clears all existing tags.
+
 
 ### Search students by name or ID: `find`
 
@@ -175,6 +179,20 @@ Format: `filter t/TAG [t/TAG] …​`
 Examples:
 * `filter t/CS2103T` will display only people that have been tagged with `CS2103T`.
 * `filter t/CS2103T t/TA` wil display only people that have been tagged with `CS2103T` and `TA`.
+
+### Tagging a student : `tag`
+
+Tags the specified student from the address book.
+
+Format: `tag id/ID t/TAGS`
+
+* Tags the student with id `ID`.
+* The `ID` refers to the alphanumeric string on the left of Name
+* The `ID` must start with an alphabet followed by 7 digits and ending with an alphabet e.g A0265901E
+* `TAGS` can be alphabetic without spaces and multiple tags can be specified
+
+Examples:
+* `tag id/A0257418E t/Sincere, Good`
 
 ### Clearing all entries : `clear`
 
