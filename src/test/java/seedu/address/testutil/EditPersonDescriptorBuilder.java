@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.model.language.ProgrammingLanguage;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.CompanyName;
 import seedu.address.model.person.Email;
@@ -43,6 +44,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setAddress(person.getAddress());
         descriptor.setDateTime(person.getDateTime());
         descriptor.setTags(person.getTags());
+        descriptor.setProgrammingLanguages(person.getProgrammingLanguages());
     }
 
     /**
@@ -117,6 +119,19 @@ public class EditPersonDescriptorBuilder {
     public EditPersonDescriptorBuilder withTags(String... tags) {
         Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
         descriptor.setTags(tagSet);
+        return this;
+    }
+
+    /**
+     * Parses the {@code programmingLanguages} into a {@code Set<ProgrammingLanguage>} and
+     * sets it to the {@code EditPersonDescriptorBuilder}.
+     * @param programmingLanguages The programming languages to be set.
+     * @return The updated {@code EditPersonDescriptorBuilder} object.
+     */
+    public EditPersonDescriptorBuilder withProgrammingLanguages(String... programmingLanguages) {
+        Set<ProgrammingLanguage> programmingLanguageSet = Stream.of(programmingLanguages).map(ProgrammingLanguage::new)
+                .collect(Collectors.toSet());
+        descriptor.setProgrammingLanguages(programmingLanguageSet);
         return this;
     }
 

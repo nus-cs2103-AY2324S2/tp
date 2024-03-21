@@ -48,6 +48,8 @@ public class PersonCard extends UiPart<Region> {
     private Label info;
     @FXML
     private FlowPane tags;
+    @FXML
+    private FlowPane programmingLanguages;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -67,5 +69,9 @@ public class PersonCard extends UiPart<Region> {
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        person.getProgrammingLanguages().stream()
+                .sorted(Comparator.comparing(pl -> pl.languageName))
+                .forEach(pl -> programmingLanguages.getChildren().add(
+                        new Label("Programming Languages: " + pl.languageName)));
     }
 }

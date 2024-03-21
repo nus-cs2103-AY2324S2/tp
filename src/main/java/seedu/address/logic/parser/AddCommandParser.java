@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_INFO;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERVIEWTIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PROGRAMMING_LANGUAGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -16,6 +17,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.language.ProgrammingLanguage;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.CompanyName;
 import seedu.address.model.person.Email;
@@ -41,7 +43,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(
                         args, PREFIX_COMPANY_NAME, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                        PREFIX_INTERVIEWTIME, PREFIX_TAG, PREFIX_SALARY, PREFIX_INFO);
+                        PREFIX_INTERVIEWTIME, PREFIX_TAG, PREFIX_SALARY, PREFIX_INFO, PREFIX_PROGRAMMING_LANGUAGE);
 
 
         if (!arePrefixesPresent(argMultimap, PREFIX_COMPANY_NAME, PREFIX_NAME, PREFIX_ADDRESS,
@@ -60,8 +62,11 @@ public class AddCommandParser implements Parser<AddCommand> {
         Salary salary = ParserUtil.parseSalary(argMultimap.getValue(PREFIX_SALARY).orElse("0"));
         Info info = ParserUtil.parseInfo(argMultimap.getValue(PREFIX_INFO).orElse(""));
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Set<ProgrammingLanguage> programmingLanguageList = ParserUtil.parseProgrammingLanguages(argMultimap
+                .getAllValues(PREFIX_PROGRAMMING_LANGUAGE));
 
-        Person person = new Person(companyName, name, phone, email, address, interviewTime, salary, info, tagList);
+        Person person = new Person(companyName, name, phone, email, address, interviewTime, salary, info, tagList,
+                programmingLanguageList);
 
         return new AddCommand(person);
     }
