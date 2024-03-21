@@ -8,6 +8,8 @@ import javafx.scene.media.MediaPlayer;
  * Contains auto-specific code
  */
 public class AudioUtil {
+
+    public static final String ERROR_SOUND = "assets/boop.mp3";
     /**
      * Plays an audio given a file path. Note that there is a slight delay due to having to load up the media player
      *
