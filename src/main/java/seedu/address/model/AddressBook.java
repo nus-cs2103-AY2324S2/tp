@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -9,6 +10,10 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.person.relationship.Relationship;
+import seedu.address.model.person.relationship.RelationshipUtil;
+
+
 
 /**
  * Wraps all data at the address-book level
@@ -17,6 +22,7 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    private final RelationshipUtil relationships;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -27,6 +33,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
+        relationships = new RelationshipUtil();
     }
 
     public AddressBook() {}
@@ -109,6 +116,23 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.asUnmodifiableObservableList();
     }
 
+    @Override
+    public ArrayList<Relationship> getRelationshipList() {
+        return relationships.getRelationshipsTracker();
+    }
+
+    public void addRelationship(Relationship toAdd) {
+        relationships.addRelationship(toAdd);
+    };
+    public void deleteRelationship(Relationship toDelete) {
+        relationships.deleteRelationship(toDelete);
+    };
+    public boolean hasRelationship(Relationship toFind) {
+        return relationships.hasRelationship(toFind);
+    };
+    public String getExistingRelationship(Relationship toGet) {
+        return relationships.getExistingRelationship(toGet);
+    }
     @Override
     public boolean equals(Object other) {
         if (other == this) {

@@ -13,6 +13,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.relationship.Relationship;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -112,6 +113,22 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    @Override
+    public boolean hasRelationship(Relationship target) {
+        return addressBook.hasRelationship(target);
+    }
+    @Override
+    public void addRelationship(Relationship toAdd) {
+        addressBook.addRelationship(toAdd);
+    }
+    @Override
+    public void deleteRelationship(Relationship toDelete) {
+        addressBook.deleteRelationship(toDelete);
+    }
+    public String getExistingRelationship(Relationship toGet) {
+        return addressBook.getExistingRelationship(toGet);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -127,6 +144,15 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+    @Override
+    public UUID getFullUuid(String digits) {
+        return addressBook.getFullUuid(digits);
+    }
+
+    @Override
+    public Person getPersonByUuid(UUID id) {
+        return addressBook.getPersonByUuid(id);
     }
 
     @Override
@@ -149,15 +175,6 @@ public class ModelManager implements Model {
     @Override
     public void deleteAttribute(String uuid, String attributeName) {
         addressBook.deleteAttribute(uuid, attributeName);
-    }
-
-    @Override
-    public UUID getFullUuid(String digits) {
-        return addressBook.getFullUuid(digits);
-    }
-
-    public Person getPersonByUuid(UUID id) {
-        return addressBook.getPersonByUuid(id);
     }
 
     @Override

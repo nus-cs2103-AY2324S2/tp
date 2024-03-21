@@ -7,12 +7,12 @@ title: JENGA (Journal for Enthusiasts in Noting Genealogical Associations)
 
 ![Ui](images/Ui.png)
 
-**JENGA helps Genealogists keep track of details of relatives**, 
-and easy storage and retrieval of the relationship between relatives. 
-It does not cover discovery of new information, 
+**JENGA helps Genealogists keep track of details of relatives**,
+and easy storage and retrieval of the relationship between relatives.
+It does not cover discovery of new information,
 other than highlighting links/anomalies between existing information.
 
-While it has a GUI, 
+While it has a GUI,
 most of the user interactions happen using a CLI (Command Line Interface).
 
 * If you are interested in using AddressBook, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).

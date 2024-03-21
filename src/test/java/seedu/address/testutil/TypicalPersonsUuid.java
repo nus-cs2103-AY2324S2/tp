@@ -12,9 +12,12 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.relationship.Relationship;
+import seedu.address.model.person.relationship.RoleBasedRelationship;
 
 /**
  * A utility class containing a list of {@code Person} objects with UUID to be used in tests.
@@ -51,6 +54,22 @@ public class TypicalPersonsUuid {
     public static final Person GEORGE = new PersonBuilder().withName("George Best").withPhone("9482442")
             .withEmail("anna@example.com").withAddress("4th street").buildWithUuid(GEORGE_UUID);
 
+    public static final Relationship ALICE_BENSON =
+            new Relationship(UUID.fromString(ALICE_UUID), UUID.fromString(BENSON_UUID), "friend");
+
+    public static final Relationship CARL_DANIEL =
+            new Relationship(UUID.fromString(CARL_UUID), UUID.fromString(DANIEL_UUID), "friend");
+
+    public static final Relationship ELLE_FIONA =
+            new Relationship(UUID.fromString(ELLE_UUID), UUID.fromString(FIONA_UUID), "friend");
+
+    public static final RoleBasedRelationship ALICE_DANIEL_ROLE =
+            new RoleBasedRelationship(UUID.fromString(ALICE_UUID), UUID.fromString(DANIEL_UUID),
+                    "family", "wife", "husband");
+
+    public static final RoleBasedRelationship CARL_ELLE_ROLE =
+            new RoleBasedRelationship(UUID.fromString(CARL_UUID), UUID.fromString(ELLE_UUID),
+                    "family", "husband", "wife");
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withPhone("8482424")
             .withEmail("stefan@example.com").withAddress("little india").buildWithUuid(HOON_UUID);
@@ -73,10 +92,17 @@ public class TypicalPersonsUuid {
         for (Person person : getTypicalPersons()) {
             ab.addPerson(person);
         }
+        for (Relationship relationship : getTypicalRelationships()) {
+            ab.addRelationship(relationship);
+        }
         return ab;
     }
 
     public static List<Person> getTypicalPersons() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+    }
+
+    public static List<Relationship> getTypicalRelationships() {
+        return new ArrayList<>(Arrays.asList(ALICE_BENSON, CARL_DANIEL, ELLE_FIONA, ALICE_DANIEL_ROLE, CARL_ELLE_ROLE));
     }
 }

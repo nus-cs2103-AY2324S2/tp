@@ -48,7 +48,6 @@ public class UniquePersonList implements Iterable<Person> {
         }
         internalList.add(toAdd);
     }
-
     /**
      * Replaces the person {@code target} in the list with {@code editedPerson}.
      * {@code target} must exist in the list.
@@ -68,7 +67,6 @@ public class UniquePersonList implements Iterable<Person> {
 
         internalList.set(index, editedPerson);
     }
-
     /**
      * Removes the equivalent person from the list.
      * The person must exist in the list.

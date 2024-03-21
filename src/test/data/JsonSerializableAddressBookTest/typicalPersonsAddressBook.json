@@ -56,5 +56,36 @@
       { "name": "Email", "value": "anna@example.com" },
       { "name": "Address", "value": "4th street" }
     ]
-  } ]
+  } ],
+  "relationships" : [
+    {
+      "person1": "00000000-0000-0000-0000-000000000001",
+      "person2": "00000000-0000-0000-0000-000000000002",
+      "relationshipDescriptor": "friend"
+    },
+    {
+      "person1": "00000000-0000-0000-0000-000000000003",
+      "person2": "00000000-0000-0000-0000-000000000004",
+      "relationshipDescriptor": "friend"
+    },
+    {
+      "person1": "00000000-0000-0000-0000-000000000005",
+      "person2": "00000000-0000-0000-0000-000000000006",
+      "relationshipDescriptor": "friend"
+    },
+    {
+      "person1": "00000000-0000-0000-0000-000000000001",
+      "person2": "00000000-0000-0000-0000-000000000004",
+      "relationshipDescriptor": "family",
+      "rolePerson1": "wife",
+      "rolePerson2": "husband"
+    },
+    {
+      "person1": "00000000-0000-0000-0000-000000000003",
+      "person2": "00000000-0000-0000-0000-000000000005",
+      "relationshipDescriptor": "family",
+      "rolePerson1": "husband",
+      "rolePerson2": "wife"
+    }
+  ]
 }

@@ -1,41 +1,32 @@
 package seedu.address.logic.relationship;
 
-import java.util.Map;
+import static java.util.Objects.requireNonNull;
 
-import seedu.address.model.person.Person;
+import seedu.address.logic.Messages;
+import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.parser.exceptions.ParseException;
+
 
 /**
  * Parses input arguments and creates a new AddRelationshipCommand object
  */
 public class AddRelationshipCommandParser {
-
-    private final Map<String, Person> personMap;
-
     /**
-     * Creates a new AddRelationshipCommandParser with the given person map.
-     *
-     * @param personMap A map linking UUID strings to Person objects.
+     * Parses a userInput into the arguments to add a relationship to AB3
+     * @param userInput user-input command
+     * @return an addRelationshipCommand with the necessary arguments
+     * @throws ParseException
      */
-    public AddRelationshipCommandParser(Map<String, Person> personMap) {
-        this.personMap = personMap;
+    public AddRelationshipCommand parse(String userInput) throws ParseException {
+        requireNonNull(userInput);
+        String[] parts = userInput.split(" ", 3);
+        try {
+            String originUuid = ParserUtil.parseUuid(parts[0]);
+            String targetUuid = ParserUtil.parseUuid(parts[1]);
+            String relationshipDescriptor = parts[2];
+            return new AddRelationshipCommand(originUuid, targetUuid, relationshipDescriptor);
+        } catch (ParseException pe) {
+            throw new ParseException(Messages.MESSAGE_INVALID_PERSON_UUID);
+        }
     }
-
-    /**
-     * Parses the given {@code String} of arguments in the context of the AddRelationshipCommand
-     * and returns an AddRelationshipCommand object for execution.
-     *
-     * The expected format of the user input is:
-     * - For adding relationships with roles: "addrelation /[relationType] /[role1] [UUID1] /[role2] [UUID2]"
-     * - For adding relationships without roles: "addrelation /[relationType] [UUID1],[UUID2]"
-     *
-     * @param userInput The user input to parse.
-     * @return The AddRelationshipCommand object for execution.
-     * @throws IllegalArgumentException If the user input does not conform the expected format.
-     */
-    public AddRelationshipCommand parse(String userInput) throws IllegalArgumentException {
-        AddRelationshipCommand command = new AddRelationshipCommand(personMap);
-        command.parseCommand(userInput);
-        return command;
-    }
-
 }
