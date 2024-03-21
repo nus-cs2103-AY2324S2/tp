@@ -184,7 +184,7 @@ Examples:
 
 Tags the specified student from the address book.
 
-Format: `tag id/ID t/TAGS`
+Format: `tag id/ID t/TAG t/TAG`
 
 * Tags the student with id `ID`.
 * The `ID` refers to the alphanumeric string on the left of Name
@@ -192,7 +192,7 @@ Format: `tag id/ID t/TAGS`
 * `TAGS` can be alphabetic without spaces and multiple tags can be specified
 
 Examples:
-* `tag id/A0257418E t/Sincere, Good`
+* `tag id/A0257418E t/Sincere t/Good`
 
 ### Clearing all entries : `clear`
 
