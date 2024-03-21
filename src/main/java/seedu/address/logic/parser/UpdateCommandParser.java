@@ -90,19 +90,24 @@ public class UpdateCommandParser implements Parser<UpdateCommand> {
 
         // Medical information
         if (argMultimap.getValue(PREFIX_ALLERGIES).isPresent()) {
-            updatePersonDescriptor.setAllergies(ParserUtil.parseAllergies(argMultimap.getValue(PREFIX_ALLERGIES).get()));
+            updatePersonDescriptor.setAllergies(
+                    ParserUtil.parseAllergies(argMultimap.getValue(PREFIX_ALLERGIES).get()));
         }
         if (argMultimap.getValue(PREFIX_BLOODTYPE).isPresent()) {
-            updatePersonDescriptor.setBloodType(ParserUtil.parseBloodType(argMultimap.getValue(PREFIX_BLOODTYPE).get()));
+            updatePersonDescriptor.setBloodType(
+                    ParserUtil.parseBloodType(argMultimap.getValue(PREFIX_BLOODTYPE).get()));
         }
         if (argMultimap.getValue(PREFIX_CONDITION).isPresent()) {
-            updatePersonDescriptor.setCondition(ParserUtil.parseCondition(argMultimap.getValue(PREFIX_CONDITION).get()));
+            updatePersonDescriptor.setCondition(
+                    ParserUtil.parseCondition(argMultimap.getValue(PREFIX_CONDITION).get()));
         }
         if (argMultimap.getValue(PREFIX_DATEOFADMISSION).isPresent()) {
-            updatePersonDescriptor.setDateOfAdmission(ParserUtil.parseDateOfAdmission(argMultimap.getValue(PREFIX_DATEOFADMISSION).get()));
+            updatePersonDescriptor.setDateOfAdmission(
+                    ParserUtil.parseDateOfAdmission(argMultimap.getValue(PREFIX_DATEOFADMISSION).get()));
         }
         if (argMultimap.getValue(PREFIX_DIAGNOSIS).isPresent()) {
-            updatePersonDescriptor.setDiagnosis(ParserUtil.parseDiagnosis(argMultimap.getValue(PREFIX_DIAGNOSIS).get()));
+            updatePersonDescriptor.setDiagnosis(
+                    ParserUtil.parseDiagnosis(argMultimap.getValue(PREFIX_DIAGNOSIS).get()));
         }
         if (argMultimap.getValue(PREFIX_SYMPTOM).isPresent()) {
             updatePersonDescriptor.setSymptom(ParserUtil.parseSymptom(argMultimap.getValue(PREFIX_SYMPTOM).get()));
