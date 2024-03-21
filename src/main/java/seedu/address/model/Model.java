@@ -117,7 +117,7 @@ public interface Model {
     /**
      * Replaces the given appointment {@code target} with {@code editedAppointment}.
      * {@code target} must exist in the address book.
-     * The appointment identity of {@code editetAppointment} must not be the same as another existing appointment in the
+     * The appointment identity of {@code editedAppointment} must not be the same as another existing appointment in the
      * address book.
      */
     void setAppointment(Appointment target, Appointment editedAppointment);
