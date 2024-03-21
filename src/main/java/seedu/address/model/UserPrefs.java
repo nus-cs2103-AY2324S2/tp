@@ -11,8 +11,9 @@ import seedu.address.commons.core.GuiSettings;
 /**
  * Represents User's preferences.
  */
-public class UserPrefs implements ReadOnlyUserPrefs {
+public class UserPrefs implements ReadOnlyUserPrefs, ReadAndWriteUserPrefs {
 
+    private boolean isSample = true;
     private GuiSettings guiSettings = new GuiSettings();
     private Path addressBookFilePath = Paths.get("data" , "addressbook.json");
 
@@ -56,6 +57,18 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.addressBookFilePath = addressBookFilePath;
     }
 
+    public boolean getIsSample() {
+        return isSample;
+    }
+
+    /**
+     * Sets true if the data is sample data. Otherwise, false.
+     */
+    public void setIsSample(boolean status) {
+        isSample = status;
+
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -74,7 +87,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, addressBookFilePath);
+        return Objects.hash(guiSettings, addressBookFilePath, isSample);
     }
 
     @Override
@@ -82,6 +95,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);
         sb.append("\nLocal data file location : " + addressBookFilePath);
+        sb.append("\n Is it Sample Data? : " + isSample);
         return sb.toString();
     }
 
