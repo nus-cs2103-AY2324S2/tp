@@ -13,8 +13,12 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_IC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_IC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADMISSION_DATE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADMISSION_DATE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.String VALID_WARD_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.String VALID_WARD_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_WARD_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_WARD_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.WARD_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.WARD_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.DOB_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.DOB_DESC_BOB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DOB;
@@ -109,7 +113,7 @@ public class EditCommandParserTest {
     @Test
     public void parse_someFieldsSpecified_success() {
         Index targetIndex = INDEX_FIRST_PERSON;
-        String userInput = targetIndex.getOneBased();
+        String userInput = targetIndex.getOneBased() + "";
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
@@ -127,7 +131,7 @@ public class EditCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // tags
-        userInput = targetIndex.getOneBased() + TAG_DESC_FRIEND;
+        userInput = targetIndex.getOneBased() + TAG_DESC_DIABETES;
         descriptor = new EditPersonDescriptorBuilder().withTags(TAG_DESC_DIABETES).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
