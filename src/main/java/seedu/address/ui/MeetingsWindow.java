@@ -3,10 +3,7 @@ package seedu.address.ui;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.input.Clipboard;
-import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
@@ -15,39 +12,33 @@ import seedu.address.commons.core.LogsCenter;
 /**
  * Controller for a help page
  */
-public class HelpWindow extends UiPart<Stage> {
-
-    public static final String USERGUIDE_URL = "https://se-education.org/addressbook-level3/UserGuide.html";
-    public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
-
-    private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
-    private static final String FXML = "HelpWindow.fxml";
+public class MeetingsWindow extends UiPart<Stage> {
+    public static final String REMIND_MESSAGE = "Here are your upcoming meetings: ";
+    private static final Logger logger = LogsCenter.getLogger(MeetingsWindow.class);
+    private static final String FXML = "MeetingsWindow.fxml";
 
     @FXML
-    private Button copyButton;
-
-    @FXML
-    private Label helpMessage;
+    private Label meetingsMessage;
 
     /**
-     * Creates a new HelpWindow.
+     * Creates a new MeetingsWindow.
      *
-     * @param root Stage to use as the root of the HelpWindow.
+     * @param root Stage to use as the root of the MeetingsWindow.
      */
-    public HelpWindow(Stage root) {
+    public MeetingsWindow(Stage root) {
         super(FXML, root);
-        helpMessage.setText(HELP_MESSAGE);
+        meetingsMessage.setText(REMIND_MESSAGE);
     }
 
     /**
-     * Creates a new HelpWindow.
+     * Creates a new MeetingsWindow with a new Stage.
      */
-    public HelpWindow() {
+    public MeetingsWindow() {
         this(new Stage());
     }
 
     /**
-     * Shows the help window.
+     * Shows the meetings window.
      * @throws IllegalStateException
      *     <ul>
      *         <li>
@@ -65,42 +56,31 @@ public class HelpWindow extends UiPart<Stage> {
      *     </ul>
      */
     public void show() {
-        logger.fine("Showing help page about the application.");
+        logger.fine("Showing meetings window for the application.");
         getRoot().show();
         getRoot().centerOnScreen();
         closeOnEsc();
     }
 
     /**
-     * Returns true if the help window is currently being shown.
+     * Returns true if the meetings window is currently being shown.
      */
     public boolean isShowing() {
         return getRoot().isShowing();
     }
 
     /**
-     * Hides the help window.
+     * Hides the meetings window.
      */
     public void hide() {
         getRoot().hide();
     }
 
     /**
-     * Focuses on the help window.
+     * Focuses on the meetings window.
      */
     public void focus() {
         getRoot().requestFocus();
-    }
-
-    /**
-     * Copies the URL of the user guide to the clipboard.
-     */
-    @FXML
-    private void copyUrl() {
-        final Clipboard clipboard = Clipboard.getSystemClipboard();
-        final ClipboardContent url = new ClipboardContent();
-        url.putString(USERGUIDE_URL);
-        clipboard.setContent(url);
     }
 
     /**
