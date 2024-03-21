@@ -34,7 +34,7 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
-    private  MeetingsWindow meetingsWindow;
+    private MeetingsWindow meetingsWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
