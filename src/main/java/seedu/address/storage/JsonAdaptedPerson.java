@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.attendance.Attendance;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Birthday;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -29,6 +30,7 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
+    private final String birthday;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
     private final List<JsonAdaptedAttendance> attendances = new ArrayList<>();
 
@@ -38,12 +40,14 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
+                             @JsonProperty("birthday") String birthday,
                              @JsonProperty("tags") List<JsonAdaptedTag> tags,
                              @JsonProperty("attendances") List<JsonAdaptedAttendance> attendances) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.birthday = birthday;
         if (tags != null) {
             this.tags.addAll(tags);
         }
@@ -60,6 +64,7 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        birthday = source.getBirthday().value;
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -116,9 +121,15 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
+        if (birthday == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Birthday.class.getSimpleName()));
+        }
+        final Birthday modelBirthday = new Birthday(birthday);
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
         final Set<Attendance> modelAttendances = new HashSet<>(personAttendances);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelAttendances);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelBirthday, modelTags, modelAttendances);
     }
 
 }
