@@ -15,16 +15,6 @@ public class SearchCommandParserTest {
     private SearchCommandParser parser = new SearchCommandParser();
 
     @Test
-    public void parse_emptyArg_throwsParseException() {
-        assertParseFailure(parser, "     ", SearchMessages.MESSAGE_SEARCH_INVALID_FIELD);
-    }
-
-    @Test
-    public void parse_invalidArgs_throwsParseException() {
-        assertParseFailure(parser, " ;   name :   Poochie", SearchMessages.MESSAGE_SEARCH_INVALID_FIELD);
-    }
-
-    @Test
     public void parse_validArgs_returnsFindCommand() {
         String keyword = " ; name : Poochie";
         ArgumentMultimap token = ArgumentTokenizer.tokenize(keyword, PREFIX_NAME);
@@ -33,5 +23,17 @@ public class SearchCommandParserTest {
         SearchCommand expectedSearchCommand =
                 new SearchCommand(new KeywordPredicate(token));
         assertParseSuccess(parser, keyword, expectedSearchCommand);
+    }
+
+    @Test
+    public void parse_emptyArg_throwsParseException() {
+        assertParseFailure(parser, "     ",
+                String.format(SearchMessages.MESSAGE_SEARCH_INVALID_FIELD));
+    }
+
+    @Test
+    public void parse_invalidArgs_throwsParseException() {
+        assertParseFailure(parser, " ;   name :   Poochie",
+                String.format(SearchMessages.MESSAGE_SEARCH_INVALID_FIELD));
     }
 }
