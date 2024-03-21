@@ -17,7 +17,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.ImmuniMate;
-import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 
 /**

@@ -19,6 +19,7 @@ import seedu.address.model.ImmuniMate;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Nric;
+import seedu.address.model.person.NricContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
@@ -140,6 +141,7 @@ public class CommandTestUtil {
         assertTrue(model.hasPerson(Person.createPersonWithNric(nric)));
 
         Person person = model.getFilteredPersonList().filtered(p -> p.getNric().equals(nric)).get(0);
+        model.updateFilteredPersonList(new NricContainsKeywordsPredicate(nric.toString()));
 
         assertEquals(1, model.getFilteredPersonList().size());
     }

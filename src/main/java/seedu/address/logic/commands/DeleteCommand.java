@@ -34,13 +34,14 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        //Difference between filteredPersons.contains and model.hasPerson: first checks if the instance is in the list
-        //second checks if the NRIC is in the list
+
         ObservableList<Person> persons = model.getFilteredPersonList();
-        Person personToDelete = persons.filtered(person -> person.getNric().equals(targetNric)).get(0);
-        if (!model.hasPerson(personToDelete)) {
+        if (!model.hasPerson(Person.createPersonWithNric(targetNric))) {
             throw new CommandException(Messages.MESSAGE_NRIC_NOT_FOUND);
         }
+        //Difference between filteredPersons.contains and model.hasPerson: first checks if the instance is in the list,
+        //second checks if the NRIC is in the list
+        Person personToDelete = persons.filtered(person -> person.getNric().equals(targetNric)).get(0);
         model.deletePerson(personToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
     }
