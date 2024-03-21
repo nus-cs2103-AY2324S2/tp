@@ -75,7 +75,8 @@ public class DeleteTaskCommand extends Command {
         }
 
         DeleteTaskCommand otherDeleteTaskCommand = (DeleteTaskCommand) other;
-        return toDelete.equals(otherDeleteTaskCommand.toDelete);
+        return toDelete.equals(otherDeleteTaskCommand.toDelete)
+                && taskProject.equals(otherDeleteTaskCommand.taskProject);
     }
 
     @Override
