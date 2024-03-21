@@ -1,18 +1,22 @@
 {
   "persons": [ {
+    "companyName": "Google",
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "alice@example.com",
     "address": "123, Jurong West Ave 6, #08-111",
+    "dateTime": "121220221400",
     "salary" : "0",
     "info" : "Friend of boss",
     "tags": [ "friends" ]
   }, {
+    "companyName": "Google",
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",
     "address": "4th street",
+    "dateTime": "121220221400",
     "salary" : "0",
-    "Info" : "Friend of boss"
+    "Info" : "Friend of boss",
   } ]
 }

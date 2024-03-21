@@ -6,7 +6,9 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.CompanyName;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.InterviewTime;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -34,11 +36,21 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder(Person person) {
         descriptor = new EditPersonDescriptor();
+        descriptor.setCompanyName(person.getCompanyName());
         descriptor.setName(person.getName());
         descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
         descriptor.setAddress(person.getAddress());
+        descriptor.setDateTime(person.getDateTime());
         descriptor.setTags(person.getTags());
+    }
+
+    /**
+     * Sets the {@code CompanyName} of the {@code Person} that we are building.
+     */
+    public EditPersonDescriptorBuilder withCompanyName(String name) {
+        descriptor.setCompanyName(new CompanyName(name));
+        return this;
     }
 
     /**
@@ -73,6 +85,15 @@ public class EditPersonDescriptorBuilder {
         return this;
     }
 
+    /**
+     * To add interview-time to the person object
+     * @param dateTime input
+     * @return the object
+     */
+    public EditPersonDescriptorBuilder withInterviewTime(String dateTime) {
+        descriptor.setDateTime(new InterviewTime(dateTime));
+        return this;
+    }
     /**
      * Sets the {@code Salary} of the {@code EditPersonDescriptor} that we are building.
      */

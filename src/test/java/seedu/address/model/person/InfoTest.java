@@ -33,7 +33,7 @@ public class InfoTest {
     public void toStringTest() {
         // Test with info as a string of letters
         Info info = new Info("One hundred Thousand");
-        assertEquals("One Hundred Thousand", info.toString());
+        assertEquals("One hundred Thousand", info.toString());
 
         // Test with info as a string of numbers
         info = new Info("1233456");

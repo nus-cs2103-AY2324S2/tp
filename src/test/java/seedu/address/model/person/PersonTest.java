@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_INTERVIEWTIME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
@@ -38,7 +39,10 @@ public class PersonTest {
 
         // same name, all other attributes different -> returns true
         Person editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withAddress(VALID_ADDRESS_BOB).withSalary(VALID_SALARY_BOB).withInfo(VALID_INFO_BOB)
+                .withAddress(VALID_ADDRESS_BOB)
+                .withDateTime(VALID_INTERVIEWTIME_BOB)
+                .withSalary(VALID_SALARY_BOB)
+                .withInfo(VALID_INFO_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSamePerson(editedAlice));
 
@@ -90,13 +94,17 @@ public class PersonTest {
         editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
+        // different interview time -> returns true
+        editedAlice = new PersonBuilder(ALICE).withDateTime(VALID_INTERVIEWTIME_BOB).build();
+        assertTrue(ALICE.equals(editedAlice));
+
         // different salary -> return true
         editedAlice = new PersonBuilder(ALICE).withSalary(VALID_SALARY_BOB).build();
         assertTrue(ALICE.equals(editedAlice));
 
-        // different info -> returns false
+        // different info -> returns true
         editedAlice = new PersonBuilder(ALICE).withInfo(VALID_INFO_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
+        assertTrue(ALICE.equals(editedAlice));
 
         // different tags -> returns false
         editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
@@ -122,9 +130,13 @@ public class PersonTest {
 
     @Test
     public void toStringMethod() {
-        String expected = Person.class.getCanonicalName() + "{name=" + ALICE.getName() + ", phone=" + ALICE.getPhone()
-                + ", email=" + ALICE.getEmail() + ", address=" + ALICE.getAddress() + ", salary="
-                + ALICE.getSalary() + ", info=" + ALICE.getInfo() + ", tags=" + ALICE.getTags() + "}";
+        String expected = Person.class.getCanonicalName() + "{company name=" + ALICE.getCompanyName()
+                + ", name=" + ALICE.getName() + ", phone=" + ALICE.getPhone()
+                + ", email=" + ALICE.getEmail() + ", address=" + ALICE.getAddress()
+                + ", interview-time=" + ALICE.getDateTime()
+                + ", salary=" + ALICE.getSalary()
+                + ", info=" + ALICE.getInfo()
+                + ", tags=" + ALICE.getTags() + "}";
         assertEquals(expected, ALICE.toString());
     }
 }

@@ -2,7 +2,9 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERVIEWTIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
@@ -25,7 +27,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.CompanyName;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.InterviewTime;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -44,10 +48,12 @@ public class EditCommand extends Command {
             + "by the index number used in the displayed person list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
+            + "[" + PREFIX_COMPANY_NAME + "COMPANY NAME] "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_INTERVIEWTIME + "INTERVIEW-TIME] "
             + "[" + PREFIX_SALARY + "SALARY] "
             + "[" + PREFIX_INFO + "INFO] "
             + "[" + PREFIX_TAG + "TAG]...\n"
@@ -101,18 +107,19 @@ public class EditCommand extends Command {
      */
     private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
         assert personToEdit != null;
-
+        CompanyName updatedCompanyName = editPersonDescriptor.getCompanyName().orElse(personToEdit.getCompanyName());
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
+        InterviewTime updatedDateTime = editPersonDescriptor.getDateTime().orElse(personToEdit.getDateTime());
         Salary updatedSalary = editPersonDescriptor.getSalary().orElse(personToEdit.getSalary());
         Info updatedInfo = editPersonDescriptor.getInfo().orElse(personToEdit.getInfo());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
         return new Person(
-                updatedName, updatedPhone, updatedEmail,
-                updatedAddress, updatedSalary, updatedInfo, updatedTags);
+                updatedCompanyName, updatedName, updatedPhone, updatedEmail,
+                updatedAddress, updatedDateTime, updatedSalary, updatedInfo, updatedTags);
     }
 
     @Override
@@ -144,10 +151,12 @@ public class EditCommand extends Command {
      * corresponding field value of the person.
      */
     public static class EditPersonDescriptor {
+        private CompanyName companyName;
         private Name name;
         private Phone phone;
         private Email email;
         private Address address;
+        private InterviewTime dateTime;
         private Salary salary;
         private Info info;
         private Set<Tag> tags;
@@ -159,10 +168,12 @@ public class EditCommand extends Command {
          * A defensive copy of {@code tags} is used internally.
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
+            setCompanyName(toCopy.companyName);
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
+            setDateTime(toCopy.dateTime);
             setSalary(toCopy.salary);
             setInfo(toCopy.info);
             setTags(toCopy.tags);
@@ -172,12 +183,19 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, salary, info, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, dateTime, salary, info, tags);
+        }
+        public void setCompanyName(CompanyName companyName) {
+            this.companyName = companyName;
         }
 
         public void setName(Name name) {
             this.name = name;
         }
+        public Optional<CompanyName> getCompanyName() {
+            return Optional.ofNullable(companyName);
+        }
+
 
         public Optional<Name> getName() {
             return Optional.ofNullable(name);
@@ -201,6 +219,12 @@ public class EditCommand extends Command {
 
         public void setAddress(Address address) {
             this.address = address;
+        }
+        public void setDateTime(InterviewTime dateTime) {
+            this.dateTime = dateTime;
+        }
+        public Optional<InterviewTime> getDateTime() {
+            return Optional.ofNullable(dateTime);
         }
 
         public Optional<Address> getAddress() {
@@ -248,10 +272,12 @@ public class EditCommand extends Command {
             }
 
             EditPersonDescriptor otherEditPersonDescriptor = (EditPersonDescriptor) other;
-            return Objects.equals(name, otherEditPersonDescriptor.name)
+            return Objects.equals(companyName, otherEditPersonDescriptor.companyName)
+                    && Objects.equals(name, otherEditPersonDescriptor.name)
                     && Objects.equals(phone, otherEditPersonDescriptor.phone)
                     && Objects.equals(email, otherEditPersonDescriptor.email)
                     && Objects.equals(address, otherEditPersonDescriptor.address)
+                    && Objects.equals(dateTime, otherEditPersonDescriptor.dateTime)
                     && Objects.equals(salary, otherEditPersonDescriptor.salary)
                     && Objects.equals(info, otherEditPersonDescriptor.info)
                     && Objects.equals(tags, otherEditPersonDescriptor.tags);
@@ -260,14 +286,18 @@ public class EditCommand extends Command {
         @Override
         public String toString() {
             return new ToStringBuilder(this)
+                    .add("company name", companyName)
                     .add("name", name)
                     .add("phone", phone)
                     .add("email", email)
                     .add("address", address)
+                    .add("dateTime", dateTime)
                     .add("salary", salary)
                     .add("info", info)
                     .add("tags", tags)
                     .toString();
         }
+
+
     }
 }

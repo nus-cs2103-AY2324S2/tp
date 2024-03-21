@@ -60,13 +60,15 @@ public class EditPersonDescriptorTest {
     @Test
     public void toStringMethod() {
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
-        String expected = EditPersonDescriptor.class.getCanonicalName() + "{name="
+        String expected = EditPersonDescriptor.class.getCanonicalName() + "{company name="
+                + editPersonDescriptor.getCompanyName().orElse(null) + ", name="
                 + editPersonDescriptor.getName().orElse(null) + ", phone="
                 + editPersonDescriptor.getPhone().orElse(null) + ", email="
                 + editPersonDescriptor.getEmail().orElse(null) + ", address="
-                + editPersonDescriptor.getSalary().orElse(null) + ", salary="
+                + editPersonDescriptor.getAddress().orElse(null) + ", dateTime="
+                + editPersonDescriptor.getDateTime().orElse(null) + ", salary="
                 + editPersonDescriptor.getInfo().orElse(null) + ", info="
-                + editPersonDescriptor.getAddress().orElse(null) + ", tags="
+                + editPersonDescriptor.getSalary().orElse(null) + ", tags="
                 + editPersonDescriptor.getTags().orElse(null) + "}";
         assertEquals(expected, editPersonDescriptor.toString());
     }

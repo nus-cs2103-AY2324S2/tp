@@ -1,58 +1,72 @@
 {
   "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
   "persons" : [ {
+    "companyName" : "Google",
     "name" : "Alice Pauline",
     "phone" : "94351253",
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
+    "dateTime" : "121220221400",
     "salary" : "0",
     "info" : "Nil",
     "tags" : [ "friends" ]
   }, {
+    "companyName": "Amazon",
     "name" : "Benson Meier",
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
+    "dateTime" : "121220221400",
     "salary" : "0",
     "info" : "Nil",
     "tags" : [ "owesMoney", "friends" ]
   }, {
+    "companyName" : "Shopee",
     "name" : "Carl Kurz",
     "phone" : "95352563",
     "email" : "heinz@example.com",
     "address" : "wall street",
+    "dateTime" : "121220221400",
     "salary" : "0",
     "info" : "Nil",
     "tags" : [ ]
   }, {
+    "companyName" : "Tiktok",
     "name" : "Daniel Meier",
     "phone" : "87652533",
     "email" : "cornelia@example.com",
     "address" : "10th street",
+    "dateTime" : "121220221400",
     "salary" : "0",
     "info" : "Nil",
     "tags" : [ "friends" ]
   }, {
+    "companyName" : "Shopback",
     "name" : "Elle Meyer",
     "phone" : "9482224",
     "email" : "werner@example.com",
     "address" : "michegan ave",
+    "dateTime" : "121220221400",
     "salary" : "0",
     "info" : "Nil",
     "tags" : [ ]
   }, {
+    "companyName" : "Apple",
     "name" : "Fiona Kunz",
     "phone" : "9482427",
     "email" : "lydia@example.com",
     "address" : "little tokyo",
+    "dateTime" : "121220221400",
     "salary" : "0",
     "info" : "Nil",
     "tags" : [ ]
   }, {
+    "companyName" : "Microsoft",
     "name" : "George Best",
     "phone" : "9482442",
     "email" : "anna@example.com",
     "address" : "4th street",
+    "dateTime" : "121220221400",
     "salary" : "0",
     "info" : "Nil",
     "tags" : [ ]
