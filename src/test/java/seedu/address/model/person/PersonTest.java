@@ -55,7 +55,7 @@ public class PersonTest {
     @Test
     public void hasSameId() {
         // same object -> returns true
-        assertEquals(ALICE, ALICE);
+        assertTrue(ALICE.hasSameId(ALICE));
 
         // null -> returns false
         assertFalse(ALICE.hasSameId(null));

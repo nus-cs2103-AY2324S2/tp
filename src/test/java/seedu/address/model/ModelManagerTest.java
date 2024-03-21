@@ -74,7 +74,6 @@ public class ModelManagerTest {
         assertEquals(path, modelManager.getNetConnectFilePath());
     }
 
-
     @Test
     public void hasPerson_nullPerson_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.hasPerson(null));
