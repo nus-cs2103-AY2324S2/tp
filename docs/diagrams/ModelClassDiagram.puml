@@ -12,13 +12,18 @@ Class AddressBook
 Class ModelManager
 Class UserPrefs
 
+Class UniqueAppointmentList
 Class UniquePersonList
 Class Person
+Class Appointment
 Class Address
 Class Email
 Class Name
+Class LocalDate
+class LocalTime
 Class Phone
 Class Tag
+Class UUID
 
 Class I #FFFFFF
 }
@@ -35,12 +40,19 @@ ModelManager -left-> "1" AddressBook
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
+AddressBook *--> "1" UniqueAppointmentList
+UniqueAppointmentList --> "~* all" Appointment
+Appointment *--> LocalDate
+Appointment *--> LocalTime
+Appointment *--> UUID
+
 AddressBook *--> "1" UniquePersonList
 UniquePersonList --> "~* all" Person
 Person *--> Name
 Person *--> Phone
 Person *--> Email
 Person *--> Address
+Person *--> UUID
 Person *--> "*" Tag
 
 Person -[hidden]up--> I
@@ -51,4 +63,5 @@ Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
 
 ModelManager --> "~* filtered" Person
+ModelManager --> "~* filtered" Appointment
 @enduml
