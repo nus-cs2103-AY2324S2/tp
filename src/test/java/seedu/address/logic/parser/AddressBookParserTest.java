@@ -8,6 +8,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,6 +29,8 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.attribute.Attribute;
+import seedu.address.model.person.attribute.NameAttribute;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
@@ -38,9 +41,14 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        Person person = new PersonBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
-        assertEquals(new AddCommand(person), command);
+        Person person = new Person(new Attribute[0]);
+        person.updateAttribute(new NameAttribute("Name", "Amy Bee"));
+        AddCommand command = (AddCommand) parser.parseCommand(
+                AddCommand.COMMAND_WORD
+                        + " /Name Amy Bee");
+        HashMap<String, String> attributes = new HashMap<>();
+        attributes.put("Name", "Amy Bee");
+        assertEquals(new AddCommand(attributes), command);
     }
 
     @Test

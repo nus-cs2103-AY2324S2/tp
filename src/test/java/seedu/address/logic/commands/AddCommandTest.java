@@ -80,8 +80,10 @@ public class AddCommandTest {
 
     @Test
     public void toStringMethod() {
-        AddCommand addCommand = new AddCommand(ALICE);
-        String expected = AddCommand.class.getCanonicalName() + "{toAdd=" + ALICE + "}";
+        HashMap<String, String> aliceHashMap = new HashMap<>();
+        aliceHashMap.put("Name", "Alice");
+        AddCommand addCommand = new AddCommand(aliceHashMap);
+        String expected = AddCommand.class.getCanonicalName() + "{attributeMap={Name=Alice}}";
         assertEquals(expected, addCommand.toString());
     }
 
