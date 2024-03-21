@@ -44,6 +44,7 @@ class CommandHistoryTest {
         commandHistory.addCommandToHistory("test2");
         commandHistory.addCommandToHistory("test3");
         Assertions.assertEquals("test3", commandHistory.undo());
+        Assertions.assertEquals("test2", commandHistory.undo());
         Assertions.assertEquals("test3", commandHistory.redo());
     }
 
