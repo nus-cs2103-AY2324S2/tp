@@ -45,6 +45,15 @@ public class BloodType {
         return this.bloodType == null ? alt : this.toString();
     }
 
+    /**
+     * Returns given placeholder string if value field is not initialised
+     * @param alt
+     * @return placeholder string
+     */
+    public String orElse(String alt) {
+        return type == null ? alt : getType() + getRh();
+    }
+
     @Override
     public String toString() {
         return this.bloodType;
