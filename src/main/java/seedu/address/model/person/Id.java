@@ -12,6 +12,9 @@ public class Id {
         this.id = id;
     }
 
+    public Id(int id) {
+        this.id = Integer.toString(id);
+    }
     /**
      * Checks if the given id is a valid Id.
      * @param test Input id to validate.
@@ -24,6 +27,10 @@ public class Id {
             return false;
         }
         return true;
+    }
+
+    public int getInt() {
+        return Integer.parseInt(id);
     }
 
     @Override

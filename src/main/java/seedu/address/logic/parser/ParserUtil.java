@@ -122,7 +122,7 @@ public class ParserUtil {
         requireNonNull(subject);
         String trimmedSubject = subject.trim();
         if (!Subject.isValidSubject(trimmedSubject)) {
-            throw new ParseException(Subject.MESSAGE_CONSTANTS);
+            throw new ParseException(Subject.MESSAGE_CONSTRAINTS);
         }
         return new Subject(trimmedSubject);
     }

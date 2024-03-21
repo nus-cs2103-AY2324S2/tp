@@ -119,4 +119,8 @@ public class PersonBuilder {
         return new Person(name, phone, email, address, tags, subject, uniqueId);
     }
 
+    public Person buildWithoutId() {
+        return new Person(name, phone, email, address, tags, subject);
+    }
+
 }

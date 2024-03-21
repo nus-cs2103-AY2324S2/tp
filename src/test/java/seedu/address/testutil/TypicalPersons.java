@@ -8,6 +8,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SUBJECT_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SUBJECT_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
@@ -23,11 +25,6 @@ import seedu.address.model.person.Person;
  */
 public class TypicalPersons {
 
-    private static int uniqueIdCounter = 1;
-
-    private static String getNextUniqueId() {
-        return String.format("#%06d", uniqueIdCounter++);
-    }
 
     public static final Person ALICE = new PersonBuilder()
             .withAddress("123, Jurong West Ave 6, #08-111")
@@ -45,7 +42,7 @@ public class TypicalPersons {
             .withEmail(VALID_EMAIL_AMY)
             .withAddress(VALID_ADDRESS_AMY)
             .withTags(VALID_TAG_FRIEND)
-            .withSubject("Computer Science")
+            .withSubject(VALID_SUBJECT_AMY)
             .withUniqueId(getNextUniqueId())
             .build();
 
@@ -65,7 +62,7 @@ public class TypicalPersons {
             .withEmail(VALID_EMAIL_BOB)
             .withAddress(VALID_ADDRESS_BOB)
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
-            .withSubject("Economics")
+            .withSubject(VALID_SUBJECT_BOB)
             .withUniqueId(getNextUniqueId())
             .build();
 
@@ -136,7 +133,13 @@ public class TypicalPersons {
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
+    private static int uniqueIdCounter = 1;
+
     private TypicalPersons() {} // prevents instantiation
+
+    private static String getNextUniqueId() {
+        return String.format("#%06d", uniqueIdCounter++);
+    }
 
     /**
      * Returns an {@code AddressBook} with all the typical persons.
