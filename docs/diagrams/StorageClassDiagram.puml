@@ -22,22 +22,37 @@ Class JsonAdaptedCourseMate
 Class JsonAdaptedSkill
 }
 
+package "GroupList Storage" #F4F6F6{
+Class "<<interface>>\nGroupListStorage" as GroupListStorage
+Class JsonGroupListStorage
+Class JsonSerializableGroupList
+Class JsonAdaptedGroup
+}
+
 }
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Storage
 
-StorageManager .up.|> Storage
-StorageManager -up-> "1" UserPrefsStorage
-StorageManager -up-> "1" ContactListStorage
+StorageManager .right.|> Storage
+StorageManager --> "1" UserPrefsStorage
+StorageManager --> "1" ContactListStorage
+StorageManager --> "1" GroupListStorage
 
 Storage -left-|> UserPrefsStorage
 Storage -right-|> ContactListStorage
+Storage -right-|> GroupListStorage
 
 JsonUserPrefsStorage .up.|> UserPrefsStorage
 JsonContactListStorage .up.|> ContactListStorage
+JsonGroupListStorage .up.|> GroupListStorage
+
 JsonContactListStorage ..> JsonSerializableContactList
 JsonSerializableContactList --> "*" JsonAdaptedCourseMate
 JsonAdaptedCourseMate --> "*" JsonAdaptedSkill
+
+JsonGroupListStorage ..> JsonSerializableGroupList
+JsonSerializableGroupList --> "*" JsonAdaptedGroup
+JsonAdaptedGroup --> "*" JsonAdaptedCourseMate
 
 @enduml
