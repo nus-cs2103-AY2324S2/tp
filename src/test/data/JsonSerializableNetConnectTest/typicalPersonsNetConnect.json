@@ -2,6 +2,7 @@
   "_comment": "NetConnect save file which contains the same Person values as in TypicalPersons#getTypicalNetConnect()",
   "persons": [
     {
+      "id": 1,
       "name": "Alice Pauline",
       "phone": "94351253",
       "email": "alice@example.com",
@@ -11,6 +12,7 @@
       ]
     },
     {
+      "id": 2,
       "name": "Benson Meier",
       "phone": "98765432",
       "email": "johnd@example.com",
@@ -21,6 +23,7 @@
       ]
     },
     {
+      "id": 3,
       "name": "Carl Kurz",
       "phone": "95352563",
       "email": "heinz@example.com",
@@ -28,6 +31,7 @@
       "tags": []
     },
     {
+      "id": 4,
       "name": "Daniel Meier",
       "phone": "87652533",
       "email": "cornelia@example.com",
@@ -37,6 +41,7 @@
       ]
     },
     {
+      "id": 5,
       "name": "Elle Meyer",
       "phone": "9482224",
       "email": "werner@example.com",
@@ -44,6 +49,7 @@
       "tags": []
     },
     {
+      "id": 6,
       "name": "Fiona Kunz",
       "phone": "9482427",
       "email": "lydia@example.com",
@@ -51,6 +57,7 @@
       "tags": []
     },
     {
+      "id": 7,
       "name": "George Best",
       "phone": "9482442",
       "email": "anna@example.com",
