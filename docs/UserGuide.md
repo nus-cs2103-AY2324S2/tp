@@ -316,7 +316,7 @@ Action     | Format, Examples
 **Create group**    |   `create-group GROUP_NAME [-cm COURSEMATE]` <br> e.g., `create-group CS2103T G18 -cm John -cm #2`
 **Delete coursemate**  | `delete COURSEMATE` <br> e.g., `delete John`
 **Delete group**    | `delete-group GROUP_NAME` <br> e.g., `delete-group CS2103T G18`
-**Delete group member**    |   `delete-member GROUP_NAME [-cm COURSEMATE]` <br> e.g., `delete-member -cm Ivan -cm #1`
+**Delete group member**    |   `delete-member GROUP_NAME [-cm COURSEMATE]` <br> e.g., `delete-member CS2103T G18 -cm Ivan -cm #1`
 **Delete skill** | `delete-skill COURSEMATE [-s SKILL]...` <br> e.g., `delete-skill John Doe -s C++ -s Leadership `
 **Edit coursemate**   | `edit COURSEMATE [-n NEW_NAME] [-p NEW_PHONE_NUMBER] [-e NEW_EMAIL]…​`<br> e.g.,`edit John -p 98765432 -e johndoe@gmail.com`
 **Find**   | `find KEYWORD`<br> e.g., `find John`
