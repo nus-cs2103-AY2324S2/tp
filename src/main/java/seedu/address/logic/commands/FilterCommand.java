@@ -7,7 +7,7 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.person.TagContainsKeywordPredicate;
+import seedu.address.model.person.CcaContainsKeywordPredicate;
 
 /**
  * Filters all persons in address book by their tag (case-sensitive).
@@ -17,21 +17,21 @@ public class FilterCommand extends Command {
 
     public static final String COMMAND_WORD = "filter";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters a person by their tag "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters a person by their CCA "
             + "(case-sensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: TAG [MORE TAGs]...\n"
+            + "Parameters: CCA [MORE CCAs]...\n"
             + "Example: " + COMMAND_WORD + " friends";
 
-    private final TagContainsKeywordPredicate tag;
+    private final CcaContainsKeywordPredicate cca;
 
-    public FilterCommand(TagContainsKeywordPredicate tag) {
-        this.tag = tag;
+    public FilterCommand(CcaContainsKeywordPredicate cca) {
+        this.cca = cca;
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredPersonList(tag);
+        model.updateFilteredPersonList(cca);
         return new CommandResult(
                 String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
     }
@@ -48,13 +48,13 @@ public class FilterCommand extends Command {
         }
 
         FilterCommand otherFilterCommand = (FilterCommand) other;
-        return tag.equals(otherFilterCommand.tag);
+        return cca.equals(otherFilterCommand.cca);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("tag", tag)
+                .add("cca", cca)
                 .toString();
     }
 }

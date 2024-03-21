@@ -11,7 +11,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.FilterCommand;
-import seedu.address.model.person.TagContainsKeywordPredicate;
+import seedu.address.model.person.CcaContainsKeywordPredicate;
 
 public class FilterCommandParserTest {
 
@@ -26,11 +26,11 @@ public class FilterCommandParserTest {
     public void parse_validArgs_returnsFilterCommand() {
         // no leading and trailing whitespaces
         FilterCommand expectedFilterCommand =
-                new FilterCommand(new TagContainsKeywordPredicate(Arrays.asList("Alice", "Bob")));
-        assertParseSuccess(parser, "Alice Bob", expectedFilterCommand);
+                new FilterCommand(new CcaContainsKeywordPredicate(Arrays.asList("Alice", "Bob")));
+        assertParseSuccess(parser, "Alice, Bob", expectedFilterCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n Alice \n \t Bob  \t", expectedFilterCommand);
+        assertParseSuccess(parser, " \n Alice, \n \t Bob  \t", expectedFilterCommand);
     }
 
 }

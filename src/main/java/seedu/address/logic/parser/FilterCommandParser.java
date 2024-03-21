@@ -5,10 +5,12 @@ package seedu.address.logic.parser;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import seedu.address.logic.commands.FilterCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.TagContainsKeywordPredicate;
+import seedu.address.model.person.CcaContainsKeywordPredicate;
 
 
 /**
@@ -28,9 +30,10 @@ public class FilterCommandParser implements Parser<FilterCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
         }
 
-        String[] nameKeywords = trimmedArgs.split("\\s+");
+        List<String> nameKeywords = Arrays.stream(trimmedArgs.split(","))
+                .map(String::trim).collect(Collectors.toList());
 
-        return new FilterCommand(new TagContainsKeywordPredicate(Arrays.asList(nameKeywords)));
+        return new FilterCommand(new CcaContainsKeywordPredicate(nameKeywords));
     }
 
 }
