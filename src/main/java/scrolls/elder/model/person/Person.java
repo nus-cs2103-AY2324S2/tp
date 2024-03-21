@@ -26,6 +26,8 @@ public abstract class Person {
     // Data fields
     protected final Address address;
     protected final Set<Tag> tags = new HashSet<>();
+
+    // TODO: MAKE THIS FINAL
     protected Optional<Name> pairedWith;
 
     /**
