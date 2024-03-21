@@ -169,7 +169,7 @@ public class ModelManagerTest {
         assertFalse(HOON.hasAttribute("Name"));
         HOON.setAttribute("Name", "Hoon Meier");
     }
-    
+
     @Test
     public void deleteRelationship_validRelationship_relationshipDeleted() {
         ModelManager modelManager = new ModelManager();

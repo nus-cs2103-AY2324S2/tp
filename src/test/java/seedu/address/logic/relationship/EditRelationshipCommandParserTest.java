@@ -54,7 +54,7 @@ public class EditRelationshipCommandParserTest {
     }
 
     @Test
-    public void parse_invalidInput_wrongFormat_exceptionThrown() {
+    public void parse_invalidInputWrongFormat_exceptionThrown() {
         // Invalid input with wrong format
         String userInput = "invalid input";
 
@@ -64,7 +64,7 @@ public class EditRelationshipCommandParserTest {
     }
 
     @Test
-    public void parse_invalidInput_invalidUuid_exceptionThrown() {
+    public void parse_invalidInputInvalidUuid_exceptionThrown() {
         // Invalid input with invalid UUIDs
         String userInput = "invalid-uuid invalid-uuid oldDescriptor newDescriptor";
 
