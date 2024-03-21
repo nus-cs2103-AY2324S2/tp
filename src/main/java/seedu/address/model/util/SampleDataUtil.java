@@ -45,11 +45,11 @@ public class SampleDataUtil {
     }
 
     public static ReadOnlyNetConnect getSampleNetConnect() {
-        NetConnect sampleAb = new NetConnect();
+        NetConnect sampleNc = new NetConnect();
         for (Person samplePerson : getSamplePersons()) {
-            sampleAb.addPerson(samplePerson);
+            sampleNc.addPerson(samplePerson);
         }
-        return sampleAb;
+        return sampleNc;
     }
 
     /**
