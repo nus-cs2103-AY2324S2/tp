@@ -1,8 +1,13 @@
 package seedu.address.testutil;
 
+import static seedu.address.testutil.TypicalPersons.CHAD;
+import static seedu.address.testutil.TypicalPersons.JAMAL;
+
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -27,6 +32,8 @@ public class PersonBuilder {
     private Address address;
     private Set<Tag> tags;
 
+    private ArrayList<Meeting> meetings;
+
     /**
      * Creates a {@code PersonBuilder} with the default details.
      */
@@ -36,6 +43,7 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
+        meetings = new ArrayList<>();
     }
 
     /**
@@ -86,6 +94,28 @@ public class PersonBuilder {
      */
     public PersonBuilder withEmail(String email) {
         this.email = new Email(email);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Meeting} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withDefaultMeetingA() {
+        this.meetings.add(new MeetingBuilder()
+                .withClient(JAMAL)
+                .withDescription("Financial Aid Document Submission")
+                .withDateTime("05-02-2024 13:00").build());
+        return this;
+    }
+
+    /**
+     * Sets the {@code Meeting} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withDefaultMeetingB() {
+        this.meetings.add(new MeetingBuilder()
+                .withClient(CHAD)
+                .withDescription("Financial Aid Application Review")
+                .withDateTime("01-01-2024 09:00").build());
         return this;
     }
 

@@ -14,6 +14,8 @@ Class UserPrefs
 
 Class UniquePersonList
 Class Person
+Class UniqueMeetingList
+Class Meeting
 Class Address
 Class Email
 Class Name
@@ -42,6 +44,10 @@ Person *--> Phone
 Person *--> Email
 Person *--> Address
 Person *--> "*" Tag
+Person *--> "*" Meeting
+
+AddressBook *--> "1" UniqueMeetingList
+UniqueMeetingList --> "~* all" Meeting
 
 Person -[hidden]up--> I
 UniquePersonList -[hidden]right-> I
@@ -51,4 +57,5 @@ Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
 
 ModelManager --> "~* filtered" Person
+ModelManager --> "~* filtered" Meeting
 @enduml
