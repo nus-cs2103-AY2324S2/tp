@@ -55,7 +55,7 @@ public class IdTest {
         assertEquals(id, id);
 
         // null -> returns false
-        assertNotEquals(null, id);
+        assertFalse(id.equals(null));
 
         // different types -> returns false
         assertFalse(id.equals("hi"));
