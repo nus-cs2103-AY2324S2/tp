@@ -9,6 +9,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddOrderCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.order.Date;
+import seedu.address.model.order.Order;
 
 /**
  * Parses input arguments and creates a new AddOrderCommand object
@@ -40,9 +41,10 @@ public class AddOrderCommandParser implements Parser<AddOrderCommand> {
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_DATE, PREFIX_REMARK);
 
         Date arrivalDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
-
         String remark = argMultimap.getValue(PREFIX_REMARK).get();
 
-        return new AddOrderCommand(index, arrivalDate, remark);
+        Order order = new Order(arrivalDate, remark);
+
+        return new AddOrderCommand(index, order);
     }
 }

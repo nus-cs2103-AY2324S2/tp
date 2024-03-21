@@ -9,7 +9,6 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.order.Date;
 import seedu.address.model.order.Order;
 import seedu.address.model.tag.Tag;
 
@@ -94,11 +93,9 @@ public class Person {
 
     /**
      * Returns an order list
-     * @param arrivalDate the expected date of the order received
-     * @param remark the remark of the order
+     * @param order the order to be added
      */
-    public void addOrder(Date arrivalDate, String remark) {
-        Order order = new Order(arrivalDate, remark);
+    public void addOrder(Order order) {
         orders.add(order);
     }
 
