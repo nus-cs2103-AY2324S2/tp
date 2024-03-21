@@ -203,10 +203,6 @@ public class EditRelationshipCommandTest {
         String targetUuid = "0002";
         String oldRelationshipDescriptor = "friend";
         String newRelationshipDescriptor = "family";
-        Relationship oldRelationship = new Relationship(
-                UUID.fromString("00000000-0000-0000-0000-000000000001"),
-                UUID.fromString("00000000-0000-0000-0000-000000000002"), oldRelationshipDescriptor);
-        model.addRelationship(oldRelationship);
         EditRelationshipCommand editCommand = new EditRelationshipCommand(originUuid, targetUuid,
                 oldRelationshipDescriptor, newRelationshipDescriptor);
 
