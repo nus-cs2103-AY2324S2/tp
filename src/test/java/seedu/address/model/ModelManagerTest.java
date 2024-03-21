@@ -136,7 +136,8 @@ public class ModelManagerTest {
         UserPrefs userPrefs = new UserPrefs();
         ModelManager modelManager = new ModelManager(addressBook, userPrefs);
 
-        String expectedString = String.format("%s, %s, %s", addressBook, userPrefs, modelManager.getFilteredPersonList());
+        String expectedString = String.format("%s, %s, %s", addressBook, userPrefs, modelManager
+                .getFilteredPersonList());
         assertEquals(expectedString, modelManager.toString());
     }
 }
