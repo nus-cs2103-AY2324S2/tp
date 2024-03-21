@@ -6,8 +6,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.model.InternshipModel.PREDICATE_SHOW_ALL_INTERNSHIPS;
@@ -30,6 +30,7 @@ import seedu.address.model.internship.ContactNumber;
 import seedu.address.model.internship.Description;
 import seedu.address.model.internship.Internship;
 import seedu.address.model.internship.Location;
+import seedu.address.model.internship.Remark;
 import seedu.address.model.internship.Role;
 
 /**
@@ -44,15 +45,16 @@ public class InternshipEditCommand extends InternshipCommand {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_COMPANY + "COMPANY] "
-            + "[" + PREFIX_CONTACT_NAME + "CONTACT_NAME] "
-            + "[" + PREFIX_CONTACT_EMAIL + "CONTACT_EMAIL] "
-            + "[" + PREFIX_CONTACT_NUMBER + "CONTACT_NUMBER] "
-            + "[" + PREFIX_LOCATION + "LOCATION] "
-            + "[" + PREFIX_STATUS + "STATUS] "
-            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
-            + "[" + PREFIX_ROLE + "ROLE] "
+            + "[" + PREFIX_CONTACT_NAME + " CONTACT_NAME] "
+            + "[" + PREFIX_CONTACT_EMAIL + " CONTACT_EMAIL] "
+            + "[" + PREFIX_CONTACT_NUMBER + " CONTACT_NUMBER] "
+            + "[" + PREFIX_LOCATION + " LOCATION] "
+            + "[" + PREFIX_STATUS + " STATUS] "
+            + "[" + PREFIX_DESCRIPTION + " DESCRIPTION] "
+            + "[" + PREFIX_ROLE + " ROLE] "
+            + "[" + PREFIX_REMARK + " REMARK] "
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_EMAIL + "nussu@u.nus.edu"
+            + PREFIX_CONTACT_EMAIL + " john@example.com"
             + PREFIX_CONTACT_NUMBER + "9666 1666";
 
     public static final String MESSAGE_EDIT_INTERNSHIP_SUCCESS = "Edited Internship: %1$s";
@@ -120,8 +122,9 @@ public class InternshipEditCommand extends InternshipCommand {
                 .orElse(internshipToEdit.getContactNumber());
         ApplicationStatus updatedApplicationStatus = editInternshipDescriptor.getApplicationStatus()
                 .orElse(internshipToEdit.getApplicationStatus());
+        Remark updatedRemark = editInternshipDescriptor.getRemark().orElse(internshipToEdit.getRemark());
         return new Internship(updatedCompanyName, updatedContactName, updatedContactEmail, updatedContactNumber,
-                updatedLocation, updatedApplicationStatus, updatedDescription, updatedRole);
+                updatedLocation, updatedApplicationStatus, updatedDescription, updatedRole, updatedRemark);
     }
 
     @Override
@@ -162,6 +165,7 @@ public class InternshipEditCommand extends InternshipCommand {
         private ContactEmail contactEmail;
         private ContactNumber contactNumber;
         private ApplicationStatus applicationStatus;
+        private Remark remark;
 
         /**
          * Copy constructor.
@@ -175,6 +179,7 @@ public class InternshipEditCommand extends InternshipCommand {
             setContactEmail(toCopy.contactEmail);
             setContactNumber(toCopy.contactNumber);
             setApplicationStatus(toCopy.applicationStatus);
+            setRemark(toCopy.remark);
         }
 
         public EditInternshipDescriptor() {}
@@ -184,7 +189,7 @@ public class InternshipEditCommand extends InternshipCommand {
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(companyName, location, description, role, contactName,
-                    contactEmail, contactNumber, applicationStatus);
+                    contactEmail, contactNumber, applicationStatus, remark);
         }
         public void setCompanyName(CompanyName companyName) {
             this.companyName = companyName;
@@ -234,6 +239,12 @@ public class InternshipEditCommand extends InternshipCommand {
         public Optional<ApplicationStatus> getApplicationStatus() {
             return Optional.ofNullable(applicationStatus);
         }
+        public void setRemark(Remark remark) {
+            this.remark = remark;
+        }
+        public Optional<Remark> getRemark() {
+            return Optional.ofNullable(remark);
+        }
 
         @Override
         public boolean equals(Object other) {
@@ -254,7 +265,8 @@ public class InternshipEditCommand extends InternshipCommand {
                     && Objects.equals(contactName, otherEditInternshipDescriptor.contactName)
                     && Objects.equals(contactEmail, otherEditInternshipDescriptor.contactEmail)
                     && Objects.equals(contactNumber, otherEditInternshipDescriptor.contactNumber)
-                    && Objects.equals(applicationStatus, otherEditInternshipDescriptor.applicationStatus);
+                    && Objects.equals(applicationStatus, otherEditInternshipDescriptor.applicationStatus)
+                    && Objects.equals(remark, otherEditInternshipDescriptor.remark);
         }
 
         @Override
@@ -268,6 +280,7 @@ public class InternshipEditCommand extends InternshipCommand {
                     .add("Contact Email", contactEmail)
                     .add("Contact Number", contactNumber)
                     .add("Application Status", applicationStatus)
+                    .add("Remark", remark)
                     .toString();
         }
     }

@@ -44,6 +44,8 @@ public class InternshipCommandTestUtil {
     public static final String VALID_CONTACT_NUMBER_BOB = "12345678";
     public static final String VALID_APPLICATION_STATUS_AMY = "Pending";
     public static final String VALID_APPLICATION_STATUS_BOB = "Pending";
+    public static final String VALID_REMARK_AMY = "3 Leetcode questions";
+    public static final String VALID_REMARK_BOB = "Has a behavioural interview";
 
     public static final String COMPANY_NAME_DESC_AMY = " " + PREFIX_COMPANY + VALID_COMPANY_NAME_AMY;
     public static final String COMPANY_NAME_DESC_BOB = " " + PREFIX_COMPANY + VALID_COMPANY_NAME_BOB;

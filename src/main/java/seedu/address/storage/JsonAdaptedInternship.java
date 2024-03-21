@@ -12,6 +12,7 @@ import seedu.address.model.internship.ContactNumber;
 import seedu.address.model.internship.Description;
 import seedu.address.model.internship.Internship;
 import seedu.address.model.internship.Location;
+import seedu.address.model.internship.Remark;
 import seedu.address.model.internship.Role;
 
 /**
@@ -29,9 +30,10 @@ public class JsonAdaptedInternship {
     private final String location;
     private final String description;
     private final String role;
+    private final String remark;
 
     /**
-     * Constructs a {@code JsonAdaptedInternship} with the given person details.
+     * Constructs a {@code JsonAdaptedInternship} with the given internship details.
      */
     @JsonCreator
     public JsonAdaptedInternship(@JsonProperty("companyName") String companyName,
@@ -40,8 +42,9 @@ public class JsonAdaptedInternship {
                                  @JsonProperty("contactNumber") String contactNumber,
                                  @JsonProperty("location") String location,
                                  @JsonProperty("status") String applicationStatus,
-                                    @JsonProperty("description") String description,
-                                 @JsonProperty("role") String role) {
+                                 @JsonProperty("description") String description,
+                                 @JsonProperty("role") String role,
+                                 @JsonProperty("remark") String remark) {
         this.companyName = companyName;
         this.contactName = contactName;
         this.contactEmail = contactEmail;
@@ -50,6 +53,7 @@ public class JsonAdaptedInternship {
         this.location = location;
         this.description = description;
         this.role = role;
+        this.remark = remark;
     }
 
     /**
@@ -64,6 +68,7 @@ public class JsonAdaptedInternship {
         location = source.getLocation().toString();
         description = source.getDescription().description;
         role = source.getRole().role;
+        remark = source.getRemark().value;
     }
 
     /**
@@ -143,8 +148,13 @@ public class JsonAdaptedInternship {
         }
         final Role modelRole = new Role(role);
 
+        if (remark == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Remark.class.getSimpleName()));
+        }
+        final Remark modelRemark = new Remark(remark);
+
         return new Internship(modelCompanyName, modelContactName, modelContactEmail, modelContactNumber,
-                modelLocation, modelApplicationStatus, modelDescription, modelRole);
+                modelLocation, modelApplicationStatus, modelDescription, modelRole, modelRemark);
     }
 
 

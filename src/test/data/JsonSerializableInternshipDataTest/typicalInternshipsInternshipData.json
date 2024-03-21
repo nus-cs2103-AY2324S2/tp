@@ -8,7 +8,8 @@
     "location" : "remote",
     "status" : "ongoing",
     "description" : "Use Figma to design User-friendly web interfaces",
-    "role" : "Frontend Engineer"
+    "role" : "Frontend Engineer",
+    "remark" : ""
   }, {
     "companyName" : "Google",
     "contactName" : "Benson Meier",
@@ -17,7 +18,8 @@
     "location" : "local",
     "status" : "pending",
     "description" : "Write REST APIs for services",
-    "role" : "Backend Engineer"
+    "role" : "Backend Engineer",
+    "remark" : ""
   }, {
     "companyName" : "OpenAI",
     "contactName" : "Carl Kurz",
@@ -26,6 +28,7 @@
     "location" : "overseas",
     "status" : "rejected",
     "description" : "Enter prompts into ChatGPT",
-    "role" : "Prompt Engineer"
+    "role" : "Prompt Engineer",
+    "remark" : ""
   } ]
 }

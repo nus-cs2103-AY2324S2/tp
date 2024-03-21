@@ -33,41 +33,41 @@ public class TypicalInternships {
             .withContactName("Alice Pauline").withContactEmail("alice@example.com").withContactNumber("94351253")
             .withApplicationStatus("ongoing").withLocation("remote")
             .withDescription("Use Figma to design User-friendly web interfaces").withRole("Frontend Engineer")
-            .build();
+            .withRemark("Has a behavioural interview!").build();
 
     public static final Internship BENSON_GOOGLE = new InternshipBuilder().withCompanyName("Google")
             .withContactName("Benson Meier").withContactEmail("benson@example.com").withContactNumber("98765432")
             .withLocation("local").withApplicationStatus("pending").withDescription("Write REST APIs for services")
-            .withRole("Backend Engineer").build();
+            .withRole("Backend Engineer").withRemark("3 Leetcode Hards").build();
 
     public static final Internship CARL_OPENAI = new InternshipBuilder().withCompanyName("OpenAI")
             .withContactName("Carl Kurz").withContactEmail("carl@google.com").withContactNumber("95352563")
             .withLocation("overseas").withApplicationStatus("rejected").withDescription("Enter prompts into ChatGPT")
-            .withRole("Prompt Engineer").build();
+            .withRole("Prompt Engineer").withRemark("System design questions asked").build();
 
     // Manually added
     public static final Internship HOON_APPLE = new InternshipBuilder().withCompanyName("Apple")
             .withContactName("Hoon Meier").withContactEmail("hoon@gmail.com").withContactNumber("8482424")
             .withLocation("local").withApplicationStatus("pending").withDescription("Develop iOS applications")
-            .withRole("iOS Developer").build();
+            .withRole("iOS Developer").withRemark("OA due tomorrow!").build();
 
     public static final Internship IDA_NETFLIX = new InternshipBuilder().withCompanyName("Netflix")
             .withContactName("Ida Mueller").withContactEmail("ida@example.com").withContactNumber("8482131")
             .withLocation("remote").withApplicationStatus("ongoing").withDescription("Write REST APIs for netflix")
-            .withRole("Backend Engineer").build();
+            .withRole("Backend Engineer").withRemark("Has a behavioural interview").build();
 
     // Manually added - Internship details found in {@code InternshipCommandTestUtil}
     public static final Internship AMY = new InternshipBuilder().withCompanyName(VALID_COMPANY_NAME_AMY)
             .withContactName(VALID_CONTACT_NAME_AMY).withContactEmail(VALID_CONTACT_EMAIL_AMY)
             .withContactNumber(VALID_CONTACT_NUMBER_AMY).withLocation(VALID_LOCATION_AMY)
             .withApplicationStatus(VALID_APPLICATION_STATUS_AMY).withDescription(VALID_DESCRIPTION_AMY)
-            .withRole(VALID_ROLE_AMY).build();
+            .withRole(VALID_ROLE_AMY).withRemark("Likes to swim").build();
 
     public static final Internship BOB = new InternshipBuilder().withCompanyName(VALID_COMPANY_NAME_BOB)
             .withContactName(VALID_CONTACT_NAME_BOB).withContactEmail(VALID_CONTACT_EMAIL_BOB)
             .withContactNumber(VALID_CONTACT_NUMBER_BOB).withLocation(VALID_LOCATION_BOB)
             .withApplicationStatus(VALID_APPLICATION_STATUS_BOB).withDescription(VALID_DESCRIPTION_BOB)
-            .withRole(VALID_ROLE_BOB).build();
+            .withRole(VALID_ROLE_BOB).withRemark("Likes bread").build();
 
     private TypicalInternships() {
     } // prevents instantiation
