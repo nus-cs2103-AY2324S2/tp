@@ -22,6 +22,7 @@ public class RoleBasedRelationship extends Relationship {
         roles.put(person1, rolePerson1);
         roles.put(person2, rolePerson2);
     }
+
     @Override
     public String getRoleDescriptor(UUID targetPerson) {
         if (!targetPerson.equals(super.getPerson1()) && !targetPerson.equals(super.getPerson2())) {
