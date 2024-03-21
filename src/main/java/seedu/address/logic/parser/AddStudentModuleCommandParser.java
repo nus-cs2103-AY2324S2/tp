@@ -26,7 +26,10 @@ public class AddStudentModuleCommandParser implements Parser<AddStudentModuleCom
                 ArgumentTokenizer.tokenize(args, PREFIX_STUDENT_ID, PREFIX_MODULE_CODE);
         if (!arePrefixesPresent(argMultimap, PREFIX_STUDENT_ID, PREFIX_MODULE_CODE)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddStudentModuleCommand.MESSAGE_USAGE));
+            throw new ParseException(
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                AddStudentModuleCommand.MESSAGE_USAGE
+            ));
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_STUDENT_ID, PREFIX_MODULE_CODE);

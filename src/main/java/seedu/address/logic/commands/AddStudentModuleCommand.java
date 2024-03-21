@@ -27,7 +27,8 @@ public class AddStudentModuleCommand extends Command {
             + PREFIX_MODULE_CODE + "MODULE CODE";
 
     public static final String MESSAGE_SUCCESS = "New module %1$s added to student: %2$s";
-    public static final String MESSAGE_DUPLICATE_MODULE = "This module already exists in the student's contact in address book";
+    public static final String MESSAGE_DUPLICATE_MODULE =
+            "This module already exists in the student's contact in address book";
 
     private final Index index;
     private final ModuleCode moduleCode;
