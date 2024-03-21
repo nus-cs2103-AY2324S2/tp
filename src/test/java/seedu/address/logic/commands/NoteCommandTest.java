@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
@@ -7,6 +8,8 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBookWithout
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.Messages;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -68,5 +71,12 @@ class NoteCommandTest {
         expectedModel.setPerson(firstPerson, editedPerson);
 
         assertCommandSuccess(noteCommand, model_without_email, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_invalidIndex_failure() {
+        Index invalidIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
+        NoteCommand noteCommand = new NoteCommand(invalidIndex, new Note(NOTE_STUB));
+        assertCommandFailure(noteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 }
