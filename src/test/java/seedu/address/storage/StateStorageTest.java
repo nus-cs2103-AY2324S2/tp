@@ -39,13 +39,13 @@ public class StateStorageTest {
     @Test
     public void getFilePath_successfullyReturned() {
         assertNotNull(StateStorage.getFilePath());
-        assertEquals(StateStorage.getFilePath(),Paths.get( "./data/state.txt"));
+        assertEquals(StateStorage.getFilePath(), Paths.get("./data/state.txt"));
 
     }
 
     @Test
     public void getFilePathString_successfullyReturned() {
-        assertEquals(StateStorage.getFilePathString(), "./data/state.txt" );
+        assertEquals(StateStorage.getFilePathString(), "./data/state.txt");
     }
 
     @Test

@@ -173,7 +173,7 @@ public class UniquePersonListTest {
         uniquePersonList.add(ALICE);
         uniquePersonList.remove(ALICE);
         UniquePersonList expectedUniquePersonList = new UniquePersonList();
-        assertEquals(expectedUniquePersonList, uniquePersonList));
+        assertEquals(expectedUniquePersonList, uniquePersonList);
     }
 
     @Test
@@ -187,7 +187,7 @@ public class UniquePersonListTest {
         UniquePersonList expectedUniquePersonList = new UniquePersonList();
         expectedUniquePersonList.add(BOB);
         uniquePersonList.setPersons(expectedUniquePersonList);
-        assertEquals(expectedUniquePersonList, uniquePersonList));
+        assertEquals(expectedUniquePersonList, uniquePersonList);
     }
 
     @Test
