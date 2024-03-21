@@ -2,53 +2,25 @@
 hide circle
 skinparam classAttributeIconSize 0
 
-Class "  <<interface>>  \nParser" as Parser<FindCommand>
-Class FindCommandParser {
-    +parse(): FindCommand
+interface Parser <TagCommand> <<interface>>
+Class TagCommandParser {
+    +parse(): TagCommand
 }
 Class ParserException
 
-class "  <<interface>>  \nPredicate" as Predicate<Person>
-class IdAndNameContainsQueryIdAndNamePredicate{
-    -String:queryId
-    -String:queryName
-    +test(person: Person): boolean
-    +equals(other: Object): boolean
-    +toString(): String
-}
-class IdContainsQueryIdPredicate{
-    -String:queryId
-    +test(person: Person): boolean
-    +equals(other: Object): boolean
-    +toString(): String
-}
-class NameContainsQueryNamePredicate{
-    -String:queryName
-    +test(person: Person): boolean
-    +equals(other: Object): boolean
-    +toString(): String
-}
 
-class FindCommand{
-    -Predicate<Person>:predicate
+class TagCommand{
+    - personToEditId: Id
+    - tags: Set<Tag>
     +execute(model: Model): CommandResult
 }
 
-class CommandResult
 
-IdAndNameContainsQueryIdAndNamePredicate .up.|> Predicate
-IdContainsQueryIdPredicate .up.|> Predicate
-NameContainsQueryNamePredicate .up.|> Predicate
-
-
-FindCommandParser .up.|> Parser
+TagCommandParser .up.|> Parser
 Parser .right.> ParserException: throws >
-FindCommandParser .right.> ParserException: throws >
+TagCommandParser .right.> ParserException  : throws >
 
-FindCommandParser .down.> FindCommand: initialize >
-FindCommand -right-> Predicate: test >
-
-FindCommand .down.> CommandResult: returns >
+TagCommandParser .down.> TagCommand: initialize >
 
 
 @enduml
