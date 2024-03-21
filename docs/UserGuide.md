@@ -79,9 +79,8 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]... [A/ASSET]...`
 
 `PHONE`
 * Phone number of the contact.
-* Only digits and ‘+’ is allowed.
+* Only digits are allowed.
 * Any number of digits are allowed.
-* ‘+’ is optional and must be the first character.
 
 `ADDRESS`
 * Address of the contact.
@@ -91,7 +90,7 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]... [A/ASSET]...`
 * Contact can be created first without assets, then assets can be added later using the Edit command.
 * Case sensitive, i.e. NUS ≠ nus.
 * Assets must have unique names. If the asset already exists in the database, the existing asset will be linked instead of a new asset.
-* Multiple assets can be specified. For example, a valid option is `--asset asset1 --asset asset2 --asset asset3`.
+* Multiple assets can be specified. For example, a valid option is `A/asset1 A/asset2 A/asset3`.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -145,6 +144,14 @@ Example: `find John` searches all contact names, tags and assets for the keyword
 
 * At least one keyword must be provided.
 * Keywords are case-insensitive.
+
+--------------------------------------------------------------------------------------------------------------------
+
+### Undo last command: `undo`
+
+Undoes the last modifying command.
+
+Format: `undo`
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -203,4 +210,5 @@ Action     | Format      |        Examples
 **Edit contact**   | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]... [A/ASSET]...` | `edit 1 e/newemail@example.com`
 **Edit asset**   | `edita old/OLD_ASSET_NAME new/NEW_ASSET_NAME` | `edita old/hammer new/screwdriver`
 **Find**   | `find KEYWORD [KEYWORD]...` | `find John`
+**Undo**   | `undo` | `undo`
 **Exit**   | `exit` | `exit`
