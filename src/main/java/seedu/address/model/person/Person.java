@@ -67,6 +67,7 @@ public class Person {
     public Set<Policy> getPolicies() {
         return Collections.unmodifiableSet(policies);
     }
+
     /**
      * Adds a policy to the set of policies.
      * @param policy The policy to be added.
@@ -126,17 +127,20 @@ public class Person {
         return Objects.hash(name, phone, email, address, meeting, tags);
     }
 
-    @Override
     public String toString() {
-        return new ToStringBuilder(this)
-                .add("name", name)
-                .add("phone", phone)
-                .add("email", email)
-                .add("address", address)
-                .add("meeting", meeting)
-//                .add("policyName", policyName)
-                .add("tags", tags)
-                .toString();
+        final StringBuilder builder = new StringBuilder();
+        builder.append(getName())
+                .append(" Phone: ")
+                .append(getPhone())
+                .append(" Email: ")
+                .append(getEmail())
+                .append(" Address: ")
+                .append(getAddress())
+                .append(" Remark: ")
+                .append(" Tags: ");
+        getTags().forEach(builder::append);
+        builder.append(" Policies: ");
+        getPolicies().forEach(policy -> builder.append("[").append(policy.policyName).append("]").append(" "));
+        return builder.toString();
     }
-
 }
