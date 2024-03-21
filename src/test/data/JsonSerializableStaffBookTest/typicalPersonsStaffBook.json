@@ -107,6 +107,6 @@
     "faculty" : "Computing",
     "venue" : "underworld avenue",
     "tags" : [ "classmate" ],
-    "availabilities" : [ "FRIDAY" ]
+    "availabilities" : [ "FRIDAY 12:00 14:00" ]
   } ]
 }

@@ -69,7 +69,7 @@ public class TypicalPersons {
 
     public static final Person KAFKA = new PersonBuilder().withName("Kafka Apache").withPhone("9452413")
             .withEmail("apache@example.com").withModule("CS2102").withFaculty("Business")
-            .withVenue("pteruges avenue").withTags("classmate").withAvailabilities("FRIDAY").build();
+            .withVenue("pteruges avenue").withTags("classmate").withAvailabilities("FRIDAY 12:00 14:00").build();
     public static final Person LEONARDO = new PersonBuilder().withName("Leonardo DiCaprio").withPhone("88472234")
             .withEmail("lcaprio@gmail.com").withModule("TS2237")
             .withFaculty("Arts and Social Sciences").withVenue("LT13").build();
@@ -79,7 +79,7 @@ public class TypicalPersons {
     public static final Person NATASHA = new PersonBuilder().withName("Natasha Harrower").withPhone("8019394")
             .withEmail("harrower@example.com").withModule("CS2102")
             .withFaculty("Computing").withVenue("underworld avenue")
-            .withTags("classmate").withAvailabilities("FRIDAY").build();
+            .withTags("classmate").withAvailabilities("FRIDAY 12:00 14:00").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
