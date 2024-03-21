@@ -52,14 +52,15 @@ public class PairCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Person> lastShownVList = model.getFilteredVolunteerList();
+        List<Person> lastShownBList = model.getFilteredBefriendeeList();
 
-        if (index1.getZeroBased() >= lastShownList.size() || index2.getZeroBased() >= lastShownList.size()) {
+        if (index1.getZeroBased() >= lastShownVList.size() || index2.getZeroBased() >= lastShownBList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToPair1 = lastShownList.get(index1.getZeroBased());
-        Person personToPair2 = lastShownList.get(index2.getZeroBased());
+        Person personToPair1 = lastShownVList.get(index1.getZeroBased());
+        Person personToPair2 = lastShownBList.get(index2.getZeroBased());
 
         // Check if the two persons are the same person
         if (personToPair1.isSamePerson(personToPair2)
@@ -82,8 +83,8 @@ public class PairCommand extends Command {
         personToPair1.setPairedWith(Optional.of(personToPair2.getName()));
         personToPair2.setPairedWith(Optional.of(personToPair1.getName()));
 
-        model.setPerson(lastShownList.get(index1.getZeroBased()), personToPair1);
-        model.setPerson(lastShownList.get(index2.getZeroBased()), personToPair2);
+        model.setPerson(lastShownVList.get(index1.getZeroBased()), personToPair1);
+        model.setPerson(lastShownBList.get(index2.getZeroBased()), personToPair2);
         model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(
                 String.format(MESSAGE_PAIR_SUCCESS, Messages.format(personToPair1), Messages.format(personToPair2)));
