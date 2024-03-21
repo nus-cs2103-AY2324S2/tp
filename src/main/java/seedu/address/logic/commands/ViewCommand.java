@@ -43,7 +43,7 @@ public class ViewCommand extends Command {
      * @throws CommandException If an error occurs during command execution.
      */
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+        public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
@@ -52,6 +52,15 @@ public class ViewCommand extends Command {
 
         Person personToView = lastShownList.get(targetIndex.getZeroBased());
         return new CommandResult(String.format(MESSAGE_VIEW_PERSON_SUCCESS, Messages.format(personToView)));
+    }
+
+    /**
+     * Gets targetIndex.
+     *
+     * @return targetIndex
+     */
+    public Index getTargetIndex() {
+        return targetIndex;
     }
 
     /**

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import java.net.URL?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      styleClass="side-panel" alignment="TOP_LEFT" spacing="10">
+    <stylesheets>
+        <URL value="@DarkTheme.css" />
+        <URL value="@Extensions.css" />
+    </stylesheets>
+
+    <!-- Default message label -->
+    <Label fx:id="defaultMessageLabel" text="Select a person to view details" wrapText="true" visible="true" styleClass="cell_big_label"/>
+
+    <!-- Detail labels -->
+    <Label fx:id="nameLabel" visible="false" styleClass="cell_big_label"/>
+    <Label fx:id="classGroupLabel" visible="false" styleClass="cell_small_label"/>
+    <Label fx:id="emailLabel" visible="false" styleClass="cell_small_label"/>
+    <Label fx:id="phoneLabel" visible="false" styleClass="cell_small_label"/>
+    <Label fx:id="telegramLabel" visible="false" styleClass="cell_small_label"/>
+    <Label fx:id="githubLabel" visible="false" styleClass="cell_small_label"/>
+</VBox>
