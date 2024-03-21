@@ -28,4 +28,9 @@ Task *--> Title
 Task *--> Deadline
 Task *--> Person
 Task *--> IsDone
+Task *--> Progress
+
+Department *--> HeadOfDepartment
+
+HeadOfDepartment *--> Person
 @enduml
