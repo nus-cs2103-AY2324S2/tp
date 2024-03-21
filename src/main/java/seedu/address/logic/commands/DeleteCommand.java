@@ -30,7 +30,6 @@ public class DeleteCommand extends Command {
             "The unique ID must be a positive integer and/or zero";
 
     private final int targetUniqueId;
-
     /**
      * Creates a DeleteCommand to delete the person with the specified unique ID.
      */
