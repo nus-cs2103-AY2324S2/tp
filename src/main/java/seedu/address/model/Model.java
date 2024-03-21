@@ -86,9 +86,4 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
-    /**
-     * Adds the given schedule.
-     * {@code schedule} must not already exist in the address book.
-     */
-    void addSchedule(Schedule schedule);
 }

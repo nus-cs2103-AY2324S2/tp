@@ -112,13 +112,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.asUnmodifiableObservableList();
     }
 
-    /**
-     * Adds a schedule to the address book.
-     */
-    public void addSchedule(Schedule s) {
-        schedules.add(s);
-    }
-
     @Override
     public boolean equals(Object other) {
         if (other == this) {

@@ -71,30 +71,7 @@ public class AddSchedCommand extends Command {
 
         ArrayList<Person> addedParticipants = schedule.addParticipants(participants);
 
-        model.addSchedule(schedule);
-        for (Person p: addedParticipants) {
-            model.setPerson(p, editPersonSchedule(p));
-        }
-
         return new CommandResult(generateSuccessMessage());
-    }
-
-    /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
-     */
-    private Person editPersonSchedule(Person personToEdit) {
-        assert personToEdit != null;
-
-        Name name = personToEdit.getName();
-        Phone phone = personToEdit.getPhone();
-        Email email = personToEdit.getEmail();
-        Address address = personToEdit.getAddress();
-        Set<Tag> tags = personToEdit.getTags();
-        AddScheduleToListDescriptor descriptor = new AddScheduleToListDescriptor(personToEdit.getSchedules(),
-                this.schedule);
-        ArrayList<Schedule> updatedSchedules = descriptor.getSchedules();
-        return new Person(name, phone, email, address, tags, updatedSchedules);
     }
 
     @Override
@@ -129,59 +106,6 @@ public class AddSchedCommand extends Command {
     private String generateSuccessMessage() {
         return String.format(MESSAGE_SUCCESS, schedule);
     }
-
-    /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
-     */
-    public static class AddScheduleToListDescriptor {
-        private ArrayList<Schedule> schedules;
-
-        public AddScheduleToListDescriptor() {}
-
-        /**
-         * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
-         */
-        public AddScheduleToListDescriptor(ArrayList<Schedule> oldSchedules, Schedule s) {
-            this.schedules = oldSchedules;
-            addSchedule(s);
-        }
-
-        public void addSchedule(Schedule s) {
-            this.schedules.add(s);
-        }
-
-        /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
-         * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
-         */
-        public ArrayList<Schedule> getSchedules() {
-            return this.schedules;
-        }
-
-        @Override
-        public boolean equals(Object other) {
-            if (other == this) {
-                return true;
-            }
-
-            // instanceof handles nulls
-            if (!(other instanceof EditCommand.EditPersonDescriptor)) {
-                return false;
-            }
-
-            AddScheduleToListDescriptor otherAddScheduleToListDescriptor = (AddScheduleToListDescriptor) other;
-            return Objects.equals(schedules, otherAddScheduleToListDescriptor.schedules);
-        }
-
-        @Override
-        public String toString() {
-            return new ToStringBuilder(this)
-                    .add("schedule", schedules)
-                    .toString();
-        }
-    }
+    
 }
 
