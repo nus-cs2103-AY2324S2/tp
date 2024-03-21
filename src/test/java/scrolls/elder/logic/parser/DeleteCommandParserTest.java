@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import scrolls.elder.logic.Messages;
 import scrolls.elder.logic.commands.DeleteCommand;
+import scrolls.elder.model.person.Role;
 import scrolls.elder.testutil.TypicalIndexes;
 
 /**
@@ -18,11 +19,13 @@ import scrolls.elder.testutil.TypicalIndexes;
  */
 public class DeleteCommandParserTest {
 
+    private static final String ROLE_STRING = "volunteer";
     private DeleteCommandParser parser = new DeleteCommandParser();
 
     @Test
     public void parse_validArgs_returnsDeleteCommand() {
-        assertParseSuccess(parser, "1", new DeleteCommand(TypicalIndexes.INDEX_FIRST_PERSON));
+        assertParseSuccess(parser, "1 r/" + ROLE_STRING,
+                new DeleteCommand(TypicalIndexes.INDEX_FIRST_PERSON, new Role(ROLE_STRING)));
     }
 
     @Test

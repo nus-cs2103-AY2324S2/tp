@@ -4,13 +4,22 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import scrolls.elder.commons.core.index.Index;
 import scrolls.elder.commons.util.ToStringBuilder;
 import scrolls.elder.logic.Messages;
 import scrolls.elder.logic.commands.exceptions.CommandException;
 import scrolls.elder.model.Model;
+import scrolls.elder.model.person.Address;
+import scrolls.elder.model.person.Befriendee;
+import scrolls.elder.model.person.Email;
+import scrolls.elder.model.person.Name;
 import scrolls.elder.model.person.Person;
+import scrolls.elder.model.person.Phone;
+import scrolls.elder.model.person.Role;
+import scrolls.elder.model.person.Volunteer;
+import scrolls.elder.model.tag.Tag;
 
 /**
  * Pairs a volunteer and a befriendee in the address book.
@@ -79,13 +88,18 @@ public class PairCommand extends Command {
             throw new CommandException(MESSAGE_ALREADY_PAIRED);
         }
 
-        // Set the pairedWith attribute of the befriendee and volunteer
-        personToPair1.setPairedWith(Optional.of(personToPair2.getName()));
-        personToPair2.setPairedWith(Optional.of(personToPair1.getName()));
+        Person newPerson1 = createEditedPairedPerson(personToPair1, Optional.of(personToPair2.getName()));
+        Person newPerson2 = createEditedPairedPerson(personToPair2, Optional.of(personToPair1.getName()));
 
-        model.setPerson(lastShownBList.get(index1.getZeroBased()), personToPair1);
-        model.setPerson(lastShownVList.get(index2.getZeroBased()), personToPair2);
+        // TODO: REMOVE DEAD CODE
+        // No longer needed since we are using new Person objects
+        // model.setPerson(lastShownBList.get(index1.getZeroBased()), personToPair1);
+        // model.setPerson(lastShownVList.get(index2.getZeroBased()), personToPair2);
+
+        model.setPerson(personToPair1, newPerson1);
+        model.setPerson(personToPair2, newPerson2);
         model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
+
         return new CommandResult(
                 String.format(MESSAGE_PAIR_SUCCESS, Messages.format(personToPair1), Messages.format(personToPair2)));
     }
@@ -113,4 +127,30 @@ public class PairCommand extends Command {
                 .add("index2", index2)
                 .toString();
     }
+
+
+    /**
+     * Creates and returns a {@code Person} with the details of {@code personToEdit}
+     * edited with {@code editPairedPersonDescriptor}.
+     */
+    private static Person createEditedPairedPerson(Person personToEdit, Optional<Name> updatedPair) {
+        assert personToEdit != null;
+
+        Name updatedName = personToEdit.getName();
+        Phone updatedPhone = personToEdit.getPhone();
+        Email updatedEmail = personToEdit.getEmail();
+        Address updatedAddress = personToEdit.getAddress();
+        Set<Tag> updatedTags = personToEdit.getTags();
+        Role role = personToEdit.getRole();
+
+        Person p;
+        if (role.isVolunteer()) {
+            p = new Volunteer(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedPair);
+        } else {
+            p = new Befriendee(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedPair);
+        }
+        p.setId(personToEdit.getId());
+        return p;
+    }
+
 }

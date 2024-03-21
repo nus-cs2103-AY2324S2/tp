@@ -83,16 +83,16 @@ public class EditCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Role role = editPersonDescriptor.getRole().orElse(personToEdit.getRole());
+        Optional<Name> pairedWith = personToEdit.getPairedWith();
 
         Person p;
         if (role.isVolunteer()) {
-            p = new Volunteer(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+            p = new Volunteer(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, pairedWith);
         } else {
-            p = new Befriendee(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+            p = new Befriendee(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, pairedWith);
         }
         p.setId(personToEdit.getId());
-        p.setPairedWith(personToEdit.getPairedWith());
-        p.setPairedWithID(personToEdit.getPairedWithID());
+//      p.setPairedWithID(personToEdit.getPairedWithID());
         return p;
     }
 
@@ -106,18 +106,17 @@ public class EditCommand extends Command {
         Address updatedAddress = originalPair.getAddress();
         Set<Tag> updatedTags = originalPair.getTags();
         Role role = originalPair.getRole();
+        Optional<Name> updatedPairedWith = Optional.of(editedPerson.getName());
 
         Person p;
         if (role.isVolunteer()) {
-            p = new Volunteer(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+            p = new Volunteer(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedPairedWith);
         } else {
-            p = new Befriendee(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+            p = new Befriendee(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedPairedWith);
         }
 
         p.setId(originalPair.getId());
-        Optional<Name> newPairedWithName = Optional.of(editedPerson.getName());
-        p.setPairedWith(newPairedWithName);
-        p.setPairedWithID(Optional.of(editedPerson.getId()));
+//      p.setPairedWithID(Optional.of(editedPerson.getId()));
         return p;
     }
 

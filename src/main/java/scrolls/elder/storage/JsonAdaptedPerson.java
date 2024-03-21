@@ -142,12 +142,11 @@ class JsonAdaptedPerson {
 
         Person p;
         if (modelRole.isVolunteer()) {
-            p = new Volunteer(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+            p = new Volunteer(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelPairedWith);
         } else {
             assert modelRole.isBefriendee();
-            p = new Befriendee(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+            p = new Befriendee(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelPairedWith);
         }
-        p.setPairedWith(modelPairedWith);
         p.setId(modelId);
 
         return p;

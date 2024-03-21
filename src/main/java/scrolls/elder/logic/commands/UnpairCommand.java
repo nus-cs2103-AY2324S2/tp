@@ -4,13 +4,22 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import scrolls.elder.commons.core.index.Index;
 import scrolls.elder.commons.util.ToStringBuilder;
 import scrolls.elder.logic.Messages;
 import scrolls.elder.logic.commands.exceptions.CommandException;
 import scrolls.elder.model.Model;
+import scrolls.elder.model.person.Address;
+import scrolls.elder.model.person.Befriendee;
+import scrolls.elder.model.person.Email;
+import scrolls.elder.model.person.Name;
 import scrolls.elder.model.person.Person;
+import scrolls.elder.model.person.Phone;
+import scrolls.elder.model.person.Role;
+import scrolls.elder.model.person.Volunteer;
+import scrolls.elder.model.tag.Tag;
 
 /**
  * Unpairs a volunteer and a befriendee who were paired in the address book.
@@ -68,11 +77,18 @@ public class UnpairCommand extends Command {
         }
 
         // Unset the pairedWith attribute of the befriendee and volunteer
-        personToUnpair1.setPairedWith(Optional.empty());
-        personToUnpair2.setPairedWith(Optional.empty());
+        Person newPerson1 = createEditedPairedPerson(personToUnpair1, Optional.empty());
+        Person newPerson2 = createEditedPairedPerson(personToUnpair2, Optional.empty());
+        model.setPerson(personToUnpair1, newPerson1);
+        model.setPerson(personToUnpair2, newPerson2);
 
-        model.setPerson(lastShownBList.get(index1.getZeroBased()), personToUnpair1);
-        model.setPerson(lastShownVList.get(index2.getZeroBased()), personToUnpair2);
+        // TODO: REMOVE DEAD CODE
+        // No longer needed since we are using new Person objects
+        // personToUnpair1.setPairedWith(Optional.empty());
+        // personToUnpair2.setPairedWith(Optional.empty());
+        // model.setPerson(lastShownBList.get(index1.getZeroBased()), personToUnpair1);
+        // model.setPerson(lastShownVList.get(index2.getZeroBased()), personToUnpair2);
+
         model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(
                 String.format(
@@ -101,5 +117,29 @@ public class UnpairCommand extends Command {
                 .add("index1", index1)
                 .add("index2", index2)
                 .toString();
+    }
+
+    /**
+     * Creates and returns a {@code Person} with the details of {@code personToEdit}
+     * edited with {@code editPairedPersonDescriptor}.
+     */
+    private static Person createEditedPairedPerson(Person personToEdit, Optional<Name> updatedPair) {
+        assert personToEdit != null;
+
+        Name updatedName = personToEdit.getName();
+        Phone updatedPhone = personToEdit.getPhone();
+        Email updatedEmail = personToEdit.getEmail();
+        Address updatedAddress = personToEdit.getAddress();
+        Set<Tag> updatedTags = personToEdit.getTags();
+        Role role = personToEdit.getRole();
+
+        Person p;
+        if (role.isVolunteer()) {
+            p = new Volunteer(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedPair);
+        } else {
+            p = new Befriendee(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedPair);
+        }
+        p.setId(personToEdit.getId());
+        return p;
     }
 }

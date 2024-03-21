@@ -134,14 +134,11 @@ public class PersonBuilder {
     public Person build() {
         Person person;
         if (role.isVolunteer()) {
-            person = new Volunteer(name, phone, email, address, tags);
+            person = new Volunteer(name, phone, email, address, tags, pairedWith);
         } else {
-            person = new Befriendee(name, phone, email, address, tags);
+            person = new Befriendee(name, phone, email, address, tags, pairedWith);
         }
         person.setId(id);
-        if (pairedWith.isPresent()) {
-            person.setPairedWith(pairedWith);
-        }
         return person;
     }
 

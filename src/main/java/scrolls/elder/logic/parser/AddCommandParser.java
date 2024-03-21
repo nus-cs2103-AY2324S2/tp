@@ -2,6 +2,7 @@ package scrolls.elder.logic.parser;
 
 import static scrolls.elder.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -67,15 +68,16 @@ public class AddCommandParser implements Parser<AddCommand> {
         Address address = ParserUtil.parseAddress(argMultimap.getValue(CliSyntax.PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(CliSyntax.PREFIX_TAG));
         Role role = ParserUtil.parseRole(argMultimap.getValue(CliSyntax.PREFIX_ROLE).get());
+        Optional<Name> pairedWithNone = Optional.empty();
 
         // temporary solution, delete after merging
         Person person = null;
 
         if (role.isVolunteer()) {
-            person = new Volunteer(name, phone, email, address, tagList);
+            person = new Volunteer(name, phone, email, address, tagList, pairedWithNone);
         } else {
             assert role.isBefriendee();
-            person = new Befriendee(name, phone, email, address, tagList);
+            person = new Befriendee(name, phone, email, address, tagList, pairedWithNone);
         }
 
         return new AddCommand(person);

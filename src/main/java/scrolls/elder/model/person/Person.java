@@ -26,22 +26,23 @@ public abstract class Person {
     // Data fields
     protected final Address address;
     protected final Set<Tag> tags = new HashSet<>();
-    protected Optional<Name> pairedWith;
-    protected Optional<Integer> pairedWithID;
+    protected final Optional<Name> pairedWith;
+    protected final Optional<Integer> pairedWithID;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Role role) {
-        CollectionUtil.requireAllNonNull(name, phone, email, address, tags, role);
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Role role,
+                  Optional<Name> pairedWith, Optional<Integer> pairedWithID) {
+        CollectionUtil.requireAllNonNull(name, phone, email, address, tags, role, pairedWith);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
         this.role = role;
-        this.pairedWith = Optional.empty();
-        this.pairedWithID = Optional.empty();
+        this.pairedWith = pairedWith;
+        this.pairedWithID = pairedWithID;
     }
 
     public int getId() {
@@ -80,15 +81,14 @@ public abstract class Person {
         return pairedWith;
     }
 
-    public void setPairedWith(Optional<Name> pairedWith) {
-        this.pairedWith = pairedWith;
-    }
     public Optional<Integer> getPairedWithID() {
         return pairedWithID;
     }
-    public void setPairedWithID(Optional<Integer> pairedWithID) {
-        this.pairedWithID = pairedWithID;
-    }
+    //TODO remove dead code
+//    public void setPairedWithID(Optional<Integer> pairedWithID) {
+//        this.pairedWithID = pairedWithID;
+//    }
+
     public boolean isPairPresent(Person person) {
         return person.getPairedWith().isPresent();
     }
