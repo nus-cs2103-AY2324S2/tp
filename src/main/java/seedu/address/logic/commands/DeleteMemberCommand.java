@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COURSEMATE;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_GROUPS;
 
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -69,14 +70,17 @@ public class DeleteMemberCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_GROUP_NAME);
         }
 
+        Group modifiedGroup = new Group(toModify.getName(), toModify.asUnmodifiableObservableList());
         try {
             for (CourseMate courseMate: courseMateList) {
-                toModify.remove(courseMate);
+                modifiedGroup.remove(courseMate);
             }
         } catch (CourseMateNotFoundException e) {
             throw new CommandException(MESSAGE_MEMBERS_NOT_IN_GROUP, e);
         }
 
+        model.setGroup(toModify, modifiedGroup);
+        model.updateFilteredGroupList(PREDICATE_SHOW_ALL_GROUPS);
         return new CommandResult(
                 String.format(MESSAGE_SUCCESFULLY_REMOVED, groupName), false, false, true);
     }

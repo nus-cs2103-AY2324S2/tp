@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COURSEMATE;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_GROUPS;
 
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -23,7 +24,6 @@ import seedu.address.model.group.exceptions.GroupNotFoundException;
  */
 public class AddMemberCommand extends Command {
     public static final String COMMAND_WORD = "add-member";
-
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds CourseMates as members to an existing group."
             + "CourseMates can be specified either by name or by the '#' notation.\n"
@@ -70,14 +70,17 @@ public class AddMemberCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_GROUP_NAME);
         }
 
+        Group modifiedGroup = new Group(toModify.getName(), toModify.asUnmodifiableObservableList());
         try {
             for (CourseMate courseMate: courseMateList) {
-                toModify.add(courseMate);
+                modifiedGroup.add(courseMate);
             }
         } catch (DuplicateCourseMateException e) {
             throw new CommandException(MESSAGE_MEMBERS_ALREADY_IN_GROUP);
         }
 
+        model.setGroup(toModify, modifiedGroup);
+        model.updateFilteredGroupList(PREDICATE_SHOW_ALL_GROUPS);
         return new CommandResult(String.format(MESSAGE_SUCCESFULLY_ADDED, groupName),
                 false, false, true);
     }
