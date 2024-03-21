@@ -34,9 +34,11 @@ public class NoteCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 "
             + "note/ Likes to swim.";
 
-    public static final String MESSAGE_ADD_NOTE_SUCCESS = "Successfully added note to client!\n---------------------------------\n%1$s";
+    public static final String MESSAGE_ADD_NOTE_SUCCESS =
+            "Successfully added note to client!\n---------------------------------\n%1$s";
 
-    public static final String MESSAGE_DELETE_NOTE_SUCCESS = "Successfully removed note from client!\n--------------------------------------\n%1$s";
+    public static final String MESSAGE_DELETE_NOTE_SUCCESS =
+            "Successfully removed note from client!\n--------------------------------------\n%1$s";
 
     private final Index index;
     private final Note note;
