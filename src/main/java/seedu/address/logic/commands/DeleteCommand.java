@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.ArrayList;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
@@ -26,6 +27,8 @@ public class DeleteCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_EMPLOYEE_SUCCESS = "Deleted Employee: %1$s";
+    public static final String MESSAGE_DELETE_EMPLOYEE_DUPLICATE = "Multiple employees with the same name found. " +
+            "Please use the unique ID to delete the employee.";
 
     private final Index targetIndex;
     private final String targetName;
@@ -54,6 +57,17 @@ public class DeleteCommand extends Command {
         this.uid = null; // UniqueId is not used in this context
     }
 
+    /**
+     * Constructor for unique id-based deletion
+     *
+     * @param uid unique id of the employee to delete
+     */
+    public DeleteCommand(UniqueId uid) {
+        this.targetIndex = null; // Index is not used in this context
+        this.targetName = null; // Name is not used in this context
+        this.uid = uid;
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -64,6 +78,9 @@ public class DeleteCommand extends Command {
         } else if (targetName != null && !targetName.isEmpty()) {
             // Implement name-based deletion logic
             return deleteByName(model);
+        } else if (uid != null) {
+            // Implement unique id-based deletion logic
+            return deleteByUid(model);
         } else {
             throw new CommandException(Messages.MESSAGE_INVALID_COMMAND_FORMAT);
         }
@@ -97,13 +114,24 @@ public class DeleteCommand extends Command {
      */
     private CommandResult deleteByName(Model model) throws CommandException {
         List<Employee> lastShownList = model.getFilteredEmployeeList();
+        List<Employee> employeesWithTargetName = new ArrayList<>();
+
         for (Employee employee : lastShownList) {
             if (employee.getName().fullName.equalsIgnoreCase(targetName)) {
-                model.deleteEmployee(employee);
-                return new CommandResult(String.format(MESSAGE_DELETE_EMPLOYEE_SUCCESS, Messages.format(employee)));
+                employeesWithTargetName.add(employee);
             }
         }
-        throw new CommandException(Messages.MESSAGE_EMPLOYEE_NOT_FOUND);
+
+        if (employeesWithTargetName.size() > 1) {
+            throw new CommandException("Multiple employees with this name found. Please delete by uid.\n" +
+                    "Format: delete uid/UID_NUMBER\n" + "Example: delete uid/101");
+        } else if (employeesWithTargetName.size() == 1) {
+            model.deleteEmployee(employeesWithTargetName.get(0));
+            return new CommandResult(
+                    String.format(MESSAGE_DELETE_EMPLOYEE_SUCCESS, Messages.format(employeesWithTargetName.get(0))));
+        } else {
+            throw new CommandException(Messages.MESSAGE_EMPLOYEE_NOT_FOUND);
+        }
     }
 
     /**
