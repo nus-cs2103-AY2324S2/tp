@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COURSE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -23,6 +24,7 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Course;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -46,6 +48,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ROLE + "ROLE] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_COURSE + "COURSE] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -103,9 +106,12 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Role updatedRole = editPersonDescriptor.getRole().orElse(personToEdit.getRole());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
+        Course updatedCourse = editPersonDescriptor.getCourse().orElse(personToEdit.getCourse());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedRole, updatedAddress, updatedTags);
+        return new Person(
+            updatedName, updatedPhone, updatedEmail, updatedRole,
+            updatedAddress, updatedCourse, updatedTags);
     }
 
     @Override
@@ -142,6 +148,7 @@ public class EditCommand extends Command {
         private Email email;
         private Role role;
         private Address address;
+        private Course course;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -156,6 +163,7 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setRole(toCopy.role);
             setAddress(toCopy.address);
+            setCourse(toCopy.course);
             setTags(toCopy.tags);
         }
 
@@ -163,7 +171,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, role, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, role, address, course, tags);
         }
 
         public void setName(Name name) {
@@ -214,6 +222,14 @@ public class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
+        public void setCourse(Course course) {
+            this.course = course;
+        }
+
+        public Optional<Course> getCourse() {
+            return Optional.ofNullable(course);
+        }
+
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
@@ -248,6 +264,7 @@ public class EditCommand extends Command {
                     && Objects.equals(email, otherEditPersonDescriptor.email)
                     && Objects.equals(role, otherEditPersonDescriptor.role)
                     && Objects.equals(address, otherEditPersonDescriptor.address)
+                    && Objects.equals(course, otherEditPersonDescriptor.course)
                     && Objects.equals(tags, otherEditPersonDescriptor.tags);
         }
 
@@ -259,6 +276,7 @@ public class EditCommand extends Command {
                     .add("email", email)
                     .add("role", role)
                     .add("address", address)
+                    .add("course", course)
                     .add("tags", tags)
                     .toString();
         }

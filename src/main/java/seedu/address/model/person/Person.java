@@ -21,6 +21,7 @@ public class Person {
     private final Name name;
     private final Optional<Phone> phone;
     private final Email email;
+    private final Course course;
     private final Role role;
 
     // Data fields
@@ -30,13 +31,17 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Optional<Phone> phone, Email email, Role role, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, role, address, tags);
+    public Person(
+            Name name, Optional<Phone> phone, Email email, Role role,
+            Address address, Course course, Set<Tag> tags) {
+
+        requireAllNonNull(name, phone, email, role, address, course, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.role = role;
         this.address = address;
+        this.course = course;
         this.tags.addAll(tags);
     }
 
@@ -58,6 +63,10 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+
+    public Course getCourse() {
+        return course;
     }
 
     /**
@@ -102,13 +111,14 @@ public class Person {
                 && email.equals(otherPerson.email)
                 && role.equals(otherPerson.role)
                 && address.equals(otherPerson.address)
+                && course.equals(otherPerson.course)
                 && tags.equals(otherPerson.tags);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, role, address, tags);
+        return Objects.hash(name, phone, email, role, address, course, tags);
     }
 
     @Override
@@ -119,6 +129,7 @@ public class Person {
                 .add("email", email)
                 .add("role", role)
                 .add("address", address)
+                .add("course", course)
                 .add("tags", tags)
                 .toString();
     }

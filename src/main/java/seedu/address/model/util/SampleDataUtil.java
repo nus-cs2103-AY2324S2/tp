@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Course;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -22,30 +23,24 @@ public class SampleDataUtil {
     public static Person[] getSamplePersons() {
         return new Person[] {
             new Person(new Name("Alex Yeoh"), Optional.of(new Phone("87438807")), new Email("alexyeoh@u.nus.edu"),
-                new Role("STUDENT"),
-                new Address(""),
-                getTagSet("friends")),
+                new Role("STUDENT"), new Address(""), 
+                new Course("CS2103T"), getTagSet("friends")),
             new Person(new Name("Bernice Yu"), Optional.of(new Phone("99272758")), new Email("berniceyu@u.nus.edu"),
-                new Role("STUDENT"),
-                new Address(""),
-                getTagSet("classmates", "friends")),
+                new Role("STUDENT"), new Address(""), 
+                new Course("CS2103"), getTagSet("classmates", "friends")),
             new Person(new Name("Charlotte Oliveiro"), Optional.of(new Phone("93210283")),
                 new Email("charlotte@example.com"),
-                new Role("TA"),
-                new Address("AS7-0622"),
-                getTagSet("tutor")),
+                new Role("TA"), new Address("AS7-0622"),
+                new Course("DSA1101"), getTagSet("tutor")),
             new Person(new Name("David Li"), Optional.of(new Phone("91031282")), new Email("lidavid@u.nus.edu"),
-                new Role("TA"),
-                new Address(""),
-                getTagSet("friends")),
+                new Role("TA"), new Address(""),
+                new Course("MA2001"), getTagSet("friends")),
             new Person(new Name("Irfan Ibrahim"), Optional.of(new Phone("92492021")), new Email("irfan@nus.edu.sg"),
-                new Role("PROFESSOR"),
-                new Address("COM3-0513"),
-                getTagSet("lecturer")),
+                new Role("PROFESSOR"), new Address("COM3-0513"),
+                new Course("EL1101E"), getTagSet("lecturer")),
             new Person(new Name("Roy Balakrishnan"), Optional.of(new Phone("92624417")), new Email("royb@nus.edu.sg"),
-                new Role("PROFESSOR"),
-                new Address("COM1-0203, 13 Computing Drive, NUS"),
-                getTagSet("DepartmentHead"))
+                new Role("PROFESSOR"), new Address("COM1-0203"),
+                new Course("ACC1701X"), getTagSet("DepartmentHead"))
         };
     }
 
