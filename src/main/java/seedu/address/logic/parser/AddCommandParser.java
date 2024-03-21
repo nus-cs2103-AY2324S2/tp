@@ -43,20 +43,21 @@ public class AddCommandParser implements Parser<AddCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddCommand parse(String args) throws ParseException {
-        if (args.equals("\\w+(,\\s+\\w+){2:}")) {
-            args = appendPrefixes(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_YEAR_JOINED);
+        if (args.matches("\\s+[^;].*(?:;\\s+[^;].*){3,}")) {
+            args = appendPrefixes(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
+                    PREFIX_YEAR_JOINED, PREFIX_TAG);
         }
 
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_YEAR_JOINED,
-                        PREFIX_ADDRESS, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
+                        PREFIX_YEAR_JOINED, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL);
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
@@ -64,7 +65,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Person person = new Person(model, name, phone, email, yearJoined, address, tagList);
+        Person person = new Person(model, name, phone, email, address, yearJoined, tagList);
 
         return new AddCommand(person);
     }
@@ -84,11 +85,12 @@ public class AddCommandParser implements Parser<AddCommand> {
      * @return the {@code String} of arguments with the prefixes appended
      */
     private static String appendPrefixes(String args, Prefix... prefixes) {
-        String[] argsArr = args.split(",\\s+");
-        for (int i = 0; i < prefixes.length && i < argsArr.length; i++) {
-            argsArr[i] = prefixes[i] + argsArr[i];
+        StringBuilder result = new StringBuilder();
+        String[] argsArr = args.trim().split(";\\s+");
+        for (int i = 0; i < Math.min(prefixes.length, argsArr.length); i++) {
+            result.append(" ").append(prefixes[i]).append(" ").append(argsArr[i]);
         }
-        return String.join(" ", argsArr);
+        return result.toString();
     }
 
 }
