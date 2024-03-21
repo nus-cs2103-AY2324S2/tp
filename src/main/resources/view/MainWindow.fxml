@@ -42,7 +42,7 @@
                         </Label>
                         <ImageView fitHeight="31.0" fitWidth="45.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../../../../../../../Desktop/book-logo.png" />
+                              <Image url="@../../../../docs/images/book-logo.png" />
                            </image>
                         </ImageView>
                      </children>
@@ -74,6 +74,7 @@
                         <Label text="Feature coming soon..." />
                      </children>
                   </StackPane>
+      
               <VBox fx:id="personList" alignment="CENTER_RIGHT" minWidth="340" prefWidth="340" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
                 <padding>
                   <Insets bottom="10" left="10" right="10" top="10" />
