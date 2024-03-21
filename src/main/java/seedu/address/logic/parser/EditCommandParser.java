@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -17,6 +18,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.grade.Grade;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -32,7 +34,8 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE,
+                        PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_GRADE);
 
         Index index;
 
@@ -59,6 +62,7 @@ public class EditCommandParser implements Parser<EditCommand> {
             editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
+        parseGradesForEdit(argMultimap.getAllValues(PREFIX_GRADE)).ifPresent(editPersonDescriptor::setGrades);
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
@@ -82,4 +86,18 @@ public class EditCommandParser implements Parser<EditCommand> {
         return Optional.of(ParserUtil.parseTags(tagSet));
     }
 
+    /**
+     * Parses {@code Collection<String> grades} into a {@code Set<Grade>} if {@code grades} is non-empty.
+     * If {@code grades} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<Grade>} containing zero grades.
+     */
+    private Optional<Set<Grade>> parseGradesForEdit(Collection<String> grades) throws ParseException {
+        assert grades != null;
+
+        if (grades.isEmpty()) {
+            return Optional.empty();
+        }
+        Collection<String> gradeSet = grades.size() == 1 && grades.contains("") ? Collections.emptySet() : grades;
+        return Optional.of(ParserUtil.parseGrades(gradeSet));
+    }
 }
