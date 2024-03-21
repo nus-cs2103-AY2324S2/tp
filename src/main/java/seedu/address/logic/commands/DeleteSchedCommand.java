@@ -43,11 +43,19 @@ public class DeleteSchedCommand extends Command {
         this.deletedPersonIndexArrayList = new ArrayList<Index>();
     }
 
+    /**
+     * Creates an DeleteCommand to delete the specified {@code Schedule}
+     */
     public DeleteSchedCommand(Index targetIndex, ArrayList<Index> deletedPersonIndexArrayList) {
         this.targetIndex = targetIndex;
         this.deletedPersonIndexArrayList = deletedPersonIndexArrayList;
     }
 
+    /**
+     * Deletes a {@code Schedule}
+     *
+     * @param model model used
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -86,6 +94,13 @@ public class DeleteSchedCommand extends Command {
         model.deleteSchedule(scheduleToDelete, scheduleToDelete.getPersonList());
     }
 
+    /**
+     * Deletes a {@code Schedule} for specific participants
+     *
+     * @param model model used
+     * @param scheduleToDelete the schedule to delete
+     * @param toDeleteParticipants specified participants to delete schedule from
+     */
     private void deleteSchedForSpecificPersons(Model model, Schedule scheduleToDelete,
                                                UniquePersonList toDeleteParticipants) {
         Schedule scheduleToAdd = scheduleToDelete;
