@@ -49,9 +49,7 @@ public class Messages {
                 .append("; Email: ")
                 .append(person.getEmail())
                 .append("; StudentId: ")
-                .append(person.getStudentId())
-                .append("; Attendances: ");
-        person.getAttendances().forEach(builder::append);
+                .append(person.getStudentId());
         return builder.toString();
     }
 
