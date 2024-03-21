@@ -1,8 +1,14 @@
 @startuml
 !include style.puml
-skinparam arrowThickness 1.1
-skinparam arrowColor MODEL_COLOR
-skinparam classBackgroundColor MODEL_COLOR
+skinparam {
+    arrowThickness 1.1
+    arrowColor MODEL_COLOR
+    classBackgroundColor MODEL_COLOR
+    classBorderColor MODEL_COLOR
+    ClassStereotypeFontColor MODEL_COLOR
+    classBorderColor<<hide>> #FFFFFF
+    ClassStereotypeFontColor<<hide>> #FFFFFF
+}
 
 Package Model as ModelPackage <<Rectangle>>{
 Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
@@ -14,6 +20,14 @@ Class UserPrefs
 
 Class UniqueBookingList
 Class UniquePersonList
+together{
+    Class "FilteredList <Person>" as FilteredListPerson
+    Class "FilteredList <Booking>" as FilteredListBooking
+}
+note "Used by UI component for display to user" as N1
+FilteredListPerson .right. N1
+FilteredListBooking .. N1
+
 Class Person
 Class Address
 Class Email
@@ -25,46 +39,42 @@ Class Description
 Class StartTime
 Class EndTime
 
-Class I #FFFFFF
 }
 
-Class HiddenOutside #FFFFFF
+Class HiddenOutside <<hide>> #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
-
-ModelManager .up.|> Model
 Model .right.> ReadOnlyUserPrefs
 Model .left.> ReadOnlyAddressBook
+
+ModelManager .up.|> Model
+AddressBook .up.|> ReadOnlyAddressBook
+UserPrefs .up.|> ReadOnlyUserPrefs
+
 ModelManager -left-> "1" AddressBook
 ModelManager -right-> "1" UserPrefs
-UserPrefs .up.|> ReadOnlyUserPrefs
+
+ModelManager --> "1" FilteredListPerson
+ModelManager --> "1" FilteredListBooking
 
 AddressBook *--> "1" UniquePersonList
 AddressBook *--> "1" UniqueBookingList
 
-UniqueBookingList --> "~* all" Booking
-UniquePersonList --> "~* all" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
+UniqueBookingList --> "~*" Booking
+UniquePersonList --> "~*" Person
+Person *--> "1" Name
+Person *--> "0..1" Phone
+Person *--> "0..1" Email
+Person *--> "0..1" Address
 Person *--> "*" Tag
-
-Person -[hidden]up--> I
-UniquePersonList -[hidden]right-> I
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
+Email -[hidden]right-> Tag
 
-Booking *--> Description
-Booking *--> StartTime
-Booking *--> EndTime
+Booking *-->"1" Description
+Booking *--> "1" StartTime
+Booking *--> "1" EndTime
 
-Booking -[hidden]up--> I
-UniqueBookingList -[hidden]right-> I
-
-ModelManager --> "~* filtered" Person
-ModelManager --> "~* filtered" Booking
 @enduml
