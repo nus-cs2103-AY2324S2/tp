@@ -33,7 +33,8 @@ public class CompanyContainsKeywordsPredicate implements Predicate<Person> {
             return false;
         }
 
-        CompanyContainsKeywordsPredicate otherCompanyContainsKeywordsPredicate = (CompanyContainsKeywordsPredicate) other;
+        CompanyContainsKeywordsPredicate otherCompanyContainsKeywordsPredicate = (CompanyContainsKeywordsPredicate)
+                other;
         return keywords.equals(otherCompanyContainsKeywordsPredicate.keywords);
     }
 
