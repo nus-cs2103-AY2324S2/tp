@@ -35,47 +35,62 @@ public class EditStaffCommandParser implements Parser<EditStaffCommand> {
      */
     public EditStaffCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_FIELD);
 
         Name name;
         String fieldArgs;
 
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_FIELD);
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_FIELD)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditStaffCommand.MESSAGE_USAGE));
         }
 
-        try {
-            name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditStaffCommand.MESSAGE_USAGE), pe);
-        }
-
-        try {
-            fieldArgs = ParserUtil.parseField(argMultimap.getValue(PREFIX_FIELD).get());
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditStaffCommand.MESSAGE_USAGE), pe);
-        }
+        name = mapName(argMultimap);
+        fieldArgs = mapFields(argMultimap);
 
         ArgumentMultimap fieldArgMultimap =
                 ArgumentTokenizer.tokenize(fieldArgs, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
                         PREFIX_EMPLOYMENT, PREFIX_SALARY);
-
         fieldArgMultimap.verifyNoDuplicatePrefixesFor(PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
                 PREFIX_EMPLOYMENT, PREFIX_SALARY);
 
         EditStaffDescriptor editStaffDescriptor = editStaffDescription(fieldArgMultimap);
-
         if (!editStaffDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditStaffCommand.MESSAGE_NOT_EDITED);
         }
 
         Set<Tag> tags = new HashSet<>();
-        Tag tag = new Tag("staff");
-        tags.add(tag);
+        tags.add(new Tag("staff"));
         editStaffDescriptor.setTags(tags);
 
         return new EditStaffCommand(name, editStaffDescriptor);
+    }
+
+    /**
+     * Returns name value using PREFIX.
+     * @param argMultimap Object that contains mapping of prefix to value.
+     * @return Returns object representing name.
+     * @throws ParseException Thrown when command is in invalid format.
+     */
+    public Name mapName(ArgumentMultimap argMultimap) throws ParseException {
+        try {
+            return ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+        } catch (ParseException pe) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditStaffCommand.MESSAGE_USAGE), pe);
+        }
+    }
+
+    /**
+     * Returns field values using PREFIX.
+     * @param argMultimap Object that contains mapping of prefix to value.
+     * @return Returns object representing the respective fields.
+     * @throws ParseException Thrown when command is in invalid format.
+     */
+    public String mapFields(ArgumentMultimap argMultimap) throws ParseException {
+        try {
+            return ParserUtil.parseField(argMultimap.getValue(PREFIX_FIELD).get());
+        } catch (ParseException pe) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditStaffCommand.MESSAGE_USAGE), pe);
+        }
     }
 
     /**

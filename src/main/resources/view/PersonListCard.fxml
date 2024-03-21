@@ -37,6 +37,7 @@
       <Label fx:id="price" styleClass="cell_small_label" text="\$price" managed="false"/>
       <Label fx:id="skill" styleClass="cell_small_label" text="\$skill" managed="false"/>
       <Label fx:id="commission" styleClass="cell_small_label" text="\$commission" managed="false"/>
+      <Label fx:id="note" styleClass="cell_small_label" text="\$note" />
     </VBox>
   </GridPane>
 </HBox>

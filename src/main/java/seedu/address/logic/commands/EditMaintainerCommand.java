@@ -122,7 +122,6 @@ public class EditMaintainerCommand extends Command {
             return true;
         }
 
-        // instanceof handles nulls
         if (!(other instanceof EditMaintainerCommand)) {
             return false;
         }
@@ -248,12 +247,12 @@ public class EditMaintainerCommand extends Command {
                 return true;
             }
 
-            // instanceof handles nulls
             if (!(other instanceof EditMaintainerDescriptor)) {
                 return false;
             }
 
             EditMaintainerDescriptor otherEditMaintainerDescriptor = (EditMaintainerDescriptor) other;
+
             boolean arePhoneEqual = Objects.equals(phone, otherEditMaintainerDescriptor.phone);
             boolean areEmailEqual = Objects.equals(email, otherEditMaintainerDescriptor.email);
             boolean areAddressEqual = Objects.equals(address, otherEditMaintainerDescriptor.address);

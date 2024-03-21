@@ -195,6 +195,23 @@ Examples:
 /search ; description : Food
 ```
 
+### Adding a note : `note`
+
+Adds a note to a specified person from the Pooch Planner.
+
+Format: `/note ; name : [name] ; note : [note message]`
+
+* Adds a note to the contact with the specified `name`. 
+* Note that the specified person must first exist in Pooch Contact Book.
+* The name and note is a compulsory field that is case-insensitive but space-sensitive.
+* Note command can only be done on general persons classes. (eg. not Maintainer, Staff, Supplier)
+
+Examples:
+* `/note ; name : Poochie ; note : meet poochie tonight to get kibble`
+
+  The above command adds the note "meet poochie tonight to get kibble" to 
+  the contact with name **_Poochie_**, provided **_Poochie_** exists as a name of a contact in Pooch Contact Book
+
 ### Exiting the program : `exit`
 
 Exits the program.
