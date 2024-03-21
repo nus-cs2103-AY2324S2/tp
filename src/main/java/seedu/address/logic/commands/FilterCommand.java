@@ -49,19 +49,6 @@ public class FilterCommand extends Command {
 
     }
 
-    public FilterCommand(Role filteredRole) {
-        requireNonNull(filteredRole);
-        this.filteredRole = filteredRole;
-        this.filteredStage = new Stage("");
-    }
-
-    public FilterCommand(Stage filteredStage) {
-        requireNonNull(filteredStage);
-        this.filteredRole = new Role("");
-        this.filteredStage = filteredStage;
-    }
-
-
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
