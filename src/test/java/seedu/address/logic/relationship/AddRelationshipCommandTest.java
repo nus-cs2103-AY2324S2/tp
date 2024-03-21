@@ -85,7 +85,7 @@ class AddRelationshipCommandTest {
         String relationshipDescriptor = "spouse";
         AddRelationshipCommand addRelationshipCommand =
                 new AddRelationshipCommand(testOriginUuid, testTargetUuid, relationshipDescriptor);
-        assertThrows(IllegalArgumentException.class, () -> addRelationshipCommand.execute(model));
+        assertCommandFailure(addRelationshipCommand, model, "Invalid Relationship type");
     }
     @Test
     void testEqualsMethodWithSameArguments() {
