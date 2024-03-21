@@ -34,8 +34,20 @@ public class EditRelationshipCommandTest {
     @Test
     public void execute_invalidOriginUuid_throwsCommandException() {
         Model model = new ModelManager();
-        String originUuid = null; // Invalid UUID format
-        String targetUuid = "1234"; // Valid UUID format
+        String originUuid = null;
+        String targetUuid = "1234";
+        String oldDescriptor = "family";
+        String newDescriptor = "friend";
+        EditRelationshipCommand editCommand = new EditRelationshipCommand(originUuid, targetUuid,
+                oldDescriptor, newDescriptor);
+        assertThrows(CommandException.class, () -> editCommand.execute(model));
+    }
+
+    @Test
+    public void execute_invalidTargetUuid_throwsCommandException() {
+        Model model = new ModelManager();
+        String originUuid = "1234";
+        String targetUuid = null;
         String oldDescriptor = "family";
         String newDescriptor = "friend";
         EditRelationshipCommand editCommand = new EditRelationshipCommand(originUuid, targetUuid,
