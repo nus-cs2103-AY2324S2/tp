@@ -58,6 +58,7 @@ AddFavouriteCommand -> Model : getFilteredPersonList()
 activate Model
 
 Model --> AddFavouriteCommand : lastShownList
+deactivate Model
 
 loop for each index
     AddFavouriteCommand -> Person : addFavourite()
@@ -65,6 +66,12 @@ loop for each index
 
     Person --> AddFavouriteCommand
     deactivate Person
+
+    AddFavouriteCommand -> Model : setPerson(target, editedPerson)
+    activate Model
+
+    Model --> AddFavouriteCommand
+    deactivate Model
 end
 
 deactivate Person
