@@ -24,7 +24,7 @@ public class JsonAdaptedStudentTest {
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
 
-    private static final List<String> VALID_MODULES = new ArrayList<>();
+    private static final List<JsonAdaptedModuleCode> VALID_MODULES = new ArrayList<>();
 
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_PHONE = BENSON.getPhone().toString();
