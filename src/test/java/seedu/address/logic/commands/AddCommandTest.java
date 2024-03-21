@@ -39,6 +39,8 @@ public class AddCommandTest {
 
         CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
 
+        System.out.println(modelStub.personsAdded);
+
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, Messages.format(validPerson)),
                 commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
@@ -125,7 +127,8 @@ public class AddCommandTest {
 
         @Override
         public void setAddressBook(ReadOnlyAddressBook newData) {
-            throw new AssertionError("This method should not be called.");
+            // AddressBook is now reset upon first contact entry.
+            // throw new AssertionError("This method should not be called.");
         }
 
         @Override
