@@ -25,7 +25,7 @@ import seedu.address.model.person.Person;
  */
 public class EditMeetingCommand extends Command {
 
-    public static final String COMMAND_WORD = "edit_meeting";
+    public static final String COMMAND_WORD = "editMeeting";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the meeting identified "
             + "by the index number used in the displayed meeting list. "
@@ -57,7 +57,7 @@ public class EditMeetingCommand extends Command {
      * @param meetingIndex of the meeting in the filtered meeting list to edit
      * @param editPersonDescriptor details to edit the person with
      */
-    public EditMeetingCommand(Index meetingIndex, EditMeetingDescriptor editPersonDescriptor, Index clientIndex) {
+    public EditMeetingCommand(Index clientIndex, EditMeetingDescriptor editPersonDescriptor, Index meetingIndex) {
         requireNonNull(meetingIndex);
         requireNonNull(editPersonDescriptor);
         requireNonNull(clientIndex);
@@ -150,8 +150,9 @@ public class EditMeetingCommand extends Command {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("index", meetingIndex)
+                .add("clientIndex", clientIndex)
                 .add("editMeetingDescriptor", editMeetingDescriptor)
+                .add("meetingIndex", meetingIndex)
                 .toString();
     }
 

@@ -16,8 +16,8 @@ public class CliSyntax {
 
     public static final Prefix PREFIX_CLIENT = new Prefix("c/");
 
-    public static final Prefix PREFIX_CLIENT_INDEX = new Prefix("i/");
+    public static final Prefix PREFIX_CLIENT_INDEX = new Prefix("clientIndex/");
 
-    public static final Prefix PREFIX_MEETING_INDEX = new Prefix("mi/");
+    public static final Prefix PREFIX_MEETING_INDEX = new Prefix("meetingIndex/");
 
 }

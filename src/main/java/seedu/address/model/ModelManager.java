@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -11,6 +12,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 
@@ -43,7 +45,7 @@ public class ModelManager implements Model {
         this(new AddressBook(), new UserPrefs());
     }
 
-    //=========== UserPrefs ==================================================================================
+    // =========== UserPrefs ==================================================================================
 
     @Override
     public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
@@ -78,7 +80,7 @@ public class ModelManager implements Model {
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    // =========== AddressBook ================================================================================
 
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
@@ -114,10 +116,11 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    // =========== Filtered Person List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Person} backed by the
+     * internal list of
      * {@code versionedAddressBook}
      */
     @Override
@@ -159,7 +162,19 @@ public class ModelManager implements Model {
                 && filteredPersons.equals(otherModelManager.filteredPersons);
     }
 
-    //=========== Meetings ================================================================================
+    // =========== Meeting Instance Accessors =============================================================
+    @Override
+    public void deleteAllMeetingsForClient(Index clientIndex) {
+        Person targetClient = filteredPersons.get(clientIndex.getZeroBased());
+        targetClient.setMeetings(new ArrayList<Meeting>());
+    }
+
+    @Override
+    public void deleteSpecificMeetingForClient(Index clientIndex, Index meetingIndex) {
+        Person targetClient = filteredPersons.get(clientIndex.getZeroBased());
+        ArrayList<Meeting> targetClientMeetings = targetClient.getMeetings();
+        targetClientMeetings.remove(meetingIndex.getZeroBased());
+    }
 
     @Override
     public boolean hasMeeting(Meeting meeting) {
@@ -168,20 +183,10 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deleteMeeting(Meeting target) {
-        addressBook.deleteMeeting(target);
-    }
-
-    @Override
-    public void addMeeting(Meeting person) {
-        addressBook.addMeeting(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-    }
-
-    @Override
     public void setMeeting(Meeting target, Meeting editedMeeting) {
         requireAllNonNull(target, editedMeeting);
 
         addressBook.setMeeting(target, editedMeeting);
     }
+
 }
