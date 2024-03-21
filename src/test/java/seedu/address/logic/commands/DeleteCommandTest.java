@@ -18,6 +18,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.employee.Employee;
+import seedu.address.model.employee.UniqueId;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -50,6 +51,46 @@ public class DeleteCommandTest {
     }
 
     @Test
+    public void execute_validNameUnfilteredList_success() {
+        // Prepare the model with a specific employee name
+        Employee employee = model.getFilteredEmployeeList().get(0);
+        String targetName = employee.getName().fullName;
+        DeleteCommand deleteCommand = new DeleteCommand(targetName);
+
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_EMPLOYEE_SUCCESS,
+                Messages.format(employee));
+
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel.deleteEmployee(employee);
+
+        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_invalidNameUnfilteredList_throwsCommandException() {
+        String invalidName = "Invalid Name";
+        DeleteCommand deleteCommand = new DeleteCommand(invalidName);
+
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_EMPLOYEE_NOT_FOUND);
+    }
+
+    @Test
+    public void execute_validUidUnfilteredList_success() {
+        // Prepare the model with a specific employee UID
+        Employee employee = model.getFilteredEmployeeList().get(0);
+        UniqueId uid = employee.getUid();
+        DeleteCommand deleteCommand = new DeleteCommand(uid);
+
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_EMPLOYEE_SUCCESS,
+                Messages.format(employee));
+
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel.deleteEmployee(employee);
+
+        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
     public void execute_validIndexFilteredList_success() {
         showEmployeeAtIndex(model, INDEX_FIRST_EMPLOYEE);
 
@@ -71,7 +112,7 @@ public class DeleteCommandTest {
         showEmployeeAtIndex(model, INDEX_FIRST_EMPLOYEE);
 
         Index outOfBoundIndex = INDEX_SECOND_EMPLOYEE;
-        // ensures that outOfBoundIndex is still in bounds of address book list
+
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getEmployeeList().size());
 
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
