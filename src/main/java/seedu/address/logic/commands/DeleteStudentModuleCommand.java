@@ -58,7 +58,7 @@ public class DeleteStudentModuleCommand extends Command {
             throw new CommandException(MESSAGE_MODULE_NOT_FOUND);
         }
 
-//        model.addModuleToStudent(moduleCode, studentToModify);
+        model.deleteModuleFromStudent(moduleCode, studentToModify);
 
         return new CommandResult(
                 String.format(
