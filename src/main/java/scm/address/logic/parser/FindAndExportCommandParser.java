@@ -29,7 +29,7 @@ public class FindAndExportCommandParser implements Parser<FindAndExportCommand> 
         String tag = argMultimap.getPreamble().trim();
         String name = argMultimap.getValue(PREFIX_NAME).orElse(null);
         String address = argMultimap.getValue(PREFIX_ADDRESS).orElse(null);
-        String filename = argMultimap.getValue(PREFIX_FILENAME).orElse("default_filename.json");
+        String filename = argMultimap.getValue(PREFIX_FILENAME).orElse(FindAndExportCommand.DEFAULT_FILEPATH);
 
         return new FindAndExportCommand(tag, name, address, filename);
     }
