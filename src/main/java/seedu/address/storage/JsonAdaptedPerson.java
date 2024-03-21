@@ -75,12 +75,12 @@ class JsonAdaptedPerson {
         }
         this.remark = remark;
         this.role = role;
-        this.products = products;
-        this.preferences = preferences != null ? preferences : "";
-        this.department = department;
-        this.jobTitle = jobTitle;
-        this.termsOfService = termsOfService;
-        this.skills = skills;
+        this.products = products == null ? new JsonAdaptedProducts(new ArrayList<>()) : products;
+        this.preferences = preferences == null ? "" : preferences;
+        this.department = department == null ? new Department() : department;
+        this.jobTitle = jobTitle == null ? new JobTitle() : jobTitle;
+        this.termsOfService = termsOfService == null ? new TermsOfService() : termsOfService;
+        this.skills = skills == null ? new JsonAdaptedSkills(new HashSet<>()) : skills;
     }
 
     /**
@@ -132,7 +132,9 @@ class JsonAdaptedPerson {
     }
 
     public Person toModelType() throws IllegalValueException {
-        if (role.equals("client")) {
+        if (role == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "role"));
+        } else if (role.equals("client")) {
             return toClientModelType();
         } else if (role.equals("employee")) {
             return toEmployeeModelType();
