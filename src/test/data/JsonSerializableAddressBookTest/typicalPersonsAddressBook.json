@@ -7,6 +7,8 @@
     "address" : "123, Jurong West Ave 6, #08-111",
     "grade": "A",
     "subject": "English",
+    "attendance": "Present",
+    "payment": "Paid",
     "dateTimes": [ ],
     "tags" : [ "friends" ]
   }, {
@@ -16,6 +18,8 @@
     "address" : "311, Clementi Ave 2, #02-25",
     "grade": "A",
     "subject": "English",
+    "attendance": "Present",
+    "payment": "Paid",
     "dateTimes": [ "2024-02-03 1800" ],
     "tags" : [ "owesMoney", "friends" ]
   }, {
@@ -25,6 +29,8 @@
     "address" : "wall street",
     "grade": "A",
     "subject": "English",
+    "attendance": "Present",
+    "payment": "Paid",
     "dateTimes": [ "2024-02-03 1800" ],
     "tags" : [ ]
   }, {
@@ -34,6 +40,8 @@
     "address" : "10th street",
     "grade": "A",
     "subject": "English",
+    "attendance": "Present",
+    "payment": "Paid",
     "dateTimes": [ "2024-02-03 1800" ],
     "tags" : [ "friends" ]
   }, {
@@ -43,6 +51,8 @@
     "address" : "michegan ave",
     "grade": "A",
     "subject": "English",
+    "attendance": "Present",
+    "payment": "Paid",
     "dateTimes": [ "2024-02-03 1800" ],
     "tags" : [ ]
   }, {
@@ -52,6 +62,8 @@
     "address" : "little tokyo",
     "grade": "A",
     "subject": "English",
+    "attendance": "Present",
+    "payment": "Paid",
     "dateTimes": [ "2024-02-03 1800" ],
     "tags" : [ ]
   }, {
@@ -61,6 +73,8 @@
     "address" : "4th street",
     "grade": "A",
     "subject": "English",
+    "attendance": "Present",
+    "payment": "Paid",
     "dateTimes": [ "2024-02-03 1800" ],
     "tags" : [ ]
   } ]
