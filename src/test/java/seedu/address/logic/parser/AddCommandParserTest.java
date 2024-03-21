@@ -223,4 +223,18 @@ public class AddCommandParserTest {
                         + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
+
+    @Test
+    public void parse_duplicatePrefixes_failure() {
+        assertParseFailure(parser, COMPANY_NAME_DESC_AMY + COMPANY_NAME_DESC_BOB + NAME_DESC_BOB + PHONE_DESC_BOB
+                + EMAIL_DESC_BOB + ADDRESS_DESC_BOB, Messages.getErrorMessageForDuplicatePrefixes(PREFIX_COMPANY_NAME));
+
+    }
+
+    @Test
+    public void parse_nonEmptyPreamble_failure() {
+        assertParseFailure(parser, PREAMBLE_NON_EMPTY + COMPANY_NAME_DESC_BOB + NAME_DESC_BOB + PHONE_DESC_BOB
+                + EMAIL_DESC_BOB + ADDRESS_DESC_BOB, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                AddCommand.MESSAGE_USAGE));
+    }
 }
