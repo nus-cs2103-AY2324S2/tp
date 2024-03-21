@@ -48,10 +48,18 @@ public class CompanyCard extends UiPart<Region> {
         this.company = company;
         id.setText(displayedIndex + ". ");
         name.setText(company.getName().fullName);
-        phone.setText(company.getPhone().value);
+        setPhone();
         email.setText(company.getEmail().value);
         company.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+    }
+
+    public void setPhone() {
+        if (company.getPhone().value.equals("000")) {
+            phone.setText("no number");
+        } else {
+            phone.setText(company.getPhone().value);
+        }
     }
 }

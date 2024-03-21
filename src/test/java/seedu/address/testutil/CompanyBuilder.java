@@ -71,6 +71,11 @@ public class CompanyBuilder {
         return this;
     }
 
+    public CompanyBuilder withPhone() {
+        this.phone = new Phone();
+        return this;
+    }
+
     /**
      * Sets the {@code Email} of the {@code Person} that we are building.
      */
