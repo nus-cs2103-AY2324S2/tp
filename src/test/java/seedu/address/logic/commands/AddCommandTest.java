@@ -168,7 +168,7 @@ public class AddCommandTest {
         // Function needs to be called in order to generate new person model
         @Override
         public String getNextUniqueId() {
-            return String.format("%06d", 1); 
+            return String.format("%06d", 1);
         }
 
         @Override
