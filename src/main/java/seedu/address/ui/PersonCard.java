@@ -35,9 +35,15 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label phone;
     @FXML
+    private Label email;
+    @FXML
+    private Label year;
+    @FXML
     private Label major;
     @FXML
-    private Label email;
+    private Label telegram;
+    @FXML
+    private Label remark;
     @FXML
     private FlowPane groups;
 
@@ -50,8 +56,11 @@ public class PersonCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
-        major.setText(person.getMajor().value);
         email.setText(person.getEmail().value);
+        year.setText("Year " + person.getYear().value);
+        major.setText(person.getMajor().value);
+        telegram.setText("@" + person.getTelegram().value);
+        remark.setText(person.getRemark().value);
         person.getGroups().stream()
                 .sorted(Comparator.comparing(group -> group.groupName))
                 .forEach(group -> groups.getChildren().add(new Label(group.groupName)));
