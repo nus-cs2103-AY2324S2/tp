@@ -2,12 +2,10 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.Collections;
 import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.UniqueStudentList;

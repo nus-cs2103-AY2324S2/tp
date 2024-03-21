@@ -3,7 +3,6 @@ package seedu.address.model.student;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.tag.Tag;
 
@@ -121,8 +120,12 @@ public class Student {
         return Objects.hash(name, phone, email, address, tags, modules);
     }
 
+    /**
+     * Returns a shallow copy of a student instance.
+     * @return a shallow copy of a student instance
+     */
     public Student copy() {
-        Student s1 = new Student(
+        return new Student(
                 this.name,
                 this.phone,
                 this.email,
@@ -130,7 +133,6 @@ public class Student {
                 this.tags,
                 this.modules
         );
-        return s1;
     }
 
     @Override
