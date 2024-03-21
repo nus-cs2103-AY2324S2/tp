@@ -34,6 +34,11 @@ public class AddCommandTest {
     }
 
     @Test
+    public void execute_nullModel_throwsNullPointerException() {
+        AddCommand addCommand = new AddCommand(new HashMap<>());
+        assertThrows(NullPointerException.class, () -> addCommand.execute(null));
+    }
+    @Test
     public void execute_personAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
         Person validPerson = new Person(new Attribute[0]);
