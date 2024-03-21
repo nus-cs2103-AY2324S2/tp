@@ -101,6 +101,7 @@ Now that you know the basic workflow, go ahead and try it out for yourself. If y
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.
+
   e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 * Items with `...` after them can be used multiple times. If the item is also in square brackets, it can even be used zero times.
@@ -117,6 +118,12 @@ Now that you know the basic workflow, go ahead and try it out for yourself. If y
 ## [3.1. Managing Contacts](#3-features)
 
 ### [3.1.1. Adding a person: `add`](#31-managing-contacts)
+
+Shows a message explaining how to access the help page.
+
+Format: `help`
+
+### Adding a person: `add`
 
 Adds a person to the address book.
 
@@ -157,7 +164,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...`
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, ...
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
+* When editing tags, the existing tags of the person will be removed i.e. adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `t/` without
   specifying any tags after it.
 
@@ -171,7 +178,7 @@ Finds persons whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
+* The search is case-insensitive. e.g. `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
@@ -257,11 +264,6 @@ Format: `find -a KEYWORD [MORE_KEYWORDS]`
 
 Examples:
 * `find -a Monkey King` returns two articles: `Monkey breaking window of NTU student’s hall after being aggravated` and `King Charles’ health crisis: the future of Britain becomes uncertain`
-
-
-* `find -a King` returns two articles: `King Charles’ health crisis: the future of Britain becomes uncertain` and `The king of the Jungle now reigns supreme in the state of Ohio`
-
-
 
 ## [3.3. Other Commands](#3-features)
 

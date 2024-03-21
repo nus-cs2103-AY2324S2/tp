@@ -31,7 +31,6 @@ public class StorageManager implements Storage {
         this.addressBookStorage = addressBookStorage;
         this.articleBookStorage = articleBookStorage;
         this.userPrefsStorage = userPrefsStorage;
-        this.articleBookStorage = articleBookStorage;
     }
 
     // ================ UserPrefs methods ==============================

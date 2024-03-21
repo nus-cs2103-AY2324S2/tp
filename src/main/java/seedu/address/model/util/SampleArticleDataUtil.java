@@ -14,8 +14,8 @@ public class SampleArticleDataUtil {
 
     public static Article[] getSampleArticles() {
         return new Article[]{
-            new Article("", new String[] {"Alice", "Bob"}, LocalDateTime.now(),
-                    new String[] {"NUS Computing Club"}, "Student Life", Status.PUBLISHED)
+            new Article("The epitome of pain and suffering by NUS CS students.", new String[] {"Alice", "Bob"},
+                    LocalDateTime.now(), new String[] {"NUS Computing Club"}, "Student Life", Status.PUBLISHED)
         };
     }
 
