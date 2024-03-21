@@ -5,7 +5,6 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.time.LocalDate;
 
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
 
 /**
  * Represents a Task of Project
@@ -16,7 +15,7 @@ public class Task {
     // Identity fields
     private final Name taskName;
 
-    private Person person;
+    private Member member;
 
     private boolean status;
     private Integer progressCounter = 0;
@@ -37,10 +36,10 @@ public class Task {
 
     /**
      * Assigns a Person to the task
-     * @param person the person assigned to the task
+     * @param member the person assigned to the task
      */
-    public void assignPerson(Person person) {
-        this.person = person;
+    public void assignPerson(Member member) {
+        this.member = member;
     }
 
     /**
@@ -114,5 +113,9 @@ public class Task {
         return taskName.equals(other.taskName);
     }
 
+    @Override
+    public String toString() {
+        return taskName.toString();
+    }
 
 }
