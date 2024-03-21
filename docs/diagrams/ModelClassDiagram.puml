@@ -14,14 +14,14 @@ Class ModelManager
 Class UserPrefs
 Class GroupList
 
-Class uniqueCourseMateList
+Class UniqueCourseMateList
 Class CourseMate
 Class Email
 Class Name
 Class Phone
 Class Skill
 
-Class uniqueGroupList
+Class UniqueGroupList
 Class Group
 
 Class I #FFFFFF
@@ -42,20 +42,20 @@ ModelManager -right-> "1" GroupList
 UserPrefs .up.|> ReadOnlyUserPrefs
 GroupList .up.|> ReadOnlyGroupList
 
-ContactList *--> "1" uniqueCourseMateList
-uniqueCourseMateList --> "~* all" CourseMate
+ContactList *--> "1" UniqueCourseMateList
+UniqueCourseMateList --> "~* all" CourseMate
 CourseMate *--> Name
 CourseMate *--> Phone
 CourseMate *--> Email
 CourseMate *--> "*" Skill
 
-GroupList *--> "1" uniqueGroupList
-uniqueGroupList --> "* all" Group
-Group --|> uniqueCourseMateList
+GroupList *--> "1" UniqueGroupList
+UniqueGroupList --> "* all" Group
+Group --|> UniqueCourseMateList
 Group *--> Name
 
 CourseMate -[hidden]up--> I
-uniqueCourseMateList -[hidden]right-> I
+UniqueCourseMateList -[hidden]right-> I
 
 Name -[hidden]right-> Phone
 ModelManager --> "~* filtered" CourseMate
