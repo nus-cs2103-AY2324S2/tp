@@ -36,6 +36,29 @@ public class EditCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
+    public void constructor_nullIndex_throwsNullPointerException() {
+        EditPersonDescriptor descriptor = new EditPersonDescriptor();
+        try {
+            new EditCommand(null, descriptor);
+        } catch (Exception e) {
+            assertTrue(e instanceof NullPointerException);
+        }
+    }
+    @Test
+    public void constructor_nullDescriptor_throwsNullPointerException() {
+        Index index = Index.fromOneBased(1);
+        try {
+            new EditCommand(index, null);
+        } catch (Exception e) {
+            assertTrue(e instanceof NullPointerException);
+        }
+    }
+    @Test void constructor_validIndexAndDescriptor_success() {
+        Index index = Index.fromOneBased(1);
+        EditPersonDescriptor descriptor = new EditPersonDescriptor();
+        new EditCommand(index, descriptor);
+    }
+    @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
         Person editedPerson = new PersonBuilder().build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedPerson).build();
