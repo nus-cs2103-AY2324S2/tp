@@ -6,7 +6,6 @@ import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataLoadingException;
 import seedu.address.commons.util.JsonUtil;
-import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 
 /**
@@ -16,6 +15,7 @@ public class JsonUserPrefsStorage implements UserPrefsStorage {
 
     private Path filePath;
 
+    // Constructor
     public JsonUserPrefsStorage(Path filePath) {
         this.filePath = filePath;
     }
@@ -40,7 +40,7 @@ public class JsonUserPrefsStorage implements UserPrefsStorage {
     }
 
     @Override
-    public void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException {
+    public void saveUserPrefs(UserPrefs userPrefs) throws IOException {
         JsonUtil.saveJsonFile(userPrefs, filePath);
     }
 
