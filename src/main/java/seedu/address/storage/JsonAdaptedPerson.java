@@ -127,7 +127,7 @@ class JsonAdaptedPerson {
                     MISSING_FIELD_MESSAGE_FORMAT, Efficiency.class.getSimpleName()));
         }
         if (!Efficiency.isValidEfficiency(efficiency)) {
-            throw new IllegalValueException(Department.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Efficiency.MESSAGE_CONSTRAINTS);
         }
         final Efficiency modelEfficiency = new Efficiency(efficiency);
 
