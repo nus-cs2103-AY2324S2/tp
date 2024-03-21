@@ -4,9 +4,13 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Description;
+import seedu.address.model.person.Person;
+
+import java.util.List;
 
 
 public class AddDescriptionCommand extends Command {
@@ -17,8 +21,8 @@ public class AddDescriptionCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_DESCRIPTION + "DESCRIPTION";
 
-    public static final String MESSAGE_SUCCESS = "New description added: %1$s";
-    public static final String MESSAGE_MISSING = "Description not added yet";
+    public static final String MESSAGE_ADD_SUCCESS = "New description added to Person: %1$s";
+    public static final String MESSAGE_DELETE_SUCCESS = "Description removed from Person: %1$s";
 
     public static final String MESSAGE_ARGUMENTS = "Index: %1$d, Description: %2$s";
 
@@ -36,7 +40,21 @@ public class AddDescriptionCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        return new CommandResult(String.format(MESSAGE_ARGUMENTS, index.getOneBased(), description));
+        List<Person> lastShownList = model.getFilteredPersonList();
+
+        if (index.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        }
+
+        Person personToEdit = lastShownList.get(index.getZeroBased());
+        Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
+                personToEdit.getStudentId(), personToEdit.getAttendances(), description);
+
+        model.setPerson(personToEdit, editedPerson);
+        model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
+
+        return new CommandResult(String.format(!description.value.isEmpty() ? MESSAGE_ADD_SUCCESS : MESSAGE_DELETE_SUCCESS,
+                personToEdit));
     }
 
     @Override

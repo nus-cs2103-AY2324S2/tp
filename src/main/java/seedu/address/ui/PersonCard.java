@@ -57,5 +57,6 @@ public class PersonCard extends UiPart<Region> {
         person.getAttendances().stream()
                 .sorted(Comparator.comparing(attendance -> attendance.attendanceName))
                 .forEach(tag -> attendance.getChildren().add(new Label(tag.attendanceName)));
+        description.setText(person.getDescription().value);
     }
 }
