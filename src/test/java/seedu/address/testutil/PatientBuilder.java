@@ -28,7 +28,7 @@ public class PatientBuilder {
     private Sex sex;
 
     /**
-     * Creates a {@code PersonBuilder} with the default details.
+     * Creates a {@code PatientBuilder} with the default details.
      */
     public PatientBuilder() {
         name = new Name(DEFAULT_NAME);
@@ -40,7 +40,7 @@ public class PatientBuilder {
     }
 
     /**
-     * Initializes the PersonBuilder with the data of {@code patientToCopy}.
+     * Initializes the PatientBuilder with the data of {@code patientToCopy}.
      */
     public PatientBuilder(Patient patientToCopy) {
         name = patientToCopy.getName();

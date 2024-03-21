@@ -17,9 +17,9 @@ public class DateOfBirth {
             "Date of birth should only contain numeric values in dd/MM/yyyy or yyyy-MM-dd format, and it should not "
                     + "be left blank";
 
-    public static final DateTimeFormatter inputFormat1 = DateTimeFormatter.ofPattern("d/M/yyyy");
-    public static final DateTimeFormatter inputFormat2 = DateTimeFormatter.ofPattern("yyyy-M-d");
-    public static final DateTimeFormatter outputFormat = DateTimeFormatter.ofPattern("yyyy-M-d");
+    public static final DateTimeFormatter INPUTFORMAT1 = DateTimeFormatter.ofPattern("d/M/yyyy");
+    public static final DateTimeFormatter INPUTFORMAT2 = DateTimeFormatter.ofPattern("yyyy-M-d");
+    public static final DateTimeFormatter OUTPUTFORMAT = DateTimeFormatter.ofPattern("yyyy-M-d");
     public final LocalDate dateOfBirth;
 
     /**
@@ -66,12 +66,12 @@ public class DateOfBirth {
      */
     private static DateTimeFormatter determineInputFormat(String dateOfBirth) {
         boolean isInputFromat1 = dateOfBirth.split("/").length > 1;
-        return isInputFromat1 ? inputFormat1 : inputFormat2;
+        return isInputFromat1 ? INPUTFORMAT1 : INPUTFORMAT2;
     }
 
     @Override
     public String toString() {
-        return dateOfBirth.format(outputFormat);
+        return dateOfBirth.format(OUTPUTFORMAT);
     }
 
     @Override
