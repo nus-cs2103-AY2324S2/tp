@@ -4,7 +4,7 @@
     "phone": "9482424",
     "email": "hans@example.com",
     "address": "4th street",
-    "image" : "/default_image.png"
+    "image" : "/images/default_image.png"
   } ],
   "bookings" : [ {
     "description" : "First booking",
