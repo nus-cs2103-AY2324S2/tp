@@ -1,7 +1,7 @@
 package seedu.address.storage;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.TypicalPersons.getTypicalNetConnect;
 
 import java.nio.file.Path;
@@ -46,7 +46,7 @@ public class StorageManagerTest {
         original.setGuiSettings(new GuiSettings(300, 600, 4, 6));
         storageManager.saveUserPrefs(original);
         UserPrefs retrieved = storageManager.readUserPrefs().get();
-        assertEquals(original, retrieved);
+        assertTrue(original.equals(retrieved));
     }
 
     @Test
@@ -61,7 +61,7 @@ public class StorageManagerTest {
         NetConnect original = getTypicalNetConnect();
         storageManager.saveNetConnect(original);
         ReadOnlyNetConnect retrieved = storageManager.readNetConnect().get();
-        assertEquals(original, new NetConnect(retrieved));
+        assertTrue(original.equals(new NetConnect(retrieved)));
     }
 
     @Test

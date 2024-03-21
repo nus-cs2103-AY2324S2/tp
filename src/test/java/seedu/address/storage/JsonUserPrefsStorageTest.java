@@ -1,7 +1,7 @@
 package seedu.address.storage;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.io.IOException;
@@ -53,13 +53,13 @@ public class JsonUserPrefsStorageTest {
     public void readUserPrefs_fileInOrder_successfullyRead() throws DataLoadingException {
         UserPrefs expected = getTypicalUserPrefs();
         UserPrefs actual = readUserPrefs("TypicalUserPref.json").get();
-        assertEquals(expected, actual);
+        assertTrue(expected.equals(actual));
     }
 
     @Test
     public void readUserPrefs_valuesMissingFromFile_defaultValuesUsed() throws DataLoadingException {
         UserPrefs actual = readUserPrefs("EmptyUserPrefs.json").get();
-        assertEquals(new UserPrefs(), actual);
+        assertTrue(actual.equals(new UserPrefs()));
     }
 
     @Test
@@ -67,7 +67,7 @@ public class JsonUserPrefsStorageTest {
         UserPrefs expected = getTypicalUserPrefs();
         UserPrefs actual = readUserPrefs("ExtraValuesUserPref.json").get();
 
-        assertEquals(expected, actual);
+        assertTrue(expected.equals(actual));
     }
 
     private UserPrefs getTypicalUserPrefs() {
@@ -112,13 +112,13 @@ public class JsonUserPrefsStorageTest {
         // Try writing when the file doesn't exist
         jsonUserPrefsStorage.saveUserPrefs(original);
         UserPrefs readBack = jsonUserPrefsStorage.readUserPrefs().get();
-        assertEquals(original, readBack);
+        assertTrue(original.equals(readBack));
 
         // Try saving when the file exists
         original.setGuiSettings(new GuiSettings(5, 5, 5, 5));
         jsonUserPrefsStorage.saveUserPrefs(original);
         readBack = jsonUserPrefsStorage.readUserPrefs().get();
-        assertEquals(original, readBack);
+        assertTrue(original.equals(readBack));
     }
 
 }

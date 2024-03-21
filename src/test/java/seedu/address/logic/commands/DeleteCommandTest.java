@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -92,20 +91,20 @@ public class DeleteCommandTest {
         DeleteCommand deleteSecondCommand = new DeleteCommand(ID_SECOND_PERSON);
 
         // same object -> returns true
-        assertEquals(deleteFirstCommand, deleteFirstCommand);
+        assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
         DeleteCommand deleteFirstCommandCopy = new DeleteCommand(ID_FIRST_PERSON);
-        assertEquals(deleteFirstCommand, deleteFirstCommandCopy);
+        assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false
-        assertNotEquals(1, deleteFirstCommand);
+        assertFalse(deleteFirstCommand.equals(1));
 
         // null -> returns false
-        assertNotEquals(null, deleteFirstCommand);
+        assertFalse(deleteFirstCommand.equals(null));
 
         // different person -> returns false
-        assertNotEquals(deleteFirstCommand, deleteSecondCommand);
+        assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
     }
 
     @Test
@@ -114,7 +113,7 @@ public class DeleteCommandTest {
         Id targetId = ID_FIRST_PERSON;
         DeleteCommand deleteCommand = new DeleteCommand(targetId);
         String expected = DeleteCommand.class.getCanonicalName() + "{targetId=" + targetId + "}";
-        assertEquals(expected, deleteCommand.toString());
+        assertTrue(expected.equals(deleteCommand.toString()));
     }
 
     /**

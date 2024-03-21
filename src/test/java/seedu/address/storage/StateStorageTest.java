@@ -1,7 +1,8 @@
 package seedu.address.storage;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.storage.StateStorage.clearState;
 import static seedu.address.storage.StateStorage.deleteStateStorage;
 import static seedu.address.storage.StateStorage.getLastCommand;
@@ -39,18 +40,18 @@ public class StateStorageTest {
     @Test
     public void getFilePath_successfullyReturned() {
         assertNotNull(StateStorage.getFilePath());
-        assertEquals(Paths.get("./data/state.txt"), StateStorage.getFilePath());
+        assertTrue(StateStorage.getFilePath().equals(Paths.get("./data/state.txt")));
 
     }
 
     @Test
     public void getFilePathString_successfullyReturned() {
-        assertEquals("./data/state.txt", StateStorage.getFilePathString());
+        assertTrue(StateStorage.getFilePathString().equals("./data/state.txt"));
     }
 
     @Test
     public void getDirectoryPath_successfullyReturned() {
-        assertEquals(Paths.get("./data"), StateStorage.getDirectoryPath());
+        assertTrue(StateStorage.getDirectoryPath().equals(Paths.get("./data")));
     }
 
 
@@ -59,7 +60,7 @@ public class StateStorageTest {
         clearState();
         String expected = "";
         String actual = loadState();
-        assertEquals(expected, actual);
+        assertTrue(actual.equals(expected));
     }
 
     @Test
@@ -67,7 +68,7 @@ public class StateStorageTest {
         clearState();
         String expected = "";
         String actual = getLastCommand();
-        assertEquals(expected, actual);
+        assertTrue(actual.equals(expected));
     }
 
     @Test
@@ -75,7 +76,7 @@ public class StateStorageTest {
         String expected = "test123abc cba321tset";
         writeState(expected);
         String actual = loadState();
-        assertEquals(expected, actual);
+        assertTrue(actual.equals(expected));
     }
 
     @Test
@@ -83,12 +84,12 @@ public class StateStorageTest {
         String expected = "test123abc cba321tset";
         writeState(expected);
         String actual = loadState();
-        assertEquals(expected, actual);
+        assertTrue(actual.equals(expected));
 
         String overWriteString = "newTest";
         writeState(overWriteString);
         String actualOverWrittenString = loadState();
-        assertEquals(overWriteString, actualOverWrittenString);
+        assertTrue(overWriteString.equals(actualOverWrittenString));
     }
 
     @Test
@@ -100,6 +101,6 @@ public class StateStorageTest {
     @Test
     public void isStateStorageExists_fileDoesNotExist_returnsFalse() {
         deleteStateStorage();
-        assertEquals(false, StateStorage.isStateStorageExists());
+        assertFalse(StateStorage.isStateStorageExists());
     }
 }
