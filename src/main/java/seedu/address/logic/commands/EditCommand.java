@@ -2,10 +2,12 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PAYMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -25,10 +27,12 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Attendance;
 import seedu.address.model.person.DateTime;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Grade;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Payment;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Subject;
@@ -51,6 +55,8 @@ public class EditCommand extends Command {
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_GRADE + "GRADE] "
             + "[" + PREFIX_SUBJECT + "SUBJECT] "
+            + "[" + PREFIX_ATTENDANCE + "PAYMENT] "
+            + "[" + PREFIX_PAYMENT + "ATTENDANCE] "
             + "[" + PREFIX_DATETIME + "DATETIME] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
@@ -110,11 +116,13 @@ public class EditCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Grade updatedGrade = editPersonDescriptor.getGrade().orElse(personToEdit.getGrade());
         Subject updatedSubject = editPersonDescriptor.getSubject().orElse(personToEdit.getSubject());
+        Attendance updatedAttendance = editPersonDescriptor.getAttendance().orElse(personToEdit.getAttendance());
+        Payment updatedPayment = editPersonDescriptor.getPayment().orElse(personToEdit.getPayment());
         Set<DateTime> updatedDateTime = editPersonDescriptor.getDateTime().orElse(personToEdit.getDateTimes());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
-                updatedGrade, updatedSubject, updatedDateTime, updatedTags);
+                updatedGrade, updatedSubject, updatedAttendance, updatedPayment, updatedDateTime, updatedTags);
     }
 
     @Override
@@ -152,6 +160,8 @@ public class EditCommand extends Command {
         private Address address;
         private Subject subject;
         private Grade grade;
+        private Attendance attendance;
+        private Payment payment;
         private Set<DateTime> dateTime;
         private Set<Tag> tags;
 
@@ -227,6 +237,22 @@ public class EditCommand extends Command {
             return Optional.ofNullable(grade);
         }
 
+        public void setAttendance(Attendance attendance) {
+            this.attendance = attendance;
+        }
+
+        public Optional<Attendance> getAttendance() {
+            return Optional.ofNullable(attendance);
+        }
+
+        public void setPayment(Payment payment) {
+            this.payment = payment;
+        }
+
+        public Optional<Payment> getPayment() {
+            return Optional.ofNullable(payment);
+        }
+
         public void setDateTime(Set<DateTime> dateTime) {
             this.dateTime = (dateTime != null) ? new HashSet<>(dateTime) : null;
         }
@@ -280,6 +306,8 @@ public class EditCommand extends Command {
                     .add("address", address)
                     .add("subject", subject)
                     .add("grade", grade)
+                    .add("attendance", attendance)
+                    .add("payment", payment)
                     .add("dateTime", dateTime)
                     .add("tags", tags)
                     .toString();
