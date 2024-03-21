@@ -42,13 +42,13 @@ public class NoteTest {
         assertTrue(note.isMatch("Likes to eat"));
 
         // Substring whole word -> returns true
-        assertTrue(note.isMatch(" Likes"));
+        assertTrue(note.isMatch("Likes"));
 
         // Substring partial word -> returns true
-        assertTrue(note.isMatch(" Lik"));
+        assertTrue(note.isMatch("Lik"));
 
         // Substring case mismatch -> returns true
-        assertTrue(note.isMatch(" lik"));
+        assertTrue(note.isMatch("lik"));
 
         // Additional whitespace
         assertTrue(note.isMatch(" Likes to eat\n"));
