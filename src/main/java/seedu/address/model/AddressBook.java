@@ -20,7 +20,7 @@ import seedu.address.model.schedule.UniqueScheduleList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
-    private final ArrayList<Schedule> schedules;
+    //private final ArrayList<Schedule> schedules;
 
 
     /*
@@ -32,7 +32,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
-        schedules = new ArrayList<>();
+        //schedules = new ArrayList<>();
     }
 
     private final UniqueScheduleList schedules;

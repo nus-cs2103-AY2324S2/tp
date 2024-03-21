@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 import seedu.address.model.person.Person;
+import seedu.address.model.person.UniquePersonList;
 
 /**
  * Represents a Schedule in the address book.
@@ -27,7 +28,7 @@ public class Schedule {
     private final String schedName;
     private final LocalDateTime startTime;
     private final LocalDateTime endTime;
-    private final ArrayList<Person> personList;
+    private final UniquePersonList personList;
 
     /**
      * Constructs a {@code Schedule}.
@@ -46,7 +47,7 @@ public class Schedule {
         this.schedName = schedName;
         this.startTime = startTime;
         this.endTime = endTime;
-        this.personList = new ArrayList<>();
+        this.personList = new UniquePersonList();
     }
 
     public String getSchedName() {
@@ -61,7 +62,11 @@ public class Schedule {
         return endTime;
     }
 
-    public String getParticipants() {
+    public UniquePersonList getPersonList() {
+        return personList;
+    }
+
+    public String getParticipantsName() {
         StringBuilder participants = new StringBuilder();
         for (Person person: personList) {
             participants.append(person.getName());
@@ -77,14 +82,9 @@ public class Schedule {
     public ArrayList<Person> addParticipants(ArrayList<Person> newParticipants) {
         ArrayList<Person> addedParticipants = new ArrayList<>();
         for (Person p: newParticipants) {
-            personList.add(p);
-            /*for (Person existingP: personList) {
-                if (p.isSamePerson(existingP)) {
-                    continue;
-                }
+            if (!personList.contains(p)) {
                 personList.add(p);
-                addedParticipants.add(p);
-            }*/
+            }
         }
         return addedParticipants;
     }
@@ -150,7 +150,7 @@ public class Schedule {
         return schedName
                 + " start " + startTime.toString()
                 + " end " + endTime.toString()
-                + " participants " + getParticipants();
+                + " participants " + getParticipantsName();
     }
 
 }

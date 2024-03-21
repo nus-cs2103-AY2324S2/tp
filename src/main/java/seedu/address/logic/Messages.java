@@ -62,7 +62,7 @@ public class Messages {
                 .append("; EndTime: ")
                 .append(schedule.getEndTime())
                 .append("; Participants: ")
-                .append(schedule.getParticipants());
+                .append(schedule.getParticipantsName());
         return builder.toString();
     }
 

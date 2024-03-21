@@ -10,6 +10,7 @@ import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.schedule.Schedule;
+import seedu.address.model.schedule.UniqueScheduleList;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -27,6 +28,7 @@ public class Person {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
     private final ArrayList<Schedule> schedules = new ArrayList<>();
+
 
     /**
      * Every field must be present and not null.
@@ -92,6 +94,10 @@ public class Person {
 
     public void addSchedule(Schedule s) {
         schedules.add(s);
+    }
+
+    public void deleteSchedule(Schedule s) {
+        schedules.remove(s);
     }
 
     /**

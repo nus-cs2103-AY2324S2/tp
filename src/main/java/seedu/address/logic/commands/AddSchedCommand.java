@@ -14,6 +14,7 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.schedule.Schedule;
 
 /**
@@ -31,8 +32,8 @@ public class AddSchedCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + "1, 2"
             + PREFIX_SCHEDULE + "CS2103 weekly meeting "
-            + PREFIX_START + "24/02/2024 15:00"
-            + PREFIX_END + "24/02/2024 17:00";
+            + PREFIX_START + "2024-02-24 15:00"
+            + PREFIX_END + "2024-02-24 17:00";
 
     public static final String MESSAGE_SUCCESS = "New schedule added: %1$s";
 
@@ -65,6 +66,7 @@ public class AddSchedCommand extends Command {
 
         schedule.addParticipants(participants);
         model.addSchedule(schedule);
+        addSchedToPersons(model);
 
         // !!!TO VERIFY WITH REST: is model implementation required for Schedule?
 
@@ -72,6 +74,15 @@ public class AddSchedCommand extends Command {
 
 
         return new CommandResult(generateSuccessMessage());
+    }
+
+    public void addSchedToPersons(Model model) {
+        UniquePersonList schedPersonList = schedule.getPersonList();
+        for (Person toEditPerson: schedPersonList) {
+            Person edittedPerson = toEditPerson;
+            edittedPerson.addSchedule(schedule);
+            model.setPerson(toEditPerson, edittedPerson);
+        }
     }
 
     @Override

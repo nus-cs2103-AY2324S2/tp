@@ -9,6 +9,8 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.schedule.Schedule;
 
 /**
@@ -45,7 +47,17 @@ public class DeleteSchedCommand extends Command {
         }
         Schedule scheduleToDelete = scheduleList.get(targetIndex.getZeroBased());
         model.deleteSchedule(scheduleToDelete);
+        deleteSchedInPersons(model, scheduleToDelete);
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(scheduleToDelete)));
+    }
+
+    public void deleteSchedInPersons(Model model, Schedule schedule) {
+        UniquePersonList schedPersonList = schedule.getPersonList();
+        for (Person toEditPerson: schedPersonList) {
+            Person edittedPerson = toEditPerson;
+            edittedPerson.deleteSchedule(schedule);
+            model.setPerson(toEditPerson, edittedPerson);
+        }
     }
 
     @Override
