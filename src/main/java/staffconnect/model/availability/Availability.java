@@ -46,30 +46,31 @@ public class Availability {
         checkArgument(isValidAvailability(availability), MESSAGE_CONSTRAINTS);
         String [] availabilityFields = availability.split(" ");
         day = parseToDayOfWeek(availabilityFields[0]);
-        checkArgument(isValidLocalTime(availabilityFields[1]), MESSAGE_INVALID_TIME);
         startTime = parseToLocalTime(availabilityFields[1]);
-        checkArgument(isValidLocalTime(availabilityFields[2]), MESSAGE_INVALID_TIME);
         endTime = parseToLocalTime(availabilityFields[2]);
-//        checkArgument(isEndAfterStart( startTime,  endTime), MESSAGE_END_BEFORE_START);
-
-
-        value = day + " " + startTime + "-" + endTime;
-//        value = DayOfWeek.MONDAY.name();
+        value = day + " " + startTime + " " + endTime;
     }
 
     /**
      * Returns true if a given string is a valid availability.
      */
     public static boolean isValidAvailability(String test) {
-        return test.matches(VALIDATION_REGEX);
+        if (!test.matches(VALIDATION_REGEX)) {
+            return false;
+        }
+
+        String [] availabilityFields = test.split(" ");
+        DayOfWeek testDay = parseToDayOfWeek(availabilityFields[0]);
+
+        if (!isValidLocalTime(availabilityFields[1]) || !isValidLocalTime(availabilityFields[2])) {
+            return false;
+        }
+
+        LocalTime startTime = parseToLocalTime(availabilityFields[1]);
+        LocalTime endTime = parseToLocalTime(availabilityFields[2]);
+        return startTime.isBefore(endTime);
     }
 
-    /**
-     * Returns true if a given string is a valid availability.
-     */
-    public static boolean isEndAfterStart(LocalTime startTime, LocalTime endTime) {
-        return startTime.isAfter(endTime);
-    }
     /**
      * Returns true if a given string is a valid LocalTime.
      */

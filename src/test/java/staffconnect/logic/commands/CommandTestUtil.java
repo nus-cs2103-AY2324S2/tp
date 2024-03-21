@@ -48,8 +48,8 @@ public class CommandTestUtil {
     public static final String VALID_VENUE_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
-    public static final String VALID_AVAILABILITY_MON = "mon";
-    public static final String VALID_AVAILABILITY_THUR = "thur";
+    public static final String VALID_AVAILABILITY_MON = "mon 12:00 14:00";
+    public static final String VALID_AVAILABILITY_THUR = "thurs 12:00 14:00";
 
 
 
