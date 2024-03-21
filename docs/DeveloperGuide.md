@@ -325,10 +325,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `CLInic` and the **Actor** is the `user`, unless specified otherwise)
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 0a90af1b165ada3a5c65ff7fea168eb06387077b
 **Use case (UC1) : Add new patient information to the database**
 
 **MSS**
