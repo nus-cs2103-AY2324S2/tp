@@ -53,7 +53,6 @@ public class Person {
     }
 
     /**
-<<<<<<< HEAD
      * @param taskName name to be matched with the tasks listed in my project
      * @return task in the project with the matching taskName
      */
