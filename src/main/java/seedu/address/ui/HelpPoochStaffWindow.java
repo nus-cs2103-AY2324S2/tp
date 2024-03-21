@@ -18,8 +18,8 @@ public class HelpPoochStaffWindow extends UiPart<Stage> {
     public static final String USERGUIDE_URL = "https://ay2324s2-cs2103t-w10-2.github.io/tp/UserGuide.html";
     public static final String HELP_MESSAGE = "Adds a pooch staff to pooch planner"
             + "\n" + "" + "\n"
-            + "Format: /pooch-staff ; name : [name] ; phone : [phone] ;"
-            + " address : [address] ; email : [email] ; salary : [salary] ; employment : [part/full] ; "
+            + "Format: /pooch-staff ; name : [name] ; phone : [phone] ; address : [address] ;"
+            + " email : [email] ; salary : [salary/hr]  ; employment : [part/full]"
             + "\n" + "" + "\n"
             + "Go to our UG for more information : " + USERGUIDE_URL;
 

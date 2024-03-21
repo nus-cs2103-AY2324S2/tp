@@ -25,7 +25,6 @@ public class HelpSearchWindow extends UiPart<Stage> {
             + "/search ; email : [full/partial email]" + "\n"
             + "/search ; product : [full/partial product name]" + "\n"
             + "/search ; employment : [employment]" + "\n"
-            + " address : [address] ; email : [email] ; salary : [salary] ; employment : [part/full] ; "
             + "\n" + "" + "\n"
             + "Go to our UG for more information : " + USERGUIDE_URL;
 

@@ -19,7 +19,7 @@ public class HelpPoochSupplierWindow extends UiPart<Stage> {
     public static final String HELP_MESSAGE = "Adds a pooch supplier to pooch planner"
             + "\n" + "" + "\n"
             + "/pooch-supplier ; name : [name] ; phone : [phone] ; address : [address] ;"
-            + " email : [email] ; product : [product] ; price : [price] ;"
+            + " email : [email] ; product : [product] ; price : [price/(quantity)]"
             + "\n" + "" + "\n"
             + "Go to our UG for more information : " + USERGUIDE_URL;
 
