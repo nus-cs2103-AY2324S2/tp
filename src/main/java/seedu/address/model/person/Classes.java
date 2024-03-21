@@ -22,8 +22,6 @@ public class Classes {
     private AddressBook addressBook;
     private AddressBookStorage addressBookStorage;
 
-    public AddressBook addressBook = new AddressBook();
-
     /**
      * Constructor for Classes.
      */

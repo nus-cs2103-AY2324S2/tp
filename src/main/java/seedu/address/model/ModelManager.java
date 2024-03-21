@@ -166,7 +166,7 @@ public class ModelManager implements Model {
     public void addPerson(Person person, CourseCode courseCode) {
         Classes classes = new Classes(courseCode);
         if (classBook.hasClass(classes)) {
-            classes.addressBook.addPerson(person);
+            classes.getAddressBook().addPerson(person);
         }
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }

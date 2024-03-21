@@ -165,7 +165,7 @@ public class ParserUtil {
         String trimmedDescription = description.trim();
 
         return new Description(trimmedDescription);
-
+    }
     /**
      * Parses {@code String date} and {@code String status} into a {@code AttendanceStatus}.
      */
