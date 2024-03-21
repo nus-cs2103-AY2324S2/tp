@@ -8,16 +8,17 @@ participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
 participant ":DeleteCommandParser" as DeleteCommandParser LOGIC_COLOR
 participant "d:DeleteCommand" as DeleteCommand LOGIC_COLOR
 participant "r:CommandResult" as CommandResult LOGIC_COLOR
+participant "e:DeleteStudentDescriptor" as DeleteStudentDescriptor LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
 participant "m:Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("delete 1")
+[-> LogicManager : execute("delete s/A1234567X")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("delete 1")
+LogicManager -> AddressBookParser : parseCommand("delete s/A1234567X")
 activate AddressBookParser
 
 create DeleteCommandParser
@@ -27,12 +28,25 @@ activate DeleteCommandParser
 DeleteCommandParser --> AddressBookParser
 deactivate DeleteCommandParser
 
-AddressBookParser -> DeleteCommandParser : parse("1")
+AddressBookParser -> DeleteCommandParser : parse("s/A1234567X")
 activate DeleteCommandParser
 
+create DeleteStudentDescriptor
+DeleteCommandParser -> DeleteStudentDescriptor
+activate DeleteStudentDescriptor
+DeleteStudentDescriptor -> DeleteCommandParser
+deactivate DeleteStudentDescriptor
+
+DeleteCommandParser -> DeleteStudentDescriptor : setStudentId("A1234567X)
+activate DeleteStudentDescriptor
+DeleteStudentDescriptor -> DeleteCommandParser:
+deactivate DeleteStudentDescriptor
+
 create DeleteCommand
-DeleteCommandParser -> DeleteCommand
+DeleteCommandParser -> DeleteCommand : DeleteCommand(e)
 activate DeleteCommand
+
+deactivate DeleteStudentDescriptor
 
 DeleteCommand --> DeleteCommandParser :
 deactivate DeleteCommand
@@ -49,7 +63,20 @@ deactivate AddressBookParser
 LogicManager -> DeleteCommand : execute(m)
 activate DeleteCommand
 
-DeleteCommand -> Model : deletePerson(1)
+DeleteCommand -> DeleteStudentDescriptor : getStudentId()
+activate DeleteStudentDescriptor
+
+DeleteStudentDescriptor -> Model : getStudentWithStudentId("A1234567X")
+
+activate Model
+Model -> DeleteStudentDescriptor : s:Student
+deactivate Model
+DeleteStudentDescriptor -> DeleteCommand : s
+deactivate DeleteStudentDescriptor
+
+
+alt student exists
+DeleteCommand -> Model : deletePerson("s")
 activate Model
 
 Model --> DeleteCommand
@@ -61,10 +88,15 @@ activate CommandResult
 
 CommandResult --> DeleteCommand
 deactivate CommandResult
-
 DeleteCommand --> LogicManager : r
+else student does not exist
+DeleteCommand --> LogicManager : CommandException()
+end
+
+
 deactivate DeleteCommand
 
 [<--LogicManager
 deactivate LogicManager
+
 @enduml
