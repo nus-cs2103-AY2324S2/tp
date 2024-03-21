@@ -94,28 +94,28 @@ public class Person {
 
     public Name getName() { //Earmarked for deprecation - superseded by getAttribute - name should be optional
         if (!attributes.containsKey("Name")) {
-            return new Name("<no name>");
+            return new Name("no name");
         }
         return new Name(attributes.get("Name").getValueAsString());
     }
 
     public Phone getPhone() { //Earmarked for deprecation - superseded by getAttribute - phone should be optional
         if (!attributes.containsKey("Phone")) {
-            return new Phone("<no phone>");
+            return new Phone("00000000");
         }
         return new Phone(attributes.get("Phone").getValueAsString());
     }
 
     public Email getEmail() { //Earmarked for deprecation - superseded by getAttribute - email should be optional
         if (!attributes.containsKey("Email")) {
-            return new Email("<no email>");
+            return new Email("noemail@noemail.noemail");
         }
         return new Email(attributes.get("Email").getValueAsString());
     }
 
     public Address getAddress() { //Earmarked for deprecation - superseded by getAttribute - address should be optional
         if (!attributes.containsKey("Address")) {
-            return new Address("<no address>");
+            return new Address("no address");
         }
         return new Address(attributes.get("Address").getValueAsString());
     }
