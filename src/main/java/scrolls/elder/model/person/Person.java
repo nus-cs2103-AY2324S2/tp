@@ -27,6 +27,7 @@ public abstract class Person {
     protected final Address address;
     protected final Set<Tag> tags = new HashSet<>();
     protected Optional<Name> pairedWith;
+    protected Optional<Integer> pairedWithID;
 
     /**
      * Every field must be present and not null.
@@ -40,6 +41,7 @@ public abstract class Person {
         this.tags.addAll(tags);
         this.role = role;
         this.pairedWith = Optional.empty();
+        this.pairedWithID = Optional.empty();
     }
 
     public int getId() {
@@ -81,8 +83,12 @@ public abstract class Person {
     public void setPairedWith(Optional<Name> pairedWith) {
         this.pairedWith = pairedWith;
     }
-
-
+    public Optional<Integer> getPairedWithID() {
+        return pairedWithID;
+    }
+    public void setPairedWithID(Optional<Integer> pairedWithID) {
+        this.pairedWithID = pairedWithID;
+    }
     public boolean isPairPresent(Person person) {
         return person.getPairedWith().isPresent();
     }

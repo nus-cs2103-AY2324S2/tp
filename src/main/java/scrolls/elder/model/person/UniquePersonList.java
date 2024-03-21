@@ -7,6 +7,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import scrolls.elder.commons.util.CollectionUtil;
 import scrolls.elder.model.person.exceptions.DuplicatePersonException;
 import scrolls.elder.model.person.exceptions.PersonNotFoundException;
@@ -103,7 +104,14 @@ public class UniquePersonList implements Iterable<Person> {
     public ObservableList<Person> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
     }
-
+    public Person getPersonFromID(int i) {
+        FilteredList<Person> listByID = internalList.filtered(person -> person.getPairedWithID().get() == i);
+        // TODO exception for duplicate id
+        if (listByID.size() != 1) {
+            System.out.println("List has duplicate id, should not be the case");
+        }
+        return listByID.get(0);
+    }
     @Override
     public Iterator<Person> iterator() {
         return internalList.iterator();

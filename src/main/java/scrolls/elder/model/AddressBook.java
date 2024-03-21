@@ -117,6 +117,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     public ObservableList<Person> getPersonList() {
         return persons.asUnmodifiableObservableList();
     }
+    public Person getPersonFromID(int i) {
+        return persons.getPersonFromID(i);
+    }
 
     @Override
     public boolean equals(Object other) {

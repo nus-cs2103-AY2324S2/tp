@@ -137,6 +137,10 @@ public class ModelManager implements Model {
     public ObservableList<Person> getFilteredBefriendeeList() {
         return filteredBefriendees;
     }
+    @Override
+    public Person getPersonFromID(int i) {
+        return addressBook.getPersonFromID(i);
+    }
 
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {

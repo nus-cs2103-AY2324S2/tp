@@ -92,6 +92,32 @@ public class EditCommand extends Command {
         }
         p.setId(personToEdit.getId());
         p.setPairedWith(personToEdit.getPairedWith());
+        p.setPairedWithID(personToEdit.getPairedWithID());
+        return p;
+    }
+
+    private static Person createEditedPair(Person editedPerson, Person originalPair) {
+        assert editedPerson != null;
+
+        // Will check before calling this function that the editedPerson is paired
+        Name updatedName = originalPair.getName();
+        Phone updatedPhone = originalPair.getPhone();
+        Email updatedEmail = originalPair.getEmail();
+        Address updatedAddress = originalPair.getAddress();
+        Set<Tag> updatedTags = originalPair.getTags();
+        Role role = originalPair.getRole();
+
+        Person p;
+        if (role.isVolunteer()) {
+            p = new Volunteer(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        } else {
+            p = new Befriendee(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        }
+
+        p.setId(originalPair.getId());
+        Optional<Name> newPairedWithName = Optional.of(editedPerson.getName());
+        p.setPairedWith(newPairedWithName);
+        p.setPairedWithID(Optional.of(editedPerson.getId()));
         return p;
     }
 
@@ -119,6 +145,12 @@ public class EditCommand extends Command {
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        }
+
+        if (editedPerson.isPaired()) {
+            Person pairedWith = model.getPersonFromID(editedPerson.getPairedWithID().get());
+            Person pairedWithUpdated = createEditedPair(editedPerson, pairedWith);
+            model.setPerson(pairedWith, pairedWithUpdated);
         }
 
         model.setPerson(personToEdit, editedPerson);
