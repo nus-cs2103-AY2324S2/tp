@@ -28,6 +28,7 @@ import seedu.address.model.person.Meeting;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Policy;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -105,9 +106,12 @@ public class EditCommand extends Command {
         Meeting updatedMeeting = editPersonDescriptor.getMeeting().orElse(personToEdit.getMeeting());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedMeeting, updatedTags);
-    }
+        Set<Policy> updatedPolicies = editPersonDescriptor.getPolicies().orElse(personToEdit.getPolicies());
 
+        return new Person(updatedName, updatedPhone, updatedEmail,
+                updatedAddress, updatedMeeting, updatedTags, updatedPolicies);
+
+    }
 
     @Override
     public boolean equals(Object other) {
@@ -144,6 +148,7 @@ public class EditCommand extends Command {
         private Address address;
         private Meeting meeting;
         private Set<Tag> tags;
+        private Set<Policy> policies;
 
         public EditPersonDescriptor() {}
 
@@ -158,6 +163,7 @@ public class EditCommand extends Command {
             setAddress(toCopy.address);
             setMeeting(toCopy.meeting);
             setTags(toCopy.tags);
+            setPolicies(toCopy.policies);
         }
 
         /**
@@ -197,6 +203,14 @@ public class EditCommand extends Command {
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
+        }
+
+        public Optional<Set<Policy>> getPolicies() {
+            return (tags != null) ? Optional.of(Collections.unmodifiableSet(policies)) : Optional.empty();
+        }
+
+        public void setPolicies(Set<Policy> policies) {
+            this.policies = policies;
         }
 
         public void setMeeting(Meeting meeting) {
