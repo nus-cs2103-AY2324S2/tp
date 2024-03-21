@@ -13,11 +13,8 @@ import tutorpro.model.person.Phone;
 import tutorpro.model.person.student.Student;
 import tutorpro.model.tag.Tag;
 
-
-
-/*
+/**
  * Represents a Parent in TutorPro.
- 
  */
 public class Parent extends Person {
 
@@ -34,7 +31,6 @@ public class Parent extends Person {
         CollectionUtil.requireAllNonNull(students);
         this.students.addAll(students);
     }
-    
     /**
      * Creates a copy of the given Parent.
      * @return The students of the parent.
