@@ -25,8 +25,8 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
-import seedu.address.testutil.UpdatePersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.UpdatePersonDescriptorBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
@@ -41,7 +41,8 @@ public class UpdateCommandTest {
         UpdatePersonDescriptor descriptor = new UpdatePersonDescriptorBuilder(editedPerson).build();
         UpdateCommand updateCommand = new UpdateCommand(INDEX_FIRST_PERSON, descriptor);
 
-        String expectedMessage = String.format(UpdateCommand.MESSAGE_UPDATE_PERSON_SUCCESS, Messages.format(editedPerson));
+        String expectedMessage = String.format(
+                UpdateCommand.MESSAGE_UPDATE_PERSON_SUCCESS, Messages.format(editedPerson));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
@@ -62,7 +63,8 @@ public class UpdateCommandTest {
                 .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();
         UpdateCommand updateCommand = new UpdateCommand(indexLastPerson, descriptor);
 
-        String expectedMessage = String.format(UpdateCommand.MESSAGE_UPDATE_PERSON_SUCCESS, Messages.format(editedPerson));
+        String expectedMessage = String.format(
+                UpdateCommand.MESSAGE_UPDATE_PERSON_SUCCESS, Messages.format(editedPerson));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(lastPerson, editedPerson);
@@ -75,7 +77,8 @@ public class UpdateCommandTest {
         UpdateCommand updateCommand = new UpdateCommand(INDEX_FIRST_PERSON, new UpdatePersonDescriptor());
         Person editedPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
 
-        String expectedMessage = String.format(UpdateCommand.MESSAGE_UPDATE_PERSON_SUCCESS, Messages.format(editedPerson));
+        String expectedMessage = String.format(
+                UpdateCommand.MESSAGE_UPDATE_PERSON_SUCCESS, Messages.format(editedPerson));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
 
@@ -91,7 +94,8 @@ public class UpdateCommandTest {
         UpdateCommand updateCommand = new UpdateCommand(INDEX_FIRST_PERSON,
                 new UpdatePersonDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
-        String expectedMessage = String.format(UpdateCommand.MESSAGE_UPDATE_PERSON_SUCCESS, Messages.format(editedPerson));
+        String expectedMessage = String.format(
+                UpdateCommand.MESSAGE_UPDATE_PERSON_SUCCESS, Messages.format(editedPerson));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);

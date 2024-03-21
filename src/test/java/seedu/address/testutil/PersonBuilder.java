@@ -228,6 +228,9 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Returns a Person object with fields initialised to that of PersonBuilder object.
+     */
     public Person build() {
         Person p = new Person(nric, name, phone, address, dateOfBirth, sex, status);
         p.setEmail(email);
