@@ -1,13 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_GITHUB_USERNAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TECH_STACK;
+import static seedu.address.logic.parser.CliSyntax.*;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
@@ -23,12 +17,7 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.GitHubUsername;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
+import seedu.address.model.person.*;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.techstack.TechStack;
 
@@ -48,6 +37,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_GITHUB_USERNAME + "GITHUB USERNAME]"
+            + "[" + PREFIX_PROFILE_PICTURE + "PROFILE_PICTURE]"
             + "[" + PREFIX_TECH_STACK + "TECH_STACK...\n"
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
@@ -110,10 +100,10 @@ public class EditCommand extends Command {
                 editPersonDescriptor.getGitHubUsername().orElse(personToEdit.getGitHubUsername());
         Set<TechStack> updatedTechStack = editPersonDescriptor.getTechStack().orElse(personToEdit.getTechStack());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-        String profilePictureURL = editPersonDescriptor.getProfilePictureURL().orElse(personToEdit.getProfilePictureURL());
+        ProfilePicture updatedProfilePicture = editPersonDescriptor.getProfilePicture().orElse(personToEdit.getProfilePicture());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedGitHubUsername,
-                updatedTechStack, updatedTags, profilePictureURL);
+                updatedTechStack, updatedTags, updatedProfilePicture);
     }
 
     @Override
@@ -153,7 +143,7 @@ public class EditCommand extends Command {
         private Set<TechStack> techStack;
         private Set<Tag> tags;
 
-        private String profilePictureURL;
+        private ProfilePicture profilePicture;
 
         public EditPersonDescriptor() {}
 
@@ -169,7 +159,7 @@ public class EditCommand extends Command {
             setGitHubUsername(toCopy.gitHubUsername);
             setTechStack(toCopy.techStack);
             setTags(toCopy.tags);
-            setProfilePictureURL(toCopy.profilePictureURL);
+            setProfilePicture(toCopy.profilePicture);
         }
 
         /**
@@ -177,7 +167,7 @@ public class EditCommand extends Command {
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(name, phone, email, address,
-                    gitHubUsername, techStack, tags);
+                    gitHubUsername, techStack, tags, profilePicture);
         }
 
         public void setName(Name name) {
@@ -219,9 +209,9 @@ public class EditCommand extends Command {
             return Optional.ofNullable(gitHubUsername);
         }
 
-        public void setProfilePictureURL(String url) {this.profilePictureURL = url; }
+        public void setProfilePicture(ProfilePicture profilePicture) {this.profilePicture = profilePicture; }
 
-        public Optional<String> getProfilePictureURL() {return Optional.ofNullable(this.profilePictureURL);}
+        public Optional<ProfilePicture> getProfilePicture() {return Optional.ofNullable(this.profilePicture);}
 
         /**
          * Sets {@code techStack} to this object's {@code techStack}.
@@ -275,7 +265,8 @@ public class EditCommand extends Command {
                     && Objects.equals(address, otherEditPersonDescriptor.address)
                     && Objects.equals(gitHubUsername, otherEditPersonDescriptor.gitHubUsername)
                     && Objects.equals(techStack, otherEditPersonDescriptor.techStack)
-                    && Objects.equals(tags, otherEditPersonDescriptor.tags);
+                    && Objects.equals(tags, otherEditPersonDescriptor.tags)
+                    && Objects.equals(profilePicture, otherEditPersonDescriptor.profilePicture);
         }
 
         @Override

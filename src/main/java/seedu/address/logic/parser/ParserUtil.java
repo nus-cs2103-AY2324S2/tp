@@ -9,11 +9,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.GitHubUsername;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.person.*;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.techstack.TechStack;
 
@@ -83,14 +79,13 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String profilePictureURL} into an {@code String}.
+     * Parses a {@code String profilePictureURL} into an {@code ProfilePicture}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code address} is invalid.
      */
-    public static String parseProfilePictureURL(String profilePictureURLArgument) {
-        requireNonNull(profilePictureURLArgument);
-        return profilePictureURLArgument.trim();
+    public static ProfilePicture parseProfilePicture(String profilePictureURLArgument) {
+        return new ProfilePicture(profilePictureURLArgument);
     }
 
     /**
