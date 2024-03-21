@@ -232,7 +232,6 @@ public class EditAttendanceCommand extends Command {
                     .add("phone", phone)
                     .add("email", email)
                     .add("studentid", studentId)
-                    .add("attendance", attendances)
                     .toString();
         }
     }
