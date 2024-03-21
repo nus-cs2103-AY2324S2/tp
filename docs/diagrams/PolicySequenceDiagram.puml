@@ -1,0 +1,79 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":PolicyCommandParser" as PolicyCommandParser LOGIC_COLOR
+participant "po:PolicyCommand" as PolicyCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+participant "p:Person" as Person LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "m:Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("policy 1 po/Policy XYZ")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("policy 1 po/Policy XYZ")
+activate AddressBookParser
+
+create PolicyCommandParser
+AddressBookParser -> PolicyCommandParser
+activate PolicyCommandParser
+
+PolicyCommandParser --> AddressBookParser
+deactivate PolicyCommandParser
+
+AddressBookParser -> PolicyCommandParser : parse("1 po/Policy XYZ")
+activate PolicyCommandParser
+
+create PolicyCommand
+PolicyCommandParser -> PolicyCommand
+activate PolicyCommand
+
+PolicyCommand --> PolicyCommandParser :
+deactivate PolicyCommand
+
+PolicyCommandParser --> AddressBookParser : po
+deactivate PolicyCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+PolicyCommandParser -[hidden]-> AddressBookParser
+destroy PolicyCommandParser
+
+AddressBookParser --> LogicManager : po
+deactivate AddressBookParser
+
+LogicManager -> PolicyCommand : execute(m)
+activate PolicyCommand
+
+create Person
+PolicyCommand -> Person :
+activate Person
+
+Person --> PolicyCommand :
+deactivate Person
+
+PolicyCommand -> Model : setPerson(1, p)
+activate Model
+
+Model --> PolicyCommand
+deactivate Model
+
+create CommandResult
+PolicyCommand -> CommandResult
+activate CommandResult
+
+destroy Person
+CommandResult --> PolicyCommand
+deactivate CommandResult
+
+PolicyCommand --> LogicManager : r
+deactivate PolicyCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
