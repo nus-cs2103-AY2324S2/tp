@@ -42,7 +42,7 @@
                         </Label>
                         <ImageView fitHeight="31.0" fitWidth="45.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../docs/images/book-logo.png" />
+                              <Image url="@/images/book-logo.png" />
                            </image>
                         </ImageView>
                      </children>
