@@ -71,6 +71,10 @@ public class CompanyBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Phone} of the {@code Person} that we are building
+     * to DEFAULT_NUMBER
+     */
     public CompanyBuilder withPhone() {
         this.phone = new Phone();
         return this;
