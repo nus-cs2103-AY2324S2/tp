@@ -10,7 +10,7 @@ import java.util.UUID;
 public class Relationship {
     protected static ArrayList<String> validDescriptors = new ArrayList<String>(
             Arrays.asList("family",
-                    "friend"));
+                    "friends"));
     protected UUID person1;
     protected UUID person2;
     protected String relationshipDescriptor;
