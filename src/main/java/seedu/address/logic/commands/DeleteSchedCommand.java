@@ -36,7 +36,7 @@ public class DeleteSchedCommand extends Command {
 
 
     /**
-     * Creates an DeleteCommand to add the specified {@code Person}
+     * Creates an DeleteCommand to delete the specified {@code Schedule}
      */
     public DeleteSchedCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
@@ -76,6 +76,12 @@ public class DeleteSchedCommand extends Command {
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(scheduleToDelete)));
     }
 
+    /**
+     * Deletes a {@code Schedule} for all involved participants
+     *
+     * @param model model used
+     * @param scheduleToDelete the schedule to delete
+     */
     private void deleteSchedForAll(Model model, Schedule scheduleToDelete) {
         model.deleteSchedule(scheduleToDelete, scheduleToDelete.getPersonList());
     }
