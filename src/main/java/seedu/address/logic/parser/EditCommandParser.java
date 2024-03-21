@@ -61,7 +61,6 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
             editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
-
         if (argMultimap.getValue(PREFIX_RELATIONSHIP).isPresent()) {
             throw new ParseException(EditCommand.MESSAGE_CANNOT_BE_EDIT);
         }
