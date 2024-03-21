@@ -177,7 +177,15 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-
+            /*
+            // Check for a successful view command based on the feedback message
+            if (commandResult.getFeedbackToUser().startsWith("View Person:")) {
+                // Extract the person's index from the commandText
+                // Assuming the commandText is in the format "view INDEX"
+                int index = Integer.parseInt(commandText.split("\\s+")[1]); // splits by whitespace and gets the second part
+                updateSidePanel(index - 1); // Adjust for zero-based index if necessary
+            }
+             */
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }
