@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_UPDATE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
@@ -41,7 +42,7 @@ public class UpdateCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Updates the details of the person identified "
             + "by their full name used in the displayed person list. "
-            + "The full name provided is not required to be case sensitive."
+            + "The full name provided is not required to be case sensitive. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: u/TARGET_NAME "
             + "[" + PREFIX_NAME + "NEW_NAME] "
@@ -51,7 +52,7 @@ public class UpdateCommand extends Command {
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_NOK + "NEXT_OF_KIN] "
             + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " 1 "
+            + "Example: " + COMMAND_WORD + " " + PREFIX_UPDATE + "John Doe "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
