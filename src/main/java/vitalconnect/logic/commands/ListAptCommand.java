@@ -15,7 +15,7 @@ import vitalconnect.model.Model;
  */
 public class ListAptCommand extends Command {
 
-    public static final String COMMAND_WORD = "listApt";
+    public static final String COMMAND_WORD = "lista";
     public static final String MESSAGE_SUCCESS = "Listed all appointments";
 
     /**

@@ -18,11 +18,11 @@ import vitalconnect.model.person.medicalinformation.Weight;
  * Deletes a person's contact from the clinic.
  */
 public class DeleteMedicalCommand extends Command {
-    public static final String COMMAND_WORD = "delmi";
+    public static final String COMMAND_WORD = "deletem";
     public static final String MESSAGE_SUCCESS = "Medical information deleted successfully";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Delete a medical information of a person. "
-            + "Parameters: (required field)\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Delete the medical information of a person. "
+            + "Parameter: \n"
             + PREFIX_NRIC + "NRIC\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NRIC + "S1234567D ";
