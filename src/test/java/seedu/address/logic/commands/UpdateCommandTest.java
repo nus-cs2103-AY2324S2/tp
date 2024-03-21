@@ -132,11 +132,12 @@ public class UpdateCommandTest {
 
         assertCommandFailure(updateCommand, model, Messages.MESSAGE_PERSON_NOT_FOUND);
     }
-
+  
     /**
      * Edit filtered list where index is larger than size of filtered list,
      * but smaller than size of address book
      */
+
     @Test
     public void execute_invalidPersonIndexFilteredList_failure() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
@@ -184,5 +185,4 @@ public class UpdateCommandTest {
                 + editPersonDescriptor + "}";
         assertEquals(expected, updateCommand.toString());
     }
-
 }

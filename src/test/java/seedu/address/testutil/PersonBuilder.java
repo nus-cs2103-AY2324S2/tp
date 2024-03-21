@@ -191,8 +191,8 @@ public class PersonBuilder {
     /**
      * Sets the {@code Phone} of the {@code Person} that we are building.
      */
-    public PersonBuilder withBloodType(String[] bloodType) {
-        this.bloodType = new BloodType(bloodType[0], bloodType[1]);
+    public PersonBuilder withBloodType(String bloodType) {
+        this.bloodType = new BloodType(bloodType);
         return this;
     }
 

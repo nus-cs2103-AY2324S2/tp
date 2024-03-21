@@ -3,54 +3,46 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import java.util.Objects;
-
 
 /**
  * Represents a Person's blood type in the address book.
  * Guarantees: immutable;
  */
 public class BloodType {
-    public static final String MESSAGE_CONSTRAINTS = "BloodType should be A, B, AB, O. Rh should be either + or -";
-    private final Type type;
+    public static final String MESSAGE_CONSTRAINTS = "BloodType should be either A+, A-, B+, B-, AB+, AB-, O+, O-";
+    public static final String VALIDATION_REGEX = "^(A\\+|A-|B\\+|B-|AB\\+|AB-|O\\+|O-)$";
 
-    private final Rh rh;
+    private final String bloodType;
 
     /**
      * Constructs a {@code BloodType}.
      *
-     * @param type A valid blood type.
-     * @param rh   A valid Rh factor.
+     * @param bloodType A valid blood type in String format
      */
-    public BloodType(String type, String rh) {
-        requireNonNull(type, rh);
-        checkArgument(isValidBloodType(type, rh), MESSAGE_CONSTRAINTS);
-        this.type = Type.valueOf(type);
-        this.rh = rh == "+" ? Rh.POSITIVE : Rh.NEGATIVE;
+    public BloodType(String bloodType) {
+        requireNonNull(bloodType);
+        checkArgument(isValidBloodType(bloodType), MESSAGE_CONSTRAINTS);
+        this.bloodType = bloodType;
     }
 
     /**
-     * A method for testing if two strings form a valid BloodType
+     * A method for testing if string forms a valid blood group
      *
-     * @param testType String for storing testing type
-     * @param testRh   String for storing testing rh
+     * @param test String for storing testing type
      * @return Boolean whether test passes or fails
      */
-    public static boolean isValidBloodType(String testType, String testRh) {
-        try {
-            Type type = Type.valueOf(testType);
-            return testRh == "+" || testRh == "-";
-        } catch (IllegalArgumentException e) {
-            return false;
-        }
+    public static boolean isValidBloodType(String test) {
+        return test.matches(VALIDATION_REGEX);
     }
 
-    public String getType() {
-        return this.type.toString();
-    }
-
-    public String getRh() {
-        return this.rh == Rh.POSITIVE ? "+" : "-";
+    /**
+     * Returns given placeholder string if value field is not initialised
+     *
+     * @param alt An alternate return value
+     * @return placeholder string
+     */
+    public String orElse(String alt) {
+        return this.bloodType == null ? alt : this.toString();
     }
 
     /**
@@ -64,12 +56,12 @@ public class BloodType {
 
     @Override
     public String toString() {
-        return this.type.toString() + this.getRh();
+        return this.bloodType;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(type, rh);
+        return this.bloodType.hashCode();
     }
 
     @Override
@@ -81,10 +73,6 @@ public class BloodType {
             return false;
         }
         BloodType otherBloodType = (BloodType) other;
-        return type.equals(otherBloodType.type) && rh.equals(otherBloodType.rh);
+        return this.bloodType.equals(otherBloodType.bloodType);
     }
-
-    private enum Type { A, B, AB, O }
-
-    private enum Rh { POSITIVE, NEGATIVE }
 }
