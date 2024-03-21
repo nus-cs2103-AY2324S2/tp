@@ -1,0 +1,122 @@
+#titleLogoLabel {
+     -fx-background-color:#FFFFFF;
+     -fx-background-radius:10px;
+     -fx-padding : 0 10 0 10;
+     -fx-min-height : 40px;
+}
+
+#labelCommandHolder{
+    -fx-padding : 10 10 10 10;
+    -fx-background-color: #C7C8CC;
+    -fx-spacing : 20px;
+}
+
+
+#commandTextField{
+    -fx-background-color: #FFFFFF;
+    -fx-background-insets: 0;
+    -fx-border-color: transparent transparent #000000 transparent;
+    -fx-border-insets: 0;
+    -fx-border-width: 1;
+    -fx-font-family: "Segoe UI Light";
+    -fx-font-size: 13pt;
+    -fx-text-fill: #000000;
+}
+
+#commandTextHBox{
+    -fx-background-color : #FFFFFF;
+    -fx-background-radius: 10px;
+}
+
+#resultDisplayPlaceholder{
+    -fx-background-color: #C7C8CC;
+    -fx-border-color: transparent;
+    -fx-border-top-width: 1px;
+     -fx-focus-color:transparent;
+
+}
+
+#result-display{
+    -fx-background-color: #000000;
+        -fx-font-family: "Segoe UI Light";
+        -fx-font-size: 13pt;
+        -fx-text-fill: black;
+        -fx-background-radius : 10px;
+}
+
+.result-display {
+    -fx-background-color: #FFFFFF;
+    -fx-font-family: "Segoe UI Light";
+    -fx-font-size: 13pt;
+    -fx-text-fill: black;
+    -fx-background-radius : 10px;
+    -fx-padding:5 5 5 5;
+}
+
+.result-display .label {
+    -fx-text-fill: black !important;
+}
+
+#personList{
+    -fx-background-color: #C7C8CC;
+}
+
+#personListHBox{
+    -fx-spacing:20px;
+    -fx-padding:10 10 10 20;
+    -fx-background-color:#C7C8CC;
+}
+
+#scheduleBox{
+    -fx-background-color:#FFFFFF;
+}
+
+#cardPane {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+}
+
+
+.list-cell:filled:even {
+    -fx-background-color: #E3E1D9;
+}
+
+.list-cell:filled:odd {
+    -fx-background-color: #F2EFE5;
+}
+
+.list-cell:filled:selected {
+    -fx-background-color: #B4B4B8;
+}
+
+.list-cell:filled:selected #cardPane {
+    -fx-border-color: #000000;
+}
+
+.list-cell .label {
+    -fx-text-fill: black;
+}
+
+.scroll-bar {
+    -fx-background-color: #FFFFFF;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: #B4B4B8;
+    -fx-background-insets: 3;
+}
+
+.menu-bar {
+    -fx-background-color: white;
+}
+
+.menu-bar .label {
+    -fx-font-size: 14pt;
+    -fx-font-family: "Segoe UI Light";
+    -fx-text-fill: black;
+    -fx-opacity: 0.9;
+}
+
+.menu .left-container {
+    -fx-background-color: black;
+}
