@@ -23,7 +23,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
-    private final ObservableList<Order> filteredOrders;
+    private final FilteredList<Order> filteredOrders;
 
 
     /**
@@ -37,7 +37,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        filteredOrders = this.addressBook.getOrderList();
+        filteredOrders = new FilteredList<>(this.addressBook.getOrderList());
     }
 
     public ModelManager() {
@@ -121,7 +121,7 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedPerson);
 
         addressBook.setPerson(target, editedPerson);
-        filteredOrders.add(order);
+        addressBook.addOrder(order);
 
     }
 
