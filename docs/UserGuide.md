@@ -77,13 +77,19 @@ EduConnect is a **desktop app for managing student contacts, optimized for use v
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `n/NAME s/STUDENT_ID`, `s/STUDENT_ID n/NAME` is also acceptable.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </box>
+
+**Notes about student info:**<br>
+
+* Unique identifiers are `e/EMAIL`, `s/STUDENT_ID` and `h/TELEGRAM_HANDLE`
+
+* There can only be one unique indentifier at each time. Which means no two students can share the same unique identifiers above.
 
 ### Viewing help : `help`
 
@@ -128,9 +134,10 @@ Format: `edit INDEX [n/NAME] [s/STUDENT_ID] [e/EMAIL] [h/TELEGRAM_HANDLE] [c/TIM
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the student will be removed i.e adding of tags is not cumulative.
+* When editing unique identifiers, EduConnect will throw an error if another unique identifier is found in the address
 * You can remove all the student’s tags by typing `t/` without
     specifying any tags after it.
-* You can reset the timetable to be empty by typing 'c/' without specifying anything after it.
+* You can reset the timetable to be empty by typing `c/` without specifying anything after it.
 
 Examples:
 *  `edit 1 s/A0001234A e/johndoe@example.com` Edits the student id and email address of the 1st student to be `A0001234A` and `johndoe@example.com` respectively.
