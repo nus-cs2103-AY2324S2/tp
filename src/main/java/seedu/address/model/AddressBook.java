@@ -153,6 +153,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         pic.setTask(task);
     }
 
+    public void markTask(Task task) {
+        task.setDone();
+    }
+
     //// util methods
 
     @Override

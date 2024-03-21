@@ -131,6 +131,12 @@ public class ModelManager implements Model {
         addressBook.assignTask(task, assignedTo);
     }
 
+    @Override
+    public void markTask(Task task) {
+        requireNonNull(task);
+        addressBook.markTask(task);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
