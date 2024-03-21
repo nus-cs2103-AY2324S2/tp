@@ -8,6 +8,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Company;
+import seedu.address.model.tag.Tag;
 
 /**
  * An UI component that displays information of a {@code Company}.
@@ -48,10 +49,18 @@ public class CompanyCard extends UiPart<Region> {
         this.company = company;
         id.setText(displayedIndex + ". ");
         name.setText(company.getName().fullName);
-        phone.setText(company.getPhone().value);
+        setPhone();
         email.setText(company.getEmail().value);
         company.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+                .sorted(Comparator.comparing(Tag::getTagName))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.capitalise())));
+    }
+
+    public void setPhone() {
+        if (company.getPhone().value.equals("000")) {
+            phone.setText("no number");
+        } else {
+            phone.setText(company.getPhone().value);
+        }
     }
 }

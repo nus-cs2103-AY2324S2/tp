@@ -55,7 +55,7 @@ public interface Model {
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
-    boolean hasPerson(Company company);
+    boolean hasCompany(Company company);
 
     /**
      * Deletes the given person.
@@ -67,7 +67,7 @@ public interface Model {
      * Adds the given person.
      * {@code person} must not already exist in the address book.
      */
-    void addPerson(Company company);
+    void addCompany(Company company);
 
     /**
      * Replaces the given company {@code target} with {@code editedCompany}.

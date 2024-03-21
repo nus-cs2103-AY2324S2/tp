@@ -1,5 +1,6 @@
 package seedu.address.testutil;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -18,7 +19,7 @@ public class CompanyBuilder {
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
-    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_TAG = "SoftwareEngineer";
 
     private Name name;
     private Phone phone;
@@ -32,7 +33,7 @@ public class CompanyBuilder {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
-        tags = new HashSet<>();
+        tags = new HashSet<>(Arrays.asList(new Tag(DEFAULT_TAG)));
     }
 
     /**
@@ -67,6 +68,15 @@ public class CompanyBuilder {
      */
     public CompanyBuilder withPhone(String phone) {
         this.phone = new Phone(phone);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Phone} of the {@code Person} that we are building
+     * to DEFAULT_NUMBER
+     */
+    public CompanyBuilder withPhone() {
+        this.phone = new Phone();
         return this;
     }
 

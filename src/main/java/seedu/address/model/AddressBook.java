@@ -7,7 +7,7 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.person.Company;
-import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.person.UniqueCompanyList;
 
 /**
  * Wraps all data at the address-book level
@@ -15,7 +15,7 @@ import seedu.address.model.person.UniquePersonList;
  */
 public class AddressBook implements ReadOnlyAddressBook {
 
-    private final UniquePersonList persons;
+    private final UniqueCompanyList companies;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -25,7 +25,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      *   among constructors.
      */
     {
-        persons = new UniquePersonList();
+        companies = new UniqueCompanyList();
     }
 
     public AddressBook() {}
@@ -44,8 +44,8 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Replaces the contents of the person list with {@code persons}.
      * {@code persons} must not contain duplicate persons.
      */
-    public void setPersons(List<Company> companies) {
-        this.persons.setPersons(companies);
+    public void setCompanies(List<Company> companies) {
+        this.companies.setCompany(companies);
     }
 
     /**
@@ -54,7 +54,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
-        setPersons(newData.getPersonList());
+        setCompanies(newData.getCompanyList());
     }
 
     //// person-level operations
@@ -62,17 +62,17 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
-    public boolean hasPerson(Company company) {
+    public boolean hasCompany(Company company) {
         requireNonNull(company);
-        return persons.contains(company);
+        return companies.contains(company);
     }
 
     /**
-     * Adds a person to the address book.
-     * The person must not already exist in the address book.
+     * Adds a company to the address book.
+     * The company must not already exist in the address book.
      */
-    public void addPerson(Company p) {
-        persons.add(p);
+    public void addCompany(Company p) {
+        companies.add(p);
     }
 
     /**
@@ -80,18 +80,18 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code target} must exist in the address book.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
      */
-    public void setPerson(Company target, Company editedCompany) {
+    public void setCompany(Company target, Company editedCompany) {
         requireNonNull(editedCompany);
 
-        persons.setPerson(target, editedCompany);
+        companies.setPerson(target, editedCompany);
     }
 
     /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
-    public void removePerson(Company key) {
-        persons.remove(key);
+    public void removeCompany(Company key) {
+        companies.remove(key);
     }
 
     //// util methods
@@ -99,13 +99,13 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("persons", persons)
+                .add("persons", companies)
                 .toString();
     }
 
     @Override
-    public ObservableList<Company> getPersonList() {
-        return persons.asUnmodifiableObservableList();
+    public ObservableList<Company> getCompanyList() {
+        return companies.asUnmodifiableObservableList();
     }
 
     @Override
@@ -120,16 +120,16 @@ public class AddressBook implements ReadOnlyAddressBook {
         }
 
         AddressBook otherAddressBook = (AddressBook) other;
-        return persons.equals(otherAddressBook.persons);
+        return companies.equals(otherAddressBook.companies);
     }
     /**
      * Sorts the list of companies by their name in ascending order, ignoring case.
      */
     public void sortPersonList() {
-        persons.sort();
+        companies.sort();
     }
     @Override
     public int hashCode() {
-        return persons.hashCode();
+        return companies.hashCode();
     }
 }

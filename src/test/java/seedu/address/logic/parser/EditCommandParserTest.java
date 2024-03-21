@@ -191,6 +191,7 @@ public class EditCommandParserTest {
         String userInput = targetIndex.getOneBased() + TAG_EMPTY;
 
         EditCompanyDescriptor descriptor = new EditCompanyDescriptorBuilder().withTags().build();
+
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
