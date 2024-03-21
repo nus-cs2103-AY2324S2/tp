@@ -29,10 +29,15 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListTaskCommand;
+import seedu.address.logic.commands.MarkTaskCommand;
+import seedu.address.logic.commands.UnmarkTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskDescription;
+import seedu.address.model.task.TaskName;
+import seedu.address.model.task.TaskStatus;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
@@ -51,14 +56,16 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_addtask() throws Exception {
-        Task task = new Task("test");
+        Task task = new Task(new TaskName("Implement test"),
+                new TaskDescription("Test to test the code"),
+                new TaskStatus());;
         AddTaskCommand command = (AddTaskCommand) parser.parseCommand(TaskUtil.getAddTaskCommand(task));
         assertNotNull(command);
     }
 
     @Test
     public void parseCommand_deletetask() throws Exception {
-        parser.parseCommand("addtask test");
+        parser.parseCommand("addtask n/ test d/ test description");
         DeleteTaskCommand command = (DeleteTaskCommand) parser.parseCommand(TaskUtil.getDeleteTaskCommand(
                 Index.fromOneBased(1)));
         assertEquals(new DeleteTaskCommand(INDEX_FIRST), command);
@@ -86,11 +93,26 @@ public class AddressBookParserTest {
         assertEquals(new EditCommand(INDEX_FIRST, descriptor), command);
     }
 
-    @Test public void parseCommand_assign() throws Exception {
+    @Test
+    public void parseCommand_assign() throws Exception {
         AssignCommand command = (AssignCommand) parser.parseCommand(
                 AssignCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased() + " "
                 + PREFIX_TO + " " + INDEX_FIRST.getOneBased());
         assertEquals(new AssignCommand(INDEX_FIRST, INDEX_FIRST), command);
+    }
+
+    @Test
+    public void parseCommand_markTask() throws Exception {
+        MarkTaskCommand command = (MarkTaskCommand) parser.parseCommand(
+                MarkTaskCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased());
+        assertEquals(new MarkTaskCommand(INDEX_FIRST), command);
+    }
+
+    @Test
+    public void parseCommand_unmarkTask() throws Exception {
+        UnmarkTaskCommand command = (UnmarkTaskCommand) parser.parseCommand(
+                UnmarkTaskCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased());
+        assertEquals(new UnmarkTaskCommand(INDEX_FIRST), command);
     }
 
     @Test

@@ -8,6 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.task.Task;
+import seedu.address.testutil.TaskBuilder;
 
 public class TaskListTest {
 
@@ -18,8 +19,8 @@ public class TaskListTest {
     @BeforeEach
     public void setUp() {
         taskList = new TaskList();
-        task1 = new Task("Task 1");
-        task2 = new Task("Task 2");
+        task1 = new TaskBuilder().withTaskName("Task 1").build();
+        task2 = new TaskBuilder().withTaskName("Task 2").build();
     }
 
     @Test

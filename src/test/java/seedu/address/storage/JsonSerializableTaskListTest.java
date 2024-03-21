@@ -8,11 +8,12 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.TaskList;
 import seedu.address.model.task.Task;
+import seedu.address.testutil.TaskBuilder;
 
 public class JsonSerializableTaskListTest {
 
-    private static final Task TASK_1 = new Task("Task 1");
-    private static final Task TASK_2 = new Task("Task 2");
+    private static final Task TASK_1 = new TaskBuilder().withTaskName("Test 1").build();
+    private static final Task TASK_2 = new TaskBuilder().withTaskName("Test 2").build();
 
     @Test
     public void toModelType_validTaskList_success() throws IllegalValueException {

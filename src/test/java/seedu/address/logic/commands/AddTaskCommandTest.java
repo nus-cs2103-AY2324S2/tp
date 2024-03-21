@@ -11,6 +11,9 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ModelManager;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskDescription;
+import seedu.address.model.task.TaskName;
+import seedu.address.model.task.TaskStatus;
 
 class AddTaskCommandTest {
 
@@ -29,7 +32,9 @@ class AddTaskCommandTest {
 
     @Test
     public void execute_taskAcceptedByModel_addSuccessful() throws Exception {
-        Task validTask = new Task("sample");
+        Task validTask = new Task(new TaskName("Implement test"),
+                new TaskDescription("Test to test the code"),
+                new TaskStatus());
 
         CommandResult commandResult = new AddTaskCommand(validTask).execute(model);
 
@@ -38,7 +43,9 @@ class AddTaskCommandTest {
 
     @Test
     public void execute_duplicateTask_throwsCommandException() throws CommandException {
-        Task validTask = new Task("sample");
+        Task validTask = new Task(new TaskName("Implement test"),
+                new TaskDescription("Test to test the code"),
+                new TaskStatus());
         new AddTaskCommand(validTask).execute(model);
 
         assertThrows(CommandException.class,
@@ -47,17 +54,21 @@ class AddTaskCommandTest {
 
     @Test
     void testEquals() {
-        Task testTask1 = new Task("test1");
-        Task testTask2 = new Task("test2");
+        Task testTask1 = new Task(new TaskName("Implement test1"),
+                new TaskDescription("First test to test the code"),
+                new TaskStatus());
+        Task testTask2 = new Task(new TaskName("Implement test2"),
+                new TaskDescription("Second test to test the code"),
+                new TaskStatus());
         AddTaskCommand addTaskCommand1 = new AddTaskCommand(testTask1);
         AddTaskCommand addTaskCommand2 = new AddTaskCommand(testTask2);
 
         // same object -> returns true
         assertTrue(addTaskCommand1.equals(addTaskCommand1));
 
-        // same values -> returns false
+        // same values -> returns true
         AddTaskCommand addTaskCommandCopy1 = new AddTaskCommand(testTask1);
-        assertFalse(addTaskCommandCopy1.equals(addTaskCommand1));
+        assertTrue(addTaskCommandCopy1.equals(addTaskCommand1));
 
         // different types -> returns false
         assertFalse(addTaskCommand1.equals(1));
@@ -71,7 +82,9 @@ class AddTaskCommandTest {
 
     @Test
     void testToString() {
-        Task test = new Task("test");
+        Task test = new Task(new TaskName("Implement test"),
+                new TaskDescription("Test to test the code"),
+                new TaskStatus());
         AddTaskCommand addTaskCommand = new AddTaskCommand(test);
         String expected = AddTaskCommand.class.getCanonicalName() + "{toAdd=" + test + "}";
         assertEquals(expected, addTaskCommand.toString());

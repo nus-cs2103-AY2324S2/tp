@@ -13,8 +13,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.model.TaskList;
-import seedu.address.model.task.Task;
 import seedu.address.testutil.Assert;
+import seedu.address.testutil.TaskBuilder;
 
 public class JsonTaskListStorageTest {
 
@@ -66,9 +66,9 @@ public class JsonTaskListStorageTest {
     }
 
     private static TaskList getTypicalTaskList() {
-        taskList.addTask(new Task("test 1"));
-        taskList.addTask(new Task("test 2"));
-        taskList.addTask(new Task("test 3"));
+        taskList.addTask(new TaskBuilder().withTaskName("Test 1").build());
+        taskList.addTask(new TaskBuilder().withTaskName("Test 2").build());
+        taskList.addTask(new TaskBuilder().withTaskName("Test 3").build());
         return taskList;
     }
 

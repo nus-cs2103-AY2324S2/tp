@@ -7,7 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TASK_FIRST;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
@@ -16,6 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.model.task.Task;
 import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.TaskBuilder;
 
 public class PersonTest {
 
@@ -27,14 +28,16 @@ public class PersonTest {
 
     @Test
     public void deleteTask() {
-        Person person = new PersonBuilder().withTasks("prepare-presentation").build();
-        assertEquals(new PersonBuilder().build(), person.deleteTask(new Task("prepare-presentation")));
+        Task task = new TaskBuilder().build();
+        Person person = new PersonBuilder().withTasks(task).build();
+        assertEquals(new PersonBuilder().build(), person.deleteTask(task));
     }
 
     @Test
     public void hasTask() {
-        Person person = new PersonBuilder().withTasks("prepare-presentation").build();
-        assertTrue(person.hasTask(new Task("prepare-presentation")));
+        Task task = new TaskBuilder().build();
+        Person person = new PersonBuilder().withTasks(task).build();
+        assertTrue(person.hasTask(task));
     }
 
     @Test
@@ -47,7 +50,7 @@ public class PersonTest {
 
         // same name, all other attributes different -> returns true
         Person editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withAddress(VALID_ADDRESS_BOB).withTasks(VALID_TAG_HUSBAND).build();
+                .withAddress(VALID_ADDRESS_BOB).withTasks(VALID_TASK_FIRST).build();
         assertTrue(ALICE.isSamePerson(editedAlice));
 
         // different name, all other attributes same -> returns false
@@ -66,6 +69,8 @@ public class PersonTest {
 
     @Test
     public void equals() {
+        System.out.println(ALICE.equals(5));
+
         // same values -> returns true
         Person aliceCopy = new PersonBuilder(ALICE).build();
         assertTrue(ALICE.equals(aliceCopy));
@@ -99,7 +104,7 @@ public class PersonTest {
         assertFalse(ALICE.equals(editedAlice));
 
         // different tags -> returns false
-        editedAlice = new PersonBuilder(ALICE).withTasks(VALID_TAG_HUSBAND).build();
+        editedAlice = new PersonBuilder(ALICE).withTasks(VALID_TASK_FIRST).build();
         assertFalse(ALICE.equals(editedAlice));
     }
 

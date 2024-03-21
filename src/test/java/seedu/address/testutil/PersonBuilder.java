@@ -68,7 +68,7 @@ public class PersonBuilder {
     /**
      * Parses the {@code tasks} into a {@code Set<Task>} and set it to the {@code Person} that we are building.
      */
-    public PersonBuilder withTasks(String ... tasks) {
+    public PersonBuilder withTasks(Task ... tasks) {
         this.tasks = SampleDataUtil.getTaskSet(tasks);
         return this;
     }
