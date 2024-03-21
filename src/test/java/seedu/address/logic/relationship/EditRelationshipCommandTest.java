@@ -1,11 +1,11 @@
-package seedu.address.logic.relationship;import static org.junit.jupiter.api.Assertions.assertThrows;
+package seedu.address.logic.relationship;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.UUID;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.Messages;
-import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
