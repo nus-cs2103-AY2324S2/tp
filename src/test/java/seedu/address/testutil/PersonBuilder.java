@@ -1,11 +1,21 @@
 package seedu.address.testutil;
 
-
-import java.util.HashSet;
-import java.util.Set;
-
-import seedu.address.model.person.*;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Allergies;
+import seedu.address.model.person.BloodType;
+import seedu.address.model.person.Condition;
+import seedu.address.model.person.Country;
+import seedu.address.model.person.DateOfAdmission;
+import seedu.address.model.person.DateOfBirth;
+import seedu.address.model.person.Diagnosis;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Nric;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.Sex;
+import seedu.address.model.person.Status;
+import seedu.address.model.person.Symptom;
 
 /**
  * A utility class to help with building Person objects.
@@ -216,6 +226,9 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Returns a Person object with fields initialised to that of PersonBuilder object.
+     */
     public Person build() {
         Person p = new Person(nric, name, phone, address, dateOfBirth, sex, status);
         p.setEmail(email);

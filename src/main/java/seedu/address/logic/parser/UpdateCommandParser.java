@@ -2,7 +2,22 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ALLERGIES;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BLOODTYPE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CONDITION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COUNTRY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATEOFADMISSION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATEOFBIRTH;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DIAGNOSIS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SYMPTOM;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -75,19 +90,24 @@ public class UpdateCommandParser implements Parser<UpdateCommand> {
 
         // Medical information
         if (argMultimap.getValue(PREFIX_ALLERGIES).isPresent()) {
-            updatePersonDescriptor.setAllergies(ParserUtil.parseAllergies(argMultimap.getValue(PREFIX_ALLERGIES).get()));
+            updatePersonDescriptor.setAllergies(
+                    ParserUtil.parseAllergies(argMultimap.getValue(PREFIX_ALLERGIES).get()));
         }
         if (argMultimap.getValue(PREFIX_BLOODTYPE).isPresent()) {
-            updatePersonDescriptor.setBloodType(ParserUtil.parseBloodType(argMultimap.getValue(PREFIX_BLOODTYPE).get()));
+            updatePersonDescriptor.setBloodType(
+                    ParserUtil.parseBloodType(argMultimap.getValue(PREFIX_BLOODTYPE).get()));
         }
         if (argMultimap.getValue(PREFIX_CONDITION).isPresent()) {
-            updatePersonDescriptor.setCondition(ParserUtil.parseCondition(argMultimap.getValue(PREFIX_CONDITION).get()));
+            updatePersonDescriptor.setCondition(
+                    ParserUtil.parseCondition(argMultimap.getValue(PREFIX_CONDITION).get()));
         }
         if (argMultimap.getValue(PREFIX_DATEOFADMISSION).isPresent()) {
-            updatePersonDescriptor.setDateOfAdmission(ParserUtil.parseDateOfAdmission(argMultimap.getValue(PREFIX_DATEOFADMISSION).get()));
+            updatePersonDescriptor.setDateOfAdmission(
+                    ParserUtil.parseDateOfAdmission(argMultimap.getValue(PREFIX_DATEOFADMISSION).get()));
         }
         if (argMultimap.getValue(PREFIX_DIAGNOSIS).isPresent()) {
-            updatePersonDescriptor.setDiagnosis(ParserUtil.parseDiagnosis(argMultimap.getValue(PREFIX_DIAGNOSIS).get()));
+            updatePersonDescriptor.setDiagnosis(
+                    ParserUtil.parseDiagnosis(argMultimap.getValue(PREFIX_DIAGNOSIS).get()));
         }
         if (argMultimap.getValue(PREFIX_SYMPTOM).isPresent()) {
             updatePersonDescriptor.setSymptom(ParserUtil.parseSymptom(argMultimap.getValue(PREFIX_SYMPTOM).get()));
