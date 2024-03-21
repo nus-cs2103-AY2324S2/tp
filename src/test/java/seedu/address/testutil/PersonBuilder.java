@@ -5,6 +5,7 @@ import java.util.Set;
 
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Id;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -27,17 +28,19 @@ public abstract class PersonBuilder<T extends PersonBuilder<T>> {
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_REMARK = "some remarks";
 
-    protected Name name;
-    protected Phone phone;
-    protected Email email;
-    protected Address address;
-    protected Remark remark;
-    protected Set<Tag> tags;
+    private Id id;
+    private Name name;
+    private Phone phone;
+    private Email email;
+    private Address address;
+    private Remark remark;
+    private Set<Tag> tags;
 
     /**
      * Constructs a new PersonBuilder with default values.
      */
     public PersonBuilder() {
+        id = Id.generateNextId();
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
@@ -49,13 +52,14 @@ public abstract class PersonBuilder<T extends PersonBuilder<T>> {
     /**
      * Initializes the PersonBuilder with the data of {@code personToCopy}.
      */
-    public PersonBuilder(Person person) {
-        name = person.getName();
-        phone = person.getPhone();
-        email = person.getEmail();
-        address = person.getAddress();
-        remark = person.getRemark();
-        tags = new HashSet<>(person.getTags());
+    public PersonBuilder(Person personToCopy) {
+        id = personToCopy.getId();
+        name = personToCopy.getName();
+        phone = personToCopy.getPhone();
+        email = personToCopy.getEmail();
+        address = personToCopy.getAddress();
+        remark = personToCopy.getRemark();
+        tags = new HashSet<>(personToCopy.getTags());
     }
 
     /**
@@ -64,6 +68,11 @@ public abstract class PersonBuilder<T extends PersonBuilder<T>> {
     @SuppressWarnings("unchecked")
     private T self() {
         return (T) this;
+    }
+
+    public T withId(int id) {
+        this.id = Id.generateId(id);
+        return self();
     }
 
     /**

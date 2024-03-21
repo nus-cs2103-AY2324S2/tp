@@ -21,6 +21,7 @@ import seedu.address.model.Model;
 import seedu.address.model.NetConnect;
 import seedu.address.model.ReadOnlyNetConnect;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.person.Id;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.ClientBuilder;
 import seedu.address.testutil.EmployeeBuilder;
@@ -159,6 +160,16 @@ public class AddCommandTest {
 
         @Override
         public boolean hasPerson(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasId(Id id) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Person getPersonById(Id id) {
             throw new AssertionError("This method should not be called.");
         }
 

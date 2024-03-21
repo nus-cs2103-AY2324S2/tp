@@ -2,6 +2,7 @@
   "_comment": "NetConnect save file which contains various Person types including Clients, Suppliers, and Employees",
   "persons": [
     {
+      "id": 1,
       "name": "Alice Pauline",
       "phone": "94351253",
       "email": "alice@example.com",
@@ -17,6 +18,7 @@
       "remark": "some remarks"
     },
     {
+      "id": 2,
       "name": "Benson Meier",
       "phone": "98765432",
       "email": "johnd@example.com",
@@ -32,6 +34,7 @@
       "remark": "some remarks"
     },
     {
+      "id": 3,
       "name": "Daniel Meier",
       "phone": "87652533",
       "email": "cornelia@example.com",
@@ -47,6 +50,7 @@
       "remark": "some remarks"
     },
     {
+      "id": 4,
       "name": "Elle Meyer",
       "phone": "9482224",
       "email": "werner@example.com",
@@ -62,6 +66,7 @@
       "remark": "some remarks"
     },
     {
+      "id": 5,
       "name": "Fiona Kunz",
       "phone": "9482427",
       "email": "lydia@example.com",
@@ -77,6 +82,7 @@
       "remark": "some remarks"
     },
     {
+      "id": 6,
       "name": "George Best",
       "phone": "9482442",
       "email": "anna@example.com",
@@ -92,6 +98,7 @@
       "remark": "some remarks"
     },
     {
+      "id": 7,
       "name": "Amy Bee",
       "phone": "11111111",
       "email": "amy@example.com",
@@ -107,6 +114,7 @@
       "remark": "Like skiing."
     },
     {
+      "id": 8,
       "name": "Bob Choo",
       "phone": "22222222",
       "email": "bob@example.com",

@@ -16,6 +16,7 @@ import seedu.address.model.person.Department;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Employee;
 import seedu.address.model.person.JobTitle;
+import seedu.address.model.person.Id;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -34,6 +35,7 @@ class JsonAdaptedPerson {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
     public static final String INVALID_ROLE_MESSAGE_FORMAT = "Person's role is invalid!";
 
+    private final int id;
     private final String name;
     private final String phone;
     private final String email;
@@ -52,7 +54,8 @@ class JsonAdaptedPerson {
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
+    public JsonAdaptedPerson(@JsonProperty("id") int id, @JsonProperty("name") String name, 
+            @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("tags") List<JsonAdaptedTag> tags, @JsonProperty("role") String role,
             @JsonProperty("products") JsonAdaptedProducts products,
@@ -62,6 +65,7 @@ class JsonAdaptedPerson {
             @JsonProperty("termsOfService") TermsOfService termsOfService,
             @JsonProperty("skills") JsonAdaptedSkills skills,
             @JsonProperty("remark") String remark) {
+        this.id = id;
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -83,6 +87,7 @@ class JsonAdaptedPerson {
      * Converts a given {@code Person} into this class for Jackson use.
      */
     public JsonAdaptedPerson(Person source) {
+        id = source.getId().value;
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
@@ -151,6 +156,11 @@ class JsonAdaptedPerson {
             personTags.add(tag.toModelType());
         }
 
+        if (!Id.isValidId(id)) {
+            throw new IllegalValueException(Id.MESSAGE_CONSTRAINTS);
+        }
+        final Id modelId = Id.generateId(id);
+
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
@@ -193,7 +203,7 @@ class JsonAdaptedPerson {
         final Products transformedProducts = products == null ? new Products()
             : new Products(this.products.getProducts());
 
-        return new Client(modelName, modelPhone, modelEmail, modelAddress, modelRemark, modelTags, transformedProducts,
+        return new Client(modelId, modelName, modelPhone, modelEmail, modelAddress, modelRemark, modelTags, transformedProducts,
                 preferences);
     }
 
@@ -209,6 +219,11 @@ class JsonAdaptedPerson {
         for (JsonAdaptedTag tag : tags) {
             personTags.add(tag.toModelType());
         }
+
+        if (!Id.isValidId(id)) {
+            throw new IllegalValueException(Id.MESSAGE_CONSTRAINTS);
+        }
+        final Id modelId = Id.generateId(id);
 
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
@@ -247,7 +262,7 @@ class JsonAdaptedPerson {
         final Skills transformedSkills = skills == null ? new Skills() : this.skills.toModelType();
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Employee(modelName, modelPhone, modelEmail, modelAddress, modelRemark, modelTags, department,
+        return new Employee(modelId, modelName, modelPhone, modelEmail, modelAddress, modelRemark, modelTags, department,
                 jobTitle, transformedSkills);
     }
 
@@ -263,6 +278,11 @@ class JsonAdaptedPerson {
         for (JsonAdaptedTag tag : tags) {
             personTags.add(tag.toModelType());
         }
+
+        if (!Id.isValidId(id)) {
+            throw new IllegalValueException(Id.MESSAGE_CONSTRAINTS);
+        }
+        final Id modelId = Id.generateId(id);
 
         final Products transformedProducts = new Products(this.products.getProducts());
 
@@ -301,7 +321,7 @@ class JsonAdaptedPerson {
         final Remark modelRemark = new Remark(remark);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Supplier(modelName, modelPhone, modelEmail, modelAddress, modelRemark, modelTags,
+        return new Supplier(modelId, modelName, modelPhone, modelEmail, modelAddress, modelRemark, modelTags,
                 transformedProducts,
                 termsOfService);
     }

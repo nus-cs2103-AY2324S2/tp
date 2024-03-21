@@ -6,6 +6,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_DEPARTMENT_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_JOB_TITLE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ID_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ID_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
@@ -36,50 +38,50 @@ import seedu.address.model.person.Supplier;
 public class TypicalPersons {
 
     // Using specific Builders for Clients, Employees, and Suppliers
-    public static final Client ALICE = new ClientBuilder().withName("Alice Pauline")
+    public static final Client ALICE = new ClientBuilder().withId(1).withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253").withTags("friends").withProducts("Product1", "Product2")
             .withPreferences("Vegan").build();
 
-    public static final Client BENSON = new ClientBuilder().withName("Benson Meier")
+    public static final Client BENSON = new ClientBuilder().withId(2).withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25").withEmail("johnd@example.com")
             .withPhone("98765432").withTags("owesMoney", "friends").withProducts("Product3")
             .withPreferences("Gluten-Free").build();
 
-    public static final Employee DANIEL = new EmployeeBuilder().withName("Daniel Meier")
+    public static final Employee DANIEL = new EmployeeBuilder().withId(3).withName("Daniel Meier")
             .withPhone("87652533").withEmail("cornelia@example.com").withAddress("10th street")
             .withTags("friends").withDepartment("Marketing").withJobTitle("Manager")
             .withSkills("Public Speaking", "Digital Marketing").build();
 
-    public static final Employee ELLE = new EmployeeBuilder().withName("Elle Meyer")
+    public static final Employee ELLE = new EmployeeBuilder().withId(4).withName("Elle Meyer")
             .withPhone("9482224").withEmail("werner@example.com").withAddress("michegan ave")
             .withDepartment("IT").withJobTitle("Developer").withSkills("Java", "C++").build();
 
-    public static final Supplier FIONA = new SupplierBuilder().withName("Fiona Kunz")
+    public static final Supplier FIONA = new SupplierBuilder().withId(5).withName("Fiona Kunz")
             .withPhone("9482427").withEmail("lydia@example.com").withAddress("little tokyo")
             .withProducts("Office Supplies", "Furniture").withTermsOfService("Delivery within 2 weeks").build();
 
-    public static final Supplier GEORGE = new SupplierBuilder().withName("George Best")
+    public static final Supplier GEORGE = new SupplierBuilder().withId(6).withName("George Best")
             .withPhone("9482442").withEmail("anna@example.com").withAddress("4th street")
             .withProducts("Electronics", "Gadgets").withTermsOfService("Warranty for 1 year").build();
 
     // Manually added
-    public static final Employee HOON = new EmployeeBuilder().withName("Hoon Meier").withPhone("8482424")
+    public static final Employee HOON = new EmployeeBuilder().withId(9).withName("Hoon Meier").withPhone("8482424")
             .withEmail("stefan@example.com").withAddress("little india")
             .withDepartment("Tech Support").withJobTitle("Technician")
             .withSkills("Technical Support", "Customer Service").build();
 
-    public static final Supplier IDA = new SupplierBuilder().withName("Ida Mueller").withPhone("8482131")
+    public static final Supplier IDA = new SupplierBuilder().withId(10).withName("Ida Mueller").withPhone("8482131")
             .withEmail("hans@example.com").withAddress("chicago ave")
             .withProducts("Computer Hardware", "Printers").withTermsOfService("Returns within 30 days").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
-    public static final Client AMY = new ClientBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
+    public static final Client AMY = new ClientBuilder().withId(VALID_ID_AMY).withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
             .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND)
             .withRemark(VALID_REMARK_AMY).withProducts(VALID_PRODUCTS_LAPTOP, VALID_PRODUCTS_SMARTPHONE)
             .withPreferences(VALID_PREFERENCE_AMY).build();
 
-    public static final Employee BOB = new EmployeeBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
+    public static final Employee BOB = new EmployeeBuilder().withId(VALID_ID_BOB).withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
             .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).withRemark(VALID_REMARK_BOB)
             .withDepartment(VALID_DEPARTMENT_BOB).withJobTitle(VALID_JOB_TITLE_BOB)

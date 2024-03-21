@@ -29,6 +29,17 @@ public class Employee extends Person {
     }
 
     /**
+     * Every field must be present and not null.
+     */
+    public Employee(Id id, Name name, Phone phone, Email email, Address address, Remark remark, Set<Tag> tags,
+                    Department department, JobTitle jobTitle, Skills skills) {
+        super(id, name, phone, email, address, remark, tags);
+        this.department = department;
+        this.jobTitle = jobTitle;
+        this.skills = skills;
+    }
+
+    /**
      * Returns the department of the employee.
      *
      * @return The department of the employee.

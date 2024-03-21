@@ -25,6 +25,17 @@ public class Client extends Person {
     }
 
     /**
+     * Every field must be present and not null.
+     */
+    public Client(Id id, Name name, Phone phone, Email email, Address address, Remark remark,
+                  Set<Tag> tags, Products products, String preferences) {
+        super(id, name, phone, email, address, remark, tags);
+        this.products = products;
+        this.preferences = preferences;
+    }
+
+
+    /**
      * Returns the products preferred by the client.
      *
      * @return The products preferred by the client.

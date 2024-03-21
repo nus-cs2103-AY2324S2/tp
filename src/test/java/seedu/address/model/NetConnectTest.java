@@ -25,6 +25,7 @@ import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.testutil.ClientBuilder;
 import seedu.address.testutil.EmployeeBuilder;
 import seedu.address.testutil.SupplierBuilder;
+import seedu.address.model.person.exceptions.IdNotFoundException;
 
 public class NetConnectTest {
 
@@ -77,6 +78,38 @@ public class NetConnectTest {
         netConnect.addPerson(ALICE);
         Client editedAliceClient = new ClientBuilder(ALICE).withPreferences("Different Preferences").build();
         assertTrue(netConnect.hasPerson(editedAliceClient));
+    }
+
+    @Test
+    public void hasId_nullId_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> netConnect.hasId(null));
+    }
+
+    @Test
+    public void hasId_idNotInNetConnect_returnsFalse() {
+        assertFalse(netConnect.hasId(ALICE.getId()));
+    }
+
+    @Test
+    public void hasId_idInNetConnect_returnsTrue() {
+        netConnect.addPerson(ALICE);
+        assertTrue(netConnect.hasId(ALICE.getId()));
+    }
+
+    @Test
+    public void getPersonById_nullId_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> netConnect.getPersonById(null));
+    }
+
+    @Test
+    public void getPersonById_idNotInNetConnect_throwsIdNotFoundException() {
+        assertThrows(IdNotFoundException.class, () -> netConnect.getPersonById(ALICE.getId()));
+    }
+
+    @Test
+    public void getPersonById_idInNetConnect_returnsPerson() {
+        netConnect.addPerson(ALICE);
+        assertEquals(ALICE, netConnect.getPersonById(ALICE.getId()));
     }
 
     @Test
@@ -148,5 +181,4 @@ public class NetConnectTest {
             return persons;
         }
     }
-
 }

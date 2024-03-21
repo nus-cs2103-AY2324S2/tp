@@ -41,6 +41,7 @@
       <Label fx:id="products" styleClass="cell_small_label" text="\$products" visible="false" />
       <Label fx:id="skills" styleClass="cell_small_label" text="\$skills" visible="false" />
       <Label fx:id="termsOfService" styleClass="cell_small_label" text="\$termsOfService" visible="false" />
+      <Label fx:id="id" styleClass="cell_small_label" text="\$id"/>
     </VBox>
   </GridPane>
 </HBox>

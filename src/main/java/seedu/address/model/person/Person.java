@@ -17,6 +17,9 @@ import seedu.address.model.tag.Tag;
  */
 public abstract class Person {
 
+    // Unique id
+    private final Id id;
+
     // Identity fields
     protected final Name name;
     protected final Phone phone;
@@ -32,12 +35,31 @@ public abstract class Person {
      */
     public Person(Name name, Phone phone, Email email, Address address, Remark remark, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
+        this.id = Id.generateNextId();
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.remark = remark;
         this.tags.addAll(tags);
+    }
+
+    /**
+     * Create a {@code Person} object with a specified id.
+     */
+    public Person(Id id, Name name, Phone phone, Email email, Address address, Remark remark, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, tags);
+        this.id = id;
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.remark = remark;
+        this.tags.addAll(tags);
+    }
+
+    public Id getId() {
+        return id;
     }
 
     public Name getName() {
@@ -85,6 +107,18 @@ public abstract class Person {
     }
 
     /**
+     * Returns true if both persons have the same id.
+     */
+    public boolean hasSameId(Person otherPerson) {
+        if (otherPerson == this) {
+            return true;
+        }
+
+        return otherPerson != null
+                && otherPerson.getId().equals(getId());
+    }
+
+    /**
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.
      */
@@ -117,6 +151,7 @@ public abstract class Person {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
+                .add("id", id)
                 .add("name", name)
                 .add("phone", phone)
                 .add("email", email)

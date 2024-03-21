@@ -25,6 +25,14 @@ public class Supplier extends Person {
         this.termsOfService = termsOfService;
     }
 
+    public Supplier(Id id, Name name, Phone phone, Email email, Address address, Remark remark, Set<Tag> tags,
+                    Products products, TermsOfService termsOfService) {
+        super(id, name, phone, email, address, remark, tags);
+        this.products = products;
+        this.termsOfService = termsOfService;
+    }
+
+
     /**
      * Returns the products offered by the supplier.
      *
