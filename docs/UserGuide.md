@@ -214,6 +214,15 @@ Examples:
 * `addorder d/2020-01-01 r/100 chicken wings` returns an error as the index is not specified
 * `addorder r/` or `addorder d/` or `addorder r/ d/` returns an error message as the 'KEYWORD' field cannot be empty
 
+### Listing orders : `listorder`
+
+Shows a list of all orders for a supplier in order of Date.
+
+Format: `listorder INDEX`
+
+* Shows a list of all orders for the supplier at the specified `INDEX`. The index refers to the index number shown in the displayed supplier list. The index **must be a positive integer, starting from 1** (1, 2, 3, …​)
+
+
 ### Deleting a person : `delete`
 
 Deletes the specified person from the address book.
@@ -286,4 +295,4 @@ _Details coming soon ..._
 | **Add Order** | `addorder INDEX d/DATE r/REMARK`<br> e.g., `addorder 1 d/ 2020-01-01 r/ 100 chicken wings`                                                                                                      |
 | **Add Favourite** | `addfav [i/INDICES]`                                                                                                                                                                            |
 | **List**      | `list`                                                                                                                                                                                          |
-| **Help**      | `help`                                                                                                                                                                                          |
+| **Help**      | `help`      
