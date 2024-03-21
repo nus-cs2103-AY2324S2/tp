@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.model.Model;
 
 /**
- * Lists all modules and their associated tutorial classes in the address book to the user.
+ * Lists all modules and their associated tutorial classes in TAHelper to the user.
  */
 public class ListClassesCommand extends Command {
 

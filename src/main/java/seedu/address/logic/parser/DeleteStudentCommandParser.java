@@ -16,14 +16,14 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.StudentId;
 
 /**
- * Parses input arguments and creates a new DeleteCommand object
+ * Parses input arguments and creates a new DeleteStudentCommand object
  */
 public class DeleteStudentCommandParser implements Parser<DeleteStudentCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the
-     * DeleteCommand
-     * and returns a DeleteCommand object for execution.
+     * DeleteStudentCommand
+     * and returns a DeleteStudentCommand object for execution.
      *
      * @throws ParseException if the user input does not conform the expected format
      */
