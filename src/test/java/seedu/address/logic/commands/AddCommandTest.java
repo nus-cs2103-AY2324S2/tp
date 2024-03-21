@@ -15,17 +15,21 @@ import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.beans.property.ReadOnlyStringProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
+import seedu.address.model.CourseName;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyCourseName;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.NusNet;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
+
 
 public class AddCommandTest {
 
@@ -86,9 +90,10 @@ public class AddCommandTest {
         String expected = AddPersonCommand.class.getCanonicalName() + "{toAdd=" + ALICE + "}";
         assertEquals(expected, addCommand.toString());
     }
-
+    // TODO
+    // Abstract away the assertion errors below
     /**
-     * A default model stub that have all of the methods failing.
+     * A default model stub that have all the methods failing.
      */
     private class ModelStub implements Model {
         @Override
@@ -162,6 +167,36 @@ public class AddCommandTest {
         }
 
         @Override
+        public void changeCode(String code) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyStringProperty courseCodeProperty() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Path getCourseNameFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setCourseNameFilePath(Path courseNameFilePath) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setCourseName(ReadOnlyCourseName course) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public CourseName getCourseName() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+
         public Optional<Person> getPersonByNusNet(NusNet nusNet) {
             throw new AssertionError("This method should not be called.");
         }

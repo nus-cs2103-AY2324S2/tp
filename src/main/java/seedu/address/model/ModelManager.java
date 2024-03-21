@@ -8,12 +8,17 @@ import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.beans.property.ReadOnlyStringProperty;
+import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.course.Course;
 import seedu.address.model.person.NusNet;
 import seedu.address.model.person.Person;
+
+
 
 /**
  * Represents the in-memory model of the address book data.
@@ -25,21 +30,27 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
 
+    private final CourseName currentCourse;
+
+    private ReadOnlyStringWrapper courseCode = new ReadOnlyStringWrapper("defaultCode");
+
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given addressBook, userPrefs and currentCourse.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs,
+                        ReadOnlyCourseName currentCourse) {
+        requireAllNonNull(addressBook, userPrefs, currentCourse);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        this.currentCourse = new CourseName(currentCourse);
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new AddressBook(), new UserPrefs(), new CourseName());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -135,6 +146,43 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
+    //=========== Course Code =============================================================
+    @Override
+    public Path getCourseNameFilePath() {
+        return userPrefs.getCourseNameFilePath();
+    }
+
+    @Override
+    public void setCourseNameFilePath(Path courseNameFilePath) {
+        requireNonNull(courseNameFilePath);
+        userPrefs.setAddressBookFilePath(courseNameFilePath);
+    }
+
+    @Override
+    public void setCourseName(ReadOnlyCourseName course) {
+        this.currentCourse.resetData(course);
+    }
+
+    @Override
+    public CourseName getCourseName() {
+        return currentCourse;
+    }
+
+    @Override
+    public void changeCode(String newCode) {
+        requireNonNull(newCode);
+        if (Course.isValidCode(newCode)) {
+            currentCourse.setCourse(new Course(newCode));
+            this.courseCode.set(newCode);
+        } else {
+            throw new IllegalArgumentException(Course.MESSAGE_CONSTRAINTS);
+        }
+    }
+
+    @Override
+    public ReadOnlyStringProperty courseCodeProperty() {
+        return courseCode.getReadOnlyProperty();
+    }
 
     @Override
     public boolean equals(Object other) {

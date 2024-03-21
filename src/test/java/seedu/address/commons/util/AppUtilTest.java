@@ -8,11 +8,6 @@ import org.junit.jupiter.api.Test;
 public class AppUtilTest {
 
     @Test
-    public void getImage_exitingImage() {
-        assertNotNull(AppUtil.getImage("/images/address_book_32.png"));
-    }
-
-    @Test
     public void getImage_nullGiven_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> AppUtil.getImage(null));
     }
@@ -33,4 +28,10 @@ public class AppUtilTest {
         String errorMessage = "error message";
         assertThrows(IllegalArgumentException.class, errorMessage, () -> AppUtil.checkArgument(false, errorMessage));
     }
+
+    @Test
+    public void getImage_exitingImage() {
+        assertNotNull(AppUtil.getImage("/images/address_book_32.png"));
+    }
+
 }
