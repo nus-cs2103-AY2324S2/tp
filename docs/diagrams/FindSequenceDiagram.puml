@@ -103,5 +103,4 @@ deactivate
 
 FindCommand --> LogicManager : r
 
-
 @enduml
