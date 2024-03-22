@@ -44,8 +44,8 @@ Person *--> Phone
 Person *--> Email
 Person *--> Address
 Person *--> "*" Tag
-Person *-> "0..1" Grade
-Person *-> "0..1" Subject
+Person *-> Grade
+Person *-> Subject
 
 Person -[hidden]up--> I
 Name -[hidden]-> Grade
