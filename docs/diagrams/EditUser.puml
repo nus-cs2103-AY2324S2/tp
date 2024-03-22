@@ -2,6 +2,7 @@
 !include style.puml
 skinparam ArrowFontStyle plain
 
+Actor User as user USER_COLOR
 Participant ":Ui" as ui UI_COLOR
 Participant "logicManager:LogicManager" as logicManager LOGIC_COLOR
 Participant "addressBookParser:AddressBookParser" as addressBookParser MODEL_COLOR
@@ -9,9 +10,10 @@ Participant ":EditCommandParser" as editCommandParser STORAGE_COLOR
 Participant ":EditCommand" as editCommand UI_COLOR
 Participant ":CommandResult" as commandResult LOGIC_COLOR
 
+user -[USER_COLOR]> ui : "edit 1 b/2000-01-01"
 activate ui UI_COLOR
 
-ref over logicManager, ui : proceses user input
+ref over logicManager, ui : process user input
 activate logicManager LOGIC_COLOR
 
 logicManager -[USER_COLOR]> addressBookParser : parseCommand("edit 1 b/2000-01-01")
@@ -53,6 +55,7 @@ deactivate editCommand
 ref over logicManager, ui : process command result
 deactivate logicManager
 
+ui -[USER_COLOR]-> user : "Edited Person: ..."
 deactivate ui
 
 @enduml
