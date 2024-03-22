@@ -179,6 +179,7 @@ Format: `addt INDEX [t/TAG]+`
 * At least one tag must be provided.
 * Tags can only contain alphanumeric characters or spaces.
 * Tags cannot be blank
+* Tags must be less than 50 characters long.
 * Tags are **case-insensitive**.
 * The index **must be a positive integer** 1, 2, 3, …​
 * When adding tags, if a tag is repeated in the command, it will be added as a single tag.
@@ -206,6 +207,7 @@ Format: `deletet INDEX [t/TAG]+`
 * At least one tag must be provided.
 * Tags can only contain alphanumeric characters or spaces.
 * Tags cannot be empty or blank
+* Tags must be less than 50 characters long.
 * Tags are **case-insensitive** when matching tags
 * The index **must be a positive integer** 1, 2, 3, …​
 * Tags provided should match with the existing tags of the patient.
