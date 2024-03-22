@@ -128,22 +128,22 @@ public class AvailabilityTest {
 
     @Test
     public void parseToDayOfWeekTest() {
-        assertEquals(DayOfWeek.TUESDAY, Availability.parseToDayOfWeek(new String("tues")));
-        assertEquals(DayOfWeek.WEDNESDAY, Availability.parseToDayOfWeek(new String("wednes")));
-        assertEquals(DayOfWeek.THURSDAY, Availability.parseToDayOfWeek(new String("thursday")));
-        assertEquals(DayOfWeek.FRIDAY, Availability.parseToDayOfWeek(new String("FRIDAY")));
-        assertEquals(DayOfWeek.SATURDAY, Availability.parseToDayOfWeek(new String("SATurday")));
-        assertEquals(DayOfWeek.SUNDAY, Availability.parseToDayOfWeek(new String("sunDAY")));
-        assertNotEquals(DayOfWeek.SUNDAY, Availability.parseToDayOfWeek(new String("mon")));
-        assertNotEquals(DayOfWeek.SATURDAY, Availability.parseToDayOfWeek(new String("friday")));
+        assertEquals(DayOfWeek.TUESDAY, Availability.parseToDayOfWeek("tues"));
+        assertEquals(DayOfWeek.WEDNESDAY, Availability.parseToDayOfWeek("wednes"));
+        assertEquals(DayOfWeek.THURSDAY, Availability.parseToDayOfWeek("thursday"));
+        assertEquals(DayOfWeek.FRIDAY, Availability.parseToDayOfWeek("FRIDAY"));
+        assertEquals(DayOfWeek.SATURDAY, Availability.parseToDayOfWeek("SATurday"));
+        assertEquals(DayOfWeek.SUNDAY, Availability.parseToDayOfWeek("sunDAY"));
+        assertNotEquals(DayOfWeek.SUNDAY, Availability.parseToDayOfWeek("mon"));
+        assertNotEquals(DayOfWeek.SATURDAY, Availability.parseToDayOfWeek("friday"));
     }
 
     @Test
     public void parseToLocalTimeTest() {
-        assertEquals(LocalTime.NOON, Availability.parseToLocalTime(new String("12:00")));
-        assertEquals(LocalTime.MIDNIGHT, Availability.parseToLocalTime(new String("00:00")));
-        assertEquals(LocalTime.MIN, Availability.parseToLocalTime(new String("00:00")));
-        assertNotEquals(LocalTime.MIN, Availability.parseToLocalTime(new String("00:01")));
+        assertEquals(LocalTime.NOON, Availability.parseToLocalTime("12:00"));
+        assertEquals(LocalTime.MIDNIGHT, Availability.parseToLocalTime("00:00"));
+        assertEquals(LocalTime.MIN, Availability.parseToLocalTime("00:00"));
+        assertNotEquals(LocalTime.MIN, Availability.parseToLocalTime("00:01"));
     }
 
     @Test
