@@ -2,8 +2,6 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.time.LocalDate;
-
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -16,7 +14,7 @@ import seedu.address.model.project.Task;
  */
 public class SetDeadlineCommand extends Command {
 
-    public static final String COMMAND_WORD = "set deadline";
+    public static final String COMMAND_WORD = "add deadline";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sets the deadline to a task in a project "
             + "Parameters: "
@@ -30,9 +28,7 @@ public class SetDeadlineCommand extends Command {
     private final String deadline;
     private final Person project;
 
-    private final String datePattern = "\\d{4}-\\d{2}-\\d{2}";
-
-    private LocalDate deadlineDate;
+    private final String datePattern = "\\b(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\\b \\d{1,2} \\d{4}\\b";
 
     /**
      * Creates an AddCommand to add the specified {@code Person}
@@ -55,7 +51,6 @@ public class SetDeadlineCommand extends Command {
         Person deadlineProject = model.findPerson(project.getName());
         Task deadlineTask = deadlineProject.findTask(task.getName());
 
-        this.deadlineDate = LocalDate.parse(deadline);
         deadlineTask.setDeadline(deadline);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(deadlineTask), deadline));

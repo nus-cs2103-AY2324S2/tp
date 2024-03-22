@@ -14,7 +14,7 @@ import seedu.address.model.project.Task;
 public class TaskListPanel extends UiPart<Region> {
     private static final String FXML = "TaskListPanel.fxml";
 
-    private final Person currentProject;
+    public final Person currentProject;
 
     @FXML
     private Label showingProjectName;
