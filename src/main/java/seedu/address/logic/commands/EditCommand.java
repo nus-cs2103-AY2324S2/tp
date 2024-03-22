@@ -223,9 +223,13 @@ public class EditCommand extends Command {
             return Optional.ofNullable(gitHubUsername);
         }
 
-        public void setProfilePicture(ProfilePicture profilePicture) {this.profilePicture = profilePicture; }
+        public void setProfilePicture(ProfilePicture profilePicture) {
+            this.profilePicture = profilePicture;
+        }
 
-        public Optional<ProfilePicture> getProfilePicture() { return Optional.ofNullable(this.profilePicture); }
+        public Optional<ProfilePicture> getProfilePicture() {
+            return Optional.ofNullable(this.profilePicture);
+        }
 
         /**
          * Sets {@code techStack} to this object's {@code techStack}.

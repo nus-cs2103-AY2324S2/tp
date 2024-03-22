@@ -59,7 +59,9 @@ public class Contact {
         return email;
     }
 
-    public ProfilePicture getProfilePicture() { return profilePicture; }
+    public ProfilePicture getProfilePicture() {
+        return profilePicture;
+    }
 
     public Address getAddress() {
         return address;
