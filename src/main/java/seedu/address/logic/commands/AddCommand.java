@@ -13,6 +13,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
+import java.io.IOException;
+
 /**
  * Adds a person to the currently selected class' address book.
  */

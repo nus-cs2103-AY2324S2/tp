@@ -2,6 +2,6 @@ package seedu.address.ui;
 
 import seedu.address.model.person.Classes;
 
-public interface UIUpdateListener {
+public interface UiUpdateListener {
     void updateUiOnClassSelected(Classes selectedClass);
 }
