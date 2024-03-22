@@ -20,15 +20,6 @@ public abstract class Attribute<T extends Object> {
     }
 
     /**
-     * Gets the displayable value stored in this attribute.
-     *
-     * @return Displayable value stored in this attribute.
-     */
-    public T getDisplayableValue() {
-        return this.value;
-    }
-
-    /**
      * Determines if a specified value is a match with the value stored in this
      * attriute.
      *

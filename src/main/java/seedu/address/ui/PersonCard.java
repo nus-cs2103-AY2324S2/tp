@@ -59,14 +59,14 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
         // Set fields with information from the person
         id.setText(displayedIndex + ". ");
-        name.setText(person.getName().getDisplayableValue());
-        phone.setText(person.getPhone().getDisplayableValue());
-        address.setText(person.getAddress().getDisplayableValue());
-        email.setText(person.getEmail().getDisplayableValue());
+        name.setText(person.getName().toString());
+        phone.setText(person.getPhone().toString());
+        address.setText(person.getAddress().toString());
+        email.setText(person.getEmail().toString());
         person.getTags().stream()
-                .sorted(Comparator.comparing(Attribute::getDisplayableValue))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.getDisplayableValue())));
-        note.setText(person.getNote().getDisplayableValue());
+                .sorted(Comparator.comparing(Attribute::toString))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.toString())));
+        note.setText(person.getNote().toString());
         qrcode.setImage(new Image(person.getQrCodePath().toUri().toString()));
 
         // Bind manageability (presence) of node based on presence of value for optional
