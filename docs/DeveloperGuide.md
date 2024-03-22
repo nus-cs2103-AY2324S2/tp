@@ -316,6 +316,9 @@ The `DeleteTagsCommand` class enables the removal of one or more tags from a pat
 * When deleting tags, if a tag is repeated in the command, it will be treated as a single tag to delete. E.g. `t/friend t/friend` will be considered as a single `friend` tag for deletion.
 * If the patient does not have a tag provided in the command, it will be logged and shown to the user as an unsuccessful deletion of that tag.
 
+The activity diagram below outlines the steps involved when a user initiates a Delete Tags command.
+<puml src="diagrams/DeleteTagsActivityDiagram.puml" alt="DeleteTagsActivityDiagram" />
+
 #### Example Usage Scenario
 
 Below is an example scenario of how the tag deletion process works within the PatientSync application:
