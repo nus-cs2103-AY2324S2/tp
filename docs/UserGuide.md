@@ -143,31 +143,6 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-### Mark student's payment: `mark_payment`
-
-Marks completion of monthly tuition fees for a specified student from the address book.
-
-Format: `mark_payment INDEX`
-
-* Marks payment of student at the specified `INDEX`
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1,2,3, ...
-* It is encouraged to use the [find](#locating-persons-by-name-find) command to search for a particular student for his/her index.
-
-Examples:
-* `find john doe` returns `John Doe` with an index 2.
-* `mark_payment 2` will return this success message, when `John Doe` has outstanding fees. <br>
-  !['mark_payment 2' on success](images/paymentJohnDoeSuccess.png)
-* Otherwise, if `John Doe` does not have any fees due, it would return a failure message. <br>
-  !['mark_payment 2' on failure](images/paymentJohnDoeFailure.png)
-
-
-### View outstanding payments: `payment_list`
-
-View any outstanding payments from students for the month.
-
-Format: `payment_list`
-
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.

@@ -19,6 +19,8 @@ Class Email
 Class Name
 Class Phone
 Class Tag
+Class Grade
+Class Subject
 
 Class I #FFFFFF
 }
@@ -42,8 +44,12 @@ Person *--> Phone
 Person *--> Email
 Person *--> Address
 Person *--> "*" Tag
+Person *-> "0..1" Grade
+Person *-> "0..1" Subject
 
 Person -[hidden]up--> I
+Name -[hidden]-> Grade
+Phone -[hidden]-> Subject
 UniquePersonList -[hidden]right-> I
 
 Name -[hidden]right-> Phone
