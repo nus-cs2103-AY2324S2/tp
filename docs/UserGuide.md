@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-<span style="color: #f66a0a;">CareerSync</span> is a **desktop app for managing internships, optimized for use via a Command Line Interface** (CLI).  
+<span style="color: #f66a0a;">CareerSync</span> is a **desktop app for managing internships, optimized for use via a Command Line Interface** (CLI).
 It lets you effortlessly manage, search, and sift through your various internship applications!
 
 * Table of Contents
@@ -38,7 +38,7 @@ Start keeping track of your internships easily with <span style="color: #f66a0a;
 
     * `list` : Lists all contacts.
 
-   * `add /com Tiktok /desc create new recommendation engine /status ongoing /poc jane yeo /email hr@tiktok.com 
+   * `add /com Tiktok /desc create new recommendation engine /status ongoing /poc jane yeo /email hr@tiktok.com
       /phone 90890301 /loc remote /role Software Intern` : Adds this internship entry to the CareerSync application.
 
    * `delete 2` : Deletes the 2nd internship entry shown in the current displayed list.
@@ -47,7 +47,7 @@ Start keeping track of your internships easily with <span style="color: #f66a0a;
 
    * `exit` : Exits the app.
 
-7. Refer to the [Features](#features) below for more details, and have fun using <span style="color: 
+7. Refer to the [Features](#features) below for more details, and have fun using <span style="color:
 #f66a0a;">CareerSync!</span>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -73,7 +73,7 @@ Start keeping track of your internships easily with <span style="color: #f66a0a;
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-* If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines 
+* If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines
   as space characters surrounding line-breaks may be omitted when copied over to the application.
 </div>
 
@@ -89,11 +89,11 @@ Format: `help`
 
 Add an internship entry and all the relevant fields
 
-Format: `add /com COMPANY_NAME /desc DESCRIPTION /status STATUS /poc CONTACT_NAME /email CONTACT_EMAIL 
+Format: `add /com COMPANY_NAME /desc DESCRIPTION /status STATUS /poc CONTACT_NAME /email CONTACT_EMAIL
 /phone CONTACT_NUMBER /loc LOCATION /role ROLE​`
 
 Examples:
-* `add /com Tiktok /desc create new recommendation engine /status ongoing /poc jane yeo /email hr@tiktok.com 
+* `add /com Tiktok /desc create new recommendation engine /status ongoing /poc jane yeo /email hr@tiktok.com
 /phone 90890301 /loc remote /role Software Intern`
 
 ### Deleting an internship: `delete`
@@ -108,7 +108,7 @@ Format: `delete INDEX`
 
 Examples:
 * `list` followed by `delete 7` deletes the 7th entry in the internship entries list.
-* `find Google` followed by `delete 1` deletes the 1st entry in the results of the `find` command.
+* `find withall /com Google` followed by `delete 1` deletes the 1st entry in the results of the `find` command.
 
 ### Listing all internships: `list`
 
@@ -138,7 +138,7 @@ Format: `edit INDEX [/company COMPANY_NAME] [/pocname NAME_OF_CONTACT] [/email E
 
 Examples:
 *  `edit 1  /email nussu@u.nus.edu /number 9666 1666` Edits the email and phone number of the 1st internship to be `nussu@u.nus.edu` and `9666 1666` respectively.
- 
+
 ### Adding a remark: `addremark`
 
 Adds a remark to an existing internship in the application.
@@ -151,7 +151,7 @@ Format: `addremark INDEX [/remark REMARK]`
 Examples:
 *  `addremark 1 /remark This internship has a behavioural interview!` Adds or modifies the remark of the internship at index 1 to be `This internship has a behavioural interview!`.
 
-### Locating internships by keywords: `find`
+### Finding internships by keywords: `find`
 
 Finds internship entries whose specified fields contains the keywords.
 
@@ -169,9 +169,9 @@ Format: `find MODE [/com COMPANY_NAME_KEYWORDS] [/poc CONTACT_NAME_KEYWORDS] [/l
   e.g. `Hewlett Song` will return `Hewlett Packard`, `Song Fa`
 
 Examples:
-* `find withall /status accepted /loc local ` returns Internships with both status `accepted` and location `local`<br>
+* `find withall /status accepted /loc local` returns Internships with both status `accepted` and location `local`
   ![result for 'find withall /status accepted /loc local'](images/findWithallStatusAcceptedLocLocalResult.png)
-* `find withany /status rejected /loc remote <br> ` returns Internships with either status `rejected` or location `remote`
+* `find withany /status rejected /loc remote` returns Internships with either status `rejected` or location `remote`
   ![result for 'find withany /status rejected /loc remote'](images/findWithanyStatusRejectedLocRemoteResult.png)
 
 ### Clearing all internships: `clear`
@@ -186,7 +186,7 @@ Exits the program.
 
 Format: `exit`
 
-### Saving and Editing Your Internship Data 
+### Saving and Editing Your Internship Data
 
 <div markdown="span" class="alert alert-danger">
 
@@ -217,13 +217,13 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action                                     | Description                              |
-|--------------------------------------------|------------------------------------------|
-| [add](#adding-an-entry-add)                | Adds an Internship.                      |
-| [delete](#deleting-an-internship-delete)   | Removes a Internship.                    |
-| [list](#listing-all-internships-list)      | Removes a Internship.                    |
-| [edit](#editing-an-internship-edit)        | Modifies an existing Internship.         |
-| [addremark](#adding-a-remark-addremark)    | Adds a remark to an existing Internship. |
-| [clear](#clearing-all-internships-clear)   | Removes all Internships from the deck.   |
-| [find](#locating-internships-by-name-find) | Sets the goal for the session.           |
-| [exit](#exiting-the-program-exit)          | Exits and closes the application.        |
+| Action                                        | Description                              |
+|-----------------------------------------------|------------------------------------------|
+| [add](#adding-an-entry-add)                   | Adds an Internship.                      |
+| [delete](#deleting-an-internship-delete)      | Removes a Internship.                    |
+| [list](#listing-all-internships-list)         | Removes a Internship.                    |
+| [edit](#editing-an-internship-edit)           | Modifies an existing Internship.         |
+| [addremark](#adding-a-remark-addremark)       | Adds a remark to an existing Internship. |
+| [clear](#clearing-all-internships-clear)      | Removes all Internships from the deck.   |
+| [find](#finding-internships-by-keywords-find) | Finds an Internship by keywords.         |
+| [exit](#exiting-the-program-exit)             | Exits and closes the application.        |
