@@ -25,7 +25,7 @@ public class SampleDataUtil {
             //            new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
             //                new StudentId("A2222222D"),
             //                getAttendanceSet("02-02-2024")),
-            //            new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
+            //            new Person(new Name("Charlotte Oli"), new Phone("93210283"), new Email("char@example.com"),
             //                new StudentId("A3333333D"),
             //                getAttendanceSet("02-02-2024")),
             //            new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
