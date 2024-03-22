@@ -6,17 +6,19 @@ skinparam classBackgroundColor MODEL_COLOR
 
 AddressBook *-right-> "1" UniquePersonList
 AddressBook *-right-> "1" UniqueTagList
+AddressBook *-right-> "1" UniqueCcaList
 UniqueTagList -[hidden]down- UniquePersonList
 UniqueTagList -[hidden]down- UniquePersonList
 
 UniqueTagList -right-> "*" Tag
+UniqueCcaList -right-> "*" Cca
 UniquePersonList -right-> Person
 
 Person -up-> "*" Tag
+Person -up-> "*" Cca
 
 Person *--> Name
 Person *--> Phone
 Person *--> Email
 Person *--> Address
-Person *--> CCA
 @enduml
