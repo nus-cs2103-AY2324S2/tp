@@ -25,13 +25,11 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   - `list` : Lists all contacts.
+   - `add project Duke` : Adds a project named `Duke` to the DevPlanPro.
 
-   - `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   - `delete project Duke` : Deletes the Duke project from the list.
 
-   - `delete 3` : Deletes the 3rd contact shown in the current list.
-
-   - `clear` : Deletes all contacts.
+   - `clear` : Deletes all projects and tasks.
 
    - `exit` : Exits the app.
 
@@ -57,7 +55,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 - Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-- Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+- Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 - If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
@@ -87,41 +85,30 @@ Expected output:
 - Success: `<PROJECT_NAME> has been added to the project list.`
 - Failure: `Project <PROJECT_NAME> already exists.`
 
-### Listing all persons : `list`
 
-Shows a list of all persons in the address book.
+### Editing a project : `edit project`
 
-Format: `list`
+Edits an existing project in the DevPlanPro.
 
-### Editing a person : `edit`
+Format: `edit project <OLD_PROJECT_NAME> /to <NEW_PROJECT_NAME>`
 
-Edits an existing person in the address book.
-
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
-
-- Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-- At least one of the optional fields must be provided.
-- Existing values will be updated to the input values.
-- When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-- You can remove all the person’s tags by typing `t/` without
-  specifying any tags after it.
+- Edits the name of a project
 
 Examples:
 
-- `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-- `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+- `edit project Duke /to Duke Chatbot` 
 
-### Locating persons by name: `find`
+### Locating projects by name: `find`
 
-Finds persons whose names contain any of the given keywords.
+Finds project whose names contain any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find project [KEYWORDS]`
 
 - The search is case-insensitive. e.g `hans` will match `Hans`
 - The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 - Only the name is searched.
 - Only full words will be matched e.g. `Han` will not match `Hans`
-- Persons matching at least one keyword will be returned (i.e. `OR` search).
+- Projects matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
@@ -225,7 +212,7 @@ Expected output:
 
 Deletes the specified task from a project.
 
-Format: `delete task <TASK_NAME> /in <PROJECT_NAME> `
+Format: `delete task <TASK_NAME> /in <PROJECT_NAME>`
 
 - The specified project name must exist in the project list.
 - The task name must exist
@@ -241,16 +228,16 @@ Expected output:
 
 ### Set Task Status : `set status of Task`
 
-sets the status of a task as finished or unfinished
+sets the status of a task as completed or incomplete.
 
-Format: `set status <STATUS> /to task <TASK_NAME> /in <PROJECT_NAME>`
+Format: `set status [complete/incomplete] /to task <TASK_NAME> /in <PROJECT_NAME>`
 
 - The specified task name must exist in the task list.
-- The task status can either be `done` or `undone`
+- The task status can either be `complete` or `incomplete`
 
 Examples:
 
-- `set status done /to unit test /in CS2103T Duke Chatbot Project`
+- `set status complete /to unit test /in CS2103T Duke Chatbot Project`
 
 Expected output:
 
@@ -312,12 +299,20 @@ Expected output:
 
 ## Command summary
 
-| Action     | Format, Examples                                                                                                            |
-| ---------- | --------------------------------------------------------------------------------------------------------------------------- |
-| **Add**    | `add project <PROJECT_NAME>` <br> e.g., `add project CS2101 Presentation`                                                   |
-| **Clear**  | `clear`                                                                                                                     |
-| **Delete** | `delete project <PROJECT_NAME>`<br> e.g., `delete project CS2101 Presentation`                                              |
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com` |
-| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                  |
-| **List**   | `list`                                                                                                                      |
-| **Help**   | `help`                                                                                                                      |
+| Action                         | Format, Examples                                                                                                                                          |
+|--------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Show project**               | `show project <PROJECT_NAME>` <br> e.g., `show project CS2101 Presentation`                                                                               |
+| **Add project**                | `add project <PROJECT_NAME>` <br> e.g., `add project CS2101 Presentation`                                                                                 |
+| **Add task**                   | `add task <TASK_NAME> /to <PROJECT_NAME>` <br> e.g., `add task add deadline command /to CS2103T Duke Chatbot Project`                                     |
+| **Delete project**             | `delete project <PROJECT_NAME>`<br> e.g., `delete project CS2101 Presentation`                                                                            |
+| **Delete task**                | `delete task <TASK_NAME> /in <PROJECT_NAME>`<br> e.g., `delete task add deadline command /in CS2103T Duke Chatbot Project`                                |
+| **Assign deadline to project** | `add deadline <DEADLINE> /to <PROJECT_NAME>`<br> e.g., `add deadline Feb 25 2024 /to CS2103_TP`                                                           |
+| **Assign deadline to task**    | `add deadline <DEADLINE> /to <TASK_NAME> /in <PROJECT_NAME>`<br> e.g., `add deadline Feb 25 2024 /to submit feature list /in CS2103_TP`                   |
+| **Add person to project**      | `add person <PERSON_NAME> /to <PROJECT_NAME>`<br> e.g., `add person Joe /to CS2103_TP`                                                                    |
+| **Add person to task**         | `add person <PERSON_NAME> /to <TASK_NAME> /in <PROJECT_NAME>`<br> e.g., `add person Joe /to unit test /in CS2103_TP`                                      |
+| **Set project status**         | `set status <STATUS> project <PROJECT_NAME>`<br> e.g., `set status complete project CS2103T Duke Chatbot Project`                                         |
+| **Set task status**            | `set status [complete/incomplete] /to task <TASK_NAME> /in <PROJECT_NAME>`<br> e.g., `set status complete /to unit test /in CS2103T Duke Chatbot Project` |
+| **Edit**                       | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                               |
+| **Clear**                      | `clear`                                                                                                                                                   |
+| **Find**                       | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                |
+| **Help**                       | `help`                                                                                                                                                    |
