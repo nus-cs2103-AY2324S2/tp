@@ -8,7 +8,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Group {
     public static final String MESSAGE_CONSTRAINTS =
             "Group should be a positive integer.";
-    private static int lastGroupNumber = 0;
+    private static int totalGroupNumber = 0;
     private final int groupNumber;
 
 
@@ -33,23 +33,21 @@ public class Group {
      * Returns true if a given string is a valid Group.
      */
     public static boolean isValidGroup(int test) {
-        boolean isPositive = test > 0;
-        boolean isSmallerThanLast = test <= lastGroupNumber;
-        return isPositive && isSmallerThanLast;
+        return test >= 0;
     }
 
     /**
      * Sets the last group number.
      */
-    public static void setLastGroupNumber(int lastGroupNumber) {
-        lastGroupNumber = lastGroupNumber;
+    public static void setTotalGroupNumber(int lastNumber) {
+        totalGroupNumber = lastNumber;
     }
 
     /**
      * Returns the last group number.
      */
-    public static int getLastGroupNumber() {
-        return lastGroupNumber;
+    public static int getTotalGroupNumber() {
+        return totalGroupNumber;
     }
 
     /**

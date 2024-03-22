@@ -20,7 +20,7 @@ public class PersonFactory {
             return new Staff(name, phone, email, address, category, tags);
         case "SPONSOR":
             return new Sponsor(name, phone, email, address, category, tags);
-        default:
+        default: // cannot happen due to category validation
             throw new IllegalArgumentException("Invalid category");
         }
     }
