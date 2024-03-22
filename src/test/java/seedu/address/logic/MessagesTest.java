@@ -11,7 +11,7 @@ import seedu.address.model.person.attribute.Attribute;
 class MessagesTest {
     @Test
     public void getErrorMessageForDuplicatePrefixes() {
-        assertEquals(Messages.MESSAGE_DUPLICATE_FIELDS,
+        assertEquals(Messages.MESSAGE_DUPLICATE_FIELDS + "name",
                 Messages.getErrorMessageForDuplicatePrefixes(new Prefix("name")));
     }
 
