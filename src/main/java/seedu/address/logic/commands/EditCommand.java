@@ -56,6 +56,8 @@ public class EditCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
 
+    public static final String MESSAGE_CANNOT_BE_EDIT = "Relationship is not allowed to be edited.";
+
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
 
@@ -105,8 +107,7 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Policy updatedPolicy = personToEdit.getPolicy();
-        Relationship updatedRelationship = editPersonDescriptor.getRelationship()
-                .orElse(personToEdit.getRelationship());
+        Relationship updatedRelationship = personToEdit.getRelationship();
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRelationship,
@@ -147,7 +148,6 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
-        private Relationship relationship;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -161,7 +161,6 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
-            setRelationship(toCopy.relationship);
             setTags(toCopy.tags);
         }
 
@@ -169,7 +168,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, relationship, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
         }
 
         public void setName(Name name) {
@@ -202,14 +201,6 @@ public class EditCommand extends Command {
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
-        }
-
-        public void setRelationship(Relationship relationship) {
-            this.relationship = relationship;
-        }
-
-        public Optional<Relationship> getRelationship() {
-            return Optional.ofNullable(relationship);
         }
         /**
          * Sets {@code tags} to this object's {@code tags}.
@@ -244,7 +235,6 @@ public class EditCommand extends Command {
                     && Objects.equals(phone, otherEditPersonDescriptor.phone)
                     && Objects.equals(email, otherEditPersonDescriptor.email)
                     && Objects.equals(address, otherEditPersonDescriptor.address)
-                    && Objects.equals(relationship, otherEditPersonDescriptor.relationship)
                     && Objects.equals(tags, otherEditPersonDescriptor.tags);
         }
 
@@ -255,7 +245,6 @@ public class EditCommand extends Command {
                     .add("phone", phone)
                     .add("email", email)
                     .add("address", address)
-                    .add("relationship", relationship)
                     .add("tags", tags)
                     .toString();
         }
