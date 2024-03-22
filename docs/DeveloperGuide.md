@@ -172,8 +172,8 @@ The sequence diagram below illustrates the interactions within the `Logic` compo
 Note: `[ARGS]` refer to the arguments of the add command that have been parsed. It have been shortened for brevity
 
 How an `add` command is executed.
-1. When Logic is called upon to execute a command, it is passed to an `AddressBookParser` 
-   object which in turn creates a parser that matches the command `AddCommandParser`) 
+1. When Logic is called upon to execute a command, it is passed to an `AddressBookParser`.
+   object which in turn creates a parser that matches the command `AddCommandParser`).
    and uses it to parse the arguments passed to the command.
 2. `AddCommand` will check that the fields; `name`, `phone`, `email`, and `address`.
    The prefixes for these options are defined in [CliSyntax.java](https://github.com/AY2324S2-CS2103T-T17-1/tp/blob/master/src/main/java/seedu/address/logic/parser/CliSyntax.java).
@@ -375,8 +375,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case: UC01 - Add a client's contact in SWEE**
 
 **MSS**
- 
-1. User requests to add a client's contact. 
+
+1. User requests to add a client's contact.
 2. User inputs details of the client.
 3. SWEE adds the client as a contact.
 4. SWEE lists out all current contacts that have been saved (UC04).
