@@ -2,11 +2,10 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static seedu.address.logic.Messages.MESSAGE_MARK_ATTENDANCE_SUCCESS;
-import static seedu.address.logic.Messages.MESSAGE_MARK_EXISTING_ATTENDANCE_SUCCESS;
 import static seedu.address.logic.Messages.MESSAGE_MISSING_NUSNET;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.TypicalCourse.getTypicalCourseName;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
@@ -25,8 +24,8 @@ import seedu.address.model.weeknumber.WeekNumber;
  * Contains integration tests (interaction with the Model) for {@code MarkAttendanceCommand}.
  */
 public class MarkAttendanceCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalCourseName());
+    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalCourseName());
     private final NusNet testValidNusNet = new NusNet("e0000001");
     private final NusNet testMissingNusNet = new NusNet("e0000000");
     private final WeekNumber testValidWeekNo6 = new WeekNumber("6");
@@ -58,10 +57,13 @@ public class MarkAttendanceCommandTest {
                 ALICE.getAddress(), aliceAttendanceUpdated, ALICE.getTags());
 
         CommandResult expectedCommandResult =
-                new CommandResult(MESSAGE_MARK_ATTENDANCE_SUCCESS + aliceChanged);
+                new CommandResult("Marked attendance for student: Alice Pauline, e0000001, Week 6");
+
         MarkAttendanceCommand command = new MarkAttendanceCommand(testValidNusNet, testValidWeekNo6);
+
         Model expectedModel1 = expectedModel;
         expectedModel1.setPerson(ALICE, aliceChanged);
+
         assertCommandSuccess(command, model, expectedCommandResult, expectedModel1);
     }
 
@@ -69,7 +71,7 @@ public class MarkAttendanceCommandTest {
     public void execute_validNusNetDuplicateWeekNumber_markSuccess() {
         MarkAttendanceCommand command = new MarkAttendanceCommand(testValidNusNet, testValidWeekNo1);
         CommandResult expectedCommandResult =
-                new CommandResult(MESSAGE_MARK_EXISTING_ATTENDANCE_SUCCESS + ALICE);
+                new CommandResult("Re-marked Attendance for student: Alice Pauline, e0000001, Week 1");
         assertCommandSuccess(command, model, expectedCommandResult, expectedModel);
     }
 

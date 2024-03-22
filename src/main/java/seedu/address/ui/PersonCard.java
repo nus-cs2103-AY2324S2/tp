@@ -59,7 +59,7 @@ public class PersonCard extends UiPart<Region> {
         nusNet.setText(person.getNusNet().value);
         person.getAttendance().stream()
                 .sorted(Comparator.comparing(weekNumber -> weekNumber.value))
-                .forEach(weekNumber -> attendance.getChildren().add(new Label("w" + weekNumber.value)));
+                .forEach(weekNumber -> attendance.getChildren().add(new Label("wk " + weekNumber.value + " ")));
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
