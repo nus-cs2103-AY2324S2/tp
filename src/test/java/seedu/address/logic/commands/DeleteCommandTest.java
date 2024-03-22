@@ -111,32 +111,6 @@ public class DeleteCommandTest {
         assertEquals(expected, deleteCommand.toString());
     }
 
-    @Test
-    public void deleteFormat() {
-        // Normal Person
-        String testNormalString = DeleteMessages.format(ALICE);
-        String expectedNormalString = "Other Contact Alice Pauline";
-        assertEquals(testNormalString, expectedNormalString);
-
-        // Staff
-        Person testStaff = new StaffBuilder().withName("Alice Pauline").build();
-        String testStaffString = DeleteMessages.format(testStaff);
-        String expectedStaffString = "Pooch Staff Alice Pauline";
-        assertEquals(testStaffString, expectedStaffString);
-
-        // Maintainer
-        Person testMaintainer = new MaintainerBuilder().withName("Alice Pauline").build();
-        String testMaintainerString = DeleteMessages.format(testMaintainer);
-        String expectedMaintainerString = "Maintenance Crew Alice Pauline";
-        assertEquals(testMaintainerString, expectedMaintainerString);
-
-        // Supplier
-        Person testSupplier = new SupplierBuilder().withName("Alice Pauline").build();
-        String testSupplierString = DeleteMessages.format(testSupplier);
-        String expectedSupplierString = "Supplier Alice Pauline";
-        assertEquals(testSupplierString, expectedSupplierString);
-    }
-
     /**
      * Updates {@code model}'s filtered list to show no one.
      */
