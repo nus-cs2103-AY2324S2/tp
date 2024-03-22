@@ -180,22 +180,22 @@ public class AvailabilityTest {
 
     @Test
     public void isValidLocalTimeTest() {
-        assertTrue(Availability.isValidAvailability("00:00"));
-        assertTrue(Availability.isValidAvailability("00:01"));
-        assertTrue(Availability.isValidAvailability("00:10"));
-        assertTrue(Availability.isValidAvailability("01:00"));
-        assertTrue(Availability.isValidAvailability("10:00"));
-        assertTrue(Availability.isValidAvailability("23:59"));
-        assertTrue(Availability.isValidAvailability("13:00"));
+        assertTrue(Availability.isValidLocalTime("00:00"));
+        assertTrue(Availability.isValidLocalTime("00:01"));
+        assertTrue(Availability.isValidLocalTime("00:10"));
+        assertTrue(Availability.isValidLocalTime("01:00"));
+        assertTrue(Availability.isValidLocalTime("10:00"));
+        assertTrue(Availability.isValidLocalTime("23:59"));
+        assertTrue(Availability.isValidLocalTime("13:00"));
 
-        assertFalse(Availability.isValidAvailability("")); //nothing
-        assertFalse(Availability.isValidAvailability(" ")); //spaces
-        assertFalse(Availability.isValidAvailability("!@#$%^&*IO")); //day contain special characters
-        assertFalse(Availability.isValidAvailability("3:00")); //missing leading 0
-        assertFalse(Availability.isValidAvailability("02:0")); //missing time trailing 0
-        assertFalse(Availability.isValidAvailability("02:")); //missing end time trailing 00
-        assertFalse(Availability.isValidAvailability("02")); // missing leading or trailing time
-        assertFalse(Availability.isValidAvailability("0230 0200")); //missing ':'
+        assertFalse(Availability.isValidLocalTime("")); //nothing
+        assertFalse(Availability.isValidLocalTime(" ")); //spaces
+        assertFalse(Availability.isValidLocalTime("!@#$%^&*IO")); //day contain special characters
+        assertFalse(Availability.isValidLocalTime("3:00")); //missing leading 0
+        assertFalse(Availability.isValidLocalTime("02:0")); //missing time trailing 0
+        assertFalse(Availability.isValidLocalTime("02:")); //missing end time trailing 00
+        assertFalse(Availability.isValidLocalTime("02")); // missing leading or trailing time
+        assertFalse(Availability.isValidLocalTime("0230 0200")); //missing ':'
 
     }
 }
