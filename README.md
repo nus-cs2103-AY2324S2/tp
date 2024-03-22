@@ -1,4 +1,5 @@
-[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
+[![CI Status](https://github.com/AY2324S2-CS2103T-T16-4/tp/actions/workflows/gradle.yml/badge.svg?branch=master)](https://github.com/AY2324S2-CS2103T-T16-4/tp/actions/workflows/gradle.yml)
+
 
 # TutorTrack
 
@@ -14,5 +15,5 @@ Example usages:
   * `View` a particular student's details.
 
 The project simulates an ongoing software project for a desktop application (called __) used for managing contact details.
-* For the detailed documentation of this project, see the **[TutorTrack Product Website](https://se-education.org/addressbook-level3)**.
+* For the detailed documentation of this project, see the **[TutorTrack Product Website](https://ay2324s2-cs2103t-t16-4.github.io/tp/)**.
 * This project is a **part of the se-education.org** initiative. If you would like to contribute code to this project, see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.
