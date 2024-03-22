@@ -19,6 +19,7 @@ import seedu.address.model.person.Person;
 /**
  * Represents the in-memory model of the address book data.
  */
+@SuppressWarnings("checkstyle:Regexp")
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
@@ -116,7 +117,20 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
-    // =========== Filtered Person List Accessors =============================================================
+    //=========== Meeting Related =============================================================================
+    @Override
+    public void addMeeting(Meeting meeting) {
+        addressBook.addMeeting(meeting);
+        updateFilteredMeetingList(PREDICATE_SHOW_ALL_MEETINGS);
+    }
+
+    @Override
+    public boolean hasMeeting(Meeting meeting) {
+        requireNonNull(meeting);
+        return addressBook.hasMeeting(meeting);
+    }
+
+    //=========== Filtered Person List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the
@@ -171,8 +185,10 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteSpecificMeetingForClient(Index clientIndex, Index meetingIndex) {
-        Person targetClient = filteredPersons.get(clientIndex.getZeroBased());
+        Person targetClient = addressBook.getPersonList().get(clientIndex.getZeroBased());
         ArrayList<Meeting> targetClientMeetings = targetClient.getMeetings();
+        Meeting targetMeeting = targetClientMeetings.get(meetingIndex.getZeroBased());
+        addressBook.deleteMeeting(targetMeeting);
         targetClientMeetings.remove(meetingIndex.getZeroBased());
     }
 

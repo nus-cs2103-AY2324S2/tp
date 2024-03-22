@@ -9,10 +9,8 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_MEETING;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_MEETING;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.address.testutil.TypicalPersons.JAMAL;
+import static seedu.address.testutil.TypicalMeetings.JAMAL_WITH_MEETING;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
-
-import java.time.LocalDateTime;
 
 import org.junit.jupiter.api.Test;
 
@@ -29,75 +27,81 @@ import seedu.address.model.meeting.Meeting;
  */
 public class DeleteMeetingCommandTest {
 
-    private static final Meeting testMeeting = new Meeting("test meeting", LocalDateTime.now(), JAMAL);
+    static {
+        System.out.println(JAMAL_WITH_MEETING.getMeetings().size());
+    }
+    private static final Meeting testMeeting = JAMAL_WITH_MEETING.getMeetings().get(0);
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void execute_validClientIndexValidMeetingIndex() {
-        JAMAL.getMeetings().add(testMeeting);
-        model.addPerson(JAMAL);
-        int clientIndex = model.getAddressBook().getPersonList().indexOf(JAMAL);
+        System.out.println(JAMAL_WITH_MEETING.getMeetings());
+        JAMAL_WITH_MEETING.getMeetings().add(testMeeting);
+        System.out.println(JAMAL_WITH_MEETING.getMeetings().size());
+        model.addPerson(JAMAL_WITH_MEETING);
+        int clientIndex = model.getAddressBook().getPersonList().indexOf(JAMAL_WITH_MEETING);
 
         Index testClientIndex = Index.fromOneBased(Index.fromZeroBased(clientIndex).getOneBased());
-        Index testMeetingIndex = Index.fromOneBased(Index.fromZeroBased(JAMAL.getMeetings().size() - 1).getOneBased());
+        Index testMeetingIndex = Index.fromOneBased(Index.fromZeroBased(
+                JAMAL_WITH_MEETING.getMeetings().size() - 1).getOneBased());
         DeleteMeetingCommand deleteMeetingCommand = new DeleteMeetingCommand(testClientIndex,
                 testMeetingIndex);
 
-        String expectedMessage = "Meeting 1 deleted successfully ";
+        String expectedMessage = "Meeting 2 deleted successfully ";
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-
         assertCommandSuccess(deleteMeetingCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidClientIndexValidMeetingIndex_throwsCommandException() {
-        JAMAL.getMeetings().add(testMeeting);
-        model.addPerson(JAMAL);
+        JAMAL_WITH_MEETING.getMeetings().add(testMeeting);
+        model.addPerson(JAMAL_WITH_MEETING);
         int invalidClientIndex = model.getAddressBook().getPersonList().size();
 
         Index testClientIndex = Index.fromOneBased(Index.fromZeroBased(invalidClientIndex).getOneBased());
-        Index testMeetingIndex = Index.fromOneBased(Index.fromZeroBased(JAMAL.getMeetings().size() - 1).getOneBased());
+        Index testMeetingIndex = Index.fromOneBased(Index.fromZeroBased(
+                JAMAL_WITH_MEETING.getMeetings().size() - 1).getOneBased());
 
         DeleteMeetingCommand deleteMeetingCommand = new DeleteMeetingCommand(testClientIndex, testMeetingIndex);
 
         String expectedMessage = Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
         assertCommandFailure(deleteMeetingCommand, model, expectedMessage);
-        model.deletePerson(JAMAL);
+        model.deletePerson(JAMAL_WITH_MEETING);
     }
 
     @Test
     public void execute_validClientIndexInvalidMeetingIndex_throwsCommandException() {
-        model.addPerson(JAMAL);
-        // Do not add any meeting to JAMAL to ensure the meeting index is invalid
-        int clientIndex = model.getAddressBook().getPersonList().indexOf(JAMAL);
-
+        model.addPerson(JAMAL_WITH_MEETING);
+        // Do not add any meeting to JAMAL_WITH_MEETING to ensure the meeting index is invalid
+        int clientIndex = model.getAddressBook().getPersonList().indexOf(JAMAL_WITH_MEETING);
         Index testClientIndex = Index.fromOneBased(Index.fromZeroBased(clientIndex).getOneBased());
-        Index testMeetingIndex = Index.fromOneBased(Index.fromZeroBased(JAMAL.getMeetings().size()).getOneBased());
-
+        Index testMeetingIndex = Index.fromOneBased(Index.fromZeroBased(
+                JAMAL_WITH_MEETING.getMeetings().size()).getOneBased());
         DeleteMeetingCommand deleteMeetingCommand = new DeleteMeetingCommand(testClientIndex, testMeetingIndex);
-
-        String expectedMessage = "Error: Meeting 2 not found";
+        System.out.println(JAMAL_WITH_MEETING.getMeetings());
+        String expectedMessage = "Error: Meeting 3 not found";
         assertCommandFailure(deleteMeetingCommand, model, expectedMessage);
-        model.deletePerson(JAMAL);
+        model.deletePerson(JAMAL_WITH_MEETING);
     }
 
     @Test
     public void execute_invalidClientIndexInvalidMeetingIndex_throwsCommandException() {
-        model.addPerson(JAMAL);
+        model.addPerson(JAMAL_WITH_MEETING);
         // No meeting added to ensure meeting index is also invalid
         int invalidClientIndex = model.getAddressBook().getPersonList().size();
 
         Index testClientIndex = Index.fromOneBased(Index.fromZeroBased(invalidClientIndex).getOneBased());
-        Index testMeetingIndex = Index.fromOneBased(Index.fromZeroBased(JAMAL.getMeetings().size()).getOneBased());
+        Index testMeetingIndex = Index.fromOneBased(Index.fromZeroBased(
+                JAMAL_WITH_MEETING.getMeetings().size()).getOneBased());
 
         DeleteMeetingCommand deleteMeetingCommand = new DeleteMeetingCommand(testClientIndex, testMeetingIndex);
 
         // invalid client index should be caught before invalid meeting index
         String expectedMessage = Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
         assertCommandFailure(deleteMeetingCommand, model, expectedMessage);
-        model.deletePerson(JAMAL);
+        model.deletePerson(JAMAL_WITH_MEETING);
     }
 
 
