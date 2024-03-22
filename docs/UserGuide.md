@@ -142,7 +142,7 @@ Format: `find KEYWORD [MORE_KEYWORD]`
 * The order of the patient name does not matter. e.g. `Becker Alex` will match `Alex Becker`
 * Only the Patient Name is searched.
 * Only full word(s) will be matched .
-e.g. `Alex` will not match `Alexandra` | `Alex` will match `Alex Becker`
+e.g. `Alex` will not match `Alexandra`, `Alex` will match `Alex Becker`
 * Patients matching at least one keyword will be returned. 
 e.g. `Alex Becker` will return `Alex Keller` and `Becker Anderson`
 
