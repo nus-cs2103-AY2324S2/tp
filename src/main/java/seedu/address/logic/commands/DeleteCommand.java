@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Optional;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
@@ -42,7 +43,19 @@ public class DeleteCommand extends Command {
 
         Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deletePerson(personToDelete);
+        updateLastViewedPersonIfNecessary(personToDelete, model);
+
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
+    }
+
+    private void updateLastViewedPersonIfNecessary(Person personToDelete, Model model) {
+        Optional<Person> lastViewedPerson = model.getLastViewedPerson();
+        if (lastViewedPerson.isEmpty()) {
+            return;
+        }
+        if (lastViewedPerson.get().equals(personToDelete)) {
+            model.resetLastViewedPerson();
+        }
     }
 
     @Override
