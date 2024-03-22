@@ -11,7 +11,7 @@ import java.time.format.ResolverStyle;
 /**
  * Represents a client's last contacted date and time in the address book.
  */
-public class LastContact {
+public class LastContact implements Comparable<LastContact>{
 
     public static final String MESSAGE_CONSTRAINTS = "Expected DATETIME format: DD-MM-YYYY HHmm\n"
                                                     + "Actual format: %s";
@@ -57,6 +57,17 @@ public class LastContact {
         } catch (DateTimeParseException e) {
             return false; // Parsing failed, input does not match the format
         }
+    }
+
+    public boolean isLastContacted() {
+        return this.hasLastContact;
+    }
+    public LocalDateTime getDateTime() {
+        return this.dateTime;
+    }
+    @Override
+    public int compareTo(LastContact other) {
+        return this.dateTime.compareTo(other.dateTime);
     }
 
     @Override

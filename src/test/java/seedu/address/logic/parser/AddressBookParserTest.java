@@ -30,6 +30,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.LastContact;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.hasLastContactedPredicate;
 import seedu.address.model.tag.TagsAndFoundPredicate;
 import seedu.address.model.tag.TagsOrFoundPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -138,7 +139,7 @@ public class AddressBookParserTest {
                 LastContactCommand.COMMAND_WORD + " "
                         + PREFIX_NAME + name + " "
                         + PREFIX_LASTCONTACT + lastContact);
-        assertEquals(new LastContactCommand(name, lastContact), command);
+        assertEquals(new LastContactCommand(new hasLastContactedPredicate()), command);
     }
 
 }

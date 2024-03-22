@@ -22,6 +22,7 @@ import seedu.address.logic.commands.LastContactCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.SelectCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.hasLastContactedPredicate;
 
 /**
  * Parses user input.
@@ -88,7 +89,7 @@ public class AddressBookParser {
             return new ExitCommand();
 
         case LastContactCommand.COMMAND_WORD:
-            return new LastContactCommandParser().parse(arguments);
+            return new LastContactCommand(new hasLastContactedPredicate());
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();

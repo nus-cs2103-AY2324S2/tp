@@ -10,6 +10,7 @@ import seedu.address.logic.commands.LastContactCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.LastContact;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.hasLastContactedPredicate;
 
 /**
  * Parses input arguments and creates a new LastContact object.
@@ -31,7 +32,7 @@ public class LastContactCommandParser implements Parser<LastContactCommand> {
         }
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         LastContact lastcontact = ParserUtil.parseLastContact(argMultimap.getValue(PREFIX_LASTCONTACT).get());
-        return new LastContactCommand(name.fullName, lastcontact);
+        return new LastContactCommand(new hasLastContactedPredicate());
     }
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
