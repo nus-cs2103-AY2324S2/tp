@@ -25,12 +25,12 @@ public class SearchCommandParser implements Parser<SearchCommand> {
 
         // invalid command syntax
         if (!argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(SearchCommand.MESSAGE_SEARCH_INVALID_FIELD);
+            throw new ParseException(SearchMessages.MESSAGE_SEARCH_INVALID_FIELD);
         }
 
         // no prefixes present
         if (!atLeastOnePrefixPresent(argMultimap, PREFIX_COLLECTION)) {
-            throw new ParseException(SearchCommand.MESSAGE_SEARCH_INVALID_FIELD);
+            throw new ParseException(SearchMessages.MESSAGE_SEARCH_MISSING_FIELD);
         }
 
         // check for duplicate field entries
