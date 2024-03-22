@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -22,6 +23,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private Optional<Person> lastViewedPerson;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -34,6 +36,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        lastViewedPerson = Optional.empty();
     }
 
     public ModelManager() {
@@ -126,6 +129,24 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
+    //=========== Last Viewed Person Accessors =============================================================
+
+    @Override
+    public Optional<Person> getLastViewedPerson() {
+        return lastViewedPerson;
+    }
+
+    @Override
+    public void resetLastViewedPerson() {
+        lastViewedPerson = Optional.empty();
+    }
+
+    @Override
+    public void updateLastViewedPerson(Person p) {
+        requireNonNull(p);
+        lastViewedPerson = Optional.of(p);
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -142,5 +163,4 @@ public class ModelManager implements Model {
                 && userPrefs.equals(otherModelManager.userPrefs)
                 && filteredPersons.equals(otherModelManager.filteredPersons);
     }
-
 }

@@ -81,6 +81,12 @@ public class EditCommand extends Command {
         Person personToEdit = lastShownList.get(index.getZeroBased());
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
+        updatePerson(personToEdit, editedPerson, model);
+        updateLastViewedPersonIfNecessary(personToEdit, editedPerson, model);
+        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson)));
+    }
+
+    private void updatePerson(Person personToEdit, Person editedPerson, Model model) throws CommandException {
         if (personToEdit.equals(editedPerson)) {
             throw new CommandException(MESSAGE_NO_CHANGE);
         }
@@ -89,10 +95,18 @@ public class EditCommand extends Command {
             model.addPersonKeepFilter(personToEdit);
             throw new CommandException(MESSAGE_DUPLICATE_FIELD);
         }
-
         model.addPersonKeepFilter(editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson)));
+    }
+
+    private void updateLastViewedPersonIfNecessary(Person personToEdit, Person editedPerson, Model model) {
+        Optional<Person> lastViewedPerson = model.getLastViewedPerson();
+        if (lastViewedPerson.isEmpty()) {
+            return;
+        }
+        if (lastViewedPerson.get().equals(personToEdit)) {
+            model.updateLastViewedPerson(editedPerson);
+        }
     }
 
     /**
