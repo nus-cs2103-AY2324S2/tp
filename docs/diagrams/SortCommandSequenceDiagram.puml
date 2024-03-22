@@ -1,0 +1,19 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+skinparam SequenceGroupBodyBackgroundColor #FFFFFF90
+skinparam maxMessageSize 20
+
+
+box SortCommand SORTCOMMAND_COLOR_T1
+participant ":SortCommand" as SortCommand SORTCOMMAND_COLOR
+participant ":Model" as Model SORTCOMMAND_COLOR
+end box
+
+create Model
+activate Model
+
+
+
+
+@enduml
