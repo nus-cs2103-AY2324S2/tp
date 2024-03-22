@@ -76,12 +76,6 @@ activate Model
 Model --> EditCommand :
 deactivate Model
 
-EditCommand -> Model : updateFilteredPersonList(unused -> true)
-activate Model
-
-Model --> EditCommand :
-deactivate Model
-
 create CommandResult
 EditCommand -> CommandResult
 activate CommandResult
