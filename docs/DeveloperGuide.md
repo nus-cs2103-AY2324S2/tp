@@ -12,8 +12,8 @@ title: Developer Guide
 
 | Module                                  | Description                               |
 |-----------------------------------------|-------------------------------------------|
-| [JavaFX](https://openjfx.io/)                   | UI generation for Java |
-| [Jackson](https://github.com/FasterXML/jackson) | Json processing library for Java |
+| [JavaFX](https://openjfx.io/)                   | UI generation for Java             |
+| [Jackson](https://github.com/FasterXML/jackson) | Json processing library for Java         |
 | [JUnit5](https://github.com/junit-team/junit5)  | Automated testing library for Java |
 | [ZXing](https://github.com/zxing/zxing)         | Barcode image processing library for Java |
 
@@ -213,6 +213,20 @@ The sequence diagram below shows how the components interact with each other whe
 The diagram highlights the four main components of FitBook, highlighted in their respective colors. For more information regarding the four main components, see [Main components of the architecture](#main-components-of-the-architecture).
 
 > The above sequence diagram also applies to the removal of a note from an existing client when no input string or prefix is entered for the `note` command. (i.e. `note 1`, or `note 1 note/`).
+
+### Searching Clients
+Search for clients are done using the `find` command. The command has been designed to be extendable, allowing for developers to easily define how new fields (attributes) in the clients can be searched.
+
+The sequence diagram below shows the logic flow of executing the command `find n/wendy`
+
+![FindCommandSequenceDiagram-Logic](images/FindCommandSequenceDiagram-Logic.png)
+
+Note that the main searching logic is defined by creating a `Predicate`, which in turn calls the `isMatch()` method of the attribute.
+
+Therefore, to define how an attribute is being searched, one would simply take the following steps:
+1. Define the implementation of the `isMatch()` method of the respective attribute. (e.g `Name::isMatch()`)
+1. Create a new class that extends `Predicate` (e.g `NameContainsSubstringPredicate`)
+1. Update the `parse()` method in `FindCommandParser` to uses the new predicate
 
 ### \[Proposed\] Undo/redo feature
 
