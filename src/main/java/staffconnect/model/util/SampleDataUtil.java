@@ -45,7 +45,8 @@ public class SampleDataUtil {
             new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
                     new Module("CS2101"), new Faculty("Computing"),
                     new Venue("Blk 45 Aljunied Street 85, #11-31"),
-                    getTagSet("professor"), getAvailabilitySet("sat 12:00 13:00", "mon 12:00 13:00", "thurs 12:00 13:00"))
+                    getTagSet("professor"), getAvailabilitySet("sat 12:00 13:00", "mon 12:00 13:00",
+                    "thurs 12:00 13:00"))
         };
     }
 
