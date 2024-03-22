@@ -49,6 +49,7 @@ public class BorrowCommandTest {
         BorrowCommand borrowCommand = new BorrowCommand(INDEX_FIRST_PERSON,
                 new BookList(editedPerson.getBookList().value.bookTitle));
 
-        assertThrows(CommandException.class, () -> borrowCommand.execute(model));
+        assertThrows(CommandException.class, Messages.MESSAGE_INSUFFICIENT_MERIT_SCORE, () ->
+                borrowCommand.execute(model));
     }
 }
