@@ -8,6 +8,7 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.contact.Contact;
+import seedu.address.model.contact.ProfilePicture;
 
 /**
  * Adds a contact to the address book.
@@ -32,6 +33,7 @@ public class AddCommand extends Command {
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_GITHUB_USERNAME + "johndoee123 "
+            + PREFIX_PROFILE_PICTURE + ProfilePicture.DEFAULT_URL
             + PREFIX_TECH_STACK + "Java "
             + PREFIX_TECH_STACK + "Python "
             + PREFIX_TAG + "friends "

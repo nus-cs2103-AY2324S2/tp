@@ -9,7 +9,6 @@ import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.contact.ProfilePicture;
 
 import seedu.address.model.techstack.TechStack;
 
@@ -60,7 +59,7 @@ public class Contact {
         return email;
     }
 
-    public ProfilePicture getProfilePicture() {return profilePicture; }
+    public ProfilePicture getProfilePicture() { return profilePicture; }
 
     public Address getAddress() {
         return address;
@@ -119,6 +118,7 @@ public class Contact {
                 && email.equals(otherContact.email)
                 && address.equals(otherContact.address)
                 && gitHubUsername.equals(otherContact.gitHubUsername)
+                && profilePicture.equals(otherContact.profilePicture)
                 && techStack.equals(otherContact.techStack)
                 && tags.equals(otherContact.tags);
     }
@@ -137,6 +137,7 @@ public class Contact {
                 .add("email", email)
                 .add("address", address)
                 .add("github_username", gitHubUsername)
+                .add("profile_picture", profilePicture)
                 .add("tech_stack", techStack)
                 .add("tags", tags)
                 .toString();

@@ -31,8 +31,12 @@ class JsonAdaptedContact {
     private final String email;
     private final String address;
     private final String gitHubUsername;
+    private final String profilePicture;
+
     private final List<JsonAdaptedTechStack> techStack = new ArrayList<>();
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
+
+
 
     final static String SAMPLE_PROFILE_PICTURE_URL = "https://static.vecteezy.com/system/resources/previews/019/766/19" +
             "8/non_2x/apple-logo-apple-icon-transparent-free-png.png";
@@ -44,6 +48,7 @@ class JsonAdaptedContact {
     public JsonAdaptedContact(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                               @JsonProperty("email") String email, @JsonProperty("address") String address,
                               @JsonProperty ("github_username") String gitHubUsername,
+                              @JsonProperty ("profile_picture") String profilePicture,
                               @JsonProperty ("tech_stack") List<JsonAdaptedTechStack> techStack,
                               @JsonProperty("tags") List<JsonAdaptedTag> tags) {
         this.name = name;
@@ -51,6 +56,7 @@ class JsonAdaptedContact {
         this.email = email;
         this.address = address;
         this.gitHubUsername = gitHubUsername;
+        this.profilePicture = profilePicture;
         if (techStack != null) {
             this.techStack.addAll(techStack);
         }
@@ -68,6 +74,7 @@ class JsonAdaptedContact {
         email = source.getEmail().value;
         address = source.getAddress().value;
         gitHubUsername = source.getGitHubUsername().username;
+        profilePicture = source.getProfilePicture().get();
         techStack.addAll(source.getTechStack().stream()
                 .map(JsonAdaptedTechStack::new)
                 .collect(Collectors.toList()));
@@ -135,9 +142,10 @@ class JsonAdaptedContact {
 
         final Set<TechStack> modelTechStack = new HashSet<>(personTechStack);
         final Set<Tag> modelTags = new HashSet<>(personTags);
+        final ProfilePicture modelProfilePicture = new ProfilePicture(profilePicture);
 
         return new Contact(modelName, modelPhone, modelEmail, modelAddress, modelGitHubUsername, modelTechStack,
-                modelTags, new ProfilePicture(""));
+                modelTags, modelProfilePicture);
     }
 
 }

@@ -11,6 +11,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.logic.MailApp;
 import seedu.address.model.contact.Contact;
+import seedu.address.model.contact.ProfilePicture;
 
 /**
  * An UI component that displays information of a {@code Contact}.
@@ -58,7 +59,16 @@ public class ContactCard extends UiPart<Region> {
     public ContactCard(Contact contact, int displayedIndex) {
         super(FXML);
         this.contact = contact;
-        profilePicture.setImage(new Image(contact.getProfilePicture().get()));
+
+        try {
+            Image image = new Image(contact.getProfilePicture().get());
+            profilePicture.setImage(image);
+        } catch (IllegalArgumentException e) {
+            // Handle invalid image URL
+            System.err.println("Invalid image URL: " + contact.getProfilePicture().get());
+            profilePicture.setImage(new Image(new ProfilePicture("").get()));
+        }
+
         id.setText(displayedIndex + ". ");
         name.setText(contact.getName().fullName);
         phone.setText("Phone: " + contact.getPhone().value);

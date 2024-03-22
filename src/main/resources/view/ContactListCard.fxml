@@ -6,6 +6,7 @@
 <?import javafx.scene.layout.*?>
 
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+   <ImageView fx:id="profilePicture" fitHeight="120.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" />
   <GridPane HBox.hgrow="ALWAYS">
     <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
@@ -14,7 +15,6 @@
       <padding>
         <Insets bottom="5" left="15" right="5" top="5" />
       </padding>
-         <ImageView fx:id="profilePicture" fitHeight="120.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" />
       <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" spacing="5">
         <Label fx:id="id" styleClass="cell_big_label">
           <maxWidth>
