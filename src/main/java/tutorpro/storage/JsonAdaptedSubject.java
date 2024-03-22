@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 import tutorpro.commons.exceptions.IllegalValueException;
 import tutorpro.model.person.student.Subject;
-import tutorpro.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Subject}.
@@ -41,7 +40,7 @@ class JsonAdaptedSubject {
      */
     public Subject toModelType() throws IllegalValueException {
         if (!Subject.isValidSubject(subjectName)) {
-            throw new IllegalValueException(Tag.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Subject.MESSAGE_CONSTRAINTS);
         }
         return new Subject(subjectName);
     }
