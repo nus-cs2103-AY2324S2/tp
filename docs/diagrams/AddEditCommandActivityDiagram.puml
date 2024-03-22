@@ -14,19 +14,18 @@ else
         :Display attribute parsing error;
         stop
     else ()
-        :Create new Person instance with supplied attributes;
-        :Create new Add/Edit Command instance with new Person;
-        :Execute new Add/Edit Command instance;
-        if () then ([new person already exists in FitBook])
+        :Create Person instance with supplied attributes;
+        :Create Add/Edit Command instance with Person instance;
+        :Execute Add/Edit Command instance;
+        if () then ([person already exists in FitBook])
             :Display duplicate person error;
             stop
         else ()
-            :Add new/edited person to FitBook;
-            :Save clients to JSON file;
+            :Add person to FitBook;
+            :Save persons to JSON file;
             :Display successful add/edit command result;
             stop
         endif
     endif
 endif
 @enduml
-c
