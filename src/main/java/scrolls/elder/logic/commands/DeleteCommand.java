@@ -1,6 +1,7 @@
 package scrolls.elder.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static scrolls.elder.logic.parser.CliSyntax.PREFIX_ROLE;
 
 import java.util.List;
 
@@ -23,13 +24,21 @@ public class DeleteCommand extends Command {
     public static final String COMMAND_WORD_REMOVE = "remove";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD_DELETE
-            + ": Deletes the person identified by the index number used in the displayed person list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD_DELETE + " 1"
+            + ": Deletes the person identified by the index number used in the displayed person list and their type.\n"
+            + "Parameters: INDEX (must be a positive integer), TYPE (volunteer or befriendee)\n"
+            + "Example: " + COMMAND_WORD_DELETE + " 1 "
+            + PREFIX_ROLE
+            + "{VOLUNTEER or BEFRIENDEE}\n"
             + "Alternatively, you can also delete a person using the following commands as well.\n"
-            + "Example: " + COMMAND_WORD_DEL + " 1"
-            + "Example: " + COMMAND_WORD_RM + " 1"
-            + "Example: " + COMMAND_WORD_REMOVE + " 1";
+            + "Example: " + COMMAND_WORD_DEL + " 1\n"
+            + PREFIX_ROLE
+            + "{VOLUNTEER or BEFRIENDEE}\n"
+            + "Example: " + COMMAND_WORD_RM + " 1\n"
+            + PREFIX_ROLE
+            + "{VOLUNTEER or BEFRIENDEE}\n"
+            + "Example: " + COMMAND_WORD_REMOVE + " 1"
+            + PREFIX_ROLE
+            + "{VOLUNTEER or BEFRIENDEE}\n";
 
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";

@@ -26,14 +26,16 @@ import scrolls.elder.testutil.TypicalPersons;
  */
 public class DeleteCommandTest {
 
-    private static final String ROLE_STRING = "volunteer";
-    private static final Role ROLE = new Role(ROLE_STRING);
+    private static final String ROLE_STRING_VOLUNTEER = "volunteer";
+    private static final String ROLE_STRING_BEFRIENDEE = "befriendee";
+    private static final Role ROLE_VOLUNTEER = new Role(ROLE_STRING_VOLUNTEER);
+    private static final Role ROLE_BEFRIENDEE = new Role(ROLE_STRING_BEFRIENDEE);
     private Model model = new ModelManager(TypicalPersons.getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Person personToDelete = model.getFilteredVolunteerList().get(TypicalIndexes.INDEX_SECOND_PERSON.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(TypicalIndexes.INDEX_SECOND_PERSON, ROLE);
+        DeleteCommand deleteCommand = new DeleteCommand(TypicalIndexes.INDEX_SECOND_PERSON, ROLE_VOLUNTEER);
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
                 Messages.format(personToDelete));
@@ -47,7 +49,7 @@ public class DeleteCommandTest {
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredVolunteerList().size() + 1);
-        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex, ROLE);
+        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex, ROLE_VOLUNTEER);
         String expectedMessage =
                 DeleteCommand.MESSAGE_DELETE_PERSON_ERROR + Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
         assertCommandFailure(deleteCommand, model, expectedMessage);
@@ -58,7 +60,7 @@ public class DeleteCommandTest {
         showPersonAtIndex(model, TypicalIndexes.INDEX_SECOND_PERSON);
 
         Person personToDelete = model.getFilteredVolunteerList().get(TypicalIndexes.INDEX_FIRST_PERSON.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(TypicalIndexes.INDEX_FIRST_PERSON, ROLE);
+        DeleteCommand deleteCommand = new DeleteCommand(TypicalIndexes.INDEX_FIRST_PERSON, ROLE_VOLUNTEER);
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
                 Messages.format(personToDelete));
@@ -78,35 +80,48 @@ public class DeleteCommandTest {
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
 
-        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex, ROLE);
+        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex, ROLE_VOLUNTEER);
         String expectedMessage =
                 DeleteCommand.MESSAGE_DELETE_PERSON_ERROR + Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 
         assertCommandFailure(deleteCommand, model, expectedMessage);
     }
 
-    /* TODO: To be implemented once paired contacts are updated to use ID
     @Test
     public void execute_personPaired_throwsCommandException() {
-        Person personToDelete = model.getFilteredPersonList().get(TypicalIndexes.INDEX_FIRST_PERSON.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(TypicalIndexes.INDEX_FIRST_PERSON);
-        personToDelete.setPairedWith(Optional.of(TypicalIndexes.INDEX_SECOND_PERSON.getZeroBased()));
+        DeleteCommand deleteCommand = new DeleteCommand(TypicalIndexes.INDEX_FIRST_PERSON, ROLE_VOLUNTEER);
 
         String expectedMessage =
-                DeleteCommand.MESSAGE_DELETE_PERSON_ERROR + Messages.MESSAGE_CONTACT_PAIRED_BEFORE_DELETE);
+                DeleteCommand.MESSAGE_DELETE_PERSON_ERROR + Messages.MESSAGE_CONTACT_PAIRED_BEFORE_DELETE;
+
         assertCommandFailure(deleteCommand, model, expectedMessage);
     }
-    */
+
+    @Test
+    public void execute_personNotPaired_success() {
+        Person personToDelete =
+                model.getFilteredBefriendeeList().get(TypicalIndexes.INDEX_SECOND_PERSON.getZeroBased());
+        DeleteCommand deleteCommand = new DeleteCommand(TypicalIndexes.INDEX_SECOND_PERSON, ROLE_BEFRIENDEE);
+
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
+                Messages.format(personToDelete));
+
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel.deletePerson(personToDelete);
+
+        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+    }
+
     @Test
     public void equals() {
-        DeleteCommand deleteFirstCommand = new DeleteCommand(TypicalIndexes.INDEX_FIRST_PERSON, ROLE);
-        DeleteCommand deleteSecondCommand = new DeleteCommand(TypicalIndexes.INDEX_SECOND_PERSON, ROLE);
+        DeleteCommand deleteFirstCommand = new DeleteCommand(TypicalIndexes.INDEX_FIRST_PERSON, ROLE_VOLUNTEER);
+        DeleteCommand deleteSecondCommand = new DeleteCommand(TypicalIndexes.INDEX_SECOND_PERSON, ROLE_VOLUNTEER);
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(TypicalIndexes.INDEX_FIRST_PERSON, ROLE);
+        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(TypicalIndexes.INDEX_FIRST_PERSON, ROLE_VOLUNTEER);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false
@@ -122,10 +137,10 @@ public class DeleteCommandTest {
     @Test
     public void toStringMethod() {
         Index targetIndex = Index.fromOneBased(1);
-        DeleteCommand deleteCommand = new DeleteCommand(targetIndex, ROLE);
+        DeleteCommand deleteCommand = new DeleteCommand(targetIndex, ROLE_VOLUNTEER);
         String expected =
                 String.format("%s{targetIndex=%s, role=%s}", DeleteCommand.class.getCanonicalName(), targetIndex,
-                        ROLE_STRING);
+                        ROLE_STRING_VOLUNTEER);
         assertEquals(expected, deleteCommand.toString());
     }
 
