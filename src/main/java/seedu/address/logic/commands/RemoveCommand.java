@@ -69,7 +69,8 @@ public class RemoveCommand extends Command {
             }
         } else if (targetIndex != null && predicate == null) {
             // Second constructor is called, 2nd part of RemoveCommand function - actual removal of contact
-            // Index called has to refer to the filtered list from part 1
+            // Can be called without the first part (i.e. function like original Delete Command)
+            // Index called refers to the filtered list from part 1
             List<Person> lastShownList = model.getFilteredPersonList();
             if (targetIndex.getZeroBased() >= lastShownList.size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
