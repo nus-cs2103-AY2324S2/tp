@@ -32,6 +32,20 @@ public class TypicalParents {
             .withStudents(SampleDataUtil.getSampleStudents())
             .build();
 
+    public static final Parent ZHENGWEI = new ParentBuilder().withName("Zheng Wei")
+            .withAddress("123, Jurong West Ave 6, #08-111").withEmail("zw@example.com")
+            .withPhone("94351253")
+            .withTags("friends")
+            .withStudents(SampleDataUtil.getSampleStudents())
+            .build();
+
+    public static final Parent PARIN = new ParentBuilder().withName("Parin")
+            .withAddress("123, Jurong West Ave 6, #08-111").withEmail("p@example.com")
+            .withPhone("94351253")
+            .withTags("friends")
+            .withStudents(SampleDataUtil.getSampleStudents())
+            .build();
+
     private TypicalParents() {} // prevents instantiation
 
     /**
