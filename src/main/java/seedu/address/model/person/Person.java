@@ -105,6 +105,12 @@ public class Person {
     public void addFavourite() {
         this.isFavourite = true;
     }
+    /**
+     * Removes the person specified by the contact from favourites
+     */
+    public void removeFavourite() {
+        this.isFavourite = false;
+    }
 
     public boolean getFavourite() {
         return this.isFavourite;
