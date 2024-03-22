@@ -41,7 +41,7 @@ class JsonAdaptedSubject {
      */
     public Subject toModelType() throws IllegalValueException {
         if (!Subject.isValidSubject(subjectName)) {
-            throw new IllegalValueException(Tag.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Subject.MESSAGE_CONSTRAINTS);
         }
         return new Subject(subjectName);
     }
