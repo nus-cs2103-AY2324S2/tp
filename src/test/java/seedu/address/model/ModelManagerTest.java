@@ -1,9 +1,16 @@
 package seedu.address.model;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.*;
+import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.ALICEMAINTAINER;
+import static seedu.address.testutil.TypicalPersons.ALICESTAFF;
+import static seedu.address.testutil.TypicalPersons.ALICESUPPLIER;
+import static seedu.address.testutil.TypicalPersons.BENSON;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -12,18 +19,11 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.AddCommandTest;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.messages.AddMessages;
-import seedu.address.logic.messages.DeleteMessages;
-import seedu.address.logic.LogicManagerTest;
 import seedu.address.logic.messages.EditMessages;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.person.Person;
 import seedu.address.testutil.AddressBookBuilder;
-import seedu.address.testutil.PersonBuilder;
 
 public class ModelManagerTest {
 
