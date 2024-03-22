@@ -85,18 +85,36 @@ public class DeleteCommandTest {
         assertCommandFailure(deleteCommand, model, expectedMessage);
     }
 
-    /* TODO: To be implemented once paired contacts are updated to use ID
     @Test
     public void execute_personPaired_throwsCommandException() {
-        Person personToDelete = model.getFilteredPersonList().get(TypicalIndexes.INDEX_FIRST_PERSON.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(TypicalIndexes.INDEX_FIRST_PERSON);
-        personToDelete.setPairedWith(Optional.of(TypicalIndexes.INDEX_SECOND_PERSON.getZeroBased()));
+        showPersonAtIndex(model, TypicalIndexes.INDEX_FIRST_PERSON);
+
+        Person personToDelete = model.getFilteredVolunteerList().get(TypicalIndexes.INDEX_FIRST_PERSON.getZeroBased());
+        DeleteCommand deleteCommand = new DeleteCommand(TypicalIndexes.INDEX_FIRST_PERSON, ROLE);
 
         String expectedMessage =
-                DeleteCommand.MESSAGE_DELETE_PERSON_ERROR + Messages.MESSAGE_CONTACT_PAIRED_BEFORE_DELETE);
+                DeleteCommand.MESSAGE_DELETE_PERSON_ERROR + Messages.MESSAGE_CONTACT_PAIRED_BEFORE_DELETE;
+
         assertCommandFailure(deleteCommand, model, expectedMessage);
     }
-    */
+
+    @Test
+    public void execute_personNotPaired_success() {
+        showPersonAtIndex(model, TypicalIndexes.INDEX_SECOND_PERSON);
+
+        Person personToDelete = model.getFilteredVolunteerList().get(TypicalIndexes.INDEX_FIRST_PERSON.getZeroBased());
+        DeleteCommand deleteCommand = new DeleteCommand(TypicalIndexes.INDEX_FIRST_PERSON, ROLE);
+
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
+                Messages.format(personToDelete));
+
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel.deletePerson(personToDelete);
+        showNoPerson(expectedModel);
+
+        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+    }
+
     @Test
     public void equals() {
         DeleteCommand deleteFirstCommand = new DeleteCommand(TypicalIndexes.INDEX_FIRST_PERSON, ROLE);
