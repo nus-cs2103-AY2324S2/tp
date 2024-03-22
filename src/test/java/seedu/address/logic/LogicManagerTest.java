@@ -92,6 +92,11 @@ public class LogicManagerTest {
     }
 
     @Test
+    public void getFilteredGroupList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredGroupList().remove(0));
+    }
+
+    @Test
     public void getRecentlyProcessedCourseMate_newLogicManager_returnsNull() {
         assertEquals(null, logic.getRecentlyProcessedCourseMate());
     }
