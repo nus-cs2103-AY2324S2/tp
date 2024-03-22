@@ -13,7 +13,7 @@ Participant ":CommandResult" as commandResult LOGIC_COLOR
 user -[USER_COLOR]> ui : "edit 1 b/2000-01-01"
 activate ui UI_COLOR
 
-ref over logicManager, ui : processes user input
+ref over logicManager, ui : process user input
 activate logicManager LOGIC_COLOR
 
 logicManager -[USER_COLOR]> addressBookParser : parseCommand("edit 1 b/2000-01-01")
