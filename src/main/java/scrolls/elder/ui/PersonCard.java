@@ -55,7 +55,7 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
-        pairedWith.setText(person.getPairedWith().map(p -> "Paired with: " + p.fullName).orElse("Not paired"));
+        pairedWith.setText(person.getPairedWithName().map(p -> "Paired with: " + p.fullName).orElse("Not paired"));
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

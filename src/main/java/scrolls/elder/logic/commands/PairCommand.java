@@ -88,8 +88,10 @@ public class PairCommand extends Command {
             throw new CommandException(MESSAGE_ALREADY_PAIRED);
         }
 
-        Person newPerson1 = createEditedPairedPerson(personToPair1, Optional.of(personToPair2.getName()));
-        Person newPerson2 = createEditedPairedPerson(personToPair2, Optional.of(personToPair1.getName()));
+        Person newPerson1 = createEditedPairedPerson(personToPair1, Optional.of(personToPair2.getName()),
+                Optional.of(personToPair2.getId()));
+        Person newPerson2 = createEditedPairedPerson(personToPair2, Optional.of(personToPair1.getName()),
+                Optional.of(personToPair1.getId()));
 
         // TODO: REMOVE DEAD CODE
         // No longer needed since we are using new Person objects
@@ -133,7 +135,8 @@ public class PairCommand extends Command {
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPairedPersonDescriptor}.
      */
-    private static Person createEditedPairedPerson(Person personToEdit, Optional<Name> updatedPair) {
+    private static Person createEditedPairedPerson(Person personToEdit, Optional<Name> updatedPairName,
+                                                   Optional<Integer> updatedPairID) {
         assert personToEdit != null;
 
         Name updatedName = personToEdit.getName();
@@ -145,9 +148,11 @@ public class PairCommand extends Command {
 
         Person p;
         if (role.isVolunteer()) {
-            p = new Volunteer(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedPair);
+            p = new Volunteer(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags,
+                    updatedPairName, updatedPairID);
         } else {
-            p = new Befriendee(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedPair);
+            p = new Befriendee(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags,
+                    updatedPairName, updatedPairID);
         }
         p.setId(personToEdit.getId());
         return p;

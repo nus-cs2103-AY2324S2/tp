@@ -82,6 +82,7 @@ public interface Model {
     ObservableList<Person> getFilteredVolunteerList();
 
     ObservableList<Person> getFilteredBefriendeeList();
+    Person getPersonFromID(int i);
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.

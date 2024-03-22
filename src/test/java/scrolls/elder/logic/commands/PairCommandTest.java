@@ -34,7 +34,6 @@ class PairCommandTest {
 
         String expectedMessage = String.format(PairCommand.MESSAGE_PAIR_SUCCESS,
                 Messages.format(befriendeeToPair), Messages.format(volunteerToPair));
-
         Person afterPairingPerson1 = new PersonBuilder(befriendeeToPair)
                 .withPairedWith(Optional.of(volunteerToPair.getName())).build();
         Person afterPairingPerson2 = new PersonBuilder(volunteerToPair)

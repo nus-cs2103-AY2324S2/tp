@@ -30,6 +30,7 @@ import scrolls.elder.model.person.Role;
 import scrolls.elder.model.person.Volunteer;
 import scrolls.elder.model.tag.Tag;
 
+
 /**
  * Edits the details of an existing person in the address book.
  */
@@ -83,15 +84,44 @@ public class EditCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Role role = editPersonDescriptor.getRole().orElse(personToEdit.getRole());
-        Optional<Name> pairedWith = personToEdit.getPairedWith();
+        Optional<Name> pairedWithName = personToEdit.getPairedWithName();
+        Optional<Integer> pairedWithID = personToEdit.getPairedWithID();
 
         Person p;
         if (role.isVolunteer()) {
-            p = new Volunteer(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, pairedWith);
+            p = new Volunteer(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags,
+                    pairedWithName, pairedWithID);
         } else {
-            p = new Befriendee(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, pairedWith);
+            p = new Befriendee(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags,
+                    pairedWithName, pairedWithID);
         }
         p.setId(personToEdit.getId());
+        return p;
+    }
+
+    private static Person createEditedPair(Person editedPerson, Person originalPair) {
+        assert editedPerson != null;
+
+        // Will check before calling this function that the editedPerson is paired
+        Name updatedName = originalPair.getName();
+        Phone updatedPhone = originalPair.getPhone();
+        Email updatedEmail = originalPair.getEmail();
+        Address updatedAddress = originalPair.getAddress();
+        Set<Tag> updatedTags = originalPair.getTags();
+        Role role = originalPair.getRole();
+        Optional<Name> updatedPairedWithName = Optional.of(editedPerson.getName());
+        Optional<Integer> updatedPairedWithID = Optional.of(editedPerson.getId());
+
+        Person p;
+        if (role.isVolunteer()) {
+            p = new Volunteer(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags,
+                    updatedPairedWithName, updatedPairedWithID);
+        } else {
+            p = new Befriendee(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags,
+                    updatedPairedWithName, updatedPairedWithID);
+        }
+
+        p.setId(originalPair.getId());
         return p;
     }
 
@@ -119,6 +149,12 @@ public class EditCommand extends Command {
 
         if (personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        }
+
+        if (editedPerson.isPaired()) {
+            Person pairedWith = model.getPersonFromID(editedPerson.getPairedWithID().get());
+            Person pairedWithUpdated = createEditedPair(editedPerson, pairedWith);
+            model.setPerson(pairedWith, pairedWithUpdated);
         }
 
         model.setPerson(personToEdit, editedPerson);

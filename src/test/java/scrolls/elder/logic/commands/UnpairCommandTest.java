@@ -35,8 +35,10 @@ class UnpairCommandTest {
         String expectedMessage = String.format(UnpairCommand.MESSAGE_UNPAIR_SUCCESS,
                 Messages.format(personToUnpair1), Messages.format(personToUnpair2));
 
-        Person afterUnpairingPerson1 = new PersonBuilder(personToUnpair1).withPairedWith(Optional.empty()).build();
-        Person afterUnpairingPerson2 = new PersonBuilder(personToUnpair2).withPairedWith(Optional.empty()).build();
+        Person afterUnpairingPerson1 = new PersonBuilder(personToUnpair1)
+                .withPairedWithName(Optional.empty()).withPairedWithID(Optional.empty()).build();
+        Person afterUnpairingPerson2 = new PersonBuilder(personToUnpair2)
+                .withPairedWithName(Optional.empty()).withPairedWithID(Optional.empty()).build();
 
         ModelManager expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredBefriendeeList().get(TypicalIndexes.INDEX_FIRST_PERSON.getZeroBased()),

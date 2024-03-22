@@ -34,7 +34,8 @@ public class PersonBuilder {
     private Address address;
     private Set<Tag> tags;
     private Role role;
-    private Optional<Name> pairedWith;
+    private Optional<Name> pairedWithName;
+    private Optional<Integer> pairedWithID;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -47,7 +48,8 @@ public class PersonBuilder {
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
         role = new Role(DEFAULT_VOLUNTEER_ROLE_STRING);
-        pairedWith = Optional.empty();
+        pairedWithName = Optional.empty();
+        pairedWithID = Optional.empty();
     }
 
     /**
@@ -61,7 +63,8 @@ public class PersonBuilder {
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
         role = personToCopy.getRole();
-        pairedWith = personToCopy.getPairedWith();
+        pairedWithName = personToCopy.getPairedWithName();
+        pairedWithID = personToCopy.getPairedWithID();
     }
 
     /**
@@ -121,10 +124,18 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code pairedWith} of the {@code Person} that we are building.
+     * Sets the {@code pairedWithName} of the {@code Person} that we are building.
      */
-    public PersonBuilder withPairedWith(Optional<Name> pairedWith) {
-        this.pairedWith = pairedWith;
+    public PersonBuilder withPairedWithName(Optional<Name> pairedWithName) {
+        this.pairedWithName = pairedWithName;
+        return this;
+    }
+
+    /**
+     * Sets the {@code pairedWithID} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withPairedWithID(Optional<Integer> pairedWithID) {
+        this.pairedWithID = pairedWithID;
         return this;
     }
 
@@ -134,9 +145,9 @@ public class PersonBuilder {
     public Person build() {
         Person person;
         if (role.isVolunteer()) {
-            person = new Volunteer(name, phone, email, address, tags, pairedWith);
+            person = new Volunteer(name, phone, email, address, tags, pairedWithName, pairedWithID);
         } else {
-            person = new Befriendee(name, phone, email, address, tags, pairedWith);
+            person = new Befriendee(name, phone, email, address, tags, pairedWithName, pairedWithID);
         }
         person.setId(id);
         return person;
