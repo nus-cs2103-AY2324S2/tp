@@ -88,7 +88,7 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
 * Phone number **must be a valid Singapore number** (i.e. 8 digits, starts with either 6, 8 or 9)
 * Email **must include @ character**
-* Address **must include and be ordered in street name, block number, and unit number (note: include # symbol)**, 
+* Address **must include and be ordered in street name, block number, and unit number (note: include # symbol)**,
 separated with comma
 * If multiple `tag` are added, separate with comma
 
@@ -146,7 +146,6 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 * You can remove all the person’s tags by typing `t/` without
     specifying any tags after it.
 * Adding a person's format for **phone number, email, and address** applies here as well.
-* 
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
@@ -241,7 +240,7 @@ Clears all entries from the address book.
 
 Format: `clear`
 
-Expected success outcome: 
+Expected success outcome:
 ```
 History cleared
 ```
@@ -261,13 +260,13 @@ Format: `addSched INDEX [MORE_INDEX] SCHEDULE_NAME from/DATE_TIME to/TIME`
 * The SCHEDULE_NAME **must not have any special characters** e.g. !, @, #, $, …​
 * The DATE_TIME must be in the format of ddmmyyyy HHmm in 24-hour time
 * The TIME must be in the format of HHmm, but **not before the time from DATE_TIME** e.g. 0000-2359
-* `find Betsy` followed by `addSched 1 Exam 05032024 1600 1800` adds the 1st person in 
+* `find Betsy` followed by `addSched 1 Exam 05032024 1600 1800` adds the 1st person in
 the results of the `find` command to the event stated.
 
 Examples:
-* `addSched 4 Exam 05032024 1600 1800` will add the 4th person in the address list to the `Exam` event which 
+* `addSched 4 Exam 05032024 1600 1800` will add the 4th person in the address list to the `Exam` event which
 would take place on 5th March 2024 from 4pm - 6pm
-* `addSched 1,2,3 CSMeeting 18032024 1500 1900` will add the 1st, 2nd and 3rd persons in the address list 
+* `addSched 1,2,3 CSMeeting 18032024 1500 1900` will add the 1st, 2nd and 3rd persons in the address list
 to the `CSMeeting` event which would take place on 18th March 2024 from 3pm - 7pm
 
 Expected success outcome:
