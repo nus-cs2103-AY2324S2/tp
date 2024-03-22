@@ -281,9 +281,9 @@ _{Explain here how the data archiving feature will be implemented}_
 * Frequently communicating and coordinating with a variety of contacts including vendors, participants, volunteers, and school administrators
 * Task driven with a need to balance multiple deadlines and responsibilities simultaneously
 
-**Value proposition**: 
+**Value proposition**:
 
-The evolved AB3 contact management application, tailored specifically for student event organizers, offers a new standard of streamlined and automated contact organization. It serves as your single source of truth for storing, 
+The evolved AB3 contact management application, tailored specifically for student event organizers, offers a new standard of streamlined and automated contact organization. It serves as your single source of truth for storing,
 managing, and retrieving all contact-related information.
 
 
