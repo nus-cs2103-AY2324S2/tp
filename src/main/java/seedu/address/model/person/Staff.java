@@ -40,8 +40,6 @@ public class Staff extends Person {
             return false;
         }
 
-        Staff otherPerson = (Staff) other;
-        boolean isSameGroup = otherPerson.getGroupNumber() == this.getGroupNumber();
-        return super.isSamePerson(otherPerson) && isSameGroup;
+        return super.isSamePerson(other);
     }
 }
