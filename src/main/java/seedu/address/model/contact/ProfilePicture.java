@@ -22,13 +22,22 @@ public class ProfilePicture {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        ProfilePicture that = (ProfilePicture) o;
-        return Objects.equals(url, that.url);
+        // instanceof handles nulls
+        if (!(o instanceof ProfilePicture)) {
+            return false;
+        }        ProfilePicture that = (ProfilePicture) o;
+        return this.get().equals(that.get());
     }
+
+
 
     @Override
     public int hashCode() {
         return Objects.hash(url);
+    }
+
+    @Override
+    public String toString() {
+        return url;
     }
 }
