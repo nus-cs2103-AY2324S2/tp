@@ -59,6 +59,6 @@ public class PersonCard extends UiPart<Region> {
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         person.getCcas().stream()
                 .sorted(Comparator.comparing(cca -> cca.ccaName))
-                .forEach(cca -> ccas.getChildren().add(new Label("CCA: " + cca.ccaName)));
+                .forEach(cca -> ccas.getChildren().add(new Label(cca.ccaName)));
     }
 }
