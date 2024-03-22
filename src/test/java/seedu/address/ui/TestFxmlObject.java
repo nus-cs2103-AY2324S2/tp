@@ -1,4 +1,4 @@
-package seedu.address.storage.ui;
+package seedu.address.ui;
 
 import java.util.Objects;
 
