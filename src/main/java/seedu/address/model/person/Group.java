@@ -18,6 +18,7 @@ public class Group {
     public Group() {
         this.groupNumber = 0;
     }
+
     /**
      * Constructs a {@code Group}.
      *
@@ -42,6 +43,20 @@ public class Group {
      */
     public static void setLastGroupNumber(int lastGroupNumber) {
         lastGroupNumber = lastGroupNumber;
+    }
+
+    /**
+     * Returns the last group number.
+     */
+    public static int getLastGroupNumber() {
+        return lastGroupNumber;
+    }
+
+    /**
+     * Returns the group number.
+     */
+    public int getGroupNumber() {
+        return groupNumber;
     }
 
     @Override
