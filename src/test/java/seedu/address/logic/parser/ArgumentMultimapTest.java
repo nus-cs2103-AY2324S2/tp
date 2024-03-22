@@ -14,7 +14,8 @@ class ArgumentMultimapTest {
         Prefix prefix = new Prefix("p/");
         argMultimap.put(prefix, "value1");
         argMultimap.put(prefix, "value2");
-        assertEquals("Multiple values specified for the following single-valued field(s): p/", Messages.getErrorMessageForDuplicatePrefixes(prefix));
+        assertEquals("Multiple values specified for the following single-valued field(s): p/",
+                Messages.getErrorMessageForDuplicatePrefixes(prefix));
     }
 
 
