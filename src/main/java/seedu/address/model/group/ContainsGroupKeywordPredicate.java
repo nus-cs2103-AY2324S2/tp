@@ -5,15 +5,14 @@ import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.group.Group;
 
 /**
  * Tests that a {@code CourseMate}'s {@code Name} matches any of the keywords given.
  */
-public class ContainsKeywordPredicate implements Predicate<Group> {
+public class ContainsGroupKeywordPredicate implements Predicate<Group> {
     private final String keyword;
 
-    public ContainsKeywordPredicate(String keyword) {
+    public ContainsGroupKeywordPredicate(String keyword) {
         this.keyword = keyword;
     }
 
@@ -30,11 +29,11 @@ public class ContainsKeywordPredicate implements Predicate<Group> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof ContainsKeywordPredicate)) {
+        if (!(other instanceof ContainsGroupKeywordPredicate)) {
             return false;
         }
 
-        ContainsKeywordPredicate otherContainsKeywordsPredicate = (ContainsKeywordPredicate) other;
+        ContainsGroupKeywordPredicate otherContainsKeywordsPredicate = (ContainsGroupKeywordPredicate) other;
         return keyword.contentEquals(otherContainsKeywordsPredicate.keyword);
     }
 

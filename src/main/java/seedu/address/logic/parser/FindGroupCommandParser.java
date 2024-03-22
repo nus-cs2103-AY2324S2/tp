@@ -4,7 +4,7 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import seedu.address.logic.commands.FindGroupCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.group.ContainsKeywordPredicate;
+import seedu.address.model.group.ContainsGroupKeywordPredicate;
 
 /**
  * Parses input arguments and creates a new FindGroupCommand object
@@ -22,7 +22,7 @@ public class FindGroupCommandParser implements Parser<FindGroupCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     FindGroupCommand.MESSAGE_USAGE));
         }
-        return new FindGroupCommand(new ContainsKeywordPredicate(trimmedArgs));
+        return new FindGroupCommand(new ContainsGroupKeywordPredicate(trimmedArgs));
     }
 
 }

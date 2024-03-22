@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.group.ContainsKeywordPredicate;
+import seedu.address.model.group.ContainsGroupKeywordPredicate;
 
 /**
  * Finds and lists all groups in the group list whose name contains any of the argument keywords.
@@ -20,9 +20,9 @@ public class FindGroupCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + "CS2103T";
 
-    private final ContainsKeywordPredicate predicate;
+    private final ContainsGroupKeywordPredicate predicate;
 
-    public FindGroupCommand(ContainsKeywordPredicate predicate) {
+    public FindGroupCommand(ContainsGroupKeywordPredicate predicate) {
         this.predicate = predicate;
     }
 
@@ -41,7 +41,7 @@ public class FindGroupCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof FindCommand)) {
+        if (!(other instanceof FindGroupCommand)) {
             return false;
         }
 
