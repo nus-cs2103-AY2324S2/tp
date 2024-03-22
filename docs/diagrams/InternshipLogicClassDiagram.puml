@@ -1,0 +1,47 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor LOGIC_COLOR_T4
+skinparam classBackgroundColor LOGIC_COLOR
+
+package InternshipLogic as LogicPackage {
+
+package "Internship Parser Classes" as InternshipParserClasses{
+}
+Class InternshipXYZCommand
+Class CommandResult
+Class "{abstract}\nInternshipCommand" as InternshipCommand
+
+
+Class "<<interface>>\nInternshipLogic" as Logic
+Class InternshipLogicManager
+}
+
+package Model {
+Class HiddenModel #FFFFFF
+}
+
+package Storage {
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> Logic
+
+InternshipLogicManager .right.|> Logic
+InternshipLogicManager -right-> " 1 " InternshipParserClasses
+InternshipParserClasses ..> InternshipXYZCommand : <<create>>
+
+InternshipXYZCommand -up-|> InternshipCommand
+InternshipLogicManager .left.> InternshipCommand : <<call>>
+
+InternshipLogicManager --> Model
+InternshipLogicManager --> Storage
+Storage --[hidden] Model
+InternshipCommand .[hidden]up.> Storage
+InternshipCommand .right.> Model
+note right of InternshipXYZCommand: InternshipXYZCommand = InternshipAddCommand, \nInternshipFindCommand, etc
+
+Logic ..> CommandResult
+InternshipLogicManager .down.> CommandResult
+InternshipCommand .up.> CommandResult : <<create>>
+@enduml
