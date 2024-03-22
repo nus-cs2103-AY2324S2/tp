@@ -1,0 +1,18 @@
+@startuml
+
+class RedoCommand {
+    - COMMAND_WORD: String
+    - MESSAGE_SUCCESS: String
+    - MESSAGE_FAILURE: String
+    + execute(model: Model, history: CommandHistory): CommandResult
+}
+
+Model -- RedoCommand : model
+CommandHistory -- RedoCommand : history
+
+CommandResult -- RedoCommand
+
+RedoCommand --> Model : updates
+RedoCommand --> CommandHistory : updates
+
+@enduml
