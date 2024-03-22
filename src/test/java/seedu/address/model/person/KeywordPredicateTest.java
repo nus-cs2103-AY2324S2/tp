@@ -143,6 +143,146 @@ public class KeywordPredicateTest {
     }
 
     @Test
+    public void test_nameField_returnsTrue() {
+        KeywordPredicate predicate = new KeywordPredicate(
+                ArgumentTokenizer.tokenize(" ; name : Alice", PREFIX_NAME));
+        assertTrue(predicate.test(new PersonBuilder().withName("Alice").build()));
+    }
+
+    @Test
+    public void test_phoneField_returnsTrue() {
+        KeywordPredicate predicate = new KeywordPredicate(
+                ArgumentTokenizer.tokenize(" ; phone : 98765432", PREFIX_PHONE));
+        assertTrue(predicate.test(new PersonBuilder().withPhone("98765432").build()));
+    }
+
+    @Test
+    public void test_emailField_returnsTrue() {
+        KeywordPredicate predicate = new KeywordPredicate(
+                ArgumentTokenizer.tokenize(" ; email : ilovepoochies@gmail.com", PREFIX_EMAIL));
+        assertTrue(predicate.test(new PersonBuilder().withEmail("ilovepoochies@gmail.com").build()));
+    }
+
+    @Test
+    public void test_addressField_returnsTrue() {
+        KeywordPredicate predicate = new KeywordPredicate(
+                ArgumentTokenizer.tokenize(" ; address : Pooch Street 21", PREFIX_ADDRESS));
+        assertTrue(predicate.test(new PersonBuilder().withAddress("Pooch Street 21").build()));
+    }
+
+    @Test
+    public void test_salaryField_returnsTrue() {
+        KeywordPredicate predicate = new KeywordPredicate(
+                ArgumentTokenizer.tokenize(" ; salary : $50/hr", PREFIX_SALARY));
+        assertTrue(predicate.test(new StaffBuilder().withSalary("$50/hr").build()));
+    }
+
+    @Test
+    public void test_employmentField_returnsTrue() {
+        KeywordPredicate predicate = new KeywordPredicate(
+                ArgumentTokenizer.tokenize(" ; employment : part-time", PREFIX_EMPLOYMENT));
+        assertTrue(predicate.test(new StaffBuilder().withEmployment("part-time").build()));
+    }
+
+    @Test
+    public void test_priceField_returnsTrue() {
+        KeywordPredicate predicate = new KeywordPredicate(
+                ArgumentTokenizer.tokenize(" ; price : $50/h", PREFIX_PRICE));
+        assertTrue(predicate.test(new SupplierBuilder().withPrice("$50/h").build()));
+    }
+
+    @Test
+    public void test_productField_returnsTrue() {
+        KeywordPredicate predicate = new KeywordPredicate(
+                ArgumentTokenizer.tokenize(" ; product : dog food", PREFIX_PRODUCT));
+        assertTrue(predicate.test(new SupplierBuilder().withProduct("dog food").build()));
+    }
+
+    @Test
+    public void test_skillField_returnsTrue() {
+        KeywordPredicate predicate = new KeywordPredicate(
+                ArgumentTokenizer.tokenize(" ; skill : dog trainer", PREFIX_SKILL));
+        assertTrue(predicate.test(new MaintainerBuilder().withSkill("dog trainer").build()));
+    }
+
+    @Test
+    public void test_commissionField_returnsTrue() {
+        KeywordPredicate predicate = new KeywordPredicate(
+                ArgumentTokenizer.tokenize(" ; commission : $100/hr", PREFIX_COMMISSION));
+        assertTrue(predicate.test(new MaintainerBuilder().withCommission("$100/hr").build()));
+    }
+
+    @Test
+    public void test_multipleFields_returnsTrue() {
+        KeywordPredicate predicate = new KeywordPredicate(
+                ArgumentTokenizer.tokenize(" ; name : Alice ; phone : 98765432", PREFIX_NAME, PREFIX_PHONE));
+        assertTrue(predicate.test(new PersonBuilder().withName("Alice").withPhone("98765432").build()));
+    }
+
+    @Test
+    public void test_combinationFields_returnsFalse() {
+        // Test cases where combination of fields don't match
+        // For example, only name matches
+        KeywordPredicate predicate = new KeywordPredicate(
+                ArgumentTokenizer.tokenize(" ; name : Alice ; phone : 12345678", PREFIX_NAME, PREFIX_PHONE));
+        Person person = new PersonBuilder()
+                .withName("Alice")
+                .withPhone("98765432")
+                .withEmail("alice@abc.com")
+                .withAddress("Pooch123")
+                .build();
+        assertFalse(predicate.test(person));
+    }
+
+    @Test
+    public void test_salaryFieldOnPerson_returnsFalse() {
+        KeywordPredicate predicate = new KeywordPredicate(
+                ArgumentTokenizer.tokenize(" ; salary : $10/hr", PREFIX_SALARY));
+        Person person = new PersonBuilder().withName("Alice").build();
+        assertFalse(predicate.test(person));
+    }
+
+    @Test
+    public void test_employmentFieldOnPerson_returnsFalse() {
+        KeywordPredicate predicate = new KeywordPredicate(
+                ArgumentTokenizer.tokenize(" ; employment : part-time", PREFIX_EMPLOYMENT));
+        Person person = new PersonBuilder().withName("Alice").build();
+        assertFalse(predicate.test(person));
+    }
+
+    @Test
+    public void test_priceFieldOnPerson_returnsFalse() {
+        KeywordPredicate predicate = new KeywordPredicate(
+                ArgumentTokenizer.tokenize(" ; price : $50/bag", PREFIX_PRICE));
+        Person person = new PersonBuilder().withName("Alice").build();
+        assertFalse(predicate.test(person));
+    }
+
+    @Test
+    public void test_productFieldOnPerson_returnsFalse() {
+        KeywordPredicate predicate = new KeywordPredicate(
+                ArgumentTokenizer.tokenize(" ; product : dog food", PREFIX_PRODUCT));
+        Person person = new PersonBuilder().withName("Alice").build();
+        assertFalse(predicate.test(person));
+    }
+
+    @Test
+    public void test_skillFieldOnPerson_returnsFalse() {
+        KeywordPredicate predicate = new KeywordPredicate(
+                ArgumentTokenizer.tokenize(" ; skill : dog trainer", PREFIX_SKILL));
+        Person person = new PersonBuilder().withName("Alice").build();
+        assertFalse(predicate.test(person));
+    }
+
+    @Test
+    public void test_commissionFieldOnPerson_returnsFalse() {
+        KeywordPredicate predicate = new KeywordPredicate(
+                ArgumentTokenizer.tokenize(" ; commission : $50/hr", PREFIX_COMMISSION));
+        Person person = new PersonBuilder().withName("Alice").build();
+        assertFalse(predicate.test(person));
+    }
+
+    @Test
     public void toStringMethod() {
         ArgumentMultimap keyword = ArgumentTokenizer.tokenize(" ; name : Alice", PREFIX_NAME);
         KeywordPredicate predicate = new KeywordPredicate(keyword);
