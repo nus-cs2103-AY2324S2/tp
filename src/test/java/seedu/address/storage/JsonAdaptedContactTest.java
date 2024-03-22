@@ -12,7 +12,11 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.contact.*;
+import seedu.address.model.contact.Address;
+import seedu.address.model.contact.Email;
+import seedu.address.model.contact.GitHubUsername;
+import seedu.address.model.contact.Name;
+import seedu.address.model.contact.Phone;
 
 public class JsonAdaptedContactTest {
     private static final String INVALID_NAME = "R@chel";
@@ -39,9 +43,7 @@ public class JsonAdaptedContactTest {
     @Test
     public void toModelType_validContactDetails_returnsContact() throws Exception {
         JsonAdaptedContact contact = new JsonAdaptedContact(BENSON);
-        Contact act = contact.toModelType();
-        Contact ex = BENSON;
-        assertEquals(BENSON, act);
+        assertEquals(BENSON, contact.toModelType());
     }
 
     @Test
