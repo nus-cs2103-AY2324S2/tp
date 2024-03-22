@@ -203,7 +203,8 @@ A new CSV file of the same name in the same location will again be created when 
 
 ### Importing Data from a CSV file : `import`
 
-Imports all persons and their details from a CSV file from a specified file path.
+Imports all persons and their details from a CSV file from a specified file path. This filepath should be an
+absolute filePath.
 
 Format: `import i/FILEPATH`
 - imports the persons saved in `FILEPATH` to `avengersassemble.json`
