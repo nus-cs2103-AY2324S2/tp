@@ -71,11 +71,6 @@ public class EditMeetingCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Meeting> lastShownList = model.getFilteredMeetingList();
-        /*
-        lastShownList.add(new Meeting("a", LocalDateTime.now(), selectedClient));
-        lastShownList.add(new Meeting("b", LocalDateTime.now(), selectedClient));
-        lastShownList.add(new Meeting("c", LocalDateTime.now(), selectedClient));
-        */
 
         if (meetingIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_MEETING_DISPLAYED_INDEX);
@@ -101,27 +96,7 @@ public class EditMeetingCommand extends Command {
 
         return new CommandResult(String.format(MESSAGE_EDIT_MEETING_SUCCESS, Messages.formatMeeting(editedMeeting)));
     }
-    /*
-    public CommandResult execute(Model model) throws CommandException {
-        requireNonNull(model);
-        ArrayList<Meeting> lastShownList = client.getMeetings();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-        }
-
-        Meeting meetingToEdit = lastShownList.get(index.getZeroBased());
-        Meeting editedMeeting = createEditedMeeting(meetingToEdit, editMeetingDescriptor);
-
-        if (!meetingToEdit.isSameMeeting(editedMeeting) && lastShownList.contains(editedMeeting)) {
-            throw new CommandException(MESSAGE_DUPLICATE_MEETING);
-        }
-        lastShownList.set(index.getZeroBased(), editedMeeting);
-        client.setMeetings(lastShownList);
-        //model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.formatMeeting(editedMeeting)));
-    }
-    */
     /**
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
