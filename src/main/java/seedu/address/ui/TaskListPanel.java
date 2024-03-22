@@ -1,25 +1,18 @@
 package seedu.address.ui;
 
-import java.io.IOException;
-
-// import java.util.logging.Logger;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
-// import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
 import seedu.address.model.project.Task;
-import seedu.address.ui.TaskListPanel.TaskListCell;
 
 /**
  * Panel containing the list of persons.
  */
 public class TaskListPanel extends UiPart<Region> {
     private static final String FXML = "TaskListPanel.fxml";
-    // private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
 
     private final Person currentProject;
 
@@ -37,7 +30,6 @@ public class TaskListPanel extends UiPart<Region> {
         super(FXML);
         this.currentProject = currentProject;
         showingProjectName.setText("Showing Project: " + currentProject.getName().fullName);
-        // Manually set the items of the ListView
 
         undoneTaskListView.getItems().clear();
         undoneTaskListView.getItems().addAll(currentProject.getUndoneTasks());
@@ -51,15 +43,15 @@ public class TaskListPanel extends UiPart<Region> {
     }
 
     class TaskListCell extends ListCell<Task> {
-    @Override
-    protected void updateItem(Task task, boolean empty) {
-        super.updateItem(task, empty);
-        if (empty || task == null) {
-            setGraphic(null);
-        } else {
-            setGraphic(new TaskCard(task).getRoot());
+        @Override
+        protected void updateItem(Task task, boolean empty) {
+            super.updateItem(task, empty);
+            if (empty || task == null) {
+                setGraphic(null);
+            } else {
+                setGraphic(new TaskCard(task).getRoot());
+            }
         }
     }
-}
 
 }

@@ -132,6 +132,16 @@ public class AddTaskCommandTest {
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public ObservableList<Person> getCurrentProject() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateCurrentProject(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

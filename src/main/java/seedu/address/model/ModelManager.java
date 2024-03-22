@@ -4,18 +4,14 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
-
-import javax.xml.crypto.dsig.spec.XPathType.Filter;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.NameEqualsPredicate;
 import seedu.address.model.person.Person;
 
@@ -41,7 +37,9 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        currentProject = new FilteredList<>(this.addressBook.getPersonList(), new NameEqualsPredicate(filteredPersons.get(0).getName().fullName));
+        currentProject = new FilteredList<>(
+            this.addressBook.getPersonList(),
+            new NameEqualsPredicate(filteredPersons.get(0).getName().fullName));
     }
 
     public ModelManager() {
