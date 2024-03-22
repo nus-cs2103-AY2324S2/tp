@@ -14,9 +14,8 @@ public class BorrowCommandParserTest {
 
     private BorrowCommandParser parser = new BorrowCommandParser();
     private static final String bookTitle = "Some title";
-    private static final String MESSAGE_INVALID_FORMAT =
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, BorrowCommand.MESSAGE_USAGE);
-    
+    private static final String MESSAGE_INVALID_FORMAT = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+            BorrowCommand.MESSAGE_USAGE);
 
     @Test
     public void parse_missingParts_failure() {

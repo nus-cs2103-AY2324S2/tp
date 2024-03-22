@@ -5,7 +5,7 @@
 * MyBookshelf is designed to improve and ease the management of public community libraries.
 * MyBookshelf helps to keep track of the person who has borrowed which books from the library.
 * MyBookShelf helps to keep track of the book transactions within the library.
-* MyBookShelf helps to keep track of the merit score of each user of the library. 
+* MyBookShelf helps to keep track of the merit score of each user of the library.
 * This helps to prevent irresponsible behaviour that violates the library's borrowing guidelines, easing management duties.
 <br>
 
@@ -13,7 +13,7 @@
   * The project is CLI based to make it quick to use and  easy for users who prefer typing commands over mouse operations.
   * The librarians can add, edit, find or delete users in order to keep track of the people who is using their library
   * The librarians can keep track of borrowed books and the borrower's information as well as return transactions.
-  * The librarians can keep track donated books and the information of the donors. 
+  * The librarians can keep track donated books and the information of the donors.
   * The project simulates an ongoing software project for a desktop application (called AddressBook) used for managing contact details.
       * It is written in OOP fashion. It provides a reasonably well-written code base bigger (around 6 KLoC), without being overwhelmingly big.
       * It comes with a reasonable level of user and developer documentation.
