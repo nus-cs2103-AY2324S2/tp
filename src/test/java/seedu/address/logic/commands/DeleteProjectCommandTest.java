@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.DeleteProjectCommand.MESSAGE_PROJECT_NOT_FOUND;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
@@ -42,7 +43,8 @@ public class DeleteProjectCommandTest {
     public void execute_invalidProject_throwsCommandException() {
         DeleteProjectCommand deleteCommand = new DeleteProjectCommand("thereisnoproject withthisname");
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model, String.format(MESSAGE_PROJECT_NOT_FOUND,
+                "thereisnoproject withthisname"));
     }
 
     @Test

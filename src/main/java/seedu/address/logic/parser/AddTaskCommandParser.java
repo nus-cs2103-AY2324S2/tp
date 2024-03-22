@@ -3,7 +3,6 @@ package seedu.address.logic.parser;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import seedu.address.logic.commands.AddTaskCommand;
-import seedu.address.logic.commands.DeleteTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -22,14 +21,16 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
      */
     public AddTaskCommand parse(String args) throws ParseException {
         try {
+            if (!args.contains(" /to ")) { // Check if the input correctly uses "/to"
+                throw new ParseException("Whoops! When referring to another field like a project,"
+                        + " always remember to put /to instead of just to. ");
+            }
             String taskName = args.split(" /to")[0];
             String projectName = args.split("/to ")[1];
-            Task task = new Task(taskName);
-            if (taskName.length() == 0) {
-                throw new ParseException(String.format(
-                    MESSAGE_INVALID_COMMAND_FORMAT,
-                    DeleteTaskCommand.MESSAGE_USAGE));
+            if ((taskName.length() == 0) || (projectName.length() == 0)) {
+                throw new ParseException("Please enter the task and project fields");
             }
+            Task task = new Task(taskName);
             Name name = ParserUtil.parseName(projectName);
             Person person = new Person(name);
             return new AddTaskCommand(task, person);

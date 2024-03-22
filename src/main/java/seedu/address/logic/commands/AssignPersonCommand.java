@@ -17,9 +17,15 @@ public class AssignPersonCommand extends Command {
 
     public static final String COMMAND_WORD = "add person";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": assigns a person to a task in a project "
-            + "Parameters: "
-            + "TASK_NAME, PERSON_NAME, PROJECT_NAME";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + "PERSON_NAME"
+            + "/to TASK_NAME"
+            + "/in PROJECT_NAME";
+
+    public static final String MESSAGE_PROJECT_NOT_FOUND = "Project %1$s not found: "
+            + "Please make sure the project exists.";
+
+    public static final String MESSAGE_TASK_NOT_FOUND = "Task %1s not found: "
+            + "Please make sure the task exists.";
 
     public static final String MESSAGE_SUCCESS = "The person %1$s has been assigned to the following task %2$s.";
 
@@ -41,9 +47,22 @@ public class AssignPersonCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
         Person projectAssign = model.findPerson(project.getName());
+
+        if (projectAssign.equals(null)) {
+            throw new CommandException(String.format(
+                    MESSAGE_PROJECT_NOT_FOUND,
+                    Messages.format(project)));
+        }
+
         Task assignTask = projectAssign.findTask(task.getName());
+
+        if (assignTask.equals(null)) {
+            throw new CommandException(String.format(
+                    MESSAGE_TASK_NOT_FOUND,
+                    Messages.format(task)
+            ));
+        }
 
         assignTask.assignPerson(this.member);
 

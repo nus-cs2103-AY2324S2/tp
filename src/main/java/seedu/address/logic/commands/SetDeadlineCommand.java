@@ -16,13 +16,18 @@ public class SetDeadlineCommand extends Command {
 
     public static final String COMMAND_WORD = "add deadline";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sets the deadline to a task in a project "
-            + "Parameters: "
-            + "TASK_NAME, DEADLINE";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + "DEADLINE /to TASK_NAME /in PROJECT_NAME";
 
     public static final String MESSAGE_SUCCESS = "The task %1$s has been set with the following deadline %2$s.";
 
-    public static final String MESSAGE_WRONG_FORMAT_DEADLINE = "The deadline %1s has been entered in the wrong format.";
+    public static final String MESSAGE_PROJECT_NOT_FOUND = "Project %1$s not found: "
+            + "Please make sure the project exists.";
+
+    public static final String MESSAGE_TASK_NOT_FOUND = "Task %1$s not found: "
+            + "Please make sure the task exists in project %2$s";
+
+    public static final String MESSAGE_WRONG_FORMAT_DEADLINE = "The deadline %1s has been entered in the wrong format. "
+            + "An example of the correct format is Mar 15 2024";
 
     private final Task task;
     private final String deadline;
@@ -48,7 +53,19 @@ public class SetDeadlineCommand extends Command {
             throw new CommandException(String.format(MESSAGE_WRONG_FORMAT_DEADLINE, deadline));
         }
 
+        if (!model.hasPerson(project)) {
+            throw new CommandException(String.format(
+                    MESSAGE_PROJECT_NOT_FOUND,
+                    Messages.format(project)));
+        }
+
         Person deadlineProject = model.findPerson(project.getName());
+        if (!deadlineProject.hasTask(task)) {
+            throw new CommandException(String.format(
+                    MESSAGE_TASK_NOT_FOUND,
+                    Messages.format(task),
+                    Messages.format(project)));
+        }
         Task deadlineTask = deadlineProject.findTask(task.getName());
 
         deadlineTask.setDeadline(deadline);

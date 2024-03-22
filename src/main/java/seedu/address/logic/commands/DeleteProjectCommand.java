@@ -2,8 +2,6 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.List;
-
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -19,11 +17,12 @@ public class DeleteProjectCommand extends Command {
     public static final String COMMAND_WORD = "delete project";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the specified project. "
-            + "Parameters: PROJECT_NAME\n"
-            + "Example: " + COMMAND_WORD + " CS2103";
+            + "PROJECT_NAME\n";
 
-    public static final String MESSAGE_DELETE_PROJECT_SUCCESS = "[%1$s] has been deleted from the project list.";
+    public static final String MESSAGE_PROJECT_NOT_FOUND = "Project %1$s not found: "
+            + "Please make sure the project exists.";
+
+    public static final String MESSAGE_DELETE_PROJECT_SUCCESS = "%1$s has been deleted from the project list.";
 
     private final String targetName;
 
@@ -34,23 +33,17 @@ public class DeleteProjectCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
 
-        Person targetProject = new Person(new Name(targetName));
-        Person projectToDelete = null;
-        for (Person person : lastShownList) {
-            if (person.isSamePerson(targetProject)) {
-                projectToDelete = person;
-                break;
-            }
+        if (!model.hasPerson(new Person(new Name(targetName)))) {
+            throw new CommandException(String.format(
+                    MESSAGE_PROJECT_NOT_FOUND,
+                    targetName));
         }
 
-        if (projectToDelete == null) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-        }
+        Person targetProject = model.findPerson(new Name(targetName));
 
-        model.deletePerson(projectToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PROJECT_SUCCESS, Messages.format(projectToDelete)));
+        model.deletePerson(targetProject);
+        return new CommandResult(String.format(MESSAGE_DELETE_PROJECT_SUCCESS, Messages.format(targetProject)));
     }
 
     @Override
