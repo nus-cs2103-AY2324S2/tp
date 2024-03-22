@@ -41,7 +41,8 @@ public class AddTagsCommandTest {
         try {
             CommandResult commandResult = addTagsCommand.execute(model);
             Patient editedPatient = model.getFilteredPatientList().get(index.getZeroBased());
-            String expectedMessage = String.format(AddTagsCommand.MESSAGE_ADD_TAG_SUCCESS, editedPatient.getName(), VALID_TAG_DIABETES_OUTPUT) + "\n";
+            String expectedMessage = String.format(AddTagsCommand.MESSAGE_ADD_TAG_SUCCESS,
+                    editedPatient.getName(), VALID_TAG_DIABETES_OUTPUT) + "\n";
             assertEquals(expectedMessage, commandResult.getFeedbackToUser());
 
             Set<Tag> expectedTagsSet = new HashSet<>(editedPatient.getTags());
@@ -66,7 +67,8 @@ public class AddTagsCommandTest {
         try {
             CommandResult commandResult = addTagsCommand.execute(model);
             Patient editedPatient = model.getFilteredPatientList().get(index.getZeroBased());
-            String expectedMessage = String.format(AddTagsCommand.MESSAGE_ADD_TAG_SUCCESS, editedPatient.getName(), VALID_TAG_DIABETES_OUTPUT) + "\n";
+            String expectedMessage = String.format(AddTagsCommand.MESSAGE_ADD_TAG_SUCCESS,
+                    editedPatient.getName(), VALID_TAG_DIABETES_OUTPUT) + "\n";
             assertEquals(expectedMessage, commandResult.getFeedbackToUser());
 
             Set<Tag> expectedTagsSet = new HashSet<>(editedPatient.getTags());
@@ -90,7 +92,8 @@ public class AddTagsCommandTest {
         try {
             CommandResult commandResult = addTagsCommand.execute(model);
             Patient editedPatient = model.getFilteredPatientList().get(index.getZeroBased());
-            String expectedMessage = String.format(AddTagsCommand.MESSAGE_DUPLICATE_TAG, editedPatient.getName(), VALID_TAG_DEPRESSION_OUTPUT) + "\n";
+            String expectedMessage = String.format(AddTagsCommand.MESSAGE_DUPLICATE_TAG,
+                    editedPatient.getName(), VALID_TAG_DEPRESSION_OUTPUT) + "\n";
             assertEquals(expectedMessage, commandResult.getFeedbackToUser());
 
             Set<Tag> expectedTagsSet = new HashSet<>(editedPatient.getTags());

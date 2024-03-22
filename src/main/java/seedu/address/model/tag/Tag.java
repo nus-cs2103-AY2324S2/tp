@@ -9,7 +9,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Tag {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tag names must not be empty, and can only contain alphanumeric characters or spaces";
+    public static final String MESSAGE_CONSTRAINTS = "Tag names must not be empty,"
+            + " and can only contain alphanumeric characters or spaces";
     public static final String VALIDATION_REGEX = "^[\\p{Alnum}][\\p{Alnum} ]*$";
 
     public final String tagName;

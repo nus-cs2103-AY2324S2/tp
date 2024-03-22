@@ -44,11 +44,11 @@ public class AddTagsCommand extends Command {
     public static final String MESSAGE_DUPLICATE_TAG = "The tag: %2$s already exists"
             + " for Patient: %1$s";
 
+    private static final Logger logger = LogsCenter.getLogger(AddTagsCommand.class);
     private final Index index;
     private final Set<Tag> tagsToAdd;
     private final EditPatientDescriptor editPatientDescriptor;
 
-    private static final Logger logger = LogsCenter.getLogger(AddTagsCommand.class);
 
     /**
      * @param index of the patient in the filtered patient list to add the tags
