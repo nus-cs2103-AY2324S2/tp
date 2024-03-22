@@ -27,7 +27,7 @@ import scrolls.elder.model.tag.Tag;
 public class UnpairCommand extends Command {
     public static final String COMMAND_WORD = "unpair";
     public static final String MESSAGE_USAGE =
-            COMMAND_WORD + ": Unpairs a volunteer and a befriendee specified"
+            COMMAND_WORD + ": Unpairs a volunteer and a befriendee specified "
                     + "by their index numbers used in the displayed person list.\n"
                     + "Parameters: INDEX1 INDEX2 (both must be a positive integers)\n"
                     + "Example: " + COMMAND_WORD + " 1 2";
