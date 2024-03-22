@@ -189,11 +189,7 @@ public class MainWindow extends UiPart<Stage> {
 
             // If there is a last viewed Person, display the person in the SidePanel
             Optional<Person> lastViewedPerson = logic.getLastViewedPerson();
-            if (lastViewedPerson.isEmpty()) {
-                sidePanel.resetDetails();
-            } else {
-                sidePanel.displayPerson(lastViewedPerson.get());
-            }
+            lastViewedPerson.ifPresentOrElse(sidePanel::displayPerson, sidePanel::resetDetails);
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
