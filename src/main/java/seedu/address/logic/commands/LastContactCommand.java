@@ -48,7 +48,7 @@ public class LastContactCommand extends Command {
             }
 
             // If both dates are non-null, compare them directly.
-            return lastContactDateTime2.compareTo(lastContactDateTime1);
+            return lastContactDateTime1.compareTo(lastContactDateTime2);
         });
 
         return new CommandResult(MESSAGE_SUCCESS);
