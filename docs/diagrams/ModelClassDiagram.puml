@@ -67,4 +67,3 @@ AddMeetingCommand ..> Meeting : creates
 ModelManager --> "~* filtered" Person
 ModelManager --> "~* filtered" Meeting
 @enduml
-```
