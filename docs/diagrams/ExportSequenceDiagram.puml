@@ -1,0 +1,78 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant "e:ExportCommand" as ExportCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+participant "e:CommandException" as CommandException LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "m:Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("export")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("export")
+activate AddressBookParser
+
+create ExportCommand
+AddressBookParser -> ExportCommand : new ExportCommand()
+activate ExportCommand
+
+ExportCommand --> AddressBookParser : e
+deactivate ExportCommand
+
+AddressBookParser --> LogicManager : e
+deactivate AddressBookParser
+
+LogicManager -> ExportCommand : execute(m)
+activate ExportCommand
+
+ExportCommand -> Model : getAddressBookFilePath()
+activate Model
+
+Model --> ExportCommand : jsonFilePath
+deactivate Model
+
+ExportCommand -> ExportCommand : createCsvDirectory(csvFile)
+activate ExportCommand
+
+ExportCommand --> ExportCommand
+deactivate ExportCommand
+
+ExportCommand -> ExportCommand : readJsonFile(jsonFile)
+activate ExportCommand
+
+ExportCommand --> ExportCommand : jsonTree
+deactivate ExportCommand
+
+ExportCommand -> ExportCommand : readPersonsArray(jsonTree)
+activate ExportCommand
+
+ExportCommand --> ExportCommand : readPersonsArray
+deactivate ExportCommand
+
+ExportCommand -> ExportCommand : writeToCsvFile(csvFile, personsArray)
+activate ExportCommand
+
+ExportCommand --> ExportCommand
+deactivate ExportCommand
+
+create CommandResult
+ExportCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ExportCommand
+deactivate CommandResult
+
+ExportCommand --> LogicManager : r
+deactivate ExportCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

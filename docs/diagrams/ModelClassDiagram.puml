@@ -18,6 +18,9 @@ Class Address
 Class Email
 Class Name
 Class Phone
+Class Matric
+Class Studio
+Class Reflection
 Class Tag
 
 Class I #FFFFFF
@@ -37,18 +40,26 @@ UserPrefs .up.|> ReadOnlyUserPrefs
 
 AddressBook *--> "1" UniquePersonList
 UniquePersonList --> "~* all" Person
-Person *--> Name
+Person *-l-> Name
 Person *--> Phone
 Person *--> Email
 Person *--> Address
-Person *--> "*" Tag
+Person *--> "0..1" Matric
+Person *--> "0..1" Studio
+Person *--> "0..1" Reflection
+Person *-r-> "*" Tag
+
 
 Person -[hidden]up--> I
 UniquePersonList -[hidden]right-> I
 
-Name -[hidden]right-> Phone
+Name -[hidden]down-> Phone
 Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
+Email -[hidden]right-> Matric
+Matric -[hidden]right-> Studio
+Studio -[hidden]right-> Reflection
+Reflection -[hidden]up-> Tag
 
 ModelManager --> "~* filtered" Person
 @enduml

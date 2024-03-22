@@ -2,6 +2,8 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -14,6 +16,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.student.Matric;
+import seedu.address.model.student.Reflection;
 import seedu.address.model.student.Studio;
 import seedu.address.model.tag.Tag;
 
@@ -49,6 +52,22 @@ public class ParserUtil {
             throw new ParseException(Matric.MESSAGE_CONSTRAINTS);
         }
         return new Matric(trimmedMatric);
+    }
+
+    /**
+     * Parses {@code reflection} into a {@code Reflection} and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     * @param reflection the reflection to be parsed
+     * @return the parsed reflection
+     * @throws ParseException if the specified reflection is invalid
+     */
+    public static Reflection parseReflection(String reflection) throws ParseException {
+        requireNonNull(reflection);
+        String trimmedReflection = reflection.trim();
+        if (!Reflection.isValidReflection(trimmedReflection)) {
+            throw new ParseException(Reflection.MESSAGE_CONSTRAINTS);
+        }
+        return new Reflection(trimmedReflection);
     }
 
     /**
@@ -151,5 +170,18 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String filePath} into a {@code filePath}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code filePath} is invalid.
+     */
+    public static Path parseFilePath(String filePath) throws ParseException {
+        requireNonNull(filePath);
+        String trimmedTag = filePath.trim();
+        // add error handling for what to do when invalid input is passed
+        return Paths.get(filePath);
     }
 }

@@ -6,6 +6,7 @@
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
     "matric" : "A1111111A",
+    "reflection": "R1",
     "studio" : "S1",
     "tags" : [ "friends" ]
   }, {
@@ -14,6 +15,7 @@
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
     "matric" : "A2222222A",
+    "reflection": "R2",
     "studio" : "S2",
     "tags" : [ "owesMoney", "friends" ]
   }, {
@@ -22,6 +24,7 @@
     "email" : "heinz@example.com",
     "address" : "wall street",
     "matric" : "A3333333A",
+    "reflection": "R3",
     "studio" : "S3",
     "tags" : [ ]
   }, {
@@ -30,6 +33,7 @@
     "email" : "cornelia@example.com",
     "address" : "10th street",
     "matric" : "A4444444A",
+    "reflection": "R4",
     "studio" : "S4",
     "tags" : [ "friends" ]
   }, {
@@ -38,6 +42,7 @@
     "email" : "werner@example.com",
     "address" : "michegan ave",
     "matric" : "A5555555A",
+    "reflection": "R5",
     "studio" : "S5",
     "tags" : [ ]
   }, {
@@ -46,6 +51,7 @@
     "email" : "lydia@example.com",
     "address" : "little tokyo",
     "matric" : "A6666666A",
+    "reflection": "R6",
     "studio" : "S6",
     "tags" : [ ]
   }, {
@@ -54,6 +60,7 @@
     "email" : "anna@example.com",
     "address" : "4th street",
     "matric" : "A7777777A",
+    "reflection": "R7",
     "studio" : "S7",
     "tags" : [ ]
   } ]

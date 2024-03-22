@@ -43,6 +43,8 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label matric;
     @FXML
+    private Label reflection;
+    @FXML
     private Label studio;
 
     /**
@@ -57,6 +59,7 @@ public class PersonCard extends UiPart<Region> {
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
         matric.setText(person.getMatric().toString());
+        reflection.setText(person.getReflection().toString());
         studio.setText(person.getStudio().toString());
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))

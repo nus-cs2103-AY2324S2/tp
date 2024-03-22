@@ -11,6 +11,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.student.Matric;
+import seedu.address.model.student.Reflection;
 import seedu.address.model.student.Studio;
 import seedu.address.model.tag.Tag;
 
@@ -40,6 +41,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setAddress(person.getAddress());
         descriptor.setTags(person.getTags());
         descriptor.setMatric(person.getMatric());
+        descriptor.setReflection(person.getReflection());
         descriptor.setStudio(person.getStudio());
     }
 
@@ -92,6 +94,16 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withMatric(String matric) {
         descriptor.setMatric(new Matric(matric));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Reflection} of the {@code Person} that we are building.
+     * @param reflection reflection of the person
+     * @return EditPersonDescriptorBuilder object
+     */
+    public EditPersonDescriptorBuilder withReflection(String reflection) {
+        descriptor.setReflection(new Reflection(reflection));
         return this;
     }
 
