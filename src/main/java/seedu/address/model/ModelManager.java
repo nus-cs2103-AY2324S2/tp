@@ -151,6 +151,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deleteModuleFromStudent(ModuleCode m, Student s) {
+        addressBook.deleteModuleFromStudent(m, s);
+    }
+
+    @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;

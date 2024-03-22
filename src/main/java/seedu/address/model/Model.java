@@ -104,4 +104,11 @@ public interface Model {
      * @param s Student to add module to
      */
     void addModuleToStudent(ModuleCode m, Student s);
+
+    /**
+     * Adds module to the specified student
+     * @param m Module to add
+     * @param s Student to add module to
+     */
+    void deleteModuleFromStudent(ModuleCode m, Student s);
 }

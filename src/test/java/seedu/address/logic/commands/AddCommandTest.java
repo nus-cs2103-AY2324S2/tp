@@ -176,6 +176,12 @@ public class AddCommandTest {
             // TODO Auto-generated method stub
             throw new UnsupportedOperationException("Unimplemented method 'addModuleToStudent'");
         }
+
+        @Override
+        public void deleteModuleFromStudent(ModuleCode m, Student s) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'deleteModuleFromStudent'");
+        }
     }
 
     /**

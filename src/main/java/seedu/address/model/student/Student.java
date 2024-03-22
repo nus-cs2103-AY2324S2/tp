@@ -82,6 +82,25 @@ public class Student {
     public boolean hasModule(ModuleCode m) {
         return modules.contains(m);
     }
+
+    /**
+     * Checks if module `m` is held within the student
+     * @param m Module to check
+     * @return true if module is taken by student
+     */
+    public boolean addModule(ModuleCode m) {
+        return modules.add(m);
+    }
+
+    /**
+     * Checks if module `m` is held within the student
+     * @param m Module to check
+     * @return true if module is taken by student
+     */
+    public boolean deleteModule(ModuleCode m) {
+        return modules.remove(m);
+    }
+
     /**
      * Returns true if both students have the same name.
      * This defines a weaker notion of equality between two students.
