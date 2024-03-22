@@ -21,6 +21,8 @@
       <HBox spacing="5" alignment="CENTER_LEFT">
         <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
       </HBox>
+      <Label fx:id="member" styleClass="cell_small_label" text="\$member" />
+      <Label fx:id="deadlineDate" styleClass="cell_small_label" text="\$deadlineDate" />
     </VBox>
   </GridPane>
 </HBox>

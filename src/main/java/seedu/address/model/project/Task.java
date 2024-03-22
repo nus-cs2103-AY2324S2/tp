@@ -94,6 +94,18 @@ public class Task {
         return taskName;
     }
 
+    public String getMemberName() {
+        return member == null
+            ? ""
+            : member.getName().fullName;
+    }
+
+    public String getDeadlineString() {
+        return deadlineDate == null
+            ? ""
+            : deadlineDate.toString();
+    }
+
     /**
      * Returns true if both tasks have the same identity and data fields.
      * This defines a stronger notion of equality between two tasks.

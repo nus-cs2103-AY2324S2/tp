@@ -27,6 +27,10 @@ public class TaskCard extends UiPart<Region> {
     private HBox cardPane;
     @FXML
     private Label name;
+    @FXML
+    private Label member;
+    @FXML
+    private Label deadlineDate;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -35,5 +39,7 @@ public class TaskCard extends UiPart<Region> {
         super(FXML);
         this.task = task;
         name.setText(task.getName().fullName);
+        member.setText("Member: " + task.getMemberName());
+        deadlineDate.setText("Deadline: " + task.getDeadlineString());
     }
 }

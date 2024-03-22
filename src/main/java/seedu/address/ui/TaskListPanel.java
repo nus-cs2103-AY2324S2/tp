@@ -36,7 +36,7 @@ public class TaskListPanel extends UiPart<Region> {
     public TaskListPanel(Person currentProject) {
         super(FXML);
         this.currentProject = currentProject;
-        showingProjectName.setText(currentProject.getName().fullName);
+        showingProjectName.setText("Showing Project: " + currentProject.getName().fullName);
         // Manually set the items of the ListView
 
         undoneTaskListView.getItems().clear();
