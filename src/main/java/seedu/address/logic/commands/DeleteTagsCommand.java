@@ -9,8 +9,11 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PATIENTS;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javafx.util.Pair;
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -39,6 +42,7 @@ public class DeleteTagsCommand extends Command {
     public static final String MESSAGE_INVALID_TAG = "The tag: %2$s does not exists"
         + " for Patient: %1$s";
 
+    private static final Logger logger = LogsCenter.getLogger(DeleteTagsCommand.class);
     private final Index index;
     private final Set<Tag> tagsToDelete;
     private final EditPatientDescriptor editPatientDescriptor;
@@ -70,6 +74,7 @@ public class DeleteTagsCommand extends Command {
         List<Patient> lastShownList = model.getFilteredPatientList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
+            logger.log(Level.WARNING, "Invalid patient index for Delete Tags Command: " + index);
             throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
         }
 
@@ -89,6 +94,7 @@ public class DeleteTagsCommand extends Command {
         model.setPatient(patientToEdit, editedPatient);
         model.updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
 
+        logger.log(Level.INFO, "Successfully called delete tags command from patient: " + editedPatient.getName());
         return new CommandResult(commandResultString);
     }
 

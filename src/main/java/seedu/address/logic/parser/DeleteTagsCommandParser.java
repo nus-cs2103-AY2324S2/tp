@@ -30,12 +30,12 @@ public class DeleteTagsCommandParser implements Parser<DeleteTagsCommand> {
      */
     public DeleteTagsCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        logger.info("Parsing DeleteTagsCommand: " + args);
+        logger.log(Level.INFO, "Parsing DeleteTagsCommand: " + args);
 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_TAG) || argMultimap.getPreamble().isEmpty()) {
-            logger.warning("Invalid command format for DeleteTagsCommand: " + args);
+            logger.log(Level.WARNING, "Invalid command format for DeleteTagsCommand: " + args);
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     DeleteTagsCommand.MESSAGE_USAGE));
         }
@@ -44,7 +44,7 @@ public class DeleteTagsCommandParser implements Parser<DeleteTagsCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (IllegalValueException ive) {
-            logger.warning("Index is not a non-zero unsigned integer in DeleteTagsCommand: " + args);
+            logger.log(Level.WARNING, "Index is not a non-zero unsigned integer in DeleteTagsCommand: " + args);
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTagsCommand.MESSAGE_USAGE), ive);
         }
 
@@ -52,7 +52,7 @@ public class DeleteTagsCommandParser implements Parser<DeleteTagsCommand> {
         try {
             tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         } catch (ParseException pe) {
-            logger.warning("Invalid tags provided in DeleteTagsCommand: " + args);
+            logger.log(Level.WARNING, "Invalid tags provided in DeleteTagsCommand: " + args);
             throw new ParseException(pe.getMessage(), pe);
         }
 

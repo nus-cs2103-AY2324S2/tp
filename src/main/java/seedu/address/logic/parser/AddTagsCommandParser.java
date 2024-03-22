@@ -5,9 +5,9 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.ParserUtil.arePrefixesPresent;
 
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.Set;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
@@ -30,12 +30,12 @@ public class AddTagsCommandParser implements Parser<AddTagsCommand> {
      */
     public AddTagsCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        logger.info("Parsing AddTagsCommand: " + args);
+        logger.log(Level.INFO, "Parsing AddTagsCommand: " + args);
 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_TAG) || argMultimap.getPreamble().isEmpty()) {
-            logger.warning("Invalid command format for AddTagsCommand: " + args);
+            logger.log(Level.WARNING, "Invalid command format for AddTagsCommand: " + args);
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddTagsCommand.MESSAGE_USAGE));
         }
@@ -52,7 +52,7 @@ public class AddTagsCommandParser implements Parser<AddTagsCommand> {
         try {
             tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         } catch (ParseException pe) {
-            logger.warning("Invalid tags provided in AddTagsCommand: " + args);
+            logger.log(Level.WARNING, "Invalid tags provided in AddTagsCommand: " + args);
             throw new ParseException(pe.getMessage(), pe);
         }
 
