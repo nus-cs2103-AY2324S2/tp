@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 
 public class DateOfAdmissionTest {
 
+    /* commented as DateOfAdmission can be null, and doesn't have regex
     @Test
     public void constructor_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new DateOfAdmission(null));
@@ -18,6 +19,7 @@ public class DateOfAdmissionTest {
         String invalidDate = "";
         assertThrows(IllegalArgumentException.class, () -> new DateOfAdmission(invalidDate));
     }
+     */
 
     @Test
     public void isValidAddress() {
@@ -27,22 +29,22 @@ public class DateOfAdmissionTest {
         // invalid addresses
         assertFalse(DateOfAdmission.isValidDateOfAdmission("")); // empty string
         assertFalse(DateOfAdmission.isValidDateOfAdmission(" ")); // spaces only
-        assertFalse(DateOfAdmission.isValidDateOfAdmission("13122023")); // numbers only
-        assertFalse(DateOfAdmission.isValidDateOfAdmission("13/122023")); // one slash
-        assertFalse(DateOfAdmission.isValidDateOfAdmission("1312/2023")); // one slash
-        assertFalse(DateOfAdmission.isValidDateOfAdmission("1/3/2023")); // shortened date and month
-        assertFalse(DateOfAdmission.isValidDateOfAdmission("2023/12/13")); // reverse format
+        assertFalse(DateOfAdmission.isValidDateOfAdmission("20231213")); // numbers only
+        assertFalse(DateOfAdmission.isValidDateOfAdmission("2023-1213")); // one slash
+        assertFalse(DateOfAdmission.isValidDateOfAdmission("202312-13")); // one slash
+        assertFalse(DateOfAdmission.isValidDateOfAdmission("2023-1-3")); // shortened date and month
+        assertFalse(DateOfAdmission.isValidDateOfAdmission("13-12-2023")); // reverse format
 
         // valid addresses
-        assertTrue(DateOfAdmission.isValidDateOfAdmission("13/12/2023"));
+        assertTrue(DateOfAdmission.isValidDateOfAdmission("2023-12-13"));
     }
 
     @Test
     public void equals() {
-        DateOfAdmission date = new DateOfAdmission("13/12/2020");
+        DateOfAdmission date = new DateOfAdmission("2020-12-05");
 
         // same values -> returns true
-        assertTrue(date.equals(new DateOfAdmission("13/12/2020")));
+        assertTrue(date.equals(new DateOfAdmission("2020-12-05")));
 
         // same object -> returns true
         assertTrue(date.equals(date));
@@ -54,6 +56,6 @@ public class DateOfAdmissionTest {
         assertFalse(date.equals(5.0f));
 
         // different values -> returns false
-        assertFalse(date.equals(new DateOfAdmission("13/12/2023")));
+        assertFalse(date.equals(new DateOfAdmission("2023-12-13")));
     }
 }

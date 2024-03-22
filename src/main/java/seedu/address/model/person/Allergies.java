@@ -16,6 +16,15 @@ public class Allergies {
         return allergies;
     }
 
+    /**
+     * Returns given placeholder string if value field is not initialised
+     * @param alt
+     * @return placeholder string
+     */
+    public String orElse(String alt) {
+        return allergies == null ? alt : allergies;
+    }
+
     @Override
     public String toString() {
         return this.allergies;

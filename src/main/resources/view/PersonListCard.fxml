@@ -48,11 +48,11 @@
             </padding>
             </Label>
         </VBox>
-      <Circle fill="#3ea435" radius="17.0" stroke="#3ea435" strokeType="INSIDE" strokeWidth="4.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
-         <GridPane.margin>
-            <Insets right="20.0" />
-         </GridPane.margin>
-      </Circle>
+        <Circle fx:id="statusCircle" fill="#3ea435" radius="17.0" stroke="#3ea435" strokeType="INSIDE" strokeWidth="4.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
+            <GridPane.margin>
+                <Insets right="20.0" />
+            </GridPane.margin>
+        </Circle>
         <rowConstraints>
             <RowConstraints />
         </rowConstraints>

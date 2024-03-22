@@ -137,7 +137,7 @@ public class ParserUtil {
         requireNonNull(sex);
         String trimmedSex = sex.trim();
         if (!Sex.isValidSex(trimmedSex)) {
-            throw new ParseException(Status.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Sex.MESSAGE_CONSTRAINTS);
         }
         return new Sex(sex);
     }
@@ -179,7 +179,7 @@ public class ParserUtil {
         requireNonNull(dateOfAdmission);
         String trimmedDateOfAdmission = dateOfAdmission.trim();
         if (!DateOfAdmission.isValidDateOfAdmission(trimmedDateOfAdmission)) {
-            throw new ParseException(DateOfBirth.MESSAGE_CONSTRAINTS);
+            throw new ParseException(DateOfAdmission.MESSAGE_CONSTRAINTS);
         }
         return new DateOfAdmission(trimmedDateOfAdmission);
     }
@@ -194,13 +194,10 @@ public class ParserUtil {
     public static BloodType parseBloodType(String bloodType) throws ParseException {
         requireNonNull(bloodType);
         String trimmedBloodType = bloodType.trim();
-        String type = trimmedBloodType.substring(0, 1);
-        String rh = trimmedBloodType.substring(1);
-        if (!BloodType.isValidBloodType(type, rh)) {
+        if (!BloodType.isValidBloodType(trimmedBloodType)) {
             throw new ParseException(BloodType.MESSAGE_CONSTRAINTS);
         }
-        rh = rh.equals("+") ? "POSITIVE" : "NEGATIVE";
-        return new BloodType(type, rh);
+        return new BloodType(trimmedBloodType);
     }
     /**
      * Parses a {@code String allergies} into an {@code Set<Allergies>}.
@@ -211,9 +208,6 @@ public class ParserUtil {
     public static Allergies parseAllergies(String allergies) throws ParseException {
         requireNonNull(allergies);
         String trimmedAllergies = allergies.trim();
-        if (!Address.isValidAddress(trimmedAllergies)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
-        }
         return new Allergies(trimmedAllergies);
     }
     /**

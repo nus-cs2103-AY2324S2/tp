@@ -47,7 +47,7 @@ public class DeleteCommandTest {
         Nric nonExistingNric = new Nric(NON_EXISTENT_NRIC);
         DeleteCommand deleteCommand = new DeleteCommand(nonExistingNric);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_NRIC_NOT_FOUND);
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_PERSON_NOT_FOUND);
     }
 
     //TODO: figure out why the og version has filtered adn unfilered separated and edit accordingly
@@ -74,7 +74,7 @@ public class DeleteCommandTest {
 
         DeleteCommand deleteCommand = new DeleteCommand(new Nric(NON_EXISTENT_NRIC));
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_NRIC_NOT_FOUND);
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_PERSON_NOT_FOUND);
     }
 
     @Test

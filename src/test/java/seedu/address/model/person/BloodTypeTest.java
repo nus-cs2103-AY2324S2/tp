@@ -1,7 +1,8 @@
 package seedu.address.model.person;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
@@ -10,36 +11,35 @@ public class BloodTypeTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new BloodType(null, null));
+        assertThrows(NullPointerException.class, () -> new BloodType(null));
     }
 
     @Test
     public void constructor_invalidAddress_throwsIllegalArgumentException() {
-        String invalidType = "";
-        String invalidRh = "";
-        assertThrows(IllegalArgumentException.class, () -> new BloodType(invalidType, invalidRh));
+        String invalidBloodType = "ABB-";
+        assertThrows(IllegalArgumentException.class, () -> new BloodType(invalidBloodType));
     }
 
     @Test
     public void equals() {
-        BloodType bloodType = new BloodType("A", "POSITIVE");
+        BloodType bloodType = new BloodType("A+");
 
         // same values -> returns true
-        assertTrue(bloodType.equals(new BloodType("A", "POSITIVE")));
+        assertEquals(bloodType, new BloodType("A+"));
 
         // same object -> returns true
-        assertTrue(bloodType.equals(bloodType));
+        assertEquals(bloodType, bloodType);
 
         // null -> returns false
-        assertFalse(bloodType.equals(null));
+        assertNotEquals(null, bloodType);
 
         // different types -> returns false
-        assertFalse(bloodType.equals(5.0f));
+        assertNotEquals(5.0f, bloodType);
 
-        // different letters -> returns false
-        assertFalse(bloodType.equals(new BloodType("B", "POSITIVE")));
+        // different rh type -> returns false
+        assertNotEquals(bloodType, new BloodType("A-"));
 
-        // different letters -> returns false
-        assertFalse(bloodType.equals(new BloodType("A", "NEGATIVE")));
+        // different letter type -> returns false
+        assertFalse(bloodType.equals(new BloodType("B+")));
     }
 }

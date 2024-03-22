@@ -51,6 +51,15 @@ public class Email {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns given placeholder string if value field is not initialised
+     * @param alt
+     * @return placeholder string
+     */
+    public String orElse(String alt) {
+        return value == null ? alt : value;
+    }
+
     @Override
     public String toString() {
         return value;

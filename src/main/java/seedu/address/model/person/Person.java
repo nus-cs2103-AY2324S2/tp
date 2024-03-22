@@ -15,7 +15,6 @@ import seedu.address.model.tag.Tag;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Person {
-
     //Mandatory fields
     //Identity fields
     private final Nric nric;
@@ -240,7 +239,7 @@ public class Person {
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields.
+     * Returns true if both persons have the same identity and all data fields.
      * This defines a stronger notion of equality between two persons.
      */
     @Override

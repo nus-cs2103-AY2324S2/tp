@@ -30,6 +30,15 @@ public class Status {
     }
 
     /**
+     * Gets status type
+     *
+     * @return Status type of this status
+     */
+    public StatusType getStatusType() {
+        return this.status;
+    }
+
+    /**
      * Checks if a String matches the Enum
      * @param testString String of input
      * @return Boolean
