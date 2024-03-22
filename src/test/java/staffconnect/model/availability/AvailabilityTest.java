@@ -146,4 +146,56 @@ public class AvailabilityTest {
         assertNotEquals(LocalTime.MIN, Availability.parseToLocalTime(new String("00:01")));
     }
 
+    @Test
+    public void isValidAvailabilityTest() {
+        assertTrue(Availability.isValidAvailability("mon 12:00 14:00"));
+        assertTrue(Availability.isValidAvailability("monday 12:00 14:00"));
+        assertTrue(Availability.isValidAvailability("tues 02:00 04:00"));
+        assertTrue(Availability.isValidAvailability("tuesday 11:00 11:30"));
+        assertTrue(Availability.isValidAvailability("wed 11:00 11:30"));
+        assertTrue(Availability.isValidAvailability("wednesday 11:00 11:30"));
+        assertTrue(Availability.isValidAvailability("thurs 21:00 21:30"));
+        assertTrue(Availability.isValidAvailability("thursday 21:00 21:30"));
+        assertTrue(Availability.isValidAvailability("fri 23:00 23:59"));
+        assertTrue(Availability.isValidAvailability("friday 23:00 23:59"));
+
+
+        assertFalse(Availability.isValidAvailability("")); //nothing
+        assertFalse(Availability.isValidAvailability(" ")); //spaces
+        assertFalse(Availability.isValidAvailability("!@#$%^&*IO 3:00 24:59")); //day contain special characters
+        assertFalse(Availability.isValidAvailability("friday -3:00 23:59")); //negative values
+        assertFalse(Availability.isValidAvailability("friday 3:00 24:59")); //hour exceed 23
+        assertFalse(Availability.isValidAvailability("friday 3:00 23:60")); //minutes exceed 59
+        assertFalse(Availability.isValidAvailability("friday 3:00 23:59")); //missing start time leading 0
+        assertFalse(Availability.isValidAvailability("friday 01:00 3:00")); //missing end time leading 0
+        assertFalse(Availability.isValidAvailability("friday 02:0 01:00")); //missing start time trailing 0
+        assertFalse(Availability.isValidAvailability("friday 02:00 01:0")); //missing end time trailing 0
+        assertFalse(Availability.isValidAvailability("friday 02: 02:00")); //missing start time trailing 00
+        assertFalse(Availability.isValidAvailability("friday 02:00 02:")); //missing end time trailing 00
+        assertFalse(Availability.isValidAvailability("friday 02: 02:")); //missing both time trailing 00
+        assertFalse(Availability.isValidAvailability("friday 0230 0200")); //missing ':'
+        assertFalse(Availability.isValidAvailability("friday02:3002:00")); // no space between day and times
+        assertFalse(Availability.isValidAvailability("july 02:30 02:00")); //invalid day
+    }
+
+    @Test
+    public void isValidLocalTimeTest() {
+        assertTrue(Availability.isValidAvailability("00:00"));
+        assertTrue(Availability.isValidAvailability("00:01"));
+        assertTrue(Availability.isValidAvailability("00:10"));
+        assertTrue(Availability.isValidAvailability("01:00"));
+        assertTrue(Availability.isValidAvailability("10:00"));
+        assertTrue(Availability.isValidAvailability("23:59"));
+        assertTrue(Availability.isValidAvailability("13:00"));
+
+        assertFalse(Availability.isValidAvailability("")); //nothing
+        assertFalse(Availability.isValidAvailability(" ")); //spaces
+        assertFalse(Availability.isValidAvailability("!@#$%^&*IO")); //day contain special characters
+        assertFalse(Availability.isValidAvailability("3:00")); //missing leading 0
+        assertFalse(Availability.isValidAvailability("02:0")); //missing time trailing 0
+        assertFalse(Availability.isValidAvailability("02:")); //missing end time trailing 00
+        assertFalse(Availability.isValidAvailability("02")); // missing leading or trailing time
+        assertFalse(Availability.isValidAvailability("0230 0200")); //missing ':'
+
+    }
 }
