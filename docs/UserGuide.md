@@ -18,16 +18,16 @@ PatientSync is a **desktop app made for nurses to manage patient, optimized for 
 
 1. Ensure you have Java `11` or above installed in your Computer. 
 
-2. Download the latest `PatientSync.jar` from [here](https://github.com/AY2324S2-CS2103-F09-2/tp/releases).
+1. Download the latest `PatientSync.jar` from [here](https://github.com/AY2324S2-CS2103-F09-2/tp/releases).
 
-3. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
 
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar PatientSync.jar`
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar PatientSync.jar`
 command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * `list` : Lists all contacts.
@@ -40,7 +40,7 @@ command to run the application.<br>
 
    * `exit` : Exits the app.
 
-6. Refer to the [Features](#features) below for details of each command.
+1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -134,18 +134,22 @@ Examples:
 
 ### Locating patients by name: `find`
 
-Finds patients whose hospital ID exactly match the given ID.
+Finds patients whose name exactly match the given keyword(s).
 
-Format: `find [HOSPITAL_ID]`
+Format: `find KEYWORD [MORE_KEYWORD]`
 
-* Only the Hospital ID is searched.
-* Only full IDs will be matched e.g. `1234` will not match `12345`
-* Patients with matching Hospital IDs will be returned.
+* The search is case-insensitive e.g. `alex` will match `Alex`
+* The order of the patient name does not matter. e.g. `Becker Alex` will match `Alex Becker`
+* Only the Patient Name is searched.
+* Only full word(s) will be matched .
+e.g. `Alex` will not match `Alexandra`, `Alex` will match `Alex Becker`
+* Patients matching at least one keyword will be returned. 
+e.g. `Alex Becker` will return `Alex Keller` and `Becker Anderson`
 
 Examples:
-* `find 12345` returns Patient with Hospital ID `12345`.
-* `find alex david` returns no patients as the search is based on Hospital IDs and not names.
-  ![result for 'find patient with hospital ID 12345'](images/findPatient12345Result.png)
+* find `Alex` returns `alex` and `Alex becker`
+* find `alex becker` returns `alex`, `Alex Becker` and `Becker Li`
+  ![result for 'find patients whose name is alex becker'](images/findPatientAlexBeckerResult.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
