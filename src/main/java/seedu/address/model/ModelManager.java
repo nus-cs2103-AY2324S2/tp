@@ -5,6 +5,8 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -17,16 +19,16 @@ import seedu.address.commons.exceptions.DataLoadingException;
 import seedu.address.model.person.Classes;
 import seedu.address.model.person.Person;
 import seedu.address.storage.JsonAddressBookStorage;
-import seedu.address.storage.StorageManager;
-import seedu.address.ui.UIUpdateListener;
-import java.util.ArrayList;
-import java.util.List;
+import seedu.address.ui.UiUpdateListener;
+
+
 /**
  * Represents the in-memory model of the address book data.
  */
 public class ModelManager implements Model {
-    private final List<UIUpdateListener> uiUpdateListeners;
+
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
+    private final List<UiUpdateListener> uiUpdateListeners;
 
     // private final AddressBook addressBook;
     private final ClassBook classBook;
@@ -156,7 +158,9 @@ public class ModelManager implements Model {
         filteredPersons = new FilteredList<>(this.selectedClassAddressBook.getPersonList());
         try {
             this.Storage.saveAddressBook(selectedClassAddressBook, selectedClass.getFilePath());
-        } catch(IOException e){};
+        } catch (IOException e) {
+            logger.warning("Error adding person to the selected class address book: " + e.getMessage());
+        }
 
         Predicate<Person> predicate = updatedPerson -> selectedClassAddressBook.getPersonList().contains(updatedPerson);
         updateFilteredPersonList(predicate);
@@ -277,23 +281,23 @@ public class ModelManager implements Model {
 
         // Predicate<Person> predicate = person -> selectedClassAddressBook.getPersonList().contains(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        for (UIUpdateListener listener : uiUpdateListeners) {
+        for (UiUpdateListener listener : uiUpdateListeners) {
             listener.updateUiOnClassSelected(classes);;
         }
-        notifyUIUpdateListenersOnClassSelected(classes);
+        notifyUiUpdateListenersOnClassSelected(classes);
     }
 
 
 
-    public void addUIUpdateListener(UIUpdateListener listener) {
+    public void addUiUpdateListener(UiUpdateListener listener) {
         uiUpdateListeners.add(listener);
     }
 
-    public void removeUIUpdateListener(UIUpdateListener listener) {
+    public void removeUiUpdateListener(UiUpdateListener listener) {
         uiUpdateListeners.remove(listener);
     }
-    private void notifyUIUpdateListenersOnClassSelected(Classes selectedClass) {
-        for (UIUpdateListener listener : uiUpdateListeners) {
+    private void notifyUiUpdateListenersOnClassSelected(Classes selectedClass) {
+        for (UiUpdateListener listener : uiUpdateListeners) {
             listener.updateUiOnClassSelected(selectedClass);
         }
     }
