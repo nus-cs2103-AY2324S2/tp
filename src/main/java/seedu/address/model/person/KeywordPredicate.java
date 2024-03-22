@@ -29,40 +29,111 @@ public class KeywordPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
-        boolean predicate = true;
 
-        predicate &= contains(person.getName().toString(), PREFIX_NAME);
-        predicate &= contains(person.getPhone().toString(), PREFIX_PHONE);
-        predicate &= contains(person.getEmail().toString(), PREFIX_EMAIL);
-        predicate &= contains(person.getAddress().toString(), PREFIX_ADDRESS);
+        // Searches through staff only
+        if (hasField(PREFIX_SALARY) || hasField(PREFIX_EMPLOYMENT)) {
+            if (!(person instanceof Staff)) {
+                return false;
+            }
 
-        if (person instanceof Staff) {
             Staff staff = (Staff) person;
-            predicate &= contains(staff.getSalary().toString(), PREFIX_SALARY);
-            predicate &= contains(staff.getEmployment().toString(), PREFIX_EMPLOYMENT);
+            return checkNamePhoneEmailAndAddress(staff)
+                    && checkSalary(staff)
+                    && checkEmployment(staff);
         }
 
-        if (person instanceof Supplier) {
+        // Searches through supplier only
+        if (hasField(PREFIX_PRICE) || hasField(PREFIX_PRODUCT)) {
+            if (!(person instanceof Supplier)) {
+                return false;
+            }
+
             Supplier supplier = (Supplier) person;
-            predicate &= contains(supplier.getPrice().toString(), PREFIX_PRICE);
-            predicate &= contains(supplier.getProduct().toString(), PREFIX_PRODUCT);
+            return checkNamePhoneEmailAndAddress(supplier)
+                    && checkPrice(supplier)
+                    && checkProduct(supplier);
         }
 
-        if (person instanceof Maintainer) {
+        // Searches through maintainer only
+        if (hasField(PREFIX_SKILL) || hasField(PREFIX_COMMISSION)) {
+            if (!(person instanceof Maintainer)) {
+                return false;
+            }
+
             Maintainer maintainer = (Maintainer) person;
-            predicate &= contains(maintainer.getSkill().toString(), PREFIX_SKILL);
-            predicate &= contains(maintainer.getCommission().toString(), PREFIX_COMMISSION);
+            return checkNamePhoneEmailAndAddress(maintainer)
+                    && checkSkill(maintainer)
+                    && checkCommission(maintainer);
         }
 
-        return predicate;
+        // No specialty
+        return checkNamePhoneEmailAndAddress(person);
     }
 
-    boolean contains(String identifier, Prefix keyword) {
-        if (keywords.getValue(keyword).isPresent()) {
-            return identifier.toLowerCase().contains(keywords.getValue(keyword).get().toLowerCase());
+    boolean hasField(Prefix field) {
+        return keywords.getValue(field).isPresent();
+    }
+
+    String getValue(Prefix field) {
+        return keywords.getValue(field).get();
+    }
+
+    boolean contains(String identifier, Prefix field) {
+        if (!hasField(field)) {
+            return true;
         }
 
-        return true;
+        String lowerCasedIdentifier = identifier.toLowerCase();
+        String query = getValue(field);
+        String lowerCasedQuery = query.toLowerCase();
+        return lowerCasedIdentifier.contains(lowerCasedQuery);
+    }
+
+    boolean checkName(Person person) {
+        return contains(person.getName().toString(), PREFIX_NAME);
+    }
+
+    boolean checkPhone(Person person) {
+        return contains(person.getPhone().toString(), PREFIX_PHONE);
+    }
+
+    boolean checkEmail(Person person) {
+        return contains(person.getEmail().toString(), PREFIX_EMAIL);
+    }
+
+    boolean checkAddress(Person person) {
+        return contains(person.getAddress().toString(), PREFIX_ADDRESS);
+    }
+
+    boolean checkSalary(Staff staff) {
+        return contains(staff.getSalary().toString(), PREFIX_SALARY);
+    }
+
+    boolean checkEmployment(Staff staff) {
+        return contains(staff.getEmployment().toString(), PREFIX_EMPLOYMENT);
+    }
+
+    boolean checkPrice(Supplier supplier) {
+        return contains(supplier.getPrice().toString(), PREFIX_PRICE);
+    }
+
+    boolean checkProduct(Supplier supplier) {
+        return contains(supplier.getProduct().toString(), PREFIX_PRODUCT);
+    }
+
+    boolean checkSkill(Maintainer maintainer) {
+        return contains(maintainer.getSkill().toString(), PREFIX_SKILL);
+    }
+
+    boolean checkCommission(Maintainer maintainer) {
+        return contains(maintainer.getCommission().toString(), PREFIX_COMMISSION);
+    }
+
+    boolean checkNamePhoneEmailAndAddress(Person person) {
+        return checkName(person)
+                && checkPhone(person)
+                && checkEmail(person)
+                && checkAddress(person);
     }
 
     @Override

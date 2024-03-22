@@ -17,7 +17,7 @@ import java.util.Set;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.messages.Messages;
+import seedu.address.logic.messages.EditMessages;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -49,10 +49,6 @@ public class EditCommand extends Command {
             + PREFIX_ADDRESS + "NUS College Avenue"
             + " }";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person's name already exists in the address book.";
-
     private final Name name;
     private final EditPersonDescriptor editPersonDescriptor;
 
@@ -74,19 +70,16 @@ public class EditCommand extends Command {
 
         Person personToEdit = model.findByName(name);
 
-        if (personToEdit == null) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_NAME);
-        }
-
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(EditMessages.MESSAGE_EDIT_NO_DIFFERENCE);
         }
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson)));
+        return new CommandResult(String.format(EditMessages.MESSAGE_EDIT_PERSON_SUCCESS,
+                EditMessages.format(editedPerson)));
     }
 
     /**

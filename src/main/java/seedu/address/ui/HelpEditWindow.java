@@ -18,7 +18,11 @@ public class HelpEditWindow extends UiPart<Stage> {
     public static final String USERGUIDE_URL = "https://ay2324s2-cs2103t-w10-2.github.io/tp/UserGuide.html";
     public static final String HELP_MESSAGE = "Edit the fields of the specified person in the Pooch Planner"
             + "\n" + "" + "\n"
-            + "Format: /edit ; name : [name] ; field { [field] : [value] } "
+            + "Format:" + "\n"
+            + "/edit ; name : [name] ; field { [field] : [value] }" + "\n"
+            + "/edit-staff ; name : [name] ; field { [field] : [value] }" + "\n"
+            + "/edit-supplier ; name : [name] ; field { [field] : [value] }" + "\n"
+            + "/edit-maintainer ; name : [name] ; field { [field] : [value] }" + "\n"
             + "\n" + "" + "\n"
             + "Go to our UG for more information : " + USERGUIDE_URL;
 

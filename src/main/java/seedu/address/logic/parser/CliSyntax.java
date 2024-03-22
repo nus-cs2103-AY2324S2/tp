@@ -21,4 +21,18 @@ public class CliSyntax {
 
     public static final Prefix PREFIX_FIELD = new Prefix("; field : ");
     public static final Prefix PREFIX_NOTE = new Prefix("; note : ");
+
+    public static final Prefix[] PREFIX_COLLECTION = new Prefix[] {
+        PREFIX_NAME,
+        PREFIX_PHONE,
+        PREFIX_EMAIL,
+        PREFIX_ADDRESS,
+        PREFIX_TAG,
+        PREFIX_SALARY,
+        PREFIX_EMPLOYMENT,
+        PREFIX_PRICE,
+        PREFIX_PRODUCT,
+        PREFIX_SKILL,
+        PREFIX_COMMISSION,
+        PREFIX_NOTE};
 }
