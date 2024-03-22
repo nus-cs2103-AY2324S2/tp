@@ -20,6 +20,7 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.LastContact;
+import seedu.address.model.person.Upcoming;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -65,6 +66,10 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
         if (argMultimap.getValue(PREFIX_UPCOMING).isPresent()) {
+            if (argMultimap.getValue(PREFIX_UPCOMING).get().isEmpty()) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        Upcoming.MESSAGE_EDIT_EMPTY_STRING_EXCEPTION));
+            }
             editPersonDescriptor.setUpcoming(ParserUtil.parseUpcoming(argMultimap.getValue(PREFIX_UPCOMING).get()));
         }
         if (argMultimap.getValue(PREFIX_LASTCONTACT).isPresent()) {
