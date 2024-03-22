@@ -13,7 +13,19 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.AddPolicyCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+/**
+ * Parses input arguments and creates a new AddPolicyCommand object.
+ */
 public class AddPolicyCommandParser implements Parser<AddPolicyCommand> {
+
+    /**
+     * Parses the given {@code String} of arguments in the context of the AddPolicyCommand
+     * and returns a AddPolicyCommand object for execution.
+     *
+     * @param args The arguments provided by the user.
+     * @return A parsed AddPolicyCommand object representing the user's command.
+     * @throws ParseException If the user input does not conform to the expected format.
+     */
     public AddPolicyCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,

@@ -3,9 +3,16 @@ package seedu.address.storage;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Policy;
 
+
+
+
+/**
+ * Jackson-friendly version of {@link Policy}.
+ */
 public class JsonAdaptedPolicyTag {
     public final String policyName;
     public final String policyNumber;
@@ -40,7 +47,6 @@ public class JsonAdaptedPolicyTag {
         premium = source.premium;
         benefit = source.benefit;
     }
-
 
     /**
      * Converts this Jackson-friendly adapted tag object into the model's {@code Tag} object.

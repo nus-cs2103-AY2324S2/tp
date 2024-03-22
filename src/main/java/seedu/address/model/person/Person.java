@@ -6,9 +6,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
-import java.util.Optional;
 
-import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -30,9 +28,16 @@ public class Person {
 
     /**
      * Every field must be present and not null.
+     * @param name The name of the person.
+     * @param phone The phone number of the person.
+     * @param email The email address of the person.
+     * @param address The address of the person.
+     * @param meeting The meeting details of the person.
+     * @param tags The set of tags associated with the person.
+     * @param policies The set of policies associated with the person.
      */
-
-    public Person(Name name, Phone phone, Email email, Address address, Meeting meeting, Set<Tag> tags, Set<Policy> policies) {
+    public Person(Name name, Phone phone, Email email, Address address,
+                  Meeting meeting, Set<Tag> tags, Set<Policy> policies) {
         requireAllNonNull(name, phone, email, address, meeting, tags);
         this.name = name;
         this.phone = phone;
@@ -127,6 +132,13 @@ public class Person {
         return Objects.hash(name, phone, email, address, meeting, tags);
     }
 
+    /**
+     * Returns a string representation of the person.
+     * The string representation contains the person's name, phone, email, address, tags, and policies.
+     * Example:
+     *     Alice Pauline Phone: 12345678 Email: alice@example.com Address: 123, Jurong West Ave 6,
+     *     #08-111 Tags: friends family Policies: [SuperSaver] [HealthGuard]
+     */
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
