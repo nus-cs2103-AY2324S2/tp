@@ -63,11 +63,11 @@
     -fx-text-fill: black !important;
 }
 
-#personList{
+#studentList{
     -fx-background-color: #C7C8CC;
 }
 
-#personListHBox{
+#studentListHBox{
     -fx-spacing:20px;
     -fx-padding:10 10 10 20;
     -fx-background-color:#C7C8CC;
@@ -159,6 +159,6 @@
     -fx-font-size: 13;
 }
 
-#personListView {
+#studentListView {
     -fx-padding : 0 20 0 20;
 }
