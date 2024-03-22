@@ -148,4 +148,6 @@ public interface Model {
      * @return the number of orders in the order list
      */
     int getOrderListSize();
+
+    void clearOrderFilter();
 }

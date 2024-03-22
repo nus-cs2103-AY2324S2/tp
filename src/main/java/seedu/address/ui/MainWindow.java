@@ -58,6 +58,8 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane statusbarPlaceholder;
 
+    private ObservableList<Order> allOrders;
+
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
@@ -74,6 +76,8 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+
+        allOrders = logic.getFilteredOrderList();
     }
 
     public Stage getPrimaryStage() {
@@ -176,9 +180,6 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
-    }
 
     /**
      * Executes the command and returns the result.
@@ -186,6 +187,7 @@ public class MainWindow extends UiPart<Stage> {
      * @see seedu.address.logic.Logic#execute(String)
      */
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
+        showAllOrders();
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
@@ -215,15 +217,31 @@ public class MainWindow extends UiPart<Stage> {
      * @param person The {@link Person} whose orders are to be displayed. This object must not be {@code null}.
      */
     public void showPersonOrders(Person person) {
-        if (person.getOrders().isEmpty()) {
+        logic.clearOrderFilter();
+        if (person == null || person.getOrders().isEmpty()) {
             // Handle the case where there are no orders.
-            orderListPanel = new OrderListPanel(FXCollections.observableArrayList());
-            orderListPanelPlaceholder.getChildren().setAll(orderListPanel.getRoot());
+            orderListPanel.updateDisplayedOrders(FXCollections.observableArrayList());
+
         } else {
             // The person has orders; display them.
-            ObservableList<Order> orders = FXCollections.observableArrayList(person.getOrders());
-            orderListPanel = new OrderListPanel(orders);
-            orderListPanelPlaceholder.getChildren().setAll(orderListPanel.getRoot());
+            ObservableList<Order> filteredOrders = FXCollections.observableArrayList();
+            for (Order order : allOrders) {
+                if (person.getOrders().contains(order)) {
+                    filteredOrders.add(order);
+                }
+            }
+            orderListPanel.updateDisplayedOrders(filteredOrders);
+        }
+    }
+
+    /**
+     * Displays all orders in the order list panel.
+     * This method checks if the list of all orders is not empty before attempting to update the
+     * displayed orders in the order list panel. If the list is empty, no action is taken.
+     */
+    public void showAllOrders() {
+        if (!allOrders.isEmpty()) {
+            orderListPanel.updateDisplayedOrders(allOrders);
         }
     }
 }

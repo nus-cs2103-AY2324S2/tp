@@ -198,6 +198,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void clearOrderFilter() {
+        filteredOrders.setPredicate(null); // Passing null removes the filter
+    }
+
+    @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;
