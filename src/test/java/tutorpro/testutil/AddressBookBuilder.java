@@ -1,7 +1,7 @@
 package tutorpro.testutil;
 
 import tutorpro.model.AddressBook;
-import tutorpro.model.person.Person;
+import tutorpro.model.person.student.Student;
 
 /**
  * A utility class to help with building Addressbook objects.
@@ -23,7 +23,7 @@ public class AddressBookBuilder {
     /**
      * Adds a new {@code Person} to the {@code AddressBook} that we are building.
      */
-    public AddressBookBuilder withPerson(Person person) {
+    public AddressBookBuilder withPerson(Student person) {
         addressBook.addPerson(person);
         return this;
     }

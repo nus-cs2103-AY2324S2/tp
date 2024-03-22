@@ -12,7 +12,7 @@ import tutorpro.commons.exceptions.IllegalValueException;
 import tutorpro.commons.util.JsonUtil;
 import tutorpro.model.AddressBook;
 import tutorpro.testutil.Assert;
-import tutorpro.testutil.TypicalPersons;
+import tutorpro.testutil.TypicalStudents;
 
 public class JsonSerializableAddressBookTest {
 
@@ -30,8 +30,8 @@ public class JsonSerializableAddressBookTest {
         JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_PERSONS_FILE,
                 JsonSerializableAddressBook.class).get();
         AddressBook addressBookFromFile = dataFromFile.toModelType();
-        AddressBook typicalPersonsAddressBook = TypicalPersons.getTypicalAddressBook();
-        assertEquals(addressBookFromFile, typicalPersonsAddressBook);
+        AddressBook typicalStudentsAddressBook = TypicalStudents.getTypicalAddressBook();
+        assertEquals(addressBookFromFile, typicalStudentsAddressBook);
     }
 
     @Test

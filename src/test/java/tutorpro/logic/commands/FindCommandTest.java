@@ -15,14 +15,14 @@ import tutorpro.model.Model;
 import tutorpro.model.ModelManager;
 import tutorpro.model.UserPrefs;
 import tutorpro.model.person.NameContainsKeywordsPredicate;
-import tutorpro.testutil.TypicalPersons;
+import tutorpro.testutil.TypicalStudents;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private Model model = new ModelManager(TypicalPersons.getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(TypicalPersons.getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(TypicalStudents.getTypicalAddressBook(), new UserPrefs());
+    private Model expectedModel = new ModelManager(TypicalStudents.getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void equals() {
@@ -68,7 +68,7 @@ public class FindCommandTest {
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(TypicalPersons.CARL, TypicalPersons.ELLE, TypicalPersons.FIONA),
+        assertEquals(Arrays.asList(TypicalStudents.CARL, TypicalStudents.ELLE, TypicalStudents.FIONA),
                 model.getFilteredPersonList());
     }
 

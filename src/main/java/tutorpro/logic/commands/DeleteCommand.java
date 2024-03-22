@@ -9,7 +9,7 @@ import tutorpro.commons.util.ToStringBuilder;
 import tutorpro.logic.Messages;
 import tutorpro.logic.commands.exceptions.CommandException;
 import tutorpro.model.Model;
-import tutorpro.model.person.Person;
+import tutorpro.model.person.student.Student;
 
 /**
  * Deletes a person identified using it's displayed index from the address book.
@@ -34,13 +34,13 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Student> lastShownList = model.getFilteredPersonList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
+        Student personToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deletePerson(personToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
     }

@@ -25,7 +25,6 @@ import tutorpro.model.Model;
 import tutorpro.model.person.Address;
 import tutorpro.model.person.Email;
 import tutorpro.model.person.Name;
-import tutorpro.model.person.Person;
 import tutorpro.model.person.Phone;
 import tutorpro.model.person.student.Level;
 import tutorpro.model.person.student.Student;
@@ -76,20 +75,18 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException, ClassCastException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Student> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
-        Student studentToEdit;
+        Student personToEdit = lastShownList.get(index.getZeroBased());
         if (!(personToEdit instanceof Student)) {
             throw new ClassCastException("class tutorpro.model.person.Person cannot be cast to class "
                     + "tutorpro.model.person.student.Student");
         }
-        studentToEdit = (Student) personToEdit;
-        Student editedPerson = createEditedPerson(studentToEdit, editPersonDescriptor);
+        Student editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
@@ -176,7 +173,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, level, subjects, tags);
         }
 
         public void setName(Name name) {

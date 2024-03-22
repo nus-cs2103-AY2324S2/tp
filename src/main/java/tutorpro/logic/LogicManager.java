@@ -15,7 +15,7 @@ import tutorpro.logic.parser.AddressBookParser;
 import tutorpro.logic.parser.exceptions.ParseException;
 import tutorpro.model.Model;
 import tutorpro.model.ReadOnlyAddressBook;
-import tutorpro.model.person.Person;
+import tutorpro.model.person.student.Student;
 import tutorpro.storage.Storage;
 
 /**
@@ -67,7 +67,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
+    public ObservableList<Student> getFilteredPersonList() {
         return model.getFilteredPersonList();
     }
 

@@ -5,11 +5,12 @@ import java.util.function.Predicate;
 
 import tutorpro.commons.util.StringUtil;
 import tutorpro.commons.util.ToStringBuilder;
+import tutorpro.model.person.student.Student;
 
 /**
  * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
  */
-public class NameContainsKeywordsPredicate implements Predicate<Person> {
+public class NameContainsKeywordsPredicate implements Predicate<Student> {
     private final List<String> keywords;
 
     public NameContainsKeywordsPredicate(List<String> keywords) {
@@ -17,7 +18,7 @@ public class NameContainsKeywordsPredicate implements Predicate<Person> {
     }
 
     @Override
-    public boolean test(Person person) {
+    public boolean test(Student person) {
         return keywords.stream()
                 .anyMatch(keyword -> StringUtil.containsSubstringIgnoreCase(person.getName().fullName, keyword));
     }

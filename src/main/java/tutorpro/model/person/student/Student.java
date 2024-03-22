@@ -77,8 +77,8 @@ public class Student extends Person {
                 .add("email", super.getEmail())
                 .add("address", super.getAddress())
                 .add("tags", super.getTags())
-                .add("level", level)
-                .add("subjects", subjects)
+                .add("level", this.level)
+                .add("subjects", this.subjects)
                 .toString();
     }
 

@@ -18,7 +18,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import tutorpro.model.AddressBook;
-import tutorpro.model.person.Person;
 import tutorpro.model.person.student.Student;
 
 /**
@@ -66,13 +65,13 @@ public class TypicalStudents {
      */
     public static AddressBook getTypicalAddressBook() {
         AddressBook ab = new AddressBook();
-        for (Person person : getTypicalStudents()) {
+        for (Student person : getTypicalStudents()) {
             ab.addPerson(person);
         }
         return ab;
     }
 
-    public static List<Person> getTypicalStudents() {
+    public static List<Student> getTypicalStudents() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
 }
