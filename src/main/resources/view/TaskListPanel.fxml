@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+
+<VBox id="taskPane" fx:id="taskPane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+    <StackPane VBox.vgrow="NEVER" styleClass="pane-with-border"
+            minWidth="300" prefWidth="300" minHeight="64" prefHeight="64">
+        <padding>
+            <Insets top="20" right="8" bottom="20" left="8" />
+        </padding>
+        <Label fx:id="showingProjectName" styleClass="cell_big_label" />
+    </StackPane>
+    <HBox fx:id="taskList" styleClass="pane-with-border"
+            minHeight="540" prefHeight="540">
+        <VBox>
+            <VBox fx:id="undoneTaskList" styleClass="pane-with-border"
+                    minWidth="300" prefWidth="300" VBox.vgrow="ALWAYS">
+                <padding>
+                    <Insets top="8" right="8" bottom="8" left="8" />
+                </padding>
+                <ListView fx:id="undoneTaskListView" VBox.vgrow="ALWAYS" />
+            </VBox>
+        </VBox>
+        <VBox>
+            <VBox fx:id="doneTaskList" styleClass="pane-with-border"
+                    minWidth="300" prefWidth="300" VBox.vgrow="ALWAYS">
+                <padding>
+                    <Insets top="8" right="8" bottom="8" left="0" />
+                </padding>
+                <ListView fx:id="doneTaskListView" VBox.vgrow="ALWAYS" />
+            </VBox>
+        </VBox>
+    </HBox>
+</VBox>

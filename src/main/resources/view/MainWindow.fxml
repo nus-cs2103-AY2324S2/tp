@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.HBox?>
 
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
-         title="Address App" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
+         title="Address App" onCloseRequest="#handleExit">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
@@ -48,37 +48,20 @@
                 </padding>
                 </StackPane>
 
-                <VBox fx:id="personList" styleClass="pane-with-border" minWidth="360" prefWidth="360" VBox.vgrow="ALWAYS">
+                <VBox fx:id="personList" styleClass="pane-with-border"
+                        minWidth="360" prefWidth="360" VBox.vgrow="ALWAYS">
                     <padding>
                         <Insets top="10" right="10" bottom="10" left="10" />
                     </padding>
                     <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
                 </VBox>
             </VBox>
-            <VBox>
-                <HBox fx:id="showingProjectName" styleClass="pane-with-border" minWidth="320" prefWidth="320" minHeight="64" prefHeight="64">
-                    <padding>
-                        <Insets top="20" right="10" bottom="20" left="10" />
-                    </padding>
-                </HBox>
-                <HBox fx:id="taskList" styleClass="pane-with-border" minHeight="536" prefHeight="536">
-                    <VBox>
-                        <VBox fx:id="undoneTaskList" styleClass="pane-with-border" minWidth="320" prefWidth="320" VBox.vgrow="ALWAYS">
-                        <padding>
-                            <Insets top="10" right="10" bottom="10" left="10" />
-                        </padding>
-                        <StackPane fx:id="undoneTaskListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-                        </VBox>
-                    </VBox>
-                    <VBox>
-                        <VBox fx:id="doneTaskList" styleClass="pane-with-border" minWidth="320" prefWidth="320" VBox.vgrow="ALWAYS">
-                        <padding>
-                            <Insets top="10" right="10" bottom="10" left="10" />
-                        </padding>
-                        <StackPane fx:id="doneTaskListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-                        </VBox>
-                    </VBox>
-                </HBox>
+            <VBox fx:id="currentProject" styleClass="pane-with-border"
+                    minWidth="640" prefWidth="640" VBox.vgrow="ALWAYS">
+                <padding>
+                    <Insets top="10" right="10" bottom="10" left="10" />
+                </padding>
+                <StackPane fx:id="currentProjectPanelPlaceholder" VBox.vgrow="ALWAYS"/>
             </VBox>
         </HBox>
       </VBox>
