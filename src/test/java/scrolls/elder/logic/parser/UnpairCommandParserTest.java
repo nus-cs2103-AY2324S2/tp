@@ -6,7 +6,6 @@ import static scrolls.elder.logic.parser.CommandParserTestUtil.assertParseSucces
 import org.junit.jupiter.api.Test;
 
 import scrolls.elder.logic.Messages;
-import scrolls.elder.logic.commands.PairCommand;
 import scrolls.elder.logic.commands.UnpairCommand;
 import scrolls.elder.testutil.TypicalIndexes;
 
