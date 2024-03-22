@@ -1,0 +1,21 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+[-> UI : "create c/CS2103T"
+activate UI
+
+UI -> Logic : execute("create "create c/CS2103T"
+activate Logic
+
+Logic -> Model : createClass(c)
+activate Model
+deactivate Model
+
+Logic -> Storage: saveClassBook(classBook)
+activate Storage
+
+Storage -> Storage : save to file
+activate Storage
+deactivate Storage
+
+@enduml
