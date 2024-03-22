@@ -240,7 +240,7 @@ The `AddTagsCommand` class is responsible for adding one or more tags to a patie
 
 * Tags, as defined by the `Tag` class, are alphanumeric, single-word identifiers without spaces, and repeated tags in the command are added as a single tag.
 * The addition of tags is cumulative, and new tags will be added to the existing set of tags for the patient, preserving the previously assigned tags.
-* If the patient already has a particular tag, it will not be added again.
+*  If the patient has an existing tag that is provided in the command, it will not be added, and the output would be logged and shown to the user.
 
 #### Example Usage Scenario
 
@@ -265,9 +265,9 @@ The following sequence diagram shows how the Add Tags operation works:
 
 #### Design Considerations
 
-**Aspect: Handling Repeated Tags**
+**Aspect: Skip duplicate Tags in command**
 
-* **Alternative 1 (current choice)**: Repeated tags are added as a single tag.
+* **Alternative 1 (current choice)**: Repeated tags in commands are added as a single tag.
     * Pros: Simplifies tag management, avoids redundancy.
     * Cons: Requires additional logic to detect and merge repeated tags.
 <br></br>
@@ -285,11 +285,11 @@ The following sequence diagram shows how the Add Tags operation works:
     * Pros: Simplifies data handling, avoids tag duplication.
     * Cons: Risk of losing previously assigned tags, less flexibility in tag management.
 
-**Aspect: Error Handling for Duplicate Tags**
+**Aspect: Logic handling for pre-existing tags**
 
 * **Alternative 1 (current choice)**: Do not add tags already present for the patient.
     * Pros: Prevents tag redundancy, maintains data integrity. Better user experience, do not need to worry about the intricacies of tag duplication.
-    * Cons: Users do not explicitly receive direct feedback about skipped tags.
+    * Cons: Requires additional logic to detect repeated tags.
 <br></br>
 * **Alternative 2**: Return error message for duplicate tags.
     * Pros: Notifies user about duplicate inputs, ensures data consistency.

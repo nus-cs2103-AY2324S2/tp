@@ -18,16 +18,16 @@ PatientSync is a **desktop app made for nurses to manage patient, optimized for 
 
 1. Ensure you have Java `11` or above installed in your Computer. 
 
-2. Download the latest `PatientSync.jar` from [here](https://github.com/AY2324S2-CS2103-F09-2/tp/releases).
+1. Download the latest `PatientSync.jar` from [here](https://github.com/AY2324S2-CS2103-F09-2/tp/releases).
 
-3. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
 
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar PatientSync.jar`
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar PatientSync.jar`
 command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * `list` : Lists all contacts.
@@ -40,7 +40,7 @@ command to run the application.<br>
 
    * `exit` : Exits the app.
 
-6. Refer to the [Features](#features) below for details of each command.
+1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -178,7 +178,7 @@ Format: `addt INDEX [t/TAG]+`
 * The index **must be a positive integer** 1, 2, 3, …​
 * When adding tags, if a tag is repeated in the command, it will be added as a single tag.
   E.g. `t/friend t/friend` will be added as a single `friend` tag.
-* If the patient already has a tag that matches one provided in the command, the new tag will replace the existing one. This is counted as a successful addition of that tag.
+* If the patient has an existing tag that is provided in the command, it will be logged and shown to the user.
 
 <box type="info" seamless>
     <b>Note:</b> The addition of tags is cumulative. New tags will be added to the existing set of tags for the patient, preserving the previously assigned tags.

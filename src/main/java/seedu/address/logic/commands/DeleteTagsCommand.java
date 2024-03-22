@@ -99,10 +99,9 @@ public class DeleteTagsCommand extends Command {
      * @param tagSet        The current set of tags for the patient.
      * @param toDeleteTags  The Tags to be deleted.
      * @return A Pair containing the updated tag set and a string describing the outcome of the deletion.
-     * @throws CommandException if tag does not exist.
      */
     public Pair<Set<Tag>, String> deleteTagsFromPatient(Patient patient, Set<Tag> tagSet,
-                                                       Set<Tag> toDeleteTags) throws CommandException {
+                                                       Set<Tag> toDeleteTags) {
         requireAllNonNull(tagSet, toDeleteTags);
 
         StringBuilder commandOutcome = new StringBuilder();
