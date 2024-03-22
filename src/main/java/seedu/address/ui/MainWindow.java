@@ -179,7 +179,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Closes the application.
+     * Closes the application when the cross button is clicked.
      */
     @FXML
     private void handleExit() {
@@ -187,8 +187,14 @@ public class MainWindow extends UiPart<Stage> {
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
-        exitWindow.show();
+        exitWindow.hide();
         //primaryStage.hide();
+    }
+
+    @FXML
+    private void showExitWindow() {
+        helpWindow.hide();
+        exitWindow.show();
     }
 
     public PersonListPanel getPersonListPanel() {
@@ -211,7 +217,7 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isExit()) {
-                handleExit();
+                showExitWindow();
             }
 
             if (commandResult.isAddByStep()) {
