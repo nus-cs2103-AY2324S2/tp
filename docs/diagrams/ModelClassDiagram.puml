@@ -38,7 +38,7 @@ ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 AddressBook *--> "1" UniqueStartupList
-UniqueStartupList --> "~* all" Person
+UniqueStartupList --> "~* all" Startup
 Startup *--> Name
 Startup *--> Phone
 Startup *--> Email
