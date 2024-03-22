@@ -80,7 +80,6 @@ public class EditCommand extends Command {
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
-
         updatePerson(personToEdit, editedPerson, model);
         updateLastViewedPersonIfNecessary(personToEdit, editedPerson, model);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson)));
@@ -96,7 +95,6 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_FIELD);
         }
         model.addPersonKeepFilter(editedPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     private void updateLastViewedPersonIfNecessary(Person personToEdit, Person editedPerson, Model model) {
