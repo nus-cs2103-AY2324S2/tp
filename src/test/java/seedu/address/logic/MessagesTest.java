@@ -18,8 +18,8 @@ class MessagesTest {
     @Test
     public void format() {
         Person person = new Person(new Attribute[0]);
-        assertEquals("Details:\n" +
-                "No details available", Messages.format(person));
+        assertEquals("Details:\n"
+                + "No details available", Messages.format(person));
     }
 
 }
