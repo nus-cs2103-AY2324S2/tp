@@ -2,8 +2,10 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.Messages.MESSAGE_TAG_LENGTH_EXCEEDED;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.ParserUtil.arePrefixesPresent;
+import static seedu.address.model.tag.Tag.MAX_TAG_LENGTH;
 
 import java.util.Set;
 import java.util.logging.Level;
@@ -60,4 +62,18 @@ public class AddTagsCommandParser implements Parser<AddTagsCommand> {
 
         return new AddTagsCommand(index, tagList);
     }
+
+//    /**
+//     * Checks if any tag in the list exceeds the maximum allowed length.
+//     *
+//     * @param tags The set of tags to check.
+//     * @throws ParseException if any tag exceeds the maximum length.
+//     */
+//    public void checkTagLength(Set<Tag> tags) throws ParseException {
+//        for (Tag tag : tags) {
+//            if (tag.tagName.length() > MAX_TAG_LENGTH) {
+//                throw new ParseException(String.format(MESSAGE_TAG_LENGTH_EXCEEDED, MAX_TAG_LENGTH));
+//            }
+//        }
+//    }
 }

@@ -19,6 +19,7 @@ public class Messages {
     public static final String MESSAGE_PATIENT_LISTED_OVERVIEW = "%1$d patients listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
+    public static final String MESSAGE_TAG_LENGTH_EXCEEDED = "The tag exceeds the maximum length of %d characters";
 
     /**
      * Returns an error message indicating the duplicate prefixes.

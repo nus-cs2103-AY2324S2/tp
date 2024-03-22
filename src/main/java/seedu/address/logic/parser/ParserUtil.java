@@ -144,6 +144,9 @@ public class ParserUtil {
         if (!Tag.isValidTagName(parsedTag)) {
             throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
         }
+        if (!Tag.isValidTagLength(parsedTag)) {
+            throw new ParseException(Tag.MESSAGE_LENGTH_CONSTRAINTS);
+        }
         return new Tag(parsedTag);
     }
 
