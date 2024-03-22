@@ -92,12 +92,7 @@ Format: `help`
 
 Adds an internship entry and all the relevant fields
 
-<<<<<<< HEAD
-Format: `add /com COMPANY_NAME /desc DESCRIPTION /status STATUS /poc CONTACT_NAME /email CONTACT_EMAIL
-/phone CONTACT_NUMBER /loc LOCATION /role ROLE​`
-=======
 Format: `add /com COMPANY_NAME /desc DESCRIPTION /status STATUS /poc CONTACT_NAME /email CONTACT_EMAIL /phone CONTACT_NUMBER /loc LOCATION_ENUM /role ROLE ​`
->>>>>>> master
 
 Examples:
 * `add /com Tiktok /desc create new recommendation engine /status ongoing /poc jane yeo /email hr@tiktok.com
@@ -223,7 +218,6 @@ The remedy is to delete the `preferences.json` file created by the application b
 
 ## Command summary
 
-<<<<<<< HEAD
 | Action                                        | Description                              |
 |-----------------------------------------------|------------------------------------------|
 | [add](#adding-an-entry-add)                   | Adds an Internship.                      |
@@ -234,15 +228,3 @@ The remedy is to delete the `preferences.json` file created by the application b
 | [clear](#clearing-all-internships-clear)      | Removes all Internships from the deck.   |
 | [find](#finding-internships-by-keywords-find) | Finds an Internship by keywords.         |
 | [exit](#exiting-the-program-exit)             | Exits and closes the application.        |
-=======
-| Action                                         | Description                              |
-|------------------------------------------------|------------------------------------------|
-| [add](#adding-an-entry-add)                    | Adds an Internship.                      |
-| [delete](#deleting-an-internship-delete)       | Removes a Internship.                    |
-| [list](#listing-all-internships-list)          | Removes a Internship.                    |
-| [edit](#editing-an-internship-edit)            | Modifies an existing Internship.         |
-| [addremark](#adding-a-remark-addremark)        | Adds a remark to an existing Internship. |
-| [clear](#clearing-all-internships-clear)       | Removes all Internships from the deck.   |
-| [find](#locating-internships-by-keywords-find) | Sets the goal for the session.           |
-| [exit](#exiting-the-program-exit)              | Exits and closes the application.        |
->>>>>>> master
