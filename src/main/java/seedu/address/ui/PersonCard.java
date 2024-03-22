@@ -54,11 +54,16 @@ public class PersonCard extends UiPart<Region> {
         super(FXML);
         this.person = person;
         id.setText(displayedIndex + ". ");
-        name.setText(person.getName().fullName);
+        if (person.isStarred()) {
+            name.setText(person.getName().fullName + " ★");
+        } else {
+            name.setText(person.getName().fullName);
+        }
+
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
-        company.setText(person.getCompany().value);
+        setCompany();
 
         String priorityValue = person.getPriority().value;
         if ("high".equals(priorityValue)) {
@@ -72,4 +77,14 @@ public class PersonCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
+
+    private void setCompany() {
+        if (!person.getCompany().value.equals("")) {
+            company.setText(person.getCompany().value);
+            company.setVisible(true);
+        } else {
+            company.setPrefHeight(0.0);
+        }
+    }
+
 }

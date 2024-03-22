@@ -22,8 +22,9 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-    public static final String DEFAULT_COMPANY = "TikTok";
+    public static final String DEFAULT_COMPANY = "";
     public static final String DEFAULT_PRIORITY = "high";
+    public static final Boolean DEFAULT_STAR = false;
 
     private Name name;
     private Phone phone;
@@ -31,6 +32,7 @@ public class PersonBuilder {
     private Address address;
     private Company company;
     private Priority priority;
+    private Boolean starred;
     private Set<Tag> tags;
 
     /**
@@ -43,6 +45,7 @@ public class PersonBuilder {
         address = new Address(DEFAULT_ADDRESS);
         company = new Company(DEFAULT_COMPANY);
         priority = new Priority(DEFAULT_PRIORITY);
+        starred = DEFAULT_STAR;
         tags = new HashSet<>();
     }
 
@@ -56,6 +59,7 @@ public class PersonBuilder {
         address = personToCopy.getAddress();
         company = personToCopy.getCompany();
         priority = personToCopy.getPriority();
+        starred = personToCopy.isStarred();
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -108,6 +112,14 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code Star} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withStar(Boolean starred) {
+        this.starred = starred;
+        return this;
+    }
+
+    /**
      * Sets the {@code Priority} of the {@code Person} that we are building.
      */
     public PersonBuilder withPriority(String priority) {
@@ -116,7 +128,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, company, priority, tags);
+        return new Person(name, phone, email, address, company, priority, starred, tags);
     }
 
 }
