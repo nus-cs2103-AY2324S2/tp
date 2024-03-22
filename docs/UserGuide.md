@@ -206,7 +206,7 @@ Any commands you have run previously are saved in the command history, so that y
 Any edits you make to a command will be saved while navigating through your history, so you can go to a another command
 to refer to it, and then return back to your edited command to finish typing.
 
-**How to use:** Use the up and down arrow keys to navigate through your history while the command input is focused,
+**How to use:** Use the up and down arrow keys to navigate through your history while the command input is focused.
 
 #### Saving the data
 
