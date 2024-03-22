@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.UpdateCommand.UpdatePersonDescriptor;
-import seedu.address.model.AddressBook;
+import seedu.address.model.ImmuniMate;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -45,7 +45,7 @@ public class UpdateCommandTest {
         String expectedMessage = String.format(
                 UpdateCommand.MESSAGE_UPDATE_PERSON_SUCCESS, Messages.format(editedPerson));
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new ImmuniMate(model.getImmuniMate()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
 
         assertCommandSuccess(updateCommand, model, expectedMessage, expectedModel);
@@ -67,7 +67,7 @@ public class UpdateCommandTest {
         String expectedMessage = String.format(
                 UpdateCommand.MESSAGE_UPDATE_PERSON_SUCCESS, Messages.format(editedPerson));
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new ImmuniMate(model.getImmuniMate()), new UserPrefs());
         expectedModel.setPerson(lastPerson, editedPerson);
 
         assertCommandSuccess(updateCommand, model, expectedMessage, expectedModel);
@@ -81,7 +81,7 @@ public class UpdateCommandTest {
         String expectedMessage = String.format(
                 UpdateCommand.MESSAGE_UPDATE_PERSON_SUCCESS, Messages.format(editedPerson));
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new ImmuniMate(model.getImmuniMate()), new UserPrefs());
 
         assertCommandSuccess(updateCommand, model, expectedMessage, expectedModel);
     }
@@ -98,7 +98,7 @@ public class UpdateCommandTest {
         String expectedMessage = String.format(
                 UpdateCommand.MESSAGE_UPDATE_PERSON_SUCCESS, Messages.format(editedPerson));
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new ImmuniMate(model.getImmuniMate()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
 
         assertCommandSuccess(updateCommand, model, expectedMessage, expectedModel);
@@ -130,7 +130,6 @@ public class UpdateCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
         UpdatePersonDescriptor descriptor = new UpdatePersonDescriptorBuilder().withName(VALID_NAME_BOB).build();
         UpdateCommand updateCommand = new UpdateCommand(outOfBoundIndex, descriptor);
-
         assertCommandFailure(updateCommand, model, Messages.MESSAGE_PERSON_NOT_FOUND);
     }
     */
@@ -146,7 +145,7 @@ public class UpdateCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getImmuniMate().getPersonList().size());
 
         UpdateCommand updateCommand = new UpdateCommand(outOfBoundIndex,
                 new UpdatePersonDescriptorBuilder().withName(VALID_NAME_BOB).build());

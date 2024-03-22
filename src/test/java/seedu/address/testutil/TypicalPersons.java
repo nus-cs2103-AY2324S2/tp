@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.model.AddressBook;
+import seedu.address.model.ImmuniMate;
 import seedu.address.model.person.Person;
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
@@ -47,6 +47,7 @@ public class TypicalPersons {
     public static final Person GEORGE = new PersonBuilder().withNric("T0829102Z")
             .withName("George Best").withPhone("94824421").withDateOfBirth("2001-01-01")
             .withAddress("4th street").withSex("M").withStatus("HEALTHY").build();
+    //TODO add date of birth and some other optional fields
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withNric("T0123071C").withName("Hoon Meier")
@@ -71,8 +72,8 @@ public class TypicalPersons {
     /**
      * Returns an {@code AddressBook} with all the typical persons.
      */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
+    public static ImmuniMate getTypicalAddressBook() {
+        ImmuniMate ab = new ImmuniMate();
         for (Person person : getTypicalPersons()) {
             ab.addPerson(person);
         }

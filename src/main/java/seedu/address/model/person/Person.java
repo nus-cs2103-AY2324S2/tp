@@ -50,7 +50,24 @@ public class Person {
         this.sex = sex;
         this.status = status;
     }
-
+    /**
+     * Constructor for Person with only Nric.
+     */
+    private Person(Nric nric) {
+        this.nric = nric;
+        this.name = null;
+        this.phone = null;
+        this.address = null;
+        this.dateOfBirth = null;
+        this.sex = null;
+        this.status = null;
+    }
+    /**
+     * Constructor for Person with only Nric.
+     */
+    public static Person createPersonWithNric(Nric nric) {
+        return new Person(nric);
+    }
     public Nric getNric() {
         return nric;
     }
@@ -263,7 +280,10 @@ public class Person {
     @Override
     public String toString() {
         // list view
-        return new ToStringBuilder(this).add("nric", nric).add("name", name).add("status", status).toString();
+        return new ToStringBuilder(this)
+                .add("nric", nric)
+                .add("name", name)
+                .add("status", status).toString();
     }
 
     /**
@@ -274,19 +294,20 @@ public class Person {
         return new ToStringBuilder(this)
                 .add("nric", nric)
                 .add("name", name)
-                .add("tags", tags)
                 .add("phone", phone)
-                .add("email", email)
-                .add("sex", sex)
                 .add("address", address)
+                .add("birthday", dateOfBirth)
+                .add("sex", sex)
+                .add("status", status)
+                .add("email", email)
+                .add("admission", dateOfAdmission)
                 .add("allergies", allergies)
                 .add("blood type", bloodType)
                 .add("country", country)
-                .add("birthday", dateOfBirth)
-                .add("condition", dateOfAdmission)
+                .add("condition", condition)
                 .add("diagnosis", diagnosis)
-                .add("status", status)
                 .add("symptom", symptom)
+                .add("tags", tags)
                 .toString();
     }
 }
