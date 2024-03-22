@@ -157,7 +157,7 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Add command
 
-This section describe how the add commands work which will serve as a basic understanding of how commands are implemented.  
+This section describes how the add commands work which will serve as a basic understanding of how commands are implemented.  
 
 **AddressBookParser** : [`AddressBookParser`](https://github.com/AY2324S2-CS2103T-T17-1/tp/blob/master/src/main/java/seedu/address/logic/parser/AddressBookParser.java)
 **AddCommandParser** : [`AddCommandParser.java`](https://github.com/AY2324S2-CS2103T-T17-1/tp/blob/master/src/main/java/seedu/address/logic/parser/AddCommandParser.java)
@@ -187,6 +187,37 @@ How an `add` command is executed.
 8. `AddCommand` returns a [`CommandResult`](https://github.com/AY2324S2-CS2103T-T17-1/tp/blob/master/src/main/java/seedu/address/logic/commands/CommandResult.java).
 9. LogicManager will call `getAddressBook` of `Model` and then use it as an argument to call `saveAddressBook` of its `storage` variable.
 
+### View command
+
+This section describes how the view command works and is implemented.
+
+The Object, Sequence and Activity UML diagrams belows shows the objects created as well as their interactions (e.g. method calls) when the view command is activated.
+
+#### Object Diagram
+
+<img src="images/ViewObjectDiagram.png" width="550"/>
+
+#### Sequence Diagram
+
+<img src="images/ViewSequenceDiagram.png" width="550"/>
+
+#### Activity Diagram
+
+<img src="images/ViewActivityDiagram.png" width="550"/>
+
+How a `view` command is executed.
+1. User Input Parsing
+   1. When the user enters a command, it is first parsed by the `AddressBookParser`.
+   2. The `parseCommand(String userInput)` method in `AddressBookParser` splits the user input into the command word and arguments using a regular expression.
+   3. If the command word matches "view", the parsing is delegated to the `ViewCommandParser`.
+2. View Command Parsing:
+   1. The `ViewCommandParser` expects the arguments to contain an index, which represents the position of the item to view in the list.
+   2. The `parse(String args)` method in `ViewCommandParser` parses the index from the arguments using `ParserUtil.parseIndex(args)`.
+3. Command Execution
+   1. Once the index is parsed successfully, a new `ViewCommand` object is created with the parsed index.
+   2. The `ViewCommand` Object is returned to the `AddressBookParser` and then to the `LogicManager`.
+   3. The `LogicManager` executes the command and generates a `CommandResult`.
+4. `MainWindow` creates a `CommandBox` with the resulting command output, allowing the user to view a contact's information.
 
 ### \[Proposed\] Undo/redo feature
 
