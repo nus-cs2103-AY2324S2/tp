@@ -318,15 +318,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2a. The given contact details are invalid.
 
   * 2a1. Elder Scrolls shows an error message.
-  
+
     Use case ends.
 
 * 3a. The given contact details are already in the contact book
 
     * 3a1. Elder scrolls shows an error message.
-  
+
      Use case ends.
-  
+
 **Use case: UC02 - Delete a contact**
 
 **MSS**
@@ -355,7 +355,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 4a. The contact requested to be deleted is still paired.
 
   * 4a1. Elder Scrolls shows an error message.
-  
+
     Use case resumes at step 2.
 
 **Use case: UC03 - List all contacts**
@@ -391,11 +391,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2a1. Elder Scrolls shows an error message.
 
       Use case ends.
-  
+
 * 3a. The incorrect filtering parameter used, ie. 'vol' not used
 
   * 3a1. Elder Scrolls shows an error message.
-  
+
     Use case ends.
 
 **Use case: UC05 - List all befriendee contacts**
@@ -420,7 +420,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. Elder Scrolls shows an error message.
 
       Use case ends.
-      
+
 **Use case: UC06 - Pair a volunteer and befriendee**
 
 **MSS**
@@ -428,7 +428,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  User <u>requests to list all contacts (UC03)</u>.
 2.  Elder Scrolls shows a list of contacts.
 3.  User requests to pair a specific volunteer and befriendee in the list.
-4.  Elder Scrolls pairs the specified volunteer and befriendee. 
+4.  Elder Scrolls pairs the specified volunteer and befriendee.
 
     Use case ends.
 
@@ -437,8 +437,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given UID is invalid.
 
-    * 3a1. Elder Scrolls shows an error message indicating that the given UID is invalid. 
-   
+    * 3a1. Elder Scrolls shows an error message indicating that the given UID is invalid.
+
       Use case resumes at step 2.
 
 * 3b. The given UIDs are both volunteers or both befriendees.
@@ -452,7 +452,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3b1. Elder Scrolls shows an error message indicating that the given UID(s) are already paired.
 
       Use case resumes at step 2.
-  
+
 **Use case: UC07 - Tag contacts**
 
 **MSS**
@@ -471,8 +471,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 3a1. Elder Scrolls shows an error message.
 
-      Use case resumes at step 2. 
-      
+      Use case resumes at step 2.
+
 *{More to be added}*
 ### Non-Functional Requirements
 
