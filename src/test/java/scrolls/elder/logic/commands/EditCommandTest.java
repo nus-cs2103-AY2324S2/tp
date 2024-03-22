@@ -68,7 +68,7 @@ public class EditCommandTest {
     }
 
     @Test
-    public void execute_noFieldSpecifiedUnfilteredList_failure() {
+    public void execute_noFieldSpecifiedUnfilteredList_success() {
         Model model = new ModelManager(TypicalPersons.getTypicalAddressBook(), new UserPrefs());
 
         EditCommand.EditPersonDescriptor epd = new EditCommand.EditPersonDescriptor();
