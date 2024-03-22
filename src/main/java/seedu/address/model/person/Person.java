@@ -142,6 +142,22 @@ public class Person {
         return Objects.hash(name, phone, email, address, tags);
     }
 
+    private String schedulesToString() {
+        StringBuilder schedulesList = new StringBuilder();
+
+        for (int i = 0; i < schedules.size(); i++) {
+            schedulesList.append(i + 1).append(". ");
+            schedulesList.append(schedules.get(i).toString());
+            schedulesList.append("\n");
+
+        }
+        String res = schedulesList.toString();
+        if (!res.isEmpty()) {
+            return res.substring(0, res.length() - 2);
+        }
+        return res;
+    }
+
     @Override
     public String toString() {
         return new ToStringBuilder(this)

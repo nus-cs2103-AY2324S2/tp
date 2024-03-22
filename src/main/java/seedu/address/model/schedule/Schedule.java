@@ -71,9 +71,12 @@ public class Schedule {
 
     public String getParticipantsName() {
         StringBuilder participants = new StringBuilder();
-        for (Person person: personList) {
-            participants.append(person.getName());
+
+        for (int i = 0; i < personList.size(); i++) {
+            participants.append("(" ).append(i + 1).append(") ");
+            participants.append(personList.get(i).getName());
             participants.append(", ");
+
         }
         String res = participants.toString();
         if (!res.isEmpty()) {
@@ -159,10 +162,10 @@ public class Schedule {
      * Format state as text for viewing.
      */
     public String toString() {
-        return schedName
-                + " start " + startTime.toString()
-                + " end " + endTime.toString()
-                + " participants " + getParticipantsName();
+        return "Event: " + schedName + "\n"
+                + "   Time: " + "start:" + startTime.toString()
+                + ", end:" + endTime.toString() + "\n"
+                + "   Participants: " + getParticipantsName() + "\n";
     }
 
 }
