@@ -13,9 +13,6 @@ public class ProfilePicture {
     }
 
     public String get() {
-        if (this.url == null || this.url.isBlank()) {
-            return DEFAULT_URL;
-        }
         return this.url;
     }
 
@@ -26,7 +23,7 @@ public class ProfilePicture {
         if (!(o instanceof ProfilePicture)) {
             return false;
         }        ProfilePicture that = (ProfilePicture) o;
-        return this.get().equals(that.get());
+        return Objects.equals(this.url, that.url);
     }
 
 

@@ -13,17 +13,6 @@ public class ProfilePictureTest {
         assertEquals(validUrl, profilePicture.get());
     }
 
-    @Test
-    public void constructor_blankUrl_returnsDefaultUrl() {
-        ProfilePicture profilePicture = new ProfilePicture("");
-        assertEquals(ProfilePicture.DEFAULT_URL, profilePicture.get());
-    }
-
-    @Test
-    public void constructor_nullUrl_returnsDefaultUrl() {
-        ProfilePicture profilePicture = new ProfilePicture(null);
-        assertEquals(ProfilePicture.DEFAULT_URL, profilePicture.get());
-    }
 
     @Test
     public void equals_sameUrl_returnsTrue() {
