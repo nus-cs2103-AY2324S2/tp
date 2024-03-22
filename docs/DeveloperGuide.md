@@ -470,6 +470,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1b1. CodeConnect shows an error message.
       Use case ends.
 
+* 1d. Updated contact matches another existing contact
+    * 1b1. CodeConnect shows an error message.
+      Use case ends.
+
 **Use case: UC04 - View all contacts**
 
 **MSS**
@@ -554,6 +558,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. The default desktop mail application is not available on the system.
     * 1a1. CodeConnect displays an error message indicating that the desktop mail application is not supported.
 
+      Use case ends.
+
+**Use case: UC09 - Viewing command history**
+
+**MSS**
+
+1. User selects command input.
+2. User requests to view previous or next command in history.
+3. CodeConnect retrieves the command from the command history.
+4. CodeConnect updates the contents of the command input.
+
+   Use case ends.
+
+**Extensions**
+
+* 3a. CodeConnect does not find any previous/next command in the command history.
       Use case ends.
 
 *{More to be added}*
