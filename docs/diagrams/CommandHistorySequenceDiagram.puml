@@ -1,0 +1,64 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box UI UI_COLOR_T1
+participant ":CommandBox" as CommandBox UI_COLOR
+participant "commandInput:TextField" as TextField UI_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant "view:CommandHistoryView" as CommandHistoryView LOGIC_COLOR
+participant "h:CommandHistory" as CommandHistory LOGIC_COLOR
+participant "nextView:CommandHistoryView" as NCommandHistoryView LOGIC_COLOR
+end box
+
+[-> CommandBox : <KeyEvent>
+activate CommandBox
+CommandBox -> TextField : getText()
+activate TextField
+
+CommandBox <-- TextField : input
+deactivate TextField
+
+CommandBox -> CommandHistoryView : updateCurrentCommand(input)
+
+alt #00ff0000 eventCode = UP
+    CommandBox -> CommandHistoryView : next()
+    activate CommandHistoryView
+
+    CommandBox <-- CommandHistoryView : c
+    deactivate CommandHistoryView
+
+else eventCode = DOWN
+    CommandBox -> CommandHistoryView : previous()
+        activate CommandHistoryView
+
+        CommandBox <-- CommandHistoryView : c
+        deactivate CommandHistoryView
+end
+
+CommandBox -> TextField : setText(c)
+
+[<--CommandBox
+deactivate CommandBox
+
+
+[-> CommandBox : handleCommandEntered()
+activate CommandBox
+
+CommandBox -> CommandHistory : h.add("list")
+
+create NCommandHistoryView
+
+CommandBox -> NCommandHistoryView : CommandHistoryView(h)
+activate NCommandHistoryView
+
+CommandBox <-- NCommandHistoryView : nextView
+deactivate NCommandHistoryView
+
+destroy CommandHistoryView
+
+[<--CommandBox
+deactivate CommandBox
+@enduml

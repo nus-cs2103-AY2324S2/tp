@@ -6,14 +6,16 @@
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
     "github_username": "AliceInWonderland2",
-    "tags" : [ "friends" ]
+    "tags" : [ "friends" ],
+    "tech_stack" : [ "java" ]
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
     "github_username": "BenSon0",
-    "tags" : [ "owesMoney", "friends" ]
+    "tags" : [ "owesMoney", "friends" ],
+    "tech_stack" : [ "java", "python" ]
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",
@@ -27,7 +29,8 @@
     "email" : "cornelia@example.com",
     "address" : "10th street",
     "github_username": "Meier200",
-    "tags" : [ "friends" ]
+    "tags" : [ "friends" ],
+    "tech_stack" : [ "java" ]
   }, {
     "name" : "Elle Meyer",
     "phone" : "9482224",

@@ -92,7 +92,7 @@ public class CodeConnectParserTest {
         List<String> techKeywords = Arrays.asList("foo", "bar", "baz");
         FindTechStackCommand command = (FindTechStackCommand) parser.parseCommand(
                 FindTechStackCommand.COMMAND_WORD + " " + String.join(" ", techKeywords));
-        assertEquals(new FindTechStackCommand(new TsContainsKeywordsPredicate(techKeywords)), command);
+        assertEquals(new FindTechStackCommand(techKeywords), command);
     }
 
     @Test
