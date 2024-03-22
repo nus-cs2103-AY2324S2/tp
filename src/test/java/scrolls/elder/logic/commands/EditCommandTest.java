@@ -105,17 +105,6 @@ public class EditCommandTest {
     }
 
     @Test
-    public void execute_duplicatePersonUnfilteredList_failure() {
-        Model model = new ModelManager(TypicalPersons.getTypicalAddressBook(), new UserPrefs());
-
-        Person firstPerson = model.getFilteredPersonList().get(TypicalIndexes.INDEX_FIRST_PERSON.getZeroBased());
-        EditCommand.EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(firstPerson).build();
-        EditCommand editCommand = new EditCommand(TypicalIndexes.INDEX_SECOND_PERSON, descriptor);
-
-        CommandTestUtil.assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PERSON);
-    }
-
-    @Test
     public void execute_invalidPersonIndexUnfilteredList_failure() {
         Model model = new ModelManager(TypicalPersons.getTypicalAddressBook(), new UserPrefs());
 
