@@ -3,6 +3,7 @@ package seedu.address.model.project;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import seedu.address.model.person.Name;
 
@@ -22,7 +23,7 @@ public class Task {
 
     private LocalDate deadlineDate;
 
-    private Integer priorityNumber;
+    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d yyyy");
 
     /**
      * Constructs a new task object
@@ -74,15 +75,7 @@ public class Task {
      * @param deadline the datetime string to be parsed and set as deadline
      */
     public void setDeadline(String deadline) {
-        this.deadlineDate = LocalDate.parse(deadline);
-    }
-
-    /**
-     * Set the priority of the task
-     * @param priorityNumber the priorityNumber of the task
-     */
-    public void setPriority(Integer priorityNumber) {
-        this.priorityNumber = priorityNumber;
+        this.deadlineDate = LocalDate.parse(deadline, formatter);
     }
 
     /**
@@ -92,6 +85,18 @@ public class Task {
 
     public Name getName() {
         return taskName;
+    }
+
+    public String getMemberName() {
+        return member == null
+            ? ""
+            : member.getName().fullName;
+    }
+
+    public String getDeadlineString() {
+        return deadlineDate == null
+            ? ""
+            : deadlineDate.format(formatter);
     }
 
     /**

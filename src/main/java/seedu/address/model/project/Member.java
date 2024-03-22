@@ -13,8 +13,6 @@ public class Member {
     // Identity fields
     private final Name memberName;
 
-    private Task memberTask;
-
     /**
      * Constructs a new task object
      * @param name the task name
