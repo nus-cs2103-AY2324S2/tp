@@ -47,7 +47,7 @@
           </padding>
         </StackPane>
 
-        <SplitPane orientation="HORIZONTAL" minHeight="600" prefHeight="600" maxHeight="600" VBox.vgrow="ALWAYS">
+        <SplitPane orientation="HORIZONTAL" VBox.vgrow="ALWAYS">
           <VBox fx:id="personList" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
             <padding>
               <Insets top="10" right="10" bottom="10" left="10" />
@@ -57,17 +57,11 @@
 
           <StackPane fx:id="patientDetails" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
             <VBox alignment="CENTER">
-              <Label text="Patient Details" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
-              <Label text="Name: John Doe"/>
-              <Label text="Age: 35"/>
-              <Label text="Gender: Male"/>
-              <Label text="Address: 123 Main St"/>
-              <Label text="Phone: 555-1234"/>
             </VBox>
           </StackPane>
         </SplitPane>
 
-        <StackPane fx:id="statusbarPlaceholder" minHeight="10" prefHeight="10" maxHeight="10"
+        <StackPane fx:id="statusbarPlaceholder" minHeight="20" prefHeight="20" maxHeight="20"
                    VBox.vgrow="ALWAYS" />
       </VBox>
     </Scene>
