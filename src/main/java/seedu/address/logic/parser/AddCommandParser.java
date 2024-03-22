@@ -23,7 +23,7 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         args = args.trim();
-        if (args.isEmpty()) {
+        if (args.length() == 1) {
             return new AddCommand(new HashMap<>());
         } else {
             String[] parts = args.split("/", -1);
