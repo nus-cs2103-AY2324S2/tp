@@ -2,12 +2,20 @@ package seedu.address.testutil;
 
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_CHAD;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_JAMAL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_CHAD;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_JAMAL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_CHAD;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_JAMAL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_CHAD;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_JAMAL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
@@ -56,10 +64,10 @@ public class TypicalPersons {
             .build();
 
     // To for Clients with meetings
-    public static final Person JAMAL = new PersonBuilder().withName("Jamal").withPhone("88888888")
-            .withEmail("jamal@example.com").withAddress("little india").withDefaultMeetingA().build();
-    public static final Person CHAD = new PersonBuilder().withName("Chad").withPhone("88888888")
-            .withEmail("chad@example.com").withAddress("little india").withDefaultMeetingB().build();
+    public static final Person JAMAL = new PersonBuilder().withName(VALID_NAME_JAMAL).withPhone(VALID_PHONE_JAMAL)
+            .withEmail(VALID_EMAIL_JAMAL).withAddress(VALID_ADDRESS_JAMAL).build();
+    public static final Person CHAD = new PersonBuilder().withName(VALID_NAME_CHAD).withPhone(VALID_PHONE_CHAD)
+            .withEmail(VALID_EMAIL_CHAD).withAddress(VALID_ADDRESS_CHAD).build();
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
     private TypicalPersons() {} // prevents instantiation
