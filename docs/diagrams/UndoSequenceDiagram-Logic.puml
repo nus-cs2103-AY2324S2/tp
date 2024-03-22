@@ -14,18 +14,18 @@ end box
 [-> LogicManager : execute(undo)
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand(undo)
-activate AddressBookParser
+LogicManager -> MyBookshelfParser : parseCommand(undo)
+activate MyBookshelfParser
 
 create UndoCommand
-AddressBookParser -> UndoCommand
+MyBookshelfParser -> UndoCommand
 activate UndoCommand
 
-UndoCommand --> AddressBookParser
+UndoCommand --> MyBookshelfParser
 deactivate UndoCommand
 
-AddressBookParser --> LogicManager : u
-deactivate AddressBookParser
+MyBookshelfParser --> LogicManager : u
+deactivate MyBookshelfParser
 
 LogicManager -> UndoCommand : execute()
 activate UndoCommand
