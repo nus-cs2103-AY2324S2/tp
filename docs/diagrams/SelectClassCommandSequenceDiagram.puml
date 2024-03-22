@@ -1,0 +1,45 @@
+@startuml
+UI -> Logic : execute("select class")
+activate Logic
+
+Logic -> Model : selectClass(classes)
+activate Model
+
+Model -> Storage : new JsonAddressBookStorage(selectedClass.getFilePath())
+activate Storage
+Storage -> Storage : readAddressBook()
+activate Storage
+
+alt Address book data is present
+    Storage --> Model : optionalAddressBook
+    Model -> Model : new AddressBook(optionalAddressBook.get())
+    Model -> Model : updateFilteredPersonList(updatedPerson -> true)
+    Model --> Logic : selectedClassAddressBook updated
+
+    Model -> Model : updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS)
+    Model --> Logic : filtered person list updated
+
+    Logic -> Storage : saveClassBook(classBook)
+    activate Storage
+    Storage -> Storage : save to file
+    deactivate Storage
+else
+    Storage -> Logic : DataLoadingException
+    Logic --> UI : Error: Failed to load address book data
+    deactivate Model
+    deactivate Logic
+    UI -> UI : Display error message
+end
+
+deactivate Model
+deactivate Logic
+
+alt Update UI
+    UI -> UIUpdateListener : updateUiOnClassSelected(classes)
+    activate UIUpdateListener
+    UIUpdateListener -> UI : Update UI
+    deactivate UIUpdateListener
+else
+    UI -> UI : No UI update required
+end
+@enduml
