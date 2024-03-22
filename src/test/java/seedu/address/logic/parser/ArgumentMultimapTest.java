@@ -29,10 +29,6 @@ class ArgumentMultimapTest {
             assertTrue(false);
         }
     }
-    @Test
-    public void verifyNoDuplicatePrefixesFor_lengthOnePrefix
-    }
-
 
 }
 
