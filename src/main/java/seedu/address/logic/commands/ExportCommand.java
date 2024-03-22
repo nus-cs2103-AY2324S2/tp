@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -15,19 +16,24 @@ import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema.Builder;
 
+import javafx.collections.ObservableList;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.person.Person;
+import seedu.address.storage.JsonAddressBookStorage;
 
 /**
- * Exports the information stored in the AddressBook to a CSV file.
+ * Exports the information of Persons listed in the interface of the addressbook to a CSV file.
  */
 public class ExportCommand extends Command {
 
     public static final String COMMAND_WORD = "export";
-    public static final String MESSAGE_SUCCESS = "Exported all person's information to CSV file. \n"
+    public static final String MESSAGE_SUCCESS = "Exported all currently listed person(s)'s information to a "
+            + "CSV file. \n"
             + "CSV file can be found in addressbookdata file.";
 
-    private String csvFilePath = "./addressbookdata/addressbook.csv";
+    private String csvFilePath = "./addressbookdata/avengersassemble.csv";
 
     /**
      * Gets the current CSV file path.
@@ -45,6 +51,34 @@ public class ExportCommand extends Command {
      */
     public void updateCsvFilePath(String filePath) {
         this.csvFilePath = filePath;
+    }
+
+    /**
+     * Adds all persons in ObservableList to AddressBook.
+     *
+     * @param addressBook The address book where persons should be added into.
+     * @param personList List containing persons to be added into address book.
+     */
+    public void addToAddressBook(AddressBook addressBook, ObservableList<Person> personList) {
+        for (Person person : personList) {
+            addressBook.addPerson(person);
+        }
+    }
+
+    /**
+     * Writes the information in the address book to a JSON file.
+     *
+     * @param jsonAddressBookStorage The JSON file to write information into.
+     * @param addressBook The address book from which to read the information from.
+     * @throws CommandException If information cannot be written into the JSON file.
+     */
+    public void writeToJsonFile(JsonAddressBookStorage jsonAddressBookStorage, AddressBook addressBook)
+            throws CommandException {
+        try {
+            jsonAddressBookStorage.saveAddressBook(addressBook);
+        } catch (IOException e) {
+            throw new CommandException("Could not write information in filtered list to JSON storage.");
+        }
     }
 
     /**
@@ -140,13 +174,23 @@ public class ExportCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        Path jsonFilePath = model.getAddressBookFilePath();
-        File jsonFile = jsonFilePath.toFile();
-        File csvFile = new File(csvFilePath);
-
-        createCsvDirectory(csvFile);
-
         try {
+            ObservableList<Person> filteredPersonObservableList = model.getFilteredPersonList();
+            if (filteredPersonObservableList.isEmpty()) {
+                throw new CommandException("Nothing to export.");
+            }
+            AddressBook filteredPersonAddressBook = new AddressBook();
+            addToAddressBook(filteredPersonAddressBook, filteredPersonObservableList);
+
+            Path jsonFilePath = Paths.get("data", "filteredaddressbook.json");
+            JsonAddressBookStorage jsonAddressBookStorage = new JsonAddressBookStorage(jsonFilePath);
+            writeToJsonFile(jsonAddressBookStorage, filteredPersonAddressBook);
+
+            File jsonFile = jsonFilePath.toFile();
+            File csvFile = new File(csvFilePath);
+
+            createCsvDirectory(csvFile);
+
             JsonNode jsonTree = readJsonFile(jsonFile);
             JsonNode personsArray = readPersonsArray(jsonTree);
             writeToCsvFile(csvFile, personsArray);
