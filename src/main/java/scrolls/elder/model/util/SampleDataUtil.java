@@ -21,8 +21,8 @@ import scrolls.elder.model.tag.Tag;
  */
 public class SampleDataUtil {
 
-    static final Optional<Name> pairedWithNone = Optional.empty();
-    static final Optional<Integer> pairedWithNoID = Optional.empty();
+    private static final Optional<Name> pairedWithNone = Optional.empty();
+    private static final Optional<Integer> pairedWithNoID = Optional.empty();
     public static Person[] getSamplePersons() {
         return new Person[] {
             new Volunteer(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),

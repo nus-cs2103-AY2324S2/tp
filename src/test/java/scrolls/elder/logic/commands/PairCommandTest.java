@@ -35,9 +35,11 @@ class PairCommandTest {
         String expectedMessage = String.format(PairCommand.MESSAGE_PAIR_SUCCESS,
                 Messages.format(befriendeeToPair), Messages.format(volunteerToPair));
         Person afterPairingPerson1 = new PersonBuilder(befriendeeToPair)
-                .withPairedWith(Optional.of(volunteerToPair.getName())).build();
+                .withPairedWithName(Optional.of(volunteerToPair.getName()))
+                .withPairedWithID(Optional.of(volunteerToPair.getId())).build();
         Person afterPairingPerson2 = new PersonBuilder(volunteerToPair)
-                .withPairedWith(Optional.of(befriendeeToPair.getName())).build();
+                .withPairedWithName(Optional.of(befriendeeToPair.getName()))
+                .withPairedWithID(Optional.of(befriendeeToPair.getId())).build();
 
         ModelManager expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(
