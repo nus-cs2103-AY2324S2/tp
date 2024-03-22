@@ -35,8 +35,6 @@ public class Participant extends Person {
             return false;
         }
 
-        Participant otherPerson = (Participant) other;
-        boolean isSameGroup = otherPerson.getGroupNumber() == this.getGroupNumber();
-        return super.isSamePerson(otherPerson) && isSameGroup;
+        return super.isSamePerson(other);
     }
 }
