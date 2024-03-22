@@ -53,4 +53,16 @@ public class AddRelationshipCommand extends Command {
             throw new CommandException(e.getMessage());
         }
     }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof AddRelationshipCommand)) {
+            return false;
+        }
+        AddRelationshipCommand other = (AddRelationshipCommand) o;
+        return other.originUuid.equals(this.originUuid) && other.targetUuid.equals(targetUuid)
+                && other.relationshipDescriptor.equals(this.relationshipDescriptor);
+    }
 }

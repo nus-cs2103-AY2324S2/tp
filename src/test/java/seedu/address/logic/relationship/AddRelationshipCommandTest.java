@@ -1,89 +1,121 @@
 package seedu.address.logic.relationship;
 
-import java.util.HashMap;
-import java.util.Map;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.TypicalPersonsUuid.getTypicalAddressBook;
+
+import java.util.UUID;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.person.Person;
-import seedu.address.model.person.attribute.Attribute;
-import seedu.address.model.person.attribute.NameAttribute;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
+import seedu.address.model.person.relationship.Relationship;
 
 class AddRelationshipCommandTest {
+    private Model model;
+    private Model expectedModel;
 
-    private Map<String, Person> personMap;
-    private AddRelationshipCommand command;
     @BeforeEach
     void setUp() {
-        personMap = new HashMap<>();
-        // Assume NameAttribute is a subclass of Attribute suitable for testing
-        Attribute name1 = new NameAttribute("Name", "John Doe");
-        Attribute name2 = new NameAttribute("Name", "Jane Doe");
-        Attribute[] attributes1 = new Attribute[]{name1};
-        Attribute[] attributes2 = new Attribute[]{name2};
-
-        // Adding dummy people for testing
-        Person person1 = new Person(attributes1);
-        Person person2 = new Person(attributes2);
-        String uuid1 = person1.getUuidString();
-        String uuid2 = person2.getUuidString();
-        personMap.put(uuid1, person1);
-        personMap.put(uuid2, person2);
-
-        command = new AddRelationshipCommand(uuid1, uuid2, "family");
-    }
-    @Test
-    void execute_validInputWithRoles_success() {
-        String uuid1 = personMap.keySet().iterator().next();
-        String uuid2 = personMap.keySet().iterator().next();
+        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     }
 
     @Test
-    void execute_validInputWithoutRoles_success() {
-        String uuid1 = personMap.keySet().iterator().next();
-        String uuid2 = personMap.keySet().iterator().next();
+    void execute_validInput_success() {
+        String testOriginUuid = "0001";
+        String testTargetUuid = "0002";
+        String relationshipDescriptor = "family";
+        AddRelationshipCommand addRelationshipCommand =
+                new AddRelationshipCommand(testOriginUuid, testTargetUuid, relationshipDescriptor);
+        String expectedMessage = "Add success";
+        UUID person1Uuid = UUID.fromString("00000000-0000-0000-0000-000000000001");
+        UUID person2Uuid = UUID.fromString("00000000-0000-0000-0000-000000000002");
+        String familyRelationshipDescriptor = "family";
+        expectedModel.addRelationship(
+                new Relationship(person1Uuid, person2Uuid, familyRelationshipDescriptor));
+        assertCommandSuccess(addRelationshipCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
-    void execute_invalidInputMissingParts_throwsIllegalArgumentException() {
-        String uuid1 = personMap.keySet().iterator().next();
-
+    void testExecute_duplicateInputThrowsException() {
+        String testOriginUuid = "0001";
+        String testTargetUuid = "0001";
+        String relationshipDescriptor = "family";
+        AddRelationshipCommand addRelationshipCommand =
+                new AddRelationshipCommand(testOriginUuid, testTargetUuid, relationshipDescriptor);
+        assertCommandFailure(addRelationshipCommand, model,
+                "Relationships must be between 2 different people");
     }
 
     @Test
-    void execute_invalidInputIncorrectRelationshipType_throwsIllegalArgumentException() {
-        String uuid1 = personMap.keySet().iterator().next();
-        String uuid2 = personMap.keySet().iterator().next();
+    void testExecute_invalidUuidInputThrowsException() {
+        String testOriginUuid = "0001";
+        String testTargetUuid = "0019";
+        String relationshipDescriptor = "family";
+        AddRelationshipCommand addRelationshipCommand =
+                new AddRelationshipCommand(testOriginUuid, testTargetUuid, relationshipDescriptor);
+        assertCommandFailure(addRelationshipCommand, model,
+                "The UUID provided is invalid.");
+    }
+    @Test
+    void testExecuteAddingExistingRelationshipThrowsException() {
+        String testOriginUuid = "0001";
+        String testTargetUuid = "0002";
+        String relationshipDescriptor = "family";
+        AddRelationshipCommand addRelationshipCommand =
+                new AddRelationshipCommand(testOriginUuid, testTargetUuid, relationshipDescriptor);
+        UUID person1Uuid = UUID.fromString("00000000-0000-0000-0000-000000000001");
+        UUID person2Uuid = UUID.fromString("00000000-0000-0000-0000-000000000002");
+        String familyRelationshipDescriptor = "family";
+        model.addRelationship(new Relationship(person1Uuid, person2Uuid, familyRelationshipDescriptor));
+        assertCommandFailure(addRelationshipCommand, model,
+                "Sorry, 00000000-0000-0000-0000-000000000001 and 00000000-0000-0000-0000-000000000002 are family");
 
     }
-
     @Test
-    void execute_roleBasedRelationshipPersonNotFound_throwsIllegalArgumentException() {
-
+    void testExecuteAddInvalidRelationshipDescriptorThrowsException() {
+        String testOriginUuid = "0001";
+        String testTargetUuid = "0002";
+        String relationshipDescriptor = "spouse";
+        AddRelationshipCommand addRelationshipCommand =
+                new AddRelationshipCommand(testOriginUuid, testTargetUuid, relationshipDescriptor);
+        assertCommandFailure(addRelationshipCommand, model, "Invalid Relationship type");
     }
-
     @Test
-    void execute_rolelessRelationshipPersonNotFound_throwsIllegalArgumentException() {
-
+    void testEqualsMethodWithSameArguments() {
+        String testOriginUuid = "0001";
+        String testTargetUuid = "0002";
+        String relationshipDescriptor = "family";
+        AddRelationshipCommand test1 =
+                new AddRelationshipCommand(testOriginUuid, testTargetUuid, relationshipDescriptor);
+        AddRelationshipCommand test2 =
+                new AddRelationshipCommand(testOriginUuid, testTargetUuid, relationshipDescriptor);
+        assertEquals(test1.equals(test2), true);
     }
-
     @Test
-    void execute_invalidInputIncorrectUuids_throwsIllegalArgumentException() {
-
+    void testEqualsMethodWithNotAddRelationshipCommandInstance() {
+        String testOriginUuid = "0001";
+        String testTargetUuid = "0002";
+        String relationshipDescriptor = "family";
+        AddRelationshipCommand test1 =
+                new AddRelationshipCommand(testOriginUuid, testTargetUuid, relationshipDescriptor);
+        String test2 = "test";
+        assertEquals(test1.equals(test2), false);
     }
-
     @Test
-    void execute_invalidRelationType_throwsIllegalArgumentException() {
-        String uuid1 = personMap.keySet().iterator().next();
-        String uuid2 = personMap.keySet().iterator().next();
-
-    }
-
-    @Test
-    void execute_invalidUuidCommandFormat_throwsIllegalArgumentException() {
-        String uuid1 = personMap.keySet().iterator().next();
-        String uuid2 = personMap.keySet().iterator().next();
-
+    void testEqualsMethodWithSameInstance() {
+        String testOriginUuid = "0001";
+        String testTargetUuid = "0002";
+        String relationshipDescriptor = "family";
+        AddRelationshipCommand test1 =
+                new AddRelationshipCommand(testOriginUuid, testTargetUuid, relationshipDescriptor);
+        assertEquals(test1.equals(test1), true);
     }
 }
+
+
