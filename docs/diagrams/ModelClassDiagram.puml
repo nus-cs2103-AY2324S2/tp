@@ -29,6 +29,9 @@ Class I #FFFFFF
 }
 
 Class HiddenOutside #FFFFFF
+Class HiddenOutsideOutside #FFFFFF
+Class HiddenInside #FFFFFF
+
 HiddenOutside ..> Model
 
 AddressBook .up.|> ReadOnlyAddressBook
