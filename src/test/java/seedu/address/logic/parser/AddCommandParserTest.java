@@ -177,4 +177,28 @@ public class AddCommandParserTest {
                 + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
+
+    @Test
+    public void parse_duplicateNamePrefix_throwsException() {
+        String input = NAME_DESC_AMY + " " + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB;
+        assertParseFailure(parser, input, Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NAME));
+    }
+
+    @Test
+    public void parse_duplicatePhonePrefix_throwsException() {
+        String input = NAME_DESC_BOB + PHONE_DESC_AMY + " " + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB;
+        assertParseFailure(parser, input, Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PHONE));
+    }
+
+    @Test
+    public void parse_duplicateEmailPrefix_throwsException() {
+        String input = NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY + " " + EMAIL_DESC_BOB + ADDRESS_DESC_BOB;
+        assertParseFailure(parser, input, Messages.getErrorMessageForDuplicatePrefixes(PREFIX_EMAIL));
+    }
+
+    @Test
+    public void parse_invalidName_throwsException() {
+        String input = INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB;
+        assertParseFailure(parser, input, Name.MESSAGE_CONSTRAINTS);
+    }
 }

@@ -38,20 +38,20 @@ public interface Model {
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getPayBackFilePath();
 
     /**
      * Sets the user prefs' address book file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setPayBackFilePath(Path payBackFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces address book data with the data in {@code payBack}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setPayBack(ReadOnlyPayBack payBack);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the PayBack */
+    ReadOnlyPayBack getPayBack();
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.

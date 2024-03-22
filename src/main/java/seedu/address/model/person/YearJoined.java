@@ -4,7 +4,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
- * Represents a Person's year joined in the address book.
+ * Represents a Person's year joined in PayBack.
  * Guarantees: immutable; is valid as declared in {@link #isValidYearJoined(String)}
  */
 public class YearJoined {

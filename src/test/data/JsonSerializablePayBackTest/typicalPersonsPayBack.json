@@ -1,5 +1,5 @@
 {
-  "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
+    "_comment": "PayBack save file which contains the same Person values as in TypicalPersons#getTypicalPayBack()",
   "persons" : [ {
     "id": 240001,
     "name" : "Alice Pauline",

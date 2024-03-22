@@ -7,5 +7,5 @@
       "y" : 100
     }
   },
-  "addressBookFilePath" : "payback.json"
+  "payBackFilePath": "payback.json"
 }
