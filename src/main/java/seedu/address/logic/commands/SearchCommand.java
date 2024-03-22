@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.logic.messages.Messages;
+import seedu.address.logic.messages.SearchMessages;
 import seedu.address.model.Model;
 import seedu.address.model.person.KeywordPredicate;
 
@@ -26,9 +26,6 @@ public class SearchCommand extends Command {
             + "/search ; product : [full/partial product name]\n"
             + "/search ; employment : [employment]";
 
-    public static final String MESSAGE_SEARCH_INVALID_FIELD =
-            "Failed to find Pooch Contact - Pooch doesn't recognise the field \uD83D\uDC3E";
-
     private final KeywordPredicate predicate;
 
     public SearchCommand(KeywordPredicate predicate) {
@@ -40,7 +37,7 @@ public class SearchCommand extends Command {
         requireNonNull(model);
         model.updateFilteredPersonList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+                String.format(SearchMessages.MESSAGE_SEARCH_PERSON_SUCCESS, model.getFilteredPersonList().size()));
     }
 
     @Override

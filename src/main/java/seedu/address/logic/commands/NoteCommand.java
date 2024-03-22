@@ -5,9 +5,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-import java.util.List;
-
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.messages.NoteMessages;
 import seedu.address.model.Model;
 import seedu.address.model.person.Maintainer;
 import seedu.address.model.person.Name;
@@ -22,7 +21,6 @@ import seedu.address.model.person.Supplier;
  */
 public class NoteCommand extends Command {
 
-    public static final String MESSAGE_ADD_NOTE_SUCCESS = "Added note to Person: %1$s";
     public static final String COMMAND_WORD = "/note";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
@@ -47,8 +45,6 @@ public class NoteCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        List<Person> lastShownList = model.getFilteredPersonList();
-
         Person personToEdit = model.findByName(name);
         if (personToEdit instanceof Maintainer || personToEdit instanceof Staff
                 || personToEdit instanceof Supplier) {
@@ -69,8 +65,7 @@ public class NoteCommand extends Command {
      * {@code personToEdit}.
      */
     private String generateSuccessMessage(Person personToEdit) {
-        String message = MESSAGE_ADD_NOTE_SUCCESS;
-        return String.format(message, personToEdit);
+        return String.format(NoteMessages.MESSAGE_ADD_NOTE_SUCCESS, personToEdit);
     }
 
     @Override
