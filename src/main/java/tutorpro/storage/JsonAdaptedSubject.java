@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 import tutorpro.commons.exceptions.IllegalValueException;
 import tutorpro.model.person.student.Subject;
-import tutorpro.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Subject}.
