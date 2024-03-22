@@ -91,7 +91,8 @@ public class PersonTest {
                 + ", job description=" + ALICE.getJobDescription()
                 + ", interview date=" + ALICE.getInterviewDate()
                 + ", intern duration=" + ALICE.getInternDuration()
-                + ", salary=" + ALICE.getSalary() + "}";
+                + ", salary=" + ALICE.getSalary()
+                + ", note=" + ALICE.getNote() + "}";
         assertEquals(expected, ALICE.toString());
     }
 }

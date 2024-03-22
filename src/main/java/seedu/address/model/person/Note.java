@@ -1,12 +1,14 @@
 package seedu.address.model.person;
 
-import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Person's name in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidNote(String)}
  */
 public class Note {
+    public static final String VALIDATION_REGEX = "[^\\s].*";
+    public static final String MESSAGE_CONSTRAINTS = "Notes can take any values, and it should not be blank";
     public final String value;
 
     /**
@@ -15,15 +17,19 @@ public class Note {
      * @param note A valid name.
      */
     public Note(String note) {
-        requireNonNull(note);
-        value = note;
+        if (note.isEmpty()) {
+            value = "";
+        } else {
+            checkArgument(isValidNote(note), MESSAGE_CONSTRAINTS);
+            value = note;
+        }
     }
 
     /**
      * Returns true if a given string is a valid note.
      */
     public static boolean isValidNote(String test) {
-        return true;
+        return test.matches(VALIDATION_REGEX);
     }
 
 
