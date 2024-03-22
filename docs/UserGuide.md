@@ -261,8 +261,10 @@ _Details coming soon ..._
 
 Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add Event**    | `addev -ev <event name>` <br> e.g., `addev -ev Orientation camp`
+**Add Event**    | `addev ev/<event name>` <br> e.g., `addev ev/Orientation camp`
 **Delete Event**    | `delev <index>` <br> e.g., `delev 1`
-**Add Participant**    | `addp -n <participant name> -p <phone number> -e <email>` <br> e.g., `addp -n David -p 98987676 -e david@example.com`
-**Invite to Event**    | `invite INDEX` <br> e.g., `invite 5`
-
+**Add Participant**    | `addp n/<participant name> p/<phone number> e/<email>` <br> e.g., `addp n/David p/98987676 e/david@example.com`
+**Invite to Event**    | `inv INDEX` <br> e.g., `invite 5`
+**Edit Participant**    | `editp <participant index> n/<participant name> p/<phone number> e/<email>` <br> e.g., `editp 5 n/Max p/00000000 e/test@gmail.com`
+**Select Event**    | `sel <event index>` <br> e.g., `sel 3`
+**Delete Participant**    | `delp <index>` <br> e.g., `delp 2`
