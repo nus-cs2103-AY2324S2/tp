@@ -256,6 +256,40 @@ _{more aspects and alternatives to be added}_
 _{Explain here how the data archiving feature will be implemented}_
 
 
+# Implementation of Classes feature
+The Classes feature is built using the basic structure of `AddressBook`. `Classes` represents a tutorial class.
+### 1. Basic structure
+A `ClassBook` instance holds all current `Classes` instances. This is stored in the data folder as `classbook.json`
+file. <br />
+Each `Classes` instance contains an instance of `Addressbook`, which holds a list of `Person` instances 
+representing the students in the Class. Each `Classes` instance stored in data as `[className].json` where 
+className is the name of the `Classes` instance e.g. `CS2103.json`
+
+### 2. Changes to Storage
+Problem 1:
+The original structure of AB3 only allows for a single file path for storage, which was set to `addressbook.json` 
+by default. This was a big problem, as our intended implementation of the Classes feature necessitated
+multiple .json files to make sharing data between tutors easier. <br />
+
+Solution 1 v1.0: 
+Rather than use the filepath specified in the `preferences.json`, `ModelManager` was changed to use
+its own instance of `Storage`, to call the `saveAddressBook` with `selectedClass.getFilePath()`
+as the second parameter. This works, but SLAP is not ideal with the current implementation.
+
+### 3. Changes to UI
+Problem 1:
+Since the original AB3 had only one command (find) that required the UI to be updated, the UI was implemented to update 
+based on the contents of the `filteredPersonsList`. This was inadequate for our classes feature, which
+requires the UI's `PersonListPanel` to be updated upon selecting a different class. 
+
+Solution 1:
+A list of `UiUpdateListener` - `List<UiUpdateListener> uiUpdateListeners` is created in ModelManager by calling 
+`modelManager.addUiUpdateListener(uiManager);` in MainApp. The listeners monitors for calls to the `select` command,
+and call `mainWindow.fillInnerParts()` to update the UI PersonListPanel.
+
+
+
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
