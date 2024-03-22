@@ -9,15 +9,17 @@ else ([Valid command format])
     if () then ([else])
         :PatientSync throws an error;
     else ([Valid index])
+        :PatientSync generates the set of tags to be added;
         :PatientSync retrieves the patient with the specified index;
         :PatientSync retrieves the patient's current tags;
-        :PatientSync adds new tags one by one to the existing tag set;
-        if () then ([Tag already exists])
-            :add message to output: Tag already exists for the patient;
-        else ([else])
-            :add message to output: Tag added successfully for the patient;
-        endif
-        :PatientSync updates the patient's tag set;
+        while () is ([More tags to be processed])
+            if () then ([Tag already exists in patient's tag set])
+                :Add message to output: Tag already exists for the patient;
+            else ([else])
+                :Add the tag to the patient's tag set;
+                :Add message to output: Tag added successfully for the patient;
+            endif
+        endwhile([else])
         :PatientSync updates the patient's details;
         :PatientSync updates the displayed patient list;
         :PatientSync displays output message;
