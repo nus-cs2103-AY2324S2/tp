@@ -8,15 +8,9 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.DateOfBirth;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.NricContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Sex;
-import seedu.address.model.person.Status;
 
 /**
  * Reads the details of an existing person in the address book.
@@ -47,10 +41,7 @@ public class ReadCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        Person sample = new Person(this.nric, new Name("sample"), new Phone("12345678"), new Address("123 Lane"),
-                new DateOfBirth("1900-01-01"), new Sex("F"), new Status("HEALTHY"));
-        // Todo: change to find if person exists using only NRIC
-        if (model.hasPerson(sample)) {
+        if (model.hasPerson(Person.createPersonWithNric(nric))) {
             throw new CommandException(MESSAGE_NO_PERSON);
         }
 
