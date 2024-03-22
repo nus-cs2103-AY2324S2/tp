@@ -15,7 +15,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
 /**
- * Adds the indicated contacts in the address book as favourites
+ * Removes the indicated contacts in the address book from favourites
  */
 public class RemoveFavouriteCommand extends Command {
     public static final String COMMAND_WORD = "removefav";
@@ -51,7 +51,7 @@ public class RemoveFavouriteCommand extends Command {
         for (Index index : this.indices) {
             Person person = people.get(index.getZeroBased());
             if (!person.getFavourite()) {
-                throw new CommandException(Messages.MESSAGE_INVALID_COMMAND_FORMAT);
+                throw new CommandException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
             }
             modifiedContacts.add(person.getName().fullName);
             person.removeFavourite();
