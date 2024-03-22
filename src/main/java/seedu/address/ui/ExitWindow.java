@@ -67,6 +67,13 @@ public class ExitWindow extends UiPart<Stage> {
     }
 
     /**
+     * Hides the exit window.
+     */
+    public void hide() {
+        getRoot().hide();
+    }
+
+    /**
      * Returns true if the exit window is currently being shown.
      */
     public boolean isShowing() {
