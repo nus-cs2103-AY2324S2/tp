@@ -24,7 +24,6 @@ import seedu.address.model.tag.Tag;
 
 /**
  * Adds one or more tags to the specified patient.
- * Tags can only be a single word, with no space in between.
  * Repeated tags in command will be added as a single tag.
  * If the patient already has the tag, it will not be added.
  */
@@ -33,12 +32,12 @@ public class AddTagsCommand extends Command {
     public static final String COMMAND_WORD = "addt";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Adds one or more tags (single word) to the patient identified "
+            + ": Adds one or more tags to the patient identified "
             + "by the index number used in the last patient listing. "
             + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_TAG + "[TAG]+ \n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_TAG + "fallRisk";
+            + PREFIX_TAG + "fall risk";
 
     public static final String MESSAGE_ADD_TAG_SUCCESS = "Added the tag: %2$s for Patient: %1$s"
             + " successfully";
@@ -100,8 +99,8 @@ public class AddTagsCommand extends Command {
     /**
      * Add specified tags to a patient's tag set.
      *
-     * @param patient       The patient whose tags are being modified.
-     * @param tagSet        The current set of tags for the patient.
+     * @param patient    The patient whose tags are being modified.
+     * @param tagSet     The current set of tags for the patient.
      * @param toAddTags  The Tags to be added.
      * @return A Pair containing the updated tag set and a string describing the outcome of the deletion.
      */

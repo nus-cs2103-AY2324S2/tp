@@ -32,7 +32,7 @@ public class DeleteTagsCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_TAG + "[TAG]+ \n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_TAG + "fallRisk";
+            + PREFIX_TAG + "fall risk";
 
     public static final String MESSAGE_DELETE_TAG_SUCCESS = "Deleted the tag: %2$s for Patient: %1$s"
             + " successfully";

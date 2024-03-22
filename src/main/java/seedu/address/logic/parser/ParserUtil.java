@@ -162,11 +162,11 @@ public class ParserUtil {
     /**
      * Removes extra spaces between words.
      *
-     * @param tagName The tag name to process.
-     * @return The tag name with extra spaces removed.
+     * @param toBeProcessed The string to be processed.
+     * @return The string with extra spaces removed.
      */
-    public static String removeExtraSpaces(String tagName) {
-        return Arrays.stream(tagName.split("\\s+"))
+    public static String removeExtraSpaces(String toBeProcessed) {
+        return Arrays.stream(toBeProcessed.split("\\s+"))
                 .filter(word -> !word.isEmpty())
                 .collect(Collectors.joining(" "));
     }

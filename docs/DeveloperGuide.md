@@ -238,7 +238,7 @@ The `AddTagsCommand` class is responsible for adding one or more tags to a patie
 
 #### Specifications
 
-* Tags, as defined by the `Tag` class, are alphanumeric, single-word identifiers without spaces, and repeated tags in the command are added as a single tag.
+* Tags, as defined by the `Tag` class, are alphanumeric characters with or without spaces, and repeated tags in the command are added as a single tag.
 * The addition of tags is cumulative, and new tags will be added to the existing set of tags for the patient, preserving the previously assigned tags.
 *  If the patient has an existing tag that is provided in the command, it will not be added, and the output would be logged and shown to the user.
 
@@ -248,7 +248,7 @@ Given below is an example usage scenario and how the group creation mechanism be
 
 Step 1: The user accesses the PatientSync application.
 
-Step 2: The user executes the `addt 1 t/christian t/fallRisk` command to add the tags christian and fallRisk to patient 1 in the displayed patient list. The `AddTagsCommandParser` will be called to validate the input, ensuring that the index is valid and at least one tag is provided. Upon successful validation, it creates an `AddTagsCommand` instance.
+Step 2: The user executes the `addt 1 t/christian t/fall risk` command to add the tags christian and fallRisk to patient 1 in the displayed patient list. The `AddTagsCommandParser` will be called to validate the input, ensuring that the index is valid and at least one tag is provided. Upon successful validation, it creates an `AddTagsCommand` instance.
 
 <box type="info" seamless>
 <b>Note</b>: Since multiple inputs are allowed, a set of tags are passed around, each of which is to be added if the above requirements are met.
@@ -305,7 +305,7 @@ The `DeleteTagsCommand` class enables the removal of one or more tags from a pat
 
 #### Specifications
 
-* Tags, as defined by the `Tag` class, are alphanumeric, single-word identifiers without spaces.
+* Tags, as defined by the `Tag` class, are alphanumeric characters with or without spaces, and repeated tags in the command are added as a single tag.
 * The deletion of tags is performed by specifying the tags to be removed for a particular patient.
 * Tags should match exactly with the existing tags of the patient.
 * If a patient has the tag(s) provided in the command, they will be removed. This operation is counted as a successful deletion.
@@ -318,7 +318,7 @@ Below is an example scenario of how the tag deletion process works within the Pa
 
 Step 1: The user accesses the PatientSync application.
 
-Step 2: The user executes the `deletet 1 t/fallRisk` command to delete the `fallRisk` tag from patient 1 in the displayed patient list. The `DeleteTagsCommandParser` validates the input, ensuring that the index is valid and at least one tag is provided. Upon successful validation, an `DeleteTagsCommand` instance is created.
+Step 2: The user executes the `deletet 1 t/fall risk` command to delete the `fall risk` tag from patient 1 in the displayed patient list. The `DeleteTagsCommandParser` validates the input, ensuring that the index is valid and at least one tag is provided. Upon successful validation, an `DeleteTagsCommand` instance is created.
 
 <box type="info" seamless>
 <b>Note</b>: Since multiple inputs are allowed, a set of tags to be deleted is passed, each of which will be removed if found associated with the patient.

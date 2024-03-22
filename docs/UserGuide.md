@@ -171,10 +171,11 @@ Adds one or more tags to a patient in the address book.
 
 Format: `addt INDEX [t/TAG]+`
 
-* Adds one or more tags (**single word**) to a patient identified by the index number used in the last patient listing.
+* Adds one or more tags to a patient identified by the index number used in the last patient listing.
 * At least one tag must be provided.
-* Tags should be alphanumeric and cannot be blank.
-* Tags are **case-sensitive**.
+* Tags can only contain alphanumeric characters or spaces.
+* Tags cannot be blank
+* Tags are **case-insensitive**.
 * The index **must be a positive integer** 1, 2, 3, …​
 * When adding tags, if a tag is repeated in the command, it will be added as a single tag.
   E.g. `t/friend t/friend` will be added as a single `friend` tag.
@@ -187,7 +188,7 @@ Format: `addt INDEX [t/TAG]+`
 
 Examples:
 * `addt 1 t/critical`
-* `addt 2 t/friend t/fallRisk`
+* `addt 2 t/friend t/fall risk`
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -199,16 +200,17 @@ Format: `deletet INDEX [t/TAG]+`
 
 * Deletes one or more tags from a patient identified by the index number used in the last patient listing.
 * At least one tag must be provided.
-* Tags should be alphanumeric and cannot be blank.
-* Tags are **case-sensitive**.
+* Tags can only contain alphanumeric characters or spaces.
+* Tags cannot be empty or blank
+* Tags are **case-insensitive** when matching tags
 * The index **must be a positive integer** 1, 2, 3, …​
-* Tags should match exactly with the existing tags of the patient.
-* When deleting tags, if a tag is repeated in the command, it will be treated as a single tag to delete. E.g. `t/friend t/friend` will be considered as a single `friend` tag for deletion.
-* If the patient does not have a tag provided in the command, it will be logged and shown to the user as an unsuccessful deletion of that tag.
+* Tags provided should match with the existing tags of the patient.
+* When deleting tags, if tags are repeated in the command, it will be treated as a single tag to delete. E.g. `t/friend t/friend` will be considered as a single `friend` tag for deletion.
+* If the patient does not have a tag provided in the command, it will be logged and shown to the user.
 
 Examples:
 * `deletet 1 t/critical`
-* `deletet 2 t/friend t/fallRisk`
+* `deletet 2 t/friend t/fall risk`
 
 --------------------------------------------------------------------------------------------------------------------
 
