@@ -134,18 +134,22 @@ Examples:
 
 ### Locating patients by name: `find`
 
-Finds patients whose hospital ID exactly match the given ID.
+Finds patients whose name exactly match the given keyword(s).
 
-Format: `find [HOSPITAL_ID]`
+Format: `find KEYWORD [MORE_KEYWORD]`
 
-* Only the Hospital ID is searched.
-* Only full IDs will be matched e.g. `1234` will not match `12345`
-* Patients with matching Hospital IDs will be returned.
+* The search is case-insensitive e.g. `alex` will match `Alex`
+* The order of the patient name does not matter. e.g. `Becker Alex` will match `Alex Becker`
+* Only the Patient Name is searched.
+* Only full word(s) will be matched .
+e.g. `Alex` will not match `Alexandra`, `Alex` will match `Alex Becker`
+* Patients matching at least one keyword will be returned. 
+e.g. `Alex Becker` will return `Alex Keller` and `Becker Anderson`
 
 Examples:
-* `find 12345` returns Patient with Hospital ID `12345`.
-* `find alex david` returns no patients as the search is based on Hospital IDs and not names.
-  ![result for 'find patient with hospital ID 12345'](images/findPatient12345Result.png)
+* find `Alex` returns `alex` and `Alex becker`
+* find `alex becker` returns `alex`, `Alex Becker` and `Becker Li`
+  ![result for 'find patients whose name is alex becker'](images/findPatientAlexBeckerResult.png)
 
 --------------------------------------------------------------------------------------------------------------------
 

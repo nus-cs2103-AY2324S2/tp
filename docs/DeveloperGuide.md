@@ -629,6 +629,46 @@ command.
 <puml src="diagrams/ListSequenceDiagram.puml" alt="List Sequence Diagram" />
 
 --------------------------------------------------------------------------------------------------------------------
+
+### 3.10 Locating patients by name
+
+#### Introduction
+
+The `FindCommand` class is responsible for finding the patients by the name in the patient list
+using keyword(s).
+
+#### Specifications
+
+* `FindCommand` takes in one or more keywords to find patients in the patient list.
+* `FindCommand` will update the patient list with patients whose name matches the keyword(s).
+
+#### Example Usage Scenario
+
+Given below is an example usage scenario and how the group creation mechanism behaves at each step.
+
+Step 1: The user accesses the PatientSync application.
+
+Step 2: The user executes `find Alex` to search for patients whose name is Alex.
+* Upon successful execution, those patients whose name is `Alex` will be listed in the patient list.
+
+The following UML sequence diagram illustrates how the Find operations works.
+<puml src="diagrams/FindSequenceDiagram.puml" alt="Find Sequence Diagram" />
+
+
+#### Design Considerations
+
+**Aspect: Choice of keyword**
+
+* **Alternative 1 (current choice)**: Search using `PATIENT_NAME` as the keyword
+  * Pros: Easy for user to remember the name.
+  * Cons: There may be many patients whose name contains the same keyword.
+    <br></br>
+* **Alternative 2**: Search using `PATIENT_HOSPITAL_ID` as the keyword
+  * Pros: User may obtain the specific patient.
+  * Cons: Hard for user to remember the specific `PATIENT_HOSPITAL_ID`.
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## 4 Planned Enhancements
 
 ### 4.1 \[Proposed\] Undo/redo feature
