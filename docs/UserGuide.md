@@ -33,7 +33,7 @@ Eventy is a contact management application, tailored specifically for student ev
 
 ### Creating an event: `addev`
 
-**Format:** `addev -ev <event name>`
+**Format:** `addev ev/<event name>`
 
 **Description:**
 
@@ -49,7 +49,7 @@ Adds a new event with the specified name for the Event List.
 
 **Examples:**
 
-- `addev -ev Orientation camp` adds a new event with the name `Orientation camp`.
+- `addev ev/Orientation camp` adds a new event with the name `Orientation camp`.
 
 ### Deleting an event: `delev`
 
@@ -72,7 +72,7 @@ Deletes an event and all its relevant information with its index in the event li
 
 ### Adding participant and their information to the global participant list: `addp`
 
-**Format:** `addp -n <participant name> -p <phone number> -e <email>`
+**Format:** `addp n/<participant name> p/<phone number> e/<email>`
 
 **Description:**
 
@@ -86,12 +86,12 @@ Adds a new participant to the app, allowing them to be added to an event later.
 
 **Examples:**
 
-- `addp -n David -p 98987676 -e david@example.com` adds a participant named `David`
+- `addp n/David p/98987676 e/david@example.com` adds a participant named `David`
   with the phone number `98987676` and email of `david@example.com` to the displayed contacts list.
 
-### Invite person to selected event: `invite`
+### Invite person to selected event: `inv`
 
-**Format:** `invite <participant index>`
+**Format:** `inv <participant index>`
 
 **Description:**
 
@@ -104,7 +104,7 @@ Invite participants from the global participant list to the selected event.
 
 **Examples:**
 
-- `invite 5` Adds participant indexed 5 to selected event.
+- `inv 5` Adds participant indexed 5 to selected event.
 
 ### Clearing all entries : `clear`
 
@@ -114,7 +114,7 @@ Format: `clear`
 
 ### Edit existing participant: `editp`
 
-**Format:** `editp <participant index> -n <participant name> -p PHONE -e EMAIL`
+**Format:** `editp <participant index> n/<participant name> p/<phone number> e/<email>`
 
 **Description:**
 
@@ -126,7 +126,7 @@ Updates the contact information of a participant in the app.
 
 **Examples:**
 
-- `editp 5 -n Max -p 00000000 -e test@gmail.com` Edits contact details of participant indexed 5.
+- `editp 5 n/Max p/00000000 e/test@gmail.com` Edits contact details of participant indexed 5.
 
 ### Selecting an event: `sel`
 
