@@ -33,18 +33,6 @@ public class Messages {
     }
 
     /**
-     * Returns an error message indicating the duplicate prefixes.
-     */
-    public static String getErrorMessageForExtraPrefixes(String command, Prefix... extraPrefixes) {
-        assert extraPrefixes.length > 0;
-
-        Set<String> extraFields =
-                Stream.of(extraPrefixes).map(Prefix::toString).collect(Collectors.toSet());
-
-        return String.format(MESSAGE_EXTRA_FIELDS, command, extraFields);
-    }
-
-    /**
      * Formats the {@code person} for display to the user.
      */
     public static String format(Person person) {

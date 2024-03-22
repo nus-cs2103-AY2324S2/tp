@@ -50,7 +50,8 @@ public class EditSupplierCommandParser implements Parser<EditSupplierCommand> {
         }
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_FIELD)) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditSupplierCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(EditMessages.MESSAGE_EDIT_MISSING_FIELD,
+                    EditSupplierCommand.MESSAGE_USAGE));
         }
 
         name = mapName(argMultimap);

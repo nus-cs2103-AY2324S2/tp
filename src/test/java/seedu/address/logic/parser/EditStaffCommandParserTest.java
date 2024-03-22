@@ -25,6 +25,7 @@ import static seedu.address.testutil.TypicalPersons.CARL;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditStaffCommand;
 import seedu.address.logic.commands.EditStaffCommand.EditStaffDescriptor;
 import seedu.address.logic.messages.EditMessages;
@@ -45,6 +46,23 @@ public class EditStaffCommandParserTest {
             + " " + PREFIX_FIELD + "{" + " }";
         assertParseFailure(parser, userInput, String.format(EditMessages.MESSAGE_EDIT_INVALID_NAME,
                 Name.MESSAGE_CONSTRAINTS));
+    }
+
+    @Test
+    public void parse_missingName_failure() {
+        // no field specified
+        String userInput = EditCommand.COMMAND_WORD + " "
+                + " " + PREFIX_FIELD + "{" + " }";
+        assertParseFailure(parser, userInput, String.format(EditMessages.MESSAGE_EDIT_MISSING_NAME,
+                EditStaffCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_missingField_failure() {
+        // no field specified
+        String userInput = EditCommand.COMMAND_WORD + " " + PREFIX_NAME;
+        assertParseFailure(parser, userInput, String.format(EditMessages.MESSAGE_EDIT_MISSING_FIELD,
+                EditStaffCommand.MESSAGE_USAGE));
     }
 
     @Test

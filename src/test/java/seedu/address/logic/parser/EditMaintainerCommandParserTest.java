@@ -25,6 +25,7 @@ import static seedu.address.testutil.TypicalPersons.CARL;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditMaintainerCommand;
 import seedu.address.logic.commands.EditMaintainerCommand.EditMaintainerDescriptor;
 import seedu.address.logic.messages.EditMessages;
@@ -45,6 +46,23 @@ public class EditMaintainerCommandParserTest {
             + " " + PREFIX_FIELD + "{" + " }";
         assertParseFailure(parser, userInput, String.format(EditMessages.MESSAGE_EDIT_INVALID_NAME,
                 Name.MESSAGE_CONSTRAINTS));
+    }
+
+    @Test
+    public void parse_missingName_failure() {
+        // no field specified
+        String userInput = EditCommand.COMMAND_WORD + " "
+                + " " + PREFIX_FIELD + "{" + " }";
+        assertParseFailure(parser, userInput, String.format(EditMessages.MESSAGE_EDIT_MISSING_NAME,
+                EditMaintainerCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_missingField_failure() {
+        // no field specified
+        String userInput = EditCommand.COMMAND_WORD + " " + PREFIX_NAME;
+        assertParseFailure(parser, userInput, String.format(EditMessages.MESSAGE_EDIT_MISSING_FIELD,
+                EditMaintainerCommand.MESSAGE_USAGE));
     }
 
     @Test

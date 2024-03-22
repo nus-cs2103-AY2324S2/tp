@@ -49,7 +49,8 @@ public class EditStaffCommandParser implements Parser<EditStaffCommand> {
         }
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_FIELD)) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditStaffCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(EditMessages.MESSAGE_EDIT_MISSING_FIELD,
+                    EditStaffCommand.MESSAGE_USAGE));
         }
 
         name = mapName(argMultimap);

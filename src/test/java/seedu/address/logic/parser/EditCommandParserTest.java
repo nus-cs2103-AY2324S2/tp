@@ -48,6 +48,23 @@ public class EditCommandParserTest {
     }
 
     @Test
+    public void parse_missingName_failure() {
+        // no field specified
+        String userInput = EditCommand.COMMAND_WORD + " "
+                + " " + PREFIX_FIELD + "{" + " }";
+        assertParseFailure(parser, userInput, String.format(EditMessages.MESSAGE_EDIT_MISSING_NAME,
+                EditCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_missingField_failure() {
+        // no field specified
+        String userInput = EditCommand.COMMAND_WORD + " " + PREFIX_NAME;
+        assertParseFailure(parser, userInput, String.format(EditMessages.MESSAGE_EDIT_MISSING_FIELD,
+                EditCommand.MESSAGE_USAGE));
+    }
+
+    @Test
     public void parse_invalidPreamble_failure() {
         // invalid name
         String userInput = EditCommand.COMMAND_WORD + " " + PREFIX_NAME + " "

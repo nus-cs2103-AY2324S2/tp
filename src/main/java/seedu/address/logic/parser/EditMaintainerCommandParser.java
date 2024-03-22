@@ -49,7 +49,7 @@ public class EditMaintainerCommandParser implements Parser<EditMaintainerCommand
         }
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_FIELD)) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+            throw new ParseException(String.format(EditMessages.MESSAGE_EDIT_MISSING_FIELD,
                     EditMaintainerCommand.MESSAGE_USAGE));
         }
 
