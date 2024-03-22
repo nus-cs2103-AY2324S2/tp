@@ -1,0 +1,32 @@
+@startuml
+skin rose
+skinparam ActivityFontSize 15
+skinparam ArrowFontSize 12
+start
+:Add/Edit CommandParser parses arguments;
+:ArgumentTokenizer tokenizes attributes;
+if () then ([has certain duplicated prefixes])
+    :Display duplicate prefix error;
+    stop
+else
+    :Parse attributes into classes;
+    if () then ([has attribute parsing error])
+        :Display attribute parsing error;
+        stop
+    else ()
+        :Create new Person instance with supplied attributes;
+        :Create new Add/Edit Command instance with new Person;
+        :Execute new Add/Edit Command instance;
+        if () then ([new person already exists in FitBook])
+            :Display duplicate person error;
+            stop
+        else ()
+            :Add new/edited person to FitBook;
+            :Save clients to JSON file;
+            :Display successful add/edit command result;
+            stop
+        endif
+    endif
+endif
+@enduml
+c
