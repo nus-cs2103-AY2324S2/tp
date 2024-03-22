@@ -1,17 +1,17 @@
 package seedu.address.logic;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.ALICEMAINTAINER;
+import static seedu.address.testutil.TypicalPersons.ALICESTAFF;
+import static seedu.address.testutil.TypicalPersons.ALICESUPPLIER;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.logic.messages.AddMessages;
 import seedu.address.logic.messages.DeleteMessages;
 import seedu.address.logic.messages.EditMessages;
 import seedu.address.logic.messages.Messages;
-import seedu.address.model.person.Person;
-import seedu.address.testutil.MaintainerBuilder;
-import seedu.address.testutil.StaffBuilder;
-import seedu.address.testutil.SupplierBuilder;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.testutil.TypicalPersons.*;
 
 /**
  * Contains unit tests for {@code Messages}.
