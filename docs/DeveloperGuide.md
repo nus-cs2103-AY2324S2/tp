@@ -242,20 +242,24 @@ The `AddTagsCommand` class is responsible for adding one or more tags to a patie
 * The addition of tags is cumulative, and new tags will be added to the existing set of tags for the patient, preserving the previously assigned tags.
 *  If the patient has an existing tag that is provided in the command, it will not be added, and the output would be logged and shown to the user.
 
+The activity diagram below outlines the steps involved when a user initiates an Add Tags command.
+<puml src="diagrams/AddTagsActivityDiagram.puml" alt="AddTagsActivityDiagram" />
+
+
 #### Example Usage Scenario
 
-Given below is an example usage scenario and how the group creation mechanism behaves at each step.
+Given below is an example usage scenario and how the tag addition process behaves at each step:
 
 Step 1: The user accesses the PatientSync application.
 
-Step 2: The user executes the `addt 1 t/christian t/fall risk` command to add the tags christian and fallRisk to patient 1 in the displayed patient list. The `AddTagsCommandParser` will be called to validate the input, ensuring that the index is valid and at least one tag is provided. Upon successful validation, it creates an `AddTagsCommand` instance.
+Step 2: The user executes the `addt 1 t/christian t/fall risk` command to add the tags `christian` and `fall risk` to patient 1 in the displayed patient list. The `AddTagsCommandParser` will be called to validate the input, ensuring that the index is valid and at least one tag is provided. Upon successful validation, it creates an `AddTagsCommand` instance.
 
 <box type="info" seamless>
 <b>Note</b>: Since multiple inputs are allowed, a set of tags are passed around, each of which is to be added if the above requirements are met.
 </box>
 
 The following sequence diagram shows how the Add Tags operation works:
-<puml src="diagrams/AddTagsSequenceDiagram.puml" alt="AddTagsSequence" />
+<puml src="diagrams/AddTagsSequenceDiagram.puml" alt="AddTagsSequenceDiagram" />
 
 <box type="info" seamless>
 
@@ -325,7 +329,7 @@ Step 2: The user executes the `deletet 1 t/fall risk` command to delete the `fal
 </box>
 
 The following sequence diagram shows how the Delete Tags operation works:
-<puml src="diagrams/DeleteTagsSequenceDiagram.puml" alt="DeleteTagsSequence" />
+<puml src="diagrams/DeleteTagsSequenceDiagram.puml" alt="DeleteTagsSequenceDiagram" />
 
 <box type="info" seamless>
 
@@ -333,18 +337,6 @@ The following sequence diagram shows how the Delete Tags operation works:
 
 </box>
 
-
-<!---
-The following sequence diagram summarizes what happens when a user executes a Delete Tags operation:
-<puml src="diagrams/DeleteTagsTimeDiagram.puml" alt="DeleteTagsSequenceTimeDiagram" />
-
-<box type="info" seamless>
-
-**Note:** The lifeline for `DeleteTagCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</box>
-
--->
 
 #### Design Considerations
 
