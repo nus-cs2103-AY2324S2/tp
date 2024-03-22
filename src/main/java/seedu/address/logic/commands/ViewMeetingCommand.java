@@ -1,5 +1,10 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -7,16 +12,22 @@ import seedu.address.model.Model;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-
+/**
+ * Represents a View command for viewing a specific meeting of a client.
+ * This command extends {@link ViewCommand} and allows the user to view details
+ * of a particular meeting associated with a client.
+ */
 public class ViewMeetingCommand extends ViewCommand {
     public static final String MESSAGE_SUCCESS = "You are now viewing Meeting with index: ";
     private final Index clientIndex;
     private final Index meetingIndex;
 
+    /**
+     * Creates a ViewMeetingCommand to view the specified meeting of a client.
+     *
+     * @param clientIndex the index of the client in the filtered client list to view the meeting of.
+     * @param meetingIndex the index of the meeting in the client's list of meetings to view.
+     */
     public ViewMeetingCommand(Index clientIndex, Index meetingIndex) {
         this.clientIndex = clientIndex;
         this.meetingIndex = meetingIndex;
