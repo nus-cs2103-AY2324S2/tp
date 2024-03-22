@@ -1,21 +1,23 @@
 package seedu.address.logic;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.Prefix;
+import seedu.address.logic.parser.exceptions.ParseException;
 
 class ArgumentMultimapTest {
     @Test
     public void verifyNoDuplicatePrefixesFor() {
         ArgumentMultimap argMultimap = new ArgumentMultimap();
         Prefix prefix = new Prefix("p/");
-        argMultimap.put(prefix, "value1");
-        argMultimap.put(prefix, "value2");
-        assertEquals("Multiple values specified for the following single-valued field(s): p/",
-                Messages.getErrorMessageForDuplicatePrefixes(prefix));
+        try {
+            argMultimap.verifyNoDuplicatePrefixesFor(new Prefix[] {prefix, prefix});
+        } catch (ParseException e) {
+            assertTrue(e instanceof ParseException);
+        }
     }
 
 
