@@ -32,7 +32,7 @@ class LastContactTest {
         // Invalid date formats
         assertFalse(LastContact.isValidDateTime("31-02-2020 2400")); // Invalid date and time
         assertFalse(LastContact.isValidDateTime("05-13-2024 0600")); // Invalid month
-        assertFalse(LastContact.isValidDateTime("")); // Empty string
+        assertTrue(LastContact.isValidDateTime("")); // Empty string
 
         // Valid date format
         assertTrue(LastContact.isValidDateTime("05-03-2024 0600")); // Valid date and time

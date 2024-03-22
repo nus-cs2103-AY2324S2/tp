@@ -15,7 +15,10 @@ public class LastContact {
 
     public static final String MESSAGE_CONSTRAINTS = "Expected DATETIME format: DD-MM-YYYY HHmm\n"
                                                     + "Actual format: %s";
-    private String dateTime;
+    public static final DateTimeFormatter DATETIME_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-uuuu HHmm")
+            .withResolverStyle(ResolverStyle.STRICT);
+    private LocalDateTime dateTime;
+    private boolean hasLastContact;
 
     /**
      * Constructs an {@code Address}.
@@ -24,10 +27,15 @@ public class LastContact {
      */
     public LastContact(String dateTime) {
         requireNonNull(dateTime);
-        if (!dateTime.equals("-")) {
-            checkArgument(isValidDateTime(dateTime), String.format(MESSAGE_CONSTRAINTS, dateTime));
+        checkArgument(isValidDateTime(dateTime), String.format(MESSAGE_CONSTRAINTS, dateTime));
+
+        if (dateTime.isEmpty()) {
+            this.hasLastContact = false;
+            this.dateTime = null;
+            return;
         }
-        this.dateTime = dateTime;
+        this.hasLastContact = true;
+        this.dateTime = LocalDateTime.parse(dateTime, DATETIME_FORMATTER);
     }
 
     /**
@@ -35,6 +43,9 @@ public class LastContact {
      * @param dateTime String to parse into formatter to check whether is valid.
      */
     public static boolean isValidDateTime(String dateTime) {
+        if (dateTime.isEmpty()) {
+            return true;
+        }
         String trimmedDateTime = dateTime.trim();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-uuuu HHmm")
                 .withResolverStyle(ResolverStyle.STRICT);
@@ -48,7 +59,10 @@ public class LastContact {
 
     @Override
     public String toString() {
-        return this.dateTime;
+        if (!hasLastContact) {
+            return "";
+        }
+        return this.dateTime.format(DATETIME_FORMATTER);
     }
 
     @Override
@@ -70,5 +84,4 @@ public class LastContact {
     public int hashCode() {
         return this.dateTime.hashCode();
     }
-
 }
