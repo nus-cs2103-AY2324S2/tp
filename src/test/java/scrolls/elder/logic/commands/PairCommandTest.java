@@ -1,8 +1,7 @@
 package scrolls.elder.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static scrolls.elder.logic.commands.CommandTestUtil.assertCommandSuccess;
 
 import java.util.Optional;
@@ -20,26 +19,25 @@ import scrolls.elder.testutil.Assert;
 import scrolls.elder.testutil.PersonBuilder;
 import scrolls.elder.testutil.TypicalIndexes;
 import scrolls.elder.testutil.TypicalPersons;
+
 class PairCommandTest {
 
-    // TODO Fix testcases such that it does not pollute JSON data
     @Test
     void execute_pairFilteredPersonList_pairSuccessful() {
         Model model = new ModelManager(TypicalPersons.getTypicalAddressBook(), new UserPrefs());
-        Person personToPair1 = model.getFilteredBefriendeeList().get(TypicalIndexes.INDEX_SECOND_PERSON.getZeroBased());
-        Person personToPair2 = model.getFilteredVolunteerList().get(TypicalIndexes.INDEX_SECOND_PERSON.getZeroBased());
-        PairCommand pairCommand = new PairCommand(TypicalIndexes.INDEX_SECOND_PERSON,
-                TypicalIndexes.INDEX_SECOND_PERSON);
+        Person befriendeeToPair =
+                model.getFilteredBefriendeeList().get(TypicalIndexes.INDEX_SECOND_PERSON.getZeroBased());
+        Person volunteerToPair =
+                model.getFilteredVolunteerList().get(TypicalIndexes.INDEX_SECOND_PERSON.getZeroBased());
+        PairCommand pairCommand =
+                new PairCommand(TypicalIndexes.INDEX_SECOND_PERSON, TypicalIndexes.INDEX_SECOND_PERSON);
 
         String expectedMessage = String.format(PairCommand.MESSAGE_PAIR_SUCCESS,
-                Messages.format(personToPair1), Messages.format(personToPair2));
-
-        Person afterPairingPerson1 = new PersonBuilder(personToPair1)
-                .withPairedWithName(Optional.of(personToPair2.getName()))
-                .withPairedWithID(Optional.of(personToPair2.getId())).build();
-        Person afterPairingPerson2 = new PersonBuilder(personToPair2)
-                .withPairedWithName(Optional.of(personToPair1.getName()))
-                .withPairedWithID(Optional.of(personToPair1.getId())).build();
+                Messages.format(befriendeeToPair), Messages.format(volunteerToPair));
+        Person afterPairingPerson1 = new PersonBuilder(befriendeeToPair)
+                .withPairedWith(Optional.of(volunteerToPair.getName())).build();
+        Person afterPairingPerson2 = new PersonBuilder(volunteerToPair)
+                .withPairedWith(Optional.of(befriendeeToPair.getName())).build();
 
         ModelManager expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(
@@ -69,21 +67,21 @@ class PairCommandTest {
                 TypicalIndexes.INDEX_FOURTH_PERSON);
 
         // same object -> returns true
-        assertTrue(pairCommand1.equals(pairCommand1));
+        assertEquals(pairCommand1, pairCommand1);
 
         // same values -> returns true
         PairCommand pairCommand1Copy = new PairCommand(TypicalIndexes.INDEX_FIRST_PERSON,
                 TypicalIndexes.INDEX_FIFTH_PERSON);
-        assertTrue(pairCommand1.equals(pairCommand1Copy));
+        assertEquals(pairCommand1, pairCommand1Copy);
 
         // different types -> returns false
-        assertFalse(pairCommand1.equals(1));
+        assertNotEquals(1, pairCommand1);
 
         // null -> returns false
-        assertFalse(pairCommand1.equals(null));
+        assertNotEquals(null, pairCommand1);
 
         // different person -> returns false
-        assertFalse(pairCommand1.equals(pairCommand2));
+        assertNotEquals(pairCommand1, pairCommand2);
     }
 
     @Test
