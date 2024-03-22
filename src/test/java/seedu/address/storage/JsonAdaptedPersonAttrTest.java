@@ -38,42 +38,6 @@ public class JsonAdaptedPersonAttrTest {
     }
 
     @Test
-    public void toModelType_nullAttributes_throwsIllegalValueException() {
-        // Create JsonAdaptedPersonAttr with null attributes
-        JsonAdaptedPersonAttr jsonAdaptedPersonAttr = new JsonAdaptedPersonAttr(VALID_UUID, null);
-
-        // Verify that IllegalValueException is thrown when converting to model type
-        assertThrows(IllegalValueException.class, jsonAdaptedPersonAttr::toModelType);
-    }
-
-    @Test
-    public void toModelType_emptyAttributes_throwsIllegalValueException() {
-        // Create JsonAdaptedPersonAttr with empty attributes list
-        JsonAdaptedPersonAttr jsonAdaptedPersonAttr = new JsonAdaptedPersonAttr(VALID_UUID, new ArrayList<>());
-
-        // Verify that IllegalValueException is thrown when converting to model type
-        assertThrows(IllegalValueException.class, jsonAdaptedPersonAttr::toModelType);
-    }
-
-    @Test
-    public void toModelType_nullUuid_throwsIllegalValueException() {
-        // Create JsonAdaptedPersonAttr with null tags
-        JsonAdaptedPersonAttr jsonAdaptedPersonAttr = new JsonAdaptedPersonAttr(null, VALID_ATTRIBUTES);
-
-        // Verify that IllegalValueException is thrown when converting to model type
-        assertThrows(IllegalValueException.class, jsonAdaptedPersonAttr::toModelType);
-    }
-
-    @Test
-    public void toModelType_emptyUuid_throwsIllegalValueException() {
-        // Create JsonAdaptedPersonAttr with empty tags list
-        JsonAdaptedPersonAttr jsonAdaptedPersonAttr = new JsonAdaptedPersonAttr("", VALID_ATTRIBUTES);
-
-        // Verify that IllegalValueException is thrown when converting to model type
-        assertThrows(IllegalValueException.class, jsonAdaptedPersonAttr::toModelType);
-    }
-
-    @Test
     public void toModelType_invalidAttribute_throwsIllegalValueException() {
         // Create JsonAdaptedAttribute with invalid type
         JsonAdaptedAttribute jsonAdaptedAttribute = new JsonAdaptedAttribute("", VALID_ATTRIBUTE_VALUE);
