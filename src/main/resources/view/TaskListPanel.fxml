@@ -17,8 +17,13 @@
     </StackPane>
     <HBox fx:id="taskList" styleClass="pane-with-border"
             minHeight="540" prefHeight="540">
-        <VBox>
-            <VBox fx:id="undoneTaskList" styleClass="pane-with-border"
+        <VBox styleClass="pane-with-border">
+            <Label text="Done" styleClass="cell_big_label">
+                <padding>
+                    <Insets top="12" left="12" />
+                </padding>
+            </Label>
+            <VBox fx:id="undoneTaskList"
                     minWidth="300" prefWidth="300" VBox.vgrow="ALWAYS">
                 <padding>
                     <Insets top="8" right="8" bottom="8" left="8" />
@@ -27,7 +32,12 @@
             </VBox>
         </VBox>
         <VBox>
-            <VBox fx:id="doneTaskList" styleClass="pane-with-border"
+            <Label text="Not Done" styleClass="cell_big_label">
+                <padding>
+                    <Insets top="12" left="12" />
+                </padding>
+            </Label>
+            <VBox fx:id="doneTaskList"
                     minWidth="300" prefWidth="300" VBox.vgrow="ALWAYS">
                 <padding>
                     <Insets top="8" right="8" bottom="8" left="0" />
