@@ -15,7 +15,7 @@ import tutorpro.commons.exceptions.DataLoadingException;
 import tutorpro.model.AddressBook;
 import tutorpro.model.ReadOnlyAddressBook;
 import tutorpro.testutil.Assert;
-import tutorpro.testutil.TypicalPersons;
+import tutorpro.testutil.TypicalStudents;
 
 public class JsonAddressBookStorageTest {
     private static final Path TEST_DATA_FOLDER =
@@ -65,7 +65,7 @@ public class JsonAddressBookStorageTest {
     @Test
     public void readAndSaveAddressBook_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempAddressBook.json");
-        AddressBook original = TypicalPersons.getTypicalAddressBook();
+        AddressBook original = TypicalStudents.getTypicalAddressBook();
         JsonAddressBookStorage jsonAddressBookStorage = new JsonAddressBookStorage(filePath);
 
         // Save in new file and read back
@@ -74,14 +74,14 @@ public class JsonAddressBookStorageTest {
         assertEquals(original, new AddressBook(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        original.addPerson(TypicalPersons.HOON);
-        original.removePerson(TypicalPersons.ALICE);
+        original.addPerson(TypicalStudents.HOON);
+        original.removePerson(TypicalStudents.ALICE);
         jsonAddressBookStorage.saveAddressBook(original, filePath);
         readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
         assertEquals(original, new AddressBook(readBack));
 
         // Save and read without specifying file path
-        original.addPerson(TypicalPersons.IDA);
+        original.addPerson(TypicalStudents.IDA);
         jsonAddressBookStorage.saveAddressBook(original); // file path not specified
         readBack = jsonAddressBookStorage.readAddressBook().get(); // file path not specified
         assertEquals(original, new AddressBook(readBack));

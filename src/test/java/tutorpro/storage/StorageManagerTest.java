@@ -13,7 +13,7 @@ import tutorpro.commons.core.GuiSettings;
 import tutorpro.model.AddressBook;
 import tutorpro.model.ReadOnlyAddressBook;
 import tutorpro.model.UserPrefs;
-import tutorpro.testutil.TypicalPersons;
+import tutorpro.testutil.TypicalStudents;
 
 public class StorageManagerTest {
 
@@ -54,7 +54,7 @@ public class StorageManagerTest {
          * {@link JsonAddressBookStorage} class.
          * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
          */
-        AddressBook original = TypicalPersons.getTypicalAddressBook();
+        AddressBook original = TypicalStudents.getTypicalAddressBook();
         storageManager.saveAddressBook(original);
         ReadOnlyAddressBook retrieved = storageManager.readAddressBook().get();
         assertEquals(original, new AddressBook(retrieved));

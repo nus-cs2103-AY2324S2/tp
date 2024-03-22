@@ -11,11 +11,6 @@ import static tutorpro.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static tutorpro.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static tutorpro.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import tutorpro.model.AddressBook;
 import tutorpro.model.person.Person;
 
 /**
@@ -59,18 +54,18 @@ public class TypicalPersons {
 
     private TypicalPersons() {} // prevents instantiation
 
-    /**
-     * Returns an {@code AddressBook} with all the typical persons.
-     */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
-        for (Person person : getTypicalPersons()) {
-            ab.addPerson(person);
-        }
-        return ab;
-    }
+    ///**
+    // * Returns an {@code AddressBook} with all the typical persons.
+    // */
+    //public static AddressBook getTypicalAddressBook() {
+    //    AddressBook ab = new AddressBook();
+    //    for (Person person : getTypicalPersons()) {
+    //        ab.addPerson(person);
+    //    }
+    //    return ab;
+    //}
 
-    public static List<Person> getTypicalPersons() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
-    }
+    //public static List<Person> getTypicalPersons() {
+    //    return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+    //}
 }

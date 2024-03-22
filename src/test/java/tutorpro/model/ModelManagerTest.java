@@ -16,7 +16,7 @@ import tutorpro.commons.core.GuiSettings;
 import tutorpro.model.person.NameContainsKeywordsPredicate;
 import tutorpro.testutil.AddressBookBuilder;
 import tutorpro.testutil.Assert;
-import tutorpro.testutil.TypicalPersons;
+import tutorpro.testutil.TypicalStudents;
 
 public class ModelManagerTest {
 
@@ -79,13 +79,13 @@ public class ModelManagerTest {
 
     @Test
     public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(modelManager.hasPerson(TypicalPersons.ALICE));
+        assertFalse(modelManager.hasPerson(TypicalStudents.ALICE));
     }
 
     @Test
     public void hasPerson_personInAddressBook_returnsTrue() {
-        modelManager.addPerson(TypicalPersons.ALICE);
-        assertTrue(modelManager.hasPerson(TypicalPersons.ALICE));
+        modelManager.addPerson(TypicalStudents.ALICE);
+        assertTrue(modelManager.hasPerson(TypicalStudents.ALICE));
     }
 
     @Test
@@ -96,7 +96,7 @@ public class ModelManagerTest {
     @Test
     public void equals() {
         AddressBook addressBook = new AddressBookBuilder()
-                .withPerson(TypicalPersons.ALICE).withPerson(TypicalPersons.BENSON).build();
+                .withPerson(TypicalStudents.ALICE).withPerson(TypicalStudents.BENSON).build();
         AddressBook differentAddressBook = new AddressBook();
         UserPrefs userPrefs = new UserPrefs();
 
@@ -118,7 +118,7 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs)));
 
         // different filteredList -> returns false
-        String[] keywords = TypicalPersons.ALICE.getName().fullName.split("\\s+");
+        String[] keywords = TypicalStudents.ALICE.getName().fullName.split("\\s+");
         modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
 

@@ -3,8 +3,10 @@ package tutorpro.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static tutorpro.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static tutorpro.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static tutorpro.logic.parser.CliSyntax.PREFIX_LEVEL;
 import static tutorpro.logic.parser.CliSyntax.PREFIX_NAME;
 import static tutorpro.logic.parser.CliSyntax.PREFIX_PHONE;
+import static tutorpro.logic.parser.CliSyntax.PREFIX_SUBJECT;
 import static tutorpro.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Collections;
@@ -23,8 +25,10 @@ import tutorpro.model.Model;
 import tutorpro.model.person.Address;
 import tutorpro.model.person.Email;
 import tutorpro.model.person.Name;
-import tutorpro.model.person.Person;
 import tutorpro.model.person.Phone;
+import tutorpro.model.person.student.Level;
+import tutorpro.model.person.student.Student;
+import tutorpro.model.person.student.Subject;
 import tutorpro.model.tag.Tag;
 
 /**
@@ -42,10 +46,12 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_LEVEL + "EDU LEVEL] "
+            + "[" + PREFIX_SUBJECT + "SUBJECT(S)]... "
             + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + "Example: To edit education level of a student,\n"
+            + COMMAND_WORD + " 1 "
+            + PREFIX_LEVEL + " JC2 ";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -67,16 +73,20 @@ public class EditCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model) throws CommandException, ClassCastException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Student> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+        Student personToEdit = lastShownList.get(index.getZeroBased());
+        if (!(personToEdit instanceof Student)) {
+            throw new ClassCastException("class tutorpro.model.person.Person cannot be cast to class "
+                    + "tutorpro.model.person.student.Student");
+        }
+        Student editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
@@ -88,19 +98,22 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
+     * Creates and returns a {@code Student} with the details of {@code studentToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
-        assert personToEdit != null;
+    private static Student createEditedPerson(Student studentToEdit, EditPersonDescriptor editPersonDescriptor) {
+        assert studentToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Name updatedName = editPersonDescriptor.getName().orElse(studentToEdit.getName());
+        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(studentToEdit.getPhone());
+        Email updatedEmail = editPersonDescriptor.getEmail().orElse(studentToEdit.getEmail());
+        Address updatedAddress = editPersonDescriptor.getAddress().orElse(studentToEdit.getAddress());
+        Level updatedLevel = editPersonDescriptor.getLevel().orElse(studentToEdit.getLevel());
+        Set<Subject> updatedSubjects = editPersonDescriptor.getSubjects().orElse(studentToEdit.getSubjects());
+        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(studentToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Student(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags,
+                updatedLevel, updatedSubjects);
     }
 
     @Override
@@ -136,6 +149,8 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
+        private Level level;
+        private Set<Subject> subjects;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -149,6 +164,8 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
+            setLevel(toCopy.level);
+            setSubjects(toCopy.subjects);
             setTags(toCopy.tags);
         }
 
@@ -156,7 +173,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, level, subjects, tags);
         }
 
         public void setName(Name name) {
@@ -189,6 +206,31 @@ public class EditCommand extends Command {
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
+        }
+
+        public void setLevel(Level level) {
+            this.level = level;
+        }
+
+        public Optional<Level> getLevel() {
+            return Optional.ofNullable(level);
+        }
+
+        /**
+         * Sets {@code subjects} to this object's {@code subjects}.
+         * A defensive copy of {@code subjects} is used internally.
+         */
+        public void setSubjects(Set<Subject> subjects) {
+            this.subjects = (subjects != null) ? new HashSet<>(subjects) : null;
+        }
+
+        /**
+         * Returns an unmodifiable subject set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code subjects} is null.
+         */
+        public Optional<Set<Subject>> getSubjects() {
+            return (subjects != null) ? Optional.of(Collections.unmodifiableSet(subjects)) : Optional.empty();
         }
 
         /**
@@ -224,6 +266,8 @@ public class EditCommand extends Command {
                     && Objects.equals(phone, otherEditPersonDescriptor.phone)
                     && Objects.equals(email, otherEditPersonDescriptor.email)
                     && Objects.equals(address, otherEditPersonDescriptor.address)
+                    && Objects.equals(level, otherEditPersonDescriptor.level)
+                    && Objects.equals(subjects, otherEditPersonDescriptor.subjects)
                     && Objects.equals(tags, otherEditPersonDescriptor.tags);
         }
 
@@ -234,6 +278,8 @@ public class EditCommand extends Command {
                     .add("phone", phone)
                     .add("email", email)
                     .add("address", address)
+                    .add("level", level)
+                    .add("subjects", subjects)
                     .add("tags", tags)
                     .toString();
         }
