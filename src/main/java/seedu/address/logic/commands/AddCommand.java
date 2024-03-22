@@ -1,19 +1,21 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_GITHUB_USERNAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TECH_STACK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GITHUB_USERNAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PROFILE_PICTURE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.contact.Contact;
+import seedu.address.model.contact.ProfilePicture;
 
 /**
  * Adds a contact to the address book.
@@ -28,7 +30,8 @@ public class AddCommand extends Command {
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
-            + PREFIX_GITHUB_USERNAME + "GITHUB USERNAME "
+            + PREFIX_GITHUB_USERNAME + "GITHUB_USERNAME "
+            + PREFIX_PROFILE_PICTURE + "PROFILE_PICTURE "
             + "[" + PREFIX_TECH_STACK + "TECH STACK]...\n"
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
@@ -37,6 +40,7 @@ public class AddCommand extends Command {
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_GITHUB_USERNAME + "johndoee123 "
+            + PREFIX_PROFILE_PICTURE + ProfilePicture.DEFAULT_URL
             + PREFIX_TECH_STACK + "Java "
             + PREFIX_TECH_STACK + "Python "
             + PREFIX_TAG + "friends "

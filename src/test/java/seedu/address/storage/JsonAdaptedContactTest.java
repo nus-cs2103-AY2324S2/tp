@@ -32,6 +32,7 @@ public class JsonAdaptedContactTest {
     private static final String VALID_EMAIL = BENSON.getEmail().toString();
     private static final String VALID_ADDRESS = BENSON.getAddress().toString();
     private static final String VALID_GITHUB_USERNAME = BENSON.getGitHubUsername().toString();
+    private static final String VALID_PROFILE_PICTURE = BENSON.getProfilePicture().get();
     private static final List<JsonAdaptedTechStack> VALID_TECH_STACK = BENSON.getTechStack().stream()
             .map(JsonAdaptedTechStack::new)
             .collect(Collectors.toList());
@@ -48,7 +49,7 @@ public class JsonAdaptedContactTest {
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedContact contact =
-                new JsonAdaptedContact(INVALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_GITHUB_USERNAME,
+                new JsonAdaptedContact(INVALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_GITHUB_USERNAME, VALID_PROFILE_PICTURE,
                         VALID_TECH_STACK, VALID_TAGS);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, contact::toModelType);
@@ -57,7 +58,7 @@ public class JsonAdaptedContactTest {
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
         JsonAdaptedContact contact = new JsonAdaptedContact(null, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                VALID_GITHUB_USERNAME, VALID_TECH_STACK, VALID_TAGS);
+                VALID_GITHUB_USERNAME, VALID_PROFILE_PICTURE, VALID_TECH_STACK, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, contact::toModelType);
     }
@@ -66,7 +67,7 @@ public class JsonAdaptedContactTest {
     public void toModelType_invalidPhone_throwsIllegalValueException() {
         JsonAdaptedContact contact =
                 new JsonAdaptedContact(VALID_NAME, INVALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                        VALID_GITHUB_USERNAME, VALID_TECH_STACK, VALID_TAGS);
+                        VALID_GITHUB_USERNAME, VALID_PROFILE_PICTURE, VALID_TECH_STACK, VALID_TAGS);
         String expectedMessage = Phone.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, contact::toModelType);
     }
@@ -74,7 +75,7 @@ public class JsonAdaptedContactTest {
     @Test
     public void toModelType_nullPhone_throwsIllegalValueException() {
         JsonAdaptedContact contact = new JsonAdaptedContact(VALID_NAME, null, VALID_EMAIL, VALID_ADDRESS,
-                VALID_GITHUB_USERNAME, VALID_TECH_STACK, VALID_TAGS);
+                VALID_GITHUB_USERNAME, VALID_PROFILE_PICTURE, VALID_TECH_STACK, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, contact::toModelType);
     }
@@ -83,7 +84,7 @@ public class JsonAdaptedContactTest {
     public void toModelType_invalidEmail_throwsIllegalValueException() {
         JsonAdaptedContact contact =
                 new JsonAdaptedContact(VALID_NAME, VALID_PHONE, INVALID_EMAIL, VALID_ADDRESS,
-                        VALID_GITHUB_USERNAME, VALID_TECH_STACK, VALID_TAGS);
+                        VALID_GITHUB_USERNAME, VALID_PROFILE_PICTURE, VALID_TECH_STACK, VALID_TAGS);
         String expectedMessage = Email.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, contact::toModelType);
     }
@@ -91,7 +92,7 @@ public class JsonAdaptedContactTest {
     @Test
     public void toModelType_nullEmail_throwsIllegalValueException() {
         JsonAdaptedContact contact = new JsonAdaptedContact(VALID_NAME, VALID_PHONE, null, VALID_ADDRESS,
-                VALID_GITHUB_USERNAME, VALID_TECH_STACK, VALID_TAGS);
+                VALID_GITHUB_USERNAME, VALID_PROFILE_PICTURE, VALID_TECH_STACK, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, contact::toModelType);
     }
@@ -100,7 +101,7 @@ public class JsonAdaptedContactTest {
     public void toModelType_invalidAddress_throwsIllegalValueException() {
         JsonAdaptedContact contact =
                 new JsonAdaptedContact(VALID_NAME, VALID_PHONE, VALID_EMAIL, INVALID_ADDRESS,
-                        VALID_GITHUB_USERNAME, VALID_TECH_STACK, VALID_TAGS);
+                        VALID_GITHUB_USERNAME, VALID_PROFILE_PICTURE, VALID_TECH_STACK, VALID_TAGS);
         String expectedMessage = Address.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, contact::toModelType);
     }
@@ -108,7 +109,7 @@ public class JsonAdaptedContactTest {
     @Test
     public void toModelType_nullAddress_throwsIllegalValueException() {
         JsonAdaptedContact contact = new JsonAdaptedContact(VALID_NAME, VALID_PHONE, VALID_EMAIL, null,
-                VALID_GITHUB_USERNAME, VALID_TECH_STACK, VALID_TAGS);
+                VALID_GITHUB_USERNAME, VALID_PROFILE_PICTURE, VALID_TECH_STACK, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, contact::toModelType);
     }
@@ -116,7 +117,7 @@ public class JsonAdaptedContactTest {
     public void toModelType_invalidGitHubUsername_throwsIllegalValueException() {
         JsonAdaptedContact contact =
                 new JsonAdaptedContact(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                        INVALID_GITHUB_USERNAME, VALID_TECH_STACK, VALID_TAGS);
+                        INVALID_GITHUB_USERNAME, VALID_PROFILE_PICTURE, VALID_TECH_STACK, VALID_TAGS);
         String expectedMessage = GitHubUsername.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, contact::toModelType);
     }
@@ -124,7 +125,7 @@ public class JsonAdaptedContactTest {
     @Test
     public void toModelType_nullGitHubUsername_throwsIllegalValueException() {
         JsonAdaptedContact contact = new JsonAdaptedContact(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                null, VALID_TECH_STACK, VALID_TAGS);
+                null, VALID_PROFILE_PICTURE, VALID_TECH_STACK,  VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, GitHubUsername.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, contact::toModelType);
     }
@@ -135,7 +136,7 @@ public class JsonAdaptedContactTest {
         invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
         JsonAdaptedContact contact =
                 new JsonAdaptedContact(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                        VALID_GITHUB_USERNAME, VALID_TECH_STACK, invalidTags);
+                        VALID_GITHUB_USERNAME, VALID_PROFILE_PICTURE, VALID_TECH_STACK, invalidTags);
         assertThrows(IllegalValueException.class, contact::toModelType);
     }
 

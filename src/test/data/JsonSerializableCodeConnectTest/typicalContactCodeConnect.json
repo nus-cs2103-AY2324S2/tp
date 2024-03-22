@@ -6,6 +6,7 @@
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
     "github_username": "AliceInWonderland2",
+    "profile_picture": "",
     "tags" : [ "friends" ],
     "tech_stack" : [ "java" ]
   }, {
@@ -14,6 +15,7 @@
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
     "github_username": "BenSon0",
+    "profile_picture": "",
     "tags" : [ "owesMoney", "friends" ],
     "tech_stack" : [ "java", "python" ]
   }, {
@@ -22,6 +24,7 @@
     "email" : "heinz@example.com",
     "address" : "wall street",
     "github_username": "CarlKurzCK",
+    "profile_picture": "",
     "tags" : [ ]
   }, {
     "name" : "Daniel Meier",
@@ -29,12 +32,14 @@
     "email" : "cornelia@example.com",
     "address" : "10th street",
     "github_username": "Meier200",
+    "profile_picture": "",
     "tags" : [ "friends" ],
     "tech_stack" : [ "java" ]
   }, {
     "name" : "Elle Meyer",
     "phone" : "9482224",
     "email" : "werner@example.com",
+    "profile_picture": "",
     "address" : "michegan ave",
     "github_username": "Ellieellie",
     "tags" : [ ]
@@ -44,6 +49,7 @@
     "email" : "lydia@example.com",
     "address" : "little tokyo",
     "github_username": "FifiKunz",
+    "profile_picture": "",
     "tags" : [ ]
   }, {
     "name" : "George Best",
@@ -51,6 +57,7 @@
     "email" : "anna@example.com",
     "address" : "4th street",
     "github_username": "GeBest2103",
+    "profile_picture": "",
     "tags" : [ ]
   } ]
 }

@@ -9,6 +9,7 @@ import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.tag.Tag;
+
 import seedu.address.model.techstack.TechStack;
 
 /**
@@ -28,13 +29,16 @@ public class Contact {
     private final Set<TechStack> techStack = new HashSet<>();
     private final Set<Tag> tags = new HashSet<>();
 
+    private final ProfilePicture profilePicture;
+
     /**
      * Every field must be present and not null.
      */
     public Contact(Name name, Phone phone, Email email, Address address, GitHubUsername gitHubUsername,
-                   Set<TechStack> techStack, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags, gitHubUsername, techStack);
+                   Set<TechStack> techStack, Set<Tag> tags, ProfilePicture profilePicture) {
+        requireAllNonNull(name, phone, email, address, tags, gitHubUsername, techStack, profilePicture);
         this.name = name;
+        this.profilePicture = profilePicture;
         this.phone = phone;
         this.email = email;
         this.address = address;
@@ -53,6 +57,10 @@ public class Contact {
 
     public Email getEmail() {
         return email;
+    }
+
+    public ProfilePicture getProfilePicture() {
+        return profilePicture;
     }
 
     public Address getAddress() {
@@ -112,6 +120,7 @@ public class Contact {
                 && email.equals(otherContact.email)
                 && address.equals(otherContact.address)
                 && gitHubUsername.equals(otherContact.gitHubUsername)
+                && profilePicture.equals(otherContact.profilePicture)
                 && techStack.equals(otherContact.techStack)
                 && tags.equals(otherContact.tags);
     }
@@ -130,6 +139,7 @@ public class Contact {
                 .add("email", email)
                 .add("address", address)
                 .add("github_username", gitHubUsername)
+                .add("profile_picture", profilePicture)
                 .add("tech_stack", techStack)
                 .add("tags", tags)
                 .toString();

@@ -14,6 +14,7 @@ import seedu.address.model.contact.Email;
 import seedu.address.model.contact.GitHubUsername;
 import seedu.address.model.contact.Name;
 import seedu.address.model.contact.Phone;
+import seedu.address.model.contact.ProfilePicture;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.techstack.TechStack;
 
@@ -80,6 +81,16 @@ public class ParserUtil {
             throw new ParseException(Address.MESSAGE_CONSTRAINTS);
         }
         return new Address(trimmedAddress);
+    }
+
+    /**
+     * Parses a {@code String profilePictureURL} into an {@code ProfilePicture}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code address} is invalid.
+     */
+    public static ProfilePicture parseProfilePicture(String profilePictureURLArgument) {
+        return new ProfilePicture(profilePictureURLArgument);
     }
 
     /**

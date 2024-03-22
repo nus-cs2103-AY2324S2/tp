@@ -4,10 +4,14 @@ import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.logic.MailApp;
 import seedu.address.model.contact.Contact;
+import seedu.address.model.contact.ProfilePicture;
 
 /**
  * An UI component that displays information of a {@code Contact}.
@@ -47,12 +51,24 @@ public class ContactCard extends UiPart<Region> {
     @FXML
     private HBox tags;
 
+    @FXML
+    private ImageView profilePicture;
     /**
      * Creates a {@code ContactCode} with the given {@code Contact} and index to display.
      */
     public ContactCard(Contact contact, int displayedIndex) {
         super(FXML);
         this.contact = contact;
+
+        try {
+            Image image = new Image(contact.getProfilePicture().get());
+            profilePicture.setImage(image);
+        } catch (IllegalArgumentException e) {
+            // Handle invalid image URL
+            System.err.println("Invalid image URL: " + contact.getProfilePicture().get());
+            profilePicture.setImage(new Image(ProfilePicture.DEFAULT_URL));
+        }
+
         id.setText(displayedIndex + ". ");
         name.setText(contact.getName().fullName);
         phone.setText("Phone: " + contact.getPhone().value);
@@ -74,5 +90,7 @@ public class ContactCard extends UiPart<Region> {
             mailApp.handleEmailClicked();
         });
     }
+
+
 }
 

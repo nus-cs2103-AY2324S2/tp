@@ -45,6 +45,8 @@ public class Messages {
                 .append(contact.getAddress())
                 .append("; GitHub Username: ")
                 .append(contact.getGitHubUsername())
+                .append("; Profile Picture: ")
+                .append(contact.getProfilePicture())
                 .append("; Tech Stack: ");
         contact.getTechStack().forEach(builder::append);
         builder.append("; Tags: ");

@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TECH_STACK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PROFILE_PICTURE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CONTACTS;
 
 import java.util.Collections;
@@ -31,6 +32,7 @@ import seedu.address.model.contact.Name;
 import seedu.address.model.contact.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.techstack.TechStack;
+import seedu.address.model.contact.ProfilePicture;
 
 /**
  * Edits the details of an existing contact in the address book.
@@ -48,6 +50,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_GITHUB_USERNAME + "GITHUB USERNAME]"
+            + "[" + PREFIX_PROFILE_PICTURE + "PROFILE_PICTURE]"
             + "[" + PREFIX_TECH_STACK + "TECH_STACK...\n"
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
@@ -110,9 +113,10 @@ public class EditCommand extends Command {
                 editContactDescriptor.getGitHubUsername().orElse(contactToEdit.getGitHubUsername());
         Set<TechStack> updatedTechStack = editContactDescriptor.getTechStack().orElse(contactToEdit.getTechStack());
         Set<Tag> updatedTags = editContactDescriptor.getTags().orElse(contactToEdit.getTags());
+        ProfilePicture updatedProfilePicture = editContactDescriptor.getProfilePicture().orElse(contactToEdit.getProfilePicture());
 
         return new Contact(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedGitHubUsername,
-                updatedTechStack, updatedTags);
+                updatedTechStack, updatedTags, updatedProfilePicture);
     }
 
     @Override
@@ -152,7 +156,8 @@ public class EditCommand extends Command {
         private Set<TechStack> techStack;
         private Set<Tag> tags;
 
-        public EditContactDescriptor() {}
+        private ProfilePicture profilePicture;
+
 
         /**
          * Copy constructor.
@@ -166,14 +171,17 @@ public class EditCommand extends Command {
             setGitHubUsername(toCopy.gitHubUsername);
             setTechStack(toCopy.techStack);
             setTags(toCopy.tags);
+            setProfilePicture(toCopy.profilePicture);
         }
+
+        public EditContactDescriptor() {}
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(name, phone, email, address,
-                    gitHubUsername, techStack, tags);
+                    gitHubUsername, techStack, tags, profilePicture);
         }
 
         public void setName(Name name) {
@@ -213,6 +221,14 @@ public class EditCommand extends Command {
         }
         public Optional<GitHubUsername> getGitHubUsername() {
             return Optional.ofNullable(gitHubUsername);
+        }
+
+        public void setProfilePicture(ProfilePicture profilePicture) {
+            this.profilePicture = profilePicture;
+        }
+
+        public Optional<ProfilePicture> getProfilePicture() {
+            return Optional.ofNullable(this.profilePicture);
         }
 
         /**
@@ -267,7 +283,8 @@ public class EditCommand extends Command {
                     && Objects.equals(address, otherEditContactDescriptor.address)
                     && Objects.equals(gitHubUsername, otherEditContactDescriptor.gitHubUsername)
                     && Objects.equals(techStack, otherEditContactDescriptor.techStack)
-                    && Objects.equals(tags, otherEditContactDescriptor.tags);
+                    && Objects.equals(tags, otherEditContactDescriptor.tags)
+                    && Objects.equals(profilePicture, otherEditContactDescriptor.profilePicture);
         }
 
         @Override
