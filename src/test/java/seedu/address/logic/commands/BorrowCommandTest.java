@@ -32,7 +32,6 @@ public class BorrowCommandTest {
         BorrowCommand borrowCommand = new BorrowCommand(INDEX_SECOND_PERSON,
                 new BookList(editedPerson.getBookList().value.bookTitle));
 
-        System.out.println(editedPerson);
         String expectedMessage = String.format(BorrowCommand.MESSAGE_ADD_BORROW_SUCCESS, editedPerson);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
