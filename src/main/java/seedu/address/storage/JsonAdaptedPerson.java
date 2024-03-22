@@ -15,6 +15,7 @@ import seedu.address.model.person.Category;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.PersonFactory;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
@@ -118,7 +119,7 @@ class JsonAdaptedPerson {
         final Category modelCategory = new Category(category);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelCategory, modelTags);
+        return PersonFactory.createPerson(modelName, modelPhone, modelEmail, modelAddress, modelCategory, modelTags);
     }
 
 }
