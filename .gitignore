@@ -25,5 +25,9 @@ docs/_site/
 # VSCode local configuration files
 .vscode/
 
+# Local settings
+.settings/
+.prettierignore
+
 # Binary files
 bin
