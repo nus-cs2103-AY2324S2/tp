@@ -37,9 +37,13 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        currentProject = new FilteredList<>(
-            this.addressBook.getPersonList(),
-            new NameEqualsPredicate(filteredPersons.get(0).getName().fullName));
+        if (filteredPersons.size() > 0) {
+            currentProject = new FilteredList<>(
+                this.addressBook.getPersonList(),
+                new NameEqualsPredicate(filteredPersons.get(0).getName().fullName));
+        } else {
+            currentProject = new FilteredList<>(this.addressBook.getPersonList());
+        }
     }
 
     public ModelManager() {
