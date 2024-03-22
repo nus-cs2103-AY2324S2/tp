@@ -15,7 +15,7 @@ import seedu.address.model.project.Task;
  */
 public class AssignPersonCommand extends Command {
 
-    public static final String COMMAND_WORD = "assign person";
+    public static final String COMMAND_WORD = "add person";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": assigns a person to a task in a project "
             + "Parameters: "

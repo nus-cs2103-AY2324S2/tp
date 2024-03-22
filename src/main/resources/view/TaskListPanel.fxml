@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+
+<VBox id="taskPane" fx:id="taskPane" minHeight="540" prefHeight="540"
+        xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+    <StackPane VBox.vgrow="NEVER" styleClass="pane-with-border"
+            minWidth="280" prefWidth="280" minHeight="64" prefHeight="64">
+        <padding>
+            <Insets top="20" right="8" bottom="20" left="8" />
+        </padding>
+        <Label fx:id="showingProjectName" styleClass="cell_big_label" />
+    </StackPane>
+    <HBox fx:id="taskList" styleClass="pane-with-border"
+            minHeight="540" prefHeight="540">
+        <padding>
+            <Insets top="20" right="8" bottom="20" left="8" />
+        </padding>
+        <VBox styleClass="pane-with-border">
+            <Label text="Not Done" styleClass="cell_big_label">
+                <padding>
+                    <Insets top="12" left="12" />
+                </padding>
+            </Label>
+            <VBox fx:id="undoneTaskList"
+                    minWidth="280" prefWidth="280" VBox.vgrow="ALWAYS">
+                <padding>
+                    <Insets top="8" right="8" bottom="8" left="8" />
+                </padding>
+                <ListView fx:id="undoneTaskListView" VBox.vgrow="ALWAYS" />
+            </VBox>
+        </VBox>
+        <VBox styleClass="pane-with-border">
+            <Label text="Done" styleClass="cell_big_label">
+                <padding>
+                    <Insets top="12" left="12" />
+                </padding>
+            </Label>
+            <VBox fx:id="doneTaskList"
+                    minWidth="280" prefWidth="280" VBox.vgrow="ALWAYS">
+                <padding>
+                    <Insets top="8" right="8" bottom="8" left="8" />
+                </padding>
+                <ListView fx:id="doneTaskListView" VBox.vgrow="ALWAYS" />
+            </VBox>
+        </VBox>
+    </HBox>
+</VBox>

@@ -67,6 +67,26 @@ public class Person {
         return name;
     }
 
+    public List<Task> getDoneTasks() {
+        ArrayList<Task> tmp = new ArrayList<>();
+        for (Task task : taskList) {
+            if (task.getStatus() == "Complete") {
+                tmp.add(task);
+            }
+        }
+        return tmp;
+    }
+
+    public List<Task> getUndoneTasks() {
+        ArrayList<Task> tmp = new ArrayList<>();
+        for (Task task : taskList) {
+            if (task.getStatus() == "Incomplete") {
+                tmp.add(task);
+            }
+        }
+        return tmp;
+    }
+
     /**
      * Returns true if both projects have the same name.
      * This defines a weaker notion of equality between two persons.
