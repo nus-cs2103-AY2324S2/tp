@@ -8,22 +8,13 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import java.util.List;
 
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.messages.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Commission;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Employment;
 import seedu.address.model.person.Maintainer;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Note;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Salary;
-import seedu.address.model.person.Skill;
 import seedu.address.model.person.Staff;
 import seedu.address.model.person.Supplier;
-import seedu.address.model.tag.Tag;
 
 /**
  * Adds a note of an existing person in the address book.
@@ -64,20 +55,20 @@ public class NoteCommand extends Command {
         if (personToEdit instanceof Maintainer) {
             editedPerson = new Maintainer(
                     personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                    personToEdit.getAddress(), personToEdit.getTags(), ((Maintainer) personToEdit).getSkill(),
-                    ((Maintainer) personToEdit).getCommission());
+                    personToEdit.getAddress(), personToEdit.getTags(), ((Maintainer) personToEdit).getSkill(), (
+                            (Maintainer) personToEdit).getCommission());
             editedPerson.setNote(note);
         } else if (personToEdit instanceof Staff) {
             editedPerson = new Staff(
                     personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                    personToEdit.getAddress(), personToEdit.getTags(), ((Staff) personToEdit).getSalary(),
-                    ((Staff) personToEdit).getEmployment());
+                    personToEdit.getAddress(), personToEdit.getTags(), ((Staff) personToEdit).getSalary(), (
+                            (Staff) personToEdit).getEmployment());
             editedPerson.setNote(note);
         } else if (personToEdit instanceof Supplier) {
             editedPerson = new Supplier(
                     personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                    personToEdit.getAddress(), personToEdit.getTags(), ((Supplier) personToEdit).getProduct(),
-                    ((Supplier) personToEdit).getPrice());
+                    personToEdit.getAddress(), personToEdit.getTags(), ((Supplier) personToEdit).getProduct(), (
+                            (Supplier) personToEdit).getPrice());
             editedPerson.setNote(note);
         } else {
             editedPerson = new Person(
