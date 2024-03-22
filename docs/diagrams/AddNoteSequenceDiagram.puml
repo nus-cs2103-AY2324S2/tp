@@ -3,14 +3,22 @@
 skinparam ArrowFontStyle plain
 
 Actor User as User USER_COLOR
+box Ui UI_COLOR_T1
 participant ":Ui" as Ui UI_COLOR
+end box
+box LogicManager LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
 participant ":NoteCommandParser" as NoteCommandParser LOGIC_COLOR
 participant "n:NoteCommand" as NoteCommand LOGIC_COLOR
 participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+box Model MODEL_COLOR_T1
 participant "m:Model" as Model MODEL_COLOR
+end box
+box Storage STORAGE_COLOR_T1
 participant ":Storage" as Storage STORAGE_COLOR
+end box
 
 User -[USER_COLOR]> Ui : "note 1 note/Likes to eat"
 activate Ui UI_COLOR
