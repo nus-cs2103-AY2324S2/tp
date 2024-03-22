@@ -27,6 +27,7 @@ public class ClassListPanel extends UiPart<Region> {
         super(FXML);
         classListView.setItems(classList);
         classListView.setCellFactory(listView -> new ClassListPanel.ClassListViewCell());
+
     }
 
     /**

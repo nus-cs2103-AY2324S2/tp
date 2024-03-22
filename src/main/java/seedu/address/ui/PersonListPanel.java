@@ -45,5 +45,13 @@ public class PersonListPanel extends UiPart<Region> {
             }
         }
     }
+    /**
+     * Updates the list of persons displayed in the panel.
+     *
+     * @param updatedList The updated list of persons to display.
+     */
+    public void updateList(ObservableList<Person> updatedList) {
+        personListView.setItems(updatedList);
+    }
 
 }

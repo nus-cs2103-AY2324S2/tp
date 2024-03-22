@@ -11,11 +11,12 @@ import seedu.address.MainApp;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
+import seedu.address.model.person.Classes;
 
 /**
  * The manager of the UI component.
  */
-public class UiManager implements Ui {
+public class UiManager implements Ui, UIUpdateListener {
 
     public static final String ALERT_DIALOG_PANE_FIELD_ID = "alertDialogPane";
 
@@ -83,6 +84,21 @@ public class UiManager implements Ui {
         showAlertDialogAndWait(Alert.AlertType.ERROR, title, e.getMessage(), e.toString());
         Platform.exit();
         System.exit(1);
+    }
+
+    /**
+     * Updates the UI when a class is selected.
+     * This method fills the inner parts of the main window based on the selected class.
+     * @param selectedClass The selected class.
+     */
+    @Override
+    public void updateUiOnClassSelected(Classes selectedClass) {
+        try {
+            //logic.selectClass(selectedClass); // Update the logic with the selected class
+            mainWindow.fillInnerParts(); // Fill the inner parts of the main window
+        } catch (Exception e) {
+            logger.severe("Error updating UI on class selection: " + e.getMessage());
+        }
     }
 
 }
