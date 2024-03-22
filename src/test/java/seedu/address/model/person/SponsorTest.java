@@ -1,6 +1,7 @@
 package seedu.address.model.person;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.testutil.PersonBuilder;
 
 public class SponsorTest {
