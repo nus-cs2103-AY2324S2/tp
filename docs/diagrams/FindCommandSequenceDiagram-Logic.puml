@@ -1,0 +1,65 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":FindCommandParser" as FindCommandParser LOGIC_COLOR
+participant ":FindCommand" as FindCommand LOGIC_COLOR
+end box
+
+box Model MODEL MODEL_COLOR_T1
+participant ":NameContainsSubstringPredicate" as NameContainsSubstringPredicate MODEL_COLOR
+participant ":CombinedPredictes" as CombinedPredicates MODEL_COLOR
+participant "model:Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("find n/wendy")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("find n/wendy")
+activate AddressBookParser
+
+AddressBookParser -> FindCommandParser : parse("n/wendy")
+activate FindCommandParser
+
+create NameContainsSubstringPredicate
+FindCommandParser -> NameContainsSubstringPredicate : NameContainsSubstringPredicate("wendy")
+activate NameContainsSubstringPredicate
+NameContainsSubstringPredicate -> FindCommandParser : namePredicate
+deactivate NameContainsSubstringPredicate
+
+create CombinedPredicates
+FindCommandParser -> CombinedPredicates : CombinedPredicates(namePredicate, ...)
+activate CombinedPredicates
+CombinedPredicates -> FindCommandParser : predicates
+deactivate CombinedPredicates
+
+create FindCommand
+FindCommandParser -> FindCommand : FindCommand(predicates)
+activate FindCommand
+FindCommand -> FindCommandParser : findCommand
+deactivate FindCommand
+
+FindCommandParser -> AddressBookParser : findCommand
+deactivate FindCommandParser
+destroy FindCommandParser
+
+AddressBookParser -> LogicManager : findCommand
+deactivate AddressBookParser
+
+LogicManager -> FindCommand : execute(model)
+activate FindCommand
+
+FindCommand -> Model : updateFilteredPersonList(predicates)
+activate Model
+Model -> FindCommand
+deactivate Model
+
+FindCommand -> LogicManager
+deactivate FindCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
