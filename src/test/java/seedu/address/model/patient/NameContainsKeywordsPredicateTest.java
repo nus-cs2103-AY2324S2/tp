@@ -53,8 +53,8 @@ public class NameContainsKeywordsPredicateTest {
         // but does not match patient hospital id
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Lee", "Ali", "Pasta", "Daughter", "not",
             "in", "Singapore", "swimming"));
-        assertFalse(predicate.test(new PatientBuilder().withPatientHospitalId("12344").withName("Alice Lee")
-            .withPreferredName("Ali").withFoodPreference("Pasta").withFamilyCondition("Daughter not in Singapore")
+        assertFalse(predicate.test(new PatientBuilder().withPatientHospitalId("12344").withName("Carol Li")
+            .withPreferredName("Carol").withFoodPreference("Pasta").withFamilyCondition("Daughter not in Singapore")
             .withHobby("swimming").build()));
     }
 
