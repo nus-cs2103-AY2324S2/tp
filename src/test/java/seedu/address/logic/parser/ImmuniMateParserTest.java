@@ -35,7 +35,7 @@ public class ImmuniMateParserTest {
 
     @Test
     public void parseCommand_create() throws Exception {
-        //TODO for create command
+        // TODO: Only tests for person created with mandatory values, update for optional values @laney0808
         Person person = new PersonBuilder().build();
         CreateCommand command = (CreateCommand) parser.parseCommand(PersonUtil.getCreateCommand(person));
         assertEquals(new CreateCommand(person), command);

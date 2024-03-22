@@ -39,7 +39,7 @@ public class PersonTest {
         assertTrue(ALICE.isSamePerson(editedAlice));
 
         // different NRIC, all other attributes same -> returns false
-        editedAlice = new PersonBuilder(ALICE).withNric(VALID_NRIC_BOB).withName(ALICE.getName().toString()).build();
+        editedAlice = new PersonBuilder(ALICE).withNric(VALID_NRIC_BOB).build();
         assertFalse(ALICE.isSamePerson(editedAlice));
 
         // NRIC differs in case, all other attributes same -> returns false

@@ -41,7 +41,6 @@ public class PersonUtil {
         sb.append(PREFIX_DATEOFBIRTH + person.getDateOfBirth().toString() + " ");
         sb.append(PREFIX_SEX + person.getSex().toString() + " ");
         sb.append(PREFIX_STATUS + person.getStatus().toString() + " ");
-        sb.append(PREFIX_EMAIL + person.getEmail().toString() + " ");
         person.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
