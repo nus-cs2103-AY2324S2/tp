@@ -38,8 +38,19 @@ public class SampleDataUtil {
                         new Category("PARTICIPANT"), getTagSet("classmates")),
                 PersonFactory.createPerson(new Name("Roy Balakrishnan"), new Phone("92624417"),
                         new Email("royb@example.com"), new Address("Blk 45 Aljunied Street 85, #11-31"),
-                        new Category("PARTICIPANT"), getTagSet("colleagues"))
-        };
+                        new Category("PARTICIPANT"), getTagSet("colleagues")),
+                PersonFactory.createPerson(new Name("Gogle"), new Phone("12345678"),
+                        new Email("gogle@example.com"), new Address("Blk 123 Geylang Street 29, #06-41"),
+                        new Category("SPONSOR"), getTagSet("first sponsor")),
+                PersonFactory.createPerson(new Name("Facebok"), new Phone("87654321"),
+                        new Email("facebok@example.com"), new Address("Blk 31 Geylang Street 29, #06-42"),
+                        new Category("SPONSOR"), getTagSet()),
+                PersonFactory.createPerson(new Name("Twiter"), new Phone("87654322"),
+                        new Email("twiter@example.com"), new Address("Blk 32 Geylang Street 29, #06-43"),
+                        new Category("SPONSOR"), getTagSet()),
+                PersonFactory.createPerson(new Name("Peter Lee"), new Phone("7171717"),
+                        new Email("peterlee@example.com"), new Address("Blk 33 Geylang Street 29, #06-44"),
+                        new Category("STAFF"), getTagSet("friends"))};
     }
 
     public static ReadOnlyAddressBook getSampleAddressBook() {
