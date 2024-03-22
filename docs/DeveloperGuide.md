@@ -217,7 +217,7 @@ The diagram highlights the four main components of FitBook, highlighted in their
 ### Searching Clients
 Search for clients are done using the `find` command. The command has been designed to be extendable, allowing for developers to easily define how new fields (attributes) in the clients can be searched.
 
-The sequence diagram below shows the logic flow of executing the command `find n/wendy`
+The sequence diagram below shows the logic flow of executing the command `find n/wendy`.
 
 ![FindCommandSequenceDiagram-Logic](images/FindCommandSequenceDiagram-Logic.png)
 
