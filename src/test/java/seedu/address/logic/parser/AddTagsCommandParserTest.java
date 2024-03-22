@@ -34,6 +34,26 @@ public class AddTagsCommandParserTest {
     }
 
     @Test
+    public void parse_validDifferentCasesArgs_returnsAddTagsCommand() throws ParseException {
+        Index targetIndex = INDEX_SECOND_PATIENT;
+        String userInput = targetIndex.getOneBased() + " t/ fall risk t/ FALL RISK t/ FaLl RiSk";
+
+        AddTagsCommand expectedCommand = new AddTagsCommand(targetIndex, Set.of(new Tag("fall risk")));
+        AddTagsCommand command = parser.parse(userInput);
+        assertEquals(expectedCommand, command);
+    }
+
+    @Test
+    public void parse_validDifferentNumOfSpacesArgs_returnsAddTagsCommand() throws ParseException {
+        Index targetIndex = INDEX_SECOND_PATIENT;
+        String userInput = targetIndex.getOneBased() + " t/ fall risk t/ fall  risk t/ FaLl   RiSk";
+
+        AddTagsCommand expectedCommand = new AddTagsCommand(targetIndex, Set.of(new Tag("fall risk")));
+        AddTagsCommand command = parser.parse(userInput);
+        assertEquals(expectedCommand, command);
+    }
+
+    @Test
     public void parse_validArgsMultipleTags_returnsAddTagsCommand() throws ParseException {
         Index targetIndex = INDEX_FIRST_PATIENT;
         String userInput = targetIndex.getOneBased() + TAG_DESC_DEPRESSION + TAG_DESC_DIABETES;
