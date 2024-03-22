@@ -23,16 +23,11 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         args = args.trim();
-        if (args.length() == 1) {
-            return new AddCommand(new HashMap<>());
-        } else {
-            String[] parts = args.split("/", -1);
-            parts = removeFirstItemFromStringList(parts);
-            requireValidParts(parts);
-            HashMap<String, String> attributeMap = getAttributeHashMapFromAttributeStrings(parts);
-            return new AddCommand(attributeMap);
-        }
-
+        String[] parts = args.split("/", -1);
+        parts = removeFirstItemFromStringList(parts);
+        requireValidParts(parts);
+        HashMap<String, String> attributeMap = getAttributeHashMapFromAttributeStrings(parts);
+        return new AddCommand(attributeMap);
     }
 
     private String[] removeFirstItemFromStringList(String[] parts) {
