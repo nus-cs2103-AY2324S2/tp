@@ -1,7 +1,9 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.ID_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ID_AMY;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import org.junit.jupiter.api.Test;
@@ -22,7 +24,38 @@ public class DeleteCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsDeleteCommand() {
-        assertParseSuccess(parser, ID_DESC_AMY, new DeleteCommand(new Id(VALID_ID_AMY)));
+        DeleteCommand expectedCommand = new DeleteCommand(new Id(VALID_ID_AMY));
+
+        assertParseSuccess(parser, ID_DESC_AMY, expectedCommand);
+
+        assertParseSuccess(parser, "  " + ID_DESC_AMY, expectedCommand);
+
+        assertParseSuccess(parser, ID_DESC_AMY + "  ", expectedCommand);
+
+        assertParseSuccess(parser, " /id     " + VALID_ID_AMY, expectedCommand);
+
+        assertParseSuccess(parser, " /id " + VALID_ID_AMY + "    ", expectedCommand);
     }
 
+    @Test
+    public void parse_invalidFormat_failure() {
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE);
+
+        // Content after "-" is missing.
+        assertParseFailure(parser, "", expectedMessage);
+
+        // /id prefix is missing.
+        assertParseFailure(parser, VALID_ID_AMY, expectedMessage);
+
+        // There is any content other than spaces before the first prefix.
+        assertParseFailure(parser, "delete" + ID_DESC_AMY, expectedMessage);
+    }
+
+    @Test
+    public void parse_invalidArgument_failure() {
+        String expectedMessage = String.format(Id.MESSAGE_CONSTRAINTS);
+
+        // There is white space in the middle of id.
+        assertParseFailure(parser, " /id a bc", expectedMessage);
+    }
 }
