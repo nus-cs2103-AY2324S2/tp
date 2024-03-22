@@ -3,9 +3,11 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
@@ -138,11 +140,11 @@ public class ParserUtil {
      */
     public static Tag parseTag(String tag) throws ParseException {
         requireNonNull(tag);
-        String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
+        String parsedTag = removeExtraSpaces(tag.trim().toLowerCase());
+        if (!Tag.isValidTagName(parsedTag)) {
             throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
         }
-        return new Tag(trimmedTag);
+        return new Tag(parsedTag);
     }
 
     /**
@@ -156,6 +158,19 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
+    /**
+     * Removes extra spaces between words.
+     *
+     * @param tagName The tag name to process.
+     * @return The tag name with extra spaces removed.
+     */
+    public static String removeExtraSpaces(String tagName) {
+        return Arrays.stream(tagName.split("\\s+"))
+                .filter(word -> !word.isEmpty())
+                .collect(Collectors.joining(" "));
+    }
+
     /**
      * Parses a {@param String event} into a {@code Event}.
      * Leading and trailing whitespaces will be trimmed.
