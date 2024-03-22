@@ -60,7 +60,7 @@ public class PersonCard extends UiPart<Region> {
         StringBuilder sb = new StringBuilder();
         sb.append("Schedules: \n");
         for (int i = 0; i < person.getSchedules().size(); i++) {
-            sb.append(i+1).append(". ").append(person.getSchedules().get(i).toString());
+            sb.append(i + 1).append(". ").append(person.getSchedules().get(i).toString());
         }
         sb.append(" ");
         schedules.setText(sb.toString());
