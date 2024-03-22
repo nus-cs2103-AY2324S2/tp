@@ -187,7 +187,6 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
-            // If there is a last viewed Person, display the person in the SidePanel
             Optional<Person> lastViewedPerson = logic.getLastViewedPerson();
             lastViewedPerson.ifPresentOrElse(sidePanel::displayPerson, sidePanel::resetDetails);
 

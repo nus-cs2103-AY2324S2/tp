@@ -49,13 +49,9 @@ public class DeleteCommand extends Command {
     }
 
     private void updateLastViewedPersonIfNecessary(Person personToDelete, Model model) {
-        Optional<Person> lastViewedPerson = model.getLastViewedPerson();
-        if (lastViewedPerson.isEmpty()) {
-            return;
-        }
-        if (lastViewedPerson.get().equals(personToDelete)) {
-            model.resetLastViewedPerson();
-        }
+        model.getLastViewedPerson()
+                .filter(lastViewedPerson -> lastViewedPerson.equals(personToDelete))
+                .ifPresent(lastViewedPerson -> model.resetLastViewedPerson());
     }
 
     @Override

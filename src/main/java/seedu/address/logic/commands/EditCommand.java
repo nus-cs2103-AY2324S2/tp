@@ -97,13 +97,9 @@ public class EditCommand extends Command {
     }
 
     private void updateLastViewedPersonIfNecessary(Person personToEdit, Person editedPerson, Model model) {
-        Optional<Person> lastViewedPerson = model.getLastViewedPerson();
-        if (lastViewedPerson.isEmpty()) {
-            return;
-        }
-        if (lastViewedPerson.get().equals(personToEdit)) {
-            model.updateLastViewedPerson(editedPerson);
-        }
+        model.getLastViewedPerson()
+                .filter(lastViewedPerson -> lastViewedPerson.equals(personToEdit))
+                .ifPresent(lastViewedPerson -> model.updateLastViewedPerson(editedPerson));
     }
 
     /**
