@@ -52,6 +52,7 @@ Person *--> Email
 Person *--> DrugAllergy
 Person *--> "*" Illness
 Person *--> "*" Note
+
 Note *--> Description
 
 Person -[hidden]up--> I
