@@ -5,13 +5,14 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_CONTACT_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalContacts.CARL;
-import static seedu.address.testutil.TypicalContacts.ELLE;
-import static seedu.address.testutil.TypicalContacts.FIONA;
+import static seedu.address.testutil.TypicalContacts.ALICE;
+import static seedu.address.testutil.TypicalContacts.BENSON;
+import static seedu.address.testutil.TypicalContacts.DANIEL;
 import static seedu.address.testutil.TypicalContacts.getTypicalCodeConnect;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -29,10 +30,8 @@ public class FindTechStackCommandTest {
 
     @Test
     public void equals() {
-        TsContainsKeywordsPredicate firstPredicate =
-                new TsContainsKeywordsPredicate(Collections.singletonList("first"));
-        TsContainsKeywordsPredicate secondPredicate =
-                new TsContainsKeywordsPredicate(Collections.singletonList("second"));
+        List<String> firstPredicate = Collections.singletonList("first");
+        List<String> secondPredicate = Collections.singletonList("second");
 
         FindTechStackCommand findFirstCommand = new FindTechStackCommand(firstPredicate);
         FindTechStackCommand findSecondCommand = new FindTechStackCommand(secondPredicate);
@@ -57,8 +56,9 @@ public class FindTechStackCommandTest {
     @Test
     public void execute_zeroKeywords_noContactFound() {
         String expectedMessage = String.format(MESSAGE_CONTACT_LISTED_OVERVIEW, 0);
-        TsContainsKeywordsPredicate predicate = preparePredicate(" ");
-        FindTechStackCommand command = new FindTechStackCommand(predicate);
+        List<String> techKeywords = List.of("Tailwind");
+        TsContainsKeywordsPredicate predicate = new TsContainsKeywordsPredicate(techKeywords);
+        FindTechStackCommand command = new FindTechStackCommand(techKeywords);
         expectedModel.updateFilteredContactList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredContactList());
@@ -67,25 +67,19 @@ public class FindTechStackCommandTest {
     @Test
     public void execute_multipleKeywords_multipleContactsFound() {
         String expectedMessage = String.format(MESSAGE_CONTACT_LISTED_OVERVIEW, 3);
-        TsContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
-        FindTechStackCommand command = new FindTechStackCommand(predicate);
+        List<String> techKeywords = List.of("java");
+        TsContainsKeywordsPredicate predicate = new TsContainsKeywordsPredicate(techKeywords);
+        FindTechStackCommand command = new FindTechStackCommand(techKeywords);
         expectedModel.updateFilteredContactList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredContactList());
+        assertEquals(Arrays.asList(ALICE, BENSON, DANIEL), model.getFilteredContactList());
     }
 
     @Test
     public void toStringMethod() {
-        TsContainsKeywordsPredicate predicate = new TsContainsKeywordsPredicate(Arrays.asList("keyword"));
-        FindTechStackCommand findTechStackCommand = new FindTechStackCommand(predicate);
-        String expected = FindTechStackCommand.class.getCanonicalName() + "{predicate=" + predicate + "}";
+        List<String> techKeywords = List.of("Java", "Python");
+        FindTechStackCommand findTechStackCommand = new FindTechStackCommand(techKeywords);
+        String expected = FindTechStackCommand.class.getCanonicalName() + "{predicate=" + techKeywords + "}";
         assertEquals(expected, findTechStackCommand.toString());
-    }
-
-    /**
-     * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
-     */
-    private TsContainsKeywordsPredicate preparePredicate(String userInput) {
-        return new TsContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
     }
 }

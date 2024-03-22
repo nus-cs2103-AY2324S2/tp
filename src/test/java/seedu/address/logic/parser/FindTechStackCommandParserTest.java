@@ -8,6 +8,7 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.FindTagCommand;
 import seedu.address.logic.commands.FindTechStackCommand;
 import seedu.address.model.contact.TsContainsKeywordsPredicate;
 
@@ -23,12 +24,11 @@ public class FindTechStackCommandParserTest {
     @Test
     public void parse_validArgs_returnsFindTechStackCommand() {
         // no leading and trailing whitespaces
-        FindTechStackCommand expectedFindCommand =
-                new FindTechStackCommand(new TsContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
-        assertParseSuccess(parser, "Alice Bob", expectedFindCommand);
+        FindTechStackCommand expectedFindTsCommand =
+                new FindTechStackCommand(Arrays.asList("Alice", "Bob"));
+        assertParseSuccess(parser, "Alice Bob", expectedFindTsCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n Alice \n \t Bob  \t", expectedFindCommand);
+        assertParseSuccess(parser, " \n Alice \n \t Bob  \t", expectedFindTsCommand);
     }
-
 }

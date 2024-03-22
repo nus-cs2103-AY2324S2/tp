@@ -29,34 +29,54 @@ public class TypicalContacts {
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253")
             .withGitHubUsername("AliceInWonderland2")
-            .withTags("friends").build();
+            .withTags("friends")
+            .withTechStack("java").build();
     public static final Contact BENSON = new ContactBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432")
             .withGitHubUsername("BenSon0")
-            .withTags("owesMoney", "friends").build();
-    public static final Contact CARL = new ContactBuilder().withName("Carl Kurz").withPhone("95352563")
-            .withEmail("heinz@example.com").withAddress("wall street").withGitHubUsername("CarlKurzCK").build();
-    public static final Contact DANIEL = new ContactBuilder().withName("Daniel Meier").withPhone("87652533")
-            .withEmail("cornelia@example.com").withAddress("10th street").withGitHubUsername("Meier200").withTags("friends").build();
-    public static final Contact ELLE = new ContactBuilder().withName("Elle Meyer").withPhone("9482224")
-            .withEmail("werner@example.com").withAddress("michegan ave")
+            .withTags("owesMoney", "friends")
+            .withTechStack("java", "python").build();
+    public static final Contact CARL = new ContactBuilder().withName("Carl Kurz")
+            .withPhone("95352563")
+            .withEmail("heinz@example.com")
+            .withAddress("wall street")
+            .withGitHubUsername("CarlKurzCK").build();
+    public static final Contact DANIEL = new ContactBuilder().withName("Daniel Meier")
+            .withPhone("87652533")
+            .withEmail("cornelia@example.com")
+            .withAddress("10th street")
+            .withGitHubUsername("Meier200")
+            .withTags("friends")
+            .withTechStack("java").build();
+    public static final Contact ELLE = new ContactBuilder().withName("Elle Meyer")
+            .withPhone("9482224")
+            .withEmail("werner@example.com")
+            .withAddress("michegan ave")
             .withGitHubUsername("Ellieellie").build();
-    public static final Contact FIONA = new ContactBuilder().withName("Fiona Kunz").withPhone("9482427")
-            .withEmail("lydia@example.com").withAddress("little tokyo")
+    public static final Contact FIONA = new ContactBuilder().withName("Fiona Kunz")
+            .withPhone("9482427")
+            .withEmail("lydia@example.com")
+            .withAddress("little tokyo")
             .withGitHubUsername("FifiKunz").build();
-    public static final Contact GEORGE = new ContactBuilder().withName("George Best").withPhone("9482442")
-            .withEmail("anna@example.com").withAddress("4th street")
+    public static final Contact GEORGE = new ContactBuilder().withName("George Best")
+            .withPhone("9482442")
+            .withEmail("anna@example.com")
+            .withAddress("4th street")
             .withGitHubUsername("GeBest2103").build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
     // Manually added
-    public static final Contact HOON = new ContactBuilder().withName("Hoon Meier").withPhone("8482424")
-            .withEmail("stefan@example.com").withAddress("little india")
+    public static final Contact HOON = new ContactBuilder().withName("Hoon Meier")
+            .withPhone("8482424")
+            .withEmail("stefan@example.com")
+            .withAddress("little india")
             .withGitHubUsername("Hooon999").build();
-    public static final Contact IDA = new ContactBuilder().withName("Ida Mueller").withPhone("8482131")
-            .withEmail("hans@example.com").withAddress("chicago ave")
+    public static final Contact IDA = new ContactBuilder().withName("Ida Mueller")
+            .withPhone("8482131")
+            .withEmail("hans@example.com")
+            .withAddress("chicago ave")
             .withGitHubUsername("Idaaaa").build();
 
     // Manually added - Contact's details found in {@code CommandTestUtil}

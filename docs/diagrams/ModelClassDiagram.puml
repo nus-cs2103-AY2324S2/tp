@@ -18,6 +18,7 @@ Class Address
 Class Email
 Class Name
 Class Phone
+Class GitHubUsername
 Class Tag
 Class TechStack
 
@@ -43,7 +44,7 @@ Contact *--> Phone
 Contact *--> Email
 Contact *--> Address
 Contact *--> "*" Tag
-Contact *--> "*" Tech Stack
+Contact *--> "*" TechStack
 
 Contact -[hidden]up--> I
 UniqueContactList -[hidden]right-> I

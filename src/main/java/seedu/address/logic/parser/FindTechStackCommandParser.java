@@ -25,9 +25,9 @@ public class FindTechStackCommandParser  implements Parser<FindTechStackCommand>
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindTechStackCommand.MESSAGE_USAGE));
         }
 
-        String[] nameKeywords = trimmedArgs.split("\\s+");
+        String[] techKeywords = trimmedArgs.split("\\s+");
 
-        return new FindTechStackCommand(new TsContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        return new FindTechStackCommand(Arrays.asList(techKeywords));
     }
 
 }
