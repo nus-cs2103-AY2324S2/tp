@@ -16,13 +16,11 @@ public class DeleteTaskCommand extends Command {
 
     public static final String COMMAND_WORD = "delete task";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Delete a task in a project "
-            + "Parameters: "
-            + "PROJECT_NAME, TASK_NAME";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + "TASK_NAME /in PROJECT_NAME";
 
-    public static final String MESSAGE_SUCCESS = "%1$s  has been deleted from %2$s";
+    public static final String MESSAGE_SUCCESS = "%1$s has been deleted from %2$s";
 
-    public static final String MESSAGE_PROJECT_NOT_FOUND = "Project %2$s not found: "
+    public static final String MESSAGE_PROJECT_NOT_FOUND = "Project %1$s not found: "
             + "Please make sure the project exists.";
     public static final String MESSAGE_TASK_NOT_FOUND = "Task %1$s not found: "
             + "Please make sure the task exists in project %2$s";
@@ -46,7 +44,6 @@ public class DeleteTaskCommand extends Command {
         if (!model.hasPerson(taskProject)) {
             throw new CommandException(String.format(
                 MESSAGE_PROJECT_NOT_FOUND,
-                Messages.format(toDelete),
                 Messages.format(taskProject)));
         }
         Person combineTask = model.findPerson(taskProject.getName());

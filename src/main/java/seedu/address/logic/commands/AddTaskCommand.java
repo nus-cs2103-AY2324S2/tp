@@ -22,8 +22,9 @@ public class AddTaskCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "%1$s has been added to the project %2$s.";
 
-    public static final String MESSAGE_PROJECT_NOT_FOUND = "Project %2$s not found: "
+    public static final String MESSAGE_PROJECT_NOT_FOUND = "Project %1$s not found: "
             + "Please make sure the project exists.";
+
     public static final String MESSAGE_DUPLICATE_TASK = "Task %1$s already exists in project %2$s";
 
     private final Task toAdd;
@@ -45,13 +46,19 @@ public class AddTaskCommand extends Command {
         if (!model.hasPerson(taskProject)) {
             throw new CommandException(String.format(
                 MESSAGE_PROJECT_NOT_FOUND,
-                Messages.format(toAdd),
                 Messages.format(taskProject)));
         }
 
         Person combineTask = model.findPerson(taskProject.getName());
-        combineTask.addTask(toAdd);
 
+        if (combineTask.hasTask(toAdd)) {
+            throw new CommandException(String.format(
+                    MESSAGE_DUPLICATE_TASK,
+                    Messages.format(toAdd),
+                    Messages.format(combineTask)));
+        }
+
+        combineTask.addTask(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd), Messages.format(combineTask)));
     }
 

@@ -22,6 +22,12 @@ public class SetStatusCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "The task %1$s has the following status %2$s.";
 
+    public static final String MESSAGE_PROJECT_NOT_FOUND = "Project %1$s not found: "
+            + "Please make sure the project exists.";
+
+    public static final String MESSAGE_TASK_NOT_FOUND = "Task %1$s not found: "
+            + "Please make sure the task exists in project %2$s";
+
     public static final String MESSAGE_WRONG_FORMAT_STATUS = "The status %1s has been entered in the wrong format.";
 
     private final Task task;
@@ -44,7 +50,21 @@ public class SetStatusCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
+        if (!model.hasPerson(project)) {
+            throw new CommandException(String.format(
+                    MESSAGE_PROJECT_NOT_FOUND,
+                    Messages.format(project)));
+        }
+
         Person statusProject = model.findPerson(project.getName());
+
+        if (!statusProject.hasTask(task)) {
+            throw new CommandException(String.format(
+                    MESSAGE_TASK_NOT_FOUND,
+                    Messages.format(task),
+                    Messages.format(project)));
+        }
+
         Task statusTask = statusProject.findTask(task.getName());
 
         if (status.equals("complete")) {

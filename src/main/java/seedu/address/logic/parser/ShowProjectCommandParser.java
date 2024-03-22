@@ -16,14 +16,19 @@ public class ShowProjectCommandParser implements Parser<ShowProjectCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public ShowProjectCommand parse(String args) throws ParseException {
-        args = args.trim();
-        if (args.length() == 0) {
-            throw new ParseException(
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ShowProjectCommand.MESSAGE_USAGE));
-        }
+        try {
+            args = args.trim();
+            if (args.length() == 0) {
+                throw new ParseException("Please enter the project field");
+            }
 
-        System.out.println(args);
-        return new ShowProjectCommand(args);
+            System.out.println(args);
+            return new ShowProjectCommand(args);
+        } catch (Exception e) {
+            throw new ParseException(String.format(
+                    MESSAGE_INVALID_COMMAND_FORMAT,
+                    ShowProjectCommand.MESSAGE_USAGE));
+        }
     }
 
 }

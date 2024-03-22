@@ -22,13 +22,15 @@ public class DeleteTaskCommandParser implements Parser<DeleteTaskCommand> {
      */
     public DeleteTaskCommand parse(String args) throws ParseException {
         try {
+            if (!args.contains(" /in ")) {
+                throw new ParseException("Whoops! When referring to another field like a project,"
+                        + " always remember to put /in instead of just in.");
+            }
             String taskName = args.split(" /in")[0];
             String projectName = args.split("/in ")[1];
             Task task = new Task(taskName);
-            if (taskName.length() == 0) {
-                throw new ParseException(String.format(
-                    MESSAGE_INVALID_COMMAND_FORMAT,
-                    DeleteTaskCommand.MESSAGE_USAGE));
+            if ((taskName.length() == 0) || (projectName.length() == 0)) {
+                throw new ParseException("Please enter the project and the task field");
             }
             Name name = ParserUtil.parseName(projectName);
             Person person = new Person(name);

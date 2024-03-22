@@ -24,7 +24,10 @@ public class ShowProjectCommand extends Command {
             + "Parameters: PROJECT_NAME\n"
             + "Example: " + COMMAND_WORD + " CS2103";
 
-    public static final String MESSAGE_DELETE_PROJECT_SUCCESS = "[%1$s] is now being shown.";
+    public static final String MESSAGE_SHOW_PROJECT_SUCCESS = "%1$s is now being shown.";
+
+    public static final String MESSAGE_PROJECT_NOT_FOUND = "Project %1$s not found: "
+            + "Please make sure the project exists.";
 
     private final String targetName;
 
@@ -47,11 +50,13 @@ public class ShowProjectCommand extends Command {
         }
 
         if (projectToDelete == null) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(String.format(
+                    MESSAGE_PROJECT_NOT_FOUND,
+                    Messages.format(targetProject)));
         }
 
         model.updateCurrentProject(new NameEqualsPredicate(projectToDelete.getName().fullName));
-        return new CommandResult(String.format(MESSAGE_DELETE_PROJECT_SUCCESS, Messages.format(projectToDelete)));
+        return new CommandResult(String.format(MESSAGE_SHOW_PROJECT_SUCCESS, Messages.format(projectToDelete)));
     }
 
     @Override
