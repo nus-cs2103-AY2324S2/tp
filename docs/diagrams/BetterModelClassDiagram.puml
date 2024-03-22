@@ -9,13 +9,13 @@ AddressBook *-right-> "1" UniqueTagList
 UniqueTagList -[hidden]down- UniquePersonList
 UniqueTagList -[hidden]down- UniquePersonList
 
-UniqueTagList -right-> "*" Tag
+UniqueTagList -right-> "1" DepartmentTag
 UniquePersonList -right-> Person
 
-Person -up-> "*" Tag
+Person -up-> "1" DepartmentTag
 
 Person *--> Name
 Person *--> Phone
-Person *--> Email
-Person *--> Address
+Person *--> Id
+
 @enduml
