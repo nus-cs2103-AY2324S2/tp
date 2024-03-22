@@ -18,7 +18,7 @@
     <HBox fx:id="taskList" styleClass="pane-with-border"
             minHeight="540" prefHeight="540">
         <VBox styleClass="pane-with-border">
-            <Label text="Done" styleClass="cell_big_label">
+            <Label text="Not Done" styleClass="cell_big_label">
                 <padding>
                     <Insets top="12" left="12" />
                 </padding>
@@ -32,7 +32,7 @@
             </VBox>
         </VBox>
         <VBox>
-            <Label text="Not Done" styleClass="cell_big_label">
+            <Label text="Done" styleClass="cell_big_label">
                 <padding>
                     <Insets top="12" left="12" />
                 </padding>
