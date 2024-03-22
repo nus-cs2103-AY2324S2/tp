@@ -1,7 +1,10 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 import java.util.stream.Stream;
@@ -64,7 +67,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Entry entry = new Entry(category, description);
 
         if (arePrefixesPresent(argMultimap, PREFIX_CATEGORY) && arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION)
-        && (category.equals("") || description.equals(""))) {
+            && (category.equals("") || description.equals(""))) {
             throw new ParseException(AddCategoryCommand.ENTRY_NOT_ADDED);
         }
 
