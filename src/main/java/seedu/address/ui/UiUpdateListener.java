@@ -2,6 +2,9 @@ package seedu.address.ui;
 
 import seedu.address.model.person.Classes;
 
+/**
+ * Monitors for changes requiring UI to be updated
+ */
 public interface UiUpdateListener {
 
     /**

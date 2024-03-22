@@ -8,6 +8,9 @@ import seedu.address.model.person.Classes;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+/**
+ * Selects the Class to be viewed or modified currently.
+ */
 public class SelectClassCommand extends Command {
     public static final String COMMAND_WORD = "select";
 
