@@ -17,7 +17,7 @@ class MessagesTest {
 
     @Test
     public void getErrorMessageForDuplicatePrefixes_assertDuplicatePrefixesLength() {
-        assertEquals(Messages.MESSAGE_DUPLICATE_FIELDS + "name",
+        assertEquals(Messages.MESSAGE_DUPLICATE_FIELDS,
                 Messages.getErrorMessageForDuplicatePrefixes(new Prefix("")));
     }
 
