@@ -177,6 +177,17 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedPerson);
 
         selectedClassAddressBook.setPerson(target, editedPerson);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+
+        // Update the storage with the edited AddressBook
+        try {
+            Storage.saveAddressBook(selectedClassAddressBook, selectedClass.getFilePath());
+        } catch (IOException e) {
+            logger.warning("Error saving the address book after editing person: " + e.getMessage());
+            // Consider what action to take if saving fails
+            // e.g., throw a new CommandException or runtime exception
+        }
+
     }
     @Override
     public String getSelectedClassName() {
