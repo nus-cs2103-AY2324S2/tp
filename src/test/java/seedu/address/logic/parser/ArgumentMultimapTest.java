@@ -10,7 +10,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 
 class ArgumentMultimapTest {
     @Test
-    public void verifyNoDuplicatePrefixesFor() {
+    public void verifyNoDuplicatePrefixesFor_duplicate_exception() {
         ArgumentMultimap argMultimap = new ArgumentMultimap();
         Prefix prefix = new Prefix("p/");
         try {
@@ -18,6 +18,19 @@ class ArgumentMultimapTest {
         } catch (ParseException e) {
             assertTrue(e instanceof ParseException);
         }
+    }
+    @Test
+    public void verifyNoDuplicatePrefixesFor_noDuplicate_noException() {
+        ArgumentMultimap argMultimap = new ArgumentMultimap();
+        Prefix prefix = new Prefix("p/");
+        try {
+            argMultimap.verifyNoDuplicatePrefixesFor(new Prefix[] {prefix});
+        } catch (ParseException e) {
+            assertTrue(false);
+        }
+    }
+    @Test
+    public void verifyNoDuplicatePrefixesFor_lengthOnePrefix
     }
 
 
