@@ -6,10 +6,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_GROUPS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalCourseMates.getTypicalContactList;
-import static seedu.address.testutil.TypicalGroups.getTypicalGroupList;
 import static seedu.address.testutil.TypicalGroups.SAMPLE_GROUP_1;
 import static seedu.address.testutil.TypicalGroups.SAMPLE_GROUP_2;
 import static seedu.address.testutil.TypicalGroups.SAMPLE_GROUP_3;
+import static seedu.address.testutil.TypicalGroups.getTypicalGroupList;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -78,9 +78,9 @@ public class FindGroupCommandTest {
     @Test
     public void toStringMethod() {
         ContainsGroupKeywordPredicate predicate = new ContainsGroupKeywordPredicate("keyword");
-        FindGroupCommand FindGroupCommand = new FindGroupCommand(predicate);
+        FindGroupCommand findGroupCommand = new FindGroupCommand(predicate);
         String expected = FindGroupCommand.class.getCanonicalName() + "{predicate=" + predicate + "}";
-        assertEquals(expected, FindGroupCommand.toString());
+        assertEquals(expected, findGroupCommand.toString());
     }
 
     /**
