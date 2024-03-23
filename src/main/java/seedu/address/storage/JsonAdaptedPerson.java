@@ -34,7 +34,7 @@ class JsonAdaptedPerson {
     private final String major;
     private final String telegram;
     private final String remark;
-    private final List<JsonAdaptedGroup> groups = new ArrayList<>();
+    private final List<String> groups = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -43,7 +43,7 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("year") String year,
             @JsonProperty("telegram") String telegram, @JsonProperty("major") String major,
-            @JsonProperty("remark") String remark, @JsonProperty("groups") List<JsonAdaptedGroup> groups) {
+            @JsonProperty("remark") String remark, @JsonProperty("groups") List<String> groups) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -69,6 +69,7 @@ class JsonAdaptedPerson {
         remark = source.getRemark().value;
         groups.addAll(source.getGroups().stream()
                 .map(JsonAdaptedGroup::new)
+                .map(JsonAdaptedGroup::getGroupName)
                 .collect(Collectors.toList()));
     }
 
@@ -79,8 +80,8 @@ class JsonAdaptedPerson {
      */
     public Person toModelType() throws IllegalValueException {
         final List<Group> personGroups = new ArrayList<>();
-        for (JsonAdaptedGroup group : groups) {
-            personGroups.add(group.toModelType());
+        for (String group : groups) {
+            personGroups.add(new JsonAdaptedGroup(group).toModelType());
         }
 
         if (name == null) {

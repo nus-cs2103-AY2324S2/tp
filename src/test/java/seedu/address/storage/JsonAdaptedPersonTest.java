@@ -35,8 +35,9 @@ public class JsonAdaptedPersonTest {
     private static final String VALID_MAJOR = BENSON.getMajor().toString();
     private static final String VALID_TELEGRAM = BENSON.getTelegram().toString();
     private static final String VALID_REMARK = BENSON.getRemark().toString();
-    private static final List<JsonAdaptedGroup> VALID_GROUPS = BENSON.getGroups().stream()
+    private static final List<String> VALID_GROUPS = BENSON.getGroups().stream()
             .map(JsonAdaptedGroup::new)
+            .map(JsonAdaptedGroup::getGroupName)
             .collect(Collectors.toList());
 
     @Test
@@ -151,8 +152,8 @@ public class JsonAdaptedPersonTest {
 
     @Test
     public void toModelType_invalidGroups_throwsIllegalValueException() {
-        List<JsonAdaptedGroup> invalidGroups = new ArrayList<>(VALID_GROUPS);
-        invalidGroups.add(new JsonAdaptedGroup(INVALID_GROUP));
+        List<String> invalidGroups = new ArrayList<>(VALID_GROUPS);
+        invalidGroups.add(INVALID_GROUP);
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_YEAR,
                 VALID_TELEGRAM, VALID_MAJOR, VALID_REMARK, invalidGroups);
         assertThrows(IllegalValueException.class, person::toModelType);
