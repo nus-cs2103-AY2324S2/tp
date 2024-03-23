@@ -17,19 +17,8 @@ public class LastContactCommand extends Command {
 
     public static final Comparator<Person> SORT_COMPARATOR = (person1, person2) -> {
         // Assuming getLastContact() can be null and getDateTime() can also be null.
-        LocalDateTime lastContactDateTime1 = (person1.getLastcontact() != null)
-                ? person1.getLastcontact().getDateTime() : null;
-        LocalDateTime lastContactDateTime2 = (person2.getLastcontact() != null)
-                ? person2.getLastcontact().getDateTime() : null;
-
-        // Handling nulls to ensure they are sorted to the end.
-        if (lastContactDateTime1 == null && lastContactDateTime2 == null) {
-            return 0; // Both are equal in terms of sorting.
-        } else if (lastContactDateTime1 == null) {
-            return 1; // Nulls are considered greater to sort them to the end.
-        } else if (lastContactDateTime2 == null) {
-            return -1; // Non-nulls come before nulls.
-        }
+        LocalDateTime lastContactDateTime1 = person1.getLastcontact().getDateTime();
+        LocalDateTime lastContactDateTime2 = person2.getLastcontact().getDateTime();
 
         // If both dates are non-null, compare them directly.
         return lastContactDateTime1.compareTo(lastContactDateTime2);
