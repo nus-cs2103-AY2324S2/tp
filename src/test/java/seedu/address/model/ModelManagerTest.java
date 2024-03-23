@@ -20,9 +20,7 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.commons.exceptions.DataLoadingException;
 import seedu.address.logic.Logic;
-import seedu.address.logic.LogicManager;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.person.Classes;
 import seedu.address.model.person.CourseCode;
@@ -30,17 +28,16 @@ import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.testutil.AddressBookBuilder;
-import seedu.address.testutil.PersonBuilder;
 
 public class ModelManagerTest {
 
     private ModelManager modelManager = new ModelManager();
     private Logic logicStub;
-    private final Classes CLASS_1 = new Classes(new CourseCode("class1"));
+    private final Classes class1 = new Classes(new CourseCode("class1"));
     @BeforeEach
     public void setUp() {
         List<Classes> classesList = new ArrayList<>();
-        classesList.add(CLASS_1);
+        classesList.add(class1);
         logicStub = new LogicManagerStub(classesList);
     }
 
@@ -137,8 +134,10 @@ public class ModelManagerTest {
     //        ObservableList<Classes> classList = logicStub.getFilteredClassList();
     //        Classes firstclass = classList.get(0);
     //        modelManager.selectClass(firstclass);
-    //        Person originalPerson = new PersonBuilder().withName("Alice").withPhone("98798798").withEmail("alice@gmail.com").withStudentID("A1111111D").build();
-    //        Person editedPerson = new PersonBuilder().withName("Alice").withPhone("999988888").withEmail("alice@gmail.com").withStudentID("A1111111D").build();
+    //        Person originalPerson = new PersonBuilder().withName("Alice")
+    //                .withPhone("98798798").withEmail("alice@gmail.com").withStudentID("A1111111D").build();
+    //        Person editedPerson = new PersonBuilder().withName("Alice")
+    //                .withPhone("999988888").withEmail("alice@gmail.com").withStudentID("A1111111D").build();
     //
     //        if (!modelManager.hasPerson(originalPerson)) {
     //            modelManager.addPerson(originalPerson);
@@ -157,21 +156,21 @@ public class ModelManagerTest {
     @Test
     public void createClass_addNewClass_returnSuccess() {
         ObservableList<Classes> classList = logicStub.getFilteredClassList();
-        if (classList.contains(CLASS_1)) {
-            modelManager.removeClass(CLASS_1);
+        if (classList.contains(class1)) {
+            modelManager.removeClass(class1);
         }
-        modelManager.createClass(CLASS_1);
-        assertTrue(modelManager.hasClass(CLASS_1));
+        modelManager.createClass(class1);
+        assertTrue(modelManager.hasClass(class1));
     }
 
     @Test
     public void removeClass_removeExistingClass_returnSuccess() {
         ObservableList<Classes> classList = logicStub.getFilteredClassList();
-        if (!classList.contains(CLASS_1)) {
-            modelManager.createClass(CLASS_1);
+        if (!classList.contains(class1)) {
+            modelManager.createClass(class1);
         }
-        modelManager.removeClass(CLASS_1);
-        assertTrue(!modelManager.hasClass(CLASS_1));
+        modelManager.removeClass(class1);
+        assertTrue(!modelManager.hasClass(class1));
     }
 
     @Test

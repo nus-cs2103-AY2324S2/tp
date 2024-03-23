@@ -30,6 +30,8 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyClassBook;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.person.Classes;
+import seedu.address.model.person.CourseCode;
 import seedu.address.model.person.Person;
 import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonClassBookStorage;
@@ -69,11 +71,12 @@ public class LogicManagerTest {
         assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
-    //    @Test
-    //    public void execute_validCommand_success() throws Exception {
-    //        String listCommand = ListCommand.COMMAND_WORD;
-    //        assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
-    //    }
+    @Test
+    public void execute_validCommand_success() throws Exception {
+        model.selectClass(new Classes(new CourseCode("class1")));
+        String listCommand = ListCommand.COMMAND_WORD;
+        assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS + "class1", model);
+    }
     //
     //    @Test
     //    public void execute_storageThrowsIoException_throwsCommandException() {

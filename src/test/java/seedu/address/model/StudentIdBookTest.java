@@ -48,7 +48,8 @@ public class StudentIdBookTest {
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two persons with the same identity fields
-        Person editedAlice = new PersonBuilder(ALICE).withStudentID(VALID_STUDENT_ID_AMY).withDate(new Attendance(new AttendanceStatus(VALID_DATE_1, "1")))
+        Person editedAlice = new PersonBuilder(ALICE).withStudentID(VALID_STUDENT_ID_AMY)
+                .withDate(new Attendance(new AttendanceStatus(VALID_DATE_1, "1")))
                 .build();
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
         AddressBookStub newData = new AddressBookStub(newPersons);
@@ -75,7 +76,8 @@ public class StudentIdBookTest {
     @Test
     public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
         addressBook.addPerson(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withStudentID(VALID_STUDENT_ID_AMY).withDate(new Attendance(new AttendanceStatus(VALID_DATE_1, "1")))
+        Person editedAlice = new PersonBuilder(ALICE).withStudentID(VALID_STUDENT_ID_AMY)
+                .withDate(new Attendance(new AttendanceStatus(VALID_DATE_1, "1")))
                 .build();
         assertTrue(addressBook.hasPerson(editedAlice));
     }
