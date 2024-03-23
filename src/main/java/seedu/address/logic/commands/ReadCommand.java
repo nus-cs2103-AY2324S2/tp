@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Nric;
@@ -48,7 +49,7 @@ public class ReadCommand extends Command {
         Person readPerson = model.getFilteredPersonList().get(0);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
-        return new CommandResult(String.format(MESSAGE_READ_PERSON_SUCCESS, readPerson.toDetailedString()));
+        return new CommandResult(String.format(MESSAGE_READ_PERSON_SUCCESS, Messages.format(readPerson)));
     }
 
     @Override
