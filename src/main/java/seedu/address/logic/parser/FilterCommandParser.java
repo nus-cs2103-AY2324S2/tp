@@ -1,5 +1,10 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAM;
+
 import java.util.StringJoiner;
 import java.util.function.Predicate;
 
@@ -16,27 +21,35 @@ public class FilterCommandParser implements Parser<FilterCommand> {
 
     @Override
     public FilterCommand parse(String args) throws ParseException {
+        requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_NAME, CliSyntax.PREFIX_TAG,
-                        CliSyntax.PREFIX_TEAM, CliSyntax.PREFIX_ROLE);
+                ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_NAME, PREFIX_TAG,
+                        PREFIX_TEAM, PREFIX_ROLE);
+
+        if (!argMultimap.getValue(PREFIX_NAME).isPresent()
+                && !argMultimap.getValue(PREFIX_TAG).isPresent()
+                && !argMultimap.getValue(PREFIX_TEAM).isPresent()
+                && !argMultimap.getValue(PREFIX_ROLE).isPresent()) {
+            throw new ParseException("Invalid arguments for filter command: " + args);
+        }
 
         Predicate<Employee> predicate = employee -> true;
         StringJoiner filterDescription = new StringJoiner(", ");
 
-        if (argMultimap.getValue(CliSyntax.PREFIX_TAG).isPresent()) {
-            Tag tag = ParserUtil.parseTag(argMultimap.getValue(CliSyntax.PREFIX_TAG).get());
+        if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
+            Tag tag = ParserUtil.parseTag(argMultimap.getValue(PREFIX_TAG).get());
             predicate = predicate.and(employee -> employee.getTags().contains(tag));
             filterDescription.add("Tag: " + tag);
         }
 
-        if (argMultimap.getValue(CliSyntax.PREFIX_TEAM).isPresent()) {
-            String teamName = argMultimap.getValue(CliSyntax.PREFIX_TEAM).get().trim();
+        if (argMultimap.getValue(PREFIX_TEAM).isPresent()) {
+            String teamName = argMultimap.getValue(PREFIX_TEAM).get().trim();
             predicate = predicate.and(employee -> employee.getTeam().toString().equalsIgnoreCase(teamName));
             filterDescription.add("Team: " + teamName);
         }
 
-        if (argMultimap.getValue(CliSyntax.PREFIX_ROLE).isPresent()) {
-            Role role = ParserUtil.parseRole(argMultimap.getValue(CliSyntax.PREFIX_ROLE).get());
+        if (argMultimap.getValue(PREFIX_ROLE).isPresent()) {
+            Role role = ParserUtil.parseRole(argMultimap.getValue(PREFIX_ROLE).get());
             predicate = predicate.and(employee -> employee.getRole().equals(role));
             filterDescription.add("Role: " + role);
         }
@@ -48,5 +61,11 @@ public class FilterCommandParser implements Parser<FilterCommand> {
         }
 
         return new FilterCommand(predicate, filterDescription.toString());
+    }
+
+    private void requireNonNull(String args) {
+        if (args == null) {
+            throw new NullPointerException();
+        }
     }
 }
