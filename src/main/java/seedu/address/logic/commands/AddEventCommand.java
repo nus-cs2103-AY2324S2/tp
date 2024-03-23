@@ -37,6 +37,7 @@ public class AddEventCommand extends Command {
             + PREFIX_DATETIME + "29-09-1789";
 
     public static final String MESSAGE_SUCCESS = "Event %1$s successfully added for Patient %2$s with ID %3$s for %4$s";
+    public static final String MESSAGE_DUPLICATE = "Event %1$s already exists for Patient %2$s with ID %3$s for %4$s";
 
     private final Index index;
     private final Event dateToAdd;
@@ -69,8 +70,13 @@ public class AddEventCommand extends Command {
         }
 
         Patient patientToEdit = lastShownList.get(index.getZeroBased());
-
         Set<Event> newEventsList = new HashSet<>(patientToEdit.getEvents());
+
+        if (newEventsList.contains(this.dateToAdd)) {
+            return new CommandResult(String.format(MESSAGE_DUPLICATE, dateToAdd.name, patientToEdit.getName(),
+                    index.getOneBased(), dateToAdd.date));
+        }
+
         newEventsList.add(this.dateToAdd);
         editPatientDescriptor.setEvents(newEventsList);
 
