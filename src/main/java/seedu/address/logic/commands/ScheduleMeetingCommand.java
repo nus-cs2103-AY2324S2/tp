@@ -28,6 +28,11 @@ public class ScheduleMeetingCommand extends Command {
 
     public static final String COMMAND_WORD = "schedule";
 
+    public static final String MESSAGE_MEETING_SCHEDULED_SUCCESS = "Meeting scheduled successfully: %1$s";
+    public static final String MESSAGE_MEETING_RESCHEDULED_SUCCESS = "Meeting rescheduled successfully: %1$s";
+    public static final String MESSAGE_MEETING_CANCELED_SUCCESS = "Meeting canceled successfully: %1$s";
+    public static final String MESSAGE_MEETING_OVERLAP = "Meeting cannot be scheduled due to overlapping times";
+
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Schedules a meeting with the person identified "
             + "by the index number used in the last person listing. "
             + "Parameters: INDEX (must be a positive integer) "
@@ -63,28 +68,38 @@ public class ScheduleMeetingCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         List<Person> lastShownList = model.getFilteredPersonList();
 
+        if (model.hasMeetingOverlap(this.meeting)) {
+            throw new CommandException("Meeting overlaps with existing meetings.");
+        }
+
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToMeet = lastShownList.get(index.getZeroBased());
+        Person personToMeetOriginal = lastShownList.get(index.getZeroBased());
 
-        // Check for global meeting overlap
-        if (model.hasMeetingOverlap(meeting)) {
-            throw new CommandException("Meeting overlaps with existing meetings.");
-        }
+        // Create a copy of the original person and add the meeting to the copy
+        Person personToMeetUpdated = personToMeetOriginal.getCopy();
 
+
+        System.out.println(personToMeetUpdated.getMeetings());
         try {
-            personToMeet.addMeeting(meeting);
+            personToMeetUpdated.addMeeting(this.meeting);
         } catch (IllegalArgumentException e) {
             throw new CommandException(e.getMessage());
         }
 
+        // Check for global meeting overlap
+
+
+        // Update the person in the model
+        model.setPerson(personToMeetOriginal, personToMeetUpdated);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         model.commitAddressBook();
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, personToMeet));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, personToMeetUpdated));
     }
+
 
     @Override
     public boolean equals(Object other) {
