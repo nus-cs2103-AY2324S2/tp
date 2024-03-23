@@ -9,12 +9,14 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -66,6 +68,9 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private TableView<Schedule> scheduleTable;
 
+    @FXML
+    private WeeklyScheduleView weeklyScheduleView;
+
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
@@ -78,8 +83,8 @@ public class MainWindow extends UiPart<Stage> {
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
-
         setAccelerators();
+
         populatePersonNameComboBox();
         helpWindow = new HelpWindow();
     }
@@ -131,6 +136,8 @@ public class MainWindow extends UiPart<Stage> {
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
+
+        weeklyScheduleView = new WeeklyScheduleView();
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
@@ -235,6 +242,7 @@ public class MainWindow extends UiPart<Stage> {
             }
             // Add each schedule to the table view
             scheduleTable.getItems().addAll(filteredSchedules);
+            weeklyScheduleView.populateWeeklySchedule(filteredSchedules);
         }
     }
 
