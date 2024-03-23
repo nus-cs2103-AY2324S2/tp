@@ -28,20 +28,20 @@ import seedu.address.testutil.PersonBuilder;
 public class AddCommandTest {
 
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
+    public void constructor_nullClient_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddCommand(null));
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
+    public void execute_clientAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingClientAdded modelStub = new ModelStubAcceptingClientAdded();
         Client validClient = new PersonBuilder().build();
 
         CommandResult commandResult = new AddCommand(validClient).execute(modelStub);
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, Messages.format(validClient)),
                 commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validClient), modelStub.personsAdded);
+        assertEquals(Arrays.asList(validClient), modelStub.clientsAdded);
     }
 
     @Test
@@ -180,19 +180,19 @@ public class AddCommandTest {
     /**
      * A Model stub that always accept the client being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Client> personsAdded = new ArrayList<>();
+    private class ModelStubAcceptingClientAdded extends ModelStub {
+        final ArrayList<Client> clientsAdded = new ArrayList<>();
 
         @Override
         public boolean hasClient(Client client) {
             requireNonNull(client);
-            return personsAdded.stream().anyMatch(client::isSameClient);
+            return clientsAdded.stream().anyMatch(client::isSameClient);
         }
 
         @Override
         public void addClient(Client client) {
             requireNonNull(client);
-            personsAdded.add(client);
+            clientsAdded.add(client);
         }
 
         @Override
