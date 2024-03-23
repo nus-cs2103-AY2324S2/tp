@@ -22,13 +22,12 @@ public class AddMedInfoCommand extends Command {
     public static final String COMMAND_WORD = "addm";
     public static final String MESSAGE_SUCCESS = "Medical information added successfully";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds the medical information of a person. "
-            + "Parameters: (required fields)\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds the medical information of a person.\n"
+            + "Parameters: "
             + PREFIX_NRIC + "NRIC "
             + PREFIX_HEIGHT + "Height(in cm) "
-            + PREFIX_WEIGHT + "Weight(in kg) \n"
-            + "(optional but at least specify one)"
-            + PREFIX_ALLERGYTAG + "Allergy\n"
+            + PREFIX_WEIGHT + "Weight(in kg) "
+            + "[" + PREFIX_ALLERGYTAG + "Allergy]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NRIC + "S1234567A "
             + PREFIX_HEIGHT + "175 "
