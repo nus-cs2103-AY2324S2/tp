@@ -1,12 +1,13 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import seedu.address.model.Model;
-import seedu.address.model.group.GroupContainsKeywordsPredicate;
-import seedu.address.model.person.Person;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
+import seedu.address.model.Model;
+import seedu.address.model.group.GroupContainsKeywordsPredicate;
+import seedu.address.model.person.Person;
 
 /**
  * Directs users to the HTML website with email links to all the students in the current list.

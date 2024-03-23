@@ -1,24 +1,23 @@
 package seedu.address.logic.commands;
 
-import org.junit.jupiter.api.Test;
-
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
-import seedu.address.model.group.GroupContainsKeywordsPredicate;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Person;
-import seedu.address.testutil.PersonBuilder;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import org.junit.jupiter.api.Test;
+
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
+import seedu.address.model.group.GroupContainsKeywordsPredicate;
+import seedu.address.model.person.Person;
+import seedu.address.testutil.PersonBuilder;
 
 public class MailCommandTest {
 
