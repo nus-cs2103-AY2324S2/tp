@@ -12,7 +12,7 @@ import seedu.address.model.client.exceptions.ClientNotFoundException;
 import seedu.address.model.client.exceptions.DuplicateClientException;
 
 /**
- * A list of persons that enforces uniqueness between its elements and does not allow nulls.
+ * A list of clients that enforces uniqueness between its elements and does not allow nulls.
  * A client is considered unique by comparing using {@code Client#isSameClient(Client)}. As such, adding and updating of
  * clients uses Client#isSameClient(Client) for equality so as to ensure that the client being added or updated is
  * unique in terms of identity in the UniqueClientList. However, the removal of a client uses Client#equals(Object) so

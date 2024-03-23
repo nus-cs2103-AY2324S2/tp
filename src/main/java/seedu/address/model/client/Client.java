@@ -62,8 +62,8 @@ public class Client {
     }
 
     /**
-     * Returns true if both persons have the same name.
-     * This defines a weaker notion of equality between two persons.
+     * Returns true if both clients have the same name.
+     * This defines a weaker notion of equality between two clients.
      */
     public boolean isSameClient(Client otherClient) {
         if (otherClient == this) {
@@ -75,8 +75,8 @@ public class Client {
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
+     * Returns true if both clients have the same identity and data fields.
+     * This defines a stronger notion of equality between two clients.
      */
     @Override
     public boolean equals(Object other) {

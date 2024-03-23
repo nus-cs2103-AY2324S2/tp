@@ -6,6 +6,6 @@ package seedu.address.model.client.exceptions;
  */
 public class DuplicateClientException extends RuntimeException {
     public DuplicateClientException() {
-        super("Operation would result in duplicate persons");
+        super("Operation would result in duplicate clients");
     }
 }
