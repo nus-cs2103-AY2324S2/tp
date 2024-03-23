@@ -4,12 +4,13 @@ import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 /**
  * Represents a Client's meeting time in the address book.
  * Guarantees: immutable; is always valid
  */
-public class Meeting {
+public class Meeting implements Comparable<Meeting> {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Meeting has to be in yyyy-MM-dd HH:mm:ss format, and it should not be blank";
@@ -17,6 +18,11 @@ public class Meeting {
     public static final String VALIDATION_REGEX =
             "^(\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}:\\d{2}| \\d{2}:\\d{2}:\\d{2})?)$";
     public final String value;
+
+    public LocalDateTime getMeeting() {
+        return meeting;
+    }
+
     public final LocalDateTime meeting;
 
     /**
@@ -53,6 +59,7 @@ public class Meeting {
             return LocalDateTime.parse(dateTime, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         }
     }
+
     @Override
     public String toString() {
         return meeting.format(DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm:ss"));
@@ -76,5 +83,11 @@ public class Meeting {
     @Override
     public int hashCode() {
         return meeting.hashCode();
+    }
+
+
+    @Override
+    public int compareTo(Meeting o) {
+        return this.meeting.compareTo(o.meeting);
     }
 }
