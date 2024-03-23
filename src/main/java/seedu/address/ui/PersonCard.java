@@ -4,9 +4,12 @@ import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import seedu.address.model.person.Person;
 
 /**
@@ -41,11 +44,20 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
     @FXML
+    private VBox classes;
+    @FXML
     private Label matric;
+
     @FXML
-    private Label reflection;
+    private ImageView phoneicon;
     @FXML
-    private Label studio;
+    private ImageView emailicon;
+    @FXML
+    private ImageView addressicon;
+
+    private Image phoneIcon = new Image(this.getClass().getResourceAsStream("/images/phoneicon.png"));
+    private Image emailIcon = new Image(this.getClass().getResourceAsStream("/images/emailicon.png"));
+    private Image addressIcon = new Image(this.getClass().getResourceAsStream("/images/addressicon.png"));
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -63,10 +75,21 @@ public class PersonCard extends UiPart<Region> {
             matric.setVisible(false);
             matric.setManaged(false);
         }
-        reflection.setText(person.getReflection().toString());
-        studio.setText(person.getStudio().toString());
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+
+        if (!person.getReflection().toString().isEmpty()) {
+            classes.getChildren().add(new Label(person.getReflection().toString()));
+        }
+        if (!person.getStudio().toString().isEmpty()) {
+            classes.getChildren().add(new Label(person.getStudio().toString()));
+        }
+
+        phoneicon.setImage(phoneIcon);
+        emailicon.setImage(emailIcon);
+        addressicon.setImage(addressIcon);
+
+
     }
 }
