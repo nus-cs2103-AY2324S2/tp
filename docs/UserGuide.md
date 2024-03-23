@@ -15,7 +15,7 @@ Avengers Assemble (AA) is a **desktop app for managing contacts, optimized for u
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11` or above installed in your computer.
 
 1. Download the latest `avengersassemble.jar`.
 
@@ -85,7 +85,7 @@ Avengers Assemble (AA) is a **desktop app for managing contacts, optimized for u
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
@@ -187,16 +187,22 @@ Format: `clear`
 
 ### Exporting Data to a CSV file : `export`
 
-Exports all persons and their details to a CSV file, addressbook.csv, which can be found in addressbookdata.
+Exports currently listed persons and their details to a CSV file, avengersassemble.csv, which can be found in addressbookdata.
+
+**Steps:**
+1. Filter out the persons you want to export using the [`find`](#filtering-persons--find) or 
+[`list`](#listing-all-persons--list) command.
+2. Type `export` to export the currently listed persons and their details to a CSV file.
+3. Upon export, a folder named addressbookdata will be created in the same directory where Avengers Assemble is located. Within this folder, you'll find the CSV file named avengersassemble.csv, containing the exported data.
 
 Format: `export`
 
 <box type="info" seamless>
 
-**Important:** When performing an export, the current information will overwrite the existing CSV file named addressbook.csv located within the addressbookdata directory. 
+**Important:** When performing an export, the current information will overwrite the existing CSV file named avengersassemble.csv located within the addressbookdata folder. 
 A new CSV file will not be created with each export.
 
-Users have the option to manually move the current CSV file out of the addressbookdata directory if they do not want the information to be overwritten in the next export. 
+Users have the option to manually move the current CSV file out of the addressbookdata folder if they do not want the information to be overwritten in the next export. 
 A new CSV file of the same name in the same location will again be created when performing the next export.
 
 </box>
@@ -253,16 +259,16 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action | Format, Examples                                                                                                                                                                                      
-|--------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Action | Format, Examples                                                                                                                                                                               
+|--------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] [m/MATRICULATION_NUMBER]…​` e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague m/A1234567X` |
-| **Clear**  | `clear`                                                                                                                                                                                               |
-| **Delete** | `delete INDEX` e.g., `delete 3`                                                                                                                                                                       |
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG] [m/MATRICULATION_NUMBER]…​` e.g.,`edit 2 n/James Lee e/jameslee@example.com m/A1234567X`                                                     |
-| **Find**   | `find PARAMETER KEYWORD` e.g., `find James`                                                                                                                                                           |
-| **Copy**   | `copy`                                                                                                                                                                                                |
-| **List**   | `list`                                                                                                                                                                                                |
-| **Help**   | `help`                                                                                                                                                                                                |
-| **Export to CSV** | `export to csv`                                                                                                                                                                                       |
-| **Import** | `import FILEPATH`                                                                                                                                                                                     |
+| **Clear**  | `clear`                                                                                                                                                                                        |
+| **Delete** | `delete INDEX` e.g., `delete 3`                                                                                                                                                                |
+| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG] [m/MATRICULATION_NUMBER]…​` e.g.,`edit 2 n/James Lee e/jameslee@example.com m/A1234567X`                                              |
+| **Find**   | `find PARAMETER KEYWORD` e.g., `find James`                                                                                                                                                    |
+| **Copy**   | `copy`                                                                                                                                                                                         |
+| **List**   | `list`                                                                                                                                                                                         |
+| **Help**   | `help`                                                                                                                                                                                         |
+| **Export to CSV** | `export`                                                                                                                                                                                       |
+| **Import** | `import FILEPATH`                                                                                                                                                                              |
 

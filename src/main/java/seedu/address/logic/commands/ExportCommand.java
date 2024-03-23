@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -15,19 +16,33 @@ import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema.Builder;
 
+import javafx.collections.ObservableList;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.person.Person;
+import seedu.address.storage.JsonAddressBookStorage;
 
 /**
- * Exports the information stored in the AddressBook to a CSV file.
+ * Exports the information of Persons listed in the interface of the addressbook to a CSV file.
  */
 public class ExportCommand extends Command {
 
     public static final String COMMAND_WORD = "export";
-    public static final String MESSAGE_SUCCESS = "Exported all person's information to CSV file. \n"
+    public static final String MESSAGE_SUCCESS = "Exported all currently listed person(s)'s information to a "
+            + "CSV file. \n"
             + "CSV file can be found in addressbookdata file.";
+    public static final String MESSAGE_NOTHING_TO_EXPORT_FAILURE = "Nothing to export.";
+    public static final String MESSAGE_WRITE_TO_JSON_FAILURE = "Could not write information in filtered list to "
+            + "JSON storage.";
+    public static final String MESSAGE_JSON_FILE_NOT_FOUND_FAILURE = "Cannot find JSON file to export.";
+    public static final String MESSAGE_PARSE_JSON_FILE_FAILURE = "Error parsing JSON data.";
+    public static final String MESSAGE_MAPPING_JSON_TO_CSV_FAILURE = "Error mapping JSON data to CSV schema.";
+    public static final String MESSAGE_EMPTY_JSON_FILE_FAILURE = "The JSON File is empty.";
+    public static final String MESSAGE_CREATE_CSV_DIRECTORY_FAILURE = "Could not create directory for CSV file.";
 
-    private String csvFilePath = "./addressbookdata/addressbook.csv";
+    private Path filteredJsonFilePath = Paths.get("data", "filteredaddressbook.json");
+    private String csvFilePath = "./addressbookdata/avengersassemble.csv";
 
     /**
      * Gets the current CSV file path.
@@ -48,18 +63,60 @@ public class ExportCommand extends Command {
     }
 
     /**
-     * Creates the directory for the CSV file if it does not exist.
+     * Gets the current JSON file path in which the filtered lists of persons will be written to.
      *
-     * @param csvFile The CSV file for which the directory needs to be created.
-     * @throws CommandException If directory fails to be created.
+     * @return The file path that the filtered persons list is being written to.
      */
-    public void createCsvDirectory(File csvFile) throws CommandException {
-        File csvParentDirectory = csvFile.getParentFile();
-        if (!csvParentDirectory.exists()) {
-            boolean isCreated = csvParentDirectory.mkdir();
-            if (!isCreated) {
-                throw new CommandException("Could not create directory for CSV file.");
-            }
+    public Path getFilteredJsonFilePath() {
+        return this.filteredJsonFilePath;
+    }
+
+    /**
+     * Updates the filtered JSON file path in which the filtered lists of persons will be written to.
+     *
+     * @param filePath The JSON file path to be written to.
+     */
+    public void updateFilteredJsonFilePath(Path filePath) {
+        this.filteredJsonFilePath = filePath;
+    }
+
+    /**
+     * Checks if the list is empty and throws an exception if the list is empty.
+     *
+     * @param personList The list in which to check if it is empty.
+     * @throws CommandException If the list is empty.
+     */
+    public void checkForEmptyList(ObservableList<Person> personList) throws CommandException {
+        if (personList.isEmpty()) {
+            throw new CommandException(MESSAGE_NOTHING_TO_EXPORT_FAILURE);
+        }
+    }
+
+    /**
+     * Adds all persons in ObservableList to AddressBook.
+     *
+     * @param addressBook The address book where persons should be added into.
+     * @param personList List containing persons to be added into address book.
+     */
+    public void addToAddressBook(AddressBook addressBook, ObservableList<Person> personList) {
+        for (Person person : personList) {
+            addressBook.addPerson(person);
+        }
+    }
+
+    /**
+     * Writes the information in the address book to a JSON file.
+     *
+     * @param jsonAddressBookStorage The JSON file to write information into.
+     * @param addressBook The address book from which to read the information from.
+     * @throws CommandException If information cannot be written into the JSON file.
+     */
+    public void writeToJsonFile(JsonAddressBookStorage jsonAddressBookStorage, AddressBook addressBook)
+            throws CommandException {
+        try {
+            jsonAddressBookStorage.saveAddressBook(addressBook);
+        } catch (IOException e) {
+            throw new CommandException(MESSAGE_WRITE_TO_JSON_FAILURE);
         }
     }
 
@@ -76,11 +133,11 @@ public class ExportCommand extends Command {
             return jsonTree;
         } catch (IOException e) {
             if (e instanceof FileNotFoundException) {
-                throw new CommandException("Cannot find JSON file to export.");
+                throw new CommandException(MESSAGE_JSON_FILE_NOT_FOUND_FAILURE);
             } else if (e instanceof JsonParseException) {
-                throw new CommandException("Error parsing JSON data.");
+                throw new CommandException(MESSAGE_PARSE_JSON_FILE_FAILURE);
             } else if (e instanceof JsonMappingException) {
-                throw new CommandException("Error mapping JSON data to CSV schema.");
+                throw new CommandException(MESSAGE_MAPPING_JSON_TO_CSV_FAILURE);
             } else {
                 throw new CommandException("Error: " + e.getMessage());
             }
@@ -97,9 +154,25 @@ public class ExportCommand extends Command {
     public JsonNode readPersonsArray(JsonNode jsonTree) throws CommandException {
         JsonNode personsArray = jsonTree.get("persons");
         if (personsArray == null || personsArray.size() == 0) {
-            throw new CommandException("The JSON File is empty.");
+            throw new CommandException(MESSAGE_EMPTY_JSON_FILE_FAILURE);
         }
         return personsArray;
+    }
+
+    /**
+     * Creates the directory for the CSV file if it does not exist.
+     *
+     * @param csvFile The CSV file for which the directory needs to be created.
+     * @throws CommandException If directory fails to be created.
+     */
+    public void createCsvDirectory(File csvFile) throws CommandException {
+        File csvParentDirectory = csvFile.getParentFile();
+        if (!csvParentDirectory.exists()) {
+            boolean isCreated = csvParentDirectory.mkdir();
+            if (!isCreated) {
+                throw new CommandException(MESSAGE_CREATE_CSV_DIRECTORY_FAILURE);
+            }
+        }
     }
 
     /**
@@ -140,15 +213,24 @@ public class ExportCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        Path jsonFilePath = model.getAddressBookFilePath();
-        File jsonFile = jsonFilePath.toFile();
-        File csvFile = new File(csvFilePath);
-
-        createCsvDirectory(csvFile);
-
         try {
+            ObservableList<Person> filteredPersonObservableList = model.getFilteredPersonList();
+            checkForEmptyList(filteredPersonObservableList);
+
+            AddressBook filteredPersonAddressBook = new AddressBook();
+            addToAddressBook(filteredPersonAddressBook, filteredPersonObservableList);
+
+            JsonAddressBookStorage jsonAddressBookStorage = new JsonAddressBookStorage(filteredJsonFilePath);
+            writeToJsonFile(jsonAddressBookStorage, filteredPersonAddressBook);
+
+            File jsonFile = filteredJsonFilePath.toFile();
+            File csvFile = new File(csvFilePath);
+
             JsonNode jsonTree = readJsonFile(jsonFile);
             JsonNode personsArray = readPersonsArray(jsonTree);
+
+            createCsvDirectory(csvFile);
+
             writeToCsvFile(csvFile, personsArray);
 
             return new CommandResult(MESSAGE_SUCCESS);
