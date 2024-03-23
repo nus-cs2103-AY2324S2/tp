@@ -18,14 +18,26 @@ public class StatusTest {
     }
 
     @Test
-    public void equals() {
+    public void isValidStatus() {
         // invalid status
+        assertFalse(Status.isValidStatus("Invalid"));
+        assertFalse(Status.isValidStatus("Arrived"));
+        assertFalse(Status.isValidStatus("Late"));
+        assertFalse(Status.isValidStatus("Pending"));
+
+        // valid status
+        assertTrue(Status.isValidStatus("Pending"));
+        assertTrue(Status.isValidStatus("Arrived"));
+        assertTrue(Status.isValidStatus("Late"));
+    }
+
+    @Test
+    public void equals() {
         assertFalse(Status.PENDING.equals(null));
         assertFalse(Status.PENDING.toString().equals("Arrived"));
         assertFalse(Status.ARRIVED.toString().equals("Late"));
         assertFalse(Status.LATE.toString().equals("Pending"));
 
-        // valid status
         assertTrue(Status.PENDING.toString().equals("Pending"));
         assertTrue(Status.ARRIVED.toString().equals("Arrived"));
         assertTrue(Status.LATE.toString().equals("Late"));
