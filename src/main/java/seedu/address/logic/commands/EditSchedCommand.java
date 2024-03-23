@@ -1,13 +1,17 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_END;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHEDULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_START;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_END;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_SCHEDULES;
 
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.index.Index;
@@ -16,7 +20,8 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.*;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.schedule.Schedule;
 
 /**
@@ -73,13 +78,14 @@ public class EditSchedCommand extends Command {
         }
 
         Schedule scheduleToEdit = lastShownList.get(targetIndex.getZeroBased());
+        model.deleteSchedule(scheduleToEdit, scheduleToEdit.getPersonList());
         Schedule editedSchedule = createEditedSchedule(model, scheduleToEdit, editScheduleDescriptor);
 
         if (!scheduleToEdit.isSameSchedule(editedSchedule) && model.hasSchedule(editedSchedule)) {
             throw new CommandException(MESSAGE_DUPLICATE_SCHEDULE);
         }
 
-        model.deleteSchedule(scheduleToEdit, scheduleToEdit.getPersonList());
+        //model.deleteSchedule(scheduleToEdit, scheduleToEdit.getPersonList());
         model.addSchedule(editedSchedule, editedSchedule.getPersonList());
         model.updateFilteredScheduleList(PREDICATE_SHOW_ALL_SCHEDULES);
         return new CommandResult(String.format(MESSAGE_EDIT_SCHEDULE_SUCCESS,
@@ -98,15 +104,27 @@ public class EditSchedCommand extends Command {
         LocalDateTime updatedStartTime = editScheduleDescriptor.getStartTime().orElse(scheduleToEdit.getStartTime());
         LocalDateTime updatedEndTime = editScheduleDescriptor.getEndTime().orElse(scheduleToEdit.getEndTime());
         ArrayList<Person> updatedPersonList;
-        ArrayList<NameContainsKeywordsPredicate> personNamePredicateList;
-        if (editScheduleDescriptor.getPersonList().isEmpty()) {
-            updatedPersonList = scheduleToEdit.getPersonList();
-        } else {
+        if (editScheduleDescriptor.getNewParticipantList().isPresent()) {
             updatedPersonList = new ArrayList<Person>();
-            for (NameContainsKeywordsPredicate predicate: editScheduleDescriptor.getPersonList().get()) {
-                ObservableList<Person> filteredPersonList = model.getFilteredPersonList();
-                ObservableList<Person> newFilteredPersonList = filteredPersonList.filtered(predicate);
-                updatedPersonList.add(newFilteredPersonList.get(0));
+            for (Index index: editScheduleDescriptor.getNewParticipantList().get()) {
+                Person p = model.getAddressBook().getPersonList().get(index.getZeroBased());
+                updatedPersonList.add(p);
+            }
+            return new Schedule(updatedSchedName, updatedStartTime, updatedEndTime, updatedPersonList);
+        }
+
+        ArrayList<Person> originalParticipantsList = scheduleToEdit.getPersonList();
+        updatedPersonList = scheduleToEdit.getPersonList();
+        if (editScheduleDescriptor.getToRemoveParticipantList().isPresent()){
+            for (Index index: editScheduleDescriptor.getToRemoveParticipantList().get()) {
+                Person p = originalParticipantsList.get(index.getZeroBased());
+                updatedPersonList.remove(p);
+            }
+        }
+        if (editScheduleDescriptor.getToAddParticipantList().isPresent()){
+            for (Index index: editScheduleDescriptor.getToAddParticipantList().get()) {
+                Person p = model.getAddressBook().getPersonList().get(index.getZeroBased());
+                updatedPersonList.add(p);
             }
         }
         return new Schedule(updatedSchedName, updatedStartTime, updatedEndTime, updatedPersonList);
@@ -144,7 +162,10 @@ public class EditSchedCommand extends Command {
         private String schedName;
         private LocalDateTime startTime;
         private LocalDateTime endTime;
-        private ArrayList<NameContainsKeywordsPredicate> personNameList;
+        private ArrayList<Index> newParticipantList;
+
+        private ArrayList<Index> toAddParticipantList;
+        private ArrayList<Index> toRemoveParticipantList;
 
         public EditScheduleDescriptor() {}
 
@@ -156,14 +177,16 @@ public class EditSchedCommand extends Command {
             setSchedName(toCopy.schedName);
             setStartTime(toCopy.startTime);
             setEndTime(toCopy.endTime);
-            setPersonList(toCopy.personNameList);
+            setNewParticipantList(toCopy.newParticipantList);
+            setToAddParticipantList(toCopy.toAddParticipantList);
+            setToRemoveParticipantList(toCopy.toRemoveParticipantList);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(schedName, startTime, endTime, personNameList);
+            return CollectionUtil.isAnyNonNull(schedName, startTime, endTime, newParticipantList);
         }
 
         public void setSchedName(String schedName) {
@@ -190,12 +213,28 @@ public class EditSchedCommand extends Command {
             return Optional.ofNullable(endTime);
         }
 
-        public void setPersonList(ArrayList<NameContainsKeywordsPredicate> personNameList) {
-            this.personNameList = personNameList;
+        public void setNewParticipantList(ArrayList<Index> newParticipantList) {
+            this.newParticipantList = newParticipantList;
         }
 
-        public Optional<ArrayList<NameContainsKeywordsPredicate>> getPersonList() {
-            return Optional.ofNullable(personNameList);
+        public Optional<ArrayList<Index>> getNewParticipantList() {
+            return Optional.ofNullable(newParticipantList);
+        }
+
+        public void setToAddParticipantList(ArrayList<Index> toAddParticipantList) {
+            this.toAddParticipantList = toAddParticipantList;
+        }
+
+        public Optional<ArrayList<Index>> getToAddParticipantList() {
+            return Optional.ofNullable(toAddParticipantList);
+        }
+
+        public void setToRemoveParticipantList(ArrayList<Index> toRemoveParticipantList) {
+            this.toRemoveParticipantList = toRemoveParticipantList;
+        }
+
+        public Optional<ArrayList<Index>> getToRemoveParticipantList() {
+            return Optional.ofNullable(toRemoveParticipantList);
         }
 
         @Override
@@ -213,7 +252,7 @@ public class EditSchedCommand extends Command {
             return Objects.equals(schedName, otherEditPersonDescriptor.schedName)
                     && Objects.equals(startTime, otherEditPersonDescriptor.startTime)
                     && Objects.equals(endTime, otherEditPersonDescriptor.endTime)
-                    && Objects.equals(personNameList, otherEditPersonDescriptor.personNameList);
+                    && Objects.equals(newParticipantList, otherEditPersonDescriptor.newParticipantList);
         }
 
         @Override
@@ -222,7 +261,7 @@ public class EditSchedCommand extends Command {
                     .add("name", schedName)
                     .add("phone", startTime)
                     .add("email", endTime)
-                    .add("address", personNameList)
+                    .add("address", newParticipantList)
                     .toString();
         }
     }

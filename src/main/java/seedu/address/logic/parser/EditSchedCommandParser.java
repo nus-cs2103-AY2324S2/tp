@@ -6,6 +6,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHEDULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_START;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_END;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SPECIFIC_PARTICIPANTS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADD_PARTICIPANTS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMOVE_PARTICIPANTS;
 
 import java.time.LocalDateTime;
 
@@ -28,7 +30,8 @@ public class EditSchedCommandParser implements Parser<EditSchedCommand> {
      */
     public EditSchedCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_SCHEDULE, PREFIX_START, PREFIX_END, PREFIX_SPECIFIC_PARTICIPANTS);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_SCHEDULE, PREFIX_START,
+                PREFIX_END, PREFIX_ADD_PARTICIPANTS, PREFIX_REMOVE_PARTICIPANTS, PREFIX_SPECIFIC_PARTICIPANTS);
 
         Index index;
 
@@ -40,7 +43,14 @@ public class EditSchedCommandParser implements Parser<EditSchedCommand> {
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_SCHEDULE, PREFIX_START,
-                PREFIX_END, PREFIX_SPECIFIC_PARTICIPANTS);
+                PREFIX_END, PREFIX_ADD_PARTICIPANTS, PREFIX_REMOVE_PARTICIPANTS,PREFIX_SPECIFIC_PARTICIPANTS);
+
+        if (argMultimap.getValue(PREFIX_SPECIFIC_PARTICIPANTS).isPresent()
+                && (argMultimap.getValue(PREFIX_ADD_PARTICIPANTS).isPresent()
+                || argMultimap.getValue(PREFIX_REMOVE_PARTICIPANTS).isPresent())) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditSchedCommand.MESSAGE_USAGE));
+        }
 
         EditSchedCommand.EditScheduleDescriptor editScheduleDescriptor =
                 new EditSchedCommand.EditScheduleDescriptor();
@@ -56,9 +66,17 @@ public class EditSchedCommandParser implements Parser<EditSchedCommand> {
             editScheduleDescriptor.setEndTime(LocalDateTime.parse(argMultimap.getValue(PREFIX_END).get(),
                     Schedule.CUSTOM_DATETIME));
         }
+        if (argMultimap.getValue(PREFIX_ADD_PARTICIPANTS).isPresent()) {
+            editScheduleDescriptor.setToAddParticipantList(
+                    ParserUtil.parseIndexArrayList(argMultimap.getValue(PREFIX_ADD_PARTICIPANTS).get()));
+        }
+        if (argMultimap.getValue(PREFIX_REMOVE_PARTICIPANTS).isPresent()) {
+            editScheduleDescriptor.setToRemoveParticipantList(
+                    ParserUtil.parseIndexArrayList(argMultimap.getValue(PREFIX_REMOVE_PARTICIPANTS).get()));
+        }
         if (argMultimap.getValue(PREFIX_SPECIFIC_PARTICIPANTS).isPresent()) {
-            editScheduleDescriptor.setPersonList(
-                    ParserUtil.parseNamePredicateArrayList(argMultimap.getValue(PREFIX_SPECIFIC_PARTICIPANTS).get()));
+            editScheduleDescriptor.setNewParticipantList(
+                    ParserUtil.parseIndexArrayList(argMultimap.getValue(PREFIX_SPECIFIC_PARTICIPANTS).get()));
         }
 
         if (!editScheduleDescriptor.isAnyFieldEdited()) {
