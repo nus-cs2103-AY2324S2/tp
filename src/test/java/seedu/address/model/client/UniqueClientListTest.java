@@ -15,7 +15,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.client.exceptions.DuplicatePersonException;
+import seedu.address.model.client.exceptions.DuplicateClientException;
 import seedu.address.model.client.exceptions.PersonNotFoundException;
 import seedu.address.testutil.PersonBuilder;
 
@@ -53,9 +53,9 @@ public class UniqueClientListTest {
     }
 
     @Test
-    public void add_duplicatePerson_throwsDuplicatePersonException() {
+    public void add_duplicateClient_throwsDuplicateClientException() {
         uniqueClientList.add(ALICE);
-        assertThrows(DuplicatePersonException.class, () -> uniqueClientList.add(ALICE));
+        assertThrows(DuplicateClientException.class, () -> uniqueClientList.add(ALICE));
     }
 
     @Test
@@ -103,10 +103,10 @@ public class UniqueClientListTest {
     }
 
     @Test
-    public void setPerson_editedPersonHasNonUniqueIdentity_throwsDuplicatePersonException() {
+    public void setPerson_editedPersonHasNonUniqueIdentity_throwsDuplicateClientException() {
         uniqueClientList.add(ALICE);
         uniqueClientList.add(BOB);
-        assertThrows(DuplicatePersonException.class, () -> uniqueClientList.setPerson(ALICE, BOB));
+        assertThrows(DuplicateClientException.class, () -> uniqueClientList.setPerson(ALICE, BOB));
     }
 
     @Test
@@ -157,9 +157,9 @@ public class UniqueClientListTest {
     }
 
     @Test
-    public void setPersons_listWithDuplicatePersons_throwsDuplicatePersonException() {
+    public void setPersons_listWithDuplicateClients_throwsDuplicateClientException() {
         List<Client> listWithDuplicateClients = Arrays.asList(ALICE, ALICE);
-        assertThrows(DuplicatePersonException.class, () -> uniqueClientList.setPersons(listWithDuplicateClients));
+        assertThrows(DuplicateClientException.class, () -> uniqueClientList.setPersons(listWithDuplicateClients));
     }
 
     @Test

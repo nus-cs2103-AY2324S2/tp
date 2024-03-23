@@ -45,7 +45,7 @@ public class AddCommandTest {
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
+    public void execute_duplicateClient_throwsCommandException() {
         Client validClient = new PersonBuilder().build();
         AddCommand addCommand = new AddCommand(validClient);
         ModelStub modelStub = new ModelStubWithPerson(validClient);

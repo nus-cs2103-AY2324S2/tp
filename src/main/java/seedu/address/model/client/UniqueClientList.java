@@ -8,7 +8,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.client.exceptions.DuplicatePersonException;
+import seedu.address.model.client.exceptions.DuplicateClientException;
 import seedu.address.model.client.exceptions.PersonNotFoundException;
 
 /**
@@ -43,7 +43,7 @@ public class UniqueClientList implements Iterable<Client> {
     public void add(Client toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateClientException();
         }
         internalList.add(toAdd);
     }
@@ -62,7 +62,7 @@ public class UniqueClientList implements Iterable<Client> {
         }
 
         if (!target.isSamePerson(editedClient) && contains(editedClient)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateClientException();
         }
 
         internalList.set(index, editedClient);
@@ -91,7 +91,7 @@ public class UniqueClientList implements Iterable<Client> {
     public void setPersons(List<Client> clients) {
         requireAllNonNull(clients);
         if (!personsAreUnique(clients)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateClientException();
         }
 
         internalList.setAll(clients);
