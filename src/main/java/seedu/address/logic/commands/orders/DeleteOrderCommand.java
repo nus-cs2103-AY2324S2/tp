@@ -1,12 +1,14 @@
 package seedu.address.logic.commands.orders;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ORDERS;
 
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
@@ -29,63 +31,52 @@ public class DeleteOrderCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the order identified by the index number used in the displayed order list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
+            // TODO change this to use index rather than UUID
             + "Example: " + COMMAND_WORD + " id/<UUID>";
 
     public static final String MESSAGE_DELETE_ORDER_SUCCESS = "Deleted Order!";
 
-    private final OrderId index;
+    private final Index targetIndex;
 
 
     /**
      * Creates an DeleteOrderCommand to delete the specified {@code Order}.
      */
-    public DeleteOrderCommand(OrderId index) {
-        this.index = index;
-    }
-
-
-    /**
-     * Retrieves the order from the person which matches the index.
-     *
-     * @param person Person to retrieve the order from.
-     * @return Order if found, else null.
-     */
-    private Order getOrderFromPerson(Person person) {
-        return person.getOrders().stream()
-                .filter(order -> order.checkId(this.index))
-                .findFirst()
-                .orElse(null);
+    public DeleteOrderCommand(Index targetIndex) {
+        this.targetIndex = targetIndex;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        requireAllNonNull(model);
+        requireNonNull(model);
+        List<Order> lastShownList = model.getFilteredOrderList();
 
-        Order changeOrder = null;
-        Person personToEdit = null;
+        if (targetIndex.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        }
+
+        Order orderToDelete = lastShownList.get(targetIndex.getZeroBased());
+        deleteOrderHelper(model, orderToDelete);
+
+        return new CommandResult(
+                String.format(MESSAGE_SUCCESS, Messages.format(orderToDelete)
+                )
+        );
+    }
+
+    private void deleteOrderHelper(Model model, Order orderToDelete) throws CommandException {
         List<Person> personList = model.getAddressBook().getPersonList();
-
         for (Person person : personList) {
-            Order order = getOrderFromPerson(person);
-            if (order != null) {
-                changeOrder = order;
-                personToEdit = person;
+            if (person.getOrders().contains(orderToDelete)) {
+                Person editedPerson = new Person(
+                        person.getName(), person.getPhone(), person.getEmail(),
+                        person.getAddress(), person.getTags(),
+                        removeOrder(orderToDelete.getOrderId(), person.getOrders()));
+                model.setPerson(person, editedPerson);
+                model.updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS);
                 break;
             }
         }
-
-        if (changeOrder == null) {
-            throw new CommandException(Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
-        }
-
-        Person editedPerson = new Person(
-                personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), personToEdit.getTags(),
-                removeOrder(this.index, personToEdit.getOrders()));
-
-        model.setPerson(personToEdit, editedPerson);
-
-        return new CommandResult(generateSuccessMessage(editedPerson));
     }
 
     private Set<Order> removeOrder(OrderId orderId, Set<Order> orders) {
@@ -101,12 +92,4 @@ public class DeleteOrderCommand extends Command {
         return orders;
     }
 
-    /**
-     * Generates a command execution success message based on whether
-     * the order is added to or removed from
-     * {@code personToEdit}.
-     */
-    private String generateSuccessMessage(Person personToEdit) {
-        return String.format(MESSAGE_SUCCESS, personToEdit);
-    }
 }
