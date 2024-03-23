@@ -35,4 +35,12 @@ public class FilterCommand extends Command {
 
         return new CommandResult("Filtered list based on: " + filterDescription);
     }
+
+    /**
+     * Returns the predicate used to filter the employee list.
+     * @return The predicate used to filter the employee list.
+     */
+    public Predicate<Employee> getPredicate() {
+        return predicate;
+    }
 }

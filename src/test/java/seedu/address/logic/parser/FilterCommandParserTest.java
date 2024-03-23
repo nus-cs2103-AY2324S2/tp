@@ -25,4 +25,10 @@ public class FilterCommandParserTest {
         assertThrows(ParseException.class, () -> parser.parse("filter"));
         assertThrows(ParseException.class, () -> parser.parse("filter n/ Alice t/"));
     }
+
+    @Test
+    public void parse_nullArgs_throwsNullPointerException() {
+        FilterCommandParser parser = new FilterCommandParser();
+        assertThrows(NullPointerException.class, () -> parser.parse(null));
+    }
 }
