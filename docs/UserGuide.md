@@ -6,7 +6,7 @@
 
 # AssetBook-3 User Guide
 
-AssetBook-3 is a desktop application for logistics managers to keep track point-of-contacts' (POCs) contact information, along with their relevant assets. It is meant for those who have too many POCs and assets, and wish to easily retrieve contact details based on name and/or asset.
+AssetBook-3 is a desktop application for logistics managers to keep track of contacts, along with assets for which they are responsible. It is meant for those who wish to easily retrieve contact details based on contact details and/or asset.
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -15,13 +15,13 @@ AssetBook-3 is a desktop application for logistics managers to keep track point-
 
 ## Quick start
 
-1. Ensure you have Java `11` in your Computer.
+1. Ensure you have Java `11` installed on your Computer.
 
 1. Download the latest `assetbook.jar` from [here](https://github.com/AY2324S2-CS2103T-W12-3/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_.
+1. Copy the file into the folder you want to use as the _home folder_.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar assetbook.jar` command to run the application.<br>
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar assetbook.jar` command to run the application.
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
@@ -64,7 +64,7 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]... [A/ASSET]...`
 </box>
 
 #### Examples
-* Add a new contact associated with the asset `L293D`: `add n/John Doe e/johndoe@example.com p/+12345678 A/L293D`
+* Add a new contact associated with the asset `L293D`: `add n/John Doe e/johndoe@example.com a/574 Ang Mo Kio Ave 10 p/12345678 A/L293D`
 
 #### Options
 `NAME`
@@ -79,9 +79,8 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]... [A/ASSET]...`
 
 `PHONE`
 * Phone number of the contact.
-* Only digits and ‘+’ is allowed.
+* Only digits are allowed.
 * Any number of digits are allowed.
-* ‘+’ is optional and must be the first character.
 
 `ADDRESS`
 * Address of the contact.
@@ -91,7 +90,7 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]... [A/ASSET]...`
 * Contact can be created first without assets, then assets can be added later using the Edit command.
 * Case sensitive, i.e. NUS ≠ nus.
 * Assets must have unique names. If the asset already exists in the database, the existing asset will be linked instead of a new asset.
-* Multiple assets can be specified. For example, a valid option is `--asset asset1 --asset asset2 --asset asset3`.
+* Multiple assets can be specified. For example, a valid option is `A/asset1 A/asset2 A/asset3`.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -145,6 +144,14 @@ Example: `find John` searches all contact names, tags and assets for the keyword
 
 * At least one keyword must be provided.
 * Keywords are case-insensitive.
+
+--------------------------------------------------------------------------------------------------------------------
+
+### Undo last command: `undo`
+
+Undoes the last modifying command.
+
+Format: `undo`
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -203,4 +210,5 @@ Action     | Format      |        Examples
 **Edit contact**   | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]... [A/ASSET]...` | `edit 1 e/newemail@example.com`
 **Edit asset**   | `edita old/OLD_ASSET_NAME new/NEW_ASSET_NAME` | `edita old/hammer new/screwdriver`
 **Find**   | `find KEYWORD [KEYWORD]...` | `find John`
+**Undo**   | `undo` | `undo`
 **Exit**   | `exit` | `exit`

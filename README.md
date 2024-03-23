@@ -5,7 +5,12 @@
 
 ## AssetBook-3
 
-AssetBook-3 is a desktop application for logistics managers to keep track point-of-contacts' (POCs) contact information, along with their relevant assets. It is meant for those who have too many POCs and assets, and wish to easily retrieve contact details based on name, tag, or asset ID.
+AssetBook-3 is a specialized application built upon [AddressBook-3](https://github.com/se-edu/addressbook-level3) for logistics and inventory managers to do contact and asset management. 
+It is meant for those who wish to easily retrieve contact details based on contact or asset details.
+
+## Getting Started
+
+Visit the application [website](https://ay2324s2-cs2103t-w12-3.github.io/tp/) for the quick start guide and detailed documentation.
 
 ## Acknowledgement
 

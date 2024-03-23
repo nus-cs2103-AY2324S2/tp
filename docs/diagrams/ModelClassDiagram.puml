@@ -21,6 +21,8 @@ Class Name
 Class Phone
 Class Tags
 Class Tag
+Class Assets
+Class Asset
 
 Class I #FFFFFF
 }
@@ -44,7 +46,9 @@ Person *--> Phone
 Person *--> Email
 Person *--> Address
 Person *--> Tags
+Person *--> Assets
 Tags *--> "*" Tag
+Assets *--> "*" Asset
 
 Person -[hidden]up--> I
 
