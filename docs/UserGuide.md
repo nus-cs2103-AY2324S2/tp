@@ -4,10 +4,10 @@
   pageNav: 3
 ---
 
-# AB-3 User Guide
+# InsuraConnect User Guide
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a  Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
-
+InsuraConnect is an enhanced version of the AddressBook-Level3 project, which serves as a **personal contact management tool for insurance agents**.
+It provides fast access to client contact details, easily manage client relationships, collaborate with industry partners, and stay organised in a fast-paced industry.
 <!-- * Table of Contents -->
 <page-nav-print />
 
@@ -17,11 +17,11 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `Insura-Connect.jar` from [here](https://github.com/AY2324S2-CS2103T-T13-3/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar Insura-Connect.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
@@ -145,6 +145,22 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+### Assigning a policy : `policy`
+
+Assigns a policy to a client.
+
+Format: `policy INDEX po/POLICY_NAME`
+
+* Assigns a policy to the client at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Only clients can be assigned a policy. Attempts to assign a policy to a partner will be denied.
+* Upon creating a new client, the initial policy will be empty.
+* Policies cannot be changed with the `edit`command. They can only be changed with `policy`.
+* Leaving `POLICY_NAME` blank will remove the policy from the client. Each client can only have one policy (for now). If the client is already assigned a policy, the current policy will be overwritten with the new one.
+
+Examples:
+* `policy 1 po/Policy ABC` Assigns the policy of the 1st person if it is a client to be `Policy ABC`
+* `policy 2 po/` Removes the existing policy of the 2nd person if it is a client.
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
@@ -202,3 +218,4 @@ Action     | Format, Examples
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List**   | `list`
 **Help**   | `help`
+**Policy** | `policy INDEX po/POLICY_NAME`
