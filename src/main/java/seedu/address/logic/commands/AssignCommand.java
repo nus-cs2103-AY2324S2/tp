@@ -46,21 +46,32 @@ public class AssignCommand extends Command {
         this.personIndex = personIndex;
     }
 
-    @Override
-    public CommandResult execute(Model model) throws CommandException {
+    private Task getTaskToAssign(Model model) throws CommandException {
+        // TODO: change to use filtered list instead
         List<Task> lastShownTaskList = model.getTaskList().getSerializeTaskList();
-        List<Person> lastShownPersonList = model.getFilteredPersonList();
 
         if (taskIndex.getZeroBased() >= lastShownTaskList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 
+        return lastShownTaskList.get(taskIndex.getZeroBased());
+    }
+
+    private Person getPersonToBeAssigned(Model model) throws CommandException {
+        List<Person> lastShownPersonList = model.getFilteredPersonList();
+
         if (personIndex.getZeroBased() >= lastShownPersonList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToBeAssigned = lastShownPersonList.get(personIndex.getZeroBased());
-        Task taskToAssign = lastShownTaskList.get(taskIndex.getZeroBased());
+        return lastShownPersonList.get(personIndex.getZeroBased());
+    }
+
+    @Override
+    public CommandResult execute(Model model) throws CommandException {
+        Task taskToAssign = getTaskToAssign(model);
+        Person personToBeAssigned = getPersonToBeAssigned(model);
+
         Person assignedPerson = personToBeAssigned.addTask(taskToAssign);
 
         model.setPerson(personToBeAssigned, assignedPerson);

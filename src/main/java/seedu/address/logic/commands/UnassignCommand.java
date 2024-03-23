@@ -1,10 +1,16 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+
+import java.util.List;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.Person;
+import seedu.address.model.task.Task;
 
 /**
  * Unassigns an existing task to an existing person in the address book.
@@ -24,7 +30,7 @@ public class UnassignCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 "
             + "to/ 2";
 
-    public static final String MESSAGE_ARGUMENTS = "Task Index: %1$d, Person Index: %2$s";
+    public static final String MESSAGE_SUCCESS = "%1$s has been unassigned to %2$s.";
 
     private final Index taskIndex;
     private final Index personIndex;
@@ -40,10 +46,39 @@ public class UnassignCommand extends Command {
         this.personIndex = personIndex;
     }
 
+    private Task getTaskToUnassign(Model model) throws CommandException {
+        // TODO: change to use filtered list instead
+        List<Task> lastShownTaskList = model.getTaskList().getSerializeTaskList();
+
+        if (taskIndex.getZeroBased() >= lastShownTaskList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+        }
+
+        return lastShownTaskList.get(taskIndex.getZeroBased());
+    }
+
+    private Person getPersonToBeUnassigned(Model model) throws CommandException {
+        List<Person> lastShownPersonList = model.getFilteredPersonList();
+
+        if (personIndex.getZeroBased() >= lastShownPersonList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        }
+
+        return lastShownPersonList.get(personIndex.getZeroBased());
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        throw new CommandException(
-                String.format(MESSAGE_ARGUMENTS, taskIndex.getOneBased(), personIndex.getOneBased()));
+        Task taskToUnassign = getTaskToUnassign(model);
+        Person personToBeUnassigned = getPersonToBeUnassigned(model);
+
+        Person unassignedPerson = personToBeUnassigned.deleteTask(taskToUnassign);
+
+        model.setPerson(personToBeUnassigned, unassignedPerson);
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+
+        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.formatTask(taskToUnassign),
+                unassignedPerson.getName()));
     }
 
     @Override
