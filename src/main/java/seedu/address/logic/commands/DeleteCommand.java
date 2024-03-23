@@ -136,7 +136,6 @@ public class DeleteCommand extends Command {
 
     /**
      * Deletes an employee by unique id
-     * TODO: Implement the functionality to delete by ID using this function
      *
      * @param model the model to execute the command
      * @return the result of the command
