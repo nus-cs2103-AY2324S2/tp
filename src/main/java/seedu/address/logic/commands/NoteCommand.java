@@ -57,19 +57,20 @@ public class NoteCommand extends Command {
                     personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
                     personToEdit.getAddress(), personToEdit.getTags(), ((Maintainer) personToEdit).getSkill(), (
                             (Maintainer) personToEdit).getCommission());
-            editedPerson.setNote(note);
+            // editedPerson.setNote(note); // delete setnote later if not using
+            editedPerson.setNoteContent(note.toString());
         } else if (personToEdit instanceof Staff) {
             editedPerson = new Staff(
                     personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
                     personToEdit.getAddress(), personToEdit.getTags(), ((Staff) personToEdit).getSalary(), (
                             (Staff) personToEdit).getEmployment());
-            editedPerson.setNote(note);
+            editedPerson.setNoteContent(note.toString());
         } else if (personToEdit instanceof Supplier) {
             editedPerson = new Supplier(
                     personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
                     personToEdit.getAddress(), personToEdit.getTags(), ((Supplier) personToEdit).getProduct(), (
                             (Supplier) personToEdit).getPrice());
-            editedPerson.setNote(note);
+            editedPerson.setNoteContent(note.toString());
         } else {
             editedPerson = new Person(
                     personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),

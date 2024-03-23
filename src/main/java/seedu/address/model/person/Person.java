@@ -80,10 +80,13 @@ public class Person {
                 && otherPerson.getName().equals(getName());
     }
 
+    public void setNoteContent(String content) {
+        this.note.setValue(content);
+    }
+
     public void setNote(Note note) {
         this.note = note;
     }
-
     /**
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.
