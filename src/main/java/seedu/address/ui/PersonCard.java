@@ -75,8 +75,6 @@ public class PersonCard extends UiPart<Region> {
             matric.setVisible(false);
             matric.setManaged(false);
         }
-        reflection.setText(person.getReflection().toString());
-        studio.setText(person.getStudio().toString());
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
