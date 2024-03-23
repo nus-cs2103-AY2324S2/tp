@@ -36,6 +36,9 @@ public class ScheduleMeetingCommandParser implements Parser<ScheduleMeetingComma
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ScheduleMeetingCommand.MESSAGE_USAGE), ive);
         }
 
+        if (!argMultimap.arePrefixesPresent(PREFIX_MEETING_DATE, PREFIX_MEETING_TIME, PREFIX_MEETING_DURATION, PREFIX_MEETING_AGENDA)) {
+            throw new ParseException("Date, time, duration, and agenda are required for scheduling a meeting.");
+        }
 
         LocalDate meetingDate;
         LocalTime meetingTime;
@@ -48,12 +51,11 @@ public class ScheduleMeetingCommandParser implements Parser<ScheduleMeetingComma
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ScheduleMeetingCommand.MESSAGE_USAGE), dtpe);
         }
 
-        String agenda = argMultimap.getValue(PREFIX_MEETING_AGENDA).orElse("");
+        String agenda = argMultimap.getValue(PREFIX_MEETING_AGENDA).orElseThrow(() -> new ParseException("Agenda is required."));
         String notes = argMultimap.getValue(PREFIX_MEETING_NOTES).orElse("");
 
         Meeting meeting = new Meeting(meetingDate, meetingTime, duration, agenda, notes);
 
         return new ScheduleMeetingCommand(index, meeting);
     }
-
 }
