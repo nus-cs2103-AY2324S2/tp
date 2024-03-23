@@ -1,10 +1,5 @@
 package seedu.address.logic.messages;
 
-import seedu.address.model.person.Maintainer;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Staff;
-import seedu.address.model.person.Supplier;
-
 /**
  * Container for user undo command visible messages.
  */

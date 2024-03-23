@@ -75,6 +75,8 @@ public class EditCommandTest {
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
+    // failed because address book is different, original model address book have two states
+    // expected model only have one state.
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
         EditCommand editCommand = new EditCommand(ALICE.getName(), new EditPersonDescriptor());

@@ -1,14 +1,13 @@
 package seedu.address.model;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
  * Extended version of Address Book storing History of Address Book.
  */
 public class VersionedAddressBook extends AddressBook {
-    private ArrayList<ReadOnlyAddressBook> addressBookStateList ;
-    int currentStatePointer;
+    private ArrayList<ReadOnlyAddressBook> addressBookStateList;
+    private int currentStatePointer;
 
     /**
      * Creates VersionedAddressBook and initialize addressBookStateList to track history.
