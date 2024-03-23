@@ -7,11 +7,12 @@ skinparam classBackgroundColor LOGIC_COLOR
 package Logic as LogicPackage {
 
 package "Parser Classes" as ParserClasses{
+    Class FindAndExportCommandParser
 }
 Class XYZCommand
 Class CommandResult
 Class "{abstract}\nCommand" as Command
-
+Class FindAndExportCommand
 
 Class "<<interface>>\nLogic" as Logic
 Class LogicManager
@@ -30,7 +31,9 @@ HiddenOutside ..> Logic
 LogicManager .right.|> Logic
 LogicManager -right->"1" ParserClasses
 ParserClasses ..> XYZCommand : <<create>>
+ParserClasses ..> FindAndExportCommand : <<create>>
 
+FindAndExportCommand -up-|> Command
 XYZCommand -up-|> Command
 LogicManager .left.> Command : <<call>>
 
@@ -39,7 +42,7 @@ LogicManager --> Storage
 Storage --[hidden] Model
 Command .[hidden]up.> Storage
 Command .right.> Model
-note right of XYZCommand: XYZCommand = AddCommand, \nFindCommand, etc
+note right of XYZCommand: XYZCommand = AddCommand, \n DeleteCommand, EditCommand, \nExitCommand, FindAndExportCommand, FindCommand\nHelpCommand, ImportCommand, ListCommand
 
 Logic ..> CommandResult
 LogicManager .down.> CommandResult

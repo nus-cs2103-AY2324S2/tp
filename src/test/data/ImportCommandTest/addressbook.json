@@ -1,0 +1,9 @@
+{
+  "persons" : [ {
+    "name" : "James Chia",
+    "phone" : "33333333",
+    "email" : "james@example.com",
+    "address" : "Block 321, James Street 5",
+    "tags" : [ "friend" ]
+  } ]
+}

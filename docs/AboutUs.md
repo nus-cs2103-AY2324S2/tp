@@ -1,7 +1,9 @@
 ---
-layout: page
-title: About Us
+  layout: default.md
+  title: "About Us"
 ---
+
+# About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
@@ -9,51 +11,42 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Sarji Elijah See Bona
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/sarjinius.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/sarjinius)]
+[[portfolio](team/sarji.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Search by tag + Exporting Data
 
-### Jean Doe
+### Wilson Widyadhana
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/wilsonwid.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/wilsonwid)]
+[[portfolio](team/wilsonwid.md)]
+
+* Role: Team leader, Developer
+* Responsibilities: Importing data, DevOps, User Guide, Developer Guide
+
+### Chua Zi Long
+
+<img src="images/chuazilong.png" width="200px">
+
+[[github](https://github.com/ChuaZiLong)]
+[[portfolio](team/zilong.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: README + Site-wide Settings + Exporting Data
 
-### James Doe
+### Tahsin Hasem Aonim
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/tahsinhasem.jpg" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/tahsinhasem)]
+[[portfolio](team/tahsinhasem.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Search by Tags, Exporting Data
