@@ -7,6 +7,7 @@ import java.util.stream.Stream;
 import seedu.findvisor.logic.parser.Prefix;
 import seedu.findvisor.model.person.Meeting;
 import seedu.findvisor.model.person.Person;
+import seedu.findvisor.model.person.Remark;
 
 /**
  * Container for user visible messages.
@@ -61,4 +62,12 @@ public class Messages {
         return builder.toString();
     }
 
+    /**
+     * Formats the {@code remark} for display to the user
+     */
+    public static String format(Remark remark) {
+        final StringBuilder builder = new StringBuilder();
+        builder.append("Remark: ").append(remark.value);
+        return builder.toString();
+    }
 }
