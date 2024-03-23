@@ -20,6 +20,8 @@ import seedu.address.model.person.Points;
  */
 public class AddPointsCommand extends Command {
     public static final String COMMAND_WORD = "addpoints";
+    public static final String MESSAGE_CONSTRAINTS = "Points added should be greater than 0.";
+
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds points to the person identified"
             + "Parameters: NAME " + PREFIX_POINTS + "POINTS \n"
