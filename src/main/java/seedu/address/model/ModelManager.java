@@ -90,9 +90,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPerson(Client client) {
+    public boolean hasClient(Client client) {
         requireNonNull(client);
-        return addressBook.hasPerson(client);
+        return addressBook.hasClient(client);
     }
 
     @Override

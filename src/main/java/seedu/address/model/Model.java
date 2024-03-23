@@ -55,7 +55,7 @@ public interface Model {
     /**
      * Returns true if a client with the same identity as {@code client} exists in the address book.
      */
-    boolean hasPerson(Client client);
+    boolean hasClient(Client client);
 
     /**
      * Deletes the given client.

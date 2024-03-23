@@ -134,7 +134,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasPerson(Client client) {
+        public boolean hasClient(Client client) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -171,7 +171,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasPerson(Client client) {
+        public boolean hasClient(Client client) {
             requireNonNull(client);
             return this.client.isSameClient(client);
         }
@@ -184,7 +184,7 @@ public class AddCommandTest {
         final ArrayList<Client> personsAdded = new ArrayList<>();
 
         @Override
-        public boolean hasPerson(Client client) {
+        public boolean hasClient(Client client) {
             requireNonNull(client);
             return personsAdded.stream().anyMatch(client::isSameClient);
         }
