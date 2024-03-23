@@ -20,6 +20,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Person;
+import seedu.address.model.schedule.Schedule;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -56,6 +57,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private ComboBox<Person> personComboBox;
+
+    @FXML
+    private TableView<Schedule> scheduleTable;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -173,12 +177,14 @@ public class MainWindow extends UiPart<Stage> {
                 if (populatedPerson.contains(newValue)) {
                     populatedPerson.remove(newValue);
                     System.out.println("Removed person: " + newValue.getName());
+                    updateTableView(populatedPerson);
                 } else {
                     if (populatedPerson.size() == 5) {
                         System.out.println("5 People have already been selected!");
                     } else {
                         populatedPerson.add(newValue);
                         System.out.println("Added person: " + newValue.getName());
+                        updateTableView(populatedPerson);
                     }
                 }
                 // Call method to update UI based on selected person
@@ -196,10 +202,25 @@ public class MainWindow extends UiPart<Stage> {
                         populatedPerson.remove(removedPerson);
                         System.out.println("Current List of person: ");
                         populatedPerson.forEach(person -> System.out.print(person.getName()));
+                        updateTableView(populatedPerson);
                     }
                 }
             }
         });
+    }
+
+    public void updateTableView(ArrayList<Person> selectedPersons) {
+        // Clear the table view
+        scheduleTable.getItems().clear();
+
+        // Loop through each selected person
+        for (Person person : selectedPersons) {
+            // Extract the schedules from the selected person
+            ArrayList<Schedule> schedules = person.getSchedules();
+            System.out.print("Got the deets!");
+            // Add each schedule to the table view
+            scheduleTable.getItems().addAll(schedules);
+        }
     }
 
     /**
