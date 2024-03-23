@@ -1,17 +1,22 @@
 package seedu.address.model.person;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 class LastContactTest {
 
     @Test
     void constructor_nullDateTime_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new LastContact(null));
+    }
+
+    @Test
+    void constructor_EmptyDateTime_throwsNullPointerException() {
+        String validDateTime = "";
+        LastContact lastContact = new LastContact(validDateTime);
+        assertEquals(validDateTime, lastContact.toString());
+        assertNull(lastContact.getDateTime());
     }
 
     @Test
@@ -36,6 +41,15 @@ class LastContactTest {
 
         // Valid date format
         assertTrue(LastContact.isValidDateTime("05-03-2024 0600")); // Valid date and time
+    }
+
+    @Test
+    void compareTo() {
+        LastContact lastcontact1 = new LastContact("05-12-2024 0600");
+        LastContact lastcontact2 = new LastContact("05-12-2024 0600");
+        LastContact lastcontact3 = new LastContact("05-12-2024 0500");
+        assertEquals(0, lastcontact1.compareTo(lastcontact2));
+        assertEquals(1, lastcontact1.compareTo(lastcontact3));
     }
 
     @Test
