@@ -59,6 +59,9 @@ public class PersonCard extends UiPart<Region> {
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
         matric.setText(person.getMatric().toString());
+        if (matric.getText().isEmpty()) {
+            matric.setVisible(false);
+        }
         reflection.setText(person.getReflection().toString());
         studio.setText(person.getStudio().toString());
         person.getTags().stream()
