@@ -25,8 +25,8 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.client.Client;
+import seedu.address.testutil.ClientBuilder;
 import seedu.address.testutil.EditClientDescriptorBuilder;
-import seedu.address.testutil.PersonBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
@@ -37,7 +37,7 @@ public class EditCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Client editedClient = new PersonBuilder().build();
+        Client editedClient = new ClientBuilder().build();
         EditClientDescriptor descriptor = new EditClientDescriptorBuilder(editedClient).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_CLIENT, descriptor);
 
@@ -54,7 +54,7 @@ public class EditCommandTest {
         Index indexLastClient = Index.fromOneBased(model.getFilteredClientList().size());
         Client lastClient = model.getFilteredClientList().get(indexLastClient.getZeroBased());
 
-        PersonBuilder clientInList = new PersonBuilder(lastClient);
+        ClientBuilder clientInList = new ClientBuilder(lastClient);
         Client editedClient = clientInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
 
@@ -87,7 +87,7 @@ public class EditCommandTest {
         showClientAtIndex(model, INDEX_FIRST_CLIENT);
 
         Client clientInFilteredList = model.getFilteredClientList().get(INDEX_FIRST_CLIENT.getZeroBased());
-        Client editedClient = new PersonBuilder(clientInFilteredList).withName(VALID_NAME_BOB).build();
+        Client editedClient = new ClientBuilder(clientInFilteredList).withName(VALID_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_CLIENT,
                 new EditClientDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
