@@ -48,6 +48,19 @@ public class Group {
         return groupName.equals(otherGroup.groupName);
     }
 
+    /**
+     * Returns true if both groups have the same name.
+     * This defines a weaker notion of equality between two groups.
+     */
+    public boolean isSameGroup(Group otherGroup) {
+        if (otherGroup == this) {
+            return true;
+        }
+
+        return otherGroup != null
+                && otherGroup.groupName.equals(this.groupName);
+    }
+
     @Override
     public int hashCode() {
         return groupName.hashCode();
