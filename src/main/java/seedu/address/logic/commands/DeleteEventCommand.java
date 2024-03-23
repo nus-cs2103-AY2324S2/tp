@@ -32,7 +32,7 @@ public class DeleteEventCommand extends Command {
     public static final String COMMAND_WORD = "deletee";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes a specified important date event for a specific patient identified by index number of patient "
+            + ": Deletes a specified event for a specific patient identified by index number of patient "
             + " in the displayed patient list as well as the event index.\n"
             + "Parameters: INDEX of PATIENT (must be a positive integer matching that of the Patient in the"
             + "`list` command) "

@@ -20,13 +20,13 @@ import seedu.address.model.patient.Event;
 import seedu.address.model.patient.Patient;
 
 /**
- * Adds an important date to the specified patient (based on index from the last shown patient list)
+ * Adds an event to the specified patient (based on index from the last shown patient list)
  */
 public class AddEventCommand extends Command {
     public static final String COMMAND_WORD = "adde";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Adds an Important Date for a Patient. "
+            + ": Adds an event for a Patient. "
             + "Parameters: INDEX (must be a positive integer matching that of the Patient in the `list` command) "
             + PREFIX_NAME + " [Name of the Event that falls on this Date] "
             + PREFIX_DATETIME + " [Date / Datetime, in the format DD-MM-YYYY"
@@ -89,10 +89,10 @@ public class AddEventCommand extends Command {
     }
 
     /**
-     * Returns true if both add important date commands have the same index and important date to add.
+     * Returns true if both AddEventCommands have the same index and important date to add.
      *
      * @param other Another object to compare to.
-     * @return True if the other object is an AddEventCommand with the same index and important date to add.
+     * @return True if the other object is an AddEventCommand with the same index and date / datetime to add.
      */
     @Override
     public boolean equals(Object other) {
