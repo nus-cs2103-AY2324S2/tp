@@ -120,15 +120,31 @@ public class Event implements Comparable<Event> {
 
     @Override
     public int compareTo(Event other) {
-        if (this.date.equals(other.date)) {
-            if (this.startTime.equals(other.startTime)) {
-                return this.endTime.compareTo(other.endTime);
-            }
-
-            return this.startTime.compareTo(other.startTime);
+        if (!this.date.equals(other.date)) {
+            return this.date.compareTo(other.date);
         }
 
-        return this.date.compareTo(other.date);
+        if (this.startTime != null && other.startTime != null) {
+            // If both events have time information, sort by start time then end time
+            if (!this.startTime.equals(other.startTime)) {
+                return this.startTime.compareTo(other.startTime);
+            }
+
+            if (!this.endTime.equals(other.endTime)) {
+                return this.endTime.compareTo(other.endTime);
+            }
+        } else {
+            // If only 1 event has time information, that event should be sorted behind
+            if (this.startTime != null && other.startTime == null) {
+                return 1;
+            }
+            if (this.startTime == null && other.startTime != null) {
+                return -1;
+            }
+        }
+
+        // If all date / datetime information is the same, sort by name
+        return this.name.compareTo(other.name);
     }
 
     @Override

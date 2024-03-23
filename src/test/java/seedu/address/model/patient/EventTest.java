@@ -1,6 +1,5 @@
 package seedu.address.model.patient;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -63,21 +62,25 @@ public class EventTest {
         Event laterYearEvent = new Event("Family Visit", "01-01-2023, 12:12 - 12:12");
         Event laterStartTimeEvent = new Event("Family Visit", "01-01-2022, 12:13 - 12:12");
         Event laterEndTimeEvent = new Event("Family Visit", "01-01-2022, 12:12 - 12:13");
+        Event laterNameEvent = new Event("Z", "01-01-2022, 12:12 - 12:12");
 
-        assertEquals(earlierEvent.compareTo(laterDateEvent), -1);
-        assertEquals(laterDateEvent.compareTo(earlierEvent), 1);
+        assertTrue(earlierEvent.compareTo(laterDateEvent) < 0);
+        assertTrue(laterDateEvent.compareTo(earlierEvent) > 0);
 
-        assertEquals(earlierEvent.compareTo(laterMonthEvent), -1);
-        assertEquals(laterMonthEvent.compareTo(earlierEvent), 1);
+        assertTrue(earlierEvent.compareTo(laterMonthEvent) < 0);
+        assertTrue(laterMonthEvent.compareTo(earlierEvent) > 0);
 
-        assertEquals(earlierEvent.compareTo(laterYearEvent), -1);
-        assertEquals(laterYearEvent.compareTo(earlierEvent), 1);
+        assertTrue(earlierEvent.compareTo(laterYearEvent) < 0);
+        assertTrue(laterYearEvent.compareTo(earlierEvent) > 0);
 
-        assertEquals(earlierEvent.compareTo(laterStartTimeEvent), -1);
-        assertEquals(laterStartTimeEvent.compareTo(earlierEvent), 1);
+        assertTrue(earlierEvent.compareTo(laterStartTimeEvent) < 0);
+        assertTrue(laterStartTimeEvent.compareTo(earlierEvent) > 0);
 
-        assertEquals(earlierEvent.compareTo(laterEndTimeEvent), -1);
-        assertEquals(laterEndTimeEvent.compareTo(earlierEvent), 1);
+        assertTrue(earlierEvent.compareTo(laterEndTimeEvent) < 0);
+        assertTrue(laterEndTimeEvent.compareTo(earlierEvent) > 0);
+
+        assertTrue(earlierEvent.compareTo(laterNameEvent) < 0);
+        assertTrue(laterNameEvent.compareTo(earlierEvent) > 0);
     }
 
     @Test
