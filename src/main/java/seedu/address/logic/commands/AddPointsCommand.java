@@ -24,11 +24,9 @@ public class AddPointsCommand extends Command {
     public static final String MESSAGE_CONSTRAINTS = "Points added should be greater than 0.";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Adds points to the person identified" + "\n"
+            + ": Adds points to the person identified. "
             + "Parameters: " + PREFIX_NAME + "NAME " + PREFIX_POINTS + "POINTS \n"
             + "Example: " + COMMAND_WORD + " John Doe " + PREFIX_POINTS + "40";
-
-    public static final String MESSAGE_ARGUMENTS = "Name: %1$s, Points: %2$i";
     public static final String MESSAGE_ADDPOINTS_SUCCESS =
             "Added %1$s points to %2$s";
     private final Name name;
