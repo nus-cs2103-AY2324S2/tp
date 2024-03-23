@@ -48,7 +48,7 @@ public class AddCommandTest {
     public void execute_duplicateClient_throwsCommandException() {
         Client validClient = new PersonBuilder().build();
         AddCommand addCommand = new AddCommand(validClient);
-        ModelStub modelStub = new ModelStubWithPerson(validClient);
+        ModelStub modelStub = new ModelStubwithClient(validClient);
 
         assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_CLIENT, () -> addCommand.execute(modelStub));
     }
@@ -162,10 +162,10 @@ public class AddCommandTest {
     /**
      * A Model stub that contains a single client.
      */
-    private class ModelStubWithPerson extends ModelStub {
+    private class ModelStubwithClient extends ModelStub {
         private final Client client;
 
-        ModelStubWithPerson(Client client) {
+        ModelStubwithClient(Client client) {
             requireNonNull(client);
             this.client = client;
         }
