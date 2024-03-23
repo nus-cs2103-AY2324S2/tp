@@ -26,14 +26,14 @@
     "phone" : "87652533",
     "email" : "cornelia@example.com",
     "address" : "10th street",
-    "category": "PARTICIPANT",
+    "category": "SPONSOR",
     "tags" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
     "phone" : "9482224",
     "email" : "werner@example.com",
     "address" : "michegan ave",
-    "category": "PARTICIPANT",
+    "category": "STAFF",
     "tags" : [ ]
   }, {
     "name" : "Fiona Kunz",
@@ -47,7 +47,7 @@
     "phone" : "9482442",
     "email" : "anna@example.com",
     "address" : "4th street",
-    "category": "PARTICIPANT",
+    "category": "STAFF",
     "tags" : [ ]
   } ]
 }

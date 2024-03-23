@@ -7,19 +7,27 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 
 <VBox styleClass="list-container" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
-  <GridPane styleClass="list-header" alignment="CENTER">
-    <columnConstraints>
-      <ColumnConstraints percentWidth="8" fx:id="idColumn" />
-      <ColumnConstraints percentWidth="24" fx:id="nameColumn" />
-      <ColumnConstraints percentWidth="25" fx:id="emailColumn" />
-      <ColumnConstraints percentWidth="23" fx:id="phoneColumn" />
-      <ColumnConstraints percentWidth="20" fx:id="categoryColumn" />
-    </columnConstraints>
-    <Label text="ID" GridPane.columnIndex="0" alignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.halignment="CENTER" />
-    <Label text="NAME" GridPane.columnIndex="1" alignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.halignment="CENTER" />
-    <Label text="EMAIL" GridPane.columnIndex="2" alignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.halignment="CENTER" />
-    <Label text="PHONE" GridPane.columnIndex="3" alignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.halignment="CENTER" />
-    <Label text="CATEGORY" GridPane.columnIndex="4" alignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.halignment="CENTER" />
-  </GridPane>
-  <ListView fx:id="personListView" VBox.vgrow="ALWAYS" />
+    <GridPane styleClass="list-header" alignment="CENTER">
+        <columnConstraints>
+            <ColumnConstraints percentWidth="8" fx:id="idColumn"/>
+            <ColumnConstraints percentWidth="20" fx:id="nameColumn"/>
+            <ColumnConstraints percentWidth="20" fx:id="emailColumn"/>
+            <ColumnConstraints percentWidth="20" fx:id="phoneColumn"/>
+            <ColumnConstraints percentWidth="16" fx:id="categoryColumn"/>
+            <ColumnConstraints percentWidth="16" fx:id="groupColumn"/>
+        </columnConstraints>
+        <Label text="ID" GridPane.columnIndex="0" alignment="CENTER" GridPane.hgrow="ALWAYS"
+               GridPane.halignment="CENTER"/>
+        <Label text="NAME" GridPane.columnIndex="1" alignment="CENTER" GridPane.hgrow="ALWAYS"
+               GridPane.halignment="CENTER"/>
+        <Label text="EMAIL" GridPane.columnIndex="2" alignment="CENTER" GridPane.hgrow="ALWAYS"
+               GridPane.halignment="CENTER"/>
+        <Label text="PHONE" GridPane.columnIndex="3" alignment="CENTER" GridPane.hgrow="ALWAYS"
+               GridPane.halignment="CENTER"/>
+        <Label text="CATEGORY" GridPane.columnIndex="4" alignment="CENTER" GridPane.hgrow="ALWAYS"
+               GridPane.halignment="CENTER"/>
+        <Label text="GROUP" GridPane.columnIndex="5" alignment="CENTER" GridPane.hgrow="ALWAYS"
+               GridPane.halignment="CENTER"/>
+    </GridPane>
+    <ListView fx:id="personListView" VBox.vgrow="ALWAYS"/>
 </VBox>

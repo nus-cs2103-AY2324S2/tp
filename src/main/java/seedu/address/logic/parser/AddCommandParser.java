@@ -18,6 +18,7 @@ import seedu.address.model.person.Category;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.PersonFactory;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
@@ -50,7 +51,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Category category = ParserUtil.parseCategory(argMultimap.getValue(PREFIX_CATEGORY).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Person person = new Person(name, phone, email, address, category, tagList);
+        Person person = PersonFactory.createPerson(name, phone, email, address, category, tagList);
 
         return new AddCommand(person);
     }

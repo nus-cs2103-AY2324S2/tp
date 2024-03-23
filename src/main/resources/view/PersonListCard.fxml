@@ -10,23 +10,31 @@
 <?import javafx.scene.layout.VBox?>
 
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
-  <GridPane HBox.hgrow="ALWAYS">
-    <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
-    </columnConstraints>
-    <GridPane HBox.hgrow="ALWAYS" alignment="CENTER">
-      <columnConstraints>
-        <ColumnConstraints percentWidth="8" fx:id="idColumn" />
-        <ColumnConstraints percentWidth="24" fx:id="nameColumn" />
-        <ColumnConstraints percentWidth="25" fx:id="emailColumn" />
-        <ColumnConstraints percentWidth="23" fx:id="phoneColumn" />
-        <ColumnConstraints percentWidth="20" fx:id="categoryColumn" />
-      </columnConstraints>
-      <Label fx:id="id" styleClass="cell_small_label" GridPane.columnIndex="0" alignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.halignment="CENTER" />
-      <Label fx:id="name" styleClass="cell_small_label" text="\$first" GridPane.columnIndex="1" alignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.halignment="CENTER" />
-      <Label fx:id="email" styleClass="cell_small_label" text="\$email" GridPane.columnIndex="2" alignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.halignment="CENTER" />
-      <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" GridPane.columnIndex="3" alignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.halignment="CENTER" />
-      <Label fx:id="category" styleClass="category-label" text="\$category" GridPane.columnIndex="4" alignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.halignment="CENTER" />
+    <GridPane HBox.hgrow="ALWAYS">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150"/>
+        </columnConstraints>
+        <GridPane HBox.hgrow="ALWAYS" alignment="CENTER">
+            <columnConstraints>
+                <ColumnConstraints percentWidth="8" fx:id="idColumn"/>
+                <ColumnConstraints percentWidth="20" fx:id="nameColumn"/>
+                <ColumnConstraints percentWidth="20" fx:id="emailColumn"/>
+                <ColumnConstraints percentWidth="20" fx:id="phoneColumn"/>
+                <ColumnConstraints percentWidth="15" fx:id="categoryColumn"/>
+                <ColumnConstraints percentWidth="17" fx:id="groupColumn"/>
+            </columnConstraints>
+            <Label fx:id="id" styleClass="cell_small_label" GridPane.columnIndex="0" alignment="CENTER"
+                   GridPane.hgrow="ALWAYS" GridPane.halignment="CENTER"/>
+            <Label fx:id="name" styleClass="cell_small_label" text="\$first" GridPane.columnIndex="1" alignment="CENTER"
+                   GridPane.hgrow="ALWAYS" GridPane.halignment="CENTER"/>
+            <Label fx:id="email" styleClass="cell_small_label" text="\$email" GridPane.columnIndex="2"
+                   alignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.halignment="CENTER"/>
+            <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" GridPane.columnIndex="3"
+                   alignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.halignment="CENTER"/>
+            <Label fx:id="category" styleClass="category-label" text="\$category" GridPane.columnIndex="4"
+                   alignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.halignment="CENTER"/>
+            <Label fx:id="group" styleClass="cell_small_label" text="\$group" GridPane.columnIndex="5"
+                   alignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.halignment="CENTER"/>
+        </GridPane>
     </GridPane>
-  </GridPane>
 </HBox>
