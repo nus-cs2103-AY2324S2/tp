@@ -200,7 +200,7 @@ public class UpdateCommand extends Command {
             setDateOfBirth(toCopy.dateOfBirth);
             setSex(toCopy.sex);
             setStatus(toCopy.status);
-            setTags(toCopy.tags);
+            // setTags(toCopy.tags);
         }
 
         /**
