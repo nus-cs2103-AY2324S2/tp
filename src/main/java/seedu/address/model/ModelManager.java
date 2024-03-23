@@ -12,7 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.messages.Messages;
+import seedu.address.logic.messages.EditMessages;
 import seedu.address.model.person.Maintainer;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -165,12 +165,10 @@ public class ModelManager implements Model {
                 if (!(person instanceof Supplier) && !(person instanceof Staff)
                         && !(person instanceof Maintainer)) {
                     return person;
-                } else {
-                    throw new CommandException(Messages.MESSAGE_INVALID_EDIT_PERSON);
                 }
             }
         }
-        return null;
+        throw new CommandException(EditMessages.MESSAGE_INVALID_EDIT_PERSON);
     }
 
     /**
@@ -184,14 +182,10 @@ public class ModelManager implements Model {
         for (Person person: filteredPersons) {
             Name name = person.getName();
             if (name.equals(targetName) && person instanceof Maintainer) {
-                if (person instanceof Maintainer) {
-                    return (Maintainer) person;
-                } else {
-                    throw new CommandException(Messages.MESSAGE_INVALID_EDIT_MAINTAINER);
-                }
+                return (Maintainer) person;
             }
         }
-        return null;
+        throw new CommandException(EditMessages.MESSAGE_INVALID_EDIT_MAINTAINER);
     }
 
     /**
@@ -204,15 +198,11 @@ public class ModelManager implements Model {
     public Staff findStaffByName(Name targetName) throws CommandException {
         for (Person person: filteredPersons) {
             Name name = person.getName();
-            if (name.equals(targetName)) {
-                if (person instanceof Staff) {
-                    return (Staff) person;
-                } else {
-                    throw new CommandException(Messages.MESSAGE_INVALID_EDIT_STAFF);
-                }
+            if (name.equals(targetName) && person instanceof Staff) {
+                return (Staff) person;
             }
         }
-        return null;
+        throw new CommandException(EditMessages.MESSAGE_INVALID_EDIT_STAFF);
     }
 
     /**
@@ -225,14 +215,10 @@ public class ModelManager implements Model {
     public Supplier findSupplierByName(Name targetName) throws CommandException {
         for (Person person: filteredPersons) {
             Name name = person.getName();
-            if (name.equals(targetName)) {
-                if (person instanceof Supplier) {
-                    return (Supplier) person;
-                } else {
-                    throw new CommandException(Messages.MESSAGE_INVALID_EDIT_SUPPLIER);
-                }
+            if (name.equals(targetName) && person instanceof Supplier) {
+                return (Supplier) person;
             }
         }
-        return null;
+        throw new CommandException(EditMessages.MESSAGE_INVALID_EDIT_SUPPLIER);
     }
 }
