@@ -6,8 +6,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.person.Classes;
+
+import java.io.IOException;
 
 
 /**
@@ -35,7 +38,7 @@ public class CreateClassCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model) throws CommandException, IOException {
         requireNonNull(model);
 
         if (model.hasClass(toCreate)) {
@@ -43,6 +46,8 @@ public class CreateClassCommand extends Command {
         }
 
         model.createClass(toCreate);
+        model.setAddressBook(new AddressBook());
+        model.selectClass(toCreate);
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.classFormat(toCreate)));
     }
 

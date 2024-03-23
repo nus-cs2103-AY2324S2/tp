@@ -7,6 +7,7 @@ import seedu.address.model.person.Classes;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 
+import java.io.IOException;
 import java.util.function.Predicate;
 
 import static java.util.Objects.requireNonNull;
@@ -29,7 +30,7 @@ public class SelectClassCommand extends Command{
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws IOException {
         requireNonNull(model);
         ObservableList<Classes> lastShownList = model.getFilteredClassList();
 

@@ -24,9 +24,9 @@ public class Classes {
     /**
      * Constructor for Classes.
      */
-    public Classes(CourseCode courseCode) {
+    public Classes(CourseCode courseCode, AddressBook addressBook) {
         this.courseCode = courseCode;
-        this.addressBook = new AddressBook();
+        this.addressBook = addressBook;
         this.addressBookStorage = new JsonAddressBookStorage(getFilePath());
     }
 
@@ -89,6 +89,10 @@ public class Classes {
         // Modify this method to generate the file path based on class name, etc.
         String fileName = courseCode.getCourseCode() + ".json";
         return Paths.get("data/classbook", fileName);
+    }
+
+    public void addPerson(Person person) {
+        addressBook.addPerson(person);
     }
 
 //    public Object getPersons() {
