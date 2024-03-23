@@ -8,9 +8,8 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.stage.Stage?>
 
-<fx:root resizable="false" title="Confirm to Exit" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root resizable="false" title="Confirm to Exit" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
     <icons>
         <Image url="@/images/exit_icon.png" />
     </icons>
@@ -22,7 +21,7 @@
 
             <VBox fx:id="exitMessageContainer" alignment="CENTER">
                 <children>
-                    <Label fx:id="exitMessage" text="Label" textFill="WHITE">
+                    <Label fx:id="exitMessage" alignment="TOP_LEFT" text="Label" textAlignment="CENTER" textFill="WHITE">
                         <HBox.margin>
                             <Insets right="5.0" />
                         </HBox.margin>
@@ -47,7 +46,7 @@
                     <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
                 </opaqueInsets>
                 <padding>
-                    <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
+                    <Insets bottom="10.0" left="50.0" right="50.0" top="5.0" />
                 </padding>
             </VBox>
         </Scene>
