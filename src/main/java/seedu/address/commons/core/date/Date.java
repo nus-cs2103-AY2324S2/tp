@@ -13,7 +13,7 @@ public class Date implements Comparable<Date> {
 
     private static final String DATE_FORMAT = "yyyy-MM-dd";
     public static final String MESSAGE_CONSTRAINTS =
-            "Date should be in the format " + DATE_FORMAT + " and must be a valid date after 1 Jan 1970";
+            "Date should be in the format " + DATE_FORMAT + " and must be a valid date after 1 Jan 1900";
 
     private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern(DATE_FORMAT);
     public final LocalDate value;
@@ -30,13 +30,13 @@ public class Date implements Comparable<Date> {
 
     /**
      * Returns if a given string is a valid date.
-     * Valid date must also be after 1 Jan 1970.
+     * Valid date must also be after 1 Jan 1900.
      */
     public static boolean isValidDate(String dateString) {
         requireNonNull(dateString);
         try {
             LocalDate validDate = LocalDate.parse(dateString);
-            return validDate.isAfter(LocalDate.of(1970, 1, 1));
+            return validDate.isAfter(LocalDate.of(1900, 1, 1));
         } catch (Exception e) {
             return false;
         }
