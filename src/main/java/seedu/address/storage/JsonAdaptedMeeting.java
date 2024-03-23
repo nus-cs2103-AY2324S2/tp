@@ -7,6 +7,7 @@ import seedu.address.model.person.Meeting;
 
 import java.time.Duration;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 /**
@@ -16,6 +17,8 @@ class JsonAdaptedMeeting {
 
     private final LocalDate meetingDate;
     private final LocalTime meetingTime;
+
+    private final LocalDateTime startDateTime;
     private final Duration duration;
     private final String agenda;
     private final String notes;
@@ -31,6 +34,7 @@ class JsonAdaptedMeeting {
                               @JsonProperty("notes") String notes) {
         this.meetingDate = meetingDate;
         this.meetingTime = meetingTime;
+        this.startDateTime = LocalDateTime.of(meetingDate, meetingTime); // Initialize new field
         this.duration = duration;
         this.agenda = agenda;
         this.notes = notes;
@@ -42,6 +46,7 @@ class JsonAdaptedMeeting {
     public JsonAdaptedMeeting(Meeting source) {
         meetingDate = source.getMeetingDate();
         meetingTime = source.getMeetingTime();
+        startDateTime = source.getStartDateTime(); // Get the new field
         duration = source.getDuration();
         agenda = source.getAgenda();
         notes = source.getNotes();
@@ -70,6 +75,11 @@ class JsonAdaptedMeeting {
     @JsonProperty("notes")
     public String getNotes() {
         return notes;
+    }
+
+    @JsonProperty("startDateTime")
+    public LocalDateTime getStartDateTime() {
+        return startDateTime;
     }
 
     /**
