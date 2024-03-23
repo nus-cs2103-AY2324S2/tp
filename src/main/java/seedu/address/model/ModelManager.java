@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +17,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataLoadingException;
+import seedu.address.commons.util.FileUtil;
 import seedu.address.model.person.Classes;
 import seedu.address.model.person.Person;
 import seedu.address.storage.JsonAddressBookStorage;
@@ -46,7 +48,7 @@ public class ModelManager implements Model {
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, ReadOnlyClassBook classBook) {
         requireAllNonNull(addressBook, userPrefs, classBook);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs
+        logger.fine("Initializing with user prefs " + userPrefs
                 + "and class book: " + classBook);
 
         this.selectedClassAddressBook = new AddressBook(addressBook);
@@ -152,8 +154,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addPerson(Person person) {
+    public void addPerson(Person person) throws IOException {
         requireNonNull(person);
+        selectedClassAddressBook = selectedClass.getAddressBook();
         selectedClassAddressBook.addPerson(person);
         filteredPersons = new FilteredList<>(this.selectedClassAddressBook.getPersonList());
         try {
@@ -164,6 +167,7 @@ public class ModelManager implements Model {
 
         Predicate<Person> predicate = updatedPerson -> selectedClassAddressBook.getPersonList().contains(updatedPerson);
         updateFilteredPersonList(predicate);
+        selectClass(selectedClass);
     }
 
     @Override
@@ -180,6 +184,7 @@ public class ModelManager implements Model {
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
 
+        selectedClassAddressBook = selectedClass.getAddressBook();
         selectedClassAddressBook.setPerson(target, editedPerson);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
@@ -258,7 +263,7 @@ public class ModelManager implements Model {
         requireNonNull(classes);
 
         selectedClass = classes;
-        // selectedClassAddressBook = selectedClass.getAddressBook();
+//        selectedClassAddressBook = selectedClass.getAddressBook();
         this.Storage = new JsonAddressBookStorage(selectedClass.getFilePath());
         userPrefs.setAddressBookFilePath(selectedClass.getFilePath());
 
@@ -284,6 +289,7 @@ public class ModelManager implements Model {
         for (UiUpdateListener listener : uiUpdateListeners) {
             listener.updateUiOnClassSelected(classes);;
         }
+        notifyUIUpdateListenersOnClassSelected(classes);
         notifyUiUpdateListenersOnClassSelected(classes);
     }
 

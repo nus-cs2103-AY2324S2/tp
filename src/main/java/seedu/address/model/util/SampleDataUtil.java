@@ -63,8 +63,8 @@ public class SampleDataUtil {
 
     public static Classes[] getSampleClasses() {
         return new Classes[] {
-            new Classes(new CourseCode("CS2103T")),
-            new Classes(new CourseCode("CS2101"))
+            new Classes(new CourseCode("CS2103T"), new AddressBook()),
+            new Classes(new CourseCode("CS2101"), new AddressBook())
         };
     }
     public static ReadOnlyClassBook getSampleClassBook() {

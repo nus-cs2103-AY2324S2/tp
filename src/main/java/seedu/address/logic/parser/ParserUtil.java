@@ -9,6 +9,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.AddressBook;
 import seedu.address.model.person.AttendanceStatus;
 import seedu.address.model.person.Classes;
 import seedu.address.model.person.CourseCode;
@@ -110,7 +111,7 @@ public class ParserUtil {
         if (!CourseCode.isValidClass(trimmedCourseCode)) {
             throw new ParseException(CourseCode.MESSAGE_CONSTRAINTS);
         }
-        return new Classes(new CourseCode(trimmedCourseCode));
+        return new Classes(new CourseCode(trimmedCourseCode), new AddressBook());
     }
 
     /**
