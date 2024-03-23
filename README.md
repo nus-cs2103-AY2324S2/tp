@@ -4,7 +4,7 @@
 
 # TAHelper
 
-* TAHelper helps TA to better manage their students' profiles, this includes attendance, grading, etc. 
+* TAHelper helps TA to better manage their students' profiles, this includes attendance, grading, etc.
 
 * For the detailed documentation of this project, see the **[Tutor Helper Website]([https://ay2324s2-cs2103t-t13-1.github.io/tp/](https://ay2324s2-cs2103t-t13-1.github.io/tp/)**.
 * This project is based on the AddressBook-Level3 project created by the [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.

@@ -29,6 +29,8 @@ public class CommandBox extends UiPart<Region> {
         this.commandExecutor = commandExecutor;
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
+
+        executeInitialCommand();
     }
 
     /**
@@ -81,5 +83,17 @@ public class CommandBox extends UiPart<Region> {
          */
         CommandResult execute(String commandText) throws CommandException, ParseException;
     }
+
+    /**
+     * Executes the "view" command upon initialization.
+     */
+    private void executeInitialCommand() {
+        try {
+            commandExecutor.execute("view");
+        } catch (CommandException | ParseException e) {
+            // Handle exceptions here
+        }
+    }
+
 
 }
