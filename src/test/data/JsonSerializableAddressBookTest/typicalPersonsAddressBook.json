@@ -9,6 +9,7 @@
       "start" : "",
       "end" : ""
     },
+    "remark": "",
     "tags" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
@@ -19,6 +20,7 @@
       "start" : "",
       "end" : ""
     },
+    "remark": "Plans to retire by age of 45",
     "tags" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Carl Kurz",
@@ -29,6 +31,7 @@
       "start" : "12-03-2024T14:00",
       "end" : "12-03-2024T15:00"
     },
+    "remark": "",
     "tags" : [ ]
   }, {
     "name" : "Daniel Meier",
@@ -39,6 +42,7 @@
       "start" : "",
       "end" : ""
     },
+    "remark": "",
     "tags" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
@@ -49,6 +53,7 @@
       "start" : "",
       "end" : ""
     },
+    "remark": "",
     "tags" : [ ]
   }, {
     "name" : "Fiona Kunz",
@@ -59,6 +64,7 @@
       "start" : "",
       "end" : ""
     },
+    "remark": "",
     "tags" : [ ]
   }, {
     "name" : "George Best",
@@ -69,6 +75,7 @@
       "start" : "",
       "end" : ""
     },
+    "remark": "",
     "tags" : [ ]
   } ]
 }

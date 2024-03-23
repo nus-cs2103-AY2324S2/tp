@@ -4,10 +4,16 @@ import static java.util.Objects.requireNonNull;
 import static seedu.findvisor.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.findvisor.logic.parser.CliSyntax.PREFIX_REMARK;
 
+import java.util.Optional;
+
 import seedu.findvisor.commons.core.index.Index;
 import seedu.findvisor.logic.commands.RemarkCommand;
 import seedu.findvisor.logic.parser.exceptions.ParseException;
+import seedu.findvisor.model.person.Remark;
 
+/**
+ * Parses input arguments and creates a new RemarkCommand object
+ */
 public class RemarkCommandParser implements Parser<RemarkCommand> {
 
     /**
@@ -27,7 +33,8 @@ public class RemarkCommandParser implements Parser<RemarkCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemarkCommand.MESSAGE_USAGE), pe);
         }
 
-        String remark = argMultimap.getValue(PREFIX_REMARK).orElse("");
+        String remarkValue = argMultimap.getValue(PREFIX_REMARK).orElse("");
+        Optional<Remark> remark = Remark.createRemark(remarkValue);
 
         return new RemarkCommand(index, remark);
     }

@@ -8,6 +8,7 @@
       "start" : "",
       "end" : ""
     },
+    "remark": "",
     "tags": [ "friends" ]
   }, {
     "name": "Alice Pauline",
@@ -17,6 +18,7 @@
     "meeting" : {
       "start" : "",
       "end" : ""
-    }
+    },
+    "remark": ""
   } ]
 }
