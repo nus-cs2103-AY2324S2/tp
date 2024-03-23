@@ -1,14 +1,13 @@
 package seedu.address.logic.commands;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static java.util.Objects.requireNonNull;
 
-import java.util.List;
+import java.time.LocalDateTime;
+import java.util.Comparator;
 
-import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.LastContact;
+import seedu.address.model.person.IsLastContactedPredicate;
 import seedu.address.model.person.Person;
 
 /**
@@ -16,59 +15,39 @@ import seedu.address.model.person.Person;
  */
 public class LastContactCommand extends Command {
 
+    public static final Comparator<Person> SORT_COMPARATOR = (person1, person2) -> {
+        // Assuming getLastContact() can be null and getDateTime() can also be null.
+        LocalDateTime lastContactDateTime1 = person1.getLastcontact().getDateTime();
+        LocalDateTime lastContactDateTime2 = person2.getLastcontact().getDateTime();
+
+        // If both dates are non-null, compare them directly.
+        return lastContactDateTime1.compareTo(lastContactDateTime2);
+    };
+
     public static final String COMMAND_WORD = "lastcontact";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a last contacted tag to the "
-            + "client identified.\n"
-            + "Existing date and time tagged will be overwritten by the input.\n"
-            + "Parameters: NAME (case in-sensitive), DATETIME (DD-MM-YYYY HHMM) format.\n"
-            + "Example: lastcontact n/Cole lc/12-03-2024 1812";
-    public static final String MESSAGE_ADD_LAST_CONTACTED_SUCCESS = "Tagged last contacted to client:\n%1$s";
-    public static final String MESSAGE_ADD_LAST_CONTACTED_FAIL = "Client name not found:\n%1$s";
-    private final String name;
-    private final LastContact lastcontact;
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Show a list of last contacted clients "
+            + "sorted according to dateTime";
 
-    /**
-     * Constructor the Last contact command
-     * @param name of the person in the contact list
-     */
-    public LastContactCommand(String name, LastContact lastcontact) {
-        requireAllNonNull(name, lastcontact);
+    public static final String MESSAGE_SUCCESS = "Listed all clients with last contact dates,"
+            + " starting with the oldest date";
 
-        this.name = name;
-        this.lastcontact = lastcontact;
+    private final IsLastContactedPredicate predicate;
+
+    public LastContactCommand(IsLastContactedPredicate predicate) {
+        this.predicate = predicate;
     }
+
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        List<Person> lastShownList = model.getFilteredPersonList();
+        requireNonNull(model);
+        model.updateFilteredPersonList(predicate);
+        model.sortFilteredPersonList(SORT_COMPARATOR);
 
-        for (Person currPerson : lastShownList) {
-            if (currPerson.getName().toString().equalsIgnoreCase(this.name)) {
-                Person editedPerson = new Person(currPerson.getName(), currPerson.getPhone(), currPerson.getEmail(),
-                        currPerson.getAddress(), currPerson.getTags(), currPerson.getUpcoming(), this.lastcontact);
-                model.setPerson(currPerson, editedPerson);
-                model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-                return new CommandResult(generateSuccessMessage(editedPerson));
-            }
-        }
-        return new CommandResult(generateFailedMessage(name));
-    }
-    public static String generateSuccessMessage(Person personToEdit) {
-        return String.format(MESSAGE_ADD_LAST_CONTACTED_SUCCESS, Messages.format(personToEdit));
+        return new CommandResult(MESSAGE_SUCCESS);
     }
 
-    public static String generateFailedMessage(String name) {
-        return String.format(MESSAGE_ADD_LAST_CONTACTED_FAIL, name);
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public LastContact getLastContact() {
-        return this.lastcontact;
-    }
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -81,6 +60,6 @@ public class LastContactCommand extends Command {
         }
 
         LastContactCommand otherLastContactCommand = (LastContactCommand) other;
-        return lastcontact.equals(otherLastContactCommand.lastcontact);
+        return predicate.equals(otherLastContactCommand.predicate);
     }
 }
