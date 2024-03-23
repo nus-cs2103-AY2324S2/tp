@@ -80,10 +80,10 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code target} must exist in the address book.
      * The client identity of {@code editedClient} must not be the same as another existing client in the address book.
      */
-    public void setPerson(Client target, Client editedClient) {
+    public void setClient(Client target, Client editedClient) {
         requireNonNull(editedClient);
 
-        persons.setPerson(target, editedClient);
+        persons.setClient(target, editedClient);
     }
 
     /**

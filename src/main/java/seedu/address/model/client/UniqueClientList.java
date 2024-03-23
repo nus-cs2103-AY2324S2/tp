@@ -53,7 +53,7 @@ public class UniqueClientList implements Iterable<Client> {
      * {@code target} must exist in the list.
      * The client identity of {@code editedClient} must not be the same as another existing client in the list.
      */
-    public void setPerson(Client target, Client editedClient) {
+    public void setClient(Client target, Client editedClient) {
         requireAllNonNull(target, editedClient);
 
         int index = internalList.indexOf(target);

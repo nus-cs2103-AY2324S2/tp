@@ -60,23 +60,23 @@ public class UniqueClientListTest {
 
     @Test
     public void setPerson_nullTargetPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueClientList.setPerson(null, ALICE));
+        assertThrows(NullPointerException.class, () -> uniqueClientList.setClient(null, ALICE));
     }
 
     @Test
     public void setPerson_nullEditedPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueClientList.setPerson(ALICE, null));
+        assertThrows(NullPointerException.class, () -> uniqueClientList.setClient(ALICE, null));
     }
 
     @Test
     public void setPerson_targetPersonNotInList_throwsClientNotFoundException() {
-        assertThrows(ClientNotFoundException.class, () -> uniqueClientList.setPerson(ALICE, ALICE));
+        assertThrows(ClientNotFoundException.class, () -> uniqueClientList.setClient(ALICE, ALICE));
     }
 
     @Test
     public void setPerson_editedPersonIsSamePerson_success() {
         uniqueClientList.add(ALICE);
-        uniqueClientList.setPerson(ALICE, ALICE);
+        uniqueClientList.setClient(ALICE, ALICE);
         UniqueClientList expectedUniquePersonList = new UniqueClientList();
         expectedUniquePersonList.add(ALICE);
         assertEquals(expectedUniquePersonList, uniqueClientList);
@@ -87,7 +87,7 @@ public class UniqueClientListTest {
         uniqueClientList.add(ALICE);
         Client editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        uniqueClientList.setPerson(ALICE, editedAlice);
+        uniqueClientList.setClient(ALICE, editedAlice);
         UniqueClientList expectedUniquePersonList = new UniqueClientList();
         expectedUniquePersonList.add(editedAlice);
         assertEquals(expectedUniquePersonList, uniqueClientList);
@@ -96,7 +96,7 @@ public class UniqueClientListTest {
     @Test
     public void setPerson_editedPersonHasDifferentIdentity_success() {
         uniqueClientList.add(ALICE);
-        uniqueClientList.setPerson(ALICE, BOB);
+        uniqueClientList.setClient(ALICE, BOB);
         UniqueClientList expectedUniquePersonList = new UniqueClientList();
         expectedUniquePersonList.add(BOB);
         assertEquals(expectedUniquePersonList, uniqueClientList);
@@ -106,7 +106,7 @@ public class UniqueClientListTest {
     public void setPerson_editedPersonHasNonUniqueIdentity_throwsDuplicateClientException() {
         uniqueClientList.add(ALICE);
         uniqueClientList.add(BOB);
-        assertThrows(DuplicateClientException.class, () -> uniqueClientList.setPerson(ALICE, BOB));
+        assertThrows(DuplicateClientException.class, () -> uniqueClientList.setClient(ALICE, BOB));
     }
 
     @Test

@@ -74,7 +74,7 @@ public interface Model {
      * {@code target} must exist in the address book.
      * The client identity of {@code editedClient} must not be the same as another existing client in the address book.
      */
-    void setPerson(Client target, Client editedClient);
+    void setClient(Client target, Client editedClient);
 
     /** Returns an unmodifiable view of the filtered client list */
     ObservableList<Client> getFilteredPersonList();

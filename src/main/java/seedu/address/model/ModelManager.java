@@ -107,10 +107,10 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setPerson(Client target, Client editedClient) {
+    public void setClient(Client target, Client editedClient) {
         requireAllNonNull(target, editedClient);
 
-        addressBook.setPerson(target, editedClient);
+        addressBook.setClient(target, editedClient);
     }
 
     // =========== Filtered Client List Accessors
