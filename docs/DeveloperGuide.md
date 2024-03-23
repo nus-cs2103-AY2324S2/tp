@@ -93,7 +93,7 @@ Here's a (partial) class diagram of the `Logic` component:
 
 The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("mark 1 /t Assignment1 /ts cg")` API call as an example.
 
-![Interactions Inside the Logic Component for the `mark 1 /t Assignment1 /ts cg` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `mark 1 /t Assignment1 /ts cg` Command](images/MarkSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `MarkCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline continues till the end of diagram.
 </div>
