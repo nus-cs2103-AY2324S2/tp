@@ -1,16 +1,15 @@
 package seedu.address.ui;
 
+import java.util.ArrayList;
+
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.Region;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Region;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-
-
-import java.util.ArrayList;
 
 /**
  * The UI component that is responsible for receiving user command inputs.
@@ -55,7 +54,7 @@ public class CommandBox extends UiPart<Region> {
         } catch (CommandException | ParseException e) {
             setStyleToIndicateCommandFailure();
         } finally {
-            System.out.println(inputHistory.count);
+            System.out.println(inputHistory.currentIndex);
             inputHistory.addToInputHistory(commandText);
             commandTextField.setText("");
         }
@@ -68,11 +67,11 @@ public class CommandBox extends UiPart<Region> {
     @FXML
     private void handleArrowKey(KeyEvent event) {
         if (event.getCode().getName().equals("Up")) {
-            inputHistory.decrementCount();
+            inputHistory.decrementIndex();
             commandTextField.setText(inputHistory.getCommand());
         }
         if (event.getCode().getName().equals("Down")) {
-            inputHistory.incrementCount();
+            inputHistory.incrementIndex();
             commandTextField.setText(inputHistory.getCommand());
         }
     }
@@ -110,34 +109,55 @@ public class CommandBox extends UiPart<Region> {
         CommandResult execute(String commandText) throws CommandException, ParseException;
     }
 
+    /**
+     * Encapsulates the input history of typed commands.
+     */
     public class InputHistory {
-        ArrayList<String> inputList;
-        int count;
+        private ArrayList<String> inputList;
+        private int currentIndex;
 
+        /**
+         * Constructor for InputHistory.
+         */
         public InputHistory() {
             this.inputList = new ArrayList<>();
-            this.count = ZERO_INDEX;
+            this.currentIndex = ZERO_INDEX;
         }
 
+        /**
+         * Adds typed in command into inputList.
+         * @param commandText Sting of command.
+         */
         public void addToInputHistory(String commandText) {
             this.inputList.add(commandText);
-            this.count++;
+            this.currentIndex++;
         }
-        public void incrementCount() {
+
+        /**
+         * Increments the counter.
+         */
+        public void incrementIndex() {
             int maxListIndex = inputList.size() - 1;
-            if (this.count < maxListIndex) {
-                this.count++;
+            if (this.currentIndex < maxListIndex) {
+                this.currentIndex++;
             }
         }
 
-        public void decrementCount() {
-            if (this.count != ZERO_INDEX) {
-                this.count--;
+        /**
+         * Decrements the counter.
+         */
+        public void decrementIndex() {
+            if (this.currentIndex != ZERO_INDEX) {
+                this.currentIndex--;
             }
         }
 
+        /**
+         * Retrieves the command corresponding to the counter.
+         * @return String of command.
+         */
         public String getCommand() {
-            return this.inputList.get(count);
+            return this.inputList.get(currentIndex);
         }
 
     }
