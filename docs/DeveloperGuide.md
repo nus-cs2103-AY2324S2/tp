@@ -394,7 +394,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User inputs `/book` command with necessary details.
+1. User inputs `book` command with necessary details.
 2. Dook schedules the booking.
 3. Dook confirms the booking details to the user.
 

@@ -195,5 +195,4 @@ public class ModelManager implements Model {
         userPrefs.setTheme(theme);
     }
 
-
 }
