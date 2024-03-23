@@ -90,7 +90,7 @@ public class UniqueClientList implements Iterable<Client> {
      */
     public void setClients(List<Client> clients) {
         requireAllNonNull(clients);
-        if (!personsAreUnique(clients)) {
+        if (!clientsAreUnique(clients)) {
             throw new DuplicateClientException();
         }
 
@@ -120,8 +120,8 @@ public class UniqueClientList implements Iterable<Client> {
             return false;
         }
 
-        UniqueClientList otherUniquePersonList = (UniqueClientList) other;
-        return internalList.equals(otherUniquePersonList.internalList);
+        UniqueClientList otherUniqueClientList = (UniqueClientList) other;
+        return internalList.equals(otherUniqueClientList.internalList);
     }
 
     @Override
@@ -137,7 +137,7 @@ public class UniqueClientList implements Iterable<Client> {
     /**
      * Returns true if {@code clients} contains only unique clients.
      */
-    private boolean personsAreUnique(List<Client> clients) {
+    private boolean clientsAreUnique(List<Client> clients) {
         for (int i = 0; i < clients.size() - 1; i++) {
             for (int j = i + 1; j < clients.size(); j++) {
                 if (clients.get(i).isSameClient(clients.get(j))) {
