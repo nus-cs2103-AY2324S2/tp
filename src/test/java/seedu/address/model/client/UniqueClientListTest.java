@@ -15,8 +15,8 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.client.exceptions.ClientNotFoundException;
 import seedu.address.model.client.exceptions.DuplicateClientException;
-import seedu.address.model.client.exceptions.PersonNotFoundException;
 import seedu.address.testutil.PersonBuilder;
 
 public class UniqueClientListTest {
@@ -69,8 +69,8 @@ public class UniqueClientListTest {
     }
 
     @Test
-    public void setPerson_targetPersonNotInList_throwsPersonNotFoundException() {
-        assertThrows(PersonNotFoundException.class, () -> uniqueClientList.setPerson(ALICE, ALICE));
+    public void setPerson_targetPersonNotInList_throwsClientNotFoundException() {
+        assertThrows(ClientNotFoundException.class, () -> uniqueClientList.setPerson(ALICE, ALICE));
     }
 
     @Test
@@ -115,8 +115,8 @@ public class UniqueClientListTest {
     }
 
     @Test
-    public void remove_personDoesNotExist_throwsPersonNotFoundException() {
-        assertThrows(PersonNotFoundException.class, () -> uniqueClientList.remove(ALICE));
+    public void remove_personDoesNotExist_throwsClientNotFoundException() {
+        assertThrows(ClientNotFoundException.class, () -> uniqueClientList.remove(ALICE));
     }
 
     @Test
