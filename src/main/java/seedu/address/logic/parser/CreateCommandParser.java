@@ -55,7 +55,7 @@ public class CreateCommandParser implements Parser<CreateCommand> {
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NRIC, PREFIX_NAME, PREFIX_PHONE, PREFIX_ADDRESS,
-                PREFIX_DATEOFBIRTH, PREFIX_SEX);
+                PREFIX_DATEOFBIRTH, PREFIX_SEX, PREFIX_STATUS);
         Nric nric = ParserUtil.parseNric(argMultimap.getValue(PREFIX_NRIC).get());
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
@@ -63,7 +63,7 @@ public class CreateCommandParser implements Parser<CreateCommand> {
         DateOfBirth dob = ParserUtil.parseDateOfBirth(argMultimap.getValue(PREFIX_DATEOFBIRTH).get());
         Sex sex = ParserUtil.parseSex(argMultimap.getValue(PREFIX_SEX).get());
         Status status = ParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).get());
-        //TODO (later): assersion to make sure optinal values don't generate errors
+        //TODO (later): assersion to make sure optional values don't generate errors
         Person person = new Person(nric, name, phone, address, dob, sex, status);
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
             Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
