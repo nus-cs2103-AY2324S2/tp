@@ -29,7 +29,7 @@ public class Studio {
      * @param test
      * @return
      */
-    static boolean isValidConstructorParam(String test) {
+    public static boolean isValidConstructorParam(String test) {
         return isValidStudio(test) || isEmptyStudio(test);
     }
 
