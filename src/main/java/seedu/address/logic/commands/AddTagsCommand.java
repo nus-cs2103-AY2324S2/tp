@@ -100,7 +100,7 @@ public class AddTagsCommand extends Command {
     }
 
     /**
-     * Add specified tags to a patient's tag set.
+     * Adds the specified tags to a patient's tag set.
      *
      * @param patient    The patient whose tags are being modified.
      * @param tagSet     The current set of tags for the patient.
