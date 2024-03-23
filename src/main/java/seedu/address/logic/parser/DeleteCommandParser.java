@@ -49,7 +49,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
      */
     private DeleteCommand parseDeleteByUniqueId(String args) throws ParseException {
         String[] splitArgs = args.split("/", 2);
-        if (splitArgs.length != 2) {
+        if (splitArgs.length != 2 || splitArgs[1].isEmpty() || !splitArgs[1].matches("[0-9]+")) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
         }
         UniqueId uid = new UniqueId(splitArgs[1]);

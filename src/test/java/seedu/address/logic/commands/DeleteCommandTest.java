@@ -16,6 +16,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.parser.DeleteCommandParser;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -149,7 +150,7 @@ public class DeleteCommandTest {
         String invalidUid = "uid/non_existent";
         DeleteCommandParser parser = new DeleteCommandParser();
 
-        assertThrows(NumberFormatException.class, () -> parser.parse(invalidUid));
+        assertThrows(ParseException.class, () -> parser.parse(invalidUid));
     }
 
     @Test
