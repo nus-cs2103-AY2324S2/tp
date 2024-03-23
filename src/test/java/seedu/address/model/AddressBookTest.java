@@ -55,23 +55,23 @@ public class AddressBookTest {
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
+    public void hasClient_nullClient_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> addressBook.hasClient(null));
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
+    public void hasClient_clientNotInAddressBook_returnsFalse() {
         assertFalse(addressBook.hasClient(ALICE));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
+    public void hasClient_clientInAddressBook_returnsTrue() {
         addressBook.addClient(ALICE);
         assertTrue(addressBook.hasClient(ALICE));
     }
 
     @Test
-    public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
+    public void hasClient_clientWithSameIdentityFieldsInAddressBook_returnsTrue() {
         addressBook.addClient(ALICE);
         Client editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
@@ -79,7 +79,7 @@ public class AddressBookTest {
     }
 
     @Test
-    public void getPersonList_modifyList_throwsUnsupportedOperationException() {
+    public void getClientList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> addressBook.getClientList().remove(0));
     }
 

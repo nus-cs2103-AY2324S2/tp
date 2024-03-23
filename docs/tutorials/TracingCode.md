@@ -191,7 +191,7 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
        ...
        Person personToEdit = lastShownList.get(index.getZeroBased());
        Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
-       if (!personToEdit.isSameClient(editedPerson) && model.hasPerson(editedPerson)) {
+       if (!personToEdit.isSameClient(editedPerson) && model.hasClient(editedPerson)) {
            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
        }
        model.setClient(personToEdit, editedPerson);

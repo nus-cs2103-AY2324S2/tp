@@ -73,17 +73,17 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
+    public void hasClient_nullPerson_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.hasClient(null));
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
+    public void hasClient_personNotInAddressBook_returnsFalse() {
         assertFalse(modelManager.hasClient(ALICE));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
+    public void hasClient_personInAddressBook_returnsTrue() {
         modelManager.addClient(ALICE);
         assertTrue(modelManager.hasClient(ALICE));
     }
