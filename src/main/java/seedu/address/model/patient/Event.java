@@ -11,7 +11,7 @@ import java.time.format.DateTimeParseException;
 /**
  * Represents Important Dates for a Patient
  */
-public class Event {
+public class Event implements Comparable<Event> {
     public static final String MESSAGE_CONSTRAINTS =
             "Dates should be in the format: DD-MM-YYYY, HH:mm - HH:mm, OR if there is no time period,"
             + "in the format: DD-MM-YYYY";
@@ -117,6 +117,19 @@ public class Event {
         return new String[] {args[0], temp[0], temp[1]};
     }
 
+
+    @Override
+    public int compareTo(Event other) {
+        if (this.date == other.date) {
+            if (this.startTime == other.startTime) {
+                return this.endTime.compareTo(other.endTime);
+            }
+
+            return this.startTime.compareTo(other.startTime);
+        }
+
+        return this.date.compareTo(other.date);
+    }
 
     @Override
     public String toString() {

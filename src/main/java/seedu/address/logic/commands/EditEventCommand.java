@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PATIENTS;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -80,6 +81,8 @@ public class EditEventCommand extends Command {
         }
 
         List<Event> eventList = new ArrayList<>(events);
+        Collections.sort(eventList);
+
         eventList.set(eventIndex.getZeroBased(), eventToUpdate);
         Set<Event> updatedEvents = new HashSet<>(eventList);
         editPatientDescriptor.setEvents(updatedEvents);

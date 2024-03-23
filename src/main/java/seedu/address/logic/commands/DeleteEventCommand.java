@@ -6,6 +6,7 @@ import static seedu.address.logic.commands.EditCommand.createEditedPatient;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PATIENTS;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -78,9 +79,12 @@ public class DeleteEventCommand extends Command {
 
         Set<Event> currEventSet = new HashSet<>(patientToDeleteEvent.getEvents());
         List<Event> currEventList = new ArrayList<>(currEventSet);
+        Collections.sort(currEventList);
+
         Event eventToDelete = currEventList.get(targetEventIndex.getZeroBased());
         currEventList.remove(targetEventIndex.getZeroBased());
         Set<Event> newEventSet = new HashSet<>(currEventList);
+
         Logger logger = LogsCenter.getLogger(DeleteEventCommandParser.class);
         logger.log(Level.INFO, "old set: " + currEventSet);
         logger.log(Level.INFO, "new set: " + newEventSet);

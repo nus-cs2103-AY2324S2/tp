@@ -1,6 +1,7 @@
 package seedu.address.ui;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
@@ -70,6 +71,7 @@ public class PatientCard extends UiPart<Region> {
             events.getChildren().add(new Label("Upcoming:\n"));
 
             ArrayList<Event> allEvents = new ArrayList<>(patient.getEvents());
+            Collections.sort(allEvents);
             for (int i = 1; i <= allEvents.size(); i++) {
                 events.getChildren().add(new Label((i) + ". "
                         + allEvents.get(i - 1).toString() + "\n"));
