@@ -22,14 +22,30 @@ public class MailCommand extends Command {
 
     private final GroupContainsKeywordsPredicate predicate;
 
+    /**
+     * Constructs a MailCommand with a predicate.
+     */
     public MailCommand(GroupContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 
+    /**
+     * Constructs a MailCommand without any predicate.
+     */
+    public MailCommand() {
+        this.predicate = null;
+    }
+
+    /**
+     * Generates a mailto link consisting of emails of students filtered accordingly
+     */
     @Override
     public CommandResult execute(Model model) {
+        if (predicate != null) {
+            model.updateFilteredPersonList(predicate);
+        }
         requireNonNull(model);
-        model.updateFilteredPersonList(predicate);
+
         // Extract email addresses of filtered students
         List<String> emailList = model.getFilteredPersonList().stream()
                 .map(Person::getEmail)
@@ -41,5 +57,20 @@ public class MailCommand extends Command {
         String mailtoLink = "mailto:" + String.join(";", emailList);
 
         return new CommandResult(mailtoLink);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof MailCommand)) {
+            return false;
+        }
+
+        MailCommand otherMailCommand = (MailCommand) other;
+        return predicate.equals(otherMailCommand.predicate);
     }
 }

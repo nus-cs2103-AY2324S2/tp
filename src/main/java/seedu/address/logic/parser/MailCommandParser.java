@@ -23,8 +23,7 @@ public class MailCommandParser implements Parser<MailCommand> {
     public MailCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
         if (trimmedArgs.isEmpty()) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, MailCommand.MESSAGE_USAGE));
+            return new MailCommand();
         }
 
         String[] groupKeywords = trimmedArgs.split("\\s+");
@@ -34,8 +33,6 @@ public class MailCommandParser implements Parser<MailCommand> {
                 throw new ParseException(Group.MESSAGE_CONSTRAINTS);
             }
         }
-
         return new MailCommand(new GroupContainsKeywordsPredicate(Arrays.asList(groupKeywords)));
     }
-
 }
