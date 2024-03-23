@@ -5,14 +5,14 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.Client;
+import seedu.address.model.client.Client;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Client> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Client> PREDICATE_SHOW_ALL_CLIENTS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -55,33 +55,33 @@ public interface Model {
     /**
      * Returns true if a client with the same identity as {@code client} exists in the address book.
      */
-    boolean hasPerson(Client client);
+    boolean hasClient(Client client);
 
     /**
      * Deletes the given client.
      * The client must exist in the address book.
      */
-    void deletePerson(Client target);
+    void deleteClient(Client target);
 
     /**
      * Adds the given client.
      * {@code client} must not already exist in the address book.
      */
-    void addPerson(Client client);
+    void addClient(Client client);
 
     /**
      * Replaces the given client {@code target} with {@code editedClient}.
      * {@code target} must exist in the address book.
      * The client identity of {@code editedClient} must not be the same as another existing client in the address book.
      */
-    void setPerson(Client target, Client editedClient);
+    void setClient(Client target, Client editedClient);
 
     /** Returns an unmodifiable view of the filtered client list */
-    ObservableList<Client> getFilteredPersonList();
+    ObservableList<Client> getFilteredClientList();
 
     /**
      * Updates the filter of the filtered client list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Client> predicate);
+    void updateFilteredClientList(Predicate<Client> predicate);
 }
