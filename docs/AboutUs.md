@@ -5,55 +5,43 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us at the email [e0960433@u.nus.edu](e0960433@u.nus.edu)
 
 ## Project team
 
-### John Doe
+### Carsten Joe Ng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/wyrkx.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/wyrkx)]
+[[portfolio](team/carsten.md)]
 
-* Role: Project Advisor
+- Role: Team Lead
+- Responsibilities: UI
 
-### Jane Doe
+### Pairor Tarin
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/tarinpairor.png" width="190px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/TarinPairor)]
+[[portfolio](team/tarinpairor.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+### Lee Xin Yuan
 
-### Johnny Doe
+<img src="images/agreatdayy.png" width="200px">
 
-<img src="images/johndoe.png" width="200px">
+[[github](http://github.com/agreatdayy)]
+[[portfolio](team/xinyuan.md)]
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+- Role: Developer
+- Responsibilities: UI
 
-* Role: Developer
-* Responsibilities: Data
+### Tee Chu Jie
 
-### Jean Doe
+<img src="images/tamagochuuu.png" width="200px">
 
-<img src="images/johndoe.png" width="200px">
+[[github](https://github.com/tamagochuuu)]
+[[portfolio](team/chujie.md)]
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: UI
+- Role: Developer
+- Responsibilites: Dev Ops
