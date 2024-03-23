@@ -156,14 +156,16 @@ public class Person {
 
 
     public List<Meeting> getMeetings() {
-        return Collections.unmodifiableList(meetings);
+        return this.meetings;
     }
 
     public void addMeeting(Meeting meeting) {
         LocalDate today = LocalDate.now();
         LocalDate meetingDate = meeting.getMeetingDate();
 
-        if (meetingDate.isBefore(today)) {
+        if (meetings.size() >= 5) {
+            throw new IllegalArgumentException("Cannot have more than 5 meetings.");
+        } else if (meetingDate.isBefore(today)) {
             throw new IllegalArgumentException("Cannot schedule a meeting in the past.");
         } else if (meetingDate.isAfter(today.plusYears(1))) { // Assuming 1 year is too far in the future
             throw new IllegalArgumentException("Cannot schedule a meeting more than a year in the future.");
@@ -173,6 +175,7 @@ public class Person {
             meetings.add(meeting);
         }
     }
+
     public void setMeetings(List<Meeting> meetings) {
 
         this.meetings = meetings;
@@ -222,5 +225,26 @@ public class Person {
         }
         return false;
     }
+
+    public Person getCopy() {
+        Person p = new Person(this.name, this.phone, this.email, this.address, this.relationship, this.getPolicy(), this.getTags());
+
+        // Create a deep copy of the meetings
+        List<Meeting> copiedMeetings = new ArrayList<>();
+        for (Meeting meeting : this.getMeetings()) {
+            Meeting copiedMeeting = new Meeting(
+                    meeting.getMeetingDate(),
+                    meeting.getMeetingTime(),
+                    meeting.getDuration(),
+                    meeting.getAgenda(),
+                    meeting.getNotes()
+            );
+            copiedMeetings.add(copiedMeeting);
+        }
+        p.setMeetings(copiedMeetings);
+
+        return p;
+    }
+
 
 }
