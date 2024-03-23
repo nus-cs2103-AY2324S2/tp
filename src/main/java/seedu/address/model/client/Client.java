@@ -65,7 +65,7 @@ public class Client {
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      */
-    public boolean isSamePerson(Client otherClient) {
+    public boolean isSameClient(Client otherClient) {
         if (otherClient == this) {
             return true;
         }
