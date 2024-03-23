@@ -37,7 +37,7 @@ public class ExportCommand extends Command {
             + "JSON storage.";
     public static final String MESSAGE_JSON_FILE_NOT_FOUND_FAILURE = "Cannot find JSON file to export.";
     public static final String MESSAGE_PARSE_JSON_FILE_FAILURE = "Error parsing JSON data.";
-    public static final String MESSAAGE_MAPPING_JSON_TO_CSV_FAILURE = "Error mapping JSON data to CSV schema.";
+    public static final String MESSAGE_MAPPING_JSON_TO_CSV_FAILURE = "Error mapping JSON data to CSV schema.";
     public static final String MESSAGE_EMPTY_JSON_FILE_FAILURE = "The JSON File is empty.";
     public static final String MESSAGE_CREATE_CSV_DIRECTORY_FAILURE = "Could not create directory for CSV file.";
 
@@ -60,6 +60,24 @@ public class ExportCommand extends Command {
      */
     public void updateCsvFilePath(String filePath) {
         this.csvFilePath = filePath;
+    }
+
+    /**
+     * Gets the current JSON file path in which the filtered lists of persons will be written to.
+     *
+     * @return The file path that the filtered persons list is being written to.
+     */
+    public Path getFilteredJsonFilePath() {
+        return this.filteredJsonFilePath;
+    }
+
+    /**
+     * Updates the filtered JSON file path in which the filtered lists of persons will be written to.
+     *
+     * @param filePath The JSON file path to be written to.
+     */
+    public void updateFilteredJsonFilePath(Path filePath) {
+        this.filteredJsonFilePath = filePath;
     }
 
     /**
@@ -119,7 +137,7 @@ public class ExportCommand extends Command {
             } else if (e instanceof JsonParseException) {
                 throw new CommandException(MESSAGE_PARSE_JSON_FILE_FAILURE);
             } else if (e instanceof JsonMappingException) {
-                throw new CommandException(MESSAAGE_MAPPING_JSON_TO_CSV_FAILURE);
+                throw new CommandException(MESSAGE_MAPPING_JSON_TO_CSV_FAILURE);
             } else {
                 throw new CommandException("Error: " + e.getMessage());
             }
