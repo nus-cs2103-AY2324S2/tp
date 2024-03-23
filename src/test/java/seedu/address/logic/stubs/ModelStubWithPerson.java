@@ -1,8 +1,8 @@
 package seedu.address.logic.stubs;
 
-import seedu.address.model.person.Person;
-
 import static java.util.Objects.requireNonNull;
+
+import seedu.address.model.person.Person;
 
 /**
  * A Model stub that contains a single person.
@@ -10,6 +10,10 @@ import static java.util.Objects.requireNonNull;
 public class ModelStubWithPerson extends ModelStub {
     private final Person person;
 
+    /**
+     * Creates ModelStubWithPerson.
+     * @param person
+     */
     public ModelStubWithPerson(Person person) {
         requireNonNull(person);
         this.person = person;
@@ -20,4 +24,5 @@ public class ModelStubWithPerson extends ModelStub {
         requireNonNull(person);
         return this.person.isSamePerson(person);
     }
+
 }

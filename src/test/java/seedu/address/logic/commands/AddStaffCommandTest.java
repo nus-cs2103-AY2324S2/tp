@@ -1,35 +1,21 @@
 package seedu.address.logic.commands;
 
-import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICESTAFF;
 
-import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
-import javafx.collections.ObservableList;
-import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.messages.AddMessages;
 import seedu.address.logic.stubs.ModelStub;
 import seedu.address.logic.stubs.ModelStubAcceptingPersonAdded;
 import seedu.address.logic.stubs.ModelStubWithPerson;
-import seedu.address.model.AddressBook;
-import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.person.Maintainer;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.Staff;
-import seedu.address.model.person.Supplier;
 import seedu.address.testutil.StaffBuilder;
 
 public class AddStaffCommandTest {

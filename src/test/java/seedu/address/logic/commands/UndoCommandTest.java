@@ -1,12 +1,15 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.messages.AddMessages;
 import seedu.address.logic.messages.UndoMessages;
-import seedu.address.logic.stubs.ModelStub;
-import seedu.address.logic.stubs.ModelStubAcceptingPersonAdded;
-import seedu.address.logic.stubs.ModelStubWithPerson;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -14,14 +17,6 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
-import java.util.Arrays;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 public class UndoCommandTest {
 

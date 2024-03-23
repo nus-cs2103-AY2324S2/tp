@@ -23,6 +23,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.VersionedAddressBook;
 import seedu.address.model.person.Maintainer;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Staff;
@@ -139,6 +140,14 @@ public class TypicalPersons {
         for (Person person : getTypicalPersons()) {
             ab.addPerson(person);
         }
+        return ab;
+    }
+
+    /**
+     * Returns an {@code AddressBook} with all the typical persons.
+     */
+    public static AddressBook getTypicalVersionedAddressBook() {
+        AddressBook ab = new VersionedAddressBook(getTypicalAddressBook());
         return ab;
     }
 

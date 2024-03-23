@@ -1,12 +1,12 @@
 package seedu.address.logic.stubs;
 
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Person;
+import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 
-import static java.util.Objects.requireNonNull;
+import seedu.address.model.AddressBook;
+import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.person.Person;
 
 /**
  * A Model stub that always accept the person being added.

@@ -1,5 +1,8 @@
 package seedu.address.logic.stubs;
 
+import java.nio.file.Path;
+import java.util.function.Predicate;
+
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.Model;
@@ -10,9 +13,6 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Staff;
 import seedu.address.model.person.Supplier;
-
-import java.nio.file.Path;
-import java.util.function.Predicate;
 
 /**
  * A default model stub that have all of the methods failing.
@@ -132,4 +132,5 @@ public class ModelStub implements Model {
     public void redoAddressBook() {
         throw new AssertionError("This method should not be called.");
     }
+
 }
