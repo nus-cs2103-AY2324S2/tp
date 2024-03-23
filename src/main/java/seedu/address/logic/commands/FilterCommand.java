@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import java.util.function.Predicate;
 
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.employee.Employee;
 
@@ -25,8 +26,13 @@ public class FilterCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         model.updateFilteredEmployeeList(predicate);
+
+        if (model.getFilteredEmployeeList().isEmpty()) {
+            throw new CommandException("No employees found matching the criteria: " + filterDescription);
+        }
+
         return new CommandResult("Filtered list based on: " + filterDescription);
     }
 }
