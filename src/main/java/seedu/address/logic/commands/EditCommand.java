@@ -220,12 +220,12 @@ public class EditCommand extends Command {
                 return false;
             }
 
-            EditClientDescriptor otherEditPersonDescriptor = (EditClientDescriptor) other;
-            return Objects.equals(name, otherEditPersonDescriptor.name)
-                    && Objects.equals(phone, otherEditPersonDescriptor.phone)
-                    && Objects.equals(email, otherEditPersonDescriptor.email)
-                    && Objects.equals(address, otherEditPersonDescriptor.address)
-                    && Objects.equals(tags, otherEditPersonDescriptor.tags);
+            EditClientDescriptor otherEditClientDescriptor = (EditClientDescriptor) other;
+            return Objects.equals(name, otherEditClientDescriptor.name)
+                    && Objects.equals(phone, otherEditClientDescriptor.phone)
+                    && Objects.equals(email, otherEditClientDescriptor.email)
+                    && Objects.equals(address, otherEditClientDescriptor.address)
+                    && Objects.equals(tags, otherEditClientDescriptor.tags);
         }
 
         @Override
