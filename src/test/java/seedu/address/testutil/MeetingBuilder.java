@@ -80,4 +80,11 @@ public class MeetingBuilder {
         Meeting meeting = new Meeting(description, dateTime, client);
         return client;
     }
+
+    /**
+     * Builds and returns a {@code Meeting} object with the specified details.
+     */
+    public Meeting buildMeeting() {
+        return new Meeting(description, dateTime, client);
+    }
 }
