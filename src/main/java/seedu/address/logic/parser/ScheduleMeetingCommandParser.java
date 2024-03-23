@@ -36,6 +36,7 @@ public class ScheduleMeetingCommandParser implements Parser<ScheduleMeetingComma
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ScheduleMeetingCommand.MESSAGE_USAGE), ive);
         }
 
+
         LocalDate meetingDate;
         LocalTime meetingTime;
         Duration duration;

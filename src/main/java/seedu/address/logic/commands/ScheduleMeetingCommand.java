@@ -69,6 +69,11 @@ public class ScheduleMeetingCommand extends Command {
 
         Person personToMeet = lastShownList.get(index.getZeroBased());
 
+        // Check for global meeting overlap
+        if (model.hasMeetingOverlap(meeting)) {
+            throw new CommandException("Meeting overlaps with existing meetings.");
+        }
+
         try {
             personToMeet.addMeeting(meeting);
         } catch (IllegalArgumentException e) {
@@ -90,6 +95,7 @@ public class ScheduleMeetingCommand extends Command {
         if (!(other instanceof ScheduleMeetingCommand)) {
             return false;
         }
+        //to dist
 
         ScheduleMeetingCommand e = (ScheduleMeetingCommand) other;
         return index.equals(e.index)
