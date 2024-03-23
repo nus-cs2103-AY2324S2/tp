@@ -289,7 +289,6 @@ public class ModelManager implements Model {
         for (UiUpdateListener listener : uiUpdateListeners) {
             listener.updateUiOnClassSelected(classes);;
         }
-        notifyUIUpdateListenersOnClassSelected(classes);
         notifyUiUpdateListenersOnClassSelected(classes);
     }
 
