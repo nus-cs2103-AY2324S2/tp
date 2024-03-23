@@ -121,4 +121,12 @@ public interface Model {
      * @throws CommandException Handles invalid supplier message.
      */
     Supplier findSupplierByName(Name targetName) throws CommandException;
+
+    void commitAddressBook();
+
+    void undoAddressBook();
+
+    void redoAddressBook();
+    boolean canUndo();
+    boolean canRedo();
 }
