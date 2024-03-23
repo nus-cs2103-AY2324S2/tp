@@ -28,7 +28,7 @@ IntelliJ IDEA provides a refactoring tool that can identify *most* parts of a re
 
 ### Assisted refactoring
 
-The `country` field in `Person` is actually an instance of the `seedu.address.model.person.Country` class. Since removing the `Country` class will break the application, we start by identifying `Country`'s usages. This allows us to see code that depends on `Country` to function properly and edit them on a case-by-case basis. Right-click the `Country` class and select `Refactor` \> `Safe Delete` through the menu.
+The `country` field in `Person` is actually an instance of the `seedu.hirehub.model.person.Country` class. Since removing the `Country` class will break the application, we start by identifying `Country`'s usages. This allows us to see code that depends on `Country` to function properly and edit them on a case-by-case basis. Right-click the `Country` class and select `Refactor` \> `Safe Delete` through the menu.
 * :bulb: To make things simpler, you can unselect the options `Search in comments and strings` and `Search for text occurrences`
 
 ![Usages detected](../images/remove/UnsafeDelete.png)
