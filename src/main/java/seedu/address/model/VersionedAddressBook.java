@@ -72,6 +72,10 @@ public class VersionedAddressBook extends AddressBook {
      * Returns true if {@code undo()} has address book states to undo.
      */
     public boolean canUndo() {
+
+        System.out.println("Current state pointer");
+        System.out.println(currentStatePointer);
+
         return currentStatePointer > 0;
     }
 

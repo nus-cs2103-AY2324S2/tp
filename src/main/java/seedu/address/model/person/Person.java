@@ -2,10 +2,8 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.time.LocalDateTime;
+import java.util.*;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.tag.Tag;
@@ -30,6 +28,10 @@ public class Person {
 
     private final Set<Tag> tags = new HashSet<>();
 
+
+    private List<Meeting> meetings;
+
+
     /**
      * Every field must be present and not null.
      */
@@ -43,6 +45,7 @@ public class Person {
         this.policy = policy;
         this.relationship = relationship;
         this.tags.addAll(tags);
+        this.meetings = new ArrayList<>();
     }
 
     public Name getName() {
@@ -84,6 +87,8 @@ public class Person {
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
     }
+
+
 
     /**
      * Returns true if both persons have the same name.
@@ -140,6 +145,66 @@ public class Person {
                 .add("policy", policy)
                 .add("tags", tags)
                 .toString();
+    }
+
+
+
+
+
+    //Meetings composition methods
+
+
+    public List<Meeting> getMeetings() {
+        return Collections.unmodifiableList(meetings);
+    }
+
+    public void addMeeting(Meeting meeting) {
+        if (!isOverlapWithOtherMeetings(meeting)) {
+            meetings.add(meeting);
+        } else {
+            throw new IllegalArgumentException("Meeting overlaps with existing meetings.");
+        }
+    }
+
+    public void rescheduleMeeting(int index, LocalDateTime newDateTime) {
+        Meeting meetingToReschedule = meetings.get(index);
+        Meeting rescheduledMeeting = new Meeting(
+                newDateTime.toLocalDate(),
+                newDateTime.toLocalTime(),
+                meetingToReschedule.getDuration(),
+                meetingToReschedule.getAgenda(),
+                meetingToReschedule.getNotes()
+        );
+
+        // Remove the old meeting and try adding the rescheduled one
+        meetings.remove(index);
+        if (!isOverlapWithOtherMeetings(rescheduledMeeting)) {
+            meetings.add(rescheduledMeeting);
+        } else {
+            // If there's an overlap, add the old meeting back and throw an exception
+            meetings.add(index, meetingToReschedule);
+            throw new IllegalArgumentException("Rescheduled meeting overlaps with existing meetings.");
+        }
+    }
+
+
+    public void cancelMeeting(int index) {
+        meetings.remove(index);
+    }
+
+    private boolean isOverlapWithOtherMeetings(Meeting meetingToCheck) {
+        LocalDateTime startDateTimeToCheck = LocalDateTime.of(meetingToCheck.getMeetingDate(), meetingToCheck.getMeetingTime());
+        LocalDateTime endDateTimeToCheck = startDateTimeToCheck.plus(meetingToCheck.getDuration());
+
+        for (Meeting meeting : meetings) {
+            LocalDateTime startDateTime = LocalDateTime.of(meeting.getMeetingDate(), meeting.getMeetingTime());
+            LocalDateTime endDateTime = startDateTime.plus(meeting.getDuration());
+
+            if (startDateTimeToCheck.isBefore(endDateTime) && endDateTimeToCheck.isAfter(startDateTime)) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }

@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import java.util.Comparator;
 
+import javafx.animation.ScaleTransition;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
@@ -11,6 +12,8 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
+import javafx.util.Duration;
+import seedu.address.model.person.Meeting;
 import seedu.address.model.person.Person;
 
 /**
@@ -49,6 +52,17 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
 
+
+
+    @FXML
+    private Label meetingDate;
+    @FXML
+    private Label meetingTime;
+    @FXML
+    private Label meetingAgenda;
+    @FXML
+    private Label meetingNotes;
+
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
@@ -61,6 +75,23 @@ public class PersonCard extends UiPart<Region> {
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
         relationship.setText(person.getRelationship().value);
+
+
+        if (!person.getMeetings().isEmpty()) {
+            // Get the first meeting as an example
+            Meeting firstMeeting = person.getMeetings().get(0);
+            meetingDate.setText(firstMeeting.getMeetingDate().toString());
+            meetingTime.setText(firstMeeting.getMeetingTime().toString());
+            meetingAgenda.setText(firstMeeting.getAgenda());
+            meetingNotes.setText(firstMeeting.getNotes());
+        } else {
+            // If there are no meetings, you could hide the labels or set them to a default text
+            meetingDate.setText("");
+            meetingTime.setText("");
+            meetingAgenda.setText("");
+            meetingNotes.setText("");
+        }
+
         if (person.isClient()) {
             if (person.getPolicy().value.equals("")) {
                 policy.setText("No policy assigned");

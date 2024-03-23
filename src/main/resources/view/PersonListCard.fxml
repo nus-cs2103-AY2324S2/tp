@@ -34,5 +34,19 @@
       <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
       <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
     </VBox>
+
+    <VBox alignment="CENTER_RIGHT" minHeight="105" GridPane.columnIndex="1">
+      <padding>
+        <Insets top="5" right="15" bottom="5" left="5"/>
+      </padding>
+      <!-- Example placeholder for meeting details -->
+      <Label fx:id="meetingDate" text="\$meetingDate" styleClass="cell_small_label"/>
+      <Label fx:id="meetingTime" text="\$meetingTime" styleClass="cell_small_label"/>
+      <Label fx:id="meetingAgenda" text="\$meetingAgenda" styleClass="cell_small_label"/>
+      <Label fx:id="meetingNotes" text="\$meetingNotes" styleClass="cell_small_label"/>
+      <!-- You can add more meeting detail labels here as needed -->
+    </VBox>
   </GridPane>
 </HBox>
+
+
