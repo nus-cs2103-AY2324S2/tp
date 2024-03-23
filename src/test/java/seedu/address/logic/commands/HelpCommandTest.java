@@ -1,5 +1,7 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 
@@ -55,5 +57,17 @@ public class HelpCommandTest {
         HelpCommand helpCommand = new HelpCommand(invalidCommand);
 
         assertCommandFailure(helpCommand, model, HelpMessages.MESSAGES_INVALID_COMMAND_TYPE);
+    }
+
+    @Test
+    public void equals() {
+        HelpCommand noteFirstCommand = new HelpCommand("delete");
+        HelpCommand noteSecondCommand = new HelpCommand("add");
+
+        // same object -> returns true
+        assertTrue(noteFirstCommand.equals(noteFirstCommand));
+
+        // different names -> returns false
+        assertFalse(noteFirstCommand.equals(noteSecondCommand));
     }
 }
