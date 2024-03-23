@@ -1,8 +1,12 @@
 package seedu.address.model.person;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 class LastContactTest {
 
@@ -12,7 +16,7 @@ class LastContactTest {
     }
 
     @Test
-    void constructor_EmptyDateTime_throwsNullPointerException() {
+    void constructor_emptyDateTime_throwsNullPointerException() {
         String validDateTime = "";
         LastContact lastContact = new LastContact(validDateTime);
         assertEquals(validDateTime, lastContact.toString());
