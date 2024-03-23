@@ -1,7 +1,6 @@
 package seedu.hirehub.logic.commands;
 
 import static seedu.hirehub.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.hirehub.logic.parser.CliSyntax.PREFIX_COMMENT;
 import static seedu.hirehub.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
@@ -26,9 +25,9 @@ public class CommentCommand extends Command {
             + "by the index number used in the last person listing. "
             + "Existing comment will be overwritten by the input.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + PREFIX_COMMENT + "COMMENT\n"
+            + "COMMENT\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_COMMENT + "Likes to swim.";
+            + "Likes to swim.";
     public static final String MESSAGE_ADD_COMMENT_SUCCESS = "Added comment to Person: %1$s";
     public static final String MESSAGE_DELETE_COMMENT_SUCCESS = "Removed comment from Person: %1$s";
 
