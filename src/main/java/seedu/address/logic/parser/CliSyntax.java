@@ -18,4 +18,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_APPLICANT = new Prefix("a/");
     public static final Prefix PREFIX_INTERVIEWER = new Prefix("i/");
 
+    public static final Prefix PREFIX_STATUS = new Prefix("s/");
+
 }

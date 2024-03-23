@@ -4,13 +4,18 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.person.Applicant;
+import seedu.address.model.person.ApplicantStatus;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Interviewer;
+import seedu.address.model.person.InterviewerStatus;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
-import seedu.address.model.person.Type;
+import seedu.address.model.person.Status;
+import seedu.address.model.person.enums.ApplicantState;
+import seedu.address.model.person.enums.InterviewerState;
+import seedu.address.model.person.enums.Type;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -30,6 +35,7 @@ public class PersonBuilder {
     private Remark remark;
     private Set<Tag> tags;
     private String type;
+    private String status;
 
     /**
      * Initializes the PersonBuilder.
@@ -41,6 +47,7 @@ public class PersonBuilder {
         remark = new Remark(DEFAULT_REMARK);
         tags = new HashSet<>();
         type = Type.PERSON.toString();
+        status = "";
     }
 
     /**
@@ -58,7 +65,7 @@ public class PersonBuilder {
         } else if (type.equals("INTERVIEWER")) {
             tags.add(new Tag("Interviewer"));
         }
-
+        status = personToCopy.getStatus();
     }
 
     /**
@@ -102,6 +109,14 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code Status} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withStatus(Status status) {
+        this.status = status.toString();
+        return this;
+    }
+
+    /**
      * Builds the {@code Person} with the given {@code Name}, {@code Phone},
      * {@code Email},{@code Remark} and {@code Tags}.
      */
@@ -109,11 +124,20 @@ public class PersonBuilder {
         return new Person(name, phone, email, remark, tags);
     }
 
+    /**
+     * Builds the {@code Applicant} with the given {@code Name}, {@code Phone},
+     * {@code Email},{@code Remark}, {@code Status} and {@code Tags}.
+     */
     public Applicant build_applicant() {
-        return new Applicant(name, phone, email, remark, tags);
+        return new Applicant(name, phone, email, remark, new ApplicantStatus(ApplicantState.STAGEONE.toString()), tags);
     }
 
+    /**
+     * Builds the {@code Interviewer} with the given {@code Name}, {@code Phone},
+     * {@code Email},{@code Remark}, {@code Status} and {@code Tags}.
+     */
     public Interviewer build_interviewer() {
-        return new Interviewer(name, phone, email, remark, tags);
+        return new Interviewer(name, phone, email, remark, new InterviewerStatus(InterviewerState.FREE.toString()),
+                tags);
     }
 }

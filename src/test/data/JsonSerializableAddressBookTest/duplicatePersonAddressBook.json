@@ -5,12 +5,14 @@
     "email": "alice@example.com",
     "remark" : "",
     "type": "APPLICANT",
+    "status": "resume review",
     "tagged": [ "friends" ]
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",
     "remark" : "",
+    "status": "resume review",
     "type": "APPLICANT",
     "tagged" : [ ]
   } ]
