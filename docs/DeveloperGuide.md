@@ -214,6 +214,12 @@ The diagram highlights the four main components of FitBook, highlighted in their
 
 > The above sequence diagram also applies to the removal of a note from an existing client when no input string or prefix is entered for the `note` command. (i.e. `note 1`, or `note 1 note/`).
 
+### Adding or editing a client
+
+The following activity diagram summarizes what happens when a client is added or edited in FitBook.
+
+![AddAndEditCommandSequenceDiagram](images/AddAndEditCommandActivityDiagram.png)
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
