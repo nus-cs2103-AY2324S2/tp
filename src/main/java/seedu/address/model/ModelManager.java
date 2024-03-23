@@ -103,7 +103,7 @@ public class ModelManager implements Model {
     @Override
     public void addClient(Client client) {
         addressBook.addClient(client);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_CLIENTS);
     }
 
     @Override
