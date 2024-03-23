@@ -14,8 +14,8 @@ import seedu.address.commons.core.LogsCenter;
  */
 public class ExitWindow extends UiPart<Stage> {
 
-    public static final String EXIT_MESSAGE = "Are you sure you want to exit?\n\n Press ENTER to confirm.\n " +
-                                                      "On MacOS, press SPACE instead.";
+    public static final String EXIT_MESSAGE = "Are you sure you want to exit?\n\n Press ENTER to confirm.\n "
+                                                      + "On MacOS, press SPACE instead.";
 
     private static final Logger logger = LogsCenter.getLogger(ExitWindow.class);
     private static final String FXML = "ExitWindow.fxml";
