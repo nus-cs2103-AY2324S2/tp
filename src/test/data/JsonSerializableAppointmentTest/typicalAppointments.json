@@ -1,0 +1,15 @@
+{
+  "appointments": [
+    {
+      "patientName": "Alice Pauline",
+      "patientIc": "S1234567A",
+      "dateTime": "2023-12-01T10:00"
+    },
+    {
+      "patientName": "Bob Chalice",
+      "patientIc": "S1234567B",
+      "dateTime": "2023-12-02T15:00"
+    }
+  ]
+}
+
