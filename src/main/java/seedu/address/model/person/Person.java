@@ -2,6 +2,7 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -159,11 +160,23 @@ public class Person {
     }
 
     public void addMeeting(Meeting meeting) {
-        if (!isOverlapWithOtherMeetings(meeting)) {
-            meetings.add(meeting);
+        LocalDate today = LocalDate.now();
+        LocalDate meetingDate = meeting.getMeetingDate();
+
+        if (meetingDate.isBefore(today)) {
+            throw new IllegalArgumentException("Cannot schedule a meeting in the past.");
+        } else if (meetingDate.isAfter(today.plusYears(1))) { // Assuming 1 year is too far in the future
+            throw new IllegalArgumentException("Cannot schedule a meeting more than a year in the future.");
+        } else if (isOverlapWithOtherMeetings(meeting)) {
+            throw new IllegalArgumentException("Meeting overlaps with existing meetings with this client.");
         } else {
-            throw new IllegalArgumentException("Meeting overlaps with existing meetings.");
+            meetings.add(meeting);
         }
+    }
+    public void setMeetings(List<Meeting> meetings) {
+
+        this.meetings = meetings;
+
     }
 
     public void rescheduleMeeting(int index, LocalDateTime newDateTime) {
@@ -193,6 +206,9 @@ public class Person {
     }
 
     private boolean isOverlapWithOtherMeetings(Meeting meetingToCheck) {
+
+
+
         LocalDateTime startDateTimeToCheck = LocalDateTime.of(meetingToCheck.getMeetingDate(), meetingToCheck.getMeetingTime());
         LocalDateTime endDateTimeToCheck = startDateTimeToCheck.plus(meetingToCheck.getDuration());
 
