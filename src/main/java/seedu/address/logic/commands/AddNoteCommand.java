@@ -22,17 +22,18 @@ public class AddNoteCommand extends Command {
     public static final String COMMAND_WORD = "addnote";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the note of the person whose profile matches "
-            + "the specified IC (case-insensitive). "
-            + "Existing remark will be appended by default. "
-            + "To replace the original note, add -replace at the end of your command. "
-            + "E.g. addnote i/S0123456Q n/Diabetes -replace\n"
+            + "the specified IC (case-insensitive). \n"
+            + "Existing remark will be appended by default. \n"
             + "Parameters: "
             + PREFIX_IC + "IC "
             + PREFIX_NOTE + "NOTE \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_IC + "S0123456Q "
-            + PREFIX_NOTE + "Diabetes";
-
+            + PREFIX_NOTE + "Diabetes \n"
+            + "To replace the original note, add -replace at the end of your command. \n"
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_IC + "S0123456Q "
+            + PREFIX_NOTE + "Diabetes -replace";
 
     public static final String MESSAGE_MODIFY_NOTE_SUCCESS = "Note for %1$s (ic: %2$s) modified successfully!";
     private final IdentityCardNumberMatchesPredicate icPredicate;

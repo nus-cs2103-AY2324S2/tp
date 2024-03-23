@@ -41,21 +41,28 @@ public class EditCommand extends Command {
     public static final String COMMAND_WORD = "edit";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the index number used in the displayed person list. "
+            + "by the index number used in the displayed person list. \n"
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: IC (National Registration Identity Card) "
+            + "Parameters: IC (must be a valid identity card number) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_IC_NUMBER + "IC] "
+            + "[" + PREFIX_IC_NUMBER + "IC_NUMBER] "
             + "[" + PREFIX_AGE + "AGE] "
             + "[" + PREFIX_SEX + "SEX] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_ADDRESS + "ADDRESS] \n"
             + "Example: " + COMMAND_WORD + " T0123456A "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: \n"
+            + "Name: %1$s\n"
+            + "Phone: %2$s\n"
+            + "Email: %3$s\n"
+            + "Identity Card Number: %4$s\n"
+            + "Age: %5$s\n"
+            + "Sex: %6$s\n"
+            + "Address: %7$s\n";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
     private final EditPersonDescriptor editPersonDescriptor;
@@ -91,7 +98,16 @@ public class EditCommand extends Command {
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson)));
+        String successMessage = String.format(MESSAGE_EDIT_PERSON_SUCCESS,
+                editedPerson.getName(),
+                editedPerson.getPhone(),
+                editedPerson.getEmail(),
+                editedPerson.getIdentityCardNumber(),
+                editedPerson.getAge(),
+                editedPerson.getSex(),
+                editedPerson.getAddress());
+
+        return new CommandResult(successMessage);
     }
 
     /**

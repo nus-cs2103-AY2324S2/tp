@@ -23,7 +23,14 @@ public class DeleteCommand extends Command {
             + "Parameters: IC (must be a valid identity card number)\n"
             + "Example: " + COMMAND_WORD + " S1234567A";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
+    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: \n"
+            + "Name: %1$s\n"
+            + "Phone: %2$s\n"
+            + "Email: %3$s\n"
+            + "Identity Card Number: %4$s\n"
+            + "Age: %5$s\n"
+            + "Sex: %6$s\n"
+            + "Address: %7$s\n";;
 
     private final IdentityCardNumberMatchesPredicate predicate;
 
@@ -42,7 +49,16 @@ public class DeleteCommand extends Command {
                 .orElseThrow(() -> new CommandException(Messages.MESSAGE_NO_MATCHING_IC));
 
         model.deletePerson(personToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
+        String successMessage = String.format(MESSAGE_DELETE_PERSON_SUCCESS,
+                personToDelete.getName(),
+                personToDelete.getPhone(),
+                personToDelete.getEmail(),
+                personToDelete.getIdentityCardNumber(),
+                personToDelete.getAge(),
+                personToDelete.getSex(),
+                personToDelete.getAddress());
+
+        return new CommandResult(successMessage);
     }
 
     @Override
