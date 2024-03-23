@@ -5,6 +5,8 @@ import static vitalconnect.testutil.Assert.assertThrows;
 import static vitalconnect.testutil.TypicalPersons.getTypicalClinic;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -30,7 +32,7 @@ import vitalconnect.model.person.medicalinformation.MedicalInformation;
 import vitalconnect.testutil.PersonBuilder;
 
 public class AddContactCommandTest {
-    private Model model = new ModelManager(getTypicalClinic(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalClinic(), new UserPrefs(), new ArrayList<>());
 
     @Test
     public void constructor_nullContactInformation_throwsNullPointerException() {
@@ -154,8 +156,18 @@ public class AddContactCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public boolean doesIcExist(String name) {
+            throw new AssertionError("This method should not be called.");
+        }
+
         @Test
         public void addAppointment(Appointment appointment) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setAppointments(List<Appointment> appointments) {
             throw new AssertionError("This method should not be called.");
         }
 

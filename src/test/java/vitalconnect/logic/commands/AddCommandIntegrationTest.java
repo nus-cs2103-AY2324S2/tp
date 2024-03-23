@@ -4,6 +4,8 @@ import static vitalconnect.logic.commands.CommandTestUtil.assertCommandFailure;
 import static vitalconnect.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static vitalconnect.testutil.TypicalPersons.getTypicalClinic;
 
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -23,14 +25,14 @@ public class AddCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalClinic(), new UserPrefs());
+        model = new ModelManager(getTypicalClinic(), new UserPrefs(), new ArrayList<>());
     }
 
     @Test
     public void execute_newPerson_success() {
         Person validPerson = new PersonBuilder().build();
 
-        Model expectedModel = new ModelManager(model.getClinic(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getClinic(), new UserPrefs(), new ArrayList<>());
         expectedModel.addPerson(validPerson);
 
         assertCommandSuccess(new AddCommand(validPerson), model,

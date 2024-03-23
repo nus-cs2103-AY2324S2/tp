@@ -15,13 +15,13 @@ public class CreateAptCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsCreateAptCommand() throws Exception {
-        String patientName = "John Doe";
+        String getPatientIc = "S1234567D";
         String dateTimeStr = "02/02/2024 1330";
 
-        String userInput = patientName + " /time " + dateTimeStr;
-        CreateAptCommand expectedCommand = new CreateAptCommand(patientName, dateTimeStr);
+        String userInput = getPatientIc + " /time " + dateTimeStr;
+        CreateAptCommand expectedCommand = new CreateAptCommand(getPatientIc, dateTimeStr);
 
-        assertEquals(parser.parse(userInput).getPatientName(), expectedCommand.getPatientName());
+        assertEquals(parser.parse(userInput).getPatientIc(), expectedCommand.getPatientIc());
         assertEquals(parser.parse(userInput).getDateTimeStr(), expectedCommand.getDateTimeStr());
     }
 
@@ -41,9 +41,9 @@ public class CreateAptCommandParserTest {
 
     @Test
     public void parse_invalidDateTimeFormat_throwsParseException() {
-        String name = "John Doe";
+        String ic = "S1234567D";
         String time = "02-02-2024 1330";
-        String userInput = name + time;
+        String userInput = ic + time;
         assertThrows(ParseException.class, () -> parser.parse(userInput));
     }
 }

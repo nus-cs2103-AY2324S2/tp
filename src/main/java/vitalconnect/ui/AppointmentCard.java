@@ -26,6 +26,8 @@ public class AppointmentCard extends UiPart<Region> {
     @FXML
     private Label name;
     @FXML
+    private Label ic;
+    @FXML
     private Label id;
     @FXML
     private Label time;
@@ -42,12 +44,16 @@ public class AppointmentCard extends UiPart<Region> {
         this.appointment = appointment;
         id.setText(displayedIndex + ". ");
         name.setText(appointment.getPatientName());
+        ic.setText(appointment.getPatientIc());
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMM yyyy HH:mm");
         time.setText(appointment.getDateTime().format(formatter));
     }
     public Label getName() {
         return this.name;
+    }
+    public Label getIc() {
+        return this.ic;
     }
     public Label getId() {
         return this.id;

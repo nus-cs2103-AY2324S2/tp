@@ -2,6 +2,9 @@ package vitalconnect;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -15,6 +18,7 @@ import vitalconnect.commons.util.ConfigUtil;
 import vitalconnect.commons.util.StringUtil;
 import vitalconnect.logic.Logic;
 import vitalconnect.logic.LogicManager;
+import vitalconnect.model.Appointment;
 import vitalconnect.model.Clinic;
 import vitalconnect.model.Model;
 import vitalconnect.model.ModelManager;
@@ -22,7 +26,9 @@ import vitalconnect.model.ReadOnlyClinic;
 import vitalconnect.model.ReadOnlyUserPrefs;
 import vitalconnect.model.UserPrefs;
 import vitalconnect.model.util.SampleDataUtil;
+import vitalconnect.storage.AppointmentStorage;
 import vitalconnect.storage.ClinicStorage;
+import vitalconnect.storage.JsonAppointmentStorage;
 import vitalconnect.storage.JsonClinicStorage;
 import vitalconnect.storage.JsonUserPrefsStorage;
 import vitalconnect.storage.Storage;
@@ -46,6 +52,9 @@ public class MainApp extends Application {
     protected Model model;
     protected Config config;
 
+    /**
+     * Initializes the application's primary components.
+     */
     @Override
     public void init() throws Exception {
         logger.info("=============================[ Initializing Clinic ]===========================");
@@ -58,7 +67,9 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         ClinicStorage clinicStorage = new JsonClinicStorage(userPrefs.getClinicFilePath());
-        storage = new StorageManager(clinicStorage, userPrefsStorage);
+        AppointmentStorage appointmentStorage = new JsonAppointmentStorage(userPrefs.getAppointmentFilePath());
+        storage = new StorageManager(clinicStorage, userPrefsStorage, appointmentStorage);
+
 
         model = initModelManager(storage, userPrefs);
 
@@ -77,6 +88,8 @@ public class MainApp extends Application {
 
         Optional<ReadOnlyClinic> clinicOptional;
         ReadOnlyClinic initialData;
+        Optional<List<Appointment>> appointmentsOptional;
+        List<Appointment> appointments;
         try {
             clinicOptional = storage.readClinic();
             if (!clinicOptional.isPresent()) {
@@ -90,7 +103,19 @@ public class MainApp extends Application {
             initialData = new Clinic();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        try {
+            appointmentsOptional = storage.readAppointments();
+            if (!appointmentsOptional.isPresent()) {
+                logger.info("Appointment data file not found. Will be starting with an empty appointment list.");
+            }
+            appointments = appointmentsOptional.orElseGet(Collections::emptyList);
+        } catch (DataLoadingException e) {
+            logger.warning("Data file for appointments could not be loaded. "
+                    + "Will be starting with an empty appointment list.");
+            appointments = new ArrayList<>();
+        }
+
+        return new ModelManager(initialData, userPrefs, appointments);
     }
 
     private void initLogging(Config config) {
@@ -168,19 +193,29 @@ public class MainApp extends Application {
         return initializedPrefs;
     }
 
+    /**
+     * Starts the primary stage of the application.
+     *
+     * @param primaryStage The primary stage for this application.
+     */
     @Override
     public void start(Stage primaryStage) {
         logger.info("Starting Clinic " + MainApp.VERSION);
         ui.start(primaryStage);
     }
 
+    /**
+     * Stops the application, ensuring all resources are released and necessary data is saved.
+     */
     @Override
     public void stop() {
         logger.info("============================ [ Stopping Clinic ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
+            // Save appointments when application stops
+            storage.saveAppointments(model.getFilteredAppointmentList());
         } catch (IOException e) {
-            logger.severe("Failed to save preferences " + StringUtil.getDetails(e));
+            logger.severe("Failed to save preferences and appointments: " + StringUtil.getDetails(e));
         }
     }
 }

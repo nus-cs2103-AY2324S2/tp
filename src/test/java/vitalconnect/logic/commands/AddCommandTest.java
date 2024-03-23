@@ -10,6 +10,7 @@ import static vitalconnect.testutil.TypicalPersons.ALICE;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -167,8 +168,18 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public boolean doesIcExist(String name) {
+            throw new AssertionError("This method should not be called.");
+        }
+
         @Test
         public void addAppointment(Appointment appointment) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setAppointments(List<Appointment> appointments) {
             throw new AssertionError("This method should not be called.");
         }
 

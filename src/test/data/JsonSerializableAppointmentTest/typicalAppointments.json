@@ -2,14 +2,40 @@
   "appointments": [
     {
       "patientName": "Alice Pauline",
-      "patientIc": "S1234567A",
-      "dateTime": "2023-12-01T10:00"
+      "patientIc": "S1234567D",
+      "dateTime": "14/03/2023 1530"
     },
     {
-      "patientName": "Bob Chalice",
-      "patientIc": "S1234567B",
-      "dateTime": "2023-12-02T15:00"
+      "patientName": "Benson Meier",
+      "patientIc": "S1234568B",
+      "dateTime": "15/03/2023 1000"
+    },
+    {
+      "patientName": "Carl Kurz",
+      "patientIc": "T1234567J",
+      "dateTime": "16/04/2023 0900"
+    },
+    {
+      "patientName": "Daniel Meier",
+      "patientIc": "F1234567N",
+      "dateTime": "17/04/2023 1445"
+    },
+    {
+      "patientName": "Elle Meyer",
+      "patientIc": "G1234567X",
+      "dateTime": "18/05/2023 1630"
+    },
+    {
+      "patientName": "Fiona Kunz",
+      "patientIc": "M1234567K",
+      "dateTime": "19/06/2023 1015"
+    },
+    {
+      "patientName": "George Best",
+      "patientIc": "F1234560R",
+      "dateTime": "20/07/2023 1130"
     }
   ]
 }
+
 

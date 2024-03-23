@@ -14,6 +14,8 @@ import static vitalconnect.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static vitalconnect.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static vitalconnect.testutil.TypicalPersons.getTypicalClinic;
 
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.Test;
 
 import vitalconnect.commons.core.index.Index;
@@ -32,7 +34,7 @@ import vitalconnect.testutil.PersonBuilder;
  */
 public class EditCommandTest {
 
-    private Model model = new ModelManager(getTypicalClinic(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalClinic(), new UserPrefs(), new ArrayList<>());
 
     // the following 3 test cases currently does not work, changed to pass gradle test
     @Test
@@ -48,7 +50,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson));
 
-        Model expectedModel = new ModelManager(new Clinic(model.getClinic()), new UserPrefs());
+        Model expectedModel = new ModelManager(new Clinic(model.getClinic()), new UserPrefs(), new ArrayList<>());
         expectedModel.setPerson(lastPerson, editedPerson);
 
         assertCommandSuccess(editCommand, model, expectedMessage, model);
@@ -61,7 +63,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson));
 
-        Model expectedModel = new ModelManager(new Clinic(model.getClinic()), new UserPrefs());
+        Model expectedModel = new ModelManager(new Clinic(model.getClinic()), new UserPrefs(), new ArrayList<>());
 
         assertCommandSuccess(editCommand, model, expectedMessage, model);
     }
@@ -77,7 +79,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson));
 
-        Model expectedModel = new ModelManager(new Clinic(model.getClinic()), new UserPrefs());
+        Model expectedModel = new ModelManager(new Clinic(model.getClinic()), new UserPrefs(), new ArrayList<>());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
 
         assertCommandSuccess(editCommand, model, expectedMessage, model);
