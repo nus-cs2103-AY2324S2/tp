@@ -1,6 +1,6 @@
-# AB-3 User Guide
+C# Rainbow Dragon User Guide
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a  Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+Rainbow Dragon is a **desktop app for managing contacts, optimized for use via a  Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -24,7 +24,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * `add n/John Doe` : Adds a contact named `John Doe` to the Address Book.
 
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
@@ -109,6 +109,21 @@ Examples:
 * To edit person 1's tags to `warrior` and `mage`:<br>
 > `edit 1 t/warrior t/mage`
 
+### Adding an entry to a person : `addCategory`
+
+Adds an entry to an existing person in the address book.
+
+Format: `addCategory INDEX [c/CATEGORY] [d/DESCRIPTION]`
+
+* Adds an entry to the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* The category you want to add must not already **exist** for that person.
+* Both Category and Description must be provided.
+
+Examples:
+* To add person 1's clan name`rainbow` to person 1:<br>
+>`addCategory 1 c/Clan d/rainbow`
+* To add person 1's class `warrior` to person 1:<br>
+> `addCategory 1 t/class d/warrior`
 
 ### Locating persons by name: `find`
 
@@ -206,8 +221,10 @@ _Details coming soon ..._
 
 Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add**    | `add n/NAME [t/TAG]…​` <br> e.g., `add n/James Ho t/friend t/colleague`
 **Clear**  | `clear`
+**addCategory**  | `addCategory 1 c/class d/warrior`
+**deleteCategory**  | `deleteCategory 1 c/class`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit**   | `edit INDEX [c/CATEGORY] [d/DESCRIPTION] …​`<br> e.g.,`edit 2 c/clan d/rainbow` <br><br> `edit INDEX [t/TAG]` <br> e.g.,`edit 1 t/warrior t/mage`
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
