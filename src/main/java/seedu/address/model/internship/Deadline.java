@@ -35,12 +35,17 @@ public class Deadline {
         return test.matches(VALIDATION_REGEX);
     }
 
-
+    /**
+     * Returns the deadline string.
+     */
     @Override
     public String toString() {
         return deadline;
     }
 
+    /**
+     * Checks equality based on the deadline string.
+     */
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -52,10 +57,13 @@ public class Deadline {
             return false;
         }
 
-        Deadline otherName = (Deadline) other;
-        return deadline.equals(otherName.deadline);
+        Deadline otherDeadline = (Deadline) other;
+        return deadline.equals(otherDeadline.deadline);
     }
 
+    /**
+     * Generates hash code based on the deadline string.
+     */
     @Override
     public int hashCode() {
         return deadline.hashCode();
