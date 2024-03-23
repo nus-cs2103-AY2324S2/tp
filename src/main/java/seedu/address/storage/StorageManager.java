@@ -99,16 +99,16 @@ public class StorageManager implements Storage {
         return classBookStorage.readClassBook(filePath);
     }
 
-    @Override
-    public void createJsonFileForEachCC(Optional<JsonSerializableClassBook> classBook) throws IOException,
-            IllegalValueException {
-        classBookStorage.createJsonFileForEachCC(classBook);
-    }
-
-    @Override
-    public void createJsonFileForEachCC(JsonSerializableClassBook classBook) throws IOException, IllegalValueException {
-        classBookStorage.createJsonFileForEachCC(classBook);
-    }
+//    @Override
+//    public void createJsonFileForEachCC(Optional<JsonSerializableClassBook> classBook) throws IOException,
+//            IllegalValueException {
+//        classBookStorage.createJsonFileForEachCC(classBook);
+//    }
+//
+//    @Override
+//    public void createJsonFileForEachCC(JsonSerializableClassBook classBook) throws IOException, IllegalValueException {
+//        classBookStorage.createJsonFileForEachCC(classBook);
+//    }
 
     @Override
     public void saveClassBook(ReadOnlyClassBook classBook) throws IOException, IllegalValueException {
