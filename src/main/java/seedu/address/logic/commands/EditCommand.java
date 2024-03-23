@@ -38,9 +38,8 @@ public class EditCommand extends Command {
     public static final String COMMAND_WORD = "edit";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits a client's details specified "
-            + "by the corresponding index in the client list. "
-            + "Existing values will be overwritten.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "by the corresponding index in the client list.\n"
+            + "Parameters: INDEX "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
@@ -49,9 +48,10 @@ public class EditCommand extends Command {
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + PREFIX_EMAIL + "john@gmail.com";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Client: %1$s";
+    public static final String MESSAGE_EDIT_PERSON_SUCCESS =
+            "Successfully edited client!\n--------------------------\n%1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
 
@@ -59,7 +59,7 @@ public class EditCommand extends Command {
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
-     * @param index                of the person in the filtered person list to edit
+     * @param index of the person in the filtered person list to edit
      * @param editPersonDescriptor details to edit the person with
      */
     public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
@@ -124,23 +124,23 @@ public class EditCommand extends Command {
         Note note = person.getNote();
         Set<Tag> tags = person.getTags();
 
-        sb.append(name);
-        sb.append("; Phone: ").append(phone);
+        sb.append("Name: ").append(name);
+        sb.append(" | Phone: ").append(phone);
 
         if (!email.getValue().isEmpty()) {
-            sb.append("; Email: ").append(email);
+            sb.append(" | Email: ").append(email);
         }
 
         if (!address.getValue().isEmpty()) {
-            sb.append("; Address: ").append(address);
+            sb.append("\nAddress: ").append(address);
         }
 
         if (!note.getValue().isEmpty()) {
-            sb.append("; Note: ").append(note);
+            sb.append(" | Note: ").append(note);
         }
 
         if (!tags.isEmpty()) {
-            sb.append("; Tags: ").append(tags);
+            sb.append(" | Tags: ").append(tags);
         }
 
         return sb.toString();
