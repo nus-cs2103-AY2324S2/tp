@@ -101,7 +101,6 @@ public class AddEventCommandTest {
         assertTrue(editedPatient.getEvents().equals(expectedEvents));
     }
 
-
     @Test
     public void equalsTest() {
         AddEventCommand addEventCommandFirst = new AddEventCommand(

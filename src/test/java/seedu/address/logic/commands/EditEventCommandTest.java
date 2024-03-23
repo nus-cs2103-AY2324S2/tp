@@ -116,6 +116,42 @@ public class EditEventCommandTest {
     }
 
     @Test
+    public void execute_editEventToAnExistingEvent_success() throws CommandException {
+        CommandResult result;
+        String expected;
+        Patient editedPatient;
+        Set<Event> expectedEvents;
+
+        EditEventCommand editEventCommand = new EditEventCommand(INDEX_SECOND_PATIENT,
+                INDEX_FIRST_EVENT, validEvent);
+
+        //Confirm basic edit event works
+        result = editEventCommand.execute(model);
+        editedPatient = model.getFilteredPatientList().get(INDEX_SECOND_PATIENT.getZeroBased());
+
+        expected = String.format(EditEventCommand.MESSAGE_SUCCESS, validEvent.name,
+                INDEX_FIRST_EVENT.getOneBased(), validEvent.date, editedPatient.getName(),
+                INDEX_SECOND_PATIENT.getOneBased());
+
+        assertEquals(expected, result.getFeedbackToUser());
+
+        expectedEvents = new HashSet<>(editedPatient.getEvents());
+        assertEquals(editedPatient.getEvents(), expectedEvents);
+
+        //Test duplicate event using edit command
+        result = editEventCommand.execute(model);
+        editedPatient = model.getFilteredPatientList().get(INDEX_SECOND_PATIENT.getZeroBased());
+
+        expected = String.format(EditEventCommand.MESSAGE_DUPLICATE, validEvent.name, validEvent.date,
+                editedPatient.getName(), INDEX_SECOND_PATIENT.getOneBased());
+
+        assertEquals(expected, result.getFeedbackToUser());
+
+        expectedEvents = new HashSet<>(editedPatient.getEvents());
+        assertEquals(editedPatient.getEvents(), expectedEvents);
+    }
+
+    @Test
     public void equals_differentEventIndex_returnFalse() {
         EditEventCommand editEventCommandFirst = new EditEventCommand(
                 INDEX_FIRST_PATIENT, INDEX_FIRST_EVENT, validEvent);
