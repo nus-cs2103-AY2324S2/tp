@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_IC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
@@ -26,11 +25,10 @@ public class AddNoteCommand extends Command {
             + "Existing remark will be appended by default. "
             + "To replace the original note, add -replace at the end of your command. "
             + "E.g. addnote i/S0123456Q n/Diabetes -replace\n"
-            + "Parameters: "
-            + PREFIX_IC + "IC "
+            + "Parameters: IC (National Registration Identity Card) "
             + PREFIX_NOTE + "NOTE \n"
-            + "Example: " + COMMAND_WORD + " "
-            + PREFIX_IC + "S0123456Q "
+            + "Example: " + COMMAND_WORD
+            + " S0123456Q "
             + PREFIX_NOTE + "Diabetes";
 
 
