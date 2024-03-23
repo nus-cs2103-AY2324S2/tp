@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.model.tag.Attendance;
 import seedu.address.testutil.PersonBuilder;
 
 public class UniquePersonListTest {
@@ -42,7 +43,7 @@ public class UniquePersonListTest {
     @Test
     public void contains_personWithSameIdentityFieldsInList_returnsTrue() {
         uniquePersonList.add(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withStudentID(VALID_STUDENT_ID_AMY).withDate(VALID_DATE_1)
+        Person editedAlice = new PersonBuilder(ALICE).withStudentID(VALID_STUDENT_ID_AMY).withDate(new Attendance(new AttendanceStatus(VALID_DATE_1, "1")))
                 .build();
         assertTrue(uniquePersonList.contains(editedAlice));
     }
@@ -85,7 +86,7 @@ public class UniquePersonListTest {
     @Test
     public void setPerson_editedPersonHasSameIdentity_success() {
         uniquePersonList.add(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withStudentID(VALID_STUDENT_ID_AMY).withDate(VALID_DATE_1)
+        Person editedAlice = new PersonBuilder(ALICE).withStudentID(VALID_STUDENT_ID_AMY).withDate(new Attendance(new AttendanceStatus(VALID_DATE_1, "1")))
                 .build();
         uniquePersonList.setPerson(ALICE, editedAlice);
         UniquePersonList expectedUniquePersonList = new UniquePersonList();

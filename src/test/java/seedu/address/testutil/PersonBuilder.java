@@ -60,7 +60,7 @@ public class PersonBuilder {
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
      */
-    public PersonBuilder withDate(String ... dates) {
+    public PersonBuilder withDate(Attendance ... dates) {
         this.attendances = SampleDataUtil.getAttendanceSet(dates);
         return this;
     }

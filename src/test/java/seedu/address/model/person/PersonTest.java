@@ -14,6 +14,7 @@ import static seedu.address.testutil.TypicalPersons.BOB;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.tag.Attendance;
 import seedu.address.testutil.PersonBuilder;
 
 public class PersonTest {
@@ -34,7 +35,7 @@ public class PersonTest {
 
         // same name, all other attributes different -> returns true
         Person editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withStudentID(VALID_STUDENT_ID_AMY).withDate(VALID_DATE_1).build();
+                .withStudentID(VALID_STUDENT_ID_AMY).withDate(new Attendance(new AttendanceStatus(VALID_DATE_1, "1"))).build();
         assertTrue(ALICE.isSamePerson(editedAlice));
 
         // different name, all other attributes same -> returns false
@@ -86,7 +87,7 @@ public class PersonTest {
         assertFalse(ALICE.equals(editedAlice));
 
         // different tags -> returns false
-        editedAlice = new PersonBuilder(ALICE).withDate(VALID_DATE_1).build();
+        editedAlice = new PersonBuilder(ALICE).withDate(new Attendance(new AttendanceStatus(VALID_DATE_1, "1"))).build();
         assertFalse(ALICE.equals(editedAlice));
     }
 

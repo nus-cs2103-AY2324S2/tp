@@ -18,8 +18,10 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.person.AttendanceStatus;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.model.tag.Attendance;
 import seedu.address.testutil.PersonBuilder;
 
 public class StudentIdBookTest {
@@ -46,7 +48,7 @@ public class StudentIdBookTest {
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two persons with the same identity fields
-        Person editedAlice = new PersonBuilder(ALICE).withStudentID(VALID_STUDENT_ID_AMY).withDate(VALID_DATE_1)
+        Person editedAlice = new PersonBuilder(ALICE).withStudentID(VALID_STUDENT_ID_AMY).withDate(new Attendance(new AttendanceStatus(VALID_DATE_1, "1")))
                 .build();
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
         AddressBookStub newData = new AddressBookStub(newPersons);
@@ -73,7 +75,7 @@ public class StudentIdBookTest {
     @Test
     public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
         addressBook.addPerson(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withStudentID(VALID_STUDENT_ID_AMY).withDate(VALID_DATE_1)
+        Person editedAlice = new PersonBuilder(ALICE).withStudentID(VALID_STUDENT_ID_AMY).withDate(new Attendance(new AttendanceStatus(VALID_DATE_1, "1")))
                 .build();
         assertTrue(addressBook.hasPerson(editedAlice));
     }
