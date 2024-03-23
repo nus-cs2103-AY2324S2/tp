@@ -15,11 +15,15 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_RELATIONSHIP_BO
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.person.Meeting;
 import seedu.address.model.person.Person;
 
 /**
@@ -27,14 +31,18 @@ import seedu.address.model.person.Person;
  */
 public class TypicalPersons {
 
+
+    public static final Meeting MEETING_1 = new Meeting(LocalDate.of(2023, 3, 20), LocalTime.of(14, 0), Duration.ofHours(1), "Discuss new policy", "Bring all necessary documents");
+    public static final Meeting MEETING_2 = new Meeting(LocalDate.of(2023, 4, 5), LocalTime.of(10, 30), Duration.ofHours(2), "Review quarterly results", "Prepare presentation slides");
+
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253").withRelationship("client").withPolicy("Policy 1")
-            .withTags("friends").build();
+            .withTags("friends").withMeeting(MEETING_1).build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432").withRelationship("client").withPolicy("Policy 1")
-            .withTags("owesMoney", "friends").build();
+            .withTags("owesMoney", "friends").withMeeting(MEETING_2).build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street").withRelationship("client").build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
