@@ -70,6 +70,39 @@ public class AddEventCommandTest {
     }
 
     @Test
+    public void execute_addDuplicateEvent_success() throws CommandException {
+        Index validIndex = Index.fromZeroBased(1);
+        AddEventCommand addEventCommand = new AddEventCommand(validIndex, validDate);
+
+        CommandResult result;
+        String expected;
+        Patient editedPatient;
+        Set<Event> expectedEvents;
+
+        // Confirm the basic add works
+        result = addEventCommand.execute(model);
+        editedPatient = model.getFilteredPatientList().get(validIndex.getZeroBased());
+        expected = String.format(AddEventCommand.MESSAGE_SUCCESS, validDate.name,
+                editedPatient.getName(), validIndex.getOneBased(), validDate.date);
+        assertEquals(expected, result.getFeedbackToUser());
+
+        expectedEvents = new HashSet<>(editedPatient.getEvents());
+        assertTrue(editedPatient.getEvents().equals(expectedEvents));
+
+
+        // Attempt to insert duplicate
+        result = addEventCommand.execute(model);
+        editedPatient = model.getFilteredPatientList().get(validIndex.getZeroBased());
+        expected = String.format(AddEventCommand.MESSAGE_DUPLICATE, validDate.name,
+                editedPatient.getName(), validIndex.getOneBased(), validDate.date);
+        assertEquals(expected, result.getFeedbackToUser());
+
+        expectedEvents = new HashSet<>(editedPatient.getEvents());
+        assertTrue(editedPatient.getEvents().equals(expectedEvents));
+    }
+
+
+    @Test
     public void equalsTest() {
         AddEventCommand addEventCommandFirst = new AddEventCommand(
                 INDEX_FIRST_PATIENT, validDate);
