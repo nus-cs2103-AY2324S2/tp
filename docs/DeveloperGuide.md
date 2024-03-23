@@ -204,6 +204,12 @@ The following activity diagram summarizes what happens when a QR Code is generat
 
 _vCard_ is a data format for contact information. Detailed information can be found in [RFC 6350](https://datatracker.ietf.org/doc/html/rfc6350).
 
+### Deleting a client from FitBook
+
+The activity diagram below illustrates what happens when a client is deleted from `FitBook`.
+
+![DeleteCommandActivityDiagram](images/DeleteCommandActivityDiagram.png)
+
 ### Adding a Note To An Existing Client
 
 The sequence diagram below shows how the components interact with each other when the user inputs the command `note 1 note/Likes to eat`.
