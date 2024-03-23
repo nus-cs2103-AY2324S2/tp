@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalAppointments.ALICE_APPT;
 import static seedu.address.testutil.TypicalAppointments.ALICE_APPT_1;
@@ -10,6 +11,7 @@ import static seedu.address.testutil.TypicalAppointments.getTypicalAddressBookWi
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.date.Date;
 import seedu.address.logic.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -36,6 +38,17 @@ public class CancelAppCommandTest {
                 Messages.format(ALICE_APPT));
 
         assertCommandSuccess(cancelAppCommand, model, expectedMessage, model);
+    }
+
+    @Test
+    public void execute_appointmentNotFound_throwsCommandException() {
+        CancelAppCommand cancelAppCommand = new CancelAppCommand(
+                ALICE_APPT.getNric(),
+                new Date("1900-01-01"),
+                ALICE_APPT.getTimePeriod()
+        );
+
+        assertCommandFailure(cancelAppCommand, model, Messages.MESSAGE_APPOINTMENT_NOT_FOUND);
     }
 
     @Test
