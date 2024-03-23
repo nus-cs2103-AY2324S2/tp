@@ -62,7 +62,7 @@ public class DeleteCommandTest {
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deleteClient(clientToDelete);
-        showNoPerson(expectedModel);
+        showNoClient(expectedModel);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
@@ -114,7 +114,7 @@ public class DeleteCommandTest {
     /**
      * Updates {@code model}'s filtered list to show no one.
      */
-    private void showNoPerson(Model model) {
+    private void showNoClient(Model model) {
         model.updateFilteredClientList(p -> false);
 
         assertTrue(model.getFilteredClientList().isEmpty());
