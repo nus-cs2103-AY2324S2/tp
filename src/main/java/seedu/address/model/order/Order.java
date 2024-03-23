@@ -1,5 +1,7 @@
 package seedu.address.model.order;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.util.Objects;
 
 import seedu.address.commons.util.ToStringBuilder;
@@ -21,6 +23,7 @@ public class Order {
     public Order(OrderId orderId, OrderDate orderDate, Deadline deadline,
                  Amount amount, Remark remark, Status status
     ) {
+        requireAllNonNull(orderId, orderDate, deadline, amount, remark, status);
         this.orderId = orderId;
         this.orderDate = orderDate;
         this.deadline = deadline;
