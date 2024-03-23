@@ -171,13 +171,13 @@ public class ModelManager implements Model {
         selectClass(selectedClass);
     }
 
-    public void addPerson(Person person, CourseCode courseCode) {
-        Classes classes = new Classes(courseCode);
-        if (classBook.hasClass(classes)) {
-            classes.getAddressBook().addPerson(person);
-        }
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-    }
+    // public void addPerson(Person person, CourseCode courseCode) {
+    //     Classes classes = new Classes(courseCode);
+    //     if (classBook.hasClass(classes)) {
+    //         classes.getAddressBook().addPerson(person);
+    //     }
+    //     updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    // }
 
     @Override
     public void createClass(Classes classes) {
