@@ -49,7 +49,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public CommandResult execute(String commandText) throws CommandException, ParseException {
+    public CommandResult execute(String commandText) throws CommandException, ParseException, IOException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
@@ -57,13 +57,13 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         // Not adding to addressbook.json anymore
-//        try {
-//            storage.saveAddressBook(model.getAddressBook());
-//        } catch (AccessDeniedException e) {
-//            throw new CommandException(String.format(FILE_OPS_PERMISSION_ERROR_FORMAT, e.getMessage()), e);
-//        } catch (IOException ioe) {
-//            throw new CommandException(String.format(FILE_OPS_ERROR_FORMAT, ioe.getMessage()), ioe);
-//        }
+        //        try {
+        //            storage.saveAddressBook(model.getAddressBook());
+        //        } catch (AccessDeniedException e) {
+        //            throw new CommandException(String.format(FILE_OPS_PERMISSION_ERROR_FORMAT, e.getMessage()), e);
+        //        } catch (IOException ioe) {
+        //            throw new CommandException(String.format(FILE_OPS_ERROR_FORMAT, ioe.getMessage()), ioe);
+        //        }
 
         try {
             storage.saveClassBook(model.getClassBook());
@@ -74,7 +74,6 @@ public class LogicManager implements Logic {
         } catch (IllegalValueException e) {
             throw new RuntimeException(e);
         }
-
         return commandResult;
     }
 

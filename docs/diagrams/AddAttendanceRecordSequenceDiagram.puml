@@ -1,0 +1,28 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+[-> UI : "attendance ar/06-06-2024")
+activate UI
+
+UI -> Logic : execute("attendance ar/06-06-2024")
+activate Logic
+
+Logic -> Model : getFilteredPersonList()
+activate Model
+
+Model --> Logic : list of person
+loop every row in the list of person
+Logic -> Model : setPerson(person)
+
+Logic -> Model : updateFilteredPersonList(...)
+end
+deactivate Model
+
+Logic -> Storage: saveClassBook(classBook)
+activate Storage
+
+Storage -> Storage : save to file
+activate Storage
+deactivate Storage
+
+@enduml
