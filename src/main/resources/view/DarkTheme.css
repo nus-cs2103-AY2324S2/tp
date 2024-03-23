@@ -360,6 +360,6 @@
     -fx-text-fill: white;
     -fx-background-color: #5c5c5c;
     -fx-padding: 10 20 10 20;
-    -fx-background-radius: 5;
+    -fx-background-radius: 2;
     -fx-font-size: 11;
 }
