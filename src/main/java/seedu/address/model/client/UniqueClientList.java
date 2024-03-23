@@ -79,7 +79,7 @@ public class UniqueClientList implements Iterable<Client> {
         }
     }
 
-    public void setPersons(UniqueClientList replacement) {
+    public void setClients(UniqueClientList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
@@ -88,7 +88,7 @@ public class UniqueClientList implements Iterable<Client> {
      * Replaces the contents of this list with {@code clients}.
      * {@code clients} must not contain duplicate clients.
      */
-    public void setPersons(List<Client> clients) {
+    public void setClients(List<Client> clients) {
         requireAllNonNull(clients);
         if (!personsAreUnique(clients)) {
             throw new DuplicateClientException();

@@ -129,7 +129,7 @@ public class UniqueClientListTest {
 
     @Test
     public void setPersons_nullUniquePersonList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueClientList.setPersons((UniqueClientList) null));
+        assertThrows(NullPointerException.class, () -> uniqueClientList.setClients((UniqueClientList) null));
     }
 
     @Test
@@ -137,20 +137,20 @@ public class UniqueClientListTest {
         uniqueClientList.add(ALICE);
         UniqueClientList expectedUniquePersonList = new UniqueClientList();
         expectedUniquePersonList.add(BOB);
-        uniqueClientList.setPersons(expectedUniquePersonList);
+        uniqueClientList.setClients(expectedUniquePersonList);
         assertEquals(expectedUniquePersonList, uniqueClientList);
     }
 
     @Test
     public void setPersons_nullList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueClientList.setPersons((List<Client>) null));
+        assertThrows(NullPointerException.class, () -> uniqueClientList.setClients((List<Client>) null));
     }
 
     @Test
     public void setPersons_list_replacesOwnListWithProvidedList() {
         uniqueClientList.add(ALICE);
         List<Client> clientList = Collections.singletonList(BOB);
-        uniqueClientList.setPersons(clientList);
+        uniqueClientList.setClients(clientList);
         UniqueClientList expectedUniquePersonList = new UniqueClientList();
         expectedUniquePersonList.add(BOB);
         assertEquals(expectedUniquePersonList, uniqueClientList);
@@ -159,7 +159,7 @@ public class UniqueClientListTest {
     @Test
     public void setPersons_listWithDuplicateClients_throwsDuplicateClientException() {
         List<Client> listWithDuplicateClients = Arrays.asList(ALICE, ALICE);
-        assertThrows(DuplicateClientException.class, () -> uniqueClientList.setPersons(listWithDuplicateClients));
+        assertThrows(DuplicateClientException.class, () -> uniqueClientList.setClients(listWithDuplicateClients));
     }
 
     @Test

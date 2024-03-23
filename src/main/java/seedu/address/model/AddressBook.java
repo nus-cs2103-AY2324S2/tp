@@ -44,8 +44,8 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Replaces the contents of the client list with {@code clients}.
      * {@code clients} must not contain duplicate clients.
      */
-    public void setPersons(List<Client> clients) {
-        this.persons.setPersons(clients);
+    public void setClients(List<Client> clients) {
+        this.persons.setClients(clients);
     }
 
     /**
@@ -54,7 +54,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
-        setPersons(newData.getPersonList());
+        setClients(newData.getPersonList());
     }
 
     //// client-level operations
