@@ -9,7 +9,7 @@ import seedu.address.model.Model;
 import seedu.address.model.group.Group;
 
 /**
- * Adds a person to the address book.
+ * Adds a group to the address book.
  */
 public class AddGroupCommand extends Command {
 
@@ -25,7 +25,7 @@ public class AddGroupCommand extends Command {
     private final Group toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddGroupCommand
      */
     public AddGroupCommand(Group group) {
         requireNonNull(group);
