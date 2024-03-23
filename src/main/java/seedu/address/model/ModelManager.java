@@ -117,10 +117,17 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson, Order order) {
+    public void setPersonAdd(Person target, Person editedPerson, Order order) {
         requireAllNonNull(target, editedPerson);
 
-        addressBook.setPerson(target, editedPerson, order);
+        addressBook.setPersonAdd(target, editedPerson, order);
+    }
+
+    @Override
+    public void setPersonDelete(Person target, Person editedPerson, Order order) {
+        requireAllNonNull(target, editedPerson);
+
+        addressBook.setPersonDelete(target, editedPerson, order);
     }
 
     //=========== Order ================================================================================

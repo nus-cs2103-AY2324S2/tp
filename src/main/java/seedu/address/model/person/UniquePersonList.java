@@ -72,19 +72,28 @@ public class UniquePersonList implements Iterable<Person> {
         internalList.set(index, editedPerson);
     }
 
-    public void setPerson(Person target, Person editedPerson, Order order) {
-        requireAllNonNull(target, editedPerson);
+    /**
+     * Replaces the person {@code target} in the list with {@code editedPerson}.
+     *
+     * @param target       person to be removed.
+     * @param editedPerson person to be added.
+     * @param order        order to be removed.
+     */
+    public void setPersonRemoveOrder(Person target, Person editedPerson, Order order) {
+        setPerson(target, editedPerson);
+        internalOrderList.remove(order);
+    }
 
-        int index = internalList.indexOf(target);
-        if (index == -1) {
-            throw new PersonNotFoundException();
-        }
 
-        if (!target.isSamePerson(editedPerson) && contains(editedPerson)) {
-            throw new DuplicatePersonException();
-        }
-
-        internalList.set(index, editedPerson);
+    /**
+     * Replaces the person {@code target} in the list with {@code editedPerson}.
+     *
+     * @param target       person to be removed.
+     * @param editedPerson person to be added.
+     * @param order        order to be added.
+     */
+    public void setPersonAddOrder(Person target, Person editedPerson, Order order) {
+        setPerson(target, editedPerson);
         internalOrderList.add(order);
     }
 
@@ -116,9 +125,8 @@ public class UniquePersonList implements Iterable<Person> {
 
         internalList.setAll(persons);
         internalOrderList.setAll(asUnmodifiableObservableListOrders());
-
-
     }
+
 
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
@@ -127,15 +135,6 @@ public class UniquePersonList implements Iterable<Person> {
         return internalUnmodifiableList;
     }
 
-    /**
-     * Adds an order to the list.
-     *
-     * @param order a valid order.
-     */
-    public void addOrder(Order order) {
-        requireNonNull(order);
-        internalOrderList.add(order);
-    }
 
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.

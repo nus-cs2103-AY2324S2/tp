@@ -87,7 +87,9 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
-    void setPerson(Person target, Person editedPerson, Order order);
+    void setPersonAdd(Person target, Person editedPerson, Order order);
+
+    void setPersonDelete(Person target, Person editedPerson, Order order);
 
     /**
      * Returns an unmodifiable view of the filtered person list.

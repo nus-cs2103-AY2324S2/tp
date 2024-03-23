@@ -1,5 +1,6 @@
 package seedu.address.logic.commands.orders;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ORDERS;
 
@@ -48,23 +49,28 @@ public class AddOrderCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        requireNonNull(model);
+
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
         Person personToEdit = lastShownList.get(index.getZeroBased());
-        Set<Order> orders = personToEdit.getOrders();
-        orders = new HashSet<>(orders);
-        orders.add(this.order);
+        Person editedPerson = getEditedPerson(personToEdit);
 
-        Person editedPerson = new Person(
-                personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), personToEdit.getTags(), orders);
-
-        model.setPerson(personToEdit, editedPerson, this.order);
+        model.setPersonAdd(personToEdit, editedPerson, this.order);
         model.updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS);
         return new CommandResult(generateSuccessMessage(editedPerson));
+    }
+
+    private Person getEditedPerson(Person person) {
+        Set<Order> orders = person.getOrders();
+        orders = new HashSet<>(orders);
+        orders.add(this.order);
+        return new Person(
+                person.getName(), person.getPhone(), person.getEmail(),
+                person.getAddress(), person.getTags(), orders);
     }
 
     /**
@@ -73,6 +79,6 @@ public class AddOrderCommand extends Command {
      * {@code personToEdit}.
      */
     private String generateSuccessMessage(Person personToEdit) {
-        return String.format(MESSAGE_SUCCESS, personToEdit);
+        return String.format(MESSAGE_SUCCESS);
     }
 }

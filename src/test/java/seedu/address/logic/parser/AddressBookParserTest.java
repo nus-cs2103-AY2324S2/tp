@@ -106,8 +106,10 @@ public class AddressBookParserTest {
     public void parseCommand_deleteOrder() throws Exception {
         OrderBuilder builder = new OrderBuilder();
         OrderId orderId = builder.build().getOrderId();
-        assertTrue(parser.parseCommand(DeleteOrderCommand.COMMAND_WORD
-                + " id/" + orderId.toString()) instanceof DeleteOrderCommand);
+        assertTrue(
+                parser.parseCommand(DeleteOrderCommand.COMMAND_WORD
+                        + orderId.toString())
+                        instanceof DeleteOrderCommand);
     }
 
     @Test
