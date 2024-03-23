@@ -16,7 +16,7 @@ import seedu.address.model.person.Classes;
 /**
  * The manager of the UI component.
  */
-public class UiManager implements Ui, UIUpdateListener {
+public class UiManager implements Ui, UiUpdateListener {
 
     public static final String ALERT_DIALOG_PANE_FIELD_ID = "alertDialogPane";
 

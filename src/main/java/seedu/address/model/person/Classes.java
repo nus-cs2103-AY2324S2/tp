@@ -1,6 +1,5 @@
 package seedu.address.model.person;
 
-import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -82,7 +81,7 @@ public class Classes {
         return new ArrayList<>();
     }
 
-    public AddressBook getAddressBook(){
+    public AddressBook getAddressBook() {
         return this.addressBook;
     }
     public Path getFilePath() {
@@ -97,4 +96,5 @@ public class Classes {
 
 //    public Object getPersons() {
 //    }
+
 }
