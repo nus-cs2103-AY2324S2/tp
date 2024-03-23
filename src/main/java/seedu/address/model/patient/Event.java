@@ -120,8 +120,8 @@ public class Event implements Comparable<Event> {
 
     @Override
     public int compareTo(Event other) {
-        if (this.date == other.date) {
-            if (this.startTime == other.startTime) {
+        if (this.date.equals(other.date)) {
+            if (this.startTime.equals(other.startTime)) {
                 return this.endTime.compareTo(other.endTime);
             }
 

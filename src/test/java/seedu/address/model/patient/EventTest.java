@@ -1,5 +1,6 @@
 package seedu.address.model.patient;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -51,6 +52,32 @@ public class EventTest {
         assertTrue(Event.isValidEvent("21-02-2022, 00:00 - 23:59"));
         assertTrue(Event.isValidEvent("01-01-2022, 12:12 - 12:12        "));
         assertTrue(Event.isValidEvent("          01-01-2022, 12:12 - 12:12"));
+    }
+
+
+    @Test
+    public void compareTo() {
+        Event earlierEvent = new Event("Family Visit", "01-01-2022, 12:12 - 12:12");
+        Event laterDateEvent = new Event("Family Visit", "02-01-2022, 12:12 - 12:12");
+        Event laterMonthEvent = new Event("Family Visit", "01-02-2022, 12:12 - 12:12");
+        Event laterYearEvent = new Event("Family Visit", "01-01-2023, 12:12 - 12:12");
+        Event laterStartTimeEvent = new Event("Family Visit", "01-01-2022, 12:13 - 12:12");
+        Event laterEndTimeEvent = new Event("Family Visit", "01-01-2022, 12:12 - 12:13");
+
+        assertEquals(earlierEvent.compareTo(laterDateEvent), -1);
+        assertEquals(laterDateEvent.compareTo(earlierEvent), 1);
+
+        assertEquals(earlierEvent.compareTo(laterMonthEvent), -1);
+        assertEquals(laterMonthEvent.compareTo(earlierEvent), 1);
+
+        assertEquals(earlierEvent.compareTo(laterYearEvent), -1);
+        assertEquals(laterYearEvent.compareTo(earlierEvent), 1);
+
+        assertEquals(earlierEvent.compareTo(laterStartTimeEvent), -1);
+        assertEquals(laterStartTimeEvent.compareTo(earlierEvent), 1);
+
+        assertEquals(earlierEvent.compareTo(laterEndTimeEvent), -1);
+        assertEquals(laterEndTimeEvent.compareTo(earlierEvent), 1);
     }
 
     @Test
