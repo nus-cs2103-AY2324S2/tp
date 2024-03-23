@@ -51,16 +51,16 @@ public class EditCommandTest {
 
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
-        Index indexLastPerson = Index.fromOneBased(model.getFilteredClientList().size());
-        Client lastClient = model.getFilteredClientList().get(indexLastPerson.getZeroBased());
+        Index indexLastClient = Index.fromOneBased(model.getFilteredClientList().size());
+        Client lastClient = model.getFilteredClientList().get(indexLastClient.getZeroBased());
 
-        PersonBuilder personInList = new PersonBuilder(lastClient);
-        Client editedClient = personInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
+        PersonBuilder clientInList = new PersonBuilder(lastClient);
+        Client editedClient = clientInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
 
         EditClientDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();
-        EditCommand editCommand = new EditCommand(indexLastPerson, descriptor);
+        EditCommand editCommand = new EditCommand(indexLastClient, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_CLIENT_SUCCESS, Messages.format(editedClient));
 
@@ -121,7 +121,7 @@ public class EditCommandTest {
     }
 
     @Test
-    public void execute_invalidPersonIndexUnfilteredList_failure() {
+    public void execute_invalidClientIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredClientList().size() + 1);
         EditClientDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
@@ -134,7 +134,7 @@ public class EditCommandTest {
      * but smaller than size of address book
      */
     @Test
-    public void execute_invalidPersonIndexFilteredList_failure() {
+    public void execute_invalidClientIndexFilteredList_failure() {
         showClientAtIndex(model, INDEX_FIRST_CLIENT);
         Index outOfBoundIndex = INDEX_SECOND_CLIENT;
         // ensures that outOfBoundIndex is still in bounds of address book list

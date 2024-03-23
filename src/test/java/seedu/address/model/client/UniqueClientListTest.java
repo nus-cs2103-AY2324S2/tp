@@ -34,7 +34,7 @@ public class UniqueClientListTest {
     }
 
     @Test
-    public void contains_personInList_returnsTrue() {
+    public void contains_clientInList_returnsTrue() {
         uniqueClientList.add(ALICE);
         assertTrue(uniqueClientList.contains(ALICE));
     }
