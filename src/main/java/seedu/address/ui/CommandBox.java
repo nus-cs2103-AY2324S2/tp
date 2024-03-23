@@ -65,11 +65,12 @@ public class CommandBox extends UiPart<Region> {
      */
     @FXML
     private void handleArrowKey(KeyEvent event) {
-        if (event.getCode().getName().equals("Up")) {
+        String keyName = event.getCode().getName();
+        if (keyName.equals("Up")) {
             inputHistory.decrementIndex();
             setTextField();
         }
-        if (event.getCode().getName().equals("Down")) {
+        if (keyName.equals("Down")) {
             inputHistory.incrementIndex();
             setTextField();
         }
@@ -79,7 +80,8 @@ public class CommandBox extends UiPart<Region> {
      * Sets the text field with the command, moves caret to the end of text.
      */
     private void setTextField() {
-        commandTextField.setText(inputHistory.getCommand());
+        String commandText = inputHistory.getCommand();
+        commandTextField.setText(commandText);
         commandTextField.end();
     }
 
@@ -137,7 +139,7 @@ public class CommandBox extends UiPart<Region> {
          */
         public void addToInputHistory(String commandText) {
             this.inputList.add(commandText);
-            this.currentIndex++;
+            currentIndex = inputList.size();
         }
 
         /**
@@ -145,6 +147,7 @@ public class CommandBox extends UiPart<Region> {
          */
         public void incrementIndex() {
             int maxListIndex = inputList.size() - 1;
+
             if (this.currentIndex < maxListIndex) {
                 this.currentIndex++;
             }
