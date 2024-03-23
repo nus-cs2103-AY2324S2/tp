@@ -37,13 +37,7 @@ public class EditMeetingCommandParser implements Parser<EditMeetingCommand> {
                         PREFIX_NAME, PREFIX_DATETIME);
 
         Map<Prefix, List<String>> map = argMultimap.getMap();
-        /*
-        for (Prefix name: map.keySet()) {
-            String key = name.toString();
-            String value = map.get(name).toString();
-            System.out.println(key + " " + value);
-        }
-        */
+
         Index meetingIndex;
         Index clientIndex;
 
@@ -71,7 +65,6 @@ public class EditMeetingCommandParser implements Parser<EditMeetingCommand> {
         }
         if (argMultimap.getValue(PREFIX_MEETING_INDEX).isPresent()) {
             meetingIndex = ParserUtil.parseMeetingIndex(argMultimap.getValue(PREFIX_MEETING_INDEX).get());
-            //System.out.println(meetingIndex); correct
         }
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editMeetingDescriptor.setDescription(ParserUtil.parseDescription(argMultimap.getValue(PREFIX_NAME).get()));

@@ -5,7 +5,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CLIENT_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -33,10 +32,10 @@ public class EditMeetingCommand extends Command {
             + "by the index number used in the displayed meeting list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_CLIENT_INDEX + "CLIENT INDEX] "
-            + "[" + PREFIX_MEETING_INDEX + "MEETING INDEX] "
-            + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_DATETIME + "DATETIME] \n"
+            + PREFIX_CLIENT_INDEX + "CLIENT INDEX "
+            + PREFIX_MEETING_INDEX + "MEETING INDEX "
+            + PREFIX_NAME + "NAME "
+            + PREFIX_DATETIME + "DATETIME \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_CLIENT_INDEX + "1 "
             + PREFIX_MEETING_INDEX + "2 "
@@ -70,30 +69,34 @@ public class EditMeetingCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Meeting> lastShownList = model.getFilteredMeetingList();
+        List<Person> clientList = model.getFilteredPersonList();
 
-        if (meetingIndex.getZeroBased() >= lastShownList.size()) {
+        if (clientIndex.getZeroBased() >= clientList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        }
+
+        Person selectedClient = clientList.get(clientIndex.getZeroBased());
+        List<Meeting> clientMeetingList = selectedClient.getMeetings();
+        System.out.println(meetingIndex);
+        System.out.println(clientMeetingList);
+
+        if (meetingIndex.getZeroBased() >= clientMeetingList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_MEETING_DISPLAYED_INDEX);
         }
 
-        Meeting meetingToEdit = lastShownList.get(meetingIndex.getZeroBased());
+        Meeting meetingToEdit = clientList.get(clientIndex.getZeroBased())
+                .getMeetings().get(meetingIndex.getZeroBased());
         Meeting editedMeeting = createEditedMeeting(meetingToEdit, editMeetingDescriptor);
 
-        if (!meetingToEdit.isSameMeeting(editedMeeting) && model.hasMeeting(editedMeeting)) {
+        if (meetingToEdit.isSameMeeting(editedMeeting) && model.hasMeeting(editedMeeting)) {
             throw new CommandException(MESSAGE_DUPLICATE_MEETING);
         }
 
-
-        List<Person> clientList = model.getFilteredPersonList();
-        Person selectedClient = clientList.get(this.clientIndex.getZeroBased());
-        editedMeeting = new Meeting(editedMeeting.getDescription(), editedMeeting.getDateTime(), selectedClient);
-
-        ArrayList<Meeting> clientMeetingList = selectedClient.getMeetings();
-        clientMeetingList.set(meetingIndex.getZeroBased(), editedMeeting);
-        selectedClient.setMeetings(clientMeetingList);
-        model.setMeeting(meetingToEdit, editedMeeting);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-
+        DeleteMeetingCommand deleteMeetingCommand = new DeleteMeetingCommand(clientIndex, meetingIndex);
+        AddMeetingCommand addMeetingCommand = new AddMeetingCommand(editedMeeting.getDateTime(),
+                editedMeeting.getDescription(), clientIndex);
+        deleteMeetingCommand.execute(model);
+        addMeetingCommand.execute(model);
         return new CommandResult(String.format(MESSAGE_EDIT_MEETING_SUCCESS, Messages.formatMeeting(editedMeeting)));
     }
 
@@ -107,7 +110,6 @@ public class EditMeetingCommand extends Command {
         String updatedName = editMeetingDescriptor.getDescription().orElse(meetingToEdit.getDescription());
         LocalDateTime updatedDateTime = editMeetingDescriptor.getDateTime().orElse(meetingToEdit.getDateTime());
         Person updatedClient = editMeetingDescriptor.getClient().orElse(meetingToEdit.getClient());
-        //Set<Tag> updatedTags = editMeetingDescriptor.getTags().orElse(meetingToEdit.getTags());
         ArrayList<Meeting> meetings = new ArrayList<Meeting>();
         return new Meeting(updatedName, updatedDateTime, updatedClient);
     }
@@ -119,13 +121,14 @@ public class EditMeetingCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EditCommand)) {
+        if (!(other instanceof EditMeetingCommand)) {
             return false;
         }
 
         EditMeetingCommand otherEditMeeting = (EditMeetingCommand) other;
         return meetingIndex.equals(otherEditMeeting.meetingIndex)
-                && editMeetingDescriptor.equals(otherEditMeeting.editMeetingDescriptor);
+                && editMeetingDescriptor.equals(otherEditMeeting.editMeetingDescriptor)
+                && clientIndex.equals(otherEditMeeting.clientIndex);
     }
 
     public Index getClientIndex() {
