@@ -15,7 +15,7 @@ Avengers Assemble (AA) is a **desktop app for managing contacts, optimized for u
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11` or above installed in your computer.
 
 1. Download the latest `avengersassemble.jar`.
 
@@ -50,16 +50,19 @@ Avengers Assemble (AA) is a **desktop app for managing contacts, optimized for u
 
 * Some commands require you to include parameters. These parameters are identified by prefixes.
 
-* Here are a list of valid prefixes and what they each refer to.
+* Here are a list of valid prefixes and what they each refer to. 
+* Prefixes encased with '[ ]' are optional.
+* Prefixes with '…' after them can be used multiple times.
 
-| Prefix | What it refers to         |
-|--------|---------------------------|
-|n/      | Name of the person        |
-|p/      | Phone number of person    |
-|e/      | Email of person           |
-|a/      | Address of person         |
-|t/      | Tags of person            |
-|m/      | Matriculation ID of person|
+| Prefix  | What it refers to          | Constraints                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+|---------|----------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| n/      | Name of the person         | Should only contain alphanumeric characters and spaces, and it should not be blank.                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| p/      | Phone number of person     | Should only contain numbers, and it should be at least 3 digits long.                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| e/      | Email of person            | Should be of the format local-part@domain and adhere to the following constraints: The local part should only contain alphanumeric characters and these characters excluding the parentheses: (+ _ . -) It may not start or end with the special characters. The domain name is made up of domain labels followed by periods. The domain name must end with a domain label at least 2 characters long, have each domain label start and end with alphanumeric characters, and consist of alphanumeric characters separated only by hyphens, if any. |         
+| a/      | Address of person          | Can take any values, but should not be blank.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| i/      | path of csv file to import | Should be a valid file path                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| [m/]    | Matriculation ID of person | The first letter must be an uppercase 'A', followed by 7 numbers, and ending with an uppercase letter.                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| [t/]... | Tags of person             | Should be alphanumeric.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
@@ -82,21 +85,11 @@ Avengers Assemble (AA) is a **desktop app for managing contacts, optimized for u
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
 Format: `help`
-
-
-### Parameters:
-
-* n/NAME
-* p/PHONE_NUMBER
-* e/EMAIL
-* a/ADDRESS
-* t/TAG (Optional)
-* m/MATRICULATION_NUMBER (Optional)
 
 ### Adding a person: `add`
 
@@ -192,17 +185,34 @@ Clears all entries from AA.
 
 Format: `clear`
 
-### Exporting Data to a CSV file : `export to csv`
+### Exporting Data to a CSV file : `export`
 
-Exports all persons and their details to a CSV file.
+Exports currently listed persons and their details to a CSV file, avengersassemble.csv, which can be found in addressbookdata.
 
-Format: `export to csv`
+**Steps:**
+1. Filter out the persons you want to export using the [`find`](#filtering-persons--find) or 
+[`list`](#listing-all-persons--list) command.
+2. Type `export` to export the currently listed persons and their details to a CSV file.
+3. Upon export, a folder named addressbookdata will be created in the same directory where Avengers Assemble is located. Within this folder, you'll find the CSV file named avengersassemble.csv, containing the exported data.
+
+Format: `export`
+
+<box type="info" seamless>
+
+**Important:** When performing an export, the current information will overwrite the existing CSV file named avengersassemble.csv located within the addressbookdata folder. 
+A new CSV file will not be created with each export.
+
+Users have the option to manually move the current CSV file out of the addressbookdata folder if they do not want the information to be overwritten in the next export. 
+A new CSV file of the same name in the same location will again be created when performing the next export.
+
+</box>
 
 ### Importing Data from a CSV file : `import`
 
-Imports all persons and their details from a CSV file from a specified file path.
+Imports all persons and their details from a CSV file from a specified file path. This filepath should be an
+absolute filePath.
 
-Format: `import FILEPATH`
+Format: `import i/FILEPATH`
 - imports the persons saved in `FILEPATH` to `avengersassemble.json`
 
 ### Exiting the program : `exit`
@@ -249,15 +259,16 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action | Format, Examples
-|--------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] [m/MATRICULATION_NUMBER]…​` e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Clear**  | `clear`                                                                                                                                                                                   |
-| **Delete** | `delete INDEX` e.g., `delete 3`                                                                                                                                                           |
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG] [m/MATRICULATION_NUMBER]…​` e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                          |
-| **Find**   | `find PARAMETER KEYWORD` e.g., `find James`                                                                                                                                               |
-| **Copy**   | `copy`                                                                                                                                                                                    |
-| **List**   | `list`                                                                                                                                                                                    |
-| **Help**   | `help`                                                                                                                                                                                    |
-| **Export to CSV** | `export to csv`                                                                                                                                                                           |
-| **Import** | `import FILEPATH`                                                                                                                                                                         |
+| Action | Format, Examples                                                                                                                                                                               
+|--------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] [m/MATRICULATION_NUMBER]…​` e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague m/A1234567X` |
+| **Clear**  | `clear`                                                                                                                                                                                        |
+| **Delete** | `delete INDEX` e.g., `delete 3`                                                                                                                                                                |
+| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG] [m/MATRICULATION_NUMBER]…​` e.g.,`edit 2 n/James Lee e/jameslee@example.com m/A1234567X`                                              |
+| **Find**   | `find PARAMETER KEYWORD` e.g., `find James`                                                                                                                                                    |
+| **Copy**   | `copy`                                                                                                                                                                                         |
+| **List**   | `list`                                                                                                                                                                                         |
+| **Help**   | `help`                                                                                                                                                                                         |
+| **Export to CSV** | `export`                                                                                                                                                                                       |
+| **Import** | `import FILEPATH`                                                                                                                                                                              |
+

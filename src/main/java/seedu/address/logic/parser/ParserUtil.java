@@ -2,6 +2,8 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -13,6 +15,9 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.student.Matric;
+import seedu.address.model.student.Reflection;
+import seedu.address.model.student.Studio;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -33,6 +38,51 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    /**
+     * Parses {@code matric} into an {@code Matric} and returns it. Leading and trailing whitespaces will be trimmed.
+     * @param matric the matric number to be parsed
+     * @return the parsed matric number
+     * @throws ParseException if the specified matric number is invalid
+     */
+    public static Matric parseMatric(String matric) throws ParseException {
+        String trimmedMatric = matric.trim();
+        if (!Matric.isValidMatric(trimmedMatric)) {
+            throw new ParseException(Matric.MESSAGE_CONSTRAINTS);
+        }
+        return new Matric(trimmedMatric);
+    }
+
+    /**
+     * Parses {@code reflection} into a {@code Reflection} and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     * @param reflection the reflection to be parsed
+     * @return the parsed reflection
+     * @throws ParseException if the specified reflection is invalid
+     */
+    public static Reflection parseReflection(String reflection) throws ParseException {
+        requireNonNull(reflection);
+        String trimmedReflection = reflection.trim();
+        if (!Reflection.isValidReflection(trimmedReflection)) {
+            throw new ParseException(Reflection.MESSAGE_CONSTRAINTS);
+        }
+        return new Reflection(trimmedReflection);
+    }
+
+    /**
+     * Parses {@code studio} into a {@code Studio} and returns it. Leading and trailing whitespaces will be trimmed.
+     * @param studio the studio to be parsed
+     * @return the parsed studio
+     * @throws ParseException if the specified studio is invalid
+     */
+    public static Studio parseStudio(String studio) throws ParseException {
+        requireNonNull(studio);
+        String trimmedStudio = studio.trim();
+        if (!Studio.isValidStudio(trimmedStudio)) {
+            throw new ParseException(Studio.MESSAGE_CONSTRAINTS);
+        }
+        return new Studio(trimmedStudio);
     }
 
     /**
@@ -120,5 +170,18 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String filePath} into a {@code filePath}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code filePath} is invalid.
+     */
+    public static Path parseFilePath(String filePath) throws ParseException {
+        requireNonNull(filePath);
+        String trimmedTag = filePath.trim();
+        // add error handling for what to do when invalid input is passed
+        return Paths.get(filePath);
     }
 }

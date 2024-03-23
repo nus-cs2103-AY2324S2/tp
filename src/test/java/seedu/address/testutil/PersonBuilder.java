@@ -8,6 +8,9 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.student.Matric;
+import seedu.address.model.student.Reflection;
+import seedu.address.model.student.Studio;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -20,12 +23,18 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_MATRIC = "A1234567X";
+    public static final String DEFAULT_REFLECTION = "R1";
+    public static final String DEFAULT_STUDIO = "S2";
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
     private Set<Tag> tags;
+    private Matric matric;
+    private Reflection reflection;
+    private Studio studio;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -36,6 +45,9 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
+        matric = new Matric(DEFAULT_MATRIC);
+        reflection = new Reflection(DEFAULT_REFLECTION);
+        studio = new Studio(DEFAULT_STUDIO);
     }
 
     /**
@@ -47,6 +59,9 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
+        matric = personToCopy.getMatric();
+        reflection = personToCopy.getReflection();
+        studio = personToCopy.getStudio();
     }
 
     /**
@@ -89,8 +104,42 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Matric} of the {@code Person} that we are building.
+     * @param matric matric number
+     * @return PersonBuilder
+     */
+    public PersonBuilder withMatric(String matric) {
+        this.matric = new Matric(matric);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Studio} of the {@code Person} that we are building.
+     * @param studio studio number
+     * @return PersonBuilder
+     */
+    public PersonBuilder withStudio(String studio) {
+        this.studio = new Studio(studio);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Reflection} of the {@code Person} that we are building.
+     * @param reflection reflection
+     * @return PersonBuilder
+     */
+    public PersonBuilder withReflection(String reflection) {
+        this.reflection = new Reflection(reflection);
+        return this;
+    }
+
+    /**
+     * Builds the person object.
+     * @return Person
+     */
     public Person build() {
-        return new Person(name, phone, email, address, tags);
+        return new Person(name, phone, email, address, tags, matric, reflection, studio);
     }
 
 }

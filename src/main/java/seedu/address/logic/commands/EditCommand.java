@@ -3,8 +3,11 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MATRIC_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REFLECTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDIO;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
@@ -26,6 +29,9 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.student.Matric;
+import seedu.address.model.student.Reflection;
+import seedu.address.model.student.Studio;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -43,6 +49,9 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_MATRIC_NUMBER + "MATRICULATION NUMBER] "
+            + "[" + PREFIX_REFLECTION + "REFLECTION] "
+            + "[" + PREFIX_STUDIO + "STUDIO] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -100,8 +109,12 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Matric updatedMatric = editPersonDescriptor.getMatric().orElse(personToEdit.getMatric());
+        Reflection updatedReflection = editPersonDescriptor.getReflection().orElse(personToEdit.getReflection());
+        Studio updatedStudio = editPersonDescriptor.getStudio().orElse(personToEdit.getStudio());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail,
+                          updatedAddress, updatedTags, updatedMatric, updatedReflection, updatedStudio);
     }
 
     @Override
@@ -139,6 +152,10 @@ public class EditCommand extends Command {
         private Address address;
         private Set<Tag> tags;
 
+        private Matric matric;
+        private Reflection reflection;
+        private Studio studio;
+
         public EditPersonDescriptor() {}
 
         /**
@@ -151,13 +168,16 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
+            setMatric(toCopy.matric);
+            setReflection(toCopy.reflection);
+            setStudio(toCopy.studio);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, matric, reflection, studio);
         }
 
         public void setName(Name name) {
@@ -209,6 +229,30 @@ public class EditCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
+        public void setMatric(Matric matric) {
+            this.matric = matric;
+        }
+
+        public Optional<Matric> getMatric() {
+            return Optional.ofNullable(matric);
+        }
+
+        public void setReflection(Reflection reflection) {
+            this.reflection = reflection;
+        }
+
+        public Optional<Reflection> getReflection() {
+            return Optional.ofNullable(reflection);
+        }
+
+        public void setStudio(Studio studio) {
+            this.studio = studio;
+        }
+
+        public Optional<Studio> getStudio() {
+            return Optional.ofNullable(studio);
+        }
+
         @Override
         public boolean equals(Object other) {
             if (other == this) {
@@ -225,7 +269,10 @@ public class EditCommand extends Command {
                     && Objects.equals(phone, otherEditPersonDescriptor.phone)
                     && Objects.equals(email, otherEditPersonDescriptor.email)
                     && Objects.equals(address, otherEditPersonDescriptor.address)
-                    && Objects.equals(tags, otherEditPersonDescriptor.tags);
+                    && Objects.equals(tags, otherEditPersonDescriptor.tags)
+                    && Objects.equals(matric, otherEditPersonDescriptor.matric)
+                    && Objects.equals(reflection, otherEditPersonDescriptor.reflection)
+                    && Objects.equals(studio, otherEditPersonDescriptor.studio);
         }
 
         @Override
@@ -236,7 +283,11 @@ public class EditCommand extends Command {
                     .add("email", email)
                     .add("address", address)
                     .add("tags", tags)
+                    .add("matriculation number", matric)
+                    .add("reflection", reflection)
+                    .add("studio", studio)
                     .toString();
         }
+
     }
 }
