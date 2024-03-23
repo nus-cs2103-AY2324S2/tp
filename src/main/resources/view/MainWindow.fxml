@@ -11,6 +11,12 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.control.ComboBox?>
+<?import seedu.address.model.person.Person?>
+<?import javafx.collections.FXCollections?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
          title="Address App" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
   <icons>
@@ -52,8 +58,24 @@
           </padding>
           <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
         </VBox>
-
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
+        <VBox VBox.vgrow="ALWAYS">
+          <ComboBox fx:id="personComboBox" promptText="Select up to 5 persons">
+            <cellFactory>
+              <PropertyValueFactory property="name"/>
+            </cellFactory>
+            <items>
+              <!-- Add items here -->
+            </items>
+          </ComboBox>
+          <TableView fx:id="scheduleTable" VBox.vgrow="ALWAYS">
+            <columns>
+              <TableColumn fx:id="nameColumn" text="Name" />
+              <TableColumn fx:id="startTimeColumn" text="Start Time" />
+              <TableColumn fx:id="endTimeColumn" text="End Time" />
+            </columns>
+          </TableView>
+        </VBox>
       </VBox>
     </Scene>
   </scene>

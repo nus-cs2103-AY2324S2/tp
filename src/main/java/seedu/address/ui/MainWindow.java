@@ -1,11 +1,14 @@
 package seedu.address.ui;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextInputControl;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
@@ -16,6 +19,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Person;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -50,6 +54,9 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane statusbarPlaceholder;
 
+    @FXML
+    private ComboBox<Person> personComboBox;
+
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
@@ -64,7 +71,7 @@ public class MainWindow extends UiPart<Stage> {
         setWindowDefaultSize(logic.getGuiSettings());
 
         setAccelerators();
-
+        populatePersonNameComboBox();
         helpWindow = new HelpWindow();
     }
 
@@ -133,6 +140,66 @@ public class MainWindow extends UiPart<Stage> {
             primaryStage.setX(guiSettings.getWindowCoordinates().getX());
             primaryStage.setY(guiSettings.getWindowCoordinates().getY());
         }
+    }
+
+    private void populatePersonNameComboBox() {
+        // Example class names, replace with actual data retrieval logic
+        ObservableList<Person> persons = logic.getFilteredPersonList();
+
+        personComboBox.setItems(persons);
+
+        // Use a cell factory to display the names of the Person objects
+        personComboBox.setCellFactory(comboBox -> new ListCell<Person>() {
+            @Override
+            protected void updateItem(Person person, boolean empty) {
+                super.updateItem(person, empty);
+                setText(empty || person == null ? "" : person.getName().toString());
+            }
+        });
+
+        personComboBox.setButtonCell(new ListCell<Person>() {
+            @Override
+            protected void updateItem(Person person, boolean empty) {
+                super.updateItem(person, empty);
+                setText(empty || person == null ? "" : person.getName().toString());
+            }
+        });
+
+        ArrayList<Person> populatedPerson = new ArrayList<>();
+
+        // Optional: Add a listener to react to selection changes
+        personComboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                if (populatedPerson.contains(newValue)) {
+                    populatedPerson.remove(newValue);
+                    System.out.println("Removed person: " + newValue.getName());
+                } else {
+                    if (populatedPerson.size() == 5) {
+                        System.out.println("5 People have already been selected!");
+                    } else {
+                        populatedPerson.add(newValue);
+                        System.out.println("Added person: " + newValue.getName());
+                    }
+                }
+                // Call method to update UI based on selected person
+                System.out.println("Current List of person: ");
+                populatedPerson.forEach(person -> System.out.println(person.getName()));
+            }
+        });
+
+        persons.addListener((ListChangeListener.Change<? extends Person> change) -> {
+            while (change.next()) {
+                if (change.wasRemoved()) {
+                    List<? extends Person> removedPersons = change.getRemoved();
+                    for (Person removedPerson : removedPersons) {
+                        System.out.println("Removed person cause deleted: " + removedPerson.getName());
+                        populatedPerson.remove(removedPerson);
+                        System.out.println("Current List of person: ");
+                        populatedPerson.forEach(person -> System.out.print(person.getName()));
+                    }
+                }
+            }
+        });
     }
 
     /**
