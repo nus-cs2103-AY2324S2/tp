@@ -13,7 +13,7 @@ import seedu.address.model.person.Person;
 
 
 /**
- * Changes the remark of an existing person in the address book.
+ * Changes the company of an existing person in the address book.
  */
 public class CompanyCommand extends Command {
 
@@ -39,7 +39,7 @@ public class CompanyCommand extends Command {
 
 
     /**
-     * @param name  of the person in the filtered person list to edit the remark
+     * @param name  of the person in the filtered person list to edit the company
      * @param company of the person to be updated to
      */
     public CompanyCommand(String name, Company company) {
@@ -78,7 +78,7 @@ public class CompanyCommand extends Command {
 
     /**
      * Generates a command execution success message based on whether
-     * the remark is added to or removed from
+     * the company is added to or removed from
      * {@code personToEdit}.
      */
     private String generateSuccessMessage(Person personToEdit) {

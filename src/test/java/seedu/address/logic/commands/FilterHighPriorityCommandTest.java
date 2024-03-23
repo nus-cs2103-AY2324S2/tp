@@ -24,7 +24,6 @@ public class FilterHighPriorityCommandTest {
 
     @Test
     public void execute_filterHighPriority_success() {
-
         expectedModel.updateFilteredPersonList(person -> person.getPriority().value.equals("high"));
         CommandResult expectedCommandResult = new CommandResult(
                 FilterHighPriorityCommand.MESSAGE_SUCCESS);
@@ -40,7 +39,6 @@ public class FilterHighPriorityCommandTest {
         model.deletePerson(FIONA);
         model.deletePerson(GEORGE);
         expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-
         expectedModel.updateFilteredPersonList(person -> person.getPriority().value.equals("high"));
         CommandResult expectedCommandResult = new CommandResult(
                 FilterHighPriorityCommand.MESSAGE_NO_CONTACTS_FOUND);
