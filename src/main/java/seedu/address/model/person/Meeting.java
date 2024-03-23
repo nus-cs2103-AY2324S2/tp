@@ -85,7 +85,6 @@ public class Meeting implements Comparable<Meeting> {
         return meeting.hashCode();
     }
 
-
     @Override
     public int compareTo(Meeting o) {
         return this.meeting.compareTo(o.meeting);

@@ -64,6 +64,9 @@ public class MeetingsWindow extends UiPart<Stage> {
      *     </ul>
      */
 
+    /**
+     * Displays the list of meetings using the meetingsMessage Label
+     */
     public void displayMeetings() {
         logger.fine("Showing meetings window for the application.");
         getRoot().show();
