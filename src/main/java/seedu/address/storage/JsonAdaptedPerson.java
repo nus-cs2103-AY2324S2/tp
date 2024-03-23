@@ -170,7 +170,10 @@ class JsonAdaptedPerson {
             }
             final Salary modelSalary = new Salary(salary);
             final Employment modelEmployment = new Employment(employment);
-            return new Staff(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelSalary, modelEmployment);
+            Staff currStaff = new Staff(modelName, modelPhone, modelEmail, modelAddress,
+                    modelTags, modelSalary, modelEmployment);
+            currStaff.setNoteContent(note);
+            return currStaff;
         }
 
         if (product != null && price != null) {
@@ -182,8 +185,10 @@ class JsonAdaptedPerson {
             }
             final Product modelProduct = new Product(product);
             final Price modelPrice = new Price(price);
-            return new Supplier(modelName, modelPhone, modelEmail, modelAddress, modelTags,
+            Supplier currSupplier = new Supplier(modelName, modelPhone, modelEmail, modelAddress, modelTags,
                     modelProduct, modelPrice);
+            currSupplier.setNoteContent(note);
+            return currSupplier;
         }
 
         if (skill != null && commission != null) {
@@ -195,8 +200,10 @@ class JsonAdaptedPerson {
             }
             final Skill modelSkill = new Skill(skill);
             final Commission modelCommission = new Commission(commission);
-            return new Maintainer(modelName, modelPhone, modelEmail, modelAddress, modelTags,
+            Maintainer currMaintainer = new Maintainer(modelName, modelPhone, modelEmail, modelAddress, modelTags,
                     modelSkill, modelCommission);
+            currMaintainer.setNoteContent(note);
+            return currMaintainer;
         }
 
         if (note == null) {
