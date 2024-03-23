@@ -213,4 +213,14 @@ public class ParserUtilTest {
     public void parseDate_validValueWithWhitespace_returnsTrimmedDate() throws Exception {
         assertEquals(ParserUtil.parseDate(WHITESPACE + "2020-01-01" + WHITESPACE).toString(), "2020-01-01");
     }
+
+    @Test
+    public void parseRemark_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseRemark(null));
+    }
+
+    @Test
+    public void parseRemark_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseRemark(""));
+    }
 }

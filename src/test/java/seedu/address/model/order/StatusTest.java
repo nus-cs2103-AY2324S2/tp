@@ -13,6 +13,11 @@ public class StatusTest {
     }
 
     @Test
+    public void constructor_invalidStatus_throwsIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, () -> Status.valueOf("Invalid"));
+    }
+
+    @Test
     public void equals() {
         // invalid status
         assertFalse(Status.PENDING.equals(null));
