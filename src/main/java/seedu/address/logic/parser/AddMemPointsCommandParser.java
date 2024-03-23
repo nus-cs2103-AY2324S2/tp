@@ -34,9 +34,6 @@ public class AddMemPointsCommandParser implements Parser<AddMemPointsCommand> {
         } catch (ParseException pe) {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS + "\n" + AddMemPointsCommand.MESSAGE_USAGE);
         }
-        if (!Name.isValidName(name.fullName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS + "\n" + AddMemPointsCommand.MESSAGE_USAGE);
-        }
 
         int pointsToAdd;
         try {

@@ -52,7 +52,7 @@ public class MembershipPoints {
      * @return The tier of the member.
      */
     public String getTier() {
-        for (int i = 0; i < TIERS.length; i++) {
+        for (int i = 0; i < TIERS.length - 1; i++) {
             if (value >= Integer.parseInt(TIERS[i][1])) {
                 return TIERS[i][0];
             }
