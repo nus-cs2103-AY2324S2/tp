@@ -103,7 +103,7 @@ public class ModelManager implements Model {
     @Override
     public void addClient(Client client) {
         addressBook.addClient(client);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_CLIENTS);
+        updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
     }
 
     @Override
@@ -127,7 +127,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Client> predicate) {
+    public void updateFilteredClientList(Predicate<Client> predicate) {
         requireNonNull(predicate);
         filteredClients.setPredicate(predicate);
     }
