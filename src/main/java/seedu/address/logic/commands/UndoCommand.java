@@ -14,7 +14,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
 /**
- * Adds a person to the address book.
+ * Undo Command.
  */
 public class UndoCommand extends Command {
 
@@ -24,7 +24,7 @@ public class UndoCommand extends Command {
 
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an UndoCommand.
      */
     public UndoCommand() {
     }

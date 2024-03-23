@@ -9,7 +9,7 @@ import seedu.address.model.Model;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Adds a person to the address book.
+ * Redo Command.
  */
 public class RedoCommand extends Command {
 
@@ -19,7 +19,7 @@ public class RedoCommand extends Command {
 
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an RedoCommand.
      */
     public RedoCommand() {
     }

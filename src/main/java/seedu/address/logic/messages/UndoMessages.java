@@ -6,7 +6,7 @@ import seedu.address.model.person.Staff;
 import seedu.address.model.person.Supplier;
 
 /**
- * Container for user delete command visible messages.
+ * Container for user undo command visible messages.
  */
 public class UndoMessages extends Messages {
     public static final String MESSAGE_UNDO_SUCCESS = "Woof! Undo successfully! \uD83D\uDC36";

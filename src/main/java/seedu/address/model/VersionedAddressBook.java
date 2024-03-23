@@ -3,10 +3,17 @@ package seedu.address.model;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
+/**
+ * Extended version of Address Book storing History of Address Book.
+ */
 public class VersionedAddressBook extends AddressBook {
     private ArrayList<ReadOnlyAddressBook> addressBookStateList ;
     int currentStatePointer;
 
+    /**
+     * Creates VersionedAddressBook and initialize addressBookStateList to track history.
+     * @param addressBook initial address book
+     */
     public VersionedAddressBook(ReadOnlyAddressBook addressBook) {
         super(addressBook);
 
@@ -15,17 +22,27 @@ public class VersionedAddressBook extends AddressBook {
         currentStatePointer = 0;
     }
 
+    /**
+     * Commits the new state of address book into tracker addressBookStateList.
+     */
     public void commit() {
         updateSubAddressBookStateList();
         this.addressBookStateList.add(new AddressBook(this));
         currentStatePointer += 1;
     }
 
+    /**
+     * Reverts the address book to its previous state.
+     */
     public void undo() {
         currentStatePointer -= 1;
         resetData(addressBookStateList.get(currentStatePointer));
     }
 
+    /**
+     * Checks whether the address book can be reverted to a previous state.
+     * @return true if there is a previous state to revert to, else false.
+     */
     public boolean canUndo() {
         if (currentStatePointer <= 0) {
             // cannot undo, no more address book behind the list.
@@ -34,11 +51,18 @@ public class VersionedAddressBook extends AddressBook {
         return true;
     }
 
+    /**
+     * Advances the address book to its next state if possible.
+     */
     public void redo() {
         currentStatePointer += 1;
         resetData(addressBookStateList.get(currentStatePointer));
     }
 
+    /**
+     * Checks whether the address book can be advanced to a next state.
+     * @return true if here is a next state to advance to, else false.
+     */
     public boolean canRedo() {
         if (currentStatePointer >= addressBookStateList.size() - 1) {
             // cannot redo, no more address book in front of list.
@@ -47,6 +71,9 @@ public class VersionedAddressBook extends AddressBook {
         return true;
     }
 
+    /**
+     * Updates the sublist of address book states up to the current state pointer.
+     */
     private void updateSubAddressBookStateList() {
         ArrayList<ReadOnlyAddressBook> copy = new ArrayList<>();
 

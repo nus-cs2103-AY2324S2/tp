@@ -122,11 +122,30 @@ public interface Model {
      */
     Supplier findSupplierByName(Name targetName) throws CommandException;
 
+    /**
+     * Commits new version of AddressBook into VersionedAddressBook Tracker.
+     */
     void commitAddressBook();
 
+    /**
+     * Retrieves previous version of AddressBook from VersionedAddressBook Tracker.
+     */
     void undoAddressBook();
 
+    /**
+     * Retrieves future version of AddressBook due to undo from VerssionedAddressBook Tracker.
+     */
     void redoAddressBook();
+
+    /**
+     * Returns a boolean value to indicate whether undo command is possible to be carried out.
+     * @return True if possible to undo, else False.
+     */
     boolean canUndo();
+
+    /**
+     * Returns a boolean value to indicate whether redo command is possible to be carried out.
+     * @return True if possible to redo, else False.
+     */
     boolean canRedo();
 }
