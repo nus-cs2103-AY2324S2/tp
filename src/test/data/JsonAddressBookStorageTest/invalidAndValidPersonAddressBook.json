@@ -1,13 +1,38 @@
 {
-  "persons": [ {
-    "name": "Valid Person",
-    "phone": "9482424",
-    "email": "hans@example.com",
-    "address": "4th street"
-  }, {
-    "name": "Person With Invalid Phone Field",
-    "phone": "948asdf2424",
-    "email": "hans@example.com",
-    "address": "4th street"
-  } ]
+  "persons": [
+    {
+      "nric": "T0139571B",
+      "name": "Valid Person",
+      "phone": "94351253",
+      "address": "123, Jurong West Ave 6, #08-111",
+      "dateOfBirth": "2001-01-01",
+      "sex": "F",
+      "status": "HEALTHY",
+      "email": null,
+      "country": null,
+      "allergies": null,
+      "bloodType": null,
+      "condition": null,
+      "dateOfAdmission": null,
+      "diagnosis": null,
+      "symptom": null
+    },
+    {
+      "nric": "T0139571B",
+      "name": "Invalid Person Phone Wrong",
+      "phone": "94eeqa!1253a",
+      "address": "123, Jurong West Ave 6, #08-111",
+      "dateOfBirth": "2001-01-01",
+      "sex": "F",
+      "status": "HEALTHY",
+      "email": null,
+      "country": null,
+      "allergies": null,
+      "bloodType": null,
+      "condition": null,
+      "dateOfAdmission": null,
+      "diagnosis": null,
+      "symptom": null
+    }
+  ]
 }

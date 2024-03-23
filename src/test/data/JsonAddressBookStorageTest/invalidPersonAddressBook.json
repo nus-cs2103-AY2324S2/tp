@@ -1,8 +1,21 @@
 {
-  "persons": [ {
-    "name": "Person with invalid name field: Ha!ns Mu@ster",
-    "phone": "9482424",
-    "email": "hans@example.com",
-    "address": "4th street"
-  } ]
+  "persons": [
+    {
+      "nric": "INVALID NRIC!!!!",
+      "name": "Alice Pauline",
+      "phone": "94351253",
+      "address": "123, Jurong West Ave 6, #08-111",
+      "dateOfBirth": "2001-01-01",
+      "sex": "F",
+      "status": "HEALTHY",
+      "email": null,
+      "country": null,
+      "allergies": null,
+      "bloodType": null,
+      "condition": null,
+      "dateOfAdmission": null,
+      "diagnosis": null,
+      "symptom": null
+    }
+  ]
 }

@@ -239,19 +239,6 @@ public class Person {
     }
 
     /**
-     * Returns true if the person has all mandatory fields.
-     */
-    public static boolean isValidPerson(Person person) {
-        return person.nric != null
-                && person.name != null
-                && person.phone != null
-                && person.address != null
-                && person.dateOfBirth != null
-                && person.sex != null
-                && person.status != null;
-    }
-
-    /**
      * Returns true if both persons have the same identity and all data fields.
      * This defines a stronger notion of equality between two persons.
      */
@@ -266,31 +253,19 @@ public class Person {
             return false;
         }
         Person otherPerson = (Person) other;
-        if (!(isValidPerson(this) && isValidPerson(otherPerson))) {
-            return false;
-        }
         return nric.equals(otherPerson.nric)
                 && name.equals(otherPerson.name)
                 && phone.equals(otherPerson.phone)
                 && address.equals(otherPerson.address)
                 && dateOfBirth.equals(otherPerson.dateOfBirth)
                 && sex.equals(otherPerson.sex)
-                && status.equals(otherPerson.status)
-                && tags.equals(otherPerson.tags)
-                && Objects.equals(email, otherPerson.email)
-                && Objects.equals(country, otherPerson.country)
-                && Objects.equals(allergies, otherPerson.allergies)
-                && Objects.equals(bloodType, otherPerson.bloodType)
-                && Objects.equals(condition, otherPerson.condition)
-                && Objects.equals(dateOfAdmission, otherPerson.dateOfAdmission)
-                && Objects.equals(diagnosis, otherPerson.diagnosis)
-                && Objects.equals(symptom, otherPerson.symptom);
+                && status.equals(otherPerson.status);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(nric, name, phone, address, dateOfBirth, sex, status);
     }
 
     @Override

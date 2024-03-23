@@ -37,7 +37,8 @@ public class JsonUtil {
             .setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY)
             .registerModule(new SimpleModule("SimpleModule")
                     .addSerializer(Level.class, new ToStringSerializer())
-                    .addDeserializer(Level.class, new LevelDeserializer(Level.class)));
+                    .addDeserializer(Level.class, new LevelDeserializer(Level.class))
+                    .addSerializer(new OptionalSerializer()));
 
     static <T> void serializeObjectToJsonFile(Path jsonFile, T objectToSerialize) throws IOException {
         FileUtil.writeToFile(jsonFile, toJsonString(objectToSerialize));
