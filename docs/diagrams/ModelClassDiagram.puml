@@ -18,7 +18,8 @@ Class Address
 Class Email
 Class Name
 Class Phone
-Class Tag
+Class DateOfBirth
+Class Sex
 
 Class I #FFFFFF
 }
@@ -41,14 +42,17 @@ Person *--> Name
 Person *--> Phone
 Person *--> Email
 Person *--> Address
-Person *--> "*" Tag
+Person *--> DateOfBirth
+Person *--> Sex
 
 Person -[hidden]up--> I
 UniquePersonList -[hidden]right-> I
 
 Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+Phone -[hidden]right-> Email
+Email -[hidden]right-> Address
+Address -[hidden]right-> DateOfBirth
+DateOfBirth -[hidden]right-> Sex
 
 ModelManager --> "~* filtered" Person
 @enduml
