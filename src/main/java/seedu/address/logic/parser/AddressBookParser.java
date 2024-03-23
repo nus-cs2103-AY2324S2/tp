@@ -91,7 +91,7 @@ public class AddressBookParser {
             return new AssignCommandParser().parse(arguments);
 
         case ClearTaskCommand.COMMAND_WORD:
-            return new ClearTaskCommand();
+            return new ClearTaskCommandParser().parse(arguments);
 
         case MarkTaskCommand.COMMAND_WORD:
             return new MarkTaskCommandParser().parse(arguments);
