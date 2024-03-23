@@ -114,13 +114,13 @@ class JsonAdaptedPerson {
         if (!Address.isValidAddress(address)) {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
-        if (!Matric.isValidMatric(matric)) {
+        if (!Matric.isValidConstructorParam(matric)) {
             throw new IllegalValueException(Matric.MESSAGE_CONSTRAINTS);
         }
-        if (!Reflection.isValidReflection(reflection)) {
+        if (!Reflection.isValidConstructorParam(reflection)) {
             throw new IllegalValueException(Reflection.MESSAGE_CONSTRAINTS);
         }
-        if (!Studio.isValidStudio(studio)) {
+        if (!Studio.isValidConstructorParam(studio)) {
             throw new IllegalValueException(Studio.MESSAGE_CONSTRAINTS);
         }
 
