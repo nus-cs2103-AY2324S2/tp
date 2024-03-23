@@ -20,10 +20,8 @@ public class StatusTest {
     @Test
     public void isValidStatus() {
         // invalid status
-        assertFalse(Status.isValidStatus("Invalid"));
-        assertFalse(Status.isValidStatus("Arrived"));
-        assertFalse(Status.isValidStatus("Late"));
-        assertFalse(Status.isValidStatus("Pending"));
+        assertFalse(Status.isValidStatus("test"));
+        assertFalse(Status.isValidStatus(""));
 
         // valid status
         assertTrue(Status.isValidStatus("Pending"));
