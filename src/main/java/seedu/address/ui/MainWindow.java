@@ -1,5 +1,9 @@
 package seedu.address.ui;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
@@ -215,11 +219,22 @@ public class MainWindow extends UiPart<Stage> {
         // Loop through each selected person
         for (Person person : selectedPersons) {
             // Extract the schedules from the selected person
+            LocalDate now = LocalDate.now();
+            LocalDate startOfWeek = now.with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
+            LocalDate endOfWeek = now.with(TemporalAdjusters.nextOrSame(DayOfWeek.SUNDAY)).plusDays(1); // End of Sunday
             ArrayList<Schedule> schedules = person.getSchedules();
             System.out.print("Got the deets!");
-
+            ArrayList<Schedule> filteredSchedules = new ArrayList<>();
+            for (Schedule sched : schedules) {
+                LocalDateTime startTime = sched.getStartTime();
+                LocalDateTime endTime = sched.getEndTime();
+                if ((startTime.toLocalDate().isEqual(startOfWeek) || startTime.toLocalDate().isAfter(startOfWeek)) &&
+                        (endTime.toLocalDate().isEqual(endOfWeek) || endTime.toLocalDate().isBefore(endOfWeek))) {
+                    filteredSchedules.add(sched);
+                }
+            }
             // Add each schedule to the table view
-            scheduleTable.getItems().addAll(schedules);
+            scheduleTable.getItems().addAll(filteredSchedules);
         }
     }
 
