@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.person.Meeting;
 import seedu.address.model.person.Person;
 
 /**
@@ -168,5 +169,13 @@ public class ModelManager implements Model {
                 && userPrefs.equals(otherModelManager.userPrefs)
                 && filteredPersons.equals(otherModelManager.filteredPersons);
     }
+
+    @Override
+    public boolean hasMeetingOverlap(Meeting meeting) {
+        return versionedAddressBook.getPersonList().stream()
+                .flatMap(person -> person.getMeetings().stream())
+                .anyMatch(existingMeeting -> existingMeeting.overlapsWith(meeting));
+    }
+
 
 }

@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.person.Meeting;
 import seedu.address.model.person.Person;
 
 /**
@@ -111,5 +112,13 @@ public interface Model {
      * during the execution of the various commands
      */
     void commitAddressBook();
+
+    /**
+     * Checks if the given meeting overlaps with any existing meetings across all persons in the address book.
+     * @param meeting The meeting to check.
+     * @return true if there is an overlap, false otherwise.
+     */
+    boolean hasMeetingOverlap(Meeting meeting);
+
 
 }
