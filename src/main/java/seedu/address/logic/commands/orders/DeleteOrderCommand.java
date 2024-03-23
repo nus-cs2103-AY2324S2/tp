@@ -43,35 +43,48 @@ public class DeleteOrderCommand extends Command {
         this.index = index;
     }
 
+
+    /**
+     * Retrieves the order from the person which matches the index.
+     *
+     * @param person Person to retrieve the order from.
+     * @return Order if found, else null.
+     */
+    private Order getOrderFromPerson(Person person) {
+        return person.getOrders().stream()
+                .filter(order -> order.checkId(this.index))
+                .findFirst()
+                .orElse(null);
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireAllNonNull(model);
+
         Order changeOrder = null;
         Person personToEdit = null;
         List<Person> personList = model.getAddressBook().getPersonList();
+
         for (Person person : personList) {
-            if (changeOrder != null) {
+            Order order = getOrderFromPerson(person);
+            if (order != null) {
+                changeOrder = order;
+                personToEdit = person;
                 break;
             }
-            if (person.getOrders() != null) {
-                Set<Order> orders = person.getOrders();
-                for (Order order : orders) {
-                    if (order.checkId(this.index)) {
-                        changeOrder = order;
-                        personToEdit = person;
-                        break;
-                    }
-                }
-            }
         }
+
         if (changeOrder == null) {
             throw new CommandException(Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
         }
+
         Person editedPerson = new Person(
                 personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
                 personToEdit.getAddress(), personToEdit.getTags(),
                 removeOrder(this.index, personToEdit.getOrders()));
+
         model.setPerson(personToEdit, editedPerson);
+
         return new CommandResult(generateSuccessMessage(editedPerson));
     }
 
