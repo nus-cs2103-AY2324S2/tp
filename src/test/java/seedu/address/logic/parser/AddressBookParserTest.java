@@ -17,7 +17,7 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.EditCommand.EditClientDescriptor;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
@@ -66,7 +66,7 @@ public class AddressBookParserTest {
         // Make the tag Set non-empty, so it will be forced to generate a tag flag
         // the tag in the command and so it can update it
         Client client = new PersonBuilder().withTags("Bypass").build();
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(client).build();
+        EditClientDescriptor descriptor = new EditPersonDescriptorBuilder(client).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
