@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
+import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.HashSet;
 import java.util.List;
@@ -13,7 +14,9 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.sortfunctions.SortByName;
 import seedu.address.logic.commands.sortfunctions.SortByTag;
+import seedu.address.logic.commands.sortfunctions.SortCommand;
 import seedu.address.logic.commands.sortfunctions.SortStrategy;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -84,6 +87,24 @@ public class SortStrategyTest {
                                 assertEquals(new Name("Charles"), sorted.get(2).getName())
                 );
             }
+        );
+    }
+
+    @Test
+    public void testSort_failure() {
+        assertAll("Failed", () -> assertAll("Empty", () ->
+                                        assertThrows(ParseException.class, () -> new SortCommand(" ")), () ->
+                                assertThrows(ParseException.class, () -> new SortCommand(""))
+                        ), () -> assertAll("Invalid", () -> assertThrows(ParseException.class, () ->
+                        new SortCommand("name tag")), () -> assertThrows(ParseException.class, () ->
+                        new SortCommand("tag name")), () -> assertThrows(ParseException.class, () ->
+                        new SortCommand("name name")), () -> assertThrows(ParseException.class, () ->
+                        new SortCommand("tag tag")), () -> assertThrows(ParseException.class, () ->
+                        new SortCommand("names")), () -> assertThrows(ParseException.class, () ->
+                        new SortCommand("tags")), () -> assertThrows(ParseException.class, () ->
+                        new SortCommand("taylor")), () -> assertThrows(ParseException.class, () ->
+                        new SortCommand("12tag12"))
+                        )
         );
     }
 }
