@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.showClientAtIndex;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_CLIENT;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_CLIENT;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
@@ -35,9 +35,9 @@ public class ViewCommandTest {
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
-        showClientAtIndex(model, INDEX_FIRST_PERSON);
+        showClientAtIndex(model, INDEX_FIRST_CLIENT);
 
-        Index outOfBoundIndex = INDEX_SECOND_PERSON;
+        Index outOfBoundIndex = INDEX_SECOND_CLIENT;
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getClientList().size());
 
@@ -48,14 +48,14 @@ public class ViewCommandTest {
 
     @Test
     public void equals() {
-        ViewCommand viewFirstCommand = new ViewCommand(INDEX_FIRST_PERSON);
-        ViewCommand viewSecondCommand = new ViewCommand(INDEX_SECOND_PERSON);
+        ViewCommand viewFirstCommand = new ViewCommand(INDEX_FIRST_CLIENT);
+        ViewCommand viewSecondCommand = new ViewCommand(INDEX_SECOND_CLIENT);
 
         // same object -> returns true
         assertTrue(viewFirstCommand.equals(viewFirstCommand));
 
         // same values -> returns true
-        ViewCommand viewFirstCommandCopy = new ViewCommand(INDEX_FIRST_PERSON);
+        ViewCommand viewFirstCommandCopy = new ViewCommand(INDEX_FIRST_CLIENT);
         assertTrue(viewFirstCommand.equals(viewFirstCommandCopy));
 
         // different types -> returns false
