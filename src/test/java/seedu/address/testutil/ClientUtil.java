@@ -16,19 +16,19 @@ import seedu.address.model.tag.Tag;
 /**
  * A utility class for Client.
  */
-public class PersonUtil {
+public class ClientUtil {
 
     /**
      * Returns an add command string for adding the {@code client}.
      */
     public static String getAddCommand(Client client) {
-        return AddCommand.COMMAND_WORD + " " + getPersonDetails(client);
+        return AddCommand.COMMAND_WORD + " " + getClientDetails(client);
     }
 
     /**
      * Returns the part of command string for the given {@code client}'s details.
      */
-    public static String getPersonDetails(Client client) {
+    public static String getClientDetails(Client client) {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + client.getName().fullName + " ");
         sb.append(PREFIX_PHONE + client.getPhone().value + " ");
@@ -43,7 +43,7 @@ public class PersonUtil {
     /**
      * Returns the part of command string for the given {@code EditClientDescriptor}'s details.
      */
-    public static String getEditPersonDescriptorDetails(EditClientDescriptor descriptor) {
+    public static String getEditClientDescriptorDetails(EditClientDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));

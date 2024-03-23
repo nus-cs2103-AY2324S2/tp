@@ -27,8 +27,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.NameContainsKeywordsPredicate;
 import seedu.address.testutil.ClientBuilder;
+import seedu.address.testutil.ClientUtil;
 import seedu.address.testutil.EditClientDescriptorBuilder;
-import seedu.address.testutil.PersonUtil;
 
 public class AddressBookParserTest {
 
@@ -37,7 +37,7 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_add() throws Exception {
         Client client = new ClientBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(client));
+        AddCommand command = (AddCommand) parser.parseCommand(ClientUtil.getAddCommand(client));
         assertEquals(new AddCommand(client), command);
     }
 
@@ -68,7 +68,7 @@ public class AddressBookParserTest {
         Client client = new ClientBuilder().withTags("Bypass").build();
         EditClientDescriptor descriptor = new EditClientDescriptorBuilder(client).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_CLIENT.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
+                + INDEX_FIRST_CLIENT.getOneBased() + " " + ClientUtil.getEditClientDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST_CLIENT, descriptor), command);
     }
 
