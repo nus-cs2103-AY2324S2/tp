@@ -77,7 +77,7 @@ public class EditCommand extends Command {
         }
 
         Client clientToEdit = lastShownList.get(index.getZeroBased());
-        Client editedClient = createEditedPerson(clientToEdit, editClientDescriptor);
+        Client editedClient = createEditedClient(clientToEdit, editClientDescriptor);
 
         if (!clientToEdit.isSameClient(editedClient) && model.hasClient(editedClient)) {
             throw new CommandException(MESSAGE_DUPLICATE_CLIENT);
@@ -92,7 +92,7 @@ public class EditCommand extends Command {
      * Creates and returns a {@code Client} with the details of {@code clientToEdit}
      * edited with {@code editClientDescriptor}.
      */
-    private static Client createEditedPerson(Client clientToEdit, EditClientDescriptor editClientDescriptor) {
+    private static Client createEditedClient(Client clientToEdit, EditClientDescriptor editClientDescriptor) {
         assert clientToEdit != null;
 
         Name updatedName = editClientDescriptor.getName().orElse(clientToEdit.getName());
