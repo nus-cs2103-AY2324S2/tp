@@ -57,9 +57,11 @@ public class AddOrderCommand extends Command {
         Set<Order> orders = personToEdit.getOrders();
         orders = new HashSet<>(orders);
         orders.add(this.order);
+
         Person editedPerson = new Person(
                 personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
                 personToEdit.getAddress(), personToEdit.getTags(), orders);
+
         model.setPerson(personToEdit, editedPerson, this.order);
         model.updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS);
         return new CommandResult(generateSuccessMessage(editedPerson));

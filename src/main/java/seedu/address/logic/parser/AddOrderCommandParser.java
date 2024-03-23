@@ -44,6 +44,7 @@ public class AddOrderCommandParser implements Parser<AddOrderCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddOrderCommand.MESSAGE_USAGE), ive);
         }
+
         OrderId orderId = new OrderId();
         OrderDate orderDate = new OrderDate(DateTimeUtil.getCurrentTime());
         Deadline deadline;
@@ -57,6 +58,7 @@ public class AddOrderCommandParser implements Parser<AddOrderCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddOrderCommand.MESSAGE_USAGE), error);
         }
+
         Status status = new Status("pending");
         Order order = new Order(orderId, orderDate, deadline, amount, remark, status);
         return new AddOrderCommand(index, order);
