@@ -12,7 +12,7 @@ import seedu.address.model.client.Client;
 /**
  * An UI component that displays information of a {@code Client}.
  */
-public class PersonCard extends UiPart<Region> {
+public class ClientCard extends UiPart<Region> {
 
     private static final String FXML = "PersonListCard.fxml";
 
@@ -44,7 +44,7 @@ public class PersonCard extends UiPart<Region> {
     /**
      * Creates a {@code PersonCode} with the given {@code Client} and index to display.
      */
-    public PersonCard(Client client, int displayedIndex) {
+    public ClientCard(Client client, int displayedIndex) {
         super(FXML);
         this.client = client;
         id.setText(displayedIndex + ". ");
