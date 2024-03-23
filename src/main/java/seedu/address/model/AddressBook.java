@@ -79,6 +79,9 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.contains(person);
     }
 
+    /**
+     * Returns true if a schedule with the same identity as {@code schedule} exists in the address book.
+     */
     public boolean hasSchedule(Schedule schedule) {
         requireNonNull(schedule);
         return schedules.contains(schedule);

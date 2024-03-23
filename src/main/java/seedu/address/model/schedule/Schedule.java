@@ -49,6 +49,14 @@ public class Schedule {
         this.personList = new ArrayList<Person>();
     }
 
+    /**
+     * Constructs a {@code Schedule}.
+     *
+     * @param schedName A valid schedule name
+     * @param startTime A valid start time
+     * @param endTime A valid end time
+     * @param personList A valid list of participants
+     */
     public Schedule(String schedName, LocalDateTime startTime,
                     LocalDateTime endTime, ArrayList<Person> personList) {
         requireNonNull(schedName);
@@ -85,7 +93,7 @@ public class Schedule {
         StringBuilder participants = new StringBuilder();
 
         for (int i = 0; i < personList.size(); i++) {
-            participants.append("(" ).append(i + 1).append(") ");
+            participants.append("(").append(i + 1).append(") ");
             participants.append(personList.get(i).getName());
             participants.append(", ");
 

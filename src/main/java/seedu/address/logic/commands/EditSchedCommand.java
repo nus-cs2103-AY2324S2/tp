@@ -1,15 +1,15 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHEDULE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_START;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_END;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_SCHEDULES;
 
 import java.time.LocalDateTime;
 import java.util.*;
 
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.ToStringBuilder;
@@ -18,7 +18,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.*;
 import seedu.address.model.schedule.Schedule;
-import seedu.address.model.tag.Tag;
 
 /**
  * Adds a schedule to the address book.
@@ -40,19 +39,28 @@ public class EditSchedCommand extends Command {
 
     public static final String MESSAGE_EDIT_SCHEDULE_SUCCESS = "Edited Schedule: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_SCHEDULE = "This schedule already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_SCHEDULE =
+            "This schedule already exists in the address book.";
 
     private final Index targetIndex;
 
     private final EditSchedCommand.EditScheduleDescriptor editScheduleDescriptor;
 
 
-    public EditSchedCommand(Index targetIndex, EditSchedCommand.EditScheduleDescriptor editScheduleDescriptor) {
+    /**
+     * Creates EditSchedCommand object
+     *
+     * @param targetIndex index of schedule to edit
+     * @param editScheduleDescriptor to create edited schedule
+     */
+    public EditSchedCommand(Index targetIndex,
+                            EditSchedCommand.EditScheduleDescriptor editScheduleDescriptor) {
         requireNonNull(targetIndex);
         requireNonNull(editScheduleDescriptor);
 
         this.targetIndex = targetIndex;
-        this.editScheduleDescriptor = new EditSchedCommand.EditScheduleDescriptor(editScheduleDescriptor);
+        this.editScheduleDescriptor =
+                new EditSchedCommand.EditScheduleDescriptor(editScheduleDescriptor);
     }
 
     @Override
@@ -74,14 +82,16 @@ public class EditSchedCommand extends Command {
         model.deleteSchedule(scheduleToEdit, scheduleToEdit.getPersonList());
         model.addSchedule(editedSchedule, editedSchedule.getPersonList());
         model.updateFilteredScheduleList(PREDICATE_SHOW_ALL_SCHEDULES);
-        return new CommandResult(String.format(MESSAGE_EDIT_SCHEDULE_SUCCESS, Messages.format(editedSchedule)));
+        return new CommandResult(String.format(MESSAGE_EDIT_SCHEDULE_SUCCESS,
+                Messages.format(editedSchedule)));
     }
 
     /**
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Schedule createEditedSchedule(Model model, Schedule scheduleToEdit, EditSchedCommand.EditScheduleDescriptor editScheduleDescriptor) {
+    private static Schedule createEditedSchedule(Model model, Schedule scheduleToEdit,
+                                                 EditSchedCommand.EditScheduleDescriptor editScheduleDescriptor) {
         assert scheduleToEdit != null;
 
         String updatedSchedName = editScheduleDescriptor.getSchedName().orElse(scheduleToEdit.getSchedName());
