@@ -1,6 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS_GROUP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GITHUB;
@@ -20,6 +22,8 @@ import seedu.address.model.person.Person;
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "ac";
+
+    private static final Logger logger = Logger.getLogger("Foo");
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the TA Toolkit. "
             + "Parameters: "
@@ -49,6 +53,7 @@ public class AddCommand extends Command {
     public AddCommand(Person person) {
         requireNonNull(person);
         toAdd = person;
+        logger.log(Level.INFO, "AddCommand created with Person: " + person.toString());
     }
 
     @Override
@@ -56,10 +61,12 @@ public class AddCommand extends Command {
         requireNonNull(model);
 
         if (model.hasPerson(toAdd)) {
+            logger.log(Level.WARNING, "Person already exists in the model.");
             throw new CommandException(MESSAGE_DUPLICATE_FIELD);
         }
 
         model.addPerson(toAdd);
+        logger.log(Level.INFO, "Person added to the model.");
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
     }
 
