@@ -67,7 +67,7 @@ public interface Model {
      * Adds the given client.
      * {@code client} must not already exist in the address book.
      */
-    void addPerson(Client client);
+    void addClient(Client client);
 
     /**
      * Replaces the given client {@code target} with {@code editedClient}.

@@ -62,7 +62,7 @@ deactivate AddressBookParser
 LogicManager -> AddCommand : execute(m)
 activate AddCommand
 
-AddCommand -> Model : addPerson(toAdd)
+AddCommand -> Model : addClient(toAdd)
 activate Model
 
 Model --> AddCommand

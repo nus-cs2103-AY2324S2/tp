@@ -71,7 +71,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Adds a client to the address book.
      * The client must not already exist in the address book.
      */
-    public void addPerson(Client p) {
+    public void addClient(Client p) {
         clients.add(p);
     }
 

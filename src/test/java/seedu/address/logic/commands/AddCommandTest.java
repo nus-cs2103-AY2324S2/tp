@@ -119,7 +119,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addPerson(Client client) {
+        public void addClient(Client client) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -190,7 +190,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addPerson(Client client) {
+        public void addClient(Client client) {
             requireNonNull(client);
             personsAdded.add(client);
         }

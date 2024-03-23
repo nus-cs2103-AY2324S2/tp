@@ -101,8 +101,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addPerson(Client client) {
-        addressBook.addPerson(client);
+    public void addClient(Client client) {
+        addressBook.addClient(client);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
