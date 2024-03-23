@@ -39,7 +39,7 @@ public class PolicyCommandTest {
 
         PolicyCommand policyCommand = new PolicyCommand(INDEX_FIRST_PERSON, new Policy(editedPerson.getPolicy().value));
 
-        String expectedMessage = String.format(PolicyCommand.MESSAGE_ADD_POLICY_SUCCESS, editedPerson);
+        String expectedMessage = String.format(PolicyCommand.MESSAGE_ADD_POLICY_SUCCESS, Messages.format(editedPerson));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(firstPerson, editedPerson);
@@ -56,7 +56,8 @@ public class PolicyCommandTest {
         PolicyCommand remarkCommand = new PolicyCommand(INDEX_FIRST_PERSON,
                 new Policy(editedPerson.getPolicy().toString()));
 
-        String expectedMessage = String.format(PolicyCommand.MESSAGE_DELETE_POLICY_SUCCESS, editedPerson);
+        String expectedMessage =
+                String.format(PolicyCommand.MESSAGE_DELETE_POLICY_SUCCESS, Messages.format(editedPerson));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(firstPerson, editedPerson);
@@ -75,7 +76,7 @@ public class PolicyCommandTest {
 
         PolicyCommand policyCommand = new PolicyCommand(INDEX_FIRST_PERSON, new Policy(editedPerson.getPolicy().value));
 
-        String expectedMessage = String.format(PolicyCommand.MESSAGE_ADD_POLICY_SUCCESS, editedPerson);
+        String expectedMessage = String.format(PolicyCommand.MESSAGE_ADD_POLICY_SUCCESS, Messages.format(editedPerson));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(firstPerson, editedPerson);
