@@ -12,6 +12,7 @@ import javafx.scene.control.*;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -170,7 +171,6 @@ public class MainWindow extends UiPart<Stage> {
         });
 
         ArrayList<Person> populatedPerson = new ArrayList<>();
-
         // Optional: Add a listener to react to selection changes
         personComboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
@@ -212,12 +212,12 @@ public class MainWindow extends UiPart<Stage> {
     public void updateTableView(ArrayList<Person> selectedPersons) {
         // Clear the table view
         scheduleTable.getItems().clear();
-
         // Loop through each selected person
         for (Person person : selectedPersons) {
             // Extract the schedules from the selected person
             ArrayList<Schedule> schedules = person.getSchedules();
             System.out.print("Got the deets!");
+
             // Add each schedule to the table view
             scheduleTable.getItems().addAll(schedules);
         }

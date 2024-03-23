@@ -68,16 +68,22 @@
               <!-- Add items here -->
             </items>
           </ComboBox>
-          <TableView fx:id="scheduleTable">
+          <TableView fx:id="scheduleTable" VBox.vgrow="ALWAYS">
             <columns>
-              <TableColumn text="Name" prefWidth="100">
-                <!-- Define cell value factory -->
+              <TableColumn text="Name">
+                <cellValueFactory>
+                  <PropertyValueFactory property="schedName"/>
+                </cellValueFactory>
               </TableColumn>
-              <TableColumn text="Start Time" prefWidth="100">
-                <!-- Define cell value factory -->
+              <TableColumn text="Start Time">
+                <cellValueFactory>
+                  <PropertyValueFactory property="startTime"/>
+                </cellValueFactory>
               </TableColumn>
-              <TableColumn text="End Time" prefWidth="100">
-                <!-- Define cell value factory -->
+              <TableColumn text="End Time">
+                <cellValueFactory>
+                  <PropertyValueFactory property="endTime"/>
+                </cellValueFactory>
               </TableColumn>
             </columns>
           </TableView>
