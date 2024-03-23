@@ -40,7 +40,7 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_duplicateClient_throwsCommandException() {
-        Client clientInList = model.getAddressBook().getPersonList().get(0);
+        Client clientInList = model.getAddressBook().getClientList().get(0);
         assertCommandFailure(new AddCommand(clientInList), model,
                 AddCommand.MESSAGE_DUPLICATE_PERSON);
     }

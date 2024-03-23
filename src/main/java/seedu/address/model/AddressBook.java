@@ -54,7 +54,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
-        setClients(newData.getPersonList());
+        setClients(newData.getClientList());
     }
 
     //// client-level operations
@@ -104,7 +104,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
-    public ObservableList<Client> getPersonList() {
+    public ObservableList<Client> getClientList() {
         return clients.asUnmodifiableObservableList();
     }
 
