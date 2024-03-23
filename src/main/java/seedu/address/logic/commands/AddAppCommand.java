@@ -24,14 +24,14 @@ public class AddAppCommand extends Command {
     public static final String COMMAND_WORD = "addApp";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Adds an appointment for the patient identified by the NRIC given \n"
+            + ": Adds an appointment for the patient identified by the NRIC given. \n"
             + "Parameters: "
             + PREFIX_NRIC + "NRIC "
             + PREFIX_DATE + "DATE "
             + PREFIX_START_TIME + "START_TIME "
             + PREFIX_END_TIME + "END_TIME "
             + PREFIX_TAG + "APPOINTMENT_TYPE "
-            + PREFIX_NOTE + "NOTE ...\n"
+            + "[" + PREFIX_NOTE + "NOTE] \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NRIC + "T0123456A "
             + PREFIX_DATE + "2024-02-20 "

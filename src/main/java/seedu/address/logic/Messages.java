@@ -66,7 +66,8 @@ public class Messages {
                 .append(appointment.getTimePeriod())
                 .append("; Type: ")
                 .append(appointment.getAppointmentType())
-                .append("; Notes: ");
+                .append("; Notes: ")
+                .append(appointment.getNote());
         return builder.toString();
     }
 

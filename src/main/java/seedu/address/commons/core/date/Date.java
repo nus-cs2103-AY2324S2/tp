@@ -13,7 +13,7 @@ public class Date implements Comparable<Date> {
 
     private static final String DATE_FORMAT = "yyyy-MM-dd";
     public static final String MESSAGE_CONSTRAINTS =
-            "Date should be in the format " + DATE_FORMAT;
+            "Date should be in the format " + DATE_FORMAT + " and must be a valid date after 1 Jan 1970";
 
     private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern(DATE_FORMAT);
     public final LocalDate value;
@@ -30,11 +30,13 @@ public class Date implements Comparable<Date> {
 
     /**
      * Returns if a given string is a valid date.
+     * Valid date must also be after 1 Jan 1970.
      */
     public static boolean isValidDate(String dateString) {
+        requireNonNull(dateString);
         try {
-            LocalDate.parse(dateString, DATE_FORMATTER);
-            return true;
+            LocalDate validDate = LocalDate.parse(dateString);
+            return validDate.isAfter(LocalDate.of(1970, 1, 1));
         } catch (Exception e) {
             return false;
         }
@@ -44,7 +46,8 @@ public class Date implements Comparable<Date> {
      * Returns if date is before today
      */
     public static boolean isBeforeToday(String date) {
-        return LocalDate.parse(date, DATE_FORMATTER).isBefore(LocalDate.now());
+        checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
+        return LocalDate.parse(date).isBefore(LocalDate.now());
     }
 
     @Override
