@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.ReadCommand;
 
-class ReadCommandParserTest {
+public class ReadCommandParserTest {
     private ReadCommandParser parser = new ReadCommandParser();
     @Test
     public void parse_emptyArg_throwsParseException() {
