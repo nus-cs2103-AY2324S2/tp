@@ -57,14 +57,16 @@ public class BorrowCommand extends Command {
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
 
+        // Checks whether personToEdit has sufficient merit score
+        if (personToEdit.getMeritScore().getMeritScoreInt() <= 0) {
+            throw new CommandException(Messages.MESSAGE_INSUFFICIENT_MERIT_SCORE);
+        }
+
+        // This is for checking, only borrows when the attribute bookTitle is not empty
+        // This shall be deleted soon when we implement multiple books in the BookList
         if (!personToEdit.getBookList().getBook().bookTitle.isEmpty()) {
             throw new CommandException(Messages.MESSAGE_FILLED_BOOKLIST_FIELD);
         }
-
-        // To check whether one has sufficent merit score to borrow books
-        // if (personToEdit.getMeritScore().getMeritScoreInt() <= 0) {
-        //    throw new CommandException(Messages.MESSAGE_MERIT_SCORE_TOO_LOW);
-        // }
 
         Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
                 personToEdit.getAddress(), personToEdit.getMeritScore().decrementScore(),
