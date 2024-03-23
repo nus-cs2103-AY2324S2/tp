@@ -2,7 +2,6 @@ package seedu.hirehub.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.hirehub.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.hirehub.logic.parser.CliSyntax.PREFIX_COMMENT;
 
 import seedu.hirehub.commons.core.index.Index;
 import seedu.hirehub.logic.commands.CommentCommand;
@@ -16,18 +15,21 @@ public class CommentCommandParser implements Parser<CommentCommand> {
     @Override
     public CommentCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
-                PREFIX_COMMENT);
+        String[] parsedIndexComment = args.trim().split(" ", 2);
 
         Index index;
         try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
+            index = ParserUtil.parseIndex(parsedIndexComment[0]);
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     CommentCommand.MESSAGE_USAGE), pe);
         }
 
-        Comment comment = new Comment(argMultimap.getValue(PREFIX_COMMENT).orElse(""));
+        Comment comment = new Comment(
+                parsedIndexComment.length == 1
+                ? ""
+                : parsedIndexComment[1]
+        );
 
         return new CommentCommand(index, comment);
     }

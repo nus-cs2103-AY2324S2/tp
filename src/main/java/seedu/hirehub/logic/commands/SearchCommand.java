@@ -37,8 +37,8 @@ public class SearchCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose attributes match all "
             + "the corresponding specified attributes.\n"
-            + "For phone number, email, country and status, only full words will be matched, while "
-            + "for name, comment and tags, partial words will be matched.\n"
+            + "For phone number, email, country and status, only full words will be matched,\n"
+            + "while for name, comment and tags, partial words will be matched.\n"
             + "Parameters: [" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
