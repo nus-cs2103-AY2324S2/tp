@@ -29,7 +29,6 @@ class JsonAdaptedGroup {
         groupName = source.groupName;
     }
 
-    @JsonValue
     public String getGroupName() {
         return groupName;
     }
