@@ -1,6 +1,5 @@
 package seedu.address.logic.commands.sortfunctions;
 
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 
 /**
@@ -8,7 +7,7 @@ import seedu.address.model.AddressBook;
  */
 public class SortByName implements SortStrategy {
     @Override
-    public void sort(AddressBook addressBook) throws CommandException {
+    public void sort(AddressBook addressBook) {
         addressBook.getPersons().sortListByName();
     }
 
