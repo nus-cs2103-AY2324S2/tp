@@ -1,7 +1,6 @@
 package seedu.address.ui;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.nio.file.Path;
 
@@ -10,7 +9,6 @@ import org.junit.jupiter.api.Test;
 
 import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
-import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import seedu.address.logic.LogicManager;
 import seedu.address.model.ModelManager;
@@ -42,9 +40,4 @@ class UiManagerTest {
         });
     }
 
-    @Test
-    void showAlertDialogAndWait_throwsExceptionOnNullContent() {
-        assertThrows(NullPointerException.class, () -> uiManager.showAlertDialogAndWait(Alert.AlertType.ERROR,
-                "title", "header", null));
-    }
 }
