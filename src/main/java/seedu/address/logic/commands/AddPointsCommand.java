@@ -64,7 +64,7 @@ public class AddPointsCommand extends Command {
 
         Person editedPerson = new Person(personToEdit.getName(),
                 personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), personToEdit.getMembership(),
+                personToEdit.getAddress(), personToEdit.getMembershipPoints(),
                 personToEdit.getTags(), newPoints, personToEdit.getOrders());
 
         model.setPerson(personToEdit, editedPerson);

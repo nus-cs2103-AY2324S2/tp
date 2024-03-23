@@ -60,7 +60,7 @@ public class PersonCard extends UiPart<Region> {
         phone.setText("Contact no.: \t" + person.getPhone().value);
         address.setText("Home Addr.: \t" + person.getAddress().value);
         email.setText("Email Addr.: \t" + person.getEmail().value);
-        membership.setText("Membership Tier: \t" + person.getMembership().value);
+        membership.setText("Membership Tier: \t" + person.getMembershipPoints().toString());
         orders.setText(buildOrderString(person.getOrders()));
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))

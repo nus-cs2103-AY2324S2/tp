@@ -10,9 +10,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.logic.commands.AddMemPointsCommand;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.Membership;
+import seedu.address.model.person.MembershipPoints;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -31,7 +32,7 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
-    private final String membership;
+    private final String membershipPoints;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
     private final String points;
     private final List<JsonAdaptedOrder> orders = new ArrayList<>();
@@ -42,7 +43,7 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
-                             @JsonProperty("membership") String membership,
+                             @JsonProperty("membershipPts") String membershipPts,
                              @JsonProperty("tags") List<JsonAdaptedTag> tags, @JsonProperty("points") String points,
                              @JsonProperty("orders") List<JsonAdaptedOrder> orders) {
 
@@ -50,7 +51,7 @@ class JsonAdaptedPerson {
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.membership = membership;
+        this.membershipPoints = membershipPts;
         if (tags != null) {
             this.tags.addAll(tags);
         }
@@ -68,7 +69,7 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
-        membership = source.getMembership().value;
+        membershipPoints = String.valueOf(source.getMembershipPoints().value);
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -126,11 +127,22 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
-        if (membership == null) {
+        if (membershipPoints == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    Membership.class.getSimpleName()));
+                    MembershipPoints.class.getSimpleName()));
         }
-        final Membership modelMembership = new Membership(membership);
+
+        int parsedMembershipPoints;
+        try {
+            parsedMembershipPoints = Integer.parseInt(membershipPoints);
+        } catch (NumberFormatException e) {
+            throw new IllegalValueException(AddMemPointsCommand.MESSAGE_CONSTRAINTS);
+        }
+
+        if (!MembershipPoints.isValidMembershipPoints(parsedMembershipPoints)) {
+            throw new IllegalValueException(AddMemPointsCommand.MESSAGE_CONSTRAINTS);
+        }
+        final MembershipPoints modelMembershipPoints = new MembershipPoints(parsedMembershipPoints);
 
         if (points == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Points.class.getSimpleName()));
@@ -140,9 +152,10 @@ class JsonAdaptedPerson {
         }
         final Points modelPoints = new Points(points);
 
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
         final ArrayList<Order> modelOrders = new ArrayList<>(personOrders);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelMembership,
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelMembershipPoints,
                 modelTags, modelPoints, modelOrders);
     }
 
