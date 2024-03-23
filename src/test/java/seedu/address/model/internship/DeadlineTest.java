@@ -27,20 +27,20 @@ public class DeadlineTest {
         // invalid deadlines
         assertFalse(Deadline.isValidDeadline("")); // Empty string
         assertFalse(Deadline.isValidDeadline(" ")); // Just whitespace
-        assertFalse(Deadline.isValidDeadline("2024-04-30")); // Invalid format, should contain slashes
+        assertFalse(Deadline.isValidDeadline("23-03-2024")); // Invalid format, should contain slashes
+        assertFalse(Deadline.isValidDeadline("23/Mar/2024")); // Example of a invalid deadline using month name
+        assertFalse(Deadline.isValidDeadline("23/March/2024")); // Example of a invalid deadline using month name
 
         // valid deadlines
-        assertTrue(Deadline.isValidDeadline("2024/04/30")); // Example of a valid deadline format (YYYY/MM/DD)
-        assertTrue(Deadline.isValidDeadline("2024/04/30 23:59:59")); // Example of a valid deadline with time
-        assertTrue(Deadline.isValidDeadline("30/Apr/2024")); // Example of a valid deadline in a different format
+        assertTrue(Deadline.isValidDeadline("23/03/2024")); // Example of a valid deadline format (YYYY/MM/DD)
     }
 
     @Test
     public void equals() {
-        Deadline deadline = new Deadline("2024/04/30");
+        Deadline deadline = new Deadline("23/03/2024");
 
         // same values -> returns true
-        assertTrue(deadline.equals(new Deadline("2024/04/30")));
+        assertTrue(deadline.equals(new Deadline("23/03/2024")));
 
         // same object -> returns true
         assertTrue(deadline.equals(deadline));
@@ -52,6 +52,6 @@ public class DeadlineTest {
         assertFalse(deadline.equals(5.0f));
 
         // different values -> returns false
-        assertFalse(deadline.equals(new Deadline("2024/05/01")));
+        assertFalse(deadline.equals(new Deadline("25/04/2025")));
     }
 }

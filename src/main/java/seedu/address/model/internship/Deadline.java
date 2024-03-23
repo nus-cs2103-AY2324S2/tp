@@ -13,7 +13,7 @@ public class Deadline {
     /*
      * Matches any characters that are not only whitespace
      */
-    public static final String VALIDATION_REGEX = "^(?!\\s*$).+";
+    public static final String VALIDATION_REGEX = "\\d{2}/\\d{2}/\\d{4}";
 
     public final String deadline;
 
