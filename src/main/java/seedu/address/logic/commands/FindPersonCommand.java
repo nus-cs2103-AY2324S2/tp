@@ -1,28 +1,37 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
+
+import java.util.function.Predicate;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.Person;
 
 /**
  * Finds and lists all persons in address book whose name contains any of the argument keywords.
- * Keyword matching is case insensitive.
+ * Keyword matching is case-insensitive.
  */
-public class FindCommand extends Command {
+public class FindPersonCommand extends Command {
 
-    public static final String COMMAND_WORD = "find";
+    public static final String COMMAND_WORD = "findPerson";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names contain any of "
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Finds all persons whose names OR nric start with "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " alice bob charlie";
+            + "Parameters: "
+            + PREFIX_NAME + "NAME(S) OR  "
+            + PREFIX_NRIC + "NRIC \n"
+            + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + "Alex"
+            + " OR " + COMMAND_WORD + " " + PREFIX_NRIC + "T0123456A";
 
-    private final NameContainsKeywordsPredicate predicate;
 
-    public FindCommand(NameContainsKeywordsPredicate predicate) {
+    private final Predicate<Person> predicate;
+
+    public FindPersonCommand(Predicate<Person> predicate) {
         this.predicate = predicate;
     }
 
@@ -41,12 +50,12 @@ public class FindCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof FindCommand)) {
+        if (!(other instanceof FindPersonCommand)) {
             return false;
         }
 
-        FindCommand otherFindCommand = (FindCommand) other;
-        return predicate.equals(otherFindCommand.predicate);
+        FindPersonCommand otherFindPersonCommand = (FindPersonCommand) other;
+        return predicate.equals(otherFindPersonCommand.predicate);
     }
 
     @Override
