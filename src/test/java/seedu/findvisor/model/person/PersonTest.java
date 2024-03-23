@@ -86,6 +86,10 @@ public class PersonTest {
         // different meetings -> returns false
         editedAlice = new PersonBuilder(ALICE).withMeeting(Optional.of(createValidMeeting())).build();
         assertFalse(ALICE.equals(editedAlice));
+
+        // different remarks -> returns false
+        editedAlice = new PersonBuilder(ALICE).withRemark(Remark.createRemark("Wants to be a millionaire")).build();
+        assertFalse(ALICE.equals(editedAlice));
     }
 
     @Test

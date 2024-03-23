@@ -33,7 +33,7 @@ public class Remark {
         if (remark.isBlank()) {
             return Optional.empty();
         }
-        return Optional.of(new Remark(remark.trim()));
+        return Optional.of(new Remark(remark));
     }
 
     @Override

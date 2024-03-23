@@ -9,6 +9,7 @@ import java.util.Optional;
 import java.util.Set;
 
 import seedu.findvisor.commons.core.index.Index;
+import seedu.findvisor.commons.util.ToStringBuilder;
 import seedu.findvisor.logic.Messages;
 import seedu.findvisor.logic.commands.exceptions.CommandException;
 import seedu.findvisor.model.Model;
@@ -105,5 +106,13 @@ public class RemarkCommand extends Command {
 
         RemarkCommand otherRemarkCommand = (RemarkCommand) other;
         return index.equals(otherRemarkCommand.index) && remark.equals(otherRemarkCommand.remark);
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .add("index", index)
+                .add("remark", remark.map(r -> r.value).orElse(""))
+                .toString();
     }
 }
