@@ -13,6 +13,8 @@ public class Payment {
 
     private final double amount;
 
+    public final String value;
+
     /**
      * Constructs a {@code Payment}.
      *
@@ -22,6 +24,7 @@ public class Payment {
         requireNonNull(amount);
         checkArgument(isValidPayment(amount), MESSAGE_CONSTRAINTS);
         this.amount = amount;
+        this.value = String.format("$%.2f", amount);
     }
 
     /**

@@ -7,6 +7,9 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import seedu.address.model.person.Person;
 
 /**
@@ -40,6 +43,8 @@ public class PersonCard extends UiPart<Region> {
     private Label email;
     @FXML
     private FlowPane tags;
+    @FXML
+    private FlowPane paymentPane;
 
     @FXML
     private Label subject;
@@ -63,5 +68,28 @@ public class PersonCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         uniqueId.setText(String.format("#%s", person.getUniqueId()));
+        initializePaymentDisplay(person);
+    }
+
+    private void initializePaymentDisplay(Person person) {
+        // Assuming getAmount() returns a double
+        double paymentAmount = person.getPayment().getAmount();
+
+        // Create a Text node to display the payment amount
+        Text paymentText = new Text(String.format("Payment owed: $%.2f", paymentAmount));
+        if (paymentAmount == 0) {
+            // If the amount is 0, set the fill to green
+            paymentText.setFill(Color.GREEN);
+        } else {
+            // Otherwise, use a default color or another color of your choice
+            paymentText.setFill(Color.BLACK); // or any other default color
+        }
+
+        // Create a TextFlow if you need more complex layouts (optional)
+        TextFlow textFlow = new TextFlow(paymentText);
+
+        // Clear any existing children and add the new content
+        paymentPane.getChildren().clear();
+        paymentPane.getChildren().add(textFlow); // Or just add paymentText if TextFlow is not needed
     }
 }

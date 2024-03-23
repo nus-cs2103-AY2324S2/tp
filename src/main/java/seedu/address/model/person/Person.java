@@ -36,7 +36,7 @@ public class Person {
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Subject subject,
                   Id uniqueId, Payment payment) {
-        requireAllNonNull(name, phone, email, address, tags, subject);
+        requireAllNonNull(name, phone, email, address, tags, subject, payment);
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -58,7 +58,7 @@ public class Person {
         this.address = address;
         this.tags.addAll(tags);
         this.subject = subject;
-        this.payment = new Payment(0);
+        this.payment = new Payment(0.0);
     }
 
     public Name getName() {
@@ -82,6 +82,7 @@ public class Person {
     }
 
     public Payment getPayment() {
+        System.out.println("Person: " + name + " has payment: " + payment.value);
         return payment;
     }
 
@@ -136,13 +137,14 @@ public class Person {
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
                 && subject.equals(otherPerson.subject)
-                && tags.equals(otherPerson.tags);
+                && tags.equals(otherPerson.tags)
+                && payment.equals(otherPerson.payment);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags, uniqueId);
+        return Objects.hash(name, phone, email, address, tags, uniqueId, payment);
     }
 
     @Override
@@ -154,7 +156,6 @@ public class Person {
                 .add("address", address)
                 .add("subject", subject)
                 .add("tags", tags)
-                .add("payment", payment)
                 .toString();
     }
 
