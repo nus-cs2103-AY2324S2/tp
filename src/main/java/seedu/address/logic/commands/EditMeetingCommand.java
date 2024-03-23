@@ -13,7 +13,6 @@ import java.util.Objects;
 import java.util.Optional;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -168,14 +167,6 @@ public class EditMeetingCommand extends Command {
             setDescription(toCopy.description);
             setDateTime(toCopy.dateTime);
             setClient(toCopy.client);
-        }
-
-
-        /**
-         * Returns true if at least one field is edited.
-         */
-        public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(description, dateTime, client);
         }
 
         public void setDescription(String name) {
