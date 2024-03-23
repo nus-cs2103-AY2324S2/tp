@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import seedu.address.model.person.Person;
 
 /**
@@ -41,11 +42,9 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
     @FXML
+    private VBox classes;
+    @FXML
     private Label matric;
-    @FXML
-    private Label reflection;
-    @FXML
-    private Label studio;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -59,10 +58,14 @@ public class PersonCard extends UiPart<Region> {
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
         matric.setText(person.getMatric().toString());
-        reflection.setText(person.getReflection().toString());
-        studio.setText(person.getStudio().toString());
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        if (!person.getReflection().toString().isEmpty()) {
+            classes.getChildren().add(new Label(person.getReflection().toString()));
+        }
+        if (!person.getStudio().toString().isEmpty()) {
+            classes.getChildren().add(new Label(person.getStudio().toString()));
+        }
     }
 }
