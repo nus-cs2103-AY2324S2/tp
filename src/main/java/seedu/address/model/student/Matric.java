@@ -74,7 +74,6 @@ public class Matric {
      * @return String representation of the matriculation number
      */
     public String toString() {
-        return isEmptyMatric(matricNumber) ? "No matriculation number" : matricNumber;
+        return isEmptyMatric(matricNumber) ? "" : matricNumber;
     }
-
 }

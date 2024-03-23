@@ -83,7 +83,7 @@ public class MatricTest {
     @Test
     public void toString_emptyMatric_returnsNoMatriculationNumber() {
         Matric matric = new Matric("");
-        assertEquals("No matriculation number", matric.toString());
+        assertEquals("", matric.toString());
     }
 
     @Test
