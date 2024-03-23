@@ -626,6 +626,8 @@ The `ListCommand` is responsible for listing all patients in the address book.
 causing the UI to only show all patients.
 * The UML sequence diagram below shows the interaction between the Logic and Model components after calling `list`
 command.
+* For each Patient's Events, the Events will be displayed in ascending order by date, then start time if date is equal, 
+then end time if both date and start time is equal
 
 <puml src="diagrams/ListSequenceDiagram.puml" alt="List Sequence Diagram" />
 
