@@ -2,6 +2,11 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -140,4 +145,49 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
+
+    /**
+     * Parses a {@code String date} into a {@code LocalDate}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code date} is invalid.
+     */
+    public static LocalDate parseDate(String date) throws ParseException {
+        requireNonNull(date);
+        String trimmedDate = date.trim();
+        try {
+            return LocalDate.parse(trimmedDate, DateTimeFormatter.ISO_LOCAL_DATE);
+        } catch (DateTimeParseException e) {
+            throw new ParseException("Invalid date format. Use YYYY-MM-DD.");
+        }
+    }
+
+
+    /**
+     * Parses a {@code String time} into a {@code LocalTime}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code time} is invalid.
+     */
+    public static LocalTime parseTime(String time) throws ParseException {
+        requireNonNull(time);
+        String trimmedTime = time.trim();
+        try {
+            return LocalTime.parse(trimmedTime, DateTimeFormatter.ISO_LOCAL_TIME);
+        } catch (DateTimeParseException e) {
+            throw new ParseException("Invalid time format. Use HH:MM.");
+        }
+    }
+
+    public static Duration parseDuration(String durationStr) throws ParseException {
+        requireNonNull(durationStr);
+        try {
+            long minutes = Long.parseLong(durationStr);
+            return Duration.ofMinutes(minutes);
+        } catch (NumberFormatException e) {
+            throw new ParseException("Invalid duration format. Use minutes as an integer.");
+        }
+    }
+
 }

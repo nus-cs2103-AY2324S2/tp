@@ -46,9 +46,8 @@
     -fx-background-color: #1d1d1d;
     -fx-table-cell-border-color: transparent;
     -fx-table-header-border-color: transparent;
-    -fx-padding: 5;
+    -fx-padding: 10;
 }
-
 
 
 .table-view .column-header-background {
@@ -99,6 +98,84 @@
     -fx-background-color: derive(#1d1d1d, 20%);
 }
 
+.split-pane:horizontal .split-pane-divider {
+    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-border-color: transparent transparent transparent #4d4d4d;
+}
+
+.split-pane {
+    -fx-border-radius: 1;
+    -fx-border-width: 1;
+    -fx-background-color: derive(#222831, 20%);
+}
+
+
+/* TableView styling */
+.table-view {
+    -fx-base: #23272A; /* Base color for table */
+    -fx-control-inner-background: #23272A; /* Background color of table rows */
+    -fx-background-color: #23272A;
+    -fx-table-cell-border-color: #2C2F33; /* Border color for cells */
+    -fx-table-header-border-color: #2C2F33; /* Border color for header */
+    -fx-padding: 5;
+    -fx-border-radius: 5; /* Rounded corners for the table */
+    -fx-background-radius: 5;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.75), 5, 0, 0, 1); /* Subtle shadow around table */
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #23272A; /* Background of the header */
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent transparent #4C4F52 transparent; /* Color of the separator line */
+    -fx-border-width: 0 0 1 0;
+}
+
+.table-view .column-header .label {
+    -fx-font-size: 14pt; /* Reduced font size for better table header */
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: #FFFFFF;
+    -fx-alignment: center-left;
+}
+
+.table-view .table-row-cell {
+    -fx-border-color: #2C2F33;
+    -fx-border-width: 0;
+    -fx-background-color: #23272A; /* Background color for table cells */
+}
+
+.table-view .table-row-cell:hover {
+    -fx-background-color: #2C2F33; /* Slightly lighter on hover */
+}
+
+.table-view:focused .table-row-cell:focused:selected, .table-view:focused .table-row-cell:selected {
+    -fx-background-color: #40444B; /* Selection color */
+    -fx-text-fill: #FFFFFF; /* Text color when row is selected */
+}
+
+/* Scroll bar styles for a clean and modern look */
+.scroll-bar {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-background-radius: 3;
+}
+
+.scroll-bar:vertical .thumb, .scroll-bar:horizontal .thumb {
+    -fx-background-color: #4C4F52;
+    -fx-background-radius: 3em;
+}
+
+.scroll-bar:vertical .thumb:hover, .scroll-bar:horizontal .thumb:hover {
+    -fx-background-color: #686D70;
+}
+
+.scroll-bar:vertical .increment-button, .scroll-bar:vertical .decrement-button,
+.scroll-bar:horizontal .increment-button, .scroll-bar:horizontal .decrement-button {
+    -fx-background-color: transparent;
+}
+
 .list-view {
     -fx-background-insets: 0;
     -fx-padding: 0;
@@ -132,6 +209,14 @@
     -fx-text-fill: white;
 }
 
+
+/* Override the default JavaFX behavior for list view cells when clicked/focused */
+.list-cell, .list-cell:filled:focused {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-outline: none;
+}
+
 .cell_big_label {
     -fx-font-family: "Segoe UI Semibold";
     -fx-font-size: 16px;
@@ -142,36 +227,22 @@
     -fx-font-family: "Segoe UI";
     -fx-font-size: 13px;
     -fx-text-fill: #010504;
+    -fx-padding: 3px;
 }
 
-.relationship-label {
-    -fx-text-fill: #FF69B4 !important; /* Hot pink color */
-    -fx-font-style: italic !important;
-    -fx-font-size: 12px;
-    -fx-padding: 3;
-}
-
-
-.policy-label {
-    -fx-font-family: "Segoe UI";
-    -fx-font-size: 13px;
-    -fx-text-fill: #010504;
-    -fx-background-radius: 3px;
-    -fx-padding: 1 3 1 3;
-}
 
 .stack-pane {
-     -fx-background-color: derive(#1d1d1d, 20%);
+     -fx-background-color: derive(#222831, 20%);
 }
 
 .pane-with-border {
-     -fx-background-color: derive(#1d1d1d, 20%);
-     -fx-border-color: derive(#1d1d1d, 10%);
+     -fx-background-color: derive(#222831, 20%);
+     -fx-border-color: #222831;
      -fx-border-top-width: 1px;
 }
 
 .status-bar {
-    -fx-background-color: derive(#1d1d1d, 30%);
+    -fx-background-color: derive(#222831, 30%);
 }
 
 .result-display {
@@ -180,6 +251,16 @@
     -fx-font-family: "Segoe UI Semibold";
     -fx-text-fill: white;
     -fx-opacity: 1;
+}
+
+#resultDisplay {
+
+}
+#resultDisplay .content {
+    -fx-background-color: FBF3D5;
+    -fx-background-radius: 0;
+    -fx-border-width: 3;
+    -fx-border-color: black;
 }
 
 
@@ -195,8 +276,8 @@
 }
 
 .status-bar-with-border {
-    -fx-background-color: derive(#1d1d1d, 30%);
-    -fx-border-color: derive(#1d1d1d, 25%);
+    -fx-background-color: derive(#222831, 30%);
+    -fx-border-color: derive(#222831, 25%);
     -fx-border-width: 1px;
 }
 
@@ -211,11 +292,11 @@
 }
 
 .grid-pane .stack-pane {
-    -fx-background-color: derive(#1d1d1d, 30%);
+    -fx-background-color: derive(#222831, 30%);
 }
 
 .context-menu {
-    -fx-background-color: derive(#1d1d1d, 50%);
+    -fx-background-color: derive(#222831, 50%);
 }
 
 .context-menu .label {
@@ -223,7 +304,7 @@
 }
 
 .menu-bar {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: derive(#222831, 20%);
 }
 
 .menu-bar .label {
@@ -234,7 +315,7 @@
 }
 
 .menu .left-container {
-    -fx-background-color: black;
+    -fx-background-color: #222831;
 }
 
 /*
@@ -352,7 +433,7 @@
     -fx-background-insets: 0;
     -fx-border-color: #383838 #383838 #50AB64 #383838;
     -fx-border-insets: 0;
-    -fx-border-width: 3;
+    -fx-border-width: 2;
     -fx-font-family: "Segoe UI Bold";
     -fx-font-size: 13pt;
     -fx-text-fill: black;
@@ -367,7 +448,7 @@
     -fx-background-color: black;
     -fx-background-radius: 0;
     -fx-border-width: 3;
-    -fx-border-color: black;
+    -fx-border-color: white;
 }
 #tags {
     -fx-hgap: 7;
@@ -383,3 +464,135 @@
     -fx-font-size: 11;
 }
 
+
+
+/* Scroll pane styles */
+.scroll-pane {
+    -fx-background: transparent;
+    -fx-background-color: transparent;
+     -fx-background-radius: 5 !important; /* Rounded corners for the content box */
+}
+
+
+/* Accordion styles for both collapsed and expanded */
+
+
+.accordion .titled-pane .content * {
+    -fx-text-fill: black !important; /* Or any color that is visible against the content background */
+}
+
+
+
+.accordion .titled-pane:expanded {
+    -fx-transition-type: slide-vertical !important;
+    -fx-transition-duration: 2s !important;
+}
+
+.accordion .titled-pane:expanded > .content {
+    -fx-background-color: #D6DAC8; /* Color of the content when expanded */
+     -fx-padding: 10px !important;
+      -fx-text-fill: black !important;
+
+}
+
+/* Apply shadow effect on hover */
+.accordion .titled-pane:hover {
+    -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.8), 10, 0, 0, 0) !important;
+}
+
+
+/* TitledPane styling when collapsed */
+
+
+/* Subtle shadow for the collapsed titled pane for depth */
+
+/* Enhance the overall accordion appearance */
+
+
+.meeting-details-container {
+    -fx-background-radius: 5 !important;
+}
+
+
+
+
+/* Person card styles */
+.person-card {
+    -fx-background-color: #f9f9f9;
+    -fx-background-radius: 5;
+    -fx-padding: 10;
+    -fx-border-width: 0;
+    -fx-border-color: transparent;
+}
+
+
+/* Tags styling */
+.tags-container .label {
+    -fx-background-color: #a3a3a3;
+    -fx-text-fill: white;
+}
+
+
+.relationship-label {
+    -fx-text-fill: #EFBC9B !important; /* A soft pink color */
+    -fx-font-size: 14px !important;
+    -fx-padding: 3 !important;
+    -fx-font-weight: bold !important;
+    -fx-text-transform: uppercase !important; /* Transform text to uppercase */
+}
+
+
+
+.policy-label {
+    -fx-font-family: "Segoe UI" !important;
+    -fx-font-size: 13px !important;
+    -fx-text-fill: #010504 !important;
+    -fx-background-radius: 3px !important;
+    -fx-padding: 1 3 1 3 !important;
+}
+
+
+
+/* Accordion panel styling */
+.accordion {
+    -fx-background-color: #F3CCF3 !important; /* Light grey background */
+    -fx-border-color: #646464; /* Grey border */
+    -fx-border-radius: 10px; /* Rounded corners for the accordion */
+    -fx-background-radius: 10px; /* Rounded corners for the accordion background */
+    -fx-border-width: 2px; /* Width of the border */
+    -fx-padding: 5px; /* Padding inside the accordion */
+
+
+}
+
+/* TitledPane styling when collapsed */
+.accordion .titled-pane:collapsed {
+    -fx-background-color: #e7e7e7; /* A slightly darker grey for collapsed panes */
+    -fx-background-radius: 8px; /* Slightly less rounded corners for collapsed panes */
+}
+
+/* TitledPane styling when expanded */
+.accordion .titled-pane:expanded {
+    -fx-background-color: #F3CCF3 !important; /* White background for expanded pane */
+    -fx-background-radius: 8px; /* Slightly less rounded corners for expanded panes */
+}
+
+/* Content area inside each TitledPane */
+.accordion .titled-pane > .content {
+    -fx-background-color: #F3CCF3 !important; /* White background for content */
+    -fx-background-radius: 8px; /* Rounded corners for content */
+}
+
+
+
+
+.titled-pane > .title
+{
+    -fx-background-color: #EED3D9;
+    -fx-border-color: rgba(0, 60, 136, 0.8);
+    -fx-font-family: 'Lucida Grande',Verdana,Geneva,Lucida,Arial,Helvetica,sans-serif;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: WHITE;
+
+}
