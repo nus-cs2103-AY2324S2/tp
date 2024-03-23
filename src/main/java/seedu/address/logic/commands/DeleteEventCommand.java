@@ -6,6 +6,7 @@ import static seedu.address.logic.commands.EditCommand.createEditedPatient;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PATIENTS;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -31,7 +32,7 @@ public class DeleteEventCommand extends Command {
     public static final String COMMAND_WORD = "deletee";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes a specified important date event for a specific patient identified by index number of patient "
+            + ": Deletes a specified event for a specific patient identified by index number of patient "
             + " in the displayed patient list as well as the event index.\n"
             + "Parameters: INDEX of PATIENT (must be a positive integer matching that of the Patient in the"
             + "`list` command) "
@@ -78,9 +79,12 @@ public class DeleteEventCommand extends Command {
 
         Set<Event> currEventSet = new HashSet<>(patientToDeleteEvent.getEvents());
         List<Event> currEventList = new ArrayList<>(currEventSet);
+        Collections.sort(currEventList);
+
         Event eventToDelete = currEventList.get(targetEventIndex.getZeroBased());
         currEventList.remove(targetEventIndex.getZeroBased());
         Set<Event> newEventSet = new HashSet<>(currEventList);
+
         Logger logger = LogsCenter.getLogger(DeleteEventCommandParser.class);
         logger.log(Level.INFO, "old set: " + currEventSet);
         logger.log(Level.INFO, "new set: " + newEventSet);

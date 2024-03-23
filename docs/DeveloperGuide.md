@@ -626,6 +626,8 @@ The `ListCommand` is responsible for listing all patients in the address book.
 causing the UI to only show all patients.
 * The UML sequence diagram below shows the interaction between the Logic and Model components after calling `list`
 command.
+* For each Patient's Events, the Events will be displayed in ascending order by date, then start time if date is equal, 
+then end time if both date and start time is equal
 
 <puml src="diagrams/ListSequenceDiagram.puml" alt="List Sequence Diagram" />
 
@@ -800,21 +802,21 @@ PatientSync is meticulously crafted for nurses who prioritize the well-being of 
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                                               | So that I can…​                                                                                                                         |
-|----------|--------------------------------------------|------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------|
-| `***`    | Nurse                                      | easily view the user guide                                 | learn more about the product and how to use whenever I need to                                                                          |
-| `***`    | Nurse                                      | add patient's information                                  | add new patients and easily remember their preferences to make a personalized connection                                                |
-| `***`    | Nurse                                      | delete patient's information                               | remove patients who have been discharged                                                                                                |
-| `***`    | Nurse                                      | list all patient's information                             | easily find the details of my patients                                                                                                  |
-| `***`    | Nurse                                      | add important dates for my patients                       | keep track of my patients' appointments and see my overall schedule                                                                     |
-| `***`    | Nurse                                      | delete important dates for my patients                    | delete my patients' appointments if they are canceled                                                                                   |
-| `***`    | Nurse                                      | add tags to my patients                                    | group the patients into categories                                                                                                      |
-| `***`    | Nurse                                      | find patient with a specific tag                            | quickly locate individuals with similar conditions, treatments, or requirements without having to scroll through the entire patient list |
-| `***`    | Nurse                                      | save all previously added patients                         | ensure details of the patient would not be lost                                                                                         |
-| `**`     | Nurse                                      | edit patient's information                                 | have the most updated information of my patients at all times                                                                           |
-| `**`     | Nurse                                      | edit important dates for my patients                      | edit my patients' appointments if they are changed                                                                                      |
-| `**`     | Nurse                                      | edit tags from my patients                                 | edit mistyped tags                                                                                         |
-| `**`     | Nurse                                      | delete tags from my patients                               | delete the tag if it no longer applies                                                                                                  |
+| Priority | As a …​                                    | I want to …​                       | So that I can…​                                                                                                                         |
+|----------|--------------------------------------------|------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------|
+| `***`    | Nurse                                      | easily view the user guide         | learn more about the product and how to use whenever I need to                                                                          |
+| `***`    | Nurse                                      | add patient's information          | add new patients and easily remember their preferences to make a personalized connection                                                |
+| `***`    | Nurse                                      | delete patient's information       | remove patients who have been discharged                                                                                                |
+| `***`    | Nurse                                      | list all patient's information     | easily find the details of my patients                                                                                                  |
+| `***`    | Nurse                                      | add event for my patients          | keep track of my patients' appointments and see my overall schedule                                                                     |
+| `***`    | Nurse                                      | delete event for my patients       | delete my patients' appointments if they are canceled                                                                                   |
+| `***`    | Nurse                                      | add tags to my patients            | group the patients into categories                                                                                                      |
+| `***`    | Nurse                                      | find patient with a specific tag   | quickly locate individuals with similar conditions, treatments, or requirements without having to scroll through the entire patient list |
+| `***`    | Nurse                                      | save all previously added patients | ensure details of the patient would not be lost                                                                                         |
+| `**`     | Nurse                                      | edit patient's information         | have the most updated information of my patients at all times                                                                           |
+| `**`     | Nurse                                      | edit event for my patients          | edit my patients' appointments if they are changed                                                                                      |
+| `**`     | Nurse                                      | edit tags from my patients         | edit mistyped tags                                                                                         |
+| `**`     | Nurse                                      | delete tags from my patients       | delete the tag if it no longer applies                                                                                                  |
 
 
 
@@ -877,14 +879,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-**Use case: Add important date for a patient**
+**Use case: Add event for a patient**
 
 **MSS**
 
 1.  Nurse requests to list patients
 2.  PatientSync shows a list of patients
-3.  Nurse requests to add an important date for a specific patient in the list
-4.  PatientSync adds an important date for the patient
+3.  Nurse requests to add an event for a specific patient in the list
+4.  PatientSync adds an event for the patient
 
     Use case ends.
 
@@ -900,14 +902,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Delete an important date for a patient**
+**Use case: Delete an event for a patient**
 
 **MSS**
 
 1.  Nurse requests to list patients
 2.  PatientSync shows a list of patients
-3.  Nurse requests to delete an important date for a specific patient in the list
-4.  PatientSync deletes an important date the patient
+3.  Nurse requests to delete an event for a specific patient in the list
+4.  PatientSync deletes an event the patient
 
     Use case ends.
 

@@ -70,10 +70,6 @@ public class CommandTestUtil {
     public static final String HOBBY_DESC_BOB = " " + PREFIX_HOBBY + VALID_HOBBY_BOB;
     public static final String TAG_DESC_DIABETES = " " + PREFIX_TAG + VALID_TAG_DIABETES;
     public static final String TAG_DESC_DEPRESSION = " " + PREFIX_TAG + VALID_TAG_DEPRESSION;
-    public static final String IMPORTANT_DATE_DESC_DATE = " " + PREFIX_NAME + VALID_EVENT_NAME + " "
-        + PREFIX_DATETIME + VALID_EVENT_DATE;
-    public static final String IMPORTANT_DATE_DESC_DATETIME = " " + PREFIX_NAME + VALID_EVENT_NAME + " "
-        + PREFIX_DATETIME + VALID_EVENT_DATETIME;
 
     public static final String INVALID_ID_DESC = " " + PREFIX_PID + "10 a"; // only digits are allowed in ID
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James& Lee Kuang"; // '&' not allowed in names
@@ -87,8 +83,6 @@ public class CommandTestUtil {
     public static final String INVALID_HOBBY_DESC = " " + PREFIX_HOBBY;
     // '*' and spacing not allowed in tags
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hearing loss*";
-    public static final String INVALID_IMPORTANT_DATE_DESC = " " + PREFIX_NAME + VALID_EVENT_NAME
-        + PREFIX_DATETIME + "Invalid";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

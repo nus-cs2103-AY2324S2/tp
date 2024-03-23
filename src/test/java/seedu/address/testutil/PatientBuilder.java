@@ -123,7 +123,7 @@ public class PatientBuilder {
      * Sets the Event of the {@code Patient} that we are building,
      * with the name and date/datetime of the event
      *
-     * @param names description of important date
+     * @param names description of events
      * @param events array of string of dates
      * @return return PatientBuilder withImportantDates
      */

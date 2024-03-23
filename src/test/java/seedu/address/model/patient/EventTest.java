@@ -53,6 +53,40 @@ public class EventTest {
         assertTrue(Event.isValidEvent("          01-01-2022, 12:12 - 12:12"));
     }
 
+
+    @Test
+    public void compareTo() {
+        Event earlierEvent = new Event("Family Visit", "01-01-2022, 12:12 - 12:12");
+        Event nullTimeEvent = new Event("Family Visit", "01-01-2022");
+        Event laterDateEvent = new Event("Family Visit", "02-01-2022, 12:12 - 12:12");
+        Event laterMonthEvent = new Event("Family Visit", "01-02-2022, 12:12 - 12:12");
+        Event laterYearEvent = new Event("Family Visit", "01-01-2023, 12:12 - 12:12");
+        Event laterStartTimeEvent = new Event("Family Visit", "01-01-2022, 12:13 - 12:12");
+        Event laterEndTimeEvent = new Event("Family Visit", "01-01-2022, 12:12 - 12:13");
+        Event laterNameEvent = new Event("Z", "01-01-2022, 12:12 - 12:12");
+
+        assertTrue(earlierEvent.compareTo(nullTimeEvent) > 0);
+        assertTrue(nullTimeEvent.compareTo(earlierEvent) < 0);
+
+        assertTrue(earlierEvent.compareTo(laterDateEvent) < 0);
+        assertTrue(laterDateEvent.compareTo(earlierEvent) > 0);
+
+        assertTrue(earlierEvent.compareTo(laterMonthEvent) < 0);
+        assertTrue(laterMonthEvent.compareTo(earlierEvent) > 0);
+
+        assertTrue(earlierEvent.compareTo(laterYearEvent) < 0);
+        assertTrue(laterYearEvent.compareTo(earlierEvent) > 0);
+
+        assertTrue(earlierEvent.compareTo(laterStartTimeEvent) < 0);
+        assertTrue(laterStartTimeEvent.compareTo(earlierEvent) > 0);
+
+        assertTrue(earlierEvent.compareTo(laterEndTimeEvent) < 0);
+        assertTrue(laterEndTimeEvent.compareTo(earlierEvent) > 0);
+
+        assertTrue(earlierEvent.compareTo(laterNameEvent) < 0);
+        assertTrue(laterNameEvent.compareTo(earlierEvent) > 0);
+    }
+
     @Test
     public void equals() {
         Event date = new Event("Family Visit", "01-01-2022, 12:12 - 12:12");
