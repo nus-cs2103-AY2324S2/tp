@@ -31,6 +31,7 @@ import seedu.address.model.person.Diagnosis;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
+import seedu.address.model.person.NricContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Sex;
@@ -83,20 +84,12 @@ public class UpdateCommand extends Command {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
 
-        boolean personNotFound = true;
         Person personToUpdate = null;
-        //TODO: change to new method to get person by nric
-        for (Person p : lastShownList) {
-            if (p.getNric().equals(nric)) {
-                personToUpdate = p;
-                personNotFound = false;
-                break;
-            }
-        }
-
-        if (personNotFound) {
+        if (!model.hasPerson(Person.createPersonWithNric(nric))) {
             throw new CommandException(Messages.MESSAGE_PERSON_NOT_FOUND);
         }
+        personToUpdate = lastShownList.stream().filter(new NricContainsKeywordsPredicate(nric.toString()))
+                .findFirst().get();
 
         Person updatedPerson = createUpdatedPerson(personToUpdate, updatePersonDescriptor);
 
