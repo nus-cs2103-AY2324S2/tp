@@ -79,6 +79,11 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.contains(person);
     }
 
+    public boolean hasSchedule(Schedule schedule) {
+        requireNonNull(schedule);
+        return schedules.contains(schedule);
+    }
+
     /**
      * Adds a person to the address book.
      * The person must not already exist in the address book.

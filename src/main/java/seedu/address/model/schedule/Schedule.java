@@ -49,6 +49,18 @@ public class Schedule {
         this.personList = new ArrayList<Person>();
     }
 
+    public Schedule(String schedName, LocalDateTime startTime,
+                    LocalDateTime endTime, ArrayList<Person> personList) {
+        requireNonNull(schedName);
+        //checkArgument(isValidSchedName(schedName), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidTiming(startTime, endTime));
+        this.schedId = schedIdCounter++;
+        this.schedName = schedName;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.personList = personList;
+    }
+
     public String getSchedName() {
         return schedName;
     }
