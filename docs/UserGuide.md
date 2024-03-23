@@ -153,7 +153,7 @@ Examples:
 
 Adds the specified booking to the address book.
 
-Format: `-n [description] -s [start_time] -e [end_time] …​
+Format: `-n [description] -s [start_time] -e [end_time]`
 
 * Creates a booking with the specified parameters. 
 * Start and end time formats are in yyyy-mm-dd
