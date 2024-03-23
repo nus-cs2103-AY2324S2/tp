@@ -9,22 +9,22 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.Messages;
-import seedu.address.logic.commands.AssignCommand;
+import seedu.address.logic.commands.UnassignCommand;
 
-public class AssignCommandParserTest {
+public class UnassignCommandParserTest {
     private static final String INVALID_TO = " " + PREFIX_TO + "a";
 
     private static final String TO_ONE = " " + PREFIX_TO + "1";
     private static final String TO_TWO = " " + PREFIX_TO + "2";
 
     private static final String MESSAGE_INVALID_FORMAT =
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, AssignCommand.MESSAGE_USAGE);
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnassignCommand.MESSAGE_USAGE);
 
-    private AssignCommandParser parser = new AssignCommandParser();
+    private UnassignCommandParser parser = new UnassignCommandParser();
 
     @Test
     public void parse_validArgs_success() {
-        assertParseSuccess(parser, "1" + TO_ONE, new AssignCommand(INDEX_FIRST, INDEX_FIRST));
+        assertParseSuccess(parser, "1" + TO_ONE, new UnassignCommand(INDEX_FIRST, INDEX_FIRST));
     }
 
     @Test
