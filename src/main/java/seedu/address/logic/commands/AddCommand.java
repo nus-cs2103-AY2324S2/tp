@@ -1,14 +1,15 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS_GROUP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GITHUB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -22,8 +23,6 @@ import seedu.address.model.person.Person;
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "ac";
-
-    private static final Logger logger = Logger.getLogger("Foo");
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the TA Toolkit. "
             + "Parameters: "
@@ -45,6 +44,7 @@ public class AddCommand extends Command {
     public static final String MESSAGE_DUPLICATE_FIELD = "This person contains duplicate fields"
             + "(Email, Phone, Telegram, or Github) with another person.";
 
+    private static final Logger logger = Logger.getLogger("Foo");
     private final Person toAdd;
 
     /**
