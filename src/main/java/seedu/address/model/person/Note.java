@@ -14,7 +14,7 @@ public class Note {
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
-    public final String value;
+    private String value;
 
     /**
      * Constructs an {@code Note}.
@@ -30,6 +30,10 @@ public class Note {
      */
     public static boolean isValidNote(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    public void setValue(String value) {
+        this.value = value;
     }
 
     @Override

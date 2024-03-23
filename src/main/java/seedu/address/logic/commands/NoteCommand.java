@@ -5,6 +5,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.util.List;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.messages.NoteMessages;
 import seedu.address.model.Model;
@@ -45,14 +47,34 @@ public class NoteCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        Person personToEdit = model.findByName(name);
-        if (personToEdit instanceof Maintainer || personToEdit instanceof Staff
-                || personToEdit instanceof Supplier) {
-            throw new CommandException("Person is not of general person class");
+        List<Person> lastShownList = model.getFilteredPersonList();
+
+        Person personToEdit = findByName(lastShownList, name);
+        Person editedPerson;
+
+        if (personToEdit instanceof Maintainer) {
+            editedPerson = new Maintainer(
+                    personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
+                    personToEdit.getAddress(), personToEdit.getTags(), ((Maintainer) personToEdit).getSkill(), (
+                            (Maintainer) personToEdit).getCommission());
+            editedPerson.setNoteContent(note.toString());
+        } else if (personToEdit instanceof Staff) {
+            editedPerson = new Staff(
+                    personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
+                    personToEdit.getAddress(), personToEdit.getTags(), ((Staff) personToEdit).getSalary(), (
+                            (Staff) personToEdit).getEmployment());
+            editedPerson.setNoteContent(note.toString());
+        } else if (personToEdit instanceof Supplier) {
+            editedPerson = new Supplier(
+                    personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
+                    personToEdit.getAddress(), personToEdit.getTags(), ((Supplier) personToEdit).getProduct(), (
+                            (Supplier) personToEdit).getPrice());
+            editedPerson.setNoteContent(note.toString());
+        } else {
+            editedPerson = new Person(
+                    personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
+                    personToEdit.getAddress(), note, personToEdit.getTags());
         }
-        Person editedPerson = new Person(
-                personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), note, personToEdit.getTags());
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
@@ -66,6 +88,24 @@ public class NoteCommand extends Command {
      */
     private String generateSuccessMessage(Person personToEdit) {
         return String.format(NoteMessages.MESSAGE_ADD_NOTE_SUCCESS, personToEdit);
+    }
+
+    /**
+     * Finds a person from a List of persons identified by its name.
+     *
+     * @param personList The list of persons to search from.
+     * @param targetName The name of the person to return.
+     *
+     * @return The person object with name equals to {@code targetName}.
+     * */
+    public Person findByName(List<Person> personList, Name targetName) {
+        for (Person person: personList) {
+            Name name = person.getName();
+            if (name.equals(targetName)) {
+                return person;
+            }
+        }
+        return null;
     }
 
     @Override

@@ -84,6 +84,7 @@ public class TypicalPersons {
             .withTags("owesMoney", "friends")
             .withSkill("train dog")
             .withCommission("$50/hr").build();
+
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street").withNote("meet on wednesday").build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
