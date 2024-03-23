@@ -29,7 +29,7 @@ public class Reflection {
      * @param test String to be tested
      * @return true if the string is a valid reflection
      */
-    static boolean isValidConstructorParam(String test) {
+    public static boolean isValidConstructorParam(String test) {
         return isValidReflection(test) || isEmptyReflection(test);
     }
 

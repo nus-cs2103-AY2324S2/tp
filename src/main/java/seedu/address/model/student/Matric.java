@@ -29,7 +29,7 @@ public class Matric {
      * @param matricNumber String to be tested
      * @return true if the string is a valid matriculation number
      */
-    static boolean isValidConstructorParam(String matricNumber) {
+    public static boolean isValidConstructorParam(String matricNumber) {
         return isValidMatric(matricNumber) || isEmptyMatric(matricNumber);
     }
 
