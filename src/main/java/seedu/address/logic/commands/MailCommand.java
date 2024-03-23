@@ -1,10 +1,10 @@
 package seedu.address.logic.commands;
 
-import seedu.address.model.Model;
-import seedu.address.model.person.Person;
-
 import java.util.List;
 import java.util.stream.Collectors;
+
+import seedu.address.model.Model;
+import seedu.address.model.person.Person;
 
 /**
  * Directs users to the HTML website with email links to all the students in the current list.
@@ -27,8 +27,6 @@ public class MailCommand extends Command {
         // Generate the mailto link
         String mailtoLink = "mailto:" + String.join(";", emailList);
 
-        // Open the default email client with the mailto link
-//        String message = "Opening default email client with pre-filled email addresses.";
         return new CommandResult(mailtoLink);
     }
 }
