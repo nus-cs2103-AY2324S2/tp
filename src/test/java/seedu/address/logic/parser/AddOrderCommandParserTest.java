@@ -9,6 +9,7 @@ import java.time.format.DateTimeFormatter;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.util.DateTimeUtil;
 import seedu.address.logic.commands.orders.AddOrderCommand;
 
 public class AddOrderCommandParserTest {
@@ -26,8 +27,8 @@ public class AddOrderCommandParserTest {
     public void check_sameCurrentTime_success() {
         LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
-        AddOrderCommandParser.getCurrentTime();
-        assertEquals(AddOrderCommandParser.getCurrentTime(), now.format(formatter));
+        DateTimeUtil.getCurrentTime();
+        assertEquals(DateTimeUtil.getCurrentTime(), now.format(formatter));
     }
 
 
