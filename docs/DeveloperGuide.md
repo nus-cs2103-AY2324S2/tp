@@ -155,6 +155,18 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Listing Students
+
+#### Implementation
+
+TutorRec is also able to list all current students in the address book. Note that the command `list` does not modify the address book. Additionally, it does not take in any extra parameters. It can be simply called as follows:
+
+- `list` will show all current students in the address book in the `PersonListPanel`
+
+The example shown below will describe the process for listing all students during the `list` command.
+
+![ListSequenceDiagram](images/ListSequenceDiagram.png)
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
