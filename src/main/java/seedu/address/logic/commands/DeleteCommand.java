@@ -37,7 +37,7 @@ public class DeleteCommand extends Command {
 
         ObservableList<Person> persons = model.getFilteredPersonList();
         if (!model.hasPerson(Person.createPersonWithNric(targetNric))) {
-            throw new CommandException(Messages.MESSAGE_NRIC_NOT_FOUND);
+            throw new CommandException(Messages.MESSAGE_PERSON_NOT_FOUND);
         }
         //Difference between filteredPersons.contains and model.hasPerson: first checks if the instance is in the list,
         //second checks if the NRIC is in the list
