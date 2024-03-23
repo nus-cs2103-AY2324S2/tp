@@ -21,25 +21,12 @@ public class OrderTest {
 
     @Test
     public void constructor_invalidDate_throwsIllegalArgumentException() {
-        assertThrows(IllegalArgumentException.class, () -> new Order(new Date(INVALID_DATE), VALID_REMARK));
-    }
-
-    @Test
-    public void constructor_order_success() {
-        Order order = new Order(new Date(VALID_DATE), VALID_REMARK);
-        assertEquals(VALID_DATE, order.getDate().toString());
-        assertEquals(VALID_REMARK, order.getRemark());
-        assertEquals("Pending", order.getStatus());
-
-        Order orderWithStatus = new Order(new Date(VALID_DATE), VALID_REMARK, "Delivered");
-        assertEquals(VALID_DATE, orderWithStatus.getDate().toString());
-        assertEquals(VALID_REMARK, orderWithStatus.getRemark());
-        assertEquals("Delivered", orderWithStatus.getStatus());
+        assertThrows(IllegalArgumentException.class, () -> new Order(new Date(INVALID_DATE), new Remark(VALID_REMARK)));
     }
 
     @Test
     public void equals() {
-        Order order = new Order(new Date(VALID_DATE), VALID_REMARK);
+        Order order = new Order(new Date(VALID_DATE), new Remark(VALID_REMARK));
 
         // same object -> returns true
         assertTrue(order.equals(order));
@@ -55,7 +42,7 @@ public class OrderTest {
         assertFalse(order.equals(null));
 
         // different date -> returns false
-        Order differentOrder = new Order(order.getDate(), "200 chicken wings");
+        Order differentOrder = new Order(order.getDate(), new Remark("200 chicken wings"));
         assertFalse(order.equals(differentOrder));
 
         // different remark -> returns false
@@ -63,21 +50,21 @@ public class OrderTest {
         assertFalse(order.equals(differentOrder));
 
         // different status -> returns false
-        differentOrder = new Order(order.getDate(), order.getRemark(), "Delivered");
+        differentOrder = new Order(order.getDate(), order.getRemark(), Status.ARRIVED);
         assertFalse(order.equals(differentOrder));
     }
 
     @Test
     public void hashcode() {
-        Order order = new Order(new Date(VALID_DATE), VALID_REMARK);
+        Order order = new Order(new Date(VALID_DATE), new Remark(VALID_REMARK));
 
         // same order -> returns same hashcode
-        assertEquals(order.hashCode(), new Order(new Date(VALID_DATE), VALID_REMARK).hashCode());
+        assertEquals(order.hashCode(), new Order(new Date(VALID_DATE), new Remark(VALID_REMARK)).hashCode());
 
         // different date -> returns different hashcode
-        assertNotEquals(order.hashCode(), new Order(new Date("2022-01-01"), VALID_REMARK).hashCode());
+        assertNotEquals(order.hashCode(), new Order(new Date("2022-01-01"), new Remark(VALID_REMARK)).hashCode());
 
         // different remark -> returns different hashcode
-        assertNotEquals(order.hashCode(), new Order(new Date(VALID_DATE), "20 chicken wings").hashCode());
+        assertNotEquals(order.hashCode(), new Order(new Date(VALID_DATE), new Remark("20 chicken wings")).hashCode());
     }
 }

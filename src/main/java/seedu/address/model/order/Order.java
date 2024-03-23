@@ -7,8 +7,8 @@ import static java.util.Objects.requireNonNull;
  */
 public class Order {
     private final Date arrivalDate;
-    private final String remark;
-    private final String status;
+    private final Remark remark;
+    private final Status status;
 
     /**
      * Constructs a {@code Order}.
@@ -16,13 +16,13 @@ public class Order {
      * @param arrivalDate a valid date of the order.
      * @param remark a valid remark of the order.
      */
-    public Order(Date arrivalDate, String remark) {
+    public Order(Date arrivalDate, Remark remark) {
         requireNonNull(arrivalDate);
         requireNonNull(remark);
 
         this.arrivalDate = arrivalDate;
         this.remark = remark;
-        this.status = "Pending";
+        this.status = Status.PENDING;
     }
 
     /**
@@ -32,7 +32,7 @@ public class Order {
      * @param remark a valid remark of the order.
      * @param status a valid status of the order.
      */
-    public Order(Date arrivalDate, String remark, String status) {
+    public Order(Date arrivalDate, Remark remark, Status status) {
         requireNonNull(arrivalDate);
         requireNonNull(remark);
 
@@ -45,11 +45,11 @@ public class Order {
         return arrivalDate;
     }
 
-    public String getRemark() {
+    public Remark getRemark() {
         return remark;
     }
 
-    public String getStatus() {
+    public Status getStatus() {
         return status;
     }
 

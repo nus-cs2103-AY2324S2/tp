@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.order.Date;
 import seedu.address.model.order.Order;
+import seedu.address.model.order.Remark;
 
 /**
  * Jackson-friendly version of {@link Order}.
@@ -35,8 +36,8 @@ class JsonAdaptedOrder {
      */
     public JsonAdaptedOrder(Order source) {
         this.arrivalDate = source.getDate().toString();
-        this.remark = source.getRemark();
-        this.status = source.getStatus();
+        this.remark = source.getRemark().toString();
+        this.status = source.getStatus().toString();
     }
 
     /**
@@ -58,7 +59,8 @@ class JsonAdaptedOrder {
         }
 
         final Date modelDate = new Date(arrivalDate);
+        final Remark modelRemark = new Remark(remark);
 
-        return new Order(modelDate, remark);
+        return new Order(modelDate, modelRemark);
     }
 }
