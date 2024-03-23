@@ -67,12 +67,20 @@ public class CommandBox extends UiPart<Region> {
     private void handleArrowKey(KeyEvent event) {
         if (event.getCode().getName().equals("Up")) {
             inputHistory.decrementIndex();
-            commandTextField.setText(inputHistory.getCommand());
+            setTextField();
         }
         if (event.getCode().getName().equals("Down")) {
             inputHistory.incrementIndex();
-            commandTextField.setText(inputHistory.getCommand());
+            setTextField();
         }
+    }
+
+    /**
+     * Sets the text field with the command, moves caret to the end of text.
+     */
+    private void setTextField() {
+        commandTextField.setText(inputHistory.getCommand());
+        commandTextField.end();
     }
 
     /**
