@@ -45,8 +45,6 @@ public class AddAppCommand extends Command {
 
     public static final String MESSAGE_DUPLICATE_APPOINTMENT = "This appointment already exists in CLInic";
 
-    public static final String MESSAGE_PATIENT_NOT_FOUND = "Patient of given Nric is not found";
-
     private final Appointment apptToAdd;
 
     /**
@@ -60,10 +58,10 @@ public class AddAppCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        Nric nric = apptToAdd.getNric();
+        Nric targetNric = apptToAdd.getNric();
 
-        if (!model.hasPersonWithNric(nric)) {
-            throw new CommandException(MESSAGE_PATIENT_NOT_FOUND);
+        if (!model.hasPersonWithNric(targetNric)) {
+            throw new CommandException(Messages.MESSAGE_PERSON_NRIC_NOT_FOUND);
         }
 
         if (model.hasAppointment(apptToAdd)) {

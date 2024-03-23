@@ -3,6 +3,8 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.MISSING_NRIC;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalAppointments.ALICE_APPT;
 import static seedu.address.testutil.TypicalAppointments.ALICE_APPT_1;
@@ -14,6 +16,7 @@ import seedu.address.logic.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.person.Nric;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -36,6 +39,18 @@ public class CancelAppCommandTest {
                 Messages.format(ALICE_APPT));
 
         assertCommandSuccess(cancelAppCommand, model, expectedMessage, model);
+    }
+
+    @Test
+    public void execute_nricNotFound_throwsCommandException() {
+        Nric missingNric = new Nric(MISSING_NRIC);
+        CancelAppCommand cancelAppCommand = new CancelAppCommand(
+                missingNric,
+                ALICE_APPT.getDate(),
+                ALICE_APPT.getTimePeriod()
+        );
+
+        assertCommandFailure(cancelAppCommand, model, Messages.MESSAGE_PERSON_NRIC_NOT_FOUND);
     }
 
     @Test

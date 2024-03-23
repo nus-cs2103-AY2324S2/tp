@@ -78,7 +78,7 @@ public class DeleteCommandTest {
         Nric missingNric = new Nric(MISSING_NRIC);
         DeleteCommand deleteCommand = new DeleteCommand(missingNric);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_NRIC);
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_PERSON_NRIC_NOT_FOUND);
     }
 
     @Test
