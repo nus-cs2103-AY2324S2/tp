@@ -57,11 +57,11 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_edit() throws Exception {
         // Changing prefix to "--tags " instead of "t/" breaks this test
-        // PersonBuilder generates an empty Tag Set
+        // ClientBuilder generates an empty Tag Set
         // "--tags " doesn't work with empty tags
-        // So getEditPersonDecriptor returns no `--tags ` flag with an empty set
+        // So getEditClientDecriptor returns no `--tags ` flag with an empty set
         // this breaks the test as the Tag Set is now `null` instead of EmptySet
-        // but then the editPersonDescription will be different from the PersonBuilder one
+        // but then the editClientDescription will be different from the ClientBuilder one
         // hence the build fails
         // Make the tag Set non-empty, so it will be forced to generate a tag flag
         // the tag in the command and so it can update it

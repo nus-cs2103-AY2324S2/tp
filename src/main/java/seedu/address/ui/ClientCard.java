@@ -14,7 +14,7 @@ import seedu.address.model.client.Client;
  */
 public class ClientCard extends UiPart<Region> {
 
-    private static final String FXML = "PersonListCard.fxml";
+    private static final String FXML = "ClientListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -42,7 +42,7 @@ public class ClientCard extends UiPart<Region> {
     private FlowPane tags;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Client} and index to display.
+     * Creates a {@code ClientCode} with the given {@code Client} and index to display.
      */
     public ClientCard(Client client, int displayedIndex) {
         super(FXML);

@@ -10,12 +10,12 @@ UniqueTagList -[hidden]down- UniqueClientList
 UniqueTagList -[hidden]down- UniqueClientList
 
 UniqueTagList -right-> "*" Tag
-UniqueClientList -right-> Person
+UniqueClientList -right-> Client
 
-Person -up-> "*" Tag
+Client -up-> "*" Tag
 
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
+Client *--> Name
+Client *--> Phone
+Client *--> Email
+Client *--> Address
 @enduml

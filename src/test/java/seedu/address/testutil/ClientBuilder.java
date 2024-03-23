@@ -28,7 +28,7 @@ public class ClientBuilder {
     private Set<Tag> tags;
 
     /**
-     * Creates a {@code PersonBuilder} with the default details.
+     * Creates a {@code ClientBuilder} with the default details.
      */
     public ClientBuilder() {
         name = new Name(DEFAULT_NAME);
@@ -39,7 +39,7 @@ public class ClientBuilder {
     }
 
     /**
-     * Initializes the PersonBuilder with the data of {@code clientToCopy}.
+     * Initializes the ClientBuilder with the data of {@code clientToCopy}.
      */
     public ClientBuilder(Client clientToCopy) {
         name = clientToCopy.getName();
