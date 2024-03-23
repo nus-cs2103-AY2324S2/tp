@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
@@ -30,9 +31,24 @@
         <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
       </HBox>
       <FlowPane fx:id="tags" />
-      <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
-      <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
-      <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+         <HBox alignment="CENTER_LEFT" spacing="5">
+            <children>
+               <ImageView fx:id="phoneicon" fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
+            </children>
+         </HBox>
+         <HBox alignment="CENTER_LEFT" spacing="5">
+            <children>
+               <ImageView fx:id="addressicon" fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
+            </children>
+         </HBox>
+         <HBox alignment="CENTER_LEFT" spacing="5">
+            <children>
+               <ImageView fx:id="emailicon" fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+            </children>
+         </HBox>
       <Label fx:id="matric" styleClass="cell_small_label" text="\$matric" />
     </VBox>
       <VBox fx:id="classes" alignment="CENTER_RIGHT" minHeight="105.0" spacing="10.0" GridPane.columnIndex="1">
