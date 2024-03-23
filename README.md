@@ -2,7 +2,7 @@
 
 [![codecov](https://codecov.io/gh/AY2324S2-CS2103T-W11-3/tp/graph/badge.svg?token=F7G5FM6BNJ)](https://codecov.io/gh/AY2324S2-CS2103T-W11-3/tp)
 
-![Ui](docs/images/Ui.png)
+![Ui](docs/images/NewUi.png)
 
 * This is an application for **NUS School of Computing (SoC) students to find contacts within SoC** and **book consultation slots with Professors and Teaching Assistants**.<br>
   Example usages:
