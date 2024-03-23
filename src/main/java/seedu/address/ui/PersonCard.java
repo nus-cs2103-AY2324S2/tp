@@ -1,36 +1,29 @@
 package seedu.address.ui;
 
+import java.awt.*;
+import java.time.Duration;
 import java.util.Comparator;
-
-import javafx.animation.ScaleTransition;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TitledPane;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.util.Duration;
 import seedu.address.model.person.Meeting;
 import seedu.address.model.person.Person;
+import javafx.scene.control.Accordion;
 
 /**
  * An UI component that displays information of a {@code Person}.
  */
 public class PersonCard extends UiPart<Region> {
-
     private static final String FXML = "PersonListCard.fxml";
-
-    /**
-     * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
-     * As a consequence, UI elements' variable names cannot be set to such keywords
-     * or an exception will be thrown by JavaFX during runtime.
-     *
-     * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
-     */
-
     public final Person person;
 
     @FXML
@@ -51,20 +44,11 @@ public class PersonCard extends UiPart<Region> {
     private Label policy;
     @FXML
     private FlowPane tags;
-
-
-
     @FXML
-    private Label meetingDate;
-    @FXML
-    private Label meetingTime;
-    @FXML
-    private Label meetingAgenda;
-    @FXML
-    private Label meetingNotes;
+    private Accordion meetingsAccordion;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code PersonCard} with the given {@code Person} and index to display.
      */
     public PersonCard(Person person, int displayedIndex) {
         super(FXML);
@@ -76,59 +60,104 @@ public class PersonCard extends UiPart<Region> {
         email.setText(person.getEmail().value);
         relationship.setText(person.getRelationship().value);
 
+        policy.setText(person.getPolicy().value.isEmpty() ? "No policy assigned" : "Policy: " + person.getPolicy().value);
+        policy.setStyle(person.getPolicy().value.isEmpty() ? "-fx-background-color: #f54242" : "-fx-background-color: #1fab2f");
 
-        if (!person.getMeetings().isEmpty()) {
-            // Get the first meeting as an example
-            Meeting firstMeeting = person.getMeetings().get(0);
-            meetingDate.setText(firstMeeting.getMeetingDate().toString());
-            meetingTime.setText(firstMeeting.getMeetingTime().toString());
-            meetingAgenda.setText(firstMeeting.getAgenda());
-            meetingNotes.setText(firstMeeting.getNotes());
-        } else {
-            // If there are no meetings, you could hide the labels or set them to a default text
-            meetingDate.setText("");
-            meetingTime.setText("");
-            meetingAgenda.setText("");
-            meetingNotes.setText("");
+        if (!person.isClient()) {
+            policy.setVisible(false);
         }
 
-        if (person.isClient()) {
-            if (person.getPolicy().value.equals("")) {
-                policy.setText("No policy assigned");
-                policy.setStyle("-fx-background-color: #f54242");
-            } else {
-                policy.setText("Policy: " + person.getPolicy().value);
-                policy.setStyle("-fx-background-color: #1fab2f");
-            }
-        } else {
-            policy.setManaged(false);
-        }
+        tags.getChildren().clear();
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
 
-        applyHoverEffect(cardPane);
+        meetingsAccordion.getPanes().clear();
+        if (!person.getMeetings().isEmpty()) {
+            for (Meeting meeting : person.getMeetings()) {
+                TitledPane meetingPane = createMeetingEntry(meeting);
+                meetingsAccordion.getPanes().add(meetingPane);
+            }
+        } else {
+            TitledPane noMeetingsPane = new TitledPane("No meetings scheduled", new Label("No scheduled meetings"));
+            noMeetingsPane.setDisable(true);
+            meetingsAccordion.getPanes().add(noMeetingsPane);
+        }
 
+        applyHoverEffect(cardPane);
     }
 
+    private TitledPane createMeetingEntry(Meeting meeting) {
+        VBox meetingDetails = new VBox(5); // Padding around the VBox content
 
+        // Create styled labels for the headings
+        Label dateHeading = new Label("Date: ");
+        dateHeading.setStyle("-fx-font-weight: bold !important; -fx-text-fill: #2a2a2a !important;");
+        Label dateLabel = new Label(meeting.getMeetingDate().toString());
 
+        Label timeHeading = new Label("Time: ");
+        timeHeading.setStyle("-fx-font-weight: bold !important; -fx-text-fill: #2a2a2a !important;");
+        Label timeLabel = new Label(meeting.getMeetingTime().toString());
+
+        Label agendaHeading = new Label("Agenda: ");
+        agendaHeading.setStyle("-fx-font-weight: bold !important; -fx-text-fill: #2a2a2a !important;");
+        Label agendaLabel = new Label(meeting.getAgenda());
+
+        Label notesHeading = new Label("Notes: ");
+        notesHeading.setStyle("-fx-font-weight: bold !important; -fx-text-fill: #2a2a2a !important;");
+        Label notesLabel = new Label(meeting.getNotes());
+
+        Label durationHeading = new Label("Duration: ");
+        durationHeading.setStyle("-fx-font-weight: bold !important; -fx-text-fill: #2a2a2a !important;");
+        Label durationLabel = new Label(formatDuration(meeting.getDuration()));
+
+        // Combine the headings and content into horizontal layouts
+        HBox dateBox = new HBox(dateHeading, dateLabel);
+        HBox timeBox = new HBox(timeHeading, timeLabel);
+        HBox agendaBox = new HBox(agendaHeading, agendaLabel);
+        HBox notesBox = new HBox(notesHeading, notesLabel);
+        HBox durationBox = new HBox(durationHeading, durationLabel);
+
+        // Add some spacing between the heading and content
+        dateBox.setSpacing(5);
+        timeBox.setSpacing(5);
+        agendaBox.setSpacing(5);
+        notesBox.setSpacing(5);
+        durationBox.setSpacing(5);
+
+        // Add all HBoxes to the VBox
+        meetingDetails.getChildren().addAll(dateBox, timeBox,durationBox, agendaBox, notesBox);
+
+        // Wrap the VBox in a ScrollPane
+        ScrollPane scrollPane = new ScrollPane(meetingDetails);
+        scrollPane.setFitToHeight(true); // Ensures the scroll pane fits the height of VBox
+        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED); // Only show the horizontal bar when needed
+
+        // Create the TitledPane
+        TitledPane meetingPane = new TitledPane("Meeting on " + meeting.getMeetingDate().toString(), scrollPane);
+        meetingPane.setAnimated(true); // Enable animation
+
+        return meetingPane;
+    }
+
+    private String formatDuration(Duration duration) {
+        long seconds = duration.getSeconds();
+        long absSeconds = Math.abs(seconds);
+        String positive = String.format(
+                "%d:%02d:%02d",
+                absSeconds / 3600,
+                (absSeconds % 3600) / 60,
+                absSeconds % 60);
+        return seconds < 0 ? "-" + positive : positive;
+    }
 
     private void applyHoverEffect(Node node) {
         DropShadow hoverShadow = new DropShadow();
-        hoverShadow.setColor(Color.CHARTREUSE);
+        hoverShadow.setColor(Color.PLUM);
         hoverShadow.setRadius(30);
         hoverShadow.setSpread(0.5);
 
-        node.addEventHandler(MouseEvent.MOUSE_ENTERED, e -> {
-            node.setEffect(hoverShadow);
-        });
-
-        node.addEventHandler(MouseEvent.MOUSE_EXITED, e -> {
-            node.setEffect(null);
-        });
+        node.addEventHandler(MouseEvent.MOUSE_ENTERED, e -> node.setEffect(hoverShadow));
+        node.addEventHandler(MouseEvent.MOUSE_EXITED, e -> node.setEffect(null));
     }
-
-
-
 }
