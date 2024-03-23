@@ -1,0 +1,15 @@
+@startuml
+start
+:User executes find command;
+
+if () then ([command is in invalid format])
+    :Show invalid command format as error message;
+
+
+else ([else])
+    : Displays the students that match the search criteria;
+endif
+stop
+
+
+@enduml
