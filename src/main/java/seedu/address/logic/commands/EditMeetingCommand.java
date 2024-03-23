@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -21,7 +20,7 @@ import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing meeting in the address book.
  */
 public class EditMeetingCommand extends Command {
 
@@ -53,15 +52,15 @@ public class EditMeetingCommand extends Command {
     /**
      * @param clientIndex of the person in the filtered person list to edit
      * @param meetingIndex of the meeting in the filtered meeting list to edit
-     * @param editPersonDescriptor details to edit the person with
+     * @param editMeetingDescriptor details to edit the meeting with
      */
-    public EditMeetingCommand(Index clientIndex, EditMeetingDescriptor editPersonDescriptor, Index meetingIndex) {
+    public EditMeetingCommand(Index clientIndex, EditMeetingDescriptor editMeetingDescriptor, Index meetingIndex) {
         requireNonNull(meetingIndex);
-        requireNonNull(editPersonDescriptor);
+        requireNonNull(editMeetingDescriptor);
         requireNonNull(clientIndex);
 
         this.meetingIndex = meetingIndex;
-        this.editMeetingDescriptor = new EditMeetingDescriptor(editPersonDescriptor);
+        this.editMeetingDescriptor = new EditMeetingDescriptor(editMeetingDescriptor);
         this.clientIndex = clientIndex;
 
     }
@@ -100,8 +99,8 @@ public class EditMeetingCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * Creates and returns a {@code Meeting} with the details of {@code meetingToEdit}
+     * edited with {@code editMeetingDescriptor}.
      */
     private static Meeting createEditedMeeting(Meeting meetingToEdit, EditMeetingDescriptor editMeetingDescriptor) {
         assert meetingToEdit != null;
@@ -109,7 +108,6 @@ public class EditMeetingCommand extends Command {
         String updatedName = editMeetingDescriptor.getDescription().orElse(meetingToEdit.getDescription());
         LocalDateTime updatedDateTime = editMeetingDescriptor.getDateTime().orElse(meetingToEdit.getDateTime());
         Person updatedClient = editMeetingDescriptor.getClient().orElse(meetingToEdit.getClient());
-        ArrayList<Meeting> meetings = new ArrayList<Meeting>();
         return new Meeting(updatedName, updatedDateTime, updatedClient);
     }
 
@@ -148,8 +146,8 @@ public class EditMeetingCommand extends Command {
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the meeting with. Each non-empty field value will replace the
+     * corresponding field value of the meeting.
      */
     public static class EditMeetingDescriptor {
         private String description;
@@ -193,10 +191,6 @@ public class EditMeetingCommand extends Command {
             return Optional.ofNullable(client);
         }
 
-        /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
-         */
         @Override
         public boolean equals(Object other) {
             if (other == this) {
