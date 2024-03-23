@@ -17,10 +17,6 @@ public class CommentCommandParser implements Parser<CommentCommand> {
         requireNonNull(args);
         String[] parsedIndexComment = args.trim().split(" ", 2);
 
-        if (parsedIndexComment.length < 2 || parsedIndexComment[1].trim().equals("")) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CommentCommand.MESSAGE_USAGE));
-        }
-
         Index index;
         try {
             index = ParserUtil.parseIndex(parsedIndexComment[0]);
@@ -29,7 +25,11 @@ public class CommentCommandParser implements Parser<CommentCommand> {
                     CommentCommand.MESSAGE_USAGE), pe);
         }
 
-        Comment comment = new Comment(parsedIndexComment[1]);
+        Comment comment = new Comment(
+                parsedIndexComment.length == 1
+                ? ""
+                : parsedIndexComment[1]
+        );
 
         return new CommentCommand(index, comment);
     }
