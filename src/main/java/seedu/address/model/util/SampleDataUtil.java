@@ -55,10 +55,20 @@ public class SampleDataUtil {
         };
     }
 
+    public static Group[] getSampleGroups() {
+        return new Group[] {
+            new Group("TUT04"),
+            new Group("LAB05")
+        };
+    }
+
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
         for (Person samplePerson : getSamplePersons()) {
             sampleAb.addPerson(samplePerson);
+        }
+        for (Group sampleGroup : getSampleGroups()) {
+            sampleAb.addGroup(sampleGroup);
         }
         return sampleAb;
     }
