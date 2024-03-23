@@ -184,10 +184,6 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### **General Command Implementation**
-
-
-
 ### **Find feature**
 
 The `find` command lets users search for persons by substring matching. The user can select any parameter to search under: `NAME`, `EMAIL`, `TAG`, `MATRIC`, `REFLECTION`, `STUDIO`, and `TAGS` can all be used. E.g. to search for all persons under studio `S2`, the user can use `find s/s2`.
