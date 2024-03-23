@@ -60,21 +60,26 @@ public class PersonCard extends UiPart<Region> {
         String medicalInformationText = "";
         if (!mi.isEmpty()) {
             medicalInformationText = mi.toString();
-            allergy.setText("Allergic to: ");
-        } else {
-            allergy.setText("");
         }
+
         id.setText(displayedIndex + ". ");
         name.setText(person.getIdentificationInformation().getName().fullName);
         nric.setText(person.getIdentificationInformation().getNric().nric);
         contactInformation.setText(contactInformationText);
         medicalInformation.setText(medicalInformationText);
 
-
-        if (!mi.isEmpty() && mi.getAllergyTag() != null) {
+        // Set allergy label visibility based on medical information and allergy tags
+        if (!mi.isEmpty() && !mi.getAllergyTag().isEmpty()) {
+            allergy.setVisible(true);
+            allergy.setText("Allergic to: ");
             mi.getAllergyTag().stream()
-                    .sorted(Comparator.comparing(tag -> tag.tagName))
-                    .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+                .sorted(Comparator.comparing(tag -> tag.tagName))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        } else {
+            allergy.setVisible(false);
+            allergy.setText("");
         }
     }
 }
+
+
