@@ -63,7 +63,6 @@ public class MainWindow extends UiPart<Stage> {
      */
     public MainWindow(Stage primaryStage, Logic logic) {
         super(FXML, primaryStage);
-        System.out.println("yay");
         // Set dependencies
         this.primaryStage = primaryStage;
         this.logic = logic;

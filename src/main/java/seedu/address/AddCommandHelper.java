@@ -40,6 +40,9 @@ public class AddCommandHelper {
         this.tags = new HashSet<>();
     }
 
+    public String getInitialMessage() {
+        return "Hello, please enter the name of the person";
+    }
 
     /**
      * Takes the input of the user and provides a reply based on the input

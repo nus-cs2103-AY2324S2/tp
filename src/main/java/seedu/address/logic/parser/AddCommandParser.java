@@ -7,6 +7,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.Collection;
+import java.util.NoSuchElementException;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -39,15 +41,29 @@ public class AddCommandParser implements Parser<AddCommand> {
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
-        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Person person = new Person(name, phone, email, address, tagList);
+        try {
+            String nameToAdd = argMultimap.getValue(PREFIX_NAME).orElseThrow(NoSuchElementException::new);
+            Name name = ParserUtil.parseName(nameToAdd);
 
-        return new AddCommand(person);
+            String phoneToAdd = argMultimap.getValue(PREFIX_PHONE).orElseThrow(NoSuchElementException::new);
+            Phone phone = ParserUtil.parsePhone(phoneToAdd);
+
+            String emailToAdd = argMultimap.getValue(PREFIX_EMAIL).orElseThrow(NoSuchElementException::new);
+            Email email = ParserUtil.parseEmail(emailToAdd);
+
+            String addressToAdd = argMultimap.getValue(PREFIX_ADDRESS).orElseThrow(NoSuchElementException::new);
+            Address address = ParserUtil.parseAddress(addressToAdd);
+
+            Collection<String> tagToAdd = argMultimap.getAllValues(PREFIX_TAG);
+            Set<Tag> tagList = ParserUtil.parseTags(tagToAdd);
+
+            Person person = new Person(name, phone, email, address, tagList);
+            return new AddCommand(person);
+
+        } catch (NoSuchElementException err) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+        }
     }
 
     /**
