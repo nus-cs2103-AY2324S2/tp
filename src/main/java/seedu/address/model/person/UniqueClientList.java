@@ -15,14 +15,14 @@ import seedu.address.model.person.exceptions.PersonNotFoundException;
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
  * A client is considered unique by comparing using {@code Client#isSamePerson(Client)}. As such, adding and updating of
  * clients uses Client#isSamePerson(Client) for equality so as to ensure that the client being added or updated is
- * unique in terms of identity in the UniquePersonList. However, the removal of a client uses Client#equals(Object) so
+ * unique in terms of identity in the UniqueClientList. However, the removal of a client uses Client#equals(Object) so
  * as to ensure that the client with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *
  * @see Client#isSamePerson(Client)
  */
-public class UniquePersonList implements Iterable<Client> {
+public class UniqueClientList implements Iterable<Client> {
 
     private final ObservableList<Client> internalList = FXCollections.observableArrayList();
     private final ObservableList<Client> internalUnmodifiableList =
@@ -79,7 +79,7 @@ public class UniquePersonList implements Iterable<Client> {
         }
     }
 
-    public void setPersons(UniquePersonList replacement) {
+    public void setPersons(UniqueClientList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
@@ -116,11 +116,11 @@ public class UniquePersonList implements Iterable<Client> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof UniquePersonList)) {
+        if (!(other instanceof UniqueClientList)) {
             return false;
         }
 
-        UniquePersonList otherUniquePersonList = (UniquePersonList) other;
+        UniqueClientList otherUniquePersonList = (UniqueClientList) other;
         return internalList.equals(otherUniquePersonList.internalList);
     }
 
