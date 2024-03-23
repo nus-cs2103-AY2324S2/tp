@@ -20,9 +20,11 @@ import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
+import seedu.address.model.ImmuniMate;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.Nric;
+import seedu.address.model.person.NricContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.UpdatePersonDescriptorBuilder;
 
@@ -50,8 +52,8 @@ public class CommandTestUtil {
     public static final String VALID_COUNTRY_BOB = "Indonesia";
     public static final String VALID_ALLERGIES_AMY = "peanuts";
     public static final String VALID_ALLERGIES_BOB = "pollen";
-    public static final String[] VALID_BLOODTYPE_AMY = new String[]{"B", "POSITIVE"};
-    public static final String[] VALID_BLOODTYPE_BOB = new String[]{"B", "POSITIVE"};
+    public static final String VALID_BLOODTYPE_AMY = "B+";
+    public static final String VALID_BLOODTYPE_BOB = "B+";
     public static final String VALID_CONDITION_AMY = "diabetes";
     public static final String VALID_CONDITION_BOB = "high blood pressure";
     public static final String VALID_DATEOFADMISSION_AMY = "2023-01-01";
@@ -89,6 +91,7 @@ public class CommandTestUtil {
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String NON_EXISTENT_NRIC = "S1234576A";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -140,11 +143,11 @@ public class CommandTestUtil {
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
+        ImmuniMate expectedAddressBook = new ImmuniMate(actualModel.getImmuniMate());
         List<Person> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedAddressBook, actualModel.getAddressBook());
+        assertEquals(expectedAddressBook, actualModel.getImmuniMate());
         assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
     }
     /**
@@ -157,6 +160,19 @@ public class CommandTestUtil {
         Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
         final String[] splitName = person.getName().toString().split("\\s+");
         model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+
+        assertEquals(1, model.getFilteredPersonList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the person at the given {@code Nric} in the
+     * {@code model}'s system.
+     */
+    public static void showPersonWithNric(Model model, Nric nric) {
+        assertTrue(model.hasPerson(Person.createPersonWithNric(nric)));
+
+        Person person = model.getFilteredPersonList().filtered(p -> p.getNric().equals(nric)).get(0);
+        model.updateFilteredPersonList(new NricContainsKeywordsPredicate(nric.toString()));
 
         assertEquals(1, model.getFilteredPersonList().size());
     }

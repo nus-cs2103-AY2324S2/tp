@@ -20,6 +20,9 @@ public class DateOfBirth {
      * @param dateOfBirth A valid date of birth.
      */
     public DateOfBirth(String dateOfBirth) {
+        if (!isValidDateOfBirth(dateOfBirth)) {
+            throw new IllegalArgumentException(MESSAGE_CONSTRAINTS);
+        }
         this.dateOfBirth = LocalDate.parse(dateOfBirth);
     }
 

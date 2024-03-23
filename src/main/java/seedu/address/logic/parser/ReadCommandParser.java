@@ -9,7 +9,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 /**
  * Parses input arguments and creates a new ReadCommand object
  */
-public class ReadCommandParser {
+public class ReadCommandParser implements Parser<ReadCommand> {
     /**
      * Parses the given {@code String} of argument in the context of the ReadCommand
      * and returns an ReadCommand object for execution.
@@ -26,3 +26,4 @@ public class ReadCommandParser {
         return new ReadCommand(ParserUtil.parseNric(argMultimap.getValue(PREFIX_NRIC).get()));
     }
 }
+
