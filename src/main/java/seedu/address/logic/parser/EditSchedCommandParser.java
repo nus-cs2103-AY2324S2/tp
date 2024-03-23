@@ -2,12 +2,12 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHEDULE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_START;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_END;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SPECIFIC_PARTICIPANTS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADD_PARTICIPANTS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_END;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMOVE_PARTICIPANTS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHEDULE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SPECIFIC_PARTICIPANTS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_START;
 
 import java.time.LocalDateTime;
 
@@ -43,7 +43,7 @@ public class EditSchedCommandParser implements Parser<EditSchedCommand> {
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_SCHEDULE, PREFIX_START,
-                PREFIX_END, PREFIX_ADD_PARTICIPANTS, PREFIX_REMOVE_PARTICIPANTS,PREFIX_SPECIFIC_PARTICIPANTS);
+                PREFIX_END, PREFIX_ADD_PARTICIPANTS, PREFIX_REMOVE_PARTICIPANTS, PREFIX_SPECIFIC_PARTICIPANTS);
 
         if (argMultimap.getValue(PREFIX_SPECIFIC_PARTICIPANTS).isPresent()
                 && (argMultimap.getValue(PREFIX_ADD_PARTICIPANTS).isPresent()

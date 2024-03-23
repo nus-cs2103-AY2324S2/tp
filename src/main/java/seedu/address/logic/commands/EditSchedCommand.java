@@ -12,8 +12,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-
-import javafx.collections.ObservableList;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.ToStringBuilder;
@@ -21,7 +19,6 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.schedule.Schedule;
 
 /**
@@ -115,13 +112,13 @@ public class EditSchedCommand extends Command {
 
         ArrayList<Person> originalParticipantsList = scheduleToEdit.getPersonList();
         updatedPersonList = scheduleToEdit.getPersonList();
-        if (editScheduleDescriptor.getToRemoveParticipantList().isPresent()){
+        if (editScheduleDescriptor.getToRemoveParticipantList().isPresent()) {
             for (Index index: editScheduleDescriptor.getToRemoveParticipantList().get()) {
                 Person p = originalParticipantsList.get(index.getZeroBased());
                 updatedPersonList.remove(p);
             }
         }
-        if (editScheduleDescriptor.getToAddParticipantList().isPresent()){
+        if (editScheduleDescriptor.getToAddParticipantList().isPresent()) {
             for (Index index: editScheduleDescriptor.getToAddParticipantList().get()) {
                 Person p = model.getAddressBook().getPersonList().get(index.getZeroBased());
                 updatedPersonList.add(p);
@@ -248,7 +245,8 @@ public class EditSchedCommand extends Command {
                 return false;
             }
 
-            EditSchedCommand.EditScheduleDescriptor otherEditPersonDescriptor = (EditSchedCommand.EditScheduleDescriptor) other;
+            EditSchedCommand.EditScheduleDescriptor otherEditPersonDescriptor =
+                    (EditSchedCommand.EditScheduleDescriptor) other;
             return Objects.equals(schedName, otherEditPersonDescriptor.schedName)
                     && Objects.equals(startTime, otherEditPersonDescriptor.startTime)
                     && Objects.equals(endTime, otherEditPersonDescriptor.endTime)
