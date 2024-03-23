@@ -6,12 +6,15 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Objects;
 
+
 public class Meeting {
     private LocalDate meetingDate;
     private LocalTime meetingTime;
+
+    private LocalDateTime startDateTime; // New field
     private Duration duration;
     private String agenda;
-    private String notes;
+    private String notes; //make it optional
 
     public Meeting(LocalDate meetingDate, LocalTime meetingTime, Duration duration, String agenda, String notes) {
         this.meetingDate = meetingDate;
@@ -19,6 +22,7 @@ public class Meeting {
         this.duration = duration;
         this.agenda = agenda;
         this.notes = notes;
+        this.startDateTime = LocalDateTime.of(meetingDate, meetingTime); // Initialize new field
     }
 
 
@@ -60,6 +64,10 @@ public class Meeting {
 
     public void setNotes(String notes) {
         this.notes = notes;
+    }
+
+    public LocalDateTime getStartDateTime() {
+        return startDateTime;
     }
 
     @Override
