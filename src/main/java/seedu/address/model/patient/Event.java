@@ -133,14 +133,13 @@ public class Event implements Comparable<Event> {
             if (!this.endTime.equals(other.endTime)) {
                 return this.endTime.compareTo(other.endTime);
             }
-        } else {
-            // If only 1 event has time information, that event should be sorted behind
-            if (this.startTime != null && other.startTime == null) {
-                return 1;
-            }
-            if (this.startTime == null && other.startTime != null) {
-                return -1;
-            }
+        }
+        // If only 1 event has time information, that event should be sorted behind
+        if (this.startTime != null && other.startTime == null) {
+            return 1;
+        }
+        if (this.startTime == null && other.startTime != null) {
+            return -1;
         }
 
         // If all date / datetime information is the same, sort by name
