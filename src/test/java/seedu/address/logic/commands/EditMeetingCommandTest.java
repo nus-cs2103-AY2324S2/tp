@@ -35,6 +35,34 @@ public class EditMeetingCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
+    public void getClientIndex_success() {
+        Meeting editedMeeting = new MeetingBuilder().withClient(JAMAL).withDateTime(VALID_DATETIME)
+                .withDescription(VALID_DESCRIPTION).buildMeeting();
+        model.addPerson(JAMAL_WITH_MEETING);
+        model.addMeeting(JAMAL_WITH_MEETING.getMeetings().get(0));
+        int clientIndex = model.getAddressBook().getPersonList().indexOf(JAMAL_WITH_MEETING);
+        Index targetClientIndex = Index.fromZeroBased(clientIndex);
+        EditMeetingCommand.EditMeetingDescriptor descriptor = new EditMeetingDescriptorBuilder(editedMeeting).build();
+        EditMeetingCommand editMeetingCommand = new EditMeetingCommand(targetClientIndex, descriptor,
+                INDEX_FIRST_MEETING);
+        assertEquals(editMeetingCommand.getClientIndex(), Index.fromOneBased(8));
+    }
+
+    @Test
+    public void getMeetingIndex_success() {
+        Meeting editedMeeting = new MeetingBuilder().withClient(JAMAL).withDateTime(VALID_DATETIME)
+                .withDescription(VALID_DESCRIPTION).buildMeeting();
+        model.addPerson(JAMAL_WITH_MEETING);
+        model.addMeeting(JAMAL_WITH_MEETING.getMeetings().get(0));
+        int clientIndex = model.getAddressBook().getPersonList().indexOf(JAMAL_WITH_MEETING);
+        Index targetClientIndex = Index.fromZeroBased(clientIndex);
+        EditMeetingCommand.EditMeetingDescriptor descriptor = new EditMeetingDescriptorBuilder(editedMeeting).build();
+        EditMeetingCommand editMeetingCommand = new EditMeetingCommand(targetClientIndex, descriptor,
+                INDEX_FIRST_MEETING);
+        assertEquals(editMeetingCommand.getMeetingIndex(), Index.fromOneBased(1));
+    }
+
+    @Test
     public void execute_validClientIndexAndMeetingIndex_success() {
         Meeting editedMeeting = new MeetingBuilder().withClient(JAMAL).withDateTime(VALID_DATETIME)
                 .withDescription(VALID_DESCRIPTION).buildMeeting();

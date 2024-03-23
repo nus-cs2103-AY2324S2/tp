@@ -171,11 +171,4 @@ public class Meeting {
         return this.client.isSamePerson(client);
     }
 
-
-    public void setMeeting(Meeting meetingToEdit, Meeting editedMeeting) {
-        requireAllNonNull(meetingToEdit, editedMeeting);
-    }
-
-
-
 }
