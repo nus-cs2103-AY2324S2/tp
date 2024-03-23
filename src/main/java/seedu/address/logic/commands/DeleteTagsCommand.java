@@ -9,8 +9,11 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PATIENTS;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javafx.util.Pair;
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -32,13 +35,14 @@ public class DeleteTagsCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_TAG + "[TAG]+ \n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_TAG + "fallRisk";
+            + PREFIX_TAG + "fall risk";
 
     public static final String MESSAGE_DELETE_TAG_SUCCESS = "Deleted the tag: %2$s for Patient: %1$s"
             + " successfully";
     public static final String MESSAGE_INVALID_TAG = "The tag: %2$s does not exists"
         + " for Patient: %1$s";
 
+    private static final Logger logger = LogsCenter.getLogger(DeleteTagsCommand.class);
     private final Index index;
     private final Set<Tag> tagsToDelete;
     private final EditPatientDescriptor editPatientDescriptor;
@@ -70,6 +74,7 @@ public class DeleteTagsCommand extends Command {
         List<Patient> lastShownList = model.getFilteredPatientList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
+            logger.log(Level.WARNING, "Invalid patient index for Delete Tags Command: " + index);
             throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
         }
 
@@ -89,6 +94,7 @@ public class DeleteTagsCommand extends Command {
         model.setPatient(patientToEdit, editedPatient);
         model.updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
 
+        logger.log(Level.INFO, "Successfully called delete tags command from patient: " + editedPatient.getName());
         return new CommandResult(commandResultString);
     }
 
@@ -99,10 +105,9 @@ public class DeleteTagsCommand extends Command {
      * @param tagSet        The current set of tags for the patient.
      * @param toDeleteTags  The Tags to be deleted.
      * @return A Pair containing the updated tag set and a string describing the outcome of the deletion.
-     * @throws CommandException if tag does not exist.
      */
     public Pair<Set<Tag>, String> deleteTagsFromPatient(Patient patient, Set<Tag> tagSet,
-                                                       Set<Tag> toDeleteTags) throws CommandException {
+                                                       Set<Tag> toDeleteTags) {
         requireAllNonNull(tagSet, toDeleteTags);
 
         StringBuilder commandOutcome = new StringBuilder();

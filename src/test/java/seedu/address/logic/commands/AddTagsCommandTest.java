@@ -1,12 +1,14 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_DEPRESSION;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_DEPRESSION_OUTPUT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_DIABETES;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_DIABETES_OUTPUT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PATIENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PATIENT;
 import static seedu.address.testutil.TypicalPatients.getTypicalAddressBook;
@@ -39,13 +41,14 @@ public class AddTagsCommandTest {
         try {
             CommandResult commandResult = addTagsCommand.execute(model);
             Patient editedPatient = model.getFilteredPatientList().get(index.getZeroBased());
-            String expectedMessage = String.format(AddTagsCommand.MESSAGE_ADD_TAG_SUCCESS, editedPatient.getName());
+            String expectedMessage = String.format(AddTagsCommand.MESSAGE_ADD_TAG_SUCCESS,
+                    editedPatient.getName(), VALID_TAG_DIABETES_OUTPUT) + "\n";
             assertEquals(expectedMessage, commandResult.getFeedbackToUser());
 
             Set<Tag> expectedTagsSet = new HashSet<>(editedPatient.getTags());
             expectedTagsSet.add(new Tag(VALID_TAG_DIABETES));
 
-            assertTrue(editedPatient.getTags().equals(expectedTagsSet));
+            assertEquals(editedPatient.getTags(), expectedTagsSet);
         } catch (CommandException e) {
             // The command should not throw an exception in this test
             throw new AssertionError("Execution of command should not fail.", e);
@@ -64,13 +67,14 @@ public class AddTagsCommandTest {
         try {
             CommandResult commandResult = addTagsCommand.execute(model);
             Patient editedPatient = model.getFilteredPatientList().get(index.getZeroBased());
-            String expectedMessage = String.format(AddTagsCommand.MESSAGE_ADD_TAG_SUCCESS, editedPatient.getName());
+            String expectedMessage = String.format(AddTagsCommand.MESSAGE_ADD_TAG_SUCCESS,
+                    editedPatient.getName(), VALID_TAG_DIABETES_OUTPUT) + "\n";
             assertEquals(expectedMessage, commandResult.getFeedbackToUser());
 
             Set<Tag> expectedTagsSet = new HashSet<>(editedPatient.getTags());
             expectedTagsSet.add(new Tag(VALID_TAG_DIABETES));
 
-            assertTrue(editedPatient.getTags().equals(expectedTagsSet));
+            assertEquals(editedPatient.getTags(), expectedTagsSet);
         } catch (CommandException e) {
             // The command should not throw an exception in this test
             throw new AssertionError("Execution of command should not fail.", e);
@@ -78,7 +82,7 @@ public class AddTagsCommandTest {
     }
 
     @Test
-    public void execute_addPreExistingTagsUnfilteredList_success() {
+    public void execute_addPreExistingTagsUnfilteredList_logOutputFailure() {
         Index index = INDEX_FIRST_PATIENT;
         Set<Tag> tagsToAdd = new HashSet<>();
         tagsToAdd.add(new Tag(VALID_TAG_DEPRESSION));
@@ -88,7 +92,8 @@ public class AddTagsCommandTest {
         try {
             CommandResult commandResult = addTagsCommand.execute(model);
             Patient editedPatient = model.getFilteredPatientList().get(index.getZeroBased());
-            String expectedMessage = String.format(AddTagsCommand.MESSAGE_ADD_TAG_SUCCESS, editedPatient.getName());
+            String expectedMessage = String.format(AddTagsCommand.MESSAGE_DUPLICATE_TAG,
+                    editedPatient.getName(), VALID_TAG_DEPRESSION_OUTPUT) + "\n";
             assertEquals(expectedMessage, commandResult.getFeedbackToUser());
 
             Set<Tag> expectedTagsSet = new HashSet<>(editedPatient.getTags());
@@ -123,22 +128,22 @@ public class AddTagsCommandTest {
 
         // same values -> returns true
         AddTagsCommand commandWithSameValues = new AddTagsCommand(index, secondTags);
-        assertTrue(standardCommand.equals(commandWithSameValues));
+        assertEquals(standardCommand, commandWithSameValues);
 
         // same object -> returns true
-        assertTrue(standardCommand.equals(standardCommand));
+        assertEquals(standardCommand, standardCommand);
 
         // null -> returns false
-        assertFalse(standardCommand.equals(null));
+        assertNotEquals(null, standardCommand);
 
         // different types -> returns false
-        assertFalse(standardCommand.equals(new ClearCommand()));
+        assertNotEquals(standardCommand, new ClearCommand());
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new AddTagsCommand(INDEX_SECOND_PATIENT, firstTags)));
+        assertNotEquals(standardCommand, new AddTagsCommand(INDEX_SECOND_PATIENT, firstTags));
 
         // different tags -> returns false
-        assertFalse(standardCommand.equals(new AddTagsCommand(index, new HashSet<>())));
+        assertNotEquals(standardCommand, new AddTagsCommand(index, new HashSet<>()));
     }
 
     @Test

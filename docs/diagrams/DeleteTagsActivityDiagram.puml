@@ -1,0 +1,29 @@
+@startuml
+start
+:User wants to delete tags from a patient;
+:User runs the "deletet" command with index and tags;
+if () then ([else])
+    :PatientSync throws an error;
+else ([Valid command format])
+    :PatientSync checks if the index is valid;
+    if () then ([else])
+        :PatientSync throws an error;
+    else ([Valid index])
+        :PatientSync generates the set of tags to be deleted;
+        :PatientSync retrieves the patient with the specified index;
+        :PatientSync retrieves the patient's current tags;
+        while () is ([More tags to be processed])
+            if () then ([Tag exists in patient's tag set])
+                :Remove the tag from the patient's tag set;
+                :add message to output: Tag deleted successfully for the patient;
+            else ([else])
+                :add message to output: The tag does not exist for the patient;
+            endif
+        endwhile ([else])
+        :PatientSync updates the patient's details;
+        :PatientSync updates the displayed patient list;
+        :PatientSync displays output message;
+    endif
+endif
+stop
+@enduml

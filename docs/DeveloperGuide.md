@@ -238,24 +238,28 @@ The `AddTagsCommand` class is responsible for adding one or more tags to a patie
 
 #### Specifications
 
-* Tags, as defined by the `Tag` class, are alphanumeric, single-word identifiers without spaces, and repeated tags in the command are added as a single tag.
+* Tags, as defined by the `Tag` class, are alphanumeric characters with or without spaces, and repeated tags in the command are added as a single tag.
 * The addition of tags is cumulative, and new tags will be added to the existing set of tags for the patient, preserving the previously assigned tags.
-* If the patient already has a particular tag, it will not be added again.
+*  If the patient has an existing tag that is provided in the command, it will not be added, and the output would be logged and shown to the user.
+
+The activity diagram below outlines the steps involved when a user initiates an Add Tags command.
+<puml src="diagrams/AddTagsActivityDiagram.puml" alt="AddTagsActivityDiagram" />
+
 
 #### Example Usage Scenario
 
-Given below is an example usage scenario and how the group creation mechanism behaves at each step.
+Given below is an example usage scenario and how the tag addition process behaves at each step:
 
 Step 1: The user accesses the PatientSync application.
 
-Step 2: The user executes the `addt 1 t/christian t/fallRisk` command to add the tags christian and fallRisk to patient 1 in the displayed patient list. The `AddTagsCommandParser` will be called to validate the input, ensuring that the index is valid and at least one tag is provided. Upon successful validation, it creates an `AddTagsCommand` instance.
+Step 2: The user executes the `addt 1 t/christian t/fall risk` command to add the tags `christian` and `fall risk` to patient 1 in the displayed patient list. The `AddTagsCommandParser` will be called to validate the input, ensuring that the index is valid and at least one tag is provided. Upon successful validation, it creates an `AddTagsCommand` instance.
 
 <box type="info" seamless>
 <b>Note</b>: Since multiple inputs are allowed, a set of tags are passed around, each of which is to be added if the above requirements are met.
 </box>
 
 The following sequence diagram shows how the Add Tags operation works:
-<puml src="diagrams/AddTagsSequenceDiagram.puml" alt="AddTagsSequence" />
+<puml src="diagrams/AddTagsSequenceDiagram.puml" alt="AddTagsSequenceDiagram" />
 
 <box type="info" seamless>
 
@@ -265,9 +269,9 @@ The following sequence diagram shows how the Add Tags operation works:
 
 #### Design Considerations
 
-**Aspect: Handling Repeated Tags**
+**Aspect: Skip duplicate Tags in command**
 
-* **Alternative 1 (current choice)**: Repeated tags are added as a single tag.
+* **Alternative 1 (current choice)**: Repeated tags in commands are added as a single tag.
     * Pros: Simplifies tag management, avoids redundancy.
     * Cons: Requires additional logic to detect and merge repeated tags.
 <br></br>
@@ -285,11 +289,11 @@ The following sequence diagram shows how the Add Tags operation works:
     * Pros: Simplifies data handling, avoids tag duplication.
     * Cons: Risk of losing previously assigned tags, less flexibility in tag management.
 
-**Aspect: Error Handling for Duplicate Tags**
+**Aspect: Logic handling for pre-existing tags**
 
 * **Alternative 1 (current choice)**: Do not add tags already present for the patient.
     * Pros: Prevents tag redundancy, maintains data integrity. Better user experience, do not need to worry about the intricacies of tag duplication.
-    * Cons: Users do not explicitly receive direct feedback about skipped tags.
+    * Cons: Requires additional logic to detect repeated tags.
 <br></br>
 * **Alternative 2**: Return error message for duplicate tags.
     * Pros: Notifies user about duplicate inputs, ensures data consistency.
@@ -305,12 +309,15 @@ The `DeleteTagsCommand` class enables the removal of one or more tags from a pat
 
 #### Specifications
 
-* Tags, as defined by the `Tag` class, are alphanumeric, single-word identifiers without spaces.
+* Tags, as defined by the `Tag` class, are alphanumeric characters with or without spaces, and repeated tags in the command are added as a single tag.
 * The deletion of tags is performed by specifying the tags to be removed for a particular patient.
 * Tags should match exactly with the existing tags of the patient.
 * If a patient has the tag(s) provided in the command, they will be removed. This operation is counted as a successful deletion.
 * When deleting tags, if a tag is repeated in the command, it will be treated as a single tag to delete. E.g. `t/friend t/friend` will be considered as a single `friend` tag for deletion.
 * If the patient does not have a tag provided in the command, it will be logged and shown to the user as an unsuccessful deletion of that tag.
+
+The activity diagram below outlines the steps involved when a user initiates a Delete Tags command.
+<puml src="diagrams/DeleteTagsActivityDiagram.puml" alt="DeleteTagsActivityDiagram" />
 
 #### Example Usage Scenario
 
@@ -318,14 +325,14 @@ Below is an example scenario of how the tag deletion process works within the Pa
 
 Step 1: The user accesses the PatientSync application.
 
-Step 2: The user executes the `deletet 1 t/fallRisk` command to delete the `fallRisk` tag from patient 1 in the displayed patient list. The `DeleteTagsCommandParser` validates the input, ensuring that the index is valid and at least one tag is provided. Upon successful validation, an `DeleteTagsCommand` instance is created.
+Step 2: The user executes the `deletet 1 t/fall risk` command to delete the `fall risk` tag from patient 1 in the displayed patient list. The `DeleteTagsCommandParser` validates the input, ensuring that the index is valid and at least one tag is provided. Upon successful validation, an `DeleteTagsCommand` instance is created.
 
 <box type="info" seamless>
 <b>Note</b>: Since multiple inputs are allowed, a set of tags to be deleted is passed, each of which will be removed if found associated with the patient.
 </box>
 
 The following sequence diagram shows how the Delete Tags operation works:
-<puml src="diagrams/DeleteTagsSequenceDiagram.puml" alt="DeleteTagsSequence" />
+<puml src="diagrams/DeleteTagsSequenceDiagram.puml" alt="DeleteTagsSequenceDiagram" />
 
 <box type="info" seamless>
 
@@ -333,18 +340,6 @@ The following sequence diagram shows how the Delete Tags operation works:
 
 </box>
 
-
-<!---
-The following sequence diagram summarizes what happens when a user executes a Delete Tags operation:
-<puml src="diagrams/DeleteTagsTimeDiagram.puml" alt="DeleteTagsSequenceTimeDiagram" />
-
-<box type="info" seamless>
-
-**Note:** The lifeline for `DeleteTagCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</box>
-
--->
 
 #### Design Considerations
 

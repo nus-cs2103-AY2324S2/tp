@@ -9,9 +9,12 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Tag {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
-    public static final String VALIDATION_REGEX = "\\p{Alnum}+";
-
+    public static final int MAX_TAG_LENGTH = 50;
+    public static final String MESSAGE_LENGTH_CONSTRAINTS = "Tag names must be less than "
+            + MAX_TAG_LENGTH + " characters";
+    public static final String MESSAGE_CONSTRAINTS = "Tag names must not be empty, less than" + MAX_TAG_LENGTH
+            + " characters and can only contain alphanumeric characters or spaces";
+    public static final String VALIDATION_REGEX = "^[\\p{Alnum}][\\p{Alnum} ]*$";
     public final String tagName;
 
     /**
@@ -19,9 +22,10 @@ public class Tag {
      *
      * @param tagName A valid tag name.
      */
-    public Tag(String tagName) {
+    public Tag(String tagName) throws IllegalArgumentException {
         requireNonNull(tagName);
         checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
+        checkArgument(tagName.length() <= MAX_TAG_LENGTH, MESSAGE_LENGTH_CONSTRAINTS);
         this.tagName = tagName;
     }
 
@@ -30,6 +34,13 @@ public class Tag {
      */
     public static boolean isValidTagName(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns true if a given string is of valid tag length.
+     */
+    public static boolean isValidTagLength(String test) {
+        return test.length() <= MAX_TAG_LENGTH;
     }
 
     @Override
