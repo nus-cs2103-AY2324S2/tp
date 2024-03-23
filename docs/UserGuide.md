@@ -72,14 +72,14 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-### Adding a person: `add`
+### Adding a client: `add`
 
-Adds a person to the address book.
+Adds a client to the address book.
 
 Format: `add --name=NAME --phone=PHONE_NUMBER --email=EMAIL --addr=ADDRESS [--tags=TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+A client can have any number of tags (including 0)
 </div>
 
 **Important**: You cannot leave tags empty, i.e. `add --tags=` with nothing for the tags. 
@@ -94,22 +94,22 @@ Shows a list of all clients in the address book.
 
 Format: `list`
 
-### Editing a person : `edit`
+### Editing a client : `edit`
 
-Edits an existing person in the address book.
+Edits an existing client in the address book.
 
 Format: `edit INDEX [--name=NAME] [--phone=PHONE] [--email=EMAIL] [--addr=ADDRESS] [--tags=TAG]…​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the client at the specified `INDEX`. The index refers to the index number shown in the displayed client list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
+* When editing tags, the existing tags of the client will be removed i.e adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `--tags=` without
     specifying any tags after it.
 
 Examples:
-*  `edit 1 --phone=91234567 --email=johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 --name=Betsy Crower --tags=` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit 1 --phone=91234567 --email=johndoe@example.com` Edits the phone number and email address of the 1st client to be `91234567` and `johndoe@example.com` respectively.
+*  `edit 2 --name=Betsy Crower --tags=` Edits the name of the 2nd client to be `Betsy Crower` and clears all existing tags.
 
 ### Locating clients by name: `find`
 
@@ -129,19 +129,19 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `del`
+### Deleting a client : `del`
 
-Deletes the specified person from the address book.
+Deletes the specified client from the address book.
 
 Format: `del INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Deletes the client at the specified `INDEX`.
+* The index refers to the index number shown in the displayed client list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `del 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `del 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `del 2` deletes the 2nd client in the address book.
+* `find Betsy` followed by `del 1` deletes the 1st client in the results of the `find` command.
 
 ### Clearing all entries : `clear`
 
