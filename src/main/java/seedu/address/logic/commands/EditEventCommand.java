@@ -44,6 +44,8 @@ public class EditEventCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Event %1$s with ID %2$s on %3$s successfully updated "
             + "for Patient %4$s with ID %5$s";
+    public static final String MESSAGE_DUPLICATE = "Event %1$s on %2$s already exists for Patient %3$s with ID %4$s "
+            + "so only one entry is kept.";
 
     private final Index patientIndex;
     private final Index eventIndex;
@@ -90,8 +92,14 @@ public class EditEventCommand extends Command {
         Patient updatedPatient = createEditedPatient(patientToEditEvent, editPatientDescriptor);
         model.setPatient(patientToEditEvent, updatedPatient);
         model.updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
+
+        if (events.contains(eventToUpdate)) {
+            return new CommandResult(String.format(MESSAGE_DUPLICATE, eventToUpdate.name, eventToUpdate.date,
+                    updatedPatient.getName(), patientIndex.getOneBased()));
+        }
+
         return new CommandResult(String.format(MESSAGE_SUCCESS, eventToUpdate.name, eventIndex.getOneBased(),
-                eventToUpdate.date, patientToEditEvent.getName(), patientIndex.getOneBased()));
+                eventToUpdate.date, updatedPatient.getName(), patientIndex.getOneBased()));
     }
 
     @Override

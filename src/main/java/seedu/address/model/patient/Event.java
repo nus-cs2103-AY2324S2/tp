@@ -9,7 +9,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 /**
- * Represents Important Dates for a Patient
+ * Represents Events for a Patient
  */
 public class Event implements Comparable<Event> {
     public static final String MESSAGE_CONSTRAINTS =
@@ -20,13 +20,13 @@ public class Event implements Comparable<Event> {
 
 
 
-    /** The name of the Important Date */
+    /** The name of the Event */
     public final String name;
-    /** The Date of the Important Date */
+    /** The Date of the Event */
     public final String date;
-    /** The Start Time of the Important Date, null if there is no specific start time */
+    /** The Start Time of the Event, null if there is no specific start time */
     public final String startTime;
-    /** The End Time of the Important Date, null if there is no specific end time */
+    /** The End Time of the Event, null if there is no specific end time */
     public final String endTime;
 
 

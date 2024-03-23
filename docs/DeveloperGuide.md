@@ -555,6 +555,7 @@ The `EditEventCommand` class is responsible for editing a specific Event for a p
   All parameters are compulsory. Optionally, you may include `TIME` in the `DATE` parameter.
 * EditEventCommand will edit the selected `EVENT_INDEX` with a new event.
 * Editing of an event can only happen for a single patient, and a single event at any given time.
+* Editing an event to an existing event will result in displaying only one of the duplicate events.
 
 #### Example Usage Scenario
 
