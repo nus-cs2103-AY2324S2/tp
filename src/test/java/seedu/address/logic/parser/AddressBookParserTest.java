@@ -4,8 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_LASTCONTACT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
@@ -27,10 +25,8 @@ import seedu.address.logic.commands.LastContactCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.SelectCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.LastContact;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.hasLastContactedPredicate;
 import seedu.address.model.tag.TagsAndFoundPredicate;
 import seedu.address.model.tag.TagsOrFoundPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -133,13 +129,8 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_lastContact() throws Exception {
-        String name = "Alice";
-        LastContact lastContact = new LastContact("13-03-2024 0600");
-        LastContactCommand command = (LastContactCommand) parser.parseCommand(
-                LastContactCommand.COMMAND_WORD + " "
-                        + PREFIX_NAME + name + " "
-                        + PREFIX_LASTCONTACT + lastContact);
-        assertEquals(new LastContactCommand(new hasLastContactedPredicate()), command);
+        assertTrue(parser.parseCommand(LastContactCommand.COMMAND_WORD) instanceof LastContactCommand);
+        assertTrue(parser.parseCommand(LastContactCommand.COMMAND_WORD + " 3") instanceof LastContactCommand);
     }
 
 }

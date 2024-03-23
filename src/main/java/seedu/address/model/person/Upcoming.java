@@ -15,8 +15,8 @@ import java.util.regex.Pattern;
 public class Upcoming implements Comparable<Upcoming> {
 
     public static final String MESSAGE_CONSTRAINTS = "Invalid input. Please follow the format: DD-MM-YYYY HHmm";
-    public static final String MESSAGE_EDIT_EMPTY_STRING_EXCEPTION = "Upcoming can only take DD-MM-YYYY HHmm " +
-            "dateTime format, and it should not be blank";
+    public static final String MESSAGE_EDIT_EMPTY_STRING_EXCEPTION = "Upcoming can only take DD-MM-YYYY HHmm "
+            + "dateTime format, and it should not be blank";
     private static final String DATETIME_FORMAT = "dd-MM-yyyy HHmm";
     private static final DateTimeFormatter DATETIME_FORMATTER = DateTimeFormatter.ofPattern(DATETIME_FORMAT);
     private static final String DATETIME_REGEX = "^\\d{2}-\\d{2}-\\d{4} \\d{2}\\d{2}$";

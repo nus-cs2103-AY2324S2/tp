@@ -11,12 +11,12 @@ import java.time.format.ResolverStyle;
 /**
  * Represents a client's last contacted date and time in the address book.
  */
-public class LastContact implements Comparable<LastContact>{
+public class LastContact implements Comparable<LastContact> {
 
     public static final String MESSAGE_CONSTRAINTS = "Expected DATETIME format: DD-MM-YYYY HHmm\n"
                                                     + "Actual format: %s";
-    public static final String MESSAGE_EDIT_EMPTY_STRING_EXCEPTION = "Last contacted can only take DD-MM-YYYY HHmm " +
-            "dateTime format, and it should not be blank";
+    public static final String MESSAGE_EDIT_EMPTY_STRING_EXCEPTION = "Last contacted can only take DD-MM-YYYY HHmm "
+            + "dateTime format, and it should not be blank";
     public static final DateTimeFormatter DATETIME_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-uuuu HHmm")
             .withResolverStyle(ResolverStyle.STRICT);
     private LocalDateTime dateTime;
