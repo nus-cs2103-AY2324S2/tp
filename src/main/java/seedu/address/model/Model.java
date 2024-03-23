@@ -61,7 +61,7 @@ public interface Model {
      * Deletes the given client.
      * The client must exist in the address book.
      */
-    void deletePerson(Client target);
+    void deleteClient(Client target);
 
     /**
      * Adds the given client.
