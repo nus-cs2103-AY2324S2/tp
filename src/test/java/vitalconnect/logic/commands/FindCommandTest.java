@@ -10,6 +10,7 @@ import static vitalconnect.testutil.TypicalPersons.ELLE;
 import static vitalconnect.testutil.TypicalPersons.FIONA;
 import static vitalconnect.testutil.TypicalPersons.getTypicalClinic;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
@@ -24,8 +25,8 @@ import vitalconnect.model.person.identificationinformation.NameContainsKeywordsP
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private Model model = new ModelManager(getTypicalClinic(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalClinic(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalClinic(), new UserPrefs(), new ArrayList<>());
+    private Model expectedModel = new ModelManager(getTypicalClinic(), new UserPrefs(), new ArrayList<>());
 
     @Test
     public void equals() {

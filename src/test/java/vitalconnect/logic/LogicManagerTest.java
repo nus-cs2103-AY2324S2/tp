@@ -11,6 +11,8 @@ import static vitalconnect.testutil.TypicalPersons.AMY;
 import java.io.IOException;
 import java.nio.file.AccessDeniedException;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,11 +23,13 @@ import vitalconnect.logic.commands.CommandResult;
 import vitalconnect.logic.commands.ListCommand;
 import vitalconnect.logic.commands.exceptions.CommandException;
 import vitalconnect.logic.parser.exceptions.ParseException;
+import vitalconnect.model.Appointment;
 import vitalconnect.model.Model;
 import vitalconnect.model.ModelManager;
 import vitalconnect.model.ReadOnlyClinic;
 import vitalconnect.model.UserPrefs;
 import vitalconnect.model.person.Person;
+import vitalconnect.storage.JsonAppointmentStorage;
 import vitalconnect.storage.JsonClinicStorage;
 import vitalconnect.storage.JsonUserPrefsStorage;
 import vitalconnect.storage.StorageManager;
@@ -43,12 +47,18 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonClinicStorage clinicStorage =
-                new JsonClinicStorage(temporaryFolder.resolve("clinic.json"));
-        JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(clinicStorage, userPrefsStorage);
+        Path clinicFilePath = temporaryFolder.resolve("clinic.json");
+        Path userPrefsFilePath = temporaryFolder.resolve("userPrefs.json");
+        Path appointmentFilePath = temporaryFolder.resolve("appointments.json");
+
+        JsonClinicStorage clinicStorage = new JsonClinicStorage(clinicFilePath);
+        JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(userPrefsFilePath);
+        JsonAppointmentStorage appointmentStorage = new JsonAppointmentStorage(appointmentFilePath);
+
+        StorageManager storage = new StorageManager(clinicStorage, userPrefsStorage, appointmentStorage);
         logic = new LogicManager(model, storage);
     }
+
 
     @Test
     public void execute_invalidCommandFormat_throwsParseException() {
@@ -121,7 +131,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getClinic(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getClinic(), new UserPrefs(), new ArrayList<>());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 
@@ -145,24 +155,34 @@ public class LogicManagerTest {
      * @param expectedMessage the message expected inside exception thrown by the Logic component
      */
     private void assertCommandFailureForExceptionFromStorage(IOException e, String expectedMessage) {
-        Path prefPath = temporaryFolder.resolve("ExceptionUserPrefs.json");
+        Path clinicPath = temporaryFolder.resolve("ExceptionClinic.json");
+        Path appointmentPath = temporaryFolder.resolve("ExceptionAppointments.json");
 
-        // Inject LogicManager with an ClinicStorage that throws the IOException e when saving
-        JsonClinicStorage clinicStorage = new JsonClinicStorage(prefPath) {
+        // Mock ClinicStorage that throws the IOException e when saving
+        JsonClinicStorage clinicStorage = new JsonClinicStorage(clinicPath) {
             @Override
-            public void saveClinic(ReadOnlyClinic clinic, Path filePath)
-                    throws IOException {
+            public void saveClinic(ReadOnlyClinic clinic, Path filePath) throws IOException {
+                throw e;
+            }
+        };
+
+        // Mock AppointmentStorage that throws the IOException e when saving
+        JsonAppointmentStorage appointmentStorage = new JsonAppointmentStorage(appointmentPath) {
+            @Override
+            public void saveAppointments(List<Appointment> appointments, Path filePath) throws IOException {
                 throw e;
             }
         };
 
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(clinicStorage, userPrefsStorage);
+
+        // Inject StorageManager with the mock storages
+        StorageManager storage = new StorageManager(clinicStorage, userPrefsStorage, appointmentStorage);
 
         logic = new LogicManager(model, storage);
 
-        // Triggers the saveClinic method by executing an add command
+        // Triggers the saveClinic and saveAppointments methods by executing an add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + NRIC_DESC_AMY;
         Person expectedPerson = new PersonBuilder(AMY).build();
         ModelManager expectedModel = new ModelManager();
@@ -170,3 +190,4 @@ public class LogicManagerTest {
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
     }
 }
+

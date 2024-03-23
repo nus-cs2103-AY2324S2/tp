@@ -34,6 +34,7 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private AppointmentListPanel appointmentListPanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -49,6 +50,8 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+    @FXML
+    private StackPane appointmentListPanelPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -113,6 +116,9 @@ public class MainWindow extends UiPart<Stage> {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
+        // Initialize AppointmentListPanel but don't add it to the placeholder yet
+        appointmentListPanel = new AppointmentListPanel(logic.getFilteredAppointmentList());
+
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -122,6 +128,25 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
+
+    /**
+     * Switches the displayed list in the main window to show the appointment list.
+     * This method clears any current content in the placeholder and then loads the appointment list view.
+     */
+    public void showAppointmentList() {
+        personListPanelPlaceholder.getChildren().clear();
+        personListPanelPlaceholder.getChildren().add(appointmentListPanel.getRoot());
+    }
+
+    /**
+     * Switches the displayed list in the main window to show the person list.
+     * This method clears any current content in the placeholder and then loads the person list view.
+     */
+    public void showPersonList() {
+        personListPanelPlaceholder.getChildren().clear();
+        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+    }
+
 
     /**
      * Sets the default size based on {@code guiSettings}.
@@ -168,8 +193,17 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Executes the command and returns the result.
+     * Executes the given command string and updates the UI based on the result of the command.
+     * <p>
+     * This method uses the {@code Logic} component to execute the command and obtain a {@code CommandResult},
+     * then updates the {@code ResultDisplay} with feedback from the command. Based on the type of the
+     * {@code CommandResult}, it switches the view between the person list and the appointment list. It also
+     * handles the display of help and exit commands.
      *
+     * @param commandText The command string to be executed.
+     * @return The result of the command execution.
+     * @throws CommandException If an error occurs during command execution.
+     * @throws ParseException If an error occurs during parsing of the command string.
      * @see vitalconnect.logic.Logic#execute(String)
      */
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
@@ -177,6 +211,17 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+
+            switch (commandResult.getType()) {
+            case SHOW_PERSONS:
+                showPersonList();
+                break;
+            case SHOW_APPOINTMENTS:
+                showAppointmentList();
+                break;
+            default:
+                showPersonList();
+            }
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
@@ -193,4 +238,7 @@ public class MainWindow extends UiPart<Stage> {
             throw e;
         }
     }
+
 }
+
+

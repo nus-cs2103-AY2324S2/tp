@@ -5,12 +5,14 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static vitalconnect.testutil.TypicalPersons.getTypicalClinic;
 
 import java.nio.file.Path;
+import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import vitalconnect.commons.core.GuiSettings;
+import vitalconnect.model.Appointment;
 import vitalconnect.model.Clinic;
 import vitalconnect.model.ReadOnlyClinic;
 import vitalconnect.model.UserPrefs;
@@ -26,8 +28,10 @@ public class StorageManagerTest {
     public void setUp() {
         JsonClinicStorage clinicStorage = new JsonClinicStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(clinicStorage, userPrefsStorage);
+        JsonAppointmentStorage appointmentStorage = new JsonAppointmentStorage(getTempFilePath("appts"));
+        storageManager = new StorageManager(clinicStorage, userPrefsStorage, appointmentStorage);
     }
+
 
     private Path getTempFilePath(String fileName) {
         return testFolder.resolve(fileName);
@@ -60,9 +64,24 @@ public class StorageManagerTest {
         assertEquals(original, new Clinic(retrieved));
     }
 
+
+    @Test
+    public void appointmentsReadSave() throws Exception {
+        // Prepare original list of appointments
+        List<Appointment> original = vitalconnect.testutil.TypicalAppointment.getTypicalAppointments();
+        storageManager.saveAppointments(original);
+        List<Appointment> retrieved = storageManager.readAppointments().get();
+        assertEquals(original, retrieved);
+    }
+
     @Test
     public void getClinicFilePath() {
         assertNotNull(storageManager.getClinicFilePath());
     }
 
+    @Test
+    public void getAppointmentFilePath() {
+        assertNotNull(storageManager.getAppointmentFilePath());
+    }
 }
+

@@ -10,6 +10,8 @@ import static vitalconnect.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static vitalconnect.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static vitalconnect.testutil.TypicalPersons.getTypicalClinic;
 
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.Test;
 
 import vitalconnect.commons.core.index.Index;
@@ -25,7 +27,7 @@ import vitalconnect.model.person.Person;
  */
 public class DeleteCommandTest {
 
-    private Model model = new ModelManager(getTypicalClinic(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalClinic(), new UserPrefs(), new ArrayList<>());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -35,7 +37,7 @@ public class DeleteCommandTest {
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
                 Messages.format(personToDelete));
 
-        ModelManager expectedModel = new ModelManager(model.getClinic(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getClinic(), new UserPrefs(), new ArrayList<>());
         expectedModel.deletePerson(personToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
@@ -59,7 +61,7 @@ public class DeleteCommandTest {
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
                 Messages.format(personToDelete));
 
-        Model expectedModel = new ModelManager(model.getClinic(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getClinic(), new UserPrefs(), new ArrayList<>());
         expectedModel.deletePerson(personToDelete);
         showNoPerson(expectedModel);
 

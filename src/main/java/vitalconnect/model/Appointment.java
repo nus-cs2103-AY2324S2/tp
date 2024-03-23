@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
  */
 public class Appointment {
     private String patientName;
+    private String patientIc;
     private LocalDateTime dateTime;
 
     /**
@@ -16,7 +17,8 @@ public class Appointment {
      * @param patientName The name of the patient for the appointment.
      * @param dateTime The date and time of the appointment.
      */
-    public Appointment(String patientName, LocalDateTime dateTime) {
+    public Appointment(String patientName, String patientIc, LocalDateTime dateTime) {
+        this.patientIc = patientIc;
         this.patientName = patientName;
         this.dateTime = dateTime;
     }
@@ -28,6 +30,15 @@ public class Appointment {
      */
     public String getPatientName() {
         return patientName;
+    }
+
+    /**
+     * Returns the NRIC of the patient associated with this appointment.
+     *
+     * @return The patient's ic.
+     */
+    public String getPatientIc() {
+        return patientIc;
     }
 
     /**
@@ -49,6 +60,30 @@ public class Appointment {
     public String toString() {
 
         return "Appointment with " + patientName + " on " + dateTime;
+    }
+
+    /**
+     * Checks if this appointment is equal to another object. Two appointments are equal
+     * if they have the same patient name, patient NRIC, and date/time.
+     *
+     * @param that The object to compare with this appointment.
+     * @return true if the given object represents an appointment equivalent to this appointment, false otherwise.
+     */
+    @Override
+    public boolean equals(Object that) {
+        if (that == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(that instanceof Appointment)) {
+            return false;
+        }
+
+        Appointment otherApt = (Appointment) that;
+        return patientName.equals(otherApt.patientName)
+                && patientIc.equals(otherApt.patientIc)
+                && dateTime.equals(otherApt.dateTime);
     }
 
 }

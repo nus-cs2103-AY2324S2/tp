@@ -5,6 +5,8 @@ import static vitalconnect.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static vitalconnect.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static vitalconnect.testutil.TypicalPersons.getTypicalClinic;
 
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -22,8 +24,8 @@ public class ListCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalClinic(), new UserPrefs());
-        expectedModel = new ModelManager(model.getClinic(), new UserPrefs());
+        model = new ModelManager(getTypicalClinic(), new UserPrefs(), new ArrayList<>());
+        expectedModel = new ModelManager(model.getClinic(), new UserPrefs(), new ArrayList<>());
     }
 
     @Test

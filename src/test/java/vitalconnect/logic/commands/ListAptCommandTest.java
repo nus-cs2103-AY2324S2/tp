@@ -37,16 +37,15 @@ public class ListAptCommandTest {
     @Test
     public void execute_appointmentsInList_showsAppointments() {
         ModelStubWithAppointments modelStub = new ModelStubWithAppointments();
-        modelStub.addAppointment(new Appointment("John Doe", LocalDateTime.now()));
-        modelStub.addAppointment(new Appointment("Jane Doe", LocalDateTime.now().plusDays(1)));
+        modelStub.addAppointment(new Appointment("John Doe", "S1234567D", LocalDateTime.now()));
+        modelStub.addAppointment(new Appointment("Jane Doe", "S1234567D",
+                LocalDateTime.now().plusDays(1)));
         ListAptCommand listAptCommand = new ListAptCommand();
 
         CommandResult commandResult = listAptCommand.execute(modelStub);
 
         // Expected result should contain the appointments added above
-        String expectedMessage = ListAptCommand.MESSAGE_SUCCESS + ":\n"
-                + "1. " + modelStub.appointments.get(0).toString() + "\n"
-                + "2. " + modelStub.appointments.get(1).toString();
+        String expectedMessage = ListAptCommand.MESSAGE_SUCCESS;
         assertEquals(expectedMessage, commandResult.getFeedbackToUser());
     }
 
@@ -157,8 +156,19 @@ public class ListAptCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+
+        @Override
+        public boolean doesIcExist(String name) {
+            throw new AssertionError("This method should not be called.");
+        }
+
         @Test
         public void addAppointment(Appointment appointment) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setAppointments(List<Appointment> appointments) {
             throw new AssertionError("This method should not be called.");
         }
 

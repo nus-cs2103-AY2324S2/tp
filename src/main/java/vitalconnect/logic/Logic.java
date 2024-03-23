@@ -7,8 +7,10 @@ import vitalconnect.commons.core.GuiSettings;
 import vitalconnect.logic.commands.CommandResult;
 import vitalconnect.logic.commands.exceptions.CommandException;
 import vitalconnect.logic.parser.exceptions.ParseException;
+import vitalconnect.model.Appointment;
 import vitalconnect.model.ReadOnlyClinic;
 import vitalconnect.model.person.Person;
+
 
 /**
  * API of the Logic component
@@ -32,6 +34,9 @@ public interface Logic {
 
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Person> getFilteredPersonList();
+
+    /** Returns an unmodifiable view of the filtered list of appointment */
+    ObservableList<Appointment> getFilteredAppointmentList();
 
     /**
      * Returns the user prefs' clinic file path.

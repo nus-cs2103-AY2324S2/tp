@@ -8,6 +8,7 @@ import java.nio.file.Path;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -31,7 +32,7 @@ public class DeleteAptCommandTest {
     public void execute_validIndexAppointmentDeletedSuccessfully() throws Exception {
         ModelStubWithAppointments modelStub = new ModelStubWithAppointments();
         LocalDateTime dateTime = LocalDateTime.now();
-        Appointment appointment = new Appointment("John Doe", dateTime);
+        Appointment appointment = new Appointment("John Doe", "S1234567D", dateTime);
         modelStub.addAppointment(appointment);
 
         int appointmentIndex = 1; // Assuming this is the index of the appointment to be deleted
@@ -48,7 +49,7 @@ public class DeleteAptCommandTest {
     public void execute_emptyList_throwsCommandException() {
         ModelStubWithAppointments modelStub = new ModelStubWithAppointments();
         LocalDateTime dateTime = LocalDateTime.now();
-        Appointment existingAppointment = new Appointment("John Doe", dateTime);
+        Appointment existingAppointment = new Appointment("John Doe", "S1234567D", dateTime);
         modelStub.addAppointment(existingAppointment);
 
         int invalidIndex = 999;
@@ -72,7 +73,7 @@ public class DeleteAptCommandTest {
     public void execute_nonMatchingName_throwsCommandException() {
         ModelStubWithAppointments modelStub = new ModelStubWithAppointments();
         LocalDateTime dateTime = LocalDateTime.now();
-        Appointment existingAppointment = new Appointment("John Doe", dateTime);
+        Appointment existingAppointment = new Appointment("John Doe", "S1234567D", dateTime);
         modelStub.addAppointment(existingAppointment);
 
         // Trying to delete an appointment for a patient name that doesn't match
@@ -194,8 +195,18 @@ public class DeleteAptCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public boolean doesIcExist(String name) {
+            throw new AssertionError("This method should not be called.");
+        }
+
         @Test
         public void addAppointment(Appointment appointment) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setAppointments(List<Appointment> appointments) {
             throw new AssertionError("This method should not be called.");
         }
 

@@ -3,11 +3,10 @@ package vitalconnect.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.stream.Collectors;
 
 import vitalconnect.model.Appointment;
 import vitalconnect.model.Model;
+
 
 /**
  * Represents a command to list all appointments in the address book.
@@ -35,20 +34,12 @@ public class ListAptCommand extends Command {
         List<Appointment> lastShownList = model.getFilteredAppointmentList();
 
         if (lastShownList.size() < 1) {
-            String res = "No appointment is in the list.";
-            return new CommandResult(res);
+            return new CommandResult("No appointment is in the list.",
+                    false, false, CommandResult.Type.SHOW_APPOINTMENTS);
 
         }
-        StringBuilder result = new StringBuilder(MESSAGE_SUCCESS + ":\n");
-        AtomicInteger index = new AtomicInteger(1); // For indexing appointments
-
-        String appointmentsList = model.getFilteredAppointmentList().stream()
-                .map(appointment -> index.getAndIncrement() + ". " + appointment.toString())
-                .collect(Collectors.joining("\n"));
-
-        result.append(appointmentsList);
-
-        return new CommandResult(result.toString().trim());
+        return new CommandResult(MESSAGE_SUCCESS,
+                false, false, CommandResult.Type.SHOW_APPOINTMENTS);
     }
 }
 

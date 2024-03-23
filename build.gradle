@@ -72,7 +72,7 @@ run{
 }
 
 shadowJar {
-    archiveFileName = 'vitalConnect.jar'
+    archiveFileName = 'vitalconnect.jar'
 }
 
 defaultTasks 'clean', 'test'

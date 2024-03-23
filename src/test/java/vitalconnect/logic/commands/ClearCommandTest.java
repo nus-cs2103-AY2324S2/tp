@@ -3,6 +3,8 @@ package vitalconnect.logic.commands;
 import static vitalconnect.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static vitalconnect.testutil.TypicalPersons.getTypicalClinic;
 
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.Test;
 
 import vitalconnect.model.Clinic;
@@ -22,8 +24,8 @@ public class ClearCommandTest {
 
     @Test
     public void execute_nonEmptyClinic_success() {
-        Model model = new ModelManager(getTypicalClinic(), new UserPrefs());
-        Model expectedModel = new ModelManager(getTypicalClinic(), new UserPrefs());
+        Model model = new ModelManager(getTypicalClinic(), new UserPrefs(), new ArrayList<>());
+        Model expectedModel = new ModelManager(getTypicalClinic(), new UserPrefs(), new ArrayList<>());
         expectedModel.setClinic(new Clinic());
 
         assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);

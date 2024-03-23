@@ -4,7 +4,9 @@ import static java.util.Objects.requireNonNull;
 import static vitalconnect.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -28,13 +30,13 @@ public class ModelManager implements Model {
     private final Clinic clinic;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
-    private ObservableList<Appointment> appointments;
+    private final ObservableList<Appointment> appointments;
 
 
     /**
      * Initializes a ModelManager with the given clinic and userPrefs.
      */
-    public ModelManager(ReadOnlyClinic clinic, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyClinic clinic, ReadOnlyUserPrefs userPrefs, List<Appointment> loadedAppointments) {
         requireAllNonNull(clinic, userPrefs);
 
         logger.fine("Initializing with clinic: " + clinic + " and user prefs " + userPrefs);
@@ -43,10 +45,14 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.clinic.getPersonList());
         this.appointments = FXCollections.observableArrayList();
+
+        if (loadedAppointments != null) {
+            this.appointments.setAll(loadedAppointments);
+        }
     }
 
     public ModelManager() {
-        this(new Clinic(), new UserPrefs());
+        this(new Clinic(), new UserPrefs(), new ArrayList<>());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -84,6 +90,11 @@ public class ModelManager implements Model {
         userPrefs.setClinicFilePath(clinicFilePath);
     }
 
+    /**
+     * Adds the given appointment to the clinic.
+     *
+     * @param appointment The appointment to add.
+     */
     @Override
     public void addAppointment(Appointment appointment) {
         requireNonNull(appointment);
@@ -91,11 +102,30 @@ public class ModelManager implements Model {
         FXCollections.sort(appointments, Comparator.comparing(Appointment::getDateTime));
     }
 
+    /**
+     * Replaces the current list of appointments with the provided list.
+     *
+     * @param appointments The list of appointments to set.
+     */
+    @Override
+    public void setAppointments(List<Appointment> appointments) {
+        this.appointments.setAll(appointments);
+    }
+    /**
+     * Returns an unmodifiable view of the list of appointments.
+     *
+     * @return An unmodifiable view of the list of appointments.
+     */
     @Override
     public ObservableList<Appointment> getFilteredAppointmentList() {
         return appointments;
     }
 
+    /**
+     * Deletes the specified appointment from the clinic.
+     *
+     * @param appointment The appointment to delete.
+     */
     @Override
     public void deleteAppointment(Appointment appointment) {
         appointments.remove(appointment);
@@ -134,13 +164,36 @@ public class ModelManager implements Model {
 
         clinic.setPerson(target, editedPerson);
     }
+    /**
+     * Checks if a person with the specified name exists in the clinic.
+     *
+     * @param name The name of the person to check for existence.
+     * @return true if there is at least one person in the clinic with the specified name, ignoring case.
+     */
     @Override
     public boolean doesPersonExist(String name) {
         requireNonNull(name);
         return filteredPersons.stream()
                 .anyMatch(person -> person.getIdentificationInformation().getName().fullName.equalsIgnoreCase(name));
     }
-
+    /**
+     * Checks if a person with the specified National Registration Identity Card (NRIC) exists in the clinic.
+     *
+     * @param ic The NRIC of the person to check for existence.
+     * @return true if there is at least one person in the clinic with the specified NRIC, ignoring case.
+     */
+    @Override
+    public boolean doesIcExist(String ic) {
+        requireNonNull(ic);
+        return filteredPersons.stream()
+                .anyMatch(person -> person.getIdentificationInformation().getNric().nric.equalsIgnoreCase(ic));
+    }
+    /**
+     * Finds and returns the person in the clinic whose NRIC matches the specified NRIC.
+     *
+     * @param nric The NRIC of the person to find.
+     * @return The person with the specified NRIC or null if no such person exists in the clinic.
+     */
     @Override
     public Person findPersonByNric(Nric nric) {
         requireNonNull(nric);
@@ -190,6 +243,13 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
+    /**
+     * Checks for equality with another object. Returns true if the other object is also a ModelManager
+     * and has the same clinic and user preferences data.
+     *
+     * @param other The other object to compare against.
+     * @return True if both objects are of the same class and contain the same data, false otherwise.
+     */
     @Override
     public boolean equals(Object other) {
         if (other == this) {

@@ -1,6 +1,7 @@
 package vitalconnect.model;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -89,7 +90,9 @@ public interface Model {
     void updateFilteredPersonList(Predicate<Person> predicate);
 
     boolean doesPersonExist(String name);
+    boolean doesIcExist(String name);
     void addAppointment(Appointment appointment);
+    void setAppointments(List<Appointment> appointments);
 
     ObservableList<Appointment> getFilteredAppointmentList();
     void deleteAppointment(Appointment appointment);
