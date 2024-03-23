@@ -29,12 +29,13 @@ public class Person {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
     private final Subject subject;
+    private final Payment payment;
 
     /**
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Subject subject,
-                  Id uniqueId) {
+                  Id uniqueId, Payment payment) {
         requireAllNonNull(name, phone, email, address, tags, subject);
         this.name = name;
         this.phone = phone;
@@ -43,6 +44,7 @@ public class Person {
         this.tags.addAll(tags);
         this.subject = subject;
         this.uniqueId = uniqueId;
+        this.payment = payment;
     }
 
     /**
@@ -56,6 +58,7 @@ public class Person {
         this.address = address;
         this.tags.addAll(tags);
         this.subject = subject;
+        this.payment = new Payment(0);
     }
 
     public Name getName() {
@@ -76,6 +79,10 @@ public class Person {
 
     public Subject getSubject() {
         return subject;
+    }
+
+    public Payment getPayment() {
+        return payment;
     }
 
     /**
@@ -147,6 +154,7 @@ public class Person {
                 .add("address", address)
                 .add("subject", subject)
                 .add("tags", tags)
+                .add("payment", payment)
                 .toString();
     }
 

@@ -167,4 +167,27 @@ public class ParserUtil {
             throw new ParseException("Unique ID must be an integer.");
         }
     }
+
+    /**
+ * Parses a {@code String payment} into a {@code double}.
+ * Leading and trailing whitespaces will be trimmed.
+ *
+ * @throws ParseException if the given {@code payment} is invalid.
+ */
+public static double parsePayment(String payment) throws ParseException {
+    requireNonNull(payment);
+    String trimmedPayment = payment.trim();
+    double paymentAmount;
+    try {
+        paymentAmount = Double.parseDouble(trimmedPayment);
+    } catch (NumberFormatException e) {
+        throw new ParseException("Payment amount must be a valid number.");
+    }
+
+    if (paymentAmount < 0) {
+        throw new ParseException("Payment amount must not be negative.");
+    }
+    return paymentAmount;
+}
+
 }

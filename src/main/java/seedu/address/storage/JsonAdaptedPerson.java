@@ -17,10 +17,13 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Subject;
+import seedu.address.model.person.Payment;
 import seedu.address.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Person}.
+ * Note: This class does not handle the {@link Payment} field of {@link Person}, as payment modifications are 
+ * intended to be managed exclusively through dedicated payment commands to ensure controlled updates.
  */
 class JsonAdaptedPerson {
 
@@ -120,7 +123,8 @@ class JsonAdaptedPerson {
         final Subject modelSubject = new Subject(subject);
         final Address modelAddress = new Address(address);
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelSubject, modelId);
+        final Payment modelPayment = new Payment(0.0);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelSubject, modelId, modelPayment);
     }
 
 }

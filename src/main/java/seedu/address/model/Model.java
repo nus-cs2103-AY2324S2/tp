@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Id;
 
 /**
  * The API of the Model component.
@@ -100,4 +101,22 @@ public interface Model {
      * Returns null if the person does not exist.
      */
     Person getPersonByUniqueId(int uniqueId);
+
+        /**
+     * Adds a payment to the person identified by the uniqueId.
+     * The person must exist in the address book.
+     */
+    void addPaymentToPerson(Id uniqueId, double amount);
+
+    /**
+     * Marks a payment as paid for the person identified by the uniqueId.
+     * The person must exist in the address book.
+     */
+    void markPaymentAsPaid(Id uniqueId, double amount);
+
+    /**
+     * Resets all payments for the person identified by the uniqueId to 0.
+     * The person must exist in the address book.
+     */
+    void resetPaymentsForPerson(Id uniqueId);
 }

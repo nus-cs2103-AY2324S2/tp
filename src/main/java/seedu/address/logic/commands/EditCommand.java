@@ -29,7 +29,9 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Subject;
+import seedu.address.model.person.Payment;
 import seedu.address.model.tag.Tag;
+
 
 /**
  * Edits the details of an existing person in the address book.
@@ -102,7 +104,8 @@ public class EditCommand extends Command {
 
     /**
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * edited with {@code editPersonDescriptor}. Note: This method does not modify payment information,
+     * as payments are handled through dedicated payment commands.
      */
     private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
         assert personToEdit != null;
@@ -114,9 +117,10 @@ public class EditCommand extends Command {
         Subject updatedSubjects = editPersonDescriptor.getSubject().orElse(personToEdit.getSubject());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Id uniqueID = editPersonDescriptor.getId().orElse(personToEdit.getUniqueId());
+        Payment payment = personToEdit.getPayment(); // Payment is not editable
 
         return new Person(updatedName, updatedPhone, updatedEmail,
-                updatedAddress, updatedTags, updatedSubjects, uniqueID);
+                updatedAddress, updatedTags, updatedSubjects, uniqueID, payment);
     }
 
     @Override
@@ -142,11 +146,12 @@ public class EditCommand extends Command {
                 .add("editPersonDescriptor", editPersonDescriptor)
                 .toString();
     }
+/**
+ * Stores the details to edit the person with. Each non-empty field value will replace the
+ * corresponding field value of the person, except for the payment information, which is immutable
+ * through this command.
+ */
 
-    /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
-     */
     public static class EditPersonDescriptor {
         private Name name;
         private Phone phone;
