@@ -25,7 +25,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.client.Client;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.EditClientDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 
 /**
@@ -38,7 +38,7 @@ public class EditCommandTest {
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
         Client editedClient = new PersonBuilder().build();
-        EditClientDescriptor descriptor = new EditPersonDescriptorBuilder(editedClient).build();
+        EditClientDescriptor descriptor = new EditClientDescriptorBuilder(editedClient).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_CLIENT, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_CLIENT_SUCCESS, Messages.format(editedClient));
@@ -58,7 +58,7 @@ public class EditCommandTest {
         Client editedClient = clientInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
 
-        EditClientDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
+        EditClientDescriptor descriptor = new EditClientDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();
         EditCommand editCommand = new EditCommand(indexLastClient, descriptor);
 
@@ -89,7 +89,7 @@ public class EditCommandTest {
         Client clientInFilteredList = model.getFilteredClientList().get(INDEX_FIRST_CLIENT.getZeroBased());
         Client editedClient = new PersonBuilder(clientInFilteredList).withName(VALID_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_CLIENT,
-                new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());
+                new EditClientDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_CLIENT_SUCCESS, Messages.format(editedClient));
 
@@ -102,7 +102,7 @@ public class EditCommandTest {
     @Test
     public void execute_duplicateClientUnfilteredList_failure() {
         Client firstClient = model.getFilteredClientList().get(INDEX_FIRST_CLIENT.getZeroBased());
-        EditClientDescriptor descriptor = new EditPersonDescriptorBuilder(firstClient).build();
+        EditClientDescriptor descriptor = new EditClientDescriptorBuilder(firstClient).build();
         EditCommand editCommand = new EditCommand(INDEX_SECOND_CLIENT, descriptor);
 
         assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_CLIENT);
@@ -115,7 +115,7 @@ public class EditCommandTest {
         // edit client in filtered list into a duplicate in address book
         Client clientInList = model.getAddressBook().getClientList().get(INDEX_SECOND_CLIENT.getZeroBased());
         EditCommand editCommand = new EditCommand(INDEX_FIRST_CLIENT,
-                new EditPersonDescriptorBuilder(clientInList).build());
+                new EditClientDescriptorBuilder(clientInList).build());
 
         assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_CLIENT);
     }
@@ -123,7 +123,7 @@ public class EditCommandTest {
     @Test
     public void execute_invalidClientIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredClientList().size() + 1);
-        EditClientDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build();
+        EditClientDescriptor descriptor = new EditClientDescriptorBuilder().withName(VALID_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
@@ -141,7 +141,7 @@ public class EditCommandTest {
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getClientList().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
-                new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());
+                new EditClientDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
     }
