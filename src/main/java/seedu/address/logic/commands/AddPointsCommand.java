@@ -49,7 +49,7 @@ public class AddPointsCommand extends Command {
         List<Person> lastShownList = model.getFilteredPersonList();
 
         Optional<Person> personOptional = lastShownList.stream()
-                .filter(person -> person.getName().equals(this.name))
+                .filter(person -> person.getName().fullName.toLowerCase().contains(this.name.fullName.toLowerCase()))
                 .findFirst();
 
         if (personOptional.isEmpty()) {
