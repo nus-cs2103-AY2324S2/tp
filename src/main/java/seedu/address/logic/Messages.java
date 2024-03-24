@@ -23,7 +23,7 @@ public class Messages {
             + "not an interviewer phone number.";
     public static final String MESSAGE_INCORRECT_INTERVIEWER_AND_APPLICANT_PHONE_NUMBER =
             "The phone number you have keyed is is not an applicant nor an interviewer phone number.";
-    public static final String MESSAGE_INCORRENT_STATUS_APPLICANT = "Only applicants can be given this status";
+    public static final String MESSAGE_INCORRECT_STATUS_APPLICANT = "Only applicants can be given this status";
     public static final String MESSAGE_INCORRECT_STATUS_INTERVIEWER = "Only interviewers can be given this status";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_INVALID_END_TIME = "The end time is before the start time!";

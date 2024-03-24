@@ -12,9 +12,6 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
-import seedu.address.model.person.Status;
-import seedu.address.model.person.enums.ApplicantState;
-import seedu.address.model.person.enums.InterviewerState;
 import seedu.address.model.person.enums.Type;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
@@ -28,6 +25,7 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "alice@gmail.com";
     public static final String DEFAULT_REMARK = "She likes aardvarks.";
+    public static final String DEFAULT_STATUS = "resume review";
 
     private Name name;
     private Phone phone;
@@ -47,7 +45,7 @@ public class PersonBuilder {
         remark = new Remark(DEFAULT_REMARK);
         tags = new HashSet<>();
         type = Type.PERSON.toString();
-        status = "";
+        status = DEFAULT_STATUS;
     }
 
     /**
@@ -111,8 +109,8 @@ public class PersonBuilder {
     /**
      * Sets the {@code Status} of the {@code Person} that we are building.
      */
-    public PersonBuilder withStatus(Status status) {
-        this.status = status.toString();
+    public PersonBuilder withStatus(String status) {
+        this.status = status;
         return this;
     }
 
@@ -129,7 +127,7 @@ public class PersonBuilder {
      * {@code Email},{@code Remark}, {@code Status} and {@code Tags}.
      */
     public Applicant build_applicant() {
-        return new Applicant(name, phone, email, remark, new ApplicantStatus(ApplicantState.STAGEONE.toString()), tags);
+        return new Applicant(name, phone, email, remark, new ApplicantStatus(status), tags);
     }
 
     /**
@@ -137,7 +135,6 @@ public class PersonBuilder {
      * {@code Email},{@code Remark}, {@code Status} and {@code Tags}.
      */
     public Interviewer build_interviewer() {
-        return new Interviewer(name, phone, email, remark, new InterviewerStatus(InterviewerState.FREE.toString()),
-                tags);
+        return new Interviewer(name, phone, email, remark, new InterviewerStatus(status), tags);
     }
 }

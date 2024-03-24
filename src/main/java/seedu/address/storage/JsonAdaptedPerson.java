@@ -19,6 +19,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
+import seedu.address.model.person.enums.Type;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -114,10 +115,10 @@ class JsonAdaptedPerson {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
-        if (type.equals("APPLICANT")) {
+        if (type.equals(Type.APPLICANT.toString())) {
             ApplicantStatus applicantStatus = new ApplicantStatus(status);
             return new Applicant(modelName, modelPhone, modelEmail, modelRemark, applicantStatus, modelTags);
-        } else if (type.equals("INTERVIEWER")) {
+        } else if (type.equals(Type.INTERVIEWER.toString())) {
             InterviewerStatus interviewerStatus = new InterviewerStatus(status);
             return new Interviewer(modelName, modelPhone, modelEmail, modelRemark, interviewerStatus, modelTags);
         }

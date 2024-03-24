@@ -55,6 +55,7 @@ public class AddInterviewerStatusCommand extends Command {
         try {
             personToEdit = lastShownList
                     .stream()
+                    .parallel()
                     .filter(person -> person.getPhone().equals(phone))
                     .reduce((person, prev) -> person).get();
         } catch (NoSuchElementException e) {

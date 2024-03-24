@@ -31,8 +31,9 @@ public class AddApplicantStatusCommandParser implements Parser<AddApplicantStatu
                     AddApplicantStatusCommand.MESSAGE_USAGE), ive);
         }
 
-        String status = argMultimap.getValue(PREFIX_STATUS).orElse("");
+        ApplicantStatus applicantStatus = ParserUtil.parseApplicantStatus(argMultimap
+                .getValue(PREFIX_STATUS).orElse(""));
 
-        return new AddApplicantStatusCommand(phone, new ApplicantStatus(status));
+        return new AddApplicantStatusCommand(phone, applicantStatus);
     }
 }

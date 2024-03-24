@@ -9,7 +9,9 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.ApplicantStatus;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.InterviewerStatus;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
@@ -104,5 +106,35 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String status} into a {@code ApplicantStatus}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code status} is invalid.
+     */
+    public static ApplicantStatus parseApplicantStatus(String applicantStatus) throws ParseException {
+        requireNonNull(applicantStatus);
+        String trimmedApplicantStatus = applicantStatus.trim();
+        if (!ApplicantStatus.isValidStatus(trimmedApplicantStatus)) {
+            throw new ParseException(ApplicantStatus.MESSAGE_CONSTRAINTS);
+        }
+        return new ApplicantStatus(trimmedApplicantStatus);
+    }
+
+    /**
+     * Parses a {@code String status} into a {@code InterviewerStatus}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code status} is invalid.
+     */
+    public static InterviewerStatus parseInterviewerStatus(String interviewerStatus) throws ParseException {
+        requireNonNull(interviewerStatus);
+        String trimmedInterviewerStatus = interviewerStatus.trim();
+        if (!InterviewerStatus.isValidStatus(trimmedInterviewerStatus)) {
+            throw new ParseException(InterviewerStatus.MESSAGE_CONSTRAINTS);
+        }
+        return new InterviewerStatus(trimmedInterviewerStatus);
     }
 }
