@@ -3,6 +3,8 @@ package seedu.address.logic.parser;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 /**
@@ -26,6 +28,34 @@ public class ArgumentTokenizer {
     public static ArgumentMultimap tokenize(String argsString, Prefix... prefixes) {
         List<PrefixPosition> positions = findAllPrefixPositions(argsString, prefixes);
         return extractArguments(argsString, positions);
+    }
+
+    /**
+     * Checks whether exist unknown prefix.
+     * @param argsString Argument string that we want to check for unknwon prefix
+     * @param prefixes Prefixes that we accept
+     * @return unknown prefix string
+     */
+    public static String checkUnknownPrefix(String argsString, Prefix... prefixes) {
+        Pattern pattern = Pattern.compile(";\\s*([^:]+)\\s*:");
+        Matcher matcher = pattern.matcher(argsString);
+
+        while (matcher.find()) {
+            String foundPrefix = matcher.group(0);
+            boolean isKnownPrefix = false;
+
+            for (Prefix p : prefixes) {
+                if (p.getPrefix().trim().equals(foundPrefix)) {
+                    isKnownPrefix = true;
+                    break;
+                }
+            }
+
+            if (!isKnownPrefix) {
+                return foundPrefix;
+            }
+        }
+        return null;
     }
 
     /**
