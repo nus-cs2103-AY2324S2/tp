@@ -39,6 +39,7 @@ public class CommandBox extends UiPart<Region> {
 
         try {
             commandTextField.setText(getLastCommand());
+            commandTextField.end();
         } catch (DataLoadingException e) {
             logger.warning("State file at " + getFilePath() + " could not be loaded."
                     + " Starting with an empty command box.");
