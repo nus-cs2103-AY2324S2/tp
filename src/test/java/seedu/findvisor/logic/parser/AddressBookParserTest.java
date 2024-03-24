@@ -6,13 +6,16 @@ import static seedu.findvisor.commons.util.DateTimeUtil.dateTimeToInputString;
 import static seedu.findvisor.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.findvisor.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.findvisor.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
+import static seedu.findvisor.logic.commands.CommandTestUtil.VALID_MEETING_REMARK;
 import static seedu.findvisor.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.findvisor.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.findvisor.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.findvisor.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.findvisor.logic.commands.CommandTestUtil.createValidMeeting;
+import static seedu.findvisor.logic.commands.CommandTestUtil.createValidMeetingNonEmptyRemark;
 import static seedu.findvisor.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.findvisor.logic.parser.CliSyntax.PREFIX_END_DATETIME;
+import static seedu.findvisor.logic.parser.CliSyntax.PREFIX_MEETING_REMARK;
 import static seedu.findvisor.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.findvisor.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.findvisor.logic.parser.CliSyntax.PREFIX_START_DATETIME;
@@ -124,6 +127,14 @@ public class AddressBookParserTest {
                 ScheduleCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + " "
                 + PREFIX_START_DATETIME + dateTimeToInputString(meeting.start) + " "
                 + PREFIX_END_DATETIME + dateTimeToInputString(meeting.end));
+        assertEquals(new ScheduleCommand(INDEX_FIRST_PERSON, meeting), command);
+
+        meeting = createValidMeetingNonEmptyRemark();
+        command = (ScheduleCommand) parser.parseCommand(
+                ScheduleCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + " "
+                + PREFIX_START_DATETIME + dateTimeToInputString(meeting.start) + " "
+                + PREFIX_END_DATETIME + dateTimeToInputString(meeting.end) + " "
+                + PREFIX_MEETING_REMARK + VALID_MEETING_REMARK);
         assertEquals(new ScheduleCommand(INDEX_FIRST_PERSON, meeting), command);
     }
 

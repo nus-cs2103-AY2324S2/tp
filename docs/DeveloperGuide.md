@@ -147,7 +147,7 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.findvisor.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -157,7 +157,15 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Edit Command
 
-In the current iteration, `ModelManager` is the only object that implements model outside of testing. The following 
+The section aims to show how the different components interact with each other when a command that changes the data stored in FINDvisor is called.
+While the `edit` command is used as an example, any command that changes data follows a similar interaction.
+
+![EditSequenceDiagram-Logic](images/EditSequenceDiagram-Logic.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `EditCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline continues till the end of diagram.
+</div>
+
+In the current iteration, `ModelManager` is the only object that implements model outside of testing. The following
 sequence diagram shows the interactions within `Model` when editing a person.
 
 ![EditSequenceDiagram-Model](images/EditSequenceDiagram-Model.png)
@@ -332,7 +340,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 2a. The list is empty.
-    
+
     Use case ends.
 
 * 3a. The given index is invalid.
