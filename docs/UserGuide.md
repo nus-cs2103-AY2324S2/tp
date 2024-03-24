@@ -10,6 +10,8 @@ pageNav: 3
 This page is for ConnectCare users. If you're a developer, see also the [Developer guide](https://ay2324s2-cs2103t-w12-4.github.io/tp/DeveloperGuide.html)_.
 </box>
 
+<!-- * Table of Contents -->
+<page-nav-print />
 
 ## Introduction
 Welcome to *ConnectCare User Guide*, a guide to use the *ConnectCare* application.
