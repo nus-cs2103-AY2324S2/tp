@@ -1,6 +1,10 @@
 package seedu.findvisor.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.findvisor.logic.commands.CommandTestUtil.INVALID_MEETING_REMARK;
+import static seedu.findvisor.logic.commands.CommandTestUtil.VALID_MEETING_END_STR;
+import static seedu.findvisor.logic.commands.CommandTestUtil.VALID_MEETING_REMARK;
+import static seedu.findvisor.logic.commands.CommandTestUtil.VALID_MEETING_START_STR;
 import static seedu.findvisor.storage.JsonAdaptedPerson.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.findvisor.testutil.Assert.assertThrows;
 import static seedu.findvisor.testutil.TypicalPersons.BENSON;
@@ -126,11 +130,22 @@ public class JsonAdaptedPersonTest {
     }
 
     @Test
-    public void toModelType_invalidMeeting_throwsIllegalValueException() {
-        JsonAdaptedMeeting invalidMeeting = new JsonAdaptedMeeting("INVALID_START", "INVALID_END");
+    public void toModelType_invalidMeetingDateTime_throwsIllegalValueException() {
+        JsonAdaptedMeeting invalidMeeting = new JsonAdaptedMeeting("INVALID_START",
+                "INVALID_END", VALID_MEETING_REMARK);
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
                 invalidMeeting, VALID_REMARK, VALID_TAGS);
-        String expectedMessage = Meeting.MESSAGE_CONSTRAINTS;
+        String expectedMessage = Meeting.MESSAGE_DATETIME_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidMeetingRemark_throwsIllegalValueException() {
+        JsonAdaptedMeeting invalidMeeting = new JsonAdaptedMeeting(VALID_MEETING_START_STR,
+                VALID_MEETING_END_STR, INVALID_MEETING_REMARK);
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
+                invalidMeeting, VALID_REMARK, VALID_TAGS);
+        String expectedMessage = Meeting.MESSAGE_REMARK_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
