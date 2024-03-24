@@ -3,7 +3,10 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -23,6 +26,8 @@ public class ViewCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_VIEW_PERSON_SUCCESS = "View Person: %1$s";
+
+    private static final Logger logger = LogsCenter.getLogger(ViewCommand.class);
 
     private final Index targetIndex;
 
@@ -51,6 +56,7 @@ public class ViewCommand extends Command {
         }
 
         Person personToView = lastShownList.get(targetIndex.getZeroBased());
+        logger.log(Level.INFO, "View command created with index: " + targetIndex);
         model.updateLastViewedPerson(personToView);
         return new CommandResult(String.format(MESSAGE_VIEW_PERSON_SUCCESS, Messages.format(personToView)));
     }
