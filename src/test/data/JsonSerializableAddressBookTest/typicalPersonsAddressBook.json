@@ -2,14 +2,14 @@
   "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
   "persons" : [ {
     "name" : "Alice Pauline",
-    "tags" : [ "serious" ],
+    "tags" : [ "Diabetes" ],
     "dob": "20/02/2000",
     "ic": "A1234567B",
     "admissionDate": "01/03/2024",
     "ward":"A1"
   }, {
     "name" : "Benson Meier",
-    "tags" : [ "serious", "old" ],
+    "tags" : [ "Dementia", "Fall Risk" ],
     "dob": "20/02/2001",
     "ic": "A2345678B",
     "admissionDate": "01/02/2024",
@@ -23,7 +23,7 @@
     "ward": "C1"
   }, {
     "name" : "Daniel Meier",
-    "tags" : [ "mild" ],
+    "tags" : [ "Hearing Impaired" ],
     "dob": "20/02/2003",
     "ic": "A5678901B",
     "admissionDate": "10/03/2024",

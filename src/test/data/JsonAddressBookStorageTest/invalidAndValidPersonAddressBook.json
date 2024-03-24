@@ -1,13 +1,15 @@
 {
   "persons": [ {
     "name": "Valid Person",
-    "phone": "9482424",
-    "email": "hans@example.com",
-    "address": "4th street"
+    "dob": "20/02/2000",
+    "ic": "A1234567B",
+    "admissionDate": "01/03/2024",
+    "ward":"A1"
   }, {
-    "name": "Person With Invalid Phone Field",
-    "phone": "948asdf2424",
-    "email": "hans@example.com",
-    "address": "4th street"
+    "name": "Person With Invalid DOB Field",
+    "dob": "20/02/19999",
+    "ic": "A1234567C",
+    "admissionDate": "01/02/2024",
+    "ward":"A2"
   } ]
 }
