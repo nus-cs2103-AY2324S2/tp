@@ -34,7 +34,7 @@ public class AddressBookParser {
     /**
      * Used to match incomplete commands with full commands.
      */
-    private final String[] COMMANDS = {
+    private static final String[] COMMANDS = {
         AddCommand.COMMAND_WORD,
         EditCommand.COMMAND_WORD,
         DeleteCommand.COMMAND_WORD,
@@ -108,14 +108,14 @@ public class AddressBookParser {
      * @throws ParseException if the input matches to multiple commands
      */
     private String fullCommand(String command) throws ParseException {
-        final String INITIAL_VALUE = "";
-        String possibleCommand = INITIAL_VALUE;
+        final String initialValue = "";
+        String possibleCommand = initialValue;
 
         for (String commandWord : COMMANDS) {
             // Input command matches the full command.
             if (commandWord.startsWith(command)) {
                 // Input command matches with multiple full commands.
-                if (!possibleCommand.equals(INITIAL_VALUE)) {
+                if (!possibleCommand.equals(initialValue)) {
                     throw new ParseException(MESSAGE_UNCLEAR_COMMAND);
                 }
 
@@ -123,7 +123,7 @@ public class AddressBookParser {
             }
         }
 
-        if (possibleCommand.equals(INITIAL_VALUE)) {
+        if (possibleCommand.equals(initialValue)) {
             // Return original command if no match found.
             return command;
         } else {
