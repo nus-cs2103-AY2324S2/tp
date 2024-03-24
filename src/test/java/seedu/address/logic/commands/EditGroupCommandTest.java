@@ -57,24 +57,24 @@ public class EditGroupCommandTest {
     public void equals() {
         Group tut01 = new Group("TUT01");
         Group lab01 = new Group("LAB01");
-        AddGroupCommand addTut01Command = new AddGroupCommand(tut01);
-        AddGroupCommand addLab01Command = new AddGroupCommand(lab01);
+        EditGroupCommand editTut01Command = new EditGroupCommand(tut01, "https://t.me/abcdefg");
+        EditGroupCommand editLab01Command = new EditGroupCommand(lab01, "https://t.me/abcedfg");
 
         // same object -> returns true
-        assertTrue(addTut01Command.equals(addTut01Command));
+        assertTrue(editTut01Command.equals(editTut01Command));
 
         // same values -> returns true
-        AddGroupCommand addTut01CommandCopy = new AddGroupCommand(tut01);
-        assertTrue(addTut01Command.equals(addTut01CommandCopy));
+        EditGroupCommand editTut01CommandCopy = new EditGroupCommand(tut01, "https://t.me/abcdefg");
+        assertTrue(editTut01Command.equals(editTut01CommandCopy));
 
         // different types -> returns false
-        assertFalse(addTut01Command.equals(1));
+        assertFalse(editTut01Command.equals(1));
 
         // null -> returns false
-        assertFalse(addTut01Command.equals(null));
+        assertFalse(editTut01Command.equals(null));
 
         // different person -> returns false
-        assertFalse(addTut01Command.equals(addLab01Command));
+        assertFalse(editTut01Command.equals(editLab01Command));
     }
 
     @Test
