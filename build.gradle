@@ -69,4 +69,8 @@ shadowJar {
     archiveFileName = 'findvisor.jar'
 }
 
+run {
+    enableAssertions = true
+}
+
 defaultTasks 'clean', 'test'
