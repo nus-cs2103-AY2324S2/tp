@@ -2,19 +2,22 @@
 layout: page
 title: User Guide
 ---
+## Introduction
 
 Welcome to **vitalConnect**, your all-in-one desktop application for efficient clinic management, optimized for both Command Line Interface (CLI) and Graphical User Interface (GUI). Designed to streamline your clinic management tasks, VitalConnect offers the speed of a CLI with the convenience of a GUI, allowing you to effortlessly organize your patient and appointments with just a few keystrokes.
 
 If you are relatively good at typing, having the benefit of CLI of reducing time of dragging your mouse around, vitalConnect empowers you to manage your appointments swiftly and effectively. With its intuitive interface and robust features, you can add, delete, and search for appointments, track medical information, as well as check patient contact for communication with ease.
 
-This user guide serves as your comprehensive manual for navigating **vitalConnect**'s features and functionalities. From quick-start instructions to detailed command summaries, you'll find everything you need to maximize your productivity and streamline your management workflow.
+This user guide serves as your comprehensive manual for navigating vitalConnect's features and functionalities. From quick-start instructions to detailed command summaries, you'll find everything you need to maximize your productivity and streamline your management workflow.
 
-So, whether you're a busy professional juggling multiple appointments, **vitalConnect** is here to simplify your life. Let's dive in and explore how **vitalConnect** can revolutionize the way you manage your appointment and patient.
+So, whether you're a busy professional juggling multiple appointments, vitalConnect is here to simplify your life. Let's dive in and explore how vitalConnect can revolutionize the way you manage your appointment and patient.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Table of Contents
+
 <a id="top"></a>
+
 - [Quick start](#quick-start)
 - [Features](#features)
     - [Viewing help](#viewing-help--help)
@@ -30,13 +33,12 @@ So, whether you're a busy professional juggling multiple appointments, **vitalCo
     - [Deleting medical information](#deleting-medical-information--deletem)
     - [Adding an appointment](#adding-an-appointment--adda)
     - [Deleting an appointment](#deleting-an-appointment--deletea)
-    - [Listing appointments](#listing-appointments--lista)
+    - [Listing appointments](#list-out-appointment--lista)
     - [Clearing all entries](#clearing-all-entries--clear)
     - [Exiting the program](#exiting-the-program--exit)
     - [Saving the data](#saving-the-data)
     - [Editing the data file](#editing-the-data-file)
     - [Archiving data files](#archiving-data-files-coming-in-v20)
-    - [Editing a patient](#editing-a-patient-coming-in-v13)
 - [FAQ](#faq)
 - [Known issues](#known-issues)
 - [Command summary](#command-summary)
@@ -108,7 +110,8 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 [<span style="font-size: small;">Back to Top</span>](#top)
-### Adding a patient: `add`
+
+### Adding a patient : `add`
 
 Adds a patient to the clinic.
 
@@ -118,6 +121,7 @@ Examples:
 * `add n/John Doe ic/S1234567D`
 
 [<span style="font-size: small;">Back to Top</span>](#top)
+
 ### Listing all patients : `list`
 
 Shows a list of all patients in the clinic.
@@ -125,7 +129,8 @@ Shows a list of all patients in the clinic.
 Format: `list`
 
 [<span style="font-size: small;">Back to Top</span>](#top)
-### Locating patients by name: `find`
+
+### Locating patients by name : `find`
 
 Finds patients whose names contain any of the given keywords.
 
@@ -143,6 +148,7 @@ Examples:
   ![result for 'find John'](images/findJohnResult.png)
 
 [<span style="font-size: small;">Back to Top</span>](#top)
+
 ### Deleting a patient : `delete`
 
 Deletes the specified patient from the clinic.
@@ -158,6 +164,7 @@ Examples:
 * `find Betsy` followed by `delete 1` deletes the 1st patient in the results of the `find` command.
 
 [<span style="font-size: small;">Back to Top</span>](#top)
+
 ### Adding contact information : `addc`
 
 Adds contact information to a patient in the clinic.
@@ -180,11 +187,13 @@ Examples:
 * `addc ic/S1234567D a/123, Clementi Rd, 1234665 e/test@email.com p/91234567`
 
 [<span style="font-size: small;">Back to Top</span>](#top)
+
 ### Listing contact information : `listc`
 
 Lists all patients with contact information.
 
 [<span style="font-size: small;">Back to Top</span>](#top)
+
 ### Deleting contact information : `deletec`
 
 Deletes contact information from a patient in the clinic.
@@ -195,6 +204,7 @@ Examples:
 * `deletec ic/S1234567D` will result in the contact information of the patient with NRIC `S1234567D` being deleted.
 
 [<span style="font-size: small;">Back to Top</span>](#top)
+
 ### Adding medical information : `addm`
 
 Adds medical information to a patient in the clinic.
@@ -206,11 +216,13 @@ Examples:
 * `addm ic/S1234567D h/163 w/50 t/insulin t/iodine`
 
 [<span style="font-size: small;">Back to Top</span>](#top)
+
 ### Listing medical information : `listm`
 
 Lists all patients with medical information.
 
 [<span style="font-size: small;">Back to Top</span>](#top)
+
 ### Deleting medical information : `deletem`
 
 Deletes medical information from a patient in the clinic.
@@ -221,7 +233,8 @@ Examples:
 * `deletem ic/S1234567D` will result in the medical information of the patient with NRIC `S1234567D` being deleted.
 
 [<span style="font-size: small;">Back to Top</span>](#top)
-### Adding an appointment: `adda`
+
+### Adding an appointment : `adda`
 
 Adds an appointment for a patient to the appointment list.
 
@@ -231,7 +244,8 @@ Examples:
 * `adda S1234567D /time 02/02/2024 1300` will add an appointment for the patient with NRIC `S1234567D` on 2nd February 2024 at 1:00 PM.
 
 [<span style="font-size: small;">Back to Top</span>](#top)
-### Adding an appointment: `deletea`
+
+### Deleting an appointment : `deletea`
 
 Delete an exist appointment from the appointment list by providing the index of the appointment
 in the list and the name of the patient.
@@ -242,13 +256,15 @@ Examples:
 * `deletea 1 /name Amy`
 
 [<span style="font-size: small;">Back to Top</span>](#top)
-### List out appointments: `lista`
+
+### List out appointments : `lista`
 
 List out all the appointments in the appointment list.
 
 Format: `lista`
 
 [<span style="font-size: small;">Back to Top</span>](#top)
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the clinic.
@@ -259,6 +275,7 @@ Format: `clear`
 > This command will delete all the patients from the clinic. Please use with cautious.
 
 [<span style="font-size: small;">Back to Top</span>](#top)
+
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -266,11 +283,13 @@ Exits the program.
 Format: `exit`
 
 [<span style="font-size: small;">Back to Top</span>](#top)
+
 ### Saving the data
 
 Clinic data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 [<span style="font-size: small;">Back to Top</span>](#top)
+
 ### Editing the data file
 
 Clinic data are saved automatically as a JSON file `[JAR file location]/data/clinic.json`. Advanced users are welcome to update data directly by editing that data file.
