@@ -359,3 +359,21 @@
     -fx-background-radius: 2;
 }
 
+.navbar {
+    -fx-background-color: #383838; /* Set background color */
+}
+
+.navbar .toggle-button {
+    -fx-background-color: #383838;
+    -fx-font-size: 14px;
+    -fx-text-fill: white;
+    -fx-padding: 8px 8px;
+}
+
+.navbar .toggle-button:hover {
+    -fx-background-color: #3e7b91; /* Set background color for hover state */
+}
+
+.navbar .toggle-button:selected {
+    -fx-background-color: #3e7b91; /* Set background color for focused state */
+}

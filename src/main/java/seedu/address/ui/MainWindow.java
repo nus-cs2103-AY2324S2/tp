@@ -6,6 +6,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
@@ -35,6 +37,8 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
+    private ToggleGroup toggleGroup;
+
     @FXML
     private StackPane commandBoxPlaceholder;
 
@@ -49,6 +53,12 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private ToggleButton overallViewButton;
+
+    @FXML
+    private ToggleButton dayViewButton;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -66,6 +76,8 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+
+        setNavbar();
     }
 
     public Stage getPrimaryStage() {
@@ -146,6 +158,24 @@ public class MainWindow extends UiPart<Stage> {
             helpWindow.focus();
         }
     }
+
+    private void setNavbar() {
+        toggleGroup = new ToggleGroup();
+        overallViewButton.setToggleGroup(toggleGroup);
+        dayViewButton.setToggleGroup(toggleGroup);
+        overallViewButton.setSelected(true);
+    }
+
+    @FXML
+    public void handleShowDayView() {
+        personListPanel.getRoot().setVisible(false);
+    }
+
+    @FXML
+    public void handleShowOverallView() {
+        personListPanel.getRoot().setVisible(true);
+    }
+
 
     void show() {
         primaryStage.show();
