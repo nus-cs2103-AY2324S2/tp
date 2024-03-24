@@ -171,6 +171,17 @@ Format: `cancel INDEX`
 * The index refers to the index number shown in the displayed booking list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
+### Searching for a booking : `search`
+
+Searches for the specified booking from the address book.
+
+Format: `search KEYWORD [MORE_KEYWORDS]`
+
+* The search is case-insensitive. e.g `john` will match `John`
+* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* Persons matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `John` will return `Johns Birthday Party`, `Dinner with John`
+
 ### Clearing all contact entries : `clear`
 
 Clears all contact entries from the address book.
@@ -239,5 +250,5 @@ _Details coming soon ..._
 | **View**      | `view -b`                                                                                                                          |
 | **Cancel**    | `cancel INDEX` or `cancel -a` or `cancel sudo -a` <br> e.g., `cancel 2`                                                            |
 | **Edit**      | `edit INDEX [-n DESCRIPTION] [-s START_TIME] [-e END_TIME]`<br> e.g.,`edit 2 -n Prof Aaron's Consultation -s 2024-03-01 14:30`     |
-| **Find**      | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find Prof Lee's Consultation`                                                            |
-| **Free Time** | `find -ft -n NAME`<br> e.g., `find -ft -n Prof Damith`                                                                             |
+| **Search**    | `search KEYWORD [MORE_KEYWORDS]`<br> e.g., `search Prof Lee's Consultation`                                                        |
+| **Free Time** | `check -ft -n NAME`<br> e.g., `check -ft -n Prof Damith`                                                                           |

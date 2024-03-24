@@ -184,6 +184,11 @@ public class AddCommandTest {
         public void setTheme(Theme theme) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void updateFilteredBookingList(Predicate<Booking> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
