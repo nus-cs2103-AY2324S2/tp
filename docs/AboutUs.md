@@ -9,7 +9,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### Joseph Chan 
+### Joseph Chan
 
 <img src="images/cyqjoseph.png" width="200px">
 
