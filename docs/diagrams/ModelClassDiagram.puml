@@ -5,20 +5,32 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model as ModelPackage <<Rectangle>>{
-Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
+Class "<<interface>>\nReadOnlyClinic" as ReadOnlyAddressClinic
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
 Class "<<interface>>\nModel" as Model
-Class AddressBook
+Class Clinic
 Class ModelManager
 Class UserPrefs
 
 Class UniquePersonList
 Class Person
+Class Identification\nInformation
+Class Nric
+Class Name
+Class Contact\nInformation
 Class Address
 Class Email
-Class Name
 Class Phone
-Class Tag
+Class Medical\nInformation
+Class Height
+Class Weight
+Class Allergy
+
+Class UniqueAppointmentList
+Class Appointment
+Class Doctor
+Class Patient
+Class Time
 
 Class I #FFFFFF
 }
@@ -26,22 +38,28 @@ Class I #FFFFFF
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+Clinic .up.|> ReadOnlyAddressClinic
 
 ModelManager .up.|> Model
 Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyAddressBook
-ModelManager -left-> "1" AddressBook
-ModelManager -right-> "1" UserPrefs
+Model .left.> ReadOnlyAddressClinic
+ModelManager --> "1" Clinic
+ModelManager --> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
+Clinic *--> "1" UniquePersonList
 UniquePersonList --> "~* all" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+Person *--> Identification\nInformation
+Identification\nInformation *--> Nric
+Identification\nInformation *--> Name
+Person *--> Contact\nInformation
+Contact\nInformation *--> Phone
+Contact\nInformation *--> Email
+Contact\nInformation *--> Address
+Person *--> Medical\nInformation
+Medical\nInformation *--> Height
+Medical\nInformation *--> Weight
+Medical\nInformation *--> Allergy
 
 Person -[hidden]up--> I
 UniquePersonList -[hidden]right-> I
@@ -50,5 +68,12 @@ Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
 
+Clinic *--> "1" UniqueAppointmentList
+UniqueAppointmentList --> "~* all" Appointment
+Appointment *--> Doctor
+Appointment *--> Patient
+Appointment *--> Time
+
 ModelManager --> "~* filtered" Person
+ModelManager --> "~* filtered" Appointment
 @enduml
