@@ -50,7 +50,7 @@ public class DeleteShownCommand extends Command {
      * @param list the list
      * @throws CommandException if the list is empty
      */
-    private void checkForEmptyList(ObservableList<Person> list) throws CommandException {
+    private static void checkForEmptyList(ObservableList<Person> list) throws CommandException {
         if (list.isEmpty()) {
             throw new CommandException(MESSAGE_NO_PERSONS);
         }
@@ -70,7 +70,7 @@ public class DeleteShownCommand extends Command {
      * @param lastShownList the last shown list
      */
     private static void deletePersons(Model model, ObservableList<Person> lastShownList) {
-        for (int i = 0; i < lastShownList.size(); i++) {
+        for (int i = lastShownList.size() - 1; i >= 0; i--) {
             model.deletePerson(lastShownList.get(i));
         }
     }
