@@ -139,13 +139,13 @@ public class ModelManager implements Model {
 
     @Override
     public Person getSelectedPerson() {
-        return this.selectedPerson;
+        return selectedPerson;
     }
 
     @Override
     public void updateSelectedPerson(Person person) {
         requireNonNull(person);
-        this.selectedPerson = person;
+        selectedPerson = person;
     }
 
     @Override
