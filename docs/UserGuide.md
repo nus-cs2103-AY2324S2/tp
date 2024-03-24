@@ -97,7 +97,7 @@ ___
 
 ### Adding a new client: `add`
 
-This command adds a new client to your client list.
+This command adds a new client to your client list. All fields except the tag field are compulsory.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS k/NEXTOFKIN d/DESCRIPTION [t/TAG]…`
 
@@ -113,11 +113,11 @@ Examples:
 
 This command helps update existing client's information in the client list in the event that something changes.
 
-Format: `update u/existing user [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
+Format: `update u/existing user [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DESCRIPTION] [k/NEXTOFKIN] [t/TAG]…`
 
 Examples:
 
--   `Update u/Jane Doe n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-011` updates the information of Jane Doe's information to be  
+-   `update u/Jane Doe n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-011` updates the information of Jane Doe's information to be  
     name: John Doe  
     Phone no: 98765432  
     email: [johnd@example.com](mailto:johnd@example.com)  
@@ -180,16 +180,17 @@ ___
 
 ## Command summary
 
-| Action | Format | Examples |
-| --- | --- | --- |
-| **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… [k/NEXTOFKIN]`  |`add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Update** | `update u/existing user [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`  | `Update u/Jane Doe n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-011` |
-| **Find** | `find KEYWORD [MORE_KEYWORDS]`  | `find James Jake` |
-| **Undo** | `undo`| |
-| **Redo** | `redo` | |
-| **Display** | TBD | |
-| **Clear** | `clear` | |
-| **Exit** | `exit` | |
+| Action      | Format                                                                            | Examples                                                                                                                           |
+|-------------|-----------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**     | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… [k/NEXTOFKIN]`              | `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 d/Suffers from anxiety k/Jon Ho t/friend t/colleague` |
+| **Update**  | `update u/existing user [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…` | `Update u/Jane Doe n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-011`                                    |
+| **Find**    | `find KEYWORD [MORE_KEYWORDS]`                                                    | `find James Jake`                                                                                                                  |
+| **List**    | `list`                                                                            |                                                                                                                                    |
+| **Undo**    | `undo`                                                                            |                                                                                                                                    |
+| **Redo**    | `redo`                                                                            |                                                                                                                                    |
+| **Display** | TBD                                                                               |                                                                                                                                    |
+| **Clear**   | `clear`                                                                           |                                                                                                                                    |
+| **Exit**    | `exit`                                                                            |                                                                                                                                    |
 
 ___
 
