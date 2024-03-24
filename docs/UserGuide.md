@@ -6,12 +6,12 @@
 
 # FAPro User Guide
 
-FAPro is a **desktop app for managing clients' contacts, optimized for use via a Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). 
+FAPro is a **desktop app for managing clients' contacts, optimized for use via a Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI).
 
-If you 
+If you
 * are a financial advisor,
-* can type fast, 
-* have more than 50 clients, 
+* can type fast,
+* have more than 50 clients,
 
 FAPro can get your client management tasks done faster than traditional GUI apps.
 
@@ -94,7 +94,7 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​ [lc/DATETIME]
 **Tip:** A person can have any number of tags (including 0)
 </box>
 
-**Note:** t/ and lc/ : tag and lastcontact field is optional. 
+**Note:** t/ and lc/ : tag and lastcontact field is optional.
 
 
 Examples:
@@ -190,7 +190,7 @@ Examples:
 View all the contacts of all upcoming appointments ordered by date (earliest to latest).
 
 Format: `upcoming`
-  
+
 - `upcoming` displays all upcoming appointments.
 
 Examples:

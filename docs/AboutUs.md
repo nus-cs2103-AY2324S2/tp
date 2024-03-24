@@ -35,7 +35,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 <img src="images/colex2000.png" width="200px">
 
-[[github](http://github.com/Colex2000)] 
+[[github](http://github.com/Colex2000)]
 [[portfolio](team/tiongchuanyao.md)]
 [[email](tiongchuanyao@u.nus.edu)]
 
