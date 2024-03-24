@@ -39,4 +39,19 @@ public class ChangeDataSourceCommand extends Command {
     public Path getNewPath() {
         return newPath;
     }
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof ChangeDataSourceCommand)) {
+            return false;
+        }
+
+        ChangeDataSourceCommand otherCommand = (ChangeDataSourceCommand) other;
+        return newPath.equals(otherCommand.newPath);
+    }
+
 }
