@@ -8,6 +8,7 @@ import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Commission;
@@ -242,5 +243,21 @@ public class ParserUtil {
             throw new ParseException(Note.MESSAGE_CONSTRAINTS);
         }
         return new Note(trimmedNote);
+    }
+
+    /**
+     * Parses a {@code String note}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code commandType} is invalid.
+     */
+    public static String parseHelp(String commandType) throws ParseException {
+
+        requireNonNull(commandType);
+        String trimmedCommand = commandType.trim();
+        if (!HelpCommand.isValidCommandType(commandType)) {
+            throw new ParseException(HelpCommand.MESSAGE_CONSTRAINTS);
+        }
+        return trimmedCommand;
     }
 }
