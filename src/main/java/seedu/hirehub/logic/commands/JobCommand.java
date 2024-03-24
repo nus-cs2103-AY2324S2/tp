@@ -40,6 +40,7 @@ public class JobCommand extends Command {
         }
 
         model.addJob(job);
+        // TODO: remove print statements once UI is up and running
         for (Job j: model.getFilteredJobList()) {
             System.out.println(j);
         }
