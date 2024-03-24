@@ -87,13 +87,13 @@ public class FindCommandParserTest {
     @Test
     public void parse_validPolicyKeywords_returnsFindCommand() throws ParseException {
         Predicate<Person> combinedPredicate =
-                new PolicyContainsKeywordsPredicate(Arrays.asList("life insurance", "car insurance"));
-        FindCommand command = parser.parse(" po/life insurance po/car insurance");
+                new PolicyContainsKeywordsPredicate(Arrays.asList("life_insurance", "car_insurance"));
+        FindCommand command = parser.parse(" po/life_insurance po/car_insurance");
 
         List<Person> testPersons = Arrays.asList(
-                new PersonBuilder().withPolicy("life insurance").build(),
-                new PersonBuilder().withPolicy("car insurance").build(),
-                new PersonBuilder().withPolicy("dummy value").build()
+                new PersonBuilder().withPolicy("life_insurance").build(),
+                new PersonBuilder().withPolicy("car_insurance").build(),
+                new PersonBuilder().withPolicy("dummy_value").build()
         );
 
         for (Person person : testPersons) {
@@ -107,17 +107,17 @@ public class FindCommandParserTest {
         Predicate<Person> combinedPredicate = new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob"))
                 .or(new RelationshipContainsKeywordsPredicate(Arrays.asList("client", "partner")))
                 .or(new TagContainsKeywordsPredicate(Arrays.asList("friends", "colleagues")))
-                .or(new PolicyContainsKeywordsPredicate((Arrays.asList("life insurance", "car insurance"))));
+                .or(new PolicyContainsKeywordsPredicate((Arrays.asList("life_insurance", "car_insurance"))));
         FindCommand command = parser.parse(" n/Alice n/Bob r/client r/partner t/friends t/colleagues " +
-                "po/car insurance po/life insurance");
+                "po/car_insurance po/life_insurance");
 
         List<Person> testPersons = Arrays.asList(
                 new PersonBuilder().withName("Alice").withRelationship("client")
-                        .withTags("friends").withPolicy("life insurance").build(),
+                        .withTags("friends").withPolicy("life_insurance").build(),
                 new PersonBuilder().withName("Bob").withRelationship("partner")
-                        .withTags("colleagues").withPolicy("car insurance").build(),
+                        .withTags("colleagues").withPolicy("car_insurance").build(),
                 new PersonBuilder().withName("Charlie").withRelationship("client")
-                        .withTags("friends").withPolicy("dummy insurance").build()
+                        .withTags("friends").withPolicy("dummy_insurance").build()
         );
 
         for (Person person : testPersons) {
@@ -131,18 +131,18 @@ public class FindCommandParserTest {
         Predicate<Person> combinedPredicate = new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob"))
                 .or(new RelationshipContainsKeywordsPredicate(Arrays.asList("client", "partner")))
                 .or(new TagContainsKeywordsPredicate(Arrays.asList("friends", "colleagues")))
-                .or(new PolicyContainsKeywordsPredicate((Arrays.asList("life insurance", "car insurance"))));
+                .or(new PolicyContainsKeywordsPredicate((Arrays.asList("life_insurance", "car_insurance"))));
         FindCommand command =
                 parser.parse(" \n n/Alice \n \t n/Bob \t r/client \n r/partner \t t/friends" +
-                        " \n t/colleagues \n po/car insurance \n \t po/life insurance");
+                        " \n t/colleagues \n po/car_insurance \n \t po/life_insurance");
 
         List<Person> testPersons = Arrays.asList(
                 new PersonBuilder().withName("Alice").withRelationship("client")
-                        .withTags("friends").withPolicy("life insurance").build(),
+                        .withTags("friends").withPolicy("life_insurance").build(),
                 new PersonBuilder().withName("Bob").withRelationship("partner")
-                        .withTags("colleagues").withPolicy("car insurance").build(),
+                        .withTags("colleagues").withPolicy("car_insurance").build(),
                 new PersonBuilder().withName("Charlie").withRelationship("client")
-                        .withTags("friends").withPolicy("dummy insurance").build()
+                        .withTags("friends").withPolicy("dummy_insurance").build()
         );
 
         for (Person person : testPersons) {

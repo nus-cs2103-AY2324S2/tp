@@ -29,6 +29,7 @@ import seedu.address.model.person.CombinedPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Policy;
+import seedu.address.model.person.PolicyContainsKeywordsPredicate;
 import seedu.address.model.person.RelationshipContainsKeywordsPredicate;
 import seedu.address.model.person.TagContainsKeywordsPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -79,13 +80,15 @@ public class AddressBookParserTest {
         List<String> nameKeywords = Arrays.asList("foo");
         List<String> relationshipKeywords = Arrays.asList("bar");
         List<String> tagKeywords = Arrays.asList("baz");
-        List<String> formattedKeywords = Arrays.asList("n/foo", "r/bar", "t/baz");
+        List<String> policyKeywords = Arrays.asList("abc");
+        List<String> formattedKeywords = Arrays.asList("n/foo", "r/bar", "po/abc", "t/baz");
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + formattedKeywords.stream().collect(Collectors.joining(" ")));
         CombinedPredicate combinedPredicate = new CombinedPredicate(
                 new NameContainsKeywordsPredicate(nameKeywords),
                 new RelationshipContainsKeywordsPredicate(relationshipKeywords),
-                new TagContainsKeywordsPredicate(tagKeywords));
+                new TagContainsKeywordsPredicate(tagKeywords),
+                new PolicyContainsKeywordsPredicate(policyKeywords));
         assertEquals(new FindCommand(combinedPredicate), command);
     }
 

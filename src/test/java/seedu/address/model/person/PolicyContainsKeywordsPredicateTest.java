@@ -16,11 +16,12 @@ public class PolicyContainsKeywordsPredicateTest {
 
     @Test
     public void equals() {
-        List<String> firstPredicateKeywordList = Collections.singletonList("life insurance");
-        List<String> secondPredicateKeywordList = Arrays.asList("life insurance", "car insurance");
+        List<String> firstPredicateKeywordList = Collections.singletonList("life_insurance");
+        List<String> secondPredicateKeywordList = Arrays.asList("life_insurance", "car_insurance");
 
         PolicyContainsKeywordsPredicate firstPredicate = new PolicyContainsKeywordsPredicate(firstPredicateKeywordList);
-        PolicyContainsKeywordsPredicate secondPredicate = new PolicyContainsKeywordsPredicate(secondPredicateKeywordList);
+        PolicyContainsKeywordsPredicate secondPredicate =
+                new PolicyContainsKeywordsPredicate(secondPredicateKeywordList);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
@@ -44,38 +45,38 @@ public class PolicyContainsKeywordsPredicateTest {
     public void test_policyContainsKeywords_returnsTrue() {
         // One keyword
         PolicyContainsKeywordsPredicate predicate =
-                new PolicyContainsKeywordsPredicate(Collections.singletonList("life insurance"));
-        assertTrue(predicate.test(new PersonBuilder().withPolicy("life insurance").build()));
+                new PolicyContainsKeywordsPredicate(Collections.singletonList("life_insurance"));
+        assertTrue(predicate.test(new PersonBuilder().withPolicy("life_insurance").build()));
 
         // Multiple keywords
-        predicate = new PolicyContainsKeywordsPredicate(Arrays.asList("life insurance", "car insurance"));
-        assertTrue(predicate.test(new PersonBuilder().withTags("life insurance").build()));
-        assertTrue(predicate.test(new PersonBuilder().withTags("car insurance").build()));
+        predicate = new PolicyContainsKeywordsPredicate(Arrays.asList("life_insurance", "car_insurance"));
+        assertTrue(predicate.test(new PersonBuilder().withPolicy("life_insurance").build()));
+        assertTrue(predicate.test(new PersonBuilder().withPolicy("car_insurance").build()));
 
         // Mixed-case keywords
-        predicate = new PolicyContainsKeywordsPredicate(Arrays.asList("liFe InsUrAnCE", "cAR INsuRAnCE"));
-        assertTrue(predicate.test(new PersonBuilder().withTags("life insurance").build()));
-        assertTrue(predicate.test(new PersonBuilder().withTags("car insurance").build()));
+        predicate = new PolicyContainsKeywordsPredicate(Arrays.asList("liFe_InsUrAnCE", "cAR_INsuRAnCE"));
+        assertTrue(predicate.test(new PersonBuilder().withPolicy("life_insurance").build()));
+        assertTrue(predicate.test(new PersonBuilder().withPolicy("car_insurance").build()));
     }
 
     @Test
-    public void test_tagDoesNotContainKeywords_returnsFalse() {
+    public void test_policyDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
         PolicyContainsKeywordsPredicate predicate = new PolicyContainsKeywordsPredicate(Collections.emptyList());
-        assertFalse(predicate.test(new PersonBuilder().withTags("life insurance").build()));
+        assertFalse(predicate.test(new PersonBuilder().withPolicy("life_insurance").build()));
 
         // Non-matching keyword
         predicate = new PolicyContainsKeywordsPredicate(Arrays.asList("Associate"));
-        assertFalse(predicate.test(new PersonBuilder().withTags("life insurance").build()));
-        assertFalse(predicate.test(new PersonBuilder().withTags("car insurance").build()));
+        assertFalse(predicate.test(new PersonBuilder().withPolicy("life_insurance").build()));
+        assertFalse(predicate.test(new PersonBuilder().withPolicy("car_insurance").build()));
     }
 
     @Test
     public void toStringMethod() {
-        List<String> keywords = List.of("life insurance", "car insurance");
+        List<String> keywords = List.of("life_insurance", "car_insurance");
         PolicyContainsKeywordsPredicate predicate = new PolicyContainsKeywordsPredicate(keywords);
 
-        String expected = TagContainsKeywordsPredicate.class.getCanonicalName() + "{keywords=" + keywords + "}";
+        String expected = PolicyContainsKeywordsPredicate.class.getCanonicalName() + "{keywords=" + keywords + "}";
         assertEquals(expected, predicate.toString());
     }
 }
