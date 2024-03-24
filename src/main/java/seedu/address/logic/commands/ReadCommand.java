@@ -49,7 +49,7 @@ public class ReadCommand extends Command {
         Person readPerson = model.getFilteredPersonList().get(0);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
-        return new CommandResult(String.format(MESSAGE_READ_PERSON_SUCCESS, Messages.format(readPerson)));
+        return new CommandResult(String.format(MESSAGE_READ_PERSON_SUCCESS, Messages.formatRead(readPerson)));
     }
 
     @Override

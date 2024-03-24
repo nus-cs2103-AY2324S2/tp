@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="800" minWidth="1290" onCloseRequest="#handleExit" title="Address App" type="javafx.stage.Stage"
+<fx:root minHeight="800" minWidth="1290" onCloseRequest="#handleExit" title="ImmuniMate" type="javafx.stage.Stage"
          xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
     <icons>
         <Image url="@/images/stethoscope.png"/>
