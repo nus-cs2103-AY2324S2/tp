@@ -1,6 +1,5 @@
 package seedu.address.model;
 
-import java.io.IOException;
 import java.nio.file.Path;
 import java.util.function.Predicate;
 
@@ -77,7 +76,7 @@ public interface Model {
      * Adds the given person.
      * {@code person} must not already exist in the address book.
      */
-    void addPerson(Person person) throws IOException;
+    void addPerson(Person person);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
@@ -102,7 +101,7 @@ public interface Model {
 
     boolean hasClass(Classes classes);
 
-    void selectClass(Classes classes) throws IOException;
+    void selectClass(Classes classes);
     String getSelectedClassName();
 
 }
