@@ -123,17 +123,29 @@ Examples:
     email: [johnd@example.com](mailto:johnd@example.com)  
     address: John street, block 123, #01-011
 
-### Locating persons by name: `find`
+### Locating clients by keywords: `find`
 
-This command allows you to find a specific client in your client list by their **name**
+This command allows you to find a specific client in your client list by their **name**, and optionally by other fields too
 
-Format: `find n/NAME`
+Format: `find n/NAME [a/ADDRESSKEYWORD] [e/EMAILKEYWORD] [t/TAGKEYWORD] [k/KINKEYWORD] [d/DESCKEYWORD] [p/PHONEKEYWORD]`
 
-Examples: Lets say your contact list contains the following contacts: **John Doe** **John Lee** **Alex Lee** **Bobby Chan**
+Examples: Lets say your contact list contains the following contacts:
+<img src="images/ExampleClientList.png" />
 
--   `find John` would return `John Doe` as well as `John Lee`
--   `find Alex Lee` would return `Alex Lee`
--   `find Lee` would return `John Lee` as well as `Alex Lee`
+-   `find n/alex` would return `Alex Lee` as well as `Alex Chan`
+-   `find n/alex p/99824412 ` would return `Alex Chan`
+-   `find n/a` would return `Alex Lee` , `Alex Chan`, as well as `Xavier`
+-   `find n/a t/important` would return `Alex Lee` as well as `Xavier`
+
+**Note:** you can search for multiple keywords, for example `find n/name1 n/name2` would search for all clients with names that contain name1 OR name2
+This also applies to the optional keywords, for example `find n/name1 a/address1 a/address2 would search for all clients with names that contain name1 AND
+have an address that contains address1 OR address2, so
+-   `find n/alex n/bobby` would return `Alex Lee`, `Alex Chan`, and `Bobby`
+-   `find n/a p/86151644 p/12355125` would return `Alex Lee` and `Bobby`
+
+<box type="tip" seamless>
+**Tip:** After using the find function, you can use clear to display the full list of clients again!
+</box>
 
 ### Clearing all entries : `clear`
 
@@ -148,6 +160,8 @@ Format: `clear`
 This command allows you to exit the application.
 
 Format: `exit`
+
+**Note:** You can simply close the window using the X button too!
 
 ### Shortcuts
 _These are a list of helpful actions to facilitate the ease of use of our application_
@@ -184,7 +198,7 @@ ___
 | --- | --- | --- |
 | **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… [k/NEXTOFKIN]`  |`add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
 | **Update** | `update u/existing user [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`  | `Update u/Jane Doe n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-011` |
-| **Find** | `find KEYWORD [MORE_KEYWORDS]`  | `find James Jake` |
+| **Find** | `find n/NAME [a/ADDRESSKEYWORD] [e/EMAILKEYWORD] [t/TAGKEYWORD] [k/KINKEYWORD] [d/DESCKEYWORD] [p/PHONEKEYWORD]`  | `find n/James n/Bill a/Clementi` |
 | **Undo** | `undo`| |
 | **Redo** | `redo` | |
 | **Display** | TBD | |
