@@ -18,6 +18,7 @@ public class MarkPaymentAsPaidCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsMarkPaymentAsPaidCommand() {
+        
         // test with valid ID and payment amount
         assertParseSuccess(parser, " -id 000002 -payment 50",
                 new MarkPaymentAsPaidCommand(new Id("000002"), 50.0));
@@ -25,6 +26,7 @@ public class MarkPaymentAsPaidCommandParserTest {
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
+
         // missing both ID and payment prefix
         assertParseFailure(parser, "000002 50", 
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkPaymentAsPaidCommand.MESSAGE_USAGE));

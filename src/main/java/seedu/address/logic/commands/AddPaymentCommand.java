@@ -26,7 +26,6 @@ public class AddPaymentCommand extends Command {
             + PREFIX_PAYMENT + " 100";
 
     public static final String MESSAGE_SUCCESS = "Added payment of $%2$.2f to person with ID: %1$s";
-    
     private final Id uniqueId;
     private final double amount;
 
@@ -40,7 +39,6 @@ public class AddPaymentCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         Person personToUpdate = model.getPersonByUniqueId(uniqueId.toString());
-        
 
         if (personToUpdate == null) {
             throw new CommandException(Messages.MESSAGE_PERSON_NOT_FOUND);

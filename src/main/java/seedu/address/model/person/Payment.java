@@ -38,7 +38,6 @@ public class Payment {
         }
         this.value = String.format("$%.2f", amount);
     }
-    
 
     /**
      * Returns true if a given amount is a valid payment.

@@ -160,7 +160,6 @@ public class ModelManager implements Model {
         }
         return null;
     }
-    
 
     @Override
     public boolean equals(Object other) {

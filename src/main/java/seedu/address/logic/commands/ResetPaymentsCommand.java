@@ -22,7 +22,6 @@ public class ResetPaymentsCommand extends Command {
             + PREFIX_ID + " 000001 ";
 
     public static final String MESSAGE_SUCCESS = "Payments reset for person with ID: %1$s";
-    
     private final Id uniqueId;
 
     public ResetPaymentsCommand(Id uniqueId) {

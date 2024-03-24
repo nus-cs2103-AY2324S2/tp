@@ -26,7 +26,6 @@ public class MarkPaymentAsPaidCommand extends Command {
             + PREFIX_PAYMENT + " 50";
 
     public static final String MESSAGE_SUCCESS = "Payment of $%2$.2f marked as paid for person with ID: %1$s";
-    
     private final Id uniqueId;
     private final double amount;
 

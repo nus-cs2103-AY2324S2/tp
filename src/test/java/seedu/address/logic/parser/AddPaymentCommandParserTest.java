@@ -23,6 +23,7 @@ public class AddPaymentCommandParserTest {
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
+        
         // missing ID prefix
         assertParseFailure(parser, " 000001 -payment 100", 
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPaymentCommand.MESSAGE_USAGE));
