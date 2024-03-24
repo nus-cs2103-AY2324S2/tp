@@ -20,6 +20,7 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.group.Group;
+import seedu.address.model.group.exceptions.DuplicateGroupException;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.testutil.PersonBuilder;
@@ -87,10 +88,13 @@ public class AddressBookTest {
     }
 
     @Test
-    public void toStringMethod() {
-        String expected = AddressBook.class.getCanonicalName() + "{persons=" + addressBook.getPersonList()
-                + ", groups=" + addressBook.getGroupList() + "}";
-        assertEquals(expected, addressBook.toString());
+    public void resetData_withDuplicateGroups_throwsDuplicatePersonException() {
+        // Two persons with the same identity fields
+        List<Person> newPersons = Arrays.asList(ALICE);
+        List<Group> newGroups = Arrays.asList(new Group(VALID_GROUP_TUTORIAL), new Group(VALID_GROUP_TUTORIAL));
+        AddressBookStub newData = new AddressBookStub(newPersons, newGroups);
+
+        assertThrows(DuplicateGroupException.class, () -> addressBook.resetData(newData));
     }
 
     @Test
@@ -118,6 +122,13 @@ public class AddressBookTest {
     @Test
     public void getGroupList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> addressBook.getGroupList().remove(0));
+    }
+
+    @Test
+    public void toStringMethod() {
+        String expected = AddressBook.class.getCanonicalName() + "{persons=" + addressBook.getPersonList()
+                + ", groups=" + addressBook.getGroupList() + "}";
+        assertEquals(expected, addressBook.toString());
     }
 
     /**
