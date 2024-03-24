@@ -5,7 +5,18 @@ import java.util.Comparator;
 
 import seedu.address.model.BookCollection;
 
+/**
+ * Represents a collection of books in a library.
+ *
+ * This class extends the {@link seedu.address.model.BookCollection} class and provides additional functionality
+ * specific to managing a library of books, such as sorting books alphabetically and generating a formatted list
+ * of books.
+ */
 public class Library extends BookCollection {
+
+    /**
+     * Comparator for comparing books alphabetically by title.
+     */
     public static Comparator<Book> bookComparator = new Comparator<Book>() {
         @Override
         public int compare(Book book1, Book book2) {
@@ -13,18 +24,34 @@ public class Library extends BookCollection {
         }
     };
 
+    /**
+     * Construct an empty library.
+     */
     public Library() {
         super();
     }
 
+    /**
+     * Construct a library with the specified list of books.
+     *
+     * @param bookCollection The list of books to initialize the library with.
+     */
     public Library(ArrayList<Book> bookCollection) {
         super(bookCollection);
     }
 
+    /**
+     * Sort the books in the library alphabetically by title.
+     */
     public void sortAlphabetically() {
         bookCollection.sort(bookComparator);
     }
 
+    /**
+     * Retrieve a list of books from the library, sorted alphabetically by title.
+     *
+     * @return An ArrayList containing the books in the library, sorted alphabetically.
+     */
     public ArrayList<Book> list() {
         this.sortAlphabetically();
         return this.bookCollection;
@@ -41,10 +68,9 @@ public class Library extends BookCollection {
         }
         return result;
     }
-
+    
     @Override
     public boolean equals(Object other) {
-        System.out.println("hello");
         if (other == this) {
             return true;
         } else if (other instanceof Library) {
