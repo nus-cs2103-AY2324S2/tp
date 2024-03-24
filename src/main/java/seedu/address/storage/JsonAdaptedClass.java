@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.AddressBook;
 import seedu.address.model.person.Classes;
 import seedu.address.model.person.CourseCode;
 
@@ -49,6 +48,6 @@ public class JsonAdaptedClass {
 
         final CourseCode modelCourseCode = new CourseCode(courseCode);
 
-        return new Classes(modelCourseCode, new AddressBook());
+        return new Classes(modelCourseCode);
     }
 }

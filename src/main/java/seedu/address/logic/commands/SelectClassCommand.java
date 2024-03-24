@@ -8,8 +8,6 @@ import seedu.address.logic.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.person.Classes;
 
-import java.io.IOException;
-import java.util.function.Predicate;
 
 
 /**
@@ -32,7 +30,7 @@ public class SelectClassCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws IOException {
+    public CommandResult execute(Model model) {
         requireNonNull(model);
         ObservableList<Classes> lastShownList = model.getFilteredClassList();
 

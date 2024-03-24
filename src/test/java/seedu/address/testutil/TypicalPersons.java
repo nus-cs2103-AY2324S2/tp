@@ -91,7 +91,7 @@ public class TypicalPersons {
 
     public static ClassBook getTypicalClassBook() {
         ClassBook cb = new ClassBook();
-        cb.createClass(new Classes(new CourseCode("cs2103"), new AddressBook()));
+        cb.createClass(new Classes(new CourseCode("cs2103")));
         return cb;
     }
 }
