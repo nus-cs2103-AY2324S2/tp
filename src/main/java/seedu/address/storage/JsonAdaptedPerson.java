@@ -10,6 +10,7 @@ import seedu.address.model.person.InternDuration;
 import seedu.address.model.person.InterviewDate;
 import seedu.address.model.person.JobDescription;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Note;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Salary;
@@ -31,6 +32,7 @@ class JsonAdaptedPerson {
     private final String interviewDate;
     private final String internDuration;
     private final String salary;
+    private final String note;
 
 
     /**
@@ -42,7 +44,7 @@ class JsonAdaptedPerson {
             @JsonProperty("tag") String tag, @JsonProperty("jobDescription") String jobDescription,
             @JsonProperty("interviewDate") String interviewDate,
             @JsonProperty("internDuration") String internDuration,
-            @JsonProperty("salary") String salary) {
+            @JsonProperty("salary") String salary, @JsonProperty("note") String note) {
         this.companyName = name;
         this.phone = phone;
         this.email = email;
@@ -52,6 +54,7 @@ class JsonAdaptedPerson {
         this.interviewDate = interviewDate;
         this.internDuration = internDuration;
         this.salary = salary;
+        this.note = note;
     }
 
     /**
@@ -67,6 +70,7 @@ class JsonAdaptedPerson {
         interviewDate = source.getInterviewDate().toString();
         internDuration = source.getInternDuration().value;
         salary = source.getSalary().value;
+        note = source.getNote().value;
     }
 
     /**
@@ -145,9 +149,10 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(Salary.MESSAGE_CONSTRAINTS);
         }
         final Salary modelSalary = new Salary(salary);
+        final Note modelNote = new Note(note);
 
         return new Person(modelCompanyName, modelPhone, modelEmail, modelAddress, modelTag,
-                modelJobDescription, modelInterviewDate, modelInternDuration, modelSalary);
+                modelJobDescription, modelInterviewDate, modelInternDuration, modelSalary, modelNote);
     }
 
 }

@@ -25,13 +25,14 @@ public class Person implements Comparable<Person> {
     private final InterviewDate interviewDate;
     private final InternDuration internDuration;
     private final Salary salary;
+    private final Note note;
 
     /**
      * Every field must be present and not null.
      */
     public Person(Name companyName, Phone phone, Email email, Address address, Tag tag,
                   JobDescription jobDescription, InterviewDate interviewDate,
-                  InternDuration internDuration, Salary salary) {
+                  InternDuration internDuration, Salary salary, Note note) {
         requireAllNonNull(companyName, phone, email, tag, jobDescription);
         this.companyName = companyName;
         this.phone = phone;
@@ -42,6 +43,7 @@ public class Person implements Comparable<Person> {
         this.interviewDate = interviewDate;
         this.internDuration = internDuration;
         this.salary = salary;
+        this.note = note;
     }
 
     public Name getCompanyName() {
@@ -78,6 +80,9 @@ public class Person implements Comparable<Person> {
 
     public Salary getSalary() {
         return salary;
+    }
+    public Note getNote() {
+        return note;
     }
 
     /**
@@ -140,6 +145,7 @@ public class Person implements Comparable<Person> {
                 .add("interview date", interviewDate)
                 .add("intern duration", internDuration)
                 .add("salary", salary)
+                .add("note", note)
                 .toString();
     }
     @Override

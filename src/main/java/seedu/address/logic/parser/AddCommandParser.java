@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERN_DURATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERVIEW_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_JOB_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -21,6 +22,7 @@ import seedu.address.model.person.InternDuration;
 import seedu.address.model.person.InterviewDate;
 import seedu.address.model.person.JobDescription;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Note;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Salary;
@@ -39,7 +41,8 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG,
-                        PREFIX_JOB_DESCRIPTION, PREFIX_INTERVIEW_DATE, PREFIX_INTERN_DURATION, PREFIX_SALARY);
+                        PREFIX_JOB_DESCRIPTION, PREFIX_INTERVIEW_DATE, PREFIX_INTERN_DURATION, PREFIX_SALARY,
+                        PREFIX_NOTE);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_TAG,
                 PREFIX_JOB_DESCRIPTION, PREFIX_INTERN_DURATION, PREFIX_SALARY)
@@ -49,7 +52,7 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
                 PREFIX_TAG, PREFIX_JOB_DESCRIPTION, PREFIX_INTERVIEW_DATE, PREFIX_INTERN_DURATION,
-                PREFIX_SALARY);
+                PREFIX_SALARY, PREFIX_NOTE);
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
@@ -85,8 +88,19 @@ public class AddCommandParser implements Parser<AddCommand> {
                 argMultimap.getValue(PREFIX_INTERN_DURATION).get());
         Salary salary = ParserUtil.parseSalary(argMultimap.getValue(PREFIX_SALARY).get());
 
+        Note note;
+        if (argMultimap.getValue(PREFIX_NOTE).isPresent()) {
+            try {
+                note = ParserUtil.parseNote(argMultimap.getValue(PREFIX_NOTE).get());
+            } catch (ParseException e) {
+                throw new ParseException("Error parsing note: " + e.getMessage());
+            }
+        } else {
+            note = new Note(""); // Provide a default empty note if not provided
+        }
+
         Person person = new Person(name, phone, email, address, tag,
-                jobDescription, interviewDate, internDuration, salary);
+                jobDescription, interviewDate, internDuration, salary, note);
 
         return new AddCommand(person);
     }
