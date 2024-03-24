@@ -5,17 +5,10 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailur
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import java.nio.file.Paths;
-import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.ChangeDataSourceCommand;
-import seedu.address.logic.commands.FindCommand;
-import seedu.address.model.person.IdMatchesPredicate;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.person.StudentId;
-import seedu.address.model.person.TagMatchesPredicate;
-import seedu.address.model.tag.Tag;
 
 
 class ChangeDataSourceParserTest {
@@ -24,9 +17,11 @@ class ChangeDataSourceParserTest {
 
     @Test
     public void parse_emptyArg_throwsParseException() {
-        assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, ChangeDataSourceCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                ChangeDataSourceCommand.MESSAGE_USAGE));
 
-        assertParseFailure(parser, "addressbook", String.format(MESSAGE_INVALID_COMMAND_FORMAT, ChangeDataSourceCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "addressbook", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                ChangeDataSourceCommand.MESSAGE_USAGE));
     }
 
     @Test
