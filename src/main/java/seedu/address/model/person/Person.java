@@ -57,6 +57,10 @@ public class Person {
         return address;
     }
 
+    public Analytics getAnalytics() {
+        return Analytics.getAnalytics(loanRecords);
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
