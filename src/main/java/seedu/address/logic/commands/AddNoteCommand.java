@@ -22,7 +22,7 @@ public class AddNoteCommand extends Command {
     public static final String COMMAND_WORD = "addnote";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the note of the person whose profile matches "
-            + "the specified IC (case-insensitive). \n"
+            + "the specified IC (must be a valid identity card number). \n"
             + "Existing remark will be appended by default. \n"
             + "Parameters: "
             + PREFIX_IC + "IC "

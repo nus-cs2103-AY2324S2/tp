@@ -41,7 +41,7 @@ public class EditCommand extends Command {
     public static final String COMMAND_WORD = "edit";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the index number used in the displayed person list. \n"
+            + "by the identity card number used in the displayed person list. \n"
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: IC (must be a valid identity card number) "
             + "[" + PREFIX_NAME + "NAME] "
