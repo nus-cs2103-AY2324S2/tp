@@ -56,7 +56,7 @@ public class CommandResult {
     }
 
     public void setChangeDataSource() {
-        this.changeDataSource=true;
+        this.changeDataSource = true;
     }
     
     @Override
