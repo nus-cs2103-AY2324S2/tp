@@ -120,6 +120,11 @@ call as an example.
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline continues till the end of diagram.
 </div>
 
+Another sequence diagram below illustrates the interactions within the `Logic` component, taking
+`execute("tag 1 tag: example")` API call as an example.
+
+![](C:\Repos\TeamProject\docs\images\TagCommand.png)
+
 How the `Logic` component works:
 
 1. When `Logic` is called upon to execute a command, it is passed to an `AddressBookParser` object which in turn creates
@@ -187,7 +192,11 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.addressbook.commons` package. Each component comes from one of the
+three packages: `core`, `exceptions` and `util`. `DataLoadingException` for example is a components from the exception
+package, which `AddressBookStorage` and `UserPrefsSroage` throws and `MainApp` catches.
+
+<img src="images/DataLoadingExceptionObjectDiagram.png" width="450" />
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -331,28 +340,27 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                          | So that I can…​                            |
-|----------|--------------------------------------------|---------------------------------------|--------------------------------------------|
-| `* * *`  | secretary                                  | view the added contact list           | I can see the details of the added contact |
-| `* * *`  | secretary                                  | add contacts to a list                | I can record contact details               |
-| `* * *`  | secretary                                  | remove contacts from a list           | I can clean up old/unused records          |
-| `* *`    | secretary                                  | tag individual contacts               | I can organize the contact based on tags   |
-| `* *`    | secretary                                  | delete a tag of an individual contact | the tag only is for the necessary users    |
-
+| Priority | As a …​   | I want to …​                          | So that I can…​                                        |
+|----------|-----------|---------------------------------------|--------------------------------------------------------|
+| `* * *`  | secretary | view the added contact list           | see the details of the added contact                   |
+| `* * *`  | secretary | add contacts to a list                | record contact details                                 |
+| `* * *`  | secretary | remove contacts from a list           | clean up old/unused records                            |
+| `* *`    | secretary | tag individual contacts               | organize the contact based on tags                     |
+| `* *`    | secretary | delete a tag of an individual contact | make sure that the tag only is for the necessary users |
+| `*`      | user      | undo my command                       | save time on undoing the effects of a wrong command    |
+| `*`      | user      | redo my undo                          | save time on undoing the effects of a wrong undo       |
 *{More to be added}*
 
 ### Use cases
 
 (For all use cases below, the **System** is `OfficeHarbor` (OH) and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Remove a contact**
+**UC01: View contacts**
 
 **MSS**
 
-1.  User requests to list persons
-2.  OfficeHarbor shows a list of persons
-3.  User requests to remove a specific contact in the list
-4.  OfficeHarbor removes the contact
+1. User requests to list people.
+2. OH shows a list of people.
 
    Use case ends.
 
@@ -360,22 +368,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The list is empty.
 
-  Use case ends.
+    * 2a1. No list is shown.
 
-* 3a. The given index is invalid.
+      Use case ends.
 
-    * 3a1. AddressBook shows an error message.
-
-      Use case resumes at step 2.
-  
-
-
-**Use case: Add a contact**
+**UC02: Add a contact**
 
 **MSS**
 
-1.  User requests to add a person along with details 
-2.  AddressBook adds the person
+1.  User requests to add a person along with details.
+2.  OH adds the person.
 
     Use case ends.
 
@@ -387,76 +389,107 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
-Use case: Tagging contacts
-MSS
-1. User requests to list persons
-2. OH shows a list of persons
-3. User requests to add a tag to a specific contact in the list
-4. OH adds the tag to the contact
-
-Use case ends
-
-Extensions
-
-- 2a. The list is empty.
-
-Use case ends
-
-- 3a. The given contact is invalid
-    - 3a1. OH shows an error message
-    
-    Use case resumes at step 2
-
-- 4a. The given tag is empty or invalid
-    - 4a1. OH shows an error message
-
-    Use case resumes at step 2
-
-**Use case: Deleting a tag**
+**UC03: Remove a contact**
 
 **MSS**
 
-1. User requests to list people
-2. OfficeHarbor shows a list of people
-3. User requests to delete a specific tag of a person from the list.
-4. OfficeHarbor deletes the specified tag of that person
+1. User requests to list contacts (UC01).
+2. User requests to remove a specific contact in the list.
+3. OH removes the contact.
 
    Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
-
-  Use case ends.
-
 * 3a. The given index is invalid.
 
-    * 3a1. OfficeHarbor shows an error message.
+    * 3a1. OH shows an error message.
 
       Use case resumes at step 2.
 
-* 3b. The specified tag does not exist.
-
-    * 3b1. OfficeHarbor shows an error message.
-
-      Use case resumes at step 2.
-
-**Use case: View contacts**
+**UC04: Tagging contacts**
 
 **MSS**
 
-1.  User opens application
-2.  The system displays the contacts in a sidebar
+1. User requests to list contacts (UC01).
+2. User requests to add a tag to a specific contact in the list.
+3. OH adds the tag to the contact.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The user filters by tags
 
-    * 1a1. Only contacts with corresponding tags will be displayed
+* 2a. The given index is invalid.
 
-      Use case ends
+  * 2a1. OH shows an error message.
+    
+    Use case resumes at step 2.
+
+* 2b. The given tag is empty or invalid.
+
+  * 2b. OH shows an error message.
+
+    Use case resumes at step 2.
+
+**UC05: Deleting a tag**
+
+**MSS**
+
+1. User requests to list contacts (UC01).
+2. User requests to delete a specific tag of a person from the list.
+3. OH deletes the specified tag of that person.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The given index is invalid.
+
+    * 2a1. OH shows an error message.
+
+      Use case resumes at step 2.
+
+* 2b. The specified tag does not exist.
+
+    * 2b1. OH shows an error message.
+
+      Use case resumes at step 2.
+
+**UC06: Undoing a Command**
+
+**MSS**
+
+1. User requests to undo a command.
+2. OH resets to the state before the latest command.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. No command has been run since opening the app.
+  
+  * 2a1. OH shows an error message. 
+
+    Use case ends.
+
+**UC06: Redoing an Undo Command**
+
+**MSS**
+
+1. User requests to redo an undo.
+2. OH resets to the state before the latest command.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. No command has been run since opening the app.
+
+    * 2a1. OH shows an error message.
+
+      Use case ends.
+
 
 *{More to be added}*
 

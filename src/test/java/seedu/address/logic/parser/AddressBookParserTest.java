@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
@@ -22,9 +23,14 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FilterCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.RedoCommand;
+import seedu.address.logic.commands.TagCommand;
+import seedu.address.logic.commands.UndoCommand;
+import seedu.address.logic.commands.UntagCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
@@ -32,6 +38,18 @@ import seedu.address.testutil.PersonUtil;
 public class AddressBookParserTest {
 
     private final AddressBookParser parser = new AddressBookParser();
+
+    @Test
+    public void parseCommand_undoCommand_returnsUndoCommand() throws ParseException {
+        Command command = parser.parseCommand("undo");
+        assertTrue(command instanceof UndoCommand);
+    }
+
+    @Test
+    public void parseCommand_redoCommand_returnsRedoCommand() throws ParseException {
+        Command command = parser.parseCommand("redo");
+        assertTrue(command instanceof RedoCommand);
+    }
 
     @Test
     public void parseCommand_add() throws Exception {
@@ -86,6 +104,25 @@ public class AddressBookParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+    }
+
+    @Test
+    public void parseCommand_tag() throws Exception {
+        TagCommand expectedCommand = new TagCommand(INDEX_FIRST_PERSON, List.of(new Tag("alpha"), new Tag("beta")));
+        assertEquals(expectedCommand, parser.parseCommand(TagCommand.COMMAND_WORD
+                + " "
+                + INDEX_FIRST_PERSON.getOneBased()
+                + " tag:alpha tag:beta"));
+    }
+
+    @Test
+    public void parseCommand_untag() throws Exception {
+        var index = INDEX_FIRST_PERSON;
+        var expectedCommand = new UntagCommand(index, List.of(new Tag("alpha"), new Tag("beta")));
+        assertEquals(expectedCommand, parser.parseCommand(UntagCommand.COMMAND_WORD
+                + " "
+                + INDEX_FIRST_PERSON.getOneBased()
+                + " tag:alpha tag:beta"));
     }
 
     @Test

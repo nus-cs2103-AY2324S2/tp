@@ -1,0 +1,16 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam classBackgroundColor STORAGE_COLOR
+
+interface AddressBookStorage
+interface UserPrefsStorage
+class DataLoadingException <<exception>> LOGIC_COLOR_T2
+class MainApp #grey
+
+
+MainApp -[#grey]down-> DataLoadingException : catches
+UserPrefsStorage -[STORAGE_COLOR]up-> DataLoadingException : throws
+AddressBookStorage -[STORAGE_COLOR]up-> DataLoadingException : throws
+
+@enduml
