@@ -27,14 +27,14 @@ public abstract class Person {
     protected final Address address;
     protected final Set<Tag> tags = new HashSet<>();
     protected final Optional<Name> pairedWithName;
-    protected final Optional<Integer> pairedWithID;
+    protected final Optional<Integer> pairedWithId;
 
     /**
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Role role,
-                  Optional<Name> pairedWithName, Optional<Integer> pairedWithID) {
-        CollectionUtil.requireAllNonNull(name, phone, email, address, tags, role, pairedWithName, pairedWithID);
+                  Optional<Name> pairedWithName, Optional<Integer> pairedWithId) {
+        CollectionUtil.requireAllNonNull(name, phone, email, address, tags, role, pairedWithName, pairedWithId);
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -42,7 +42,7 @@ public abstract class Person {
         this.tags.addAll(tags);
         this.role = role;
         this.pairedWithName = pairedWithName;
-        this.pairedWithID = pairedWithID;
+        this.pairedWithId = pairedWithId;
     }
 
     public int getId() {
@@ -81,8 +81,8 @@ public abstract class Person {
         return pairedWithName;
     }
 
-    public Optional<Integer> getPairedWithID() {
-        return pairedWithID;
+    public Optional<Integer> getPairedWithId() {
+        return pairedWithId;
     }
 
     public boolean isPairPresent(Person person) {
@@ -135,13 +135,13 @@ public abstract class Person {
                 && tags.equals(otherPerson.tags)
                 && role.equals(otherPerson.role)
                 && pairedWithName.equals(otherPerson.pairedWithName)
-                && pairedWithID.equals(otherPerson.pairedWithID);
+                && pairedWithId.equals(otherPerson.pairedWithId);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(id, name, phone, email, address, tags, role, pairedWithName, pairedWithID);
+        return Objects.hash(id, name, phone, email, address, tags, role, pairedWithName, pairedWithId);
     }
 
     @Override
@@ -155,7 +155,7 @@ public abstract class Person {
                 .add("tags", tags)
                 .add("role", role)
                 .add("pairedWithName", pairedWithName.orElse(Name.getNone()))
-                .add("pairedWithID", pairedWithID.orElse(-1))
+                .add("pairedWithId", pairedWithId.orElse(-1))
                 .toString();
     }
 
