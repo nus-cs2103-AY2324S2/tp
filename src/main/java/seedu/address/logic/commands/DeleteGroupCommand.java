@@ -50,17 +50,9 @@ public class DeleteGroupCommand extends Command {
             if (person.getGroups().contains(toRemove)) {
                 Set<Group> editedGroups = new HashSet<>(person.getGroups());
                 editedGroups.remove(toRemove);
-
-                Person editedPerson = new Person(
-                        person.getName(),
-                        person.getPhone(),
-                        person.getEmail(),
-                        person.getYear(),
-                        person.getTelegram(),
-                        person.getMajor(),
-                        person.getRemark(),
-                        editedGroups
-                );
+                Person editedPerson = new Person(person.getName(), person.getPhone(), person.getEmail(),
+                        person.getYear(), person.getTelegram(), person.getMajor(), person.getRemark(),
+                        editedGroups);
                 model.setPerson(person, editedPerson);
             }
         }
