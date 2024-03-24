@@ -50,7 +50,8 @@ public class RemoveFavouriteCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        boolean anyNotFavourite = this.indices.stream().anyMatch(index -> !people.get(index.getZeroBased()).getFavourite());
+        boolean anyNotFavourite = this.indices.stream().anyMatch(index ->
+                !people.get(index.getZeroBased()).getFavourite());
         if (anyNotFavourite) {
             throw new CommandException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
         }

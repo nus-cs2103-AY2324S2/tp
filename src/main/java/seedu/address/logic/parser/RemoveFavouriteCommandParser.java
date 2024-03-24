@@ -28,13 +28,15 @@ public class RemoveFavouriteCommandParser implements Parser<RemoveFavouriteComma
 
         // Ensure no preamble exists.
         if (!argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemoveFavouriteCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    RemoveFavouriteCommand.MESSAGE_USAGE));
         }
         argMultimap.verifyNonEmptyKeywordValues(PREFIX_INDICES);
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_INDICES);
         List<String> listIndices = argMultimap.getAllValues(PREFIX_INDICES);
         if (listIndices.isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemoveFavouriteCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    RemoveFavouriteCommand.MESSAGE_USAGE));
         }
         // The regex ,(?=\\d|\\s) uses the lookahead operator to only split by commas that are followed by
         // numbers or whitespace to handle invalid indices like ,,,,, and 1,,,,,,
