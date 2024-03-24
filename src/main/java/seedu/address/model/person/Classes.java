@@ -24,10 +24,11 @@ public class Classes {
     /**
      * Constructor for Classes.
      */
-    public Classes(CourseCode courseCode, AddressBook addressBook) {
+    public Classes(CourseCode courseCode) throws IOException {
         this.courseCode = courseCode;
-        this.addressBook = addressBook;
+        this.addressBook = new AddressBook();
         this.addressBookStorage = new JsonAddressBookStorage(getFilePath());
+        addressBookStorage.saveAddressBook(addressBook, getFilePath());
     }
 
     /**

@@ -8,6 +8,8 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.person.Classes;
 import seedu.address.model.person.CourseCode;
 
+import java.io.IOException;
+
 /**
  * Jackson-friendly version of {@link Classes}.
  */
@@ -37,7 +39,7 @@ public class JsonAdaptedClass {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted class.
      */
-    public Classes toModelType() throws IllegalValueException {
+    public Classes toModelType() throws IllegalValueException, IOException {
         if (!CourseCode.isValidClass(courseCode)) {
             throw new IllegalValueException(CourseCode.MESSAGE_CONSTRAINTS);
         }
@@ -49,6 +51,6 @@ public class JsonAdaptedClass {
 
         final CourseCode modelCourseCode = new CourseCode(courseCode);
 
-        return new Classes(modelCourseCode, new AddressBook());
+        return new Classes(modelCourseCode);
     }
 }

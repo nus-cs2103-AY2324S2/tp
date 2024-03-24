@@ -60,6 +60,8 @@ public class JsonClassBookStorage implements ClassBookStorage {
         } catch (IllegalValueException e) {
             logger.info("Illegal values found in " + filePath + ": " + e.getMessage());
             throw new DataLoadingException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 

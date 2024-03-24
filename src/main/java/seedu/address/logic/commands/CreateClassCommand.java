@@ -46,7 +46,7 @@ public class CreateClassCommand extends Command {
         }
 
         model.createClass(toCreate);
-        model.setAddressBook(new AddressBook());
+        model.setAddressBook(toCreate.getAddressBook());
         model.selectClass(toCreate);
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.classFormat(toCreate)));
     }
