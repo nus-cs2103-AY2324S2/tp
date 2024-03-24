@@ -162,9 +162,6 @@ sequence diagram shows the interactions within `Model` when editing a person.
 
 ![EditSequenceDiagram-Model](images/EditSequenceDiagram-Model.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The return arrows for void methods are deliberately left out in this diagram.
-</div>
-
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
