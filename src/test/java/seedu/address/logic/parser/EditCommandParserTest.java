@@ -54,6 +54,7 @@ public class EditCommandParserTest {
 
     private EditCommandParser parser = new EditCommandParser();
 
+
     @Test
     public void parse_missingParts_failure() {
         // no index specified
@@ -81,6 +82,7 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1 i/ string", MESSAGE_INVALID_FORMAT);
     }
 
+
     @Test
     public void parse_invalidValue_failure() {
         assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
@@ -102,6 +104,7 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_ADDRESS_AMY + VALID_PHONE_AMY,
                 Name.MESSAGE_CONSTRAINTS);
     }
+
 
     @Test
     public void parse_allFieldsSpecified_success() {

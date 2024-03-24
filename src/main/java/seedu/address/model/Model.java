@@ -121,4 +121,6 @@ public interface Model {
      * The client and meeting must exist in the address book.
      */
     void deleteSpecificMeetingForClient(Index clientIndex, Index meetingIndex);
+
+    void setMeeting(Meeting target, Meeting meeting);
 }
