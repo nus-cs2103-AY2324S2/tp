@@ -57,7 +57,7 @@ public class LastContact implements Comparable<LastContact> {
         }
     }
 
-    public boolean isLastContacted() {
+    public boolean hasLastContacted() {
         return this.hasLastContact;
     }
     public LocalDateTime getDateTime() {
