@@ -108,8 +108,8 @@ public class FindCommandParserTest {
                 .or(new RelationshipContainsKeywordsPredicate(Arrays.asList("client", "partner")))
                 .or(new TagContainsKeywordsPredicate(Arrays.asList("friends", "colleagues")))
                 .or(new PolicyContainsKeywordsPredicate((Arrays.asList("life", "car"))));
-        FindCommand command = parser.parse(" n/Alice n/Bob r/client r/partner t/friends t/colleagues " +
-                "po/car po/life");
+        FindCommand command = parser.parse(" n/Alice n/Bob r/client r/partner t/friends t/colleagues "
+                + "po/car po/life");
 
         List<Person> testPersons = Arrays.asList(
                 new PersonBuilder().withName("Alice").withRelationship("client")
@@ -133,8 +133,8 @@ public class FindCommandParserTest {
                 .or(new TagContainsKeywordsPredicate(Arrays.asList("friends", "colleagues")))
                 .or(new PolicyContainsKeywordsPredicate((Arrays.asList("life", "car"))));
         FindCommand command =
-                parser.parse(" \n n/Alice \n \t n/Bob \t r/client \n r/partner \t t/friends" +
-                        " \n t/colleagues \n po/car \n \t po/life");
+                parser.parse(" \n n/Alice \n \t n/Bob \t r/client \n r/partner \t t/friends"
+                        + " \n t/colleagues \n po/car \n \t po/life");
 
         List<Person> testPersons = Arrays.asList(
                 new PersonBuilder().withName("Alice").withRelationship("client")

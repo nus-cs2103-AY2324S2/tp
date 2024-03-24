@@ -32,8 +32,12 @@ import seedu.address.model.person.Person;
 public class TypicalPersons {
 
 
-    public static final Meeting MEETING_1 = new Meeting(LocalDate.of(2023, 3, 20), LocalTime.of(14, 0), Duration.ofHours(1), "Discuss new policy", "Bring all necessary documents");
-    public static final Meeting MEETING_2 = new Meeting(LocalDate.of(2023, 4, 5), LocalTime.of(10, 30), Duration.ofHours(2), "Review quarterly results", "Prepare presentation slides");
+    public static final Meeting MEETING_1 = new Meeting(LocalDate.of(2023, 3, 20),
+            LocalTime.of(14, 0), Duration.ofHours(1), "Discuss new policy",
+            "Bring all necessary documents");
+    public static final Meeting MEETING_2 = new Meeting(LocalDate.of(2023, 4, 5),
+            LocalTime.of(10, 30), Duration.ofHours(2), "Review quarterly results",
+            "Prepare presentation slides");
 
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")

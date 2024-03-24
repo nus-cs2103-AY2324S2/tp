@@ -164,6 +164,13 @@ public class Person {
         return this.meetings;
     }
 
+    /**
+     * Adds a meeting to the list of meetings associated with this person.
+     *
+     * @param meeting The meeting to be added.
+     * @throws IllegalArgumentException if the meeting overlaps with existing meetings or
+     *     if scheduling constraints are violated.
+     */
     public void addMeeting(Meeting meeting) {
         LocalDate today = LocalDate.now();
         LocalDate meetingDate = meeting.getMeetingDate();
@@ -181,12 +188,24 @@ public class Person {
         }
     }
 
+    /**
+     * Sets the list of meetings associated with this person.
+     *
+     * @param meetings The list of meetings to be set.
+     */
     public void setMeetings(List<Meeting> meetings) {
 
         this.meetings = meetings;
 
     }
 
+    /**
+     * Reschedules a meeting associated with this person.
+     *
+     * @param index      The index of the meeting to be rescheduled.
+     * @param newDateTime The new date and time for the meeting.
+     * @throws IllegalArgumentException if the rescheduled meeting overlaps with existing meetings.
+     */
     public void rescheduleMeeting(int index, LocalDateTime newDateTime) {
         Meeting meetingToReschedule = meetings.get(index);
         Meeting rescheduledMeeting = new Meeting(
@@ -217,7 +236,8 @@ public class Person {
 
 
 
-        LocalDateTime startDateTimeToCheck = LocalDateTime.of(meetingToCheck.getMeetingDate(), meetingToCheck.getMeetingTime());
+        LocalDateTime startDateTimeToCheck = LocalDateTime.of(meetingToCheck.getMeetingDate(),
+                meetingToCheck.getMeetingTime());
         LocalDateTime endDateTimeToCheck = startDateTimeToCheck.plus(meetingToCheck.getDuration());
 
         for (Meeting meeting : meetings) {
@@ -232,7 +252,8 @@ public class Person {
     }
 
     public Person getCopy() {
-        Person p = new Person(this.name, this.phone, this.email, this.address, this.relationship, this.getPolicy(), this.getTags());
+        Person p = new Person(this.name, this.phone, this.email, this.address, this.relationship,
+                this.getPolicy(), this.getTags());
 
         // Create a deep copy of the meetings
         List<Meeting> copiedMeetings = new ArrayList<>();
@@ -250,6 +271,4 @@ public class Person {
 
         return p;
     }
-
-
 }
