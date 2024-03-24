@@ -4,11 +4,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.AddressBook;
 import seedu.address.model.person.Classes;
 import seedu.address.model.person.CourseCode;
-
-import java.io.IOException;
 
 /**
  * Jackson-friendly version of {@link Classes}.
@@ -39,7 +36,7 @@ public class JsonAdaptedClass {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted class.
      */
-    public Classes toModelType() throws IllegalValueException, IOException {
+    public Classes toModelType() throws IllegalValueException {
         if (!CourseCode.isValidClass(courseCode)) {
             throw new IllegalValueException(CourseCode.MESSAGE_CONSTRAINTS);
         }
