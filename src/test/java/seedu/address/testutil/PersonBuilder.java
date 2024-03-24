@@ -92,13 +92,13 @@ public class PersonBuilder {
         nric = personToCopy.getNric();
         name = personToCopy.getName();
         phone = personToCopy.getPhone();
-        address = personToCopy.getAddress();
         dateOfBirth = personToCopy.getDateOfBirth();
         sex = personToCopy.getSex();
         address = personToCopy.getAddress();
         status = personToCopy.getStatus();
 
         /*
+        address = personToCopy.getAddress();
         allergies = personToCopy.getAllergies();
         bloodType = personToCopy.getBloodType();
         country = personToCopy.getCountry();
@@ -236,7 +236,6 @@ public class PersonBuilder {
      */
     public Person build() {
         Person p = new Person(nric, name, phone, address, dateOfBirth, sex, status);
-        /*
         p.setEmail(email);
         p.setCountry(country);
         p.setAllergies(allergies);
@@ -245,7 +244,6 @@ public class PersonBuilder {
         p.setDateOfAdmission(dateOfAdmission);
         p.setDiagnosis(diagnosis);
         p.setSymptom(symptom);
-         */
         return p;
     }
 }

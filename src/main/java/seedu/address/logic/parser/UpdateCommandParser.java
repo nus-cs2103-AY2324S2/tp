@@ -62,7 +62,6 @@ public class UpdateCommandParser implements Parser<UpdateCommand> {
                 PREFIX_DIAGNOSIS);
 
         UpdatePersonDescriptor updatePersonDescriptor = new UpdatePersonDescriptor();
-        updatePersonDescriptor.setNric(nric);
 
         // Mandatory fields
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
@@ -73,10 +72,6 @@ public class UpdateCommandParser implements Parser<UpdateCommand> {
         }
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
             updatePersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
-        }
-        if (argMultimap.getValue(PREFIX_DATEOFBIRTH).isPresent()) {
-            updatePersonDescriptor.setDateOfBirth(
-                    ParserUtil.parseDateOfBirth(argMultimap.getValue(PREFIX_DATEOFBIRTH).get()));
         }
         if (argMultimap.getValue(PREFIX_SEX).isPresent()) {
             updatePersonDescriptor.setSex(ParserUtil.parseSex(argMultimap.getValue(PREFIX_SEX).get()));
