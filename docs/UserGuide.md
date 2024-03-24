@@ -140,7 +140,7 @@ Examples: Lets say your contact list contains the following contacts: **John Doe
 
 ### Undoing a command : `undo`
 
-_This command allows you to undo your last command, restoring ConnectCare application to its previous state._
+_This command allows you to undo your last command, restoring the ConnectCare application to its previous state._
 
 Format: `undo`
 
@@ -156,7 +156,7 @@ _IMAGE_BEFORE and IMAGE_AFTER TBA_
 
 ### Redoing a command : `redo`
 
-_This command allows you to redo your command, restoring ConnectCare application to its previous state._
+_This command allows you to redo your command, reversing any changes that were previously undone._
 
 Format: `redo`
 
