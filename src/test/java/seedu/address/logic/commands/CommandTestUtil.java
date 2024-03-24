@@ -57,6 +57,9 @@ public class CommandTestUtil {
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "diabetes*"; // '*' not allowed in tags
+    public static final String INVALID_IC_DESC = " " + PREFIX_IC + "333*"; // '*' not allowed in ic, wrong format
+    public static final String INVALID_DOB_DESC = " " + PREFIX_DOB + "///"; // does not have numbers
+    public static final String INVALID_WARD_DESC = " " + PREFIX_WARD + "ooo+E"; // '+' not allowed in ward number
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

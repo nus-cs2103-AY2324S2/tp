@@ -7,8 +7,11 @@ import static seedu.address.logic.commands.CommandTestUtil.DOB_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DOB_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.IC_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.IC_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_DOB_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_IC_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_WARD_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
@@ -62,16 +65,15 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_repeatedNonTagValue_failure() {
-        String validExpectedPersonString = NAME_DESC_BOB + TAG_DESC_DIABETES + DOB_DESC_BOB + IC_DESC_BOB
-                + ADMISSION_DATE_DESC_BOB + WARD_DESC_BOB;
+        String validExpectedPersonString = NAME_DESC_BOB + IC_DESC_BOB + DOB_DESC_BOB
+                + ADMISSION_DATE_DESC_BOB + WARD_DESC_BOB + TAG_DESC_DIABETES;
 
         // multiple names
         assertParseFailure(parser, NAME_DESC_AMY + validExpectedPersonString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NAME));
 
         // multiple fields repeated
-        assertParseFailure(parser,
-                validExpectedPersonString + NAME_DESC_AMY
+        assertParseFailure(parser, NAME_DESC_AMY + NAME_DESC_BOB
                         + validExpectedPersonString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NAME));
 
@@ -102,7 +104,7 @@ public class AddCommandParserTest {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
 
         // missing name prefix
-        assertParseFailure(parser, VALID_NAME_BOB + TAG_DESC_DIABETES + DOB_DESC_BOB + IC_DESC_BOB
+        assertParseFailure(parser, TAG_DESC_DIABETES + DOB_DESC_BOB + IC_DESC_BOB
                         + ADMISSION_DATE_DESC_BOB + WARD_DESC_BOB,
                 expectedMessage);
 
@@ -120,18 +122,18 @@ public class AddCommandParserTest {
 
         // invalid ic
         assertParseFailure(parser, NAME_DESC_BOB
-                + TAG_DESC_FALL_RISK + TAG_DESC_DIABETES + DOB_DESC_BOB
+                + TAG_DESC_FALL_RISK + TAG_DESC_DIABETES + DOB_DESC_BOB + INVALID_IC_DESC
                 + ADMISSION_DATE_DESC_BOB + WARD_DESC_BOB, Ic.MESSAGE_CONSTRAINTS);
 
         // invalid dob
         assertParseFailure(parser, NAME_DESC_BOB
-                + TAG_DESC_FALL_RISK + TAG_DESC_DIABETES + IC_DESC_BOB
+                + TAG_DESC_FALL_RISK + TAG_DESC_DIABETES + INVALID_DOB_DESC + IC_DESC_BOB
                 + ADMISSION_DATE_DESC_BOB + WARD_DESC_BOB, Dob.MESSAGE_CONSTRAINTS);
 
         // invalid ward
         assertParseFailure(parser, NAME_DESC_BOB
                 + TAG_DESC_FALL_RISK + TAG_DESC_DIABETES + DOB_DESC_BOB + IC_DESC_BOB
-                + ADMISSION_DATE_DESC_BOB, Ward.MESSAGE_CONSTRAINTS);
+                + ADMISSION_DATE_DESC_BOB + INVALID_WARD_DESC, Ward.MESSAGE_CONSTRAINTS);
 
         // invalid tag
         assertParseFailure(parser, NAME_DESC_BOB

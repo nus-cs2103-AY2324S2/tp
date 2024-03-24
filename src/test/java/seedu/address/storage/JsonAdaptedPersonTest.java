@@ -93,12 +93,12 @@ public class JsonAdaptedPersonTest {
     }
 
     @Test
-    public void toModelType_invalidWard_throwsIllegalValueException() {
+    public void toModelType_invalidWard_throwsIllegalArgumentException() {
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_NAME, VALID_TAGS,
                         VALID_DOB, VALID_IC, VALID_ADMISSION_DATE, INVALID_WARD);
         String expectedMessage = Ward.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+        assertThrows(IllegalArgumentException.class, expectedMessage, person::toModelType);
     }
 
     @Test

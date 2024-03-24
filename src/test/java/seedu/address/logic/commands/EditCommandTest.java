@@ -55,7 +55,7 @@ public class EditCommandTest {
         Person lastPerson = model.getFilteredPersonList().get(indexLastPerson.getZeroBased());
 
         PersonBuilder personInList = new PersonBuilder(lastPerson);
-        Person editedPerson = personInList.withName(VALID_NAME_BOB).withTags(VALID_TAG_DIABETES).build();
+        Person editedPerson = personInList.withName(VALID_NAME_BOB).withTags(VALID_TAG_FALL_RISK).build();
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withTags(VALID_TAG_FALL_RISK).build();

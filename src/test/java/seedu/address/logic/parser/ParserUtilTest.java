@@ -25,7 +25,7 @@ import seedu.address.model.tag.Tag;
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_IC = "T11222222222222Y";
-    private static final String INVALID_WARD = " ";
+    private static final String INVALID_WARD = "+";
     private static final String INVALID_ADMISSION_DATE = "123/12/20300";
     private static final String INVALID_TAG = "#Diabetes";
     private static final String INVALID_DOB_FUTURE = LocalDate.now().plusDays(1)

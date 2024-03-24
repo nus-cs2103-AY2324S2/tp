@@ -26,14 +26,14 @@ import seedu.address.model.person.Person;
 public class TypicalPersons {
 
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
-            .withTags("serious").withDob("20/02/2000").withIc("A1234567B")
+            .withTags("Diabetes").withDob("20/02/2000").withIc("A1234567B")
             .withAdmissionDate("01/03/2024").withWard("A1").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
-            .withTags("serious", "old").withDob("20/02/2001")
+            .withTags("Dementia", "FallRisk").withDob("20/02/2001")
             .withIc("A2345678B").withAdmissionDate("01/02/2024").withWard("B1").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withDob("20/02/2002")
             .withIc("A3456789B").withAdmissionDate("05/03/2024").withWard("C1").build();
-    public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withTags("mild")
+    public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withTags("HearingImpaired")
             .withDob("20/02/2003").withIc("A5678901B").withAdmissionDate("10/03/2024")
             .withWard("D1").build();
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withDob("20/02/2004")
