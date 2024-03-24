@@ -1,7 +1,7 @@
 package seedu.address.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.group.Group;
@@ -12,13 +12,23 @@ import seedu.address.model.group.Group;
 class JsonAdaptedGroup {
 
     private final String groupName;
+    private final String telegramLink;
 
     /**
      * Constructs a {@code JsonAdaptedGroup} with the given {@code groupName}.
      */
     @JsonCreator
+    public JsonAdaptedGroup(@JsonProperty("groupName") String groupName, @JsonProperty("telegramLink") String link) {
+        this.groupName = groupName;
+        this.telegramLink = link;
+    }
+
+    /**
+     * Constructs a {@code JsonAdaptedGroup} with the given {@code groupName}.
+     */
     public JsonAdaptedGroup(String groupName) {
         this.groupName = groupName;
+        this.telegramLink = "";
     }
 
     /**
@@ -26,9 +36,9 @@ class JsonAdaptedGroup {
      */
     public JsonAdaptedGroup(Group source) {
         groupName = source.groupName;
+        telegramLink = source.telegramLink;
     }
 
-    @JsonValue
     public String getGroupName() {
         return groupName;
     }

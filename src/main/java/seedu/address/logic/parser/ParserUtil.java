@@ -166,4 +166,19 @@ public class ParserUtil {
         }
         return groupSet;
     }
+
+    /**
+     * Parses a {@code String link} into a {@code Group}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code link} is invalid.
+     */
+    public static String parseLink(String link) throws ParseException {
+        requireNonNull(link);
+        String trimmedGroup = link.trim();
+        if (!Group.isValidLink(trimmedGroup)) {
+            throw new ParseException(Group.MESSAGE_CONSTRAINTS);
+        }
+        return link;
+    }
 }
