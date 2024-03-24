@@ -120,7 +120,8 @@ public class EditCommand extends Command {
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         ClassGroup updatedClassGroup = editPersonDescriptor.getClassGroup().orElse(personToEdit.getClassGroup());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
+        Optional<Phone> updatedPhone = editPersonDescriptor.getPhone().isPresent()
+                ? editPersonDescriptor.getPhone() : personToEdit.getPhone();
         Optional<Telegram> updatedTelegram = editPersonDescriptor.getTelegram().isPresent()
                 ? editPersonDescriptor.getTelegram() : personToEdit.getTelegram();
         Optional<Github> updatedGithub = editPersonDescriptor.getGithub().isPresent()
@@ -161,7 +162,7 @@ public class EditCommand extends Command {
         private Name name;
         private ClassGroup classGroup;
         private Email email;
-        private Phone phone;
+        private Optional<Phone> phone;
         private Optional<Telegram> telegram;
         private Optional<Github> github;
 
@@ -190,8 +191,8 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, classGroup)
-                    || (github.isPresent() || telegram.isPresent());
+            return CollectionUtil.isAnyNonNull(name, email, classGroup)
+                    || (phone.isPresent() || github.isPresent() || telegram.isPresent());
         }
 
         public void setName(Name name) {
@@ -218,12 +219,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(email);
         }
 
-        public void setPhone(Phone phone) {
+        public void setPhone(Optional<Phone> phone) {
             this.phone = phone;
         }
 
         public Optional<Phone> getPhone() {
-            return Optional.ofNullable(phone);
+            return phone;
         }
 
         public void setTelegram(Optional<Telegram> telegram) {

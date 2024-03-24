@@ -8,6 +8,7 @@ import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Github;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
 import seedu.address.model.person.Telegram;
 
 /**
@@ -67,7 +68,8 @@ public class SidePanel extends UiPart<Region> {
             emailLabel.setVisible(true);
             emailLabel.setText("Email: " + person.getEmail().toString());
             phoneLabel.setVisible(true);
-            phoneLabel.setText("Phone: " + person.getPhone().toString());
+            phoneLabel.setText("Phone: "
+                    + person.getPhone().map(Phone::toString).orElse("N/A"));
             telegramLabel.setVisible(true);
             telegramLabel.setText("Telegram: "
                 + person.getTelegram().map(Telegram::toString).orElse("N/A"));

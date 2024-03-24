@@ -23,7 +23,7 @@ public class PersonBuilder {
     public static final String DEFAULT_CLASS_GROUP = "B01";
 
     private Name name;
-    private Phone phone;
+    private Optional<Phone> phone;
     private Email email;
     private ClassGroup classGroup;
     private Optional<Telegram> telegram;
@@ -34,7 +34,7 @@ public class PersonBuilder {
      */
     public PersonBuilder() {
         name = new Name(DEFAULT_NAME);
-        phone = new Phone(DEFAULT_PHONE);
+        phone = Optional.of(new Phone(DEFAULT_PHONE));
         email = new Email(DEFAULT_EMAIL);
         github = Optional.of(new Github(DEFAULT_GITHUB));
         telegram = Optional.of(new Telegram(DEFAULT_TELEGRAM));
@@ -65,7 +65,7 @@ public class PersonBuilder {
      * Sets the {@code Phone} of the {@code Person} that we are building.
      */
     public PersonBuilder withPhone(String phone) {
-        this.phone = new Phone(phone);
+        this.phone = Optional.of(new Phone(phone));
         return this;
     }
 

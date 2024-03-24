@@ -48,7 +48,7 @@ class JsonAdaptedPerson {
      */
     public JsonAdaptedPerson(Person source) {
         name = source.getName().fullName;
-        phone = source.getPhone().value;
+        phone = source.getPhone().orElse(Phone.EMPTY).value;
         email = source.getEmail().value;
         classGroup = source.getClassGroup().classGroup;
         telegram = source.getTelegram().orElse(Telegram.EMPTY).telegramId;
@@ -70,13 +70,14 @@ class JsonAdaptedPerson {
         }
         final Name modelName = new Name(name);
 
-        if (phone == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
-        }
-        if (!Phone.isValidPhone(phone)) {
+        final Optional<Phone> modelPhone;
+        if (phone == null || phone.isEmpty()) {
+            modelPhone = Optional.of(Phone.EMPTY);
+        } else if (!Phone.isValidPhone(phone)) {
             throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
+        } else {
+            modelPhone = Optional.of(new Phone(phone));
         }
-        final Phone modelPhone = new Phone(phone);
 
         if (email == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
