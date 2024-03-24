@@ -31,8 +31,9 @@ public class AddInterviewerStatusCommandParser implements Parser<AddInterviewerS
                     AddInterviewerStatusCommand.MESSAGE_USAGE), ive);
         }
 
-        String status = argMultimap.getValue(PREFIX_STATUS).orElse("");
+        InterviewerStatus interviewerStatus = ParserUtil.parseInterviewerStatus(argMultimap
+                .getValue(PREFIX_STATUS).orElse(""));
 
-        return new AddInterviewerStatusCommand(phone, new InterviewerStatus(status));
+        return new AddInterviewerStatusCommand(phone, interviewerStatus);
     }
 }

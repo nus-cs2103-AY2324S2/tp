@@ -56,6 +56,7 @@ public class AddApplicantStatusCommand extends Command {
         try {
             personToEdit = lastShownList
                     .stream()
+                    .parallel()
                     .filter(person -> person.getPhone().equals(phone))
                     .reduce((person, prev) -> person).get();
         } catch (NoSuchElementException e) {
@@ -63,7 +64,7 @@ public class AddApplicantStatusCommand extends Command {
         }
 
         if (!personToEdit.getPersonType().equals("APPLICANT")) {
-            throw new CommandException(Messages.MESSAGE_INCORRENT_STATUS_APPLICANT);
+            throw new CommandException(Messages.MESSAGE_INCORRECT_STATUS_APPLICANT);
         }
 
         Applicant editedPerson = new Applicant(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),

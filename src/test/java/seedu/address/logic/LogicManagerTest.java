@@ -4,10 +4,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.Messages.MESSAGE_PERSON_NOT_IN_LIST;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_CUBE;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_CUBE;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_CUBE;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.AMY;
+import static seedu.address.testutil.TypicalPersons.CUBE;
 
 import java.io.IOException;
 import java.nio.file.AccessDeniedException;
@@ -205,9 +209,9 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Triggers the saveAddressBook method by executing an add command
-        String addInterviewerCommand = AddInterviewerPersonCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY
-                + EMAIL_DESC_AMY;
-        Interviewer expectedPerson = new PersonBuilder(AMY).withTags().build_interviewer();
+        String addInterviewerCommand = AddInterviewerPersonCommand.COMMAND_WORD + NAME_DESC_CUBE + PHONE_DESC_CUBE
+                + EMAIL_DESC_CUBE;
+        Interviewer expectedPerson = new PersonBuilder(CUBE).withTags().build_interviewer();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addPerson(expectedPerson);
         assertCommandFailure(addInterviewerCommand, CommandException.class, expectedMessage, expectedModel);
