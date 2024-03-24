@@ -90,6 +90,7 @@ Shows a message explaining how to access the help page.
 ![help message](images/helpMessage.png)
 
 Format: `help`
+>Note: The application ignores any extraneous parameters as we assume they are typos.
 
 ### Adding a person: `add`
 
@@ -118,6 +119,7 @@ Examples:
 Shows a list of all persons in AA.
 
 Format: `list`
+>Note: The application ignores any extraneous parameters as we assume they are typos.
 
 ### Editing a person : `edit`
 
@@ -160,6 +162,7 @@ Examples:
 Copies the emails of currently displayed persons into your clipboard.
 
 Format: `copy`
+>Note: The application ignores any extraneous parameters as we assume they are typos.
 
 * Use `list` or `find` to get the list of people you would like to email.
 * The emails are copied into your clipboard such that you may easily broadcast emails
@@ -184,6 +187,7 @@ Examples:
 Deletes the current filtered list of persons. Requires a `find` command to be run first.
 
 Format: `deleteshown`
+>Note: The application ignores any extraneous parameters as we assume they are typos.
 
 * Deletes all persons in the current filtered list of persons.
 * The list of persons is filtered using the most recent `find` command.
@@ -194,6 +198,7 @@ Format: `deleteshown`
 Clears all entries from AA.
 
 Format: `clear`
+>Note: The application ignores any extraneous parameters as we assume they are typos.
 
 ### Exporting Data to a CSV file : `export`
 
@@ -206,6 +211,7 @@ Exports currently listed persons and their details to a CSV file, avengersassemb
 3. Upon export, a folder named addressbookdata will be created in the same directory where Avengers Assemble is located. Within this folder, you'll find the CSV file named avengersassemble.csv, containing the exported data.
 
 Format: `export`
+>Note: The application ignores any extraneous parameters as we assume they are typos.
 
 <box type="info" seamless>
 
@@ -230,6 +236,7 @@ Format: `import i/FILEPATH`
 Exits the program.
 
 Format: `exit`
+>Note: The application ignores any extraneous parameters as we assume they are typos.
 
 ### Saving the data
 
