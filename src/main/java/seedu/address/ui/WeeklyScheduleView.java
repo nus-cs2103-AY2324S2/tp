@@ -5,12 +5,14 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.cell.TextFieldListCell;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import seedu.address.model.schedule.Schedule;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class WeeklyScheduleView extends UiPart<Region>{
@@ -39,7 +41,6 @@ public class WeeklyScheduleView extends UiPart<Region>{
 
     @FXML
     private ListView<Schedule> sundayListView;
-    private ArrayList<LocalDate> weekDates;
 
     public WeeklyScheduleView() {
         super(FXML);
@@ -47,14 +48,14 @@ public class WeeklyScheduleView extends UiPart<Region>{
     }
 
     public void initialize() {
-//        // Initialize the ListView elements
-//        mondayListView.setItems(FXCollections.observableArrayList());
-//        tuesdayListView.setItems(FXCollections.observableArrayList());
-//        wednesdayListView.setItems(FXCollections.observableArrayList());
-//        thursdayListView.setItems(FXCollections.observableArrayList());
-//        fridayListView.setItems(FXCollections.observableArrayList());
-//        saturdayListView.setItems(FXCollections.observableArrayList());
-//        sundayListView.setItems(FXCollections.observableArrayList());
+        // Initialize the ListView elements
+        mondayListView.setItems(FXCollections.observableArrayList());
+        tuesdayListView.setItems(FXCollections.observableArrayList());
+        wednesdayListView.setItems(FXCollections.observableArrayList());
+        thursdayListView.setItems(FXCollections.observableArrayList());
+        fridayListView.setItems(FXCollections.observableArrayList());
+        saturdayListView.setItems(FXCollections.observableArrayList());
+        sundayListView.setItems(FXCollections.observableArrayList());
 
         // Customize the appearance of items in each ListView
         customizeListView(mondayListView);
@@ -64,6 +65,8 @@ public class WeeklyScheduleView extends UiPart<Region>{
         customizeListView(fridayListView);
         customizeListView(saturdayListView);
         customizeListView(sundayListView);
+
+
     }
 
     private void customizeListView(ListView<Schedule> listView) {
@@ -72,15 +75,45 @@ public class WeeklyScheduleView extends UiPart<Region>{
             protected void updateItem(Schedule item, boolean empty) {
                 super.updateItem(item, empty);
                 if (empty || item == null) {
-                    System.out.println("IM NOT ABLE TO DISPLAY SCHEDULE!");
                     setText(null);
+                    setGraphic(null);
+                    setVisible(true);
+                    System.out.println("Cell is empty or item is null");
                 } else {
-                    System.out.println("IM TRYING TO DISPLAY SCHEDULE!");
-                    // Customize how each Schedule is displayed in the ListView
+                    setVisible(true);
                     setText(item.getSchedName() + " - " + item.getStartTime() + " to " + item.getEndTime());
+                    System.out.println("Cell content updated");
                 }
             }
         });
+    }
+
+    private ObservableList<Schedule> filterSchedulesForDay(ArrayList<Schedule> schedules, DayOfWeek day) {
+        //System.out.println("I got called to filter by day Schedules!");
+        ObservableList<Schedule> filteredSchedules = FXCollections.observableArrayList(schedules);
+        ObservableList<Schedule> filteredSchedulesDay = FXCollections.observableArrayList();
+        for (Schedule schedule : filteredSchedules) {
+
+            if (schedule.getStartTime().getDayOfWeek() == day) {
+                filteredSchedulesDay.add(schedule);
+            }
+        }
+        return filteredSchedulesDay;
+    }
+
+    // Method to populate ListView for a specific day
+    private void populateListViewForDay(ArrayList<Schedule> schedules, ListView<Schedule> listView, DayOfWeek day) {
+        //System.out.println("I got called to populateView!");
+        ObservableList<Schedule> daySchedules = filterSchedulesForDay(schedules, day);
+        for (Schedule schedule : daySchedules) {
+            if (!listView.getItems().contains(schedule)) {
+                assert (schedule!=null);
+                listView.getItems().add(schedule);
+            }
+            System.out.println(listView.getItems());
+        }
+//        System.out.println("Schedules for " + day + ": " + daySchedules);
+        //System.out.println("Current Calender for : "+ day + ": " + listView.getItems());
     }
 
     public void populateWeeklySchedule(ArrayList<Schedule> schedules) {
@@ -94,32 +127,7 @@ public class WeeklyScheduleView extends UiPart<Region>{
         populateListViewForDay(schedules, sundayListView, DayOfWeek.SUNDAY);
     }
 
-    // Method to populate ListView for a specific day
-    private void populateListViewForDay(ArrayList<Schedule> schedules, ListView<Schedule> listView, DayOfWeek day) {
-        //System.out.println("I got called to populateView!");
-        ObservableList<Schedule> daySchedules = filterSchedulesForDay(schedules, day);
-        for (Schedule schedule : daySchedules) {
-            if (!listView.getItems().contains(schedule)) {
-                listView.getItems().add(schedule);
-            }
-        }
-//        System.out.println("Schedules for " + day + ": " + daySchedules);
-        System.out.println("Current Calender for : "+ day + ": " + listView.getItems());
-    }
-
     // Method to filter schedules for a specific day
-    private ObservableList<Schedule> filterSchedulesForDay(ArrayList<Schedule> schedules, DayOfWeek day) {
-        //System.out.println("I got called to filter by day Schedules!");
-        ObservableList<Schedule> filteredSchedules = FXCollections.observableArrayList(schedules);
-        ObservableList<Schedule> filteredSchedulesDay = FXCollections.observableArrayList();
-        for (Schedule schedule : filteredSchedules) {
-
-            if (schedule.getStartTime().getDayOfWeek() == day) {
-                filteredSchedulesDay.add(schedule);
-            }
-        }
-        return filteredSchedulesDay;
-    }
 
     void clear() {
         mondayListView.getItems().clear();

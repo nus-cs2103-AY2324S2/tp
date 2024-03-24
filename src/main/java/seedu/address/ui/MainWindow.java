@@ -85,6 +85,7 @@ public class MainWindow extends UiPart<Stage> {
         setWindowDefaultSize(logic.getGuiSettings());
         setAccelerators();
 
+        weeklyScheduleView = new WeeklyScheduleView();
         populatePersonNameComboBox();
         helpWindow = new HelpWindow();
     }
@@ -136,8 +137,6 @@ public class MainWindow extends UiPart<Stage> {
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
-
-        weeklyScheduleView = new WeeklyScheduleView();
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
