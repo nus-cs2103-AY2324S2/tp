@@ -14,16 +14,20 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddGroupCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteGroupCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.EditGroupCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FilterCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.group.Group;
 import seedu.address.model.group.GroupContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
@@ -62,6 +66,27 @@ public class AddressBookParserTest {
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
+    }
+
+    @Test
+    public void parseCommand_addGroup() throws Exception {
+        AddGroupCommand command = (AddGroupCommand) parser.parseCommand(AddGroupCommand.COMMAND_WORD + " "
+                + "g/TUT01");
+        assertEquals(new AddGroupCommand(new Group("TUT01")), command);
+    }
+
+    @Test
+    public void parseCommand_deleteGroup() throws Exception {
+        DeleteGroupCommand command = (DeleteGroupCommand) parser.parseCommand(DeleteGroupCommand.COMMAND_WORD + " "
+                + "g/TUT01");
+        assertEquals(new DeleteGroupCommand(new Group("TUT01")), command);
+    }
+
+    @Test
+    public void parseCommand_editGroup() throws Exception {
+        EditGroupCommand command = (EditGroupCommand) parser.parseCommand(EditGroupCommand.COMMAND_WORD + " "
+                + "g/TUT01 tg/https://t.me/abcdefg");
+        assertEquals(new EditGroupCommand(new Group("TUT01"), "https://t.me/abcdefg"), command);
     }
 
     @Test
