@@ -17,7 +17,6 @@ public class ContainsGroupKeywordPredicate implements Predicate<Group> {
 
     @Override
     public boolean test(Group group) {
-        // TODO: Handle matches of groups.
         return StringUtil.containsIgnoreCase(group.getName().fullName, this.keyword);
     }
 
