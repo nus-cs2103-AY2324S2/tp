@@ -42,6 +42,7 @@ public class PersonBuilder {
         address = new Address(DEFAULT_ADDRESS);
         meeting = new Meeting(DEFAULT_MEETING);
         tags = new HashSet<>();
+        policies = new HashSet<>();
     }
 
     /**
@@ -54,6 +55,7 @@ public class PersonBuilder {
         address = personToCopy.getAddress();
         meeting = personToCopy.getMeeting();
         tags = new HashSet<>(personToCopy.getTags());
+        policies = new HashSet<>(personToCopy.getPolicies());
     }
 
 
@@ -62,6 +64,14 @@ public class PersonBuilder {
      */
     public PersonBuilder withName(String name) {
         this.name = new Name(name);
+        return this;
+    }
+
+    /**
+     * Parses the {@code policies} into a {@code Set<Policy>} and set it to the {@code Person} that we are building.
+     */
+    public PersonBuilder withPolicies(String ... policies) {
+        this.policies = SampleDataUtil.getPoliciesSet(policies);
         return this;
     }
 

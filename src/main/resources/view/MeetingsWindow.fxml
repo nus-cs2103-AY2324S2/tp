@@ -8,12 +8,12 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root resizable="true" title="View Meetings" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root title="View Meetings" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
     <icons>
         <Image url="@/images/meetings_icon.png" />
     </icons>
     <scene>
-        <Scene>
+        <Scene width="600" height="450">
             <stylesheets>
                 <URL value="@MeetingsWindow.css" />
             </stylesheets>
