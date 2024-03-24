@@ -1,7 +1,7 @@
 package seedu.address.logic.messages;
 
 /**
- * Container for user delete command visible messages.
+ * Container for user help command visible messages.
  */
 public class HelpMessages extends Messages {
     public static final String MESSAGES_SHOWING_HELP_MESSAGE = "Opened help window.";
