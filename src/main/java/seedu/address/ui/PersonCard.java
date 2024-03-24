@@ -43,6 +43,8 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label policy;
     @FXML
+    private Label clientStatus;
+    @FXML
     private FlowPane tags;
     @FXML
     private Accordion meetingsAccordion;
@@ -65,9 +67,14 @@ public class PersonCard extends UiPart<Region> {
         policy.setStyle(person.getPolicy().value.isEmpty() ? "-fx-background-color: #f54242"
                 : "-fx-background-color: #1fab2f");
 
+        clientStatus.setText(person.getClientStatus().toString());
+
         if (!person.isClient()) {
-            policy.setVisible(false);
+            policy.setManaged(false);
+            clientStatus.setManaged(false);
         }
+
+        clientStatus.setText(person.getClientStatus().toString());
 
         tags.getChildren().clear();
         person.getTags().stream()

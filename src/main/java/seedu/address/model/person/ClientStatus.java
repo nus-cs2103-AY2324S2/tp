@@ -31,7 +31,7 @@ public class ClientStatus {
     }
 
     private static final int CLIENT_MIN = 1;
-    private static final int CLIENT_MAX = Status.values().length;
+    private static final int CLIENT_MAX = Status.values().length - 1;
 
     public final Status value;
 
@@ -51,11 +51,11 @@ public class ClientStatus {
     }
 
     public ClientStatus increment() {
-        return new ClientStatus(Math.max(this.getStatus() + 1, CLIENT_MAX));
+        return new ClientStatus(Math.min(this.getStatus() + 1, CLIENT_MAX));
     }
 
     public ClientStatus decrement() {
-        return new ClientStatus(Math.min(this.getStatus() - 1, CLIENT_MIN));
+        return new ClientStatus(Math.max(this.getStatus() - 1, CLIENT_MIN));
     }
 
     @Override
