@@ -170,6 +170,7 @@ public class EditCommand extends Command {
          * Creates a new EditPersonDescriptor with empty fields.
          */
         public EditPersonDescriptor() {
+            phone = Optional.empty();
             telegram = Optional.empty();
             github = Optional.empty();
         }

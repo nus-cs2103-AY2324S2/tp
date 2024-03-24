@@ -65,7 +65,7 @@ public class ParserUtil {
         if (!Phone.isValidPhone(trimmedPhone)) {
             throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
         }
-        return Optional.of(new Phone(phone));
+        return Optional.of(new Phone(trimmedPhone));
     }
 
     /**
