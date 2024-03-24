@@ -40,30 +40,31 @@ public class EditCommand extends Command {
     public static final String COMMAND_WORD = "edit";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person"
-            + " identified "
-            + "by the phone number. "
-            + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: Phone number"
-            + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_TAG + "TAG] "
-            + "[" + PREFIX_FIRSTNAME + "FIRST NAME] "
-            + "[" + PREFIX_LASTNAME + "LAST NAME] "
-            + "[" + PREFIX_EMPLOYMENTTYPE + "EMPLOYMENT TYPE] "
-            + "[" + PREFIX_BANKDETAILS + "BANK DETAILS] "
-            + "[" + PREFIX_SEX + "SEX] "
-            + "Example: " + COMMAND_WORD + " 85789476 "
-            + PREFIX_PHONE + "91234567 ";
+        + " identified "
+        + "by the phone number. "
+        + "Existing values will be overwritten by the input values.\n"
+        + "Parameters: Phone number"
+        + "[" + PREFIX_PHONE + "PHONE] "
+        + "[" + PREFIX_ADDRESS + "ADDRESS] "
+        + "[" + PREFIX_TAG + "TAG] "
+        + "[" + PREFIX_FIRSTNAME + "FIRST NAME] "
+        + "[" + PREFIX_LASTNAME + "LAST NAME] "
+        + "[" + PREFIX_EMPLOYMENTTYPE + "EMPLOYMENT TYPE] "
+        + "[" + PREFIX_BANKDETAILS + "BANK DETAILS] "
+        + "[" + PREFIX_SEX + "SEX] "
+        + "Example: " + COMMAND_WORD + " 85789476 "
+        + PREFIX_PHONE + "91234567 ";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This phone number already exists in the address book. "
+        + "Every contact must have a unique phone number.";
 
     private final Phone number;
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
-     * @param phoneNumber                of the person in the filtered person list to edit
+     * @param phoneNumber          of the person in the filtered person list to edit
      * @param editPersonDescriptor details to edit the person with
      */
     public EditCommand(Phone phoneNumber, EditPersonDescriptor editPersonDescriptor) {
@@ -85,14 +86,14 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Sex updatedSex = editPersonDescriptor.getSex().orElse(personToEdit.getSex());
         EmploymentType updatedEmploymentType = editPersonDescriptor.getEmploymentType()
-                .orElse(personToEdit.getEmploymentType());
+            .orElse(personToEdit.getEmploymentType());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         BankDetails updatedBankDetails = editPersonDescriptor.getBankDetails().orElse(personToEdit.getBankDetails());
         WorkHours updatedWorkHours = editPersonDescriptor.getHoursWorked().orElse(personToEdit.getWorkHours());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
         return new Person(updatedFirstName, updatedLastName, updatedPhone, updatedSex, updatedEmploymentType,
-                updatedAddress, updatedBankDetails, updatedWorkHours, updatedTags);
+            updatedAddress, updatedBankDetails, updatedWorkHours, updatedTags);
     }
 
     @Override
@@ -137,15 +138,15 @@ public class EditCommand extends Command {
 
         EditCommand otherEditCommand = (EditCommand) other;
         return number.equals(otherEditCommand.number)
-                && editPersonDescriptor.equals(otherEditCommand.editPersonDescriptor);
+            && editPersonDescriptor.equals(otherEditCommand.editPersonDescriptor);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("index", number)
-                .add("editPersonDescriptor", editPersonDescriptor)
-                .toString();
+            .add("index", number)
+            .add("editPersonDescriptor", editPersonDescriptor)
+            .toString();
     }
 
     /**
@@ -187,7 +188,7 @@ public class EditCommand extends Command {
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(firstName, lastName, phone, address, tags, sex, employmentType,
-                    bankDetails);
+                bankDetails);
         }
 
         public Optional<Name> getFirstName() {
@@ -197,9 +198,11 @@ public class EditCommand extends Command {
         public void setFirstName(Name name) {
             this.firstName = name;
         }
+
         public Optional<Name> getLastName() {
             return Optional.ofNullable(lastName);
         }
+
         public void setLastName(Name name) {
             this.lastName = name;
         }
@@ -223,6 +226,7 @@ public class EditCommand extends Command {
         public Optional<BankDetails> getBankDetails() {
             return Optional.ofNullable(bankDetails);
         }
+
         public void setBankDetails(BankDetails bankDetails) {
             this.bankDetails = bankDetails;
         }
@@ -230,6 +234,7 @@ public class EditCommand extends Command {
         public Optional<EmploymentType> getEmploymentType() {
             return Optional.ofNullable(employmentType);
         }
+
         public void setEmploymentType(EmploymentType employmentType) {
             this.employmentType = employmentType;
         }
@@ -280,29 +285,29 @@ public class EditCommand extends Command {
 
             EditPersonDescriptor otherEditPersonDescriptor = (EditPersonDescriptor) other;
             return Objects.equals(firstName, otherEditPersonDescriptor.firstName)
-                    && Objects.equals(lastName, otherEditPersonDescriptor.lastName)
-                    && Objects.equals(phone, otherEditPersonDescriptor.phone)
-                    && Objects.equals(tags, otherEditPersonDescriptor.tags)
-                    && Objects.equals(sex, otherEditPersonDescriptor.sex)
-                    && Objects.equals(employmentType, otherEditPersonDescriptor.employmentType)
-                    && Objects.equals(address, otherEditPersonDescriptor.address)
-                    && Objects.equals(bankDetails, otherEditPersonDescriptor.bankDetails)
-                    && Objects.equals(hoursWorked, otherEditPersonDescriptor.hoursWorked);
+                && Objects.equals(lastName, otherEditPersonDescriptor.lastName)
+                && Objects.equals(phone, otherEditPersonDescriptor.phone)
+                && Objects.equals(tags, otherEditPersonDescriptor.tags)
+                && Objects.equals(sex, otherEditPersonDescriptor.sex)
+                && Objects.equals(employmentType, otherEditPersonDescriptor.employmentType)
+                && Objects.equals(address, otherEditPersonDescriptor.address)
+                && Objects.equals(bankDetails, otherEditPersonDescriptor.bankDetails)
+                && Objects.equals(hoursWorked, otherEditPersonDescriptor.hoursWorked);
         }
 
         @Override
         public String toString() {
             return new ToStringBuilder(this)
-                    .add("firstName", firstName)
-                    .add("lastName", lastName)
-                    .add("phone", phone)
-                    .add("sex", sex)
-                    .add("employmentType", employmentType)
-                    .add("address", address)
-                    .add("bankDetails", bankDetails)
-                    .add("hoursWorked", hoursWorked)
-                    .add("tags", tags)
-                    .toString();
+                .add("firstName", firstName)
+                .add("lastName", lastName)
+                .add("phone", phone)
+                .add("sex", sex)
+                .add("employmentType", employmentType)
+                .add("address", address)
+                .add("bankDetails", bankDetails)
+                .add("hoursWorked", hoursWorked)
+                .add("tags", tags)
+                .toString();
         }
     }
 }
