@@ -46,8 +46,8 @@ Person *--> "            1" Income
 Person *--> "1" Email
 Person *--> "1" Address
 Person *--> "1" Family
-Person *--> "  1..2" Tag
-Person *--> "   *..1" Remark
+Person *--> "   1..2" Tag
+Person *--> "   0..1" Remark
 
 Person -[hidden]up--> I
 UniquePersonList -[hidden]right-> I
