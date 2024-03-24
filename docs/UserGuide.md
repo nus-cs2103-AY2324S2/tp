@@ -15,7 +15,10 @@ CCA Manager is a **desktop app for managing contacts, optimized for use via a  L
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+**This quickstart guide targets an audience who has knowledge of how to install programs and how to use a command line/terminal.**
+
+1. Ensure you have Java `11` or above installed in your Computer. If you're wondering what
+   Java is, check out [this page](https://www.java.com/en/).
 
 1. Download the latest `ccamanager.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
 
