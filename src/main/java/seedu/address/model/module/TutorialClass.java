@@ -25,6 +25,7 @@ public class TutorialClass {
 
     public final String tutorialName;
     private final ArrayList<Person> students;
+    private final ArrayList<TutorialTeam> teams;
 
     /**
      * Constructs a {@code TutorialClass} with default values.
@@ -34,6 +35,7 @@ public class TutorialClass {
     public TutorialClass() {
         this.tutorialName = "";
         this.students = new ArrayList<>();
+        this.teams = new ArrayList<>();
     }
 
     /**
@@ -46,18 +48,35 @@ public class TutorialClass {
         checkArgument(isValidTutorialClass(tutorialClass), MESSAGE_CONSTRAINTS);
         this.tutorialName = tutorialClass;
         this.students = new ArrayList<>();
+        this.teams = new ArrayList<>();
     }
 
     /**
      * A constructor for TutorialClass. Creates a tutorial class with students.
      * @param tutorialClass to be added
-     * @param students in the tutorial class
+     * @param students      in the tutorial class
      */
     public TutorialClass(String tutorialClass, ArrayList<Person> students) {
         requireAllNonNull(tutorialClass);
         checkArgument(isValidTutorialClass(tutorialClass), MESSAGE_CONSTRAINTS);
         this.tutorialName = tutorialClass;
         this.students = students;
+        this.teams = new ArrayList<>();
+    }
+
+    /**
+     * A constructor for TutorialClass. Creates a tutorial class with students and
+     * teams.
+     * @param tutorialClass to be added
+     * @param students      in the tutorial class
+     * @param teams         in the tutorial class
+     */
+    public TutorialClass(String tutorialClass, ArrayList<Person> students, ArrayList<TutorialTeam> teams) {
+        requireAllNonNull(tutorialClass);
+        checkArgument(isValidTutorialClass(tutorialClass), MESSAGE_CONSTRAINTS);
+        this.tutorialName = tutorialClass;
+        this.students = students;
+        this.teams = teams;
     }
 
     /**
@@ -93,6 +112,7 @@ public class TutorialClass {
 
     /**
      * Adds a student to the tutorial class.
+     * @param student
      */
     public void addStudent(Person student) {
         students.add(student);
@@ -100,7 +120,7 @@ public class TutorialClass {
 
     /**
      * Removes a student from the tutorial class if it exists.
-     *
+     * @param student
      * @return true if the student was removed
      */
     public boolean deleteStudent(Person student) {
@@ -114,6 +134,30 @@ public class TutorialClass {
      */
     public boolean hasStudent(Person student) {
         return students.contains(student);
+    }
+
+    /**
+     * Retrieves the list of teams in the tutorial class.
+     * @return The list of teams in the tutorial class.
+     */
+    public ArrayList<TutorialTeam> getTeams() {
+        return this.teams;
+    }
+
+    /**
+     * Adds a team to the tutorial class.
+     * @param team
+     */
+    public void addTeam(TutorialTeam team) {
+        teams.add(team);
+    }
+
+    /**
+     * Checks if the team is in the tutorial class.
+     * @param team
+     */
+    public boolean hasTeam(TutorialTeam team) {
+        return teams.contains(team);
     }
 
     @Override
