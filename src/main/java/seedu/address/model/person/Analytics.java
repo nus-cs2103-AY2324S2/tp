@@ -68,11 +68,9 @@ public class Analytics {
      * This method should be called after the fields that count the number of various loans have been updated.
      */
     private void updatePropFields() {
-        if (this.numActiveLoans > 0) {
+        if (this.numActiveLoans > 0 && this.numLoans > 0) {
             this.propActiveLoans = (float) this.numActiveLoans / this.numLoans;
-        }
-        if (this.numLoans > 0) {
-            this.propOverdueLoans = (float) this.numOverdueLoans / this.numLoans;
+            this.propOverdueLoans = (float) this.numOverdueLoans / this.numActiveLoans;
         }
     }
 
