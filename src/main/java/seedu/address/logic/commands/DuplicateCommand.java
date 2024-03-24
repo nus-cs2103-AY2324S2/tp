@@ -11,7 +11,8 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
 public class DuplicateCommand extends Command {
-    public static final String COMMAND_WORD = "overwrite";
+
+    public static final String COMMAND_WORD = "duplicate";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
             + "Parameters: "
