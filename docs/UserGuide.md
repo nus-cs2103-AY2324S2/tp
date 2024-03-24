@@ -6,9 +6,10 @@
 
 # ConnectCare User Guide
 
-<box type="info" seamless>
-This page is for ConnectCare users. If you're a developer, see also the [Developer guide](https://ay2324s2-cs2103t-w12-4.github.io/tp/DeveloperGuide.html)_.
-</box>
+_<box type="info" seamless>
+This page is for ConnectCare users. If you're a developer, see also the
+[Developer guide](https://ay2324s2-cs2103t-w12-4.github.io/tp/DeveloperGuide.html).
+</box>_
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -25,7 +26,7 @@ ConnectCare is a powerful application designed to make social workers' lives eas
 * Reduced Errors: Minimize the possibility of errors caused by switching between input methods.
 * Boosted Productivity: Complete tasks faster and free up valuable time for client interaction.
 
-**Embrace a Keyboard-Centric Approach**
+### Embrace a Keyboard-Centric Approach
 
 Social workers often spend significant time documenting and updating client information.  By minimizing the need to use a mouse, ConnectCare allows for a smoother workflow, especially when working remotely or on laptops.
 
@@ -35,15 +36,15 @@ This approach can significantly reduce:
 * Cognitive load from switching between input methods.
 * Overall time spent completing tasks.
 
-**Work Offline, Stay Productive**
+### Work Offline, Stay Productive
 
 One of the key benefits of ConnectCare is that it doesn't require a constant internet connection. This allows you to work seamlessly even in areas with limited or no internet access.  Whether you're conducting a home visit or working remotely in the field, ConnectCare ensures you can access and update client information efficiently.
 
-**Sensitive Data is kept Secure**
+### Sensitive Data is kept Secure
 
 We understand that social workers handle sensitive client information. Since ConnectCare functions offline, your data never needs to be transmitted over the internet or stored on remote servers. This significantly reduces the risk of unauthorized access compared to cloud-based solutions. ConnectCare prioritizes data security by storing information [locally](https://ay2324s2-cs2103t-w12-4.github.io/tp/UserGuide.html#local) on your device.
 
-**Focus on Your Clients, Not Software**
+### Focus on Your Clients, Not Software
 
 By streamlining workflows and offering social work-specific features, ConnectCare empowers you to focus on what matters most: your clients. You can spend more time building rapport with clients, respond to inquiries and needs more promptly and ultimately focus on delivering high-quality care.
 
@@ -65,7 +66,8 @@ This guide is comprised of 4 main sections:
 4. Lastly, the [**Glossary**](https://ay2324s2-cs2103t-w12-4.github.io/tp/UserGuide.html#faq) contains a list of key terms and definitions that might be helpful
 
 <box type="tip" seamless>
-**Tip:** If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
+**Tip:**
+If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </box>
 
 ## Quick start
@@ -154,9 +156,11 @@ _These are a list of helpful actions to facilitate the ease of use of our applic
 
 #### Command Line Shortcuts
 
+
 <box type="tip" seamless>
-**Tip:** These shortcuts only work when the text box is selected
+    **Tip:** These shortcuts only work when the text box is selected
 </box>
+
 
 | Action | Description |
 | --- | --- |
