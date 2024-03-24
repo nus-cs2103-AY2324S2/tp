@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -83,4 +84,31 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Retrieves the last viewed {@link Person} instance.
+     * <p>
+     * This method returns an {@link Optional} which will be empty if no person has
+     * been viewed last, or will contain a reference to the {@link Person} object
+     * that was last viewed.
+     *
+     * @return an {@link Optional} containing the last viewed {@link Person} if such
+     *     a person exists, or an empty {@link Optional} if no person has been viewed last.
+     */
+    Optional<Person> getLastViewedPerson();
+
+    /**
+     * Resets the information about the last viewed person.
+     */
+    void resetLastViewedPerson();
+
+    /**
+     * Updates the record of the last viewed person to the specified {@link Person}.
+     * <p>
+     * This method sets the internally tracked last viewed person to the provided
+     * {@link Person} instance.
+     *
+     * @param p the {@link Person} instance to set as the last viewed person; cannot be {@code null}.
+     */
+    void updateLastViewedPerson(Person p);
 }

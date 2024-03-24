@@ -84,7 +84,7 @@ public class SidePanel extends UiPart<Region> {
     /**
      * Clears all the details from the side panel.
      */
-    private void resetDetails() {
+    public void resetDetails() {
         nameLabel.setText("");
         classGroupLabel.setText("");
         emailLabel.setText("");

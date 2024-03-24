@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_GITHUB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
 import java.util.Objects;
@@ -80,7 +79,12 @@ public class EditCommand extends Command {
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+        updatePerson(personToEdit, editedPerson, model);
+        updateLastViewedPersonIfNecessary(personToEdit, editedPerson, model);
+        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson)));
+    }
 
+    private void updatePerson(Person personToEdit, Person editedPerson, Model model) throws CommandException {
         if (personToEdit.equals(editedPerson)) {
             throw new CommandException(MESSAGE_NO_CHANGE);
         }
@@ -89,10 +93,13 @@ public class EditCommand extends Command {
             model.addPersonKeepFilter(personToEdit);
             throw new CommandException(MESSAGE_DUPLICATE_FIELD);
         }
-
         model.addPersonKeepFilter(editedPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson)));
+    }
+
+    private void updateLastViewedPersonIfNecessary(Person personToEdit, Person editedPerson, Model model) {
+        model.getLastViewedPerson()
+                .filter(lastViewedPerson -> lastViewedPerson.equals(personToEdit))
+                .ifPresent(lastViewedPerson -> model.updateLastViewedPerson(editedPerson));
     }
 
     /**

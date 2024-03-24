@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.util.Optional;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -186,13 +187,8 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
-            // If it's a successful view command, display the person in the SidePanel
-            if (commandResult.getFeedbackToUser().startsWith("View Person:")) {
-                Person viewedPerson = logic.getLastViewedPerson();
-                if (viewedPerson != null) {
-                    sidePanel.displayPerson(viewedPerson);
-                }
-            }
+            Optional<Person> lastViewedPerson = logic.getLastViewedPerson();
+            lastViewedPerson.ifPresentOrElse(sidePanel::displayPerson, sidePanel::resetDetails);
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
