@@ -6,7 +6,9 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Objects;
 
-
+/**
+ * Represents a meeting with a specific date, time, duration, agenda, and optional notes.
+ */
 public class Meeting {
     private LocalDate meetingDate;
     private LocalTime meetingTime;
@@ -16,6 +18,15 @@ public class Meeting {
     private String agenda;
     private String notes; //make it optional
 
+    /**
+     * Constructs a new Meeting object with the specified details.
+     *
+     * @param meetingDate   The date of the meeting.
+     * @param meetingTime   The time of the meeting.
+     * @param duration      The duration of the meeting.
+     * @param agenda        The agenda of the meeting.
+     * @param notes         Optional notes for the meeting.
+     */
     public Meeting(LocalDate meetingDate, LocalTime meetingTime, Duration duration, String agenda, String notes) {
         this.meetingDate = meetingDate;
         this.meetingTime = meetingTime;
@@ -77,16 +88,22 @@ public class Meeting {
 
     @Override
     public String toString() {
-        return "Meeting{" +
-                "meetingDate=" + meetingDate +
-                ", meetingTime=" + meetingTime +
-                ", duration=" + duration +
-                ", agenda='" + agenda + '\'' +
-                ", notes='" + notes + '\'' +
-                '}';
+        return "Meeting{"
+                + "meetingDate=" + meetingDate
+                + ", meetingTime=" + meetingTime
+                + ", duration=" + duration
+                + ", agenda='" + agenda + '\''
+                + ", notes='" + notes + '\''
+                + '}';
     }
 
     // In Meeting class
+    /**
+     * Checks if this meeting overlaps with another meeting.
+     *
+     * @param other The other meeting to check for overlap.
+     * @return True if there is an overlap, false otherwise.
+     */
     public boolean overlapsWith(Meeting other) {
         LocalDateTime start = LocalDateTime.of(this.getMeetingDate(), this.getMeetingTime());
         LocalDateTime end = start.plus(this.getDuration());
@@ -106,11 +123,10 @@ public class Meeting {
             return false;
         }
         Meeting meeting = (Meeting) obj;
-        return Objects.equals(meetingDate, meeting.meetingDate) &&
-                Objects.equals(meetingTime, meeting.meetingTime) &&
-                Objects.equals(duration, meeting.duration) &&
-                Objects.equals(agenda, meeting.agenda) &&
-                Objects.equals(notes, meeting.notes);
+        return Objects.equals(meetingDate, meeting.meetingDate)
+                && Objects.equals(meetingTime, meeting.meetingTime)
+                && Objects.equals(duration, meeting.duration)
+                && Objects.equals(agenda, meeting.agenda)
+                && Objects.equals(notes, meeting.notes);
     }
 }
-

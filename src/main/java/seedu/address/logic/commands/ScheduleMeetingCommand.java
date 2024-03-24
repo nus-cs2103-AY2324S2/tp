@@ -1,17 +1,13 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_TIME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_DURATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_AGENDA;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_DURATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_NOTES;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_TIME;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-import java.time.Duration;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.format.DateTimeParseException;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;

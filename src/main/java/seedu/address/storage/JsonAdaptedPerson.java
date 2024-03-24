@@ -10,12 +10,16 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.*;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Meeting;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.Policy;
+import seedu.address.model.person.Relationship;
 import seedu.address.model.tag.Tag;
 
-/**
- * Jackson-friendly version of {@link Person}.
- */
 //class JsonAdaptedPerson {
 //
 //    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
@@ -104,7 +108,8 @@ import seedu.address.model.tag.Tag;
 //        final Email modelEmail = new Email(email);
 //
 //        if (address == null) {
-//            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
+//            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+//            Address.class.getSimpleName()));
 //        }
 //        if (!Address.isValidAddress(address)) {
 //            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
@@ -121,7 +126,8 @@ import seedu.address.model.tag.Tag;
 //        final Relationship modelRelationship = new Relationship(relationship);
 //
 //        if (policy == null) {
-//            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Policy.class.getSimpleName()));
+//            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+//            Policy.class.getSimpleName()));
 //        }
 //        final Policy modelPolicy = new Policy(policy);
 //
@@ -259,7 +265,8 @@ class JsonAdaptedPerson {
         final Policy modelPolicy = new Policy(policy);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        final Person person = new Person(modelName, modelPhone, modelEmail, modelAddress, modelRelationship, modelPolicy, modelTags);
+        final Person person = new Person(modelName, modelPhone, modelEmail, modelAddress, modelRelationship,
+                modelPolicy, modelTags);
 
         // Add meetings to the person
         for (Meeting meeting : personMeetings) {

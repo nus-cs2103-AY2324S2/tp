@@ -180,6 +180,12 @@ public class ParserUtil {
         }
     }
 
+    /**
+     * Parses a {@code String durationStr} into a {@code Duration}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code durationStr} is invalid.
+     */
     public static Duration parseDuration(String durationStr) throws ParseException {
         requireNonNull(durationStr);
         try {
