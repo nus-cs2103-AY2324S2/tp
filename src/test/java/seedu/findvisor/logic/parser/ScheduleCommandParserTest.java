@@ -32,7 +32,6 @@ public class ScheduleCommandParserTest {
         Meeting meeting = createValidMeeting();
         Index targetIndex = INDEX_FIRST_PERSON;
         ScheduleCommand expectedScheduleCommand = new ScheduleCommand(targetIndex, meeting);
-        System.out.println(dateTimeToInputString(meeting.start) + " " + dateTimeToInputString(meeting.end));
         assertParseSuccess(parser,
                 targetIndex.getOneBased() + " "
                 + PREFIX_START_DATETIME + " " + dateTimeToInputString(meeting.start) + " "
