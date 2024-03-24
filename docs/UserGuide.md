@@ -107,7 +107,14 @@ Examples:
 
 -   `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/Suffers from depression k/Jasmin Doe`
 -   `add n/Betsy Crowe t/friend d/Takes anxiety medication k/Bethany Crowe e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
--   `add n/Bill James p/01232228943 e/billj@example.com a/12 College Avenue West t/high priority k/John Doe d/Is an army veteran`
+-   `add n/Aaron James p/01232228943 e/billj@example.com a/12 College Avenue West t/highPriority k/John Doe d/Is an army veteran`
+
+Usage of Add command
+
+<video controls>
+  <source src="https://github.com/AY2324S2-CS2103T-W12-4/tp/assets/48405651/684dbfd0-53bc-41aa-bb20-82938f5154f1" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
 
 ### Updating a client : `update`
 
@@ -119,9 +126,16 @@ Examples:
 
 -   `update u/Jane Doe n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-011` updates the information of Jane Doe's information to be  
     name: John Doe  
-    Phone no: 98765432  
+    phone no: 98765432  
     email: [johnd@example.com](mailto:johnd@example.com)  
     address: John street, block 123, #01-011
+
+Usage of update command
+
+<video controls>
+  <source src="https://github.com/AY2324S2-CS2103T-W12-4/tp/assets/48405651/ad7cd05f-01bc-4a98-8074-b487e232fa52" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
 
 ### Locating persons by name: `find`
 
