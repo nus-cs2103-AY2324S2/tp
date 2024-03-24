@@ -37,7 +37,6 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private BookingListPanel bookingListPanel;
-    private TerminalWindow terminalWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -174,18 +173,6 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
-    /**
-     * Opens the terminal window or focuses on it if it's already opened.
-     */
-    @FXML
-    public void handleTerminal() {
-        if (!terminalWindow.isShowing()) {
-            helpWindow.show();
-        } else {
-            helpWindow.focus();
-        }
-    }
-
     void show() {
         primaryStage.show();
     }
@@ -223,10 +210,6 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
-            }
-
-            if (commandResult.isShowHelp()) {
-                handleTerminal();
             }
 
             if (commandResult.isExit()) {

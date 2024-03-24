@@ -61,10 +61,10 @@
     -fx-border-width: 0 0 1 0;
     -fx-background-color: transparent;
     -fx-border-color:
-        transparent
-        transparent
-        derive(-fx-base, 80%)
-        transparent;
+            transparent
+            transparent
+            derive(-fx-base, 80%)
+            transparent;
     -fx-border-insets: 0 10 1 0;
 }
 
@@ -149,7 +149,7 @@
 }
 
 .stack-pane {
-     -fx-background-color: #0c0c0c;
+    -fx-background-color: #0c0c0c;
 }
 
 .pane-without-border {
@@ -248,8 +248,8 @@
 }
 
 .button:pressed, .button:default:hover:pressed {
-  -fx-background-color: white;
-  -fx-text-fill: #1d1d1d;
+    -fx-background-color: white;
+    -fx-text-fill: #1d1d1d;
 }
 
 .button:focused {
@@ -277,7 +277,7 @@
 
 /* Button style */
 .hbox-button {
-     /* Removes borders */
+    /* Removes borders */
     -fx-background-radius: 15px;
     -fx-padding: 5 18 5 18;
     -fx-background-color: transparent; /* Default background color */
