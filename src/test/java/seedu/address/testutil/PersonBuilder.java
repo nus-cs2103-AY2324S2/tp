@@ -63,7 +63,7 @@ public class PersonBuilder {
         } else if (type.equals("INTERVIEWER")) {
             tags.add(new Tag("Interviewer"));
         }
-        status = personToCopy.getStatus();
+        status = personToCopy.getCurrentStatus();
     }
 
     /**

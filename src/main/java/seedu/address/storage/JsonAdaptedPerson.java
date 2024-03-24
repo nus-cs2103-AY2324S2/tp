@@ -70,7 +70,7 @@ class JsonAdaptedPerson {
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
         type = source.getPersonType();
-        status = source.getStatus();
+        status = source.getCurrentStatus();
     }
 
     /**

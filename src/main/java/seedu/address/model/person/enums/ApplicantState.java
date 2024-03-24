@@ -4,32 +4,32 @@ package seedu.address.model.person.enums;
  * Enumerates an applicant's statuses at any given time
  */
 public enum ApplicantState {
-    STAGEONE {
+    STAGE_ONE {
         public String toString() {
             return "resume review";
         }
     },
-    STAGETWO {
+    STAGE_TWO {
         public String toString() {
             return "pending interview";
         }
     },
-    STAGETHREE {
+    STAGE_THREE {
         public String toString() {
             return "completed interview";
         }
     },
-    OUTCOMEONE {
+    OUTCOME_ONE {
         public String toString() {
             return "waiting list";
         }
     },
-    OUTCOMETWO {
+    OUTCOME_TWO {
         public String toString() {
             return "accepted";
         }
     },
-    OUTCOMETHREE {
+    OUTCOME_THREE {
         public String toString() {
             return "rejected";
         }

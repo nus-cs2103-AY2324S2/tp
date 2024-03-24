@@ -143,6 +143,8 @@ public class AddInterviewCommand extends Command {
 
 
         model.addInterview(interview);
+        applicantSearch.updateCurrentStatusToReflectInterview(model);
+        interviewerSearch.updateCurrentStatusToReflectInterview(model, applicantSearch);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, "\n" + Messages.formatInterview(interview)));
     }

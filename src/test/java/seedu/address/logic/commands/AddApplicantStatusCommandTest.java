@@ -33,7 +33,7 @@ public class AddApplicantStatusCommandTest {
         Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Person editedPerson = new PersonBuilder(firstPerson).withStatus(APPLICANT_STATUS_STUB).build_applicant();
         AddApplicantStatusCommand addApplicantStatusCommand = new AddApplicantStatusCommand(firstPerson.getPhone(),
-                new ApplicantStatus(editedPerson.getStatus()));
+                new ApplicantStatus(editedPerson.getCurrentStatus()));
 
         String expectedMessage = String.format(AddApplicantStatusCommand.MESSAGE_ADD_STATUS_SUCCESS, editedPerson);
 
@@ -52,7 +52,7 @@ public class AddApplicantStatusCommandTest {
                 .withStatus(APPLICANT_STATUS_STUB).build_applicant();
 
         AddApplicantStatusCommand addApplicantStatusCommand = new AddApplicantStatusCommand(firstPerson.getPhone(),
-                new ApplicantStatus(editedPerson.getStatus()));
+                new ApplicantStatus(editedPerson.getCurrentStatus()));
 
         String expectedMessage = String.format(AddApplicantStatusCommand.MESSAGE_ADD_STATUS_SUCCESS, editedPerson);
 
