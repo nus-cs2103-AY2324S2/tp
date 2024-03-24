@@ -53,7 +53,7 @@ public class Analytics {
      * Updates the fields that count the number of various loans.
      * @param loan The loan to update the fields with.
      */
-    public void updateNumFields(Loan loan) {
+    private void updateNumFields(Loan loan) {
         this.numLoans++;
         if (loan.isOverdue()) {
             this.numOverdueLoans++;
@@ -67,7 +67,7 @@ public class Analytics {
      * Updates the fields that calculate the proportion of various loans.
      * This method should be called after the fields that count the number of various loans have been updated.
      */
-    public void updatePropFields() {
+    private void updatePropFields() {
         if (this.numActiveLoans > 0) {
             this.propActiveLoans = (float) this.numActiveLoans / this.numLoans;
         }
@@ -80,7 +80,7 @@ public class Analytics {
      * Updates the fields that calculate the total value of various loans.
      * @param loan The loan to update the fields with.
      */
-    public void updateValueFields(Loan loan) {
+    private void updateValueFields(Loan loan) {
         this.totalValueLoaned += loan.getValue();
         if (loan.isOverdue()) {
             this.totalValueOverdue += loan.getValue();
@@ -94,7 +94,7 @@ public class Analytics {
      * Updates the fields that calculate the average value of various loans.
      * This method should be called after the fields that calculate the total value of various loans have been updated.
      */
-    public void updateAverageFields() {
+    private void updateAverageFields() {
         if (this.numActiveLoans > 0) {
             this.averageActiveValue = this.totalValueActive / this.numActiveLoans;
         }
@@ -110,7 +110,7 @@ public class Analytics {
      * Updates the fields that calculate the earliest and latest dates of various loans.
      * @param loan The loan to update the fields with.
      */
-    public void updateDateFields(Loan loan) {
+    private void updateDateFields(Loan loan) {
         if (this.earliestLoanDate == null || loan.getStartDate().before(this.earliestLoanDate)) {
             this.earliestLoanDate = loan.getStartDate();
         }
@@ -141,6 +141,7 @@ public class Analytics {
             analytics.updateDateFields(loan);
         }
         analytics.updatePropFields();
+        analytics.updateAverageFields();
         return analytics;
     }
 
