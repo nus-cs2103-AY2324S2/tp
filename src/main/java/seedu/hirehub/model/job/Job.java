@@ -1,23 +1,22 @@
 package seedu.hirehub.model.job;
 
-import seedu.hirehub.commons.util.ToStringBuilder;
+import static java.util.Objects.requireNonNull;
+import static seedu.hirehub.commons.util.AppUtil.checkArgument;
 
 import java.util.Objects;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.hirehub.commons.util.AppUtil.checkArgument;
+import seedu.hirehub.commons.util.ToStringBuilder;
 
 /**
  * Represents a job opening
  * Guarantees: immutable
  */
-
 public class Job {
     public static final String TITLE_CONSTRAINTS =
             "Titles should contain at least one non whitespace character"
             + "and have a character limit of 100";
 
-    public static final String VACANCY_CONSTRAINTS =  "Vacancy must be a positive unsigned integer";
+    public static final String VACANCY_CONSTRAINTS = "Vacancy must be a positive unsigned integer";
     public static final String VALIDATION_REGEX = "^(?!\\s+$).{1,100}$";
 
     public final String title;
@@ -52,8 +51,8 @@ public class Job {
             return true;
         }
 
-        return otherJob != null &&
-            title.equals(otherJob.title);
+        return otherJob != null
+            && title.equals(otherJob.title);
     }
 
     /**
@@ -71,9 +70,9 @@ public class Job {
             return false;
         }
         Job otherJob = (Job) other;
-        return title.equals(otherJob.title) && 
-            description.equals(otherJob.description) &&
-            vacancy == otherJob.vacancy;
+        return title.equals(otherJob.title)
+            && description.equals(otherJob.description)
+            && vacancy == otherJob.vacancy;
     }
 
     // hash only the title, as different jobs are not allowed to have the same title

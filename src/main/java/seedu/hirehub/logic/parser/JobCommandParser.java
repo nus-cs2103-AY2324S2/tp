@@ -1,13 +1,18 @@
 package seedu.hirehub.logic.parser;
 
+import static seedu.hirehub.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.hirehub.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.hirehub.logic.parser.CliSyntax.PREFIX_TITLE;
+import static seedu.hirehub.logic.parser.CliSyntax.PREFIX_VACANCY;
+
+import java.util.stream.Stream;
+
 import seedu.hirehub.logic.commands.JobCommand;
 import seedu.hirehub.logic.parser.exceptions.ParseException;
 import seedu.hirehub.model.job.Job;
 
-import java.util.stream.Stream;
 
-import static seedu.hirehub.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.hirehub.logic.parser.CliSyntax.*;
+
 
 
 /**
