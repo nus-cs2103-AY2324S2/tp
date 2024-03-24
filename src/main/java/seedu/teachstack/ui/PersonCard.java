@@ -64,7 +64,7 @@ public class PersonCard extends UiPart<Region> {
             weakLabel.setText("Weak");
             weakLabel.setTextFill(Color.RED);
         } else {
-            weakLabel.setText(""); // If grade is not below threshold, don't display anything
+            weakLabel.setVisible(false); // If grade is not below threshold, don't display anything
         }
 
         person.getGroups().stream()
