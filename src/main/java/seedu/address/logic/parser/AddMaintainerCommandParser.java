@@ -14,13 +14,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddMaintainerCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Commission;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Maintainer;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Skill;
+import seedu.address.model.person.*;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -50,13 +44,14 @@ public class AddMaintainerCommandParser implements Parser<AddMaintainerCommand> 
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+        Rating rating = new Rating("0");
         Tag tag = new Tag("maintainer");
         Set<Tag> tags = new HashSet<>();
         tags.add(tag);
         Skill skill = ParserUtil.parseSkill(argMultimap.getValue(PREFIX_SKILL).get());
         Commission commission = ParserUtil.parseCommission(argMultimap.getValue(PREFIX_COMMISSION).get());
 
-        Maintainer person = new Maintainer(name, phone, email, address, tags, skill, commission);
+        Maintainer person = new Maintainer(name, phone, email, address, tags, skill, commission, rating);
 
         return new AddMaintainerCommand(person);
     }

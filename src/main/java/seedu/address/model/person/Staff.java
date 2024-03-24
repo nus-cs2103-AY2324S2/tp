@@ -21,8 +21,8 @@ public class Staff extends Person {
      * Every field must be present and not null.
      */
     public Staff(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
-                 Salary salary, Employment employment) {
-        super(name, phone, email, address, new Note(""), tags);
+                 Salary salary, Employment employment, Rating rating) {
+        super(name, phone, email, address, new Note(""), tags, rating);
         requireAllNonNull(salary, employment);
         this.salary = salary;
         this.employment = employment;
@@ -34,6 +34,16 @@ public class Staff extends Person {
 
     public Employment getEmployment() {
         return employment;
+    }
+
+    /**
+     * Returns a new instantiation of the current person, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    @Override
+    public Staff updateRating(Rating rating) {
+        return new Staff(this.getName(), this.getPhone(), this.getEmail(), this.getAddress(),
+                this.getTags(), this.salary, this.employment, rating);
     }
 
     /**
@@ -71,6 +81,7 @@ public class Staff extends Person {
                 .add("email", getEmail())
                 .add("address", getAddress())
                 .add("tags", getTags())
+                .add("rating", getRating())
                 .add("salary", salary)
                 .add("employment", employment)
                 .toString();

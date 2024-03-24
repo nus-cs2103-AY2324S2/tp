@@ -21,8 +21,8 @@ public class Maintainer extends Person {
      * Every field must be present and not null.
      */
     public Maintainer(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
-                      Skill skill, Commission commission) {
-        super(name, phone, email, address, new Note(""), tags);
+                      Skill skill, Commission commission, Rating rating) {
+        super(name, phone, email, address, new Note(""), tags, rating);
         requireAllNonNull(skill, commission);
         this.skill = skill;
         this.commission = commission;
@@ -34,6 +34,16 @@ public class Maintainer extends Person {
 
     public Commission getCommission() {
         return commission;
+    }
+
+    /**
+     * Returns a new instantiation of the current person, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    @Override
+    public Maintainer updateRating(Rating rating) {
+        return new Maintainer(this.getName(), this.getPhone(), this.getEmail(), this.getAddress(),
+                this.getTags(), this.skill, this.commission, rating);
     }
 
     /**
@@ -71,6 +81,7 @@ public class Maintainer extends Person {
                 .add("email", getEmail())
                 .add("address", getAddress())
                 .add("tags", getTags())
+                .add("rating", getRating())
                 .add("skill", skill)
                 .add("commission", commission)
                 .toString();

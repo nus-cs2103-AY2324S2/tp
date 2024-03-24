@@ -24,19 +24,21 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
-    private Note note;
+    private final Note note;
+    private final Rating rating;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Note note, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, note, tags);
+    public Person(Name name, Phone phone, Email email, Address address, Note note, Set<Tag> tags, Rating rating) {
+        requireAllNonNull(name, phone, email, address, note, tags, rating);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.note = note;
         this.tags.addAll(tags);
+        this.rating = rating;
     }
 
     public Name getName() {
@@ -56,6 +58,15 @@ public class Person {
     }
     public Note getNote() {
         return note;
+    }
+    public Rating getRating() { return rating; }
+
+    /**
+     * Returns a new instantiation of the current person, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Person updateRating(Rating rating) {
+        return new Person(this.name, this.phone, this.email, this.address, this.note, this.tags, rating);
     }
 
     /**
@@ -105,13 +116,14 @@ public class Person {
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
-                && tags.equals(otherPerson.tags);
+                && tags.equals(otherPerson.tags)
+                && rating.equals(otherPerson.rating);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, note, tags);
+        return Objects.hash(name, phone, email, address, note, tags, rating);
     }
 
     @Override
@@ -123,6 +135,7 @@ public class Person {
                 .add("address", address)
                 .add("note", note)
                 .add("tags", tags)
+                .add("rating", rating)
                 .toString();
     }
 

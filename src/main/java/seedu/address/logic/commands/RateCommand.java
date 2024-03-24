@@ -2,32 +2,37 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RATING;
 
 import java.util.List;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.messages.DeleteMessages;
+import seedu.address.logic.messages.RateMessages;
 import seedu.address.model.Model;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Rating;
 
 /**
- * Deletes a person identified using it's displayed name from the address book.
+ * Rates a person identified using it's displayed name from the address book.
  */
-public class DeleteCommand extends Command {
-    public static final String COMMAND_WORD = "/delete";
+public class RateCommand extends Command {
+    public static final String COMMAND_WORD = "/rate";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the person identified by their name.\n"
+            + ": Rates the person identified by their name.\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
-            + "Example: " + COMMAND_WORD + PREFIX_NAME + "Moochie";
+            + PREFIX_RATING + "RATING "
+            + "Example: " + COMMAND_WORD + PREFIX_NAME + "Moochie " + PREFIX_RATING + "2";
 
     private final Name targetName;
+    private final Rating rating;
 
-    public DeleteCommand(Name name) {
+    public RateCommand(Name name, Rating rating) {
         this.targetName = name;
+        this.rating = rating;
     }
 
     /**
@@ -53,17 +58,18 @@ public class DeleteCommand extends Command {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
 
-        Person personToDelete;
+        Person personToRate = findByName(lastShownList, targetName);
 
-        personToDelete = findByName(lastShownList, targetName);
-
-        if (personToDelete == null) {
-            throw new CommandException(DeleteMessages.MESSAGE_DELETE_NAME_NOT_FOUND);
+        if (personToRate == null) {
+            throw new CommandException(RateMessages.MESSAGE_RATE_NAME_NOT_FOUND);
         }
 
-        model.deletePerson(personToDelete);
-        return new CommandResult(String.format(DeleteMessages.MESSAGE_DELETE_PERSON_SUCCESS,
-                DeleteMessages.format(personToDelete)));
+        Person ratedPerson = personToRate.updateRating(rating);
+
+        model.setPerson(personToRate, ratedPerson);
+
+        return new CommandResult(String.format(RateMessages.MESSAGE_RATE_PERSON_SUCCESS,
+                RateMessages.format(personToRate)));
     }
 
     @Override
@@ -73,12 +79,12 @@ public class DeleteCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof DeleteCommand)) {
+        if (!(other instanceof RateCommand)) {
             return false;
         }
 
-        DeleteCommand otherDeleteCommand = (DeleteCommand) other;
-        return targetName.equals(otherDeleteCommand.targetName);
+        RateCommand otherRateCommand = (RateCommand) other;
+        return targetName.equals(otherRateCommand.targetName);
 
     }
     @Override

@@ -3,13 +3,7 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Price;
-import seedu.address.model.person.Product;
-import seedu.address.model.person.Supplier;
+import seedu.address.model.person.*;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -21,6 +15,7 @@ public class SupplierBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_RATING = "0";
     public static final String DEFAULT_TAG = "supplier";
     public static final String DEFAULT_PRODUCT = "pooch food";
     public static final String DEFAULT_PRICE = "$50/bag";
@@ -29,6 +24,7 @@ public class SupplierBuilder {
     private Phone phone;
     private Email email;
     private Address address;
+    private Rating rating;
     private Price price;
     private Product product;
     private Set<Tag> tags;
@@ -42,6 +38,7 @@ public class SupplierBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
+        rating = new Rating(DEFAULT_RATING);
         tags = new HashSet<>();
         tag = new Tag(DEFAULT_TAG);
         tags.add(tag);
@@ -91,6 +88,14 @@ public class SupplierBuilder {
     }
 
     /**
+     * Sets the {@code Address} of the {@code Supplier} that we are building.
+     */
+    public SupplierBuilder withRating(String rating) {
+        this.rating = new Rating(rating);
+        return this;
+    }
+
+    /**
      * Sets the {@code Phone} of the {@code Supplier} that we are building.
      */
     public SupplierBuilder withPhone(String phone) {
@@ -123,7 +128,7 @@ public class SupplierBuilder {
     }
 
     public Supplier build() {
-        return new Supplier(name, phone, email, address, tags, product, price);
+        return new Supplier(name, phone, email, address, tags, product, price, rating);
     }
 
 }

@@ -14,13 +14,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddSupplierCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Price;
-import seedu.address.model.person.Product;
-import seedu.address.model.person.Supplier;
+import seedu.address.model.person.*;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -50,13 +44,14 @@ public class AddSupplierCommandParser implements Parser<AddSupplierCommand> {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+        Rating rating = new Rating("0");
         Tag tag = new Tag("supplier");
         Set<Tag> tags = new HashSet<>();
         tags.add(tag);
         Price price = ParserUtil.parsePrice(argMultimap.getValue(PREFIX_PRICE).get());
         Product product = ParserUtil.parseProduct(argMultimap.getValue(PREFIX_PRODUCT).get());
 
-        Supplier person = new Supplier(name, phone, email, address, tags, product, price);
+        Supplier person = new Supplier(name, phone, email, address, tags, product, price, rating);
 
         return new AddSupplierCommand(person);
     }

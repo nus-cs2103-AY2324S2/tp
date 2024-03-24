@@ -10,21 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Commission;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Employment;
-import seedu.address.model.person.Maintainer;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Note;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Price;
-import seedu.address.model.person.Product;
-import seedu.address.model.person.Salary;
-import seedu.address.model.person.Skill;
-import seedu.address.model.person.Staff;
-import seedu.address.model.person.Supplier;
+import seedu.address.model.person.*;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -46,6 +32,7 @@ class JsonAdaptedPerson {
 
     private String commission;
     private String note;
+    private String rating;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
     /**
@@ -54,7 +41,7 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
-                             @JsonProperty("note") String note,
+                             @JsonProperty("note") String note, @JsonProperty("rating") String rating,
                              @JsonProperty("tags") List<JsonAdaptedTag> tags,
                              @JsonProperty("salary") String salary,
                              @JsonProperty("employment") String employment,
@@ -72,6 +59,7 @@ class JsonAdaptedPerson {
         this.price = price;
         this.skill = skill;
         this.note = note;
+        this.rating = rating;
         this.commission = commission;
         if (tags != null) {
             this.tags.addAll(tags);
@@ -161,6 +149,8 @@ class JsonAdaptedPerson {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
+        final Rating modelRating = new Rating("0");
+
         if (salary != null && employment != null) {
             if (!Salary.isValidSalary(salary)) {
                 throw new IllegalValueException(Salary.MESSAGE_CONSTRAINTS);
@@ -171,7 +161,7 @@ class JsonAdaptedPerson {
             final Salary modelSalary = new Salary(salary);
             final Employment modelEmployment = new Employment(employment);
             Staff currStaff = new Staff(modelName, modelPhone, modelEmail, modelAddress,
-                    modelTags, modelSalary, modelEmployment);
+                    modelTags, modelSalary, modelEmployment, modelRating);
             currStaff.setNoteContent(note);
             return currStaff;
         }
@@ -186,7 +176,7 @@ class JsonAdaptedPerson {
             final Product modelProduct = new Product(product);
             final Price modelPrice = new Price(price);
             Supplier currSupplier = new Supplier(modelName, modelPhone, modelEmail, modelAddress, modelTags,
-                    modelProduct, modelPrice);
+                    modelProduct, modelPrice, modelRating);
             currSupplier.setNoteContent(note);
             return currSupplier;
         }
@@ -201,7 +191,7 @@ class JsonAdaptedPerson {
             final Skill modelSkill = new Skill(skill);
             final Commission modelCommission = new Commission(commission);
             Maintainer currMaintainer = new Maintainer(modelName, modelPhone, modelEmail, modelAddress, modelTags,
-                    modelSkill, modelCommission);
+                    modelSkill, modelCommission, modelRating);
             currMaintainer.setNoteContent(note);
             return currMaintainer;
         }
@@ -214,7 +204,7 @@ class JsonAdaptedPerson {
         }
         final Note modelNote = new Note(note);
 
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelNote, modelTags);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelNote, modelTags, modelRating);
     }
 
 }

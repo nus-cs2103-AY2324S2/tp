@@ -21,13 +21,7 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.messages.EditMessages;
 import seedu.address.model.Model;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Commission;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Maintainer;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Skill;
+import seedu.address.model.person.*;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -99,13 +93,14 @@ public class EditMaintainerCommand extends Command {
         Phone updatedPhone = editMaintainerDescriptor.getPhone().orElse(maintainerToEdit.getPhone());
         Email updatedEmail = editMaintainerDescriptor.getEmail().orElse(maintainerToEdit.getEmail());
         Address updatedAddress = editMaintainerDescriptor.getAddress().orElse(maintainerToEdit.getAddress());
+        Rating presentRating = maintainerToEdit.getRating(); //edit cannot change rating
         Set<Tag> updatedTags = editMaintainerDescriptor.getTags().orElse(maintainerToEdit.getTags());
         Skill updatedSkill = editMaintainerDescriptor.getSkill().orElse(maintainerToEdit.getSkill());
         Commission updatedCommission = editMaintainerDescriptor.getCommission()
                 .orElse(maintainerToEdit.getCommission());
 
         return new Maintainer(updatedName, updatedPhone, updatedEmail, updatedAddress,
-                updatedTags, updatedSkill, updatedCommission);
+                updatedTags, updatedSkill, updatedCommission, presentRating);
     }
 
     @Override

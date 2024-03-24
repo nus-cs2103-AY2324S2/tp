@@ -56,24 +56,24 @@ public class NoteCommand extends Command {
             editedPerson = new Maintainer(
                     personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
                     personToEdit.getAddress(), personToEdit.getTags(), ((Maintainer) personToEdit).getSkill(), (
-                            (Maintainer) personToEdit).getCommission());
+                            (Maintainer) personToEdit).getCommission(), personToEdit.getRating());
             editedPerson.setNoteContent(note.toString());
         } else if (personToEdit instanceof Staff) {
             editedPerson = new Staff(
                     personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
                     personToEdit.getAddress(), personToEdit.getTags(), ((Staff) personToEdit).getSalary(), (
-                            (Staff) personToEdit).getEmployment());
+                            (Staff) personToEdit).getEmployment(), personToEdit.getRating());
             editedPerson.setNoteContent(note.toString());
         } else if (personToEdit instanceof Supplier) {
             editedPerson = new Supplier(
                     personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
                     personToEdit.getAddress(), personToEdit.getTags(), ((Supplier) personToEdit).getProduct(), (
-                            (Supplier) personToEdit).getPrice());
+                            (Supplier) personToEdit).getPrice(), personToEdit.getRating());
             editedPerson.setNoteContent(note.toString());
         } else {
             editedPerson = new Person(
                     personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                    personToEdit.getAddress(), note, personToEdit.getTags());
+                    personToEdit.getAddress(), note, personToEdit.getTags(), personToEdit.getRating());
         }
 
         model.setPerson(personToEdit, editedPerson);
