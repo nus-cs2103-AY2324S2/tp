@@ -45,6 +45,12 @@ public void parse_invalidPreamble_failure() {
     }
 
     @Test
+    public void parse_missingPrefix_throwsParseException() {
+        assertParseFailure(parser, "1", String.format(
+                MESSAGE_INVALID_COMMAND_FORMAT, RemarkCommand.MESSAGE_USAGE));
+    }
+
+    @Test
     public void parse_emptyArg_throwsParseException() {
         assertParseFailure(parser, "     ", String.format(
                 MESSAGE_INVALID_COMMAND_FORMAT,
