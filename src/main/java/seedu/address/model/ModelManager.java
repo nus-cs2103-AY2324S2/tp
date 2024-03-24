@@ -13,8 +13,6 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.Messages;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.coursemate.CourseMate;
 import seedu.address.model.coursemate.Name;
 import seedu.address.model.coursemate.QueryableCourseMate;
