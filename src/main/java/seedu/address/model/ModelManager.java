@@ -13,6 +13,8 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.Messages;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.coursemate.CourseMate;
 import seedu.address.model.coursemate.Name;
 import seedu.address.model.coursemate.QueryableCourseMate;
@@ -183,6 +185,9 @@ public class ModelManager implements Model {
                 arrayList.add(getRecentlyProcessedCourseMate());
                 return arrayList;
             } else {
+                if (query.isIndex() && query.getIndex().getZeroBased() >= this.getFilteredCourseMateList().size()) {
+                    throw new CourseMateNotFoundException();
+                }
                 ArrayList<CourseMate> arrayList = new ArrayList<>();
                 arrayList.add(getFilteredCourseMateList().get(query.getIndex().getZeroBased()));
                 return arrayList;
