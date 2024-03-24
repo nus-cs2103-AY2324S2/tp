@@ -35,7 +35,7 @@ public class PersonBuilder {
     private Set<Tag> tags;
     private Role role;
     private Optional<Name> pairedWithName;
-    private Optional<Integer> pairedWithID;
+    private Optional<Integer> pairedWithId;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -49,7 +49,7 @@ public class PersonBuilder {
         tags = new HashSet<>();
         role = new Role(DEFAULT_VOLUNTEER_ROLE_STRING);
         pairedWithName = Optional.empty();
-        pairedWithID = Optional.empty();
+        pairedWithId = Optional.empty();
     }
 
     /**
@@ -64,7 +64,7 @@ public class PersonBuilder {
         tags = new HashSet<>(personToCopy.getTags());
         role = personToCopy.getRole();
         pairedWithName = personToCopy.getPairedWithName();
-        pairedWithID = personToCopy.getPairedWithID();
+        pairedWithId = personToCopy.getPairedWithId();
     }
 
     /**
@@ -132,10 +132,10 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code pairedWithID} of the {@code Person} that we are building.
+     * Sets the {@code pairedWithId} of the {@code Person} that we are building.
      */
-    public PersonBuilder withPairedWithID(Optional<Integer> pairedWithID) {
-        this.pairedWithID = pairedWithID;
+    public PersonBuilder withPairedWithID(Optional<Integer> pairedWithId) {
+        this.pairedWithId = pairedWithId;
         return this;
     }
 
@@ -145,9 +145,9 @@ public class PersonBuilder {
     public Person build() {
         Person person;
         if (role.isVolunteer()) {
-            person = new Volunteer(name, phone, email, address, tags, pairedWithName, pairedWithID);
+            person = new Volunteer(name, phone, email, address, tags, pairedWithName, pairedWithId);
         } else {
-            person = new Befriendee(name, phone, email, address, tags, pairedWithName, pairedWithID);
+            person = new Befriendee(name, phone, email, address, tags, pairedWithName, pairedWithId);
         }
         person.setId(id);
         return person;

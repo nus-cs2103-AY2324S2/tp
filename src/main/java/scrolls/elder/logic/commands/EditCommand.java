@@ -85,15 +85,15 @@ public class EditCommand extends Command {
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Role role = editPersonDescriptor.getRole().orElse(personToEdit.getRole());
         Optional<Name> pairedWithName = personToEdit.getPairedWithName();
-        Optional<Integer> pairedWithID = personToEdit.getPairedWithID();
+        Optional<Integer> pairedWithId = personToEdit.getPairedWithId();
 
         Person p;
         if (role.isVolunteer()) {
             p = new Volunteer(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags,
-                    pairedWithName, pairedWithID);
+                    pairedWithName, pairedWithId);
         } else {
             p = new Befriendee(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags,
-                    pairedWithName, pairedWithID);
+                    pairedWithName, pairedWithId);
         }
         p.setId(personToEdit.getId());
         return p;
@@ -152,7 +152,7 @@ public class EditCommand extends Command {
         }
 
         if (editedPerson.isPaired()) {
-            Person pairedWith = model.getPersonFromID(editedPerson.getPairedWithID().get());
+            Person pairedWith = model.getPersonFromID(editedPerson.getPairedWithId().get());
             Person pairedWithUpdated = createEditedPair(editedPerson, pairedWith);
             model.setPerson(pairedWith, pairedWithUpdated);
         }

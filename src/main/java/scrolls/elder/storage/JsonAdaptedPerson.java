@@ -36,7 +36,7 @@ class JsonAdaptedPerson {
     private final String role;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
     private final String pairedWithName;
-    private final String pairedWithID;
+    private final String pairedWithId;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -51,7 +51,7 @@ class JsonAdaptedPerson {
             @JsonProperty("role") String role,
             @JsonProperty("tags") List<JsonAdaptedTag> tags,
             @JsonProperty("pairedWithName") String pairedWithName,
-            @JsonProperty("pairedWithID") String pairedWithID) {
+            @JsonProperty("pairedWithId") String pairedWithId) {
 
         this.id = id;
         this.name = name;
@@ -63,7 +63,7 @@ class JsonAdaptedPerson {
         if (tags != null) {
             this.tags.addAll(tags);
         }
-        this.pairedWithID = pairedWithID;
+        this.pairedWithId = pairedWithId;
     }
 
     /**
@@ -80,7 +80,7 @@ class JsonAdaptedPerson {
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
         pairedWithName = source.getPairedWithName().map(p -> p.fullName).orElse(null);
-        pairedWithID = source.getPairedWithID().map(p -> p.toString()).orElse(null);
+        pairedWithId = source.getPairedWithId().map(Object::toString).orElse(null);
     }
 
     /**
@@ -135,7 +135,7 @@ class JsonAdaptedPerson {
         modelPairedWithName = Optional.ofNullable(pairedWithName).map(Name::new);
 
         final Optional<Integer> modelPairedWithID;
-        modelPairedWithID = Optional.ofNullable(pairedWithID).map(i -> Integer.parseInt(i));
+        modelPairedWithID = Optional.ofNullable(pairedWithId).map(Integer::parseInt);
 
         Role modelRole;
         if (role == null) {

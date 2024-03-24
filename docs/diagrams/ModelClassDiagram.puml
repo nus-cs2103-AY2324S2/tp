@@ -20,7 +20,6 @@ Class Name
 Class Phone
 Class Tag
 Class Role
-Class "Optional<Name>"
 
 Class Volunteer
 Class Befriendee
@@ -46,14 +45,15 @@ Person *--> Name
 Person *--> Phone
 Person *--> Email
 Person *--> Address
-Person *--> "0..1" pairedWith
 Person -up-> "*" Tag
-
 Person *--> Role
-
 
 Volunteer .up.|> Person
 Befriendee .up.|> Person
+
+Volunteer"0..1" -- "0..1"Befriendee: pairedWith
+
+Volunteer -[hidden]right--> Befriendee
 
 Person -[hidden]down--> Volunteer
 Person -[hidden]down--> Befriendee

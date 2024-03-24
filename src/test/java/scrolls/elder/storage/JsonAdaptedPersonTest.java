@@ -31,7 +31,7 @@ public class JsonAdaptedPersonTest {
     private static final String VALID_ADDRESS = TypicalPersons.BENSON.getAddress().toString();
     private static final String VALID_ROLE = TypicalPersons.BENSON.getRole().toString();
     private static final String VALID_PAIRED_WITH = TypicalPersons.HOON.getPairedWithName().get().toString();
-    private static final String VALID_PAIRED_WITH_ID = TypicalPersons.HOON.getPairedWithID().get().toString();
+    private static final String VALID_PAIRED_WITH_ID = TypicalPersons.HOON.getPairedWithId().get().toString();
     private static final List<JsonAdaptedTag> VALID_TAGS = TypicalPersons.BENSON.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());

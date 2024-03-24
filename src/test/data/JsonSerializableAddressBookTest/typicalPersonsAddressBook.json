@@ -10,7 +10,7 @@
     "role" : "volunteer",
     "tags" : [ "friends" ],
     "pairedWithName" : "Elle Meyer",
-    "pairedWithID" : "4"
+    "pairedWithId" : "4"
   }, {
     "id" : "1",
     "name" : "Benson Meier",
@@ -44,7 +44,7 @@
     "role" : "befriendee",
     "tags" : [ ],
     "pairedWithName" : "Alice Pauline",
-    "pairedWithID" : "0"
+    "pairedWithId" : "0"
 
   }, {
     "id" : "5",
