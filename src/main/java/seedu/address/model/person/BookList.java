@@ -26,6 +26,9 @@ public class BookList extends BookCollection {
         super(bookList);
     }
 
+    /**
+     * To check whether the book collection has books
+     */
     public Boolean hasBooks() {
         if (bookCollection == null || bookCollection.isEmpty()) {
             return false;

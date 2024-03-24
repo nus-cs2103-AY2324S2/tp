@@ -68,7 +68,7 @@ public class BorrowCommand extends Command {
         BookList updatedBookList = personToEdit.getBookList();
 
         Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-        personToEdit.getAddress(), personToEdit.getMeritScore().decrementScore(), updatedBookList,
+            personToEdit.getAddress(), personToEdit.getMeritScore().decrementScore(), updatedBookList,
                 personToEdit.getTags());
 
         model.setPerson(personToEdit, editedPerson);

@@ -11,7 +11,6 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.BorrowCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.book.Book;
-import seedu.address.model.person.BookList;
 
 /**
  * Parses input arguments and creates a new BorrowCommand object
