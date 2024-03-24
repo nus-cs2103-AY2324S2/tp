@@ -89,4 +89,6 @@ public interface Model {
     void sortFilteredPersonList(Comparator<Person> comparator);
 
     ObservableList<Person> getSortedPersonList();
+
+    void setToInitialList();
 }

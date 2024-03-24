@@ -168,6 +168,11 @@ public class AddCommandTest {
         public ObservableList<Person> getSortedPersonList() {
             return null;
         }
+
+        @Override
+        public void setToInitialList() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

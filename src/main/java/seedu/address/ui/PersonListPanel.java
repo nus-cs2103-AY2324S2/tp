@@ -31,8 +31,6 @@ public class PersonListPanel extends UiPart<Region> {
         SortedList<Person> sortableData = new SortedList<>(filteredData);
         personListView.setItems(sortableData);
         personListView.setCellFactory(listView -> new PersonListViewCell());
-        personListView.refresh();
-
     }
 
     /**
