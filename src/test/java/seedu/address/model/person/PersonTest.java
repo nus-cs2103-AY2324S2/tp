@@ -95,4 +95,12 @@ public class PersonTest {
                 + ", note=" + ALICE.getNote() + "}";
         assertEquals(expected, ALICE.toString());
     }
+    @Test
+    public void compareTo_differentInterviewDates() {
+        Person personWithEarlierDate = new PersonBuilder().withInterviewDate("12-12-2025 1200").build();
+        Person personWithLaterDate = new PersonBuilder().withInterviewDate("20-12-2025 1200").build();
+        int differenceInDates = 8;
+        assertEquals(-differenceInDates, personWithEarlierDate.compareTo(personWithLaterDate));
+        assertEquals(differenceInDates, personWithLaterDate.compareTo(personWithEarlierDate));
+    }
 }

@@ -2,6 +2,7 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 import seedu.address.commons.util.ToStringBuilder;
@@ -148,13 +149,30 @@ public class Person implements Comparable<Person> {
                 .add("note", note)
                 .toString();
     }
+    private int compareInterviewDates(LocalDateTime thisInterviewDate, LocalDateTime otherInterviewDate) {
+        LocalDateTime currentDate = LocalDateTime.now();
+        boolean thisIsPast = thisInterviewDate.isBefore(currentDate);
+        boolean otherIsPast = otherInterviewDate.isBefore(currentDate);
+        if (thisIsPast && otherIsPast) {
+            return otherInterviewDate.compareTo(thisInterviewDate);
+        } else if (thisIsPast && !otherIsPast) {
+            return 1;
+        } else if (!thisIsPast && otherIsPast) {
+            return -1;
+        } else {
+            return thisInterviewDate.compareTo(otherInterviewDate);
+        }
+    }
     @Override
     public int compareTo(Person otherPerson) {
-        if (this.interviewDate.value != null && otherPerson.getInterviewDate().value != null) {
-            return this.interviewDate.value.compareTo(otherPerson.getInterviewDate().value);
-        } else if (this.interviewDate.value != null) {
+        LocalDateTime thisInterviewDate = this.interviewDate.value;
+        LocalDateTime otherInterviewDate = otherPerson.getInterviewDate().value;
+
+        if (thisInterviewDate != null && otherInterviewDate != null) {
+            return compareInterviewDates(thisInterviewDate, otherInterviewDate);
+        } else if (thisInterviewDate != null) {
             return -1;
-        } else if (otherPerson.getInterviewDate().value != null) {
+        } else if (otherInterviewDate != null) {
             return 1;
         } else {
             return 0;
