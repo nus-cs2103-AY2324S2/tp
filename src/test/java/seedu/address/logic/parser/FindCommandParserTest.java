@@ -14,6 +14,7 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.PolicyContainsKeywordsPredicate;
 import seedu.address.model.person.RelationshipContainsKeywordsPredicate;
 import seedu.address.model.person.TagContainsKeywordsPredicate;
 import seedu.address.testutil.PersonBuilder;
@@ -84,16 +85,39 @@ public class FindCommandParserTest {
     }
 
     @Test
+    public void parse_validPolicyKeywords_returnsFindCommand() throws ParseException {
+        Predicate<Person> combinedPredicate =
+                new PolicyContainsKeywordsPredicate(Arrays.asList("life insurance", "car insurance"));
+        FindCommand command = parser.parse(" po/life insurance po/car insurance");
+
+        List<Person> testPersons = Arrays.asList(
+                new PersonBuilder().withPolicy("life insurance").build(),
+                new PersonBuilder().withPolicy("car insurance").build(),
+                new PersonBuilder().withPolicy("dummy value").build()
+        );
+
+        for (Person person : testPersons) {
+            assertEquals(combinedPredicate.test(person), command.getPredicate().test(person),
+                    "Predicate mismatch for person: " + person);
+        }
+    }
+
+    @Test
     public void parse_combinedKeywords_returnsFindCommand() throws ParseException {
         Predicate<Person> combinedPredicate = new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob"))
                 .or(new RelationshipContainsKeywordsPredicate(Arrays.asList("client", "partner")))
-                .or(new TagContainsKeywordsPredicate(Arrays.asList("friends", "colleagues")));
-        FindCommand command = parser.parse(" n/Alice n/Bob r/client r/partner t/friends t/colleagues");
+                .or(new TagContainsKeywordsPredicate(Arrays.asList("friends", "colleagues")))
+                .or(new PolicyContainsKeywordsPredicate((Arrays.asList("life insurance", "car insurance"))));
+        FindCommand command = parser.parse(" n/Alice n/Bob r/client r/partner t/friends t/colleagues " +
+                "po/car insurance po/life insurance");
 
         List<Person> testPersons = Arrays.asList(
-                new PersonBuilder().withName("Alice").withRelationship("client").withTags("friends").build(),
-                new PersonBuilder().withName("Bob").withRelationship("partner").withTags("colleagues").build(),
-                new PersonBuilder().withName("Charlie").withRelationship("client").withTags("friends").build()
+                new PersonBuilder().withName("Alice").withRelationship("client")
+                        .withTags("friends").withPolicy("life insurance").build(),
+                new PersonBuilder().withName("Bob").withRelationship("partner")
+                        .withTags("colleagues").withPolicy("car insurance").build(),
+                new PersonBuilder().withName("Charlie").withRelationship("client")
+                        .withTags("friends").withPolicy("dummy insurance").build()
         );
 
         for (Person person : testPersons) {
@@ -106,14 +130,19 @@ public class FindCommandParserTest {
     public void parse_multipleWhitespaces_returnsFindCommand() throws ParseException {
         Predicate<Person> combinedPredicate = new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob"))
                 .or(new RelationshipContainsKeywordsPredicate(Arrays.asList("client", "partner")))
-                .or(new TagContainsKeywordsPredicate(Arrays.asList("friends", "colleagues")));
+                .or(new TagContainsKeywordsPredicate(Arrays.asList("friends", "colleagues")))
+                .or(new PolicyContainsKeywordsPredicate((Arrays.asList("life insurance", "car insurance"))));
         FindCommand command =
-                parser.parse(" \n n/Alice \n \t n/Bob \t r/client \n r/partner \t t/friends \n t/colleagues");
+                parser.parse(" \n n/Alice \n \t n/Bob \t r/client \n r/partner \t t/friends" +
+                        " \n t/colleagues \n po/car insurance \n \t po/life insurance");
 
         List<Person> testPersons = Arrays.asList(
-                new PersonBuilder().withName("Alice").withRelationship("client").withTags("friends").build(),
-                new PersonBuilder().withName("Bob").withRelationship("partner").withTags("colleagues").build(),
-                new PersonBuilder().withName("Charlie").withRelationship("client").withTags("friends").build()
+                new PersonBuilder().withName("Alice").withRelationship("client")
+                        .withTags("friends").withPolicy("life insurance").build(),
+                new PersonBuilder().withName("Bob").withRelationship("partner")
+                        .withTags("colleagues").withPolicy("car insurance").build(),
+                new PersonBuilder().withName("Charlie").withRelationship("client")
+                        .withTags("friends").withPolicy("dummy insurance").build()
         );
 
         for (Person person : testPersons) {
