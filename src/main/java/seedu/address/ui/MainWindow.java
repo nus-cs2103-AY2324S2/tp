@@ -137,6 +137,7 @@ public class MainWindow extends UiPart<Stage> {
         remindersPanel = new RemindersPanel(logic.getOverDueLastMet(), logic.getSchedules());
         addRemindersPanel();
 
+
         resultDisplay = new ResultDisplay();
 
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());

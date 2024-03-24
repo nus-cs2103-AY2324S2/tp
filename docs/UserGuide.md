@@ -81,8 +81,20 @@ Format: `add n/NAME c/PHONE_NUMBER e/EMAIL a/ADDRESS b/BIRTHDAY p/PRIORITY [t/TA
 
 <box type="tip" seamless>
 
-**Tip:** A client can have any number of tags (including 0)
+**Tip:** A client can have any number of tags (including 0). All other parameters (with the exception of tags) cannot have duplicate parameters.
 </box>
+
+Parameters usage for client details:
+
+| Parameter   | Usage                                                                                   | Example                         |
+|-------------|-----------------------------------------------------------------------------------------|---------------------------------|
+| 'n/NAME'    | All names in the system must be unique                                                  | `n/John Doe`                    |
+| 'c/PHONE_NUMBER' | Phone numbers should only contain numbers, and it should be at least 3 digits long | `c/98765432`                    |
+| 'e/EMAIL'   | Email should be in the format of `local-part@domain`                                    | `e/johndoe@email.com`           |
+| 'a/ADDRESS' | Address can take any text value                                                         | `a/311, Clementi Ave 2, #02-25` |
+| 'b/BIRTHDAY'| Birthday should be in the format of `YYYY-MM-DD`                                        | `b/1990-01-01`                  |
+| 'p/PRIORITY'| Priority can be `low`, `medium`, `high` or `vip`                                        | `p/medium`                      |
+| 't/TAG'     | Tags can be any text value                                                              | `t/friends`                     |
 
 Examples:
 * `add n/John Doe c/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 b/1990-01-01 p/low t/friends t/owesMoney`
@@ -120,6 +132,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [b/BIRTHDAY] [p/PRI
 * When editing tags, the existing tags of the client will be removed i.e adding of tags is not cumulative.
 * You can remove all the client’s tags by typing `t/` without
     specifying any tags after it.
+* Refer to the [Adding a client](#adding-a-client-add) section for the usage of the parameters.
 
 Examples:
 *  `edit 1 c/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st client to be `91234567` and `johndoe@example.com` respectively.
@@ -275,18 +288,18 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action            | Format, Examples                                                                                                                                                        |
-|-------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**           | `add n/NAME c/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g.,`add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`    |
-| **Clear**         | `clear`                                                                                                                                                                 |
-| **Delete**        | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                     |
-| **Edit**          | `edit INDEX [n/NAME] [c/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                             |
-| **Find**          | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                              |
-| **List**          | `list`                                                                                                                                                                  |
-| **LastMet**       | `met INDEX [l/DATE]`<br> eg., `met 2 l/2023-05-07`                                                                                                                      |
-| **Schedule**      | `schedule INDEX [s/DATETIME]`<br> eg., `schedule 2 s/2023-05-07 22:00`                                                                                                  |                                                                                                                               |
-| **View**          | `view INDEX`<br> eg., `view 1`                                                                                                                                          |
-| **Add Policy**    | `addpolicy INDEX n/POLICY_NAME i/POLICY_ID` <br/> eg., 'addpolicy 1 n/Life i/1'                                                                                         |
-| **Delete Policy** | `deletepolicy INDEX i/POLICY_ID` <br/> eg., 'deletepolicy 1 i/1'                                                                                                        |
-| **Help**          | `help`                                                                                                                                                                  |
-| **Exit**          | `exit`                                                                                                                                                                  |
+| Action            | Format, Examples                                                                                                                                                                                                 |
+|-------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**           | `add n/NAME c/PHONE_NUMBER e/EMAIL a/ADDRESS b/BIRTHDAY p/PRIORITY [t/TAG]…​` <br> e.g.,`add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 b/1990-01-01 p/medium t/friend t/colleague` |
+| **Clear**         | `clear`                                                                                                                                                                                                          |
+| **Delete**        | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                              |
+| **Edit**          | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [b/BIRTHDAY] [p/PRIORITY] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                   |
+| **Find**          | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                       |
+| **List**          | `list`                                                                                                                                                                                                           |
+| **LastMet**       | `met INDEX [l/DATE]`<br> eg., `met 2 l/2023-05-07`                                                                                                                                                               |
+| **Schedule**      | `schedule INDEX [s/DATETIME]`<br> eg., `schedule 2 s/2023-05-07 22:00`                                                                                                                                           |                                                                                                                               |
+| **View**          | `view INDEX`<br> eg., `view 1`                                                                                                                                                                                   |
+| **Add Policy**    | `addpolicy INDEX n/POLICY_NAME i/POLICY_ID` <br/> eg., 'addpolicy 1 n/Life i/1'                                                                                                                                  |
+| **Delete Policy** | `deletepolicy INDEX i/POLICY_ID` <br/> eg., 'deletepolicy 1 i/1'                                                                                                                                                 |
+| **Help**          | `help`                                                                                                                                                                                                           |
+| **Exit**          | `exit`                                                                                                                                                                                                           |
