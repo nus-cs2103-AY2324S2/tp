@@ -16,9 +16,7 @@ public class SetStatusCommand extends Command {
 
     public static final String COMMAND_WORD = "set status";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sets the status of a task in a project "
-            + "Parameters: "
-            + "TASK_NAME, STATUS, PROJECT_NAME";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " [complete/incomplete] /to TASK_NAME /in PROJECT_NAME";
 
     public static final String MESSAGE_SUCCESS = "The task %1$s has the following status %2$s.";
 

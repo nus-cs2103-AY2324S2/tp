@@ -16,7 +16,7 @@ public class DeleteTaskCommand extends Command {
 
     public static final String COMMAND_WORD = "delete task";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + "TASK_NAME /in PROJECT_NAME";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " TASK_NAME /in PROJECT_NAME";
 
     public static final String MESSAGE_SUCCESS = "%1$s has been deleted from %2$s";
 

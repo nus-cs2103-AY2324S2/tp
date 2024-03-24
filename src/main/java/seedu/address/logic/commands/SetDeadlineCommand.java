@@ -16,7 +16,7 @@ public class SetDeadlineCommand extends Command {
 
     public static final String COMMAND_WORD = "add deadline";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + "DEADLINE /to TASK_NAME /in PROJECT_NAME";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " DEADLINE /to TASK_NAME /in PROJECT_NAME";
 
     public static final String MESSAGE_SUCCESS = "The task %1$s has been set with the following deadline %2$s.";
 
