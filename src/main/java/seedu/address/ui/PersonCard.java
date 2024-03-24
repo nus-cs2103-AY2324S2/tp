@@ -4,6 +4,7 @@ import java.time.Duration;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Accordion;
 import javafx.scene.control.Label;
@@ -61,24 +62,32 @@ public class PersonCard extends UiPart<Region> {
         relationship.setText(person.getRelationship().value);
 
         if (!person.isClient()) {
-            policies.getChildren().add(new Label(""));
+            policies.setVisible(false);
+        } else if (person.getPolicies().isEmpty()) {
+            Label label = new Label("No policy assigned");
+            label.setStyle(
+                    "-fx-background-color: #d32f2f; "
+                            + "-fx-font-size: 14px; "
+                            + "-fx-padding: 2px 4px; " // Adjust padding to fit the content
+                            + "-fx-background-radius: 2.5; "
+            );
+            policies.getChildren().add(label);
         } else {
-            if (person.getPolicy().value.isEmpty()) {
-                policies.getChildren().add(new Label("No policy assigned"));
-            } else {
-                policies.getChildren().add(new Label("Policy: " + person.getPolicy().value));
-            }
+            person.getPolicies().stream()
+                    .sorted(Comparator.comparing(policy -> policy.value))
+                    .forEach(policy -> {
+                        Label label = new Label("Policy: " + policy.value);
+                        label.setStyle(
+                                "-fx-background-color: #1fab2f; "
+                                        + "-fx-font-size: 14px; "
+                                        + "-fx-padding: 2px 4px; " // Adjust padding to fit the content
+                                        + "-fx-background-radius: 2.5; "
+                        );
+                        policies.getChildren().add(label);
+                        FlowPane.setMargin(label, new Insets(0, 6, 0, 0));
+                    });
         }
 
-        for (Node child : policies.getChildren()) {
-            if (child instanceof Label) {
-                Label label = (Label) child;
-                label.setStyle(
-                        "-fx-background-color: " + (person.getPolicy().value.isEmpty() ? "#f54242" : "#1fab2f") + "; "
-                                + "-fx-padding: 2px 2px;" + "-fx-background-radius: 2.5; "
-                );
-            }
-        }
 
 
         tags.getChildren().clear();

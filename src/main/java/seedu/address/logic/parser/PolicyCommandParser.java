@@ -4,6 +4,9 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_POLICY;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.PolicyCommand;
@@ -30,8 +33,10 @@ public class PolicyCommandParser implements Parser<PolicyCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, PolicyCommand.MESSAGE_USAGE), ive);
         }
 
-        String policy = argMultimap.getValue(PREFIX_POLICY).orElse("");
-
-        return new PolicyCommand(index, new Policy(policy));
+        Set<Policy> policies = new HashSet<>();
+        for (String policy : argMultimap.getAllValues(PREFIX_POLICY)) {
+            policies.add(new Policy(policy));
+        }
+        return new PolicyCommand(index, policies);
     }
 }

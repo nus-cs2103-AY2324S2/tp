@@ -34,8 +34,9 @@ public class PolicyContainsKeywordsPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
-        return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getPolicy().value, keyword));
+        return person.getPolicies().stream()
+                .anyMatch(policy -> keywords.stream()
+                        .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(policy.value, keyword)));
     }
 
     @Override

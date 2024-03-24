@@ -4,7 +4,9 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_POLICY;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
@@ -34,17 +36,17 @@ public class PolicyCommand extends Command {
             "Invalid person. Only clients can be assigned a policy";
 
     private final Index index;
-    private final Policy policy;
+    private final Set<Policy> policies = new HashSet<>();
 
     /**
      * @param index of the person in the filtered person list to edit the policy
-     * @param policy of the person to be updated to
+     * @param policies of the person to be updated to
      */
-    public PolicyCommand(Index index, Policy policy) {
-        requireAllNonNull(index, policy);
+    public PolicyCommand(Index index, Set<Policy> policies) {
+        requireAllNonNull(index, policies);
 
         this.index = index;
-        this.policy = policy;
+        this.policies.addAll(policies);
     }
 
     @Override
@@ -62,7 +64,7 @@ public class PolicyCommand extends Command {
         }
 
         Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), personToEdit.getRelationship(), policy, personToEdit.getTags());
+                personToEdit.getAddress(), personToEdit.getRelationship(), policies, personToEdit.getTags());
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
@@ -76,7 +78,7 @@ public class PolicyCommand extends Command {
      * {@code personToEdit}.
      */
     private String generateSuccessMessage(Person personToEdit) {
-        String message = !policy.value.isEmpty() ? MESSAGE_ADD_POLICY_SUCCESS : MESSAGE_DELETE_POLICY_SUCCESS;
+        String message = !policies.isEmpty() ? MESSAGE_ADD_POLICY_SUCCESS : MESSAGE_DELETE_POLICY_SUCCESS;
         return String.format(message, Messages.format(personToEdit));
     }
 
@@ -95,6 +97,6 @@ public class PolicyCommand extends Command {
         // state check
         PolicyCommand e = (PolicyCommand) other;
         return index.equals(e.index)
-                && policy.equals(e.policy);
+                && policies.equals(e.policies);
     }
 }
