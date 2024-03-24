@@ -47,6 +47,12 @@ public class EditStaffCommandParser implements Parser<EditStaffCommand> {
 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_FIELD);
 
+        boolean hasDuplicateNamePrefix = argMultimap.hasDuplicateNamePrefix();
+        if (hasDuplicateNamePrefix) {
+            throw new ParseException(String.format(EditMessages.MESSAGE_EDIT_INVALID_FIELD,
+                    "Editing Pooch Contact name is not allowed for staff"));
+        }
+
         // check for missing name
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME)) {
             throw new ParseException(String.format(EditMessages.MESSAGE_EDIT_MISSING_NAME,

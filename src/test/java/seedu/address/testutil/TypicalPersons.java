@@ -64,21 +64,21 @@ public class TypicalPersons {
             .withEmail("johnd@example.com").withPhone("98765432")
             .withTags("owesMoney", "friends").build();
 
-    public static final Staff BENSONSTAFF = new StaffBuilder().withName("Benson Meier")
+    public static final Staff BENSONSTAFF = new StaffBuilder().withName("Benson Meier Staff")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432")
             .withTags("staff")
             .withEmployment("part-time")
             .withSalary("$50/hr").build();
 
-    public static final Supplier BENSONSUPPLIER = new SupplierBuilder().withName("Benson Meier")
+    public static final Supplier BENSONSUPPLIER = new SupplierBuilder().withName("Benson Meier Supplier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432")
             .withTags("owesMoney", "friends")
             .withProduct("pooch medicine")
             .withPrice("$50/injection").build();
 
-    public static final Maintainer BENSONMAINTAINER = new MaintainerBuilder().withName("Benson Meier")
+    public static final Maintainer BENSONMAINTAINER = new MaintainerBuilder().withName("Benson Meier Maintainer")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432")
             .withTags("owesMoney", "friends")
