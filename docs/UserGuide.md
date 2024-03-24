@@ -15,13 +15,17 @@ Avengers Assemble (AA) is a **desktop app for managing contacts, optimized for u
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your computer.
+1. Ensure you have `Java 11` or above installed in your computer.
 
-1. Download the latest `avengersassemble.jar`.
+1. Download the latest `avengersassemble.jar` [here](https://github.com/AY2324S2-CS2103T-T10-1/tp/releases/tag/v1.2).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AA.
+1. Copy the file to the folder you want to use as the _home folder_ for our application.
 
 1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar avengersassemble.jar` command to run the application.<br>
+   ```dtd
+    cd <path_to_the_folder_containing_the_jar_file>
+    java -jar avengersassemble.jar
+    ```
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
@@ -30,7 +34,10 @@ Avengers Assemble (AA) is a **desktop app for managing contacts, optimized for u
 
    * `list` : Lists all persons.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 m/A1234567Z` : Adds a person named `John Doe` to AA.
+   * ```
+     add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 m/A1234567Z
+     ``` 
+     Adds a person named `John Doe` to our app.
 
    * `delete 3` : Deletes the 3rd person shown in the current list.
 
