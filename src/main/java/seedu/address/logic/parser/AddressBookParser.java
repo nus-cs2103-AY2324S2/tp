@@ -68,7 +68,7 @@ public class AddressBookParser {
 
         String fullCommand = fullCommand(commandWord);
 
-        switch (commandWord) {
+        switch (fullCommand) {
 
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
