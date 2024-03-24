@@ -83,6 +83,7 @@ public class ArgumentMultimap {
      * @return True if all specified prefixes are present, otherwise false.
      */
     public boolean arePrefixesPresent(Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argMultimap.containsKey(prefix) && !getAllValues(prefix).isEmpty());
+        return Stream.of(prefixes).allMatch(prefix ->
+                argMultimap.containsKey(prefix) && !getAllValues(prefix).isEmpty());
     }
 }

@@ -30,7 +30,8 @@ public class FindCommandParser implements Parser<FindCommand> {
 
     @Override
     public FindCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_RELATIONSHIP, PREFIX_TAG, PREFIX_POLICY);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_RELATIONSHIP,
+                PREFIX_TAG, PREFIX_POLICY);
 
 
         if (args.trim().isEmpty()) {
