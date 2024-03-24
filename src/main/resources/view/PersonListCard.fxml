@@ -26,15 +26,35 @@
           </minWidth>
         </Label>
         <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
+        <HBox spacing="5" fx:id="personal_info" >
+          <Label fx:id="sex" styleClass="cell_big_label" text="\$sex" />
+          <HBox alignment="CENTER_LEFT">
+            <Label fx:id="age" styleClass="cell_big_label" text="\$age" />
+            <Label text="y/o" styleClass="cell_big_label" />
+          </HBox>
+        </HBox>
       </HBox>
-      <FlowPane fx:id="tags" />
-      <Label fx:id="ic" styleClass="cell_small_label" text="\$ic" />
-      <Label fx:id="age" styleClass="cell_small_label" text="\$age" />
-      <Label fx:id="sex" styleClass="cell_small_label" text="\$sex" />
-      <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
-      <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
-      <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
-      <Label fx:id="note" styleClass="cell_small_label" text="\$note" />
+
+      <HBox spacing="5" alignment="CENTER_LEFT">
+        <Label text="IC:" styleClass="cell_small_label" />
+        <Label fx:id="ic" styleClass="cell_small_label" text="\$ic" />
+      </HBox>
+      <HBox spacing="5" alignment="CENTER_LEFT">
+        <Label text="Phone:" styleClass="cell_small_label" />
+        <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
+      </HBox>
+      <HBox spacing="5" alignment="CENTER_LEFT">
+        <Label text="Address:" styleClass="cell_small_label" />
+        <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
+      </HBox>
+      <HBox spacing="5" alignment="CENTER_LEFT">
+        <Label text="Email:" styleClass="cell_small_label" />
+        <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+      </HBox>
+      <HBox spacing="5" alignment="TOP_LEFT">
+        <Label text="Note:" styleClass="cell_small_label" />
+        <Label fx:id="note" styleClass="cell_small_label" text="\$note" />
+      </HBox>
     </VBox>
   </GridPane>
 </HBox>
