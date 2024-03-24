@@ -41,13 +41,13 @@ public class RemarkTest {
         Remark remark = new Remark(REMARK_VALUE);
 
         // same values -> returns true
-        assertTrue(remark.equals(new Remark("Wants to afford a car after 5 years of working")));
+        assertTrue(remark.equals(new Remark(REMARK_VALUE)));
 
         // same object -> returns true
         assertTrue(remark.equals(remark));
 
         // same values but with createRemark -> returns true
-        assertTrue(remark.equals(Remark.createRemark("Wants to afford a car after 5 years of working").get()));
+        assertTrue(remark.equals(Remark.createRemark(REMARK_VALUE).get()));
 
         // null -> returns false
         assertFalse(remark.equals(null));

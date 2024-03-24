@@ -2,7 +2,7 @@ package seedu.findvisor.logic.parser;
 
 import static seedu.findvisor.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.findvisor.logic.commands.CommandTestUtil.REMARK;
-import static seedu.findvisor.logic.parser.CliSyntax.PREFIX_REMARK;
+import static seedu.findvisor.logic.commands.CommandTestUtil.REMARK_DESC;
 import static seedu.findvisor.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.findvisor.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.findvisor.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -30,12 +30,12 @@ public class RemarkCommandParserTest {
     }
 
     @Test
-    public void parse_invalidPreamble_failure() {
+public void parse_invalidPreamble_failure() {
         // negative index
-        assertParseFailure(parser, "-5" + REMARK, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "-5" + REMARK_DESC, MESSAGE_INVALID_FORMAT);
 
         // zero index
-        assertParseFailure(parser, "0" + REMARK, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "0" + REMARK_DESC, MESSAGE_INVALID_FORMAT);
 
         // invalid arguments being parsed as preamble
         assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_FORMAT);
@@ -57,7 +57,7 @@ public class RemarkCommandParserTest {
         Index targetIndex = INDEX_FIRST_PERSON;
         RemarkCommand expectedRemarkCommand = new RemarkCommand(targetIndex, remark);
         assertParseSuccess(parser,
-                targetIndex.getOneBased() + " " + PREFIX_REMARK + " " + REMARK,
+                targetIndex.getOneBased() + " " + REMARK_DESC,
                 expectedRemarkCommand);
     }
 }
