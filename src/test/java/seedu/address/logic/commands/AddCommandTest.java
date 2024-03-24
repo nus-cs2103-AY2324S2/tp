@@ -22,6 +22,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.person.Id;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
@@ -171,7 +172,21 @@ public class AddCommandTest {
         }
 
         @Override
-        public Person getPersonByUniqueId(int uniqueId) {
+        public Person getPersonByUniqueId(String uniqueId) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addPaymentToPerson(Id uniqueId, double amount) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void markPaymentAsPaid(Id uniqueId, double amount) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public void resetPaymentsForPerson(Id uniqueId) {
             throw new AssertionError("This method should not be called.");
         }
     }

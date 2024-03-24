@@ -50,15 +50,15 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Subject subject) {
-        requireAllNonNull(name, phone, email, address, tags, subject);
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Subject subject, Payment payment) {
+        requireAllNonNull(name, phone, email, address, tags, subject, payment);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
         this.subject = subject;
-        this.payment = new Payment(0.0);
+        this.payment = payment;
     }
 
     public Name getName() {
@@ -82,7 +82,6 @@ public class Person {
     }
 
     public Payment getPayment() {
-        System.out.println("Person: " + name + " has payment: " + payment.value);
         return payment;
     }
 

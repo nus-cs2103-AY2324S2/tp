@@ -22,7 +22,7 @@ public class AddPaymentCommand extends Command {
             + PREFIX_ID + " ID "
             + PREFIX_PAYMENT + " AMOUNT\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_ID + " 1 "
+            + PREFIX_ID + " 000001  "
             + PREFIX_PAYMENT + " 100";
 
     public static final String MESSAGE_SUCCESS = "Added payment of $%2$.2f to person with ID: %1$s";
@@ -33,14 +33,12 @@ public class AddPaymentCommand extends Command {
     public AddPaymentCommand(Id uniqueId, double amount) {
         requireNonNull(uniqueId);
         this.uniqueId = uniqueId;
-        System.out.println("uniqueId: " + uniqueId);
         this.amount = amount;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        System.out.println("Looking for person with ID: " + uniqueId.toString());
         Person personToUpdate = model.getPersonByUniqueId(uniqueId.toString());
         
 

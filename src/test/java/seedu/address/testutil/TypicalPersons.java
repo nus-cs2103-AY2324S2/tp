@@ -12,6 +12,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_SUBJECT_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SUBJECT_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PAYMENT_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PAYMENT_BOB;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -34,6 +36,7 @@ public class TypicalPersons {
             .withSubject("English")
             .withTags("friends")
             .withUniqueId(getNextUniqueId())
+            .withPayment(0.0)
             .build();
 
     public static final Person AMY = new PersonBuilder()
@@ -44,6 +47,7 @@ public class TypicalPersons {
             .withTags(VALID_TAG_FRIEND)
             .withSubject(VALID_SUBJECT_AMY)
             .withUniqueId(getNextUniqueId())
+            .withPayment(VALID_PAYMENT_AMY)
             .build();
 
     public static final Person BENSON = new PersonBuilder()
@@ -54,6 +58,7 @@ public class TypicalPersons {
             .withTags("owesMoney", "friends")
             .withSubject("Math")
             .withUniqueId(getNextUniqueId())
+            .withPayment("0.0")
             .build();
 
     public static final Person BOB = new PersonBuilder()
@@ -64,6 +69,7 @@ public class TypicalPersons {
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
             .withSubject(VALID_SUBJECT_BOB)
             .withUniqueId(getNextUniqueId())
+            .withPayment(VALID_PAYMENT_BOB)
             .build();
 
     public static final Person CARL = new PersonBuilder()
@@ -73,6 +79,7 @@ public class TypicalPersons {
             .withAddress("wall street")
             .withSubject("Science")
             .withUniqueId(getNextUniqueId())
+            .withPayment("0.0")
             .build();
 
     public static final Person DANIEL = new PersonBuilder()
@@ -83,6 +90,7 @@ public class TypicalPersons {
             .withTags("friends")
             .withSubject("History")
             .withUniqueId(getNextUniqueId())
+            .withPayment("0.0")
             .build();
 
     public static final Person ELLE = new PersonBuilder()
@@ -92,6 +100,7 @@ public class TypicalPersons {
             .withAddress("michegan ave")
             .withSubject("Geography")
             .withUniqueId(getNextUniqueId())
+            .withPayment("0.0")
             .build();
 
     public static final Person FIONA = new PersonBuilder()
@@ -101,6 +110,7 @@ public class TypicalPersons {
             .withAddress("little tokyo")
             .withSubject("Art")
             .withUniqueId(getNextUniqueId())
+            .withPayment("0.0")
             .build();
 
     public static final Person GEORGE = new PersonBuilder()
@@ -110,6 +120,7 @@ public class TypicalPersons {
             .withAddress("4th street")
             .withSubject("Physics")
             .withUniqueId(getNextUniqueId())
+            .withPayment("0.0")
             .build();
 
     // Manually added
@@ -120,6 +131,7 @@ public class TypicalPersons {
             .withAddress("little india")
             .withSubject("Chemistry")
             .withUniqueId(getNextUniqueId())
+            .withPayment("0.0")
             .build();
 
     public static final Person IDA = new PersonBuilder()
@@ -129,6 +141,7 @@ public class TypicalPersons {
             .withAddress("chicago ave")
             .withSubject("Biology")
             .withUniqueId(getNextUniqueId())
+            .withPayment("0.0")
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER

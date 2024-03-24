@@ -72,24 +72,19 @@ public class PersonCard extends UiPart<Region> {
     }
 
     private void initializePaymentDisplay(Person person) {
-        // Assuming getAmount() returns a double
         double paymentAmount = person.getPayment().getAmount();
 
-        // Create a Text node to display the payment amount
         Text paymentText = new Text(String.format("Payment owed: $%.2f", paymentAmount));
         if (paymentAmount == 0) {
-            // If the amount is 0, set the fill to green
             paymentText.setFill(Color.GREEN);
+            paymentText.setText("No payment owed");
         } else {
-            // Otherwise, use a default color or another color of your choice
-            paymentText.setFill(Color.BLACK); // or any other default color
+            paymentText.setFill(Color.RED);
         }
 
-        // Create a TextFlow if you need more complex layouts (optional)
         TextFlow textFlow = new TextFlow(paymentText);
 
-        // Clear any existing children and add the new content
         paymentPane.getChildren().clear();
-        paymentPane.getChildren().add(textFlow); // Or just add paymentText if TextFlow is not needed
+        paymentPane.getChildren().add(textFlow);
     }
 }

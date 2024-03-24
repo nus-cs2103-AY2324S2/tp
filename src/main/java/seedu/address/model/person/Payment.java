@@ -11,6 +11,8 @@ public class Payment {
 
     public static final String MESSAGE_CONSTRAINTS = "Payments must be a non-negative amount";
 
+    public static final String MESSAGE_INVALID_PAYMENT = "Payment amount must be a valid number";
+
     private final double amount;
 
     public final String value;
@@ -28,9 +30,15 @@ public class Payment {
     }
 
     public Payment(String paymentValue) {
-        this.amount = Double.parseDouble(paymentValue);
-        this.value = paymentValue;
+        String numericValue = paymentValue.replaceAll("[^\\d.]", "");
+        try {
+            this.amount = Double.parseDouble(numericValue);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("Invalid payment amount: " + paymentValue);
+        }
+        this.value = String.format("$%.2f", amount);
     }
+    
 
     /**
      * Returns true if a given amount is a valid payment.

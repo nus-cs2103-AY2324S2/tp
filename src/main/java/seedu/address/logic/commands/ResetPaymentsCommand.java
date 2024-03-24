@@ -19,7 +19,7 @@ public class ResetPaymentsCommand extends Command {
             + "Parameters: "
             + PREFIX_ID + " ID\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_ID + " 1";
+            + PREFIX_ID + " 000001 ";
 
     public static final String MESSAGE_SUCCESS = "Payments reset for person with ID: %1$s";
     

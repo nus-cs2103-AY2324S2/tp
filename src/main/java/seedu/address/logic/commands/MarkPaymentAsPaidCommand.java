@@ -22,7 +22,7 @@ public class MarkPaymentAsPaidCommand extends Command {
             + PREFIX_ID + " ID "
             + PREFIX_PAYMENT + " AMOUNT\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_ID + " 1 "
+            + PREFIX_ID + " 000001 "
             + PREFIX_PAYMENT + " 50";
 
     public static final String MESSAGE_SUCCESS = "Payment of $%2$.2f marked as paid for person with ID: %1$s";
