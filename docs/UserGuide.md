@@ -6,11 +6,6 @@ _This page is for ConnectCare users. If you're a developer, see also the [Develo
 
 Welcome to *ConnectCare User Guide*, a guide to use the *ConnectCare* application.
 *ConnectCare* helps you manage your client contacts faster and more reliably.
-High-level ergonomics and low-level control are often at odds in programming
-language design; Rust challenges that conflict. Through balancing powerful
-technical capacity and a great developer experience, Rust gives you the option
-to control low-level details (such as memory usage) without all the hassle
-traditionally associated with such control.
 
 ## Who ConnectCare Is For
 
