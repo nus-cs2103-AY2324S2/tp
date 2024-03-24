@@ -6,6 +6,8 @@ on:
     branches:
       - master
 
+permissions: write-all
+
 jobs:
   build:
     if: github.event.pull_request.merged == true
@@ -55,7 +57,7 @@ jobs:
 
       - name: Create Pre-Release
         id: create_pre_release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
           draft: false
           prerelease: true
