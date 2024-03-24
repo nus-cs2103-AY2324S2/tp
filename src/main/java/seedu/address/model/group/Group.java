@@ -14,6 +14,7 @@ public class Group {
     public static final String VALIDATION_REGEX = "^(TUT|LAB|REC)\\d{2}$";
 
     public final String groupName;
+    public final String telegramLink;
 
     /**
      * Constructs a {@code Group}.
@@ -24,6 +25,19 @@ public class Group {
         requireNonNull(groupName);
         checkArgument(isValidGroupName(groupName), MESSAGE_CONSTRAINTS);
         this.groupName = groupName;
+        this.telegramLink = "";
+    }
+
+    /**
+     * Constructs a {@code Group}.
+     *
+     * @param groupName A valid group name.
+     */
+    public Group(String groupName, String link) {
+        requireNonNull(groupName);
+        checkArgument(isValidGroupName(groupName), MESSAGE_CONSTRAINTS);
+        this.groupName = groupName;
+        this.telegramLink = link;
     }
 
     /**
@@ -57,8 +71,7 @@ public class Group {
             return true;
         }
 
-        return otherGroup != null
-                && otherGroup.groupName.equals(this.groupName);
+        return otherGroup != null && otherGroup.groupName.equals(this.groupName);
     }
 
     @Override

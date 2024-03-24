@@ -12,13 +12,23 @@ import seedu.address.model.group.Group;
 class JsonAdaptedGroup {
 
     private final String groupName;
+    private final String telegramLink;
 
     /**
      * Constructs a {@code JsonAdaptedGroup} with the given {@code groupName}.
      */
     @JsonCreator
-    public JsonAdaptedGroup(@JsonProperty("groupName") String groupName) {
+    public JsonAdaptedGroup(@JsonProperty("groupName") String groupName, @JsonProperty("telegramLink") String link) {
         this.groupName = groupName;
+        this.telegramLink = link;
+    }
+
+    /**
+     * Constructs a {@code JsonAdaptedGroup} with the given {@code groupName}.
+     */
+    public JsonAdaptedGroup(String groupName) {
+        this.groupName = groupName;
+        this.telegramLink = "";
     }
 
     /**
@@ -26,6 +36,7 @@ class JsonAdaptedGroup {
      */
     public JsonAdaptedGroup(Group source) {
         groupName = source.groupName;
+        telegramLink = source.telegramLink;
     }
 
     public String getGroupName() {
