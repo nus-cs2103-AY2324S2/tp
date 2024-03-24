@@ -3,7 +3,6 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FLAG;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_IC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
 
 import java.util.stream.Stream;
@@ -26,10 +25,11 @@ public class AddNoteCommandParser implements Parser<AddNoteCommand> {
      */
     public AddNoteCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_IC, PREFIX_NOTE, PREFIX_FLAG);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NOTE, PREFIX_FLAG);
+        String trimmedArgs = args.trim();
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_IC, PREFIX_NOTE)
-                || !argMultimap.getPreamble().isEmpty()) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_NOTE)
+                || trimmedArgs.isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddNoteCommand.MESSAGE_USAGE));
         }
 
@@ -47,7 +47,7 @@ public class AddNoteCommandParser implements Parser<AddNoteCommand> {
                 note = argMultimap.getValue(PREFIX_NOTE).orElse("");
             }
 
-            ic = ParserUtil.parseIC(argMultimap.getValue(PREFIX_IC).get());
+            ic = ParserUtil.parseIC(argMultimap.getPreamble());
             return new AddNoteCommand(new IdentityCardNumberMatchesPredicate(ic), new Note(note), isReplace);
         } catch (IllegalValueException ive) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddNoteCommand.MESSAGE_USAGE), ive);
