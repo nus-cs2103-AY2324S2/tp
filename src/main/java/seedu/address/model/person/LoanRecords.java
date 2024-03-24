@@ -140,8 +140,6 @@ public class LoanRecords {
         return new ArrayList<>(loans);
     }
 
-    
-
     /**
      * @return The id of the next loan.
      */

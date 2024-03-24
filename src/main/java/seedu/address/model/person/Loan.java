@@ -96,8 +96,13 @@ public class Loan {
         return !isReturned;
     }
 
+    /**
+     * Returns true if the loan is overdue.
+     */
     public boolean isOverdue() {
-        return !isReturned && new Date().after(returnDate);
+        // shift return date to the next day
+        Date returnDateNextDay = DateUtil.addDay(returnDate, 1);
+        return !isReturned && new Date().after(returnDateNextDay);
     }
 
     /**

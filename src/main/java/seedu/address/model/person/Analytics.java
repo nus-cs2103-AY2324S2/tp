@@ -2,12 +2,11 @@ package seedu.address.model.person;
 
 import java.util.Date;
 
-import seedu.address.commons.util.DateUtil;
-import seedu.address.model.person.LoanRecords;
-
-
+/**
+ * Represents the analytics of a LoanRecords object.
+ */
 public class Analytics {
-    
+
     private int numLoans; // total number of loans
     private int numOverdueLoans; // total number of overdue loans
     private int numActiveLoans; // total number of active loans
@@ -50,6 +49,10 @@ public class Analytics {
         this.latestReturnDate = null;
     }
 
+    /**
+     * Updates the fields that count the number of various loans.
+     * @param loan The loan to update the fields with.
+     */
     public void updateNumFields(Loan loan) {
         this.numLoans++;
         if (loan.isOverdue()) {
@@ -60,6 +63,10 @@ public class Analytics {
         }
     }
 
+    /**
+     * Updates the fields that calculate the proportion of various loans.
+     * This method should be called after the fields that count the number of various loans have been updated.
+     */
     public void updatePropFields() {
         if (this.numActiveLoans > 0) {
             this.propActiveLoans = (float) this.numActiveLoans / this.numLoans;
@@ -69,16 +76,24 @@ public class Analytics {
         }
     }
 
+    /**
+     * Updates the fields that calculate the total value of various loans.
+     * @param loan The loan to update the fields with.
+     */
     public void updateValueFields(Loan loan) {
         this.totalValueLoaned += loan.getValue();
         if (loan.isOverdue()) {
             this.totalValueOverdue += loan.getValue();
-        } 
+        }
         if (loan.isActive()) {
             this.totalValueActive += loan.getValue();
         }
     }
 
+    /**
+     * Updates the fields that calculate the average value of various loans.
+     * This method should be called after the fields that calculate the total value of various loans have been updated.
+     */
     public void updateAverageFields() {
         if (this.numActiveLoans > 0) {
             this.averageActiveValue = this.totalValueActive / this.numActiveLoans;
@@ -91,6 +106,10 @@ public class Analytics {
         }
     }
 
+    /**
+     * Updates the fields that calculate the earliest and latest dates of various loans.
+     * @param loan The loan to update the fields with.
+     */
     public void updateDateFields(Loan loan) {
         if (this.earliestLoanDate == null || loan.getStartDate().before(this.earliestLoanDate)) {
             this.earliestLoanDate = loan.getStartDate();
@@ -107,11 +126,15 @@ public class Analytics {
             }
         }
     }
-    
+
+    /**
+     * Returns an Analytics object that represents the analytics of a LoanRecords object.
+     * @param loanRecords The LoanRecords object to get the analytics from.
+     * @return The Analytics object that represents the analytics of the LoanRecords object.
+     */
     public static Analytics getAnalytics(LoanRecords loanRecords) {
         Analytics analytics = new Analytics();
-        analytics.numLoans = loanRecords.size();
-        for (int i = 0; i < analytics.numLoans; i++) {
+        for (int i = 0; i < loanRecords.size(); i++) {
             Loan loan = loanRecords.getLoan(i);
             analytics.updateNumFields(loan);
             analytics.updateValueFields(loan);
@@ -179,6 +202,25 @@ public class Analytics {
 
     public Date getLatestReturnDate() {
         return latestReturnDate;
+    }
+
+    @Override
+    public String toString() {
+        return "Number of loans: " + numLoans + "\n"
+                + "Number of overdue loans: " + numOverdueLoans + "\n"
+                + "Number of active loans: " + numActiveLoans + "\n"
+                + "Proportion of overdue loans: " + propOverdueLoans + "\n"
+                + "Proportion of active loans: " + propActiveLoans + "\n"
+                + "Total value loaned: " + totalValueLoaned + "\n"
+                + "Total value of overdue loans: " + totalValueOverdue + "\n"
+                + "Total value of active loans: " + totalValueActive + "\n"
+                + "Average loan value: " + averageLoanValue + "\n"
+                + "Average value of overdue loans: " + averageOverdueValue + "\n"
+                + "Average value of active loans: " + averageActiveValue + "\n"
+                + "Earliest loan date: " + earliestLoanDate + "\n"
+                + "Earliest return date: " + earliestReturnDate + "\n"
+                + "Latest loan date: " + latestLoanDate + "\n"
+                + "Latest return date: " + latestReturnDate + "\n";
     }
 
 }

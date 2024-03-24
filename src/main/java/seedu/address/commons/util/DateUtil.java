@@ -40,4 +40,17 @@ public class DateUtil {
         return DATE_FORMATTER.format(date);
     }
 
+    /**
+     * Adds a number of days to a Date object.
+     *
+     * @param date The Date object to add days to.
+     * @param days The number of days to add.
+     * @return The new Date object.
+     */
+    public static Date addDay(Date date, int days) {
+        long time = date.getTime();
+        time += days * 24 * 60 * 60 * 1000;
+        return new Date(time);
+    }
+
 }
