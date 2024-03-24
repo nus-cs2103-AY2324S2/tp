@@ -71,6 +71,7 @@ public class LastContactCommandTest {
         assertEquals(1, comparisonResult2);
         // Since only second person has Null last contact, we should expect -1
         assertEquals(-1, comparisonResult3);
+        assertEquals(null, new PersonBuilder().withLastContact("").build().getLastcontact().getDateTime());
     }
 
     @Test
