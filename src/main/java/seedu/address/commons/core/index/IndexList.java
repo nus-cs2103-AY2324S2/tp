@@ -28,7 +28,7 @@ public class IndexList {
     /**
      * Adds a new Index into the list if the {@code Index} is unique.
      *
-     * @param index New index to be added into the list.
+     * @param index a new index to be added into the list.
      */
     public void add(Index index) {
         if (!indices.contains(index)) {
@@ -39,7 +39,7 @@ public class IndexList {
     /**
      * Returns the current size of the index list.
      *
-     * @return Integer representing the number of elements in the list.
+     * @return integer representing the number of elements in the list.
      */
     public int size() {
         return indices.size();
