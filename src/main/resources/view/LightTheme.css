@@ -56,11 +56,7 @@
     -fx-size: 35;
     -fx-border-width: 0 0 1 0;
     -fx-background-color: transparent;
-    -fx-border-color:
-            transparent
-            transparent
-            derive(-fx-base, 80%)
-            transparent;
+    -fx-border-color: transparent;
     -fx-border-insets: 0 10 1 0;
 }
 
@@ -77,8 +73,8 @@
 }
 
 .split-pane:horizontal .split-pane-divider {
-    -fx-background-color: #e2e5ef;
-    -fx-border-color: transparent transparent transparent #e2e5ef;
+    -fx-background-color: #f1f4f4;
+    -fx-border-color: transparent;
 }
 
 .split-pane {
@@ -143,7 +139,7 @@
 }
 
 .status-bar {
-    -fx-background-color: #e2e5ef;
+    -fx-background-color: #f1f4f4;
 }
 
 .result-display {
@@ -320,7 +316,7 @@
 #commandTextField {
     -fx-background-color: transparent #e2e5ef transparent #e2e5ef;
     -fx-background-insets: 0;
-    -fx-border-color: #052a3a #052a3a #ffffff #052a3a;
+    -fx-border-color: #052a3a;
     -fx-border-insets: 0;
     -fx-border-width: 1;
     -fx-font-family: "Segoe UI Light";
