@@ -29,8 +29,6 @@ public class HelpCommand extends Command {
         SEARCH,
         LIST,
         NOTE
-
-
     }
 
     /**

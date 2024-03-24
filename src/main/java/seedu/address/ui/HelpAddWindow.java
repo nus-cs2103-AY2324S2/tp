@@ -16,16 +16,16 @@ import seedu.address.commons.core.LogsCenter;
 public class HelpAddWindow extends UiPart<Stage> {
 
     public static final String USERGUIDE_URL = "https://ay2324s2-cs2103t-w10-2.github.io/tp/UserGuide.html";
-    public static final String HELP_MESSAGE = "Adds a maintainer/supplier/staff/other person to pooch planner"
+    public static final String HELP_MESSAGE = "Adds a other/maintainer/supplier/staff person to pooch planner"
             + "\n" + "" + "\n"
             + "Format:" + "\n"
+            + "/pooch-add ; name : [name] ; phone : [phone] ; address : [address] ; email : [email]" + "\n"
             + "/pooch-maintainer ; name : [name] ; phone : [phone] ; address : [address] ;"
             + " email : [email] ; skill : [skill] ; commission : [commission/hr]" + "\n"
             + "/pooch-supplier ; name : [name] ; phone : [phone] ; address : [address] ;"
             + " email : [email] ; product : [product] ; price : [price/(quantity)]" + "\n"
             + "/pooch-staff ; name : [name] ; phone : [phone] ; address : [address] ;"
             + " email : [email] ; salary : [salary/hr]  ; employment : [part/full]" + "\n"
-            + "/pooch-add ; name : [name] ; phone : [phone] ; address : [address] ; email : [email]" + "\n"
             + "\n" + "" + "\n"
             + "Go to our UG for more information : " + USERGUIDE_URL;
 
