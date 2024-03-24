@@ -23,6 +23,18 @@ public class GroupTest {
     public void isValidGroupName() {
         // null group name
         assertThrows(NullPointerException.class, () -> Group.isValidGroupName(null));
+        assertTrue(Group.isValidGroupName("TUT01"));
+        assertTrue(Group.isValidGroupName("LAB01"));
+        assertTrue(Group.isValidGroupName("REC01"));
+        assertFalse(Group.isValidGroupName("a"));
+    }
+
+    @Test
+    public void isValidLink() {
+        // null group name
+        assertThrows(NullPointerException.class, () -> Group.isValidLink(null));
+        assertTrue(Group.isValidLink("https://t.me/asdfasdf"));
+        assertFalse(Group.isValidLink("a"));
     }
 
     @Test

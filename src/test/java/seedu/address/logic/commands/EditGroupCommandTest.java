@@ -9,7 +9,6 @@ import static seedu.address.testutil.TypicalGroups.LAB10;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -24,24 +23,23 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.group.Group;
 import seedu.address.model.person.Person;
 
-public class DeleteGroupCommandTest {
+public class EditGroupCommandTest {
 
     @Test
     public void constructor_nullGroup_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new DeleteGroupCommand(null));
+        assertThrows(NullPointerException.class, () -> new EditGroupCommand(null, null));
     }
 
     @Test
-    public void execute_groupIsDeletedFromModel_deleteSuccessful() throws Exception {
+    public void execute_groupIsEdited_editSuccessful() throws Exception {
         ModelStubAcceptingGroupAdded modelStub = new ModelStubAcceptingGroupAdded();
         Group validGroup = new Group("TUT10");
         modelStub.addGroup(validGroup);
 
-        CommandResult commandResult = new DeleteGroupCommand(validGroup).execute(modelStub);
+        CommandResult commandResult = new EditGroupCommand(validGroup, "").execute(modelStub);
 
-        assertEquals(String.format(DeleteGroupCommand.MESSAGE_SUCCESS, validGroup),
+        assertEquals(String.format(EditGroupCommand.MESSAGE_SUCCESS, validGroup),
                 commandResult.getFeedbackToUser());
-        assertEquals(Collections.emptyList(), modelStub.groupsAdded);
     }
 
     @Test
@@ -50,33 +48,33 @@ public class DeleteGroupCommandTest {
         Group validGroup = new Group("TUT10");
         modelStub.addGroup(validGroup);
 
-        DeleteGroupCommand deleteGroupCommand = new DeleteGroupCommand(new Group("LAB01"));
+        EditGroupCommand deleteGroupCommand = new EditGroupCommand(new Group("LAB01"), "");
         assertThrows(CommandException.class,
-                DeleteGroupCommand.MESSAGE_NOT_FOUND, () -> deleteGroupCommand.execute(modelStub));
+                EditGroupCommand.MESSAGE_NOT_FOUND, () -> deleteGroupCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
         Group tut01 = new Group("TUT01");
         Group lab01 = new Group("LAB01");
-        DeleteGroupCommand deleteTut01Command = new DeleteGroupCommand(tut01);
-        DeleteGroupCommand deleteLab01Command = new DeleteGroupCommand(lab01);
+        AddGroupCommand addTut01Command = new AddGroupCommand(tut01);
+        AddGroupCommand addLab01Command = new AddGroupCommand(lab01);
 
         // same object -> returns true
-        assertTrue(deleteTut01Command.equals(deleteTut01Command));
+        assertTrue(addTut01Command.equals(addTut01Command));
 
         // same values -> returns true
-        DeleteGroupCommand deleteTut01CommandCopy = new DeleteGroupCommand(tut01);
-        assertTrue(deleteTut01Command.equals(deleteTut01CommandCopy));
+        AddGroupCommand addTut01CommandCopy = new AddGroupCommand(tut01);
+        assertTrue(addTut01Command.equals(addTut01CommandCopy));
 
         // different types -> returns false
-        assertFalse(deleteTut01Command.equals(1));
+        assertFalse(addTut01Command.equals(1));
 
         // null -> returns false
-        assertFalse(deleteTut01Command.equals(null));
+        assertFalse(addTut01Command.equals(null));
 
         // different person -> returns false
-        assertFalse(deleteTut01Command.equals(deleteLab01Command));
+        assertFalse(addTut01Command.equals(addLab01Command));
     }
 
     @Test
@@ -218,9 +216,10 @@ public class DeleteGroupCommandTest {
         }
 
         @Override
-        public void deleteGroup(Group group) {
+        public void setGroup(Group target, Group group) {
             requireNonNull(group);
-            groupsAdded.remove(group);
+            int index = groupsAdded.indexOf(target);
+            groupsAdded.set(index, group);
         }
 
         @Override

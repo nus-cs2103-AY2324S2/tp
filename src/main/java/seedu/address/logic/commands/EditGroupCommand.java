@@ -18,11 +18,11 @@ public class EditGroupCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edit the Telegram group link "
             + "Parameters: "
-            + PREFIX_GROUP + "GROUP NAME"
+            + PREFIX_GROUP + "GROUP NAME "
             + PREFIX_TELEGRAM + "TELEGRAM INVITE LINK ";
 
     public static final String MESSAGE_SUCCESS = "Group edited: %1$s";
-    public static final String MESSAGE_NOT_FOUND = "This group cannot be found";
+    public static final String MESSAGE_NOT_FOUND = "Group is not found";
 
     private final Group toEdit;
     private final String link;

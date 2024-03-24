@@ -30,7 +30,7 @@ public class EditGroupCommandParser implements Parser<EditGroupCommand> {
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_GROUP, PREFIX_TELEGRAM);
 
         Group group = ParserUtil.parseGroup(argMultimap.getValue(PREFIX_GROUP).get());
-        String link = argMultimap.getValue(PREFIX_TELEGRAM).get();
+        String link = ParserUtil.parseLink(argMultimap.getValue(PREFIX_TELEGRAM).get());
 
         return new EditGroupCommand(group, link);
     }
