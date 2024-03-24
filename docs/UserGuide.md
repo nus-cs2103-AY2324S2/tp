@@ -112,7 +112,7 @@ Edit the fields of the specified **person / staff / supplier / maintainer** in t
 
 
 #### Edits a person
-Format: `/edit ; name : [name] ; field : { phone : [phone] ; address : [address] ; email : [email] }`
+Format: `/edit-person ; name : [name] ; field : { phone : [phone] ; address : [address] ; email : [email] }`
 
 
 #### Edits a staff
@@ -134,7 +134,7 @@ Format: `/edit-maintainer ; name : [name] ; field : { phone : [phone] ; address 
 * **_Caution_** : Editing `name` field is strictly **not** allowed and **will** be ignored.
 
 Examples:
-* `/edit ; name : Poochie ; field : { name : Mochie }`
+* `/edit-person ; name : Poochie ; field : { name : Mochie }`
 
   The above command edits the name of the person, from **_Poochie_** to **_Mochie_**, given that there are no other persons with the name, **_Mochie_**, in the Pooch Contact Book.
 
@@ -259,7 +259,7 @@ Action | Format, Examples
 **Add Helper** | `/pooch-maintainer ; name : [name] ; phone : [phone] ; address : [address] ; email : [email] ; skill : [skill] ; commission : [commission]` <br> e.g., `/pooch-maintainer ; name : Tom Tan  ; phone : 98765435 ; address : Poochie Street 24 ; email : ihelppooches@gmail.com ; skill : trainer ; commission : $60/hr`
 **Add General Contact** | `/pooch-add ; name : [name] ; phone : [phone] ; address : [address] ; email : [email] ; skill : [skill] ; commission : [commission]` <br> e.g., `/pooch-add ; name : Janna  ; phone : 98765435 ; address : Poochie Street 24 ; email : iamjanna@gmail.com`
 **Delete** | `/delete name : [name] `<br> e.g., `delete ; name : Poochie`
-**Edit** | `/edit ; name : [name] ; field : { field : data ; field : data }`<br> e.g., `/edit ; name : Poochie ; field : { name : Mochi }` <br> e.g.,`/edit ; name : Poochie ; field : { address : Poochie Street 25 ; employment : full-time }`
+**Edit** | `/edit-person ; name : [name] ; field : { field : data ; field : data }`<br> e.g., `/edit-person ; name : Poochie ; field : { name : Mochi }` <br> e.g.,`/edit-person ; name : Poochie ; field : { address : Poochie Street 25 ; employment : full-time }`
 **Search** | `/search ; parameter : [value]`<br> e.g., `/search ; name : Poochie`
 **List** | `/list`
 **Help** | `/help`
