@@ -24,6 +24,7 @@ import vitalconnect.logic.commands.FindCommand;
 import vitalconnect.logic.commands.HelpCommand;
 import vitalconnect.logic.commands.ListAptCommand;
 import vitalconnect.logic.commands.ListCommand;
+import vitalconnect.logic.commands.ListContactCommand;
 import vitalconnect.logic.commands.ListMedicalCommand;
 import vitalconnect.logic.parser.exceptions.ParseException;
 
@@ -99,6 +100,9 @@ public class ClinicParser {
 
         case AddContactCommand.COMMAND_WORD:
             return new AddContactCommandParser().parse(arguments);
+
+        case ListContactCommand.COMMAND_WORD:
+            return new ListContactCommand();
 
         case DeleteContactCommand.COMMAND_WORD:
             return new DeleteContactCommandParser().parse(arguments);

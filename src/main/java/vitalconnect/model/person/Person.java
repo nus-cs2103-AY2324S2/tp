@@ -74,7 +74,7 @@ public class Person {
     }
 
     public boolean hasContactInformation() {
-        return this.contactInformation != null;
+        return !this.contactInformation.isEmptyContact();
     }
 
     public void setMedicalInformation(MedicalInformation medicalInformation) {

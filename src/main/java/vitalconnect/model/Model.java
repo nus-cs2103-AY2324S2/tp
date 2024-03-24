@@ -17,6 +17,7 @@ import vitalconnect.model.person.medicalinformation.MedicalInformation;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Person> PREDICATE_SHOW_ALL_CONTACT = Person::hasContactInformation;
     Predicate<Person> PREDICATE_SHOW_ALL_MEDICAL = Person::hasMedicalInformation;
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -90,7 +91,7 @@ public interface Model {
     void updateFilteredPersonList(Predicate<Person> predicate);
 
     boolean doesPersonExist(String name);
-    boolean doesIcExist(String name);
+    boolean doesIcExist(String nric);
     void addAppointment(Appointment appointment);
     void setAppointments(List<Appointment> appointments);
 

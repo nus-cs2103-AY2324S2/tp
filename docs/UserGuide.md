@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+VitalConnect is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
@@ -14,11 +14,11 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `vitalconnect.jar` from [here](https://github.com/AY2324S2-CS2103T-W08-2/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your vitalConnect.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar vitalconnect.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
@@ -27,7 +27,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Clinic.
 
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
@@ -46,16 +46,16 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `add n/NAME ic/NRIC`, `NAME` and `NRIC` are parameters which can be used as `add n/John Doe ic/S1234567D`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g `h/HEIGHT w/WEIGHT [t/ALLERGY]` can be used as `h/163 w/50 t/Amoxicillin` or as `h/163 w/50`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[t/ALLERGY]…​` can be used as ` ` (i.e. 0 times), `t/Amoxicillin`, `t/insulin t/iodine` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `ic/NRIC p/PHONE_NUMBER`, `p/PHONE_NUMBER ic/NRIC` is also acceptable.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
@@ -71,47 +71,24 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
+### Adding a patient: `add`
 
-### Adding a person: `add`
+Adds a patient to the clinic.
 
-Adds a person to the address book.
-
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of allergyTags (including 0)
-</div>
+Format: `add n/NAME ic/NRIC`
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/John Doe ic/S1234567D`
 
-### Listing all persons : `list`
+### Listing all patients : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all patients in the clinic.
 
 Format: `list`
 
-### Editing a person : `edit`
+### Locating patients by name: `find`
 
-Edits an existing person in the address book.
-
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
-
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing allergyTags, the existing allergyTags of the person will be removed i.e adding of allergyTags is not cumulative.
-* You can remove all the person’s allergyTags by typing `t/` without
-    specifying any allergyTags after it.
-
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing allergyTags.
-
-### Locating persons by name: `find`
-
-Finds persons whose names contain any of the given keywords.
+Finds patients whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -119,33 +96,117 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
+* Patients matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `find John` returns `John Doe` and `John Bard`</br>
+  ![result for 'find John'](images/findJohnResult.png)
 
-### Deleting a person : `delete`
+### Deleting a patient : `delete`
 
-Deletes the specified person from the address book.
+Deletes the specified patient from the clinic.
 
 Format: `delete INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Deletes the patient at the specified `INDEX`.
+* The index refers to the index number shown in the displayed patient list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `delete 2` deletes the 2nd patient in the clinic.
+* `find Betsy` followed by `delete 1` deletes the 1st patient in the results of the `find` command.
+
+### Adding contact information : `addc`
+
+Adds contact information to a patient in the clinic.
+
+Format: `addc ic/NRIC [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]`
+
+* At least one of the optional fields must be provided.
+* Rules for phone number: At least 3 digits.
+* Emails should be of the format local-part@domain and adhere to the following constraints:
+  1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters.
+  2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods.
+     The domain name must:
+      - end with a domain label at least 2 characters long
+      - have each domain label start and end with alphanumeric characters
+      - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
+
+Examples:
+* `addc ic/S1234567D p/91234567`
+* `addc ic/S1234567D e/test@email.com p/91234567`
+* `addc ic/S1234567D a/123, Clementi Rd, 1234665 e/test@email.com p/91234567`
+
+### Listing contact information : `listc`
+
+Lists all patients with contact information.
+
+### Deleting contact information : `deletec`
+
+Deletes contact information from a patient in the clinic.
+
+Format: `deletec ic/NRIC`
+
+Examples:
+* `deletec ic/S1234567D` will result in the contact information of the patient with NRIC `S1234567D` being deleted.
+
+### Adding medical information : `addm`
+
+Adds medical information to a patient in the clinic.
+
+Format: `addm ic/NRIC h/HEIGHT w/WEIGHT [t/ALLERGY]…​`
+
+Examples:
+* `addm ic/S1234567D h/163 w/50`
+* `addm ic/S1234567D h/163 w/50 t/insulin t/iodine`
+
+### Listing medical information : `listm`
+
+Lists all patients with medical information.
+
+### Deleting medical information : `deletem`
+
+Deletes medical information from a patient in the clinic.
+
+Format: `deletem ic/NRIC`
+
+Examples:
+* `deletem ic/S1234567D` will result in the medical information of the patient with NRIC `S1234567D` being deleted.
+
+### Adding an appointment: `adda`
+
+Adds an appointment for a patient to the appointment list.
+
+Format: `adda NRIC /time DD/MM/YYYY HHMM`
+
+Examples:
+* `adda S1234567D /time 02/02/2024 1300` will add an appointment for the patient with NRIC `S1234567D` on 2nd February 2024 at 1:00 PM.
+
+### Adding an appointment: `deletea`
+
+Delete an exist appointment from the appointment list by providing the index of the appointment
+in the list and the name of the patient.
+
+Format: `deletea INDEX /name NAME`
+
+Examples:
+* `deletea 1 /name Amy`
+
+### List out appointments: `lista`
+
+List out all the appointments in the appointment list.
+
+Format: `lista`
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all entries from the clinic.
 
 Format: `clear`
+
+> [!CAUTION]
+> This command will delete all the patients from the clinic. Please use with cautious.
 
 ### Exiting the program : `exit`
 
@@ -155,19 +216,21 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+Clinic data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+Clinic data are saved automatically as a JSON file `[JAR file location]/data/clinic.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
-Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
+If your changes to the data file makes its format invalid, Clinic will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
+Furthermore, certain edits can cause the Clinic to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
 
 ### Archiving data files `[coming in v2.0]`
+_Details coming soon ..._
 
+### Editing a patient : `[coming in v1.3]`
 _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
@@ -175,7 +238,7 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Clinic home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -187,12 +250,20 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+| Action      | Format, Examples                                                                                                                        |
+|-------------|-----------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**     | `add n/NAME ic/NRIC` <br> e.g., `add n/John Doe ic/S1234567D`                                                                           |
+| **Clear**   | `clear`                                                                                                                                 |
+| **Delete**  | `delete INDEX`<br> e.g., `delete 3`                                                                                                     |
+| **Find**    | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                              |
+| **List**    | `list`                                                                                                                                  |
+| **Addc**    | `addc ic/NRIC [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]` e.g., `addc ic/S1234567D a/123, Clementi Rd, 1234665 e/test@email.com p/91234567` |
+| **Listc**   | `listc`                                                                                                                                 |
+| **Deletec** | `deletec ic/NRIC` e.g., `deletec ic/S1234567D`                                                                                          |
+| **Addm**    | `addm ic/NRIC h/HEIGHT w/WEIGHT [t/ALLERGY]…​` e.g., `addm ic/S1234567D h/163 w/50 t/insulin t/iodine`                                  |
+| **Listm**   | `listm`                                                                                                                                 |
+| **Deletem** | `deletem ic/NRIC` e.g., `deletec ic/S1234567D`                                                                                          |
+| **Adda**    | `adda NRIC /time DD/MM/YYYY HHMM` e.g., `adda S1234567D /time 02/02/2024 1300`                                                          |
+| **Lista**   | `lista`                                                                                                                                 |
+| **Deletea** | `deletea INDEX /name NAME` e.g., `deletea 1 /name Amy`                                                                                  |
+| **Help**    | `help`                                                                                                                                  |
