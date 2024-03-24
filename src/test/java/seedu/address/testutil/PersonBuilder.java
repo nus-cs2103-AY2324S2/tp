@@ -1,6 +1,7 @@
 package seedu.address.testutil;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.address.model.person.Address;
@@ -72,6 +73,14 @@ public class PersonBuilder {
      */
     public PersonBuilder withTags(String ... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
+        return this;
+    }
+
+    /**
+     * Parses the {@code tags} into a {@code Set<Tag>} and add it to the {@code Person} that we are building.
+     */
+    public PersonBuilder addTags(List<String> tagList) {
+        this.tags.addAll(TagBuilder.build(tagList));
         return this;
     }
 

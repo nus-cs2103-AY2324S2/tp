@@ -34,7 +34,6 @@ public class FindTagsAndCommandParserTest {
         FindTagsAndCommand expectedCommand =
                 new FindTagsAndCommand(new TagsAndFoundPredicate(TagBuilder.build(tagList)));
         assertParseSuccess(parser, "car health", expectedCommand);
-
         assertParseSuccess(parser, " \n car \n \t health  \t", expectedCommand);
     }
 
