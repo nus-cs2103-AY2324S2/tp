@@ -21,7 +21,7 @@ public class Grade implements Comparable<Grade> {
 
     public final String value;
 
-    public String thresholdGrade = "C+";
+    private String thresholdGrade = "C+";
 
     /**
      * Constructs an {@code Grade}.
@@ -44,30 +44,30 @@ public class Grade implements Comparable<Grade> {
 
     private int gradeToInt() {
         switch (value) {
-            case ("A+"):
-                return 11;
-            case ("A"):
-                return 10;
-            case ("A-"):
-                return 9;
-            case ("B+"):
-                return 8;
-            case ("B"):
-                return 7;
-            case ("B-"):
-                return 6;
-            case ("C+"):
-                return 5;
-            case ("C"):
-                return 4;
-            case ("D+"):
-                return 3;
-            case ("D"):
-                return 2;
-            case ("F"):
-                return 1;
-            default:
-                return -1;
+        case ("A+"):
+            return 11;
+        case ("A"):
+            return 10;
+        case ("A-"):
+            return 9;
+        case ("B+"):
+            return 8;
+        case ("B"):
+            return 7;
+        case ("B-"):
+            return 6;
+        case ("C+"):
+            return 5;
+        case ("C"):
+            return 4;
+        case ("D+"):
+            return 3;
+        case ("D"):
+            return 2;
+        case ("F"):
+            return 1;
+        default:
+            return -1;
         }
     }
 
@@ -101,6 +101,9 @@ public class Grade implements Comparable<Grade> {
         return this.gradeToInt() - o.gradeToInt();
     }
 
+    /**
+     * Returns whether grade constitutes weak or not
+     */
     public boolean isWeak() {
         if (this.value.compareTo(thresholdGrade) >= 0) {
             return true;
@@ -108,5 +111,4 @@ public class Grade implements Comparable<Grade> {
             return false;
         }
     }
-
 }
