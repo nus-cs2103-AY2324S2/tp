@@ -12,6 +12,11 @@ end box
 
 box Model MODEL_COLOR_T1
 participant "m:Model" as Model MODEL_COLOR
+participant "a:AddressBook" as AddressBook MODEL_COLOR
+end box
+
+box Storage STORAGE_COLOR_T1
+participant "j:JsonAddressBookStorage" as JsonAddressBookStorage STORAGE_COLOR
 end box
 
 [-> LogicManager : execute("export")
@@ -33,14 +38,50 @@ deactivate AddressBookParser
 LogicManager -> ExportCommand : execute(m)
 activate ExportCommand
 
-ExportCommand -> Model : getAddressBookFilePath()
+ExportCommand -> Model : getFilteredPersonList()
 activate Model
 
-Model --> ExportCommand : jsonFilePath
+Model --> ExportCommand : l
 deactivate Model
 
-ExportCommand -> ExportCommand : createCsvDirectory(csvFile)
+create AddressBook
+ExportCommand -> AddressBook : new AddressBook()
+activate AddressBook
+
+AddressBook --> ExportCommand : a
+deactivate AddressBook
+
+ExportCommand -> ExportCommand : addToAddressBook(a, l);
 activate ExportCommand
+
+loop for each person in l
+
+    ExportCommand -> AddressBook : addPerson(person)
+    activate AddressBook
+
+    AddressBook --> ExportCommand
+    deactivate AddressBook
+
+end
+
+ExportCommand --> ExportCommand
+deactivate ExportCommand
+
+create JsonAddressBookStorage
+ExportCommand -> JsonAddressBookStorage : new JsonAddressBookStorage();
+activate JsonAddressBookStorage
+
+JsonAddressBookStorage --> ExportCommand : j
+deactivate JsonAddressBookStorage
+
+ExportCommand -> ExportCommand : writeToJsonFile(j, a);
+activate ExportCommand
+
+ExportCommand -> JsonAddressBookStorage : saveAddressBook(a)
+activate JsonAddressBookStorage
+
+JsonAddressBookStorage --> ExportCommand
+deactivate JsonAddressBookStorage
 
 ExportCommand --> ExportCommand
 deactivate ExportCommand
@@ -55,6 +96,12 @@ ExportCommand -> ExportCommand : readPersonsArray(jsonTree)
 activate ExportCommand
 
 ExportCommand --> ExportCommand : readPersonsArray
+deactivate ExportCommand
+
+ExportCommand -> ExportCommand : createCsvDirectory(csvFile)
+activate ExportCommand
+
+ExportCommand --> ExportCommand
 deactivate ExportCommand
 
 ExportCommand -> ExportCommand : writeToCsvFile(csvFile, personsArray)

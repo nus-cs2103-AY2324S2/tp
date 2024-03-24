@@ -119,7 +119,7 @@ The sequence diagram below illustrates the interactions within the `Logic` compo
 
 <puml src="diagrams/ExportSequenceDiagram.puml" alt="Interactions Inside the Logic Component for the `export` Command" />
 
-How the `Logic` component works:
+How the `Logic` component works here:
 
 1. When `Logic` is called upon to execute a command, it is passed to an `AddressBookParser`.
 
@@ -129,7 +129,7 @@ How the `Logic` component works:
 </box>
 
 2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `ExportCommand`) which is executed by the `LogicManager`.
-3. The command can communicate with the `Model` when it is executed (e.g. to retrieve the address book file path).<br>
+3. The command can communicate with the `Model` when it is executed (e.g. to retrieve the filtered persons list).<br>
    Note that although this is shown as a single step in the diagram above (for simplicity), in the code it can take several interactions (between the command object and the `Model`) to achieve.
 4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
@@ -582,15 +582,25 @@ into user's clipboard.
 
          Use case ends.
 
-**Use case: UC10 — Export persons to CSV**
+**Use case: UC10 — Export listed persons to CSV**
 
 **MSS:**
 
-1.  User requests to export all persons and details to a CSV file.
-2.  AddressBook exports the persons to a CSV file.
-3.  AddressBook displays a message to confirm that all persons have been exported to a CSV file.
+1.  User !!requests to filter persons (UC06)!! by desired requirements 
+2. User requests to export all listed persons and details to a CSV file.
+3. AddressBook exports the persons to a CSV file. 
+4. AddressBook displays a message to confirm that all listed persons have been exported to a CSV file.
 
     Use case ends.
+
+**Extensions:**
+
+* 2a. No persons are listed. 
+  * 2a2. AddressBook displays a message indicating that there is no persons to export.
+  
+    Use case ends.
+  
+  
 
 **Use case: UC11 — Exit application**
 
