@@ -6,6 +6,7 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.order.Order;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -92,6 +93,17 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removePerson(Person key) {
         persons.remove(key);
+    }
+
+    //// order operations
+
+    /**
+     * Adds an order to the person.
+     * The person must exist in the address book.
+     */
+    public void addOrder(Person target, Order order) {
+        target.addOrder(order);
+        persons.setPerson(target, target);
     }
 
     //// util methods
