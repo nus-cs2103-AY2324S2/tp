@@ -64,7 +64,7 @@ class JsonAdaptedPerson {
         email = source.getEmail().value;
         address = source.getAddress().value;
         meritScore = source.getMeritScore().meritScore;
-        bookCollection = source.getBookList().bookCollection;
+        bookCollection = source.getBookList().getBookCollection();
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));

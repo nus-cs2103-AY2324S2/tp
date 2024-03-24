@@ -11,7 +11,7 @@ import seedu.address.model.book.Book;
  * It manages operations such as adding, retrieving, and deleting books from the collection.
  */
 public class BookCollection {
-    public ArrayList<Book> bookCollection;
+    protected ArrayList<Book> bookCollection;
 
     /**
      * Construct an empty BookCollection.
@@ -28,6 +28,10 @@ public class BookCollection {
     public BookCollection(ArrayList<Book> bookCollection) {
         requireNonNull(bookCollection);
         this.bookCollection = bookCollection;
+    }
+
+    public ArrayList<Book> getBookCollection() {
+        return bookCollection;
     }
 
     /**
