@@ -179,6 +179,16 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in AA.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+### Deleting filtered persons : `deleteshown`
+
+Deletes the current filtered list of persons. Requires a `find` command to be run first.
+
+Format: `deleteshown`
+
+* Deletes all persons in the current filtered list of persons.
+* The list of persons is filtered using the most recent `find` command.
+* The remaining list of persons is shown after the `find` command is executed.
+
 ### Clearing all entries : `clear`
 
 Clears all entries from AA.
@@ -259,16 +269,17 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action | Format, Examples                                                                                                                                                                               
-|--------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] [m/MATRICULATION_NUMBER]…​` e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague m/A1234567X` |
-| **Clear**  | `clear`                                                                                                                                                                                        |
-| **Delete** | `delete INDEX` e.g., `delete 3`                                                                                                                                                                |
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG] [m/MATRICULATION_NUMBER]…​` e.g.,`edit 2 n/James Lee e/jameslee@example.com m/A1234567X`                                              |
-| **Find**   | `find PARAMETER KEYWORD` e.g., `find James`                                                                                                                                                    |
-| **Copy**   | `copy`                                                                                                                                                                                         |
-| **List**   | `list`                                                                                                                                                                                         |
-| **Help**   | `help`                                                                                                                                                                                         |
-| **Export to CSV** | `export`                                                                                                                                                                                       |
-| **Import** | `import FILEPATH`                                                                                                                                                                              |
-
+| Action                                                       | Format, Examples                                                                                                                                                                                      |
+|--------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [**Help**](#viewing-help-help)                               | `help`                                                                                                                                                                                                |
+| [**Add**](#adding-a-person-add)                              | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] [m/MATRICULATION_NUMBER]…​` e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague m/A1234567X` |
+| [**List**](#listing-all-persons-list)                        | `list`                                                                                                                                                                                                |
+| [**Edit**](#editing-a-person-edit)                           | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG] [m/MATRICULATION_NUMBER]…​` e.g.,`edit 2 n/James Lee e/jameslee@example.com m/A1234567X`                                          |
+| [**Find**](#filtering-persons-find)                          | `find PARAMETER KEYWORD` e.g., `find James`                                                                                                                                                           |
+| [**Copy**](#copy-email-address-copy)                         | `copy`                                                                                                                                                                                                |
+| [**Delete**](#deleting-a-person-delete)                      | `delete INDEX` e.g., `delete 3`                                                                                                                                                                       |
+| [**DeleteShown**](#deleting-filtered-persons-deleteshown)    | `deleteshown`                                                                                                                                                                                         |
+| [**Clear**](#clearing-all-entries-clear)                     | `clear`                                                                                                                                                                                               |
+| [**Export to(#) CSV**](#exporting-data-to-a-csv-file-export) | `export`                                                                                                                                                                                              |
+| [**Import**](#importing-data-from-a-csv-file-import)         | `import FILEPATH`                                                                                                                                                                                     |
+| [**Exit**](#exiting-the-program-exit)                        | `exit`                                                                                                                                                                                                |
