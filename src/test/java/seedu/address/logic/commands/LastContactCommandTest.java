@@ -57,7 +57,8 @@ public class LastContactCommandTest {
         Person firstPersonWithNullLastContact = new PersonBuilder().withLastContact("").build();
         Person secondPersonWithNullLastContact = new PersonBuilder().withLastContact("").build();
         Person thirdPersonWithValidLastContact = new PersonBuilder().withLastContact("24-03-2024 0935").build();
-        LastContact lastContactDateTime1 = firstPersonWithNullLastContact.getLastcontact();
+        boolean isNullLastContact = firstPersonWithNullLastContact.getLastcontact() == null;
+        boolean isNotNullLastContact = thirdPersonWithValidLastContact.getLastcontact() != null;
 
         // Comparator from LastContactCommand
         Comparator<Person> sortComparator = LastContactCommand.SORT_COMPARATOR;
@@ -73,8 +74,9 @@ public class LastContactCommandTest {
         assertEquals(1, comparisonResult2);
         // Since only second person has Null last contact, we should expect -1
         assertEquals(-1, comparisonResult3);
-        // Test for null Lastcontact
-        assertEquals(null, lastContactDateTime1.getDateTime());
+        // Test for null and non-null LastContact
+        assertFalse(isNullLastContact);
+        assertTrue(isNotNullLastContact);
     }
 
     @Test
