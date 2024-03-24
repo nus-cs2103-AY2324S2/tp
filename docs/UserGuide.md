@@ -28,7 +28,7 @@ Pedagogue Pages is a **desktop app for teachers of young children to manage clas
    
    * `add n/John Doe p/98765432, 91233322 e/johnd@example.com a/311, Clementi Ave 2, #02-25 id/00007 t/Friends t/Owes Money` : Adds a student named `John Doe` with `Student ID` 00007 to Pedagogue Pages.
    
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
+   * `delete 00003` : Deletes the student with `Student ID` 00003 from the list.
    
    * `clear` : Deletes all contacts.
    
@@ -141,9 +141,6 @@ Deletes the specified student from Pedagogue Pages.
 Format: `delete STUDENT ID`
 
 * Deletes the student with the specified `STUDENT ID`.
-
-Examples:
-* `list` followed by `delete 2` deletes the 2nd student in the list of students.
 
 ### Clearing all entries : `clear`
 
