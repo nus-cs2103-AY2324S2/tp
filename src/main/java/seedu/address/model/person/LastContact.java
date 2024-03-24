@@ -49,10 +49,8 @@ public class LastContact implements Comparable<LastContact> {
             return true;
         }
         String trimmedDateTime = dateTime.trim();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-uuuu HHmm")
-                .withResolverStyle(ResolverStyle.STRICT);
         try {
-            LocalDateTime.parse(trimmedDateTime, formatter);
+            LocalDateTime.parse(trimmedDateTime, DATETIME_FORMATTER);
             return true; // Successfully parsed, input matches the format
         } catch (DateTimeParseException e) {
             return false; // Parsing failed, input does not match the format
