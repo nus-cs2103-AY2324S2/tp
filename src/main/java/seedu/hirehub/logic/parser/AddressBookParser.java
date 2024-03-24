@@ -19,6 +19,7 @@ import seedu.hirehub.logic.commands.FindCommand;
 import seedu.hirehub.logic.commands.GetCommand;
 import seedu.hirehub.logic.commands.HelpCommand;
 import seedu.hirehub.logic.commands.InitClearCommand;
+import seedu.hirehub.logic.commands.JobCommand;
 import seedu.hirehub.logic.commands.ListCommand;
 import seedu.hirehub.logic.commands.SearchCommand;
 import seedu.hirehub.logic.commands.StatusCommand;
@@ -97,6 +98,9 @@ public class AddressBookParser {
 
         case TagCommand.COMMAND_WORD:
             return new TagCommandParser().parse(arguments);
+
+        case JobCommand.COMMAND_WORD:
+            return new JobCommandParser().parse(arguments);
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);
