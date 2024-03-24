@@ -5,25 +5,25 @@ import java.util.ArrayList;
 import seedu.address.model.book.Book;
 
 /**
- * The BookList class represents a collection of books.
+ * The BookCollection class represents a collection of books.
  * It manages operations such as adding, retrieving, and deleting books from the list.
  */
-public class BookList {
-    private ArrayList<Book> bookList;
+public class BookCollection {
+    protected ArrayList<Book> bookList;
 
     /**
      * Construct an empty BookList.
      */
-    public BookList() {
+    public BookCollection() {
         this.bookList = new ArrayList<>();
     }
 
     /**
      * Construct a BookList with the specified list of books.
      *
-     * @param bookList The list of books to initialize the BookList with.
+     * @param bookList The list of books to initialize the BookCollection with.
      */
-    public BookList(ArrayList<Book> bookList) {
+    public BookCollection(ArrayList<Book> bookList) {
         this.bookList = bookList;
     }
 
@@ -37,7 +37,7 @@ public class BookList {
     }
 
     /**
-     * Retrieve the book at the specified index from the BookList.
+     * Retrieve the book at the specified index from the BookCollection.
      *
      * @param index The index of the book to retrieve.
      * @return The book at the specified index.
@@ -47,7 +47,7 @@ public class BookList {
     }
 
     /**
-     * Delete the book at the specified index from the BookList.
+     * Delete the book at the specified index from the BookCollection.
      *
      * @param index The index of the book to delete.
      */
