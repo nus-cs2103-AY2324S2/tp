@@ -43,8 +43,12 @@ public class FindPersonCommandParserTest {
     }
 
     @Test
-    public void parse_repeatedValue_failure() {
+    public void parse_multipleInputFields_failure() {
+        String userInput = " i/ T012    n/ Alex";
+        assertParseFailure(parser, userInput, FindPersonCommand.MESSAGE_MULTIPLE_FIELDS_PROVIDED);
 
+        userInput = "  n/ Alex  i/ T012  ";
+        assertParseFailure(parser, userInput, FindPersonCommand.MESSAGE_MULTIPLE_FIELDS_PROVIDED);
     }
 
 }

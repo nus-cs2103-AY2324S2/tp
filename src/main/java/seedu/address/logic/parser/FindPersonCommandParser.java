@@ -26,8 +26,14 @@ public class FindPersonCommandParser implements Parser<FindPersonCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_NRIC);
+        boolean isFindPersonByNric = argMultimap.getValue(PREFIX_NRIC).isPresent();
+        boolean isFindPersonByName = argMultimap.getValue(PREFIX_NAME).isPresent();
 
-        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
+        if (isFindPersonByNric && isFindPersonByName) {
+            throw new ParseException(FindPersonCommand.MESSAGE_MULTIPLE_FIELDS_PROVIDED);
+        }
+
+        if (isFindPersonByName) {
             String trimmedNameArgs = argMultimap.getValue(PREFIX_NAME).get().trim();
             if (trimmedNameArgs.isEmpty()) {
                 throw new ParseException(
@@ -37,7 +43,7 @@ public class FindPersonCommandParser implements Parser<FindPersonCommand> {
             String[] nameKeywords = trimmedNameArgs.split("\\s+");
 
             return new FindPersonCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
-        } else if (argMultimap.getValue(PREFIX_NRIC).isPresent()) {
+        } else if (isFindPersonByNric) {
             String trimmedNricArgs = argMultimap.getValue(PREFIX_NRIC).get().trim();
             if (trimmedNricArgs.isEmpty()) {
                 throw new ParseException(

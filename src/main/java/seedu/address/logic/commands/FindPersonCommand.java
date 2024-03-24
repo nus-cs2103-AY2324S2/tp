@@ -28,6 +28,7 @@ public class FindPersonCommand extends Command {
             + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + "Alex"
             + " OR " + COMMAND_WORD + " " + PREFIX_NRIC + "T0123456A";
 
+    public static final String MESSAGE_MULTIPLE_FIELDS_PROVIDED = "Find by either NRIC or name, not both!";
 
     private final Predicate<Person> predicate;
 
