@@ -24,6 +24,7 @@ public class CommandHistory {
     private CommandHistoryType lastCommandType;
     public CommandHistory() {
         commandHistory = new ArrayList<>();
+        commandHistory.add(""); // Add an empty string to the history by default.
     }
 
     /**
@@ -31,27 +32,25 @@ public class CommandHistory {
      * @param commandText Text to add to the history
      */
     public void addCommandToHistory(String commandText) {
-        commandHistory.add(commandText);
+        commandHistory.set(commandHistory.size() - 1, commandText);
+        commandHistory.add("");
         currentCommandIndex = commandHistory.size() - 1;
     }
 
+    public String getCurrentCommand() {
+        return commandHistory.get(currentCommandIndex);
+    }
     /**
      * Returns the previous command in the history and decrements the current command index.
      * If there are no more commands to iterate through, it will play an error sound.
      */
-    public String undo() {
-        if (lastCommandType == CommandHistoryType.REDO && currentCommandIndex < commandHistory.size() - 1) {
+    public void undo() {
+        if (currentCommandIndex > 0) {
             currentCommandIndex--;
-        }
-
-        lastCommandType = CommandHistoryType.UNDO;
-
-        if (currentCommandIndex >= 0) {
-            return commandHistory.get(currentCommandIndex--);
         } else {
             // We have reached the start of the command history, no more commands to iterate through!
+
             AudioUtil.playAudio(AudioUtil.ERROR_SOUND);
-            return commandHistory.get(currentCommandIndex);
         }
     }
 
@@ -59,17 +58,10 @@ public class CommandHistory {
      * Returns the next command in history and increments the current command index.
      * Returns an empty string if there the currentCommandIndex is at the end of the history.
      */
-    public String redo() {
-        if (lastCommandType == CommandHistoryType.UNDO) {
+    public void redo() {
+        // Ensure that index is NOT out of bounds as well
+        if (currentCommandIndex >= 0 && currentCommandIndex < commandHistory.size() - 1) {
             currentCommandIndex++;
-        }
-
-        lastCommandType = CommandHistoryType.REDO;
-
-        if (currentCommandIndex < commandHistory.size() - 1) {
-            return commandHistory.get(++currentCommandIndex);
-        } else {
-            return "";
         }
     }
 

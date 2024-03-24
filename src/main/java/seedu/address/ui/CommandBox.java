@@ -41,11 +41,13 @@ public class CommandBox extends UiPart<Region> {
         commandHistory = new CommandHistory();
 
         setShortcut(getRoot(), KeyCode.UP, (keyCode) -> {
-            String prevCommand = commandHistory.undo();
+            commandHistory.undo();
+            String prevCommand = commandHistory.getCurrentCommand();
             UiUtil.setText(commandTextField, prevCommand);
         });
         setShortcut(getRoot(), KeyCode.DOWN, (keyCode) -> {
-            String nextCommand = commandHistory.redo();
+            commandHistory.redo();
+            String nextCommand = commandHistory.getCurrentCommand();
             UiUtil.setText(commandTextField, nextCommand);
 
         });
