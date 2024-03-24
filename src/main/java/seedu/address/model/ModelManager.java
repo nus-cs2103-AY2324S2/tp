@@ -146,14 +146,16 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Person getPersonByUniqueId(int uniqueId) {
+    public Person getPersonByUniqueId(String uniqueIdStr) {
         for (Person person : addressBook.getPersonList()) {
-            if (person.getUniqueId().equals(new Id(uniqueId))) {
+            Id uniqueId = new Id(uniqueIdStr);
+            if (person.getUniqueId().equals(uniqueId)) {
                 return person;
             }
         }
         return null;
     }
+    
 
     @Override
     public boolean equals(Object other) {
@@ -179,7 +181,7 @@ public class ModelManager implements Model {
 
     @Override
     public void addPaymentToPerson(Id uniqueId, double amount) {
-        Person person = getPersonByUniqueId(uniqueId.getInt());
+        Person person = getPersonByUniqueId(uniqueId.toString());
         if (person != null) {
             Payment newPayment = new Payment(person.getPayment().getAmount() + amount);
             Person updatedPerson = new Person(person.getName(), person.getPhone(), person.getEmail(), person.getAddress(), person.getTags(), person.getSubject(), uniqueId, newPayment);
@@ -189,7 +191,7 @@ public class ModelManager implements Model {
 
     @Override
     public void markPaymentAsPaid(Id uniqueId, double amount) {
-        Person person = getPersonByUniqueId(uniqueId.getInt());
+        Person person = getPersonByUniqueId(uniqueId.toString());
         if (person != null) {
             double newAmount = Math.max(0, person.getPayment().getAmount() - amount);
             Payment newPayment = new Payment(newAmount);
@@ -200,7 +202,7 @@ public class ModelManager implements Model {
 
     @Override
     public void resetPaymentsForPerson(Id uniqueId) {
-        Person person = getPersonByUniqueId(uniqueId.getInt());
+        Person person = getPersonByUniqueId(uniqueId.toString());
         if (person != null) {
             Payment newPayment = new Payment(0);
             Person updatedPerson = new Person(person.getName(), person.getPhone(), person.getEmail(), person.getAddress(), person.getTags(), person.getSubject(), uniqueId, newPayment);

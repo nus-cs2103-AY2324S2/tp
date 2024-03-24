@@ -33,13 +33,16 @@ public class AddPaymentCommand extends Command {
     public AddPaymentCommand(Id uniqueId, double amount) {
         requireNonNull(uniqueId);
         this.uniqueId = uniqueId;
+        System.out.println("uniqueId: " + uniqueId);
         this.amount = amount;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        Person personToUpdate = model.getPersonByUniqueId(uniqueId.getInt());
+        System.out.println("Looking for person with ID: " + uniqueId.toString());
+        Person personToUpdate = model.getPersonByUniqueId(uniqueId.toString());
+        
 
         if (personToUpdate == null) {
             throw new CommandException(Messages.MESSAGE_PERSON_NOT_FOUND);

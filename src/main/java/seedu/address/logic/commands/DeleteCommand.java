@@ -18,7 +18,7 @@ public class DeleteCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the person identified by their unique ID in the displayed person list.\n"
             + "Parameters: Their unique ID, (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 000001 or 1";
+            + "Example: " + COMMAND_WORD + " 000001";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
 
@@ -26,12 +26,12 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_POSITIVE_INTEGER = "The unique ID must be a positive integer";
 
-    private final int targetUniqueId;
+    private final String targetUniqueId;
 
     /**
      * Creates a DeleteCommand to delete the person with the specified unique ID.
      */
-    public DeleteCommand(int targetUniqueId) {
+    public DeleteCommand(String targetUniqueId) {
         requireNonNull(targetUniqueId);
         this.targetUniqueId = targetUniqueId;
     }
@@ -41,9 +41,6 @@ public class DeleteCommand extends Command {
         requireNonNull(model);
 
         Person personToDelete = model.getPersonByUniqueId(targetUniqueId);
-        if (targetUniqueId <= 0) {
-            throw new CommandException(MESSAGE_POSITIVE_INTEGER);
-        }
 
         if (personToDelete == null) {
             throw new CommandException(MESSAGE_PERSON_NOT_FOUND);

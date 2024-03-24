@@ -27,6 +27,11 @@ public class Payment {
         this.value = String.format("$%.2f", amount);
     }
 
+    public Payment(String paymentValue) {
+        this.amount = Double.parseDouble(paymentValue);
+        this.value = paymentValue;
+    }
+
     /**
      * Returns true if a given amount is a valid payment.
      */

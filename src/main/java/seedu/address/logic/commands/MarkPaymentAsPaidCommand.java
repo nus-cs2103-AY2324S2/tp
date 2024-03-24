@@ -39,7 +39,7 @@ public class MarkPaymentAsPaidCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        Person personToUpdate = model.getPersonByUniqueId(uniqueId.getInt());
+        Person personToUpdate = model.getPersonByUniqueId(uniqueId.toString());
 
         if (personToUpdate == null) {
             throw new CommandException(Messages.MESSAGE_PERSON_NOT_FOUND);

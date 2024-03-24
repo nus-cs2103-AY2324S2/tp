@@ -100,7 +100,7 @@ public interface Model {
      * Returns the person with the given unique ID.
      * Returns null if the person does not exist.
      */
-    Person getPersonByUniqueId(int uniqueId);
+    Person getPersonByUniqueId(String uniqueId);
 
         /**
      * Adds a payment to the person identified by the uniqueId.

@@ -17,8 +17,8 @@ public class ResetPaymentsCommandParser implements Parser<ResetPaymentsCommand> 
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_ID);
 
-        if (arePrefixesPresent(argMultimap, PREFIX_ID)
-                || argMultimap.getPreamble().isEmpty()) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_ID)
+                || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ResetPaymentsCommand.MESSAGE_USAGE));
         }
 

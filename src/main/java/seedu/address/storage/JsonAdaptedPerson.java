@@ -35,6 +35,7 @@ class JsonAdaptedPerson {
     private final String address;
     private final String subject;
     private final String uniqueId;
+    private final String payment;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
     /**
@@ -44,13 +45,14 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
                              @JsonProperty("tags") List<JsonAdaptedTag> tags, @JsonProperty("subject") String subject,
-                             @JsonProperty("uniqueId") String uniqueId) {
+                             @JsonProperty("uniqueId") String uniqueId, @JsonProperty("payment") String payment) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.subject = subject;
         this.uniqueId = uniqueId;
+        this.payment = payment;
         if (tags != null) {
             this.tags.addAll(tags);
         }
@@ -69,6 +71,8 @@ class JsonAdaptedPerson {
                 .collect(Collectors.toList()));
         subject = source.getSubject().value;
         uniqueId = source.getUniqueId().id;
+        payment = source.getPayment().value;
+
     }
 
     /**
@@ -119,11 +123,12 @@ class JsonAdaptedPerson {
             throw new IllegalValueException("Missing Unique Id");
         }
         final Id modelId = new Id(uniqueId);
+        
 
         final Subject modelSubject = new Subject(subject);
         final Address modelAddress = new Address(address);
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        final Payment modelPayment = new Payment(0.0);
+        final Payment modelPayment = new Payment(payment);
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelSubject, modelId, modelPayment);
     }
 

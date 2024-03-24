@@ -17,7 +17,7 @@ public class AddPaymentCommandParser implements Parser<AddPaymentCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_ID, PREFIX_PAYMENT);
 
-        if (arePrefixesPresent(argMultimap, PREFIX_ID, PREFIX_PAYMENT) || !argMultimap.getPreamble().isEmpty()) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_ID, PREFIX_PAYMENT) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPaymentCommand.MESSAGE_USAGE));
         }
 
