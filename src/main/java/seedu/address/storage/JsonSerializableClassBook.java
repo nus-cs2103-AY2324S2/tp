@@ -1,5 +1,6 @@
 package seedu.address.storage;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -29,7 +30,7 @@ class JsonSerializableClassBook {
         classes.addAll(source.getClassList().stream().map(JsonAdaptedClass::new).collect(Collectors.toList()));
     }
 
-    public ClassBook toModelType() throws IllegalValueException {
+    public ClassBook toModelType() throws IllegalValueException, IOException {
         ClassBook classBook = new ClassBook();
         for (JsonAdaptedClass jsonAdaptedClass : classes) {
             Classes classes = jsonAdaptedClass.toModelType();

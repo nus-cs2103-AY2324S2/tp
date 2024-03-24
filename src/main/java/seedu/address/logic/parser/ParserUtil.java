@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.io.IOException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -9,6 +10,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.AddressBook;
 import seedu.address.model.person.AttendanceStatus;
 import seedu.address.model.person.Classes;
 import seedu.address.model.person.CourseCode;
@@ -104,7 +106,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code courseCode} is invalid.
      */
-    public static Classes parseClass(String courseCode) throws ParseException {
+    public static Classes parseClass(String courseCode) throws ParseException, IOException {
         requireNonNull(courseCode);
         String trimmedCourseCode = courseCode.trim();
         if (!CourseCode.isValidClass(trimmedCourseCode)) {
