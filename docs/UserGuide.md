@@ -51,7 +51,7 @@ By streamlining workflows and offering social work-specific features, ConnectCar
 
 ## Who This Guide Is For
 
-This guide does not assume any technical knowledge from users. We just require users to be able to type on a keyboard. As ConnectCare uses a [CLI](#cli), users who are familiar with a CLI would find it easy to transition to this software. However, if you have not used a CLI application before, there would be a step-by-step introduction in this guide for each command.
+This guide does not assume any technical knowledge from users. We just require users to be able to type on a keyboard. As ConnectCare uses a [Command Line Interface (CLI)](#cli), users who are familiar with a CLI would find it easy to transition to this software. However, if you have not used a CLI application before, there would be a step-by-step introduction in this guide for each command.
 
 ## How to Use This Guide
 
@@ -66,9 +66,9 @@ This guide is comprised of 4 main sections:
 
 4. Lastly, the [**Glossary**](#glossary) contains a list of key terms and definitions that might be helpful
 
-<box type="tip" seamless>
+<box type="warning" seamless>
 
-**Tip:** If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
+**Warning:** If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </box>
 
 ## Quick start
@@ -165,10 +165,9 @@ Format: `redo`
 **Tip:**
 The redo command does not redo every single command, only those that change the address-book in a significant way.
 For a comprehensive deep-dive into the redo command, please refer to the [Implementation section of our Developer Guide](https://ay2324s2-cs2103t-w12-4.github.io/tp/DeveloperGuide.html)
-
 </box>
 
-
+_IMAGE_BEFORE and IMAGE_AFTER TBA_
 
 ### Clearing all entries : `clear`
 
@@ -176,7 +175,11 @@ This command allows you to purge your client list, removing **ALL** clients in y
 
 Format: `clear`
 
-**Caution:** Only use this command if you are **absolutely** sure that you are willing to clear **all** of your clients from the list, as after running this command, any existing clients will be **unrecoverable**.
+<box type="important" seamless>
+
+**Caution:**
+Only use this command if you are **absolutely** sure that you are willing to clear **all** of your clients from the list, as after running this command, any existing clients will be **unrecoverable**.
+</box>
 
 ### Exiting the program : `exit`
 
@@ -233,6 +236,11 @@ ___
 
 ## Glossary
 
-#### CLI
+##### CLI
+CLI stands for Command Line Interface, which is a way for you to interact with the application with only textual 
+commands, there is no need for a mouse. Once you learn the commands, CLIs can be faster for repetitive tasks than navigating menus with a mouse.
+For more information, see also the [Wikipedia article for CLI](https://en.wikipedia.org/wiki/Command-line_interface)
 
-#### Local
+##### Local
+Local applications runs on the same computer it is launched on and there is no program or data that is being ran or transferred to another remote machine.
+For more information, see also this [Microsoft article for Local and Remote execution](https://learn.microsoft.com/en-us/sql/integration-services/run-manage-packages-programmatically/understanding-the-differences-between-local-and-remote-execution?view=sql-server-ver16)
