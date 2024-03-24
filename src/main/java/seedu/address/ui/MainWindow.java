@@ -35,12 +35,10 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
-    private HelpPoochStaffWindow helpPoochStaffWindow;
-    private HelpPoochSupplierWindow helpPoochSupplierWindow;
-    private HelpPoochMaintenanceWindow helpPoochMaintenanceWindow;
     private HelpDeleteWindow helpDeleteWindow;
     private HelpEditWindow helpEditWindow;
     private HelpSearchWindow helpSearchWindow;
+    private HelpAddWindow helpAddWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -73,12 +71,10 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
-        helpPoochStaffWindow = new HelpPoochStaffWindow();
-        helpPoochSupplierWindow = new HelpPoochSupplierWindow();
-        helpPoochMaintenanceWindow = new HelpPoochMaintenanceWindow();
         helpDeleteWindow = new HelpDeleteWindow();
         helpEditWindow = new HelpEditWindow();
         helpSearchWindow = new HelpSearchWindow();
+        helpAddWindow = new HelpAddWindow();
     }
 
     public Stage getPrimaryStage() {
@@ -152,6 +148,38 @@ public class MainWindow extends UiPart<Stage> {
      * Opens the help window or focuses on it if it's already opened.
      */
     @FXML
+    public void handleAllHelp(CommandResult commandResult) {
+        String userFeedback = commandResult.getFeedbackToUser();
+
+        Boolean isHelpCommand = commandResult.isShowHelp()
+                && userFeedback.equals(HelpMessages.MESSAGES_SHOWING_HELP_MESSAGE);
+        Boolean isDeleteHelpCommand = commandResult.isShowHelp()
+                && userFeedback.equals(HelpMessages.MESSAGES_SHOWING_DELETE_HELP_MESSAGE);
+        Boolean isEditHelpCommand = commandResult.isShowHelp()
+                && userFeedback.equals(HelpMessages.MESSAGES_SHOWING_EDIT_HELP_MESSAGE);
+        Boolean isSearchHelpCommand = commandResult.isShowHelp()
+                && userFeedback.equals(HelpMessages.MESSAGES_SHOWING_SEARCH_HELP_MESSAGE);
+        Boolean isAddHelpCommand = commandResult.isShowHelp()
+                && userFeedback.equals(HelpMessages.MESSAGES_SHOWING_ADD_HELP_MESSAGE);
+
+        if (isHelpCommand) {
+            handleHelp();
+        } else if (isDeleteHelpCommand) {
+            handleDeleteHelp();
+        } else if (isEditHelpCommand) {
+            handleEditHelp();
+        } else if (isSearchHelpCommand) {
+            handleSearchHelp();
+        } else if (isAddHelpCommand) {
+            handleAddHelp();
+        }
+
+    }
+
+    /**
+     * Opens the help window or focuses on it if it's already opened.
+     */
+    @FXML
     public void handleHelp() {
         if (!helpWindow.isShowing()) {
             helpWindow.show();
@@ -161,27 +189,15 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Opens the help poochstaff window or focuses on it if it's already opened.
-     */
-    @FXML
-    public void handlePoochStaffHelp() {
-        helpPoochStaffWindow.show();
-    }
-
-    /**
-     * Opens the help poochsupplier window or focuses on it if it's already opened.
-     */
-    @FXML
-    public void handlePoochSupplierHelp() {
-        helpPoochSupplierWindow.show();
-    }
-
-    /**
      * Opens the help delete window or focuses on it if it's already opened.
      */
     @FXML
     public void handleDeleteHelp() {
-        helpDeleteWindow.show();
+        if (!helpDeleteWindow.isShowing()) {
+            helpDeleteWindow.show();
+        } else {
+            helpDeleteWindow.focus();
+        }
     }
 
     /**
@@ -189,7 +205,11 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleEditHelp() {
-        helpEditWindow.show();
+        if (!helpEditWindow.isShowing()) {
+            helpEditWindow.show();
+        } else {
+            helpEditWindow.focus();
+        }
     }
 
     /**
@@ -197,15 +217,23 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleSearchHelp() {
-        helpSearchWindow.show();
+        if (!helpSearchWindow.isShowing()) {
+            helpSearchWindow.show();
+        } else {
+            helpSearchWindow.focus();
+        }
     }
 
     /**
-     * Opens the help pooch maintenance window or focuses on it if it's already opened.
+     * Opens the help search window or focuses on it if it's already opened.
      */
     @FXML
-    public void handlePoochMaintenanceHelp() {
-        helpPoochMaintenanceWindow.show();
+    public void handleAddHelp() {
+        if (!helpAddWindow.isShowing()) {
+            helpAddWindow.show();
+        } else {
+            helpAddWindow.focus();
+        }
     }
 
     void show() {
@@ -239,42 +267,12 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
-            String userFeedback = commandResult.getFeedbackToUser();
-            Boolean isHelpCommand = commandResult.isShowHelp()
-                    && userFeedback.equals(HelpMessages.MESSAGES_SHOWING_HELP_MESSAGE);
-            Boolean isPoochStaffHelpCommand = commandResult.isShowHelp()
-                    && userFeedback.equals(HelpMessages.MESSAGES_SHOWING_ADD_STAFF_HELP_MESSAGE);
-            Boolean isPoochMaintenanceHelpCommand = commandResult.isShowHelp()
-                    && userFeedback.equals(HelpMessages.MESSAGES_SHOWING_ADD_MAINTAINER_HELP_MESSAGE);
-            Boolean isPoochSupplierHelpCommand = commandResult.isShowHelp()
-                    && userFeedback.equals(HelpMessages.MESSAGES_SHOWING_ADD_SUPPLIER_HELP_MESSAGE);
-            Boolean isDeleteHelpCommand = commandResult.isShowHelp()
-                    && userFeedback.equals(HelpMessages.MESSAGES_SHOWING_DELETE_HELP_MESSAGE);
-            Boolean isEditHelpCommand = commandResult.isShowHelp()
-                    && userFeedback.equals(HelpMessages.MESSAGES_SHOWING_EDIT_HELP_MESSAGE);
-            Boolean isSearchHelpCommand = commandResult.isShowHelp()
-                    && userFeedback.equals(HelpMessages.MESSAGES_SHOWING_SEARCH_HELP_MESSAGE);
-
-
-            if (isHelpCommand) {
-                handleHelp();
-            } else if (isPoochStaffHelpCommand) {
-                handlePoochStaffHelp();
-            } else if (isPoochSupplierHelpCommand) {
-                handlePoochSupplierHelp();
-            } else if (isDeleteHelpCommand) {
-                handleDeleteHelp();
-            } else if (isEditHelpCommand) {
-                handleEditHelp();
-            } else if (isSearchHelpCommand) {
-                handleSearchHelp();
-            } else if (isPoochMaintenanceHelpCommand) {
-                handlePoochMaintenanceHelp();
+            if (commandResult.isShowHelp()) {
+                handleAllHelp(commandResult);
             }
             if (commandResult.isExit()) {
                 handleExit();
             }
-
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("An error occurred while executing command: " + commandText);

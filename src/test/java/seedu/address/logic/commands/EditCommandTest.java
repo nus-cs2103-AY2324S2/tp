@@ -14,6 +14,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPersons.getTypicalVersionedAddressBook;
 
 import org.junit.jupiter.api.Test;
 
@@ -24,6 +25,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.VersionedAddressBook;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -80,13 +82,12 @@ public class EditCommandTest {
         try {
             EditCommand editCommand = new EditCommand(ALICE.getName(), new EditPersonDescriptor());
             Person editedPerson = model.findPersonByName(new Name("Alice Pauline"));
-
             String expectedMessage = String.format(EditMessages.MESSAGE_EDIT_PERSON_SUCCESS,
                     EditMessages.format(editedPerson));
+            editCommand.execute(model);
+            AddressBook addressBookCopy = new VersionedAddressBook(model.getAddressBook());
 
-            Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-
-            assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+            assertEquals(getTypicalVersionedAddressBook(), addressBookCopy);
         } catch (CommandException e) {
             fail();
         }

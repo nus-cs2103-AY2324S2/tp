@@ -6,7 +6,7 @@ import seedu.address.model.person.Staff;
 import seedu.address.model.person.Supplier;
 
 /**
- * Container for user delete command visible messages.
+ * Container for user add command visible messages.
  */
 public class AddMessages extends Messages {
     public static final String MESSAGE_ADD_PERSON_SUCCESS = "Woof! Added %1$s successfully! \uD83D\uDC36";
