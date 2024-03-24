@@ -1,4 +1,4 @@
-package seedu.address.logic.parser;
+﻿package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
@@ -66,7 +66,7 @@ public class AddressBookParser {
             return new ClearCommand();
 
         case FilterCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
+            return new FilterCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
