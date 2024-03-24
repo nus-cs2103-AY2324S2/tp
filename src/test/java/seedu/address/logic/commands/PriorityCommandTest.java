@@ -90,7 +90,7 @@ public class PriorityCommandTest {
         assertTrue(standardCommand.equals(standardCommand));
         // null -> returns false
         assertFalse(standardCommand.equals(null));
-        // different remark -> returns false
+        // different priority -> returns false
         assertFalse(standardCommand.equals(new PriorityCommand("Bob Tan",
                 new Priority(VALID_PRIORITY_BOB))));
     }

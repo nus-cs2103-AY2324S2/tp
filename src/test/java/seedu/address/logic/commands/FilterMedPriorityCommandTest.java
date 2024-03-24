@@ -19,7 +19,6 @@ public class FilterMedPriorityCommandTest {
 
     @Test
     public void execute_filterMedPriority_success() {
-
         expectedModel.updateFilteredPersonList(person -> person.getPriority().value.equals("med"));
         CommandResult expectedCommandResult = new CommandResult(
                 FilterMedPriorityCommand.MESSAGE_SUCCESS);
@@ -32,7 +31,6 @@ public class FilterMedPriorityCommandTest {
         model.deletePerson(BENSON);
         model.deletePerson(DANIEL);
         expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-
         expectedModel.updateFilteredPersonList(person -> person.getPriority().value.equals("med"));
         CommandResult expectedCommandResult = new CommandResult(
                 FilterMedPriorityCommand.MESSAGE_NO_CONTACTS_FOUND);
