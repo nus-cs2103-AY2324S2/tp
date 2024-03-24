@@ -2,19 +2,25 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Comparator;
+
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
 import seedu.address.model.person.HasUpcomingPredicate;
 import seedu.address.model.person.Person;
-import java.util.Comparator;
-import seedu.address.model.Model;
-import seedu.address.logic.commands.exceptions.CommandException;
 
+/**
+ * Represents a command that sorts all persons by upcoming dates.
+ */
 public class UpcomingCommand extends Command {
 
     public static final String COMMAND_WORD = "upcoming";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts all persons by upcoming dates.\n";
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Sorts all persons by upcoming dates.\n";
 
-    public static final String MESSAGE_SUCCESS = "Sorted all persons by upcoming dates, starting with the earliest date.";
+    public static final String MESSAGE_SUCCESS = "Sorted all persons by upcoming dates,"
+            + " starting with the earliest date.";
 
     private static final HasUpcomingPredicate HAS_UPCOMING_PREDICATE = new HasUpcomingPredicate();
 

@@ -5,7 +5,7 @@ import java.util.function.Predicate;
 /**
  * A predicate that checks if a {@code Person} has {@code Upcoming} appointments.
  */
-public class HasUpcomingPredicate implements Predicate<Person>{
+public class HasUpcomingPredicate implements Predicate<Person> {
 
     /**
      * Tests if the given person has upcoming events.
@@ -16,5 +16,5 @@ public class HasUpcomingPredicate implements Predicate<Person>{
     @Override
     public boolean test(Person person) {
         return person.getUpcoming().hasUpcoming();
-    }    
+    }
 }

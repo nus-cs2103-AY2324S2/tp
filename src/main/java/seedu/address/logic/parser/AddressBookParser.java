@@ -90,7 +90,7 @@ public class AddressBookParser {
 
         case UpcomingCommand.COMMAND_WORD:
             return new UpcomingCommand();
-            
+
         case LastContactCommand.COMMAND_WORD:
             return new LastContactCommand();
 

@@ -69,7 +69,7 @@ public class Upcoming implements Comparable<Upcoming> {
     public boolean hasUpcoming() {
         return this.hasUpcoming;
     }
-    
+
     @Override
     public int compareTo(Upcoming other) {
         return this.dateTime.compareTo(other.dateTime);
