@@ -26,6 +26,9 @@ src/test/data/ExportCommandTest/filteredAddressBook.json
 docs/_site/
 docs/_markbind/logs/
 
+# Markbind generated files
+_markbind/
+
 #VSCode files
 .vscode/
 bin/
