@@ -3,8 +3,10 @@ package seedu.teachstack.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.teachstack.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -46,6 +48,7 @@ public class UniquePersonList implements Iterable<Person> {
             throw new DuplicatePersonException();
         }
         internalList.add(toAdd);
+        sort();
     }
 
     /**
@@ -66,6 +69,7 @@ public class UniquePersonList implements Iterable<Person> {
         }
 
         internalList.set(index, editedPerson);
+        sort();
     }
 
     /**
@@ -82,6 +86,7 @@ public class UniquePersonList implements Iterable<Person> {
     public void setPersons(UniquePersonList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
+        sort();
     }
 
     /**
@@ -95,6 +100,7 @@ public class UniquePersonList implements Iterable<Person> {
         }
 
         internalList.setAll(persons);
+        sort();
     }
 
     /**
@@ -146,5 +152,19 @@ public class UniquePersonList implements Iterable<Person> {
             }
         }
         return true;
+    }
+
+    private void sort() {
+        // Convert the ObservableList to a regular List
+        List<Person> list = internalList.stream().collect(Collectors.toList());
+
+        // Sort the list using Collections.sort() method
+        Collections.sort(list);
+
+        // Clear the ObservableList
+        internalList.clear();
+
+        // Add the sorted elements back to the ObservableList
+        internalList.addAll(list);
     }
 }

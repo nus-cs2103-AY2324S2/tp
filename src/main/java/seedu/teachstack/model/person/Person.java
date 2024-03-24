@@ -14,7 +14,7 @@ import seedu.teachstack.model.group.Group;
  * Represents a Person in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Person {
+public class Person implements Comparable<Person> {
 
     // Identity fields
     private final Name name;
@@ -118,4 +118,8 @@ public class Person {
                 .toString();
     }
 
+    @Override
+    public int compareTo(Person o) {
+        return this.grade.compareTo(o.grade);
+    }
 }
