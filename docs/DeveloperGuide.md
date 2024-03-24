@@ -239,9 +239,12 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
+### \[Proposed\] Create a new patient
 
-_{Explain here how the data archiving feature will be implemented}_
+Create new patient feature allows the healthcare workers to add a new patient to ImmuniMate.
+The healthcare worker must specify the patient's name, NRIC, phone, address, date of birth, sex, and status.
+The process of creating a new patient in Model is as follows:
+![CreateState1](images/CreateCommand.png)
 
 
 --------------------------------------------------------------------------------------------------------------------
