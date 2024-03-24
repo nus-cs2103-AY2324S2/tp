@@ -76,7 +76,7 @@ public class EditMaintainerCommandParserTest {
             + " " + PREFIX_FIELD + "{" + NAME_DESC_AMY
             + ADDRESS_DESC_AMY + EMAIL_DESC_AMY + " }";
         assertParseFailure(parser, userInput, String.format(EditMessages.MESSAGE_EDIT_INVALID_FIELD,
-                "Editing Pooch Contact name is not allowed for maintainer"));
+                "Editing Pooch Contact name is not allowed!"));
         // specified invalid field (product)
         userInput = EditMaintainerCommand.COMMAND_WORD + " " + PREFIX_NAME + "Maintainer1"
             + " " + PREFIX_FIELD + "{" + PRODUCT_DESC_AMY
@@ -101,6 +101,28 @@ public class EditMaintainerCommandParserTest {
             + ADDRESS_DESC_AMY + EMAIL_DESC_AMY + " }";
         assertParseFailure(parser, userInput, String.format(EditMessages.MESSAGE_EDIT_INVALID_FIELD,
                 "Editing Pooch Contact salary is not allowed for maintainer"));
+    }
+
+    @Test
+    public void checkMutipleInvalidField() {
+        // specified two invalid field (price and employment)
+        String userInput = EditMaintainerCommand.COMMAND_WORD + " " + PREFIX_NAME + "Maintainer1"
+            + " " + PREFIX_FIELD + "{" + PRICE_DESC_AMY + EMPLOYMENT_DESC_AMY
+            + ADDRESS_DESC_AMY + EMAIL_DESC_AMY + " }";
+        assertParseFailure(parser, userInput, String.format(EditMessages.MESSAGE_EDIT_INVALID_FIELD,
+                "Editing Pooch Contact price and employment is not allowed for maintainer"));
+        // specified three invalid field (name, price and employment)
+        userInput = EditMaintainerCommand.COMMAND_WORD + " " + PREFIX_NAME + "Maintainer1"
+            + " " + PREFIX_FIELD + "{" + EMPLOYMENT_DESC_AMY + PRICE_DESC_AMY + NAME_DESC_AMY
+            + ADDRESS_DESC_AMY + EMAIL_DESC_AMY + " }";
+        assertParseFailure(parser, userInput, String.format(EditMessages.MESSAGE_EDIT_INVALID_FIELD,
+                "Editing Pooch Contact name is not allowed!"));
+        // specified three invalid field (salary, price and employment)
+        userInput = EditMaintainerCommand.COMMAND_WORD + " " + PREFIX_NAME + "Maintainer1"
+            + " " + PREFIX_FIELD + "{" + EMPLOYMENT_DESC_AMY + PRICE_DESC_AMY + SALARY_DESC_AMY
+            + ADDRESS_DESC_AMY + EMAIL_DESC_AMY + " }";
+        assertParseFailure(parser, userInput, String.format(EditMessages.MESSAGE_EDIT_INVALID_FIELD,
+                "Editing Pooch Contact price, employment and salary is not allowed for maintainer"));
     }
 
     @Test

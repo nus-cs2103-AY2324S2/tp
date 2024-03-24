@@ -50,7 +50,7 @@ public class EditStaffCommandParser implements Parser<EditStaffCommand> {
         boolean hasDuplicateNamePrefix = argMultimap.hasDuplicateNamePrefix();
         if (hasDuplicateNamePrefix) {
             throw new ParseException(String.format(EditMessages.MESSAGE_EDIT_INVALID_FIELD,
-                    "Editing Pooch Contact name is not allowed for staff"));
+                    "Editing Pooch Contact name is not allowed!"));
         }
 
         // check for missing name

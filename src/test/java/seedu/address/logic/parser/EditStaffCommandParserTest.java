@@ -76,7 +76,7 @@ public class EditStaffCommandParserTest {
             + " " + PREFIX_FIELD + "{" + NAME_DESC_AMY
             + ADDRESS_DESC_AMY + EMAIL_DESC_AMY + " }";
         assertParseFailure(parser, userInput, String.format(EditMessages.MESSAGE_EDIT_INVALID_FIELD,
-                "Editing Pooch Contact name is not allowed for staff"));
+                "Editing Pooch Contact name is not allowed!"));
         // specified invalid field (product)
         userInput = EditStaffCommand.COMMAND_WORD + " " + PREFIX_NAME + "Staff1"
             + " " + PREFIX_FIELD + "{" + PRODUCT_DESC_AMY
@@ -101,6 +101,28 @@ public class EditStaffCommandParserTest {
             + ADDRESS_DESC_AMY + EMAIL_DESC_AMY + " }";
         assertParseFailure(parser, userInput, String.format(EditMessages.MESSAGE_EDIT_INVALID_FIELD,
                 "Editing Pooch Contact commission is not allowed for staff"));
+    }
+
+    @Test
+    public void checkMutipleInvalidField() {
+        // specified two invalid field (price and commission)
+        String userInput = EditStaffCommand.COMMAND_WORD + " " + PREFIX_NAME + "Staff1"
+            + " " + PREFIX_FIELD + "{" + PRICE_DESC_AMY + COMMISSION_DESC_AMY
+            + ADDRESS_DESC_AMY + EMAIL_DESC_AMY + " }";
+        assertParseFailure(parser, userInput, String.format(EditMessages.MESSAGE_EDIT_INVALID_FIELD,
+                "Editing Pooch Contact price and commission is not allowed for staff"));
+        // specified three invalid field (name, price and commission)
+        userInput = EditStaffCommand.COMMAND_WORD + " " + PREFIX_NAME + "Staff1"
+            + " " + PREFIX_FIELD + "{" + COMMISSION_DESC_AMY + PRICE_DESC_AMY + NAME_DESC_AMY
+            + ADDRESS_DESC_AMY + EMAIL_DESC_AMY + " }";
+        assertParseFailure(parser, userInput, String.format(EditMessages.MESSAGE_EDIT_INVALID_FIELD,
+                "Editing Pooch Contact name is not allowed!"));
+        // specified three invalid field (skill, price and commission)
+        userInput = EditStaffCommand.COMMAND_WORD + " " + PREFIX_NAME + "Staff1"
+            + " " + PREFIX_FIELD + "{" + COMMISSION_DESC_AMY + PRICE_DESC_AMY + SKILL_DESC_AMY
+            + ADDRESS_DESC_AMY + EMAIL_DESC_AMY + " }";
+        assertParseFailure(parser, userInput, String.format(EditMessages.MESSAGE_EDIT_INVALID_FIELD,
+                "Editing Pooch Contact price, skill and commission is not allowed for staff"));
     }
 
     @Test

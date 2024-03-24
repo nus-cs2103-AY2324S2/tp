@@ -51,7 +51,7 @@ public class EditSupplierCommandParser implements Parser<EditSupplierCommand> {
         boolean hasDuplicateNamePrefix = argMultimap.hasDuplicateNamePrefix();
         if (hasDuplicateNamePrefix) {
             throw new ParseException(String.format(EditMessages.MESSAGE_EDIT_INVALID_FIELD,
-                    "Editing Pooch Contact name is not allowed for supplier"));
+                    "Editing Pooch Contact name is not allowed!"));
         }
 
         // check for missing name
