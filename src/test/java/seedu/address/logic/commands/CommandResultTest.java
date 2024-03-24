@@ -36,6 +36,8 @@ public class CommandResultTest {
 
         commandResult.setChangeDataSource();
         assertFalse(commandResult.equals(new CommandResult("feedback", false, false)));
+
+        assertTrue(commandResult.isChangeDataSource());
     }
 
     @Test
