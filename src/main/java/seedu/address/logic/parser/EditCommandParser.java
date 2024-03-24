@@ -65,14 +65,15 @@ public class EditCommandParser implements Parser<EditCommand> {
             editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
         if (argMultimap.getValue(PREFIX_MATRIC_NUMBER).isPresent()) {
-            editPersonDescriptor.setMatric(ParserUtil.parseMatric(argMultimap.getValue(PREFIX_MATRIC_NUMBER).get()));
+            editPersonDescriptor.setMatric(
+                    ParserUtil.parseMatricForEdit(argMultimap.getValue(PREFIX_MATRIC_NUMBER).get()));
         }
         if (argMultimap.getValue(PREFIX_REFLECTION).isPresent()) {
             editPersonDescriptor.setReflection(
-                    ParserUtil.parseReflection(argMultimap.getValue(PREFIX_REFLECTION).get()));
+                    ParserUtil.parseReflectionForEdit(argMultimap.getValue(PREFIX_REFLECTION).get()));
         }
         if (argMultimap.getValue(PREFIX_STUDIO).isPresent()) {
-            editPersonDescriptor.setStudio(ParserUtil.parseStudio(argMultimap.getValue(PREFIX_STUDIO).get()));
+            editPersonDescriptor.setStudio(ParserUtil.parseStudioForEdit(argMultimap.getValue(PREFIX_STUDIO).get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 
