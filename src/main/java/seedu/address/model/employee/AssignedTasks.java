@@ -6,11 +6,15 @@ import static seedu.address.logic.Messages.MESSAGE_DUPLICATE_TASKID;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_TASKID;
 import static seedu.address.logic.Messages.MESSAGE_NONEXISTENT_TASKS;
 
+import java.util.Hashtable;
+import java.util.List;
 import java.util.Objects;
 
 import seedu.address.logic.commands.AssignTaskCommand;
 import seedu.address.logic.commands.UnassignTaskCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskId;
 
 /**
  * Represents an Employee's AssignedTasks in the address book.
@@ -29,6 +33,8 @@ public class AssignedTasks {
 
     private String tasks;
 
+    private Hashtable<TaskId, Task> assignedTasks;
+
     /**
      * Constructs a {@code AssignedTasks}.
      *
@@ -38,6 +44,7 @@ public class AssignedTasks {
         requireNonNull(tasks);
         checkArgument(isValidTask(tasks), MESSAGE_CONSTRAINTS);
         this.tasks = tasks;
+        this.assignedTasks = new Hashtable<>();
     }
 
     /**
@@ -50,10 +57,39 @@ public class AssignedTasks {
     }
 
     /**
+     * Gets the tasks assigned to the employee.
+     *
+     * @return A hashtable containing the tasks assigned to the employee.
+     */
+    public Hashtable<TaskId, Task> getAssignedTasks() {
+        return assignedTasks;
+    }
+
+    /**
      * Returns true if a given string is a valid name.
      */
     public static boolean isValidTask(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * JsonSerializableTaskMasterPro will run this after all Employees and Tasks has been added.
+     * The hashtable will be initialized with stored data.
+     */
+    public void initiateHashTable(List<Task> taskList) {
+        if (tasks.equals("")) {
+            return ;
+        }
+        String[] taskArray = tasks.split(" ");
+
+        // Check if taskID matches any of the numbers in tasks
+        for (String taskId : taskArray) {
+            for (Task task : taskList) {
+                if (Integer.parseInt(taskId) == task.getTaskId().taskId) {
+                    assignedTasks.put(task.getTaskId(), task);
+                }
+            }
+        }
     }
 
     /**
@@ -81,6 +117,22 @@ public class AssignedTasks {
         // Add the taskID to tasks
         tasks += " " + taskID;
         tasks.trim();
+        return this;
+    }
+
+    /**
+     * Adds a new task into assignedTasks.
+     *
+     * @param task The task to be added.
+     * @return The updated AssignedTasks object.
+     * @throws CommandException If the task ID is already present in the assigned tasks.
+     */
+    public AssignedTasks assignTask(Task task) throws CommandException {
+        if (assignedTasks.get(task.getTaskId()) != null) {
+            throw new CommandException(
+                    String.format(MESSAGE_DUPLICATE_TASKID, AssignTaskCommand.MESSAGE_USAGE));
+        }
+        assignedTasks.put(task.getTaskId(), task);
         return this;
     }
 
@@ -121,6 +173,22 @@ public class AssignedTasks {
         return this;
     }
 
+    /**
+     * Removes a task from assignedTasks.
+     *
+     * @param taskId The task to be removed.
+     * @return The updated AssignedTasks object.
+     * @throws CommandException If the task ID is not present in the assigned tasks.
+     */
+    public AssignedTasks unassignTask(TaskId taskId) throws CommandException {
+        if (assignedTasks.get(taskId) == null) {
+            throw new CommandException(
+                    String.format(MESSAGE_INVALID_TASKID, AssignTaskCommand.MESSAGE_USAGE));
+        }
+        assignedTasks.remove(taskId);
+        return this;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -133,12 +201,20 @@ public class AssignedTasks {
         }
 
         AssignedTasks otherAssignedTasks = (AssignedTasks) other;
-        return tasks.equals(otherAssignedTasks.tasks);
+        return tasks.equals(otherAssignedTasks.tasks) && assignedTasks.equals((otherAssignedTasks.assignedTasks));
     }
 
     @Override
     public String toString() {
-        return tasks;
+        String taskString = "";
+        for (TaskId taskId : assignedTasks.keySet()) {
+            // Retrieve the Task using the key
+            Task task = assignedTasks.get(taskId);
+
+            // Append the Task details to the string
+            taskString += (task.getTaskId().toString() + ". " + task.getName() + "\n");
+        }
+        return taskString;
     }
 
     @Override

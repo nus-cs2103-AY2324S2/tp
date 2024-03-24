@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.ReadOnlyTaskMasterPro;
 import seedu.address.model.TaskMasterPro;
+import seedu.address.model.employee.AssignedTasks;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.task.Task;
 
@@ -64,7 +65,6 @@ class JsonSerializableTaskMasterPro {
             }
             taskMasterPro.addEmployee(employee);
         }
-
         Employee.setUniversalEmployeeId(employeeId);
 
         for (JsonAdaptedTask jsonAdaptedTask : tasks) {
@@ -72,8 +72,15 @@ class JsonSerializableTaskMasterPro {
 
             taskMasterPro.addTask(task);
         }
-
         Task.setUniversalTaskId(taskId);
+
+        List<Task> taskList = taskMasterPro.getTaskList();
+        List<Employee> employeeList = taskMasterPro.getEmployeeList();
+
+        for (Employee e : employeeList) {
+            e.getTasks().initiateHashTable(taskList);
+        }
+
         return taskMasterPro;
     }
 
