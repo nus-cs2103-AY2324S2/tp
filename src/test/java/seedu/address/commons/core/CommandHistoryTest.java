@@ -1,14 +1,14 @@
 package seedu.address.commons.core;
 
-import javafx.application.Application;
-import javafx.application.Platform;
-import javafx.embed.swing.JFXPanel;
+import java.util.concurrent.CountDownLatch;
+import javax.swing.SwingUtilities;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import javax.swing.*;
-import java.util.concurrent.CountDownLatch;
+import javafx.application.Platform;
+import javafx.embed.swing.JFXPanel;
 
 class CommandHistoryTest {
 
