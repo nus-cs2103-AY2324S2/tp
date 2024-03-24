@@ -68,7 +68,7 @@ public class Library extends BookCollection {
         }
         return result;
     }
-    
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
