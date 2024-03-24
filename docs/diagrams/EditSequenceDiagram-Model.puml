@@ -32,9 +32,20 @@ ObservableList --> UniquePersonList : index
 
 UniquePersonList -> ObservableList : set(index, editedPerson)
 
+ObservableList --> UniquePersonList
+
 deactivate ObservableList
+
+UniquePersonList --> AddressBook
+
 deactivate UniquePersonList
+
+AddressBook --> ModelManager
+
 deactivate AddressBook
+
+[<-- ModelManager
+
 deactivate ModelManager
 
 [-> ModelManager : updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS)
@@ -43,6 +54,11 @@ activate ModelManager
 ModelManager -> FilteredList : setPredicate(PREDICATE_SHOW_ALL_PERSONS)
 activate FilteredList
 
+FilteredList --> ModelManager
+
 deactivate FilteredList
+
+[<-- ModelManager
+
 deactivate ModelManager
 @enduml

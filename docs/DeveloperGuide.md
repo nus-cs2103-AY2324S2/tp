@@ -157,14 +157,6 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Edit Command
 
-
-
-
-
-
-
-
-
 In the current iteration, `ModelManager` is the only object that implements model outside of testing. The following 
 sequence diagram shows the interactions within `Model` when editing a person.
 
