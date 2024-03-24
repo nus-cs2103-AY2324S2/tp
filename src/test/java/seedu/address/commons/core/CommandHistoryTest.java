@@ -1,42 +1,21 @@
 package seedu.address.commons.core;
 
-import java.util.concurrent.CountDownLatch;
-import javax.swing.SwingUtilities;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import javafx.application.Platform;
-import javafx.embed.swing.JFXPanel;
 
+/**
+ * Note: This test is unable to cover undoing at the start and end of the lists due to the
+ * undo() function playing audio, which requires a JavaFX application running
+ */
 class CommandHistoryTest {
 
     private CommandHistory commandHistory;
 
-
-    private static void initJavaFX() {
-        // Initialize JavaFX toolkit if not already initialized
-        if (Platform.isFxApplicationThread()) {
-            return;
-        }
-
-        final CountDownLatch latch = new CountDownLatch(1);
-        SwingUtilities.invokeLater(() -> {
-            new JFXPanel(); // Initializes the toolkit
-            latch.countDown();
-        });
-
-        try {
-            latch.await();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
     @BeforeEach
     void setUp() {
         commandHistory = new CommandHistory();
-        initJavaFX();
     }
     @Test
     void undo_undoOnce_returnsPrevCommand() {
@@ -51,15 +30,6 @@ class CommandHistoryTest {
         commandHistory.addCommandToHistory("test2");
         commandHistory.undo();
         Assertions.assertEquals("test2", commandHistory.getCurrentCommand());
-        commandHistory.undo();
-        Assertions.assertEquals("test1", commandHistory.getCurrentCommand());
-    }
-
-    @Test
-    public void undo_undoMoreThanHistoryLength_returnsCurrentCommand() {
-        commandHistory.addCommandToHistory("test1");
-        commandHistory.undo();
-        commandHistory.undo();
         commandHistory.undo();
         Assertions.assertEquals("test1", commandHistory.getCurrentCommand());
     }
@@ -80,16 +50,7 @@ class CommandHistoryTest {
     }
 
     @Test
-    void undo_undoAddOnEmptyList_returnsPrevCommand() {
-        commandHistory.undo();
-        commandHistory.addCommandToHistory("test1");
-        commandHistory.undo();
-
-        Assertions.assertEquals("test1", commandHistory.getCurrentCommand());
-    }
-
-    @Test
-    void redo_undoUndoRedo_returnsNextCommand() {
+    void redo_addAddUndoUndoRedo_returnsNextCommand() {
         commandHistory.addCommandToHistory("test1");
         commandHistory.addCommandToHistory("test2");
 
@@ -121,6 +82,13 @@ class CommandHistoryTest {
 
         Assertions.assertEquals("test1", commandHistory.getCurrentCommand());
 
-        redo_undoUndoRedo_returnsNextCommand();
+        commandHistory.addCommandToHistory("test2");
+        commandHistory.undo();
+        commandHistory.undo();
+        Assertions.assertEquals("test1", commandHistory.getCurrentCommand());
+        commandHistory.redo();
+        Assertions.assertEquals("test2", commandHistory.getCurrentCommand());
+        commandHistory.redo();
+        Assertions.assertEquals("", commandHistory.getCurrentCommand());
     }
 }
