@@ -147,6 +147,14 @@ public class UniqueGroupListTest {
     }
 
     @Test
+    public void equals() {
+        UniqueGroupList uniqueGroupListCopy = new UniqueGroupList();
+        uniqueGroupListCopy.add(TUT04);
+        uniqueGroupList.add(TUT04);
+        assertTrue(uniqueGroupList.equals(uniqueGroupListCopy));
+    }
+
+    @Test
     public void toStringMethod() {
         assertEquals(uniqueGroupList.asUnmodifiableObservableList().toString(), uniqueGroupList.toString());
     }
