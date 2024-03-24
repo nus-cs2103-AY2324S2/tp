@@ -60,7 +60,7 @@ public class ClassBookTest {
 
     @Test
     public void createClass_newClass_success() {
-        Classes sampleClass = new Classes(new CourseCode("CS101"), new AddressBook());
+        Classes sampleClass = new Classes(new CourseCode("CS101"));
         ClassBook classBook = new ClassBook();
         classBook.createClass(sampleClass);
         assertTrue(classBook.hasClass(sampleClass));

@@ -37,6 +37,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.model.person.AttendanceStatus;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -50,7 +51,8 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Person expectedPerson = new PersonBuilder(BOB).withDate(VALID_DATE_1).build();
+        Person expectedPerson = new PersonBuilder(BOB)
+                .withDate(new Attendance(new AttendanceStatus(VALID_DATE_1, "1"))).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
@@ -58,7 +60,9 @@ public class AddCommandParserTest {
 
 
         // multiple tags - all accepted
-        Person expectedPersonMultipleTags = new PersonBuilder(BOB).withDate(VALID_DATE_1, VALID_DATE_2)
+        Person expectedPersonMultipleTags = new PersonBuilder(BOB)
+                .withDate(new Attendance(new AttendanceStatus(VALID_DATE_1, "1")),
+                        new Attendance(new AttendanceStatus(VALID_DATE_2, "1")))
                 .build();
         assertParseSuccess(parser,
                 NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + STUDENT_ID_DESC_BOB

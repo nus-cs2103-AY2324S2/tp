@@ -10,17 +10,36 @@ import static seedu.address.testutil.TypicalPersons.BENSON;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.Logic;
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.model.person.Classes;
+import seedu.address.model.person.CourseCode;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.testutil.AddressBookBuilder;
 
 public class ModelManagerTest {
 
     private ModelManager modelManager = new ModelManager();
+    private Logic logicStub;
+    private final Classes class1 = new Classes(new CourseCode("class1"));
+    @BeforeEach
+    public void setUp() {
+        List<Classes> classesList = new ArrayList<>();
+        classesList.add(class1);
+        logicStub = new LogicManagerStub(classesList);
+    }
 
     @Test
     public void constructor() {
@@ -84,8 +103,74 @@ public class ModelManagerTest {
 
     @Test
     public void hasPerson_personInAddressBook_returnsTrue() {
-        modelManager.addPerson(ALICE);
+        ObservableList<Classes> classList = logicStub.getFilteredClassList();
+        Classes firstclass = classList.get(0);
+        modelManager.selectClass(firstclass);
+        if (!modelManager.hasPerson(ALICE)) {
+            modelManager.addPerson(ALICE);
+        }
         assertTrue(modelManager.hasPerson(ALICE));
+    }
+
+    @Test
+    public void addPerson_existingPerson_throwsDataLoadingException() {
+        ObservableList<Classes> classList = logicStub.getFilteredClassList();
+        Classes firstclass = classList.get(0);
+        modelManager.selectClass(firstclass);
+        if (!modelManager.hasPerson(ALICE)) {
+            modelManager.addPerson(ALICE);
+        }
+
+        assertThrows(DuplicatePersonException.class, () -> modelManager.addPerson(ALICE));
+    }
+
+    @Test
+    public void addPerson_nullPerson_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.addPerson(null));
+    }
+
+    //    @Test
+    //    public void setPerson_personExists_personIsUpdated() {
+    //        ObservableList<Classes> classList = logicStub.getFilteredClassList();
+    //        Classes firstclass = classList.get(0);
+    //        modelManager.selectClass(firstclass);
+    //        Person originalPerson = new PersonBuilder().withName("Alice")
+    //                .withPhone("98798798").withEmail("alice@gmail.com").withStudentID("A1111111D").build();
+    //        Person editedPerson = new PersonBuilder().withName("Alice")
+    //                .withPhone("999988888").withEmail("alice@gmail.com").withStudentID("A1111111D").build();
+    //
+    //        if (!modelManager.hasPerson(originalPerson)) {
+    //            modelManager.addPerson(originalPerson);
+    //
+    //        }
+    //        if (modelManager.hasPerson(editedPerson)) {
+    //            modelManager.deletePerson(editedPerson);
+    //        }
+    //        modelManager.addPerson(originalPerson);
+    //        assertTrue(modelManager.hasPerson(originalPerson));
+    //
+    //        modelManager.setPerson(originalPerson, editedPerson);
+    //        assertTrue(modelManager.hasPerson(editedPerson));
+    //    }
+
+    @Test
+    public void createClass_addNewClass_returnSuccess() {
+        ObservableList<Classes> classList = logicStub.getFilteredClassList();
+        if (classList.contains(class1)) {
+            modelManager.removeClass(class1);
+        }
+        modelManager.createClass(class1);
+        assertTrue(modelManager.hasClass(class1));
+    }
+
+    @Test
+    public void removeClass_removeExistingClass_returnSuccess() {
+        ObservableList<Classes> classList = logicStub.getFilteredClassList();
+        if (!classList.contains(class1)) {
+            modelManager.createClass(class1);
+        }
+        modelManager.removeClass(class1);
+        assertTrue(!modelManager.hasClass(class1));
     }
 
     @Test
@@ -130,4 +215,62 @@ public class ModelManagerTest {
         differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
         assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs, classBook)));
     }
+
+
+    private class LogicManagerStub implements Logic {
+        private final ObservableList<Person> filteredPersonList = FXCollections.observableArrayList();
+        private final ObservableList<Classes> filteredClassList = FXCollections.observableArrayList();
+
+        public LogicManagerStub(List<Classes> classList) {
+            // Populate the filtered class list with provided classes
+            filteredClassList.setAll(classList);
+        }
+
+        @Override
+        public CommandResult execute(String commandText) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyAddressBook getAddressBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyClassBook getClassBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Person> getFilteredPersonList() {
+            return filteredPersonList;
+        }
+
+        @Override
+        public ObservableList<Classes> getFilteredClassList() {
+            return filteredClassList;
+        }
+
+        @Override
+        public Path getAddressBookFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Path getClassBookFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public GuiSettings getGuiSettings() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setGuiSettings(GuiSettings guiSettings) {
+            throw new AssertionError("This method should not be called.");
+        }
+    }
+
+
 }
