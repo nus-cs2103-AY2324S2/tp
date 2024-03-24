@@ -22,6 +22,10 @@ public class CommandHistory {
      * Maintaining lastCommandType is required due to indexing issues when calling undo after redo and vice versa
      */
     private CommandHistoryType lastCommandType;
+
+    /**
+     * Initializes the command history with an empty string as the first command.
+     */
     public CommandHistory() {
         commandHistory = new ArrayList<>();
         commandHistory.add(""); // Add an empty string to the history by default.
@@ -37,6 +41,10 @@ public class CommandHistory {
         currentCommandIndex = commandHistory.size() - 1;
     }
 
+    /**
+     * Gets the command at the current index in the history
+     * @return Current command
+     */
     public String getCurrentCommand() {
         return commandHistory.get(currentCommandIndex);
     }
