@@ -102,7 +102,7 @@ public class AddressBookParser {
 
     /**
      * Checks if command is a substring of a full command.
-     * 
+     *
      * @param command user input command string
      * @return  full command if input is a substring, else return the original input command
      * @throws ParseException if the input matches to multiple commands
