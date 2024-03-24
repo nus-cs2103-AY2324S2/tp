@@ -11,10 +11,12 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_INTERVIEW;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.PersonBuilder;
-
 public class PersonTest {
 
     @Test
@@ -97,10 +99,25 @@ public class PersonTest {
     }
     @Test
     public void compareTo_differentInterviewDates() {
-        Person personWithEarlierDate = new PersonBuilder().withInterviewDate("12-12-2025 1200").build();
-        Person personWithLaterDate = new PersonBuilder().withInterviewDate("20-12-2025 1200").build();
-        int differenceInDates = 8;
-        assertEquals(-differenceInDates, personWithEarlierDate.compareTo(personWithLaterDate));
-        assertEquals(differenceInDates, personWithLaterDate.compareTo(personWithEarlierDate));
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm");
+        // Dates
+        String pastDate = LocalDateTime.now().minusDays(1).format(format);
+        String futureDate = LocalDateTime.now().plusDays(1).format(format);
+        String futureDatePlusOne = LocalDateTime.now().plusDays(2).format(format);
+        // Persons
+        Person personWithPastDate = new PersonBuilder().withInterviewDate(pastDate).build();
+        Person personWithFutureDate = new PersonBuilder().withInterviewDate(futureDate).build();
+        Person personWithFutureDatePlusOne = new PersonBuilder().withInterviewDate(futureDatePlusOne).build();
+        Person personWithNoDate = new PersonBuilder().build();
+        // this is past but other is future
+        assertEquals(1, personWithPastDate.compareTo(personWithFutureDate));
+        // The other is past but this is future
+        assertEquals(-1, personWithFutureDate.compareTo(personWithPastDate));
+        // The other is later than this (both are in the future)
+        assertEquals(1, personWithFutureDatePlusOne.compareTo(personWithFutureDate));
+        // The other is earlier than this (both are in the future)
+        assertEquals(-1, personWithFutureDate.compareTo(personWithFutureDatePlusOne));
+        // this has no date, the other has a date in the future
+        assertEquals(1, personWithNoDate.compareTo(personWithFutureDate));
     }
 }

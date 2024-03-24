@@ -149,7 +149,11 @@ public class Person implements Comparable<Person> {
                 .add("note", note)
                 .toString();
     }
-    private int compareInterviewDates(LocalDateTime thisInterviewDate, LocalDateTime otherInterviewDate) {
+    /**
+     * Returns int by comparing the 2 LocalDateTime dates with reference to current date.
+     * This defines a notion of precedence between two inputs.
+     */
+    public int compareInterviewDates(LocalDateTime thisInterviewDate, LocalDateTime otherInterviewDate) {
         LocalDateTime currentDate = LocalDateTime.now();
         boolean thisIsPast = thisInterviewDate.isBefore(currentDate);
         boolean otherIsPast = otherInterviewDate.isBefore(currentDate);
