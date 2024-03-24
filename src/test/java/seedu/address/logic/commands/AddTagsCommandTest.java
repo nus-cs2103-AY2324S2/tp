@@ -78,6 +78,7 @@ public class AddTagsCommandTest {
 
         AddTagsCommand firstCommand = new AddTagsCommand(INDEX_FIRST_PERSON, TagBuilder.build(tagList1));
         AddTagsCommand secondCommand = new AddTagsCommand(INDEX_FIRST_PERSON, TagBuilder.build(tagList2));
+        AddTagsCommand thirdCommand = new AddTagsCommand(INDEX_SECOND_PERSON, TagBuilder.build(tagList1));
 
         assertTrue(firstCommand.equals(firstCommand));
         AddTagsCommand firstCommandCopy = new AddTagsCommand(INDEX_FIRST_PERSON, TagBuilder.build(tagList1));
@@ -85,6 +86,7 @@ public class AddTagsCommandTest {
         assertFalse(firstCommand.equals(1));
         assertFalse(firstCommand.equals(null));
         assertFalse(firstCommand.equals(secondCommand));
+        assertFalse(firstCommand.equals(thirdCommand));
     }
 
     @Test
