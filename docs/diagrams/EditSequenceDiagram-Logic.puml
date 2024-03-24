@@ -76,6 +76,12 @@ activate Model
 Model --> EditCommand :
 deactivate Model
 
+EditCommand -> Model : updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS)
+activate Model
+
+Model --> EditCommand:
+deactivate Model
+
 create CommandResult
 EditCommand -> CommandResult
 activate CommandResult
