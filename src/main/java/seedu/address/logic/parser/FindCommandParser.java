@@ -40,23 +40,34 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
 
-        NameContainsSubstringPredicate namePredicate = new NameContainsSubstringPredicate(
-                ParserUtil.parseSearchString(argMultimap.getValue(PREFIX_NAME).orElse("")));
-        PhoneContainsSubstringPredicate phonePredicate = new PhoneContainsSubstringPredicate(
-                ParserUtil.parseSearchString(argMultimap.getValue(PREFIX_PHONE).orElse("")));
-        EmailContainsSubstringPredicate emailPredicate = new EmailContainsSubstringPredicate(
-                ParserUtil.parseSearchString(argMultimap.getValue(PREFIX_EMAIL).orElse("")));
-        AddressContainsSubstringPredicate addressPredicate = new AddressContainsSubstringPredicate(
-                ParserUtil.parseSearchString(argMultimap.getValue(PREFIX_ADDRESS).orElse("")));
-        NoteContainsSubstringPredicate notePredicate = new NoteContainsSubstringPredicate(ParserUtil
-                .parseSearchString(argMultimap.getValue(PREFIX_NOTE).orElse("")));
-        TagSetContainsAllTagsPredicate tagsPredicate = new TagSetContainsAllTagsPredicate(
-                ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG)));
+        // Check if no attribute is provided e.g (find john)
+        if (!argMultimap.getPreamble().isEmpty() && argMultimap.getValue(PREFIX_NAME).isEmpty()
+            && argMultimap.getValue(PREFIX_PHONE).isEmpty() && argMultimap.getValue(PREFIX_EMAIL).isEmpty()
+                && argMultimap.getValue(PREFIX_ADDRESS).isEmpty() && argMultimap.getValue(PREFIX_NOTE).isEmpty()
+                && argMultimap.getAllValues(PREFIX_TAG).isEmpty()) {
+            NameContainsSubstringPredicate specialNamePredicate = new NameContainsSubstringPredicate(
+                    ParserUtil.parseSearchString(argMultimap.getPreamble()));
+            CombinedPredicates predicates = new CombinedPredicates(specialNamePredicate);
+            return new FindCommand(predicates);
+        } else {
+            NameContainsSubstringPredicate namePredicate = new NameContainsSubstringPredicate(
+                    ParserUtil.parseSearchString(argMultimap.getValue(PREFIX_NAME).orElse("")));
+            PhoneContainsSubstringPredicate phonePredicate = new PhoneContainsSubstringPredicate(
+                    ParserUtil.parseSearchString(argMultimap.getValue(PREFIX_PHONE).orElse("")));
+            EmailContainsSubstringPredicate emailPredicate = new EmailContainsSubstringPredicate(
+                    ParserUtil.parseSearchString(argMultimap.getValue(PREFIX_EMAIL).orElse("")));
+            AddressContainsSubstringPredicate addressPredicate = new AddressContainsSubstringPredicate(
+                    ParserUtil.parseSearchString(argMultimap.getValue(PREFIX_ADDRESS).orElse("")));
+            NoteContainsSubstringPredicate notePredicate = new NoteContainsSubstringPredicate(ParserUtil
+                    .parseSearchString(argMultimap.getValue(PREFIX_NOTE).orElse("")));
+            TagSetContainsAllTagsPredicate tagsPredicate = new TagSetContainsAllTagsPredicate(
+                    ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG)));
 
-        CombinedPredicates predicates = new CombinedPredicates(namePredicate, phonePredicate, emailPredicate,
-                addressPredicate, notePredicate, tagsPredicate);
+            CombinedPredicates predicates = new CombinedPredicates(namePredicate, phonePredicate, emailPredicate,
+                    addressPredicate, notePredicate, tagsPredicate);
 
-        return new FindCommand(predicates);
+            return new FindCommand(predicates);
+        }
     }
 
 }
