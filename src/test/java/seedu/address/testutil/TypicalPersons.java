@@ -68,6 +68,17 @@ public class TypicalPersons {
         return ab;
     }
 
+    /**
+     * Returns an {@code AddressBook} with shorter list of typical persons.
+     */
+    public static AddressBook getShortTypicalAddressBook() {
+        AddressBook ab = new AddressBook();
+        for (Person person : getShortTypicalPersons()) {
+            ab.addPerson(person);
+        }
+        return ab;
+    }
+
     public static List<Person> getTypicalPersons() {
         return new ArrayList<>(Arrays.asList(
                 ALICE,
@@ -81,4 +92,12 @@ public class TypicalPersons {
                 GON
         ));
     }
+
+    public static List<Person> getShortTypicalPersons() {
+        return new ArrayList<>(Arrays.asList(
+                ALICE,
+                BENSON
+        ));
+    }
+
 }
