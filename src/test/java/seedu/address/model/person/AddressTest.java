@@ -56,13 +56,13 @@ public class AddressTest {
         assertTrue(address.isMatch("51 Clementi Road"));
 
         // Substring whole word -> returns true
-        assertTrue(address.isMatch(" Clementi"));
+        assertTrue(address.isMatch("Clementi"));
 
         // Substring partial word -> returns true
-        assertTrue(address.isMatch(" Clem"));
+        assertTrue(address.isMatch("Clem"));
 
         // Substring case mismatch -> returns true
-        assertTrue(address.isMatch(" clem"));
+        assertTrue(address.isMatch("clem"));
 
         // Additional whitespace
         assertTrue(address.isMatch(" 51 Clementi Road\n"));

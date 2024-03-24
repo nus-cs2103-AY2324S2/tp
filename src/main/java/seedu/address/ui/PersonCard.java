@@ -4,10 +4,12 @@ import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.person.Attribute;
 import seedu.address.model.person.Person;
 
 /**
@@ -57,10 +59,10 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
         // Set fields with information from the person
         id.setText(displayedIndex + ". ");
-        name.setText(person.getName().getValue());
-        phone.setText(person.getPhone().getValue());
+        name.setText(person.getName().toString());
+        phone.setText(person.getPhone().toString());
         person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.getValue()))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.getValue())));
+                .sorted(Comparator.comparing(Attribute::toString))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.toString())));
     }
 }

@@ -204,6 +204,12 @@ The following activity diagram summarizes what happens when a QR Code is generat
 
 _vCard_ is a data format for contact information. Detailed information can be found in [RFC 6350](https://datatracker.ietf.org/doc/html/rfc6350).
 
+### Deleting a client from FitBook
+
+The activity diagram below illustrates what happens when a client is deleted from `FitBook`.
+
+![DeleteCommandActivityDiagram](images/DeleteCommandActivityDiagram.png)
+
 ### Adding a Note To An Existing Client
 
 The sequence diagram below shows how the components interact with each other when the user inputs the command `note 1 note/Likes to eat`.
@@ -213,6 +219,12 @@ The sequence diagram below shows how the components interact with each other whe
 The diagram highlights the four main components of FitBook, highlighted in their respective colors. For more information regarding the four main components, see [Main components of the architecture](#main-components-of-the-architecture).
 
 > The above sequence diagram also applies to the removal of a note from an existing client when no input string or prefix is entered for the `note` command. (i.e. `note 1`, or `note 1 note/`).
+
+### Adding or editing a client
+
+The following activity diagram summarizes what happens when a client is added or edited in FitBook.
+
+![AddAndEditCommandSequenceDiagram](images/AddAndEditCommandActivityDiagram.png)
 
 ### \[Proposed\] Undo/redo feature
 

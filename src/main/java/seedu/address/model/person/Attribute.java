@@ -11,7 +11,7 @@ public abstract class Attribute<T extends Object> {
     }
 
     /**
-     * Get the value stored in this attribute.
+     * Gets the value stored in this attribute.
      *
      * @return Value stored in this attribute.
      */
@@ -20,11 +20,10 @@ public abstract class Attribute<T extends Object> {
     }
 
     /**
-     * Determine if a specified value is a match with the value stored in this
+     * Determines if a specified value is a match with the value stored in this
      * attriute.
      *
      * @param otherValue Value to check against
-     *
      * @return True if specified value is a match, False otherwise
      */
     public abstract boolean isMatch(Object otherValue);
