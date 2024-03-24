@@ -212,6 +212,28 @@ Examples:
   The above command adds the note "meet poochie tonight to get kibble" to 
   the contact with name **_Poochie_**, provided **_Poochie_** exists as a name of a contact in Pooch Contact Book
 
+### Undo a command : `undo`
+
+Undo a previous command which made a change to Pooch Planner history.
+
+Format: `/undo`
+
+* Note that there is no parameter for this command
+* Any unnecessary parameter or value after /undo will simply be ignored.
+* This command unable to be executed when there is no more previous state.
+
+### Redo a command : `redo`
+
+Retrieve next state of Pooch Planner
+
+Format: `/redo`
+
+* Note that there is no parameter for this command
+* Any unnecessary parameter or value after /undo will simply be ignored.
+* This command unable to be executed when there is no next state.
+* This command only able to be executed when at least one undo command is executed.
+
+
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -269,4 +291,6 @@ Action | Format, Examples
 **Help Delete** | `/help-delete`
 **Help Edit** | `/help-edit`
 **Help Search** | `/help-search`
+**Undo Command** | `/undo`
+**Redo Command** | `/redo`
 `
