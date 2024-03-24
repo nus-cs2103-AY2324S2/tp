@@ -38,7 +38,7 @@ public class ParserUtilTest {
     private static final String VALID_ADMISSION_DATE = "12/12/2023";
     private static final String VALID_DOB = "12/12/1999";
     private static final String VALID_TAG_1 = "Diabetes";
-    private static final String VALID_TAG_2 = "Fall Risk";
+    private static final String VALID_TAG_2 = "FallRisk";
 
     private static final String WHITESPACE = " \t\r\n";
 

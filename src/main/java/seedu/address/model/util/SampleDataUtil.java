@@ -22,15 +22,15 @@ public class SampleDataUtil {
         return new Person[]{
             new Person(new Name("Alex Yeoh"), getTagSet("Diabetes"), new Dob("01/01/1990"),
                 new Ic("S1234567A"), new AdmissionDate("01/01/2022"), new Ward("Ward A")),
-            new Person(new Name("Bernice Yu"), getTagSet("Fall Risk", "Diabetes"), new Dob("01/01/1990"),
+            new Person(new Name("Bernice Yu"), getTagSet("FallRisk", "Diabetes"), new Dob("01/01/1990"),
                     new Ic("S1234567A"), new AdmissionDate("02/01/2022"), new Ward("Ward B")),
-            new Person(new Name("Charlotte Oliveiro"), getTagSet("Fall Risk"), new Dob("01/01/1990"),
+            new Person(new Name("Charlotte Oliveiro"), getTagSet("FallRisk"), new Dob("01/01/1990"),
                     new Ic("S1234567A"), new AdmissionDate("03/01/2022"), new Ward("Ward C")),
             new Person(new Name("David Li"), getTagSet("Dementia"), new Dob("01/01/1990"),
                     new Ic("S1234567A"), new AdmissionDate("04/01/2022"), new Ward("Ward D")),
             new Person(new Name("Irfan Ibrahim"), getTagSet("NPO"), new Dob("01/01/1990"),
                     new Ic("S1234567A"), new AdmissionDate("05/01/2022"), new Ward("Ward E")),
-            new Person(new Name("Roy Balakrishnan"), getTagSet("colleagues"), new Dob("01/01/1990"),
+            new Person(new Name("Roy Balakrishnan"), getTagSet("Dementia"), new Dob("01/01/1990"),
                     new Ic("S1234567A"), new AdmissionDate("Bed Rest"), new Ward("Ward F"))
         };
     }

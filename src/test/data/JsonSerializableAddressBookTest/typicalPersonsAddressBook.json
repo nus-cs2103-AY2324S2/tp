@@ -9,7 +9,7 @@
     "ward":"A1"
   }, {
     "name" : "Benson Meier",
-    "tags" : [ "Dementia", "Fall Risk" ],
+    "tags" : [ "Dementia", "FallRisk" ],
     "dob": "20/02/2001",
     "ic": "A2345678B",
     "admissionDate": "01/02/2024",
@@ -23,7 +23,7 @@
     "ward": "C1"
   }, {
     "name" : "Daniel Meier",
-    "tags" : [ "Hearing Impaired" ],
+    "tags" : [ "HearingImpaired" ],
     "dob": "20/02/2003",
     "ic": "A5678901B",
     "admissionDate": "10/03/2024",

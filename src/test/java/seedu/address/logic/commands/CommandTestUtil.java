@@ -29,7 +29,7 @@ public class CommandTestUtil {
 
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
-    public static final String VALID_TAG_FALL_RISK = "Fall risk";
+    public static final String VALID_TAG_FALL_RISK = "FallRisk";
     public static final String VALID_TAG_DIABETES = "Diabetes";
     public static final String VALID_DOB_AMY = "02/02/2012";
     public static final String VALID_DOB_BOB = "01/01/2010";

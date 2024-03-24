@@ -1,7 +1,7 @@
 {
   "persons": [ {
     "name": "Alice Pauline",
-    "tags": [ "Fall Risk" ],
+    "tags": [ "FallRisk" ],
     "dob": "20/02/2000",
     "ic": "A1234567B",
     "admissionDate": "01/03/2024",
