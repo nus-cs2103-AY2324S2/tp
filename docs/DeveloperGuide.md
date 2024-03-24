@@ -193,7 +193,11 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.addressbook.commons` package. Each component comes from one of the
+three packages: `core`, `exceptions` and `util`. `DataLoadingException` for example is a components from the exception
+package, which `AddressBookStorage` and `UserPrefsSroage` throws and `MainApp` catches.
+
+<img src="images/DataLoadingExceptionObjectDiagram.png" width="450" />
 
 --------------------------------------------------------------------------------------------------------------------
 
