@@ -44,15 +44,19 @@ public class RemoveFavouriteCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         List<Person> people = model.getFilteredPersonList();
         List<String> modifiedContacts = new ArrayList<>();
+
         boolean anyGreaterThanSize = this.indices.stream().anyMatch(index -> index.getZeroBased() >= people.size());
         if (anyGreaterThanSize) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
+
+        boolean anyNotFavourite = this.indices.stream().anyMatch(index -> !people.get(index.getZeroBased()).getFavourite());
+        if (anyNotFavourite) {
+            throw new CommandException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
+        }
+
         for (Index index : this.indices) {
             Person person = people.get(index.getZeroBased());
-            if (!person.getFavourite()) {
-                throw new CommandException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
-            }
             modifiedContacts.add(person.getName().fullName);
             person.removeFavourite();
             model.setPerson(person, person);
