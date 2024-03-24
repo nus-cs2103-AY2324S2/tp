@@ -23,7 +23,11 @@ public class ChangeDataSourceParser implements Parser<ChangeDataSourceCommand> {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, ChangeDataSourceCommand.MESSAGE_USAGE));
         }
-        Path newPath = Paths.get(args.trim());
+        if (!trimmedArgs.endsWith(".json")) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ChangeDataSourceCommand.MESSAGE_USAGE));
+        }
+        Path newPath = Paths.get(trimmedArgs);
         return new ChangeDataSourceCommand(newPath);
     }
 }

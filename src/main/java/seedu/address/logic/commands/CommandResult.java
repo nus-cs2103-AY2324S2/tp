@@ -19,6 +19,9 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
+    /** The application should change the status bar. */
+    private boolean changeDataSource = false;
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
@@ -48,6 +51,14 @@ public class CommandResult {
         return exit;
     }
 
+    public boolean isChangeDataSource() {
+        return changeDataSource;
+    }
+
+    public void setChangeDataSource() {
+        this.changeDataSource=true;
+    }
+    
     @Override
     public boolean equals(Object other) {
         if (other == this) {
