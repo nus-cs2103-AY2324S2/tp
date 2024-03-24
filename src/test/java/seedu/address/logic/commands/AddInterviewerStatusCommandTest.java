@@ -32,7 +32,6 @@ public class AddInterviewerStatusCommandTest {
         Person editedPerson = new PersonBuilder(firstPerson).withStatus(INTERVIEWER_STATUS_STUB).build_interviewer();
         AddInterviewerStatusCommand addInterviewerStatusCommand = new AddInterviewerStatusCommand(
                 firstPerson.getPhone(), new InterviewerStatus(editedPerson.getCurrentStatus()));
-
         String expectedMessage = String.format(AddInterviewerStatusCommand.MESSAGE_ADD_STATUS_SUCCESS, editedPerson);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
@@ -51,7 +50,6 @@ public class AddInterviewerStatusCommandTest {
 
         AddInterviewerStatusCommand addInterviewerStatusCommand = new AddInterviewerStatusCommand(
                 firstPerson.getPhone(), new InterviewerStatus(editedPerson.getCurrentStatus()));
-
         String expectedMessage = String.format(AddInterviewerStatusCommand.MESSAGE_ADD_STATUS_SUCCESS, editedPerson);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());

@@ -25,7 +25,8 @@ public class HelpWindow extends UiPart<Stage> {
             + "\n4. Delete an interview: delete_interview [interview index]"
             + "\n5. List applicants/interviewers: list_persons"
             + "\n6. List interviews: list_interviews"
-            + "\n7. Edit applicants/interviewers: edit [applicant/interviewer index] n/[newName]...";
+            + "\n7. Edit applicants/interviewers: edit [applicant/interviewer index] n/[newName]..."
+            + "\n8. Find person(s) by email/name/phone: find_[email/name/phone] [keyword1] [keyword2]...";
     public static final String HELP_MESSAGE = "Refer to our user guide at " + USERGUIDE_URL + " for detailed info "
             + "on how to use Tether." + COMMON_COMMANDS;
 

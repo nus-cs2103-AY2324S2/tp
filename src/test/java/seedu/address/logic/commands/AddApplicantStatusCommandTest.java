@@ -34,7 +34,6 @@ public class AddApplicantStatusCommandTest {
         Person editedPerson = new PersonBuilder(firstPerson).withStatus(APPLICANT_STATUS_STUB).build_applicant();
         AddApplicantStatusCommand addApplicantStatusCommand = new AddApplicantStatusCommand(firstPerson.getPhone(),
                 new ApplicantStatus(editedPerson.getCurrentStatus()));
-
         String expectedMessage = String.format(AddApplicantStatusCommand.MESSAGE_ADD_STATUS_SUCCESS, editedPerson);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
@@ -53,7 +52,6 @@ public class AddApplicantStatusCommandTest {
 
         AddApplicantStatusCommand addApplicantStatusCommand = new AddApplicantStatusCommand(firstPerson.getPhone(),
                 new ApplicantStatus(editedPerson.getCurrentStatus()));
-
         String expectedMessage = String.format(AddApplicantStatusCommand.MESSAGE_ADD_STATUS_SUCCESS, editedPerson);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
