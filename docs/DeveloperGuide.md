@@ -171,7 +171,7 @@ Step 2. The user executes `get 3` command to retrieve candidate at 3rd entry in 
 
 Step 3. `GetCommand#execute()` checks whether index 3 is valid argument, and if it is within the valid range, it creates `CommandResult` object to deliver success messages to `LogicManager` class.
 
-The following sequence diagram shows how an undo operation goes through the `Logic` component:
+The following sequence diagram shows how an get operation goes through the `Logic` component:
 
 ![GetSequenceDiagram](images/GetSequenceDiagram.png)
 
