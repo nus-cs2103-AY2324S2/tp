@@ -43,7 +43,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/seahogs.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](https://github.com/SeaHogs)]
 [[portfolio](team/seahogs.md)]
 
 * Role: Developer

@@ -42,7 +42,6 @@ So, whether you're a busy professional juggling multiple appointments, **vitalCo
 - [Command summary](#command-summary)
 
 
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
