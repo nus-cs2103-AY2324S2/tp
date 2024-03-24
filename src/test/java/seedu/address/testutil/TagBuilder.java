@@ -12,7 +12,7 @@ import seedu.address.model.tag.Tag;
 public class TagBuilder {
 
     public static Set<Tag> build(List<String> tagList) {
-        return tagList.stream().map(Tag::new).collect(Collectors.toSet());
+        return tagList.stream().map(tag -> new Tag(tag.toLowerCase())).collect(Collectors.toSet());
     }
 
 }

@@ -68,13 +68,13 @@ public class FindTagsOrCommandTest {
     }
 
     @Test
-    public void execute_oneTagWrongCase_noPersonFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+    public void execute_oneTagWrongCase_multiplePersonsFound() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
         TagsOrFoundPredicate predicate = preparePredicate("Car");
         FindTagsOrCommand command = new FindTagsOrCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(List.of(), model.getFilteredPersonList());
+        assertEquals(List.of(ALICE, BENSON), model.getFilteredPersonList());
     }
 
     @Test
@@ -90,7 +90,7 @@ public class FindTagsOrCommandTest {
     @Test
     public void execute_multipleTags_multiplePersonsFromDifferentTagsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
-        TagsOrFoundPredicate predicate = preparePredicate("death health covid");
+        TagsOrFoundPredicate predicate = preparePredicate("death Health covid");
         FindTagsOrCommand command = new FindTagsOrCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
