@@ -6,34 +6,34 @@ import seedu.address.model.book.Book;
 
 /**
  * The BookCollection class represents a collection of books.
- * It manages operations such as adding, retrieving, and deleting books from the list.
+ * It manages operations such as adding, retrieving, and deleting books from the collection.
  */
 public class BookCollection {
-    protected ArrayList<Book> bookList;
+    protected ArrayList<Book> bookCollection;
 
     /**
-     * Construct an empty BookList.
+     * Construct an empty BookCollection.
      */
     public BookCollection() {
-        this.bookList = new ArrayList<>();
+        this.bookCollection = new ArrayList<>();
     }
 
     /**
-     * Construct a BookList with the specified list of books.
+     * Construct a BookCollection with the specified list of books.
      *
-     * @param bookList The list of books to initialize the BookCollection with.
+     * @param bookCollection The list of books to initialize the BookCollection with.
      */
-    public BookCollection(ArrayList<Book> bookList) {
-        this.bookList = bookList;
+    public BookCollection(ArrayList<Book> bookCollection) {
+        this.bookCollection = bookCollection;
     }
 
     /**
-     * Add a book to the BookList.
+     * Add a book to the BookCollection.
      *
      * @param book The book to be added.
      */
     public void addBook(Book book) {
-        this.bookList.add(book);
+        this.bookCollection.add(book);
     }
 
     /**
@@ -43,7 +43,7 @@ public class BookCollection {
      * @return The book at the specified index.
      */
     public Book getBook(int index) {
-        return bookList.get(index);
+        return bookCollection.get(index);
     }
 
     /**
@@ -52,7 +52,27 @@ public class BookCollection {
      * @param index The index of the book to delete.
      */
     public void deleteBook(int index) {
-        this.bookList.remove(index);
+        this.bookCollection.remove(index);
     }
 
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        } else if (other instanceof BookCollection) {
+            BookCollection otherBookCollection = (BookCollection) other;
+            for (int i = 0; i < bookCollection.size(); i++) {
+                if (this.getBook(i).equals(otherBookCollection.getBook(i))) {
+                    return false;
+                }
+            }
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return bookCollection.hashCode();
+    }
 }
