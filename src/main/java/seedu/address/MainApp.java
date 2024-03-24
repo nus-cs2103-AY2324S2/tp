@@ -73,7 +73,9 @@ public class MainApp extends Application {
 
         ui = new UiManager(logic);
 
-        ((ModelManager) model).addUIUpdateListener((UiManager) ui);
+        ModelManager modelManager = (ModelManager) model;
+        UiManager uiManager = (UiManager) ui;
+        modelManager.addUiUpdateListener(uiManager);
     }
 
     /**
