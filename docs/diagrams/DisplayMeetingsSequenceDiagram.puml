@@ -22,7 +22,7 @@ deactivate model
 logic -[LOGIC_COLOR]> meetwin
 deactivate logic
 
-meetwin -[UI_COLOR]> meetwin : sort
+meetwin -[UI_COLOR]> meetwin : sort list
 note right: sorts by\nmeeting\ntime
 activate meetwin UI_COLOR_T1
 meetwin -[UI_COLOR]> meetwin
