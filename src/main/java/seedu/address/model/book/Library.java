@@ -17,7 +17,7 @@ public class Library extends BookCollection {
     /**
      * Comparator for comparing books alphabetically by title.
      */
-    public static Comparator<Book> bookComparator = new Comparator<Book>() {
+    private static Comparator<Book> bookComparator = new Comparator<Book>() {
         @Override
         public int compare(Book book1, Book book2) {
             return book1.bookTitle.compareTo(book2.bookTitle);
