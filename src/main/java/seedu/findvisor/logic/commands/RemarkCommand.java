@@ -89,7 +89,6 @@ public class RemarkCommand extends Command {
         Set<Tag> tags = personToEdit.getTags();
         Optional<Meeting> meeting = personToEdit.getMeeting();
 
-        // Should remark be optional?
         return new Person(name, phone, email, address, tags, meeting, updatedRemark);
     }
 
