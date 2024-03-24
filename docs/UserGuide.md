@@ -174,6 +174,31 @@ Format: `deletem ic/NRIC`
 Examples:
 * `deletem ic/S1234567D` will result in the medical information of the patient with NRIC `S1234567D` being deleted.
 
+### Adding an appointment: `adda`
+
+Adds an appointment for a patient to the appointment list.
+
+Format: `adda NRIC /time DD/MM/YYYY HHMM`
+
+Examples:
+* `adda S1234567D /time 02/02/2024 1300` will add an appointment for the patient with NRIC `S1234567D` on 2nd February 2024 at 1:00 PM.
+
+### Adding an appointment: `deletea`
+
+Delete an exist appointment from the appointment list by providing the index of the appointment
+in the list and the name of the patient.
+
+Format: `deletea INDEX /name NAME`
+
+Examples:
+* `deletea 1 /name Amy`
+
+### List out appointments: `lista`
+
+List out all the appointments in the appointment list.
+
+Format: `lista`
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the clinic.
@@ -231,11 +256,14 @@ _Details coming soon ..._
 | **Clear**   | `clear`                                                                                                                                 |
 | **Delete**  | `delete INDEX`<br> e.g., `delete 3`                                                                                                     |
 | **Find**    | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                              |
+| **List**    | `list`                                                                                                                                  |
 | **Addc**    | `addc ic/NRIC [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]` e.g., `addc ic/S1234567D a/123, Clementi Rd, 1234665 e/test@email.com p/91234567` |
 | **Listc**   | `listc`                                                                                                                                 |
 | **Deletec** | `deletec ic/NRIC` e.g., `deletec ic/S1234567D`                                                                                          |
 | **Addm**    | `addm ic/NRIC h/HEIGHT w/WEIGHT [t/ALLERGY]…​` e.g., `addm ic/S1234567D h/163 w/50 t/insulin t/iodine`                                  |
 | **Listm**   | `listm`                                                                                                                                 |
 | **Deletem** | `deletem ic/NRIC` e.g., `deletec ic/S1234567D`                                                                                          |
-| **List**    | `list`                                                                                                                                  |
+| **Adda**    | `adda NRIC /time DD/MM/YYYY HHMM` e.g., `adda S1234567D /time 02/02/2024 1300`                                                          |
+| **Lista**   | `lista`                                                                                                                                 |
+| **Deletea** | `deletea INDEX /name NAME` e.g., `deletea 1 /name Amy`                                                                                  |
 | **Help**    | `help`                                                                                                                                  |
