@@ -6,11 +6,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.model.person.enums.ApplicantState;
-
 /**
  * Represents an Applicant's status in the Tether.
- * Guarantee: is valid as declared in {@link #matchStatus(String, String)}
+ * Guarantee: is valid as declared in {@link #isValidStatus(String)}
  */
 public class ApplicantStatus extends Status {
 
@@ -27,13 +25,14 @@ public class ApplicantStatus extends Status {
      */
     public ApplicantStatus(String status) {
         requireNonNull(status);
-        value = matchStatus(status.toLowerCase(), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidStatus(status.toLowerCase()), MESSAGE_CONSTRAINTS);
+        value = status.toLowerCase();
     }
 
     /**
      * Checks and returns the status if it is valid.
      */
-    public String matchStatus(String status, String message) {
+    public static boolean isValidStatus(String status) {
         Pattern patternResumeReview = Pattern.compile("^resume review$");
         Matcher matcherResumeReview = patternResumeReview.matcher(status);
 
@@ -52,28 +51,13 @@ public class ApplicantStatus extends Status {
         Pattern patternRejected = Pattern.compile("^rejected$");
         Matcher matcherRejected = patternRejected.matcher(status.toLowerCase());
 
-        checkArgument((matcherResumeReview.matches()
+        return (matcherResumeReview.matches()
                         || matcherPendingIntv.matches()
                         || matcherCompletedIntv.matches()
                         || matcherWaitingList.matches()
                         || matcherAccepted.matches()
-                        || matcherRejected.matches()), message);
+                        || matcherRejected.matches());
 
-        ApplicantState state;
-        if (matcherResumeReview.matches()) {
-            state = ApplicantState.STAGEONE;
-        } else if (matcherPendingIntv.matches()) {
-            state = ApplicantState.STAGETWO;
-        } else if (matcherCompletedIntv.matches()) {
-            state = ApplicantState.STAGETHREE;
-        } else if (matcherWaitingList.matches()) {
-            state = ApplicantState.OUTCOMEONE;
-        } else if (matcherAccepted.matches()) {
-            state = ApplicantState.OUTCOMETWO;
-        } else {
-            state = ApplicantState.OUTCOMETHREE;
-        }
-        return state.toString();
     }
 
     @Override

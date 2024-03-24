@@ -6,11 +6,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.model.person.enums.InterviewerState;
-
 /**
  * Represents an Interviewer's status in the Tether.
- * Guarantee: is valid as declared in {@link #matchStatus(String, String)}
+ * Guarantee: is valid as declared in {@link #isValidStatus(String)}
  */
 public class InterviewerStatus extends Status {
     public static final String MESSAGE_CONSTRAINTS =
@@ -25,28 +23,21 @@ public class InterviewerStatus extends Status {
      */
     public InterviewerStatus(String status) {
         requireNonNull(status);
-        value = matchStatus(status.toLowerCase(), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidStatus(status.toLowerCase()), MESSAGE_CONSTRAINTS);
+        value = status.toLowerCase();
     }
 
     /**
      * Checks and returns the status if it is valid.
      */
-    public String matchStatus(String status, String message) {
+    public static boolean isValidStatus(String status) {
         Pattern patternFree = Pattern.compile("^free$");
         Matcher matcherFree = patternFree.matcher(status);
 
         Pattern patternOccupied = Pattern.compile("^interview with .*");
         Matcher matcherOccupied = patternOccupied.matcher(status);
 
-        checkArgument((matcherFree.matches() || matcherOccupied.matches()), message);
-
-        InterviewerState state;
-        if (matcherFree.matches()) {
-            state = InterviewerState.FREE;
-        } else {
-            return status;
-        }
-        return state.toString();
+        return matcherFree.matches() || matcherOccupied.matches();
     }
 
     @Override

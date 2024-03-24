@@ -54,7 +54,7 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_add_interviewer() throws Exception {
-        Interviewer person = new PersonBuilder().build_interviewer();
+        Interviewer person = new PersonBuilder().withStatus("free").build_interviewer();
         AddInterviewerPersonCommand command = (AddInterviewerPersonCommand) parser.parseCommand(
                 PersonUtil.getAddInterviewerCommand(person));
         assertEquals(new AddInterviewerPersonCommand(person), command);
