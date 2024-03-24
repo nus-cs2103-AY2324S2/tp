@@ -71,8 +71,9 @@ public class EditCommand extends Command {
 
         this.index = index;
         this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
-        logger.log(Level.INFO, "EditCommand created for person at index: " + index.getOneBased()
-                + ", with editPersonDescriptor: " + editPersonDescriptor.toString());
+        String message = "EditCommand created to update person at index: " + index.getOneBased()
+                + ", with editPersonDescriptor: " + editPersonDescriptor;
+        logger.log(Level.INFO, message);
     }
 
     @Override
