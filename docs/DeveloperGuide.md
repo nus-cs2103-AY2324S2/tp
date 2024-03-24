@@ -239,9 +239,12 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
+### \[Proposed\] Create a new patient
 
-_{Explain here how the data archiving feature will be implemented}_
+Create new patient feature allows the healthcare workers to add a new patient to ImmuniMate.
+The healthcare worker must specify the patient's name, NRIC, phone, address, date of birth, sex, and status.
+The process of creating a new patient in Model is as follows:
+![CreateState1](images/CreateCommand.png)
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -349,7 +352,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   2a. IABS detects an error in the entered data.
 
   - 2a1. IABS requests for the correct data.
-  - 2a2. Healthcare Worker enters new data. 
+  - 2a2. Healthcare Worker enters new data.
   - Steps 2a1-2a2 are repeated until the data entered are correct. Use case resumes from step 3.
 
 ---
@@ -389,7 +392,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   2a. IABS cannot find the patient specified.
   - 2a1. IABS requests for the correct NRIC.
-  - 2a2. Healthcare worker enters new NRIC. 
+  - 2a2. Healthcare worker enters new NRIC.
   - Steps 2a1-2a2 are repeated until the data entered are correct or Healthcare worker cancels the action. Use case resumes from step 3.
 
 **Use Case: UC05 - Delete Patient Information**
@@ -405,7 +408,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   2a. IABS cannot find the patient specified.
   - 2a1. IABS requests for the correct NRIC.
-  - 2a2. Healthcare worker enters new NRIC. 
+  - 2a2. Healthcare worker enters new NRIC.
   - Steps 2a1-2a2 are repeated until the data entered are correct or Healthcare worker cancels the action. Use case resumes from step 3.
 
   2b. IABS cannot find the specified information.
@@ -424,7 +427,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  
 *{More to be added}*
 
 Data Requirements:
@@ -542,3 +544,4 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+

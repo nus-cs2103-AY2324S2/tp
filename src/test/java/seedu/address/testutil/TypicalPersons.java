@@ -64,6 +64,7 @@ public class TypicalPersons {
     public static final Person BOB = new PersonBuilder().withNric(VALID_NRIC_BOB).withName(VALID_NAME_BOB)
             .withPhone(VALID_PHONE_BOB).withAddress(VALID_ADDRESS_BOB).withDateOfBirth(VALID_DATEOFBIRTH_BOB)
             .withSex(VALID_SEX_BOB).withStatus(VALID_STATUS_BOB).build();
+    //TODO: person builder should be able to build a person with all fields (status)
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 

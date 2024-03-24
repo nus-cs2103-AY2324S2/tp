@@ -94,6 +94,8 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         dateOfBirth = personToCopy.getDateOfBirth();
         sex = personToCopy.getSex();
+        address = personToCopy.getAddress();
+        status = personToCopy.getStatus();
 
         /*
         address = personToCopy.getAddress();
@@ -105,7 +107,6 @@ public class PersonBuilder {
         condition = personToCopy.getCondition();
         dateOfAdmission = personToCopy.getDateOfAdmission();
         diagnosis = personToCopy.getDiagnosis();
-        status = personToCopy.getStatus();
         symptom = personToCopy.getSymptom();
          */
     }
