@@ -20,6 +20,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.coursemate.ContainsKeywordPredicate;
 import seedu.address.model.coursemate.Name;
 import seedu.address.model.coursemate.QueryableCourseMate;
+import seedu.address.model.coursemate.exceptions.CourseMateNotFoundException;
 import seedu.address.testutil.ContactListBuilder;
 
 public class ModelManagerTest {
@@ -106,8 +107,14 @@ public class ModelManagerTest {
 
     @Test
     public void findCourseMate_byIndexCourseMateNotInContactList_throwsError() {
-        assertThrows(RuntimeException.class, () ->
+        assertThrows(CourseMateNotFoundException.class, () ->
                 modelManager.findCourseMate(new QueryableCourseMate(Index.fromZeroBased(0))));
+    }
+
+    @Test
+    public void findCourseMate_byIndexCourseMateInContactList_doesNotThrow() {
+        modelManager.addCourseMate(ALICE);
+        assertDoesNotThrow(() -> modelManager.findCourseMate(new QueryableCourseMate(Index.fromZeroBased(-1))));
     }
 
     @Test
