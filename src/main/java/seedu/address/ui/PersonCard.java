@@ -58,15 +58,19 @@ public class PersonCard extends UiPart<Region> {
         switch (status.getStatusType()) {
         case HEALTHY:
             statusCircle.setFill(Color.GREEN);
+            statusCircle.setStroke(Color.GREEN);
             break;
         case UNWELL:
             statusCircle.setFill(Color.RED);
+            statusCircle.setStroke(Color.RED);
             break;
         case PENDING:
             statusCircle.setFill(Color.YELLOW);
+            statusCircle.setStroke(Color.YELLOW);
             break;
         default:
             statusCircle.setFill(Color.GREY);
+            statusCircle.setStroke(Color.GREY);
             break;
         }
     }
