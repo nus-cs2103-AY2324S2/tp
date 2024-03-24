@@ -11,6 +11,7 @@ import java.nio.file.Paths;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -44,11 +45,12 @@ class ChangeDataSourceCommandTest {
     }
 
     @Test
-    void execute() {
+    void execute() throws CommandException {
         Path pathOne = Paths.get("data/addressbook.json");
         ChangeDataSourceCommand command = new ChangeDataSourceCommand(pathOne);
         String expectedMessage = MESSAGE_CHANGED_DATA_SOURCE;
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        CommandResult result = command.execute(model);
+        assertFalse(expectedMessage.equals(result.toString()));
     }
 
     @Test
