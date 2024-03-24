@@ -1,6 +1,5 @@
 package seedu.address.testutil;
 
-import seedu.address.model.AddressBook;
 import seedu.address.model.person.Classes;
 import seedu.address.model.person.CourseCode;
 
@@ -29,6 +28,6 @@ public class ClassBuilder {
     }
 
     public Classes build() {
-        return new Classes(cc, new AddressBook());
+        return new Classes(cc);
     }
 }

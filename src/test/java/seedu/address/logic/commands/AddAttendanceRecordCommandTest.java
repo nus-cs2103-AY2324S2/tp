@@ -10,6 +10,7 @@ import static seedu.address.testutil.TypicalPersons.getTypicalClassBook;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -27,6 +28,7 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.AttendanceStatus;
 import seedu.address.model.person.Classes;
+import seedu.address.model.person.CourseCode;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Attendance;
 
@@ -43,7 +45,12 @@ public class AddAttendanceRecordCommandTest {
     public void execute_addAttendance_success() throws Exception {
         // Setup your model with a few persons
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalClassBook());
-        Attendance validAttendance = new Attendance(new AttendanceStatus("19-03-2024", "1"));
+        model.selectClass(new Classes(new CourseCode("class1")));
+        Random random = new Random();
+        String date = String.format("%02d-%02d-202%d",
+                random.nextInt(28) + 1, random.nextInt(11) + 1, random.nextInt(9));
+
+        Attendance validAttendance = new Attendance(new AttendanceStatus(date, "1"));
 
         CommandResult commandResult = new AddAttendanceRecordCommand(validAttendance).execute(model);
 
