@@ -1,12 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.*;
 
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -41,10 +36,7 @@ public class FindCommandParser implements Parser<FindCommand> {
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
 
         // Check if no attribute is provided e.g (find john)
-        if (!argMultimap.getPreamble().isEmpty() && argMultimap.getValue(PREFIX_NAME).isEmpty()
-            && argMultimap.getValue(PREFIX_PHONE).isEmpty() && argMultimap.getValue(PREFIX_EMAIL).isEmpty()
-                && argMultimap.getValue(PREFIX_ADDRESS).isEmpty() && argMultimap.getValue(PREFIX_NOTE).isEmpty()
-                && argMultimap.getAllValues(PREFIX_TAG).isEmpty()) {
+        if (!argMultimap.getPreamble().isEmpty() && !argMultimap.isPrefixPresent(ALL_PREFIXES)) {
             NameContainsSubstringPredicate specialNamePredicate = new NameContainsSubstringPredicate(
                     ParserUtil.parseSearchString(argMultimap.getPreamble()));
             CombinedPredicates predicates = new CombinedPredicates(specialNamePredicate);
