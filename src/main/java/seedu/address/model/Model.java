@@ -107,4 +107,10 @@ public interface Model {
     ObservableList<Booking> getFilteredBookingList();
 
     void setTheme(Theme theme);
+
+    /**
+     * Updates the filter of the filtered booking list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredBookingList(Predicate<Booking> predicate);
 }

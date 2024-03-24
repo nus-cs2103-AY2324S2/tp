@@ -16,6 +16,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/cyqjoseph)]
 
 * Role: DevOps
+* Responsibilities: Test implementation and Management,
+  Feature Development and Enhancement.
 
 ### Wang Minhong
 
