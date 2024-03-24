@@ -8,6 +8,7 @@ import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.core.index.IndexList;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
@@ -36,6 +37,24 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    /**
+     * Parses {@code args} into an array of {@code Index} and returns it in ascending order.
+     *
+     * @throws ParseException if any of the specified index is invalid or there are duplicate indices.
+     */
+    public static IndexList parseIndices(String args) throws ParseException {
+        String[] splitArgs = args.split(",");
+        IndexList indices = IndexList.emptyList();
+
+        Index index;
+        for (int i = 0; i < splitArgs.length; i++) {
+            index = parseIndex(splitArgs[i]);
+            indices.add(index);
+        }
+
+        return indices;
     }
 
     /**
