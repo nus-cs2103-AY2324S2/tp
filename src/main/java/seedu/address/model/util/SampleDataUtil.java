@@ -1,6 +1,5 @@
 package seedu.address.model.util;
 
-import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -43,9 +42,9 @@ public class SampleDataUtil {
 
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
-//        for (Person samplePerson : getSamplePersons()) {
-//            sampleAb.addPerson(samplePerson);
-//        }
+        for (Person samplePerson : getSamplePersons()) {
+            sampleAb.addPerson(samplePerson);
+        }
         return sampleAb;
     }
 
@@ -62,7 +61,7 @@ public class SampleDataUtil {
     }
 
 
-    public static Classes[] getSampleClasses() throws IOException {
+    public static Classes[] getSampleClasses() {
         return new Classes[] {
             new Classes(new CourseCode("CS2103T")),
             new Classes(new CourseCode("CS2101"))
@@ -70,9 +69,9 @@ public class SampleDataUtil {
     }
     public static ReadOnlyClassBook getSampleClassBook() {
         ClassBook sampleCb = new ClassBook();
-//        for (Classes sampleClasses : getSampleClasses()) {
-//            sampleCb.createClass(sampleClasses);
-//        }
+        for (Classes sampleClasses : getSampleClasses()) {
+            sampleCb.createClass(sampleClasses);
+        }
         return sampleCb;
     }
 

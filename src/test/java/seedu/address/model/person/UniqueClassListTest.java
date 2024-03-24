@@ -11,7 +11,6 @@ import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
-import seedu.address.model.AddressBook;
 
 public class UniqueClassListTest {
 
@@ -106,7 +105,7 @@ public class UniqueClassListTest {
 
     @Test
     public void add_validClass_success() {
-        Classes sampleClass = new Classes(new CourseCode("CS101"), new AddressBook());
+        Classes sampleClass = new Classes(new CourseCode("CS101"));
         UniqueClassList uniqueClassList = new UniqueClassList();
         uniqueClassList.add(sampleClass);
         assertTrue(uniqueClassList.contains(sampleClass));

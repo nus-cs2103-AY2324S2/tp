@@ -23,11 +23,10 @@ public class Classes {
     /**
      * Constructor for Classes.
      */
-    public Classes(CourseCode courseCode) throws IOException {
+    public Classes(CourseCode courseCode) {
         this.courseCode = courseCode;
         this.addressBook = new AddressBook();
         this.addressBookStorage = new JsonAddressBookStorage(getFilePath());
-        addressBookStorage.saveAddressBook(addressBook, getFilePath());
     }
 
     /**
@@ -90,12 +89,4 @@ public class Classes {
         String fileName = courseCode.getCourseCode() + ".json";
         return Paths.get("data/classbook", fileName);
     }
-
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-    }
-
-//    public Object getPersons() {
-//    }
-
 }
