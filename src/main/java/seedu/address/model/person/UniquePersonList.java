@@ -97,6 +97,8 @@ public class UniquePersonList implements Iterable<Person> {
         internalList.setAll(persons);
     }
 
+
+
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */

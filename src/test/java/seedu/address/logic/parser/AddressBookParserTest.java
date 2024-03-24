@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_POLICY;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
@@ -22,9 +23,15 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.PolicyCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.CombinedPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Policy;
+import seedu.address.model.person.PolicyContainsKeywordsPredicate;
+import seedu.address.model.person.RelationshipContainsKeywordsPredicate;
+import seedu.address.model.person.TagContainsKeywordsPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
@@ -70,10 +77,19 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_find() throws Exception {
-        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        List<String> nameKeywords = Arrays.asList("foo");
+        List<String> relationshipKeywords = Arrays.asList("bar");
+        List<String> tagKeywords = Arrays.asList("baz");
+        List<String> policyKeywords = Arrays.asList("abc");
+        List<String> formattedKeywords = Arrays.asList("n/foo", "r/bar", "po/abc", "t/baz");
         FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+                FindCommand.COMMAND_WORD + " " + formattedKeywords.stream().collect(Collectors.joining(" ")));
+        CombinedPredicate combinedPredicate = new CombinedPredicate(
+                new NameContainsKeywordsPredicate(nameKeywords),
+                new RelationshipContainsKeywordsPredicate(relationshipKeywords),
+                new TagContainsKeywordsPredicate(tagKeywords),
+                new PolicyContainsKeywordsPredicate(policyKeywords));
+        assertEquals(new FindCommand(combinedPredicate), command);
     }
 
     @Test
@@ -86,6 +102,14 @@ public class AddressBookParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+    }
+
+    @Test
+    public void parseCommand_policy() throws Exception {
+        final Policy policy = new Policy("Some policy");
+        PolicyCommand command = (PolicyCommand) parser.parseCommand(PolicyCommand.COMMAND_WORD + " "
+                + INDEX_FIRST_PERSON.getOneBased() + " " + PREFIX_POLICY + policy.value);
+        assertEquals(new PolicyCommand(INDEX_FIRST_PERSON, policy), command);
     }
 
     @Test

@@ -44,6 +44,8 @@ public class Email {
         value = email;
     }
 
+
+
     /**
      * Returns if a given string is a valid email.
      */
