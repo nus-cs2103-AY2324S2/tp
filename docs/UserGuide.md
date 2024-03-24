@@ -109,6 +109,13 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] [m/MATRICULATION_NU
 **Tip:** A person can have any number of tags (including 0)
 </box>
 
+>Note: The following tags will be automatically added to the person if the following conditions are met:
+> 1. `student`: If matriculation number, studio, and reflection fields are present;
+> 2. `TA`: If matriculation number and one of either studio or reflection fields are present;
+> 3. `instructor`: If none of the three fields are present.
+> 
+> You are free to edit or remove the tags after the person is added.
+
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 m/A1234567Z`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal m/A1234567Z`
@@ -137,6 +144,7 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
+>Note: Updating a matriculation number, studio, or reflection field will not automatically update the tags of the person. You will need to manually update the tags if necessary.
 ### Filtering persons: `find`
 
 * Filter persons based on specific criteria within their records.
