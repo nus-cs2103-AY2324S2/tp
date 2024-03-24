@@ -66,6 +66,11 @@ public class Upcoming implements Comparable<Upcoming> {
         }
     }
 
+    /**
+     * Returns true if there are upcoming events or tasks associated with this person.
+     *
+     * @return true if there are upcoming events or tasks associated with this person, false otherwise.
+     */
     public boolean hasUpcoming() {
         return this.hasUpcoming;
     }
