@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonWithName;
@@ -63,7 +64,7 @@ public class DeleteCommandTest {
     public void execute_invalidNameFilteredList_throwsCommandException() {
         showPersonWithName(model, ALICE.getName());
 
-        Name invalidName = new Name("blbeo");
+        Name invalidName = new Name(INVALID_NAME);
 
         // ensures that the invalid name is not equal to "Alice Pauline"
         assertTrue(!invalidName.equals(ALICE.getName()));
