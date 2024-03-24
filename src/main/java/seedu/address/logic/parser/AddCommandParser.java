@@ -44,7 +44,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
-        Note note = new Note("");
+        Note note = new Note("No additional note set");
         Tag tag = new Tag("other");
         Set<Tag> tags = new HashSet<>();
         tags.add(tag);
