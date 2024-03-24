@@ -305,7 +305,6 @@ The following activity diagram summarizes what happens when a user executes a ne
     * Cons: May be hard for users to keep track of.
 
 * **Alternative 2:** Using of `taskName`.
-  itself.
     * Pros: An existing field, no additional implementations needed.
     * Cons: Impossible to uniquely identify tasks as there could be tasks with the same name.
 
