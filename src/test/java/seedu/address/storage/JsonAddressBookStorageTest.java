@@ -84,6 +84,9 @@ public class JsonAddressBookStorageTest {
         readBack = jsonAddressBookStorage.readAddressBook().get(); // file path not specified
         assertEquals(original, new AddressBook(readBack));
 
+        jsonAddressBookStorage.setAddressBookFilePath(filePath);
+        readBack = jsonAddressBookStorage.readAddressBook().get();
+        assertEquals(original, new AddressBook(readBack));
     }
 
     @Test
