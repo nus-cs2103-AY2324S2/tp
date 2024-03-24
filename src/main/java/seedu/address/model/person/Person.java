@@ -158,7 +158,7 @@ public class Person implements Comparable<Person> {
         boolean thisIsPast = thisInterviewDate.isBefore(currentDate);
         boolean otherIsPast = otherInterviewDate.isBefore(currentDate);
         if (thisIsPast && otherIsPast) {
-            return otherInterviewDate.compareTo(thisInterviewDate);
+            return 0;
         } else if (thisIsPast && !otherIsPast) {
             return 1;
         } else if (!thisIsPast && otherIsPast) {

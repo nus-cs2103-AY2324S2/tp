@@ -102,10 +102,12 @@ public class PersonTest {
         DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm");
         // Dates
         String pastDate = LocalDateTime.now().minusDays(1).format(format);
+        String pastDateMinusOne = LocalDateTime.now().minusDays(2).format(format);
         String futureDate = LocalDateTime.now().plusDays(1).format(format);
         String futureDatePlusOne = LocalDateTime.now().plusDays(2).format(format);
         // Persons
         Person personWithPastDate = new PersonBuilder().withInterviewDate(pastDate).build();
+        Person personWithPastDateMinusOne = new PersonBuilder().withInterviewDate(pastDateMinusOne).build();
         Person personWithFutureDate = new PersonBuilder().withInterviewDate(futureDate).build();
         Person personWithFutureDatePlusOne = new PersonBuilder().withInterviewDate(futureDatePlusOne).build();
         Person personWithNoDate = new PersonBuilder().build();
@@ -117,6 +119,8 @@ public class PersonTest {
         assertEquals(1, personWithFutureDatePlusOne.compareTo(personWithFutureDate));
         // The other is earlier than this (both are in the future)
         assertEquals(-1, personWithFutureDate.compareTo(personWithFutureDatePlusOne));
+        // Both are past dates
+        assertEquals(0, personWithPastDate.compareTo(personWithPastDateMinusOne));
         // this has no date, the other has a date in the future
         assertEquals(1, personWithNoDate.compareTo(personWithFutureDate));
     }
