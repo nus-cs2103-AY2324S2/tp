@@ -23,8 +23,9 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private FilteredList<Person> filteredPersons;
     private final SortedList<Person> sortedPersons;
+    private final FilteredList<Person> initialPersons;
 
 
     /**
@@ -39,6 +40,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         sortedPersons = new SortedList<>(filteredPersons);
+        initialPersons = filteredPersons;
     }
 
     public ModelManager() {
@@ -158,6 +160,13 @@ public class ModelManager implements Model {
         return addressBook.equals(otherModelManager.addressBook)
                 && userPrefs.equals(otherModelManager.userPrefs)
                 && filteredPersons.equals(otherModelManager.filteredPersons);
+    }
+
+    /**
+     * Maintains the filtered list after edit command is used.
+     */
+    public void setToInitialList() {
+        this.filteredPersons = this.initialPersons;
     }
 
 }
