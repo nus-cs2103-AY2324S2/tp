@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_IC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
@@ -54,14 +55,14 @@ public class AddNoteCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        model.updateFilteredPersonList(icPredicate);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        requireNonNull(model);
+        List<Person> allPatients = model.getAddressBook().getPersonList();
 
-        if (lastShownList.isEmpty()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON);
-        }
+        Person personToEdit = allPatients.stream()
+                .filter(icPredicate::test)
+                .findFirst()
+                .orElseThrow(() -> new CommandException(Messages.MESSAGE_NO_MATCHING_IC));
 
-        Person personToEdit = lastShownList.get(0);
         Person editedPerson;
 
         if (isReplace || personToEdit.getNote().equals(Note.DEFAULT)) {
