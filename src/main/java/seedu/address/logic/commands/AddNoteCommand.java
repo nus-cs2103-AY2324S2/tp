@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_IC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
@@ -26,14 +25,14 @@ public class AddNoteCommand extends Command {
             + "the specified IC (must be a valid identity card number). \n"
             + "Existing remark will be appended by default. \n"
             + "Parameters: "
-            + PREFIX_IC + "IC "
+            + "IC "
             + PREFIX_NOTE + "NOTE \n"
-            + "Example: " + COMMAND_WORD + " "
-            + PREFIX_IC + "S0123456Q "
+            + "Example: " + COMMAND_WORD
+            + " S0123456Q "
             + PREFIX_NOTE + "Diabetes \n"
             + "To replace the original note, add -replace at the end of your command. \n"
-            + "Example: " + COMMAND_WORD + " "
-            + PREFIX_IC + "S0123456Q "
+            + "Example: " + COMMAND_WORD
+            + " S0123456Q "
             + PREFIX_NOTE + "Diabetes -replace";
 
     public static final String MESSAGE_MODIFY_NOTE_SUCCESS = "Note for %1$s (ic: %2$s) modified successfully!";
