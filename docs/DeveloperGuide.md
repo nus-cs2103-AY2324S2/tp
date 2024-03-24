@@ -122,8 +122,9 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the address book data i.e., all `Employee` objects (which are contained in a `UniqueEmployeeList` object).
+* stores the address book data i.e., all `Employee` objects (which are contained in a `UniqueEmployeeList` object) and all `Task` objects (which are contained in a `TaskList` object.
 * stores the currently 'selected' `Employee` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Employee>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores `Task` objects in a similar manner as with `Employee` objects.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
@@ -242,6 +243,72 @@ _{more aspects and alternatives to be added}_
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
+
+### \[Proposed\] Add/Delete task
+
+#### Current Implementation
+
+The current add/delete task feature is designed in a way such that every task has an unique `TaskId` to uniquely identify each task. This is done as there is no explicit constraint stating that tasks cannot have the same name, as such an identifier is required for other aspects of the TaskMasterPro (namely assigning of tasks to employees).
+
+The unique `TaskId` is assigned by the TaskMasterPro automatically and is also tracked by the TaskMasterPro. It is saved in the common .json file along with other data from TaskMasterPro, and carries over across sessions.
+
+<!--ToDo, add info about corrupt TaskId? -->
+
+Given below is an example usage scenario and how the add/delete task feature behaves at each step.
+
+Step 1. The user launches the TaskMasterPro. Assume that there are no existing tasks.
+
+![AddTask0](images/AddTask0.png)
+
+Step 2. The user enters the command `task Meeting`. This creates a new `Task` object with its `TaskId` automatically assigned. Assume that the `TaskId` value is 1.
+
+![AddTask1](images/AddTask1.png)
+
+Step 3. The user enters the command `task Project`. This creates another new `Task` object with its `TaskId` automatically assigned. Assume that the `TaskId` value is 2.
+
+![AddTask2](images/AddTask2.png)
+
+Step 4. The user now enters the command `deletetask 1`. This will delete the task created in Step 2. as its assigned `TaskId` is 1.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If an invalid `TaskId` is entered instead, an error will appear informing the user and nothing else will happen.
+
+![AddTask3](images/AddTask3.png)
+
+
+
+The following sequence diagram shows how an add task operation goes through the `Logic` component:
+
+![AddTaskSequence](images/AddTaskSequence.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddTaskCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+Similarly, how an add task operation goes through the `Model` component is shown below:
+
+![AddTaskSequence-Model](images/AddTaskSequence-Model.png)
+
+The `deletetask` command works similarly  —  it calls `Model#deleteTask` with a given `TaskId` and deletes the `Task` if it exists. 
+
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+<img src="images/AddTaskActivityDiagram.png" width="250" />
+<img src="images/DeleteTaskActivityDiagram.png" width="250" />
+
+#### Design considerations:
+
+**Aspect: How to uniquely identify `Task`:**
+
+* **Alternative 1 (current choice):** Using of `taskId`.
+    * Pros: Easy to implement. `TaskMasterPro` automatically assigns this value.
+    * Cons: May be hard for users to keep track of.
+
+* **Alternative 2:** Using of `taskName`.
+  itself.
+    * Pros: An existing field, no additional implementations needed.
+    * Cons: Impossible to uniquely identify tasks as there could be tasks with the same name.
+
 
 
 --------------------------------------------------------------------------------------------------------------------
