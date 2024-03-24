@@ -32,6 +32,8 @@ public class Person {
 
     private final Relationship relationship;
 
+    private final ClientStatus clientStatus;
+
     private final Set<Tag> tags = new HashSet<>();
 
 
@@ -42,7 +44,7 @@ public class Person {
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, Relationship relationship,
-                  Policy policy, Set<Tag> tags) {
+                  Policy policy, ClientStatus clientStatus, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, relationship, tags);
         this.name = name;
         this.phone = phone;
@@ -50,6 +52,7 @@ public class Person {
         this.address = address;
         this.policy = policy;
         this.relationship = relationship;
+        this.clientStatus = clientStatus;
         this.tags.addAll(tags);
         this.meetings = new ArrayList<>();
     }
@@ -76,6 +79,10 @@ public class Person {
 
     public Relationship getRelationship() {
         return relationship;
+    }
+
+    public ClientStatus getClientStatus() {
+        return clientStatus;
     }
 
     public boolean isClient() {
@@ -253,7 +260,7 @@ public class Person {
 
     public Person getCopy() {
         Person p = new Person(this.name, this.phone, this.email, this.address, this.relationship,
-                this.getPolicy(), this.getTags());
+                this.getPolicy(), this.clientStatus, this.getTags());
 
         // Create a deep copy of the meetings
         List<Meeting> copiedMeetings = new ArrayList<>();

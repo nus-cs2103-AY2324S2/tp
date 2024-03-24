@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.ClientStatus;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Meeting;
 import seedu.address.model.person.Name;
@@ -155,6 +156,7 @@ class JsonAdaptedPerson {
     private final String address;
     private final String policy;
     private final String relationship;
+    private final String clientStatus;
     private final List<JsonAdaptedTag> adaptedTags = new ArrayList<>();
     private final List<JsonAdaptedMeeting> adaptedMeetings = new ArrayList<>();
 
@@ -168,6 +170,7 @@ class JsonAdaptedPerson {
                              @JsonProperty("address") String address,
                              @JsonProperty("relationship") String relationship,
                              @JsonProperty("policy") String policy,
+                             @JsonProperty("clientStatus") String clientStatus,
                              @JsonProperty("tags") List<JsonAdaptedTag> adaptedTags,
                              @JsonProperty("meetings") List<JsonAdaptedMeeting> adaptedMeetings) {
         this.name = name;
@@ -176,6 +179,7 @@ class JsonAdaptedPerson {
         this.address = address;
         this.policy = policy;
         this.relationship = relationship;
+        this.clientStatus = clientStatus;
         if (adaptedTags != null) {
             this.adaptedTags.addAll(adaptedTags);
         }
@@ -194,6 +198,7 @@ class JsonAdaptedPerson {
         address = source.getAddress().value;
         policy = source.getPolicy().value;
         relationship = source.getRelationship().value;
+        clientStatus = String.valueOf(source.getClientStatus().getStatus());
         adaptedTags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -264,9 +269,11 @@ class JsonAdaptedPerson {
         }
         final Policy modelPolicy = new Policy(policy);
 
+        final ClientStatus modelClientStatus = new ClientStatus(Integer.parseInt(clientStatus));
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
         final Person person = new Person(modelName, modelPhone, modelEmail, modelAddress, modelRelationship,
-                modelPolicy, modelTags);
+                modelPolicy, modelClientStatus, modelTags);
 
         // Add meetings to the person
         for (Meeting meeting : personMeetings) {

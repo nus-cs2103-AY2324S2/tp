@@ -62,7 +62,8 @@ public class PolicyCommand extends Command {
         }
 
         Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), personToEdit.getRelationship(), policy, personToEdit.getTags());
+                personToEdit.getAddress(), personToEdit.getRelationship(), policy, personToEdit.getClientStatus(),
+                personToEdit.getTags());
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
