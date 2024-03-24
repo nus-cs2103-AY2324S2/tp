@@ -5,8 +5,10 @@ skinparam ArrowFontStyle plain
 Actor User as user USER_COLOR
 Participant ":UI" as ui UI_COLOR
 Participant ":Logic" as logic LOGIC_COLOR
-Participant ":Model" as model MODEL_COLOR
+Participant ":Parser" as parser PARSER_COLOR
+Participant ":Command" as command COMMAND_COLOR
 Participant ":Storage" as storage STORAGE_COLOR
+
 
 user -[USER_COLOR]> ui : "addPolicy 2 pn/SaversScheme"
 activate ui UI_COLOR
@@ -14,17 +16,29 @@ activate ui UI_COLOR
 ui -[UI_COLOR]> logic : execute("addPolicy 2 pn/SaversScheme")
 activate logic LOGIC_COLOR
 
-logic -[LOGIC_COLOR]> model : AddPolicyCommand(Index.fromOneBased(2))
-activate model MODEL_COLOR
+logic -[LOGIC_COLOR]> parser : parseCommand("addPolicy 2 pn/SaversScheme")
+activate parser PARSER_COLOR_T1
 
-model -[MODEL_COLOR]-> logic
-deactivate model
+parser -[PARSER_COLOR]> parser : parse("2 pn/SaversScheme")
+activate parser PARSER_COLOR_T2
+parser --[PARSER_COLOR]> parser : AddPolicyCommand(2, "SaversScheme")
+deactivate parser PARSER_COLOR_T2
+
+parser --[PARSER_COLOR]> logic
+deactivate parser PARSER_COLOR_T1
+
+
+logic -[LOGIC_COLOR]> command : AddPolicyCommand.execute(Model)
+activate command COMMAND_COLOR_T1
+command --[COMMAND_COLOR]> logic : CommandResult(generateSuccessMessage(editedPerson))
+deactivate command
+
 
 ' Optional: Only if the view operation needs to interact with storage, e.g., for caching or refreshing data
-logic -[LOGIC_COLOR]> storage : saveAddressBook(addressBook)
+logic -[LOGIC_COLOR]> storage : saveAddressBook(ModelManager.getAddressBook())
 activate storage STORAGE_COLOR
 
-storage -[STORAGE_COLOR]> storage :
+storage -[STORAGE_COLOR]> storage : JsonAddressBookStorage.saveAddressBook(addressBook, filePath)
 activate storage STORAGE_COLOR_T1
 storage --[STORAGE_COLOR]> storage
 deactivate storage
@@ -33,7 +47,7 @@ storage --[STORAGE_COLOR]> logic
 deactivate storage
 ' End of optional storage interaction
 
-logic --[LOGIC_COLOR]> ui
+logic --[LOGIC_COLOR]> ui : CommandResult(generateSuccessMessage(editedPerson))
 deactivate logic
 
 ui--[UI_COLOR]> user
