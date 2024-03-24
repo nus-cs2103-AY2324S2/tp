@@ -116,6 +116,16 @@ These are the platforms we currently support ClientCare on:
 <br>
 --------------------------------------------------------------------------------------------------------------------
 
+## Getting familiar with ClientCare's interface
+
+Now that we got ClientCare up and running, let's get you familiar with its user interface.
+
+
+Our developers are still working on it!
+>Image to be added
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## Features
 Dive right into ClientCare's full list of features. This section guides you through all of ClientCare's commands.
 
