@@ -109,7 +109,11 @@ public class ModelManagerTest {
     public void findCourseMate_byIndexCourseMateNotInContactList_throwsError() {
         assertThrows(CourseMateNotFoundException.class, () ->
                 modelManager.findCourseMate(new QueryableCourseMate(Index.fromZeroBased(0))));
+        modelManager.addCourseMate(ALICE);
+        assertThrows(CourseMateNotFoundException.class, () ->
+                modelManager.findCourseMate(new QueryableCourseMate(Index.fromZeroBased(10))));
     }
+
 
     @Test
     public void findCourseMate_byIndexCourseMateInContactList_doesNotThrow() {
