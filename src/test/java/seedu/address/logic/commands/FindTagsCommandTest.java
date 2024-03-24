@@ -87,7 +87,8 @@ public class FindTagsCommandTest {
         assertNotEquals(findTagsCommandFirst, findTagsCommandSecond);
 
         //different instance -> not equals
-        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Collections.singletonList("first"));
+        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(
+                Collections.singletonList("first"));
         FindCommand findCommand = new FindCommand(predicate);
         assertNotEquals(findTagsCommandFirst, findCommand);
     }
