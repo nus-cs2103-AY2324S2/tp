@@ -99,15 +99,15 @@ ___
 
 This command adds a new client to your client list.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… [k/NEXTOFKIN]`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS k/NEXTOFKIN d/DESCRIPTION [t/TAG]…`
 
-**Tip:** A person can have any number of tags (or even 0!) **Tip:** A person's next of kin field is optional (it can be ommitted if a person does not have a next of kin)
+**Tip:** A person can have any number of tags (or even 0)
 
 Examples:
 
--   `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
--   `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
--   `add n/Bill James p/01232228943 e/billj@example.com a/12 College Avenue West t/high priority k/John Doe`
+-   `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/Suffers from depression k/Jasmin Doe`
+-   `add n/Betsy Crowe t/friend d/Takes anxiety medication k/Bethany Crowe e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+-   `add n/Bill James p/01232228943 e/billj@example.com a/12 College Avenue West t/high priority k/John Doe d/Is an army veteran`
 
 ### Updating a client : `update`
 
