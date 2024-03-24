@@ -165,9 +165,10 @@ public class AddCommandTest {
         }
 
         @Override
-<<<<<<< HEAD
         public void updateSelectedPerson(Person person) {
-=======
+            throw new AssertionError("This method should not be called.");
+        }
+        
         public void sortFilteredPersonList(Comparator<Person> comparator) {
             throw new AssertionError("This method should not be called.");
         }
@@ -179,7 +180,6 @@ public class AddCommandTest {
 
         @Override
         public void setToInitialList() {
->>>>>>> master
             throw new AssertionError("This method should not be called.");
         }
     }
