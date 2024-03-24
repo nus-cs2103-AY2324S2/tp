@@ -1,5 +1,7 @@
 package seedu.address.model.person.personpredicate;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.util.Arrays;
 import java.util.function.Predicate;
 import java.util.regex.Pattern;
@@ -7,8 +9,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.model.person.Person;
-
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * A predicate to filter a specific component of a Person class.
@@ -25,6 +25,9 @@ public abstract class ComponentPredicate implements Predicate<Person> {
     private final String input;
     private final Component component;
 
+    /**
+     * The available components in a {@link Person} class.
+     */
     public enum Component {
         Name,
         Address,
@@ -33,6 +36,11 @@ public abstract class ComponentPredicate implements Predicate<Person> {
         Phone,
     }
 
+    /**
+     * Constructs a component predicate.
+     * @param input The input to match with.
+     * @param component The component to match on.
+     */
     public ComponentPredicate(String input, Component component) {
         requireAllNonNull(input, component);
 
@@ -52,9 +60,11 @@ public abstract class ComponentPredicate implements Predicate<Person> {
     }
 
     /**
-     * Demeter is crying rn.
+     * Extracts the required component's values from the person.
+     * @return All matchable values in the component.
      */
-    // FIXME: Remove the indirection and create a Component abstract class for component values.
+    // TODO: Remove the indirection and create a Component abstract class for component values.
+    // Determer is crying from looking at this code ngl.
     protected Stream<String> extract(Person person) {
         Stream<String> stream;
         switch(component) {
