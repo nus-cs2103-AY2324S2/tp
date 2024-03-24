@@ -28,7 +28,7 @@ public class MailCommandParser implements Parser<MailCommand> {
 
         for (String keyword : groupKeywords) {
             if (!Group.isValidGroupName(keyword)) {
-                throw new ParseException(Group.MESSAGE_CONSTRAINTS);
+                throw new ParseException(Group.MESSAGE_CONSTRAINTS_KEYWORD);
             }
         }
         return new MailCommand(new GroupContainsKeywordsPredicate(Arrays.asList(groupKeywords)));
