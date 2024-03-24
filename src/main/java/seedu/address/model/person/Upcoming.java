@@ -5,7 +5,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.regex.Pattern;
+import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 
 /**
  * Represents a Person's upcoming appointment in the address book.
@@ -17,10 +18,9 @@ public class Upcoming implements Comparable<Upcoming> {
     public static final String MESSAGE_CONSTRAINTS = "Invalid input. Please follow the format: DD-MM-YYYY HHmm";
     public static final String MESSAGE_EDIT_EMPTY_STRING_EXCEPTION = "Upcoming can only take DD-MM-YYYY HHmm "
             + "dateTime format, and it should not be blank";
-    private static final String DATETIME_FORMAT = "dd-MM-yyyy HHmm";
-    private static final DateTimeFormatter DATETIME_FORMATTER = DateTimeFormatter.ofPattern(DATETIME_FORMAT);
-    private static final String DATETIME_REGEX = "^\\d{2}-\\d{2}-\\d{4} \\d{2}\\d{2}$";
-    private static final Pattern DATETIME_PATTERN = Pattern.compile(DATETIME_REGEX);
+    private static final String DATETIME_FORMAT = "dd-MM-uuuu HHmm";
+    private static final DateTimeFormatter DATETIME_FORMATTER = DateTimeFormatter.ofPattern(DATETIME_FORMAT)
+            .withResolverStyle(ResolverStyle.STRICT);
 
     private boolean hasUpcoming;
     private LocalDateTime dateTime;
@@ -35,6 +35,7 @@ public class Upcoming implements Comparable<Upcoming> {
     public Upcoming(String dateTimeStr) {
         requireNonNull(dateTimeStr);
         checkArgument(isValidUpcoming(dateTimeStr), MESSAGE_CONSTRAINTS);
+
         if (dateTimeStr.isEmpty()) {
             this.hasUpcoming = false;
             this.dateTime = null;
@@ -54,7 +55,15 @@ public class Upcoming implements Comparable<Upcoming> {
      *         otherwise
      */
     public static boolean isValidUpcoming(String dateTimeStr) {
-        return dateTimeStr.isEmpty() || DATETIME_PATTERN.matcher(dateTimeStr).matches();
+        if (dateTimeStr.isEmpty()) {
+            return true;
+        }
+        try {
+            LocalDateTime.parse(dateTimeStr, DATETIME_FORMATTER);
+            return true;
+        } catch (DateTimeParseException e) {
+            return false;
+        }
     }
 
     @Override
