@@ -16,6 +16,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.HasLastContactedPredicate;
+import seedu.address.model.person.LastContact;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
@@ -52,22 +53,28 @@ public class LastContactCommandTest {
 
     @Test
     public void compare_personsWithNullLastContact_datesHandledCorrectly() {
-        // Person with a LastContact instance that has a null dateTime
-        Person personWithNullDateTime = new PersonBuilder().withLastContact("").build();
-        Person personWithValidLastContact = new PersonBuilder().withLastContact("24-03-2024 0935").build();
+        // Create two Person instances with null last contacts
+        Person firstPersonWithNullLastContact = new PersonBuilder().withLastContact("").build();
+        Person secondPersonWithNullLastContact = new PersonBuilder().withLastContact("").build();
+        Person thirdPersonWithValidLastContact = new PersonBuilder().withLastContact("24-03-2024 0935").build();
+        LastContact lastContactDateTime1 = firstPersonWithNullLastContact.getLastcontact();
 
         // Comparator from LastContactCommand
         Comparator<Person> sortComparator = LastContactCommand.SORT_COMPARATOR;
 
-        // Apply and test the comparator logic
-        int comparisonResultWithNullDateTimeFirst = sortComparator.compare(personWithNullDateTime,
-                personWithValidLastContact);
-        int comparisonResultWithValidLastContactFirst = sortComparator.compare(personWithValidLastContact,
-                personWithNullDateTime);
+        // Applying the comparator
+        int comparisonResult = sortComparator.compare(firstPersonWithNullLastContact, secondPersonWithNullLastContact);
+        int comparisonResult2 = sortComparator.compare(firstPersonWithNullLastContact, thirdPersonWithValidLastContact);
+        int comparisonResult3 = sortComparator.compare(thirdPersonWithValidLastContact, firstPersonWithNullLastContact);
 
-        // Expect personWithNullDateTime to be considered "greater" due to null dateTime, so it's sorted to the end
-        assertEquals(1, comparisonResultWithNullDateTimeFirst);
-        assertEquals(-1, comparisonResultWithValidLastContactFirst);
+        // Since both last contact dates are null, we expect the comparator to consider them equal
+        assertEquals(0, comparisonResult);
+        // Since only first person has Null last contact, we should expect 1
+        assertEquals(1, comparisonResult2);
+        // Since only second person has Null last contact, we should expect -1
+        assertEquals(-1, comparisonResult3);
+        // Test for null Lastcontact
+        assertEquals(null, lastContactDateTime1.getDateTime());
     }
 
     @Test
