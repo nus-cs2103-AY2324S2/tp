@@ -58,7 +58,6 @@ public class CommandResult {
     public void setChangeDataSource() {
         this.changeDataSource = true;
     }
-    
     @Override
     public boolean equals(Object other) {
         if (other == this) {
