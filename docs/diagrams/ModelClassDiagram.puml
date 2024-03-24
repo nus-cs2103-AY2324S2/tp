@@ -14,11 +14,12 @@ Class UserPrefs
 
 Class UniquePersonList
 Class Person
-Class Address
+Class Tag
+Class "<<enumeration>>\nTagType" as TagType
 Class Email
 Class Name
 Class Phone
-Class Tag
+Class Group
 
 Class I #FFFFFF
 }
@@ -40,15 +41,15 @@ UniquePersonList --> "~* all" Person
 Person *--> Name
 Person *--> Phone
 Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+Person *--> Tag
+Person *--> "*" Group
 
 Person -[hidden]up--> I
 UniquePersonList -[hidden]right-> I
 
 Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+Phone -[hidden]right-> Tag
+Tag -[hidden]right-> Email
 
 ModelManager --> "~* filtered" Person
 @enduml
