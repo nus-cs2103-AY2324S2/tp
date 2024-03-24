@@ -6,26 +6,80 @@
 
 # AssetBook-3 User Guide
 
-AssetBook-3 is a desktop application for logistics managers to keep track of contacts, along with assets for which they are responsible. It is meant for those who wish to easily retrieve contact details based on contact details and/or asset.
+[//]: # (AssetBook-3 is a desktop application for logistics managers to keep track of contacts, along with assets for which they are responsible. It is meant for those who wish to easily retrieve contact details based on contact details and/or asset.)
+
+Welcome **logistics managers**! If you are someone who 
+
+1. manages logistics and inventory in a professional capacity,
+2. is a fast typist, tired of shuffling back and forth between your mouse and keyboard,
+3. is feeling swamped by the tedium of contact management on traditional office software...
+
+breathe easy because AssetBook-3 is here! 
+Here to help streamline the task of tracking contacts and logistical assets they are in charge of, 
+making your management tasks smoother than ever.
+
+AssetBook-3 is designed to:
+1. **Digitally Organize Your Contacts**: Say goodbye to scattered contacts; now, have them all organized and accessible in one place.
+2. **Effortlessly Track All Your Assets**: Keep tabs on who is responsible for every piece of equipment and every item in your inventory.
+3. **Maximize Your Operational Efficiency**: Our application, combined with your swift keyboard skills, turns the chore of contact management into a seamless and satisfying process!
+
+---
+
+## Using this Guide
+
+#### New Users
+
+Head over to the [quick start](#quick-start) to learn how to set up the application. 
+After which, you can have a look at the [features](#features) of AssetBook-3.
+
+#### Experienced Users
+
+Utilise the [table of contents](#table-of-contents) 
+or skip to the [command summary](#command-summary) to refresh your memory.
+
+---
 
 <!-- * Table of Contents -->
-<page-nav-print />
+## Table of Contents
+1. [Introduction](#assetbook-3-user-guide)
+2. [Using this Guide](#using-this-guide)
+3. [Table of Contents](#table-of-contents)
+4. [Quick Start](#quick-start)
+   1. [Setting Up](#setting-up)
+   2. [Navigating the GUI](#navigating-the-gui)
+5. [Navigating the GUI](#navigating-the-gui)
+6. [Features](#features)
+   1. [Add](#adding-a-person-add)
+   2. [Delete](#delete-a-contact-or-asset-delete)
+   3. [Edit](#editing-a-contact-edit)
+   4. [Asset](#editing-an-asset-edita)
+   5. [Find](#locating-persons-by-name-or-asset-find)
+   6. [Undo](#undo-last-command-undo)
+   7. [Exit](#exiting-the-program-exit)
+7. [Frequently Asked Questions](#faq)
+8. [Known Issues](#known-issues)
+9. [Command Summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## Quick Start
+
+### Setting Up
 
 1. Ensure you have Java `11` installed on your Computer.
 
-1. Download the latest `assetbook.jar` from [here](https://github.com/AY2324S2-CS2103T-W12-3/tp/releases).
+2. Download the latest `assetbook.jar` from [here](https://github.com/AY2324S2-CS2103T-W12-3/tp/releases).
 
-1. Copy the file into the folder you want to use as the _home folder_.
+3. Copy the file into the folder you want to use as the _home folder_.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar assetbook.jar` command to run the application.
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Double-click on the `jar` file and a GUI similar to the below should appear in a few seconds. 
+   Note how the app contains some sample data.
    ![Ui](images/Ui.png)
 
-1. Refer to the [Features](#features) below for details of each command.
+5. Refer to the [features](#features) below for details of each available command.
+
+### Navigating the GUI
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -36,10 +90,10 @@ AssetBook-3 is a desktop application for logistics managers to keep track of con
 **Notes about the command format:**<br>
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
-* Items with `...` after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]...` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+* Items followed by `...` indicates that it can be entered multiple times.<br>
+  e.g. `[t/TAG]...` can be used as `t/friend`, `t/friend t/colleague` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -47,7 +101,7 @@ AssetBook-3 is a desktop application for logistics managers to keep track of con
 * Extraneous parameters for commands that do not take in parameters (such as `exit`) will be ignored.<br>
   e.g. if the command specifies `exit 123`, it will be interpreted as `exit`.
 
-* If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
+* **If you are using a PDF version of this document**, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </box>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -94,7 +148,7 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]... [A/ASSET]...`
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Delete a contact or asset : `delete`
+### Delete a contact or asset: `delete`
 
 Delete a contact from the system by specifying its ID.
 
@@ -107,7 +161,7 @@ Format: `delete ID`
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Editing a contact : `edit`
+### Editing a contact: `edit`
 
 Edit existing contacts without recreating them.
 
@@ -155,7 +209,7 @@ Format: `undo`
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Exiting the program : `exit`
+### Exiting the program: `exit`
 
 Exits the program.
 
