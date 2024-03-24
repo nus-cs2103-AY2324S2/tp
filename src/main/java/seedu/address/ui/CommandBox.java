@@ -1,12 +1,14 @@
 package seedu.address.ui;
 
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -19,6 +21,7 @@ public class CommandBox extends UiPart<Region> {
     public static final String ERROR_STYLE_CLASS = "error";
     private static final String FXML = "CommandBox.fxml";
     private static final int ZERO_INDEX = 0;
+    private static final Logger logger = LogsCenter.getLogger(CommandBox.class);
 
     private final CommandExecutor commandExecutor;
 
@@ -150,6 +153,7 @@ public class CommandBox extends UiPart<Region> {
 
             if (this.currentIndex < maxListIndex) {
                 this.currentIndex++;
+                logger.info("Showing succeeding command.");
             }
         }
 
@@ -159,6 +163,7 @@ public class CommandBox extends UiPart<Region> {
         public void decrementIndex() {
             if (this.currentIndex != ZERO_INDEX) {
                 this.currentIndex--;
+                logger.info("Showing previous command.");
             }
         }
 

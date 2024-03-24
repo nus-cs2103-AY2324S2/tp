@@ -62,7 +62,7 @@ public class ExitWindow extends UiPart<Stage> {
      *     </ul>
      */
     public void show() {
-        logger.fine("Showing exit confirmation.");
+        logger.fine("Showing exit window.");
         getRoot().show();
         getRoot().centerOnScreen();
     }
@@ -96,6 +96,7 @@ public class ExitWindow extends UiPart<Stage> {
     @FXML
     private void noButton() {
         getRoot().hide();
+        logger.fine("Hiding exit window.");
         yesButton.requestFocus();
     }
 }
