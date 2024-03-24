@@ -118,4 +118,8 @@ public class Person {
                 .toString();
     }
 
+    public boolean isWeak() {
+        return grade.isWeak();
+    }
+
 }
