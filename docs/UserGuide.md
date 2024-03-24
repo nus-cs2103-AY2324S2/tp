@@ -134,14 +134,14 @@ Examples:
 
 ### Locating patients by name: `find`
 
-Finds patients whose name exactly match the given keyword(s).
+Finds one or more patients whose name exactly match the given keyword(s).
 
-Format: `find KEYWORD [MORE_KEYWORD]`
+Format: `find KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive e.g. `alex` will match `Alex`
 * The order of the patient name does not matter. e.g. `Becker Alex` will match `Alex Becker`
 * Only the Patient Name is searched.
-* Only full word(s) will be matched .
+* Only full word(s) will be matched.
 e.g. `Alex` will not match `Alexandra`, `Alex` will match `Alex Becker`
 * Patients matching at least one keyword will be returned. 
 e.g. `Alex Becker` will return `Alex Keller` and `Becker Anderson`
@@ -217,6 +217,26 @@ Format: `deletet INDEX [t/TAG]+`
 Examples:
 * `deletet 1 t/critical`
 * `deletet 2 t/friend t/fall risk`
+
+--------------------------------------------------------------------------------------------------------------------
+
+### Locating patients by tag: `findt`
+
+Finds one or more patients whose tag exactly match the given keyword(s).
+
+Format: `findt KEYWORD [MORE_KEYWORDS]`
+
+* The search is case-insensitive e.g. `depression` will match `Depression`
+* The order of the patient tag does not matter. e.g. `depression diabetes` will match `diabetes depression`
+* Only the tag is searched.
+* Only full word(s) will be matched.
+  e.g. `depress` will not match `depression`, `depress` will match `depress diabetes`
+* Patients matching at least one keyword will be returned.
+  e.g. `depression diabetes` will return `depression wheelchair` and `diabetes tumour`
+
+Examples:
+* find `depression` returns `depression` and `depression diabetes`
+* find `depression diabetes` returns `depression`, `depression diabetes` and `diabetes wheelchair`
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -337,6 +357,7 @@ Action     | Format, Examples
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g. `find James Jake`
 **Add Tags**   | `addt INDEX [t/TAG]+`<br> e.g. `addt 1 t/critical`
 **Delete Tags**   | `deletet INDEX [t/TAG]+`<br> e.g. `deletet 1 t/critical`
+**Find Tags**   | `findt KEYWORD [MORE_KEYWORDS]`<br> e.g. `findt depression diabetes`
 **AddEvent** | `adde INDEX [n/NAME_OF_EVENT_ON_THAT_DATE] [d/DATE_OR_DATETIME_OF_EVENT_ON_THAT_DATE]` <br> e.g. `adde 1 n/Birthday d/20-01-2022`
 **DeleteEvent** | `deletee PATIENT_INDEX [e/EVENT_INDEX]` <br> e.g. `deletee 1 e/1`
 **EditEvent** | `edite PATIENT_INDEX [e/EVENT_INDEX] [n/NAME_OF_EVENT_ON_THAT_DATE] [d/DATE_OR_DATETIME_OF_EVENT_ON_THAT_DATE]` <br> e.g. `edite 1 e/1 n/Papa Birthday d/20-01-2023`

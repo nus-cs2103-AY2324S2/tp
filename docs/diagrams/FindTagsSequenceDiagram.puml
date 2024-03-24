@@ -1,0 +1,70 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":FindTagsCommandParser" as FindTagsCommandParser LOGIC_COLOR
+participant "f:FindTagsCommand" as FindTagsCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "m:Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("findt depression")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("findt depression")
+activate AddressBookParser
+
+create FindTagsCommandParser
+AddressBookParser -> FindTagsCommandParser
+activate FindTagsCommandParser
+
+FindTagsCommandParser --> AddressBookParser
+deactivate FindTagsCommandParser
+
+AddressBookParser -> FindTagsCommandParser : parse("depression")
+activate FindTagsCommandParser
+
+create FindTagsCommand
+FindTagsCommandParser -> FindTagsCommand
+activate FindTagsCommand
+
+FindTagsCommand --> FindTagsCommandParser :
+deactivate FindTagsCommand
+
+FindTagsCommandParser --> AddressBookParser : f
+deactivate FindTagsCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+FindTagsCommandParser -[hidden]-> AddressBookParser
+destroy FindTagsCommandParser
+
+AddressBookParser --> LogicManager : f
+deactivate AddressBookParser
+
+LogicManager -> FindTagsCommand : execute(m)
+activate FindTagsCommand
+
+FindTagsCommand -> Model : updateFilteredPatientList(args)
+activate Model
+
+Model --> FindTagsCommand
+deactivate Model
+
+create CommandResult
+FindTagsCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> FindTagsCommand
+deactivate CommandResult
+
+FindTagsCommand --> LogicManager : r
+deactivate FindTagsCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
