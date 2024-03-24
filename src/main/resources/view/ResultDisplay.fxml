@@ -8,5 +8,4 @@
            xmlns:fx="http://javafx.com/fxml/1">
   <TextArea wrapText="true"
           fx:id="resultDisplay" editable="false" styleClass="result-display"/>
-
 </StackPane>
