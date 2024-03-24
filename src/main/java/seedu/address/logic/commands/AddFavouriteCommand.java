@@ -68,8 +68,8 @@ public class AddFavouriteCommand extends Command {
             return false;
         }
 
-        AddFavouriteCommand otherAddOrderCommand = (AddFavouriteCommand) other;
-        return this.indices.equals(otherAddOrderCommand.indices);
+        AddFavouriteCommand otherAddFavouriteCommand = (AddFavouriteCommand) other;
+        return this.indices.equals(otherAddFavouriteCommand.indices);
     }
 
     @Override
