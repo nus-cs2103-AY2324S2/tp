@@ -42,14 +42,14 @@ public class FindCommandParser implements Parser<FindCommand> {
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
 
         // Check if no attribute is provided e.g (find john)
-        if (!argMultimap.getPreamble().isEmpty() && !argMultimap.isPrefixPresent(ALL_PREFIXES)) {
+        if (!argMultimap.getPreamble().isEmpty() && !argMultimap.isAnyPrefixPresent(ALL_PREFIXES)) {
             NameContainsSubstringPredicate derivedNamePredicate = new NameContainsSubstringPredicate(
                     ParserUtil.parseSearchString(argMultimap.getPreamble()));
             CombinedPredicates predicates = new CombinedPredicates(derivedNamePredicate);
             return new FindCommand(predicates);
         } else {
             NameContainsSubstringPredicate namePredicate = new NameContainsSubstringPredicate(
-                    ParserUtil.parseSearchString(argMultimap.getValue(PREFIX_NAME).orElse("")));
+                    ParserUtil.parseSearchString(argMultimap.getValue(PREFIX_NAME).orElse(argMultimap.getPreamble())));
             PhoneContainsSubstringPredicate phonePredicate = new PhoneContainsSubstringPredicate(
                     ParserUtil.parseSearchString(argMultimap.getValue(PREFIX_PHONE).orElse("")));
             EmailContainsSubstringPredicate emailPredicate = new EmailContainsSubstringPredicate(

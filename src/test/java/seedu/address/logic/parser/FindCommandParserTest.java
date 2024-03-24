@@ -161,4 +161,34 @@ public class FindCommandParserTest {
 
         assertParseSuccess(parser, NAME, expectedCommand);
     }
+
+    @Test
+    public void parse_preambleWithTagSpecified_returnsFindCommand() {
+        FindCommand expectedCommand = new FindCommand(new CombinedPredicates(
+                NAME_PREDICATE, PHONE_PREDICATE_EMPTY, EMAIL_PREDICATE_EMPTY, ADDRESS_PREDICATE_EMPTY,
+                NOTE_PREDICATE_EMPTY, TAGS_PREDICATE));
+
+        assertParseSuccess(parser, String.format("%s %s%s", NAME, PREFIX_TAG, TAG),
+                expectedCommand);
+    }
+
+    @Test
+    public void parse_preambleWithEmailSpecified_returnsFindCommand() {
+        FindCommand expectedCommand = new FindCommand(new CombinedPredicates(
+                NAME_PREDICATE, PHONE_PREDICATE_EMPTY, EMAIL_PREDICATE, ADDRESS_PREDICATE_EMPTY,
+                NOTE_PREDICATE_EMPTY, TAGS_PREDICATE_EMPTY));
+
+        assertParseSuccess(parser, String.format("%s %s%s", NAME, PREFIX_EMAIL, EMAIL),
+                expectedCommand);
+    }
+
+    @Test
+    public void parse_preambleWithAddressSpecified_returnsFindCommand() {
+        FindCommand expectedCommand = new FindCommand(new CombinedPredicates(
+                NAME_PREDICATE, PHONE_PREDICATE_EMPTY, EMAIL_PREDICATE_EMPTY, ADDRESS_PREDICATE,
+                NOTE_PREDICATE_EMPTY, TAGS_PREDICATE_EMPTY));
+
+        assertParseSuccess(parser, String.format("%s %s%s", NAME, PREFIX_ADDRESS, ADDRESS),
+                expectedCommand);
+    }
 }
