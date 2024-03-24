@@ -82,11 +82,11 @@ public class ImportCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         try {
-            List<Map<String, String>> data = readCsvFile();
-            for (Map<String, String> personData : data) {
+            List<Map<String, String>> personsData = readCsvFile();
+            for (Map<String, String> personData : personsData) {
                 try {
                     String addCommandInput = convertToAddCommandInput(personData);
-                    AddCommand addCommand = parseAddCommand(addCommandInput);
+                    AddCommand addCommand = parseAddCommandInput(addCommandInput);
                     addCommand.execute(model);
                 } catch (ParseException e) {
                     throw new CommandException(String.format(MESSAGE_PARSE_ERROR, personData));
@@ -156,7 +156,7 @@ public class ImportCommand extends Command {
         return sb.toString();
     }
 
-    public AddCommand parseAddCommand(String input) throws ParseException {
+    public AddCommand parseAddCommandInput(String input) throws ParseException {
         return addCommandParser.parse(input);
     }
 
