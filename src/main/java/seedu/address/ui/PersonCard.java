@@ -41,7 +41,7 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label relationship;
     @FXML
-    private Label policy;
+    private FlowPane policies;
     @FXML
     private FlowPane tags;
     @FXML
@@ -60,14 +60,26 @@ public class PersonCard extends UiPart<Region> {
         email.setText(person.getEmail().value);
         relationship.setText(person.getRelationship().value);
 
-        policy.setText(person.getPolicy().value.isEmpty() ? "No policy assigned" : "Policy: "
-                + person.getPolicy().value);
-        policy.setStyle(person.getPolicy().value.isEmpty() ? "-fx-background-color: #f54242"
-                : "-fx-background-color: #1fab2f");
-
         if (!person.isClient()) {
-            policy.setVisible(false);
+            policies.getChildren().add(new Label(""));
+        } else {
+            if (person.getPolicy().value.isEmpty()) {
+                policies.getChildren().add(new Label("No policy assigned"));
+            } else {
+                policies.getChildren().add(new Label("Policy: " + person.getPolicy().value));
+            }
         }
+
+        for (Node child : policies.getChildren()) {
+            if (child instanceof Label) {
+                Label label = (Label) child;
+                label.setStyle(
+                        "-fx-background-color: " + (person.getPolicy().value.isEmpty() ? "#f54242" : "#1fab2f") + "; "
+                                + "-fx-padding: 2px 2px;" + "-fx-background-radius: 2.5; "
+                );
+            }
+        }
+
 
         tags.getChildren().clear();
         person.getTags().stream()
