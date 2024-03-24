@@ -42,6 +42,7 @@ public class QrCodeGenerator {
      * @throws IOException     if an error occurs while writing the QR code image to the file
      */
     public static void generateQrCode(Person person) throws WriterException, IOException {
+        assert(person != null);
         String vCard = createVCardString(person);
 
         Map<EncodeHintType, Object> hints = new HashMap<>();
