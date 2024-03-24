@@ -113,23 +113,15 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
+### Locating persons by category and description or by tag: `find`
 
-Finds persons whose names contain any of the given keywords.
+Find a specific person from the address book.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find c/<category> d/<description>` or `find t/<tag>`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* Find anyone in the address book with matching category and description or tag only
+* Category refers to a field a person has, such as `name`, `phone` and etc.
+* Tag refers to the specific type of person in the address book, such as `friends`, `neighbours` and etc.
 
 ### Deleting a person : `delete`
 
