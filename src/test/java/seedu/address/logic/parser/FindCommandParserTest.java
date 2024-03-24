@@ -153,4 +153,12 @@ public class FindCommandParserTest {
         assertParseSuccess(parser, String.format(" %s%s \n %s%s", PREFIX_NAME, NAME, PREFIX_PHONE, PHONE),
                 expectedCommand);
     }
+
+    @Test
+    public void parse_noAttributeSpecified_returnsFindCommand() {
+        CombinedPredicates expectedPredicates = new CombinedPredicates(NAME_PREDICATE);
+        FindCommand expectedCommand = new FindCommand(expectedPredicates);
+
+        assertParseSuccess(parser, NAME, expectedCommand);
+    }
 }
