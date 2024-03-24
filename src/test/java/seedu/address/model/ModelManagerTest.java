@@ -128,5 +128,17 @@ public class ModelManagerTest {
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
         assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs)));
+
+        // other modelManager has no selectedPerson -> returns false
+        modelManager.updateSelectedPerson(ALICE);
+        assertFalse(modelManager.equals(modelManagerCopy));
+
+        // same selectedPerson -> returns true
+        modelManagerCopy.updateSelectedPerson(ALICE);
+        assertTrue(modelManager.equals(modelManagerCopy));
+
+        // different selectedPerson -> returns false
+        modelManagerCopy.updateSelectedPerson(BENSON);
+        assertFalse(modelManager.equals(modelManagerCopy));
     }
 }
