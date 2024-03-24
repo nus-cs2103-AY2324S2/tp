@@ -6,7 +6,9 @@
 
 # AssetBook-3 User Guide
 
-[//]: # (AssetBook-3 is a desktop application for logistics managers to keep track of contacts, along with assets for which they are responsible. It is meant for those who wish to easily retrieve contact details based on contact details and/or asset.)
+---
+
+## Introduction
 
 Welcome **logistics managers**! If you are someone who 
 
@@ -26,6 +28,9 @@ AssetBook-3 is designed to:
 ---
 
 ## Using this Guide
+
+This user guide contains all information needed to use AssetBook-3.
+A [glossary](#glossary) is provided in case you encounter any unfamiliar terms.
 
 #### New Users
 
@@ -59,8 +64,9 @@ or skip to the [command summary](#command-summary) to refresh your memory.
 7. [Frequently Asked Questions](#faq)
 8. [Known Issues](#known-issues)
 9. [Command Summary](#command-summary)
+10. [Glossary](#glossary)
 
---------------------------------------------------------------------------------------------------------------------
+---{.double}
 
 ## Quick Start
 
@@ -78,10 +84,21 @@ or skip to the [command summary](#command-summary) to refresh your memory.
 
 5. Refer to the [features](#features) below for details of each available command.
 
+<box type="tip" seamless>
+    Having trouble? Check the <a href="{{ baseUrl }}/UserGuide.html#faq">FAQ</a> section for resolutions to common problems.
+</box>
+
 ### Navigating the GUI
 
+Here are the components of the GUI.
 
---------------------------------------------------------------------------------------------------------------------
+1. **Input box**
+2. **Command output box**
+3. **Contacts list**
+4. **Tags**
+5. **Assets**
+
+---{.double}
 
 ## Features
 
@@ -234,13 +251,7 @@ If your changes to the data file makes its format invalid, AssetBook will discar
 Furthermore, certain edits can cause the AssetBook to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
 
---------------------------------------------------------------------------------------------------------------------
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
-
---------------------------------------------------------------------------------------------------------------------
+---{.double}
 
 ## FAQ
 
@@ -253,7 +264,7 @@ _Details coming soon ..._
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
 
---------------------------------------------------------------------------------------------------------------------
+---{.double}
 
 ## Command summary
 
@@ -266,3 +277,8 @@ Action     | Format      |        Examples
 **Find**   | `find KEYWORD [KEYWORD]...` | `find John`
 **Undo**   | `undo` | `undo`
 **Exit**   | `exit` | `exit`
+
+---{.double}
+
+## Glossary
+
