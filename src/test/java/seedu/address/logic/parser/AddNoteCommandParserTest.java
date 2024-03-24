@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailur
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddNoteCommand;
-import seedu.address.model.person.IdentityCardNumber;
 
 public class AddNoteCommandParserTest {
     private AddNoteCommandParser parser = new AddNoteCommandParser();
