@@ -215,7 +215,7 @@ public class CommandTestUtil {
         Person person;
 
         try {
-            person = model.findByName(targetName);
+            person = model.findPersonByName(targetName);
             final String[] splitName = person.getName().fullName.split("\\s+");
             model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 

@@ -155,11 +155,27 @@ public class ModelManager implements Model {
      * Find the person by their name.
      * @param targetName Refers to the name identifier.
      * @return Person that matches the name.
+     */
+    @Override
+    public Person findByName(Name targetName) {
+        for (Person person: this.addressBook.getPersonList()) {
+            Name name = person.getName();
+            if (name.equals(targetName)) {
+                return person;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Find the person by their name.
+     * @param targetName Refers to the name identifier.
+     * @return Person that matches the name.
      * @throws CommandException Handles invalid person message.
      */
     @Override
-    public Person findByName(Name targetName) throws CommandException {
-        for (Person person: filteredPersons) {
+    public Person findPersonByName(Name targetName) throws CommandException {
+        for (Person person: this.addressBook.getPersonList()) {
             Name name = person.getName();
             if (name.equals(targetName)) {
                 if (!(person instanceof Supplier) && !(person instanceof Staff)
@@ -179,7 +195,7 @@ public class ModelManager implements Model {
      */
     @Override
     public Maintainer findMaintainerByName(Name targetName) throws CommandException {
-        for (Person person: filteredPersons) {
+        for (Person person: this.addressBook.getPersonList()) {
             Name name = person.getName();
             if (name.equals(targetName) && person instanceof Maintainer) {
                 return (Maintainer) person;
@@ -196,7 +212,7 @@ public class ModelManager implements Model {
      */
     @Override
     public Staff findStaffByName(Name targetName) throws CommandException {
-        for (Person person: filteredPersons) {
+        for (Person person: this.addressBook.getPersonList()) {
             Name name = person.getName();
             if (name.equals(targetName) && person instanceof Staff) {
                 return (Staff) person;
@@ -213,7 +229,7 @@ public class ModelManager implements Model {
      */
     @Override
     public Supplier findSupplierByName(Name targetName) throws CommandException {
-        for (Person person: filteredPersons) {
+        for (Person person: this.addressBook.getPersonList()) {
             Name name = person.getName();
             if (name.equals(targetName) && person instanceof Supplier) {
                 return (Supplier) person;
