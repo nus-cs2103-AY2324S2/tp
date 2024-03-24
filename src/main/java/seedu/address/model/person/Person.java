@@ -208,4 +208,7 @@ public class Person {
                 .toString();
     }
 
+    public boolean isOverDueLastMet() {
+        return lastMet.getIsOverdue() && schedule.getIsDone();
+    }
 }

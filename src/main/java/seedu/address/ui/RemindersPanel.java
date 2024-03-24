@@ -1,5 +1,8 @@
 package seedu.address.ui;
 
+import javafx.collections.ObservableList;
+import seedu.address.model.person.Person;
+
 /**
  * A UI Class that encapsulates {@code RemindersCard} for Last Met and Appointments.
  * To make updating them together easier.
@@ -15,9 +18,9 @@ public class RemindersPanel {
     /**
      * Creates a {@code RemindersPanel} with the given {@code }.
      */
-    public RemindersPanel() {
-        this.lastMetCard = new RemindersCard(LAST_MET_TITLE);
-        this.appointmentsCard = new RemindersCard(APPOINTMENTS_TITLE);
+    public RemindersPanel(ObservableList<Person> overDueLastMet) {
+        this.lastMetCard = new RemindersCard(LAST_MET_TITLE, overDueLastMet);
+        this.appointmentsCard = new RemindersCard(APPOINTMENTS_TITLE, overDueLastMet);
     }
 
     public RemindersCard getLastMetCard() {
@@ -31,22 +34,22 @@ public class RemindersPanel {
     /**
      * Updates the {@code LastMetCard} with new {@code }.
      */
-    public void updateLastMetCard() {
-        lastMetCard = new RemindersCard(LAST_MET_TITLE);
+    public void updateLastMetCard(ObservableList<Person> updatedOverDueList) {
+        lastMetCard = new RemindersCard(LAST_MET_TITLE, updatedOverDueList);
     }
 
     /**
      * Updates the {@code AppointmentsCard} with new {@code }
      */
-    public void updateAppointmentsCard() {
-        appointmentsCard = new RemindersCard(APPOINTMENTS_TITLE);
+    public void updateAppointmentsCard(ObservableList<Person> updatedAppointmentsList) {
+        appointmentsCard = new RemindersCard(APPOINTMENTS_TITLE, updatedAppointmentsList);
     }
 
     /**
      * Updates the {@code RemindersPanel} with new {@code }.
      */
-    public void updateRemindersPanel() {
-        updateLastMetCard();
-        updateAppointmentsCard();
+    public void updateRemindersPanel(ObservableList<Person> updatedOverDueList) {
+        updateLastMetCard(updatedOverDueList);
+        updateAppointmentsCard(updatedOverDueList);
     }
 }

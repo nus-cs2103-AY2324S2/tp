@@ -147,4 +147,16 @@ public class UniquePersonList implements Iterable<Person> {
         }
         return true;
     }
+
+    public ObservableList<Person> getOverDueLastMet() {
+        ObservableList<Person> overDueLastMet = FXCollections.observableArrayList();
+        for (Person person : internalList) {
+            System.out.println(person);
+            System.out.println(person.isOverDueLastMet());
+            if (person.isOverDueLastMet()) {
+                overDueLastMet.add(person);
+            }
+        }
+        return overDueLastMet;
+    }
 }

@@ -104,4 +104,5 @@ public interface Model {
      * Replaces the current client to be displayed to {@code person}.
      */
     void setDisplayClient(Person person);
+    ObservableList<Person> getOverDueLastMet();
 }

@@ -57,4 +57,6 @@ public interface Logic {
      * Returns true if there is a client in the display.
      */
     boolean hasDisplayClient();
+
+    ObservableList<Person> getOverDueLastMet();
 }

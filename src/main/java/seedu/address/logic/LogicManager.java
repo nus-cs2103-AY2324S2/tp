@@ -95,4 +95,9 @@ public class LogicManager implements Logic {
     public boolean hasDisplayClient() {
         return model.hasDisplayClient();
     }
+
+    @Override
+    public ObservableList<Person> getOverDueLastMet() {
+        return model.getOverDueLastMet();
+    }
 }

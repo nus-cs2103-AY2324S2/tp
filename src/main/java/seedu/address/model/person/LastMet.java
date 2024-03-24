@@ -51,6 +51,7 @@ public class LastMet {
      * @return The status if a new meetup with client is overdue.
      */
     public boolean getIsOverdue() {
+        checkOverdue();
         return this.isOverdue;
     }
 
