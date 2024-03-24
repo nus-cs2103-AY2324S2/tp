@@ -45,6 +45,22 @@ public class Appointment {
     }
 
     /**
+     * Constructs a new appointment instance
+     * @param doctorNric doctor in charge
+     * @param patientNric patient of the appointment
+     * @param appointmentDate date of the appointment
+     * @param appointmentId id of the appointment
+     */
+    public Appointment(Nric doctorNric, Nric patientNric, AppointmentDate appointmentDate, AppointmentId appointmentId) {
+        requireAllNonNull(doctorNric, patientNric, appointmentDate);
+        checkArgument(isValidAppointment(appointmentDate), MESSAGE_CONSTRAINTS_INVALID_DATE);
+        this.doctorNric = doctorNric;
+        this.patientNric = patientNric;
+        this.appointmentDate = appointmentDate;
+        this.appointmentId = appointmentId;
+    }
+
+    /**
      * Checks if appointment is valid by comparing appointment date against current date.
      * A valid new appointment can only be in the future, not the past.
      *

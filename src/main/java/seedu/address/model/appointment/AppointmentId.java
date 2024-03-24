@@ -28,12 +28,17 @@ public class AppointmentId {
         this.appointmentId = apptId;
     }
 
+    public AppointmentId(String appointmentId) {
+        checkArgument(isValidApptId(appointmentId), MESSAGE_CONSTRAINTS);
+        this.appointmentId = appointmentId;
+    }
+
     /**
      * Checks if a provided input appointment id string is in a valid format
      * @param apptId input date string
      * @return boolean indicating if format is valid or not
      */
-    private boolean isValidApptId(String apptId) {
+    public static boolean isValidApptId(String apptId) {
         return apptId.matches(VALIDATION_REGEX);
 
     }
