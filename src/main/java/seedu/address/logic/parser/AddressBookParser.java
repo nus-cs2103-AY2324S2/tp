@@ -48,6 +48,7 @@ public class AddressBookParser {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
 
+//        final String commandWord = matcher.group("commandWord");
         final String commandWord = FuzzyCommandParser.parseCommand(matcher.group("commandWord"));
         final String arguments = matcher.group("arguments");
 
