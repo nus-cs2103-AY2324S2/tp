@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
 /**
  * Represents a Client's meeting time in the address book.
@@ -18,11 +17,6 @@ public class Meeting implements Comparable<Meeting> {
     public static final String VALIDATION_REGEX =
             "^(\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}:\\d{2}| \\d{2}:\\d{2}:\\d{2})?)$";
     public final String value;
-
-    public LocalDateTime getMeeting() {
-        return meeting;
-    }
-
     public final LocalDateTime meeting;
 
     /**
@@ -32,6 +26,10 @@ public class Meeting implements Comparable<Meeting> {
         requireNonNull(meeting);
         this.value = meeting;
         this.meeting = stringToDateTime(meeting);
+    }
+
+    public LocalDateTime getMeeting() {
+        return meeting;
     }
 
     /**

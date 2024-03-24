@@ -113,6 +113,13 @@ Format: `addPolicy i/INDEX n/POLICY`
 Examples:
 * `addPolicy i/10 n/SuperSaver`
 
+### View the lists of meetings : `meetings`
+
+Opens a new window containing a list of all meetings, in chronological order.
+This will be displayed as: "Number | < Meeting Date & Time > with: < Client Name >"
+
+Format: `meetings`
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -138,6 +145,7 @@ Action     | Format, Examples
 **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List**   | `list`
+**AddPolicy** | `addPolicy i/INDEX n/POLICY`<br> e.g., `addPolicy i/4 n/SuperSaver`
 **Help**   | `help`
 **Exit**   | `exit`
-**AddPolicy** | `addPolicy i/INDEX n/POLICY`<br> e.g., `addPolicy i/4 n/SuperSaver`
+**Meetings** | `meetings`

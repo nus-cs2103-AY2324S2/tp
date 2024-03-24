@@ -46,7 +46,7 @@ public class MeetingsWindow extends UiPart<Stage> {
     }
 
     /**
-     * Shows the meetings window.
+     * Shows the meetings window and displays the list of meetings.
      * @throws IllegalStateException
      *     <ul>
      *         <li>
@@ -62,10 +62,6 @@ public class MeetingsWindow extends UiPart<Stage> {
      *             if {@code dialogStage} is already showing.
      *         </li>
      *     </ul>
-     */
-
-    /**
-     * Displays the list of meetings using the meetingsMessage Label
      */
     public void displayMeetings() {
         logger.fine("Showing meetings window for the application.");
