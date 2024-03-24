@@ -184,6 +184,45 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Import contacts from CSV file
+
+#### Implementation
+
+The `ImportCommand` class is responsible for importing contacts from a CSV file. 
+The `ImportCommandParser` class is responsible for parsing the user input and creating an `ImportCommand` object. The `ImportCommand` class then reads the CSV file and add the contacts to the `Model`.
+The import process is done using a series of addCommands, which are executed in the same order as the rows in the CSV file.
+It uses the addCommand so as to take advantage of the validation and error handling that is already implemented in the addCommand.
+The import process is done in the following steps:
+- ImportCommand reads the CSV file with the given file path.
+- The CSV file is parsed and converts each row into the input a user would give to add the person (uses addCommand).
+- The addCommand is then executed passing the same model as import command.
+- The addCommand then adds the person to the model.
+
+The sequence diagram below illustrates the interactions within the `Logic` component when the user issues the command `import`. 
+
+<puml src="diagrams/ImportSequenceDiagram.puml" alt="Interactions Inside the Logic Component for the `import` Command" />
+
+Reference Diagram for each addCommand in importCommand
+
+<puml src="diagrams/ImportSequenceDiagramRef.puml" alt="Interactions Inside the Add Component for the `import` Command" />
+
+### Design Considerations
+
+**Aspect: How to handle duplicate persons**
+ 
+Handled by addCommand, which will check if the person already exists in the model. If the person already exists, the addCommand will not add the person and will return an error message.
+
+**Aspect: How to handle invalid CSV files**
+
+Handled by ImportCommand, which will check if the CSV file is valid.
+
+The validities checked are:
+- The file exists
+- The file is a CSV file
+- **The first row of the file is the header row. In which all compulsory fields are present. Headers that are not recognized will be ignored.**
+
+If the file is not valid, an error message will be returned.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
