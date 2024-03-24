@@ -48,7 +48,7 @@ public class AddAttendanceRecordCommandTest {
         model.selectClass(new Classes(new CourseCode("class1")));
         Random random = new Random();
         String date = String.format("%02d-%02d-202%d",
-                random.nextInt(28) + 1, random.nextInt(11) + 1, random.nextInt(9));
+                random.nextInt(27) + 1, random.nextInt(11) + 1, random.nextInt(9));
 
         Attendance validAttendance = new Attendance(new AttendanceStatus(date, "1"));
 
