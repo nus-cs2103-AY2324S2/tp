@@ -20,6 +20,8 @@ checkstyle {
     toolVersion = '10.2'
 }
 
+check.dependsOn javadoc
+
 test {
     useJUnitPlatform()
     finalizedBy jacocoTestReport
