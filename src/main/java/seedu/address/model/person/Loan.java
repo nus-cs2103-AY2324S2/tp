@@ -96,6 +96,10 @@ public class Loan {
         return !isReturned;
     }
 
+    public boolean isOverdue() {
+        return !isReturned && new Date().after(returnDate);
+    }
+
     /**
      * Marks the loan as returned.
      */
