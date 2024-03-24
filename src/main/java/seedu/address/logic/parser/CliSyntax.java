@@ -12,8 +12,13 @@ public class CliSyntax {
     public static final Prefix PREFIX_ADDRESS = new Prefix("a/");
     public static final Prefix PREFIX_TAG = new Prefix("t/");
     public static final Prefix PREFIX_NOTE = new Prefix("note/");
-    public static final Prefix PREFIX_CLEAR_CONFIRM = new Prefix("/confirm");
+    public static final Prefix PREFIX_CLEAR_CONFIRM = new Prefix("/confirm");       
     public static final Prefix[] ALL_PREFIXES = {
-        PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_NOTE
+        PREFIX_NAME,
+        PREFIX_PHONE,
+        PREFIX_EMAIL,
+        PREFIX_ADDRESS,
+        PREFIX_TAG,
+        PREFIX_NOTE
     };
 }
