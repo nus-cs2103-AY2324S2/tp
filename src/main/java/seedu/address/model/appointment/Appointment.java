@@ -51,7 +51,8 @@ public class Appointment {
      * @param appointmentDate date of the appointment
      * @param appointmentId id of the appointment
      */
-    public Appointment(Nric doctorNric, Nric patientNric, AppointmentDate appointmentDate, AppointmentId appointmentId) {
+    public Appointment(Nric doctorNric, Nric patientNric, AppointmentDate appointmentDate,
+                       AppointmentId appointmentId) {
         requireAllNonNull(doctorNric, patientNric, appointmentDate);
         checkArgument(isValidAppointment(appointmentDate), MESSAGE_CONSTRAINTS_INVALID_DATE);
         this.doctorNric = doctorNric;

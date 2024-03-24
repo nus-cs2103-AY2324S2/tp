@@ -28,9 +28,13 @@ public class AppointmentId {
         this.appointmentId = apptId;
     }
 
-    public AppointmentId(String appointmentId) {
-        checkArgument(isValidApptId(appointmentId), MESSAGE_CONSTRAINTS);
-        this.appointmentId = appointmentId;
+    /**
+     * Constructs new AppointmentId object given an appointmentId
+     * @param apptId id of the appointment
+     */
+    public AppointmentId(String apptId) {
+        checkArgument(isValidApptId(apptId), MESSAGE_CONSTRAINTS);
+        this.appointmentId = apptId;
     }
 
     /**
