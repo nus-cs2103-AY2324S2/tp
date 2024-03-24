@@ -27,7 +27,7 @@ activate GetCommandParser
 GetCommandParser --> AddressBookParser
 deactivate GetCommandParser
 
-AddressBookParser -> GetCommandParser : parse("get 3")
+AddressBookParser -> GetCommandParser : parse("3")
 activate GetCommandParser
 
 create GetCommand
