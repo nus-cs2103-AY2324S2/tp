@@ -1,0 +1,70 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":GetCommandParser" as GetCommandParser LOGIC_COLOR
+participant "g:GetCommand" as GetCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "m:Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("get 3")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("get 3")
+activate AddressBookParser
+
+create GetCommandParser
+AddressBookParser -> GetCommandParser
+activate GetCommandParser
+
+GetCommandParser --> AddressBookParser
+deactivate GetCommandParser
+
+AddressBookParser -> GetCommandParser : parse("3")
+activate GetCommandParser
+
+create GetCommand
+GetCommandParser -> GetCommand
+activate GetCommand
+
+GetCommand --> GetCommandParser :
+deactivate GetCommand
+
+GetCommandParser --> AddressBookParser : g
+deactivate GetCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+GetCommandParser -[hidden]-> AddressBookParser
+destroy GetCommandParser
+
+AddressBookParser --> LogicManager : g
+deactivate AddressBookParser
+
+LogicManager -> GetCommand : execute(m)
+activate GetCommand
+
+GetCommand -> Model : updateFilteredPersonList(x -> personToGet.equals(3))
+activate Model
+
+Model --> GetCommand
+deactivate Model
+
+create CommandResult
+GetCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> GetCommand
+deactivate CommandResult
+
+GetCommand --> LogicManager : r
+deactivate GetCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

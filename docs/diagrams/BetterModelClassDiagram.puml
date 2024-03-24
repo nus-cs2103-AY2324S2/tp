@@ -18,4 +18,6 @@ Person *--> Name
 Person *--> Phone
 Person *--> Email
 Person *--> Country
+Person *--> Status
+Person *--> Comment
 @enduml

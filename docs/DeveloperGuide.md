@@ -155,6 +155,27 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Get Command
+
+Get command allows the recruiters to retrieve the candidate from the list at specified index in the database. If a recruiter types in "get \[INDEX\]" with valid index, it returns the candidate at that specific index in the list of candidates displayed in the UI. Specifically, get command is implemented via following via following steps:
+
+1. Get command class was created in `Command` file in `Logic` component which constructs a get command with candidate index as an argument
+2. execute() method in getcommand class checks whether index provided by the user is valid (i.e. positive integer with smaller or equal to the size of candidate list) or not, and filters the candidate list with given index number, creating a new `CommandResult` object that output success message
+3. In order for get command to get into the `Logic` component, user command must be parsed in `parser` component. In order to do so, `GetCommandParser` was created by implementing `Parser<T>` interface in the `parser` component where `parse()` method creates a `GetCommand` object with given index as an argument.
+
+Given below is an example usage scenario and how the get command mechanism behaves at each step, which could aid understanding the implementation outlined above:
+
+Step 1. The user launches the application for the first time. The `HireHub` will be initialized with the initial address book state.
+
+Step 2. The user executes `get 3` command to retrieve candidate at 3rd entry in the list displayed by UI. Subsequently, `get 3` command calls `GetCommandParser#parse()`, parsing the command and creating a new `GetCommand` object by calling constructor `GetCommand(3)`
+
+Step 3. `GetCommand#execute()` checks whether index 3 is valid argument, and if it is within the valid range, it creates `CommandResult` object to deliver success messages to `LogicManager` class.
+
+The following sequence diagram shows how a get operation goes through the `Logic` component:
+
+![GetSequenceDiagram](images/GetSequenceDiagram.png)
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation

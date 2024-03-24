@@ -18,6 +18,8 @@ Class Country
 Class Email
 Class Name
 Class Phone
+Class Status
+Class Comment
 Class Tag
 
 Class I #FFFFFF
@@ -41,6 +43,8 @@ Person *--> Name
 Person *--> Phone
 Person *--> Email
 Person *--> Country
+Person *--> Status
+Person *--> Comment
 Person *--> "*" Tag
 
 Person -[hidden]up--> I
