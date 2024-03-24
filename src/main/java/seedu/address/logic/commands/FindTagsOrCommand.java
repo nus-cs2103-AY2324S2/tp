@@ -13,7 +13,7 @@ import seedu.address.model.tag.TagsOrFoundPredicate;
  */
 public class FindTagsOrCommand extends Command {
 
-    public static final String COMMAND_WORD = "findTagsOr";
+    public static final String COMMAND_WORD = "findtagsor";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons who contains any of the tags "
             + "and displays them as a list with index numbers.\n"

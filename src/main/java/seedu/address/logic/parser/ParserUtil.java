@@ -146,8 +146,7 @@ public class ParserUtil {
     public static LastContact parseLastContact(String lastContact) throws ParseException {
         requireNonNull(lastContact);
         String trimmedLastContact = lastContact.trim();
-        LastContact lastContactInstance = new LastContact("-"); // Creates a dummy instance to access static method
-        if (!trimmedLastContact.equals("-") && !lastContactInstance.isValidDateTime(trimmedLastContact)) {
+        if (!LastContact.isValidDateTime(trimmedLastContact)) {
             throw new ParseException(String.format(LastContact.MESSAGE_CONSTRAINTS, trimmedLastContact));
         }
         return new LastContact(trimmedLastContact);

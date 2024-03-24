@@ -51,7 +51,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Upcoming upcoming = ParserUtil.parseUpcoming(argMultimap.getValue(PREFIX_UPCOMING).orElse(""));
         LastContact lastcontact = ParserUtil.parseLastContact(argMultimap.getValue(PREFIX_LASTCONTACT)
-                .orElse("-"));
+                .orElse(""));
         Person person = new Person(name, phone, email, address, tagList, upcoming, lastcontact);
 
         return new AddCommand(person);
