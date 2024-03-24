@@ -43,14 +43,14 @@ public class TagsAndFoundPredicateTest {
 
         predicate = preparePredicate(List.of());
         assertTrue(predicate.test(new PersonBuilder().withTags("car").build()));
+
+        predicate = preparePredicate(List.of("Car", "Health"));
+        assertTrue(predicate.test(new PersonBuilder().withTags("car", "health").build()));
     }
 
     @Test
     public void test_tagNotFound_returnsFalse() {
         TagsAndFoundPredicate predicate = preparePredicate(List.of("motorcycle"));
-        assertFalse(predicate.test(new PersonBuilder().withTags("car", "health").build()));
-
-        predicate = preparePredicate(List.of("Car", "Health"));
         assertFalse(predicate.test(new PersonBuilder().withTags("car", "health").build()));
 
         predicate = preparePredicate(List.of("car", "health"));
