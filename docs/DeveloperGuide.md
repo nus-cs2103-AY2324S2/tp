@@ -548,4 +548,3 @@ testers are expected to do more *exploratory* testing.
 * {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries}
 * Include links to the original source as well
 
---------------------------------------------------------------------------------------------------------------------
