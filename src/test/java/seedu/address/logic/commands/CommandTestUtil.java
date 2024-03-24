@@ -91,7 +91,7 @@ public class CommandTestUtil {
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_NRIC_DESC = " " + PREFIX_NRIC + "t0123456A"; // first letter must be capital
-    public static final String INVALID_DOB_DESC = " " + PREFIX_DOB + "20011-30-01"; // must be in YYYY-MM-DD format
+    public static final String INVALID_DOB_DESC = " " + PREFIX_DOB + "2025-01-01"; // must be before today's date
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
