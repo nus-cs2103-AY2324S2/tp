@@ -35,7 +35,7 @@ public class UpcomingCommand extends Command {
     /**
      * Comparator for sorting Person objects by upcoming dates
      */
-    private class UpcomingComparator implements Comparator<Person> {
+    public class UpcomingComparator implements Comparator<Person> {
         @Override
         public int compare(Person p1, Person p2) {
             return p1.getUpcoming().compareTo(p2.getUpcoming());
