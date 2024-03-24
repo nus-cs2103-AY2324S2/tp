@@ -93,7 +93,7 @@ public class AddressBookParser {
             return new DeleteTagsCommandParser().parse(arguments);
 
         case FindTagsCommand.COMMAND_WORD:
-            return new FIndTagsCommandParser().parse(arguments);
+            return new FindTagsCommandParser().parse(arguments);
 
         case DeleteEventCommand.COMMAND_WORD:
             return new DeleteEventCommandParser().parse(arguments);

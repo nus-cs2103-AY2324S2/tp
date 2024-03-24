@@ -12,7 +12,7 @@ import seedu.address.model.patient.TagContainsKeywordsPredicate;
 /**
  * Parses input arguments and creates a new FindTagsCommand object
  */
-public class FIndTagsCommandParser implements Parser<FindTagsCommand> {
+public class FindTagsCommandParser implements Parser<FindTagsCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the FindTagsCommand
