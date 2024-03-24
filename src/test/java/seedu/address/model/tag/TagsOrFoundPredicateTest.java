@@ -43,6 +43,9 @@ public class TagsOrFoundPredicateTest {
 
         predicate = preparePredicate(List.of("car", "health"));
         assertTrue(predicate.test(new PersonBuilder().withTags("car", "health").build()));
+
+        predicate = preparePredicate(List.of("Car", "Health", "CAR", "HEAlth"));
+        assertTrue(predicate.test(new PersonBuilder().withTags("car", "health").build()));
     }
 
     @Test
@@ -51,9 +54,6 @@ public class TagsOrFoundPredicateTest {
         assertFalse(predicate.test(new PersonBuilder().withTags("car").build()));
 
         predicate = preparePredicate(List.of("motorcycle"));
-        assertFalse(predicate.test(new PersonBuilder().withTags("car", "health").build()));
-
-        predicate = preparePredicate(List.of("Car", "Health", "CAR", "HEAlth"));
         assertFalse(predicate.test(new PersonBuilder().withTags("car", "health").build()));
     }
 
