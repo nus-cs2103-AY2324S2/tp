@@ -135,6 +135,22 @@ Examples: Lets say your contact list contains the following contacts: **John Doe
 -   `find Alex Lee` would return `Alex Lee`
 -   `find Lee` would return `John Lee` as well as `Alex Lee`
 
+### Displaying a client's information : `display`
+
+This command allows you to view a client's information by their **name**.
+
+Format: `display n/NAME`
+
+Examples: `display John` would display all of John's information as a contact card on the application.
+
+### Deleting a client: `delete`
+
+This command allows you to delete a client at a specified `INDEX` from your contact list.
+
+Format: `delete INDEX`
+
+Examples: `delete 1` would delete the first client in your client list.
+
 ### Clearing all entries : `clear`
 
 This command allows you to purge your client list, removing **ALL** clients in your client list.
