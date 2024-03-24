@@ -18,6 +18,8 @@ public class CommandBox extends UiPart<Region> {
 
     private final CommandExecutor commandExecutor;
 
+    private final CommandHistory commandHistory;
+
     @FXML
     private TextField commandTextField;
 
@@ -27,8 +29,31 @@ public class CommandBox extends UiPart<Region> {
     public CommandBox(CommandExecutor commandExecutor) {
         super(FXML);
         this.commandExecutor = commandExecutor;
+        this.commandHistory = new CommandHistory();
+
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
+
+        commandTextField.addEventHandler(javafx.scene.input.KeyEvent.KEY_PRESSED, (key) -> {
+            switch (key.getCode()) {
+            case UP:
+                if (commandHistory.isCommandEdited(commandTextField.getText())) {
+                    commandHistory.saveDraftCommand(commandTextField.getText());
+                }
+                commandTextField.setText(commandHistory.getPreviousCommand());
+                key.consume();
+                break;
+            case DOWN:
+                if (commandHistory.isCommandEdited(commandTextField.getText())) {
+                    commandHistory.saveDraftCommand(commandTextField.getText());
+                }
+                commandTextField.setText(commandHistory.getNextCommand());
+                key.consume();
+                break;
+            default:
+                break;
+            }
+        });
     }
 
     /**
@@ -44,6 +69,7 @@ public class CommandBox extends UiPart<Region> {
         try {
             commandExecutor.execute(commandText);
             commandTextField.setText("");
+            commandHistory.addCommand(commandText);
         } catch (CommandException | ParseException e) {
             setStyleToIndicateCommandFailure();
         }
