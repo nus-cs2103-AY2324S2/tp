@@ -43,9 +43,9 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         // Check if no attribute is provided e.g (find john)
         if (!argMultimap.getPreamble().isEmpty() && !argMultimap.isPrefixPresent(ALL_PREFIXES)) {
-            NameContainsSubstringPredicate specialNamePredicate = new NameContainsSubstringPredicate(
+            NameContainsSubstringPredicate derivedNamePredicate = new NameContainsSubstringPredicate(
                     ParserUtil.parseSearchString(argMultimap.getPreamble()));
-            CombinedPredicates predicates = new CombinedPredicates(specialNamePredicate);
+            CombinedPredicates predicates = new CombinedPredicates(derivedNamePredicate);
             return new FindCommand(predicates);
         } else {
             NameContainsSubstringPredicate namePredicate = new NameContainsSubstringPredicate(
