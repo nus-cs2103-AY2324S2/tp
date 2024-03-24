@@ -58,7 +58,8 @@
           </padding>
           <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
         </VBox>
-        <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
+        <fx:include source="WeeklyScheduleView.fxml" />
+
         <VBox VBox.vgrow="ALWAYS">
           <ComboBox fx:id="personComboBox" promptText="Select up to 5 persons">
             <cellFactory>
@@ -88,7 +89,7 @@
             </columns>
           </TableView>
         </VBox>
-        <fx:include source="WeeklyScheduleView.fxml" />
+        <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>
     </Scene>
   </scene>

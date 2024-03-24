@@ -25,5 +25,4 @@
     <ListView fx:id="fridayListView" GridPane.columnIndex="4" GridPane.rowIndex="1"/>
     <ListView fx:id="saturdayListView" GridPane.columnIndex="5" GridPane.rowIndex="1"/>
     <ListView fx:id="sundayListView" GridPane.columnIndex="6" GridPane.rowIndex="1"/>
-
 </GridPane>

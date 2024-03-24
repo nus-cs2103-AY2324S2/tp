@@ -214,6 +214,7 @@ public class MainWindow extends UiPart<Stage> {
                         System.out.println("Current List of person: ");
                         populatedPerson.forEach(person -> System.out.print(person.getName()));
                         updateTableView(populatedPerson);
+
                     }
                 }
             }
@@ -223,6 +224,7 @@ public class MainWindow extends UiPart<Stage> {
     public void updateTableView(ArrayList<Person> selectedPersons) {
         // Clear the table view
         scheduleTable.getItems().clear();
+        weeklyScheduleView.clear();
         // Loop through each selected person
         for (Person person : selectedPersons) {
             // Extract the schedules from the selected person
