@@ -83,18 +83,28 @@ public class Messages {
                 .append("DOB: ").append(person.getDateOfBirth()).append("\n")
                 .append("Sex: ").append(person.getSex()).append("\n")
                 .append("Status: ").append(person.getStatus()).append("\n")
-                .append("Email: ").append(Optional.ofNullable(person.getEmail()).map(Object::toString).orElse("-")).append("\n")
-                .append("Country: ").append(Optional.ofNullable(person.getCountry()).map(Object::toString).orElse("-")).append("\n")
-                .append("Allergies: ").append(Optional.ofNullable(person.getAllergies()).map(Object::toString).orElse("-")).append("\n")
-                .append("Blood Type: ").append(Optional.ofNullable(person.getBloodType()).map(Object::toString).orElse("-")).append("\n")
-                .append("Condition: ").append(Optional.ofNullable(person.getCondition()).map(Object::toString).orElse("-")).append("\n")
-                .append("DOA: ").append(Optional.ofNullable(person.getDateOfAdmission()).map(Object::toString).orElse("-")).append("\n")
-                .append("Diagnosis: ").append(Optional.ofNullable(person.getDiagnosis()).map(Object::toString).orElse("-")).append("\n")
-                .append("Symptom: ").append(Optional.ofNullable(person.getSymptom()).map(Object::toString).orElse("-")).append("\n")
+                .append("Email: ")
+                .append(Optional.ofNullable(person.getEmail()).map(Object::toString).orElse("-")).append("\n")
+                .append("Country: ")
+                .append(Optional.ofNullable(person.getCountry()).map(Object::toString).orElse("-")).append("\n")
+                .append("Allergies: ")
+                .append(Optional.ofNullable(person.getAllergies()).map(Object::toString).orElse("-")).append("\n")
+                .append("Blood Type: ")
+                .append(Optional.ofNullable(person.getBloodType()).map(Object::toString).orElse("-")).append("\n")
+                .append("Condition: ")
+                .append(Optional.ofNullable(person.getCondition()).map(Object::toString).orElse("-")).append("\n")
+                .append("DOA: ")
+                .append(Optional.ofNullable(person.getDateOfAdmission()).map(Object::toString).orElse("-"))
+                .append("\n")
+                .append("Diagnosis: ")
+                .append(Optional.ofNullable(person.getDiagnosis()).map(Object::toString).orElse("-")).append("\n")
+                .append("Symptom: ")
+                .append(Optional.ofNullable(person.getSymptom()).map(Object::toString).orElse("-")).append("\n")
                 .append("Tags: ");
         person.getTags().forEach(tag -> builder.append(tag).append(", "));
-        if (!person.getTags().isEmpty())
+        if (!person.getTags().isEmpty()) {
             builder.delete(builder.length() - 2, builder.length());
+        }
         return builder.toString();
     }
 

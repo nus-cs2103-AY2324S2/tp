@@ -18,13 +18,13 @@ public class ReadCommandParser implements Parser<ReadCommand> {
      */
     public ReadCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        String trimmed_Args = args.trim();
-        if (trimmed_Args.isEmpty()) {
+        String trimmedArg = args.trim();
+        if (trimmedArg.isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, ReadCommand.MESSAGE_NOT_READ));
         }
 
-        return new ReadCommand(new Nric(trimmed_Args));
+        return new ReadCommand(new Nric(trimmedArg));
     }
 }
 
