@@ -89,6 +89,7 @@ public class EditCommand extends Command {
         }
 
         boolean updateProfile = false;
+        Person selectedPerson = model.getSelectedPerson();
         if (personToEdit.isSamePerson(model.getSelectedPerson())) {
             model.updateSelectedPerson(editedPerson);
             updateProfile = true;
@@ -97,7 +98,7 @@ public class EditCommand extends Command {
         model.setPerson(personToEdit, editedPerson);
         model.setToInitialList();
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson)),
-                false, false, true);
+                false, false, updateProfile);
     }
 
     /**

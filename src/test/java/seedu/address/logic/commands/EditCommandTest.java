@@ -87,6 +87,27 @@ public class EditCommandTest {
     }
 
     @Test
+    public void execute_allFieldsSpecifiedHasSelectedPerson_success() {
+        Person editedPerson = new PersonBuilder().build();
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedPerson).build();
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
+
+        Person personToEdit = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        model.updateSelectedPerson(personToEdit);
+
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson));
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
+        expectedModel.updateSelectedPerson(editedPerson);
+
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, false, false,
+                true);
+
+        assertCommandSuccess(editCommand, model, expectedCommandResult, expectedModel);
+    }
+
+    @Test
     public void execute_duplicatePersonUnfilteredList_failure() {
         Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(firstPerson).build();
