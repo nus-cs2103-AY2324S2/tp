@@ -118,6 +118,24 @@ public class Appointment {
     }
 
     @Override
+    public boolean equals(Object appt) {
+        if (appt == this) {
+            return true;
+        }
+
+        if (!(appt instanceof Appointment)) {
+            return false;
+        }
+
+        Appointment appointment = (Appointment) appt;
+
+        return appt != null
+                && appointment.getDoctorNric().equals(this.getDoctorNric())
+                && appointment.getPatientNric().equals(this.getPatientNric())
+                && appointment.getAppointmentDate().equals(this.getAppointmentDate());
+    }
+
+    @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .add("Date", getAppointmentDate())

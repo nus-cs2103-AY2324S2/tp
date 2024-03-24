@@ -8,10 +8,9 @@ import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentDate;
 import seedu.address.model.appointment.AppointmentId;
 import seedu.address.model.person.Nric;
-import seedu.address.model.person.Person;
 
 /**
- * Jackson-friendly version of {@link Person}.
+ * Jackson-friendly version of {@link Appointment}.
  */
 class JsonAdaptedAppointment {
 
@@ -23,7 +22,7 @@ class JsonAdaptedAppointment {
     private final String appointmentId;
 
     /**
-     * Constructs a {@code JsonAdaptedPerson} with the given person details.
+     * Constructs a {@code JsonAdaptedAppointment} with the given appointment details.
      */
     @JsonCreator
     public JsonAdaptedAppointment(@JsonProperty("doctorNric") String doctorNric,
@@ -37,7 +36,7 @@ class JsonAdaptedAppointment {
     }
 
     /**
-     * Converts a given {@code Person} into this class for Jackson use.
+     * Converts a given {@code Appointment} into this class for Jackson use.
      */
     public JsonAdaptedAppointment(Appointment source) {
         doctorNric = source.getDoctorNric().toString();
@@ -47,10 +46,11 @@ class JsonAdaptedAppointment {
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
+     * Converts this Jackson-friendly adapted appointment object into the model's {@code Appointment} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
-     */
+     * @return The converted {@code Appointment} object.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted appointment.
+     * */
     public Appointment toModelType() throws IllegalValueException {
         if (doctorNric == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Nric.class.getSimpleName()));
@@ -90,6 +90,34 @@ class JsonAdaptedAppointment {
         final AppointmentId modelAppointmentId = new AppointmentId(appointmentId);
 
         return new Appointment(modelDoctorNric, modelPatientNric, modelAppointmentDate, modelAppointmentId);
+    }
+
+
+    /**
+     * Indicates whether some other object is "equal to" JsonAdaptedAppointment.
+     *
+     * @param obj the reference object with which to compare.
+     * @return {@code true} if this object is the same as the obj argument; {@code false} otherwise.
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+
+        if (!(obj instanceof JsonAdaptedAppointment)) {
+            return false;
+        }
+
+        JsonAdaptedAppointment jsonAdaptedAppt = (JsonAdaptedAppointment) obj;
+
+
+        return jsonAdaptedAppt != null
+                && jsonAdaptedAppt.doctorNric.equals(this.doctorNric)
+                && jsonAdaptedAppt.patientNric.equals(this.patientNric)
+                && jsonAdaptedAppt.appointmentDate.equals(this.appointmentDate)
+                && jsonAdaptedAppt.appointmentId.equals(this.appointmentId);
+
     }
 
 }
