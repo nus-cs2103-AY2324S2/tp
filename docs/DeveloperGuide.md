@@ -165,6 +165,11 @@ While the `edit` command is used as an example, any command that changes data fo
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `EditCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline continues till the end of diagram.
 </div>
 
+In the current iteration, `ModelManager` is the only object that implements model outside of testing. The following
+sequence diagram shows the interactions within `Model` when editing a person.
+
+![EditSequenceDiagram-Model](images/EditSequenceDiagram-Model.png)
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
