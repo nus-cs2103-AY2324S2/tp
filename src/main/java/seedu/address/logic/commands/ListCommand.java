@@ -2,8 +2,10 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.Model;
 import seedu.address.model.person.ListCommandPredicate;
@@ -24,10 +26,18 @@ public class ListCommand extends Command {
 
     public static final String MESSAGE_LIST_CLASS_SUCCESS = "Listed %1$d students from class groups: %2$s";
 
+    private static final Logger logger = LogsCenter.getLogger(ListCommand.class);
+
     private final ListCommandPredicate predicate;
 
+    /**
+     * Creates a ListCommand to list all students or students from specific class groups.
+     *
+     * @param predicate Predicate to filter students by a list of class groups
+     */
     public ListCommand(ListCommandPredicate predicate) {
         this.predicate = predicate;
+        logger.info("ListCommand created with predicate: " + predicate.toString());
     }
 
 
@@ -37,15 +47,16 @@ public class ListCommand extends Command {
         model.updateFilteredPersonList(predicate);
 
         if (predicate.getClassGroups().isEmpty()) {
-            return new CommandResult(
-                    String.format(MESSAGE_LIST_ALL_SUCCESS, model.getFilteredPersonList().size()));
+            String msg = String.format(MESSAGE_LIST_ALL_SUCCESS, model.getFilteredPersonList().size());
+            return new CommandResult(msg);
         } else {
             String classGroupsString = predicate.getClassGroups().get()
                     .stream()
                     .map(Object::toString)
                     .collect(Collectors.joining(", "));
-            return new CommandResult(String.format(MESSAGE_LIST_CLASS_SUCCESS,
-                    model.getFilteredPersonList().size(), classGroupsString));
+            String msg = String.format(MESSAGE_LIST_CLASS_SUCCESS,
+                    model.getFilteredPersonList().size(), classGroupsString);
+            return new CommandResult(msg);
         }
     }
 
