@@ -10,8 +10,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
-public class OverwriteCommand extends Command {
-
+public class DuplicateCommand extends Command {
     public static final String COMMAND_WORD = "overwrite";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
@@ -29,20 +28,19 @@ public class OverwriteCommand extends Command {
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 
-    public static final String MESSAGE_SUCCESS = "Existing person overwritten: %1$s";
+    public static final String MESSAGE_SUCCESS = "New person added: %1$s";
 
     private static final String MESSAGE_NO_EXISTING_PERSON = "The person you provided does not exist in your "
             + "address book. Please try again with another person.";
     private final Person toAdd;
 
     /**
-     * Creates an OverwriteCommand to add the specified {@code Person}
+     * Creates an DuplicateCommand to add the specified {@code Person}
      */
-    public OverwriteCommand(Person person) {
+    public DuplicateCommand(Person person) {
         requireNonNull(person);
         toAdd = person;
     }
-
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -51,10 +49,7 @@ public class OverwriteCommand extends Command {
             throw new CommandException(MESSAGE_NO_EXISTING_PERSON);
         }
 
-        Person cloneExistingPerson = new Person(toAdd.getName(), toAdd.getPhone(), toAdd.getEmail(), toAdd.getAddress(),
-                toAdd.getTags());
-
-        model.setPerson(cloneExistingPerson, toAdd);
+        model.addDuplicatePerson(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
     }
     @Override
@@ -64,12 +59,12 @@ public class OverwriteCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof OverwriteCommand)) {
+        if (!(other instanceof DuplicateCommand)) {
             return false;
         }
 
-        OverwriteCommand otherOverwriteCommand = (OverwriteCommand) other;
-        return toAdd.equals(otherOverwriteCommand.toAdd);
+        DuplicateCommand otherDuplicateCommand = (DuplicateCommand) other;
+        return toAdd.equals(otherDuplicateCommand.toAdd);
     }
 
     @Override
