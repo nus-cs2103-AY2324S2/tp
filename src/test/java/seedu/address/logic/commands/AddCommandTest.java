@@ -166,9 +166,10 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        // Function needs to be called in order to generate new person model
         @Override
         public String getNextUniqueId() {
-            throw new AssertionError("This method should not be called.");
+            return String.format("%06d", 1);
         }
 
         @Override

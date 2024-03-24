@@ -6,6 +6,10 @@ package seedu.address.model.person;
 public class Id {
     public static final String MESSAGE_CONSTRAINTS =
             "Ids should only contain numbers";
+
+    /**
+     * id is current stored with #000000 format
+     */
     public final String id;
 
     public Id(String id) {
@@ -30,8 +34,10 @@ public class Id {
     }
 
     public int getInt() {
-        return Integer.parseInt(id);
+        String results = id.substring(1);
+        return Integer.parseInt(results);
     }
+
 
     @Override
     public String toString() {
