@@ -6,7 +6,7 @@ import java.util.List;
  * BkTree is a data structure used for fuzzy input
  * @param <T> type of elements stored in BkTree
  */
-public class BkTree<T> {
+public class BkTreeCommandMatcher<T> implements CommandMatcher<T> {
     private BkTreeNode<T> root;
     private DistanceFunction<T> distanceFunction;
 
@@ -16,7 +16,7 @@ public class BkTree<T> {
      * Constructs BkTree with provided items list
      * @param items the list of items to be stored in BkTree
      */
-    public BkTree(List<T> items) {
+    public BkTreeCommandMatcher(List<T> items) {
         assert items != null && !items.isEmpty() : "Items list must not be empty";
         root = new BkTreeNode<>(items.get(0));
         distanceFunction = new LevenshteinDistance<>();
@@ -33,16 +33,6 @@ public class BkTree<T> {
         } else {
             insert(child, item);
         }
-    }
-
-    /**
-     * Finds closest match to the given item in BkTree
-     * @param item the item to find the closest match for
-     * @return closest match to the given item
-     */
-    public T findClosestMatch(T item) {
-        assert item != null : "Item must not be null";
-        return findMatch(root, item);
     }
 
     private T findMatch(BkTreeNode<T> node, T item) {
@@ -76,6 +66,12 @@ public class BkTree<T> {
 
     public int getClosestDistance() {
         return this.closestDistance;
+    }
+
+    @Override
+    public T findClosestMatch(T item) {
+        assert item != null : "Item must not be null";
+        return findMatch(root, item);
     }
 }
 

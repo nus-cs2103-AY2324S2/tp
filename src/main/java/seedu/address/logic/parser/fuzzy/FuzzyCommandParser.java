@@ -6,8 +6,8 @@ import java.util.Arrays;
  * Parsers user commands with fuzzy matching
  */
 public class FuzzyCommandParser {
-    private static final BkTree<String> commandTree = new BkTree<>(Arrays.asList("add", "edit", "delete",
-            "remove", "clear", "find", "list", "exit", "help", "sort", "addbystep", "filter"));
+    private static final BkTreeCommandMatcher<String> commandTree = new BkTreeCommandMatcher<>(Arrays.asList(
+            "add", "edit", "delete", "remove", "clear", "find", "list", "exit", "help", "sort", "addbystep", "filter"));
     private static final int MAX_DISTANCE = 1;
 
     /**
