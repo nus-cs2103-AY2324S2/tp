@@ -10,7 +10,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.DonateCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.BookList;
+import seedu.address.model.book.Book;
+
 
 /**
  * Parses input arguments and creates a new DonateCommand object
@@ -36,6 +37,6 @@ public class DonateCommandParser implements Parser<DonateCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DonateCommand.MESSAGE_USAGE), nee);
         }
 
-        return new DonateCommand(index, new BookList(bookTitle));
+        return new DonateCommand(index, new Book(bookTitle));
     }
 }

@@ -32,7 +32,7 @@ class JsonAdaptedPerson {
     private final String email;
     private final String address;
     private final String meritScore;
-    private final String bookTitle;
+    private final ArrayList<Book> bookCollection;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
     /**
@@ -42,14 +42,14 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("meritScore") String meritScore,
-            @JsonProperty("bookTitle") String bookTitle,
+            @JsonProperty("bookTitle") ArrayList<Book> bookCollection,
             @JsonProperty("tags") List<JsonAdaptedTag> tags) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.meritScore = meritScore;
-        this.bookTitle = bookTitle;
+        this.bookCollection = bookCollection;
         if (tags != null) {
             this.tags.addAll(tags);
         }
@@ -64,7 +64,7 @@ class JsonAdaptedPerson {
         email = source.getEmail().value;
         address = source.getAddress().value;
         meritScore = source.getMeritScore().meritScore;
-        bookTitle = source.getBookList().value.bookTitle;
+        bookCollection = source.getBookList().bookCollection;
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -124,14 +124,20 @@ class JsonAdaptedPerson {
         }
         final MeritScore modelMeritScore = new MeritScore(meritScore);
 
-        if (bookTitle == null) {
+        if (bookCollection == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     BookList.class.getSimpleName()));
         }
-        if (!Book.isValidBookTitle(bookTitle)) {
-            throw new IllegalValueException(Book.MESSAGE_CONSTRAINTS);
+
+        for (int i = 0; i < bookCollection.size(); i++) {
+            Book currentBook = bookCollection.get(i);
+            String currentBookTitle = currentBook.bookTitle;
+            if (!Book.isValidBookTitle(currentBookTitle)) {
+                throw new IllegalValueException(Book.MESSAGE_CONSTRAINTS);
+            }
         }
-        final BookList modelBookList = new BookList(bookTitle);
+
+        final BookList modelBookList = new BookList(bookCollection);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelMeritScore, modelBookList, modelTags);

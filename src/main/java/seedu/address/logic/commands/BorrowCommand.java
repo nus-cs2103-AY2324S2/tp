@@ -10,6 +10,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.book.Book;
 import seedu.address.model.person.BookList;
 import seedu.address.model.person.Person;
 
@@ -30,17 +31,17 @@ public class BorrowCommand extends Command {
     public static final String MESSAGE_ADD_BORROW_SUCCESS = "Added book to Person: %1$s";
 
     private final Index index;
-    private final BookList bookTitle;
+    private final Book book;
 
     /**
      * @param index     of the person in the filtered person list to edit the
      *                  bookTitle
-     * @param bookTitle of the person to be updated to
+     * @param book of the person to be updated to
      */
-    public BorrowCommand(Index index, BookList bookTitle) {
-        requireAllNonNull(index, bookTitle);
+    public BorrowCommand(Index index, Book book) {
+        requireAllNonNull(index, book);
         this.index = index;
-        this.bookTitle = bookTitle;
+        this.book = book;
     }
 
     @Override
@@ -51,26 +52,24 @@ public class BorrowCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        if (bookTitle.equals(new BookList(""))) {
+        // Check whether the borrowed book is empty field
+        if (book.equals(new Book(""))) {
             throw new CommandException(Messages.MESSAGE_EMPTY_BOOK_INPUT_FIELD);
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
 
-        // Checks whether personToEdit has sufficient merit score
+        // Check whether personToEdit has sufficient merit score
         if (personToEdit.getMeritScore().getMeritScoreInt() <= 0) {
             throw new CommandException(Messages.MESSAGE_INSUFFICIENT_MERIT_SCORE);
         }
 
-        // This is for checking, only borrows when the attribute bookTitle is not empty
-        // This shall be deleted soon when we implement multiple books in the BookList
-        if (!personToEdit.getBookList().getBook().bookTitle.isEmpty()) {
-            throw new CommandException(Messages.MESSAGE_FILLED_BOOKLIST_FIELD);
-        }
+        personToEdit.getBookList().addBook(book);
+        BookList updatedBookList = personToEdit.getBookList();
 
         Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), personToEdit.getMeritScore().decrementScore(),
-                bookTitle, personToEdit.getTags());
+        personToEdit.getAddress(), personToEdit.getMeritScore().decrementScore(), updatedBookList,
+                personToEdit.getTags());
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
@@ -99,6 +98,6 @@ public class BorrowCommand extends Command {
 
         BorrowCommand e = (BorrowCommand) other;
         return index.equals(e.index)
-                && bookTitle.equals(e.bookTitle);
+                && book.equals(e.book);
     }
 }

@@ -1,5 +1,7 @@
 package seedu.address.model;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.ArrayList;
 
 import seedu.address.model.book.Book;
@@ -9,7 +11,7 @@ import seedu.address.model.book.Book;
  * It manages operations such as adding, retrieving, and deleting books from the collection.
  */
 public class BookCollection {
-    protected ArrayList<Book> bookCollection;
+    public ArrayList<Book> bookCollection;
 
     /**
      * Construct an empty BookCollection.
@@ -24,6 +26,7 @@ public class BookCollection {
      * @param bookCollection The list of books to initialize the BookCollection with.
      */
     public BookCollection(ArrayList<Book> bookCollection) {
+        requireNonNull(bookCollection);
         this.bookCollection = bookCollection;
     }
 
