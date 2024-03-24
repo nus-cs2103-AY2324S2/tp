@@ -107,8 +107,7 @@ public class Employee {
      * @throws CommandException If the task ID is already present in the employee's task list.
      */
     public Employee assignTask(Task task) throws CommandException {
-        AssignedTasks updatedTasks = tasks.updateTask(task.getTaskId().taskId);
-        updatedTasks.assignTask(task);
+        AssignedTasks updatedTasks = tasks.assignTask(task);
         return new Employee(
                 employeeId, name, phone, email, address, updatedTasks, tags);
     }
@@ -121,8 +120,7 @@ public class Employee {
      * @throws CommandException if the specified task ID is invalid or the task cannot be removed
      */
     public Employee removeTask(TaskId taskID) throws CommandException {
-        AssignedTasks updatedTasks = tasks.deleteTask(taskID.taskId);
-        updatedTasks = updatedTasks.unassignTask(taskID);
+        AssignedTasks updatedTasks = tasks.unassignTask(taskID);
         return new Employee(
                 employeeId, name, phone, email, address, updatedTasks, tags);
     }

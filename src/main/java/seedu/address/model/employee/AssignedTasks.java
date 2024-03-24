@@ -93,34 +93,6 @@ public class AssignedTasks {
     }
 
     /**
-     * Updates the assigned tasks with a new task ID.
-     *
-     * @param taskID The ID of the task to be added.
-     * @return The updated AssignedTasks object.
-     * @throws CommandException If the task ID is already present in the assigned tasks.
-     */
-    public AssignedTasks updateTask(int taskID) throws CommandException {
-        if (Objects.equals(tasks, "")) {
-            tasks = "" + taskID;
-            return this;
-        }
-        String[] taskArray = tasks.split(" ");
-
-        // Check if taskID matches any of the numbers in tasks
-        for (String task : taskArray) {
-            if (Integer.parseInt(task) == taskID) {
-                throw new CommandException(
-                        String.format(MESSAGE_DUPLICATE_TASKID, AssignTaskCommand.MESSAGE_USAGE));
-            }
-        }
-
-        // Add the taskID to tasks
-        tasks += " " + taskID;
-        tasks.trim();
-        return this;
-    }
-
-    /**
      * Adds a new task into assignedTasks.
      *
      * @param task The task to be added.
@@ -128,6 +100,24 @@ public class AssignedTasks {
      * @throws CommandException If the task ID is already present in the assigned tasks.
      */
     public AssignedTasks assignTask(Task task) throws CommandException {
+        if (Objects.equals(tasks, "")) {
+            tasks = "" + task.getTaskId().taskId;
+            return this;
+        }
+        String[] taskArray = tasks.split(" ");
+
+        // Check if taskID matches any of the numbers in tasks
+        for (String taskId : taskArray) {
+            if (Integer.parseInt(taskId) == task.getTaskId().taskId) {
+                throw new CommandException(
+                        String.format(MESSAGE_DUPLICATE_TASKID, AssignTaskCommand.MESSAGE_USAGE));
+            }
+        }
+
+        // Add the taskID to tasks
+        tasks += " " + task.getTaskId().taskId;
+        tasks.trim();
+
         if (assignedTasks.get(task.getTaskId()) != null) {
             throw new CommandException(
                     String.format(MESSAGE_DUPLICATE_TASKID, AssignTaskCommand.MESSAGE_USAGE));
@@ -137,50 +127,39 @@ public class AssignedTasks {
     }
 
     /**
+     * Removes a task from assignedTasks.
      * Deletes the specified task from the assigned tasks list.
      * If the specified task ID is not found in the assigned tasks list,
      * or if the assigned tasks list is empty, a CommandException is thrown.
-     *
-     * @param taskID The ID of the task to be deleted.
-     * @return The updated AssignedTasks object after deleting the task.
-     * @throws CommandException If the specified task ID is not found in the assigned tasks list,
-     *                          or if the assigned tasks list is empty.
-     */
-    public AssignedTasks deleteTask(int taskID) throws CommandException {
-        if (Objects.equals(tasks, "")) {
-            throw new CommandException(
-                    String.format(MESSAGE_NONEXISTENT_TASKS, UnassignTaskCommand.MESSAGE_USAGE));
-        }
-        String[] taskArray = tasks.split(" ");
-        StringBuilder updatedTasks = new StringBuilder();
-
-        boolean taskFound = false;
-
-        for (String task : taskArray) {
-            if (Integer.parseInt(task) == taskID) {
-                taskFound = true;
-            } else {
-                updatedTasks.append(task).append(" ");
-            }
-        }
-
-        if (!taskFound) {
-            throw new CommandException(
-                    String.format(MESSAGE_INVALID_TASKID, UnassignTaskCommand.MESSAGE_USAGE));
-        }
-
-        tasks = updatedTasks.toString().trim();
-        return this;
-    }
-
-    /**
-     * Removes a task from assignedTasks.
      *
      * @param taskId The task to be removed.
      * @return The updated AssignedTasks object.
      * @throws CommandException If the task ID is not present in the assigned tasks.
      */
     public AssignedTasks unassignTask(TaskId taskId) throws CommandException {
+        if (Objects.equals(tasks, "")) {
+            throw new CommandException(
+                    String.format(MESSAGE_NONEXISTENT_TASKS, UnassignTaskCommand.MESSAGE_USAGE));
+        }
+
+        String[] taskArray = tasks.split(" ");
+        StringBuilder updatedTasks = new StringBuilder();
+
+        boolean taskFound = false;
+
+        for (String task : taskArray) {
+            if (Integer.parseInt(task) == taskId.taskId) {
+                taskFound = true;
+            } else {
+                updatedTasks.append(task).append(" ");
+            }
+        }
+        if (!taskFound) {
+            throw new CommandException(
+                    String.format(MESSAGE_INVALID_TASKID, UnassignTaskCommand.MESSAGE_USAGE));
+        }
+        tasks = updatedTasks.toString().trim();
+
         if (assignedTasks.get(taskId) == null) {
             throw new CommandException(
                     String.format(MESSAGE_INVALID_TASKID, AssignTaskCommand.MESSAGE_USAGE));
