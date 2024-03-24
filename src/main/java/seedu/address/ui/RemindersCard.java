@@ -1,11 +1,11 @@
 package seedu.address.ui;
 
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.person.Person;
+import seedu.address.model.reminder.ReminderList;
+import seedu.address.model.reminder.ReminderType;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -13,8 +13,8 @@ import seedu.address.model.person.Person;
 public class RemindersCard extends UiPart<Region> {
 
     private static final String FXML = "RemindersCard.fxml";
-
-    public final ObservableList<Person> remindersList;
+    private final ReminderList remindersList;
+    private final ReminderType reminderType;
 
     @FXML
     private HBox cardPane;
@@ -26,10 +26,11 @@ public class RemindersCard extends UiPart<Region> {
     /**
      * Creates a {@code ClientListCard} with the given {@code }.
      */
-    public RemindersCard(String remindersTitle, ObservableList<Person> remindersList) {
+    public RemindersCard(ReminderType reminderType, ReminderList remindersList) {
         super(FXML);
+        this.reminderType = reminderType;
         this.remindersList = remindersList;
-        title.setText(remindersTitle);
+        title.setText(reminderType.toString());
         remindersCardList.setText(remindersList.toString());
         remindersCardList.setPrefHeight(60);
         remindersCardList.setPrefHeight(60 + remindersList.size() * 20);

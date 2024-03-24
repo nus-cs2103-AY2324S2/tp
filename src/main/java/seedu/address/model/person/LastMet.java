@@ -75,6 +75,17 @@ public class LastMet {
         return "Last Met: " + this.lastMetDate + ", " + abs(this.getPeriodGap()) + " Days Ago.";
     }
 
+    /**
+     * Compares two LastMet objects based on the lastMetDate. The method returns 0 if the two LastMet objects have the
+     * same lastMetDate, a positive integer if this LastMet object has a later lastMetDate than the other LastMet
+     * object, and a negative integer if this LastMet object has an earlier lastMetDate than the other LastMet object.
+     * @param other
+     * @return An integer value based on the comparison of the lastMetDate of two LastMet objects.
+     */
+    public int compareTo(LastMet other) {
+        return this.lastMetDate.compareTo(other.lastMetDate);
+    }
+
     @Override
     public String toString() {
         return DateUtil.parseDateToString(this.lastMetDate);

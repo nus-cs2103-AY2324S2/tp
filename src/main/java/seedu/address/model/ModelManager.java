@@ -12,10 +12,12 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.DisplayClient;
-import seedu.address.model.person.LastMetClient;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.PolicyList;
 import seedu.address.model.policy.Policy;
+import seedu.address.model.reminder.ReminderList;
+import seedu.address.model.reminder.ReminderType;
+
 
 /**
  * Represents the in-memory model of the address book data.
@@ -27,7 +29,6 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final DisplayClient displayClient;
-    private final LastMetClient lastMetClient;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -43,7 +44,6 @@ public class ModelManager implements Model {
         displayClient = filteredPersons.isEmpty()
                 ? new DisplayClient(null)
                 : new DisplayClient(filteredPersons.get(0));
-        lastMetClient = new LastMetClient(this.addressBook.getOverDueLastMet());
     }
 
     public ModelManager() {
@@ -206,8 +206,12 @@ public class ModelManager implements Model {
 
     //=========== PolicyList Displayed =====================================================================
     @Override
-    public ObservableList<Person> getOverDueLastMet() {
-        return addressBook.getOverDueLastMet();
+    public ReminderList getOverDueLastMet() {
+        return new ReminderList(ReminderType.LAST_MET, addressBook.getOverDueLastMet());
+    }
+    @Override
+    public ReminderList getSchedules() {
+        return new ReminderList(ReminderType.SCHEDULES, addressBook.getSchedules());
     }
 
 }

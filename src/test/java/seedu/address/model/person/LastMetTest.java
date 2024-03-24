@@ -83,4 +83,14 @@ public class LastMetTest {
 
         assertEquals(newDuration, LastMet.getLastMetDuration());
     }
+
+    @Test
+    public void compareTo() {
+        LocalDate lastMetDate = LocalDate.now();
+        LastMet lastMet = new LastMet(lastMetDate);
+        LastMet lastMet2 = new LastMet(lastMetDate.plusDays(1));
+        assertTrue(lastMet.compareTo(lastMet2) < 0);
+        assertTrue(lastMet2.compareTo(lastMet) > 0);
+        assertTrue(lastMet.compareTo(lastMet) == 0);
+    }
 }

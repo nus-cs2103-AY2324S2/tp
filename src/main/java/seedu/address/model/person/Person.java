@@ -208,7 +208,33 @@ public class Person {
                 .toString();
     }
 
+    /**
+     * Returns true if the person has an overdue lastMet and there is no active schedule, false otherwise.
+     * @return true if the person has an overdue lastMet and there is no active schedule.
+     */
     public boolean isOverDueLastMet() {
         return lastMet.getIsOverdue() && schedule.getIsDone();
+    }
+    /**
+     * Returns true if the person has an active schedule, false otherwise.
+     * @return true if the person has an active schedule.
+     */
+    public boolean hasActiveSchedule() {
+        return !schedule.getIsDone();
+    }
+
+    /**
+     * Returns the string representation of the overdue person for GUI.
+     * @return The string representation of the overdue person
+     */
+    public String overdueLastMetStringFormat() {
+        return String.format(name + " - %dd ago", lastMet.getPeriodGap());
+    }
+    /**
+     * Returns the string representation of the scheduled person for GUI.
+     * @return The string representation of the scheduled person
+     */
+    public String scheduleStringFormat() {
+        return schedule.getScheduleDateString() + " - " + name + (schedule.getIsMissed() ? " (Missed)" : "");
     }
 }

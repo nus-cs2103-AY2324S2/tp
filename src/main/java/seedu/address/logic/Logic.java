@@ -9,6 +9,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Person;
+import seedu.address.model.reminder.ReminderList;
 
 /**
  * API of the Logic component
@@ -58,5 +59,12 @@ public interface Logic {
      */
     boolean hasDisplayClient();
 
-    ObservableList<Person> getOverDueLastMet();
+    /**
+     * Returns the reminder list for the overdue last met to be displayed in RemindersPanel.
+     */
+    ReminderList getOverDueLastMet();
+    /**
+     * Returns the reminder list for the appointments to be displayed in RemindersPanel.
+     */
+    ReminderList getSchedules();
 }

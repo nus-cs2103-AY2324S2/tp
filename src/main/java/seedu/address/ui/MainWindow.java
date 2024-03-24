@@ -134,7 +134,7 @@ public class MainWindow extends UiPart<Stage> {
             clearClientViewPanel();
         }
 
-        remindersPanel = new RemindersPanel(logic.getOverDueLastMet());
+        remindersPanel = new RemindersPanel(logic.getOverDueLastMet(), logic.getSchedules());
         addRemindersPanel();
 
         resultDisplay = new ResultDisplay();
@@ -202,7 +202,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     private void refreshRemindersPanel() {
         clearRemindersPanel();
-        remindersPanel.updateRemindersPanel(logic.getFilteredPersonList());
+        remindersPanel.updateRemindersPanel(logic.getOverDueLastMet(), logic.getSchedules());
         addRemindersPanel();
     }
 

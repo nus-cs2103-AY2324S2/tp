@@ -148,15 +148,34 @@ public class UniquePersonList implements Iterable<Person> {
         return true;
     }
 
+    /**
+     * Returns the list of persons who are overdue to be met according to their last met date, sorted from most overdue
+     * to least.
+     * @return list of persons who are overdue to be met
+     */
     public ObservableList<Person> getOverDueLastMet() {
         ObservableList<Person> overDueLastMet = FXCollections.observableArrayList();
         for (Person person : internalList) {
-            System.out.println(person);
-            System.out.println(person.isOverDueLastMet());
             if (person.isOverDueLastMet()) {
                 overDueLastMet.add(person);
             }
         }
+        overDueLastMet.sort((p1, p2) -> p1.getLastMet().compareTo(p2.getLastMet()));
         return overDueLastMet;
+    }
+
+    /**
+     * Returns the list of persons who have been scheduled to be met, sorted by schedule.
+     * @return list of persons who have been scheduled to be met
+     */
+    public ObservableList<Person> getSchedules() {
+        ObservableList<Person> schedules = FXCollections.observableArrayList();
+        for (Person person : internalList) {
+            if (person.hasActiveSchedule()) {
+                schedules.add(person);
+            }
+        }
+        schedules.sort((p1, p2) -> p1.getSchedule().compareTo(p2.getSchedule()));
+        return schedules;
     }
 }
