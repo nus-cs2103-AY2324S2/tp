@@ -166,9 +166,9 @@ The list entry of the user with <id> will not have the tag anymore.
 
 Filters the contacts.
 
-Format: `filter <component>[.<modifier>]/<value> ...`
+Format: `filter <component>[.<modifier>]:<value> ...`
 
-`component` is one of `n`,`p`,`e`, or `a` corresponding to the values in add:
+`component` is one of `name`,`phone`,`email`, or `address` corresponding to the values in add:
 name, phone, email and address respectively.
 
 There can be duplicate components, if there are multiple components, the
@@ -191,11 +191,11 @@ sequence of letters and numbers surrounded by spaces
 
 Example
 ```
-filter a/queenstown
+filter address:queenstown
 > The default modifier is has, so this lists every contact with an address that
 > has queenstown in it.
 
-filter p.is/12345678
+filter phone.is:12345678
 > Returns the contact with the phone number 12345678
 ```
 
