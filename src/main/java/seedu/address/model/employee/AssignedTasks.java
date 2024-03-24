@@ -78,7 +78,7 @@ public class AssignedTasks {
      */
     public void initiateHashTable(List<Task> taskList) {
         if (tasks.equals("")) {
-            return ;
+            return;
         }
         String[] taskArray = tasks.split(" ");
 
