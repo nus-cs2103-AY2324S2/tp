@@ -6,6 +6,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
@@ -81,6 +82,39 @@ public class UniquePersonList implements Iterable<Person> {
         }
 
         internalList.set(index, editedPerson);
+    }
+
+    /**
+     * Replaces the person {@code target} in the list with {@code editedPerson}.
+     * {@code target} must exist in the list.
+     * The person identity of {@code editedPerson} must be the same as another existing person in the list.
+     */
+    public void setDuplicatePerson(Person target, Person editedPerson) {
+        requireAllNonNull(target, editedPerson);
+
+        int index = internalList.indexOf(target);
+        if (index == -1) {
+            throw new DuplicatePersonNotFoundException();
+        }
+
+        if (target.isSamePerson(editedPerson)) {
+            internalList.set(index, editedPerson);
+        }
+    }
+
+    /**
+     * Retrieves the person {@code target} in the list with {@code editedPerson}.
+     * {@code target} must exist in the list.
+     * The person identity of {@code editedPerson} must be the same as another existing person in the list.
+     */
+    public Person getPerson(Name name) {
+        for (int i = 0; i < internalList.size(); i++) {
+            if (Objects.equals(name.fullName, internalList.get(i).getName().fullName)) {
+                return internalList.get(i);
+            }
+        }
+
+        return null;
     }
 
     /**

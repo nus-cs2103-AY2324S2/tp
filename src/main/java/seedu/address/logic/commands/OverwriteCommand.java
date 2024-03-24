@@ -51,10 +51,8 @@ public class OverwriteCommand extends Command {
             throw new CommandException(MESSAGE_NO_EXISTING_PERSON);
         }
 
-        Person cloneExistingPerson = new Person(toAdd.getName(), toAdd.getPhone(), toAdd.getEmail(), toAdd.getAddress(),
-                toAdd.getTags());
-
-        model.setPerson(cloneExistingPerson, toAdd);
+        Person target = model.getPerson(toAdd.getName());
+        model.setDuplicatePerson(target, toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
     }
     @Override

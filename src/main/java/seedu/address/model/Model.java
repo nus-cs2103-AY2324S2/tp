@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 
 /**
@@ -81,6 +82,18 @@ public interface Model {
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
      */
     void setPerson(Person target, Person editedPerson);
+
+    /**
+     * Replaces the given person {@code target} with {@code editedPerson}.
+     * {@code target} must exist in the address book.
+     * The person identity of {@code editedPerson} must be the same as another existing person in the address book.
+     */
+    void setDuplicatePerson(Person target, Person editedPerson);
+
+    /**
+     * Returns {@code person}'s name that already exists in the address book.
+     */
+    Person getPerson(Name name);
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
