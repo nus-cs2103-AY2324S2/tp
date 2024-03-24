@@ -4,12 +4,14 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
 
 import seedu.address.logic.commands.ChangeDataSourceCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
-public class ChangeDataSourceParser implements Parser<ChangeDataSourceCommand>{
+/**
+ * Parses input arguments and creates a new ChangeDataSourceCommand object
+ */
+public class ChangeDataSourceParser implements Parser<ChangeDataSourceCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the CDCommand
      * and returns a CDCommand object for execution.

@@ -1,15 +1,16 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.nio.file.Path;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.UserPrefs;
 
-public class ChangeDataSourceCommand extends Command{
+/**
+ * Change the data source of Pedagogue Pages.
+ */
+public class ChangeDataSourceCommand extends Command {
 
     public static final String COMMAND_WORD = "cd";
 
