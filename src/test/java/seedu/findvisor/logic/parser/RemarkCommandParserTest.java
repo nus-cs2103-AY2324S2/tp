@@ -40,7 +40,7 @@ public void parse_invalidPreamble_failure() {
         // invalid arguments being parsed as preamble
         assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_FORMAT);
 
-        // invalid prefix being parsed as preamble
+        // invalid prefix being parsed as preamble given the expected prefix is r/
         assertParseFailure(parser, "1 i/ string", MESSAGE_INVALID_FORMAT);
     }
 
