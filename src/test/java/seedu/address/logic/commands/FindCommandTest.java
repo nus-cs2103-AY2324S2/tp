@@ -19,6 +19,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.PolicyContainsKeywordsPredicate;
 import seedu.address.model.person.RelationshipContainsKeywordsPredicate;
 import seedu.address.model.person.TagContainsKeywordsPredicate;
 
@@ -81,6 +82,16 @@ public class FindCommandTest {
     public void execute_tagKeywords_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
         Predicate<Person> predicate = new TagContainsKeywordsPredicate(Collections.singletonList("NoSuchTag"));
+        FindCommand command = new FindCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+    }
+
+    @Test
+    public void execute_policyKeywords_noPolicyFound() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+        Predicate<Person> predicate = new PolicyContainsKeywordsPredicate(Collections.singletonList("NoSuchPolicy"));
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);

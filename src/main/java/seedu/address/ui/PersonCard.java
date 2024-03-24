@@ -1,10 +1,11 @@
 package seedu.address.ui;
 
-import java.awt.*;
 import java.time.Duration;
 import java.util.Comparator;
+
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Accordion;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TitledPane;
@@ -17,7 +18,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import seedu.address.model.person.Meeting;
 import seedu.address.model.person.Person;
-import javafx.scene.control.Accordion;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -60,8 +60,10 @@ public class PersonCard extends UiPart<Region> {
         email.setText(person.getEmail().value);
         relationship.setText(person.getRelationship().value);
 
-        policy.setText(person.getPolicy().value.isEmpty() ? "No policy assigned" : "Policy: " + person.getPolicy().value);
-        policy.setStyle(person.getPolicy().value.isEmpty() ? "-fx-background-color: #f54242" : "-fx-background-color: #1fab2f");
+        policy.setText(person.getPolicy().value.isEmpty() ? "No policy assigned" : "Policy: "
+                + person.getPolicy().value);
+        policy.setStyle(person.getPolicy().value.isEmpty() ? "-fx-background-color: #f54242"
+                : "-fx-background-color: #1fab2f");
 
         if (!person.isClient()) {
             policy.setVisible(false);
@@ -79,7 +81,8 @@ public class PersonCard extends UiPart<Region> {
                 meetingsAccordion.getPanes().add(meetingPane);
             }
         } else {
-            TitledPane noMeetingsPane = new TitledPane("No meetings scheduled", new Label("No scheduled meetings"));
+            TitledPane noMeetingsPane = new TitledPane("No meetings scheduled",
+                    new Label("No scheduled meetings"));
             noMeetingsPane.setDisable(true);
             meetingsAccordion.getPanes().add(noMeetingsPane);
         }
@@ -126,7 +129,7 @@ public class PersonCard extends UiPart<Region> {
         durationBox.setSpacing(5);
 
         // Add all HBoxes to the VBox
-        meetingDetails.getChildren().addAll(dateBox, timeBox,durationBox, agendaBox, notesBox);
+        meetingDetails.getChildren().addAll(dateBox, timeBox, durationBox, agendaBox, notesBox);
 
         // Wrap the VBox in a ScrollPane
         ScrollPane scrollPane = new ScrollPane(meetingDetails);
@@ -145,8 +148,8 @@ public class PersonCard extends UiPart<Region> {
         long absSeconds = Math.abs(seconds);
         String positive = String.format(
                 "%d:%02d:%02d",
-                absSeconds / 3600,
-                (absSeconds % 3600) / 60,
+                absSeconds / 3600, (
+                absSeconds % 3600) / 60,
                 absSeconds % 60);
         return seconds < 0 ? "-" + positive : positive;
     }

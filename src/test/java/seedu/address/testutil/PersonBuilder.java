@@ -1,14 +1,18 @@
 package seedu.address.testutil;
 
-import java.time.Duration;
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import seedu.address.model.person.*;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Meeting;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.Policy;
+import seedu.address.model.person.Relationship;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -127,6 +131,11 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Builds and returns a new Person object with the specified details.
+     *
+     * @return A new Person object with the specified details.
+     */
     public Person build() {
         Person p = new Person(name, phone, email, address, relationship, policy, tags);
 
