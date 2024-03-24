@@ -28,7 +28,7 @@ public class CommentCommandParser implements Parser<CommentCommand> {
         Comment comment = new Comment(
                 parsedIndexComment.length == 1
                 ? ""
-                : parsedIndexComment[1]
+                : parsedIndexComment[1].trim()
         );
 
         return new CommentCommand(index, comment);
