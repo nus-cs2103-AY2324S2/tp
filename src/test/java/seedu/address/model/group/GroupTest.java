@@ -47,4 +47,14 @@ public class GroupTest {
         assertFalse(group.isSameGroup(new Group("LAB01")));
     }
 
+    @Test
+    public void equals() {
+        Group group = new Group("TUT01");
+
+        assertTrue(group.equals(group)); // same object
+        assertTrue(group.equals(new Group("TUT01"))); // same group name
+        assertTrue(group.equals(new Group("TUT01", "https://t.me/abcdefghij")));
+        assertFalse(group.equals(new Group("LAB01")));
+    }
+
 }
