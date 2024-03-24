@@ -66,7 +66,12 @@ dependencies {
 }
 
 shadowJar {
-    archiveFileName = 'addressbook.jar'
+    archiveFileName = 'TutorsContactsPro.jar'
 }
+
+run {
+    enableAssertions = true
+}
+
 
 defaultTasks 'clean', 'test'
