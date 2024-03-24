@@ -6,12 +6,49 @@
 
 # CCA Manager User Guide
 
-CCA Manager is a **desktop app for managing contacts, optimized for use via a  Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+<!--
+- Clear and engaging introduction or welcome note that sets the tone for the UG.
+- What this User Guide aims to achieve
+- What this software is about
+    - Clear and engaging introduction or welcome note that sets the tone for the UG. 
+    - Identifies the target user or audience and makes appropriate assumptions, such as the level of relatedness, comprehension, and prior knowledge. 
+-->
+Welcome to CCA Manager's User Guide! CCA Manager is a **contact manager designed to simplify the management of CCAs and enhance your administrative efficiency**, regardless of whether you're overseeing a sports team, academic club, any other extracurricular activity, or simply a CCA participant. It has a minimal and intuitive GUI where most actions are performed via commands, making it a pleasure to use. If you can type fast, CCA Manager can get your admin tracking done faster than traditional GUI apps.
+
+In this user guide, we'll walk you through the essential steps to harness the full potential of CCA Manager. Whether you're a CCA Executive Committee Member or simply a CCA participant, our guide will provide you with the knowledge and tools you need to make the most of our app.
+ 
+This user guide does not assume any prior experience with administrative tools or command interfaces and is accessible for beginners and self-contained. However, if you've used command interfaces such as those from Telegram, you might find this guide easier to follow. If you have further questions while reading this document or while using our app, visit our [FAQ](#faq). If your question isn't answered there, feel free to visit our [project repository](https://github.com/AY2324S2-CS2103T-W11-2/tp/issues) and raise an issue.
+
+This user guide is split into 4 parts: An introduction to what CCA Manager offers, a section to set up our app, a beginner-friendly tutorial that introduces CCA Manager through a practical use case, and a comprehensive reference that explains all of CCA Manager's concepts and features. Feel free to navigate this guide via the sidebar on the right.
+
 
 <!-- * Table of Contents -->
 <page-nav-print />
 
 --------------------------------------------------------------------------------------------------------------------
+
+## Introduction
+
+<!--
+1. Introduction
+    - Problem we're trying to solve
+    - How the software solves the problem
+        - User-centric statement detailing product information, including product description and an overview of main features. 
+    - Links to basic tutorials (concrete use cases)
+-->
+
+Managing contact information and roles for members of CCAs can be a cumbersome task, often involving disparate tools and platforms. Administrators face challenges in efficiently organizing members, coordinating activities, and communicating effectively within these groups.
+
+For instance, the management of contact information and associated information about a CCA activity often involves the use of the following apps: Discord, Telegram, Google Spreadsheets, Sessionize, etc. This makes maintaining administrative information messy, often involving several steps to accomplish a simple task. 
+
+CCA Manager endeavors to equip CCAs with tools that streamline administration, freeing up valuable time for more meaningful tasks. We do so by providing a unified solution in the form of the following core features:
+
+1. **Centralized CCA Membership Management**: Easily associate members with their respective CCAs within one app, eliminating the need for multiple platforms.
+2. **Efficient Group Actions**: Perform actions on groups of CCA members, such as searching for multiple CCAs at once, and streamlining administrative tasks.
+3. **Role Assignment**: Assign roles to CCA members, enhancing organization and clarity within the group.
+
+To get started with CCA Manager and explore its features further, check out our [Quick Start](#quick-start) and our [Tutorials](#TODO), where we'll go through some concrete use cases for our app.
+
 
 ## Quick start
 
