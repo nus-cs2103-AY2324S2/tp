@@ -545,5 +545,7 @@ testers are expected to do more *exploratory* testing.
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries}
+* Include links to the original source as well
+
 --------------------------------------------------------------------------------------------------------------------
