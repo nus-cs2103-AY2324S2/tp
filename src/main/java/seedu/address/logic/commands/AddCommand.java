@@ -11,6 +11,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -44,7 +45,7 @@ public class AddCommand extends Command {
     public static final String MESSAGE_DUPLICATE_FIELD = "This person contains duplicate fields"
             + "(Email, Phone, Telegram, or Github) with another person.";
 
-    private static final Logger logger = Logger.getLogger("Foo");
+    private static final Logger logger = LogsCenter.getLogger(AddCommand.class);
     private final Person toAdd;
 
     /**
@@ -61,12 +62,10 @@ public class AddCommand extends Command {
         requireNonNull(model);
 
         if (model.hasPerson(toAdd)) {
-            logger.log(Level.WARNING, "Person already exists in the model.");
             throw new CommandException(MESSAGE_DUPLICATE_FIELD);
         }
 
         model.addPerson(toAdd);
-        logger.log(Level.INFO, "Person added to the model.");
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
     }
 
