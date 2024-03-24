@@ -52,44 +52,7 @@ public class DeleteCommand extends Command {
         model.deletePerson(personToDelete);
         personToDelete.deleteQrCode();
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS,
-                deletedPersonMessageGenerator(personToDelete)));
-    }
-
-    /**
-     * Takes a person object and only returns non-null fields
-     *
-     * @param person
-     * @return a String of non-null fields
-     */
-    public static String deletedPersonMessageGenerator(Person person) {
-        StringBuilder sb = new StringBuilder();
-        Name name = person.getName();
-        Phone phone = person.getPhone();
-        Email email = person.getEmail();
-        Address address = person.getAddress();
-        Note note = person.getNote();
-        Set<Tag> tags = person.getTags();
-
-        sb.append("Name: ").append(name);
-        sb.append(" | Phone: ").append(phone);
-
-        if (!email.getValue().isEmpty()) {
-            sb.append(" | Email: ").append(email);
-        }
-
-        if (!address.getValue().isEmpty()) {
-            sb.append("\nAddress: ").append(address);
-        }
-
-        if (!note.getValue().isEmpty()) {
-            sb.append(" | Note: ").append(note);
-        }
-
-        if (!tags.isEmpty()) {
-            sb.append(" | Tags: ").append(tags);
-        }
-
-        return sb.toString();
+                personToDelete.getFormattedMessage()));
     }
 
     @Override
