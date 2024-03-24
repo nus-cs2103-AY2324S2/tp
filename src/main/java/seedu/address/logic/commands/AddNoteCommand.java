@@ -31,7 +31,6 @@ public class AddNoteCommand extends Command {
             + " S0123456Q "
             + PREFIX_NOTE + "Diabetes";
 
-
     public static final String MESSAGE_MODIFY_NOTE_SUCCESS = "Note for %1$s (ic: %2$s) modified successfully!";
     private final IdentityCardNumberMatchesPredicate icPredicate;
     private final Note note;

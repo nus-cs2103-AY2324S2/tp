@@ -8,10 +8,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_IC_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SEX;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
@@ -23,7 +21,7 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. \n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
@@ -31,8 +29,7 @@ public class AddCommand extends Command {
             + PREFIX_IC_NUMBER + "IC_NUMBER "
             + PREFIX_AGE + "AGE "
             + PREFIX_SEX + "SEX "
-            + PREFIX_ADDRESS + " "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + PREFIX_ADDRESS + "ADDRESS  \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "12345678 "
@@ -42,7 +39,14 @@ public class AddCommand extends Command {
             + PREFIX_SEX + "M "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 ";
 
-    public static final String MESSAGE_SUCCESS = "New person added: %1$s";
+    public static final String MESSAGE_SUCCESS = "New person added: \n"
+            + "Name: %1$s\n"
+            + "Phone: %2$s\n"
+            + "Email: %3$s\n"
+            + "Identity Card Number: %4$s\n"
+            + "Age: %5$s\n"
+            + "Sex: %6$s\n"
+            + "Address: %7$s\n";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
 
     private final Person toAdd;
@@ -64,7 +68,16 @@ public class AddCommand extends Command {
         }
 
         model.addPerson(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
+        String successMessage = String.format(MESSAGE_SUCCESS,
+                toAdd.getName(),
+                toAdd.getPhone(),
+                toAdd.getEmail(),
+                toAdd.getIdentityCardNumber(),
+                toAdd.getAge(),
+                toAdd.getSex(),
+                toAdd.getAddress());
+
+        return new CommandResult(successMessage);
     }
 
     @Override

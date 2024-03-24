@@ -10,7 +10,6 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -33,7 +32,13 @@ public class DeleteCommandTest {
         DeleteCommand deleteCommand = new DeleteCommand(new IdentityCardNumberMatchesPredicate(icToDelete));
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
-                Messages.format(personToDelete));
+                personToDelete.getName(),
+                personToDelete.getPhone(),
+                personToDelete.getEmail(),
+                personToDelete.getIdentityCardNumber(),
+                personToDelete.getAge(),
+                personToDelete.getSex(),
+                personToDelete.getAddress());
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deletePerson(personToDelete);
@@ -51,7 +56,13 @@ public class DeleteCommandTest {
         DeleteCommand deleteCommand = new DeleteCommand(new IdentityCardNumberMatchesPredicate(icToDelete));
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
-                Messages.format(personToDelete));
+                personToDelete.getName(),
+                personToDelete.getPhone(),
+                personToDelete.getEmail(),
+                personToDelete.getIdentityCardNumber(),
+                personToDelete.getAge(),
+                personToDelete.getSex(),
+                personToDelete.getAddress());
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deletePerson(personToDelete);

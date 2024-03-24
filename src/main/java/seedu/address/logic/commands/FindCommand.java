@@ -17,7 +17,7 @@ public class FindCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose profile matches "
             + "the specified IC (case-insensitive) and displays them.\n"
-            + "Parameters: IC\n"
+            + "Parameters: IC (must be a valid identity card number) \n"
             + "Example: " + COMMAND_WORD + " t1234567A";
 
     private final IdentityCardNumberMatchesPredicate predicate;
