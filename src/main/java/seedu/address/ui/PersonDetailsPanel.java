@@ -44,7 +44,7 @@ public class PersonDetailsPanel extends UiPart<Region> {
     }
 
     /**
-     * Set fields with information from the person
+     * Set fields with information from the person.
      *
      * @param person the Person object containing the information to update the fields with.
      */
