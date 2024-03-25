@@ -50,4 +50,10 @@ public class AddPointsCommandParserTest {
         assertParseFailure(parser, " " + PREFIX_NAME + " Alice " + PREFIX_POINTS + " -50",
                 Points.MESSAGE_CONSTRAINTS); // Points.MESSAGE_CONSTRAINTS contains the message for invalid points
     }
+
+    @Test
+    public void parse_pointsZero_failure() {
+        assertParseFailure(parser, " " + PREFIX_NAME + " Alice " + PREFIX_POINTS + " 0",
+                AddPointsCommand.MESSAGE_CONSTRAINTS);
+    }
 }
