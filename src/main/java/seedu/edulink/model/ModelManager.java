@@ -4,7 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.edulink.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
-import java.util.Objects;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -24,7 +25,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Student> filteredStudents;
-    private final Stack<ModificationHistory> previousStates;
+    private final Stack<List<Student>> previousStates;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -99,20 +100,23 @@ public class ModelManager implements Model {
 
     @Override
     public void deletePerson(Student target) {
-        previousStates.push(new ModificationHistory("delete", target));
+        List<Student> prev = new ArrayList<>(addressBook.getPersonList());
+        previousStates.push(prev);
         addressBook.removePerson(target);
     }
 
     @Override
     public void addPerson(Student student) {
-        previousStates.push(new ModificationHistory("add", student));
+        List<Student> prev = new ArrayList<>(addressBook.getPersonList());
+        previousStates.push(prev);
         addressBook.addPerson(student);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
     public void setPerson(Student target, Student editedStudent) {
-        previousStates.push(new ModificationHistory("edit", target, editedStudent));
+        List<Student> prev = new ArrayList<>(addressBook.getPersonList());
+        previousStates.push(prev);
         requireAllNonNull(target, editedStudent);
         addressBook.setPerson(target, editedStudent);
     }
@@ -136,19 +140,12 @@ public class ModelManager implements Model {
 
     @Override
     public boolean resetToPreviousState() {
-        if(previousStates.isEmpty()) {
+        if (previousStates.isEmpty()) {
             return false;
-        }
-        ModificationHistory previousState = previousStates.pop();
-        String type = previousState.getType();
-        if(Objects.equals(type, "add")) {
-            addressBook.removePerson(previousState.getFirstAffectedStudent());
-        } else if (Objects.equals(type, "delete")) {
-            addressBook.addPerson(previousState.getFirstAffectedStudent());
         } else {
-            addressBook.setPerson(previousState.getSecondAffectStudent(), previousState.getFirstAffectedStudent());
+            addressBook.setPersons(previousStates.pop());
+            return true;
         }
-        return true;
     }
 
     @Override

@@ -16,6 +16,7 @@ import org.junit.jupiter.api.Test;
 import seedu.edulink.commons.core.GuiSettings;
 import seedu.edulink.model.student.NameContainsQueryNamePredicate;
 import seedu.edulink.testutil.AddressBookBuilder;
+import seedu.edulink.testutil.TypicalPersons;
 
 public class ModelManagerTest {
 
@@ -90,6 +91,14 @@ public class ModelManagerTest {
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
+    }
+
+    @Test
+    public void resetToPreviousState() {
+        Model testModel = new ModelManager();
+        assertFalse(testModel.resetToPreviousState());
+        testModel.addPerson(ALICE);
+        assertTrue(testModel.resetToPreviousState());
     }
 
     @Test
