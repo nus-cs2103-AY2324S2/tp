@@ -51,7 +51,8 @@ The bulk of the app's work is done by the following four components:
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user 
+issues the command `delstu e1234567`.
 
 <puml src="diagrams/ArchitectureSequenceDiagram.puml" width="574" />
 
@@ -91,9 +92,12 @@ Here's a (partial) class diagram of the `Logic` component:
 
 <puml src="diagrams/LogicClassDiagram.puml" width="550"/>
 
-The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("delete 1")` API call as an example.
+The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("delstu 
+e1234567")` API 
+call as an example.
 
-<puml src="diagrams/DeleteSequenceDiagram.puml" alt="Interactions Inside the Logic Component for the `delete 1` Command" />
+<puml src="diagrams/DeleteSequenceDiagram.puml" alt="Interactions Inside the Logic Component for the `delstu e1234567` 
+Command" />
 
 <box type="info" seamless>
 
@@ -177,7 +181,13 @@ Step 1. The user launches the application for the first time. The `VersionedAddr
 
 <puml src="diagrams/UndoRedoState0.puml" alt="UndoRedoState0" />
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delstu e1234567` command to delete student with nusnet ID as e1234567 from the address book. 
+The `delstu` 
+command 
+calls 
+`Model#commitAddressBook()`, causing the modified state of the address book after the `delstu e1234567` command 
+executes to 
+be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
 
 <puml src="diagrams/UndoRedoState1.puml" alt="UndoRedoState1" />
 
@@ -247,7 +257,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+  * Pros: Will use less memory (e.g. for `delstu`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
@@ -312,6 +322,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to delete a specific student based on NUSNet ID.
 
    Use case ends.
+
+Extensions
+
+* 1a. No such student exists.
+
+  * 1a1. AddressBook shows an error message. 
+  
+  * Use case ends.
 
 **Use case: Add a student**
 
@@ -438,7 +456,6 @@ students.
    1. Command 2: `addstu n/Mary Jane p/91234911 e/janemary@example.com nn/e0123457 a/312, Clementi St 1, #03-25
       t/friends t/owesTutorial2` 
 
-
 ### Deleting a person
 
 1. Deleting a student
@@ -447,10 +464,8 @@ students.
 
    1. Test case: `delete e0123456`<br>
       Expected: Student with NUSNet ID `e0123456` is deleted from the contact book. Details of the deleted contact 
-      shown in the 
-      status 
-      message. 
-
+      shown in the status message.
+      
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is not an NUSNet ID of a student 
       in TA Pro)<br>
 
