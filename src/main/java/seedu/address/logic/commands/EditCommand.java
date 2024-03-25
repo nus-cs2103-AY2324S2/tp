@@ -146,12 +146,12 @@ public class EditCommand extends Command {
                 .add("editPersonDescriptor", editPersonDescriptor)
                 .toString();
     }
-/**
- * Stores the details to edit the person with. Each non-empty field value will replace the
- * corresponding field value of the person, except for the payment information, which is immutable
- * through this command.
- */
 
+    /**
+     * Stores the details to edit the person with. Each non-empty field value will replace the
+     * corresponding field value of the person, except for the payment information, which is immutable
+     * through this command.
+     */
     public static class EditPersonDescriptor {
         private Name name;
         private Phone phone;

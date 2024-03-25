@@ -178,16 +178,16 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addPaymentToPerson(Id uniqueId, double amount) {
+        public void addPayment(Id uniqueId, double amount) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void markPaymentAsPaid(Id uniqueId, double amount) {
+        public void markPayment(Id uniqueId, double amount) {
             throw new AssertionError("This method should not be called.");
         }
         @Override
-        public void resetPaymentsForPerson(Id uniqueId) {
+        public void resetPayments(Id uniqueId) {
             throw new AssertionError("This method should not be called.");
         }
     }

@@ -3,8 +3,6 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
 
-import java.util.Objects;
-
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -12,6 +10,9 @@ import seedu.address.model.person.Id;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Payment;
 
+/**
+ * Resets the payments for a person to $0.
+ */
 public class ResetPaymentsCommand extends Command {
     public static final String COMMAND_WORD = "resetpayments";
 
@@ -24,6 +25,9 @@ public class ResetPaymentsCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Payments reset for person with ID: %1$s";
     private final Id uniqueId;
 
+    /**
+     * Creates a ResetPaymentsCommand to reset the payments for the person with the specified {@code Id}.
+     */
     public ResetPaymentsCommand(Id uniqueId) {
         requireNonNull(uniqueId);
         this.uniqueId = uniqueId;
@@ -59,11 +63,6 @@ public class ResetPaymentsCommand extends Command {
 
         ResetPaymentsCommand otherCommand = (ResetPaymentsCommand) other;
         return uniqueId.equals(otherCommand.uniqueId);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(uniqueId);
     }
 
 }

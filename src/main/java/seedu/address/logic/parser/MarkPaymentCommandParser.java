@@ -1,7 +1,6 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PAYMENT;
 
@@ -11,6 +10,9 @@ import seedu.address.logic.commands.MarkPaymentCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Id;
 
+/**
+ * Parses input arguments and creates a new MarkPaymentCommand object
+ */
 public class MarkPaymentCommandParser implements Parser<MarkPaymentCommand> {
 
     @Override

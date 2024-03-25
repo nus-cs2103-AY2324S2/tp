@@ -1,11 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PAYMENT;
-
-import java.util.Objects;
 
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -14,6 +11,9 @@ import seedu.address.model.person.Id;
 import seedu.address.model.person.Payment;
 import seedu.address.model.person.Person;
 
+/**
+ * Adds a payment to a person's outstanding amount.
+ */
 public class AddPaymentCommand extends Command {
     public static final String COMMAND_WORD = "addpayment";
 
@@ -29,6 +29,9 @@ public class AddPaymentCommand extends Command {
     private final Id uniqueId;
     private final double amount;
 
+    /**
+     * Creates an AddPaymentCommand to add the specified {@code Payment} to the person with the specified {@code Id}.
+     */
     public AddPaymentCommand(Id uniqueId, double amount) {
         requireNonNull(uniqueId);
         this.uniqueId = uniqueId;
@@ -68,9 +71,5 @@ public class AddPaymentCommand extends Command {
                 && Double.compare(amount, otherCommand.amount) == 0;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(uniqueId, amount);
-    }
 
 }
