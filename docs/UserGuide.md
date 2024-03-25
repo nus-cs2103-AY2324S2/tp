@@ -16,7 +16,7 @@ done faster than traditional GUI apps.
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
-2. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+2. Download the latest `addressbook.jar` from [here](https://github.com/AY2324S2-CS2103T-T16-2/tp/releases).
 3. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar`
    command to run the application.<br>
