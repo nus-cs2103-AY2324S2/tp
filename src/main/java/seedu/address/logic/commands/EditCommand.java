@@ -23,6 +23,7 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.module.ModuleCode;
+import seedu.address.model.module.ModuleTiming;
 import seedu.address.model.student.Address;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Name;
@@ -103,8 +104,9 @@ public class EditCommand extends Command {
         Address updatedAddress = editStudentDescriptor.getAddress().orElse(studentToEdit.getAddress());
         Set<Tag> updatedTags = editStudentDescriptor.getTags().orElse(studentToEdit.getTags());
         List<ModuleCode> updatedModules = editStudentDescriptor.getModules().orElse(studentToEdit.getModules());
+        List<ModuleTiming> updatedModuleTimings = editStudentDescriptor.getModuleTimings().orElse(studentToEdit.getModuleTimings());
 
-        return new Student(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedModules);
+        return new Student(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedModules, updatedModuleTimings);
     }
 
     @Override
@@ -144,6 +146,8 @@ public class EditCommand extends Command {
 
         private List<ModuleCode> modules = new ArrayList<>();
 
+        private List<ModuleTiming> moduleTimings = new ArrayList<>();
+
         public EditStudentDescriptor() {}
 
         /**
@@ -157,10 +161,15 @@ public class EditCommand extends Command {
             setAddress(toCopy.address);
             setTags(toCopy.tags);
             setModules(toCopy.modules);
+            setModuleTimings(toCopy.moduleTimings);
         }
 
         public void setModules(List<ModuleCode> modules) {
             this.modules = new ArrayList<>(modules);
+        }
+
+        public void setModuleTimings(List<ModuleTiming> modules) {
+            this.moduleTimings = new ArrayList<>(moduleTimings);
         }
 
         /**
@@ -188,6 +197,10 @@ public class EditCommand extends Command {
 
         public Optional<List<ModuleCode>> getModules() {
             return (modules != null) ? Optional.of(modules) : Optional.empty();
+        }
+
+        public Optional<List<ModuleTiming>> getModuleTimings() {
+            return (modules != null) ? Optional.of(moduleTimings) : Optional.empty();
         }
 
         public void setEmail(Email email) {

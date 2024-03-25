@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 import seedu.address.model.module.ModuleCode;
+import seedu.address.model.module.ModuleTiming;
 import seedu.address.model.student.Address;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Name;
@@ -30,6 +31,7 @@ public class StudentBuilder {
     private Address address;
     private Set<Tag> tags;
     private List<ModuleCode> modules;
+    private List<ModuleTiming> moduleTimings;
 
     /**
      * Creates a {@code StudentBuilder} with the default details.
@@ -41,6 +43,7 @@ public class StudentBuilder {
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
         modules = new ArrayList<>();
+        moduleTimings = new ArrayList<>();
     }
 
     /**
@@ -53,6 +56,7 @@ public class StudentBuilder {
         address = studentToCopy.getAddress();
         tags = new HashSet<>(studentToCopy.getTags());
         modules = new ArrayList<>(studentToCopy.getModules());
+        moduleTimings = new ArrayList<>(studentToCopy.getModuleTimings());
     }
 
     /**
@@ -103,8 +107,16 @@ public class StudentBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code modules} of the {@code Student} that we are building.
+     */
+    public StudentBuilder withModuleTimings(List<ModuleTiming> moduleTimings) {
+        this.moduleTimings = new ArrayList<>(moduleTimings);
+        return this;
+    }
+
     public Student build() {
-        return new Student(name, phone, email, address, tags, modules);
+        return new Student(name, phone, email, address, tags, modules, moduleTimings);
     }
 
 }

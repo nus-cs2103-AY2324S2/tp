@@ -42,7 +42,7 @@ class JsonAdaptedStudent {
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("tags") List<JsonAdaptedTag> tags,
             @JsonProperty("modules") List<JsonAdaptedModuleCode> moduleCodes,
-            @JsonProperty("modules") List<JsonAdaptedModuleTiming> moduleTimings) {
+            @JsonProperty("moduleTimings") List<JsonAdaptedModuleTiming> moduleTimings) {
         this.name = name;
         this.phone = phone;
         this.email = email;
