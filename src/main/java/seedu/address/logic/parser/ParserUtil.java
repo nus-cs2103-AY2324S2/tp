@@ -55,6 +55,18 @@ public class ParserUtil {
     }
 
     /**
+     * Parses {@code Collection<String> nusIds} into a {@code Set<NusId>}.
+     */
+    public static Set<NusId> parseNusIds(Collection<String> nusIds) throws ParseException {
+        requireNonNull(nusIds);
+        final Set<NusId> nusIdSet = new HashSet<>();
+        for (String id : nusIds) {
+            nusIdSet.add(parseNusId(id));
+        }
+        return nusIdSet;
+    }
+
+    /**
      * Parses a {@code String name} into a {@code Name}.
      * Leading and trailing whitespaces will be trimmed.
      *
