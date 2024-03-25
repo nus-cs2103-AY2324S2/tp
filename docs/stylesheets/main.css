@@ -161,10 +161,23 @@ mark {
   }
 }
 
-h2,
-h3,
+h1,
 h4,
 h5,
 h6 {
-  color: #e46c0a;
+  color: darkslategray;
+}
+
+h2 {
+  font-weight: bold;
+  background-color: darkslategray;
+  color: #FFFFFF;
+  padding: 8px 8px 12px 8px;
+}
+
+h3 {
+  font-weight: bold;
+  background-color: darkolivegreen;
+  color: #FFFFFF;
+  padding: 8px 8px 12px 8px;
 }
