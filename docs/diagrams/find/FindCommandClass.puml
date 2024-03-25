@@ -29,5 +29,4 @@ FindEmailCommand -up-|> FindCommand
 FindNameCommand -up-|> FindCommand
 FindPhoneCommand -up-|> FindCommand
 Command ..> CommandException: throws >
-
 @enduml
