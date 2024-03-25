@@ -88,16 +88,4 @@ public class ArgumentMultimap {
      * @param prefixes to check
      * @return true if prefix/s present and false otherwise
      */
-    public boolean isAnyPrefixPresent(Prefix... prefixes) {
-        return Stream.of(prefixes).anyMatch(prefix -> contains(prefix));
-    }
-
-    /**
-     * Checks if all prefixes specified is present in the ArgumentMultimap object
-     * @param prefixes to check
-     * @return true if prefix/s present and false otherwise
-     */
-    public boolean isAllPrefixesPresent(Prefix... prefixes) {
-        return Stream.of(prefixes).anyMatch(prefix -> contains(prefix));
-    }
 }
