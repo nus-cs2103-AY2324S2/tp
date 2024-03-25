@@ -2,7 +2,10 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+import java.util.HashSet;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -34,11 +37,16 @@ public class DeleteCommand extends Command {
 
     private final Group group;
 
+    /**
+     * @param nusId of the person in the filtered person list to delete
+     */
     public DeleteCommand(NusId nusId) {
         this.nusId = nusId;
         this.group = null;
     }
-
+    /**
+     * @param group in which all people in the filtered person list are to be deleted
+     */
     public DeleteCommand(Group group) {
         this.group = group;
         this.nusId = null;
@@ -47,7 +55,7 @@ public class DeleteCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
-        if(this.nusId != null) {
+        if (this.nusId != null) {
             Person personToDelete = lastShownList.stream().filter(person -> person.getNusId().equals(nusId))
                     .findFirst().orElse(null);
 
@@ -64,18 +72,18 @@ public class DeleteCommand extends Command {
             deletedGroup.add(this.group);
 
 
-            for(int i = 0; i < lastShownList.size(); i++) {
-                if(lastShownList.get(i).getGroups().equals(deletedGroup) ) {
+            for (int i = 0; i < lastShownList.size(); i++) {
+                if (lastShownList.get(i).getGroups().equals(deletedGroup) ) {
                     peopleToDelete.add(lastShownList.get(i));
                     //System.out.println(lastShownList.get(i).toString());
                 }
             }
             System.out.println(lastShownList.size());
-            if(peopleToDelete.size() <= 0){
+            if (peopleToDelete.size() <= 0){
                 throw new CommandException(Messages.MESSAGE_NON_EXISTENT_GROUP);
             }
 
-            for(int i = 0; i < peopleToDelete.size(); i++){
+            for (int i = 0; i < peopleToDelete.size(); i++){
                 model.deletePerson(peopleToDelete.get(i));
             }
 
@@ -95,10 +103,10 @@ public class DeleteCommand extends Command {
         }
 
         DeleteCommand otherDeleteCommand = (DeleteCommand) other;
-        if(this.nusId != null) {
+        if (this.nusId != null) {
             return nusId.equals(otherDeleteCommand.nusId);
         }
-        else if(this.group != null) {
+        else if (this.group != null) {
             return group.equals(otherDeleteCommand.group);
         }
         return false;
@@ -106,12 +114,12 @@ public class DeleteCommand extends Command {
 
     @Override
     public String toString() {
-        if(this.nusId != null) {
+        if (this.nusId != null) {
             return new ToStringBuilder(this)
                     .add("targetnusId", nusId.toString())
                     .toString();
         }
-        else if(this.group != null) {
+        else if (this.group != null) {
             return new ToStringBuilder(this)
                     .add("targetgroup", group.toString())
                     .toString();
