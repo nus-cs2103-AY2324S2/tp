@@ -77,11 +77,4 @@ public class AddCommandTest {
         String expected = AddCommand.class.getCanonicalName() + "{toAdd=" + ALICE + "}";
         assertEquals(expected, addCommand.toString());
     }
-
-
-
-
-
-
-
 }

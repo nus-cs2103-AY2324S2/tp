@@ -94,6 +94,11 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public Person findPersonByName(Name targetName) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public Maintainer findMaintainerByName(Name targetName) {
         throw new AssertionError("This method should not be called.");
     }

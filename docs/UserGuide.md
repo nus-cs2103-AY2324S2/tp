@@ -112,7 +112,7 @@ Edit the fields of the specified **person / staff / supplier / maintainer** in t
 
 
 #### Edits a person
-Format: `/edit ; name : [name] ; field : { phone : [phone] ; address : [address] ; email : [email] }`
+Format: `/edit-person ; name : [name] ; field : { phone : [phone] ; address : [address] ; email : [email] }`
 
 
 #### Edits a staff
@@ -134,7 +134,7 @@ Format: `/edit-maintainer ; name : [name] ; field : { phone : [phone] ; address 
 * **_Caution_** : Editing `name` field is strictly **not** allowed and **will** be ignored.
 
 Examples:
-* `/edit ; name : Poochie ; field : { name : Mochie }`
+* `/edit-person ; name : Poochie ; field : { name : Mochie }`
 
   The above command edits the name of the person, from **_Poochie_** to **_Mochie_**, given that there are no other persons with the name, **_Mochie_**, in the Pooch Contact Book.
 
@@ -194,6 +194,24 @@ Examples:
 /search ; address : Pooch
 /search ; description : Food
 ```
+
+### Rating a Contact : `rate`
+
+Gives a specified person from the Pooch Planner a performance rating.
+
+Format: `/rate ; name : [name] ; rating : [rating value from 1-5]`
+
+* Gives the contact with the specified `name` a rating between 1 and 5 inclusive. 
+* Note that the specified person must first exist in Pooch Contact Book.
+* `name` and `rating` are compulsory fields that are case-insensitive but space-sensitive.
+* `rating` can only take on integer values between 1 and 5 inclusive.
+* A `rating` of `0` will display `No rating given yet`.
+
+Examples:
+* `/rate ; name : Poochie ; rating : 5`
+
+  The above command rates the contact with the name **_Poochie_** with a rating of `5`.
+  provided **_Poochie_** exists as a name of a contact in Pooch Contact Book
 
 ### Adding a note : `note`
 
@@ -279,9 +297,9 @@ Action | Format, Examples
 **Add Staff** | `/pooch-staff ; name : [name] ; phone : [phone] ; address : [address] ; email : [email] ; salary : [salary]  ; employment : [part/full]` <br> e.g., `/pooch-staff ; name : Poochie ; phone : 98765435 ; address : Poochie Street 21 ; email : ilovecatstoo@gmail.com ; salary : $50/h ; employment : part-time`
 **Add Supplier** | `/pooch-supplier ; name : [name] ; phone : [phone] ; address : [address] ; email : [email] ; product : [product] ; price : [price]` <br> e.g., `/pooch-supplier ; name : PetCo ; phone : 98673098 ; address : Meow Street 24 ; email : ilovewombatstoo@gmail.com ; product : kibble ; price : $98/bag`
 **Add Helper** | `/pooch-maintainer ; name : [name] ; phone : [phone] ; address : [address] ; email : [email] ; skill : [skill] ; commission : [commission]` <br> e.g., `/pooch-maintainer ; name : Tom Tan  ; phone : 98765435 ; address : Poochie Street 24 ; email : ihelppooches@gmail.com ; skill : trainer ; commission : $60/hr`
-**Add General Contact** | `/pooch-add ; name : [name] ; phone : [phone] ; address : [address] ; email : [email] ; skill : [skill] ; commission : [commission]` <br> e.g., `/pooch-add ; name : Janna  ; phone : 98765435 ; address : Poochie Street 24 ; email : iamjanna@gmail.com`
+**Add Other Contact** | `/pooch-add ; name : [name] ; phone : [phone] ; address : [address] ; email : [email] ; skill : [skill] ; commission : [commission]` <br> e.g., `/pooch-add ; name : Janna  ; phone : 98765435 ; address : Poochie Street 24 ; email : iamjanna@gmail.com`
 **Delete** | `/delete name : [name] `<br> e.g., `delete ; name : Poochie`
-**Edit** | `/edit ; name : [name] ; field : { field : data ; field : data }`<br> e.g., `/edit ; name : Poochie ; field : { name : Mochi }` <br> e.g.,`/edit ; name : Poochie ; field : { address : Poochie Street 25 ; employment : full-time }`
+**Edit** | `/edit-person ; name : [name] ; field : { field : data ; field : data }`<br> e.g., `/edit-person ; name : Poochie ; field : { name : Mochi }` <br> e.g.,`/edit-person ; name : Poochie ; field : { address : Poochie Street 25 ; employment : full-time }`
 **Search** | `/search ; parameter : [value]`<br> e.g., `/search ; name : Poochie`
 **List** | `/list`
 **Help** | `/help`
@@ -291,6 +309,7 @@ Action | Format, Examples
 **Help Delete** | `/help-delete`
 **Help Edit** | `/help-edit`
 **Help Search** | `/help-search`
+**Rate** | `/rate ; name : [name] ; rating : [rating]`<br> e.g., `/rate ; name : Poochie ; rating : 5`
 **Undo Command** | `/undo`
 **Redo Command** | `/redo`
 `

@@ -78,5 +78,4 @@ public class AddMaintainerCommandTest {
                 + "{toAdd=" + ALICEMAINTAINER + "}";
         assertEquals(expected, addCommand.toString());
     }
-
 }
