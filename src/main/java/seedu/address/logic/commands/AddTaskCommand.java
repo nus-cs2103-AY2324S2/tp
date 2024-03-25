@@ -16,9 +16,7 @@ public class AddTaskCommand extends Command {
 
     public static final String COMMAND_WORD = "add task";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task in a project "
-            + "Parameters: "
-            + "PROJECT_NAME, TASK_NAME";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " TASK_NAME /to PROJECT_NAME";
 
     public static final String MESSAGE_SUCCESS = "%1$s has been added to the project %2$s.";
 

@@ -15,7 +15,7 @@ public class AddProjectCommand extends Command {
 
     public static final String COMMAND_WORD = "add project";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + "PROJECT_NAME";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " PROJECT_NAME";
 
     public static final String MESSAGE_SUCCESS = "%1$s has been added to the project list.";
     public static final String MESSAGE_DUPLICATE_PERSON = "Project %1$s already exists";

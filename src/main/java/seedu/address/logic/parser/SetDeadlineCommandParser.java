@@ -21,9 +21,9 @@ public class SetDeadlineCommandParser implements Parser<SetDeadlineCommand> {
     public SetDeadlineCommand parse(String args) throws ParseException {
         try {
             if (!args.contains(" /in ") || !args.contains(" /to ")) {
-                throw new ParseException("Whoops! When referring to another field like a task,"
-                        + " always remember to put /to instead of just to."
-                        + "For projects, put /in instead of just in. ");
+                throw new ParseException(String.format(
+                        MESSAGE_INVALID_COMMAND_FORMAT,
+                        SetDeadlineCommand.MESSAGE_USAGE));
             }
             String deadline = args.split(" /to")[0].trim();
             String taskAndProject = args.split(" /to")[1].trim();
