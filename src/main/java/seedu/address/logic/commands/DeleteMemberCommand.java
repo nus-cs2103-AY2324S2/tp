@@ -5,12 +5,15 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COURSEMATE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_GROUPS;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.coursemate.ContainsKeywordPredicate;
 import seedu.address.model.coursemate.CourseMate;
 import seedu.address.model.coursemate.Name;
 import seedu.address.model.coursemate.QueryableCourseMate;
@@ -53,12 +56,16 @@ public class DeleteMemberCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        Set<CourseMate> courseMateList;
+        Set<List<CourseMate>> courseMateSet;
+        List<QueryableCourseMate> queryableCourseMates = new ArrayList<>();
+        for (QueryableCourseMate q : queryableCourseMateSet) {
+            queryableCourseMates.add(q);
+        }
+
         try {
-            courseMateList = queryableCourseMateSet
+            courseMateSet = queryableCourseMateSet
                     .stream()
                     .map(model::findCourseMate)
-                    .map(x -> x.get(0))
                     .collect(Collectors.toSet());
         } catch (CourseMateNotFoundException e) {
             throw new CommandException(Messages.MESSAGE_MEMBERS_DONT_EXIST, e);
@@ -72,6 +79,22 @@ public class DeleteMemberCommand extends Command {
         }
 
         Group modifiedGroup = new Group(toModify.getName(), toModify.asUnmodifiableObservableList());
+
+        List<CourseMate> courseMateList = new ArrayList<>();
+        int index = 0;
+        for (List<CourseMate> courseMateDeleteList: courseMateSet) {
+            if (courseMateDeleteList.size() > 1) {
+                ContainsKeywordPredicate predicate = new ContainsKeywordPredicate(
+                        queryableCourseMates.get(index).getName().toString());
+                model.updateFilteredCourseMateList(predicate);
+                return new CommandResult(
+                        String.format(Messages.MESSAGE_SIMILAR_COURSE_MATE_NAME,
+                                model.getFilteredCourseMateList().size(),
+                                queryableCourseMates.get(index).getName().toString()), false, false, true);
+            }
+            courseMateList.add(courseMateDeleteList.get(0));
+            index += 1;
+        }
         try {
             for (CourseMate courseMate: courseMateList) {
                 modifiedGroup.remove(courseMate);

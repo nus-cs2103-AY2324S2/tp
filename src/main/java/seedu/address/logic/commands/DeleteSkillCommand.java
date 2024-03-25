@@ -81,7 +81,8 @@ public class DeleteSkillCommand extends Command {
             model.updateFilteredCourseMateList(predicate);
             return new CommandResult(
                     String.format(Messages.MESSAGE_SIMILAR_COURSE_MATE_NAME,
-                            model.getFilteredCourseMateList().size()), false, false, true);
+                            model.getFilteredCourseMateList().size(),
+                            queryableCourseMate.getName().toString()), false, false, true);
         }
 
         CourseMate courseMateToEdit = courseMateToEditList.get(0);
