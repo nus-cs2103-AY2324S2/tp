@@ -773,9 +773,3 @@ testers are expected to do more *exploratory* testing.
 
     1. Other incorrect find commands to try: `edit`, `edit x`, `...` (where x is the identification number which does not exist in the list)<br>
        Expected: Similar to previous.
-
-### Saving data
-
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
