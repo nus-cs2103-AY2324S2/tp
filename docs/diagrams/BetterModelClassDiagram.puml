@@ -18,7 +18,7 @@ Person *--> Name
 Person *--> Phone
 Person *--> "*" Email
 Person *--> "*" Address
-Person *--> Company
-Person *--> Priority
+Person *--> "*" Company
+Person *--> "*" Priority
 Person *--> "*" Note
 @enduml
