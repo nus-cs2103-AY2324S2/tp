@@ -13,8 +13,8 @@ import java.time.format.ResolverStyle;
  */
 public class LastContact implements Comparable<LastContact> {
 
-    public static final String MESSAGE_CONSTRAINTS = "Expected DATETIME format: DD-MM-YYYY HHmm\n"
-                                                    + "Actual format: %s";
+    public static final String MESSAGE_CONSTRAINTS = "Invalid input/date. Please follow the date format: "
+            + "DD-MM-YYYY HHmm and ensure that the date is valid.";
     public static final String MESSAGE_EDIT_EMPTY_STRING_EXCEPTION = "Last contacted can only take DD-MM-YYYY HHmm "
             + "dateTime format, and it should not be blank";
     public static final DateTimeFormatter DATETIME_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-uuuu HHmm")
@@ -42,6 +42,7 @@ public class LastContact implements Comparable<LastContact> {
 
     /**
      * Returns true if a given string is in valid dateTime format.
+     *
      * @param dateTime String to parse into formatter to check whether is valid.
      */
     public static boolean isValidDateTime(String dateTime) {
@@ -49,22 +50,22 @@ public class LastContact implements Comparable<LastContact> {
             return true;
         }
         String trimmedDateTime = dateTime.trim();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-uuuu HHmm")
-                .withResolverStyle(ResolverStyle.STRICT);
         try {
-            LocalDateTime.parse(trimmedDateTime, formatter);
+            LocalDateTime.parse(trimmedDateTime, DATETIME_FORMATTER);
             return true; // Successfully parsed, input matches the format
         } catch (DateTimeParseException e) {
             return false; // Parsing failed, input does not match the format
         }
     }
 
-    public boolean isLastContacted() {
+    public boolean hasLastContacted() {
         return this.hasLastContact;
     }
+
     public LocalDateTime getDateTime() {
         return this.dateTime;
     }
+
     @Override
     public int compareTo(LastContact other) {
         return this.dateTime.compareTo(other.dateTime);
