@@ -5,7 +5,14 @@
 ---
 
 # ClientCare User Guide
-ClientCare is a **desktop application for assisting insurance agents in managing their client relationships and follow-ups effectively.** While it has a Graphical User Interface (GUI), most of the user interactions happen using through text commands. If you can type fast, ClientCare can get your client management done faster than traditional GUI apps.
+This user guide is meant for ClientCare Version `v1.2`.
+
+Too many clients to keep track off? Not sure when is your next appointment?
+Fret not! ClientCare is a **desktop application for assisting insurance agents in managing their client relationships and follow-ups effectively.**
+Built with your needs in mind, ClientCare is here to help you manage all your clients, appointments and policies, **all in one place**!
+
+New to ClientCare? We recommend you to check out the [Using this guide](#using-this-guide) section to get you started.
+Ready to head straight into the action? You can refer to our [Quick Start](#quick-start) section to set ClientCare up.
 
 <!-- * Table of Contents -->
 <frontmatter>
@@ -17,7 +24,6 @@ ClientCare is a **desktop application for assisting insurance agents in managing
 ## Table of Contents
 </page-nav-print>
 
---------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
 ## Using this guide
@@ -26,27 +32,51 @@ learn more about the app. For setting up ClientCare, you might find the [Quick S
 
 Ready to use ClientCare? You can check out our [Features](#features) section. For ease of reference, the
 [Features](#features) section is divided into subsections corresponding to each main feature:
-Clients, Schedules and Policies. Feel free to jump around as you explore ClientCare's amazing features!
+[Clients](#client-related-commands), [Schedules](#schedule-related-commands) and [Policies](#schedule-related-commands). Feel free to jump around as you explore ClientCare's amazing features!
+
+Need a quick refresher? You can head to the [Command Summary](#command-summary) for a quick recap!
+
 
 You can also refer to our [Table of Contents](#table-of-contents) to navigate between the different sections of this guide.
+
+#### Who is this guide for?
+
+This guide does not assume any technical knowledge from users. Typing on a keyboard is all you need to know!
+ClientCare uses a [Command Line Interface (CLI)](#cli) to interact with users. Not sure what CLI is? No worries, we got you covered.
+You can head over to the [CLI Introduction](#command-line-interface-introduction) for a quick breakdown.
+
+If you are familiar with how CLI works, good news! Using ClientCare will be a breeze for you.
+
+#### Conventions used in this guide
+
+**Formatting Conventions**
+
+**Command Format Conventions**
+
+**Call-out Text-box Conventions**
+
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Introduction
-Made for insurance agents and clients, by insurance agents and clients.
+Made for insurance agents and clients, by insurance agents and clients. 
+ClientCare is the easiest way to manage your clients and schedules, all in one place.
 Powerful features and intuitive design, all packaged into one neat desktop app. ClientCare is supported on all
-major platforms (Windows, MacOS, Linux).
+major platforms (Windows, macOS).
 
-1. [**Manage your clients**](#client-related-commands)  
+
+#### Let ClientCare assist you in...
+
+1. [**Managing your clients**](#client-related-commands)  
    ClientCare lets you store, edit and delete your client's information. Keep all your clients' details in one place and save time!
 
 
-2. [**Plan your schedule**](#schedule-related-commands)  
+2. [**Planning your schedule**](#schedule-related-commands)  
    Meeting clients are part of the job. Not sure when to meet your next client? ClientCare reminds you of clients that you may have
 missed out!
 
 
-3. [**Keep track of policies**](#policy-related-commands)  
+3. [**Keeping track of policies**](#policy-related-commands)  
    Too many policies from different companies? Why not track all of them in one place! ClientCare allows you to attach policies
 to all your clients, regardless of companies and product type.
 
@@ -54,6 +84,10 @@ to all your clients, regardless of companies and product type.
 <div style="page-break-after: always;"></div>
 
 # Quick start
+
+Let's get started with ClientCare. This section will help you get familiar with how ClientCare works, from installation to using ClientCare.
+
+
 
 ## Installation instructions
 
@@ -94,7 +128,7 @@ might be useful), let's get started!
 
 These are the platforms we currently support ClientCare on:
 1. [Windows](#for-windows)
-2. [MacOS](#for-macos)
+2. [macOS](#for-macos)
 
 <br>
 <br>
@@ -118,21 +152,70 @@ These are the platforms we currently support ClientCare on:
 <br>
 <div style="page-break-after: always;"></div>
 
-#### For MacOS
+#### For macOS
 1. Our developers are working on it!
 <br>
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
 ## Getting familiar with ClientCare's interface
-
 Now that we got ClientCare up and running, let's get you familiar with its user interface.
+You will learn how the different parts of ClientCare look and work in this section.
+
+#### ClientCare's GUI Components
+
+ClientCare has **6** components in its GUI. Different commands affect parts of the GUI.
+You can refer to the [Quick Tutorial](#quick-tutorial) to see how the different parts of the GUI change when entering commands!
+
+![GUI](images/ug/GUI%20v1.2%20Graphic.png)
 
 
-Our developers are still working on it!
->Image to be added
+<div style="page-break-after: always;"></div>
+
+#### Command Line Interface Introduction
+ClientCare works through the Command Line Interface (CLI). Instead of clicking buttons, you tell ClientCare what to do by typing!
+These texts sent to ClientCare are known as commands.
+
+These commands must be formatted in a specific way or ClientCare will not understand what you are saying.
+Let's learn the language that ClientCare speaks in.
+
+<br>
+
+### ClientCare Commands
+A ClientCare command has the following parts:
+
+##### 1)Command Keyword
+This keyword tells ClientCare what you want to do. If you want to add a new client, then `add` will be the keyword.
+All commands must start with a keyword.
+
+##### 2)Index
+Some commands may involve an index. This is simply a number which is assigned to a particular Client or Policy.
+For example, the first client in the list will have the index `1`.
+
+##### 3)Command Parameters
+Parameters are fields or variables that are associated with some commands. For example, when you are adding a client, you need to add his name too.
+His name will be considered a parameter, similarly for Date of Birth and Address etc.
+
+
+Parameters often have a prefix in front of them. For example, name has `n/` and date has `d/`.
+
+
+Not all commands have parameters! For example, when clearing your client list, a simple command keyword of `clear` will do!
+There is no need to have a parameter such as `clear 1` or `clear 2`.
+
+
+The full list of commands and their formats can be found under the [Features](#features) section.
+Alternatively, [Command Summary](#command-summary) has all of them under one page for a quick reference.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
+## Quick Tutorial
+>Work In Progress
+
+
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 # Features
 Dive right into ClientCare's full list of features. This section guides you through all of ClientCare's commands.
@@ -146,14 +229,13 @@ For easy reference, similar features are grouped into the same subsections as sh
 <br>
 <br>
 
-<box type="info" seamless>
-**Notes about the command format:**<br>
+<box type="info" seamless>**Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
@@ -189,7 +271,7 @@ ClientCare offers the following commands to help you manage your clients:
 
 ### Adding a client: `add`
 
-Adds a client to the client list.
+Got a new client? You can add a client to the client list with `add`.
 
 Format: `add n/NAME c/PHONE_NUMBER e/EMAIL a/ADDRESS b/BIRTHDAY p/PRIORITY [t/TAG]…​`
 
@@ -221,7 +303,8 @@ Examples:
 
 ### Listing all clients : `list`
 
-Shows a list of all clients in the client list.
+Want to see all your clients?
+`list` shows a list of all your clients in the client list.
 
 Format: `list`
 
@@ -230,7 +313,8 @@ Format: `list`
 
 ### View a client : `view`
 
-Shows the particulars and policies of a client.
+You can view a client's details and his policies with `view`.
+The `view` command shows the particulars and policies of a client.
 
 Format: `view INDEX`
 
@@ -247,7 +331,7 @@ Examples:
 
 ### Editing a client : `edit`
 
-Edits an existing client in the client list.
+You can edit an existing client with `edit`.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [b/BIRTHDAY] [p/PRIORITY] [t/TAG]…​`
 
@@ -270,7 +354,8 @@ Examples:
 
 ### Locating client by name: `find`
 
-Finds client whose names contain any of the given keywords.
+You can look for a client with `find`.
+Client whose names contain any of the given keywords will show up!
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -291,7 +376,7 @@ Examples:
 
 ### Deleting a client : `delete`
 
-Deletes the specified client from the client list.
+You can delete a specified client from the client list with `delete`.
 
 Format: `delete INDEX`
 
@@ -308,7 +393,7 @@ Examples:
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the client list.
+You can clear all your clients from the client list with `clear`.
 
 Format: `clear`
 
@@ -333,7 +418,7 @@ ClientCare offers the following commands to help you manage your schedule:
 
 ### Updating last met : `met`
 
-Updates the last met date you had with your client.
+You can update the last met date you had with your client with `met`.
 
 Format: `met INDEX l/DATE`
 
@@ -351,7 +436,8 @@ Examples:
 
 ### Scheduling appointments : `schedule`
 
-Schedules an appointment date and time you have with your client.
+Got a new appointment or a postpone is needed?
+You can schedule an appointment date and time you have with your client with `schedule`.
 
 Format: `schedule INDEX s/DATETIME`
 
@@ -373,7 +459,8 @@ Examples:
 
 ### Marking appointments : `mark`
 
-Marks an appointment as completed.
+Done with an appointment?
+You can mark an appointment as completed with `mark`.
 
 Format: `mark INDEX`
 
@@ -402,7 +489,8 @@ ClientCare offers the following commands to help you manage your clients' polici
 
 ### Adding a policy : `addpolicy`
 
-Adds a policy to the client.
+Just closed a deal?
+You can add a policy to a client with `addpolicy`.
 
 Format: `addpolicy INDEX n/POLICY_NAME i/POLICY_ID`
 
@@ -420,7 +508,8 @@ Examples:
 
 ### Deleting a policy : `deletepolicy`
 
-Deletes a policy from the client.
+Wrong policy or a policy just matured?
+You can delete a policy from a client with `deletepolicy`.
 
 Format: `deletepolicy INDEX i/POLICY_ID`
 
@@ -441,7 +530,8 @@ Examples:
 
 ### Viewing help : `help`
 
-Shows a message explaining how to access the help page.
+You can look for help by typing `help`.
+You will see a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png =600x)
 
@@ -452,7 +542,7 @@ Format: `help`
 
 ### Exiting the program : `exit`
 
-Exits the program.
+Done with all your work? You can exit the program with `exit`.
 
 Format: `exit`
 
@@ -461,6 +551,7 @@ Format: `exit`
 
 ### Saving the data
 
+No manual saving is required!
 ClientCare data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 <br/>
@@ -491,8 +582,9 @@ _Details coming soon ..._
 
 # FAQ
 <br>
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ClientCare home folder.
+
+**Q** : How do I transfer my data to another computer?<br>
+**A** : Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ClientCare home folder.
 
 <br>
 
@@ -510,18 +602,18 @@ _Details coming soon ..._
 
 # Command summary
 
-| Action                                               | Format, Examples                                                                                                                                                                                                 |
-|------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [**Add**](#adding-a-client-add)                      | `add n/NAME c/PHONE_NUMBER e/EMAIL a/ADDRESS b/BIRTHDAY p/PRIORITY [t/TAG]…​` <br> e.g.,`add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 b/1990-01-01 p/medium t/friend t/colleague` |
-| [**Clear**](#clear)                                  | `clear`                                                                                                                                                                                                          |
-| [**Delete**](#deleting-a-client-delete)              | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                              |
-| [**Edit**](#editing-a-client-edit)                   | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [b/BIRTHDAY] [p/PRIORITY] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                   |
-| [**View**](#viewing-a-client-view)                   | `view INDEX`<br> eg., `view 1`                                                                                                                                                                                   |
-| [**Find**](#finding-a-client-find)                   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                       |
-| [**List**](#listing-all-clients-list)                | `list`                                                                                                                                                                                                           |
-| [**LastMet**](#updating-last-met-met)                | `met INDEX [l/DATE]`<br> eg., `met 2 l/2023-05-07`                                                                                                                                                               |
-| [**Schedule**](#scheduling-appointments-schedule)    | `schedule INDEX [s/DATETIME]`<br> eg., `schedule 2 s/2023-05-07 22:00`                                                                                                                                           |                                                                                                                               |
-| [**Add Policy**](#adding-a-policy-addpolicy)         | `addpolicy INDEX n/POLICY_NAME i/POLICY_ID` <br/> eg., 'addpolicy 1 n/Life i/1'                                                                                                                                  |
-| [**Delete Policy**](#deleting-a-policy-deletepolicy) | `deletepolicy INDEX i/POLICY_ID` <br/> eg., 'deletepolicy 1 i/1'                                                                                                                                                 |
-| [**Help**](#viewing-help-help)                       | `help`                                                                                                                                                                                                           |
-| [**Exit**](#exiting-the-program-exit)                | `exit`                                                                                                                                                                                                           |
+| Action                                               | Format, Examples                                                                                                                                                                                                |
+|------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [**Add**](#adding-a-client-add)                      | `add n/NAME c/PHONE_NUMBER e/EMAIL a/ADDRESS b/BIRTHDAY p/PRIORITY [t/TAG]…​` <br> e.g.`add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 b/1990-01-01 p/medium t/friend t/colleague` |
+| [**Clear**](#clear)                                  | `clear`                                                                                                                                                                                                         |
+| [**Delete**](#deleting-a-client-delete)              | `delete INDEX`<br> e.g. `delete 3`                                                                                                                                                                              |
+| [**Edit**](#editing-a-client-edit)                   | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [b/BIRTHDAY] [p/PRIORITY] [t/TAG]…​`<br> e.g.`edit 2 n/James Lee e/jameslee@example.com`                                                                   |
+| [**View**](#viewing-a-client-view)                   | `view INDEX`<br> e.g, `view 1`                                                                                                                                                                                  |
+| [**Find**](#finding-a-client-find)                   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g. `find James Jake`                                                                                                                                                       |
+| [**List**](#listing-all-clients-list)                | `list`                                                                                                                                                                                                          |
+| [**LastMet**](#updating-last-met-met)                | `met INDEX [l/DATE]`<br> e.g. `met 2 l/2023-05-07`                                                                                                                                                              |
+| [**Schedule**](#scheduling-appointments-schedule)    | `schedule INDEX [s/DATETIME]`<br> e.g. `schedule 2 s/2023-05-07 22:00`                                                                                                                                          |                                                                                                                               |
+| [**Add Policy**](#adding-a-policy-addpolicy)         | `addpolicy INDEX n/POLICY_NAME i/POLICY_ID` <br/> e.g. `addpolicy 1 n/Life i/1`                                                                                                                                 |
+| [**Delete Policy**](#deleting-a-policy-deletepolicy) | `deletepolicy INDEX i/POLICY_ID` <br/> e.g. `deletepolicy 1 i/1`                                                                                                                                                |
+| [**Help**](#viewing-help-help)                       | `help`                                                                                                                                                                                                          |
+| [**Exit**](#exiting-the-program-exit)                | `exit`                                                                                                                                                                                                          |
