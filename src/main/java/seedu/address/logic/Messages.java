@@ -32,6 +32,7 @@ public class Messages {
                 "Multiple values specified for the following single-valued field(s): ";
 
     public static final String MESSAGE_NOT_INTEGER = "The provided argument is not an integer";
+    public static final String MESSAGE_NOT_DATE = "The provided argument is not a valid date";
 
     /**
      * Returns an error message indicating the duplicate prefixes.
