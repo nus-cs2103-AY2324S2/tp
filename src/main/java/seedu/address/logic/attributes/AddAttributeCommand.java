@@ -1,5 +1,6 @@
 package seedu.address.logic.attributes;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
 import seedu.address.logic.commands.Command;
@@ -8,6 +9,10 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.attribute.Attribute;
+import seedu.address.model.person.attribute.BirthdayAttribute;
+import seedu.address.model.person.attribute.NameAttribute;
+import seedu.address.model.person.attribute.PhoneNumberAttribute;
+import seedu.address.model.person.attribute.SexAttribute;
 
 /**
  * A command to add a new attribute to a person in the address book, or to update an existing attribute.
@@ -48,10 +53,46 @@ public class AddAttributeCommand extends Command {
             throw new CommandException("Person not found.");
         }
 
-        Attribute attribute = Attribute.fromString(attributeName, attributeValue);
+        Attribute attribute;
+        switch (attributeName.toLowerCase()) {
+        case "birthday":
+            try {
+                LocalDate attributeValueDate = LocalDate.parse(attributeValue);
+                attribute = new BirthdayAttribute("Birthday", attributeValueDate);
+            } catch (Exception e) {
+                throw new CommandException("Invalid date format. Please use yyyy-mm-dd.");
+            }
+            break;
+        case "name":
+            attribute = new NameAttribute("Name", attributeValue);
+            break;
+        case "phone":
+            int phoneNumber;
+            try {
+                phoneNumber = Integer.parseInt(attributeValue);
+                if (phoneNumber < 0) {
+                    throw new CommandException("Phone number cannot be negative.");
+                }
+            } catch (NumberFormatException e) {
+                throw new CommandException("Phone number must be a number.");
+            }
+            attribute = new PhoneNumberAttribute("Phone", phoneNumber);
+            break;
+        case "sex":
+            if (attributeValue.equals("male")) {
+                attribute = new SexAttribute("Sex", SexAttribute.Gender.MALE);
+            } else if (attributeValue.equals("female")) {
+                attribute = new SexAttribute("Sex", SexAttribute.Gender.FEMALE);
+            } else {
+                throw new CommandException("Sex can be either male or female.");
+            }
+            break;
+        default:
+            attribute = Attribute.fromString(attributeName, attributeValue);
+        }
+
         person.updateAttribute(attribute);
         return new CommandResult(String.format("Attribute %s added to person %s.", attributeName, uuid));
-
     }
 }
 

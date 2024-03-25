@@ -18,10 +18,10 @@ public class PersonAttributeCommandParser {
      * @throws ParseException If the user input does not conform to the expected format.
      */
     public Command parse(String userInput) throws ParseException {
-        String[] parts = userInput.trim().split("\\s+", 5);
+        String[] parts = userInput.trim().split(" ", 4);
 
         // Validate the basic command structure
-        if (parts.length < 3) {
+        if (parts.length < 2) {
             throw new ParseException("Invalid command format.");
         }
 
@@ -37,22 +37,22 @@ public class PersonAttributeCommandParser {
     }
 
     private Command parseAddCommand(String[] parts) throws ParseException {
-        if (parts.length < 5) {
+        if (parts.length < 4) {
             throw new ParseException("Incomplete command for adding an attribute.");
         }
-        String uuid = parts[2];
-        String attributeName = parts[3].replaceFirst("^\\\\", "");
-        String attributeValue = parts[4];
+        String uuid = parts[1];
+        String attributeName = parts[2];
+        String attributeValue = parts[3];
 
         return new AddAttributeCommand(uuid, attributeName, attributeValue);
     }
 
     private Command parseDeleteCommand(String[] parts) throws ParseException {
-        if (parts.length < 4) {
+        if (parts.length < 3) {
             throw new ParseException("Incomplete command for deleting an attribute.");
         }
-        String uuid = parts[2];
-        String attributeName = parts[3].replaceFirst("^\\\\", "");
+        String uuid = parts[1];
+        String attributeName = parts[2];
 
         // The DeleteAttributeCommand constructor accepts the entire command parts for further processing.
         return new DeleteAttributeCommand(uuid, attributeName);
