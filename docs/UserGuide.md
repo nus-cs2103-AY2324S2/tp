@@ -61,19 +61,16 @@ PoochPlanner is an **address book manager for managing contacts, optimised for u
 
 Shows a message of how to write commands for all commands or a specfic command.
 
-### Get help for all commands
-Format: `/help`
-
-### Get help for a specific command
-Format: `/help-[command type]`
+Format: `/help ; command : [command type]`
 
 Examples:
-* `/help-poochstaff`
-* `/help-poochsupplier`
-* `/help-poochmaintenance`
-* `/help-edit`
-* `/help-delete`
-* `/help-search`
+* `/help ; command : delete`
+* `/help ; command : add`
+
+Constraints :
+* `Command must be specified`
+* `Help is only given for "delete", "add", "edit", "search"`
+* `For help for all commands, the command is "general"`
 
 
 ### Adding a contact: `Add`
@@ -222,7 +219,6 @@ Format: `/note ; name : [name] ; note : [note message]`
 * Adds a note to the contact with the specified `name`. 
 * Note that the specified person must first exist in Pooch Contact Book.
 * The name and note is a compulsory field that is case-insensitive but space-sensitive.
-* Note command can only be done on general persons classes. (eg. not Maintainer, Staff, Supplier)
 
 Examples:
 * `/note ; name : Poochie ; note : meet poochie tonight to get kibble`
@@ -302,13 +298,7 @@ Action | Format, Examples
 **Edit** | `/edit-person ; name : [name] ; field : { field : data ; field : data }`<br> e.g., `/edit-person ; name : Poochie ; field : { name : Mochi }` <br> e.g.,`/edit-person ; name : Poochie ; field : { address : Poochie Street 25 ; employment : full-time }`
 **Search** | `/search ; parameter : [value]`<br> e.g., `/search ; name : Poochie`
 **List** | `/list`
-**Help** | `/help`
-**Help PoochStaff** | `/help-poochstaff`
-**Help PoochSupplier** | `/help-poochsupplier`
-**Help PoochMaintenance** | `/help-poochmaintenance`
-**Help Delete** | `/help-delete`
-**Help Edit** | `/help-edit`
-**Help Search** | `/help-search`
+**Help** | `/help ; command : [command type]`
 **Rate** | `/rate ; name : [name] ; rating : [rating]`<br> e.g., `/rate ; name : Poochie ; rating : 5`
 **Undo Command** | `/undo`
 **Redo Command** | `/redo`
