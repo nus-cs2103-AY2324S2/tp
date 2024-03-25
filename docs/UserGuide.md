@@ -1,4 +1,4 @@
-![image](https://github.com/chuahjiajie/tp/assets/122253924/d771b12e-a3e7-4a49-9f4c-3ddd8fc2c83b)![image](https://github.com/chuahjiajie/tp/assets/122253924/73e4d61d-e276-44f0-9a6d-641a1eeb2e33)![image](https://github.com/chuahjiajie/tp/assets/122253924/4c569db9-023a-40a4-9c6d-a3dc5e61b6ba)![image](https://github.com/chuahjiajie/tp/assets/122253924/ef96fd09-d132-4beb-9421-7f572e8e3325)---
+---
   layout: default.md
   title: "User Guide"
   pageNav: 3
