@@ -127,4 +127,20 @@ public class AddressBook implements ReadOnlyAddressBook {
     public int hashCode() {
         return persons.hashCode();
     }
+
+    /**
+     * Returns the list of persons who are overdue to be met according to their last met date.
+     * @return list of persons who are overdue to be met
+     */
+    public ObservableList<Person> getOverDueLastMet() {
+        return persons.getOverDueLastMet();
+    }
+
+    /**
+     * Returns the list of persons who are have been schedule to be met.
+     * @return list of persons who have been scheduled to be met
+     */
+    public ObservableList<Person> getSchedules() {
+        return persons.getSchedules();
+    }
 }

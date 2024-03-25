@@ -1,16 +1,20 @@
 package seedu.address.testutil;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Birthday;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.LastMet;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.PolicyList;
 import seedu.address.model.person.Priority;
+import seedu.address.model.person.Schedule;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -32,6 +36,8 @@ public class PersonBuilder {
     private Address address;
     private Birthday birthday;
     private Priority priority;
+    private LastMet lastMet;
+    private Schedule schedule;
     private Set<Tag> tags;
     private PolicyList policyList;
 
@@ -45,6 +51,8 @@ public class PersonBuilder {
         address = new Address(DEFAULT_ADDRESS);
         birthday = new Birthday(DEFAULT_BIRTHDAY);
         priority = new Priority(DEFAULT_PRIORITY);
+        lastMet = null;
+        schedule = null;
         tags = new HashSet<>();
         policyList = new PolicyList();
     }
@@ -120,10 +128,23 @@ public class PersonBuilder {
     }
 
     /**
-     * With policies person builder.
-     *
-     * @param policies the policies
-     * @return the person builder
+     * Sets the {@code LastMet} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withLastMet(LocalDate lastMet) {
+        this.lastMet = new LastMet(lastMet);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Schedule} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withSchedule(LocalDateTime schedule, Boolean isDone) {
+        this.schedule = new Schedule(schedule, isDone);
+        return this;
+    }
+
+    /**
+     * Parses the {@code policies} into a {@code PolicyList} and set it to the {@code Person} that we are building.
      */
     public PersonBuilder withPolicies(String... policies) {
         this.policyList = SampleDataUtil.getPoliciesSet(policies);
@@ -135,7 +156,7 @@ public class PersonBuilder {
      * @return the person
      */
     public Person build() {
-        return new Person(name, phone, email, address, birthday, priority, null, null, tags,
+        return new Person(name, phone, email, address, birthday, priority, lastMet, schedule, tags,
                 policyList);
     }
 

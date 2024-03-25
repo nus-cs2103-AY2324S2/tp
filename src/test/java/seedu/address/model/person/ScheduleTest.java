@@ -87,5 +87,23 @@ public class ScheduleTest {
         Schedule testSchedule = new Schedule(LocalDateTime.now(), false);
         assertEquals("0", testSchedule.isDoneToString());
     }
+
+    @Test
+    public void compareTo() {
+        LocalDateTime schedule1 = LocalDateTime.of(2022, 1, 1, 12, 0);
+        LocalDateTime schedule2 = LocalDateTime.of(2022, 1, 2, 12, 0);
+        Schedule testSchedule1 = new Schedule(schedule1, false);
+        Schedule testSchedule2 = new Schedule(schedule2, false);
+        assertTrue(testSchedule1.compareTo(testSchedule2) < 0);
+        assertTrue(testSchedule1.compareTo(testSchedule1) == 0);
+        assertTrue(testSchedule2.compareTo(testSchedule1) > 0);
+    }
+
+    @Test
+    public void getScheduleDateString() {
+        LocalDateTime schedule = LocalDateTime.of(2022, 1, 1, 12, 0);
+        Schedule testSchedule = new Schedule(schedule, false);
+        assertEquals(DateTimeUtil.parseDateToString(schedule), testSchedule.getScheduleDateString());
+    }
 }
 

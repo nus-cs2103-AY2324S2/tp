@@ -106,6 +106,26 @@ public class Schedule {
     }
 
     public boolean getIsMissed() {
+        checkIsMissed();
         return this.isMissed;
+    }
+
+    /**
+     * Compares two Schedule objects based on the schedule. The method returns 0 if the two Schedule objects have the
+     * same schedule, a value less than 0 if this Schedule is before the other Schedule, and a value greater than 0 if
+     * this Schedule is after the other Schedule.
+     * @param other
+     * @return
+     */
+    public int compareTo(Schedule other) {
+        return this.schedule.compareTo(other.getSchedule());
+    }
+
+    /**
+     * Method is used for generating a String representation of the schedule date for the GUI.
+     * @return A string representation of the schedule date for the GUI.
+     */
+    public String getScheduleDateString() {
+        return DateTimeUtil.parseDateToString(this.schedule);
     }
 }
