@@ -192,23 +192,17 @@ is pointing at.
 **Rationale for implementation**
 There are a few key features that this module aims to implement
 1. Improved user experience for experienced users
-   1. Allow users to modify their past commands without confusion
+   1. Allow users to modify their past commands in a predictable way
    2. Allow users to easily compare past commands in case of mistakes by pressing up and down
-   3. Match the command history functionality as close to the bash shell's functionality in to make 
-the command history predictable for more experienced CLI users
 2. Mimicking bash shell features
    1. Playing a sound to indicate that there are no more commands left to undo
    2. Empty the input box when there are no more commands left to redo
 3. Default empty string in list
-   1. This aims to model what the command history actually looks like. By doing this, this makes the logic
-much more straightforward as we don't need to constantly check to return empty string or not
+   1. This aims to model what the command history actually looks like. By doing this, this makes the logic much more straightforward as we don't need to constantly check to return empty string or not
 
 **Alternatives considered**
-1. 2 stacks, one undo and one redo were used at first. However, this had the drawback of not being able to remember 
-commands after undoing and writing a new command.
-2. undo() and redo() both returned the last command - This had a flaw in which the logic of handling the command
-index became unnecessarily complex as we had to worry about when we incremented/decremented an index. It also
-made it hard to reliably test due to the number of permutations
+1. 2 stacks, one undo and one redo were used at first. However, this had the drawback of not being able to remember commands after undoing and writing a new command.
+2. undo() and redo() both returned the previous and next command respectively - This had a flaw in which the logic of handling the command index became unnecessarily complex as we had to worry about when we incremented/decremented an index. This also made it harder to test the functionality
 
 ### \[Proposed\] Undo/redo feature
 
