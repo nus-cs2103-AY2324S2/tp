@@ -116,23 +116,23 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
+### Locating persons by name, relationship, tag: `find`
 
 Finds persons whose names contain any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find n/KEYWORD [MORE_KEYWORDS] r/RELATIONSHIP [MORE_RELATIONSHIPS] t/TAG [MORE_TAGS]`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
+* You can search by name, relationship, tags.
 * Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* Persons matching at least one keyword in any attribute will be returned (i.e. `OR` search).
+  e.g. find n/Hans Bo r/partner will return `Hans Gruber`, `Bo Yang` if they are partners.
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `find n/ John` returns `john` and `John Doe`
+* `find r/partner` returns `Alex Yeoh`, `David Li`<br>
+  ![result for 'find alex david'](images/findCharlotteIrfanResult.png)
 
 ### Deleting a person : `delete`
 
@@ -163,6 +163,28 @@ Format: `policy INDEX po/POLICY_NAME`
 Examples:
 * `policy 1 po/Policy ABC` Assigns the policy of the 1st person if it is a client to be `Policy ABC`
 * `policy 2 po/` Removes the existing policy of the 2nd person if it is a client.
+
+### Undoing a command: `undo`
+
+Undoes a previous command.
+
+Format: `undo`
+
+* Only undoes commands that made changes to the address book
+  Examples:
+* `delete 1`
+* `undo` Undoes the previous command which adds back the person that is deleted
+### Redoing a command:`redo`
+
+Redoes a previous undid command
+
+Format: `redo`
+
+* Requires a successful prior undo command to redo
+  Examples:
+* `delete 1`
+* `undo`
+* `redo`
 
 ### Clearing all entries : `clear`
 
@@ -222,3 +244,5 @@ Action     | Format, Examples
 **List**   | `list`
 **Help**   | `help`
 **Policy** | `policy INDEX po/POLICY_NAME`
+**Undo**   | `undo`
+**Redo**   | `redo`
