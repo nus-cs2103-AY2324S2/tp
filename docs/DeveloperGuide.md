@@ -373,7 +373,45 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 #### Implementation
 
+The edit mechanism is facilitated by `AddressBook`. It implements `AddressBook#setPerson(Person target, Person editedPerson)` which allow users to edit patient’s details in the addressbook.
+
+These operations are exposed in the `Model` interface as `Model#setPerson(Person target, Person editedPerson)`
+
+Given below is an example usage scenario and how the edit note mechanism behaves at each step.
+
+Step 1. The user launches the application. The `AddressBook` will be initialized with the initial address book state.
+
+Step 2. The user executes `edit T0123456A …` to edit details of the person in the address book with the unique identification number `T0123456A`. The edit command calls `Model#setPerson(Person target, Person editedPerson)`, causing the modified state of the address book after the `edit T0123456A …` command executes to be saved.
+
+<box type="info" seamless>
+
+**Note:** If a command fails its execution, it will not call `Model#setPerson(Person target, Person editedPerson)`, so the address book state will not be saved.
+
+</box>
+
+The following sequence diagram shows how an edit operation goes through the `Logic` component:
+
+<puml src="diagrams/EditCommandDiagram.puml" alt="EditCommandDiagram" />
+
+<box type="info" seamless>
+
+**Note:** The lifeline for `EditCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</box>
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+<puml src="diagrams/EditCommandActivityDiagram.puml" width="250" />
+
 #### Design Considerations & Alternatives Considered
+
+**Aspect: Display of updated information when command is successful:**
+* Current choice: Displays the updated information in the correct patient’s section in the addressbook.
+    * Rationale: Users will be able to view the updated information easily.
+
+**Aspect: Display of error message when command is unsuccessful:**
+* Current choice: Displays the correct error message based on the type of error made (e.g. missing fields, invalid ic format).
+    * Rationale: Users will be able to learn of their error quickly and have an idea of what to edit to make the command successful.
 
 ### \[Proposed\] Show feature
 
