@@ -37,7 +37,7 @@ public class UniquePersonList implements Iterable<Person> {
      */
     public boolean contains(Person toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSamePerson);
+        return internalList.stream().anyMatch(toCheck::equals);
     }
 
     /**
@@ -46,9 +46,6 @@ public class UniquePersonList implements Iterable<Person> {
      */
     public void add(Person toAdd) {
         requireNonNull(toAdd);
-        if (contains(toAdd)) {
-            throw new DuplicatePersonException();
-        }
         internalList.add(toAdd);
     }
 
@@ -107,14 +104,8 @@ public class UniquePersonList implements Iterable<Person> {
      * {@code target} must exist in the list.
      * The person identity of {@code editedPerson} must be the same as another existing person in the list.
      */
-    public Person getPerson(Name name) {
-        for (int i = 0; i < internalList.size(); i++) {
-            if (Objects.equals(name.fullName, internalList.get(i).getName().fullName)) {
-                return internalList.get(i);
-            }
-        }
-
-        return null;
+    public Person getPerson(int indexOfTarget) {
+        return internalList.get(indexOfTarget);
     }
 
     /**
@@ -139,9 +130,9 @@ public class UniquePersonList implements Iterable<Person> {
      */
     public void setPersons(List<Person> persons) {
         requireAllNonNull(persons);
-        if (!personsAreUnique(persons)) {
-            throw new DuplicatePersonException();
-        }
+//        if (!personsAreUnique(persons)) {
+//            throw new DuplicatePersonException();
+//        }
 
         internalList.setAll(persons);
     }

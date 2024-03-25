@@ -126,10 +126,10 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Person getPerson(Name name) {
-        requireAllNonNull(name);
+    public Person getPerson(int indexOfTarget) {
+        requireAllNonNull(indexOfTarget);
 
-        return addressBook.getPerson(name);
+        return addressBook.getPerson(indexOfTarget);
     }
 
     //=========== Filtered Person List Accessors =============================================================

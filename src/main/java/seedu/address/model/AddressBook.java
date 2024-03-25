@@ -109,10 +109,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Returns {@code person}'s name that already exists in the address book.
      */
-    public Person getPerson(Name name) {
-        requireNonNull(name);
-
-        return persons.getPerson(name);
+    public Person getPerson(int indexOfTarget) {
+        return persons.getPerson(indexOfTarget);
     }
 
 

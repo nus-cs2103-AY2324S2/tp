@@ -93,7 +93,7 @@ public interface Model {
     /**
      * Returns {@code person}'s name that already exists in the address book.
      */
-    Person getPerson(Name name);
+    Person getPerson(int indexOfTarget);
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();

@@ -35,12 +35,15 @@ public class OverwriteCommand extends Command {
             + "address book. Please try again with another person.";
     private final Person toAdd;
 
+    private int indexOfTarget;
+
     /**
      * Creates an OverwriteCommand to add the specified {@code Person}
      */
-    public OverwriteCommand(Person person) {
+    public OverwriteCommand(Person person, int indexOfTarget) {
         requireNonNull(person);
         toAdd = person;
+        this.indexOfTarget = indexOfTarget;
     }
 
     @Override
@@ -51,7 +54,7 @@ public class OverwriteCommand extends Command {
             throw new CommandException(MESSAGE_NO_EXISTING_PERSON);
         }
 
-        Person target = model.getPerson(toAdd.getName());
+        Person target = model.getPerson(this.indexOfTarget - 1);
         model.setDuplicatePerson(target, toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
     }

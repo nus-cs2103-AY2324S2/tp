@@ -28,13 +28,8 @@ public class DuplicateCommandParser implements Parser<DuplicateCommand> {
      */
     @Override
     public DuplicateCommand parse(String args) throws ParseException {
-        System.out.println(args);
-        int indexOfFirstPrefix = args.indexOf('n');
-        int indexOfTarget = Integer.parseInt(args.substring(0, indexOfFirstPrefix));
-        System.out.println(indexOfTarget);
-        System.out.println(args.substring(indexOfFirstPrefix));
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args.substring(indexOfFirstPrefix), PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
                 || !argMultimap.getPreamble().isEmpty()) {

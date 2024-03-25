@@ -28,8 +28,12 @@ public class OverwriteCommandParser implements Parser<OverwriteCommand> {
      */
     @Override
     public OverwriteCommand parse(String args) throws ParseException {
+
+        int indexOfFirstPrefix = args.indexOf('n') - 1;
+        int indexOfTarget = Integer.parseInt(args.substring(1, indexOfFirstPrefix));
+
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args.substring(indexOfFirstPrefix), PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -45,6 +49,6 @@ public class OverwriteCommandParser implements Parser<OverwriteCommand> {
 
         Person person = new Person(name, phone, email, address, tagList);
 
-        return new OverwriteCommand(person);
+        return new OverwriteCommand(person, indexOfTarget);
     }
 }
