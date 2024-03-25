@@ -18,10 +18,11 @@ public class FilterCommandParser implements Parser<FilterCommand> {
      */
     public FilterCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
-        if (trimmedArgs.isEmpty()) {
+        String[] splitArgs = trimmedArgs.split(" ");
+        if (trimmedArgs.isEmpty() || splitArgs.length < 2) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
         }
-        return new FilterCommand(new MatchingTagPredicate(trimmedArgs.split(" ")[1]));
+        return new FilterCommand(new MatchingTagPredicate(splitArgs[1]));
     }
 }
