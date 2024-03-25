@@ -105,7 +105,7 @@ public class EditCommand extends Command {
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         if (personToEdit.getPersonType().equals(Type.APPLICANT.toString())) {
             return new Applicant(updatedName, updatedPhone, updatedEmail, updatedRemark,
-                    new ApplicantStatus(ApplicantState.STAGEONE.toString()), updatedTags);
+                    new ApplicantStatus(ApplicantState.STAGE_ONE.toString()), updatedTags);
         } else if (personToEdit.getPersonType().equals(Type.INTERVIEWER.toString())) {
             return new Interviewer(updatedName, updatedPhone, updatedEmail, updatedRemark,
                     new InterviewerStatus(InterviewerState.FREE.toString()), updatedTags);

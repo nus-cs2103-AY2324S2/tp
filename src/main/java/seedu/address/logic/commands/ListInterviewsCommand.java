@@ -17,7 +17,6 @@ public class ListInterviewsCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
-
         requireNonNull(model);
         model.updateFilteredInterviewList(PREDICATE_SHOW_ALL_INTERVIEWS);
         return new CommandResult(MESSAGE_SUCCESS);
