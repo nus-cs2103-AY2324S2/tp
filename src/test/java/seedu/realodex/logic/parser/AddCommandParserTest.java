@@ -278,7 +278,7 @@ public class AddCommandParserTest {
         String validExpectedVaryingCapitalizedAmyString =
                 NAME_DESC_AMY_VARYING_CAPS + PHONE_DESC_AMY + INCOME_DESC_AMY + EMAIL_DESC_AMY
                 + ADDRESS_DESC_AMY + FAMILY_DESC_AMY + TAG_DESC_AMY;
-        assertParseSuccess(parser, validExpectedNonCapitalizedAmyString, new AddCommand(expectedPerson));
+        assertParseSuccess(parser, validExpectedVaryingCapitalizedAmyString, new AddCommand(expectedPerson));
     }
 
     @Test
