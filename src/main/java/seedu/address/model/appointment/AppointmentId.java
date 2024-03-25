@@ -29,11 +29,20 @@ public class AppointmentId {
     }
 
     /**
+     * Constructs new AppointmentId object given an appointmentId
+     * @param apptId id of the appointment
+     */
+    public AppointmentId(String apptId) {
+        checkArgument(isValidApptId(apptId), MESSAGE_CONSTRAINTS);
+        this.appointmentId = apptId;
+    }
+
+    /**
      * Checks if a provided input appointment id string is in a valid format
      * @param apptId input date string
      * @return boolean indicating if format is valid or not
      */
-    private boolean isValidApptId(String apptId) {
+    public static boolean isValidApptId(String apptId) {
         return apptId.matches(VALIDATION_REGEX);
 
     }

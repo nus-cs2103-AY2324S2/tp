@@ -59,7 +59,7 @@ public class AppointmentDate {
      */
     @Override
     public String toString() {
-        return DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT).format(this.appointmentDate);
+        return DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG).format(this.appointmentDate);
     }
 
     /**
