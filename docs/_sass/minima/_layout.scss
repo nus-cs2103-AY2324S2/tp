@@ -221,6 +221,13 @@
 
 }
 
+/* Hide the sidebar on small screens */
+@media (max-width: 768px) {
+    #markdown-toc {
+        display: none;
+    }
+}
+
 .social-media-list {
   display: table;
   margin: 0 auto;
