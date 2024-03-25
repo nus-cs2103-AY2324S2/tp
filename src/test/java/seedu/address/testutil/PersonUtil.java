@@ -3,10 +3,13 @@ package seedu.address.testutil;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INFO;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERVIEWTIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROGRAMMING_LANGUAGE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.time.format.DateTimeFormatter;
@@ -64,6 +67,9 @@ public class PersonUtil {
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
+        descriptor.getPriority().ifPresent(Integer -> sb.append(PREFIX_PRIORITY).append(Integer).append(" "));
+        descriptor.getInfo().ifPresent(info -> sb.append(PREFIX_INFO).append(info.value).append(" "));
+        descriptor.getSalary().ifPresent(salary -> sb.append(PREFIX_SALARY).append(salary.toString()).append(" "));
         descriptor.getDateTime().ifPresent(dateTime ->
                 sb.append(PREFIX_INTERVIEWTIME).append(dateTime.dateTime.format(reformat)).append(" "));
         if (descriptor.getTags().isPresent()) {

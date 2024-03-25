@@ -30,7 +30,7 @@ public class Person {
     private final Set<Tag> tags = new HashSet<>();
     private final InterviewTime dateTime;
     private final Set<ProgrammingLanguage> programmingLanguages = new HashSet<>();
-    private final int priority; // default priority level
+    private final Integer priority; // default priority level
     /**
      * Every field must be present and not null.
      */
@@ -38,7 +38,7 @@ public class Person {
     public Person(
             CompanyName companyName, Name name, Phone phone, Email email, Address address,
             InterviewTime dateTime, Salary salary, Info info, Set<Tag> tags,
-            Set<ProgrammingLanguage> programmingLanguages, int priority) {
+            Set<ProgrammingLanguage> programmingLanguages, Integer priority) {
         requireAllNonNull(name, phone, email, address, salary, tags);
         this.companyName = companyName;
         this.name = name;
@@ -80,7 +80,7 @@ public class Person {
     public Info getInfo() {
         return info;
     }
-    public int getPriority() {
+    public Integer getPriority() {
         return priority;
     }
 

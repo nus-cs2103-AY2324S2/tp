@@ -122,7 +122,7 @@ public class EditCommand extends Command {
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Set<ProgrammingLanguage> updatedProgrammingLanguages = editPersonDescriptor.getProgrammingLanguages()
                 .orElse(personToEdit.getProgrammingLanguages());
-        int updatedPriority = editPersonDescriptor.getPriority().orElse(personToEdit.getPriority());
+        int updatedPriority =  editPersonDescriptor.getPriority().orElse(personToEdit.getPriority());
         return new Person(
                 updatedCompanyName, updatedName, updatedPhone, updatedEmail,
                 updatedAddress, updatedDateTime, updatedSalary, updatedInfo,
@@ -141,6 +141,11 @@ public class EditCommand extends Command {
         }
 
         EditCommand otherEditCommand = (EditCommand) other;
+        System.out.println("EditCommand equals");
+        System.out.println("index: " + index + " other index: " + ((EditCommand) other).index);
+        System.out.println("editPersonDescriptor: " + editPersonDescriptor + " other editPersonDescriptor: " + ((EditCommand) other).editPersonDescriptor);
+        System.out.println(index.equals(otherEditCommand.index));
+        System.out.println(editPersonDescriptor.equals(otherEditCommand.editPersonDescriptor));
         return index.equals(otherEditCommand.index)
                 && editPersonDescriptor.equals(otherEditCommand.editPersonDescriptor);
     }
@@ -168,7 +173,7 @@ public class EditCommand extends Command {
         private Info info;
         private Set<Tag> tags;
         private Set<ProgrammingLanguage> programmingLanguages;
-        private int priority;
+        private Integer priority;
 
         public EditPersonDescriptor() {}
 
@@ -292,7 +297,7 @@ public class EditCommand extends Command {
                     .unmodifiableSet(programmingLanguages)) : Optional.empty();
         }
 
-        public void setPriority(int priority) {
+        public void setPriority(Integer priority) {
             this.priority = priority;
         }
 
