@@ -15,7 +15,7 @@ public abstract class ViewCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": View a client. \n"
             + "Parameters: \n"
             + "index - Index shown in the corresponding contact list\n"
-            + "Example: " + COMMAND_WORD + " 2";
+            + "Example: " + COMMAND_WORD + "c 2";
 
     public static final String MESSAGE_SUCCESS = "Success message: ViewCommand";
     @Override
