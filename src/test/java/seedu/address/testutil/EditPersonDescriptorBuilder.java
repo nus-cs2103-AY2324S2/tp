@@ -45,6 +45,9 @@ public class EditPersonDescriptorBuilder {
         descriptor.setDateTime(person.getDateTime());
         descriptor.setTags(person.getTags());
         descriptor.setProgrammingLanguages(person.getProgrammingLanguages());
+        descriptor.setSalary(person.getSalary());
+        descriptor.setInfo(person.getInfo());
+        descriptor.setPriority(person.getPriority());
     }
 
     /**
@@ -132,6 +135,14 @@ public class EditPersonDescriptorBuilder {
         Set<ProgrammingLanguage> programmingLanguageSet = Stream.of(programmingLanguages).map(ProgrammingLanguage::new)
                 .collect(Collectors.toSet());
         descriptor.setProgrammingLanguages(programmingLanguageSet);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Priority} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withPriority(String priority) {
+        descriptor.setPriority(Integer.parseInt(priority));
         return this;
     }
 

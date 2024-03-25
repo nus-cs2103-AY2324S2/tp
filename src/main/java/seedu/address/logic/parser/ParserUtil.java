@@ -215,5 +215,18 @@ public class ParserUtil {
         return programmingLanguageSet;
     }
 
+    public static int parsePriority(String priority) throws ParseException {
+        requireNonNull(priority);
+        String trimmedPriority = priority.trim();
+        if (!isValidPriority(trimmedPriority)) {
+            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+        }
+        return Integer.parseInt(trimmedPriority);
+    }
+
+    private static boolean isValidPriority(String test) {
+        String validRegex = "^[0-4]$";
+        return test.matches(validRegex);
+    }
 
 }

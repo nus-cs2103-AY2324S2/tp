@@ -51,6 +51,10 @@ public class Messages {
                 .append(person.getInfo())
                 .append("; Tags: ");
         person.getTags().forEach(builder::append);
+        builder.append("; Programming Languages: ");
+        person.getProgrammingLanguages().forEach(builder::append);
+        builder.append("; Priority: ")
+                .append(person.getPriority());
         return builder.toString();
     }
 

@@ -30,7 +30,7 @@ public class Person {
     private final Set<Tag> tags = new HashSet<>();
     private final InterviewTime dateTime;
     private final Set<ProgrammingLanguage> programmingLanguages = new HashSet<>();
-
+    private final int priority; // default priority level
     /**
      * Every field must be present and not null.
      */
@@ -38,7 +38,7 @@ public class Person {
     public Person(
             CompanyName companyName, Name name, Phone phone, Email email, Address address,
             InterviewTime dateTime, Salary salary, Info info, Set<Tag> tags,
-            Set<ProgrammingLanguage> programmingLanguages) {
+            Set<ProgrammingLanguage> programmingLanguages, int priority) {
         requireAllNonNull(name, phone, email, address, salary, tags);
         this.companyName = companyName;
         this.name = name;
@@ -50,6 +50,7 @@ public class Person {
         this.info = info;
         this.tags.addAll(tags);
         this.programmingLanguages.addAll(programmingLanguages);
+        this.priority = priority;
     }
     public CompanyName getCompanyName() {
         return companyName;
@@ -78,6 +79,17 @@ public class Person {
     }
     public Info getInfo() {
         return info;
+    }
+    public int getPriority() {
+        return priority;
+    }
+
+    /**
+     * Returns true if a given string is a valid priority level.
+     */
+    public static boolean isValidPriority(String test) {
+        String validRegex = "^[0-4]$";
+        return test.matches(validRegex);
     }
 
     /**
@@ -155,6 +167,7 @@ public class Person {
                 .add("info", info)
                 .add("tags", tags)
                 .add("programming-languages", programmingLanguages)
+                .add("priority", priority)
                 .toString();
     }
 
