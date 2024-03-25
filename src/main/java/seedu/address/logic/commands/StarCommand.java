@@ -55,11 +55,11 @@ public class StarCommand extends Command {
 
         Person personToEdit = lastShownList.get(index.getZeroBased()); // get Person indexed
         Star starToEdit = personToEdit.getStar(); // return the stars
-        Star edittedStar = new Star(starToEdit.numOfStars + this.star.numOfStars); // new Star to be added
+        Star editedStar = new Star(starToEdit.numOfStars + this.star.numOfStars); // new Star to be added
 
         Person editedPerson = new Person(
                 personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getMajor(), edittedStar, personToEdit.getTags());
+                personToEdit.getMajor(), editedStar, personToEdit.getBolt(), personToEdit.getTags());
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
