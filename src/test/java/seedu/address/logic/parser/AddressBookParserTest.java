@@ -26,10 +26,12 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.QueryDoctorCommand;
+import seedu.address.logic.commands.QueryDoctorAppointmentCommand;
 import seedu.address.logic.commands.QueryPatientAppointmentCommand;
 import seedu.address.logic.commands.QueryPatientCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.AppointmentContainsDoctorPredicate;
 import seedu.address.model.appointment.AppointmentContainsPatientPredicate;
 import seedu.address.model.person.Doctor;
 import seedu.address.model.person.DoctorNameContainsKeywordsPredicate;
@@ -68,6 +70,15 @@ public class AddressBookParserTest {
         AddAppointmentCommand command = (AddAppointmentCommand) parser.parseCommand(
                 AppointmentUtil.getAddAppointmentCommand(appt));
         assertEquals(new AddAppointmentCommand(appt), command);
+    }
+
+    @Test
+    public void parseCommand_querydoctorappointment() throws Exception {
+        List<String> keywords = List.of("T1234567A");
+        QueryDoctorAppointmentCommand command = (QueryDoctorAppointmentCommand) parser.parseCommand(
+                QueryDoctorAppointmentCommand.COMMAND_WORD + " "
+                        + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new QueryDoctorAppointmentCommand(new AppointmentContainsDoctorPredicate(keywords)), command);
     }
 
     @Test
