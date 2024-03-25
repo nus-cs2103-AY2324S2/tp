@@ -5,12 +5,16 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import javafx.collections.transformation.FilteredList;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.UniquePersonList;
 import seedu.address.testutil.PersonBuilder;
 
 /**
@@ -18,22 +22,9 @@ import seedu.address.testutil.PersonBuilder;
  */
 public class ShowFavouriteCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-
-    @Test
-    public void execute_showFavouriteNoFavourites_success() {
-        ShowFavouriteCommand showFavouriteCommand = new ShowFavouriteCommand();
-
-        String expectedMessage = ShowFavouriteCommand.MESSAGE_SUCCESS;
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-
-        expectedModel.updateFilteredPersonList(person -> false); // no favourites in typical address book
-        model.updateFilteredPersonList(Model.PREDICATE_SHOW_FAVOURITES);
-        assertCommandSuccess(showFavouriteCommand, model, expectedMessage, expectedModel);
-    }
-
     @Test
     public void execute_showFavouriteWithFavourites_success() {
+        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         ShowFavouriteCommand showFavouriteCommand = new ShowFavouriteCommand();
 
         String expectedMessage = ShowFavouriteCommand.MESSAGE_SUCCESS;

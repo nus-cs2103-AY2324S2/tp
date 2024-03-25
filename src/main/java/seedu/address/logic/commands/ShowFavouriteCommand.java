@@ -30,6 +30,6 @@ public class ShowFavouriteCommand extends Command {
         }
 
         // instanceof handles nulls
-        return other instanceof ShowFavouriteCommand ? true : false;
+        return other instanceof ShowFavouriteCommand;
     }
 }
