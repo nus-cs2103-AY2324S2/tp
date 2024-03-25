@@ -64,7 +64,7 @@ public class CommandHistory {
 
     /**
      * Returns the next command in history and increments the current command index.
-     * Returns an empty string if there the currentCommandIndex is at the end of the history.
+     * Returns an empty string if the currentCommandIndex is at the end of the history.
      */
     public void redo() {
         // Ensure that index is NOT out of bounds as well
