@@ -1,5 +1,7 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -74,6 +76,21 @@ public class ArgumentMultimap {
         if (duplicatedPrefixes.length > 0) {
             throw new ParseException(Messages.getErrorMessageForDuplicatePrefixes(duplicatedPrefixes));
         }
+    }
+
+    /**
+     * Checks that name prefix is not used more than once.
+     * @return True if there is duplicate name prefix.
+     */
+    public boolean hasDuplicateNamePrefix() {
+        Prefix[] duplicatedPrefixes = Stream.of(PREFIX_NAME).distinct()
+                .filter(prefix -> argMultimap.containsKey(prefix) && argMultimap.get(prefix).size() > 1)
+                .toArray(Prefix[]::new);
+
+        if (duplicatedPrefixes.length > 0) {
+            return true;
+        }
+        return false;
     }
 
     @Override
