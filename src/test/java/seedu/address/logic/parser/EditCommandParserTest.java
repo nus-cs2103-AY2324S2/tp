@@ -3,25 +3,25 @@ package seedu.address.logic.parser;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.EMPLOYMENTTYPE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.FIRSTNAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_BANKDETAILS_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMPLOYMENTTYPE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_FIRSTNAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_LASTNAME_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_PAYRATE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_SEX_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.LASTNAME_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.PAYRATE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_COOK;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_WAITER;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMPLOYMENTTYPE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_FIRSTNAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LASTNAME_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PAYRATE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_COOK;
@@ -39,8 +39,8 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.BankDetails;
-import seedu.address.model.person.EmploymentType;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.PayRate;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Sex;
 import seedu.address.model.tag.Tag;
@@ -95,8 +95,8 @@ public class EditCommandParserTest {
             BankDetails.MESSAGE_CONSTRAINTS); // invalid bank details
         assertParseFailure(parser, VALID_PHONE_AMY + INVALID_SEX_DESC,
             Sex.MESSAGE_CONSTRAINTS); // invalid sex
-        assertParseFailure(parser, VALID_PHONE_AMY + INVALID_EMPLOYMENTTYPE_DESC,
-                EmploymentType.MESSAGE_CONSTRAINTS); // invalid employment type
+        assertParseFailure(parser, VALID_PHONE_AMY + INVALID_PAYRATE_DESC,
+                PayRate.MESSAGE_CONSTRAINTS); // invalid employment type
 
         // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Person} being edited,
         // parsing it together with a valid tag results in error
@@ -107,7 +107,7 @@ public class EditCommandParserTest {
         assertParseFailure(parser, VALID_PHONE_AMY + TAG_EMPTY + TAG_DESC_COOK + TAG_DESC_WAITER,
             Tag.MESSAGE_CONSTRAINTS);
         // multiple invalid values, but only the first invalid value is captured
-        assertParseFailure(parser, VALID_PHONE_AMY + INVALID_FIRSTNAME_DESC + INVALID_EMPLOYMENTTYPE_DESC
+        assertParseFailure(parser, VALID_PHONE_AMY + INVALID_FIRSTNAME_DESC + INVALID_PAYRATE_DESC
                 + VALID_PHONE_AMY, Name.MESSAGE_CONSTRAINTS);
     }
 
@@ -128,10 +128,10 @@ public class EditCommandParserTest {
     @Test
     public void parse_someFieldsSpecified_success() {
         Phone targetPhone = new Phone(VALID_PHONE_BOB);
-        String userInput = VALID_PHONE_BOB + PHONE_DESC_BOB + EMPLOYMENTTYPE_DESC_BOB;
+        String userInput = VALID_PHONE_BOB + PHONE_DESC_BOB + PAYRATE_DESC_BOB;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB)
-                .withEmploymentType(VALID_EMPLOYMENTTYPE_BOB).build();
+                .withPayRate(VALID_PAYRATE_BOB).build();
         EditCommand expectedCommand = new EditCommand(targetPhone, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);

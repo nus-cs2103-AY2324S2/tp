@@ -7,7 +7,7 @@ import java.util.Objects;
  */
 public class WorkHours {
     public static final String MESSAGE_CONSTRAINTS = "Hours clocked can only contain numbers.";
-    private int hoursWorked;
+    public final int hoursWorked;
 
     /**
      * Constructs a {@code WorkHours} object with zero hours worked.
@@ -28,15 +28,6 @@ public class WorkHours {
      */
     public int getHoursWorked() {
         return hoursWorked;
-    }
-
-    /**
-     * Sets the number of hours worked.
-     *
-     * @param hoursWorked The number of hours worked.
-     */
-    public void setHoursWorked(int hoursWorked) {
-        this.hoursWorked = hoursWorked;
     }
 
     @Override

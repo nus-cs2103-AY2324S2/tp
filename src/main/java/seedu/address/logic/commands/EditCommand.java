@@ -3,9 +3,9 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BANKDETAILS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMPLOYMENTTYPE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FIRSTNAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LASTNAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PAYRATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -25,8 +25,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.BankDetails;
-import seedu.address.model.person.EmploymentType;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.PayRate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Sex;
@@ -49,7 +49,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_TAG + "TAG] "
             + "[" + PREFIX_FIRSTNAME + "FIRST NAME] "
             + "[" + PREFIX_LASTNAME + "LAST NAME] "
-            + "[" + PREFIX_EMPLOYMENTTYPE + "EMPLOYMENT TYPE] "
+            + "[" + PREFIX_PAYRATE + "PAY RATE] "
             + "[" + PREFIX_BANKDETAILS + "BANK DETAILS] "
             + "[" + PREFIX_SEX + "SEX] "
             + "Example: " + COMMAND_WORD + " 85789476 "
@@ -84,14 +84,14 @@ public class EditCommand extends Command {
         Name updatedLastName = editPersonDescriptor.getLastName().orElse(personToEdit.getLastName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Sex updatedSex = editPersonDescriptor.getSex().orElse(personToEdit.getSex());
-        EmploymentType updatedEmploymentType = editPersonDescriptor.getEmploymentType()
-                .orElse(personToEdit.getEmploymentType());
+        PayRate updatedPayRate = editPersonDescriptor.getPayRate()
+                .orElse(personToEdit.getPayRate());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         BankDetails updatedBankDetails = editPersonDescriptor.getBankDetails().orElse(personToEdit.getBankDetails());
         WorkHours updatedWorkHours = editPersonDescriptor.getHoursWorked().orElse(personToEdit.getWorkHours());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedFirstName, updatedLastName, updatedPhone, updatedSex, updatedEmploymentType,
+        return new Person(updatedFirstName, updatedLastName, updatedPhone, updatedSex, updatedPayRate,
                 updatedAddress, updatedBankDetails, updatedWorkHours, updatedTags);
     }
 
@@ -159,7 +159,7 @@ public class EditCommand extends Command {
         private Address address;
         private Set<Tag> tags;
         private Sex sex;
-        private EmploymentType employmentType;
+        private PayRate payRate;
         private BankDetails bankDetails;
         private WorkHours hoursWorked;
 
@@ -175,7 +175,7 @@ public class EditCommand extends Command {
             setLastName(toCopy.lastName);
             setPhone(toCopy.phone);
             setTags(toCopy.tags);
-            setEmploymentType(toCopy.employmentType);
+            setPayRate(toCopy.payRate);
             setSex(toCopy.sex);
             setAddress(toCopy.address);
             setBankDetails(toCopy.bankDetails);
@@ -186,7 +186,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(firstName, lastName, phone, address, tags, sex, employmentType,
+            return CollectionUtil.isAnyNonNull(firstName, lastName, phone, address, tags, sex, payRate,
                     bankDetails);
         }
 
@@ -227,11 +227,11 @@ public class EditCommand extends Command {
             this.bankDetails = bankDetails;
         }
 
-        public Optional<EmploymentType> getEmploymentType() {
-            return Optional.ofNullable(employmentType);
+        public Optional<PayRate> getPayRate() {
+            return Optional.ofNullable(payRate);
         }
-        public void setEmploymentType(EmploymentType employmentType) {
-            this.employmentType = employmentType;
+        public void setPayRate(PayRate payRate) {
+            this.payRate = payRate;
         }
 
         public Optional<Address> getAddress() {
@@ -284,7 +284,7 @@ public class EditCommand extends Command {
                     && Objects.equals(phone, otherEditPersonDescriptor.phone)
                     && Objects.equals(tags, otherEditPersonDescriptor.tags)
                     && Objects.equals(sex, otherEditPersonDescriptor.sex)
-                    && Objects.equals(employmentType, otherEditPersonDescriptor.employmentType)
+                    && Objects.equals(payRate, otherEditPersonDescriptor.payRate)
                     && Objects.equals(address, otherEditPersonDescriptor.address)
                     && Objects.equals(bankDetails, otherEditPersonDescriptor.bankDetails)
                     && Objects.equals(hoursWorked, otherEditPersonDescriptor.hoursWorked);
@@ -297,7 +297,7 @@ public class EditCommand extends Command {
                     .add("lastName", lastName)
                     .add("phone", phone)
                     .add("sex", sex)
-                    .add("employmentType", employmentType)
+                    .add("payRate", payRate)
                     .add("address", address)
                     .add("bankDetails", bankDetails)
                     .add("hoursWorked", hoursWorked)

@@ -12,8 +12,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.BankDetails;
-import seedu.address.model.person.EmploymentType;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.PayRate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Sex;
@@ -31,7 +31,7 @@ class JsonAdaptedPerson {
     private final String lastName;
     private final String phone;
     private final String sex;
-    private final String employmentType;
+    private final double payRate;
     private final String address;
     private final String bankDetails;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
@@ -45,7 +45,7 @@ class JsonAdaptedPerson {
                              @JsonProperty("lastName") String lastName,
                              @JsonProperty("phone") String phone,
                              @JsonProperty("sex") String sex,
-                             @JsonProperty("employmentType") String employmentType,
+                             @JsonProperty("payRate") double payRate,
                              @JsonProperty("address") String address,
                              @JsonProperty("bankDetails") String bankDetails,
                              @JsonProperty("workHours") int workHours,
@@ -54,7 +54,7 @@ class JsonAdaptedPerson {
         this.lastName = lastName;
         this.phone = phone;
         this.sex = sex;
-        this.employmentType = employmentType;
+        this.payRate = payRate;
         this.address = address;
         this.bankDetails = bankDetails;
         this.workHours = workHours;
@@ -71,7 +71,7 @@ class JsonAdaptedPerson {
         lastName = source.getLastName().value;
         phone = source.getPhone().value;
         sex = source.getSex().value;
-        employmentType = source.getEmploymentType().value;
+        payRate = source.getPayRate().getPayRate();
         address = source.getAddress().value;
         bankDetails = source.getBankDetails().value;
         workHours = source.getWorkHours().getHoursWorked();
@@ -123,14 +123,7 @@ class JsonAdaptedPerson {
         }
         final Sex modelSex = new Sex(sex);
 
-        if (employmentType == null) {
-            throw new IllegalValueException(
-                String.format(MISSING_FIELD_MESSAGE_FORMAT, EmploymentType.class.getSimpleName()));
-        }
-        if (!EmploymentType.isValidEmploymentType(employmentType)) {
-            throw new IllegalValueException(EmploymentType.MESSAGE_CONSTRAINTS);
-        }
-        final EmploymentType modelEmploymentType = new EmploymentType(employmentType);
+        final PayRate modelPayRate = new PayRate(payRate);
 
         if (address == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
@@ -152,7 +145,7 @@ class JsonAdaptedPerson {
         final WorkHours modelWorkHours = new WorkHours(workHours);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelFirstName, modelLastName, modelPhone, modelSex, modelEmploymentType,
+        return new Person(modelFirstName, modelLastName, modelPhone, modelSex, modelPayRate,
             modelAddress,
             modelBankDetails, modelWorkHours, modelTags);
     }

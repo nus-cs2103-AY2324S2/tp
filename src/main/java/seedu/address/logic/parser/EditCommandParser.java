@@ -4,9 +4,9 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BANKDETAILS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMPLOYMENTTYPE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FIRSTNAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LASTNAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PAYRATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -36,7 +36,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_FIRSTNAME, PREFIX_LASTNAME, PREFIX_PHONE,
-                    PREFIX_ADDRESS, PREFIX_TAG, PREFIX_SEX, PREFIX_EMPLOYMENTTYPE, PREFIX_BANKDETAILS);
+                    PREFIX_ADDRESS, PREFIX_TAG, PREFIX_SEX, PREFIX_PAYRATE, PREFIX_BANKDETAILS);
 
         Phone number;
 
@@ -47,7 +47,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_FIRSTNAME, PREFIX_LASTNAME, PREFIX_PHONE, PREFIX_SEX,
-                PREFIX_EMPLOYMENTTYPE, PREFIX_BANKDETAILS, PREFIX_ADDRESS);
+                PREFIX_PAYRATE, PREFIX_BANKDETAILS, PREFIX_ADDRESS);
 
         EditCommand.EditPersonDescriptor editPersonDescriptor = new EditCommand.EditPersonDescriptor();
 
@@ -66,9 +66,9 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_SEX).isPresent()) {
             editPersonDescriptor.setSex(ParserUtil.parseSex(argMultimap.getValue(PREFIX_SEX).get()));
         }
-        if (argMultimap.getValue(PREFIX_EMPLOYMENTTYPE).isPresent()) {
-            editPersonDescriptor.setEmploymentType(ParserUtil
-                .parseEmploymentType(argMultimap.getValue(PREFIX_EMPLOYMENTTYPE).get()));
+        if (argMultimap.getValue(PREFIX_PAYRATE).isPresent()) {
+            editPersonDescriptor.setPayRate(ParserUtil
+                .parsePayRate(argMultimap.getValue(PREFIX_PAYRATE).get()));
         }
         if (argMultimap.getValue(PREFIX_BANKDETAILS).isPresent()) {
             editPersonDescriptor.setBankDetails(ParserUtil

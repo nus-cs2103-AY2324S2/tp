@@ -23,7 +23,7 @@ public class Person {
 
     // Data fields
     private final Sex sex;
-    private final EmploymentType employmentType;
+    private final PayRate payRate;
     private final Address address;
     private final BankDetails bankDetails;
     private final Set<Tag> tags = new HashSet<>();
@@ -33,14 +33,14 @@ public class Person {
      * Every field must be present and not null.
      */
     public Person(Name firstName, Name lastName, Phone phone, Sex sex,
-                  EmploymentType employmentType, Address address,
+                  PayRate payRate, Address address,
                   BankDetails bankDetails, WorkHours hoursWorked, Set<Tag> tags) {
         requireAllNonNull(firstName, lastName, phone, address, bankDetails, tags);
         this.firstName = firstName;
         this.lastName = lastName;
         this.phone = phone;
         this.sex = sex;
-        this.employmentType = employmentType;
+        this.payRate = payRate;
         this.address = address;
         this.bankDetails = bankDetails;
         this.tags.addAll(tags);
@@ -67,8 +67,8 @@ public class Person {
         return sex;
     }
 
-    public EmploymentType getEmploymentType() {
-        return employmentType;
+    public PayRate getPayRate() {
+        return payRate;
     }
 
     public Address getAddress() {
@@ -129,7 +129,7 @@ public class Person {
         return getName().equals(otherPerson.getName())
                 && phone.equals(otherPerson.phone)
                 && sex.equals(otherPerson.sex)
-                && employmentType.equals(otherPerson.employmentType)
+                && payRate.equals(otherPerson.payRate)
                 && address.equals(otherPerson.address)
                 && bankDetails.equals(otherPerson.bankDetails)
                 && tags.equals(otherPerson.tags);
@@ -138,7 +138,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(firstName, lastName, phone, sex, employmentType, address, bankDetails,
+        return Objects.hash(firstName, lastName, phone, sex, payRate, address, bankDetails,
                 tags);
     }
 
@@ -149,7 +149,7 @@ public class Person {
                 .add("lastName", lastName)
                 .add("phone", phone)
                 .add("sex", sex)
-                .add("employmentType", employmentType)
+                .add("payRate", payRate)
                 .add("address", address)
                 .add("bankDetails", bankDetails)
                 .add("tags", tags)

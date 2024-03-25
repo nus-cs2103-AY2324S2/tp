@@ -5,8 +5,8 @@ import java.util.Set;
 
 import seedu.address.model.person.Address;
 import seedu.address.model.person.BankDetails;
-import seedu.address.model.person.EmploymentType;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.PayRate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Sex;
@@ -23,7 +23,7 @@ public class PersonBuilder {
     public static final String DEFAULT_LASTNAME = "Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_SEX = "f";
-    public static final String DEFAULT_EMPLOYMENT_TYPE = "ft";
+    public static final double DEFAULT_PAY_RATE = 15;
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_BANK_ADDRESS = "12345678";
     public static final int DEFAULT_WORK_HOURS = 0;
@@ -32,7 +32,7 @@ public class PersonBuilder {
     private Name lastName;
     private Phone phone;
     private Sex sex;
-    private EmploymentType employmentType;
+    private PayRate payRate;
     private Address address;
     private BankDetails bankDetails;
     private WorkHours hoursWorked;
@@ -46,7 +46,7 @@ public class PersonBuilder {
         lastName = new Name(DEFAULT_LASTNAME);
         phone = new Phone(DEFAULT_PHONE);
         sex = new Sex(DEFAULT_SEX);
-        employmentType = new EmploymentType(DEFAULT_EMPLOYMENT_TYPE);
+        payRate = new PayRate(DEFAULT_PAY_RATE);
         address = new Address(DEFAULT_ADDRESS);
         bankDetails = new BankDetails(DEFAULT_BANK_ADDRESS);
         hoursWorked = new WorkHours(DEFAULT_WORK_HOURS);
@@ -62,7 +62,7 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         address = personToCopy.getAddress();
         sex = personToCopy.getSex();
-        employmentType = personToCopy.getEmploymentType();
+        payRate = personToCopy.getPayRate();
         bankDetails = personToCopy.getBankDetails();
         tags = new HashSet<>(personToCopy.getTags());
     }
@@ -119,8 +119,8 @@ public class PersonBuilder {
     /**
      * Sets the {@code EmploymentType} of the {@code Person} that we are building.
      */
-    public PersonBuilder withEmploymentType(String employmentType) {
-        this.employmentType = new EmploymentType(employmentType);
+    public PersonBuilder withPayRate(double payRate) {
+        this.payRate = new PayRate(payRate);
         return this;
     }
 
@@ -141,7 +141,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(firstName, lastName, phone, sex, employmentType, address, bankDetails, hoursWorked, tags);
+        return new Person(firstName, lastName, phone, sex, payRate, address, bankDetails, hoursWorked, tags);
     }
 
 }

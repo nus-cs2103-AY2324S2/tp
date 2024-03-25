@@ -11,8 +11,8 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.BankDetails;
-import seedu.address.model.person.EmploymentType;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.PayRate;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Sex;
 import seedu.address.model.person.WorkHours;
@@ -90,13 +90,18 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code employmentType} is invalid.
      */
-    public static EmploymentType parseEmploymentType(String employmentType) throws ParseException {
-        requireNonNull(employmentType);
-        String trimmedEmploymentType = employmentType.trim();
-        if (!EmploymentType.isValidEmploymentType(trimmedEmploymentType)) {
-            throw new ParseException(EmploymentType.MESSAGE_CONSTRAINTS);
+    public static PayRate parsePayRate(String payRate) throws ParseException {
+        requireNonNull(payRate);
+        String trimmedPayRate = payRate.trim();
+        try {
+            double rate = Double.parseDouble(trimmedPayRate);
+            if (rate <= 0) {
+                throw new ParseException("Pay rate cannot be zero or negative");
+            }
+            return new PayRate(rate);
+        } catch (NumberFormatException e) {
+            throw new ParseException(PayRate.MESSAGE_CONSTRAINTS);
         }
-        return new EmploymentType(trimmedEmploymentType);
     }
 
     /**
