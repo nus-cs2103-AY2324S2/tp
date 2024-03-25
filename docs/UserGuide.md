@@ -159,6 +159,7 @@ Usage of update command
 ### Locating clients by name: `find`
 
 This command allows you to find a specific client in your client list by their **name**, *and optionally by other fields too*
+This command allows you to find a specific client in your client list by their **name**, *and optionally by other fields too*
 
 Format: `find n/NAME… [a/KEYWORD]… [e/KEYWORD]… [t/KEYWORD]… [k/KEYWORD]… [d/KEYWORD]… [p/KEYWORD]…`
 
