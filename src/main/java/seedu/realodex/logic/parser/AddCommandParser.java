@@ -10,6 +10,7 @@ import static seedu.realodex.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.realodex.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.realodex.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.ArrayList;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -75,5 +76,4 @@ public class AddCommandParser implements Parser<AddCommand> {
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
-
 }

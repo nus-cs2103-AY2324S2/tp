@@ -1,5 +1,9 @@
 package seedu.realodex.logic.parser;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 /**
  * A prefix that marks the beginning of an argument in an arguments string.
  * E.g. 't/' in 'add James t/ friend'.
@@ -13,6 +17,17 @@ public class Prefix {
 
     public String getPrefix() {
         return prefix;
+    }
+
+    public static ArrayList<String> returnListOfMissingPrefixes(Map<Prefix, List<String>> argMultimap,
+                                                          Prefix[] listOfCompulsoryPrefix) {
+        ArrayList<String> listOfMessagesForMissingPrefixes = new ArrayList<>();
+        for (Prefix ofCompulsoryPrefix : listOfCompulsoryPrefix) {
+            if (!argMultimap.containsKey(ofCompulsoryPrefix)) {
+                listOfMessagesForMissingPrefixes.add(ofCompulsoryPrefix.toString());
+            }
+        }
+        return listOfMessagesForMissingPrefixes;
     }
 
     @Override

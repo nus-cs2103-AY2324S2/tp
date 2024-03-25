@@ -80,4 +80,11 @@ public class ArgumentMultimap {
             throw new ParseException(Messages.getErrorMessageForDuplicatePrefixes(duplicatedPrefixes));
         }
     }
+
+    public ArrayList<String> returnListOfMissingPrefixes(Prefix... prefixes) {
+        Prefix[] listOfCompulsoryPrefix = Stream.of(prefixes).distinct()
+                .filter(prefix -> argMultimap.containsKey(prefix) && argMultimap.get(prefix).size() > 1)
+                .toArray(Prefix[]::new);
+        return Prefix.returnListOfMissingPrefixes(argMultimap, listOfCompulsoryPrefix);
+    }
 }
