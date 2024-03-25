@@ -66,7 +66,7 @@ public class AddressBookParser {
         // Lower level log messages are used sparingly to minimize noise in the code.
         logger.fine("Command word: " + commandWord + "; Arguments: " + arguments);
 
-        String fullCommand = fullCommand(commandWord);
+        String fullCommand = getFullCommand(commandWord);
 
         switch (fullCommand) {
 
@@ -101,34 +101,34 @@ public class AddressBookParser {
     }
 
     /**
-     * Checks if command is a substring of a full command.
+     * Converts an input command into a full command if input command is a prefix.
      *
      * @param command user input command string
-     * @return full command if input is a substring, else return the original input command
+     * @return full command if input is a prefix, else return the original input command
      * @throws ParseException if the input matches to multiple commands
      */
-    private String fullCommand(String command) throws ParseException {
+    private String getFullCommand(String command) throws ParseException {
         final String initialValue = "";
-        String possibleCommand = initialValue;
+        String fullCommand = initialValue;
 
         for (String commandWord : COMMANDS) {
             // Input command matches the full command.
             if (commandWord.startsWith(command)) {
                 // Input command matches with multiple full commands.
-                if (!possibleCommand.equals(initialValue)) {
+                if (!fullCommand.equals(initialValue)) {
                     throw new ParseException(MESSAGE_UNCLEAR_COMMAND);
                 }
 
-                possibleCommand = commandWord;
+                fullCommand = commandWord;
             }
         }
 
-        if (possibleCommand.equals(initialValue)) {
+        if (fullCommand.equals(initialValue)) {
             // Return original command if no match found.
             return command;
         } else {
             // Return matched full command.
-            return possibleCommand;
+            return fullCommand;
         }
     }
 
