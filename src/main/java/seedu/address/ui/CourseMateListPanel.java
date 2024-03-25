@@ -29,14 +29,14 @@ public class CourseMateListPanel extends UiPart<Region> {
      * and {@code CourseMateDetailPanel}.
      */
     public CourseMateListPanel(ObservableList<CourseMate> courseMateList,
-                               MainWindow mainWindow) {
+                               CourseMateListSelectHandler courseMateListSelectHandler) {
         super(FXML);
         courseMateListView.setItems(courseMateList);
         courseMateListView.setCellFactory(listView -> new CourseMateListViewCell());
         courseMateListView.setOnMouseClicked(
-                new CourseMateListClickHandler(courseMateListView, mainWindow));
+                new CourseMateListClickHandler(courseMateListView, courseMateListSelectHandler));
         courseMateListView.setOnKeyPressed(
-                new CourseMateListPressHandler(courseMateListView, mainWindow));
+                new CourseMateListPressHandler(courseMateListView, courseMateListSelectHandler));
     }
 
     /**
@@ -56,44 +56,56 @@ public class CourseMateListPanel extends UiPart<Region> {
         }
     }
 
-}
-
-class CourseMateListClickHandler implements EventHandler<MouseEvent> {
-    private ListView<CourseMate> courseMateListView;
-    private MainWindow mainWindow;
-
-    public CourseMateListClickHandler(ListView<CourseMate> courseMateListView,
-                                      MainWindow mainWindow) {
-        this.courseMateListView = courseMateListView;
-        this.mainWindow = mainWindow;
+    /**
+     * Returns a function that can handle coursemate list selection.
+     */
+    @FunctionalInterface
+    public interface CourseMateListSelectHandler {
+        /**
+         * Handles selection change in the coursemate list panel.
+         *
+         * @param courseMate The selected coursemate.
+         */
+        void handleCourseMateListSelect(CourseMate courseMate);
     }
 
-    @Override
-    public void handle(MouseEvent event) {
-        if (event.getClickCount() == 2) {
-            CourseMate selectedCourseMate =
-                    courseMateListView.getSelectionModel().getSelectedItem();
-            mainWindow.handleCourseMateListSelect(selectedCourseMate);
+    private class CourseMateListClickHandler implements EventHandler<MouseEvent> {
+        private ListView<CourseMate> courseMateListView;
+        private CourseMateListPanel.CourseMateListSelectHandler courseMateListSelectHandler;
+
+        public CourseMateListClickHandler(ListView<CourseMate> courseMateListView,
+                CourseMateListPanel.CourseMateListSelectHandler courseMateListSelectHandler) {
+            this.courseMateListView = courseMateListView;
+            this.courseMateListSelectHandler = courseMateListSelectHandler;
+        }
+
+        @Override
+        public void handle(MouseEvent event) {
+            if (event.getClickCount() == 2) {
+                CourseMate selectedCourseMate =
+                        courseMateListView.getSelectionModel().getSelectedItem();
+                courseMateListSelectHandler.handleCourseMateListSelect(selectedCourseMate);
+            }
         }
     }
-}
 
-class CourseMateListPressHandler implements EventHandler<KeyEvent> {
-    private ListView<CourseMate> courseMateListView;
-    private MainWindow mainWindow;
+    private class CourseMateListPressHandler implements EventHandler<KeyEvent> {
+        private ListView<CourseMate> courseMateListView;
+        private CourseMateListPanel.CourseMateListSelectHandler courseMateListSelectHandler;
 
-    public CourseMateListPressHandler(ListView<CourseMate> courseMateListView,
-                                      MainWindow mainWindow) {
-        this.courseMateListView = courseMateListView;
-        this.mainWindow = mainWindow;
-    }
+        public CourseMateListPressHandler(ListView<CourseMate> courseMateListView,
+                CourseMateListPanel.CourseMateListSelectHandler courseMateListSelectHandler) {
+            this.courseMateListView = courseMateListView;
+            this.courseMateListSelectHandler = courseMateListSelectHandler;
+        }
 
-    @Override
-    public void handle(KeyEvent event) {
-        if (event.getCode().equals(KeyCode.ENTER)) {
-            CourseMate selectedCourseMate =
-                    courseMateListView.getSelectionModel().getSelectedItem();
-            mainWindow.handleCourseMateListSelect(selectedCourseMate);
+        @Override
+        public void handle(KeyEvent event) {
+            if (event.getCode().equals(KeyCode.ENTER)) {
+                CourseMate selectedCourseMate =
+                        courseMateListView.getSelectionModel().getSelectedItem();
+                courseMateListSelectHandler.handleCourseMateListSelect(selectedCourseMate);
+            }
         }
     }
 }
