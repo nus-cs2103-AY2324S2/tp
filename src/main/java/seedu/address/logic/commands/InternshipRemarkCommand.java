@@ -59,7 +59,7 @@ public class InternshipRemarkCommand extends InternshipCommand {
                 internshipToEdit.getContactEmail(), internshipToEdit.getContactNumber(),
                 internshipToEdit.getLocation(), internshipToEdit.getApplicationStatus(),
                 internshipToEdit.getDescription(), internshipToEdit.getRole(),
-                remark);
+                remark, internshipToEdit.getTaskList());
 
         model.setInternship(internshipToEdit, editedInternship);
         model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);
