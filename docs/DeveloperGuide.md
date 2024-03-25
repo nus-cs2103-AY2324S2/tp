@@ -568,6 +568,37 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    * Use case resumes from step 2.
 
 ---
+
+**System**: `PoochPlanner`
+
+**Use case**: `UC08 - Unpin a contact`
+
+**Actor**: `User`
+
+**MSS**:
+
+1.  User requests to unpin a contact.
+2.  PoochPlanner display a list of contact with the remaining pinned contact at the top.
+
+    Use case ends.
+
+**Extensions**:
+
+* 1a. PoochPlanner detects a missing name field in the entered input.
+
+   * 1a1. PoochPlanner displays the error message.
+   * 1a2. User re-enters the command with a specified name field.
+   * Steps 1a1 - 1a2 are repeated until the input entered are correct.
+   * Use case resumes from step 2.
+
+* 1b. PoochPlanner is unable to find the person.
+
+   * 1b1. PoochPlanner displays the error message.
+   * 1b2. User re-enters a new command with another name.
+   * Steps 1b1 - 1b2 are repeated until the input references a Person that exists in PoochPlanner.
+   * Use case resumes from step 2.
+
+---
 *{More to be added}*
 
 ### Non-Functional Requirements
