@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.model.person.Bolt;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Major;
 import seedu.address.model.person.Name;
@@ -38,6 +39,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setEmail(person.getEmail());
         descriptor.setMajor(person.getMajor());
         descriptor.setStar(person.getStar());
+        descriptor.setBolt(person.getBolt());
         descriptor.setTags(person.getTags());
     }
 
@@ -78,6 +80,14 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withStar(Integer star) {
         descriptor.setStar(new Star(star));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Bolt} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withBolt(Integer bolt) {
+        descriptor.setBolt(new Bolt(bolt));
         return this;
     }
 
