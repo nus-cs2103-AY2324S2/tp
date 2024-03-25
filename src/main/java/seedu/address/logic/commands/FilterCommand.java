@@ -9,14 +9,15 @@ import seedu.address.model.person.MatchingTagPredicate;
 
 /**
  * Filters the list of companies to only show entries with the specified tag
+ * Tag searching is case-sensitive
  */
 public class FilterCommand extends Command {
 
     public static final String COMMAND_WORD = "filter";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters the current list of companies to only display "
-            + "those with the specified tag as a list with index numbers. \n"
-            + "Parameter: /t TAG\n"
+            + "those with the specified tag (case-sensitive) as a list with index numbers. \n"
+            + "Parameter: /t TAG \n"
             + "Example: " + COMMAND_WORD + "/t I";
 
     private final MatchingTagPredicate predicate;
