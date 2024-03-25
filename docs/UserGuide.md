@@ -4,6 +4,7 @@
   pageNav: 3
 ---
 
+
 # ConnectCare User Guide
 
 <box type="info" seamless>
@@ -18,6 +19,8 @@ _This page is for ConnectCare users. If you're a developer, see also the
 ## Introduction
 Welcome to *ConnectCare User Guide*, a guide to use the *ConnectCare* application.
 *ConnectCare* helps you manage your client contacts faster and more reliably.
+If you are experiencing issues or are new to this application, this is a good place to start!
+
 
 ## Who ConnectCare Is For
 
@@ -27,7 +30,7 @@ ConnectCare is a powerful application designed to make social workers' lives eas
 * Reduced Errors: Minimize the possibility of errors caused by switching between input methods.
 * Boosted Productivity: Complete tasks faster and free up valuable time for client interaction.
 
-### Embrace a Keyboard-Centric Approach
+##### Embrace a Keyboard-Centric Approach
 
 Social workers often spend significant time documenting and updating client information.  By minimizing the need to use a mouse, ConnectCare allows for a smoother workflow, especially when working remotely or on laptops.
 
@@ -37,15 +40,15 @@ This approach can significantly reduce:
 * Cognitive load from switching between input methods.
 * Overall time spent completing tasks.
 
-### Work Offline, Stay Productive
+##### Work Offline, Stay Productive
 
 One of the key benefits of ConnectCare is that it doesn't require a constant internet connection. This allows you to work seamlessly even in areas with limited or no internet access.  Whether you're conducting a home visit or working remotely in the field, ConnectCare ensures you can access and update client information efficiently.
 
-### Sensitive Data is kept Secure
+##### Sensitive Data is kept Secure
 
 We understand that social workers handle sensitive client information. Since ConnectCare functions offline, your data never needs to be transmitted over the internet or stored on remote servers. This significantly reduces the risk of unauthorized access compared to cloud-based solutions. ConnectCare prioritizes data security by storing information [locally](#local) on your device.
 
-### Focus on Your Clients, Not Software
+##### Focus on Your Clients, Not Software
 
 By streamlining workflows and offering social work-specific features, ConnectCare empowers you to focus on what matters most: your clients. You can spend more time building rapport with clients, respond to inquiries and needs more promptly and ultimately focus on delivering high-quality care.
 
@@ -55,26 +58,42 @@ This guide does not assume any technical knowledge from users. We just require u
 
 ## How to Use This Guide
 
-There is no wrong way to read this guide: if you want to skip ahead, go for it! Each section is contained in itself, and you can find what you are looking for without needing to read the previous sections. However, we recommend that you read through the entire guide at least once before utilizing the application, so that you would have a more thorough understanding of the all necessary features.
+There is no wrong way to read this guide: if you want to skip ahead, go for it! Each section is contained entirely in itself, and you can find what you are looking for without needing to read the previous sections. However, we recommend that you read through the entire guide at least once before utilizing the application, so that you would have a more thorough understanding of the all necessary features.
 
-This guide is comprised of 4 main sections:
-1. The [**Quick Start**](#quick-start) section, we will walk through you in how to get started installing as well as running the ConnectCare on your own desktop
+This guide has 4 main sections:
+1. The [**Quick Start**](#quick-start) section, we will walk through you in how to get started installing as well as running the ConnectCare on your own desktop.
 
 2. The [**Features Section**](#features) will provide a comprehensive, easy-to-understand guide on how to fully make use of all of ConnectCare's functionalities and commands.
 
 3. The [**FAQ**](#faq) section will answer commonly asked questions, addressing potential further queries you might have!
 
-4. Lastly, the [**Glossary**](#glossary) contains a list of key terms and definitions that might be helpful
+4. Lastly, the [**Glossary**](#glossary) contains a list of key terms and definitions that might be helpful.
 
-<box type="warning" seamless>
+The various boxes used in this guide:
+<box type="tip">
+
+Gives you useful tips that are not entirely necessary to use the application, but help you get the most out of _ConnectCare_.
+</box>
+
+<box type="info">
+
+Provides additional information and context that extends your understanding of _ConnectCare_'s features.
+</box>
+
+<box type="warning">
+
+Important warnings that you should keep in mind while using this User Guide.
+</box>
+
+<box type="warning">
 
 **Warning:** If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </box>
 
 ## Quick start
-
+<IMPROVE BY ADDING SCREENSHOTS AND LINKS>
 1. Ensure Java 11 is installed in your computer. If it's not, install it [here](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html)
-2. Download the latest ConnectCare.jar
+2. Download the latest ConnectCare.jar <Link here>
 3. Copy the jar file to the folder you want to use as the home folder
 4. Double-click the file to start the application!
 
@@ -102,13 +121,23 @@ ___
 
 _This command adds a new client to your client list._
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS k/NEXTOFKIN d/DESCRIPTION [t/TAG]…`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS k/NEXT_OF_KIN d/DESCRIPTION [t/TAG]…`
 
-- Name being added must be unique
-- All parameters _except tag_ are compulsory
+Parameters:
 
-<box type="tip" seamless>
+| Parameter    | Description                                        | Constraints                           |
+|--------------|----------------------------------------------------|---------------------------------------|
+| NAME         | Name of client that you want to add                | Name must be unique and is compulsory |
+| PHONE_NUMBER | Phone Number of client that you want to add        | Compulsory                            |
+| EMAIL        | Email of client that you want to add               | Compulsory                            |
+| ADDRESS      | Address of client that you want to add             | Compulsory                            |
+| NEXT_OF_KIN  | Next of Kin details of client that you want to add | Compulsory                            |
+| DESCRIPTION  | Description of client that you want to add         | Compulsory                            |
+
+<box type="tip">
+
 **Tip:** A person can have any number of tags (or even 0)
+
 </box>
 
 Examples:
@@ -125,9 +154,24 @@ Usage of Add command
 </video>
 
 ### Listing all persons : `list`
-Shows a list of all persons.
+_Shows a list of all persons._
 
 Format: `list`
+
+Examples:
+
+
+The screenshots below are what you would expect when using the `list` command. In this example, after using the `find` command,
+only `Bernice Yeo` was shown in the list. Thereafter, the `list` command was used, displaying the entire list of contacts.
+
+<div class="image-container" align="middle" style="display:flex">
+    <pic src="images/user-guide/list_command_before.png" alt="list">
+        Figure 1.1: Before the list command is executed
+    </pic>
+    <pic src="images/user-guide/list_command_after.png" alt="list">
+        Figure 1.2: After the list command is executed
+    </pic>
+</div>
 
 ### Updating a client : `update`
 
@@ -158,30 +202,35 @@ Usage of update command
 
 ### Locating clients by name: `find`
 
-This command allows you to find a specific client in your client list by their **name**, *and optionally by other fields too*
-This command allows you to find a specific client in your client list by their **name**, *and optionally by other fields too*
+_This command allows you to find a specific client in your client list by their **name**, and optionally by other fields too_
 
 Format: `find n/NAME… [a/KEYWORD]… [e/KEYWORD]… [t/KEYWORD]… [k/KEYWORD]… [d/KEYWORD]… [p/KEYWORD]…`
 
+Parameter:
+
+__INSERT TABLE HERE__
+
 Examples: Lets say your contact list contains the following contacts:
-<img src="images/ExampleClientList.png" />
+<img src="images/ExampleClientList.png" /> <USE IMAGE LIKE LIST COMMAND HERE>
 
 -   `find n/alex` would return `Alex Lee` as well as `Alex Chan`
 -   `find n/alex p/99824412 ` would return `Alex Chan`
 -   `find n/a` would return `Alex Lee` , `Alex Chan`, as well as `Xavier`
 -   `find n/a t/important` would return `Alex Lee` as well as `Xavier`
 
+<box type="info">
+
 **Note:** you can search for multiple keywords, for example `find n/name1 n/name2` would search for all clients with names that contain name1 OR name2
 This also applies to the optional keywords, for example `find n/name1 a/address1 a/address2 would search for all clients with names that contain name1 AND
 have an address that contains address1 OR address2, so
 -   `find n/alex n/bobby` would return `Alex Lee`, `Alex Chan`, and `Bobby`
 -   `find n/a p/86151644 p/12355125` would return `Alex Lee` and `Bobby`
+</box>
 
-<box type="tip" seamless>
+<box type="tip">
 
 **Tip:**
-After searching for clients, you can use the `list`function to view your full list of clients again!
-
+After searching for clients, you can use the `list` command to view your full list of clients again!
 </box>
 
 ### Undoing a command : `undo`
@@ -190,7 +239,7 @@ _This command allows you to undo your last command, restoring the ConnectCare ap
 
 Format: `undo`
 
-<box type="tip" seamless>
+<box type="tip">
 
 **Tip:**
 The undo command does not undo every single command, only those that change the address-book in a significant way.
@@ -198,6 +247,7 @@ For a comprehensive deep-dive into the undo command, please refer to the [Implem
 
 </box>
 
+Examples:
 _IMAGE_BEFORE and IMAGE_AFTER TBA_
 
 ### Redoing a command : `redo`
@@ -206,18 +256,19 @@ _This command allows you to redo your command, reversing any changes that were p
 
 Format: `redo`
 
-<box type="tip" seamless>
+<box type="tip">
 
 **Tip:**
 The redo command does not redo every single command, only those that change the address-book in a significant way.
 For a comprehensive deep-dive into the redo command, please refer to the [Implementation section of our Developer Guide](https://ay2324s2-cs2103t-w12-4.github.io/tp/DeveloperGuide.html)
 </box>
 
+Examples:
 _IMAGE_BEFORE and IMAGE_AFTER TBA_
 
 ### Displaying a client's information : `display`
 
-This command allows you to view a client's information by their **name**.
+_This command allows you to view a client's information in a more detailed manner_
 
 Format: `display n/NAME`
 
@@ -225,24 +276,28 @@ Examples: `display John` would display all of John's information as a contact ca
 
 ### Deleting a client: `delete`
 
-This command allows you to delete a client at a specified `INDEX` from your contact list.
+_This command allows you to delete a client at a specified `INDEX` from your contact list._
 
 Format: `delete INDEX`
+
+Parameters:
+
+<INSERT TABLE HERE>
 
 Examples: `delete 1` would delete the first client in your client list.
 
 Usage of delete command
 
-<img src="images/Delete_command_before.png" width="375"/> <img src="images/Delete_command_after.png" width="375"/>
-
+<img src="images/user-guide/Delete_command_before.png" width="375"/> <img src="images/user-guide/Delete_command_after.png" width="375"/>
+<IMAGE SHOULD BE LIKE LIST COMMAND>
 
 ### Clearing all entries : `clear`
 
-This command allows you to purge your client list, removing **ALL** clients in your client list.
+_This command allows you to purge your client list, removing **ALL** clients in your client list._
 
 Format: `clear`
 
-<box type="important" seamless>
+<box type="important">
 
 **Caution:**
 Only use this command if you are **absolutely** sure that you are willing to clear **all** of your clients from the list, as after running this command, any existing clients will be **unrecoverable**.
@@ -250,11 +305,11 @@ Only use this command if you are **absolutely** sure that you are willing to cle
 
 ### Exiting the program : `exit`
 
-This command allows you to exit the application.
+_This command allows you to exit the application._
 
 Format: `exit`
 
-<box type="tip" seamless>
+<box type="tip">
 
 **Tip:**
 You can simply close the window using the X button too!
@@ -265,17 +320,17 @@ _These are a list of helpful actions to facilitate the ease of use of our applic
 
 #### Command Line Shortcuts
 
+<box type="tip">
 
-<box type="tip" seamless>
-**Tip:** These shortcuts only work when the text box is selected
+**Tip:** These shortcuts only work when the text box is selected.
 </box>
 
 
-| Action   | Description                                       |
-|----------|---------------------------------------------------|
-| `Up`     | Displays to the previous command entered, if any. |
-| `Down`   | Displays the next command entered, if any.        |
-| `Tab`    | Automatically completes commands, if available.   |
+| Action | Description                                       |
+|--------|---------------------------------------------------|
+| `Up`   | Displays to the previous command entered, if any. |
+| `Down` | Displays the next command entered, if any.        |
+| `Tab`  | Automatically completes commands, if available.   |
 
 ### Saving the data
 
@@ -293,16 +348,16 @@ ___
 
 ## Command summary
 
-| Action      | Format                                                                            | Examples                                                                                               |
-|-------------|-----------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------|
-| **Add**     | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… [k/NEXTOFKIN]`              | `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 d/Suffers from anxiety k/Jon Ho t/friend t/colleague`     |
-| **Update**  | `update u/existing user [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…` | `Update u/Jane Doe n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-011`        |
-| **Find**    | `find n/NAME… [a/ADD]… [e/EMAIL]… [t/TAG]… [k/KIN]… [d/DESC]… [p/PHONE]…`         | `find n/James a/clementi e/gmail t/important k/charles d/tall p/123`                                                                                      |
-| **Undo**    | `undo`                                                                            |                                                                                                        |
-| **Redo**    | `redo`                                                                            |                                                                                                        |
-| **Display** | TBD                                                                               |                                                                                                        |
-| **Clear**   | `clear`                                                                           |                                                                                                        |
-| **Exit**    | `exit`                                                                            |                                                                                                        |
+| Action      | Format                                                                            | Examples                                                                                                                           |
+|-------------|-----------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**     | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… [k/NEXTOFKIN]`              | `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 d/Suffers from anxiety k/Jon Ho t/friend t/colleague` |
+| **Update**  | `update u/existing user [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…` | `Update u/Jane Doe n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-011`                                    |
+| **Find**    | `find n/NAME… [a/ADD]… [e/EMAIL]… [t/TAG]… [k/KIN]… [d/DESC]… [p/PHONE]…`         | `find n/James a/clementi e/gmail t/important k/charles d/tall p/123`                                                               |
+| **Undo**    | `undo`                                                                            |                                                                                                                                    |
+| **Redo**    | `redo`                                                                            |                                                                                                                                    |
+| **Display** | `display n/NAME`                                                                  |                                                                                                                                    |
+| **Clear**   | `clear`                                                                           |                                                                                                                                    |
+| **Exit**    | `exit`                                                                            |                                                                                                                                    |
 
 ___
 
