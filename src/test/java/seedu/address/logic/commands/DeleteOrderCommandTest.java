@@ -181,6 +181,12 @@ public class DeleteOrderCommandTest {
         }
 
         @Override
+        public void setPersonDelete(Person target, Person editedPerson, Order order) {
+            requireAllNonNull(target, editedPerson, order);
+            this.person = editedPerson;
+        }
+
+        @Override
         public ObservableList<Person> getFilteredPersonList() {
             List<Person> sampleList = new ArrayList<>();
             sampleList.add(this.person);
