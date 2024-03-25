@@ -182,8 +182,7 @@ public class ParserUtil {
     /**
      * Parses a {@code String feedbackScore} into an {@code Integer} and ensures that it is a valid number and is
      * between 1 and 5 (inclusive).
-     * @param feedbackScore
-     * @return
+     *
      * @throws ParseException
      */
     public static Integer parseFeedbackScore(String feedbackScore) throws ParseException {
