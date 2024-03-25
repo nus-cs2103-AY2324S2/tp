@@ -1,45 +1,57 @@
 package seedu.address.model.group;
 
-import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
 import seedu.address.model.coursemate.CourseMate;
 import seedu.address.model.coursemate.Name;
 import seedu.address.model.coursemate.UniqueCourseMateList;
+import seedu.address.model.skill.Skill;
 
 /**
- * Represents a Group in the group list. All its members must be unique.
+ * Represents a {@code Group} in the group list. All its members must be unique.
  */
 public class Group extends UniqueCourseMateList {
 
     private final Name name;
+    private Set<Skill> skills;
 
     /**
-     * A basic constructor for a group that also initializes an iterable collection as a list of members.
-     *
-     * @param name the name of the group
-     * @param members the Collection of members to initialize the group
+     * A basic constructor for a {@code Group} that also initializes an iterable collection as a list of members.
      */
     public Group(Name name, Iterable<CourseMate> members) {
-        super();
-        requireNonNull(name);
-        requireNonNull(members);
-        this.name = name;
-        members.forEach(this::add);
+        this(name, members, new HashSet<>());
     }
 
     /**
      * A basic constructor for a group.
-     *
-     * @param name the name of the group
      */
     public Group(Name name) {
+        this(name, new HashSet<>(), new HashSet<>());
+    }
+
+    /**
+     * A constructor for a {@code Group} that takes members and a list of skills.
+     */
+    public Group(Name name, Iterable<CourseMate> members, Iterable<Skill> skills) {
         super();
-        requireNonNull(name);
+        requireAllNonNull(name, members, skills);
         this.name = name;
+        members.forEach(this::add);
+
+        this.skills = new HashSet<>();
+        skills.forEach(this.skills::add);
     }
 
     public Name getName() {
         return name;
+    }
+
+    public Set<Skill> getSkills() {
+        return Collections.unmodifiableSet(skills);
     }
 
     /**
@@ -66,7 +78,7 @@ public class Group extends UniqueCourseMateList {
 
         Group otherGroup = (Group) other;
 
-        return otherGroup.name.equals(name) && super.equals(other);
+        return otherGroup.name.equals(name) && super.equals(other) && skills.equals(otherGroup.skills);
     }
 
     @Override
@@ -76,6 +88,8 @@ public class Group extends UniqueCourseMateList {
 
     @Override
     public int hashCode() {
-        return name.hashCode() ^ super.hashCode();
+        return name.hashCode()
+                ^ super.hashCode()
+                ^ skills.hashCode();
     }
 }

@@ -10,6 +10,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.coursemate.CourseMate;
 import seedu.address.model.coursemate.Name;
 import seedu.address.model.group.Group;
+import seedu.address.model.skill.Skill;
 
 /**
  * Jackson-friendly version of {@link Group}.
@@ -19,15 +20,20 @@ public class JsonAdaptedGroup {
 
     private final String name;
     private final List<JsonAdaptedCourseMate> members = new ArrayList<>();
+    private final List<JsonAdaptedSkill> skills = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedGroup} with the given group details.
      */
     public JsonAdaptedGroup(@JsonProperty("name") String name,
-                            @JsonProperty("members") List<JsonAdaptedCourseMate> members) {
+                            @JsonProperty("members") List<JsonAdaptedCourseMate> members,
+                            @JsonProperty("skills") List<JsonAdaptedSkill> skills) {
         this.name = name;
         if (members != null) {
             this.members.addAll(members);
+        }
+        if (skills != null) {
+            this.skills.addAll(skills);
         }
     }
 
@@ -38,6 +44,9 @@ public class JsonAdaptedGroup {
         name = source.getName().fullName;
         members.addAll(source.asUnmodifiableObservableList().stream()
                 .map(JsonAdaptedCourseMate::new)
+                .collect(Collectors.toList()));
+        skills.addAll(source.getSkills().stream()
+                .map(JsonAdaptedSkill::new)
                 .collect(Collectors.toList()));
     }
 
@@ -60,7 +69,12 @@ public class JsonAdaptedGroup {
             modelMembers.add(courseMate.toModelType());
         }
 
+        final List<Skill> modelSkills = new ArrayList<>();
+        for (JsonAdaptedSkill skill: this.skills) {
+            modelSkills.add(skill.toModelType());
+        }
+
         Name modelName = new Name(name);
-        return new Group(modelName, modelMembers);
+        return new Group(modelName, modelMembers, modelSkills);
     }
 }

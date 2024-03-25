@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 /**
  * Represents a Skill in the contact list.
- * Guarantees: immutable; name is valid as declared in {@link #isValidSkillName(String)}
+ * Guarantees: immutable;
  */
 public class Skill {
 

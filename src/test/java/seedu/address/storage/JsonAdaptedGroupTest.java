@@ -21,6 +21,11 @@ public class JsonAdaptedGroupTest {
                     .map(JsonAdaptedCourseMate::new)
                     .collect(Collectors.toList());
 
+    private static final List<JsonAdaptedSkill> VALID_SKILS =
+            SAMPLE_GROUP_1.getSkills().stream()
+                    .map(JsonAdaptedSkill::new)
+                    .collect(Collectors.toList());
+
     @Test
     public void toModelType_validGroupDetails_returnsGroup() throws Exception {
         JsonAdaptedGroup group = new JsonAdaptedGroup(SAMPLE_GROUP_1);
@@ -30,7 +35,7 @@ public class JsonAdaptedGroupTest {
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedGroup group =
-                new JsonAdaptedGroup(INVALID_NAME, VALID_MEMBERS);
+                new JsonAdaptedGroup(INVALID_NAME, VALID_MEMBERS, VALID_SKILS);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, group::toModelType);
     }
@@ -38,7 +43,7 @@ public class JsonAdaptedGroupTest {
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
         JsonAdaptedGroup group =
-                new JsonAdaptedGroup(null, VALID_MEMBERS);
+                new JsonAdaptedGroup(null, VALID_MEMBERS, VALID_SKILS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, group::toModelType);
     }
