@@ -288,7 +288,7 @@ Step 3. The `CommandResult` is used in the `MainWindow#executeCommand()` method.
 
 The following sequence diagram shows how a select operation goes through the `MainWindow` and `PersonProfile` component:
 
-<puml src="diagrams/UndoSequenceDiagram-Logic.puml" alt="SelectSequenceDiagram" />
+<puml src="diagrams/SelectSequenceDiagram.puml" alt="SelectSequenceDiagram" />
 
 <box type="info" seamless>
 
