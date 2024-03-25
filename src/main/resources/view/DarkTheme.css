@@ -141,6 +141,12 @@
     -fx-text-fill: #010504;
 }
 
+.efficiency_small_label {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 14px;
+    -fx-text-fill: #010504;
+}
+
 .stack-pane {
      -fx-background-color: derive(#FBF9F1, 20%);
 }
