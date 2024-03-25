@@ -10,6 +10,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.employee.Employee;
+import seedu.address.model.task.AssignedEmployees;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskId;
 import seedu.address.model.task.TaskName;
@@ -25,7 +26,8 @@ public class AssignTaskCommandParserTest {
         Employee validEmployee = new EmployeeBuilder().build();
 
         model.addEmployee(validEmployee); // id of 1
-        model.addTask(new Task(new TaskName("Test"), new TaskId(123), new TaskStatus(false)));
+        model.addTask(new Task(new TaskName("Test"), new TaskId(123), new TaskStatus(false),
+                new AssignedEmployees("")));
 
         AssignTaskCommand atc = parser.parse("123 1");
         atc.execute(model);

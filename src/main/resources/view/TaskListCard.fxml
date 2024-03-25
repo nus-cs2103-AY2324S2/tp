@@ -30,6 +30,7 @@
             <FlowPane fx:id="tags" />
             <Label fx:id="taskId" styleClass="cell_small_label" text="\$taskId" />
             <Label fx:id="status" styleClass="cell_small_label" text="\$status" />
+            <Label fx:id="employees" styleClass="cell_small_label" text="\$employees" />
             <!-- ToDo: for additional fields
             <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
             <Label fx:id="email" styleClass="cell_small_label" text="\$email" />

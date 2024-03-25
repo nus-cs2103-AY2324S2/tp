@@ -1,5 +1,7 @@
 package seedu.address.model.task;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.util.List;
 
 import javafx.collections.FXCollections;
@@ -20,6 +22,22 @@ public class TaskList {
      */
     public void add(Task task) {
         internalList.add(task);
+    }
+
+    /**
+     * Replaces the task {@code target} in the list with {@code editedTask}.
+     * {@code target} must exist in the list.
+     * The task identity of {@code editedTask} must not be the same as another existing tasks in the list.
+     */
+    public void setTask(Task target, Task editedTask) {
+        requireAllNonNull(target, editedTask);
+
+        int index = internalList.indexOf(target);
+        if (index == -1) {
+            throw new TaskNotFoundException();
+        }
+
+        internalList.set(index, editedTask);
     }
 
     /**

@@ -127,6 +127,18 @@ public class TaskMasterPro implements ReadOnlyTaskMasterPro {
         return tasks.asUnmodifiableObservableList();
     }
 
+    /**
+     * Replaces the given Task {@code target} in the list with {@code editedTask}.
+     * {@code target} must exist in TaskMasterPro.
+     * The Task identity of {@code editedTask} must not be the same as
+     * another existing Task in TaskMasterPro.
+     */
+    public void setTask(Task target, Task editedTask) {
+        requireNonNull(editedTask);
+
+        tasks.setTask(target, editedTask);
+    }
+
 
     //// util methods
 
