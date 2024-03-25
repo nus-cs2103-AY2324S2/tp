@@ -162,7 +162,7 @@ public class EditCommandTest {
         EditCourseMateDescriptor descriptor = new EditCourseMateDescriptorBuilder().withName(VALID_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(new QueryableCourseMate(outOfBoundIndex), descriptor);
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_COURSE_MATE_DISPLAYED_INDEX);
+        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_COURSE_MATE_NAME);
         assertRecentlyProcessedCourseMateEdited(model, null);
     }
 
@@ -190,7 +190,7 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand(new QueryableCourseMate(outOfBoundIndex),
                 new EditCourseMateDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_COURSE_MATE_DISPLAYED_INDEX);
+        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_COURSE_MATE_NAME);
         assertRecentlyProcessedCourseMateEdited(model, null);
     }
 

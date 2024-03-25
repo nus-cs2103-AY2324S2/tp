@@ -13,7 +13,7 @@ public class Messages {
 
     public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
-    public static final String MESSAGE_INVALID_COURSE_MATE_NAME = "The courseMate name provided is not found!";
+    public static final String MESSAGE_INVALID_COURSE_MATE_NAME = "The courseMate name or index provided is not found!";
     public static final String MESSAGE_INVALID_COURSE_MATE_DISPLAYED_INDEX = "The courseMate index provided is invalid";
     public static final String MESSAGE_COURSE_MATES_LISTED_OVERVIEW = "%1$d course mate(s) listed!";
     public static final String MESSAGE_GROUPS_LISTED_OVERVIEW = "%1$d group(s) listed!";

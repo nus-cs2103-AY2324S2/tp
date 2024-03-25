@@ -70,13 +70,8 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<CourseMate> lastShownList = model.getFilteredCourseMateList();
-
-        if (queryableCourseMate.isIndex() && queryableCourseMate.getIndex().getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_COURSE_MATE_DISPLAYED_INDEX);
-        }
-
         List<CourseMate> courseMateToEditList;
+
         try {
             courseMateToEditList = model.findCourseMate(queryableCourseMate);
         } catch (CourseMateNotFoundException e) {

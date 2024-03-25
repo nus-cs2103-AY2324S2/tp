@@ -183,6 +183,9 @@ public class ModelManager implements Model {
                 arrayList.add(getRecentlyProcessedCourseMate());
                 return arrayList;
             } else {
+                if (query.isIndex() && query.getIndex().getZeroBased() >= this.getFilteredCourseMateList().size()) {
+                    throw new CourseMateNotFoundException();
+                }
                 ArrayList<CourseMate> arrayList = new ArrayList<>();
                 arrayList.add(getFilteredCourseMateList().get(query.getIndex().getZeroBased()));
                 return arrayList;
