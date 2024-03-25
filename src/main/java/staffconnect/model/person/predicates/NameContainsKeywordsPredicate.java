@@ -1,10 +1,11 @@
-package staffconnect.model.person;
+package staffconnect.model.person.predicates;
 
 import java.util.List;
 import java.util.function.Predicate;
 
 import staffconnect.commons.util.StringUtil;
 import staffconnect.commons.util.ToStringBuilder;
+import staffconnect.model.person.Person;
 
 /**
  * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.

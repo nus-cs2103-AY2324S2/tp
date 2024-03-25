@@ -10,6 +10,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import staffconnect.model.person.predicates.NameContainsKeywordsPredicate;
 import staffconnect.testutil.PersonBuilder;
 
 public class NameContainsKeywordsPredicateTest {

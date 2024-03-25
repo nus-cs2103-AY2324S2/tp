@@ -10,6 +10,7 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
+import staffconnect.model.person.predicates.PersonHasTagsPredicate;
 import staffconnect.model.tag.Tag;
 import staffconnect.testutil.PersonBuilder;
 

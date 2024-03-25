@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Test;
 import staffconnect.model.Model;
 import staffconnect.model.ModelManager;
 import staffconnect.model.UserPrefs;
-import staffconnect.model.person.NameContainsKeywordsPredicate;
+import staffconnect.model.person.predicates.NameContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.

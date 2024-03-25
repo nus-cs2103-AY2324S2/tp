@@ -1,8 +1,10 @@
-package staffconnect.model.person;
+package staffconnect.model.person.predicates;
 
 import java.util.function.Predicate;
 
 import staffconnect.commons.util.ToStringBuilder;
+import staffconnect.model.person.Module;
+import staffconnect.model.person.Person;
 
 /**
  * Tests that a {@code Person}'s {@code Module} matches the given module to filter for.
