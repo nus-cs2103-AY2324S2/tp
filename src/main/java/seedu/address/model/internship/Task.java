@@ -2,6 +2,7 @@ package seedu.address.model.internship;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+import static seedu.address.model.internship.Deadline.isValidDeadline;
 
 /**
  * Represents an internship's Task in the internship book
@@ -17,6 +18,10 @@ public class Task {
 
     public final String task;
 
+    private Deadline deadline;
+
+    private boolean isDeadlineSet = false;
+
     /**
      * Constructs a {@code Task}.
      *
@@ -29,16 +34,46 @@ public class Task {
     }
 
     /**
+     * Constructs a {@code Task}.
+     * @param task
+     * @param deadline
+     */
+    public Task(String task, String deadline) {
+        requireNonNull(task);
+        requireNonNull(deadline);
+        checkArgument(isValidTask(task), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidDeadline(deadline), MESSAGE_CONSTRAINTS);
+        this.task = task;
+        this.deadline = new Deadline(deadline);
+        isDeadlineSet = true;
+    }
+
+
+    /**
      * Returns true if a given string is a valid task.
      */
     public static boolean isValidTask(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Replace deadline with {@code deadline}.
+     */
+    public void addDeadline(Deadline deadline) {
+        this.deadline = deadline;
+        isDeadlineSet = true;
+    }
 
+    /**
+     * Returns the task string.
+     */
     @Override
     public String toString() {
-        return task;
+        if (isDeadlineSet) {
+            return task + " Deadline: " + deadline;
+        } else {
+            return task;
+        }
     }
 
     @Override
