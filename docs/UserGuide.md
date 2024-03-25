@@ -18,7 +18,7 @@ ClientCare is a **desktop application for assisting insurance agents in managing
 </page-nav-print>
 
 --------------------------------------------------------------------------------------------------------------------
-
+<div style="page-break-after: always;"></div>
 
 ## Using this guide
 This guide walks you through all the features of ClientCare and can be used as a quick reference whenever you need any help. If you're just getting started with ClientCare, we welcome you to start from our [Introduction](#introduction) section to
@@ -51,7 +51,7 @@ missed out!
 to all your clients, regardless of companies and product type.
 
 --------------------------------------------------------------------------------------------------------------------
-
+<div style="page-break-after: always;"></div>
 
 # Quick start
 
@@ -85,6 +85,8 @@ download ClientCare.
 
 <br>
 
+<div style="page-break-after: always;"></div>
+
 ## Starting up ClientCare
 
 Congrats! With ClientCare downloaded (if not, our [installation instructions](#installation-instructions)
@@ -114,11 +116,13 @@ These are the platforms we currently support ClientCare on:
 <br> If you do not see the app running, do visit the [installation guide](#installation-instructions)
 
 <br>
+<div style="page-break-after: always;"></div>
 
 #### For MacOS
 1. Our developers are working on it!
 <br>
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Getting familiar with ClientCare's interface
 
@@ -166,6 +170,7 @@ For easy reference, similar features are grouped into the same subsections as sh
 <br/>
 <br/>
 
+<div style="page-break-after: always;"></div>
 
 ## Client related commands
 ClientCare is all about managing your clients. ClientCare will help you keep track of all your clients and their
@@ -211,6 +216,8 @@ Examples:
 
 <br/>
 <br/>
+
+<div style="page-break-after: always;"></div>
 
 ### Listing all clients : `list`
 
@@ -258,6 +265,8 @@ Examples:
 
 <br/>
 <br/>
+
+<div style="page-break-after: always;"></div>
 
 ### Locating client by name: `find`
 
@@ -309,9 +318,7 @@ Format: `clear`
 Clearing is irreversible and will NOT have a confirmation screen
 </box>
 
-<br>
-<br>
-
+<div style="page-break-after: always;"></div>
 
 ## Schedule related commands
 Not sure what is happening next? Fear not, ClientCare can help manage your schedule too!
@@ -362,6 +369,8 @@ Examples:
 <br/>
 <br/>
 
+<div style="page-break-after: always;"></div>
+
 ### Marking appointments : `mark`
 
 Marks an appointment as completed.
@@ -378,6 +387,8 @@ Examples:
 
 <br/>
 <br/>
+
+<div style="page-break-after: always;"></div>
 
 ## Policy related commands
 Not sure what policies your clients have? ClientCare got you covered!
@@ -423,6 +434,8 @@ Examples:
 
 <br/>
 <br/>
+
+<div style="page-break-after: always;"></div>
 
 ## Miscellaneous
 
@@ -474,6 +487,8 @@ _Details coming soon ..._
 <br>
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 # FAQ
 <br>
 **Q**: How do I transfer my data to another Computer?<br>
@@ -483,12 +498,15 @@ _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 # Known issues
 <br>
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 # Command summary
 
