@@ -3,6 +3,7 @@ package seedu.edulink.logic;
 import java.io.IOException;
 import java.nio.file.AccessDeniedException;
 import java.nio.file.Path;
+import java.util.Stack;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -10,10 +11,13 @@ import seedu.edulink.commons.core.GuiSettings;
 import seedu.edulink.commons.core.LogsCenter;
 import seedu.edulink.logic.commands.Command;
 import seedu.edulink.logic.commands.CommandResult;
+import seedu.edulink.logic.commands.UndoCommand;
 import seedu.edulink.logic.commands.exceptions.CommandException;
 import seedu.edulink.logic.parser.AddressBookParser;
 import seedu.edulink.logic.parser.exceptions.ParseException;
+import seedu.edulink.model.AddressBook;
 import seedu.edulink.model.Model;
+import seedu.edulink.model.ModelManager;
 import seedu.edulink.model.ReadOnlyAddressBook;
 import seedu.edulink.model.student.Student;
 import seedu.edulink.storage.Storage;
@@ -49,7 +53,6 @@ public class LogicManager implements Logic {
         CommandResult commandResult;
         Command command = addressBookParser.parseCommand(commandText);
         commandResult = command.execute(model);
-
         try {
             storage.saveAddressBook(model.getAddressBook());
         } catch (AccessDeniedException e) {

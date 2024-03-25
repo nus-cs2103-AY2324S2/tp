@@ -83,7 +83,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setPerson(Student target, Student editedStudent) {
         requireNonNull(editedStudent);
-
         persons.setPerson(target, editedStudent);
     }
 
@@ -128,4 +127,5 @@ public class AddressBook implements ReadOnlyAddressBook {
     public int hashCode() {
         return persons.hashCode();
     }
+
 }
