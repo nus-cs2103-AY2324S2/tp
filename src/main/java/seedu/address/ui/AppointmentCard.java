@@ -61,16 +61,19 @@ public class AppointmentCard extends UiPart<Region> {
         }
         hasAttended.setText(attendedString);
 
+        appointmentDescription.managedProperty().bind(appointmentDescription.visibleProperty());
         if (!appointment.getAppointmentDescription().isEmpty()) {
             appointmentDescription.setText("Description: " + appointment.getAppointmentDescription());
         } else {
             appointmentDescription.setVisible(false);
         }
 
+        // This line of code ensures that if it's not visible, it doesn't take up any space in the layout
+        feedbackScore.managedProperty().bind(feedbackScore.visibleProperty());
         if (appointment.getFeedbackScore() != null) {
             feedbackScore.setText("Score: " + appointment.getFeedbackScore().toString());
         } else {
-            appointmentDescription.setVisible(false);
+            feedbackScore.setVisible(false);
         }
     }
 }
