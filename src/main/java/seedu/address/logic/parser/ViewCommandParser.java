@@ -25,14 +25,14 @@ public class ViewCommandParser implements Parser<ViewCommand> {
         try {
             String[] index = getValidArgs(args);
 
-            String viewType = index[0];
-            Index viewIndex = ParserUtil.parseIndex(index[1]);
+            String viewType = index[0].trim();
+            Index viewIndex = ParserUtil.parseIndex(index[1].trim());
 
             switch (viewType) {
             case VIEW_CLIENT_ARGUMENT:
                 return new ViewClientCommand(viewIndex);
             case VIEW_MEETING_ARGUMENT:
-                Index meetingIndex = ParserUtil.parseIndex(index[2]);
+                Index meetingIndex = ParserUtil.parseIndex(index[2].trim());
                 return new ViewMeetingCommand(viewIndex, meetingIndex);
             default:
                 return null;
@@ -45,7 +45,12 @@ public class ViewCommandParser implements Parser<ViewCommand> {
     }
 
     public String[] getValidArgs(String args) throws ParseException {
+        System.out.println("String:" + args);
+        System.out.println("Trim: " + args.trim());
         String[] arguments = args.trim().split(" ");
+        for (String s : arguments) {
+            System.out.println(s);
+        }
         if (arguments.length < 2) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
         }

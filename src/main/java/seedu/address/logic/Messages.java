@@ -16,8 +16,10 @@ public class Messages {
 
     public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
-    public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid";
-    public static final String MESSAGE_MISSING_MEETING_IDENTIFIER = "Error: Please specify a meeting identifier";
+    public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "Error: The person index %1$d " +
+            "provided is invalid!";
+    public static final String MESSAGE_RETURN_HOME = "If you wish to view another client please return home by " +
+            "entering 'list' before viewing another client.";
     public static final String MESSAGE_INVALID_MEETING_DISPLAYED_INDEX = "Error: Meeting %1$d not found";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS = "Multiple values specified for "

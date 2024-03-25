@@ -39,8 +39,13 @@ public class ViewClientCommand extends ViewCommand {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
 
+        if (lastShownList.size() == 1 && this.clientIndex.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_RETURN_HOME);
+        }
+
         if (this.clientIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(String.format(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX,
+                    this.clientIndex.getOneBased()));
         }
         Person selectedClient = lastShownList.get(this.clientIndex.getZeroBased());
 
