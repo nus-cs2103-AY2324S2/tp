@@ -84,20 +84,30 @@ public class ImportCommand extends Command {
         requireNonNull(model);
         try {
             List<Map<String, String>> personsData = readCsvFile();
-            for (Map<String, String> personData : personsData) {
-                try {
-                    String addCommandInput = convertToAddCommandInput(personData);
-                    AddCommand addCommand = parseAddCommandInput(addCommandInput);
-                    addCommand.execute(model);
-                } catch (ParseException e) {
-                    throw new CommandException(String.format(MESSAGE_PARSE_ERROR, personData));
-                }
-            }
+            addToModel(model, personsData);
         } catch (DataLoadingException e) {
             throw new CommandException(String.format(MESSAGE_DATA_LOAD_ERROR, filePath));
         }
 
         return new CommandResult(String.format(MESSAGE_IMPORT_SUCCESS, filePath.toString()));
+    }
+
+    /**
+     * Adds the persons data to the model using a series of addCommands.
+     * @param model
+     * @param personsData
+     * @throws CommandException
+     */
+    public void addToModel(Model model, List<Map<String, String>> personsData) throws CommandException {
+        for (Map<String, String> personData : personsData) {
+            try {
+                String addCommandInput = convertToAddCommandInput(personData);
+                AddCommand addCommand = parseAddCommandInput(addCommandInput);
+                addCommand.execute(model);
+            } catch (ParseException e) {
+                throw new CommandException(String.format(MESSAGE_PARSE_ERROR, personData));
+            }
+        }
     }
 
     /**
@@ -109,20 +119,28 @@ public class ImportCommand extends Command {
         try {
             CSVReader reader = new CSVReaderBuilder(new FileReader(filePath.toString())).build();
             List<String[]> rows = reader.readAll();
-            List<Map<String, String>> data = new ArrayList<>();
-            String[] header = rows.get(0);
-            for (int i = 1; i < rows.size(); i++) {
-                String[] row = rows.get(i);
-                Map<String, String> map = new HashMap<>();
-                for (int j = 0; j < header.length; j++) {
-                    map.put(header[j], row[j]);
-                }
-                data.add(map);
-            }
-            return data;
+            return parseData(rows);
         } catch (IOException | CsvException e) {
             throw new DataLoadingException(e);
         }
+    }
+    /**
+     * Parses the data from the csv file into a list of maps. Each map represents a person's data.
+     * @param rows
+     * @return
+     */
+    public List<Map<String, String>> parseData(List<String[]> rows) {
+        List<Map<String, String>> data = new ArrayList<>();
+        String[] header = rows.get(0);
+        for (int i = 1; i < rows.size(); i++) {
+            String[] row = rows.get(i);
+            Map<String, String> map = new HashMap<>();
+            for (int j = 0; j < header.length; j++) {
+                map.put(header[j], row[j]);
+            }
+            data.add(map);
+        }
+        return data;
     }
 
     /**
@@ -135,7 +153,6 @@ public class ImportCommand extends Command {
         sb.append(" ");
         for (String key : header) {
             // Maybe in the future, I can add a check to see if the value is empty
-            // Maybe in the future, I make CliSyntax an enum class?
             if (personData.get(key).isEmpty()) {
                 // skip empty values
                 continue;
