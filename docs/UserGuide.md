@@ -39,6 +39,14 @@ done faster than traditional GUI apps.
 
 6. Refer to the [Features](#features) below for details of each command.
 
+- [Help Command](#viewing-help--help)
+- [Add Command](#adding-a-person--add)
+- [List Command](#listing-all-persons--list)
+- [Edit Command](#editing-a-person--edit)
+- [Find Command](#locating-persons-by-name--find)
+- [Delete Command](#deleting-a-person--delete)
+- [Clear Command](#clearing-all-entries--clear)
+- [Exit Command](#exiting-the-program--exit)
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
@@ -80,7 +88,7 @@ Format: `help`
 
 Adds a person to the address book. Note that birthdays follow the following format: `dd/mm/yyyy`
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] [b/BIRTHDAY]…​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] [b/BIRTHDAY] [$/MONEYOWED]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
@@ -101,7 +109,7 @@ Format: `list`
 
 Edits an existing person in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG] [$/MONEYOWED]…​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list.
   The index **must be a positive integer** 1, 2, 3, …​
@@ -150,6 +158,24 @@ Examples:
 
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+
+### Splitting an amount owed : `split`
+
+Splits the sum of money owed among a group of person using the displayed 
+index from the address book.
+
+Format: `split INDEX INDEX... $/MONEYOWED`
+
+* MONEYOWED should have at most 2 decimal places.
+* There must be at least 1 index.
+* The amount will be evenly distributed among the people with index 
+mentioned and added on to their current amount of money owed.
+* The index refers to the index number shown in the displayed person list.
+
+Examples:
+
+* `split 1 2 $/5.60` will split $5.60 evenly among two people which is 
+adding $2.80 to the amount owed of the person at index 1 and 2. 
 
 ### Clearing all entries : `clear`
 
