@@ -61,9 +61,9 @@ public class SampleDataUtil {
                 .collect(Collectors.toSet());
     }
 
-    public static Set<Policy> getPoliciesSet(String[] policies) {
-        return Arrays.stream(policies)
-                .map(Policy::new)
-                .collect(Collectors.toSet());
-    }
+//    public static Set<Policy> getPoliciesSet(String[] policies) {
+//        return Arrays.stream(policies)
+//                .map(Policy::new)
+//                .collect(Collectors.toSet());
+//    }
 }
