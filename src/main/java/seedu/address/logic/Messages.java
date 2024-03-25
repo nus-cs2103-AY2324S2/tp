@@ -21,6 +21,10 @@ public class Messages {
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
 
+    public static final String MESSAGE_MISSING_FILE = "File to import does not exist";
+    public static final String MESSAGE_FILE_ALREADY_EXISTS =
+            "Another file with the same name is already in storage, please change the name of the file to import.";
+
     /**
      * Returns an error message indicating the duplicate prefixes.
      */
