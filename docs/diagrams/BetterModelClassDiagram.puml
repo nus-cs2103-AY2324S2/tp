@@ -14,7 +14,6 @@ UniqueTagList -right-> "*" Tag
 UniqueMeetingList -right-> "*" Meeting
 UniquePersonList -right-> Person
 
-Person --> "*" Availability
 Person -up-> "*" Tag
 Person -up-> "*" Meeting
 
@@ -24,4 +23,5 @@ Person *--> Email
 Person *--> Module
 Person *--> Faculty
 Person *--> Venue
+Person *--> "*" Availability
 @enduml
