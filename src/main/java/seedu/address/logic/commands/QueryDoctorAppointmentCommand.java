@@ -15,9 +15,9 @@ import seedu.address.model.appointment.AppointmentContainsDoctorPredicate;
  * (case-insensitive) and displays them as a list with index numbers.
  */
 public class QueryDoctorAppointmentCommand extends Command {
-    private static final Logger logger = Logger.getLogger(QueryDoctorAppointmentCommand.class.getName());
 
     public static final String COMMAND_WORD = "appfordoctor";
+    private static final Logger logger = Logger.getLogger(QueryDoctorAppointmentCommand.class.getName());
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all appointments of doctors whose "
             + "nrics/names contain any of the specified keywords (case-insensitive) and displays them as a "
