@@ -7,6 +7,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.order.Date;
 import seedu.address.model.order.Order;
 import seedu.address.model.order.Remark;
+import seedu.address.model.order.Status;
 
 /**
  * Jackson-friendly version of {@link Order}.
@@ -54,13 +55,14 @@ class JsonAdaptedOrder {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Remark"));
         }
 
-        if (status == null) {
+        if (status == null || !Status.isValidStatus(status)) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Status"));
         }
 
         final Date modelDate = new Date(arrivalDate);
         final Remark modelRemark = new Remark(remark);
+        final Status modelStatus = Status.valueOf(status.toUpperCase());
 
-        return new Order(modelDate, modelRemark);
+        return new Order(modelDate, modelRemark, modelStatus);
     }
 }
