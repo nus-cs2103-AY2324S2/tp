@@ -28,9 +28,11 @@ public class ExportCommand extends Command {
 
     public static final String FILE_OPS_ERROR_FORMAT = "Could not save data due to the following error: %s";
 
-    private Path savePath = Paths.get("data", "exportedcontacts.json");
+    private Path savePath;
 
-    public ExportCommand() {}
+    public ExportCommand(String fileName) {
+        savePath = Paths.get("data", fileName + ".json");
+    }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
