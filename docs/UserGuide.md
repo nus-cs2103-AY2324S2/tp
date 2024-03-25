@@ -1,4 +1,4 @@
----
+![image](https://github.com/chuahjiajie/tp/assets/122253924/d771b12e-a3e7-4a49-9f4c-3ddd8fc2c83b)![image](https://github.com/chuahjiajie/tp/assets/122253924/73e4d61d-e276-44f0-9a6d-641a1eeb2e33)![image](https://github.com/chuahjiajie/tp/assets/122253924/4c569db9-023a-40a4-9c6d-a3dc5e61b6ba)![image](https://github.com/chuahjiajie/tp/assets/122253924/ef96fd09-d132-4beb-9421-7f572e8e3325)---
   layout: default.md
   title: "User Guide"
   pageNav: 3
@@ -93,6 +93,93 @@ To get started with CCA Manager and explore its features further, check out our 
 
 ### Further Help
  Refer to the [Features](#features) below for details of each command.⬇️⬇️⬇️⬇️
+
+--------------------------------------------------------------------------------------------------------------------
+## Basics
+
+Confused on where to get started? Don’t fret, in this section we’ll outline how to use CCA Manager to its maximum effect with a few use case scenarios.
+
+### Clear Contacts
+The first thing you’d probably want to do is to clear the sample data, as it is likely of no relevance to you.
+
+You can do so using the clear command as follows:
+
+  ![clear command](images/UG-Basics/clear-command.png)
+
+And just like that, the address book will be cleared:
+
+  ![clear output](images/UG-Basics/clear-output.png)
+
+### Add Contacts with CCA Labels
+Now that you have a clean address book in CCA Manager, you can start adding your own contacts. An example of the command can be seen below:
+
+  ![add-command-1](images/UG-Basics/add-command-1.png)
+
+Output:
+
+  ![add-output-1](images/UG-Basics/add-output-1.png)
+
+If you want to, you can even specify the CCAs and Roles of the person being added as shown below:
+
+  ![add-command-2](images/UG-Basics/add-command-2.png)
+
+Notice how there is now an indicated role and CCA:
+
+  ![add-output-2](images/UG-Basics/add-output-2.png)
+
+
+### Add Roles in the Future
+Forgot to add the roles initially, or need to add the roles later on because they haven’t been decided yet? Don’t worry the “assign” feature has got you covered simply add the role using the following command:
+
+In this example we will be adding a role for John who is at index 1:
+
+  ![assign-command](images/UG-Basics/assign-command.png)
+
+Output:
+
+  ![assign-output](images/UG-Basics/assign-output.png)
+
+
+### Filter by CCA
+In reality, you would have access to the contacts of a vast array of people, many from different CCAs and navigating the whole list will certainly be overwhelming. If you’d like to identify only those of a specific CCA you can!
+
+Want to filter those from NUS Cycling? Just type the command:
+
+  ![filter-command-1](images/UG-Basics/filter-command-1.png)
+
+Output:
+
+  ![filter-output-1](images/UG-Basics/filter-output-1.png)
+
+Likewise for another CCA – NUS Origami:
+
+  ![filter-command-1](images/UG-Basics/filter-command-1.png)
+
+Output:
+
+  ![filter-output-1](images/UG-Basics/filter-output-1.png)
+
+### Edit the Details of your Contacts
+Have the contact details of some members changed, or maybe you just forgot to add the CCA of the person you were adding. Don’t need to get frustrated, you don’t have to add the person from scratch. You can edit any of the details of any of the members at any time, using the “edit” feature.
+
+Here’s an example for reference, where John from NUS Origami would not only like to change CCAs but also moved from Kent Ridge to UTown:
+
+  ![edit-command](images/UG-Basics/edit-command.png)
+
+Output:
+
+  ![edit-output](images/UG-Basics/edit-output.png)
+
+### Delete
+Has a member quit the CCA completely. Don’t need to waste space in your address book and clutter it up. You can simply delete them from the address book with this simple command. 
+
+Let’s say Mary Jane at index 2 has quit NUS Origami. To remove her simply use the following command:
+
+  ![delete-command](images/UG-Basics/delete-command.png)
+
+Output:
+
+  ![delete-output](images/UG-Basics/delete-output.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
