@@ -1,7 +1,11 @@
 package seedu.address.ui;
 
 import java.util.Comparator;
+import java.util.Optional;
 
+import com.fasterxml.jackson.databind.deser.std.ObjectArrayDeserializer;
+
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -10,7 +14,9 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import seedu.address.model.exam.Exam;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Score;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -47,6 +53,8 @@ public class PersonCard extends UiPart<Region> {
     private VBox classes;
     @FXML
     private Label matric;
+    @FXML
+    private VBox examScore;
 
     @FXML
     private ImageView phoneicon;
@@ -62,7 +70,7 @@ public class PersonCard extends UiPart<Region> {
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public PersonCard(Person person, int displayedIndex) {
+    public PersonCard(Person person, int displayedIndex, ObservableValue<Exam> selectedExam) {
         super(FXML);
         this.person = person;
         id.setText(displayedIndex + ". ");
@@ -85,11 +93,10 @@ public class PersonCard extends UiPart<Region> {
         if (!person.getStudio().toString().isEmpty()) {
             classes.getChildren().add(new Label(person.getStudio().toString()));
         }
-
+        Score score = person.getScores().get(selectedExam.getValue());
+        // classes.getChildren().add(new Label(String.valueOf(score.getScore())));
         phoneicon.setImage(phoneIcon);
         emailicon.setImage(emailIcon);
         addressicon.setImage(addressIcon);
-
-
     }
 }

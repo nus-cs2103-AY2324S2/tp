@@ -4,6 +4,7 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.Optional;
 
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.exam.Exam;
@@ -125,7 +126,7 @@ public interface Model {
     /**
      * Returns the selected exam.
      */
-    Optional<Exam> getSelectedExam();
+    ObservableValue<Exam> getSelectedExam();
 
     /** Returns an unmodifiable view of the filtered exam list */
     ObservableList<Exam> getExamList();

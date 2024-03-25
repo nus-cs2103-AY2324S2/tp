@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.nio.file.AccessDeniedException;
 import java.nio.file.Path;
 import java.util.logging.Logger;
+import java.util.Optional;
 
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -75,6 +77,11 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Exam> getExamList() {
         return model.getExamList();
+    }
+
+    @Override
+    public ObservableValue<Exam> getSelectedExam() {
+        return model.getSelectedExam();
     }
 
     @Override

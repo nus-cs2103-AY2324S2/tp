@@ -8,6 +8,9 @@ import java.util.function.Predicate;
 import java.util.logging.Logger;
 import java.util.Optional;
 
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.value.ObservableObjectValue;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
@@ -24,7 +27,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
-    private Exam selectedExam;
+    private final SimpleObjectProperty<Exam> selectedExam;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -37,7 +40,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        this.selectedExam = null;
+        selectedExam = new SimpleObjectProperty<>(null);
     }
 
     public ModelManager() {
@@ -184,17 +187,21 @@ public class ModelManager implements Model {
     @Override
     public void selectExam(Exam target) {
         requireNonNull(target);
-        selectedExam = target;
+        selectedExam.set(target);
     }
 
     @Override
     public void deselectExam() {
-        selectedExam = null;
+        selectedExam.set(null);
     }
 
+    /**
+     * Returns the a view of the selected exam. (For updating UI purposes)
+     */
     @Override
-    public Optional<Exam> getSelectedExam() {
-        return Optional.ofNullable(selectedExam);
+    public ObservableValue<Exam> getSelectedExam() {
+        return selectedExam;
     }
+
 
 }

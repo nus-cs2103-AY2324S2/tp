@@ -2,6 +2,9 @@ package seedu.address.logic;
 
 import java.nio.file.Path;
 
+import java.util.Optional;
+
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
@@ -36,6 +39,11 @@ public interface Logic {
 
     /** Returns an unmodifiable view of the list of exams */
     ObservableList<Exam> getExamList();
+
+    /**
+     * Returns the selected exam in the exam list.
+     */
+    ObservableValue<Exam> getSelectedExam();
 
     /**
      * Returns the user prefs' address book file path.

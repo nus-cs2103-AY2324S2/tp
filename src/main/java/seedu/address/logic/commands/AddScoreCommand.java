@@ -48,8 +48,11 @@ public class AddScoreCommand extends Command {
 
         Person personToEdit = lastShownList.get(targetIndex.getZeroBased());
         Map<Exam, Score> updatedScores = new HashMap<>(personToEdit.getScores());
-        Exam selectedExam = model.getSelectedExam()
-                                 .orElseThrow(() -> new CommandException(Messages.MESSAGE_NO_EXAM_SELECTED));
+        Exam selectedExam = model.getSelectedExam().getValue();
+
+        if (!isAnyNonNull(selectedExam)) {
+            throw new CommandException(Messages.MESSAGE_NO_EXAM_SELECTED);
+        }
 
         if (selectedExam.getMaxScore().getScore() < score.getScore()) {
             throw new CommandException(MESSAGE_SCORE_GREATER_THAN_MAX);
