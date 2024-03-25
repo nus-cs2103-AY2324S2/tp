@@ -93,6 +93,24 @@ public class Task {
     }
 
     /**
+     * Removes this task from all assigned employees.
+     * This command will be run before this task is deleted.
+     */
+    public void removeAssignments() {
+        for (EmployeeId employeeId : employees.getAssignedEmployees().keySet()) {
+            // Retrieve the Employee using the key
+            Employee employee = employees.getAssignedEmployees().get(employeeId);
+
+            // Remove this task from the employee
+            try {
+                employee.removeTask(taskId);
+            } catch (CommandException e) {
+                //Ignore this exception as this error is not important since the Task is being deleted
+            }
+        }
+    }
+
+    /**
      * Returns true if both tasks have the same name.
      * This defines a weaker notion of equality between two employees.
      */
