@@ -73,7 +73,8 @@ public class FindGroupCommandTest {
         FindGroupCommand command = new FindGroupCommand(predicate);
         expectedModel.updateFilteredGroupList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel, false);
-        assertEquals(Arrays.asList(SAMPLE_GROUP_1, SAMPLE_GROUP_2, SAMPLE_GROUP_3, SAMPLE_GROUP_4), model.getFilteredGroupList());
+        assertEquals(Arrays.asList(SAMPLE_GROUP_1, SAMPLE_GROUP_2, SAMPLE_GROUP_3, SAMPLE_GROUP_4),
+                model.getFilteredGroupList());
     }
 
     @Test

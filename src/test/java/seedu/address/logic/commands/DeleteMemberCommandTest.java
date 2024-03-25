@@ -20,11 +20,11 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ContactList;
-import seedu.address.model.coursemate.ContainsKeywordPredicate;
 import seedu.address.model.GroupList;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.coursemate.ContainsKeywordPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
