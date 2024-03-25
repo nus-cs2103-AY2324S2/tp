@@ -27,7 +27,6 @@ import seedu.address.model.tag.Tag;
  * dedicated payment commands to ensure controlled updates.
  */
 class JsonAdaptedPerson {
-    
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 
     private final String name;
@@ -124,12 +123,12 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Id.class.getSimpleName()));
         }
         final Id modelId = new Id(uniqueId);
-        
         final Subject modelSubject = new Subject(subject);
         final Address modelAddress = new Address(address);
         final Set<Tag> modelTags = new HashSet<>(personTags);
         final Payment modelPayment = new Payment(payment);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelSubject, modelId, modelPayment);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress,
+                modelTags, modelSubject, modelId, modelPayment);
     }
 
 }
