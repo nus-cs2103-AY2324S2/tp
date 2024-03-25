@@ -16,12 +16,12 @@ public class PinTest {
     @Test
     public void constructor_invalidPinConstructor_throwsIllegalArgumentException() {
         String invalidArg = "";
-        
+
         assertThrows(IllegalArgumentException.class, () -> new Product(invalidArg));
     }
 
     @Test
-    public void sucessful_Set_Pin() {
+    public void sucessfulSetPin() {
         Person editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
                 .withAddress(VALID_ADDRESS_BOB).build();
         editedAlice.toPin();
@@ -30,7 +30,7 @@ public class PinTest {
     }
 
     @Test
-    public void sucessful_Set_Unpin() {
+    public void sucessfuSetUnpin() {
         Person editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
                 .withAddress(VALID_ADDRESS_BOB).build();
         editedAlice.toUnpin();
@@ -39,7 +39,7 @@ public class PinTest {
     }
 
     @Test
-    public void sucessful_Get_Pin() {
+    public void sucessfulGetPin() {
         Person editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
                 .withAddress(VALID_ADDRESS_BOB).build();
         editedAlice.toPin();

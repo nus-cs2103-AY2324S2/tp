@@ -19,7 +19,7 @@ public class PinCommandParserTest {
         String userInput = PinCommand.COMMAND_WORD + " "
                 + "Alice Pauline";
         assertParseFailure(parser, userInput, String.format(PinMessages.MESSAGE_PIN_MISSING_NAME,
-        PinCommand.MESSAGE_USAGE));
+                PinCommand.MESSAGE_USAGE));
     }
 
     @Test
