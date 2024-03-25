@@ -9,6 +9,8 @@ import java.util.regex.Pattern;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.InternshipAddCommand;
+import seedu.address.logic.commands.InternshipAddDeadlineCommand;
+import seedu.address.logic.commands.InternshipAddTaskCommand;
 import seedu.address.logic.commands.InternshipClearCommand;
 import seedu.address.logic.commands.InternshipCommand;
 import seedu.address.logic.commands.InternshipDeleteCommand;
@@ -81,6 +83,12 @@ public class InternshipDataParser {
 
         case InternshipRemarkCommand.COMMAND_WORD:
             return new InternshipRemarkCommandParser().parse(arguments);
+
+        case InternshipAddTaskCommand.COMMAND_WORD:
+            return new InternshipAddTaskCommandParser().parse(arguments);
+
+        case InternshipAddDeadlineCommand.COMMAND_WORD:
+            return new InternshipAddDeadlineCommandParser().parse(arguments);
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);
