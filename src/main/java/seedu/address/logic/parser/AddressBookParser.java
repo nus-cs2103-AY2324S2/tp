@@ -67,7 +67,7 @@ public class AddressBookParser {
             return new DeleteCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
+            return new ClearCommandParser().parse(arguments);
 
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
@@ -82,16 +82,16 @@ public class AddressBookParser {
             return new ListOrderCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+            return new ListCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
-            return new ExitCommand();
+            return new ExitCommandParser().parse(arguments);
 
         case HelpCommand.COMMAND_WORD:
-            return new HelpCommand();
+            return new HelpCommandParser().parse(arguments);
 
         case ShowFavouriteCommand.COMMAND_WORD:
-            return new ShowFavouriteCommand();
+            return new ShowFavouriteCommandParser().parse(arguments);
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);

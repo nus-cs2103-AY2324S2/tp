@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_NO_ARGUMENTS_COMMAND;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -50,7 +51,9 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_clear() throws Exception {
         assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD) instanceof ClearCommand);
-        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);
+        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " ") instanceof ClearCommand);
+        assertThrows(ParseException.class, MESSAGE_INVALID_NO_ARGUMENTS_COMMAND, () -> parser.parseCommand(
+                ClearCommand.COMMAND_WORD + " 3"));
     }
 
     @Test
@@ -80,7 +83,9 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_exit() throws Exception {
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD) instanceof ExitCommand);
-        assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + " 3") instanceof ExitCommand);
+        assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + " ") instanceof ExitCommand);
+        assertThrows(ParseException.class, MESSAGE_INVALID_NO_ARGUMENTS_COMMAND, () -> parser.parseCommand(
+                ExitCommand.COMMAND_WORD + " 3"));
     }
 
     @Test
@@ -106,13 +111,17 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_help() throws Exception {
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD) instanceof HelpCommand);
-        assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD + " 3") instanceof HelpCommand);
+        assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD + " ") instanceof HelpCommand);
+        assertThrows(ParseException.class, MESSAGE_INVALID_NO_ARGUMENTS_COMMAND, () -> parser.parseCommand(
+                ListCommand.COMMAND_WORD + " 3"));
     }
 
     @Test
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " ") instanceof ListCommand);
+        assertThrows(ParseException.class, MESSAGE_INVALID_NO_ARGUMENTS_COMMAND, () -> parser.parseCommand(
+                ListCommand.COMMAND_WORD + " 3"));
     }
 
     @Test
@@ -126,7 +135,9 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_showFavourite() throws Exception {
         assertTrue(parser.parseCommand(ShowFavouriteCommand.COMMAND_WORD) instanceof ShowFavouriteCommand);
-        assertTrue(parser.parseCommand(ShowFavouriteCommand.COMMAND_WORD + " 3") instanceof ShowFavouriteCommand);
+        assertTrue(parser.parseCommand(ShowFavouriteCommand.COMMAND_WORD + " ") instanceof ShowFavouriteCommand);
+        assertThrows(ParseException.class, MESSAGE_INVALID_NO_ARGUMENTS_COMMAND, () -> parser.parseCommand(
+                ShowFavouriteCommand.COMMAND_WORD + " 3"));
     }
 
     @Test
