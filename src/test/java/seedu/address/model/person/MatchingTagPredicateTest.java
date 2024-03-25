@@ -56,13 +56,15 @@ public class MatchingTagPredicateTest {
                 .withEmail("alice@email.com").withAddress("Main Street").build()));
     }
 
-//    @Test
-//    public void toStringMethod() {
-//        String tag = "NR";
-//        MatchingTagPredicate predicate = new MatchingTagPredicate(tag);
-//
-//        String expected = MatchingTagPredicate.class.getCanonicalName() + "{keywords=" + tag + "}";
-//        assertEquals(expected, predicate.toString());
-//    }
+    /*
+    @Test
+    public void toStringMethod() {
+        String tag = "NR";
+        MatchingTagPredicate predicate = new MatchingTagPredicate(tag);
+
+        String expected = MatchingTagPredicate.class.getCanonicalName() + "{keywords=" + tag + "}";
+        assertEquals(expected, predicate.toString());
+    }
+    */
 
 }
