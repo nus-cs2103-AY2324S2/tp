@@ -187,7 +187,7 @@ is pointing at.
 - undo - decrements the index
 - redo - increments the index
 
-![](/Users/tkh/Documents/Code/tp/docs/images/command-history/command-history-illustration.jpeg)
+![](images/command-history/command-history-illustration.jpeg)
 
 **Rationale for implementation**
 There are a few key features that this module aims to implement
