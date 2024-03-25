@@ -50,8 +50,32 @@ public class ParserUtil {
         if (!Name.isValidName(trimmedName)) {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
-        return new Name(trimmedName);
+        return new Name(capitalizeWords(trimmedName));
     }
+
+    /**
+     * Capitalizes the first letter of each word in the given sentence.
+     *
+     * @param sentence the input sentence
+     * @return the sentence with the first letter of each word capitalized
+     */
+    public static String capitalizeWords(String sentence) {
+        if (sentence == null || sentence.isEmpty()) {
+            return sentence;
+        }
+        String[] words = sentence.split("\\s+");
+        StringBuilder sb = new StringBuilder();
+        for (String word : words) {
+            if (!word.isEmpty()) {
+                sb.append(Character.toUpperCase(word.charAt(0)))
+                        .append(word.substring(1))
+                        .append(" ");
+            }
+        }
+        return sb.toString().trim();
+    }
+
+
 
     /**
      * Parses a {@code String phone} into a {@code Phone}.
