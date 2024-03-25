@@ -11,9 +11,9 @@ import seedu.address.model.appointment.AppointmentContainsKeywordsPredicate;
  * Finds and lists all persons in address book whose name contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
-public class FilterAppCommand extends Command {
+public class FindAppCommand extends Command {
 
-    public static final String COMMAND_WORD = "filterApp";
+    public static final String COMMAND_WORD = "findApp";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all appointments whose fields contain any of "
             + "the specified keywords and displays them as a list with index numbers.\n"
@@ -22,7 +22,7 @@ public class FilterAppCommand extends Command {
 
     private final AppointmentContainsKeywordsPredicate predicate;
 
-    public FilterAppCommand(AppointmentContainsKeywordsPredicate predicate) {
+    public FindAppCommand(AppointmentContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 
@@ -42,11 +42,11 @@ public class FilterAppCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof FilterAppCommand)) {
+        if (!(other instanceof FindAppCommand)) {
             return false;
         }
 
-        FilterAppCommand otherFindCommand = (FilterAppCommand) other;
+        FindAppCommand otherFindCommand = (FindAppCommand) other;
         return predicate.equals(otherFindCommand.predicate);
     }
 
