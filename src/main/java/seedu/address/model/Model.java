@@ -110,6 +110,12 @@ public interface Model {
      */
     void setExam(Exam target, Exam editedExam);
 
+    /**
+     * Selects the given exam.
+     * The exam must exist in the address book.
+     */
+    void selectExam(Exam target);
+
     /** Returns an unmodifiable view of the filtered exam list */
     ObservableList<Exam> getExamList();
 }
