@@ -53,7 +53,7 @@ Since you know what a `Module` and a `Friend` is, you are one step closer to bei
 
 Let's get down to how we can write commands to add them!
 
-## What is a Command?
+# What is a Command?
 
 A command is what you type into the app to execute your intentions (Adding a `Friend` or a `Module`)!
 
@@ -87,11 +87,6 @@ Our command composes of:
 ### Summary
 In summary, what this command (`add n/Aditya e/e123456@u.nus.edu`) does is that it adds a `Friend` whose name is `Aditya` and whose email is `e123456@u.nus.edu`.
 
-
-
-
-
-
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
@@ -114,6 +109,7 @@ In summary, what this command (`add n/Aditya e/e123456@u.nus.edu`) does is that 
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </div>
 
+# Features
 ### Viewing help : `help`
 
 Shows a message explaning how to access the help page.
