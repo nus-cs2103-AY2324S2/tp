@@ -65,4 +65,10 @@ public class LessonTest {
         Lesson lesson2 = new Lesson("Math|01-01-2023|09:00|1");
         assertEquals(lesson2.getLessonStatus(), 1);
     }
+
+    @Test
+    public void toStringTest() {
+        Lesson lesson = new Lesson("Math|01-01-2023|09:00|0");
+        assertEquals(lesson.toString(), "Math  2023-01-01  09:00");
+    }
 }
