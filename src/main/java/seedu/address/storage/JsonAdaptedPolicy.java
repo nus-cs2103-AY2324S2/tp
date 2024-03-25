@@ -30,14 +30,14 @@ class JsonAdaptedPolicy {
 
 
     @JsonValue
-    public String getTagName() {
+    public String getPolicyName() {
         return policyName;
     }
 
     /**
-     * Converts this Jackson-friendly adapted tag object into the model's {@code Tag} object.
+     * Converts this Jackson-friendly adapted policy object into the model's {@code Policy} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted tag.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted policies.
      */
     public Policy toModelType() throws IllegalValueException {
         return new Policy(policyName);
