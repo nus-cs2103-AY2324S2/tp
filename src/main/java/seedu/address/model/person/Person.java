@@ -7,7 +7,6 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.Model;
 import seedu.address.model.person.enums.Type;
 import seedu.address.model.tag.Tag;
@@ -68,9 +67,6 @@ public class Person {
 
     public String getPersonType() {
         return type.toString();
-    }
-
-    public void updateCurrentStatus() throws IllegalValueException {
     }
 
     public void updateCurrentStatusToReflectInterview(Model model) {}
