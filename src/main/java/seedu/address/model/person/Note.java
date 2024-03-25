@@ -15,6 +15,7 @@ public class Note {
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
     private String value;
+//    private boolean isDeadlineNote;
 
     /**
      * Constructs an {@code Note}.
@@ -23,7 +24,16 @@ public class Note {
      */
     public Note(String note) {
         value = note;
+//        isDeadlineNote = false;
     }
+
+//    public boolean isDeadlineNote() {
+//        return isDeadlineNote;
+//    }
+//
+//    public void setDeadlineNoteToTrue() {
+//        isDeadlineNote = true;
+//    }
 
     /**
      * Returns true if a given string is a valid email.

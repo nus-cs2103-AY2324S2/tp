@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Commission;
+import seedu.address.model.person.DeadlineNote;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Employment;
 import seedu.address.model.person.Maintainer;
@@ -212,9 +213,12 @@ class JsonAdaptedPerson {
         if (!Note.isValidNote(note)) {
             throw new IllegalValueException(Note.MESSAGE_CONSTRAINTS);
         }
+
         final Note modelNote = new Note(note);
 
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelNote, modelTags);
+        Person currPerson = new Person(modelName, modelPhone, modelEmail, modelAddress, modelNote, modelTags);
+
+        return currPerson;
     }
 
 }

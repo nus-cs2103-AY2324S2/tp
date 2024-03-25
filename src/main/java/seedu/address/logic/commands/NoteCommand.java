@@ -10,6 +10,7 @@ import java.util.List;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.messages.NoteMessages;
 import seedu.address.model.Model;
+import seedu.address.model.person.DeadlineNote;
 import seedu.address.model.person.Maintainer;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Note;
@@ -75,6 +76,14 @@ public class NoteCommand extends Command {
                     personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
                     personToEdit.getAddress(), note, personToEdit.getTags());
         }
+
+        //mayb check if not if instance of deadline, if it is then in person set
+        //its deadline
+//        if (this.note instanceof DeadlineNote) {
+//            editedPerson.setHasDeadlineNote(true);
+//        } else {
+//            editedPerson.setHasDeadlineNote(false);
+//        }
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
