@@ -9,13 +9,15 @@ Participant ":Parser" as parser PARSER_COLOR
 Participant ":Command" as command COMMAND_COLOR
 Participant ":Storage" as storage STORAGE_COLOR
 
-
+'enter command through UI
 user -[USER_COLOR]> ui : "addPolicy 2 pn/SaversScheme"
 activate ui UI_COLOR
 
+'command gets passed to logic object
 ui -[UI_COLOR]> logic : execute("addPolicy 2 pn/SaversScheme")
 activate logic LOGIC_COLOR
 
+'command gets parsed
 logic -[LOGIC_COLOR]> parser : parseCommand("addPolicy 2 pn/SaversScheme")
 activate parser PARSER_COLOR_T1
 
@@ -27,7 +29,7 @@ deactivate parser PARSER_COLOR_T2
 parser --[PARSER_COLOR]> logic
 deactivate parser PARSER_COLOR_T1
 
-
+'execute the command and change the model
 logic -[LOGIC_COLOR]> command : AddPolicyCommand.execute(Model)
 activate command COMMAND_COLOR_T1
 command --[COMMAND_COLOR]> logic : CommandResult(generateSuccessMessage(editedPerson))
