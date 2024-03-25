@@ -20,7 +20,8 @@ public class DeleteCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the person identified by their unique ID in the displayed person list.\n"
             + "Parameters: Their unique ID, (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 000001"; // Will try to change to make sure it can be done without the 0sabout US
+            // Will try to change to make sure it can be done without the 0sabout US
+            + "Example: " + COMMAND_WORD + " 000001";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
 
