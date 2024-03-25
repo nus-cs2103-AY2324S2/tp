@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.event.Event;
 import seedu.address.model.person.Person;
 
 /**
@@ -84,4 +85,47 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    void setEventBook(ReadOnlyEventBook eventBook);
+
+    ReadOnlyEventBook getEventBook();
+
+    boolean hasEvent(Event event);
+
+    void deleteEvent(Event target);
+
+    void addEvent(Event event);
+
+    void setEvent(Event target, Event editedEvent);
+
+    boolean isAnEventSelected();
+
+    boolean isSameSelectedEvent(Event event);
+
+    void selectEvent(Event event);
+
+    void deselectEvent();
+
+    boolean isPersonInSelectedEvent(Person person);
+
+    void addPersonToSelectedEvent(Person person);
+
+    void deletePersonFromSelectedEvent(Person person);
+
+    /**
+     * Returns an unmodifiable view of the filtered event list.
+     *
+     * @return An unmodifiable view of the filtered event list.
+     */
+    ObservableList<Event> getFilteredEventList();
+
+    /**
+     * Returns an unmodifiable view of the filtered person list of the selected event.
+     * If no event is selected, returns an empty list.
+     *
+     * @return An unmodifiable view of the filtered person list of the selected event,
+     *         or an empty list if no event is selected.
+     */
+    ObservableList<Person> getFilteredPersonListOfSelectedEvent();
+
 }

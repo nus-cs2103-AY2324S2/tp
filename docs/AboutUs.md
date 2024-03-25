@@ -24,7 +24,7 @@ We are the developer team of event management app Eventy, based in the [School o
 
 <img src="images/myang2020.png" width="200px" height="250px">
 
-[[github](https://github.com/myang2020)] 
+[[github](https://github.com/myang2020)]
 
 * Roles: Testing, in charge of Logic
 
