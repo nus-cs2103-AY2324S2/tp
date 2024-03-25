@@ -25,7 +25,7 @@ public class DeleteMessages extends Messages {
         } else if (person instanceof Supplier) {
             builder.append("Supplier ");
         } else if (person instanceof Maintainer) {
-            builder.append("Maintenance Crew ");
+            builder.append("Maintainer ");
         } else {
             builder.append("Other Contact ");
         }

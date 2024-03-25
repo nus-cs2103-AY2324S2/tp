@@ -5,8 +5,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-import java.util.List;
-
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.messages.NoteMessages;
 import seedu.address.model.Model;
@@ -47,14 +45,25 @@ public class NoteCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        List<Person> lastShownList = model.getFilteredPersonList();
-
-        Person personToEdit = findByName(lastShownList, name);
-
+        Person personToEdit = model.findByName(name);
         if (personToEdit == null) {
             throw new CommandException(NoteMessages.MESSAGE_NOTE_NAME_NOT_FOUND);
         }
 
+        Person personToEdit = model.findByName(name);
+        
+        // <<<<<<< AddRemindCommand
+        //         List<Person> lastShownList = model.getFilteredPersonList();
+
+        //         Person personToEdit = findByName(lastShownList, name);
+
+        //         if (personToEdit == null) {
+        //             throw new CommandException(NoteMessages.MESSAGE_NOTE_NAME_NOT_FOUND);
+        //         }
+
+        // =======
+        //         Person personToEdit = model.findByName(name);
+        // >>>>>>> master
         Person editedPerson;
 
         if (personToEdit instanceof Maintainer) {
@@ -87,24 +96,6 @@ public class NoteCommand extends Command {
 
         return new CommandResult(String.format(NoteMessages.MESSAGE_ADD_NOTE_SUCCESS,
                 NoteMessages.format(editedPerson)));
-    }
-
-    /**
-     * Finds a person from a List of persons identified by its name.
-     *
-     * @param personList The list of persons to search from.
-     * @param targetName The name of the person to return.
-     *
-     * @return The person object with name equals to {@code targetName}.
-     * */
-    public Person findByName(List<Person> personList, Name targetName) {
-        for (Person person: personList) {
-            Name name = person.getName();
-            if (name.equals(targetName)) {
-                return person;
-            }
-        }
-        return null;
     }
 
     @Override
