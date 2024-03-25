@@ -34,6 +34,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
+    private DayViewListPanel dayViewListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -125,6 +126,8 @@ public class MainWindow extends UiPart<Stage> {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList(), logic.getFilteredAppointmentViewList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
+        dayViewListPanel = new DayViewListPanel(logic.getFilteredAppointmentViewList());
+
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -168,12 +171,14 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     public void handleShowDayView() {
-        personListPanel.getRoot().setVisible(false);
+        personListPanelPlaceholder.getChildren().remove(0);
+        personListPanelPlaceholder.getChildren().add(dayViewListPanel.getRoot());
     }
 
     @FXML
     public void handleShowOverallView() {
-        personListPanel.getRoot().setVisible(true);
+        personListPanelPlaceholder.getChildren().remove(0);
+        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
     }
 
 
