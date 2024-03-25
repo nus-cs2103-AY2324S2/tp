@@ -127,6 +127,7 @@ public class NoteCommandTest {
         noteCommand.execute(model);
         assertEquals(expectedModel.getFilteredPersonList(), model.getFilteredPersonList());
     }
+    
     @Test
     public void equals() {
         NoteCommand noteFirstCommand = new NoteCommand(ALICE.getName(), validNote1);

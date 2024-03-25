@@ -43,4 +43,18 @@ public class UnpinCommand extends Command {
         return new CommandResult(String.format(UnpinMessages.MESSAGE_UNPIN_PERSON_SUCCESS,
                 UnpinMessages.format(personToPin)));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof UnpinCommand)) {
+            return false;
+        }
+
+        return true;
+    }
 }
