@@ -275,21 +275,29 @@ complying with the Open-Close Principle. This design decision makes it easy to e
 
 Given below is an example usage scenario and how the fuzzy input mechanism behaves:
 
-* User misspelled listing command `lust` instead of `list`. 
+* Step 1 : User misspelled listing command `lust` instead of `list`. 
   * The `lust` command calls `FuzzyCommandParser#parseCommand())`, causing `BkTreeCommandMatcher#findClosestMatch()` to
   get called in response.
   * The `BkTree` would be already initialised with the list of commands before the call.
     * During the initialisation, `BkTree` calculates the distances between items and constructs the tree accordingly.
   * When `findCLosestMatch()` is called, it initiates a search within the `BkTree` constructed.
-    * Starting from root node, Bk-Tree traverses through nodes based on the distance between the target item and items
-    stored in each `BkTreeNode`.
-    * The closest match found based on the specified distance metric (1 misspell) will be returned and
-    `AddressBookParser#parseCommand` will proceed on to the respective `commands`.
-    * If no closest match found, `null` command will be returned and `AddressBookParser#parseCommand` will throw
-    `ParseException`.
+    * Starting from root node, Bk-Tree traverses through nodes based on the distance between the target item `lust` 
+    and items stored in each `BkTreeNode`.
+    * The closest match found based on the specified distance metric (1 misspell) will be returned, in this case `list`
+    and `AddressBookParser#parseCommand()` will proceed on to the `list command`.
   * When calculating the distance between 2 items, `BkTree` calls `DistanceFunction#calculateDistance()` method.
     * In this case, LevenshteinDistance class will calculate the distance.
-    
+
+* Step 2 : User entered unsupported command `peek`
+    * The `peek` command calls `FuzzyCommandParser#parseCommand())`, causing `BkTreeCommandMatcher#findClosestMatch()` to
+      get called in response.
+    * Initialisation works the same as Step 1
+    * `findClosestMatch()` does the same operation as Step 1
+      * However, based on the LevenshteinDistance algorithm, the distance between `peek` and any items stored in
+      `BkTreeNode` will be greater than 1 which is greater than the specified distance metric
+      * `FuzzyCommandParser#parseCommand())` will return `null` string to `AddressBookParser#parseCommand()`
+      * Since `null` is not a recognised command, `ParseException` will be thrown.
+
 * <insert UML diagrams>
     
 #### Design considerations:
