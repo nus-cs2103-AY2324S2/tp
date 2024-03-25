@@ -16,7 +16,6 @@ import org.junit.jupiter.api.Test;
 import seedu.edulink.commons.core.GuiSettings;
 import seedu.edulink.model.student.NameContainsQueryNamePredicate;
 import seedu.edulink.testutil.AddressBookBuilder;
-import seedu.edulink.testutil.TypicalPersons;
 
 public class ModelManagerTest {
 
