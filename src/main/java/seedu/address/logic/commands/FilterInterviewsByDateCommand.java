@@ -12,7 +12,7 @@ import seedu.address.model.interview.Interview;
 /**
  * Filters the displayed interview list based on the date provided.
  */
-public class FilterInterviewsByDateCommand extends Command {
+public class FilterInterviewsByDateCommand extends FilterCommand {
 
     public static final String COMMAND_WORD = "filter_interviews_by_date";
 
