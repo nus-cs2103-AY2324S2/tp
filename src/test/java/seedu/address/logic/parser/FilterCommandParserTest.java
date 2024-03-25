@@ -1,13 +1,14 @@
 package seedu.address.logic.parser;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.FilterCommand;
-import seedu.address.model.tag.Tag;
-
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_MULTIPLE_TAGS;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.commands.FilterCommand;
+import seedu.address.model.tag.Tag;
 
 public class FilterCommandParserTest {
     private FilterCommandParser parser = new FilterCommandParser();

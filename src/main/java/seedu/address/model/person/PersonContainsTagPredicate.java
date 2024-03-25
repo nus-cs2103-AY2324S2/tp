@@ -1,10 +1,13 @@
 package seedu.address.model.person;
 
+import java.util.function.Predicate;
+
 import seedu.address.commons.util.StringUtil;
 import seedu.address.model.tag.Tag;
 
-import java.util.function.Predicate;
-
+/**
+ * Tests that a {@code Person}'s {@code Tag} matches one of the tag given.
+ */
 public class PersonContainsTagPredicate implements Predicate<Person> {
 
     private final Tag tag;
