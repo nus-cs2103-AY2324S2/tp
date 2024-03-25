@@ -67,7 +67,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
-        meetingsWindow = new MeetingsWindow();
+        meetingsWindow = new MeetingsWindow(logic);
     }
 
     public Stage getPrimaryStage() {
@@ -152,7 +152,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     public void handleMeetings() {
         if (!meetingsWindow.isShowing()) {
-            meetingsWindow.show();
+            meetingsWindow.displayMeetings();
         } else {
             meetingsWindow.focus();
         }

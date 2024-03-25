@@ -1,0 +1,43 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+Participant ":MainWindow" as mainwin UI_COLOR_T3
+Participant ":MeetingsWindow" as meetwin UI_COLOR
+Participant ":Logic" as logic LOGIC_COLOR
+Participant ":Model" as model MODEL_COLOR
+
+mainwin -[UI_COLOR_T3]> meetwin : displayMeetings()
+activate meetwin UI_COLOR
+
+meetwin -[UI_COLOR]> logic : getFilteredPersonList()
+activate logic LOGIC_COLOR
+
+logic -[LOGIC_COLOR]> model
+activate model MODEL_COLOR
+
+model -[MODEL_COLOR]> logic
+deactivate model
+
+logic -[LOGIC_COLOR]> meetwin
+deactivate logic
+
+meetwin -[UI_COLOR]> meetwin : sort list
+note right: sorts by\nmeeting\ntime
+activate meetwin UI_COLOR_T1
+meetwin -[UI_COLOR]> meetwin
+deactivate meetwin UI_COLOR
+
+' Hidden message to create space
+meetwin -[hidden]-> meetwin
+' End of hidden message
+
+meetwin -[UI_COLOR]> meetwin : label.setText
+activate meetwin UI_COLOR_T1
+meetwin -[UI_COLOR]> meetwin
+deactivate meetwin UI_COLOR
+
+meetwin -[UI_COLOR]> mainwin
+deactivate meetwin
+
+@enduml

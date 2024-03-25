@@ -13,6 +13,7 @@ import seedu.address.model.person.Meeting;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Policy;
 import seedu.address.model.person.PolicyName;
 import seedu.address.model.tag.Tag;
 
@@ -60,4 +61,9 @@ public class SampleDataUtil {
                 .collect(Collectors.toSet());
     }
 
+    public static Set<Policy> getPoliciesSet(String[] policies) {
+        return Arrays.stream(policies)
+                .map(Policy::new)
+                .collect(Collectors.toSet());
+    }
 }
