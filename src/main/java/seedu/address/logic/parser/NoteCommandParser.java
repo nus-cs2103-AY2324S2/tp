@@ -1,8 +1,11 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.messages.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
+
+import java.util.stream.Stream;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.NoteCommand;
@@ -22,15 +25,24 @@ public class NoteCommandParser implements Parser<NoteCommand> {
      */
     public NoteCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
-                PREFIX_NAME, PREFIX_NOTE);
+                PREFIX_NAME, PREFIX_NOTE, PREFIX_DEADLINE);
         Name name;
         Note note;
         try {
-            name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-            note = ParserUtil.parseNote(argMultimap.getValue(PREFIX_NOTE).get());
+            if (argMultimap.getValue(PREFIX_DEADLINE).isEmpty()) {
+                name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+                note = ParserUtil.parseNote(argMultimap.getValue(PREFIX_NOTE).get());
+            } else {
+                name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+                note = ParserUtil.parseDeadlineNote(argMultimap.getValue(PREFIX_NOTE).get(),
+                        argMultimap.getValue(PREFIX_DEADLINE).get());
+//                throw new IllegalValueException("deadline");
+            }
         } catch (IllegalValueException ive) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     NoteCommand.MESSAGE_USAGE), ive);
+//            throw new ParseException(ive.getMessage());
+            //need to change this string later
         }
 
         return new NoteCommand(name, note);
