@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static seedu.address.logic.commands.CommandTestUtil.BIRTHDAY_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.FREE_TIME_TAG_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
@@ -38,7 +39,8 @@ public class AddCommandParserTest {
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ROOMNUMBER_DESC_BOB + TELEGRAM_DESC_BOB + BIRTHDAY_DESC_BOB, new AddCommand(expectedPerson));
+                + ROOMNUMBER_DESC_BOB + TELEGRAM_DESC_BOB + BIRTHDAY_DESC_BOB + FREE_TIME_TAG_DESC_BOB,
+                new AddCommand(expectedPerson));
     }
 
     @Test
@@ -49,13 +51,13 @@ public class AddCommandParserTest {
         RoomNumber roomNumber = new RoomNumber(VALID_ROOMNUMBER_BOB);
         Telegram telegram = null;
         Birthday birthday = new Birthday(VALID_BIRTHDAY_BOB);
-        Set<FreeTimeTag> freeTimeTag = Set.of(new FreeTimeTag("Sun:1000-1400"));
+        Set<FreeTimeTag> freeTimeTag = Set.of(new FreeTimeTag("Wed:1400-2000"));
 
 
         Person expectedPerson = new Person(name, phone, email, roomNumber, telegram, birthday, freeTimeTag);
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB
-                + ROOMNUMBER_DESC_BOB + BIRTHDAY_DESC_BOB, new AddCommand(expectedPerson));
+                + ROOMNUMBER_DESC_BOB + BIRTHDAY_DESC_BOB + FREE_TIME_TAG_DESC_BOB, new AddCommand(expectedPerson));
     }
 }

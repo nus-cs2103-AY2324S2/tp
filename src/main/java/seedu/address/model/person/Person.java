@@ -31,7 +31,7 @@ public class Person {
      */
     public Person(Name name, Phone phone, Email email, RoomNumber roomNumber, Telegram telegram, Birthday birthday,
                   Set<FreeTimeTag> tags) {
-        requireAllNonNull(name, phone);
+        requireAllNonNull(name, phone, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;

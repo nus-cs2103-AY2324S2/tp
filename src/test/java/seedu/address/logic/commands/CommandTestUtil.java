@@ -76,10 +76,12 @@ public class CommandTestUtil {
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withRoomNumber(VALID_ROOMNUMBER_AMY)
-                .withTelegram(VALID_TELEGRAM_AMY).withBirthday(VALID_BIRTHDAY_AMY).build();
+                .withTelegram(VALID_TELEGRAM_AMY).withBirthday(VALID_BIRTHDAY_AMY)
+                .withFreeTimeTags(VALID_FREE_TIME_TAG_AMY).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withRoomNumber(VALID_ROOMNUMBER_BOB)
-                .withTelegram(VALID_TELEGRAM_BOB).withBirthday(VALID_BIRTHDAY_BOB).build();
+                .withTelegram(VALID_TELEGRAM_BOB).withBirthday(VALID_BIRTHDAY_BOB)
+                .withFreeTimeTags(VALID_FREE_TIME_TAG_BOB).build();
     }
 
     /**

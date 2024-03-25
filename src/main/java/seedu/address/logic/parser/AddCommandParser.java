@@ -66,8 +66,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Birthday birthday = birthdayText.isPresent() ? ParserUtil.parseBirthday(birthdayText.get()) : null;
 
         Optional<String> freeTimeTagText = argMultimap.getValue(PREFIX_FREETIMETAG);
-        Set<FreeTimeTag> freeTimeTags = freeTimeTagText.isPresent()
-                ? ParserUtil.parseFreeTimeTags(argMultimap.getAllValues(PREFIX_FREETIMETAG)) : null;
+        Set<FreeTimeTag> freeTimeTags = ParserUtil.parseFreeTimeTags(argMultimap.getAllValues(PREFIX_FREETIMETAG));
 
         Person person = new Person(name, phone, email, roomNumber, telegram, birthday, freeTimeTags);
         return new AddCommand(person);

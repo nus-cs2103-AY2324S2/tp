@@ -18,10 +18,12 @@ import seedu.address.model.tag.FreeTimeTag;
 public class MessagesTest {
 
     private static final String FORMATTED_ALL_FIELDS_MESSAGE = "Johnny G; Phone: 98765432; "
-            + "Email: john@gmail.com; Room Number: sw-01-01; Telegram: Johnny; Birthday: 01 January 2000";
-    private static final String FORMATTED_ALL_MANDATORY_FIELDS_MESSAGE = "Johnny; Phone: 98765432";
+            + "Email: john@gmail.com; Room Number: sw-01-01; Telegram: Johnny; Birthday: 01 January 2000; "
+            + "Free Time Tags: [Sun:1000-1400]";
+    private static final String FORMATTED_ALL_MANDATORY_FIELDS_MESSAGE = "Johnny; Phone: 98765432; "
+            + "Free Time Tags: [Sun:1000-1400]";
     private static final String FORMATTED_ALL_MANDATORY_AND_SOME_OPTIONAL_FIELDS_MESSAGE = "Johnny; Phone: 98765432; "
-            + "Room Number: sw-01-01; Birthday: 01 January 2000";
+            + "Room Number: sw-01-01; Birthday: 01 January 2000; " + "Free Time Tags: [Sun:1000-1400]";
 
     @Test
     public void format_personWithAllFields_success() {
