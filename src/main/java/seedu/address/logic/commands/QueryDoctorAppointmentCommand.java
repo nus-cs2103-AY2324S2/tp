@@ -2,6 +2,8 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.logging.Logger;
+
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.model.Model;
@@ -13,6 +15,8 @@ import seedu.address.model.appointment.AppointmentContainsDoctorPredicate;
  * (case-insensitive) and displays them as a list with index numbers.
  */
 public class QueryDoctorAppointmentCommand extends Command {
+    private static final Logger logger = Logger.getLogger(QueryDoctorAppointmentCommand.class.getName());
+
     public static final String COMMAND_WORD = "appfordoctor";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all appointments of doctors whose "
@@ -30,10 +34,12 @@ public class QueryDoctorAppointmentCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
+        logger.info("Executing QueryDoctorAppointmentCommand");
         model.updateFilteredAppointmentList(predicate);
+        int numberOfAppointments = model.getFilteredAppointmentList().size();
+        logger.info("Number of appointments found: " + numberOfAppointments);
         return new CommandResult(
-                String.format(Messages.MESSAGE_APPOINTMENTS_LISTED_OVERVIEW,
-                        model.getFilteredAppointmentList().size()));
+                String.format(Messages.MESSAGE_APPOINTMENTS_LISTED_OVERVIEW, numberOfAppointments));
     }
 
     @Override
