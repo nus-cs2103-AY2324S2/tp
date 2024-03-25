@@ -6,7 +6,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.ArrayList;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -46,9 +45,11 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         if (!arePrefixesPresent(argMultimap, PREFIX_CATEGORY) && !arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION)) {
             hasEntry = false;
-        } else if (!arePrefixesPresent(argMultimap, PREFIX_CATEGORY) && arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION)) {
+        } else if (!arePrefixesPresent(argMultimap, PREFIX_CATEGORY)
+                && arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION)) {
             throw new ParseException("Category cannot be empty!");
-        } else if (arePrefixesPresent(argMultimap, PREFIX_CATEGORY) && !arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION)) {
+        } else if (arePrefixesPresent(argMultimap, PREFIX_CATEGORY)
+                && !arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION)) {
             throw new ParseException("Description cannot be empty!");
         } else {
             String[] category = null;
