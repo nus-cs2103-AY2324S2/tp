@@ -2,23 +2,27 @@ package seedu.address.logic.commands;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.Messages;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Logger;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Policy;
+
 
 /**
  * Adds a policy to the client identified by the index number used in the last person listing
  * and the policy name.
  */
 public class AddPolicyCommand extends Command {
+    private final Logger logger = LogsCenter.getLogger(AddPolicyCommand.class);
     public static final String COMMAND_WORD = "addPolicy";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
@@ -36,18 +40,24 @@ public class AddPolicyCommand extends Command {
 
     private final Index index;
     private final String policyName;
-
+    public final String policyNumber;
+    public final String premiumTerm;
+    public final String premium;
+    public final String benefit;
     /**
      * Creates an AddPolicyCommand to add the specified {@code Policy} to the client at the specified index.
      *
      * @param index The index of the client in the filtered person list.
      * @param policyName The name of the policy to be added.
      */
-    public AddPolicyCommand(Index index, String policyName) {
+    public AddPolicyCommand(Index index, String policyName, String policyNumber, String premiumTerm, String premium, String benefit) {
         requireAllNonNull(index, policyName);
-
         this.index = index;
         this.policyName = policyName;
+        this.policyNumber = policyNumber;
+        this.premiumTerm = premiumTerm;
+        this.premium = premium;
+        this.benefit = benefit;
     }
 
     @Override
@@ -60,7 +70,7 @@ public class AddPolicyCommand extends Command {
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
         Set<Policy> currentPolicies = new HashSet<>(personToEdit.getPolicies());
-        Policy newPolicy = new Policy(policyName);
+        Policy newPolicy = new Policy(policyName, policyNumber, premiumTerm, premium, benefit);
         currentPolicies.add(newPolicy);
 
         Person editedPerson = new Person(
@@ -73,8 +83,8 @@ public class AddPolicyCommand extends Command {
         return new CommandResult(generateSuccessMessage(editedPerson));
     }
 
-    private String generateSuccessMessage(Person personToEdit) {
-        String message = !policyName.isEmpty() ? MESSAGE_ADD_POLICY_SUCCESS : MESSAGE_DELETE_POLICY_SUCCESS;
-        return String.format(message, personToEdit);
+    private String generateSuccessMessage(Person editedPerson) {
+        String message = !editedPerson.getPolicies().isEmpty() ? MESSAGE_ADD_POLICY_SUCCESS : MESSAGE_DELETE_POLICY_SUCCESS;
+        return String.format(message, editedPerson);
     }
 }

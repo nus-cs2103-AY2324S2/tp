@@ -21,7 +21,6 @@ import seedu.address.model.tag.Tag;
  * Contains utility methods for populating {@code AddressBook} with sample data.
  */
 public class SampleDataUtil {
-    public static final PolicyName EMPTY_POLICY_NAME = new PolicyName("");
     public static Person[] getSamplePersons() {
         return new Person[] {
             new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
@@ -62,9 +61,9 @@ public class SampleDataUtil {
                 .collect(Collectors.toSet());
     }
 
-    public static Set<Policy> getPoliciesSet(String[] policies) {
-        return Arrays.stream(policies)
-                .map(Policy::new)
-                .collect(Collectors.toSet());
-    }
+//    public static Set<Policy> getPoliciesSet(String[] policies) {
+//        return Arrays.stream(policies)
+//                .map(Policy::new)
+//                .collect(Collectors.toSet());
+//    }
 }
