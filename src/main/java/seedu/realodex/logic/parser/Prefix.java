@@ -30,7 +30,7 @@ public class Prefix {
                 .map(Prefix::toString)
                 .collect(Collectors.toList());
 
-        return "Prefixes That Are Missed Are : " + String.join(", ", missingPrefixes);
+        return String.join(", ", missingPrefixes);
     }
 
 
