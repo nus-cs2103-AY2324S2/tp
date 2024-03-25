@@ -21,8 +21,7 @@ public class Availability {
     public static final String VALIDATION_REGEX_DAY = "(?i)((mon|tue(s)?|wed(nes)?|thu(r)?(rs)?|fri|sat(ur)?|sun)"
             + "(day)?)";
     public static final String VALIDATION_REGEX_TIME = "([01][0-9]|2[0-3]):([0-5][0-9])";
-    public static final String VALIDATION_REGEX = VALIDATION_REGEX_DAY + " " + VALIDATION_REGEX_TIME + " "
-            + VALIDATION_REGEX_TIME;
+    public static final String VALIDATION_REGEX = VALIDATION_REGEX_DAY + " [0-9]{2}:[0-9]{2} [0-9]{2}:[0-9]{2}";
 
     private static final DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
 
