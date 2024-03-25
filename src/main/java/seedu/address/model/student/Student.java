@@ -11,6 +11,7 @@ import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.module.ModuleCode;
+import seedu.address.model.module.ModuleTiming;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -29,6 +30,7 @@ public class Student {
     private final Set<Tag> tags = new HashSet<>();
 
     private final List<ModuleCode> modules = new ArrayList<>();
+    private final List<ModuleTiming> moduleTimings = new ArrayList<>();
 
     /**
      * Every field must be present and not null.
