@@ -45,6 +45,16 @@ public class Tag {
         return '[' + value + ']';
     }
 
+    /*
+     * Indicates whether some other object is "equal to" this one.
+     * <p>
+     * The {@code equals} method implements an equivalence relation
+     * on non-null object references
+     * </p>
+     *
+     * @param other the reference object with which to compare
+     * @return boolean true or false
+     */
     public boolean equals(Object other) {
         if (other == this) {
             return true;
@@ -59,6 +69,9 @@ public class Tag {
         return value.equals(otherTag.value);
     }
 
+    /**
+     * Returns if a given string / tag is a valid tag.
+     */
     public static boolean isValidTag(String input) {
         return Tags.isValidTag(input);
     }
