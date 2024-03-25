@@ -71,6 +71,7 @@ public class CommandBox extends UiPart<Region> {
         String keyName = event.getCode().getName();
         assert !keyName.isEmpty();
 
+        //Perform nothing if there is no history.
         if (inputHistory.inputList.isEmpty()) {
             return ;
         }
