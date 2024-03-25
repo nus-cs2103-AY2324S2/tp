@@ -99,6 +99,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasSchedule(Schedule schedule) {
+        requireNonNull(schedule);
+        return addressBook.hasSchedule(schedule);
+    }
+
+    @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
     }

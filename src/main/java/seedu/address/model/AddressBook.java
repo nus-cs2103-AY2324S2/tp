@@ -80,6 +80,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Returns true if a schedule with the same identity as {@code schedule} exists in the address book.
+     */
+    public boolean hasSchedule(Schedule schedule) {
+        requireNonNull(schedule);
+        return schedules.contains(schedule);
+    }
+
+    /**
      * Adds a person to the address book.
      * The person must not already exist in the address book.
      */
