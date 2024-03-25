@@ -20,10 +20,20 @@ enum Tags {
         return false;
     }
 }
+
+/**
+ * Represents an internship application's progress
+ * Stages of Progress: No Reply (NR), Online Assesment (OA), Interview (I), Reject (R), Offer (O)
+ */
 public class Tag {
     public static final String MESSAGE_CONSTRAINTS = "Tags should only contain NR, OA, I, R and O";
     public final String value;
 
+    /**
+     * Constructs a {@code Tag}.
+     *
+     * @param tag A valid Tag.
+     */
     public Tag(String tag) {
         requireNonNull(tag);
         checkArgument(Tags.isValidTag(tag), MESSAGE_CONSTRAINTS);
@@ -53,8 +63,11 @@ public class Tag {
         return Tags.isValidTag(input);
     }
 
-    public static boolean isValidTag(Tag input) {
-        return Tags.isValidTag(input.value);
+    /*
+     * Function overloading - isValidTag(String) & isValidTag(Tag)
+     */
+    public static boolean isValidTag(Tag tag) {
+        return Tags.isValidTag(tag.value);
     }
 
     public int hashCode() {
