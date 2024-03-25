@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -170,6 +171,13 @@ public class ModelManager implements Model {
     public void deleteAppointmentsWithNric(Nric targetNric) {
         requireNonNull(targetNric);
         addressBook.deleteAppointmentsWithNric(targetNric);
+    }
+
+    @Override
+    public void filterAppointments(Optional<Nric> nricFilter,
+                                    Optional<Date> dateFilter,
+                                    Optional<TimePeriod> timePeriodFilter) {
+        addressBook.filterAppointments(nricFilter, dateFilter, timePeriodFilter);
     }
 
     //=========== Filtered Person List Accessors =============================================================

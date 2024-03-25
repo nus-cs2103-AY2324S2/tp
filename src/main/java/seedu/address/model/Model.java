@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -148,4 +149,15 @@ public interface Model {
 
     /** Deletes all appointments of a targetNric **/
     void deleteAppointmentsWithNric(Nric targetNric);
+
+    /**
+     * Filters appointments based on the provided criteria.
+     *
+     * @param nricFilter Optional argument to filter by NRIC.
+     * @param dateFilter Optional argument to filter by date.
+     * @param timePeriodFilter Optional argument to filter by time period.
+     */
+    void filterAppointments(Optional<Nric> nricFilter,
+                               Optional<Date> dateFilter,
+                               Optional<TimePeriod> timePeriodFilter);
 }

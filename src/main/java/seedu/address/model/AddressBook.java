@@ -4,6 +4,9 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.date.Date;
@@ -197,6 +200,40 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void cancelAppointment(Appointment key) {
         appointments.remove(key);
         appointmentView.remove(new AppointmentView(getPersonWithNric(key.getNric()).getName(), key));
+    }
+
+    /**
+     * Filters appointments based on the provided criteria.
+     *
+     * @param nricFilter Optional argument to filter by NRIC.
+     * @param dateFilter Optional argument to filter by date.
+     * @param timePeriodFilter Optional argument to filter by time period.
+     * @return A list of appointments that match the given criteria.
+     */
+    public void filterAppointments(Optional<Nric> nricFilter,
+                                                Optional<Date> dateFilter,
+                                                Optional<TimePeriod> timePeriodFilter) {
+        List<Appointment> filteredAppointments = new ArrayList<>();
+
+        for (Appointment appointment : appointments) {
+            boolean matchesFilter = true;
+
+            if (nricFilter.isPresent() && !appointment.getNric().equals(nricFilter.get())) {
+                matchesFilter = false;
+            }
+            if (dateFilter.isPresent() && !appointment.getDate().equals(dateFilter.get())) {
+                matchesFilter = false;
+            }
+            if (timePeriodFilter.isPresent() && !appointment.getTimePeriod().equals(timePeriodFilter.get())) {
+                matchesFilter = false;
+            }
+
+            if (matchesFilter) {
+                filteredAppointments.add(appointment);
+            }
+        }
+
+        this.appointments.setAppointments(filteredAppointments);
     }
 
     //// util methods
