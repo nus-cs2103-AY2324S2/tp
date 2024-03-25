@@ -74,3 +74,4 @@ deactivate AddApplicantCommand
 [<--LogicManager
 deactivate LogicManager
 @enduml
+

@@ -163,7 +163,7 @@ This section describes some noteworthy details on how certain features are imple
 #### Implementation
 
 The applicant/interviewer status mechanism is facilitated by `AddApplicantStatusCommand` and `AddInterviewerStatusCommand`. They extend `Command` with their own `status` field, stored internally as `ApplicantStatus` and `InterviewerStatus` respectively. 
-`ApplicantStatus` and `InterviewerStatus` encapsulate statuses (enumerated in `ApplicantState` and `InterviewerState`) in a `value` field. 
+`ApplicantStatus` and `InterviewerStatus` encapsulate statuses (enumerated in `ApplicantState` and `InterviewerState`) in a `value` field.
 `AddApplicantStatusCommand` and `AddInterviewerStatusCommand` implement the following operations:
 
 * `AddApplicantStatusCommand#execute()` — Adds on the encapsulated `currentStatus` to the applicant in question.
