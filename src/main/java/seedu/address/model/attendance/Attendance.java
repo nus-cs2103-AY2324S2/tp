@@ -62,4 +62,23 @@ public class Attendance {
         sb.append(absentWeeks.isEmpty() ? "0" : absentWeeks);
         return sb.toString();
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Attendance)) {
+            return false;
+        }
+
+        Attendance otherAttendance = (Attendance) other;
+        for (int i = 0; i < 13; i++) {
+            if (attendanceList[i] != otherAttendance.attendanceList[i]) {
+                return false;
+            }
+        }
+        return true;
+    }
 }

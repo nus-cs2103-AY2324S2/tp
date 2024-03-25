@@ -70,7 +70,8 @@ public class PersonTest {
                 + "{name=" + ALICE.getName() + ", classGroup=" + ALICE.getClassGroup()
                 + ", email=" + ALICE.getEmail() + ", phone=" + ALICE.getPhone() + ", telegram="
                 + (ALICE.getTelegram().isPresent() ? ALICE.getTelegram().get().telegramId : "") + ", github="
-                + (ALICE.getGithub().isPresent() ? ALICE.getGithub().get().githubId : "") + "}";
+                + (ALICE.getGithub().isPresent() ? ALICE.getGithub().get().githubId : "") + ", attendance="
+                + (ALICE.getAttendance().toString()) + "}";
         assertEquals(expected, ALICE.toString());
     }
 }
