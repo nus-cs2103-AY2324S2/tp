@@ -42,7 +42,7 @@
         </StackPane>
             <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="340.0" VBox.vgrow="NEVER">
                <children>
-      
+                   
               <VBox fx:id="personList" minWidth="340.0" style="-fx-background-color: #012A4A;" styleClass="pane-with-border" HBox.hgrow="NEVER">
                 <padding>
                   <Insets bottom="10" left="10" right="10" top="10" />
