@@ -168,28 +168,18 @@ Searches through the address book using specified fields and keyword.
 
 Formats:
 
-- `/search ; name : [full/partial name]`
-- `/search ; phone : [full/partial phone]`
-- `/search ; email : [full/partial email]`
-- `/search ; address : [full/partial address]`
-- `/search ; product : [full/partial product name]`
-- `/search ; employment : [employment type]`
+- `/search ; [field] : [full/partial query]`
 
-
-* Searches the person by specifying field (i.e. `name`, `phone`, `address`, etc.), followed by the partial or full keyword
-* Current feature does not allow users to search for `commission`, `salary`, and `price`
-* All fields are **case-insensitive**.
-For instance, to check whether a name is unique (case-insensitive)
-  * Eg : `Janna` and `janna` are both equivalent
-* Spaces within each input are considered
-  * Eg: `Tom Tan Er` is different from `Tom Taner`
+* Searches contact(s) by specifying a valid field (i.e. `name`, `phone`, `email`, `address`, `salary`, `employment`, `price`, `product`, `skill`, `commission`, `tag` or `note`), followed by the partial or full query.
+* All fields and queries are **case-insensitive**.
+  * Eg : `Janna` and `janna` are both equivalent.
+* Spaces within each input are counted as part of the query input.
+  * Eg: `Tom Tan Er` is different from `Tom Taner`.
 
 
 Examples:
 - `/search ; name : Poochie`
 - `/search ; phone : 98765432`
-- `/search ; address : Poochie Street 21`
-- `/search ; email : ilovecatstoo@gmail.com`
 
 ### Adding a note : `note`
 
@@ -231,22 +221,22 @@ Format: `/redo`
 
 ### Sorting the address book : `sort`
 
-Sorts the address book by specified sorting types
+Sorts the address book by field in ascending order
 
 Formats:
 
+- `/sort ; [field]`
+
+* Sorts the contacts in the address book in ascending lexicographical order (e.g. Alice, Bob, Charlie etc.)
+* Sorts by specifying a valid field (i.e. `name`, `phone`, `email`, `address`, `salary`, `employment`, `price`, `product`, `skill`, `commission`, `tag` or `note`)
+* All fields are **case-insensitive**
+    * Eg : `Name` and `name` are both equivalent
+
+
+Examples:
+
 - `/sort ; name`
 - `/sort ; phone`
-- `/sort ; email`
-- `/sort ; address`
-- `/sort ; salary`
-- `/search ; product`
-- `/search ; employment`
-- `/sort ; note`
-
-
-* Sorts the address book by specifying field (i.e. `name`, `phone`, `address`, etc.)
-* Sorts in ascending lexicographical order (e.g. Alice, Bob, Charlie etc.)
 
 ### Exiting the program : `exit`
 
