@@ -52,6 +52,11 @@ public class NoteCommand extends Command {
         List<Person> lastShownList = model.getFilteredPersonList();
 
         Person personToEdit = findByName(lastShownList, name);
+
+        if (personToEdit == null) {
+            throw new CommandException(NoteMessages.MESSAGE_NOTE_NAME_NOT_FOUND);
+        }
+
         Person editedPerson;
 
         if (personToEdit instanceof Maintainer) {
@@ -78,18 +83,10 @@ public class NoteCommand extends Command {
                     personToEdit.getAddress(), note, personToEdit.getTags());
         }
 
-        //mayb check if not if instance of deadline, if it is then in person set
-        //its deadline
-//        if (this.note instanceof DeadlineNote) {
-//            editedPerson.setHasDeadlineNote(true);
-//        } else {
-//            editedPerson.setHasDeadlineNote(false);
-//        }
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
-//        return new CommandResult(generateSuccessMessage(editedPerson));
         return new CommandResult(String.format(NoteMessages.MESSAGE_ADD_NOTE_SUCCESS,
                 NoteMessages.format(editedPerson)));
     }

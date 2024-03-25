@@ -60,8 +60,8 @@ public class NoteCommandTest {
         expectedModel.setPerson(model.getFilteredPersonList().get(0), expectedPerson);
 
         NoteCommand noteCommand = new NoteCommand(toAddNotePerson.getName(), validNote1);
-        String expectedMessage = String.format(NoteMessages.MESSAGE_ADD_NOTE_SUCCESS, expectedPerson);
-
+        String expectedMessage = String.format(NoteMessages.MESSAGE_ADD_NOTE_SUCCESS,
+                NoteMessages.format(expectedPerson));
         assertCommandSuccess(noteCommand, model, expectedMessage, expectedModel);
     }
 
