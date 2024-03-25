@@ -49,6 +49,9 @@ CCA Manager endeavors to equip CCAs with tools that streamline administration, f
 
 To get started with CCA Manager and explore its features further, check out our [Quick Start](#quick-start) and our [Tutorials](#TODO), where we'll go through some concrete use cases for our app.
 
+## Introduction to the GUI elements
+
+![CommandLine](images/CommandLine.png)
 
 ## Quick start
 
@@ -90,6 +93,18 @@ To get started with CCA Manager and explore its features further, check out our 
    * [`exit` : Exits the app](#feature-exit)
      
    * $${\color{green}More \space features \space will \space be \space coming \space in \space future \space update}$$
+
+## General Format of the Commands
+To execute the command correctly, you should follow below general format of the command.
+You should ensure that your command follow the correct order shown below:
+
+For example:
+
+`<action> <primary-argument> /<argument-name> <argument-value>`
+
+* `add n/Brian p/87601212 e/test@gmail.com`
+* `find Jason`
+* `delete 2`
 
 ### Further Help
  Refer to the [Features](#features) below for details of each command.⬇️⬇️⬇️⬇️
