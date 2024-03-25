@@ -12,6 +12,7 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.exam.Exam;
+import seedu.address.model.person.Score;
 
 
 /**
@@ -75,7 +76,7 @@ public class EditExamCommand extends Command {
         assert examToEdit != null;
 
         String updatedName = editExamDescriptor.getName().orElse(examToEdit.getName());
-        int updatedMaxScore = editExamDescriptor.getMaxScore().orElse(examToEdit.getMaxScore());
+        Score updatedMaxScore = editExamDescriptor.getMaxScore().orElse(examToEdit.getMaxScore());
 
         return new Exam(updatedName, updatedMaxScore);
     }
@@ -107,7 +108,7 @@ public class EditExamCommand extends Command {
 
     public static class EditExamDescriptor {
         private String name;
-        private Integer maxScore;
+        private Score maxScore;
 
         public EditExamDescriptor() {}
 
@@ -135,11 +136,11 @@ public class EditExamCommand extends Command {
             return Optional.ofNullable(name);
         }
 
-        public void setMaxScore(Integer maxScore) {
+        public void setMaxScore(Score maxScore) {
             this.maxScore = maxScore;
         }
 
-        public Optional<Integer> getMaxScore() {
+        public Optional<Score> getMaxScore() {
             return Optional.ofNullable(maxScore);
         }
 

@@ -3,6 +3,8 @@ package seedu.address.model.exam;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import seedu.address.model.person.Score;
+
 /**
  * Represents an Exam in the address book.
  * Guarantees: immutable; name is valid as declared in {@link #isValidName(String)}
@@ -19,14 +21,14 @@ public class Exam {
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
     public final String name;
-    public final int maxScore;
+    public final Score maxScore;
     /**
      * Constructs an {@code Exam}.
      *
      * @param name A valid name.
      * @param maxScore A valid max score.
      */
-    public Exam(String name, int maxScore) {
+    public Exam(String name, Score maxScore) {
         requireNonNull(name);
         checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
         this.name = name;
@@ -37,7 +39,7 @@ public class Exam {
         return name;
     }
 
-    public int getMaxScore() {
+    public Score getMaxScore() {
         return maxScore;
     }
 

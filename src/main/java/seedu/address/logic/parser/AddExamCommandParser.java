@@ -9,6 +9,7 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.AddExamCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.exam.Exam;
+import seedu.address.model.person.Score;
 
 /**
  * Parses input arguments and creates a new AddExamCommand object
@@ -30,7 +31,7 @@ public class AddExamCommandParser implements Parser<AddExamCommand> {
         }
 
         String name = ParserUtil.parseExamName(argMultimap.getValue(PREFIX_NAME).get());
-        int maxScore = ParserUtil.parseScore(argMultimap.getValue(PREFIX_SCORE).get());
+        Score maxScore = ParserUtil.parseScore(argMultimap.getValue(PREFIX_SCORE).get());
 
         Exam exam = new Exam(name, maxScore);
 

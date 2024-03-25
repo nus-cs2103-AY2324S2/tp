@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import java.nio.file.Path;
 import java.util.function.Predicate;
+import java.util.Optional;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
@@ -115,6 +116,16 @@ public interface Model {
      * The exam must exist in the address book.
      */
     void selectExam(Exam target);
+
+    /**
+     * Deselects the selected exam.
+     */
+    void deselectExam();
+
+    /**
+     * Returns the selected exam.
+     */
+    Optional<Exam> getSelectedExam();
 
     /** Returns an unmodifiable view of the filtered exam list */
     ObservableList<Exam> getExamList();

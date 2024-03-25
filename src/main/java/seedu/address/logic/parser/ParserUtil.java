@@ -16,6 +16,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Score;
 import seedu.address.model.student.Matric;
 import seedu.address.model.student.Reflection;
 import seedu.address.model.student.Studio;
@@ -192,7 +193,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code score} is invalid.
      */
-    public static int parseScore(String score) throws ParseException {
+    public static Score parseScore(String score) throws ParseException {
         requireNonNull(score);
         String trimmedScore = score.trim();
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedScore)) {
@@ -204,7 +205,7 @@ public class ParserUtil {
             throw new ParseException(Exam.MESSAGE_CONSTRAINTS);
         }
 
-        return parsedScore;
+        return new Score(parsedScore);
     }
 
     /**

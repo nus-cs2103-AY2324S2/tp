@@ -6,6 +6,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
+import java.util.Optional;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -184,6 +185,16 @@ public class ModelManager implements Model {
     public void selectExam(Exam target) {
         requireNonNull(target);
         selectedExam = target;
+    }
+
+    @Override
+    public void deselectExam() {
+        selectedExam = null;
+    }
+
+    @Override
+    public Optional<Exam> getSelectedExam() {
+        return Optional.ofNullable(selectedExam);
     }
 
 }
