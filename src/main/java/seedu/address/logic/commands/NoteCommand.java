@@ -49,21 +49,6 @@ public class NoteCommand extends Command {
         if (personToEdit == null) {
             throw new CommandException(NoteMessages.MESSAGE_NOTE_NAME_NOT_FOUND);
         }
-
-        Person personToEdit = model.findByName(name);
-        
-        // <<<<<<< AddRemindCommand
-        //         List<Person> lastShownList = model.getFilteredPersonList();
-
-        //         Person personToEdit = findByName(lastShownList, name);
-
-        //         if (personToEdit == null) {
-        //             throw new CommandException(NoteMessages.MESSAGE_NOTE_NAME_NOT_FOUND);
-        //         }
-
-        // =======
-        //         Person personToEdit = model.findByName(name);
-        // >>>>>>> master
         Person editedPerson;
 
         if (personToEdit instanceof Maintainer) {

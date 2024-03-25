@@ -132,7 +132,7 @@ public class NoteCommandTest {
     public void execute_invalidName_throwsCommandException() {
         showPersonWithName(model, ALICE.getName());
 
-        Name invalidName = BENSON.getName();
+        Name invalidName = new Name("patty");
 
         // ensures that the invalid name is not equal to "Alice Pauline"
         assertTrue(!invalidName.equals(ALICE.getName()));
@@ -141,6 +141,7 @@ public class NoteCommandTest {
 
         assertCommandFailure(noteCommand, model, NoteMessages.MESSAGE_NOTE_NAME_NOT_FOUND);
     }
+
     @Test
     public void equals() {
         NoteCommand noteFirstCommand = new NoteCommand(ALICE.getName(), validNote1);
