@@ -2,7 +2,6 @@ package seedu.findvisor.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
-import javax.swing.text.html.Option;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Optional;

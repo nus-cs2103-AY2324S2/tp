@@ -59,7 +59,7 @@ public void parse_invalidPreamble_failure() {
 
     @Test
     public void parse_validArgs_returnsRemarkCommand() {
-        Optional<Remark> remark = Remark.createRemark(REMARK);
+        Optional<Remark> remark = ParserUtil.parseRemark(REMARK);
         Index targetIndex = INDEX_FIRST_PERSON;
         RemarkCommand expectedRemarkCommand = new RemarkCommand(targetIndex, remark);
         assertParseSuccess(parser,

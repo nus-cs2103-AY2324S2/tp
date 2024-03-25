@@ -2,7 +2,6 @@ package seedu.findvisor.model.person;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.Optional;
 
 /**
  * Represents the remark about a Person in the address book.

@@ -47,7 +47,6 @@ import seedu.findvisor.model.person.Meeting;
 import seedu.findvisor.model.person.NameContainsKeywordPredicate;
 import seedu.findvisor.model.person.Person;
 import seedu.findvisor.model.person.PhoneContainsKeywordPredicate;
-import seedu.findvisor.model.person.Remark;
 import seedu.findvisor.model.tag.TagsContainsKeywordsPredicate;
 import seedu.findvisor.testutil.EditPersonDescriptorBuilder;
 import seedu.findvisor.testutil.PersonBuilder;

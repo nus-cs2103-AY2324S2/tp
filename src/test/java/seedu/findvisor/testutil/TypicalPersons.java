@@ -22,7 +22,6 @@ import seedu.findvisor.logic.parser.ParserUtil;
 import seedu.findvisor.model.AddressBook;
 import seedu.findvisor.model.person.Meeting;
 import seedu.findvisor.model.person.Person;
-import seedu.findvisor.model.person.Remark;
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
