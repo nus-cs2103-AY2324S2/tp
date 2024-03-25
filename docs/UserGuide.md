@@ -3,12 +3,17 @@ layout: page
 title: User Guide
 ---
 
-Gene-nie is our address book reimagined. It is a desktop app able to not only manage your contacts, but also to help you keep track of your genetic information. Gene-nie acts as your personal autobiographer, providing you with information on your family tree and history.
+### Table of Contents
 
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+
+## Introduction
+Gene-nie is not your ordinary address book; it's a comprehensive tool designed specifically for genealogists and family historians. With Gene-nie, you can do more than just manage contact information – it's your personal autobiographer, aiding you in unraveling the intricacies of your family tree and history.
+
+**Gene-nie** is purposefully designed for use via a [Command Line Interface (CLI)](https://www.w3schools.com/whatis/whatis_cli.asp), which is perfect for genealogists who prefer to type quickly and efficiently.
 
 ## Quick start
 
@@ -45,9 +50,11 @@ Gene-nie is our address book reimagined. It is a desktop app able to not only ma
 
 1. Refer to the [Features](#features) below for details of each command.
 
+[Back to Table of Contents](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+## Command Format
 
 <div markdown="block" class="alert alert-info">
 
@@ -74,14 +81,19 @@ Gene-nie is our address book reimagined. It is a desktop app able to not only ma
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </div>
 
-### Viewing help : `help`
+[Back to Table of Contents](#table-of-contents)
 
-Shows a message explaning how to access the help page.
+--------------------------------------------------------------------------------------------------------------------
 
-![help message](images/helpMessage.png)
+## Features: Viewing Person Profiles
 
-Format: `help`
+### Listing all persons : `list`
 
+Shows a list of all persons in the address book.
+
+Format: `list`
+
+## Features: Managing Person Profiles
 
 ### Adding a person: `add`
 
@@ -96,12 +108,6 @@ A person can have any number of tags (including 0)
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
-
-### Listing all persons : `list`
-
-Shows a list of all persons in the address book.
-
-Format: `list`
 
 ### Editing a person : `edit`
 
@@ -188,7 +194,26 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-### editing a relationship : `editRelation`
+[Back to Table of Contents](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Features: Managing Person Relationships
+
+### Adding a relationship : `addRelation`
+
+Adds a relationship between two people in the address book.
+
+Format: `addRelation UUID1 UUID2 RELATIONSHIP_TYPE`
+
+* Adds the relationship between the person with the specified `UUID1` and the person with the specified `UUID2`.
+* The `UUID1` and `UUID2` refer to the unique identifiers of the persons shown in the displayed person list.
+* The `UUID1` and `UUID2` **must be valid UUIDs**.
+* The `RELATIONSHIP_TYPE` is case-sensitive and matches the relationship type name exactly.
+* If the relationship already exists, the command will not have any effect.
+* If either persons do not exist, the command will not have any effect.
+
+### Editing a relationship : `editRelation`
 
 Edits the relationship between two people in the address book.
 
@@ -222,11 +247,31 @@ Format: `deleteRelation UUID1 UUID2 RELATIONSHIP_TYPE`
 Examples:
 * `deleteRelation 12db 34ab friend` deletes the relation friend between the person with the UUID 12db and the person with the UUID 34ab.
 
+[Back to Table of Contents](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Features: Clearing All Persons
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
 
 Format: `clear`
+
+[Back to Table of Contents](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+
+## General Features
+
+### Viewing help : `help`
+
+Shows a message explaning how to access the help page.
+
+![help message](images/helpMessage.png)
+
+Format: `help`## Features: General Features
 
 ### Exiting the program : `exit`
 
@@ -236,33 +281,57 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+Gene-nie data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+Gene-nie data is saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
-Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
+If your changes to the data file makes its format invalid, Gene-nie will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
+Furthermore, certain edits can cause Gene-nie to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
 
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
+[Back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
+**Q**: How do I install Java 11, the Java version required by Gene-nie?<br>
+**A**: You can download Java 11 from [here](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html).
+
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+
+**Q**: Do I need an active internet connection to use Gene-nie?<br>
+**A**: You can use Gene-nie offline, but you'll need an internet connection to download it to your device.
+
+[Back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Known issues
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
+
+[Back to Table of Contents](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Glossary
+
+| Term                      | Description                                                                                                                                                                                                                                                                                            |
+|---------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| CLI                       | **Command Line Interface (CLI):** A text-based interface that allows users to interact with a computer or software by entering text commands. It's often preferred by power users and developers for its efficiency and scriptability.                                                                 |
+| Field                     | **Field:** In the context of data, a field refers to a specific piece of information within a record or data structure. Fields are used to organise and store data in a structured manner, and they are often associated with a particular type or attribute.                                          |
+| GUI                       | **Graphical User Interface (GUI):** A user interface that utilises graphical elements such as icons, buttons, windows, and menus to allow users to interact with software or applications. GUIs are known for their visual appeal and user-friendliness.                                               |
+| Integer                   | **Integer:** In computer programming, an integer is a whole number without a fractional or decimal component. Integers are used to represent whole quantities in mathematics and computer science. They can be positive, negative, or zero.                                                            |
+| JAR                       | **JAR (Java ARchive):** A file format used for aggregating multiple files (typically Java class files, metadata, and resources) into a single compressed archive. JAR files are commonly used to package and distribute Java applications or libraries.                                                |
+| JSON                      | **JSON (JavaScript Object Notation):** A lightweight data interchange format that is easy for humans to read and write, and easy for machines to parse and generate. JSON is commonly used for data storage and exchange in web applications. It consists of key-value pairs enclosed in curly braces. |
+| Parameter                 | **Parameter:** In the context of software, a parameter is a variable or value that is passed into a function, method, or command. Parameters are used to customise the behavior of the function or command.                                                                                            |
+
+[Back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -276,8 +345,11 @@ _Details coming soon ..._
 | **Edit**            | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
 | **addAttribute**    | `addAttribute UUID ATTRIBUTE_NAME ATTRIBUTE_VALUE`<br> e.g., `addAttribute 12db Pet Dog`                                                                              |
 | **deleteAttribute** | `deleteAttribute UUID ATTRIBUTE_NAME`<br> e.g., `deleteAttribute 12db Pet`                                                                                            |
+| **addRelation**     | `addRelation UUID1 UUID2 RELATION_TYPE`<br> e.g., `addRelation 12db 3dab family`                                                                                      |
 | **editRelation**    | `editRelation UUID1 UUID2 OLD_RELATION_TYPE NEW_RELATION_TYPE`<br> e.g., `editRelation 12db 3dab family friend`                                                       |
 | **deleteRelation**  | `deleteRelation UUID1 UUID2 RELATION_TYPE`<br> e.g., `deleteRelation 12db 3dab family`                                                                                |
 | **Find**            | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
 | **List**            | `list`                                                                                                                                                                |
 | **Help**            | `help`                                                                                                                                                                |
+
+[Back to Table of Contents](#table-of-contents)
