@@ -100,31 +100,61 @@ ___
 
 ### Adding a new client: `add`
 
-This command adds a new client to your client list.
+_This command adds a new client to your client list._
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… [k/NEXTOFKIN]`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS k/NEXTOFKIN d/DESCRIPTION [t/TAG]…`
 
-**Tip:** A person can have any number of tags (or even 0!) **Tip:** A person's next of kin field is optional (it can be ommitted if a person does not have a next of kin)
+- Name being added must be unique
+- All parameters _except tag_ are compulsory
+
+<box type="tip" seamless>
+**Tip:** A person can have any number of tags (or even 0)
+</box>
 
 Examples:
 
--   `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
--   `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
--   `add n/Bill James p/01232228943 e/billj@example.com a/12 College Avenue West t/high priority k/John Doe`
+-   `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/Suffers from depression k/Jasmin Doe`
+-   `add n/Betsy Crowe t/friend d/Takes anxiety medication k/Bethany Crowe e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+-   `add n/Aaron James p/01232228943 e/billj@example.com a/12 College Avenue West t/highPriority k/John Doe d/Is an army veteran`
+
+Usage of Add command
+
+<video controls>
+  <source src="https://github.com/AY2324S2-CS2103T-W12-4/tp/assets/48405651/684dbfd0-53bc-41aa-bb20-82938f5154f1" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+### Listing all persons : `list`
+Shows a list of all persons.
+
+Format: `list`
 
 ### Updating a client : `update`
 
-This command helps update existing client's information in the client list in the event that something changes.
+_This command helps update existing client's information in the client list in the event that something changes._
 
-Format: `update u/existing user [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
+Format: `update u/existing user [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DESCRIPTION] [k/NEXTOFKIN] [t/TAG]…`
+
+- Edits the person with the specified NAME. The NAME provided must be the full name of the person. The NAME must be free of typos.
+- At least one of the optional fields must be provided.
+- Existing values will be updated to the input values.
+- When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
+- You can remove all the person’s tags by typing t/ without specifying any tags after it.
 
 Examples:
 
--   `Update u/Jane Doe n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-011` updates the information of Jane Doe's information to be  
+-   `update u/Jane Doe n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-011` updates the information of Jane Doe's information to be  
     name: John Doe  
-    Phone no: 98765432  
+    phone no: 98765432  
     email: [johnd@example.com](mailto:johnd@example.com)  
     address: John street, block 123, #01-011
+
+Usage of update command
+
+<video controls>
+  <source src="https://github.com/AY2324S2-CS2103T-W12-4/tp/assets/48405651/ad7cd05f-01bc-4a98-8074-b487e232fa52" type="video/mp4">
+  _Your browser does not support the video tag._
+</video>
 
 ### Locating persons by name: `find`
 
@@ -194,7 +224,6 @@ _These are a list of helpful actions to facilitate the ease of use of our applic
 
 
 <box type="tip" seamless>
-
 **Tip:** These shortcuts only work when the text box is selected
 </box>
 
@@ -223,7 +252,7 @@ ___
 
 | Action      | Format                                                                            | Examples                                                                                               |
 |-------------|-----------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------|
-| **Add**     | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… [k/NEXTOFKIN]`              | `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`     |
+| **Add**     | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… [k/NEXTOFKIN]`              | `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 d/Suffers from anxiety k/Jon Ho t/friend t/colleague`     |
 | **Update**  | `update u/existing user [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…` | `Update u/Jane Doe n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-011`        |
 | **Find**    | `find KEYWORD [MORE_KEYWORDS]`                                                    | `find James Jake`                                                                                      |
 | **Undo**    | `undo`                                                                            |                                                                                                        |
