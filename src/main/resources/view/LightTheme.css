@@ -73,26 +73,30 @@
 }
 
 .split-pane:horizontal .split-pane-divider {
-    -fx-background-color: #f1f4f4;
+    -fx-background-color: white;
     -fx-border-color: transparent;
 }
 
 .split-pane {
     -fx-border-radius: 1;
     -fx-border-width: 1;
-    -fx-background-color: #e2e5ef;
+    -fx-background-color: white;
+    /*-fx-background-radius: 15px;*/
+    /*-fx-border-radius: 15px;*/
 }
 
 .list-view {
     -fx-background-insets: 0;
     -fx-padding: 0;
-    -fx-background-color: #e2e5ef;
+    -fx-background-color: white;
 }
 
 .list-cell {
     -fx-label-padding: 0 0 0 0;
     -fx-graphic-text-gap : 0;
     -fx-padding: 0 0 0 0;
+    -fx-background-radius: 15px;
+    -fx-border-radius: 15px;
 }
 
 .list-cell:filled:even {
@@ -108,7 +112,7 @@
 }
 
 .list-cell:filled:selected #cardPane {
-    -fx-border-color: #052a3a;
+    /*-fx-border-color: #052a3a;*/
     -fx-border-width: 1;
 }
 
@@ -134,7 +138,7 @@
 
 .pane-with-border {
     -fx-background-color: white;
-    -fx-border-color: #052a3a;
+    /*-fx-border-color: #052a3a;*/
     -fx-border-top-width: 1px;
 }
 
@@ -143,7 +147,7 @@
 }
 
 .result-display {
-    -fx-background-color: transparent;
+    -fx-background-color: white;
     -fx-font-family: "Segoe UI Light";
     -fx-font-size: 13pt;
     -fx-text-fill: #052a3a;
@@ -278,7 +282,7 @@
 }
 
 .scroll-bar {
-    -fx-background-color: #e2e5ef;
+    -fx-background-color: white;
 }
 
 .scroll-bar .thumb {
@@ -306,6 +310,7 @@
 #cardPane {
     -fx-background-color: transparent;
     -fx-border-width: 0;
+
 }
 
 #commandTypeLabel {
@@ -314,23 +319,26 @@
 }
 
 #commandTextField {
-    -fx-background-color: transparent #e2e5ef transparent #e2e5ef;
+    -fx-background-color: #e2e5ef;
     -fx-background-insets: 0;
-    -fx-border-color: #052a3a;
-    -fx-border-insets: 0;
-    -fx-border-width: 1;
+    /*-fx-border-color: #052a3a;*/
+    /*-fx-border-insets: 0;*/
+    /*-fx-border-width: 1;*/
     -fx-font-family: "Segoe UI Light";
     -fx-font-size: 13pt;
     -fx-text-fill: #052a3a;
+    -fx-background-radius: 15px;
+    -fx-border-radius: 15px;
 }
 
 #filterField, #personListPanel, #personWebpage {
-    -fx-effect: innershadow(gaussian, #e2e5ef, 10, 0, 0, 0);
+    /*-fx-effect: innershadow(gaussian, #e2e5ef, 10, 0, 0, 0);*/
 }
 
 #resultDisplay .content {
-    -fx-background-color: transparent, #e2e5ef, transparent, #e2e5ef;
-    -fx-background-radius: 0;
+    -fx-background-color: #e2e5ef;
+    -fx-background-radius: 15px;
+    -fx-border-radius: 15px;
 }
 
 #tags {
@@ -345,4 +353,8 @@
     -fx-border-radius: 2;
     -fx-background-radius: 2;
     -fx-font-size: 11;
+}
+
+#personListPanelPlaceholder, #appointmentListPanelPlaceholder {
+    -fx-background-color: white;
 }
