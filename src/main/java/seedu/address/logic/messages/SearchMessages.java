@@ -1,7 +1,7 @@
 package seedu.address.logic.messages;
 
 /**
- * Container for user delete command visible messages.
+ * Container for user search command visible messages.
  */
 public class SearchMessages extends Messages {
     public static final String MESSAGE_SEARCH_PERSON_SUCCESS = "Woof! %1$s contacts found! \uD83D\uDC36";
