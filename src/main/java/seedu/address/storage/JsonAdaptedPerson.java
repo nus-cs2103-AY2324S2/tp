@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -19,17 +20,14 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Policy;
 import seedu.address.model.tag.Tag;
-import java.util.logging.Logger;
-
 
 /**
  * Jackson-friendly version of {@link Person}.
  */
 class JsonAdaptedPerson {
-
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
     private static final Logger logger = LogsCenter.getLogger(JsonAdaptedPerson.class);
 
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 
     private final String name;
     private final String phone;

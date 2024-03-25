@@ -2,11 +2,11 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BENEFIT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_POLICY_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_POLICY_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PREMIUM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PREMIUM_TERM;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_BENEFIT;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
@@ -32,18 +32,27 @@ public class AddPolicyCommandParser implements Parser<AddPolicyCommand> {
                 PREFIX_POLICY_NAME, PREFIX_POLICY_NUMBER, PREFIX_PREMIUM_TERM, PREFIX_PREMIUM, PREFIX_BENEFIT);
 
         Index index;
+        String policyName = argMultimap.getValue(PREFIX_POLICY_NAME).orElse(null);
+        String policyNumber = argMultimap.getValue(PREFIX_POLICY_NUMBER).orElse(null);
+        String premiumTerm = argMultimap.getValue(PREFIX_PREMIUM_TERM).orElse(null);
+        String premium = argMultimap.getValue(PREFIX_PREMIUM).orElse(null);
+        String benefit = argMultimap.getValue(PREFIX_BENEFIT).orElse(null);
+
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
+            if (policyName == null
+                    || policyNumber == null
+                    || premiumTerm == null
+                    || premium == null
+                    || benefit == null) {
+                throw new IllegalValueException(MESSAGE_INVALID_COMMAND_FORMAT);
+            }
         } catch (IllegalValueException ive) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddPolicyCommand.MESSAGE_USAGE), ive);
         }
 
-        String policyName = argMultimap.getValue(PREFIX_POLICY_NAME).orElse("");
-        String policyNumber = argMultimap.getValue(PREFIX_POLICY_NUMBER).orElse("");
-        String premiumTerm = argMultimap.getValue(PREFIX_PREMIUM_TERM).orElse("");
-        String premium = argMultimap.getValue(PREFIX_PREMIUM).orElse("");
-        String benefit = argMultimap.getValue(PREFIX_BENEFIT).orElse("");
+
 
         return new AddPolicyCommand(index, policyName, policyNumber, premiumTerm, premium, benefit);
     }

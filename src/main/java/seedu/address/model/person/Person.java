@@ -74,14 +74,6 @@ public class Person {
     }
 
     /**
-     * Adds a policy to the set of policies.
-     * @param policy The policy to be added.
-     */
-    public void addPolicy(Policy policy) {
-        this.policies.add(policy);
-    }
-
-    /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
@@ -153,21 +145,21 @@ public class Person {
         if (getTags().isEmpty()) {
             builder.append("None");
         } else {
-            getTags().forEach(tag -> builder.append("[").append(tag.tagName).append("] ")); // Assuming Tag objects have a tagName field
+            getTags().forEach(tag -> builder.append("[").append(tag.tagName).append("] "));
         }
 
         builder.append(" Policies: ");
         if (getPolicies().isEmpty()) {
             builder.append("None");
         } else {
-            getPolicies().forEach(policy -> builder.append("[").append(policy.policyName)
-                    // Include additional policy details here, if applicable
-                    .append(", Number: ").append(policy.policyNumber) // Example for additional details
+            getPolicies().forEach(policy -> builder.append("[").append(" Policy Name: ")
+                    .append(policy.policyName)
+                    .append(", Number: ").append(policy.policyNumber)
                     .append(", Premium Term: ").append(policy.premiumTerm)
                     .append(", Premium: ").append(policy.premium)
                     .append(", Benefit: ").append(policy.benefit)
                     .append("] "));
         }
-        return builder.toString().trim(); // Trim to remove any trailing spaces
+        return builder.toString().trim(); // Trim to remove any trailing space
     }
 }
