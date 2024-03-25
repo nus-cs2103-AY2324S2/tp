@@ -4,68 +4,52 @@
   pageNav: 3
 ---
 
-# AB-3 User Guide
+# Hi:Re User Guide
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a  Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+Hi:Re is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
 
 <!-- * Table of Contents -->
 <page-nav-print />
 
---------------------------------------------------------------------------------------------------------------------
+***
 
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `HiRe.jar` from [here](https://github.com/AY2324S2-CS2103T-T12-3/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+1. Open a command terminal, `cd` into the folder you put the `HiRe.jar` file in, and use the `java -jar HiRe.jar` command to run the application.<br>
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
+   A GUI similar to the below should appear in a few seconds.<br>
+   
+   <box type="info" seamless>Note how the app contains some sample data.</box>
 
-   * `list` : Lists all contacts.
+   <img src="images/ui/startUp.png" width="452.5" height="369.5"><br>
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+1. Type the command in the `command box` and press `Enter` to execute it.
 
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
+1. Refer to the [Commands](#commands) below for details of each command.
 
-   * `clear` : Deletes all contacts.
+1. Refer to the [Features](#features) below for details of built-in features.
 
-   * `exit` : Exits the app.
+***
 
-1. Refer to the [Features](#features) below for details of each command.
-
---------------------------------------------------------------------------------------------------------------------
-
-## Features
+## Commands
 
 <box type="info" seamless>
 
 **Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
-
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
-
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+* Words in `()` are the parameters to be supplied by the user.<br>
+  e.g. in `- /id (id)`, `(id)` is a parameter which can be used as `- /id johndoe69`.
 
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </box>
 
+<!--
 ### Viewing help : `help`
 
 Shows a message explaning how to access the help page.
@@ -73,8 +57,78 @@ Shows a message explaning how to access the help page.
 ![help message](images/helpMessage.png)
 
 Format: `help`
+-->
 
+<panel header="### Adding a contact: <code>+</code>" peek>
+  Adds a person to the address book.<br><br>
 
+  Format: <code>+ /name (name) /id (id) /hp (handphone)</code><br>
+
+  Example: <code>+ /name John Doe /id johndoe41 /hp 98765432</code><br>
+
+  <img src="images/ui/add/beforeAdd.png" width="452.5" height="369.5"><br>
+
+  <box type="success">
+    A GUI similar to below should appear upon successful command input.<br><br>
+    <img src="images/ui/add/afterAdd.png" width="452.5" height="369.5"><br><br>
+  </box>
+
+  <box type="important" seamless>
+    All 3 fields must be present and filled in order as specified.<br>
+    ID is <b>unique</b> (i.e. No duplicates of ID is allowed).
+  </box>
+
+  <box type="wrong">
+    Duplicate ID.<br><br>
+    <img src="images/ui/add/duplicateId.png" width="452.5" height="369.5"><br><br>
+  </box>
+
+  <box type="wrong">
+    Insufficient fields.<br><br>
+    <img src="images/ui/add/insufficentFields.png" width="452.5" height="369.5"><br><br>
+  </box>
+
+</panel>
+
+<panel header="### Deleting a contact: <code>-</code>" peek>
+  Deletes a person with his specified ID.<br><br>
+
+  Format: <code>- /id (id)</code><br>
+
+  Example: <code>- /id johndoe46</code><br>
+
+  <img src="images/ui/delete/beforeDelete.png" width="452.5" height="369.5"><br>
+
+  <box type="success">
+    A GUI similar to below should appear upon successful command input.<br><br>
+    <img src="images/ui/delete/afterdelete.png" width="452.5" height="369.5"><br><br>
+  </box>
+
+  <box type="wrong">
+    Invalid ID.<br><br>
+    <img src="images/ui/delete/invalidId.png" width="452.5" height="369.5"><br><br>
+  </box>
+
+</panel>
+
+<panel header="### Toggle display: <code>$</code>" peek>
+  Toggle display to view / hide the addressbook.<br><br>
+
+  Format: <code>$</code><br>
+
+  <box type="definition">
+    Viewing addressbook.<br><br>
+    <img src="images/ui/toggle/view.png" width="452.5" height="369.5"><br><br>
+  </box>
+
+  <box type="definition" theme="info">
+    Hiding addressbook.<br><br>
+    <img src="images/ui/toggle/hide.png" width="452.5" height="369.5"><br><br>
+  </box>
+
+</panel>
+
+<!--
 ### Adding a person: `add`
 
 Adds a person to the address book.
@@ -177,28 +231,64 @@ Furthermore, certain edits can cause the AddressBook to behave in unexpected way
 _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
+-->
+***
+
+## Features
+
+Features are built-in for the ease of use. They do not require any commands for it to work.
+
+<panel header="### Sort" peek>
+  The addressbook is sorted in alphabetical order every time a new contact is added / deleted.<br><br>
+
+  <box type="definition">
+    Before.<br><br>
+    <img src="images/ui/sort/beforeSort.png" width="452.5" height="369.5"><br><br>
+  </box>
+
+  <box type="definition" theme="info">
+    After.<br><br>
+    <img src="images/ui/sort/afterSort.png" width="452.5" height="369.5"><br><br>
+  </box>
+   
+</panel>
+
+<panel header="### Delete sample data" peek>
+  Sample data is deleted when you add the first contact into the addressbook.<br><br>
+
+  <box type="definition">
+    Before.<br><br>
+    <img src="images/ui/sampledata/before.png" width="452.5" height="369.5"><br><br>
+  </box>
+
+  <box type="definition" theme="info">
+    After.<br><br>
+    <img src="images/ui/sampledata/after.png" width="452.5" height="369.5"><br><br>
+  </box>
+   
+</panel>
+
+***
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
+<panel header="**Q**: How do I transfer my data to another Computer?">
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+</panel>
 
---------------------------------------------------------------------------------------------------------------------
+***
 
 ## Known issues
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
 
---------------------------------------------------------------------------------------------------------------------
+***
 
 ## Command summary
 
-Action     | Format, Examples
------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear**  | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List**   | `list`
-**Help**   | `help`
+Action     | Format
+-----------|---------
+**Add**    | `+ /name (name) /id (id) /hp (handphone)`
+**Delete** | `- /id (id)`
+**Toggle** | `$`
+
