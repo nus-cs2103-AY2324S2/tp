@@ -6,7 +6,7 @@ start
 :User sends an 'add' command;
 :AddCommandParser generates a Person object;
 if () then ([person already exists])
-    :Throw command excepion;
+    :Throw CommandException;
 stop
 else
 :Person is added to the address book;
