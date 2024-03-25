@@ -32,4 +32,18 @@ public class StringFormatter {
 
         return capitalized.toString().trim();
     }
+
+    /**
+     * Removes commas from a String
+     *
+     * @param input Input string.
+     * @return The same string with commas removed.
+     */
+    public static String removeCommas(String input) {
+        if (input == null || input.isEmpty()) {
+            return input;
+        }
+
+        return input.replace(",", "");
+    }
 }

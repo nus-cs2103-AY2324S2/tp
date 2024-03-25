@@ -1,10 +1,14 @@
 package seedu.address.commons.util;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.io.FileNotFoundException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import org.junit.jupiter.api.Test;
 
@@ -138,6 +142,19 @@ public class StringUtilTest {
     @Test
     public void getDetails_nullGiven_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> StringUtil.getDetails(null));
+    }
+
+    @Test
+    void timeStampString_hasCorrectFormat() {
+        String timeStamp = StringUtil.timeStampString();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
+        assertDoesNotThrow(() -> LocalDateTime.parse(timeStamp, formatter));
+    }
+
+    @Test
+    void timeStampString_hasCorrectLength() {
+        String timeStamp = StringUtil.timeStampString();
+        assertEquals(14, timeStamp.length());
     }
 
 }
