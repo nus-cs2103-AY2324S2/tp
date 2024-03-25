@@ -3,6 +3,10 @@ layout: page
 title: User Guide
 ---
 
+![Ui](images/PoochPlannerLogo.png)
+
+## Welcome to PoochPlanner
+
 PoochPlanner is an **address book manager for managing contacts, optimised for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, PoochPlanner can get your contact management tasks done faster than traditional GUI apps.
 
 * Table of Contents
