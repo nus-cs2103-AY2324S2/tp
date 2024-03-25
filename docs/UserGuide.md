@@ -215,6 +215,27 @@ For a comprehensive deep-dive into the redo command, please refer to the [Implem
 
 _IMAGE_BEFORE and IMAGE_AFTER TBA_
 
+### Displaying a client's information : `display`
+
+This command allows you to view a client's information by their **name**.
+
+Format: `display n/NAME`
+
+Examples: `display John` would display all of John's information as a contact card on the application.
+
+### Deleting a client: `delete`
+
+This command allows you to delete a client at a specified `INDEX` from your contact list.
+
+Format: `delete INDEX`
+
+Examples: `delete 1` would delete the first client in your client list.
+
+Usage of delete command
+
+<img src="images/Delete_command_before.png" width="375"/> <img src="images/Delete_command_after.png" width="375"/>
+
+
 ### Clearing all entries : `clear`
 
 This command allows you to purge your client list, removing **ALL** clients in your client list.
