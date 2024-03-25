@@ -35,6 +35,8 @@ public class AppointmentCard extends UiPart<Region> {
     private Label hasAttended;
     @FXML
     private Label appointmentDescription;
+    @FXML
+    private Label feedbackScore;
 
     /**
      * Creates a {@code AppointmentCode} with the given {@code Appointment} to display.
@@ -49,5 +51,8 @@ public class AppointmentCard extends UiPart<Region> {
         appointmentDateTime.setText(appointment.getAppointmentDateTime().toString().replace("T", " "));
         hasAttended.setText(Boolean.toString(appointment.getAttendedStatus()));
         appointmentDescription.setText(appointment.getAppointmentDescription());
+        if (appointment.getFeedbackScore() != null) {
+            feedbackScore.setText("Score: " + appointment.getFeedbackScore().toString());
+        }
     }
 }
