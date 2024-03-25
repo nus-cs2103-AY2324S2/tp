@@ -12,13 +12,13 @@
 
 Welcome **logistics managers**! If you are someone who 
 
-1. manages logistics and inventory in a professional capacity,
+1. Manages logistics and inventory in a professional capacity,
 
-2. is a fast typist, tired of shuffling back and forth between your mouse and keyboard,
+2. Is a fast typist, tired of shuffling back and forth between your mouse and keyboard,
 
-3. is feeling swamped by the tedium of contact management on traditional office software...
+3. Is feeling swamped by the tedium of contact management on traditional office software...
 
-rejoice because AssetBook-3 is here! 
+*Rejoice because AssetBook-3 is here!*<br><br> 
 AssetBook-3 helps to streamline the task of **tracking contacts and which logistical assets they are in charge of**, 
 making your management tasks smoother than ever.
 
@@ -68,13 +68,13 @@ or skip to the [command summary](#command-summary).
   + [Tutorials](#tutorials)
 + [Navigating the GUI](#navigating-the-gui)
 + [Features](#features)
-  + [Adding a Contact](#adding-a-person-add)
-  + [Deleting a Contact](#delete-a-contact-or-asset-delete)
+  + [Adding a Contact](#adding-a-contact-add)
+  + [Deleting a Contact](#deleting-a-contact-delete)
   + [Editing a Contact](#editing-a-contact-edit)
-  + [Editing an Asset](#editing-an-asset-edita)
-  + [Searching for Contacts](#locating-persons-by-name-or-asset-find)
-  + [Undo the last Command](#undo-last-command-undo)
-  + [Exiting the Application](#exiting-the-program-exit)
+  + [Editing an Asset](#editing-an-asset-asset)
+  + [Finding Contacts](#finding-contacts-find)
+  + [Undoing Commands](#undoing-commands-undo)
+  + [Exiting the Application](#exiting-the-application-exit)
 + [Frequently Asked Questions](#faq)
 + [Known Issues](#known-issues)
 + [Command Summary](#command-summary)
@@ -165,14 +165,14 @@ For detailed documentation of all available commands, refer to the [features](#f
 
 Adds a new contact to the system, with 0 or more assets associated with the contact.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]... [A/ASSET]...`
+Format: `add n/NAME p/PHONE e/EMAIL o/OFFICE [t/TAG]... [a/ASSET]...`
 
 <box type="tip" seamless>
 A person can have any number of tags and assets (including 0)
 </box>
 
 #### Examples
-* Add a new contact associated with the asset `L293D`: `add n/John Doe e/johndoe@example.com a/574 Ang Mo Kio Ave 10 p/12345678 A/L293D`
+* Add a new contact associated with the asset `L293D`: `add n/John Doe e/johndoe@example.com o/574 Ang Mo Kio Ave 10 p/12345678 a/L293D`
 
 #### Options
 `NAME`
@@ -181,24 +181,27 @@ A person can have any number of tags and assets (including 0)
 * Leading and trailing spaces are automatically removed.
 * Multiple people with the same name are allowed.
 
-`EMAIL`
-* Email of the contact.
-* Must have ‘@’.
-
 `PHONE`
 * Phone number of the contact.
 * Only digits are allowed.
 * Any number of digits are allowed.
+* 
+`EMAIL`
+* Email of the contact.
+* Must have ‘@’.
 
-`ADDRESS`
-* Address of the contact.
+`OFFICE`
+* Office address of the contact.
+
+`TAG`
+* Tag(s) to categorize the contact into.
 
 `ASSET`
 * Asset(s) associated with contact.
 * Contact can be created first without assets, then assets can be added later using the Edit command.
 * Case sensitive, i.e. NUS ≠ nus.
 * Assets must have unique names. If the asset already exists in the database, the existing asset will be linked instead of a new asset.
-* Multiple assets can be specified. For example, a valid option is `A/asset1 A/asset2 A/asset3`.
+* Multiple assets can be specified. For example, a valid option is `a/asset1 a/asset2 a/asset3`.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -219,7 +222,7 @@ Format: `delete INDEX`
 
 Edit existing contacts without recreating them.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]... [A/ASSET]...`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [o/OFFICE] [t/TAG]... [a/ASSET]...`
 
 Example: `edit 1 e/newemail@example.com` edits the contact with id `1`, changing its email to `newemail@example.com`.
 
@@ -228,7 +231,7 @@ Example: `edit 1 e/newemail@example.com` edits the contact with id `1`, changing
 * Existing values will be updated to the input values.
 * When editing assets, the existing assets of the person will be removed i.e adding of assets is not cumulative.
 * You can remove all the person’s tags by typing `t/` without specifying any tags after it.
-* You can remove all the person’s assets by typing `A/` without specifying any assets after it.
+* You can remove all the person’s assets by typing `a/` without specifying any assets after it.
 
 ### Editing an Asset: `asset`
 
@@ -242,9 +245,9 @@ Example: `asset old/hammer new/screwdriver` edits the asset `hammer`, changing i
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Searching for Contacts: `find`
+### Finding Contacts: `find`
 
-Finds persons whose names, tags or assets contain any of the given keywords.
+Finds contacts whose names, tags or assets contain any of the given keywords.
 
 Format: `find KEYWORD [KEYWORD]...`
 
@@ -255,7 +258,7 @@ Example: `find John` searches all contact names, tags and assets for the keyword
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Undo the last Command: `undo`
+### Undoing Commands: `undo`
 
 Undoes the last modifying command.
 
@@ -271,21 +274,21 @@ Format: `exit`
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Saving the data
+### Saving the data file
 
-AssetBook-3 data is saved on the hard disk automatically after any command that changes the data. There is no need to save manually.
+AssetBook-3's data is saved automatically after any command that changes the data. There is no need to save manually.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ### Editing the data file
 
-AssetBook data are saved automatically as a JSON file `[JAR file location]/data/assetbook.json`. Advanced users are welcome to update data directly by editing that data file.
+AssetBook-3's data are saved automatically as a JSON file `[JAR file location]/data/assetbook.json`.<br>Advanced users are welcome to update data directly by editing that data file.
 
 <box type="warning" seamless>
 
 **Caution:**
-If your changes to the data file makes its format invalid, AssetBook will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
-Furthermore, certain edits can cause the AssetBook to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
+If your changes to the data file makes its format invalid, AssetBook-3 will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
+Furthermore, certain edits can cause the AssetBook-3 to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
 
 ---{.double}
@@ -293,7 +296,7 @@ Furthermore, certain edits can cause the AssetBook to behave in unexpected ways 
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AssetBook home folder.
+**A**: Install the app in the other computer and replace the JSON data file it creates with the JSON file from your previous AssetBook-3 home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -307,9 +310,9 @@ Furthermore, certain edits can cause the AssetBook to behave in unexpected ways 
 
 Action           | Format                                                                        | Example
 -----------------|-------------------------------------------------------------------------------|--- 
-**Add**          | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]... [A/ASSET]...`         | `add n/John Doe e/johndoe@example.com p/+12345678 A/L293D`
+**Add**          | `add n/NAME p/PHONE e/EMAIL o/OFFICE [t/TAG]... [a/ASSET]...`                 | `add n/John Doe e/johndoe@example.com p/+12345678 a/L293D`
 **Delete**       | `delete INDEX`                                                                | `delete 1`
-**Edit contact** | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]... [A/ASSET]...` | `edit 1 e/newemail@example.com`
+**Edit contact** | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [o/OFFICE] [t/TAG]... [a/ASSET]...`  | `edit 1 e/newemail@example.com`
 **Edit asset**   | `asset old/OLD_ASSET_NAME new/NEW_ASSET_NAME`                                 | `asset old/hammer new/screwdriver`
 **Find**         | `find KEYWORD [KEYWORD]...`                                                   | `find John`
 **Undo**         | `undo`                                                                        | `undo`
