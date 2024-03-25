@@ -235,6 +235,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     /** delete appointments when person is deleted */
     public void deleteAppointmentsWithNric(Nric targetNric) {
         appointments.deleteAppointmentsWithNric(targetNric);
+        appointmentView.deleteAppointmentsWithNric(targetNric);
     }
 
     /**
