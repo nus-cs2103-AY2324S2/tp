@@ -140,12 +140,11 @@ Examples:
 
 * `/edit-staff ; name : Thomas ; field : { address : Poochie Street 25 ; employment : full-time }`
 
-  The above command edits the address of **_Thomas_** to **_Poochie Street 25_**.
-  The above command also edits the employment of **_Thomas_**, which **must** be a **_Pooch Staff_**, to **_full-time_**.
+  The above command edits the **address and employment** field of **_Thomas_** to **_Poochie Street 25_** and **_full-time_** respectively. 
 
-### Deleting a person : `delete`
+### Deleting a contact : `delete`
 
-Deletes the specified person from the Pooch Planner.
+Deletes the specified contact from the Pooch Planner.
 
 Format: `/delete ; name : [name]`
 
@@ -212,6 +211,26 @@ Examples:
   The above command adds the note "meet poochie tonight to get kibble" to 
   the contact with name **_Poochie_**, provided **_Poochie_** exists as a name of a contact in Pooch Contact Book
 
+### Pinning a contact : `pin`
+
+Pins the specified contact on Pooch Planner so that the contact will consistently appear at the top on the contact list.
+
+Format: `/pin ; name : [name]`
+
+* Pins the contact with the specified `name`.
+* Note that the specified contact must first exist in Pooch Contact Book.
+* The name is a compulsory field that is case-insensitive but space-sensitive.
+
+Examples:
+* `/pin ; name : Poochie`
+
+   The above command pins the contact with name **_Poochie_**, provided **_Poochie_** exists as a name of a contact in Pooch Contact Book.
+  
+* `/pin ; name : Moochie`
+
+   The above command pin the contact with name **_Moochie_**, provided **_Moochie_** exists as a name of a contact in Pooch Contact Book.
+
+
 ### Undo a command : `undo`
 
 Undo a previous command which made a change to Pooch Planner history.
@@ -248,10 +267,6 @@ AddressBook data are saved in the hard disk automatically after any command that
 
 AddressBook data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, PoochPlanner will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
-Furthermore, certain edits can cause the PoochPlanner to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
-</div>
 
 ### Archiving data files `[coming in v2.0]`
 
