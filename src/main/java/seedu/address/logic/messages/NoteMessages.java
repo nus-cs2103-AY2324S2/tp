@@ -1,7 +1,7 @@
 package seedu.address.logic.messages;
 
 /**
- * Container for user delete command visible messages.
+ * Container for user note command visible messages.
  */
 public class NoteMessages extends Messages {
     public static final String MESSAGE_ADD_NOTE_SUCCESS =

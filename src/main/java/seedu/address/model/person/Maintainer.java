@@ -22,7 +22,7 @@ public class Maintainer extends Person {
      */
     public Maintainer(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
                       Skill skill, Commission commission) {
-        super(name, phone, email, address, new Note(""), tags);
+        super(name, phone, email, address, new Note("No additional note set"), tags);
         requireAllNonNull(skill, commission);
         this.skill = skill;
         this.commission = commission;
