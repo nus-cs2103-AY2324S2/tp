@@ -8,6 +8,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import java.util.List;
 
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.messages.DeleteMessages;
 import seedu.address.logic.messages.NoteMessages;
 import seedu.address.model.Model;
 import seedu.address.model.person.DeadlineNote;
@@ -88,7 +89,9 @@ public class NoteCommand extends Command {
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
-        return new CommandResult(generateSuccessMessage(editedPerson));
+//        return new CommandResult(generateSuccessMessage(editedPerson));
+        return new CommandResult(String.format(NoteMessages.MESSAGE_ADD_NOTE_SUCCESS,
+                NoteMessages.format(editedPerson)));
     }
 
     /**
