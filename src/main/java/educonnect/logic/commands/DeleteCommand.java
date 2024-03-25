@@ -48,32 +48,30 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        Optional<Student> toBeDeleted = Optional.empty();
+        Optional<Student> optionalToBeDeleted = Optional.empty();
 
-        if (deleteStudentDescriptor.getStudentId().map(
-                studentId -> model.hasStudentId(studentId)).isPresent()) {
-            toBeDeleted = deleteStudentDescriptor.getStudentId().flatMap(
+        if (deleteStudentDescriptor.getStudentId().isPresent()) {
+            optionalToBeDeleted = deleteStudentDescriptor.getStudentId().flatMap(
                     studentId -> model.getStudentWithStudentId(studentId));
 
-        } else if (deleteStudentDescriptor.getEmail().map(
-                email -> model.hasEmail(email)).isPresent()) {
-
-            toBeDeleted = deleteStudentDescriptor.getEmail().flatMap(
+        } else if (deleteStudentDescriptor.getEmail().isPresent()) {
+            optionalToBeDeleted = deleteStudentDescriptor.getEmail().flatMap(
                     email -> model.getStudentWithEmail(email));
 
-        } else if (deleteStudentDescriptor.getTelegramHandle().map(
-                telegramHandle -> model.hasTelegramHandle(telegramHandle)).isPresent()) {
-
-            toBeDeleted = deleteStudentDescriptor.getTelegramHandle().flatMap(
+        } else if (deleteStudentDescriptor.getTelegramHandle().isPresent()) {
+            optionalToBeDeleted = deleteStudentDescriptor.getTelegramHandle().flatMap(
                     tele -> model.getStudentWithTelegramHandle(tele));
-
         }
 
-        return toBeDeleted.map(studentToDelete -> {
-            model.deleteStudent(studentToDelete);
-            return new CommandResult(String.format(MESSAGE_DELETE_STUDENT_SUCCESS, Messages.format(studentToDelete)));
-        }).orElseThrow(() -> new CommandException(Messages.MESSAGE_NO_STUDENT_FOUND));
+        // No student exists in the book
+        if (optionalToBeDeleted.isEmpty()) {
+            throw new CommandException(Messages.MESSAGE_NO_STUDENT_FOUND);
+        }
 
+        Student studentToDelete = optionalToBeDeleted.get();
+
+        model.deleteStudent(studentToDelete);
+        return new CommandResult(String.format(MESSAGE_DELETE_STUDENT_SUCCESS, Messages.format(studentToDelete)));
     }
 
     @Override
