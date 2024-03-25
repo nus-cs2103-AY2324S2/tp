@@ -1,15 +1,21 @@
 package seedu.address.ui;
 
+import java.io.IOException;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import seedu.address.AddCommandHelper;
+import seedu.address.Main;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
@@ -34,6 +40,8 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private ExitWindow exitWindow;
+
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -55,17 +63,20 @@ public class MainWindow extends UiPart<Stage> {
      */
     public MainWindow(Stage primaryStage, Logic logic) {
         super(FXML, primaryStage);
-
+        System.out.println("yay");
         // Set dependencies
         this.primaryStage = primaryStage;
         this.logic = logic;
 
         // Configure the UI
+
         setWindowDefaultSize(logic.getGuiSettings());
 
         setAccelerators();
 
         helpWindow = new HelpWindow();
+        exitWindow = new ExitWindow();
+
     }
 
     public Stage getPrimaryStage() {
@@ -147,12 +158,28 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    @FXML
+    private void handleAddByStep() {
+        try {
+            Stage stage = new Stage();
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/CommandHelperWindow.fxml"));
+            AnchorPane ap = fxmlLoader.load();
+            Scene scene = new Scene(ap);
+            stage.setScene(scene);
+            fxmlLoader.<CommandHelperWindow>getController().setCommandHelper(new AddCommandHelper());
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
     void show() {
         primaryStage.show();
     }
 
     /**
-     * Closes the application.
+     * Closes the application when the cross button is clicked.
      */
     @FXML
     private void handleExit() {
@@ -160,7 +187,14 @@ public class MainWindow extends UiPart<Stage> {
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
-        primaryStage.hide();
+        exitWindow.hide();
+        //primaryStage.hide();
+    }
+
+    @FXML
+    private void showExitWindow() {
+        helpWindow.hide();
+        exitWindow.show();
     }
 
     public PersonListPanel getPersonListPanel() {
@@ -183,7 +217,11 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isExit()) {
-                handleExit();
+                showExitWindow();
+            }
+
+            if (commandResult.isAddByStep()) {
+                handleAddByStep();
             }
 
             return commandResult;

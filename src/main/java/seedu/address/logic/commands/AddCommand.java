@@ -36,8 +36,10 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "owesMoney";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
-
+    public static final String MESSAGE_DUPLICATE_PERSON = "ERROR! A person with the same name has been found in your "
+            + "address book. \nPlease replace the command word 'add' with your choice (overwrite or duplicate)\n"
+            + "*If your choice is to overwrite, include the index which the existing user is stored.\n"
+            + "eg. overwrite 1 <remainingCommand>";
     private final Person toAdd;
 
     /**

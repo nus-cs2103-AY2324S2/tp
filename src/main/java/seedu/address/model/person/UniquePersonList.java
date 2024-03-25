@@ -3,12 +3,15 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.model.person.exceptions.DuplicatePersonNotFoundException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 
 /**
@@ -33,7 +36,7 @@ public class UniquePersonList implements Iterable<Person> {
      */
     public boolean contains(Person toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSamePerson);
+        return internalList.stream().anyMatch(toCheck::equals);
     }
 
     /**
@@ -42,8 +45,17 @@ public class UniquePersonList implements Iterable<Person> {
      */
     public void add(Person toAdd) {
         requireNonNull(toAdd);
-        if (contains(toAdd)) {
-            throw new DuplicatePersonException();
+        internalList.add(toAdd);
+    }
+
+    /**
+     * Adds a person to the list.
+     * The person must already exist in the list.
+     */
+    public void duplicateAdd(Person toAdd) {
+        requireNonNull(toAdd);
+        if (!contains(toAdd)) {
+            throw new DuplicatePersonNotFoundException();
         }
         internalList.add(toAdd);
     }
@@ -69,6 +81,33 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
+     * Replaces the person {@code target} in the list with {@code editedPerson}.
+     * {@code target} must exist in the list.
+     * The person identity of {@code editedPerson} must be the same as another existing person in the list.
+     */
+    public void setDuplicatePerson(Person target, Person editedPerson) {
+        requireAllNonNull(target, editedPerson);
+
+        int index = internalList.indexOf(target);
+        if (index == -1) {
+            throw new DuplicatePersonNotFoundException();
+        }
+
+        if (target.isSamePerson(editedPerson)) {
+            internalList.set(index, editedPerson);
+        }
+    }
+
+    /**
+     * Retrieves the person {@code target} in the list with {@code editedPerson}.
+     * {@code target} must exist in the list.
+     * The person identity of {@code editedPerson} must be the same as another existing person in the list.
+     */
+    public Person getPerson(int indexOfTarget) {
+        return internalList.get(indexOfTarget);
+    }
+
+    /**
      * Removes the equivalent person from the list.
      * The person must exist in the list.
      */
@@ -90,9 +129,11 @@ public class UniquePersonList implements Iterable<Person> {
      */
     public void setPersons(List<Person> persons) {
         requireAllNonNull(persons);
-        if (!personsAreUnique(persons)) {
-            throw new DuplicatePersonException();
-        }
+        /*
+            if (!personsAreUnique(persons)) {
+                throw new DuplicatePersonException();
+            }
+        */
 
         internalList.setAll(persons);
     }
@@ -103,6 +144,7 @@ public class UniquePersonList implements Iterable<Person> {
     public ObservableList<Person> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
     }
+
 
     @Override
     public Iterator<Person> iterator() {
@@ -146,5 +188,25 @@ public class UniquePersonList implements Iterable<Person> {
             }
         }
         return true;
+    }
+
+    /**
+     * Sorts List by the tag they are assigned to
+     */
+    public void sortListByTag() {
+        internalList.sort(Comparator.comparing(person ->
+                person.getTags().stream()
+                        .map(tag -> tag.tagName.toLowerCase())
+                        .sorted()
+                        .collect(Collectors.toList())
+                        .toString()
+        ));
+    }
+
+    /**
+     * Sorts List by name
+     */
+    public void sortListByName() {
+        internalList.sort(Comparator.comparing(person -> person.getName().fullName));
     }
 }

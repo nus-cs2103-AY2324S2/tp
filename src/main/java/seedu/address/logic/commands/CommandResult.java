@@ -19,6 +19,9 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
+    /** The application is undergoing addByStep process. */
+    private final boolean isAddByStep;
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
@@ -26,6 +29,17 @@ public class CommandResult {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
+        this.isAddByStep = false;
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified fields.
+     */
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean isAddByStep) {
+        this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.showHelp = showHelp;
+        this.exit = exit;
+        this.isAddByStep = isAddByStep;
     }
 
     /**
@@ -46,6 +60,10 @@ public class CommandResult {
 
     public boolean isExit() {
         return exit;
+    }
+
+    public boolean isAddByStep() {
+        return isAddByStep;
     }
 
     @Override

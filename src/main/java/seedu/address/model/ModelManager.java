@@ -83,7 +83,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
+    public AddressBook getAddressBook() {
         return addressBook;
     }
 
@@ -105,10 +105,30 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void addDuplicatePerson(Person person) {
+        addressBook.addDuplicatePerson(person);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
 
         addressBook.setPerson(target, editedPerson);
+    }
+
+    @Override
+    public void setDuplicatePerson(Person target, Person editedPerson) {
+        requireAllNonNull(target, editedPerson);
+
+        addressBook.setDuplicatePerson(target, editedPerson);
+    }
+
+    @Override
+    public Person getPerson(int indexOfTarget) {
+        requireAllNonNull(indexOfTarget);
+
+        return addressBook.getPerson(indexOfTarget);
     }
 
     //=========== Filtered Person List Accessors =============================================================
