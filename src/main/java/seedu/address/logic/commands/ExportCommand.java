@@ -54,7 +54,7 @@ public class ExportCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof FindCommand)) {
+        if (!(other instanceof ExportCommand)) {
             return false;
         }
 

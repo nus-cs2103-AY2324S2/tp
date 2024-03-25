@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
+import java.io.IOException;
+
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
@@ -24,7 +26,6 @@ public class ExportCommandTest {
             + "00006,Fiona Kunz\n"
             + "00007,George Best\n";
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void execute_exportSuccessful() throws Exception {
@@ -42,8 +43,21 @@ public class ExportCommandTest {
     }
 
     @Test
+    public void execute_exportFailure() throws Exception {
+
+        ExportManager failingExportManager = new FailingExportManager();
+        ExportCommand exportCommand = new ExportCommand(failingExportManager);
+
+        String expectedMessage = ExportCommand.MESSAGE_FAILURE;
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage);
+        CommandResult result = exportCommand.execute(model);
+        assertEquals(expectedCommandResult, result);
+    }
+
+    @Test
     public void equals() {
         ExportCommand exportFirstCommand = new ExportCommand(new ExportManagerStub());
+        ExportCommand exportSecondCommand = new ExportCommand(new ExportManagerStub());
 
         // same object -> returns true
         assertTrue(exportFirstCommand.equals(exportFirstCommand));
@@ -53,6 +67,11 @@ public class ExportCommandTest {
 
         // null -> returns false
         assertFalse(exportFirstCommand.equals(null));
+
+        // same person list
+        exportFirstCommand.execute(model);
+        exportSecondCommand.execute(model);
+        assertTrue(exportFirstCommand.equals(exportSecondCommand));
     }
 
     @Test
@@ -80,6 +99,13 @@ public class ExportCommandTest {
             return exportedContent;
         }
 
+    }
+
+    private class FailingExportManager extends ExportManager {
+        @Override
+        public void exportStudentList(ObservableList<Person> studentList) throws IOException {
+            throw new IOException("Simulated export failure");
+        }
     }
 
 }
