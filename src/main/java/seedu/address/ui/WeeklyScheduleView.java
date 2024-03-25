@@ -1,21 +1,21 @@
 package seedu.address.ui;
 
+import java.time.DayOfWeek;
+import java.util.ArrayList;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.control.cell.TextFieldListCell;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import seedu.address.model.schedule.Schedule;
 
-import java.time.DayOfWeek;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-
-public class WeeklyScheduleView extends UiPart<Region>{
+/**
+ * WeeklyScheduleView class to assist with population of Calender
+ */
+public class WeeklyScheduleView extends UiPart<Region> {
 
     private static final String FXML = "WeeklyScheduleView.fxml";
     @FXML
@@ -42,21 +42,18 @@ public class WeeklyScheduleView extends UiPart<Region>{
     @FXML
     private ListView<Schedule> sundayListView;
 
+    /**
+     * Constructor method to initialize class
+     */
     public WeeklyScheduleView() {
         super(FXML);
-        initialize();
     }
 
-    public void initialize() {
-        // Initialize the ListView elements
-        mondayListView.setItems(FXCollections.observableArrayList());
-        tuesdayListView.setItems(FXCollections.observableArrayList());
-        wednesdayListView.setItems(FXCollections.observableArrayList());
-        thursdayListView.setItems(FXCollections.observableArrayList());
-        fridayListView.setItems(FXCollections.observableArrayList());
-        saturdayListView.setItems(FXCollections.observableArrayList());
-        sundayListView.setItems(FXCollections.observableArrayList());
+    /**
+     * initialize call to set up CellFactory to populate Schedule objects
+     */
 
+    public void initialize() {
         // Customize the appearance of items in each ListView
         customizeListView(mondayListView);
         customizeListView(tuesdayListView);
@@ -65,8 +62,15 @@ public class WeeklyScheduleView extends UiPart<Region>{
         customizeListView(fridayListView);
         customizeListView(saturdayListView);
         customizeListView(sundayListView);
-
-
+        // Initialize the ListView elements
+        mondayListView.setItems(FXCollections.observableArrayList());
+        tuesdayListView.setItems(FXCollections.observableArrayList());
+        wednesdayListView.setItems(FXCollections.observableArrayList());
+        thursdayListView.setItems(FXCollections.observableArrayList());
+        fridayListView.setItems(FXCollections.observableArrayList());
+        saturdayListView.setItems(FXCollections.observableArrayList());
+        sundayListView.setItems(FXCollections.observableArrayList());
+        System.out.println("I've been set-up!");
     }
 
     private void customizeListView(ListView<Schedule> listView) {
@@ -77,12 +81,12 @@ public class WeeklyScheduleView extends UiPart<Region>{
                 if (empty || item == null) {
                     setText(null);
                     setGraphic(null);
-                    setVisible(true);
-                    System.out.println("Cell is empty or item is null");
+                    //System.out.println("Cell is empty or item is null");
                 } else {
-                    setVisible(true);
-                    setText(item.getSchedName() + " - " + item.getStartTime() + " to " + item.getEndTime());
-                    System.out.println("Cell content updated");
+                    setText(item.getSchedName() + " - " + item.getStartTime().getHour()
+                            + item.getStartTime().getMinute() + " to "
+                            + item.getEndTime().getHour() + item.getEndTime().getMinute());
+                    //System.out.println("Cell content updated");
                 }
             }
         });
@@ -107,15 +111,18 @@ public class WeeklyScheduleView extends UiPart<Region>{
         ObservableList<Schedule> daySchedules = filterSchedulesForDay(schedules, day);
         for (Schedule schedule : daySchedules) {
             if (!listView.getItems().contains(schedule)) {
-                assert (schedule!=null);
+                assert (schedule != null);
                 listView.getItems().add(schedule);
             }
-            System.out.println(listView.getItems());
         }
-//        System.out.println("Schedules for " + day + ": " + daySchedules);
+        //System.out.println("Schedules for " + day + ": " + daySchedules);
         //System.out.println("Current Calender for : "+ day + ": " + listView.getItems());
     }
 
+    /**
+     * Method to be called to update Calender with list of current week Schedules
+     * @param schedules Array of Schedules for current week to be populated
+     */
     public void populateWeeklySchedule(ArrayList<Schedule> schedules) {
         System.out.println("I got called to populateWeeklySchedule!");
         populateListViewForDay(schedules, mondayListView, DayOfWeek.MONDAY);

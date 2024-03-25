@@ -73,7 +73,7 @@ public class Schedule {
         StringBuilder participants = new StringBuilder();
 
         for (int i = 0; i < personList.size(); i++) {
-            participants.append("(" ).append(i + 1).append(") ");
+            participants.append("(").append(i + 1).append(") ");
             participants.append(personList.get(i).getName());
             participants.append(", ");
 

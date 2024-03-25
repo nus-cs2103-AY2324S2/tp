@@ -9,16 +9,17 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import javafx.collections.ListChangeListener;
-import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -67,6 +68,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private TableView<Schedule> scheduleTable;
+
+    @FXML
+    private StackPane schedulePanelPlaceholder;
 
     @FXML
     private WeeklyScheduleView weeklyScheduleView;
@@ -137,6 +141,8 @@ public class MainWindow extends UiPart<Stage> {
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
+
+        schedulePanelPlaceholder.getChildren().add(weeklyScheduleView.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
@@ -220,6 +226,11 @@ public class MainWindow extends UiPart<Stage> {
         });
     }
 
+    /**
+     * Populate Person's Schedule into TableView to view
+     * @param selectedPersons Array of Person to add to TableView
+     */
+
     public void updateTableView(ArrayList<Person> selectedPersons) {
         // Clear the table view
         scheduleTable.getItems().clear();
@@ -236,8 +247,8 @@ public class MainWindow extends UiPart<Stage> {
             for (Schedule sched : schedules) {
                 LocalDateTime startTime = sched.getStartTime();
                 LocalDateTime endTime = sched.getEndTime();
-                if ((startTime.toLocalDate().isEqual(startOfWeek) || startTime.toLocalDate().isAfter(startOfWeek)) &&
-                        (endTime.toLocalDate().isEqual(endOfWeek) || endTime.toLocalDate().isBefore(endOfWeek))) {
+                if ((startTime.toLocalDate().isEqual(startOfWeek) || startTime.toLocalDate().isAfter(startOfWeek))
+                        && (endTime.toLocalDate().isEqual(endOfWeek) || endTime.toLocalDate().isBefore(endOfWeek))) {
                     filteredSchedules.add(sched);
                 }
             }
