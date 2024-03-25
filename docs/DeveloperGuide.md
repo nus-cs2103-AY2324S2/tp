@@ -290,12 +290,6 @@ The following sequence diagram shows how a select operation goes through the `Ma
 
 <puml src="diagrams/SelectSequenceDiagram.puml" alt="SelectSequenceDiagram" />
 
-<box type="info" seamless>
-
-**Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</box>
-
 #### Design considerations:
 
 **Aspect: How to select a person:**
@@ -304,7 +298,7 @@ The following sequence diagram shows how a select operation goes through the `Ma
     * Pros: Easy to implement.
     * Cons: Not very intuitive, have to look up the name, reference the index before selecting the person.
 
-* **Alternative 2:** Selecting by name.
+* **Alternative 2:** Select using name.
     * Pros: More intuitive and easy to select.
     * Cons: May result in bugs due to the issue of duplicate names.
 
