@@ -16,6 +16,9 @@ public class CommandResult {
     /** Help information should be shown to the user. */
     private final boolean showHelp;
 
+    /** Profile panel should be updated. */
+    private final boolean updateProfile;
+
     /** The application should exit. */
     private final boolean exit;
 
@@ -26,6 +29,17 @@ public class CommandResult {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
+        this.updateProfile = false;
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified fields.
+     */
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean updateProfile) {
+        this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.showHelp = showHelp;
+        this.exit = exit;
+        this.updateProfile = updateProfile;
     }
 
     /**
@@ -48,6 +62,10 @@ public class CommandResult {
         return exit;
     }
 
+    public boolean isUpdateProfile() {
+        return updateProfile;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -62,12 +80,13 @@ public class CommandResult {
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && showHelp == otherCommandResult.showHelp
-                && exit == otherCommandResult.exit;
+                && exit == otherCommandResult.exit
+                && updateProfile == otherCommandResult.updateProfile;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit);
+        return Objects.hash(feedbackToUser, showHelp, exit, updateProfile);
     }
 
     @Override
@@ -76,6 +95,7 @@ public class CommandResult {
                 .add("feedbackToUser", feedbackToUser)
                 .add("showHelp", showHelp)
                 .add("exit", exit)
+                .add("updateProfile", updateProfile)
                 .toString();
     }
 

@@ -86,6 +86,15 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
+    /** Returns the selected person to view the profile. */
+    Person getSelectedPerson();
+
+    /**
+     * Updates the person to be selected to {@code person}.
+     * @throws NullPointerException if {@code person} is null.
+     */
+    void updateSelectedPerson(Person person);
+
     void sortFilteredPersonList(Comparator<Person> comparator);
 
     ObservableList<Person> getSortedPersonList();
