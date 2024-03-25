@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.Model;
 import seedu.address.model.interview.Interview;
 
@@ -50,5 +51,26 @@ public class FilterInterviewsByDateCommand extends FilterCommand {
             }
         }
         return filteredList;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (object == this) {
+            return true;
+        }
+
+        if (!(object instanceof FilterInterviewsByDateCommand)) {
+            return false;
+        }
+
+        FilterInterviewsByDateCommand other = (FilterInterviewsByDateCommand) object;
+        return this.targetDate.equals(other.targetDate);
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .add("targetDate", targetDate)
+                .toString();
     }
 }
