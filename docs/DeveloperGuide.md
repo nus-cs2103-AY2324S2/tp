@@ -262,6 +262,53 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### Select feature
+
+#### Implementation
+
+The feature enables us to select a particular client using an index and displays the profile. The mechanism is then facilitated by `PersonProfile` UI component. Additionally, the following classes were modified slightly to integrate the select feature:
+* `CommandResult`  —  Added a new `updateProfile` field and `CommandResult#isupdateProfile()` method to let the `MainWindow` know if there is a need to update the details in the aforementioned `PersonProfile`.
+* `Model` and `ModelManager`  —  Added a new `selectedPerson` field which is initially declared with `null`. Reason: When a `ModelManager` is just built, no select command is called yet, thus there should not be any `selectedPerson`. Additionally, `Model#updateSelectedPerson()` and `Model#getSelectedPerson()` were also added.
+* `MainWindow`  —  Modified the `MainWindow#fillInnerParts()` and `MainWindow#executeCommand()` methods to show and update the `PersonProfile`.
+* `EditCommand`  —  Modified the `EditCommand#execute()` method to return a `CommandResult` with a `true` for `updateProfile` if the person-to-edit is currently selected. Reason: This is to enable the `PersonProfile` to reflect the changes made to the selected person, if needed.
+
+Given below is an example usage scenario of the select command
+
+Step 1. The user executes `select 1` command to select the 1st person in the address book. The `select` command calls `Model#updateSelectedPerson()`, resulting in the selected person to be stored in the `Model`.
+
+Step 2. The `select` command returns a `CommandResult` object with the `feedbackToUser` as the successfully-selected-person message, `showHelp` as false, `isExit` as false, `updateProfile` as true.
+
+<box type="info" seamless>
+
+**Note:** If a command fails its execution, it will return a `CommandException` with the relevant message instead, just like the other commands.
+
+</box>
+
+Step 3. The `CommandResult` is used in the `MainWindow#executeCommand()` method. Since, `CommandResult#isupdateProfile()` returns true for a `select` command, the `selectedPerson` is retrieved using `Logic#getSelectedPerson` and displayed in the `PersonProfile` using `PersonProfile#setPerson()`.
+
+The following sequence diagram shows how a select operation goes through the `MainWindow` and `PersonProfile` component:
+
+<puml src="diagrams/SelectSequenceDiagram.puml" alt="SelectSequenceDiagram" />
+
+<box type="info" seamless>
+
+**Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</box>
+
+#### Design considerations:
+
+**Aspect: How to select a person:**
+
+* **Alternative 1 (current choice):** Select using index.
+    * Pros: Easy to implement.
+    * Cons: Not very intuitive, have to look up the name, reference the index before selecting the person.
+
+* **Alternative 2:** Selecting by name.
+    * Pros: More intuitive and easy to select.
+    * Cons: May result in bugs due to the issue of duplicate names.
+
+_{more aspects and alternatives to be added}_
 
 --------------------------------------------------------------------------------------------------------------------
 

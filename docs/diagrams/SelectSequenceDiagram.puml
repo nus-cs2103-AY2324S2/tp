@@ -1,0 +1,43 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box UI UI_COLOR_T1
+participant ":MainWindow" as MainWindow UI_COLOR
+participant ":PersonProfile" as PersonProfile UI_COLOR
+end box
+
+box LOGIC LOGIC_COLOR_T1
+participant "u:LogicManager" as LogicManager LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> MainWindow : executeCommand("select 1")
+activate MainWindow
+
+MainWindow -> LogicManager : execute("select 1")
+activate LogicManager
+LogicManager --> MainWindow : new CommandResult()
+deactivate LogicManager
+
+MainWindow -> LogicManager : getSelectedPerson()
+activate LogicManager
+
+LogicManager -> Model : getSelectedPerson()
+activate Model
+Model --> LogicManager : selectedPerson
+deactivate
+
+LogicManager --> MainWindow : selectedPerson
+deactivate
+
+MainWindow -> PersonProfile : setPerson(selectedPerson)
+activate PersonProfile
+PersonProfile --> MainWindow
+deactivate PersonProfile
+
+[<-- MainWindow : commandResult
+@enduml
