@@ -196,13 +196,44 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### QR Code Generation
+### QR Code
 
-The following activity diagram summarizes what happens when a QR Code is generated for any `Person`.
+Each client has a QR code that allows users to save their contact information to their phones easily.
 
-![QRGenerationActivityDiagram](images/QRGenerationActivityDiagram.png)
+![QrNewUi](images/QrNewUi.png)
 
-_vCard_ is a data format for contact information. Detailed information can be found in [RFC 6350](https://datatracker.ietf.org/doc/html/rfc6350).
+Initially, we wanted to simply add a QR code to the list of persons as seen below.
+
+![QrOldUi](images/QrOldUi.png)
+
+However, we found that in practice, the QR codes were difficult to scan for two main reasons:
+
+1. The QR codes themselves were too small
+1. The QR codes of other contacts was interfering with the one we wanted to scan
+
+Thus, we decided to move the QR code to its own separate part of the UI.
+
+#### QR Code Generation
+
+Whenever a new client is added to the address book, a QR code is generated for them that contains their information in a vCard format.
+
+The following sequence diagram illustrates this.
+
+![QrAddPersonSequenceDiagram](images/QrAddPersonSequenceDiagram.png)
+
+We considered generating the QR code upon the creation of a `Person` object. However, we discovered that it was possible for a `Person` to be created, but never added to the address book, as shown in the following activity diagram.
+
+![AddCommandActivityDiagram](images/AddCommandActivityDiagram.png)
+
+Thus, we chose to only generate QR codes when the person is successfully added to avoid unnecessary QR code generations.
+
+This approach was also taken for the editing/deleting of QR codes.
+
+#### QR Code Image Naming
+
+QR codes associated with a client are named according to the format: [FULL NAME]_[PHONE_NUMBER].png
+
+This format was chosen as clients with the same name and phone number are not allowed in FitBook, so these two fields are enough to uniquely identify every client.
 
 ### Deleting a client from FitBook
 
@@ -509,6 +540,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Usage instructions**: Documentation detailing FitBook's features and how to navigate about them
 * **User**: The person using FitBook
 * **UI (User Interface)**: Manages user interactions with graphic interface elements
+* **vCard**: A data format for contact information. Detailed information can be found in [RFC 6350](https://datatracker.ietf.org/doc/html/rfc6350).
 
 --------------------------------------------------------------------------------------------------------------------
 

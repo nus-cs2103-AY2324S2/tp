@@ -1,0 +1,46 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Model MODEL_COLOR_T1
+participant "m:Model" as Model MODEL_COLOR
+participant "p:Person" as Person MODEL_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant "<<class>>\nQrCodeGenerator" as qrg LOGIC_COLOR
+end box
+
+[-> Model : addPerson(p)
+activate Model
+
+Model -> Person : p.generateQrCode()
+activate Person
+
+Person -> qrg : QrCodeGenerator.generateQrCode(this)
+activate qrg
+
+qrg -> qrg : createVCardString(p)
+activate qrg
+
+qrg --> qrg : vCard String
+deactivate qrg
+
+qrg -> qrg : getQrCodePath(p)
+activate qrg
+
+qrg --> qrg : path to QR code for that person
+deactivate qrg
+
+qrg ->] : generate QR code and write to path
+]--> qrg
+qrg --> Person
+deactivate qrg
+
+Person --> Model
+deactivate Person
+
+Model -->[
+deactivate Model
+
+@enduml
