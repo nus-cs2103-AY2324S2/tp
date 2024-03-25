@@ -97,11 +97,16 @@ ___
 
 ### Adding a new client: `add`
 
-This command adds a new client to your client list. All fields except the tag field are compulsory.
+This command adds a new client to your client list.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS k/NEXTOFKIN d/DESCRIPTION [t/TAG]…`
 
+- Name being added must be unique
+- All parameters _except tag_ are compulsory
+
+<box type="tip" seamless>
 **Tip:** A person can have any number of tags (or even 0)
+</box>
 
 Examples:
 
@@ -115,6 +120,11 @@ Usage of Add command
   <source src="https://github.com/AY2324S2-CS2103T-W12-4/tp/assets/48405651/684dbfd0-53bc-41aa-bb20-82938f5154f1" type="video/mp4">
   Your browser does not support the video tag.
 </video>
+
+### Listing all persons : `list`
+Shows a list of all persons.
+
+Format: `list`
 
 ### Updating a client : `update`
 
@@ -134,7 +144,7 @@ Usage of update command
 
 <video controls>
   <source src="https://github.com/AY2324S2-CS2103T-W12-4/tp/assets/48405651/ad7cd05f-01bc-4a98-8074-b487e232fa52" type="video/mp4">
-  Your browser does not support the video tag.
+  _Your browser does not support the video tag._
 </video>
 
 ### Locating persons by name: `find`
