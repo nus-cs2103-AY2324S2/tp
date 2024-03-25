@@ -17,7 +17,7 @@ Welcome **logistics managers**! If you are someone who
 3. is feeling swamped by the tedium of contact management on traditional office software...
 
 breathe easy because AssetBook-3 is here! 
-Here to help streamline the task of tracking contacts and logistical assets they are in charge of, 
+Here to help streamline the task of *tracking contacts and which logistical assets they are in charge of*, 
 making your management tasks smoother than ever.
 
 AssetBook-3 is designed to:
@@ -74,7 +74,7 @@ or skip to the [command summary](#command-summary) to refresh your memory.
 
 1. Ensure you have Java `11` installed on your Computer.
 
-2. Download the latest `assetbook.jar` from [here](https://github.com/AY2324S2-CS2103T-W12-3/tp/releases).
+2. Download the latest `assetbook-3.jar` from [here](https://github.com/AY2324S2-CS2103T-W12-3/tp/releases).
 
 3. Copy the file into the folder you want to use as the _home folder_.
 
@@ -131,7 +131,7 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]... [A/ASSET]...`
 
 <box type="tip" seamless>
 
-**Tip:** A person can have any number of assets (including 0)
+**Tip:** A person can have any number of tags and assets (including 0)
 </box>
 
 #### Examples
@@ -140,7 +140,7 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]... [A/ASSET]...`
 #### Options
 `NAME`
 * Name of the contact.
-* Case sensitive, i.e. John Doe ≠ John Doe.
+* Case sensitive, i.e. john doe ≠ John Doe.
 * Leading and trailing spaces are automatically removed.
 * Multiple people with the same name are allowed.
 
@@ -169,12 +169,12 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]... [A/ASSET]...`
 
 Delete a contact from the system by specifying its ID.
 
-Format: `delete ID`
-* `ID` refers to the unique contact index shown in the GUI.
+Format: `delete INDEX`
+* `INDEX` refers to the unique contact index shown in the GUI.
 * The asset(s) associated with the contact will not be deleted.
 
 #### Examples
-`delete 1` deletes the contact with id `1`.
+`delete 1` deletes the contact with index `1`.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -193,13 +193,13 @@ Example: `edit 1 e/newemail@example.com` edits the contact with id `1`, changing
 * You can remove all the person’s tags by typing `t/` without specifying any tags after it.
 * You can remove all the person’s assets by typing `A/` without specifying any assets after it.
 
-### Editing an asset: `edita`
+### Editing an asset: `asset`
 
 Edit existing assets without recreating them.
 
-Format: `edita old/OLD_ASSET_NAME new/NEW_ASSET_NAME`
+Format: `asset old/OLD_ASSET_NAME new/NEW_ASSET_NAME`
 
-Example: `edita old/hammer new/screwdriver` edits the asset `hammer`, changing its name to `screwdriver`.
+Example: `asset old/hammer new/screwdriver` edits the asset `hammer`, changing its name to `screwdriver`.
 
 * The asset will be renamed for all contacts linked to it.
 
@@ -251,6 +251,12 @@ If your changes to the data file makes its format invalid, AssetBook will discar
 Furthermore, certain edits can cause the AssetBook to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
 
+---
+
+## Future Features
+
++ 
+
 ---{.double}
 
 ## FAQ
@@ -260,7 +266,7 @@ Furthermore, certain edits can cause the AssetBook to behave in unexpected ways 
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Known issues
+## Known Issues
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
 
@@ -268,15 +274,15 @@ Furthermore, certain edits can cause the AssetBook to behave in unexpected ways 
 
 ## Command summary
 
-Action     | Format      |        Examples
------------|-------------|---------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]... [A/ASSET]...` | `add n/John Doe e/johndoe@example.com p/+12345678 A/L293D`
-**Delete** | `delete ID` | `delete 1`
-**Edit contact**   | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]... [A/ASSET]...` | `edit 1 e/newemail@example.com`
-**Edit asset**   | `edita old/OLD_ASSET_NAME new/NEW_ASSET_NAME` | `edita old/hammer new/screwdriver`
-**Find**   | `find KEYWORD [KEYWORD]...` | `find John`
-**Undo**   | `undo` | `undo`
-**Exit**   | `exit` | `exit`
+Action           | Format                                                                        | Example
+-----------------|-------------------------------------------------------------------------------|--- 
+**Add**          | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]... [A/ASSET]...`         | `add n/John Doe e/johndoe@example.com p/+12345678 A/L293D`
+**Delete**       | `delete INDEX`                                                                | `delete 1`
+**Edit contact** | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]... [A/ASSET]...` | `edit 1 e/newemail@example.com`
+**Edit asset**   | `asset old/OLD_ASSET_NAME new/NEW_ASSET_NAME`                                 | `asset old/hammer new/screwdriver`
+**Find**         | `find KEYWORD [KEYWORD]...`                                                   | `find John`
+**Undo**         | `undo`                                                                        | `undo`
+**Exit**         | `exit`                                                                        | `exit`
 
 ---{.double}
 
