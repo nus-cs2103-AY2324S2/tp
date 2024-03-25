@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CsvUtil.readCsvFile;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_IMPORT;
@@ -11,17 +12,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_REFLECTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDIO;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.io.FileReader;
-import java.io.IOException;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import com.opencsv.CSVReader;
-import com.opencsv.CSVReaderBuilder;
-import com.opencsv.exceptions.CsvException;
 
 import seedu.address.commons.exceptions.DataLoadingException;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -83,7 +76,7 @@ public class ImportCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         try {
-            List<Map<String, String>> personsData = readCsvFile();
+            List<Map<String, String>> personsData = readCsvFile(filePath);
             addToModel(model, personsData);
         } catch (DataLoadingException e) {
             throw new CommandException(String.format(MESSAGE_DATA_LOAD_ERROR, filePath));
@@ -108,39 +101,6 @@ public class ImportCommand extends Command {
                 throw new CommandException(String.format(MESSAGE_PARSE_ERROR, personData));
             }
         }
-    }
-
-    /**
-     * Reads the csv file and returns a list of maps,
-     * where each map represents a row of person's data in the csv file.
-     * @throws DataLoadingException
-     */
-    public List<Map<String, String>> readCsvFile() throws DataLoadingException {
-        try {
-            CSVReader reader = new CSVReaderBuilder(new FileReader(filePath.toString())).build();
-            List<String[]> rows = reader.readAll();
-            return parseData(rows);
-        } catch (IOException | CsvException e) {
-            throw new DataLoadingException(e);
-        }
-    }
-    /**
-     * Parses the data from the csv file into a list of maps. Each map represents a person's data.
-     * @param rows
-     * @return
-     */
-    public List<Map<String, String>> parseData(List<String[]> rows) {
-        List<Map<String, String>> data = new ArrayList<>();
-        String[] header = rows.get(0);
-        for (int i = 1; i < rows.size(); i++) {
-            String[] row = rows.get(i);
-            Map<String, String> map = new HashMap<>();
-            for (int j = 0; j < header.length; j++) {
-                map.put(header[j], row[j]);
-            }
-            data.add(map);
-        }
-        return data;
     }
 
     /**
