@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
 
@@ -45,6 +45,8 @@ public class AddOrderCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        requireAllNonNull(model);
+
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
@@ -53,10 +55,8 @@ public class AddOrderCommand extends Command {
 
         Person person = lastShownList.get(index.getZeroBased());
 
-        person.addOrder(this.order);
+        model.addOrder(person, order);
 
-        model.setPerson(person, person);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(person)));
     }
 
