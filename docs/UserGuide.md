@@ -171,7 +171,7 @@ Format: `assign TASK_INDEX to/PERSON_INDEX​`
 Examples:
 * `assign 1 to/ 1`
 
-### Adding a person: `marktask`
+### Marking a task: `marktask`
 
 Marks a task to the task list as done.
 
@@ -180,7 +180,7 @@ Format: `marktask TASK_INDEX`
 Examples:
 * `marktask 1`
 
-### Adding a person: `unmarktask`
+### Unmarking a person: `unmarktask`
 
 Marks a task to the task list as not done.
 
@@ -189,12 +189,19 @@ Format: `unmarktask TASK_INDEX`
 Examples:
 * `unmarktask 1`
 
-### Adding a person: `deletetask`
+### Deleting a task: `deletetask`
 
 Format: `deletetask TASK_INDEX`
 
 Examples:
 * `deletetask 1`
+
+### Listing the tasks: `listtask`
+
+Format: `listtask`
+
+Examples:
+* `listtask`
 
 ### Exiting the program : `exit`
 
@@ -247,3 +254,9 @@ Action     | Format, Examples
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List**   | `list`
 **Help**   | `help`
+**Add Task**   | `addtask TASK_INDEX [n/NAME] [d/DESCRIPTION]`
+**Delete Task**   | `deletetask TASK_INDEX`
+**Assign Task**   | `assign TASK_INDEX to/PERSON_INDEX​`
+**Mark Task**   | `marktask TASK_INDEX​`
+**Unmark Task**   | `unmarktask TASK_INDEX​`
+**List Task**   | `listtask​`
