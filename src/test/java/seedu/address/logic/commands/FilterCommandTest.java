@@ -31,24 +31,24 @@ public class FilterCommandTest {
         MatchingTagPredicate secondPredicate =
                 new MatchingTagPredicate("NR");
 
-        FilterCommand FilterFirstTag = new FilterCommand(firstPredicate);
-        FilterCommand FilterSecondTag = new FilterCommand(secondPredicate);
+        FilterCommand filterFirstTag = new FilterCommand(firstPredicate);
+        FilterCommand filterSecondTag = new FilterCommand(secondPredicate);
 
         // same object -> returns true
-        assertTrue(FilterFirstTag.equals(FilterFirstTag));
+        assertTrue(filterFirstTag.equals(filterFirstTag));
 
         // same values -> returns true
         FilterCommand FilterFirstTagCopy = new FilterCommand(firstPredicate);
         assertTrue(FilterFirstTagCopy.equals(FilterFirstTagCopy));
 
         // different types -> returns false
-        assertFalse(FilterFirstTag.equals(1));
+        assertFalse(filterFirstTag.equals(1));
 
         // null -> returns false
-        assertFalse(FilterFirstTag.equals(null));
+        assertFalse(filterFirstTag.equals(null));
 
         // different person -> returns false
-        assertFalse(FilterFirstTag.equals(FilterSecondTag));
+        assertFalse(filterFirstTag.equals(filterSecondTag));
     }
 
     @Test
