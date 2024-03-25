@@ -3,14 +3,15 @@ package seedu.address.logic.commands;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
 import seedu.address.model.person.ClientStatus;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Policy;
 
 import java.util.List;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 public class ClientStatusCommand extends Command {
@@ -21,13 +22,20 @@ public class ClientStatusCommand extends Command {
             + "by the index number used in the last person listing. "
             + "Existing policy will be overwritten by the input.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[DIRECTION] (must be 'up' or 'down')\n"
-            + "Example: " + COMMAND_WORD + " 1 up";
+            + PREFIX_STATUS + "[DIRECTION] (must be 'up' or 'down')\n"
+            + "Example: " + COMMAND_WORD + " 1 " + PREFIX_STATUS + "up";
 
     public static final String MESSAGE_STATUS_UP_SUCCESS = "Upgraded status of Client: %1$s";
     public static final String MESSAGE_STATUS_DOWN_SUCCESS = "Downgraded status of Client: %1$s";
     public static final String MESSAGE_PERSON_NOT_CLIENT_FAILURE =
             "Invalid person. Only clients can be assigned a policy";
+
+    public static final String MESSAGE_PERSON_INVALID_DIRECTION_FAILURE =
+            "Invalid direction. Direction must be either 'up' to upgrade the status or 'down' to downgrade the status";
+
+    public static final String CHANGE_STATUS_UP = "up";
+    public static final String CHANGE_STATUS_DOWN = "down";
+    public static final String CHANGE_STATUS_RESET = "";
 
     private final Index index;
     private final String direction;
@@ -60,14 +68,17 @@ public class ClientStatusCommand extends Command {
         ClientStatus clientStatus;
 
         switch (direction) {
-        case "up":
+        case CHANGE_STATUS_UP:
             clientStatus = personToEdit.getClientStatus().increment();
             break;
-        case "down":
+        case CHANGE_STATUS_DOWN:
             clientStatus = personToEdit.getClientStatus().decrement();
             break;
-        default:
+        case CHANGE_STATUS_RESET:
             clientStatus = ClientStatus.initClientStatus();
+            break;
+        default:
+            throw new CommandException(MESSAGE_PERSON_INVALID_DIRECTION_FAILURE);
         }
 
         Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
@@ -86,7 +97,7 @@ public class ClientStatusCommand extends Command {
      * {@code personToEdit}.
      */
     private String generateSuccessMessage(Person personToEdit) {
-        String message = direction.equals("up") ? MESSAGE_STATUS_UP_SUCCESS : MESSAGE_STATUS_DOWN_SUCCESS;
+        String message = direction.equals(CHANGE_STATUS_UP) ? MESSAGE_STATUS_UP_SUCCESS : MESSAGE_STATUS_DOWN_SUCCESS;
         return String.format(message, Messages.format(personToEdit));
     }
 

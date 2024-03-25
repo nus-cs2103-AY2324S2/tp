@@ -2,10 +2,45 @@ package seedu.address.model.person;
 
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ClientStatusTest {
+    @Test
+    public void initNotClientStatus_returnsNotClientClientStatus() {
+        assertEquals(0, ClientStatus.initNotClientStatus().getStatus());
+    }
+
+    @Test
+    public void initClientStatus_returnsStartClientClientStatus() {
+        assertEquals(1, ClientStatus.initClientStatus().getStatus());
+    }
+
+    @Test
+    public void getStatus() {
+        ClientStatus clientStatus = new ClientStatus(1);
+        assertEquals(1, clientStatus.getStatus());
+    }
+
+    @Test
+    public void increment() {
+        ClientStatus clientStatus = ClientStatus.initClientStatus();
+        assertEquals(clientStatus.increment().getStatus(), clientStatus.getStatus() + 1);
+
+        clientStatus = new ClientStatus(3);
+        assertEquals(clientStatus.increment().getStatus(), clientStatus.getStatus());
+    }
+
+    @Test
+    public void decrement() {
+        ClientStatus clientStatus = ClientStatus.initClientStatus();
+        assertEquals(clientStatus.decrement().getStatus(), clientStatus.getStatus());
+
+        clientStatus = new ClientStatus(3);
+        assertEquals(clientStatus.decrement().getStatus(), clientStatus.getStatus() - 1);
+    }
+
     @Test
     public void equals() {
         ClientStatus clientStatus = ClientStatus.initClientStatus();

@@ -1,5 +1,7 @@
 package seedu.address.model.person;
 
+import static java.util.Objects.requireNonNull;
+
 /**
  * Represents a Client's status in the address book.
  * Guarantees: immutable; is always valid
@@ -36,7 +38,7 @@ public class ClientStatus {
     public final Status value;
 
     public ClientStatus(int status) {
-        this.value = Status.values()[status];
+        value = Status.values()[status];
     }
     public static ClientStatus initNotClientStatus() {
         return new ClientStatus(0);
