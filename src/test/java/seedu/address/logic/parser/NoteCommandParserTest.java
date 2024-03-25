@@ -9,8 +9,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.NoteCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
-
-
 class NoteCommandParserTest {
 
     @Test
