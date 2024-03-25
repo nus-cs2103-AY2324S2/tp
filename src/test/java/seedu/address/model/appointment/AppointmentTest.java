@@ -22,7 +22,7 @@ public class AppointmentTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new Appointment(null, null, null, null, null));
+        assertThrows(NullPointerException.class, () -> new Appointment(null, null, null, null, null, null));
     }
 
     @Test

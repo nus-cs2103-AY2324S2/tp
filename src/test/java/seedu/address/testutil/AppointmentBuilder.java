@@ -19,7 +19,7 @@ public class AppointmentBuilder {
     public static final String DEFAULT_END_TIME = "23:59";
     public static final String DEFAULT_APPOINTMENT_TYPE = "Health Check-up";
     public static final String DEFAULT_NOTE = "Only speaks mandarin";
-    public static final String DEFAULT_MARK = "false";
+    public static final boolean DEFAULT_MARK = false;
 
     private Nric nric;
     private Date date;
@@ -110,8 +110,8 @@ public class AppointmentBuilder {
     /**
      * Sets the {@code Mark} of the {@code Appointment} that we are building.
      */
-    public AppointmentBuilder withMark(String mark) {
-        this.mark = new Mark(mark);
+    public AppointmentBuilder withMark(boolean isMarked) {
+        this.mark = new Mark(isMarked);
         return this;
     }
 
@@ -119,8 +119,7 @@ public class AppointmentBuilder {
      * Builds Appointment object using the provided data.
      */
     public Appointment build() {
-        Appointment appt = new Appointment(nric, date, timePeriod, appointmentType, note);
-        appt.setMark(this.mark.toString());
+        Appointment appt = new Appointment(nric, date, timePeriod, appointmentType, note, mark);
         return appt;
     }
 }

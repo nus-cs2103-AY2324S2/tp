@@ -26,7 +26,7 @@ public class JsonAdaptedAppointment {
     private final String endTime;
     private final String appointmentType;
     private final String note;
-    private final String mark;
+    private final boolean isMarked;
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
@@ -35,14 +35,14 @@ public class JsonAdaptedAppointment {
                              @JsonProperty("date") String date,
                              @JsonProperty("startTime") String startTime, @JsonProperty("endTime") String endTime,
                              @JsonProperty("appointmentType") String appointmentType,
-                                  @JsonProperty("note") String note, @JsonProperty("mark") String mark) {
+                                  @JsonProperty("note") String note, @JsonProperty("mark") boolean isMarked) {
         this.nric = nric;
         this.date = date;
         this.startTime = startTime;
         this.endTime = endTime;
         this.appointmentType = appointmentType;
         this.note = note;
-        this.mark = mark;
+        this.isMarked = isMarked;
     }
 
     /**
@@ -55,7 +55,7 @@ public class JsonAdaptedAppointment {
         endTime = source.getTimePeriod().getEndTime().toString();
         appointmentType = source.getAppointmentType().typeName;
         note = source.getNote().note;
-        mark = source.getMark().toString();
+        isMarked = source.getMark().isMarked;
     }
 
     /**
@@ -118,19 +118,10 @@ public class JsonAdaptedAppointment {
         }
         final Note modelNote = new Note(note);
 
-        if (mark == null) {
-            throw new IllegalValueException(String.format(
-                    MISSING_FIELD_MESSAGE_FORMAT, "mark"));
-        }
-
-        if (!Mark.isValidMark(mark)) {
-            throw new IllegalValueException(Mark.MESSAGE_CONSTRAINTS);
-        }
-
+        final Mark modelMarked = new Mark(isMarked);
 
         Appointment newAppt = new Appointment(modelNric, modelDate, modelTimePeriod,
-            modelAppointmentType, modelNote);
-        newAppt.setMark(mark);
+            modelAppointmentType, modelNote, modelMarked);
 
         return newAppt;
     }

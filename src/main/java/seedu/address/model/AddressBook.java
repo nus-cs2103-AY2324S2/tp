@@ -162,17 +162,17 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Adds an appointment to the address book.
      * The appointment must not already exist in the address book.
      */
-    public void addAppointment(Appointment a) {
-        appointments.add(a);
-        appointmentView.add(new AppointmentView(getPersonWithNric(a.getNric()).getName(), a));
+    public void addAppointment(Appointment appt) {
+        appointments.add(appt);
+        appointmentView.add(new AppointmentView(getPersonWithNric(appt.getNric()).getName(), appt));
     }
 
     /**
      * Adds an appointmentView to the address book.
      * The appointment must not already exist in the address book.
      */
-    public void addAppointmentView(AppointmentView a) {
-        appointmentView.add(a);
+    public void addAppointmentView(AppointmentView appt) {
+        appointmentView.add(appt);
     }
 
     /**
@@ -196,9 +196,9 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Cancels {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
-    public void cancelAppointment(Appointment key) {
+    public void cancelAppointment(Appointment key, AppointmentView apptViewKey) {
         appointments.remove(key);
-        appointmentView.remove(new AppointmentView(getPersonWithNric(key.getNric()).getName(), key));
+        appointmentView.remove(apptViewKey);
     }
 
     //// util methods
@@ -229,8 +229,14 @@ public class AddressBook implements ReadOnlyAddressBook {
         return appointments.getMatchingAppointment(nric, date, timePeriod);
     }
 
+    public AppointmentView getMatchingAppointmentView(Name name, Appointment appt) {
+        return appointmentView.getMatchingAppointmentView(name, appt);
+    }
+
+    /** delete appointments when person is deleted */
     public void deleteAppointmentsWithNric(Nric targetNric) {
         appointments.deleteAppointmentsWithNric(targetNric);
+        appointmentView.deleteAppointmentsWithNric(targetNric);
     }
 
     @Override

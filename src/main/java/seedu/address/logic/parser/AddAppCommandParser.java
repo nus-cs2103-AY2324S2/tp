@@ -15,6 +15,7 @@ import seedu.address.logic.commands.AddAppCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentType;
+import seedu.address.model.appointment.Mark;
 import seedu.address.model.appointment.Note;
 import seedu.address.model.appointment.TimePeriod;
 import seedu.address.model.person.Nric;
@@ -52,7 +53,9 @@ public class AddAppCommandParser implements Parser<AddAppCommand> {
         AppointmentType appointmentType = ParserUtil.parseAppointmentType(
                 argMultimap.getValue(PREFIX_TAG).get());
 
-        Appointment appToAdd = new Appointment(nric, date, timePeriod, appointmentType, note);
+        Mark mark = new Mark(false);
+
+        Appointment appToAdd = new Appointment(nric, date, timePeriod, appointmentType, note, mark);
 
         return new AddAppCommand(appToAdd);
     }

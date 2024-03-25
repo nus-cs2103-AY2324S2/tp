@@ -14,7 +14,9 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.Mark;
 import seedu.address.model.appointment.TimePeriod;
+import seedu.address.model.appointment.exceptions.AppointmentNotFoundException;
 import seedu.address.model.person.Nric;
 
 /**
@@ -57,12 +59,20 @@ public class MarkCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        Appointment appt = model.getMatchingAppointment(nric, date, timePeriod);
+        Appointment appt;
+        try {
+            appt = model.getMatchingAppointment(nric, date, timePeriod);
+        } catch (AppointmentNotFoundException e) {
+            throw new CommandException(Messages.MESSAGE_APPOINTMENT_NOT_FOUND);
+        }
 
-        appt.setMark("true");
+        Appointment newAppt = new Appointment(appt.getNric(), appt.getDate(), appt.getTimePeriod(),
+            appt.getAppointmentType(), appt.getNote(), new Mark(true));
+
+        model.setAppointment(appt, newAppt);
 
         model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS, PREDICATE_SHOW_ALL_APPOINTMENTS_VIEW);
-        return new CommandResult(String.format(MESSAGE_MARK_PERSON_SUCCESS, Messages.format(appt)));
+        return new CommandResult(String.format(MESSAGE_MARK_PERSON_SUCCESS, Messages.format(newAppt)));
     }
 
     @Override

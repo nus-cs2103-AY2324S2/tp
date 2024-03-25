@@ -4,6 +4,7 @@ import seedu.address.commons.core.date.Date;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentType;
 import seedu.address.model.appointment.AppointmentView;
+import seedu.address.model.appointment.Mark;
 import seedu.address.model.appointment.Note;
 import seedu.address.model.appointment.Time;
 import seedu.address.model.appointment.TimePeriod;
@@ -23,6 +24,7 @@ public class AppointmentViewBuilder {
     public static final String DEFAULT_END_TIME = "23:59";
     public static final String DEFAULT_APPOINTMENT_TYPE = "Health Check-up";
     public static final String DEFAULT_NOTE = "Only speaks mandarin";
+    public static final boolean DEFAULT_MARK = false;
 
     private Name name;
     private Appointment appt;
@@ -40,7 +42,8 @@ public class AppointmentViewBuilder {
         TimePeriod timePeriod = new TimePeriod(startTime, endTime);
         AppointmentType appointmentType = new AppointmentType(DEFAULT_APPOINTMENT_TYPE);
         Note note = new Note(DEFAULT_NOTE);
-        appt = new Appointment(nric, date, timePeriod, appointmentType, note);
+        Mark mark = new Mark(DEFAULT_MARK);
+        appt = new Appointment(nric, date, timePeriod, appointmentType, note, mark);
     }
 
     /**

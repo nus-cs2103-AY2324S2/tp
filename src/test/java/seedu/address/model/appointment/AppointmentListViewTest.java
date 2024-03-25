@@ -159,7 +159,7 @@ public class AppointmentListViewTest {
         Name nameToMatch = ALICE_APPT_VIEW.getName();
         Appointment apptToMatch = ALICE_APPT_VIEW.getAppointment();
 
-        assertEquals(ALICE_APPT_VIEW, appointmentListView.getMatchingAppointment(nameToMatch, apptToMatch));
+        assertEquals(ALICE_APPT_VIEW, appointmentListView.getMatchingAppointmentView(nameToMatch, apptToMatch));
     }
 
     @Test
@@ -169,12 +169,44 @@ public class AppointmentListViewTest {
         Appointment apptToMatch = ALICE_APPT_VIEW_1.getAppointment();
 
         assertThrows(AppointmentNotFoundException.class, () ->
-                appointmentListView.getMatchingAppointment(nameToMatch, apptToMatch));
+                appointmentListView.getMatchingAppointmentView(nameToMatch, apptToMatch));
     }
 
     @Test
     public void getMatchingAppointment_nullInput_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> appointmentListView.getMatchingAppointment(null, null));
+        assertThrows(NullPointerException.class, () -> appointmentListView.getMatchingAppointmentView(null, null));
+    }
+    @Test
+    public void deleteAppointmentsWithNric_validNric_appointmentsRemoved() {
+        appointmentListView.add(ALICE_APPT_VIEW);
+        appointmentListView.add(BOB_APPT_VIEW);
+
+        appointmentListView.deleteAppointmentsWithNric(ALICE_APPT_VIEW.getAppointment().getNric());
+
+        AppointmentListView expectedAppointmentList = new AppointmentListView();
+        expectedAppointmentList.add(BOB_APPT_VIEW);
+
+        assertEquals(expectedAppointmentList, appointmentListView);
+    }
+
+    @Test
+    public void deleteAppointmentsWithNric_nricNotInList_noChange() {
+        appointmentListView.add(ALICE_APPT_VIEW);
+        appointmentListView.add(BOB_APPT_VIEW);
+
+        appointmentListView.deleteAppointmentsWithNric(ALICE_APPT_VIEW.getAppointment().getNric());
+        //to show use of nric that's not there
+        appointmentListView.deleteAppointmentsWithNric(ALICE_APPT_VIEW.getAppointment().getNric());
+
+        AppointmentListView expectedAppointmentList = new AppointmentListView();
+        expectedAppointmentList.add(BOB_APPT_VIEW);
+
+        assertEquals(expectedAppointmentList, appointmentListView);
+    }
+
+    @Test
+    public void deleteAppointmentsWithNric_nullNric_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> appointmentListView.deleteAppointmentsWithNric(null));
     }
 
     @Test

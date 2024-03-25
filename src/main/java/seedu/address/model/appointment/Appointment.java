@@ -28,14 +28,14 @@ public class Appointment {
      * Every field must be present and not null.
      */
     public Appointment(Nric nric, Date date, TimePeriod timePeriod,
-                       AppointmentType appointmentType, Note note) {
+                       AppointmentType appointmentType, Note note, Mark mark) {
         requireAllNonNull(nric, date, timePeriod, appointmentType, note);
         this.nric = nric;
         this.date = date;
         this.timePeriod = timePeriod;
         this.appointmentType = appointmentType;
         this.note = note;
-        this.mark = new Mark("false");
+        this.mark = mark;
     }
 
     public Nric getNric() {
@@ -60,10 +60,6 @@ public class Appointment {
 
     public Mark getMark() {
         return mark;
-    }
-
-    public void setMark(String newMark) {
-        mark = new Mark(newMark);
     }
 
     /**
