@@ -1,9 +1,15 @@
 package seedu.address.model.task;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
 /**
  * Represents a Task's status in the task list.
  */
 public class TaskStatus {
+    public static final String MESSAGE_CONSTRAINTS =
+            "Task status should be either Done or Not Done";
+
     private static final String STATUS_DONE = "Done";
     private static final String STATUS_NOTDONE = "Not Done";
 
@@ -20,10 +26,13 @@ public class TaskStatus {
      * Constructs an {@code TaskStatus}.
      */
     public TaskStatus(String status) {
-        if (status.equalsIgnoreCase(STATUS_DONE)) {
+        requireNonNull(status);
+        if (status.equals(STATUS_DONE)) {
             taskStatus = true;
-        } else {
+        } else if (status.equals(STATUS_NOTDONE)) {
             taskStatus = false;
+        } else {
+            checkArgument(false, MESSAGE_CONSTRAINTS);
         }
     }
 
