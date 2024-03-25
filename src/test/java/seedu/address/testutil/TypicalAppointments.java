@@ -71,6 +71,6 @@ public class TypicalAppointments {
     }
 
     public static List<Appointment> getTypicalAppointments() {
-        return new ArrayList<>(Arrays.asList(ALICE_APPT, ALICE_APPT_1, BENSON_APPT));
+        return new ArrayList<>(Arrays.asList(ALICE_APPT, ALICE_APPT_1, AMY_APPT, BENSON_APPT));
     }
 }

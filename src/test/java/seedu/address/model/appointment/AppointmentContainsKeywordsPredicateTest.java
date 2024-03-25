@@ -187,4 +187,44 @@ public class AppointmentContainsKeywordsPredicateTest {
         // Test for different NRIC, date, and time
         assertFalse(predicate.test(BOB_APPT));
     }
+
+    @Test
+    public void testEquals_sameInstance_returnsTrue() {
+        AppointmentContainsKeywordsPredicate predicate = new AppointmentContainsKeywordsPredicate(
+                Optional.of(new Nric("S1234567A")),
+                Optional.of(new Date("2024-12-31")),
+                Optional.of(new Time("10:00"))
+        );
+        assertTrue(predicate.equals(predicate)); // Same instance
+    }
+
+    @Test
+    public void testEquals_equalInstances_returnsTrue() {
+        AppointmentContainsKeywordsPredicate predicate1 = new AppointmentContainsKeywordsPredicate(
+                Optional.of(new Nric("S1234567A")),
+                Optional.of(new Date("2024-12-31")),
+                Optional.of(new Time("10:00"))
+        );
+        AppointmentContainsKeywordsPredicate predicate2 = new AppointmentContainsKeywordsPredicate(
+                Optional.of(new Nric("S1234567A")),
+                Optional.of(new Date("2024-12-31")),
+                Optional.of(new Time("10:00"))
+        );
+        assertTrue(predicate1.equals(predicate2)); // Equal instances
+    }
+
+    @Test
+    public void testEquals_differentInstances_returnsFalse() {
+        AppointmentContainsKeywordsPredicate predicate1 = new AppointmentContainsKeywordsPredicate(
+                Optional.of(new Nric("S1234567A")),
+                Optional.of(new Date("2024-12-31")),
+                Optional.of(new Time("10:00"))
+        );
+        AppointmentContainsKeywordsPredicate predicate2 = new AppointmentContainsKeywordsPredicate(
+                Optional.of(new Nric("T0123456A")),
+                Optional.of(new Date("2024-12-30")),
+                Optional.of(new Time("09:00"))
+        );
+        assertFalse(predicate1.equals(predicate2)); // Different instances
+    }
 }
