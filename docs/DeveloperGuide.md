@@ -232,6 +232,12 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Easy to implement.
   * Cons: May have performance issues in terms of memory usage.
 
+### Edit feature
+
+#### Implementation
+
+The edit feature implements a search by name function for each user class `person`, `maintainer`, `supplier` and `staff` and edits the specified field.
+
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
@@ -270,7 +276,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 |---------------|---------------------------------------|------------------------------------------------------------|-------------------------------------------------------|
 | `* * *`       | well connected user                   | search contacts                                            | save time                                             |
 | `* * *`       | well connected user                   | add contacts                                               | have the address to contact others in the future      |
-| `* * *`       | cafe owner user                       | delete the contacts of people                              | keep my contacts updated and remove outdated contacts |
+| `* * *`       | cafe owner user                       | delete the contacts                                        | keep my contacts updated and remove outdated contacts |
 | `* * *`       | long-term user                        | edit contacts                                              | update some contact information                       |
 | `* * *`       | first-time user                       | get help about what commnads I can use on the contact book | easily know how to navigate the system                |
 | `**`          | frugal user                           | sort my vendors in ascending order of price                | view the vendors selling the cheapest products easily |
@@ -278,6 +284,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `**`          | forgetful user                        | star contacts that are important                           | remember to contact them easily                       |
 | `**`          | careless user                         | undo previous command                                      | fix my mistakes easily                                |
 | `**`          | careless user                         | retrieve state before undo                                 | fix my mistakes easily                                |
+| `**`          | well connected use                    | pin contacts                                               | easily view frequent contacts                         |
 *{More to be added}*
 
 ### Use cases
@@ -286,7 +293,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ---
 **System**: `PoochPlanner`
 
-**Use case**: `UC01 - Add Contact of a Person`
+**Use case**: `UC01 - Add a contact`
 
 **Actor**: `User`
 
@@ -333,7 +340,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ---
 **System**: `PoochPlanner`
 
-**Use case**: `UC02 - Delete Contact of a Person`
+**Use case**: `UC02 - Delete a contact`
 
 **Actor**: `User`
 
@@ -366,7 +373,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ---
 **System**: `PoochPlanner`
 
-**Use case**: `UC03 - Edit Contact of a Person`
+**Use case**: `UC03 - Edit a contact`
 
 **Actor**: `User`
 
@@ -427,7 +434,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ---
 **System**: `PoochPlanner`
 
-**Use case**: `UC04 - Search Contact of a Person`
+**Use case**: `UC04 - Search for a contact`
 
 **Actor**: `User`
 
@@ -489,7 +496,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **System**: `PoochPlanner`
 
-**Use case**: `UC06 - Undo`
+**Use case**: `UC06 - Undo a command`
 
 **Actor**: `User`
 
@@ -511,7 +518,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **System**: `PoochPlanner`
 
-**Use case**: `UC06 - Redo`
+**Use case**: `UC06 - Redo a command`
 
 **Actor**: `User`
 
@@ -528,6 +535,37 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 1a1. PoochPlanner displays the error message.
     * Use case ends.
+
+---
+
+**System**: `PoochPlanner`
+
+**Use case**: `UC07 - Pin a contact`
+
+**Actor**: `User`
+
+**MSS**:
+
+1.  User requests to pin a contact.
+2.  PoochPlanner display a list of contact with pinned contact at the top.
+
+    Use case ends.
+
+**Extensions**:
+
+* 1a. PoochPlanner detects a missing name field in the entered input.
+
+   * 1a1. PoochPlanner displays the error message.
+   * 1a2. User re-enters the command with a specified name field.
+   * Steps 1a1 - 1a2 are repeated until the input entered are correct.
+   * Use case resumes from step 2.
+
+* 1b. PoochPlanner is unable to find the person.
+
+   * 1b1. PoochPlanner displays the error message.
+   * 1b2. User re-enters a new command with another name.
+   * Steps 1b1 - 1b2 are repeated until the input references a Person that exists in PoochPlanner.
+   * Use case resumes from step 2.
 
 ---
 *{More to be added}*
@@ -553,7 +591,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Pooch Client**: Patrons of the Dog Cafe.
 * **Pooch Supplier**: External suppliers that sell the logistics required for the sustenance of Dog Cafe operations, for example Pooch Food, to the Pooch Cafe Owners at a fixed price.
 * **Pooch Staff**: Employees of the Dog Cafe that handle the running of the cafe.
-* **Pooch Maintenance Staff**: Specialised external workers that take special care and maintenance of dogs.
+* **Pooch Maintainer**: Specialised external workers that take special care and maintenance of dogs.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -583,20 +621,76 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Editing a contact
 
-1. Deleting a person while all persons are being shown
+1. Edting a `Person` contact
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: The contact to be edited must exist and should have been added as a `Person` type. You can run the following command to add in a contact to edit: 
+      ```
+      /pooch-add ; name : Person1 ; phone : 98883888 ; address : Pooch Street 32 ; email : impooch@gmail.com
+      ```
+   1. Test case: `/edit ; name : Person1 ; field : { phone : 99820520}`<br>
+      Expected: The phone field of contact named 'Person1' is edited to `99820520`. Details of the edited contact shown in the status message.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   1. Test case: `/edit ; name : Person1 ; field : { address : Pooch Street 31}`<br>
+      Expected: The address field of contact named 'Person1' is edited to `Pooch Street 31`. Details of the edited contact shown in the status message.
+   
+   1. Test case: `/edit ; name : Person1 ; field : { phone : 99990520 ; email : impooch@gmail13.com}`<br>
+      Expected: The phone and email field of contact named 'Person1' is edited to `99990520` and `impooch@gmail13.com` respectively. Details of the edited contact shown in the status message.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+1. Edting a `Staff` contact
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+   1. Prerequisites: The contact to be edited must exist and should have been added as a `Staff` type. You can run the following command to add in a contact to edit: 
+      ```
+      /pooch-staff ; name : Staff1 ; phone : 98765435 ; address : Poochie Street 21 ; email : ilovecatstoo@gmail.com ; salary : $50/hr ; employment : part-time
+      ```
+   1. Test case: `/edit-staff ; name : Staff1 ; field : { phone : 99820520}`<br>
+      Expected: The phone field of contact named 'Staff1' is edited to `99820520`. Details of the edited contact shown in the status message.
+
+   1. Test case: `/edit-staff ; name : Staff1 ; field : { salary : $55/hr}`<br>
+      Expected: The salary field of contact named 'Staff1' is edited to `$55/hr`. Details of the edited contact shown in the status message.
+
+   1. Test case: `/edit-staff ; name : Staff1 ; field : { employment : full-time}`<br>
+      Expected: The employment field of contact named 'Staff1' is edited to `full-time`. Details of the edited contact shown in the status message.
+   
+   1. Test case: `/edit-staff ; name : Staff1 ; field : { salary : $40/hr ; employment : part-time}`<br>
+      Expected: The salary and employment field of contact named 'Staff1' is edited to `40/hr` and `part-time` respectively. Details of the edited contact shown in the status message.
+
+1. Edting a `Supplier` contact
+
+   1. Prerequisites: The contact to be edited must exist and should have been added as a `Supplier` type. You can run the following command to add in a contact to edit: 
+      ```
+      /pooch-supplier ; name : Supplier1 ; phone : 98673098 ; address : Meow Street 24 ; email : ilovewombatstoo@gmail.com ; product : kibble ; price : $98/bag
+      ```
+   1. Test case: `/edit-supplier ; name : Supplier1 ; field : { phone : 9994555}`<br>
+      Expected: The phone field of contact named 'Supplier1' is edited to `9994555`. Details of the edited contact shown in the status message.
+
+   1. Test case: `/edit-supplier ; name : Supplier1 ; field : { product : dogdiapers}`<br>
+      Expected: The product field of contact named 'Supplier1' is edited to `dogdiapers`. Details of the edited contact shown in the status message.
+
+   1. Test case: `/edit-supplier ; name : Supplier1 ; field : { price : $10/bag}`<br>
+      Expected: The price field of contact named 'Supplier1' is edited to `$10/bag`. Details of the edited contact shown in the status message.
+   
+   1. Test case: `/edit-supplier ; name : Supplier1 ; field : { product : kibbles ; price : $75/bag}`<br>
+      Expected: The product and price field of contact named 'Supplier1' is edited to `kibbles` and `$75/bag` respectively. Details of the edited contact shown in the status message.
+
+1. Edting a `Maintainer` contact
+
+   1. Prerequisites: The contact to be edited must exist and should have been added as a `Maintainer` type. You can run the following command to add in a contact to edit: 
+      ```
+      /pooch-maintainer ; name : Maintainer1  ; phone : 98765435 ; address : Poochie Street 24 ; email : ihelppooches@gmail.com ; skill : trainer ; commission : $60/hr
+      ```
+   1. Test case: `/edit-maintainer ; name : Maintainer1 ; field : { phone : 84444555}`<br>
+      Expected: The phone field of contact named 'Maintainer1' is edited to `84444555`. Details of the edited contact shown in the status message.
+
+   1. Test case: `/edit-maintainer ; name : Maintainer1 ; field : { commission : $10/hr}`<br>
+      Expected: The commission field of contact named 'Maintainer1' is edited to `$10/hr`. Details of the edited contact shown in the status message.
+
+   1. Test case: `/edit-maintainer ; name : Maintainer1 ; field : { skill : cleaner}`<br>
+      Expected: The skill field of contact named 'Maintainer1' is edited to `cleaner`. Details of the edited contact shown in the status message.
+   
+   1. Test case: `/edit-maintainer ; name : Maintainer1 ; field : { commission : $12/hr ; skill : janitor}`<br>
+      Expected: The commission and skill field of contact named 'Maintainer1' is edited to `$12/hr` and `janitor` respectively. Details of the edited contact shown in the status message.
 
 1. _{ more test cases …​ }_
 
