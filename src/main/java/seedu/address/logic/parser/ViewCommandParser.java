@@ -41,9 +41,7 @@ public class ViewCommandParser implements Parser<ViewCommand> {
 
     public String[] getValidArgs(String args) throws ParseException {
         String[] arguments = args.trim().split("\\s+");
-        for (String s : arguments) {
-            System.out.println(s);
-        }
+
         if (arguments.length < 2) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
         }

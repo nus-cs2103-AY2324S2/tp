@@ -49,6 +49,10 @@ public class ViewClientCommand extends ViewCommand {
         }
         Person selectedClient = lastShownList.get(this.clientIndex.getZeroBased());
 
+        if (lastShownList.size() == 1 && selectedClient.equals(lastShownList.get(0))) {
+            throw new CommandException(Messages.MESSAGE_RETURN_HOME);
+        }
+
         model.updateFilteredPersonList(c -> c.equals(selectedClient));
         model.updateFilteredMeetingList(new MeetingBelongingToClientPredicate(selectedClient));
 
