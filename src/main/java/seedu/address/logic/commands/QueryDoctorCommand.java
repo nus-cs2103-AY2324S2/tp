@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.person.DoctorNameContainsKeywordsPredicate;
+import seedu.address.model.person.DoctorContainsKeywordsPredicate;
 
 /**
  * Queries and returns all doctors whose name matches the input string.
@@ -21,9 +21,9 @@ public class QueryDoctorCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " alice bob charlie";
 
-    private final DoctorNameContainsKeywordsPredicate predicate;
+    private final DoctorContainsKeywordsPredicate predicate;
 
-    public QueryDoctorCommand(DoctorNameContainsKeywordsPredicate predicate) {
+    public QueryDoctorCommand(DoctorContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 

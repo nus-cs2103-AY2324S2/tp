@@ -8,7 +8,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.QueryDoctorCommand;
-import seedu.address.model.person.DoctorNameContainsKeywordsPredicate;
+import seedu.address.model.person.DoctorContainsKeywordsPredicate;
 
 public class QueryDoctorCommandParserTest {
 
@@ -24,7 +24,7 @@ public class QueryDoctorCommandParserTest {
     public void parse_validArgs_returnsQueryCommand() {
         // no leading and trailing whitespaces
         QueryDoctorCommand expectedQueryCommand =
-                new QueryDoctorCommand(new DoctorNameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
+                new QueryDoctorCommand(new DoctorContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
         assertParseSuccess(parser, "Alice Bob", expectedQueryCommand);
 
         // multiple whitespaces between keywords

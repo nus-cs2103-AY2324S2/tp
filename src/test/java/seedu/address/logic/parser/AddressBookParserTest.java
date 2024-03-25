@@ -32,10 +32,10 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentContainsPatientPredicate;
 import seedu.address.model.person.Doctor;
-import seedu.address.model.person.DoctorNameContainsKeywordsPredicate;
+import seedu.address.model.person.DoctorContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Patient;
-import seedu.address.model.person.PatientNameContainsKeywordsPredicate;
+import seedu.address.model.person.PatientContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.AppointmentBuilder;
 import seedu.address.testutil.AppointmentUtil;
@@ -128,7 +128,7 @@ public class AddressBookParserTest {
         QueryDoctorCommand command = (QueryDoctorCommand) parser.parseCommand(
                 QueryDoctorCommand.COMMAND_WORD + " "
                         + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new QueryDoctorCommand(new DoctorNameContainsKeywordsPredicate(keywords)), command);
+        assertEquals(new QueryDoctorCommand(new DoctorContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test
@@ -137,7 +137,7 @@ public class AddressBookParserTest {
         QueryPatientCommand command = (QueryPatientCommand) parser.parseCommand(
                 QueryPatientCommand.COMMAND_WORD + " "
                         + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new QueryPatientCommand(new PatientNameContainsKeywordsPredicate(keywords)), command);
+        assertEquals(new QueryPatientCommand(new PatientContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test

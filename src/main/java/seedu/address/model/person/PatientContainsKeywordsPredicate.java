@@ -9,10 +9,10 @@ import seedu.address.commons.util.ToStringBuilder;
 /**
  * Tests that a {@code Patient}'s {@code Name} matches any of the keywords given.
  */
-public class PatientNameContainsKeywordsPredicate implements Predicate<Person> {
+public class PatientContainsKeywordsPredicate implements Predicate<Person> {
     private final List<String> keywords;
 
-    public PatientNameContainsKeywordsPredicate(List<String> keywords) {
+    public PatientContainsKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
     }
 
@@ -22,8 +22,12 @@ public class PatientNameContainsKeywordsPredicate implements Predicate<Person> {
             return false;
         }
 
-        return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(patient.getName().fullName, keyword));
+        return keywords.stream().anyMatch(keyword ->
+                StringUtil.containsSubstringIgnoreCase(patient.getNric().nric, keyword)
+                || StringUtil.containsSubstringIgnoreCase(patient.getName().fullName, keyword)
+                || StringUtil.containsSubstringIgnoreCase(patient.getDoB().dateOfBirth.toString(), keyword)
+                || StringUtil.containsSubstringIgnoreCase(patient.getPhone().value, keyword)
+        );
     }
 
     @Override
@@ -33,11 +37,11 @@ public class PatientNameContainsKeywordsPredicate implements Predicate<Person> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof PatientNameContainsKeywordsPredicate)) {
+        if (!(other instanceof PatientContainsKeywordsPredicate)) {
             return false;
         }
 
-        PatientNameContainsKeywordsPredicate otherPredicate = (PatientNameContainsKeywordsPredicate) other;
+        PatientContainsKeywordsPredicate otherPredicate = (PatientContainsKeywordsPredicate) other;
         return keywords.equals(otherPredicate.keywords);
     }
 
