@@ -6,7 +6,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_FAVOURITES;
 import seedu.address.model.Model;
 
 /**
- * Lists all persons in the address book to the user.
+ * Lists all favourites in the address book to the user.
  */
 public class ShowFavouriteCommand extends Command {
 
