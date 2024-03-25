@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
@@ -12,6 +13,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddTagsCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
@@ -102,6 +104,14 @@ public class AddressBookParserTest {
         FindTagsAndCommand command = (FindTagsAndCommand) parser.parseCommand(
                 FindTagsAndCommand.COMMAND_WORD + " " + String.join(" ", tags));
         assertEquals(new FindTagsAndCommand(new TagsAndFoundPredicate(TagBuilder.build(tags))), command);
+    }
+
+    @Test
+    public void parseCommand_addTags() throws Exception {
+        List<String> tags = List.of("foo");
+        AddTagsCommand command = (AddTagsCommand) parser.parseCommand(AddTagsCommand.COMMAND_WORD + " "
+                + INDEX_FIRST_PERSON.getOneBased() + " " + PREFIX_TAG + tags.get(0));
+        assertEquals(new AddTagsCommand(INDEX_FIRST_PERSON, TagBuilder.build(tags)), command);
     }
 
     @Test
