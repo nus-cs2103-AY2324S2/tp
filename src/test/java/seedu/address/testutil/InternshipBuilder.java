@@ -10,6 +10,7 @@ import seedu.address.model.internship.Internship;
 import seedu.address.model.internship.Location;
 import seedu.address.model.internship.Remark;
 import seedu.address.model.internship.Role;
+import seedu.address.model.internship.TaskList;
 
 /**
  * A utility class to help with building Internship objects.
@@ -34,6 +35,7 @@ public class InternshipBuilder {
     private Description description;
     private Role role;
     private Remark remark;
+    private TaskList taskList;
 
     /**
      * Creates an {@code InternshipBuilder} with the default details.
@@ -136,11 +138,19 @@ public class InternshipBuilder {
     }
 
     /**
+     * Sets the {@code Remark} of the {@code Internship} that we are building.
+     */
+    public InternshipBuilder withTaskList(String taskList) {
+        this.taskList = new TaskList(taskList);
+        return this;
+    }
+
+    /**
      * Builds the Internship object.
      */
     public Internship build() {
         return new Internship(companyName, contactName, contactEmail, contactNumber, location, applicationStatus,
-                description, role, remark);
+                description, role, remark, taskList);
     }
 
 }
