@@ -56,6 +56,11 @@ public class Messages {
             builder.append("; Birthday: ").append(person.getBirthday());
         }
 
+        if (!person.getTags().isEmpty()) {
+            builder.append("; Free Time Tags: ");
+            person.getTags().forEach(builder::append);
+        }
+
         return builder.toString();
     }
 

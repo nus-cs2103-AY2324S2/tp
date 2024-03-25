@@ -2,17 +2,18 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOMNUMBER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
+import static seedu.address.logic.parser.CliSyntax.*;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.tag.FreeTimeTag;
+
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Optional;
+import java.util.Set;
 
 /**
  * Parses input arguments and creates a new EditCommand object
@@ -28,7 +29,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ROOMNUMBER,
-                        PREFIX_TELEGRAM, PREFIX_BIRTHDAY);
+                        PREFIX_TELEGRAM, PREFIX_BIRTHDAY, PREFIX_FREETIMETAG);
 
         Index index;
 
@@ -39,7 +40,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ROOMNUMBER,
-                PREFIX_TELEGRAM, PREFIX_BIRTHDAY);
+                PREFIX_TELEGRAM, PREFIX_BIRTHDAY, PREFIX_FREETIMETAG);
 
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
 
@@ -63,11 +64,28 @@ public class EditCommandParser implements Parser<EditCommand> {
             editPersonDescriptor.setBirthday(ParserUtil.parseBirthday(argMultimap.getValue(PREFIX_BIRTHDAY).get()));
         }
 
+        parseFreeTimeTagsForEdit(argMultimap.getAllValues(PREFIX_FREETIMETAG)).ifPresent(editPersonDescriptor::setTags);
+
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
 
         return new EditCommand(index, editPersonDescriptor);
+    }
+
+    /**
+     * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
+     * If {@code tags} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<Tag>} containing zero tags.
+     */
+    private Optional<Set<FreeTimeTag>> parseFreeTimeTagsForEdit(Collection<String> tags) throws ParseException {
+        assert tags != null;
+
+        if (tags.isEmpty()) {
+            return Optional.empty();
+        }
+        Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
+        return Optional.of(ParserUtil.parseFreeTimeTags(tagSet));
     }
 
 }

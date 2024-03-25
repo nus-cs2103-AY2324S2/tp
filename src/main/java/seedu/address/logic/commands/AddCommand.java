@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOMNUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FREETIMETAG;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -29,13 +30,15 @@ public class AddCommand extends Command {
             + PREFIX_ROOMNUMBER + "ROOM NUMBER "
             + PREFIX_TELEGRAM + "TELEGRAM "
             + PREFIX_BIRTHDAY + "BIRTHDAY "
+            + "[" + PREFIX_FREETIMETAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ROOMNUMBER + "sw-01-01 "
             + PREFIX_TELEGRAM + "johnDoe "
-            + PREFIX_BIRTHDAY + "12/12/2000 ";
+            + PREFIX_BIRTHDAY + "12/12/2000 "
+            + PREFIX_FREETIMETAG + "Mon:1pm-2pm";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";

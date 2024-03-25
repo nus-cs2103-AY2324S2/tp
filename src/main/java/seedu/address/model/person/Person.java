@@ -2,9 +2,14 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.tag.FreeTimeTag;
+import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Person in the logbook.
@@ -21,11 +26,11 @@ public class Person {
     private final RoomNumber roomNumber;
     private final Telegram telegram;
     private final Birthday birthday;
-
+    private final Set<FreeTimeTag> tags = new HashSet<>();
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, RoomNumber roomNumber, Telegram telegram, Birthday birthday) {
+    public Person(Name name, Phone phone, Email email, RoomNumber roomNumber, Telegram telegram, Birthday birthday, Set<FreeTimeTag> tags) {
         requireAllNonNull(name, phone);
         this.name = name;
         this.phone = phone;
@@ -33,6 +38,7 @@ public class Person {
         this.roomNumber = roomNumber;
         this.telegram = telegram;
         this.birthday = birthday;
+        this.tags.addAll(tags);
     }
 
     public Name getName() {
@@ -59,6 +65,13 @@ public class Person {
         return birthday;
     }
 
+    /**
+     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<FreeTimeTag> getTags() {
+        return Collections.unmodifiableSet(tags);
+    }
 
     /**
      * Returns true if both persons have the same name.
@@ -117,13 +130,15 @@ public class Person {
             isEqual = isEqual && birthday.equals(otherPerson.birthday);
         }
 
+        isEqual = isEqual && tags.equals(otherPerson.tags);
+
         return isEqual;
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, roomNumber, telegram, birthday);
+        return Objects.hash(name, phone, email, roomNumber, telegram, birthday, tags);
     }
 
     @Override
@@ -131,6 +146,7 @@ public class Person {
         ToStringBuilder sb = new ToStringBuilder(this);
         sb.add("name", name);
         sb.add("phone", phone);
+        sb.add("tags", tags);
 
         if (email != null) {
             sb.add("email", email);

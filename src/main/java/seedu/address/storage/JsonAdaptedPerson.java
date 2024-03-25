@@ -11,6 +11,14 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.RoomNumber;
 import seedu.address.model.person.Telegram;
+import seedu.address.model.tag.FreeTimeTag;
+import seedu.address.model.tag.Tag;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -25,20 +33,24 @@ class JsonAdaptedPerson {
     private final String roomNumber;
     private final String telegram;
     private final String birthday;
-
+    private final List<JsonAdaptedFreeTimeTag> freeTimeTags = new ArrayList<>();
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("roomNumber") String roomNumber,
-                             @JsonProperty("telegram") String telegram, @JsonProperty("birthday") String birthday) {
+                             @JsonProperty("telegram") String telegram, @JsonProperty("birthday") String birthday,
+                             @JsonProperty("tags") List<JsonAdaptedFreeTimeTag> freeTimeTags) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.roomNumber = roomNumber;
         this.telegram = telegram;
         this.birthday = birthday;
+        if (freeTimeTags != null) {
+            this.freeTimeTags.addAll(freeTimeTags);
+        }
     }
 
     /**
@@ -51,6 +63,9 @@ class JsonAdaptedPerson {
         roomNumber = source.getRoomNumber() == null ? null : source.getRoomNumber().toString();
         telegram = source.getTelegram() == null ? null : source.getTelegram().value;
         birthday = source.getBirthday() == null ? null : String.valueOf(source.getBirthday().value);
+        freeTimeTags.addAll(source.getTags().stream()
+                .map(JsonAdaptedFreeTimeTag::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -59,6 +74,10 @@ class JsonAdaptedPerson {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Person toModelType() throws IllegalValueException {
+        final List<FreeTimeTag> freeTimeTagList = new ArrayList<>();
+        for (JsonAdaptedFreeTimeTag freeTimeTag : freeTimeTags) {
+            freeTimeTagList.add(freeTimeTag.toModelType());
+        }
 
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
@@ -111,7 +130,9 @@ class JsonAdaptedPerson {
         }
         final Birthday modelBirthday = new Birthday(birthday);
 
-        return new Person(modelName, modelPhone, modelEmail, modelRoomNumber, modelTelegram, modelBirthday);
+        final Set<FreeTimeTag> modelFreeTimeTags = new HashSet<>(freeTimeTagList);
+
+        return new Person(modelName, modelPhone, modelEmail, modelRoomNumber, modelTelegram, modelBirthday, modelFreeTimeTags);
     }
 
 }
