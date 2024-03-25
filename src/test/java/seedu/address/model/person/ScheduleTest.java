@@ -105,5 +105,28 @@ public class ScheduleTest {
         Schedule testSchedule = new Schedule(schedule, false);
         assertEquals(DateTimeUtil.parseDateToString(schedule), testSchedule.getScheduleDateString());
     }
-}
 
+    @Test
+    public void equals() {
+        LocalDateTime scheduleDate = LocalDateTime.of(2022, 1, 1, 12, 0);
+        Schedule schedule = new Schedule(scheduleDate, false);
+
+        // same values -> returns true
+        Schedule scheduleCopy = new Schedule(scheduleDate, false);
+        assertTrue(schedule.equals(scheduleCopy));
+
+        // same object -> returns true
+        assertTrue(schedule.equals(schedule));
+
+        // null -> returns false
+        assertFalse(schedule.equals(null));
+
+        // different type -> returns false
+        assertFalse(schedule.equals(5));
+
+        // different values -> returns false
+        LocalDateTime otherScheduleDate = LocalDateTime.of(2022, 1, 2, 12, 0);
+        Schedule otherSchedule = new Schedule(otherScheduleDate, false);
+        assertFalse(schedule.equals(otherSchedule));
+    }
+}
