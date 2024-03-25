@@ -28,8 +28,10 @@ import seedu.realodex.testutil.EditPersonDescriptorBuilder;
  */
 public class CommandTestUtil {
 
-    public static final String VALID_NAME_AMY = "Amy Bee";
-    public static final String VALID_NAME_BOB = "Bob Choo";
+    public static final String VALID_NAME_AMY_CAPS = "Amy Bee";
+
+    public static final String VALID_NAME_AMY_NON_CAPS = "amy bee";
+    public static final String VALID_NAME_BOB_CAPS = "Bob Choo";
     public static final String VALID_PHONE_AMY = "11111111";
     public static final String VALID_PHONE_BOB = "22222222";
     public static final String VALID_INCOME_AMY = "20000";
@@ -45,8 +47,9 @@ public class CommandTestUtil {
     public static final String VALID_REMARK_AMY = "This is a remark";
     public static final String VALID_REMARK_BOB = "Testing remark";
 
-    public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
-    public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
+    public static final String NAME_DESC_AMY_CAPS = " " + PREFIX_NAME + VALID_NAME_AMY_CAPS;
+    public static final String NAME_DESC_AMY_NON_CAPS = " " + PREFIX_NAME + VALID_NAME_AMY_NON_CAPS;
+    public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB_CAPS;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
     public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_PHONE_BOB;
     public static final String INCOME_DESC_AMY = " " + PREFIX_INCOME + VALID_INCOME_AMY;
@@ -74,7 +77,7 @@ public class CommandTestUtil {
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
 
     static {
-        DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
+        DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY_CAPS)
                 .withPhone(VALID_PHONE_AMY)
                 .withIncome(VALID_INCOME_AMY)
                 .withEmail(VALID_EMAIL_AMY)
@@ -84,7 +87,7 @@ public class CommandTestUtil {
                 .withRemark(VALID_REMARK_AMY)
                 .build();
         DESC_BOB = new EditPersonDescriptorBuilder()
-                .withName(VALID_NAME_BOB)
+                .withName(VALID_NAME_BOB_CAPS)
                 .withPhone(VALID_PHONE_BOB)
                 .withIncome(VALID_INCOME_BOB)
                 .withEmail(VALID_EMAIL_BOB)

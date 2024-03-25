@@ -7,12 +7,12 @@ import static seedu.realodex.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.realodex.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.realodex.logic.commands.CommandTestUtil.FAMILY_DESC_AMY;
 import static seedu.realodex.logic.commands.CommandTestUtil.INCOME_DESC_AMY;
-import static seedu.realodex.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static seedu.realodex.logic.commands.CommandTestUtil.NAME_DESC_AMY_CAPS;
 import static seedu.realodex.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.realodex.logic.commands.CommandTestUtil.TAG_DESC_AMY;
 import static seedu.realodex.logic.commands.CommandTestUtil.VALID_TAG_AMY;
 import static seedu.realodex.testutil.Assert.assertThrows;
-import static seedu.realodex.testutil.TypicalPersons.AMY;
+import static seedu.realodex.testutil.TypicalPersons.AMY_NAME_CAPS;
 
 import java.io.IOException;
 import java.nio.file.AccessDeniedException;
@@ -169,9 +169,9 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Triggers the saveRealodex method by executing an add command
-        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY
+        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY_CAPS + PHONE_DESC_AMY
                 + INCOME_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + FAMILY_DESC_AMY + TAG_DESC_AMY;
-        Person expectedPerson = new PersonBuilder(AMY).withTags(VALID_TAG_AMY).build();
+        Person expectedPerson = new PersonBuilder(AMY_NAME_CAPS).withTags(VALID_TAG_AMY).build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addPerson(expectedPerson);
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);

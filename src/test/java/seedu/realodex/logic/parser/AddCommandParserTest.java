@@ -16,7 +16,8 @@ import static seedu.realodex.logic.commands.CommandTestUtil.INVALID_INCOME_DESC;
 import static seedu.realodex.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.realodex.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.realodex.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
-import static seedu.realodex.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static seedu.realodex.logic.commands.CommandTestUtil.NAME_DESC_AMY_CAPS;
+import static seedu.realodex.logic.commands.CommandTestUtil.NAME_DESC_AMY_NON_CAPS;
 import static seedu.realodex.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 import static seedu.realodex.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.realodex.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
@@ -30,7 +31,7 @@ import static seedu.realodex.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.realodex.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.realodex.logic.commands.CommandTestUtil.VALID_FAMILY_BOB;
 import static seedu.realodex.logic.commands.CommandTestUtil.VALID_INCOME_BOB;
-import static seedu.realodex.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.realodex.logic.commands.CommandTestUtil.VALID_NAME_BOB_CAPS;
 import static seedu.realodex.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.realodex.logic.commands.CommandTestUtil.VALID_TAG_AMY;
 import static seedu.realodex.logic.commands.CommandTestUtil.VALID_TAG_BOB;
@@ -43,7 +44,8 @@ import static seedu.realodex.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.realodex.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.realodex.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.realodex.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.realodex.testutil.TypicalPersons.AMY;
+import static seedu.realodex.testutil.TypicalPersons.AMY_NAME_CAPS;
+import static seedu.realodex.testutil.TypicalPersons.AMY_NAME_NON_CAPS;
 import static seedu.realodex.testutil.TypicalPersons.BOB;
 
 import org.junit.jupiter.api.Test;
@@ -105,8 +107,8 @@ public class AddCommandParserTest {
                 + ADDRESS_DESC_BOB + FAMILY_DESC_BOB + TAG_DESC_BOB + REMARK_DESC_BOB;
 
         // multiple names
-        assertParseFailure(parser, NAME_DESC_AMY + validExpectedPersonString,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NAME));
+        assertParseFailure(parser, NAME_DESC_AMY_CAPS + validExpectedPersonString,
+                           Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NAME));
 
         // multiple phones
         assertParseFailure(parser, PHONE_DESC_AMY + validExpectedPersonString,
@@ -135,7 +137,7 @@ public class AddCommandParserTest {
         // multiple fields repeated
         assertParseFailure(parser,
                 validExpectedPersonString + PHONE_DESC_AMY + INCOME_DESC_AMY + EMAIL_DESC_AMY
-                        + NAME_DESC_AMY + ADDRESS_DESC_AMY + FAMILY_DESC_AMY + REMARK_DESC_AMY
+                        + NAME_DESC_AMY_CAPS + ADDRESS_DESC_AMY + FAMILY_DESC_AMY + REMARK_DESC_AMY
                         + validExpectedPersonString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NAME, PREFIX_INCOME, PREFIX_ADDRESS, PREFIX_EMAIL,
                                                              PREFIX_PHONE, PREFIX_FAMILY, PREFIX_REMARK));
@@ -199,9 +201,9 @@ public class AddCommandParserTest {
 
         // missing name prefix
         assertParseFailure(parser,
-                           VALID_NAME_BOB + PHONE_DESC_BOB + INCOME_DESC_BOB + EMAIL_DESC_BOB
+                           VALID_NAME_BOB_CAPS + PHONE_DESC_BOB + INCOME_DESC_BOB + EMAIL_DESC_BOB
                                    + ADDRESS_DESC_BOB + FAMILY_DESC_BOB + TAG_DESC_BOB,
-                expectedMessage);
+                           expectedMessage);
 
         // missing phone prefix
         assertParseFailure(parser,
@@ -235,15 +237,15 @@ public class AddCommandParserTest {
 
         // missing tag prefix
         assertParseFailure(parser,
-                           VALID_NAME_BOB + VALID_PHONE_BOB + INCOME_DESC_BOB
+                           VALID_NAME_BOB_CAPS + VALID_PHONE_BOB + INCOME_DESC_BOB
                                    + VALID_EMAIL_BOB + VALID_ADDRESS_BOB + FAMILY_DESC_BOB,
                            expectedMessage);
 
         // all prefixes missing
         assertParseFailure(parser,
-                           VALID_NAME_BOB + VALID_PHONE_BOB + INCOME_DESC_BOB
+                           VALID_NAME_BOB_CAPS + VALID_PHONE_BOB + INCOME_DESC_BOB
                                    + VALID_EMAIL_BOB + VALID_ADDRESS_BOB + FAMILY_DESC_BOB + VALID_TAG_BOB,
-                expectedMessage);
+                           expectedMessage);
     }
 
     @Test
@@ -257,14 +259,22 @@ public class AddCommandParserTest {
                 + FAMILY_DESC_BOB
                 + TAG_DESC_BOB, new AddCommand(expectedPerson));
 
-        expectedPerson = new PersonBuilder(AMY).build();
-        assertParseSuccess(parser, NAME_DESC_AMY
+        expectedPerson = new PersonBuilder(AMY_NAME_CAPS).build();
+        assertParseSuccess(parser, NAME_DESC_AMY_CAPS
                 + PHONE_DESC_AMY
                 + INCOME_DESC_AMY
                 + EMAIL_DESC_AMY
                 + ADDRESS_DESC_AMY
                 + FAMILY_DESC_AMY
                 + TAG_DESC_AMY, new AddCommand(expectedPerson));
+    }
+
+    @Test
+    public void parse_nonCapitalizedName_success() {
+        Person expectedPerson = new PersonBuilder(AMY_NAME_CAPS).build();
+        String validExpectedPersonString = NAME_DESC_AMY_NON_CAPS + PHONE_DESC_AMY + INCOME_DESC_AMY + EMAIL_DESC_AMY
+                + ADDRESS_DESC_AMY + FAMILY_DESC_AMY + TAG_DESC_AMY;
+        assertParseSuccess(parser, validExpectedPersonString, new AddCommand(expectedPerson));
     }
 
     @Test
