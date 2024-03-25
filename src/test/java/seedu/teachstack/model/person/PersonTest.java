@@ -48,6 +48,11 @@ public class PersonTest {
     }
 
     @Test
+    public void isSameEmail() {
+        assertFalse(ALICE.isSameEmail(null));
+    }
+
+    @Test
     public void equals() {
         // same values -> returns true
         Person aliceCopy = new PersonBuilder(ALICE).build();
