@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Set;
 import java.util.stream.Stream;
 
+import seedu.realodex.logic.Messages;
 import seedu.realodex.logic.commands.AddCommand;
 import seedu.realodex.logic.parser.exceptions.ParseException;
 import seedu.realodex.model.person.Address;
@@ -56,8 +57,7 @@ public class AddCommandParser implements Parser<AddCommand> {
                                 listOfCompulsoryPrefixTags)) {
             String exceptionMessageForMissingPrefixes =
                     argMultimap.returnMessageOfMissingPrefixes(listOfCompulsoryPrefixTags) + "\n";
-            throw new ParseException(exceptionMessageForMissingPrefixes + String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                                                                                      AddCommand.MESSAGE_USAGE));
+            throw new ParseException(Messages.getErrorMessageForMissingPrefixes(exceptionMessageForMissingPrefixes) + AddCommand.MESSAGE_USAGE);
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_INCOME, PREFIX_EMAIL,
