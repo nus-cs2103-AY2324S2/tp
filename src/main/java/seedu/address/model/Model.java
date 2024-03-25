@@ -80,6 +80,9 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
+    /**
+     * Sorts the address book by the attribute represented by the given prefix.
+     */
     void sortAddressBook(String prefix);
 
     /** Returns an unmodifiable view of the filtered person list */

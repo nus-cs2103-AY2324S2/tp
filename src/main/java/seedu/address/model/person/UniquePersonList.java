@@ -100,11 +100,14 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
-     * Sorts the list of persons by the given prefix.
+     * Sorts the list of persons by the attribute represented by the given prefix.
      */
     public void sortPersons(String prefix) {
+        requireNonNull(prefix);
         if (PREFIX_NAME.getPrefix().equals(prefix)) {
             internalList.sort(Comparator.comparing(Person::getName));
+        } else {
+            throw new IllegalArgumentException("Invalid prefix supplied.");
         }
     }
 

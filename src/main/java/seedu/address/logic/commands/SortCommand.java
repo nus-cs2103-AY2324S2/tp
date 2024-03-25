@@ -2,6 +2,10 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.logic.Messages;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.SortCommandParser;
 import seedu.address.model.Model;
 
 /**
@@ -30,10 +34,37 @@ public class SortCommand extends PersonCommand {
 
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        if (!SortCommandParser.isAllowedPrefix(prefix)) {
+            throw new CommandException(Messages.MESSAGE_INVALID_SORTING_PREFIX);
+        }
+
         model.sortAddressBook(prefix);
 
         return new CommandResult(MESSAGE_SUCCESS);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof SortCommand)) {
+            return false;
+        }
+
+        SortCommand otherSortCommand = (SortCommand) other;
+        return prefix.equals(otherSortCommand.prefix);
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .add("prefix", prefix)
+                .toString();
     }
 }
