@@ -16,8 +16,9 @@ Person -up-> "*" Tag
 
 Person *--> Name
 Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> Company
-Person *--> Priority
+Person *--> "*" Email
+Person *--> "*" Address
+Person *--> "*" Company
+Person *--> "*" Priority
+Person *--> "*" Note
 @enduml
