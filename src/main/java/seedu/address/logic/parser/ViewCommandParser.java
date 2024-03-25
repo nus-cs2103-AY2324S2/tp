@@ -13,7 +13,6 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class ViewCommandParser implements Parser<ViewCommand> {
 
     public static final String VIEW_CLIENT_ARGUMENT = "c";
-    public static final String VIEW_MEETING_ARGUMENT = "m";
 
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteCommand
@@ -41,7 +40,7 @@ public class ViewCommandParser implements Parser<ViewCommand> {
     }
 
     public String[] getValidArgs(String args) throws ParseException {
-        String[] arguments = args.trim().split(" ");
+        String[] arguments = args.trim().split("\\s+");
         for (String s : arguments) {
             System.out.println(s);
         }
