@@ -19,10 +19,7 @@ public class ShowProjectCommand extends Command {
 
     public static final String COMMAND_WORD = "show project";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Shows the specified project. "
-            + "Parameters: PROJECT_NAME\n"
-            + "Example: " + COMMAND_WORD + " CS2103";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " PROJECT_NAME";
 
     public static final String MESSAGE_SHOW_PROJECT_SUCCESS = "%1$s is now being shown.";
 

@@ -299,20 +299,20 @@ Expected output:
 
 ## Command summary
 
-| Action                         | Format, Examples                                                                                                                                          |
-|--------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Show project**               | `show project <PROJECT_NAME>` <br> e.g., `show project CS2101 Presentation`                                                                               |
-| **Add project**                | `add project <PROJECT_NAME>` <br> e.g., `add project CS2101 Presentation`                                                                                 |
-| **Add task**                   | `add task <TASK_NAME> /to <PROJECT_NAME>` <br> e.g., `add task add deadline command /to CS2103T Duke Chatbot Project`                                     |
-| **Delete project**             | `delete project <PROJECT_NAME>`<br> e.g., `delete project CS2101 Presentation`                                                                            |
-| **Delete task**                | `delete task <TASK_NAME> /in <PROJECT_NAME>`<br> e.g., `delete task add deadline command /in CS2103T Duke Chatbot Project`                                |
-| **Assign deadline to project** | `add deadline <DEADLINE> /to <PROJECT_NAME>`<br> e.g., `add deadline Feb 25 2024 /to CS2103_TP`                                                           |
-| **Assign deadline to task**    | `add deadline <DEADLINE> /to <TASK_NAME> /in <PROJECT_NAME>`<br> e.g., `add deadline Feb 25 2024 /to submit feature list /in CS2103_TP`                   |
-| **Add person to project**      | `add person <PERSON_NAME> /to <PROJECT_NAME>`<br> e.g., `add person Joe /to CS2103_TP`                                                                    |
-| **Add person to task**         | `add person <PERSON_NAME> /to <TASK_NAME> /in <PROJECT_NAME>`<br> e.g., `add person Joe /to unit test /in CS2103_TP`                                      |
-| **Set project status**         | `set status <STATUS> project <PROJECT_NAME>`<br> e.g., `set status complete project CS2103T Duke Chatbot Project`                                         |
-| **Set task status**            | `set status [complete/incomplete] /to task <TASK_NAME> /in <PROJECT_NAME>`<br> e.g., `set status complete /to unit test /in CS2103T Duke Chatbot Project` |
-| **Edit**                       | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                               |
-| **Clear**                      | `clear`                                                                                                                                                   |
-| **Find**                       | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                |
-| **Help**                       | `help`                                                                                                                                                    |
+| Action                         | Format, Examples                                                                                                                                     |
+|--------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Show project**               | `show project <PROJECT_NAME>` <br> e.g., `show project CS2101 Presentation`                                                                          |
+| **Add project**                | `add project <PROJECT_NAME>` <br> e.g., `add project CS2101 Presentation`                                                                            |
+| **Add task**                   | `add task <TASK_NAME> /to <PROJECT_NAME>` <br> e.g., `add task add deadline command /to CS2103T Duke Chatbot Project`                                |
+| **Delete project**             | `delete project <PROJECT_NAME>`<br> e.g., `delete project CS2101 Presentation`                                                                       |
+| **Delete task**                | `delete task <TASK_NAME> /in <PROJECT_NAME>`<br> e.g., `delete task add deadline command /in CS2103T Duke Chatbot Project`                           |
+| **Assign deadline to project** | `add deadline <DEADLINE> /to <PROJECT_NAME>`<br> e.g., `add deadline Feb 25 2024 /to CS2103_TP`                                                      |
+| **Assign deadline to task**    | `add deadline <DEADLINE> /to <TASK_NAME> /in <PROJECT_NAME>`<br> e.g., `add deadline Feb 25 2024 /to submit feature list /in CS2103_TP`              |
+| **Add person to project**      | `add person <PERSON_NAME> /to <PROJECT_NAME>`<br> e.g., `add person Joe /to CS2103_TP`                                                               |
+| **Add person to task**         | `add person <PERSON_NAME> /to <TASK_NAME> /in <PROJECT_NAME>`<br> e.g., `add person Joe /to unit test /in CS2103_TP`                                 |
+| **Set project status**         | `set status <STATUS> project <PROJECT_NAME>`<br> e.g., `set status complete project CS2103T Duke Chatbot Project`                                    |
+| **Set task status**            | `set status [complete/incomplete] /to <TASK_NAME> /in <PROJECT_NAME>`<br> e.g., `set status complete /to unit test /in CS2103T Duke Chatbot Project` |
+| **Edit**                       | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                          |
+| **Clear**                      | `clear`                                                                                                                                              |
+| **Find**                       | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                           |
+| **Help**                       | `help`                                                                                                                                               |

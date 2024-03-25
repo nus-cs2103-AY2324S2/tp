@@ -17,7 +17,7 @@ public class DeleteProjectCommand extends Command {
     public static final String COMMAND_WORD = "delete project";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + "PROJECT_NAME\n";
+            + " PROJECT_NAME\n";
 
     public static final String MESSAGE_PROJECT_NOT_FOUND = "Project %1$s not found: "
             + "Please make sure the project exists.";
