@@ -40,6 +40,8 @@ public class PersonTest {
 
         assertTrue(ALICE.isSamePerson(editedAlice));
 
+        assertFalse(ALICE.isSamePerson(null));
+
         // different name, all other attributes same -> returns false
         editedAlice = new PersonBuilder(ALICE).withStudentId(VALID_STUDENTID_AMY).build();
         assertFalse(ALICE.isSamePerson(editedAlice));
