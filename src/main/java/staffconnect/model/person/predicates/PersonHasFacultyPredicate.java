@@ -21,7 +21,7 @@ public class PersonHasFacultyPredicate implements Predicate<Person> {
         if (faculty == null) {
             return true;
         }
-        return person.getFaculty().value.getFacultyName().equalsIgnoreCase(faculty.value.getFacultyName());
+        return person.getFaculty().toString().equalsIgnoreCase(faculty.value.getFacultyName());
     }
 
     @Override
