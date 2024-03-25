@@ -177,34 +177,6 @@ public abstract class ComponentStringPredicate implements ComponentPredicate {
     }
 
     /**
-     * A predicate that checks whether the component is non-empty.
-     */
-    public static class Some extends ComponentStringPredicate {
-        public Some(String input, Component component) {
-            super(input, component);
-        }
-
-        @Override
-        public boolean test(Person person) {
-            return extract(person).anyMatch(str -> !str.isBlank());
-        }
-    }
-
-    /**
-     * A predicate that checks whether the component is empty.
-     */
-    public static class None extends ComponentStringPredicate {
-        public None(String input, Component component) {
-            super(input, component);
-        }
-
-        @Override
-        public boolean test(Person person) {
-            return extract(person).anyMatch(String::isBlank);
-        }
-    }
-
-    /**
      * A predicate that checks whether the given component contains any of the given words.
      * This predicate splits its input into different words by whitespace and checks all the words individually.
      */
