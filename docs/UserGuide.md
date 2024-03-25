@@ -135,6 +135,12 @@ This command helps update existing client's information in the client list in th
 
 Format: `update u/existing user [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DESCRIPTION] [k/NEXTOFKIN] [t/TAG]…`
 
+- Edits the person with the specified NAME. The NAME provided must be the full name of the person. The NAME must be free to typos.
+- At least one of the optional fields must be provided.
+- Existing values will be updated to the input values.
+- When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
+- You can remove all the person’s tags by typing t/ without specifying any tags after it.
+
 Examples:
 
 -   `update u/Jane Doe n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-011` updates the information of Jane Doe's information to be  
@@ -218,7 +224,6 @@ _These are a list of helpful actions to facilitate the ease of use of our applic
 
 
 <box type="tip" seamless>
-
 **Tip:** These shortcuts only work when the text box is selected
 </box>
 
