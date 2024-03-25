@@ -101,7 +101,6 @@ public class CommandTestUtil {
     public static final String INVALID_START_TIME_DESC = " " + PREFIX_START_TIME + "11:30"; // is after end time
     public static final String INVALID_END_TIME_DESC = " " + PREFIX_END_TIME + "11:00"; // is before start time
     public static final String INVALID_APPOINTMENT_TYPE_DESC = " " + PREFIX_TAG + "  "; // only white spaces
-    public static final String INVALID_APPOINTMENT_NOTE_DESC = " " + PREFIX_NOTE + "@@"; // non-alphanumeric
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 

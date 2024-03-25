@@ -36,7 +36,7 @@ public class AddAppCommandParser implements Parser<AddAppCommand> {
                         PREFIX_END_TIME, PREFIX_TAG, PREFIX_NOTE);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NRIC, PREFIX_DATE, PREFIX_START_TIME,
-                PREFIX_END_TIME, PREFIX_TAG, PREFIX_NOTE)
+                PREFIX_END_TIME, PREFIX_TAG)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddAppCommand.MESSAGE_USAGE));
         }
@@ -48,11 +48,14 @@ public class AddAppCommandParser implements Parser<AddAppCommand> {
         TimePeriod timePeriod = ParserUtil.parseTimePeriod(
                 argMultimap.getValue(PREFIX_START_TIME).get(),
                 argMultimap.getValue(PREFIX_END_TIME).get());
-        Note note = ParserUtil.parseNote(argMultimap.getValue(PREFIX_NOTE).get());
+        Note note = new Note("");
+
+        if (argMultimap.getValue(PREFIX_NOTE).isPresent()) {
+            note = ParserUtil.parseNote(argMultimap.getValue(PREFIX_NOTE).get());
+        }
         AppointmentType appointmentType = ParserUtil.parseAppointmentType(
                 argMultimap.getValue(PREFIX_TAG).get());
 
-        //name is null as of current, will set it later in AddAppCommand
         Appointment appToAdd = new Appointment(nric, date, timePeriod, appointmentType, note);
 
         return new AddAppCommand(appToAdd);

@@ -133,14 +133,6 @@ public class JsonAdaptedAppointmentTest {
     }
 
     @Test
-    public void toModelType_invalidNote_throwsIllegalValueException() {
-        JsonAdaptedAppointment appointment = new JsonAdaptedAppointment(VALID_NRIC, VALID_DATE,
-                VALID_START_TIME, VALID_END_TIME, VALID_TYPE, INVALID_NOTE);
-        String expectedMessage = Note.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, appointment::toModelType);
-    }
-
-    @Test
     public void toModelType_nullNote_throwsIllegalValueException() {
         JsonAdaptedAppointment appointment = new JsonAdaptedAppointment(VALID_NRIC, VALID_DATE,
                 VALID_START_TIME, VALID_END_TIME, VALID_TYPE, null);

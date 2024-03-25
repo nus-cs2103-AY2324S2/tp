@@ -1,40 +1,23 @@
 package seedu.address.model.appointment;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Note in the appointment
- * Guarantees: immutable; note is valid as declared in {@link #isValidNote(String)}
+ * Guarantees: immutable; note can take any value
  */
 public class Note {
-    public static final String MESSAGE_CONSTRAINTS =
-            "Note should only contain alphanumeric characters and spaces, and it should not be blank";
-
-    /*
-     * The first character of the notes must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
-     */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
     public final String note;
 
     /**
      * Constructs a {@code Note}.
      *
-     * @param note A valid note.
+     * @param note Any note.
      */
     public Note(String note) {
         requireNonNull(note);
-        checkArgument(isValidNote(note), MESSAGE_CONSTRAINTS);
         this.note = note;
-    }
-
-    /**
-     * Returns true if a given string is a valid name.
-     */
-    public static boolean isValidNote(String test) {
-        return test.matches(VALIDATION_REGEX);
     }
 
 
