@@ -10,10 +10,12 @@ import seedu.address.model.internship.CompanyName;
 import seedu.address.model.internship.ContactEmail;
 import seedu.address.model.internship.ContactName;
 import seedu.address.model.internship.ContactNumber;
+import seedu.address.model.internship.Deadline;
 import seedu.address.model.internship.Description;
 import seedu.address.model.internship.Location;
 import seedu.address.model.internship.Remark;
 import seedu.address.model.internship.Role;
+import seedu.address.model.internship.Task;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -166,5 +168,29 @@ public class InternshipParserUtil {
         requireNonNull(remark);
         String trimmedRemark = remark.trim();
         return new Remark(trimmedRemark);
+    }
+
+    /**
+     * Parses a {@code String task} into a {@code task}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code task} is invalid.
+     */
+    public static Task parseTask(String task) throws ParseException {
+        requireNonNull(task);
+        String trimmedTask = task.trim();
+        return new Task(trimmedTask);
+    }
+
+    /**
+     * Parses a {@code String deadline} into a {@code Deadline}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code deadline} is invalid.
+     */
+    public static Deadline parseDeadline(String deadline) throws ParseException {
+        requireNonNull(deadline);
+        String trimmedDeadline = deadline.trim();
+        return new Deadline(trimmedDeadline);
     }
 }
