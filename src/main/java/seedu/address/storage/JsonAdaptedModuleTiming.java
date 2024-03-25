@@ -1,9 +1,13 @@
 package seedu.address.storage;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.module.*;
+import seedu.address.model.module.Day;
 import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleCode;
+import seedu.address.model.module.ModuleTiming;
+import seedu.address.model.module.Timing;
 
 /**
  * Jackson-friendly version of {@link Module}.

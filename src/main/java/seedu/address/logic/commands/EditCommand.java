@@ -104,9 +104,11 @@ public class EditCommand extends Command {
         Address updatedAddress = editStudentDescriptor.getAddress().orElse(studentToEdit.getAddress());
         Set<Tag> updatedTags = editStudentDescriptor.getTags().orElse(studentToEdit.getTags());
         List<ModuleCode> updatedModules = editStudentDescriptor.getModules().orElse(studentToEdit.getModules());
-        List<ModuleTiming> updatedModuleTimings = editStudentDescriptor.getModuleTimings().orElse(studentToEdit.getModuleTimings());
+        List<ModuleTiming> updatedModuleTimings =
+                editStudentDescriptor.getModuleTimings().orElse(studentToEdit.getModuleTimings());
 
-        return new Student(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedModules, updatedModuleTimings);
+        return new Student(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedModules,
+                updatedModuleTimings);
     }
 
     @Override
