@@ -31,6 +31,8 @@ public class Person {
 
     public void addEntry(Entry entry) {
         entryList.add(entry);
+        entryList.sort();
+
     }
 
     public Entry getEntry(String category) {

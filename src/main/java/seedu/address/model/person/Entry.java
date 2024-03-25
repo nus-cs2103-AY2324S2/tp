@@ -3,7 +3,7 @@ package seedu.address.model.person;
 /**
  * Entry Class
  */
-public class Entry {
+public class Entry implements Comparable<Entry>{
     public static final String MESSAGE_CONSTRAINTS = "Category or description cannot be empty!";
     private String category;
 
@@ -33,6 +33,9 @@ public class Entry {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+    public int compareTo(Entry entry) {
+        return category.compareTo(entry.getCategory());
     }
 
     @Override
