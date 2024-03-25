@@ -60,7 +60,7 @@ public class AddMemPointsCommand extends Command {
         Person editedPerson = new Person(personToEdit.getName(),
                 personToEdit.getPhone(), personToEdit.getEmail(),
                 personToEdit.getAddress(), personToEdit.getMembershipPoints().addPoints(pointsToAdd),
-                personToEdit.getTags(), personToEdit.getPoints(), personToEdit.getOrders());
+                personToEdit.getAllergens(), personToEdit.getPoints(), personToEdit.getOrders());
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);

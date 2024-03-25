@@ -6,7 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_POINTS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ALLERGENS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.ArrayList;
@@ -31,7 +31,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Points;
 import seedu.address.model.person.orders.Order;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.allergen.Allergen;
 
 /**
  * Edits the details of an existing person in the address book.
@@ -49,7 +49,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_TAG + "TAG]"
+            + "[" + PREFIX_ALLERGENS + "ALLERGENS]"
             + "[" + PREFIX_POINTS + "POINTS]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -108,11 +108,11 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         MembershipPoints updatedMembershipPoints = personToEdit.getMembershipPoints();
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Set<Allergen> updatedAllergens = editPersonDescriptor.getAllergens().orElse(personToEdit.getAllergens());
         Points updatedPoints = editPersonDescriptor.getPoints().orElse(personToEdit.getPoints());
         ArrayList<Order> updatedOrders = editPersonDescriptor.getOrders().orElse(personToEdit.getOrders());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedMembershipPoints, updatedTags,
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedMembershipPoints, updatedAllergens,
                 updatedPoints, updatedOrders);
     }
 
@@ -149,7 +149,7 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
-        private Set<Tag> tags;
+        private Set<Allergen> allergens;
         private Points points;
         private ArrayList<Order> orders;
 
@@ -164,7 +164,7 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
-            setTags(toCopy.tags);
+            setAllergens(toCopy.allergens);
             setPoints(toCopy.points);
             setOrders(toCopy.orders);
         }
@@ -173,7 +173,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, points);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, allergens, points);
         }
 
         public void setName(Name name) {
@@ -209,20 +209,20 @@ public class EditCommand extends Command {
         }
 
         /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
+         * Sets {@code allergens} to this object's {@code allergens}.
+         * A defensive copy of {@code allergens} is used internally.
          */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        public void setAllergens(Set<Allergen> allergens) {
+            this.allergens = (allergens != null) ? new HashSet<>(allergens) : null;
         }
 
         /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+         * Returns an unmodifiable allergen set, which throws {@code UnsupportedOperationException}
          * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
+         * Returns {@code Optional#empty()} if {@code allergens} is null.
          */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        public Optional<Set<Allergen>> getAllergens() {
+            return (allergens != null) ? Optional.of(Collections.unmodifiableSet(allergens)) : Optional.empty();
         }
 
         public void setPoints(Points points) {
@@ -266,7 +266,7 @@ public class EditCommand extends Command {
                     && Objects.equals(phone, otherEditPersonDescriptor.phone)
                     && Objects.equals(email, otherEditPersonDescriptor.email)
                     && Objects.equals(address, otherEditPersonDescriptor.address)
-                    && Objects.equals(tags, otherEditPersonDescriptor.tags)
+                    && Objects.equals(allergens, otherEditPersonDescriptor.allergens)
                     && Objects.equals(points, otherEditPersonDescriptor.points);
         }
 
@@ -277,7 +277,7 @@ public class EditCommand extends Command {
                     .add("phone", phone)
                     .add("email", email)
                     .add("address", address)
-                    .add("tags", tags)
+                    .add("allergens", allergens)
                     .add("points", points)
                     .toString();
         }

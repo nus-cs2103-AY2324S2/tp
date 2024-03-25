@@ -66,7 +66,7 @@ public class AddPointsCommand extends Command {
         Person editedPerson = new Person(personToEdit.getName(),
                 personToEdit.getPhone(), personToEdit.getEmail(),
                 personToEdit.getAddress(), personToEdit.getMembershipPoints(),
-                personToEdit.getTags(), newPoints, personToEdit.getOrders());
+                personToEdit.getAllergens(), newPoints, personToEdit.getOrders());
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
