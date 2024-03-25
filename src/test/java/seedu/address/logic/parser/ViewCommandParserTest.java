@@ -7,7 +7,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.ViewCommand;
+import seedu.address.logic.commands.ViewClientCommand;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations
@@ -21,12 +21,23 @@ public class ViewCommandParserTest {
     private ViewCommandParser parser = new ViewCommandParser();
 
     @Test
-    public void parse_validArgs_returnsDeleteCommand() {
-        assertParseSuccess(parser, "1", new ViewCommand(INDEX_FIRST_PERSON));
+    public void parse_validArgs_returnsViewClientCommand() {
+        assertParseSuccess(parser, "c 1", new ViewClientCommand(INDEX_FIRST_PERSON));
     }
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
-        assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewClientCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_invalidArgsViewClient_throwsParseException() {
+        assertParseFailure(parser, "c", String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewClientCommand.MESSAGE_USAGE));
+    }
+
+    // test for many white spaces
+    @Test
+    public void parse_whitespaceArgsViewClient_throwsParseException() {
+        assertParseSuccess(parser, "         c     1      ", new ViewClientCommand(INDEX_FIRST_PERSON));
     }
 }
