@@ -17,11 +17,7 @@ public class Availability {
 
     public static final String MESSAGE_CONSTRAINTS = "[DAY_OF_THE_WEEK] [START_TIME] [END_TIME] E.g. mon 09:00 13:00\n"
             + "[DAY_OF_THE_WEEK] Should be a week of the day, the full word or the first syllable of the word\n"
-            + "[START_TIME], [END_TIME] Using a 24H digital time format.\n";
-    public static final String MESSAGE_INVALID_TIME = "Invalid Time, Format: HH:mm\n"
-            + "End time must be after Start time";
-    public static final String MESSAGE_END_BEFORE_START = "Format: [DAY_OF_THE_WEEK] [START_TIME] [END_TIME]\n"
-            + "End time must be after Start time";
+            + "[START_TIME], [END_TIME] Using a 24H digital time format HH:mm\n";
     public static final String VALIDATION_REGEX_DAY = "(?i)((mon|tue(s)?|wed(nes)?|thu(r)?(rs)?|fri|sat(ur)?|sun)"
             + "(day)?)";
     public static final String VALIDATION_REGEX_TIME = "([01][0-9]|2[0-3]):([0-5][0-9])";
@@ -60,7 +56,6 @@ public class Availability {
         }
 
         String [] availabilityFields = test.split(" ");
-        DayOfWeek testDay = parseToDayOfWeek(availabilityFields[0]);
 
         if (!isValidLocalTime(availabilityFields[1]) || !isValidLocalTime(availabilityFields[2])) {
             return false;
