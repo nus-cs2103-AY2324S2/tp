@@ -151,6 +151,11 @@ Format: `delete INDEX`
 
 Examples: `delete 1` would delete the first client in your client list.
 
+Usage of delete command
+
+<img src="images/Delete_command_before.png" width="375"/> <img src="images/Delete_command_after.png" width="375"/>
+
+
 ### Clearing all entries : `clear`
 
 This command allows you to purge your client list, removing **ALL** clients in your client list.
