@@ -8,12 +8,19 @@
 ClientCare is a **desktop application for assisting insurance agents in managing their client relationships and follow-ups effectively.** While it has a Graphical User Interface (GUI), most of the user interactions happen using through text commands. If you can type fast, ClientCare can get your client management done faster than traditional GUI apps.
 
 <!-- * Table of Contents -->
-<page-nav-print />
+<frontmatter>
+  pageNav: 3
+  pageNavTitle: "Table of Contents"
+</frontmatter>
+<page-nav-print>
+
+## Table of Contents
+</page-nav-print>
 
 --------------------------------------------------------------------------------------------------------------------
 
 
-# Using this guide
+## Using this guide
 This guide walks you through all the features of ClientCare and can be used as a quick reference whenever you need any help. If you're just getting started with ClientCare, we welcome you to start from our [Introduction](#introduction) section to
 learn more about the app. For setting up ClientCare, you might find the [Quick Start](#quick-start) section helpful.
 
@@ -25,8 +32,7 @@ You can also refer to our [Table of Contents](#table-of-contents) to navigate be
 
 --------------------------------------------------------------------------------------------------------------------
 
-
-# Introduction
+## Introduction
 Made for insurance agents and clients, by insurance agents and clients.
 Powerful features and intuitive design, all packaged into one neat desktop app. ClientCare is supported on all
 major platforms (Windows, MacOS, Linux).
@@ -48,7 +54,6 @@ to all your clients, regardless of companies and product type.
 
 
 # Quick start
-<br>
 
 ## Installation instructions
 
@@ -56,8 +61,7 @@ to all your clients, regardless of companies and product type.
 Don't have ClientCare installed on your computer yet? Check out our step-by-step installation instructions to
 download ClientCare.
 
-1. ClientCare is written in the programming language Java, so you'll need **Java 11 or above** installed in your computer
-   to run Clientcare.
+1. ClientCare is written in the programming language Java, so you'll need **Java 11 or above** installed in your computer to run Clientcare.
     1. Not sure if you have a compatible Java version installed on your computer?
        Windows or macOS users might find [this guide](https://blog.hubspot.com/website/check-java-verison) useful.
        While Linux users can refer to [this guide](https://phoenixnap.com/kb/check-java-version-linux).
@@ -126,7 +130,7 @@ Our developers are still working on it!
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+# Features
 Dive right into ClientCare's full list of features. This section guides you through all of ClientCare's commands.
 
 For easy reference, similar features are grouped into the same subsections as shown below:
@@ -470,7 +474,7 @@ _Details coming soon ..._
 <br>
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ
+# FAQ
 <br>
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ClientCare home folder.
@@ -479,14 +483,14 @@ _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Known issues
+# Known issues
 <br>
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+# Command summary
 
 | Action                                               | Format, Examples                                                                                                                                                                                                 |
 |------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
