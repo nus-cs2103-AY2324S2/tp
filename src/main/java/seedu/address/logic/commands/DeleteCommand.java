@@ -8,7 +8,6 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.coursemate.ContainsKeywordPredicate;
 import seedu.address.model.coursemate.CourseMate;
 import seedu.address.model.coursemate.QueryableCourseMate;
 import seedu.address.model.coursemate.exceptions.CourseMateNotFoundException;
@@ -47,13 +46,7 @@ public class DeleteCommand extends Command {
 
         //If there are more than 1 matching names
         if (courseMateToDeleteList.size() > 1) {
-            ContainsKeywordPredicate predicate = new ContainsKeywordPredicate(
-                    queryableCourseMate.getName().toString());
-            model.updateFilteredCourseMateList(predicate);
-            return new CommandResult(
-                    String.format(Messages.MESSAGE_SIMILAR_COURSE_MATE_NAME,
-                            model.getFilteredCourseMateList().size(),
-                            queryableCourseMate.getName().toString()), false , false, true);
+            return new SimilarNameCommand(queryableCourseMate).execute(model);
         }
 
         CourseMate courseMateToDelete = courseMateToDeleteList.get(0);

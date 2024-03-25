@@ -13,7 +13,6 @@ import java.util.stream.Collectors;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.coursemate.ContainsKeywordPredicate;
 import seedu.address.model.coursemate.CourseMate;
 import seedu.address.model.coursemate.Name;
 import seedu.address.model.coursemate.QueryableCourseMate;
@@ -38,7 +37,7 @@ public class AddMemberCommand extends Command {
             + PREFIX_COURSEMATE + " John Doe.";
     public static final String MESSAGE_MEMBERS_ALREADY_IN_GROUP =
             "Some of the specified members are already in the group.";
-    public static final String MESSAGE_SUCCESFULLY_ADDED = "Group successfully modified, Name: %1$s \n"
+    public static final String MESSAGE_SUCCESFULLY_ADDED = "Group successfully modified, Name: %1$s\n"
             + "%2$s new members have been added to the group!";
 
     private final Name groupName;
@@ -80,17 +79,13 @@ public class AddMemberCommand extends Command {
         }
 
         Group modifiedGroup = new Group(toModify.getName(), toModify.asUnmodifiableObservableList());
+
         List<CourseMate> courseMateList = new ArrayList<>();
         int index = 0;
         for (List<CourseMate> courseMateAddList: courseMateSet) {
+            //If there are more than 1 matching name
             if (courseMateAddList.size() > 1) {
-                ContainsKeywordPredicate predicate = new ContainsKeywordPredicate(
-                        queryableCourseMates.get(index).getName().toString());
-                model.updateFilteredCourseMateList(predicate);
-                return new CommandResult(
-                        String.format(Messages.MESSAGE_SIMILAR_COURSE_MATE_NAME,
-                                model.getFilteredCourseMateList().size(),
-                                queryableCourseMates.get(index).getName().toString()), false, false, true);
+                return new SimilarNameCommand(queryableCourseMates.get(index)).execute(model);
             }
             courseMateList.add(courseMateAddList.get(0));
             index += 1;

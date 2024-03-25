@@ -105,7 +105,7 @@ public class AddSkillCommandTest {
         AddSkillDescriptor descriptor = new AddSkillDescriptorBuilder().withSkills(VALID_SKILL_JAVA).build();
         AddSkillCommand addSkillCommand = new AddSkillCommand(new QueryableCourseMate(outOfBoundIndex), descriptor);
 
-        assertCommandFailure(addSkillCommand, model, Messages.MESSAGE_INVALID_COURSE_MATE_DISPLAYED_INDEX);
+        assertCommandFailure(addSkillCommand, model, Messages.MESSAGE_INVALID_COURSE_MATE_NAME);
         assertRecentlyProcessedCourseMateEdited(model, null);
     }
 
@@ -133,7 +133,7 @@ public class AddSkillCommandTest {
         AddSkillCommand addSkillCommand = new AddSkillCommand(new QueryableCourseMate(outOfBoundIndex),
                 new AddSkillDescriptorBuilder().withSkills(VALID_SKILL_JAVA).build());
 
-        assertCommandFailure(addSkillCommand, model, Messages.MESSAGE_INVALID_COURSE_MATE_DISPLAYED_INDEX);
+        assertCommandFailure(addSkillCommand, model, Messages.MESSAGE_INVALID_COURSE_MATE_NAME);
         assertRecentlyProcessedCourseMateEdited(model, null);
     }
 

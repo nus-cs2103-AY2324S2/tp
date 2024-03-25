@@ -16,7 +16,6 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.coursemate.ContainsKeywordPredicate;
 import seedu.address.model.coursemate.CourseMate;
 import seedu.address.model.coursemate.QueryableCourseMate;
 import seedu.address.model.coursemate.exceptions.CourseMateNotFoundException;
@@ -60,13 +59,6 @@ public class DeleteSkillCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<CourseMate> lastShownList = model.getFilteredCourseMateList();
-
-        if (queryableCourseMate.isIndex()
-                && queryableCourseMate.getIndex().getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_COURSE_MATE_DISPLAYED_INDEX);
-        }
-
         List<CourseMate> courseMateToEditList;
         try {
             courseMateToEditList = model.findCourseMate(queryableCourseMate);
@@ -76,13 +68,7 @@ public class DeleteSkillCommand extends Command {
 
         //If there are more than 1 matching names
         if (courseMateToEditList.size() > 1) {
-            ContainsKeywordPredicate predicate = new ContainsKeywordPredicate(
-                    queryableCourseMate.getName().toString());
-            model.updateFilteredCourseMateList(predicate);
-            return new CommandResult(
-                    String.format(Messages.MESSAGE_SIMILAR_COURSE_MATE_NAME,
-                            model.getFilteredCourseMateList().size(),
-                            queryableCourseMate.getName().toString()), false, false, true);
+            return new SimilarNameCommand(queryableCourseMate).execute(model);
         }
 
         CourseMate courseMateToEdit = courseMateToEditList.get(0);
