@@ -9,7 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Tag {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
+    public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric and not contain spaces";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
     public final String tagName;
@@ -23,6 +23,18 @@ public class Tag {
         requireNonNull(tagName);
         checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
         this.tagName = tagName;
+    }
+
+    /**
+     * Returns true if both tags have the same name.
+     */
+    public boolean isSameTag(Tag otherTag) {
+        if (otherTag == this) {
+            return true;
+        }
+
+        return otherTag != null
+                && otherTag.tagName.equals(tagName);
     }
 
     /**

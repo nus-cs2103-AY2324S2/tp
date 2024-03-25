@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.Tag;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -111,6 +112,31 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    @Override
+    public boolean hasTag(Tag tag) {
+        requireNonNull(tag);
+        return addressBook.hasTag(tag);
+    }
+    @Override
+    public boolean hasTag(String tagName) {
+        requireNonNull(tagName);
+        return addressBook.hasTag(tagName);
+    }
+    @Override
+    public void deleteTag(Tag tag) {
+        addressBook.removeTag(tag);
+    }
+    @Override
+    public void deleteTag(String tagName) {
+        addressBook.removeTag(tagName);
+    }
+
+    @Override
+    public void addTag(Tag tag) {
+        addressBook.addTag(tag);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -128,6 +154,11 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
+    @Override
+    public void updateTagPersonList(Tag t) {
+        requireNonNull(t);
+        filteredPersons.setPredicate(person -> person.containsTag(t));
+    }
     @Override
     public boolean equals(Object other) {
         if (other == this) {
