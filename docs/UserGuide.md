@@ -332,8 +332,10 @@ _These are a list of helpful actions to facilitate the ease of use of our applic
 
 Your locally saved client list will be updated after any change is made, so no further action needs to be taken when operating the application! On start-up, your existing client list (if it exists) will also be automatically loaded, so don't worry about that!
 
-NOTE: If it is your first time running the program, and there is no existing client list, a new file will automatically be generated to store your new client list!
+<box type="info">
 
+**Note**: If it is your first time running the program, and there is no existing client list, a new file will automatically be generated to store your new client list!
+</box>
 ___
 
 ## FAQ
