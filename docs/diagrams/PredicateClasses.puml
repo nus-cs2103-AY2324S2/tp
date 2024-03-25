@@ -10,7 +10,7 @@ Class "IsSamePersonPredicate"
 Class "NameContainsKeywordsPredicate"
 Class "TagsOrFoundPredicate"
 Class "TagsAndFoundPredicate"
-Class "IsLastContactedPredicate"
+Class "HasLastContactedPredicate"
 }
 
 Class "SelectCommand"
@@ -25,8 +25,8 @@ IsSamePersonPredicate .up.|> Predicate
 NameContainsKeywordsPredicate .up.|> Predicate
 FindTagsOrCommand --> TagsOrFoundPredicate
 FindTagsAndCommand --> TagsAndFoundPredicate
-LastContactCommand --> IsLastContactedPredicate
+LastContactCommand --> HasLastContactedPredicate
 TagsOrFoundPredicate ..|> Predicate
 TagsAndFoundPredicate ..|> Predicate
-IsLastContactedPredicate ..|> Predicate
+HasLastContactedPredicate ..|> Predicate
 @enduml
