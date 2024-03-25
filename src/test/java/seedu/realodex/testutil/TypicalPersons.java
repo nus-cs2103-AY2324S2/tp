@@ -9,7 +9,6 @@ import static seedu.realodex.logic.commands.CommandTestUtil.VALID_FAMILY_BOB;
 import static seedu.realodex.logic.commands.CommandTestUtil.VALID_INCOME_AMY;
 import static seedu.realodex.logic.commands.CommandTestUtil.VALID_INCOME_BOB;
 import static seedu.realodex.logic.commands.CommandTestUtil.VALID_NAME_AMY_CAPS;
-import static seedu.realodex.logic.commands.CommandTestUtil.VALID_NAME_AMY_NON_CAPS;
 import static seedu.realodex.logic.commands.CommandTestUtil.VALID_NAME_BOB_CAPS;
 import static seedu.realodex.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.realodex.logic.commands.CommandTestUtil.VALID_PHONE_BOB;

@@ -1,6 +1,5 @@
 package seedu.realodex.logic.parser;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -22,7 +21,14 @@ public class Prefix {
     }
 
 
-
+    /**
+     * Generates a message listing the missing prefixes from the provided argument multimap,
+     * based on the list of compulsory prefixes.
+     *
+     * @param argMultimap The argument multimap containing prefixes mapped to their respective values.
+     * @param listOfCompulsoryPrefix An array of Prefix objects representing compulsory prefixes.
+     * @return A string message listing the missing prefixes separated by commas.
+     */
     public static String returnMessageOfMissingPrefixes(Map<Prefix, List<String>> argMultimap,
                                                         Prefix[] listOfCompulsoryPrefix) {
         List<String> missingPrefixes = Stream.of(listOfCompulsoryPrefix)
@@ -32,8 +38,6 @@ public class Prefix {
 
         return String.join(", ", missingPrefixes);
     }
-
-
     @Override
     public String toString() {
         return getPrefix();

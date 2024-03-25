@@ -1,6 +1,5 @@
 package seedu.realodex.logic.parser;
 
-import static seedu.realodex.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.realodex.logic.Messages.MESSAGE_MISSING_PREFIXES;
 import static seedu.realodex.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.realodex.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
@@ -22,7 +21,6 @@ import static seedu.realodex.logic.commands.CommandTestUtil.NAME_DESC_AMY_NON_CA
 import static seedu.realodex.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 import static seedu.realodex.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.realodex.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
-import static seedu.realodex.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.realodex.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.realodex.logic.commands.CommandTestUtil.REMARK_DESC_AMY;
 import static seedu.realodex.logic.commands.CommandTestUtil.REMARK_DESC_BOB;
@@ -43,7 +41,6 @@ import static seedu.realodex.logic.parser.CliSyntax.PREFIX_INCOME;
 import static seedu.realodex.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.realodex.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.realodex.logic.parser.CliSyntax.PREFIX_REMARK;
-import static seedu.realodex.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.realodex.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.realodex.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.realodex.testutil.TypicalPersons.AMY_NAME_CAPS;

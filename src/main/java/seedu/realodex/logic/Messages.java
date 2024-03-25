@@ -19,7 +19,8 @@ public class Messages {
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
-    public static final String MESSAGE_MISSING_PREFIXES = "Missing compulsory prefixes in the command! Prefixes That Are Missed Are: ";
+    public static final String MESSAGE_MISSING_PREFIXES = "Missing compulsory prefixes in the command! "
+            + "Prefixes That Are Missed Are: ";
 
     /**
      * Returns an error message indicating the duplicate prefixes.

@@ -1,7 +1,6 @@
 package seedu.realodex.logic.parser;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -82,12 +81,25 @@ public class ArgumentMultimap {
         }
     }
 
+    /**
+     * Returns a message listing the missing prefixes from the given list of compulsory prefixes.
+     *
+     * @param listOfCompulsoryPrefix An array of Prefix objects representing compulsory prefixes.
+     * @return A string message listing the missing prefixes.
+     */
     public String returnMessageOfMissingPrefixes(Prefix[] listOfCompulsoryPrefix) {
         return Prefix.returnMessageOfMissingPrefixes(argMultimap, listOfCompulsoryPrefix);
     }
 
+    /**
+     * Returns an array of unique Prefix objects from the provided list of prefixes.
+     *
+     * @param prefixes Variable number of Prefix objects to be filtered for uniqueness.
+     * @return An array of unique Prefix objects.
+     */
     public Prefix[] returnListOfCompulsoryTags(Prefix... prefixes) {
-        return Stream.of(prefixes).distinct()
+        return Stream.of(prefixes)
+                .distinct()
                 .toArray(Prefix[]::new);
     }
 }

@@ -1,6 +1,5 @@
 package seedu.realodex.logic.parser;
 
-import static seedu.realodex.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.realodex.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.realodex.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.realodex.logic.parser.CliSyntax.PREFIX_FAMILY;
@@ -10,7 +9,6 @@ import static seedu.realodex.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.realodex.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.realodex.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.ArrayList;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -55,7 +53,8 @@ public class AddCommandParser implements Parser<AddCommand> {
                                 listOfCompulsoryPrefixTags)) {
             String exceptionMessageForMissingPrefixes =
                     argMultimap.returnMessageOfMissingPrefixes(listOfCompulsoryPrefixTags) + "\n";
-            throw new ParseException(Messages.getErrorMessageForMissingPrefixes(exceptionMessageForMissingPrefixes) + AddCommand.MESSAGE_USAGE);
+            throw new ParseException(Messages.getErrorMessageForMissingPrefixes(exceptionMessageForMissingPrefixes)
+                                             + AddCommand.MESSAGE_USAGE);
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_INCOME, PREFIX_EMAIL,
