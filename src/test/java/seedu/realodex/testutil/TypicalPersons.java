@@ -82,12 +82,6 @@ public class TypicalPersons {
             .withFamily(VALID_FAMILY_AMY)
             .withTags(VALID_TAG_AMY).build();
 
-    public static final Person AMY_NAME_NON_CAPS = new PersonBuilder().withName(VALID_NAME_AMY_NON_CAPS)
-            .withPhone(VALID_PHONE_AMY)
-            .withIncome(VALID_INCOME_AMY)
-            .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-            .withFamily(VALID_FAMILY_AMY)
-            .withTags(VALID_TAG_AMY).build();
     public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB_CAPS)
             .withPhone(VALID_PHONE_BOB)
             .withIncome(VALID_INCOME_BOB)

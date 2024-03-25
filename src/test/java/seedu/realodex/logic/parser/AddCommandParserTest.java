@@ -45,7 +45,6 @@ import static seedu.realodex.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.realodex.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.realodex.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.realodex.testutil.TypicalPersons.AMY_NAME_CAPS;
-import static seedu.realodex.testutil.TypicalPersons.AMY_NAME_NON_CAPS;
 import static seedu.realodex.testutil.TypicalPersons.BOB;
 
 import org.junit.jupiter.api.Test;
