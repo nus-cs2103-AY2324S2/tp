@@ -138,14 +138,14 @@ public class ModelManagerTest {
 
         // finds a valid person by name
         try {
-            assertEquals(ALICE, modelManagerCopy.findByName(ALICE.getName()));
+            assertEquals(ALICE, modelManagerCopy.findPersonByName(ALICE.getName()));
         } catch (CommandException e) {
             e.printStackTrace();
         }
     }
 
     @Test
-    public void findByName_success() {
+    public void findPersonByName_success() {
         AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).build();
         UserPrefs userPrefs = new UserPrefs();
         modelManager = new ModelManager(addressBook, userPrefs);
@@ -153,7 +153,7 @@ public class ModelManagerTest {
         Name nameToFind = ALICE.getName();
         Name nameFound = new Name("Not Alice Pauline");
         try {
-            nameFound = modelManager.findByName(nameToFind).getName();
+            nameFound = modelManager.findPersonByName(nameToFind).getName();
         } catch (CommandException e) {
             fail();
         }
@@ -161,10 +161,10 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void findByNameFailure_throwsCommandException() {
+    public void findPersonByNameFailure_throwsCommandException() {
         Name nameToFind = ALICE.getName();
         assertThrows(CommandException.class,
-                EditMessages.MESSAGE_INVALID_EDIT_PERSON, () -> modelManager.findByName(nameToFind));
+                EditMessages.MESSAGE_INVALID_EDIT_PERSON, () -> modelManager.findPersonByName(nameToFind));
     }
 
     @Test
