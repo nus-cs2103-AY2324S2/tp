@@ -56,4 +56,13 @@ public class LessonTest {
         // different values -> returns false
         assertFalse(lesson.equals(new Lesson("Science|01-01-2023|09:00|0")));
     }
+
+    @Test
+    public void getLessonStatusIsValid() {
+        Lesson lesson1 = new Lesson("Math|01-01-2023|09:00|0");
+        assertEquals(lesson1.getLessonStatus(), 0);
+
+        Lesson lesson2 = new Lesson("Math|01-01-2023|09:00|1");
+        assertEquals(lesson2.getLessonStatus(), 1);
+    }
 }
