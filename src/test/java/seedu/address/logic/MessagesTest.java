@@ -69,7 +69,7 @@ public class MessagesTest {
 
         // Maintainer
         String testMaintainerString = AddMessages.format(ALICEMAINTAINER);
-        String expectedMaintainerString = "Maintenance Crew Alice Pauline";
+        String expectedMaintainerString = "Maintainer Alice Pauline";
         assertEquals(testMaintainerString, expectedMaintainerString);
 
         // Supplier
@@ -92,7 +92,7 @@ public class MessagesTest {
 
         // Maintainer
         String testMaintainerString = DeleteMessages.format(ALICEMAINTAINER);
-        String expectedMaintainerString = "Maintenance Crew Alice Pauline";
+        String expectedMaintainerString = "Maintainer Alice Pauline";
         assertEquals(testMaintainerString, expectedMaintainerString);
 
         // Supplier
@@ -115,7 +115,7 @@ public class MessagesTest {
 
         // Maintainer
         String testMaintainerString = EditMessages.format(ALICEMAINTAINER);
-        String expectedMaintainerString = "Maintenance Crew Alice Pauline";
+        String expectedMaintainerString = "Maintainer Alice Pauline";
         assertEquals(testMaintainerString, expectedMaintainerString);
 
         // Supplier

@@ -1,13 +1,19 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.COMMISSION_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.EMPLOYMENT_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.PRICE_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.PRODUCT_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.SALARY_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.SKILL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
@@ -65,6 +71,74 @@ public class EditCommandParserTest {
     }
 
     @Test
+    public void parse_invalidSingleField_failure() {
+        // specified invalid field (name)
+        String userInput = EditCommand.COMMAND_WORD + " " + PREFIX_NAME + "Person1"
+            + " " + PREFIX_FIELD + "{" + NAME_DESC_AMY
+            + ADDRESS_DESC_AMY + EMAIL_DESC_AMY + " }";
+        assertParseFailure(parser, userInput, String.format(EditMessages.MESSAGE_EDIT_INVALID_FIELD,
+                "Editing Pooch Contact name is not allowed!"));
+        // specified invalid field (product)
+        userInput = EditCommand.COMMAND_WORD + " " + PREFIX_NAME + "Person1"
+            + " " + PREFIX_FIELD + "{" + PRODUCT_DESC_AMY
+            + ADDRESS_DESC_AMY + EMAIL_DESC_AMY + " }";
+        assertParseFailure(parser, userInput, String.format(EditMessages.MESSAGE_EDIT_INVALID_FIELD,
+                "Editing Pooch Contact product is not allowed for person"));
+        // specified invalid field (price)
+        userInput = EditCommand.COMMAND_WORD + " " + PREFIX_NAME + "Person1"
+            + " " + PREFIX_FIELD + "{" + PRICE_DESC_AMY
+            + ADDRESS_DESC_AMY + EMAIL_DESC_AMY + " }";
+        assertParseFailure(parser, userInput, String.format(EditMessages.MESSAGE_EDIT_INVALID_FIELD,
+                "Editing Pooch Contact price is not allowed for person"));
+        // specified invalid field (employment)
+        userInput = EditCommand.COMMAND_WORD + " " + PREFIX_NAME + "Person1"
+            + " " + PREFIX_FIELD + "{" + EMPLOYMENT_DESC_AMY
+            + ADDRESS_DESC_AMY + EMAIL_DESC_AMY + " }";
+        assertParseFailure(parser, userInput, String.format(EditMessages.MESSAGE_EDIT_INVALID_FIELD,
+                "Editing Pooch Contact employment is not allowed for person"));
+        // specified invalid field (salary)
+        userInput = EditCommand.COMMAND_WORD + " " + PREFIX_NAME + "Person1"
+            + " " + PREFIX_FIELD + "{" + SALARY_DESC_AMY
+            + ADDRESS_DESC_AMY + EMAIL_DESC_AMY + " }";
+        assertParseFailure(parser, userInput, String.format(EditMessages.MESSAGE_EDIT_INVALID_FIELD,
+                "Editing Pooch Contact salary is not allowed for person"));
+        // specified invalid field (skill)
+        userInput = EditCommand.COMMAND_WORD + " " + PREFIX_NAME + "Person1"
+            + " " + PREFIX_FIELD + "{" + SKILL_DESC_AMY
+            + ADDRESS_DESC_AMY + EMAIL_DESC_AMY + " }";
+        assertParseFailure(parser, userInput, String.format(EditMessages.MESSAGE_EDIT_INVALID_FIELD,
+                "Editing Pooch Contact skill is not allowed for person"));
+        // specified invalid field (commission)
+        userInput = EditCommand.COMMAND_WORD + " " + PREFIX_NAME + "Person1"
+            + " " + PREFIX_FIELD + "{" + COMMISSION_DESC_AMY
+            + ADDRESS_DESC_AMY + EMAIL_DESC_AMY + " }";
+        assertParseFailure(parser, userInput, String.format(EditMessages.MESSAGE_EDIT_INVALID_FIELD,
+                "Editing Pooch Contact commission is not allowed for person"));
+    }
+
+    @Test
+    public void checkMutipleInvalidField() {
+        // specified two invalid field (skill and commission)
+        String userInput = EditCommand.COMMAND_WORD + " " + PREFIX_NAME + "Person1"
+            + " " + PREFIX_FIELD + "{" + COMMISSION_DESC_AMY + SKILL_DESC_AMY
+            + ADDRESS_DESC_AMY + EMAIL_DESC_AMY + " }";
+        assertParseFailure(parser, userInput, String.format(EditMessages.MESSAGE_EDIT_INVALID_FIELD,
+                "Editing Pooch Contact skill and commission is not allowed for person"));
+        // specified three invalid field (name, skill and commission)
+        userInput = EditCommand.COMMAND_WORD + " " + PREFIX_NAME + "Person1"
+            + " " + PREFIX_FIELD + "{" + COMMISSION_DESC_AMY + SKILL_DESC_AMY + NAME_DESC_AMY
+            + ADDRESS_DESC_AMY + EMAIL_DESC_AMY + " }";
+        assertParseFailure(parser, userInput, String.format(EditMessages.MESSAGE_EDIT_INVALID_FIELD,
+                "Editing Pooch Contact name is not allowed!"));
+        // specified three invalid field (salary, skill and commission)
+        userInput = EditCommand.COMMAND_WORD + " " + PREFIX_NAME + "Person1"
+            + " " + PREFIX_FIELD + "{" + COMMISSION_DESC_AMY + SKILL_DESC_AMY + SALARY_DESC_AMY
+            + ADDRESS_DESC_AMY + EMAIL_DESC_AMY + " }";
+        assertParseFailure(parser, userInput, String.format(EditMessages.MESSAGE_EDIT_INVALID_FIELD,
+                "Editing Pooch Contact salary, skill and commission is not allowed for person"));
+    }
+
+    @Test
     public void parse_invalidPreamble_failure() {
         // invalid name
         String userInput = EditCommand.COMMAND_WORD + " " + PREFIX_NAME + " "
@@ -94,13 +168,6 @@ public class EditCommandParserTest {
             + " " + PREFIX_FIELD + "{" + INVALID_PHONE_DESC + EMAIL_DESC_AMY + " }";
         assertParseFailure(parser, userInput,
                 String.format(EditMessages.MESSAGE_EDIT_INVALID_FIELD, Phone.MESSAGE_CONSTRAINTS));
-
-        // multiple invalid values, but only the first invalid value is captured
-        userInput = EditCommand.COMMAND_WORD + " " + PREFIX_NAME + "Person1"
-            + " " + PREFIX_FIELD + "{" + INVALID_NAME_DESC + INVALID_EMAIL_DESC
-            + VALID_ADDRESS_AMY + VALID_PHONE_AMY + " }";
-        assertParseFailure(parser, userInput,
-                String.format(EditMessages.MESSAGE_EDIT_INVALID_NAME, Name.MESSAGE_CONSTRAINTS));
     }
 
     @Test
