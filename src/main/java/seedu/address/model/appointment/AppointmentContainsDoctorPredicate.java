@@ -9,7 +9,7 @@ import seedu.address.commons.util.ToStringBuilder;
 /**
  * Represents a Predicate used to test if an Appointment contains specified doctor keywords.
  */
-public class AppointmentContainsDoctorPredicate implements Predicate<Appointment>{
+public class AppointmentContainsDoctorPredicate implements Predicate<Appointment> {
     private final List<String> keywords;
 
     public AppointmentContainsDoctorPredicate(List<String> keywords) {
