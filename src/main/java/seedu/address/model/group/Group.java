@@ -63,7 +63,7 @@ public class Group extends UniqueCourseMateList {
     }
 
     /**
-     * Returns true if both groups have the same name and their members satisfy equality as well.
+     * Returns true if both groups have the same name, same members, and same skills.
      * This defines a stronger notion of equality between two groups.
      */
     @Override
@@ -86,6 +86,9 @@ public class Group extends UniqueCourseMateList {
         return "Name: " + name + ", " + super.toString();
     }
 
+    /**
+     * Generates a hashcode that satisfies: two objects being {@link #equals(Object)} imply two equal codes.
+     */
     @Override
     public int hashCode() {
         return name.hashCode()
