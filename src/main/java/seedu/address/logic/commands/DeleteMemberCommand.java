@@ -38,8 +38,8 @@ public class DeleteMemberCommand extends Command {
             + PREFIX_COURSEMATE + " John Doe.";
     public static final String MESSAGE_MEMBERS_NOT_IN_GROUP =
             "Some of the specified members are not in the group.";
-    public static final String MESSAGE_SUCCESFULLY_REMOVED = "Group successfully modified, Name: %s";
-
+    public static final String MESSAGE_SUCCESFULLY_REMOVED = "Group successfully modified, Name: %1$s \n"
+            + "%2$s members have been deleted from the group!";
     private final Name groupName;
     private final Set<QueryableCourseMate> queryableCourseMateSet;
 
@@ -106,7 +106,8 @@ public class DeleteMemberCommand extends Command {
         model.setGroup(toModify, modifiedGroup);
         model.updateFilteredGroupList(PREDICATE_SHOW_ALL_GROUPS);
         return new CommandResult(
-                String.format(MESSAGE_SUCCESFULLY_REMOVED, groupName), false, false, true);
+                String.format(MESSAGE_SUCCESFULLY_REMOVED, groupName,
+                        courseMateList.size()), false, false, true);
     }
 
     @Override

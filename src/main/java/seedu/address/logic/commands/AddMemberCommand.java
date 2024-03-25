@@ -38,7 +38,8 @@ public class AddMemberCommand extends Command {
             + PREFIX_COURSEMATE + " John Doe.";
     public static final String MESSAGE_MEMBERS_ALREADY_IN_GROUP =
             "Some of the specified members are already in the group.";
-    public static final String MESSAGE_SUCCESFULLY_ADDED = "Group successfully modified, Name: %s";
+    public static final String MESSAGE_SUCCESFULLY_ADDED = "Group successfully modified, Name: %1$s \n"
+            + "%2$s new members have been added to the group!";
 
     private final Name groupName;
     private final Set<QueryableCourseMate> queryableCourseMateSet;
@@ -105,8 +106,8 @@ public class AddMemberCommand extends Command {
 
         model.setGroup(toModify, modifiedGroup);
         model.updateFilteredGroupList(PREDICATE_SHOW_ALL_GROUPS);
-        return new CommandResult(String.format(MESSAGE_SUCCESFULLY_ADDED, groupName),
-                false, false, true);
+        return new CommandResult(String.format(MESSAGE_SUCCESFULLY_ADDED, groupName,
+                courseMateList.size()), false, false, true);
     }
 
     @Override
