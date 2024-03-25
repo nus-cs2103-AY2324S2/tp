@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import seedu.address.logic.CommandHistory;
-import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
@@ -10,7 +9,9 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.model.person.TagContainsKeywordsPredicate;
 
 import java.awt.*;
+import java.io.IOException;
 import java.net.URI;
+import java.net.URISyntaxException;
 
 /**
  * Lists all email of contacts associated with the tag.
@@ -40,7 +41,19 @@ public class MailCommand extends Command {
         model.updateFilteredPersonList(predicate);
         StringBuilder builder = new StringBuilder();
         for (int i = 0; i < model.getFilteredPersonList().size(); i++) {
-            builder.append(model.getFilteredPersonList().get(i).getEmail()).append(" ");
+            builder.append(model.getFilteredPersonList().get(i).getEmail()).append(",");
+        }
+        try {
+            Desktop desktop;
+            if (Desktop.isDesktopSupported()
+                    && (desktop = Desktop.getDesktop()).isSupported(Desktop.Action.MAIL)) {
+                URI mailto = new URI("mailto:" + builder);
+                desktop.mail(mailto);
+            } else {
+                throw new RuntimeException("desktop doesn't support mailto");
+            }
+        } catch (URISyntaxException | IOException e) {
+            throw new RuntimeException(e);
         }
         return new CommandResult(
                 String.format(MESSAGE_EMAIL_CONTACT_SUCCESS, builder));
