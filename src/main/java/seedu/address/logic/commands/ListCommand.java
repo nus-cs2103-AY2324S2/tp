@@ -25,7 +25,7 @@ public class ListCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredPersonList(predicate);
+        model.updateFilteredClientList(predicate);
         return new CommandResult(MESSAGE_SUCCESS + "all " + predicate.getType() + "s");
     }
 
