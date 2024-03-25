@@ -40,7 +40,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ROOMNUMBER,
-                PREFIX_TELEGRAM, PREFIX_BIRTHDAY, PREFIX_FREETIMETAG);
+                PREFIX_TELEGRAM, PREFIX_BIRTHDAY);
 
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
 
