@@ -10,6 +10,7 @@ import java.util.regex.Pattern;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.*;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.fuzzy.FuzzyCommandParser;
 
 /**
  * Parses user input.
@@ -35,7 +36,10 @@ public class AddressBookParser {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
 
+        /*
         final String commandWord = matcher.group("commandWord");
+         */
+        final String commandWord = FuzzyCommandParser.parseCommand(matcher.group("commandWord"));
         final String arguments = matcher.group("arguments");
 
         // Note to developers: Change the log level in config.json to enable lower level (i.e., FINE, FINER and lower)
