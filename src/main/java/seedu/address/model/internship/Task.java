@@ -88,7 +88,8 @@ public class Task {
         }
 
         Task otherName = (Task) other;
-        return task.equals(otherName.task);
+        return task.equals(otherName.task) && isDeadlineSet == otherName.isDeadlineSet
+                && (isDeadlineSet ? deadline.equals(otherName.deadline) : true);
     }
 
     @Override

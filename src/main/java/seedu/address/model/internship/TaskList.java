@@ -38,9 +38,13 @@ public class TaskList {
             Matcher matcher = pattern.matcher(taskListString);
 
             while (matcher.find()) {
-                String task = matcher.group(1);
-                String deadline = matcher.group(2);
-                taskList.add(new Task(task, deadline));
+                String task = matcher.group(1).trim();
+                String deadline = matcher.group(2).trim();
+                if (deadline.isEmpty()) {
+                    taskList.add(new Task(task));
+                } else {
+                    taskList.add(new Task(task, deadline));
+                }
             }
 
             this.taskList = taskList;
@@ -65,7 +69,7 @@ public class TaskList {
         StringBuilder builder = new StringBuilder();
         int count = 1;
         for (Task task : taskList) {
-            builder.append(count++).append(". (").append(task.toString()).append(")\n");
+            builder.append(count++).append(". ").append(task.toString()).append("\n");
         }
         return builder.toString();
     }
@@ -82,6 +86,11 @@ public class TaskList {
         }
 
         TaskList otherTaskList = (TaskList) other;
-        return taskList.equals(otherTaskList.taskList);
+        for (int i = 0; i < taskList.size(); i++) {
+            if (!taskList.get(i).equals(otherTaskList.getTask(i + 1))) {
+                return false;
+            }
+        }
+        return true;
     }
 }
