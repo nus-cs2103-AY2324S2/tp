@@ -113,22 +113,26 @@ Examples:
 *  `editPerson T0123456A p/91234567 e/johndoe@example.com` Edits the phone number and email address of the person with NRIC:`T0123456A` to be `91234567` and `johndoe@example.com` respectively.
 *  `editPerson S8765432Z n/Betsy Crower t/` Edits the name of the person with NRIC:`S8765432Z` to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
+### Locating persons by name or nric: `findPerson`
 
-Finds persons whose names contain any of the given keywords.
+Finds persons whose names contain any of the given keywords OR nric contain the given keyword.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `findPerson n/ KEYWORD [MORE_KEYWORDS]` OR `findPerson i/ KEYWORD`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* Only the name OR nric is searched at once. e.g. `n/ Bob i/ T0123456A` is illegal
+* Partial words will be matched only if the start of the word is the same e.g. `Han` will match `Hans`
+* For name search: persons matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `n/ Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* For nric search: persons matching the given keyword will be returned.
+  e.g. `n/ T0` will return `T0123456A`, `T0234567B`
+  e.g. `n/ T01 T012` will NOT return `T0123456A` as the given keyword is `T01 T012`
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
+* `findPerson i/ S9` returns persons with Nrics `S9876543A` and `S9765432A`
+* `findPerson n/ John` returns persons with names `john` and `John Doe`
+* `findPerson n/ alex david` returns persons with names `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
 ### Deleting a person : `delete`
@@ -227,6 +231,6 @@ Action     | Format, Examples
 **AddApp** | `addApp i/NRIC d/DATE from/STARTTIME to/ENDTIME t/APPOINTMENTTYPE note/NOTE`<br> e.g., `addApp i/ T0123456A d/ 2024-02-20 from/ 11:00 to/ 11:30 t/ Medical Check-up note/ Routine check-in`
 **CancelApp** | `cancelApp i/NRIC d/DATE from/STARTTIME to/ENDTIME` <br> e.g., `cancelApp i/ S8743880A d/ 2024-02-20 from/ 11:00 to/ 11:30`
 **EditPerson**   | `editPerson NRIC [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`editPerson T0123456A n/James Lee e/jameslee@example.com`
-**Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**FindPerson**   | `findPerson n/ KEYWORD [MORE_KEYWORDS]` OR `findPerson i/ KEYWORD`<br> e.g., `findPerson n/ James Jake`
 **List**   | `list`
 **Help**   | `help`
