@@ -6,6 +6,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.time.DayOfWeek;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.format.TextStyle;
+import java.util.Locale;
 
 /**
  * Represents a ModuleTiming's day in the address book.
@@ -42,7 +44,7 @@ public class Day {
         return true;
     }
 
-    public DayOfWeek getDay() {
-        return day;
+    public String getDayString() {
+        return day.getDisplayName(TextStyle.SHORT, Locale.ENGLISH);
     }
 }

@@ -41,7 +41,7 @@ public class Timing {
         return true;
     }
 
-    public LocalTime getTiming() {
-        return time;
+    public String getTimingString() {
+        return time.format(formatter);
     }
 }
