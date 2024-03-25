@@ -173,13 +173,16 @@ Furthermore, certain edits can cause the AddressBook to behave in unexpected way
 </box>
 
 ### Archiving data files `[coming in v2.0]`
-Format: `view`
+
 
 ### Viewing the classes
+Format: `view`
 
-Format: `Select`
 
-### Select the data
+### Select class
+Format: `select`
+
+
 _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
