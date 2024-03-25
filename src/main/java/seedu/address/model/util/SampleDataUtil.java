@@ -61,4 +61,17 @@ public class SampleDataUtil {
                 .collect(Collectors.toSet());
     }
 
+    /**
+     * Returns a policy set containing the list of strings given.
+     */
+    public static Set<Policy> getPolicySet(String... strings) {
+        if (strings.length == 0) {
+            return new HashSet<>();
+        } else {
+            return Arrays.stream(strings)
+                    .map(Policy::new)
+                    .collect(Collectors.toSet());
+        }
+    }
+
 }

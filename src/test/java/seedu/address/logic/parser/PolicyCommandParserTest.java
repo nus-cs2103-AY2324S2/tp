@@ -6,6 +6,9 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailur
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
@@ -14,19 +17,22 @@ import seedu.address.model.person.Policy;
 
 public class PolicyCommandParserTest {
     private PolicyCommandParser parser = new PolicyCommandParser();
-    private final String nonEmptyPolicy = "Some policy.";
+    private String SAMPLE_POLICY = "some policy";
+    private final Set<Policy> nonEmptyPolicy = new HashSet<>();
+    private final Set<Policy> emptyPolicy = new HashSet<>();
 
     @Test
     public void parse_indexSpecified_success() {
+        nonEmptyPolicy.add(new Policy(SAMPLE_POLICY));
         // have policy
         Index targetIndex = INDEX_FIRST_PERSON;
-        String userInput = targetIndex.getOneBased() + " " + PREFIX_POLICY + nonEmptyPolicy;
-        PolicyCommand expectedCommand = new PolicyCommand(INDEX_FIRST_PERSON, new Policy(nonEmptyPolicy));
+        String userInput = targetIndex.getOneBased() + " " + PREFIX_POLICY + SAMPLE_POLICY;
+        PolicyCommand expectedCommand = new PolicyCommand(INDEX_FIRST_PERSON, nonEmptyPolicy);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // no policy
-        userInput = targetIndex.getOneBased() + " " + PREFIX_POLICY;
-        expectedCommand = new PolicyCommand(INDEX_FIRST_PERSON, new Policy(""));
+        userInput = targetIndex.getOneBased() + " " + PREFIX_POLICY + " ";
+        expectedCommand = new PolicyCommand(INDEX_FIRST_PERSON, emptyPolicy);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 

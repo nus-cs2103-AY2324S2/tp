@@ -94,6 +94,10 @@ public class PolicyCommand extends Command {
             return false;
         }
 
+        if (other == null || getClass() != other.getClass()) {
+            return false;
+        }
+
         // state check
         PolicyCommand e = (PolicyCommand) other;
         return index.equals(e.index)

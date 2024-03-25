@@ -35,6 +35,9 @@ public class PolicyCommandParser implements Parser<PolicyCommand> {
 
         Set<Policy> policies = new HashSet<>();
         for (String policy : argMultimap.getAllValues(PREFIX_POLICY)) {
+            if (policy.isEmpty()) {
+                return new PolicyCommand(index, policies);
+            }
             policies.add(new Policy(policy));
         }
         return new PolicyCommand(index, policies);

@@ -32,7 +32,7 @@ public class PersonBuilder {
     private Phone phone;
     private Email email;
     private Address address;
-    private Policy policy;
+    private Set<Policy> policy;
     private Relationship relationship;
     private Set<Tag> tags;
 
@@ -47,7 +47,7 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
-        policy = new Policy(DEFAULT_POLICY);
+        policy = new HashSet<>();
         relationship = new Relationship(DEFAULT_RELATIONSHIP);
         tags = new HashSet<>();
         meetings = new ArrayList<>();
@@ -61,7 +61,7 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
-        policy = personToCopy.getPolicy();
+        policy = new HashSet<>(personToCopy.getPolicies());
         relationship = personToCopy.getRelationship();
         tags = new HashSet<>(personToCopy.getTags());
         meetings = new ArrayList<>(personToCopy.getMeetings());
@@ -110,8 +110,8 @@ public class PersonBuilder {
     /**
      * Sets the {@code Policy} of the {@code Person} that we are building.
      */
-    public PersonBuilder withPolicy(String policy) {
-        this.policy = new Policy(policy);
+    public PersonBuilder withPolicy(String... policies) {
+        this.policy = SampleDataUtil.getPolicySet(policies);
         return this;
     }
 

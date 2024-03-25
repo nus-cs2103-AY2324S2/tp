@@ -71,7 +71,7 @@ public class Person {
     }
 
     public Set<Policy> getPolicies() {
-        return Collections.unmodifiableSet(policies);
+        return policies.isEmpty() ? new HashSet<>() : Collections.unmodifiableSet(policies);
     }
 
     public Relationship getRelationship() {
