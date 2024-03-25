@@ -161,7 +161,7 @@ This section describes some noteworthy details on how certain features are imple
 ### Command History
 
 Command history is a feature that aims to improve the user experience for experienced users by allowing them to quickly
-navigate through their history of commands to make minor changes. Many features were inspired from Macbook's Bash shell
+navigate through their history of commands to make minor changes. Many features were inspired from macOS's Bash shell
 
 **Implementation**
 An array list was used to store the history of commands and an index to indicate which command is the history currently 
