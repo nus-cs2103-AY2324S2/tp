@@ -10,7 +10,7 @@ import seedu.address.commons.util.DateUtil;
 /**
  * Represents the last met date with a Client in the address book.
  */
-public class LastMet {
+public class LastMet implements Comparable<LastMet> {
     private static long lastMetDuration = 90;
     private final LocalDate lastMetDate;
     private boolean isOverdue;
@@ -77,5 +77,30 @@ public class LastMet {
     @Override
     public String toString() {
         return DateUtil.parseDateToString(this.lastMetDate);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof LastMet)) {
+            return false;
+        }
+
+        LastMet otherLastMet = (LastMet) other;
+        return lastMetDate.equals(otherLastMet.lastMetDate);
+    }
+
+    @Override
+    public int hashCode() {
+        return lastMetDate.hashCode();
+    }
+
+    @Override
+    public int compareTo(LastMet other) {
+        return lastMetDate.compareTo(other.lastMetDate);
     }
 }

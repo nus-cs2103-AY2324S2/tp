@@ -11,7 +11,7 @@ import seedu.address.commons.util.DateUtil;
  * Represents a Client's birthday in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidBirthday(String)}
  */
-public class Birthday {
+public class Birthday implements Comparable<Birthday> {
     public static final String MESSAGE_CONSTRAINTS = DateUtil.getMessageConstraintsForDateType("Birthday");
     public final LocalDate date;
 
@@ -63,5 +63,10 @@ public class Birthday {
     @Override
     public int hashCode() {
         return date.hashCode();
+    }
+
+    @Override
+    public int compareTo(Birthday other) {
+        return date.compareTo(other.date);
     }
 }

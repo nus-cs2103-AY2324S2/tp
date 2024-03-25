@@ -15,6 +15,8 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Priority;
+import seedu.address.model.person.SortCriteria;
+import seedu.address.model.person.SortOrder;
 import seedu.address.model.policy.Policy;
 import seedu.address.model.tag.Tag;
 
@@ -206,5 +208,37 @@ public class ParserUtil {
             throw new ParseException(Policy.MESSAGE_CONSTRAINTS_ID);
         }
         return trimmedPolicyId;
+    }
+
+    /**
+     * Parses {@code String sortOrder} into a {@code SortOrder}.
+     *
+     * @param sortOrder the sort order
+     * @return the sort order
+     * @throws ParseException if the given {@code sortOrder} is invalid
+     */
+    public static SortOrder parseSortOrder(String sortOrder) throws ParseException {
+        requireNonNull(sortOrder);
+        String trimmedSortOrder = sortOrder.trim();
+        if (!SortOrder.isValidSortOrder(trimmedSortOrder)) {
+            throw new ParseException(SortOrder.MESSAGE_CONSTRAINTS);
+        }
+        return SortOrder.getSortOrder(trimmedSortOrder);
+    }
+
+    /**
+     * Parses {@code String sortCriteria} into a {@code SortCriteria}.
+     *
+     * @param sortCriteria the sort criteria
+     * @return the sort criteria
+     * @throws ParseException if the given {@code sortCriteria} is invalid
+     */
+    public static SortCriteria parseSortCriteria(String sortCriteria) throws ParseException {
+        requireNonNull(sortCriteria);
+        String trimmedSortCriteria = sortCriteria.trim();
+        if (!SortCriteria.isValidSortCriteria(trimmedSortCriteria)) {
+            throw new ParseException(SortCriteria.MESSAGE_CONSTRAINTS);
+        }
+        return SortCriteria.getSortCriteria(trimmedSortCriteria);
     }
 }

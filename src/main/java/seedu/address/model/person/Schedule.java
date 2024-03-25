@@ -7,7 +7,7 @@ import seedu.address.commons.util.DateTimeUtil;
 /**
  * Schedule class is responsible for keep tracking for appointments with a Client in the address book.
  */
-public class Schedule {
+public class Schedule implements Comparable<Schedule> {
     private LocalDateTime schedule;
     private boolean isDone;
     private boolean isMissed;
@@ -107,5 +107,30 @@ public class Schedule {
 
     public boolean getIsMissed() {
         return this.isMissed;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof Schedule)) {
+            return false;
+        }
+
+        Schedule otherSchedule = (Schedule) other;
+        return schedule.equals(otherSchedule.schedule);
+    }
+
+    @Override
+    public int hashCode() {
+        return schedule.hashCode();
+    }
+
+    @Override
+    public int compareTo(Schedule other) {
+        return this.schedule.compareTo(other.schedule);
     }
 }
