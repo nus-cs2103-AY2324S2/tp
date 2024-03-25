@@ -6,7 +6,11 @@
 
 # Avengers Assemble User Guide
 
-Avengers Assemble (AA) is a **desktop app for managing contacts, optimized for use via a  Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AA can get your contact management tasks done faster than traditional GUI apps.
+Avengers Assemble (AA) is a **desktop app for managing contacts, meant for use with a Command Line Interface** (CLI) 
+while still having the benefits of a Graphical User Interface (GUI). 
+
+The application is designed for Head Tutors of the CS1101S Programming Methodology course, 
+but its use cases can be extended to Head Tutors of other courses.
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -79,7 +83,6 @@ Format: `help`
 
 Adds a person.
 
-
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] [m/MATRICULATION_NUMBER]…​`
 
 <box type="info" seamless>
@@ -97,7 +100,7 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 m/A1234567Z`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal m/A1234567Z`
 
-You can refer to the [command format summary](#command-format-summary) for more guidelines for each parameter.
+For more details on each parameter, [click here](#command-format-summary).
 
 ### Listing all persons : `list`
 
@@ -123,7 +126,7 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-You can refer to the [command format summary](#command-format-summary) for more guidelines for each parameter.
+For more details on each parameter, [click here](#command-format-summary).
 
 ### Filtering persons: `find`
 
@@ -142,7 +145,7 @@ Examples:
 * `find t/student` returns all persons tagged with `student` or any persons with tags that has `student` as a substring.
 * `find p/1423` returns all persons with phone number containing `1423`.
 
-You can refer to the [command format summary](#command-format-summary) for more guidelines for each parameter.
+For more details on each parameter, [click here](#command-format-summary).
 
 ### Copy email addresses: `copy`
 
@@ -204,17 +207,13 @@ absolute filePath.
 Format: `import i/FILEPATH`
 - imports the persons saved in `FILEPATH` to `avengersassemble.json`
 
-You can refer to the [command format summary](#command-format-summary) for more guidelines for each parameter.
+For more details on the input parameter, [click here](#command-format-summary).
 
 ### Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
