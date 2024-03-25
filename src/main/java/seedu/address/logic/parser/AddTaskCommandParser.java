@@ -4,11 +4,11 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import seedu.address.logic.commands.AddTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.task.AssignedEmployees;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskId;
 import seedu.address.model.task.TaskName;
 import seedu.address.model.task.TaskStatus;
-
 
 /**
  * Adds a task to the address book.
@@ -31,7 +31,7 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
         TaskId taskId = new TaskId(Task.getUniversalId());
         TaskStatus taskStatus = new TaskStatus(false);
         Task.incrementTaskId();
-        Task task = new Task(taskName, taskId, taskStatus);
+        Task task = new Task(taskName, taskId, taskStatus, new AssignedEmployees(""));
 
         return new AddTaskCommand(task);
     }

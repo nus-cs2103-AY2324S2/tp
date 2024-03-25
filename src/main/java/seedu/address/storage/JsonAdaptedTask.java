@@ -1,11 +1,10 @@
 package seedu.address.storage;
 
-import static seedu.address.storage.JsonAdaptedEmployee.MISSING_FIELD_MESSAGE_FORMAT;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.task.AssignedEmployees;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskId;
 import seedu.address.model.task.TaskName;
@@ -22,16 +21,19 @@ public class JsonAdaptedTask {
 
     private boolean taskStatus;
 
+    private String employees;
+
     /**
      * Constructs a {@code JsonAdaptedEmployee} with the given Employee details.
      */
     @JsonCreator
-    public JsonAdaptedTask(@JsonProperty("taskName") String taskName,
-                           @JsonProperty("taskId") int taskId,
-                           @JsonProperty("taskStatus") boolean taskStatus) {
+    public JsonAdaptedTask(@JsonProperty("taskName") String taskName, @JsonProperty("taskId") int taskId,
+                           @JsonProperty("taskStatus") boolean taskStatus,
+                           @JsonProperty("employees") String employees) {
         this.taskName = taskName;
         this.taskId = taskId;
         this.taskStatus = taskStatus;
+        this.employees = employees;
     }
 
 
@@ -42,6 +44,7 @@ public class JsonAdaptedTask {
         taskName = source.getName().taskName;
         taskId = source.getTaskId().taskId;
         taskStatus = source.getTaskStatus().getStatus();
+        employees = source.getEmployees().getEmployees();
     }
 
     /**
@@ -58,6 +61,7 @@ public class JsonAdaptedTask {
         final TaskName modelName = new TaskName(taskName);
         final TaskId modelId = new TaskId(taskId);
         final TaskStatus modelStatus = new TaskStatus(taskStatus);
-        return new Task(modelName, modelId, modelStatus);
+        final AssignedEmployees modelEmployees = new AssignedEmployees(employees);
+        return new Task(modelName, modelId, modelStatus, modelEmployees);
     }
 }

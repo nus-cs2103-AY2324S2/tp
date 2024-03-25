@@ -17,7 +17,7 @@ import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskId;
 
 /**
- * Represents an Employee's AssignedTasks in the address book.
+ * Represents an Employee's AssignedTasks in TaskMasterPro.
  * Guarantees: immutable; is valid as declared in {@link #isValidTask(String)}
  */
 public class AssignedTasks {
@@ -102,6 +102,7 @@ public class AssignedTasks {
     public AssignedTasks assignTask(Task task) throws CommandException {
         if (Objects.equals(tasks, "")) {
             tasks = "" + task.getTaskId().taskId;
+            assignedTasks.put(task.getTaskId(), task);
             return this;
         }
         String[] taskArray = tasks.split(" ");

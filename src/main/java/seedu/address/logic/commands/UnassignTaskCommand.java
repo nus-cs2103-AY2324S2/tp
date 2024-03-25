@@ -59,8 +59,10 @@ public class UnassignTaskCommand extends Command {
                     if (t.getTaskId().taskId == taskID) {
                         checkTaskID = true;
                         Employee updatedEmployee = employee.removeTask(t.getTaskId());
-
                         model.setEmployee(employee, updatedEmployee);
+
+                        Task updatedTask = t.removeEmployee(employee.getEmployeeId());
+                        model.setTask(t, updatedTask);
                     }
                 }
             }

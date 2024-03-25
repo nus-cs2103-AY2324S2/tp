@@ -80,6 +80,10 @@ class JsonSerializableTaskMasterPro {
             e.getTasks().initiateHashTable(taskList);
         }
 
+        for (Task t : taskList) {
+            t.getEmployees().initiateHashTable(employeeList);
+        }
+
         return taskMasterPro;
     }
 

@@ -10,6 +10,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.task.AssignedEmployees;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskId;
 import seedu.address.model.task.TaskName;
@@ -25,7 +26,7 @@ public class AddTaskCommandParserTest {
         Task.setUniversalTaskId(5);
         AddTaskCommand atc = parser.parse("testing              ");
         AddTaskCommand atc2 = new AddTaskCommand(
-                new Task(new TaskName("testing"), new TaskId(5), new TaskStatus(false)));
+                new Task(new TaskName("testing"), new TaskId(5), new TaskStatus(false), new AssignedEmployees("")));
         atc.execute(m1);
         atc2.execute(m2);
         assertTrue(m1.equals(m2));

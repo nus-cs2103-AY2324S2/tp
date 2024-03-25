@@ -157,6 +157,13 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void setTask(Task target, Task editedTask) {
+        requireAllNonNull(target, editedTask);
+
+        taskMasterPro.setTask(target, editedTask);
+    }
+
+    @Override
     public ObservableList<Task> getFilteredTaskList() {
         return taskList;
     }

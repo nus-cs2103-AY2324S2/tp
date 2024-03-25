@@ -10,7 +10,8 @@ import seedu.address.model.task.exceptions.TaskNotFoundException;
 
 public class TaskListTest {
     private final TaskList taskList = new TaskList();
-    private final Task task = new Task(new TaskName("Test"), new TaskId(5), new TaskStatus(false));
+    private final Task task = new Task(new TaskName("Test"), new TaskId(5), new TaskStatus(false),
+            new AssignedEmployees(""));
 
     @Test
     public void contains_task() {

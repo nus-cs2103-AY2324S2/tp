@@ -56,6 +56,9 @@ public class AssignTaskCommand extends Command {
                         checkEmployeeID = true;
                         Employee updatedEmployee = e.assignTask(t);
                         model.setEmployee(e, updatedEmployee);
+
+                        Task updatedTask = t.assignEmployee(e);
+                        model.setTask(t, updatedTask);
                     }
                 }
             }

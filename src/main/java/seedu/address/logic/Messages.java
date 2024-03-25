@@ -23,6 +23,7 @@ public class Messages {
     public static final String MESSAGE_DUPLICATE_TASKID = "The Task ID provided is already assigned to this employee";
 
     public static final String MESSAGE_NONEXISTENT_TASKS = "There are no tasks assigned to this employee";
+    public static final String MESSAGE_NONEXISTENT_EMPLOYEES = "There are no employees assigned to this task";
 
     /**
      * Returns an error message indicating the duplicate prefixes.
