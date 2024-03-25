@@ -4,6 +4,7 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_UNCLEAR_COMMAND;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 
+import java.util.List;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -66,9 +67,20 @@ public class AddressBookParser {
         // Lower level log messages are used sparingly to minimize noise in the code.
         logger.fine("Command word: " + commandWord + "; Arguments: " + arguments);
 
-        String fullCommand = getFullCommand(commandWord);
+        // Get a list of commands that matches the input command.
+        List<String> matchedCommands = ParserUtil.filterByPrefix(commandWord, COMMANDS);
 
-        switch (fullCommand) {
+        String command = commandWord;
+        if (matchedCommands.size() == 1) {
+            command = matchedCommands.get(0);
+        } else if (matchedCommands.size() > 1) {
+            // Input matches multiple commands.
+            throw new ParseException(MESSAGE_UNCLEAR_COMMAND);
+        }
+
+        System.out.println(command);
+
+        switch (command) {
 
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
@@ -99,37 +111,4 @@ public class AddressBookParser {
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
-
-    /**
-     * Converts an input command into a full command if input command is a prefix.
-     *
-     * @param command user input command string
-     * @return full command if input is a prefix, else return the original input command
-     * @throws ParseException if the input matches to multiple commands
-     */
-    private String getFullCommand(String command) throws ParseException {
-        final String initialValue = "";
-        String fullCommand = initialValue;
-
-        for (String commandWord : COMMANDS) {
-            // Input command matches the full command.
-            if (commandWord.startsWith(command)) {
-                // Input command matches with multiple full commands.
-                if (!fullCommand.equals(initialValue)) {
-                    throw new ParseException(MESSAGE_UNCLEAR_COMMAND);
-                }
-
-                fullCommand = commandWord;
-            }
-        }
-
-        if (fullCommand.equals(initialValue)) {
-            // Return original command if no match found.
-            return command;
-        } else {
-            // Return matched full command.
-            return fullCommand;
-        }
-    }
-
 }
