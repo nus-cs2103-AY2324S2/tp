@@ -672,6 +672,44 @@ The following UML sequence diagram illustrates how the Find operations works.
 
 --------------------------------------------------------------------------------------------------------------------
 
+### 3.11 Locating patients by tag
+
+#### Introduction
+
+The `FindTagsCommand` class is responsible for finding the patients by their tag in the patient list
+using keyword(s).
+
+#### Specifications
+
+* `FindTagsCommand` takes in one or more keywords to find patients using tag in the patient list.
+* `FindTagsCommand` will update the patient list with patients whose tag(s) matches the keyword(s).
+
+#### Example Usage Scenario
+
+Given below is an example usage scenario and how the group creation mechanism behaves at each step.
+
+Step 1: The user accesses the PatientSync application.
+
+Step 2: The user executes `findt depression` to search for patients whose tag is depression.
+* Upon successful execution, those patients whose tag is `depression` will be listed in the patient list.
+
+The following UML sequence diagram illustrates how the FindTags operations works.
+<puml src="diagrams/FindTagsSequenceDiagram.puml" alt="Find Tags Sequence Diagram" />
+
+#### Design Considerations
+
+**Aspect: Choice of Command Structure**
+
+* **Alternative 1 (current choice)**: Use `findt KEYWORD [MORE_KEYWORDS]`
+  * Pros: Does not need to use tag prefix, and it is similar to `find` command.
+  * Cons: Command structure is different from `addt` and `deletet`.
+    <br><br>
+* **Alternative 2**: Use `findt t/KEYWORD t/[MORE_KEYWORDS]`
+  * Pros: Command structure is similar to `addt` and `deletet`.
+  * Cons: User need to key in multiple tag prefix if they want to search using more keywords.
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## 4 Planned Enhancements
 
 ### 4.1 \[Proposed\] Undo/redo feature

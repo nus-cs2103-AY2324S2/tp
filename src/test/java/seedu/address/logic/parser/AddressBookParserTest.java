@@ -26,6 +26,7 @@ import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.FindTagsCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -33,6 +34,7 @@ import seedu.address.model.patient.EditPatientDescriptor;
 import seedu.address.model.patient.Event;
 import seedu.address.model.patient.NameContainsKeywordsPredicate;
 import seedu.address.model.patient.Patient;
+import seedu.address.model.patient.TagContainsKeywordsPredicate;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EditPatientDescriptorBuilder;
 import seedu.address.testutil.PatientBuilder;
@@ -80,6 +82,14 @@ public class AddressBookParserTest {
 
         Set<Tag> expectedTags = new HashSet<>(Arrays.asList(new Tag("tag1"), new Tag("tag2"), new Tag("tag3")));
         assertEquals(new AddTagsCommand(INDEX_FIRST_PATIENT, expectedTags), command);
+    }
+
+    @Test
+    public void parseCommand_findTags() throws Exception {
+        List<String> keywords = List.of("diabetes", "depression", "wheelchair");
+        FindTagsCommand command = (FindTagsCommand) parser.parseCommand(
+                FindTagsCommand.COMMAND_WORD + " " + String.join(" ", keywords));
+        assertEquals(new FindTagsCommand(new TagContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test
