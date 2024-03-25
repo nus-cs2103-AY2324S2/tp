@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskDeadline;
 import seedu.address.model.task.TaskDescription;
 import seedu.address.model.task.TaskName;
 import seedu.address.model.task.TaskStatus;
@@ -19,6 +20,7 @@ public class JsonAdaptedTask {
     private final String taskName;
     private final String taskDescription;
     private final String taskStatus;
+    private final String taskDeadline;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -26,10 +28,12 @@ public class JsonAdaptedTask {
     @JsonCreator
     public JsonAdaptedTask(@JsonProperty("taskName") String taskName,
             @JsonProperty("taskDescription") String taskDescription,
-            @JsonProperty("taskStatus") String taskStatus) {
+            @JsonProperty("taskStatus") String taskStatus,
+            @JsonProperty("taskDeadline") String taskDeadline) {
         this.taskName = taskName;
         this.taskDescription = taskDescription;
         this.taskStatus = taskStatus;
+        this.taskDeadline = taskDeadline;
     }
 
     /**
@@ -39,6 +43,7 @@ public class JsonAdaptedTask {
         taskName = source.getName().taskName;
         taskDescription = source.getDescription().taskDescription;
         taskStatus = source.getStatus().toString();
+        taskDeadline = source.getDeadline().toJsonSave();
     }
 
     /**
@@ -71,6 +76,15 @@ public class JsonAdaptedTask {
         }
         final TaskStatus modelTaskStatus = new TaskStatus(taskStatus);
 
-        return new Task(modelTaskName, modelTaskDescription, modelTaskStatus);
+        if (taskDeadline == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    TaskDeadline.class.getSimpleName()));
+        }
+        if (!TaskDeadline.isValidTaskDeadline(taskDeadline)) {
+            throw new IllegalValueException(TaskDeadline.MESSAGE_CONSTRAINTS);
+        }
+        final TaskDeadline modelTaskDeadline = new TaskDeadline(taskDeadline);
+
+        return new Task(modelTaskName, modelTaskDescription, modelTaskStatus, modelTaskDeadline);
     }
 }

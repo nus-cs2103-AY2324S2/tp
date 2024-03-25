@@ -14,6 +14,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.TaskDeadline;
 import seedu.address.model.task.TaskDescription;
 import seedu.address.model.task.TaskName;
 
@@ -152,5 +153,20 @@ public class ParserUtil {
             throw new ParseException(TaskDescription.MESSAGE_CONSTRAINTS);
         }
         return new TaskDescription(trimmedTaskDescription);
+    }
+
+    /**
+     * Parses a {@code String taskDeadline} into an {@code TaskDeadline}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code taskDeadline} is invalid.
+     */
+    public static TaskDeadline parseTaskDeadline(String taskDeadline) throws ParseException {
+        requireNonNull(taskDeadline);
+        String trimmedTaskDeadline = taskDeadline.trim();
+        if (!TaskDeadline.isValidTaskDeadline(trimmedTaskDeadline)) {
+            throw new ParseException(TaskDeadline.MESSAGE_CONSTRAINTS);
+        }
+        return new TaskDeadline(trimmedTaskDeadline);
     }
 }

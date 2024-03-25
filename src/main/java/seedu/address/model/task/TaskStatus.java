@@ -4,6 +4,9 @@ package seedu.address.model.task;
  * Represents a Task's status in the task list.
  */
 public class TaskStatus {
+    private static final String STATUS_DONE = "Done";
+    private static final String STATUS_NOTDONE = "Not Done";
+
     private boolean taskStatus;
 
     /**
@@ -13,12 +16,11 @@ public class TaskStatus {
         taskStatus = false;
     }
 
-
     /**
      * Constructs an {@code TaskStatus}.
      */
     public TaskStatus(String status) {
-        if (status.equalsIgnoreCase("Done")) {
+        if (status.equalsIgnoreCase(STATUS_DONE)) {
             taskStatus = true;
         } else {
             taskStatus = false;
@@ -40,9 +42,9 @@ public class TaskStatus {
     @Override
     public String toString() {
         if (taskStatus) {
-            return "Done";
+            return STATUS_DONE;
         } else {
-            return "Not Done";
+            return STATUS_NOTDONE;
         }
     }
 
@@ -60,5 +62,4 @@ public class TaskStatus {
         TaskStatus otherStatus = (TaskStatus) other;
         return taskStatus == otherStatus.taskStatus;
     }
-
 }

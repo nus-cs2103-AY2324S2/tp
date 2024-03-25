@@ -7,9 +7,13 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+/**
+ * Represents a Task's deadline in the task list.
+ */
 public class TaskDeadline {
     public static final String MESSAGE_CONSTRAINTS =
             "Task deadline should be in dd-MM-yyyy HH:mm format, and it should not be blank";
+    public static final String EMPTY_DEADLINE = "Empty";
 
     /*
      * The first character of the address must not be a whitespace,
@@ -17,9 +21,11 @@ public class TaskDeadline {
      */
     public static final DateTimeFormatter VALIDATION_FORMAT = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
 
-    private final DateTimeFormatter OUTPUT_FORMAT = DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm");
+    private static final DateTimeFormatter OUTPUT_FORMAT = DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm");
 
     public final LocalDateTime taskDeadline;
+
+    private boolean isEmpty;
 
     /**
      * Constructs an {@code TaskDescription}.
@@ -28,6 +34,7 @@ public class TaskDeadline {
      */
     public TaskDeadline() {
         taskDeadline = null;
+        isEmpty = true;
     }
 
     /**
@@ -37,11 +44,24 @@ public class TaskDeadline {
      */
     public TaskDeadline(String deadline) {
         requireNonNull(deadline);
-        checkArgument(isValidTaskDeadline(deadline), MESSAGE_CONSTRAINTS);
-        taskDeadline = LocalDateTime.parse(deadline);
+        if (deadline.equals(EMPTY_DEADLINE)) {
+            taskDeadline = null;
+            isEmpty = true;
+        } else {
+            checkArgument(isValidTaskDeadline(deadline), MESSAGE_CONSTRAINTS);
+            taskDeadline = LocalDateTime.parse(deadline, VALIDATION_FORMAT);
+            isEmpty = false;
+        }
     }
 
-    private static boolean isValidTaskDeadline(String deadline) {
+    /**
+     * Returns true if a given string is a valid deadline.
+     */
+    public static boolean isValidTaskDeadline(String deadline) {
+        if (deadline.equals(EMPTY_DEADLINE)) {
+            return true;
+        }
+
         try {
             VALIDATION_FORMAT.parse(deadline);
         } catch (DateTimeParseException e) {
@@ -52,6 +72,45 @@ public class TaskDeadline {
 
     @Override
     public String toString() {
-        return taskDeadline.format(OUTPUT_FORMAT);
+        if (isEmpty) {
+            return "";
+        } else {
+            return taskDeadline.format(OUTPUT_FORMAT);
+        }
+    }
+
+    /**
+     * Returns a string to save to json file.
+     */
+    public String toJsonSave() {
+        if (isEmpty) {
+            return EMPTY_DEADLINE;
+        } else {
+            return taskDeadline.format(VALIDATION_FORMAT);
+        }
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof TaskDeadline)) {
+            return false;
+        }
+
+        TaskDeadline otherTaskDeadline = (TaskDeadline) other;
+        return this.toJsonSave().equals(otherTaskDeadline.toJsonSave());
+    }
+
+    @Override
+    public int hashCode() {
+        if (isEmpty) {
+            return EMPTY_DEADLINE.hashCode();
+        } else {
+            return taskDeadline.hashCode();
+        }
     }
 }

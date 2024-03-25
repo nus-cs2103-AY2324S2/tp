@@ -31,7 +31,7 @@ public class TaskDescription {
     }
 
     /**
-     * Returns true if a given string is a valid email.
+     * Returns true if a given string is a valid description.
      */
     public static boolean isValidTaskDescription(String test) {
         return test.matches(VALIDATION_REGEX);
