@@ -24,7 +24,8 @@ import seedu.realodex.model.remark.Remark;
 import seedu.realodex.model.tag.Tag;
 
 public class ParserUtilTest {
-    private static final String INVALID_NAME = "R@chel";
+    private static final String INVALID_NAME_CAPS = "D@nzel Washington Al Pacino";
+    private static final String INVALID_NAME_NON_CAPS = "d@nzel washington Al Pacino";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_INCOME = "-1";
     private static final String INVALID_ADDRESS = " ";
@@ -33,7 +34,9 @@ public class ParserUtilTest {
     private static final String INVALID_TAG_1 = "#buyer";
     private static final String INVALID_TAG_2 = "friend";
 
-    private static final String VALID_NAME = "Rachel Walker";
+    private static final String VALID_NAME_CAPS = "Denzel Washington Al Pacino";
+    private static final String VALID_NAME_NON_CAPS_ALL = "denzel washington al pacino";
+    private static final String VALID_NAME_NON_CAPS_FIRST_NAME = "denzel Washington Al Pacino";
     private static final String VALID_PHONE = "123456";
     private static final String VALID_INCOME = "10000";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
@@ -79,21 +82,40 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseName_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseName(INVALID_NAME));
+    public void parseName_invalidValueOfCapitalizedName_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseName(INVALID_NAME_CAPS));
+    }
+
+    @Test
+    public void parseName_invalidValueOfNonCapitalizedName_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseName(INVALID_NAME_NON_CAPS));
     }
 
     @Test
     public void parseName_validValueWithoutWhitespace_returnsName() throws Exception {
-        Name expectedName = new Name(VALID_NAME);
-        assertEquals(expectedName, ParserUtil.parseName(VALID_NAME));
+        Name expectedName = new Name(VALID_NAME_CAPS);
+        assertEquals(expectedName, ParserUtil.parseName(VALID_NAME_CAPS));
     }
 
     @Test
     public void parseName_validValueWithWhitespace_returnsTrimmedName() throws Exception {
-        String nameWithWhitespace = WHITESPACE + VALID_NAME + WHITESPACE;
-        Name expectedName = new Name(VALID_NAME);
+        String nameWithWhitespace = WHITESPACE + VALID_NAME_CAPS + WHITESPACE;
+        Name expectedName = new Name(VALID_NAME_CAPS);
         assertEquals(expectedName, ParserUtil.parseName(nameWithWhitespace));
+    }
+
+    @Test
+    public void parseName_nonCapitalizedInAllPartsOfName_returnsCapitalizedName() throws Exception {
+        String nonCapitalizedInBothNames = VALID_NAME_NON_CAPS_ALL;
+        Name expectedName = new Name(ParserUtil.capitalizeWords(nonCapitalizedInBothNames));
+        assertEquals(expectedName, ParserUtil.parseName(nonCapitalizedInBothNames));
+    }
+
+    @Test
+    public void parseName_nonCapitalizedInFirstPartOfName_returnsCapitalizedName() throws Exception {
+        String nonCapitalizedInFirstNames = VALID_NAME_NON_CAPS_FIRST_NAME;
+        Name expectedName = new Name(ParserUtil.capitalizeWords(nonCapitalizedInFirstNames));
+        assertEquals(expectedName, ParserUtil.parseName(nonCapitalizedInFirstNames));
     }
 
     @Test
