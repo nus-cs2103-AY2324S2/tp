@@ -33,7 +33,7 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private ClientListPanel clientListPanel;
     private ClientViewPanel clientViewPanel;
-    // private RemindersPanel remindersPanel;
+    private RemindersPanel remindersPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -52,11 +52,11 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane clientPolicyTablePlaceholder;
 
-    // @FXML
-    // private StackPane lastMetCardPlaceholder;
-    //
-    // @FXML
-    // private StackPane appointmentsCardPlaceholder;
+    @FXML
+    private StackPane lastMetCardPlaceholder;
+
+    @FXML
+    private StackPane appointmentsCardPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -134,8 +134,9 @@ public class MainWindow extends UiPart<Stage> {
             clearClientViewPanel();
         }
 
-        // remindersPanel = new RemindersPanel();
-        // addRemindersPanel();
+        remindersPanel = new RemindersPanel(logic.getOverDueLastMet(), logic.getSchedules());
+        addRemindersPanel();
+
 
         resultDisplay = new ResultDisplay();
 
@@ -202,41 +203,41 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Fills up placeholders of reminders panel.
+     */
+    private void addRemindersPanel() {
+        RemindersCard lastMetCard = remindersPanel.getLastMetCard();
+        lastMetCardPlaceholder.getChildren().add(lastMetCard.getRoot());
+
+        RemindersCard appointmentsCard = remindersPanel.getAppointmentsCard();
+        appointmentsCardPlaceholder.getChildren().add(appointmentsCard.getRoot());
+    }
+
+    /**
+     * Clears the placeholders of reminders panel.
+     */
+    private void clearRemindersPanel() {
+        lastMetCardPlaceholder.getChildren().clear();
+        appointmentsCardPlaceholder.getChildren().clear();
+    }
+
+    /**
+     * Refreshes the reminders panel.
+     */
+    private void refreshRemindersPanel() {
+        clearRemindersPanel();
+        remindersPanel.updateRemindersPanel(logic.getOverDueLastMet(), logic.getSchedules());
+        addRemindersPanel();
+    }
+
+    /**
      * Refreshes the client view panel, client list panel and reminders panel.
      */
     private void refreshAllPanels() {
         refreshClientViewPanel();
         refreshClientListPanel();
-        // refreshRemindersPanel();
+        refreshRemindersPanel();
     }
-
-    //    /**
-    //     * Fills up placeholders of reminders panel.
-    //     */
-    //    private void addRemindersPanel() {
-    //        RemindersCard lastMetCard = remindersPanel.getLastMetCard();
-    //        lastMetCardPlaceholder.getChildren().add(lastMetCard.getRoot());
-    //
-    //        RemindersCard appointmentsCard = remindersPanel.getAppointmentsCard();
-    //        appointmentsCardPlaceholder.getChildren().add(appointmentsCard.getRoot());
-    //    }
-    //
-    //    /**
-    //     * Clears the placeholders of reminders panel.
-    //     */
-    //    private void clearRemindersPanel() {
-    //        lastMetCardPlaceholder.getChildren().clear();
-    //        appointmentsCardPlaceholder.getChildren().clear();
-    //    }
-    //
-    //    /**
-    //     * Refreshes the reminders panel.
-    //     */
-    //    private void refreshRemindersPanel() {
-    //        clearRemindersPanel();
-    //        remindersPanel.updateRemindersPanel();
-    //        addRemindersPanel();
-    //    }
 
     /**
      * Sets the default size based on {@code guiSettings}.

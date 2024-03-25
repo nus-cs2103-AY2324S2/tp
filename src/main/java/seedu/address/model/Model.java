@@ -7,6 +7,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Person;
+import seedu.address.model.reminder.ReminderList;
 
 /**
  * The API of the Model component.
@@ -111,4 +112,12 @@ public interface Model {
      * Replaces the current client to be displayed to {@code person}.
      */
     void setDisplayClient(Person person);
+    /**
+     * Returns the reminder list for the overdue last met to be displayed in RemindersPanel.
+     */
+    ReminderList getOverDueLastMet();
+    /**
+     * Returns the reminder list for the appointments to be displayed in RemindersPanel.
+     */
+    ReminderList getSchedules();
 }

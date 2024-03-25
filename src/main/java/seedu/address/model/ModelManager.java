@@ -16,6 +16,9 @@ import seedu.address.model.person.DisplayClient;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.PolicyList;
 import seedu.address.model.policy.Policy;
+import seedu.address.model.reminder.ReminderList;
+import seedu.address.model.reminder.ReminderType;
+
 
 /**
  * Represents the in-memory model of the address book data.
@@ -208,4 +211,15 @@ public class ModelManager implements Model {
     public void setDisplayClient(Person person) {
         displayClient.setDisplayClient(person);
     }
+
+    //=========== PolicyList Displayed =====================================================================
+    @Override
+    public ReminderList getOverDueLastMet() {
+        return new ReminderList(ReminderType.LAST_MET, addressBook.getOverDueLastMet());
+    }
+    @Override
+    public ReminderList getSchedules() {
+        return new ReminderList(ReminderType.SCHEDULES, addressBook.getSchedules());
+    }
+
 }

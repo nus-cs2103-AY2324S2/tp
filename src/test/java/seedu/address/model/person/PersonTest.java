@@ -16,6 +16,9 @@ import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
 import static seedu.address.testutil.TypicalPersons.BOB;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.policy.Policy;
@@ -134,5 +137,42 @@ public class PersonTest {
                 + ", tags=" + ALICE.getTags() + ", policies="
                 + ALICE.getPolicyList() + "}";
         assertEquals(expected, ALICE.toString());
+    }
+
+    @Test
+    public void isOverDueLastMet() {
+        Person dueAlice = new PersonBuilder(ALICE).withLastMet(LocalDate.of(2000, 1, 1)).build();
+        assertTrue(dueAlice.isOverDueLastMet());
+        Person noDueAlice = new PersonBuilder(ALICE).withLastMet(LocalDate.now()).build();
+        assertFalse(noDueAlice.isOverDueLastMet());
+        Person scheduledAlice = new PersonBuilder(ALICE).withSchedule(LocalDateTime.now().plusDays(1), false)
+                .withLastMet(LocalDate.of(2000, 1, 1)).build();
+        assertFalse(scheduledAlice.isOverDueLastMet());
+    }
+
+    @Test
+    public void hasActiveAppointments() {
+        assertFalse(ALICE.hasActiveSchedule());
+        Person scheduleAlice = new PersonBuilder(ALICE).withSchedule(LocalDateTime.now().plusDays(1), false)
+                .build();
+        assertTrue(scheduleAlice.hasActiveSchedule());
+    }
+
+    @Test
+    public void overdueLastMetStringFormat() {
+        assertEquals(ALICE.overdueLastMetStringFormat(),
+                ALICE.getName() + " - " + Long.toString(ALICE.getLastMet().getPeriodGap()) + "d ago");
+    }
+
+    @Test
+    public void scheduleStringFormat() {
+        Person notMissedAlice = new PersonBuilder(ALICE).withSchedule(LocalDateTime.now().plusDays(1), false)
+                .build();
+        assertEquals(notMissedAlice.getSchedule().getScheduleDateString() + " - " + ALICE.getName(),
+                notMissedAlice.scheduleStringFormat());
+        Person missedAlice = new PersonBuilder(ALICE).withSchedule(LocalDateTime.now().minusDays(1), false)
+                .build();
+        assertEquals(missedAlice.getSchedule().getScheduleDateString() + " - " + ALICE.getName() + " (Missed)",
+                missedAlice.scheduleStringFormat());
     }
 }
