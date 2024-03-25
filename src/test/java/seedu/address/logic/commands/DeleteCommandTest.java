@@ -18,21 +18,16 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
 
-/**
- * Contains integration tests (interaction with the Model) and unit tests for
- * {@code DeleteCommand}.
- */
 public class DeleteCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Person personToDelete = model.getFilteredPersonList().get(ID_FIRST_PERSON.getInt());
+        Person personToDelete = model.getPersonByUniqueId(ID_FIRST_PERSON.toString());
         DeleteCommand deleteCommand = new DeleteCommand(ID_FIRST_PERSON.toString());
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
-                Messages.format(personToDelete));
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete));
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deletePerson(personToDelete);
@@ -42,21 +37,19 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-        int outOfBoundIndex = model.getFilteredPersonList().size() + 1;
-        DeleteCommand deleteCommand = new DeleteCommand(String.valueOf(outOfBoundIndex));
+        DeleteCommand deleteCommand = new DeleteCommand("invalid_id");
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model, DeleteCommand.MESSAGE_PERSON_NOT_FOUND);
     }
 
     @Test
     public void execute_validIndexFilteredList_success() {
         showPersonAtIndex(model, ID_FIRST_PERSON.getInt());
 
-        Person personToDelete = model.getFilteredPersonList().get(ID_FIRST_PERSON.getInt());
+        Person personToDelete = model.getPersonByUniqueId(ID_FIRST_PERSON.toString());
         DeleteCommand deleteCommand = new DeleteCommand(ID_FIRST_PERSON.toString());
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
-                Messages.format(personToDelete));
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete));
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deletePerson(personToDelete);
@@ -68,14 +61,9 @@ public class DeleteCommandTest {
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
         showPersonAtIndex(model, ID_FIRST_PERSON.getInt());
+        DeleteCommand deleteCommand = new DeleteCommand("invalid_id");
 
-        int outOfBoundIndex = ID_SECOND_PERSON.getInt();
-        // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex < model.getAddressBook().getPersonList().size());
-
-        DeleteCommand deleteCommand = new DeleteCommand(String.valueOf(outOfBoundIndex));
-
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model, DeleteCommand.MESSAGE_PERSON_NOT_FOUND);
     }
 
     @Test
