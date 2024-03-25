@@ -1,0 +1,63 @@
+package seedu.address.model.person;
+
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
+enum Tags {
+    NR,
+    OA,
+    I,
+    R,
+    O;
+
+    // Method to check if a given string is a valid enum value
+    public static boolean isValidTag(String input) {
+        for (Tags tag : Tags.values()) {
+            if (tag.name().equalsIgnoreCase(input)) {
+                return true;
+            }
+        }
+        return false;
+    }
+}
+public class Tag {
+    public static final String MESSAGE_CONSTRAINTS = "Tags should only contain NR, OA, I, R and O";
+    public final String value;
+
+    public Tag(String tag) {
+        requireNonNull(tag);
+        checkArgument(Tags.isValidTag(tag), MESSAGE_CONSTRAINTS);
+        value = tag;
+    }
+
+    @Override
+    public String toString() {
+        return '[' + value + ']';
+    }
+
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof Phone)) {
+            return false;
+        }
+
+        Tag otherTag = (Tag) other;
+        return value.equals(otherTag.value);
+    }
+
+    public static boolean isValidTag(String input) {
+        return Tags.isValidTag(input);
+    }
+
+    public static boolean isValidTag(Tag input) {
+        return Tags.isValidTag(input.value);
+    }
+
+    public int hashCode() {
+        return value.hashCode();
+    }
+}
