@@ -35,6 +35,10 @@ Gene-nie is our address book reimagined. It is a desktop app able to not only ma
    
    * `deleteAttribute 12db Pet` : Deletes the attribute Pet from the person with the UUID 12db.
 
+   * `editRelation 12db 34ab friend family` : Edits the relation between the person with the UUID 12db and the person with the UUID 34ab from friend to be family.
+
+   * `deleteRelation 12db 34ab friend` : Deletes the relation friend between the person with the UUID 12db and the person with the UUID 34ab.
+
    * `clear` : Deletes all contacts.
 
    * `exit` : Exits the app.
@@ -64,6 +68,8 @@ Gene-nie is our address book reimagined. It is a desktop app able to not only ma
 * The add attribute command is case-insensitive. The attribute name is case-insensitive for defined attributes like Name or Address, but the attribute name for user defined attributes is case-sensitive.
 
 * The delete attribute command is case-sensitive. It must match the attribute name exactly.
+
+* All relationship commands are case-sensitive (must be in lower-case). It must match the relationship type name exactly.
 
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </div>
@@ -182,6 +188,40 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+### editing a relationship : `editRelation`
+
+Edits the relationship between two people in the address book.
+
+Format: `editRelation UUID1 UUID2 OLD_RELATIONSHIP_TYPE NEW_RELATIONSHIP_TYPE`
+
+* Edits the relationship between the person with the specified `UUID1` and the person with the specified `UUID2`.
+* The `UUID1` and `UUID2` refer to the unique identifiers of the persons shown in the displayed person list.
+* The `UUID1` and `UUID2` **must be valid UUIDs**.
+* The `OLD_RELATIONSHIP_TYPE` and `NEW_RELATIONSHIP_TYPE` are case-sensitive and match the relationship type name exactly.
+* If the relationship to be edited from does not exist, the command will not have any effect.
+* If the relationship to be edited to already exists, the command will not have any effect.
+* If either persons do not exist, the command will not have any effect.
+* If either relationship types do not exist, the command will not have any effect.
+
+Examples:
+* `editRelation 12db 34ab friend family` edits the relation between the person with the UUID 12db and the person with the UUID 34ab from friend to be family.
+
+### Deleting a relationship : `deleteRelation`
+
+Deletes the relationship between two people in the address book.
+
+Format: `deleteRelation UUID1 UUID2 RELATIONSHIP_TYPE`
+
+* Deletes the relationship between the person with the specified `UUID1` and the person with the specified `UUID2`.
+* The `UUID1` and `UUID2` refer to the unique identifiers of the persons shown in the displayed person list.
+* The `UUID1` and `UUID2` **must be valid UUIDs**.
+* The `RELATIONSHIP_TYPE` is case-sensitive and matches the relationship type name exactly.
+* If the specified relationship to be deleted does not exist, the command will not have any effect.
+* If either persons do not exist, the command will not have any effect.
+
+Examples:
+* `deleteRelation 12db 34ab friend` deletes the relation friend between the person with the UUID 12db and the person with the UUID 34ab.
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
@@ -228,14 +268,16 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**addAttribute** | `addAttribute UUID ATTRIBUTE_NAME ATTRIBUTE_VALUE`<br> e.g., `addAttribute 12db Pet Dog`
-**deleteAttribute** | `deleteAttribute UUID ATTRIBUTE_NAME`<br> e.g., `deleteAttribute 12db Pet`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+| Action              | Format, Examples                                                                                                                                                      |
+|---------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**             | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **Clear**           | `clear`                                                                                                                                                               |
+| **Delete**          | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
+| **Edit**            | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
+| **addAttribute**    | `addAttribute UUID ATTRIBUTE_NAME ATTRIBUTE_VALUE`<br> e.g., `addAttribute 12db Pet Dog`                                                                              |
+| **deleteAttribute** | `deleteAttribute UUID ATTRIBUTE_NAME`<br> e.g., `deleteAttribute 12db Pet`                                                                                            |
+| **editRelation**    | `editRelation UUID1 UUID2 OLD_RELATION_TYPE NEW_RELATION_TYPE`<br> e.g., `editRelation 12db 3dab family friend`                                                       |
+| **deleteRelation**  | `deleteRelation UUID1 UUID2 RELATION_TYPE`<br> e.g., `deleteRelation 12db 3dab family`                                                                                |
+| **Find**            | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
+| **List**            | `list`                                                                                                                                                                |
+| **Help**            | `help`                                                                                                                                                                |
