@@ -5,19 +5,16 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DOB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -33,62 +30,54 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
- * Edits the details of an existing person in the CLInic.
+ * Edits the details of an existing person in CLInic.
  */
-public class EditCommand extends Command {
+public class EditPersonCommand extends Command {
 
-    public static final String COMMAND_WORD = "edit";
+    public static final String COMMAND_WORD = "editPerson";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the index number used in the displayed person list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Edits the details of the person identified by their Nric number. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters: NRIC (must be a valid NRIC in the system) "
             + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_NRIC + "NRIC] "
             + "[" + PREFIX_DOB + "DOB] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " 1 "
+            + "Example: " + COMMAND_WORD + " T0123456A "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the CLInic.";
+    public static final String MESSAGE_EDIT_PERSON_NO_FIELDS = "At least one field to edit must be provided.";
 
-    private final Index index;
+    private final Nric targetNric;
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
+     * @param nric of the person to edit
      * @param editPersonDescriptor details to edit the person with
      */
-    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
-        requireNonNull(index);
+    public EditPersonCommand(Nric nric, EditPersonDescriptor editPersonDescriptor) {
+        requireNonNull(nric);
         requireNonNull(editPersonDescriptor);
 
-        this.index = index;
+        this.targetNric = nric;
         this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        if (!model.hasPersonWithNric(targetNric)) {
+            throw new CommandException(Messages.MESSAGE_PERSON_NRIC_NOT_FOUND);
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
+        Person personToEdit = model.getPersonWithNric(targetNric);
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
-
-        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
-        }
-
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson)));
@@ -102,14 +91,13 @@ public class EditCommand extends Command {
         assert personToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Nric updatedNric = editPersonDescriptor.getNric().orElse(personToEdit.getNric());
         DateOfBirth updatedDob = editPersonDescriptor.getDateOfBirth().orElse(personToEdit.getDob());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedNric, updatedDob, updatedPhone,
+        return new Person(updatedName, personToEdit.getNric(), updatedDob, updatedPhone,
                 updatedEmail, updatedAddress, updatedTags);
     }
 
@@ -120,19 +108,19 @@ public class EditCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EditCommand)) {
+        if (!(other instanceof EditPersonCommand)) {
             return false;
         }
 
-        EditCommand otherEditCommand = (EditCommand) other;
-        return index.equals(otherEditCommand.index)
-                && editPersonDescriptor.equals(otherEditCommand.editPersonDescriptor);
+        EditPersonCommand otherEditPersonCommand = (EditPersonCommand) other;
+        return targetNric.equals(otherEditPersonCommand.targetNric)
+                && editPersonDescriptor.equals(otherEditPersonCommand.editPersonDescriptor);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("index", index)
+                .add("nric", targetNric)
                 .add("editPersonDescriptor", editPersonDescriptor)
                 .toString();
     }
@@ -140,10 +128,10 @@ public class EditCommand extends Command {
     /**
      * Stores the details to edit the person with. Each non-empty field value will replace the
      * corresponding field value of the person.
+     * Nric cannot be edited.
      */
     public static class EditPersonDescriptor {
         private Name name;
-        private Nric nric;
         private DateOfBirth dob;
         private Phone phone;
         private Email email;
@@ -158,7 +146,6 @@ public class EditCommand extends Command {
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
-            setNric(toCopy.nric);
             setDateOfBirth(toCopy.dob);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
@@ -170,7 +157,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, nric, dob, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, dob, phone, email, address, tags);
         }
 
         public void setName(Name name) {
@@ -179,14 +166,6 @@ public class EditCommand extends Command {
 
         public Optional<Name> getName() {
             return Optional.ofNullable(name);
-        }
-
-        public void setNric(Nric nric) {
-            this.nric = nric;
-        }
-
-        public Optional<Nric> getNric() {
-            return Optional.ofNullable(nric);
         }
 
         public void setDateOfBirth(DateOfBirth dob) {
@@ -251,7 +230,6 @@ public class EditCommand extends Command {
 
             EditPersonDescriptor otherEditPersonDescriptor = (EditPersonDescriptor) other;
             return Objects.equals(name, otherEditPersonDescriptor.name)
-                    && Objects.equals(nric, otherEditPersonDescriptor.nric)
                     && Objects.equals(dob, otherEditPersonDescriptor.dob)
                     && Objects.equals(phone, otherEditPersonDescriptor.phone)
                     && Objects.equals(email, otherEditPersonDescriptor.email)
@@ -263,7 +241,6 @@ public class EditCommand extends Command {
         public String toString() {
             return new ToStringBuilder(this)
                     .add("name", name)
-                    .add("nric", nric)
                     .add("dob", dob)
                     .add("phone", phone)
                     .add("email", email)

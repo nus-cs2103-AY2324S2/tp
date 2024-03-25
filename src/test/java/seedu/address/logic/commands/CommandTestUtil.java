@@ -101,24 +101,22 @@ public class CommandTestUtil {
     public static final String INVALID_START_TIME_DESC = " " + PREFIX_START_TIME + "11:30"; // is after end time
     public static final String INVALID_END_TIME_DESC = " " + PREFIX_END_TIME + "11:00"; // is before start time
     public static final String INVALID_APPOINTMENT_TYPE_DESC = " " + PREFIX_TAG + "  "; // only white spaces
-    public static final String INVALID_APPOINTMENT_NOTE_DESC = " " + PREFIX_NOTE + "@@"; // non-alphanumeric
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
     public static final String MISSING_NRIC = "G0123456A";
 
-    public static final EditCommand.EditPersonDescriptor DESC_AMY;
-    public static final EditCommand.EditPersonDescriptor DESC_BOB;
+    public static final EditPersonCommand.EditPersonDescriptor DESC_AMY;
+    public static final EditPersonCommand.EditPersonDescriptor DESC_BOB;
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withNric(VALID_NRIC_AMY).withDateOfBirth(VALID_DOB_AMY)
-                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
+                .withDateOfBirth(VALID_DOB_AMY).withPhone(VALID_PHONE_AMY)
+                .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
                 .withTags(VALID_TAG_FRIEND).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withNric(VALID_NRIC_BOB).withDateOfBirth(VALID_DOB_BOB)
-                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withDateOfBirth(VALID_DOB_BOB).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
+                .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 
     /**

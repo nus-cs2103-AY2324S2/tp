@@ -5,7 +5,6 @@ import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_APPOINTMENT
 import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_APPOINTMENT_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.END_TIME_DESC_APPOINTMENT_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.END_TIME_DESC_APPOINTMENT_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_APPOINTMENT_NOTE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_APPOINTMENT_TYPE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_END_TIME_DESC;
@@ -44,7 +43,6 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.AddAppCommand;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentType;
-import seedu.address.model.appointment.Note;
 import seedu.address.model.appointment.TimePeriod;
 import seedu.address.model.person.Nric;
 import seedu.address.testutil.AppointmentBuilder;
@@ -65,7 +63,7 @@ public class AddAppCommandParserTest {
     }
 
     @Test
-    public void parse_repeatedNonTagValue_failure() {
+    public void parse_repeatedValue_failure() {
         String validExpectedAppointmentString = NRIC_DESC_BOB + DATE_DESC_APPOINTMENT_BOB
                 + START_TIME_DESC_APPOINTMENT_BOB + END_TIME_DESC_APPOINTMENT_BOB
                 + TYPE_DESC_APPOINTMENT_BOB + NOTE_DESC_APPOINTMENT_BOB;
@@ -122,10 +120,6 @@ public class AddAppCommandParserTest {
         // invalid appointment type
         assertParseFailure(parser, INVALID_APPOINTMENT_TYPE_DESC + validExpectedAppointmentString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_TAG));
-
-        // invalid note
-        assertParseFailure(parser, INVALID_APPOINTMENT_NOTE_DESC + validExpectedAppointmentString,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NOTE));
     }
 
     @Test
@@ -134,32 +128,27 @@ public class AddAppCommandParserTest {
 
         // missing NRIC prefix
         assertParseFailure(parser, DATE_DESC_APPOINTMENT_BOB + START_TIME_DESC_APPOINTMENT_BOB
-                        + END_TIME_DESC_APPOINTMENT_BOB + VALID_APPOINTMENT_TYPE_BOB + VALID_APPOINTMENT_NOTE_BOB,
+                        + END_TIME_DESC_APPOINTMENT_BOB + TYPE_DESC_APPOINTMENT_BOB + NOTE_DESC_APPOINTMENT_BOB,
                 expectedMessage);
 
         // missing date prefix
         assertParseFailure(parser, NRIC_DESC_BOB + START_TIME_DESC_APPOINTMENT_BOB
-                        + END_TIME_DESC_APPOINTMENT_BOB + VALID_APPOINTMENT_TYPE_BOB + VALID_APPOINTMENT_NOTE_BOB,
+                        + END_TIME_DESC_APPOINTMENT_BOB + TYPE_DESC_APPOINTMENT_BOB + NOTE_DESC_APPOINTMENT_BOB,
                 expectedMessage);
 
         // missing start time prefix
         assertParseFailure(parser, NRIC_DESC_BOB + DATE_DESC_APPOINTMENT_BOB
-                        + END_TIME_DESC_APPOINTMENT_BOB + VALID_APPOINTMENT_TYPE_BOB + VALID_APPOINTMENT_NOTE_BOB,
+                        + END_TIME_DESC_APPOINTMENT_BOB + TYPE_DESC_APPOINTMENT_BOB + NOTE_DESC_APPOINTMENT_BOB,
                 expectedMessage);
 
         // missing end time prefix
         assertParseFailure(parser, NRIC_DESC_BOB + DATE_DESC_APPOINTMENT_BOB
-                        + START_TIME_DESC_APPOINTMENT_BOB + VALID_APPOINTMENT_TYPE_BOB + VALID_APPOINTMENT_NOTE_BOB,
+                        + START_TIME_DESC_APPOINTMENT_BOB + TYPE_DESC_APPOINTMENT_BOB + NOTE_DESC_APPOINTMENT_BOB,
                 expectedMessage);
 
         // missing appointment type prefix
         assertParseFailure(parser, NRIC_DESC_BOB + DATE_DESC_APPOINTMENT_BOB
-                        + START_TIME_DESC_APPOINTMENT_BOB + END_TIME_DESC_APPOINTMENT_BOB + VALID_APPOINTMENT_NOTE_BOB,
-                expectedMessage);
-
-        // missing note prefix
-        assertParseFailure(parser, NRIC_DESC_BOB + DATE_DESC_APPOINTMENT_BOB
-                        + START_TIME_DESC_APPOINTMENT_BOB + END_TIME_DESC_APPOINTMENT_BOB + VALID_APPOINTMENT_TYPE_BOB,
+                        + START_TIME_DESC_APPOINTMENT_BOB + END_TIME_DESC_APPOINTMENT_BOB + NOTE_DESC_APPOINTMENT_BOB,
                 expectedMessage);
 
         // all prefixes missing
@@ -167,6 +156,14 @@ public class AddAppCommandParserTest {
                 + VALID_APPOINTMENT_START_TIME_BOB + VALID_APPOINTMENT_END_TIME_BOB
                 + VALID_APPOINTMENT_TYPE_BOB + VALID_APPOINTMENT_NOTE_BOB,
                 expectedMessage);
+    }
+
+    @Test
+    public void parse_optionalFieldMissing_success() {
+        // missing note prefix is ok
+        assertParseSuccess(parser, NRIC_DESC_BOB + DATE_DESC_APPOINTMENT_BOB
+                        + START_TIME_DESC_APPOINTMENT_BOB + END_TIME_DESC_APPOINTMENT_BOB + TYPE_DESC_APPOINTMENT_BOB,
+                new AddAppCommand(new AppointmentBuilder(BOB_APPT).withNote("").build()));
     }
 
     @Test
@@ -191,10 +188,7 @@ public class AddAppCommandParserTest {
                 + START_TIME_DESC_APPOINTMENT_BOB + END_TIME_DESC_APPOINTMENT_BOB
                 + INVALID_APPOINTMENT_TYPE_DESC + NOTE_DESC_APPOINTMENT_BOB, AppointmentType.MESSAGE_CONSTRAINTS);
 
-        // invalid note
-        assertParseFailure(parser, NRIC_DESC_BOB + DATE_DESC_APPOINTMENT_BOB
-                + START_TIME_DESC_APPOINTMENT_BOB + END_TIME_DESC_APPOINTMENT_BOB
-                + TYPE_DESC_APPOINTMENT_BOB + INVALID_APPOINTMENT_NOTE_DESC, Note.MESSAGE_CONSTRAINTS);
+        // all notes are valid, no tests here
 
         // multiple invalid values, only the first one reported
         assertParseFailure(parser, INVALID_NRIC_DESC + INVALID_DATE_DESC

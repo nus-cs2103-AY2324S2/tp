@@ -24,14 +24,14 @@ public class AddAppCommand extends Command {
     public static final String COMMAND_WORD = "addApp";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Adds an appointment for the patient identified by the NRIC given \n"
+            + ": Adds an appointment for the patient identified by the NRIC given. \n"
             + "Parameters: "
             + PREFIX_NRIC + "NRIC "
             + PREFIX_DATE + "DATE "
             + PREFIX_START_TIME + "START_TIME "
             + PREFIX_END_TIME + "END_TIME "
             + PREFIX_TAG + "APPOINTMENT_TYPE "
-            + PREFIX_NOTE + "NOTE ...\n"
+            + "[" + PREFIX_NOTE + "NOTE] \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NRIC + "T0123456A "
             + PREFIX_DATE + "2024-02-20 "
@@ -44,8 +44,6 @@ public class AddAppCommand extends Command {
     public static final String MESSAGE_ADD_APPOINTMENT_SUCCESS = "New appointment added: %1$s";
 
     public static final String MESSAGE_DUPLICATE_APPOINTMENT = "This appointment already exists in CLInic";
-
-    public static final String MESSAGE_PATIENT_NOT_FOUND = "Patient of given Nric is not found";
 
     private final Appointment apptToAdd;
 
@@ -60,10 +58,10 @@ public class AddAppCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        Nric nric = apptToAdd.getNric();
+        Nric targetNric = apptToAdd.getNric();
 
-        if (!model.hasPersonWithNric(nric)) {
-            throw new CommandException(MESSAGE_PATIENT_NOT_FOUND);
+        if (!model.hasPersonWithNric(targetNric)) {
+            throw new CommandException(Messages.MESSAGE_PERSON_NRIC_NOT_FOUND);
         }
 
         if (model.hasAppointment(apptToAdd)) {

@@ -39,8 +39,6 @@ public class CancelAppCommand extends Command {
 
     public static final String MESSAGE_CANCEL_APPOINTMENT_SUCCESS = "Cancelled Appointment: %1$s";
 
-    public static final String MESSAGE_PATIENT_NOT_FOUND = "Patient of given Nric is not found";
-
     private Appointment apptToCancel;
     private final Nric nricToMatch;
     private final Date dateToMatch;
@@ -61,7 +59,7 @@ public class CancelAppCommand extends Command {
         requireNonNull(model);
 
         if (!model.hasPersonWithNric(nricToMatch)) {
-            throw new CommandException(MESSAGE_PATIENT_NOT_FOUND);
+            throw new CommandException(Messages.MESSAGE_PERSON_NRIC_NOT_FOUND);
         }
 
         Appointment mockAppointmentToMatch = new Appointment(nricToMatch, dateToMatch, timePeriodToMatch,

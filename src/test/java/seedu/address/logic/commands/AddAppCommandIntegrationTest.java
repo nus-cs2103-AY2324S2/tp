@@ -46,7 +46,7 @@ public class AddAppCommandIntegrationTest {
         Appointment appointmentWithNoMatchNric = new AppointmentBuilder()
                 .withNric("G9876543K").build();
         assertCommandFailure(new AddAppCommand(appointmentWithNoMatchNric), model,
-                AddAppCommand.MESSAGE_PATIENT_NOT_FOUND);
+                Messages.MESSAGE_PERSON_NRIC_NOT_FOUND);
     }
 
     @Test
