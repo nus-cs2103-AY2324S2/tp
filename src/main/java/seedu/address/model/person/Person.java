@@ -29,6 +29,10 @@ public class Person {
         this.tags.addAll(tags);
     }
 
+    /**
+     * Adds an entry into the list, and then sorts the list
+     * @param entry entry to be added
+     */
     public void addEntry(Entry entry) {
         entryList.add(entry);
         entryList.sort();
