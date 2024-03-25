@@ -8,7 +8,6 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.ViewClientCommand;
-import seedu.address.logic.commands.ViewMeetingCommand;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations
@@ -24,11 +23,6 @@ public class ViewCommandParserTest {
     @Test
     public void parse_validArgs_returnsViewClientCommand() {
         assertParseSuccess(parser, "c 1", new ViewClientCommand(INDEX_FIRST_PERSON));
-    }
-
-    @Test
-    public void parse_validArgs_returnsViewMeetingCommand() {
-        assertParseSuccess(parser, "m 1 1", new ViewMeetingCommand(INDEX_FIRST_PERSON, INDEX_FIRST_PERSON));
     }
 
     @Test

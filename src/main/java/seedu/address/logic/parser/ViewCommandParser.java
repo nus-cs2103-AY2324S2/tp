@@ -5,7 +5,6 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.ViewClientCommand;
 import seedu.address.logic.commands.ViewCommand;
-import seedu.address.logic.commands.ViewMeetingCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -31,9 +30,6 @@ public class ViewCommandParser implements Parser<ViewCommand> {
             switch (viewType) {
             case VIEW_CLIENT_ARGUMENT:
                 return new ViewClientCommand(viewIndex);
-            case VIEW_MEETING_ARGUMENT:
-                Index meetingIndex = ParserUtil.parseIndex(index[2].trim());
-                return new ViewMeetingCommand(viewIndex, meetingIndex);
             default:
                 return null;
             }

@@ -53,7 +53,7 @@ public class ViewClientCommandTest {
     }
 
     @Test
-    public void execute_invalidIndexFilteredList_throwsCommandException() {
+    public void execute_viewOtherClientWhenAlreadyViewing_throwsCommandException() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
@@ -62,7 +62,19 @@ public class ViewClientCommandTest {
 
         ViewClientCommand viewCommand = new ViewClientCommand(outOfBoundIndex);
 
-        assertCommandFailure(viewCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(viewCommand, model, Messages.MESSAGE_RETURN_HOME);
+    }
+
+    @Test
+    public void execute_viewInvalidIndex_throwsCommandException() {
+        Index outOfBoundIndex = Index.fromOneBased(model.getAddressBook().getPersonList().size() + 1);
+
+        assertTrue(outOfBoundIndex.getOneBased() >= model.getAddressBook().getPersonList().size());
+
+        ViewClientCommand viewCommand = new ViewClientCommand(outOfBoundIndex);
+
+        assertCommandFailure(viewCommand, model, String.format(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX,
+                outOfBoundIndex.getOneBased()));
     }
 
     @Test
