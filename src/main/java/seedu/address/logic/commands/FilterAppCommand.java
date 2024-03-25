@@ -17,7 +17,7 @@ public class FilterAppCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all appointments whose fields contain any of "
             + "the specified keywords and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
+            + "Parameters: KEYWORD [MORE_OPTIONAL_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " i/ T0123456 d/ 2024-02-20";
 
     private final AppointmentContainsKeywordsPredicate predicate;

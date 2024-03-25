@@ -36,35 +36,20 @@ public class AppointmentContainsKeywordsPredicate implements Predicate<Appointme
         boolean matchesDate = true;
         boolean matchesTimePeriod = true;
 
-        boolean test = nricFilter.isPresent();
-
         if (nricFilter.isPresent()) {
-            matchesNric = false;
             Nric filterNric = nricFilter.get();
             matchesNric = appointment.getNric().equals(filterNric);
         }
 
         if (dateFilter.isPresent()) {
-            matchesDate = false;
             Date filterDate = dateFilter.get();
             matchesDate = appointment.getDate().equals(filterDate);
-//            matchesDate = dateFilter.map(date -> appointment.getDate().equals(date)).orElse(true);
         }
 
         if (timeFilter.isPresent()) {
-            matchesTimePeriod = false;
             Time filterTime = timeFilter.get();
             matchesTimePeriod = appointment.getTimePeriod().getStartTime().equals(filterTime);
-//            matchesTimePeriod = timeFilter.map(time -> appointment.getTimePeriod().getStartTime()
-//                                .equals(time)).orElse(true);
         }
-
-//        matchesNric = nricFilter.isPresent() && nricFilter.map(nric -> appointment
-//                                .getNric().equals(nric)).orElse(true);
-//        matchesDate = dateFilter.isPresent() && dateFilter.map(date -> appointment
-//                                .getDate().equals(date)).orElse(true);
-//        matchesTimePeriod = timeFilter.isPresent() && timeFilter.map(time -> appointment.getTimePeriod().getStartTime()
-//                                        .equals(time)).orElse(true);
 
         return matchesNric && matchesDate && matchesTimePeriod;
     }
