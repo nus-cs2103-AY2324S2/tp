@@ -2,8 +2,11 @@ package seedu.address.model.person;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MATRIC_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REFLECTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDIO;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.function.Predicate;
@@ -45,6 +48,12 @@ public class PersonDetailContainsKeywordPredicate implements Predicate<Person> {
         } else if (PREFIX_TAG.equals(prefix)) {
             return person.getTags().stream()
                          .anyMatch(tag -> StringUtil.containsSubstringIgnoreCase(tag.tagName, keyword));
+        } else if (PREFIX_MATRIC_NUMBER.equals(prefix)) {
+            return StringUtil.containsSubstringIgnoreCase(person.getMatric().matricNumber, keyword);
+        } else if (PREFIX_REFLECTION.equals(prefix)) {
+            return StringUtil.containsSubstringIgnoreCase(person.getReflection().reflection, keyword);
+        } else if (PREFIX_STUDIO.equals(prefix)) {
+            return StringUtil.containsSubstringIgnoreCase(person.getStudio().studio, keyword);
         } else {
             // Code should not reach here
             return false;
