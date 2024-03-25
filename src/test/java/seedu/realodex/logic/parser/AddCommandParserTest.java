@@ -275,57 +275,96 @@ public class AddCommandParserTest {
     }
 
     @Test
-    public void parse_invalidValue_failure() {
-        System.out.println(INVALID_NAME_DESC + PHONE_DESC_BOB + INCOME_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + FAMILY_DESC_BOB + TAG_DESC_BOB
-                + CommandTestUtil.TAG_DESC_BOB);
+    public void parse_invalidSingleValue_failure() {
+        String expectedFailureMessage = "Error parsing %s: ";
 
         // invalid name
+        String expectedFailureMessageFormatted =
+                String.format(expectedFailureMessage, "name") + Name.MESSAGE_CONSTRAINTS;
         assertParseFailure(parser,
-                           INVALID_NAME_DESC + PHONE_DESC_BOB + INCOME_DESC_BOB + EMAIL_DESC_BOB
-                                   + ADDRESS_DESC_BOB + FAMILY_DESC_BOB + TAG_DESC_BOB, Name.MESSAGE_CONSTRAINTS);
+                           INVALID_NAME_DESC
+                                   + PHONE_DESC_BOB
+                                   + INCOME_DESC_BOB + EMAIL_DESC_BOB
+                                   + ADDRESS_DESC_BOB + FAMILY_DESC_BOB
+                                   + TAG_DESC_BOB, expectedFailureMessageFormatted);
 
         // invalid phone
+        expectedFailureMessageFormatted = String.format(expectedFailureMessage, "phone") + Phone.MESSAGE_CONSTRAINTS;
         assertParseFailure(parser,
-                           NAME_DESC_BOB + INVALID_PHONE_DESC + INCOME_DESC_BOB + EMAIL_DESC_BOB
+                           NAME_DESC_BOB + INVALID_PHONE_DESC
+                                   + INCOME_DESC_BOB + EMAIL_DESC_BOB
                                    + ADDRESS_DESC_BOB + FAMILY_DESC_BOB
-                                   + TAG_DESC_BOB, Phone.MESSAGE_CONSTRAINTS);
+                                   + TAG_DESC_BOB, expectedFailureMessageFormatted);
 
         // invalid income
+        expectedFailureMessageFormatted = String.format(expectedFailureMessage, "income") + Income.MESSAGE_CONSTRAINTS;
         assertParseFailure(parser,
                            NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_INCOME_DESC + EMAIL_DESC_BOB
                                    + ADDRESS_DESC_BOB + FAMILY_DESC_BOB
-                                   + TAG_DESC_BOB, Income.MESSAGE_CONSTRAINTS);
+                                   + TAG_DESC_BOB, expectedFailureMessageFormatted);
 
         // invalid email
+        expectedFailureMessageFormatted = String.format(expectedFailureMessage, "email") + Email.MESSAGE_CONSTRAINTS;
         assertParseFailure(parser,
                            NAME_DESC_BOB + PHONE_DESC_BOB
                                    + INCOME_DESC_BOB + INVALID_EMAIL_DESC + ADDRESS_DESC_BOB + FAMILY_DESC_BOB
-                                   + CommandTestUtil.TAG_DESC_BOB + TAG_DESC_BOB, Email.MESSAGE_CONSTRAINTS);
+                                   + CommandTestUtil.TAG_DESC_BOB + TAG_DESC_BOB, expectedFailureMessageFormatted);
 
         // invalid address
+        expectedFailureMessageFormatted = String.format(expectedFailureMessage, "address")
+                + Address.MESSAGE_CONSTRAINTS;
         assertParseFailure(parser,
                            NAME_DESC_BOB + PHONE_DESC_BOB + INCOME_DESC_BOB
                                    + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC + FAMILY_DESC_BOB
-                                   + CommandTestUtil.TAG_DESC_BOB + TAG_DESC_BOB, Address.MESSAGE_CONSTRAINTS);
+                                   + CommandTestUtil.TAG_DESC_BOB + TAG_DESC_BOB, expectedFailureMessageFormatted);
 
         // invalid family
+        expectedFailureMessageFormatted = String.format(expectedFailureMessage, "family") + Family.MESSAGE_CONSTRAINTS;
         assertParseFailure(parser,
                            NAME_DESC_BOB + PHONE_DESC_BOB + INCOME_DESC_BOB + EMAIL_DESC_BOB
                                    + ADDRESS_DESC_BOB + INVALID_FAMILY_DESC
-                                   + TAG_DESC_BOB, Family.MESSAGE_CONSTRAINTS);
+                                   + TAG_DESC_BOB, expectedFailureMessageFormatted);
 
         // invalid tag
+        expectedFailureMessageFormatted = String.format(expectedFailureMessage, "tags") + Tag.MESSAGE_CONSTRAINTS;
         assertParseFailure(parser,
                            NAME_DESC_BOB + PHONE_DESC_BOB + INCOME_DESC_BOB
                                    + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + FAMILY_DESC_BOB
-                                   + INVALID_TAG_DESC + TAG_DESC_BOB, Tag.MESSAGE_CONSTRAINTS);
+                                   + INVALID_TAG_DESC + TAG_DESC_BOB, expectedFailureMessageFormatted);
 
-        // two invalid values, only first invalid value reported
+    }
+
+    @Test
+    public void parse_invalidMultipleValue_failure() {
+        String expectedFailureMessage = "Error parsing %s: ";
+
+        // two invalid values both failures reported
+        String expectedFailureMessageFormatted =
+                String.format(expectedFailureMessage, "name")
+                        + Name.MESSAGE_CONSTRAINTS
+                        + "\n"
+                        + String.format(expectedFailureMessage, "address")
+                        + Address.MESSAGE_CONSTRAINTS;
+
         assertParseFailure(parser,
                            INVALID_NAME_DESC + PHONE_DESC_BOB + INCOME_DESC_BOB
                                    + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC + FAMILY_DESC_BOB + TAG_DESC_BOB,
-                           Name.MESSAGE_CONSTRAINTS);
+                           expectedFailureMessageFormatted);
 
+        // three invalid values both failures reported
+        expectedFailureMessageFormatted =
+                String.format(expectedFailureMessage, "name")
+                        + Name.MESSAGE_CONSTRAINTS
+                        + "\n"
+                        + String.format(expectedFailureMessage, "phone")
+                        + Phone.MESSAGE_CONSTRAINTS
+                        + "\n"
+                        + String.format(expectedFailureMessage, "address")
+                        + Address.MESSAGE_CONSTRAINTS;
+
+        assertParseFailure(parser,
+                           INVALID_NAME_DESC + INVALID_PHONE_DESC + INCOME_DESC_BOB
+                                   + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC + FAMILY_DESC_BOB + TAG_DESC_BOB,
+                           expectedFailureMessageFormatted);
     }
 }
