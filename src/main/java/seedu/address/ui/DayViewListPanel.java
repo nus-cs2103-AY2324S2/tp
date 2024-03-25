@@ -26,13 +26,13 @@ public class DayViewListPanel extends UiPart<Region> {
     public DayViewListPanel(ObservableList<AppointmentView> dayViewList) {
         super(FXML);
         dayViewListView.setItems(dayViewList);
-        dayViewListView.setCellFactory(listView -> new dayViewListViewCell());
+        dayViewListView.setCellFactory(listView -> new DayViewListViewCell());
     }
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Appointment} using a {@code AppointmentCard}.
      */
-    class dayViewListViewCell extends ListCell<AppointmentView> {
+    class DayViewListViewCell extends ListCell<AppointmentView> {
         @Override
         protected void updateItem(AppointmentView apptView, boolean empty) {
             super.updateItem(apptView, empty);

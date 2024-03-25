@@ -169,12 +169,18 @@ public class MainWindow extends UiPart<Stage> {
         overallViewButton.setSelected(true);
     }
 
+    /**
+     * Displays the day-view and hides the overall-view
+     */
     @FXML
     public void handleShowDayView() {
         personListPanelPlaceholder.getChildren().remove(0);
         personListPanelPlaceholder.getChildren().add(dayViewListPanel.getRoot());
     }
 
+    /**
+     * Displays the overall-view and hides the day-view
+     */
     @FXML
     public void handleShowOverallView() {
         personListPanelPlaceholder.getChildren().remove(0);
