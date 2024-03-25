@@ -35,7 +35,7 @@
     "faculty" : "Computing",
     "venue" : "belobog avenue",
     "tags" : [ "classmate" ],
-    "availabilities" : [ ]
+    "availabilities" : [ "FRIDAY 12:00 14:00" ]
   }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",
