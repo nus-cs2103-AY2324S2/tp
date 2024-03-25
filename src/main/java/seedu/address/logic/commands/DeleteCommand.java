@@ -73,7 +73,7 @@ public class DeleteCommand extends Command {
         }
 
         DeleteCommand otherDeleteCommand = (DeleteCommand) other;
-        return queryableCourseMate.getIndex().equals(otherDeleteCommand.queryableCourseMate.getIndex());
+        return queryableCourseMate.equals(otherDeleteCommand.queryableCourseMate);
     }
 
     @Override

@@ -129,7 +129,7 @@ public class EditCommand extends Command {
         }
 
         EditCommand otherEditCommand = (EditCommand) other;
-        return queryableCourseMate.getIndex().equals(otherEditCommand.queryableCourseMate.getIndex())
+        return queryableCourseMate.equals(otherEditCommand.queryableCourseMate)
                 && editCourseMateDescriptor.equals(otherEditCommand.editCourseMateDescriptor);
     }
 
