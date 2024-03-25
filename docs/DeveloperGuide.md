@@ -328,7 +328,46 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 #### Implementation
 
+The find mechanism is facilitated by `Addressbook`. It implements `Addressbook#removePerson(Person key)` which allow users to delete patients in the addressbook.
+
+These operations are exposed in the `Model` interface as `Model#deletePerson(Person target)`.
+
+Given below is an example usage scenario and how the delete mechanism behaves at each step.
+
+Step 1. The user launches the application. The `AddressBook` will be initialized with the initial address book state.
+
+Step 2. The user executes `delete T0123456A` to delete the person in the address book with the unique identification number `T0123456A`. 
+The delete command calls `Model#deletePerson(Person target)`, causing the modified state of the address book after the `delete T0123456A` command executes to be saved.
+
+<box type="info" seamless>
+
+**Note:** If a command fails its execution, it will not call `Model#deletePerson(Person target)`, so the address book state will not be saved.
+
+</box>
+
+The following sequence diagram shows how a delete operation goes through the `Logic` component:
+
+<puml src="diagrams/DeleteSequenceDiagram.puml" alt="FindSequenceDiagram" />
+
+<box type="info" seamless>
+
+**Note:** The lifeline for `DeleteCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</box>
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+<puml src="diagrams/DeleteCommandActivityDiagram.puml" width="250" />
+
 #### Design Considerations & Alternatives Considered
+
+**Aspect: Display of updated person list when command is successful:**
+* Current choice: Displays the updated patient list in the addressbook without the deleted entry.
+  * Rationale: Users will be able to view the updated contact list easily.
+
+**Aspect: Display of error message when command is unsuccessful:**
+* Current choice: Displays the correct error message based on the type of error made (e.g. missing fields, invalid ic format).
+  * Rationale: Users will be able to learn of their error quickly and have an idea of what to edit to make the command successful.
 
 ### Edit feature
 
