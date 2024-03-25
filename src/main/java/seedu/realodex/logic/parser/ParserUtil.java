@@ -60,7 +60,8 @@ public class ParserUtil {
      * @return the sentence with the first letter of each word capitalized
      */
     public static String capitalizeWords(String sentence) {
-        if (sentence == null || sentence.isEmpty()) {
+        requireNonNull(sentence);
+        if (sentence.isEmpty()) {
             return sentence;
         }
         String[] words = sentence.split("\\s+");

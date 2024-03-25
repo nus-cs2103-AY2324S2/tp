@@ -77,6 +77,30 @@ public class ParserUtilTest {
     }
 
     @Test
+    public void capitalizeWords_nonCapitalizedFirstName_returnsCapitalizedFirstName() throws Exception {
+        Name expectedName = new Name(VALID_NAME_NON_CAPS_FIRST_NAME);
+        assertEquals(VALID_NAME_CAPS, ParserUtil.capitalizeWords(VALID_NAME_NON_CAPS_FIRST_NAME));
+    }
+
+    @Test
+    public void capitalizeWords_nonCapitalizedAllName_returnsCapitalizedAllName() throws Exception {
+        Name expectedName = new Name(VALID_NAME_NON_CAPS_ALL);
+        assertEquals(VALID_NAME_CAPS, ParserUtil.capitalizeWords(VALID_NAME_NON_CAPS_ALL));
+    }
+
+    @Test
+    public void capitalizeWords_nullName_returnsCapitalizedAllName() throws Exception {
+        assertThrows(NullPointerException.class, ()
+                -> ParserUtil.capitalizeWords(null));
+    }
+
+    @Test
+    public void capitalizeWords_emptyName_returnsCapitalizedAllName() throws Exception {
+        assertEquals("", ParserUtil.capitalizeWords(""));
+    }
+
+
+    @Test
     public void parseName_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseName((String) null));
     }
