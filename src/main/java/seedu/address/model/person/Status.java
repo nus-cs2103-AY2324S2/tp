@@ -6,7 +6,7 @@ import seedu.address.model.person.enums.InterviewerState;
 /**
  * Represents a Person's status in the Tether.
  */
-public class Status {
+public abstract class Status {
     public static final String MESSAGE_USAGE = "For applicants, status can only be one of "
             + ApplicantState.STAGE_ONE + ", "
             + ApplicantState.STAGE_TWO + ", "
