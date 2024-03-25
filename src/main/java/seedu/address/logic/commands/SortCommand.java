@@ -9,7 +9,11 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.Birthday;
+import seedu.address.model.person.MoneyOwed;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.exceptions.InvalidSortTypeException;
 
 /**
  * Sorts the address book in some specified order.
@@ -36,8 +40,23 @@ public class SortCommand extends Command {
      * Returns a new SortCommand object that takes in a {@code Comparator<Person>} to
      * sort the address book.
      */
-    public SortCommand(Comparator<Person> personComparator, String sortType) {
-        this.personComparator = personComparator;
+    public SortCommand(String sortType) throws InvalidSortTypeException {
+        switch (sortType.toLowerCase()) {
+        case BIRTHDAY_SORT_TYPE:
+            this.personComparator = Birthday.BIRTHDAY_COMPARATOR;
+            break;
+        case NAME_SORT_TYPE:
+            this.personComparator = Name.NAME_COMPARATOR;
+            break;
+        case MONEY_SORT_TYPE:
+            this.personComparator = MoneyOwed.MONEY_COMPARATOR;
+            break;
+        case CLEAR_SORT_TYPE:
+            this.personComparator = null;
+            break;
+        default:
+            throw new InvalidSortTypeException(sortType);
+        }
         this.sortType = sortType;
     }
 
