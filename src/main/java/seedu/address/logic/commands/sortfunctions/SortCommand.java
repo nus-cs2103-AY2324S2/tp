@@ -1,8 +1,10 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.sortfunctions;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
@@ -17,34 +19,36 @@ public class SortCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + " [KEYWORDS]\n"
             + "KEYWORDS: tag/name";
 
-    private static String category = null;
+    private final SortStrategy sortStrategy;
 
     /**
      * Get the keyword to know which field to sort by
      *
      * @param input keyword
-     * @throws ParseException
      */
     public SortCommand(String input) throws ParseException {
-        category = input.trim();
+        String category = input.trim().toLowerCase();
         if (category.isBlank()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
+        }
+
+        switch (category) {
+        case "tag":
+            this.sortStrategy = new SortByTag();
+            break;
+        case "name":
+            this.sortStrategy = new SortByName();
+            break;
+        default:
+            throw new ParseException("Invalid [KEYWORD]\n" + "Keywords supported: NAME/TAG");
         }
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        if (category.equalsIgnoreCase("tag")) {
-            model.getAddressBook()
-                    .getPersons()
-                    .sortListByTag();
-        } else if (category.equalsIgnoreCase("name")) {
-            model.getAddressBook()
-                    .getPersons()
-                    .sortListByName();
-        }
+        sortStrategy.sort(model.getAddressBook());
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
-        return new CommandResult("Sorted address book by: " + category.toLowerCase());
+        return new CommandResult("Sorted address book by: " + sortStrategy.getCategory());
     }
 }
