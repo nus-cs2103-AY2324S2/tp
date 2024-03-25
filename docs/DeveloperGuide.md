@@ -274,7 +274,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* A computer science tutor managing students for tutorials
+* A computer science TA (Teaching Assistant) managing students for tutorials
 * has numerous of students to manage in a tutorial slot
 * has to add, list, delete, sort, search students in the app
 * is reasonably comfortable using CLI apps
@@ -290,14 +290,20 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​        | I want to …​                                | So that I can…​                                                  |
-|----------|----------------|---------------------------------------------|------------------------------------------------------------------|
-| `* * *`  | Tutor          | add new students to the app                 | keep track of their information                |
-| `* * *`  | Tutor          | edit student profiles                       | keep their information up to date.                                                                |
-| `* * *`  | Tutor          | delete students from my class               | track the existing number of students in my tutorial class                             |
-| `* * *`  | Tutor          | list all students in my class(es)           | view all of my students’ details at one glance |
-| `* * *`  | Tutor          | search for specific students using keywords | quickly find relevant information          |
-| `* *`    | new tutor user | be able to access a help window                        | easily seek help for the errors encountered                                           |
+| Priority | As a …​     | I want to …​                                | So that I can…​                                               |
+|----------|-------------|---------------------------------------------|---------------------------------------------------------------|
+| `* * *`  | TA          | add new students to the app                 | keep track of their information                               |
+| `* * *`  | TA          | edit student profiles                       | keep their information up to date.                            |
+| `* * *`  | TA          | delete students from my class               | track the existing number of students in my tutorial class    |
+| `* * *`  | TA          | list all students in my class(es)           | view all of my students’ details at one glance                |
+| `* * *`  | TA          | search for specific students using keywords | quickly find relevant information                             |
+| `* * *`  | TA          | filter students according to their group    | quickly find relevant information                             |
+| `* * *`  | TA          | add a new group                             | keep track of the groups that i teach                         |
+| `* * *`  | TA          | edit an existing group                      | keep information of the groups i teach up to date             |
+| `* * *`  | TA          | delete an existing group                    | track the existing number of groups that i currently teach    |
+| `* * *`  | TA          | generate a mail link                        | conveniently sent an email to the student recipients desired  |
+| `* * *`  | TA          | add a telegram link to each group           | keep track of the telegram groups for each group that i teach |
+| `* *`    | new TA user | be able to access a help window             | easily seek help for the errors encountered                   |
 
 
 
@@ -309,9 +315,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  Tutor requests to list students
+1.  TA requests to list students
 2.  System shows a list of students
-3.  Tutor requests to add a specific student to the list
+3.  TA requests to add a specific student to the list
 4.  System adds the student
 
     Use case ends.
@@ -330,8 +336,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3b. TutorsContactsPro detects that the student already exists on the list.
 
-    * 3b1. TutorsContactsPro informs the tutor that the student already exists on the list.
-    * 3b2. Tutor confirms cancellation of adding the student.
+    * 3b1. TutorsContactsPro informs the TA that the student already exists on the list.
+    * 3b2. TA confirms cancellation of adding the student.
       
       Use case ends.
     
@@ -341,9 +347,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  Tutor requests to list students
+1.  TA requests to list students
 2.  System shows a list of students
-3.  Tutor requests to edits the particulars of the student
+3.  TA requests to edits the particulars of the student
 4.  System records the changes
 
     Use case ends.
@@ -371,9 +377,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  Tutor requests to list students
+1.  TA requests to list students
 2.  System shows a list of students
-3.  Tutor requests to delete a student
+3.  TA requests to delete a student
 4.  System records the changes
 
     Use case ends.
@@ -395,7 +401,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  Tutor requests to list students
+1.  TA requests to list students
 2.  System shows a list of students
 
     Use case ends.
@@ -411,9 +417,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  Tutor requests to list students
+1.  TA requests to list students
 2.  System shows a list of students
-3.  Tutor finds student(s) by keyword
+3.  TA finds student(s) by keyword
 4.  System shows a list of students matching the keyword
 
     Use case ends.
@@ -433,6 +439,124 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
+**Use case: UC06 - Filter students according to their group**
+
+**MSS**
+
+1.  TA requests to list students
+2.  System shows a list of students
+3.  TA filters student(s) by keyword which is the group name desired
+4.  System shows a list of students that belong to the group 
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given keyword is in an incorrect format (e.g., contains special characters not allowed, exceeds maximum length, incorrect group name format).
+
+    * 3a1. TutorsContactsPro shows an error message.
+      Use case resumes at step 2.
+
+* 4a. The list of search results is empty.
+
+  Use case ends.
+
+**Use case: UC07 - Add a group**
+
+**MSS**
+
+1. TA requests to add a specific group 
+2. System adds the group
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The add command parameters are invalid or incomplete.
+
+    * 1a1. TutorsContactsPro shows an error message.
+
+      Use case resumes at step 1.
+
+* 1b. TutorsContactsPro detects that the group already exists.
+
+    * 1b1. TutorsContactsPro informs the TA that the group already exists. 
+    * 1b2. TA confirms cancellation of adding the group.
+
+      Use case ends.
+
+
+
+**Use case: UC08 - Edit a group**
+
+**MSS**
+
+1. TA requests to edit the information of the group
+2. System records the changes
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The edit command group name parameter is invalid or incomplete.
+
+    * 1a1. TutorsContactsPro shows an error message.
+
+      Use case resumes at step 1.
+
+
+**Use case: UC09 - Delete a group**
+
+**MSS**
+
+1. TA requests to delete a student
+2. System records the changes
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given group name parameter is invalid or incomplete.
+
+    * 1a1. TutorsContactsPro shows an error message.
+
+      Use case resumes at step 1.
+
+
+**Use case: UC010 - Generate mail link**
+
+**MSS**
+
+1.  TA requests generation of mail link
+2.  System shows the mailto link containing emails of specific students recipients
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given group name parameter is invalid.
+
+    Use case resumes at step 1.
+
+**Use case: UC011 - Add a telegram link**
+
+**MSS**
+
+1.  TA requests to add a specific telegram link to a particular group
+2.  System adds the telegram link to the group
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given telegram link is invalid or incomplete.
+
+  Use case resumes at step 1.
+
 
 ### Non-Functional Requirements
 
@@ -444,7 +568,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 6. The system should have an uptime of at least 99%, allowing tutors to access student information reliably at any time.
 7. Student important information (i.e name, email, telegram handle, contact number) should be encrypted both in transit and at rest to prevent unauthorized access.
 8. The system should implement secure authentication mechanisms, such as multi-factor authentication, to verify the identity of users.
-9. Tutors should only have access to student information for classes they are assigned to, ensuring data privacy.
+9. TAs should only have access to student information for classes they are assigned to, ensuring data privacy.
 10. The system should be able to scale horizontally to accommodate an increase in the number of users and classes without compromising performance.
 11. Regular backups of the system database should be performed, with a robust disaster recovery plan in place to restore data in case of any unexpected failures or outages.
 
@@ -452,7 +576,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Tutor**: Tutor refers to the person who teaches in a single tutorial group. 
+* **TA**: TA (Teaching Assistant) refers to the person who teaches in a single tutorial/recitation/lab group. 
 * **Student**: Student refers to an individual who attends a tutorial class taught by the tutor.
 * **Tutorial**: Smaller classes in university which allow discussion of lecture content and assignment.
 * **CLI (Command-Line Interface)**: A text-based interface used to interact with the software by entering commands into a terminal or console window, typically preferred by users who prefer efficiency and automation.
