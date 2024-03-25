@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.commons.util.DateUtil;
 import seedu.address.model.appointment.Appointment;
 
 /**
@@ -48,7 +49,10 @@ public class AppointmentCard extends UiPart<Region> {
         appointmentId.setText(appointment.getAppointmentId() + ". ");
         //TODO: replace student id with student name
         name.setText("StudentId: " + Integer.toString(appointment.getStudentId()));
-        appointmentDateTime.setText(appointment.getAppointmentDateTime().toString().replace("T", " "));
+
+        String formattedDateTime = DateUtil.formatDateTime(appointment.getAppointmentDateTime());
+        appointmentDateTime.setText(formattedDateTime);
+
         hasAttended.setText(Boolean.toString(appointment.getAttendedStatus()));
         appointmentDescription.setText(appointment.getAppointmentDescription());
         if (appointment.getFeedbackScore() != null) {

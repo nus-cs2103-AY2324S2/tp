@@ -1,5 +1,6 @@
 package seedu.address.commons.util;
 
+import java.time.DateTimeException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -9,7 +10,7 @@ import java.time.format.DateTimeParseException;
  */
 public class DateUtil {
     public static final String DATETIME_INPUT_FORMAT = "yyyy-MM-dd HH:mm";
-    public static final String DATETIME_DISPLAY_FORMAT = "dd MMM yyyy HH:mm";
+    public static final String DATETIME_DISPLAY_FORMAT = "dd MMM yyyy, hh:mm a";
 
     /**
      * Formats a LocalDateTime object into a string for display
@@ -18,7 +19,19 @@ public class DateUtil {
     public static LocalDateTime parseDateTime(String dateTime) {
         try {
             return LocalDateTime.parse(dateTime, DateTimeFormatter.ofPattern(DATETIME_INPUT_FORMAT));
-        } catch (DateTimeParseException ex) {
+        } catch (DateTimeException ex) {
+            return null;
+        }
+    }
+
+    /**
+     * Formats a LocalDateTime object into a string for display
+     * @return The formatted date time string if successful, or null if unable to format
+     */
+    public static String formatDateTime(LocalDateTime dateTime) {
+        try {
+            return dateTime.format(DateTimeFormatter.ofPattern(DATETIME_DISPLAY_FORMAT));
+        } catch (DateTimeException ex) {
             return null;
         }
     }
