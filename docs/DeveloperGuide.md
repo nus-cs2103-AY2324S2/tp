@@ -237,6 +237,8 @@ Step 1. The user launches the application. The `AddressBook` will be initialized
 
 Step 2. The user executes `addnote T0123456A …` to add a note to the person in the address book with the unique identification number `T0123456A`. The addnote command calls `Model#setPerson(Person target, Person editedPerson)`, causing the modified state of the address book after the `addnote T0123456A …` command executes to be saved.
 
+<box type="info" seamless>
+
 **Note:** If a command fails its execution, it will not call `Model#setPerson(Person target, Person editedPerson)`, so the address book state will not be saved.
 
 </box>
@@ -282,7 +284,45 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 #### Implementation
 
+The find mechanism is facilitated by `ModelManager`. It implements `ModelManager#updateFilteredPersonList(Predicate predicate)` which allow users to find patients in the addressbook.
+
+These operations are exposed in the `Model` interface as `Model#updateFilteredPersonList(Predicate predicate)`.
+
+Given below is an example usage scenario and how the find mechanism behaves at each step.
+
+Step 1. The user launches the application. The `AddressBook` will be initialized with the initial address book state.
+
+Step 2. The user executes `find T0123456A …` to find the person in the address book with the unique identification number `T0123456A`. The find command calls `Model#updateFilteredPersonList(Predicate predicate)`, causing the modified state of the address book after the `find T0123456A …` command executes to be displayed.
+
+<box type="info" seamless>
+
+**Note:** If a command fails its execution, it will not call `Model#updateFilteredPersonList(Predicate predicate)`, so the address book state will not be displayed.
+
+</box>
+
+The following sequence diagram shows how a find operation goes through the `Logic` component:
+
+<puml src="diagrams/FindSequenceDiagram.puml" alt="FindSequenceDiagram" />
+
+<box type="info" seamless>
+
+**Note:** The lifeline for `FindCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</box>
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+<puml src="diagrams/FindCommandActivityDiagram.puml" width="250" />
+
 #### Design Considerations & Alternatives Considered
+
+**Aspect: Display of filtered list/contact when command is successful:**
+* Current choice: Displays the correct patient’s contact in the addressbook. 
+    * Rationale: Users will be able to view the contact added easily.
+
+**Aspect: Display of error message when command is unsuccessful:**
+* Current choice: Displays the correct error message based on the type of error made (e.g. missing fields, invalid ic format).
+  * Rationale: Users will be able to learn of their error quickly and have an idea of what to edit to make the command successful.
 
 ### Delete feature
 
