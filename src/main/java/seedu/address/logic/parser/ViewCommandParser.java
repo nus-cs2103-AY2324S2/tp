@@ -50,7 +50,8 @@ public class ViewCommandParser implements Parser<ViewCommand> {
         if (arguments.length == 2) {
             if (!arguments[0].equals(VIEW_CLIENT_ARGUMENT)) {
                 //invalid argument
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewClientCommand.MESSAGE_USAGE));
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        ViewClientCommand.MESSAGE_USAGE));
             }
         }
         return arguments;
