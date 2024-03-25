@@ -56,5 +56,11 @@ public class AppointmentCard extends UiPart<Region> {
         timePeriod.setText(appt.getTimePeriod().getStartTime() + " - " + appt.getTimePeriod().getEndTime());
         appointmentType.setText(appt.getAppointmentType().toString());
         note.setText("Notes: " + appt.getNote().toString());
+
+        //make appointment green depending on mark status
+
+        if (appt.getMark().isMarked) {
+            cardPane.setStyle("-fx-background-color: #33B864;");
+        }
     }
 }

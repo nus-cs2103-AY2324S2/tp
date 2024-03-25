@@ -22,18 +22,20 @@ public class Appointment {
     private final TimePeriod timePeriod;
     private final AppointmentType appointmentType;
     private final Note note;
+    private Mark mark;
 
     /**
      * Every field must be present and not null.
      */
     public Appointment(Nric nric, Date date, TimePeriod timePeriod,
-                       AppointmentType appointmentType, Note note) {
+                       AppointmentType appointmentType, Note note, Mark mark) {
         requireAllNonNull(nric, date, timePeriod, appointmentType, note);
         this.nric = nric;
         this.date = date;
         this.timePeriod = timePeriod;
         this.appointmentType = appointmentType;
         this.note = note;
+        this.mark = mark;
     }
 
     public Nric getNric() {
@@ -54,6 +56,10 @@ public class Appointment {
 
     public Note getNote() {
         return note;
+    }
+
+    public Mark getMark() {
+        return mark;
     }
 
     /**
@@ -90,13 +96,14 @@ public class Appointment {
                 && date.equals(otherAppointment.date)
                 && timePeriod.equals(otherAppointment.timePeriod)
                 && appointmentType.equals(otherAppointment.appointmentType)
-                && note.equals(otherAppointment.note);
+                && note.equals(otherAppointment.note)
+                && mark.equals(otherAppointment.mark);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(nric, date, timePeriod, appointmentType, note);
+        return Objects.hash(nric, date, timePeriod, appointmentType, note, mark);
     }
 
     @Override
@@ -107,6 +114,7 @@ public class Appointment {
                 .add("timePeriod", timePeriod)
                 .add("appointmentType", appointmentType)
                 .add("note", note)
+                .add("mark", mark)
                 .toString();
     }
 }

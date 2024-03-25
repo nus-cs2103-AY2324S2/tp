@@ -12,6 +12,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_BOB;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAppointments.ALICE_APPT;
 import static seedu.address.testutil.TypicalAppointments.ALICE_APPT_1;
+import static seedu.address.testutil.TypicalAppointments.ALICE_APPT_TRUE;
 
 import org.junit.jupiter.api.Test;
 
@@ -21,7 +22,7 @@ public class AppointmentTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new Appointment(null, null, null, null, null));
+        assertThrows(NullPointerException.class, () -> new Appointment(null, null, null, null, null, null));
     }
 
     @Test
@@ -95,6 +96,9 @@ public class AppointmentTest {
         editedAliceAppt = new AppointmentBuilder(ALICE_APPT)
                 .withNote(VALID_APPOINTMENT_NOTE_BOB).build();
         assertFalse(ALICE_APPT.equals(editedAliceAppt));
+
+        // different mark -> returns false
+        assertFalse(ALICE_APPT.equals(ALICE_APPT_TRUE));
     }
 
     @Test
@@ -104,7 +108,8 @@ public class AppointmentTest {
                 + ", date=" + ALICE_APPT_1.getDate()
                 + ", timePeriod=" + ALICE_APPT_1.getTimePeriod()
                 + ", appointmentType=" + ALICE_APPT_1.getAppointmentType()
-                + ", note=" + ALICE_APPT_1.getNote() + "}";
+                + ", note=" + ALICE_APPT_1.getNote()
+                + ", mark=" + ALICE_APPT_1.getMark() + "}";
         assertEquals(expected, ALICE_APPT_1.toString());
     }
 }

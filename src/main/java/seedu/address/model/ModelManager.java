@@ -15,6 +15,7 @@ import seedu.address.commons.core.date.Date;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentView;
 import seedu.address.model.appointment.TimePeriod;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 
@@ -145,14 +146,14 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void cancelAppointment(Appointment appointment) {
-        addressBook.cancelAppointment(appointment);
+    public void cancelAppointment(Appointment appointment, AppointmentView apptView) {
+        addressBook.cancelAppointment(appointment, apptView);
     }
 
     @Override
     public void addAppointment(Appointment appointment) {
         addressBook.addAppointment(appointment);
-        updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
+        updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS, PREDICATE_SHOW_ALL_APPOINTMENTS_VIEW);
     }
 
     @Override
@@ -164,6 +165,11 @@ public class ModelManager implements Model {
     @Override
     public Appointment getMatchingAppointment(Nric nric, Date date, TimePeriod timePeriod) {
         return addressBook.getMatchingAppointment(nric, date, timePeriod);
+    }
+
+    @Override
+    public AppointmentView getMatchingAppointmentView(Name name, Appointment appt) {
+        return addressBook.getMatchingAppointmentView(name, appt);
     }
 
     @Override
@@ -206,9 +212,11 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredAppointmentList(Predicate<Appointment> predicate) {
+    public void updateFilteredAppointmentList(Predicate<Appointment> predicate,
+        Predicate<AppointmentView> predicateView) {
         requireNonNull(predicate);
         filteredAppointments.setPredicate(predicate);
+        filteredAppointmentsView.setPredicate(predicateView);
     }
 
     @Override
