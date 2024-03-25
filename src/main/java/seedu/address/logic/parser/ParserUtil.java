@@ -8,10 +8,11 @@ import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.commands.AddMemPointsCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.Membership;
+import seedu.address.model.person.MembershipPoints;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Points;
@@ -99,18 +100,26 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String membership} into a {@code Membership}.
+     * Parses a {@code String membershipPts} into a {@code MembershipPoints}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code membership} is invalid.
+     * @throws ParseException if the given {@code membershipPts} is invalid.
      */
-    public static Membership parseMembership(String membership) throws ParseException {
-        requireNonNull(membership);
-        String trimmedMembership = membership.trim();
-        if (!Membership.isValidMembership(trimmedMembership)) {
-            throw new ParseException(Membership.MESSAGE_CONSTRAINTS);
+    public static int parseMemPointsToAdd(String pointsToAdd) throws ParseException {
+        requireNonNull(pointsToAdd);
+
+        int parsedPointsToAdd;
+        try {
+            parsedPointsToAdd = Integer.parseInt(pointsToAdd);
+        } catch (NumberFormatException e) {
+            throw new ParseException(AddMemPointsCommand.MESSAGE_CONSTRAINTS);
         }
-        return new Membership(trimmedMembership);
+
+        if (!MembershipPoints.isValidMembershipPoints(parsedPointsToAdd)) {
+            throw new ParseException(AddMemPointsCommand.MESSAGE_CONSTRAINTS);
+        }
+
+        return parsedPointsToAdd;
     }
 
     /**
