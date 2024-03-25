@@ -4,11 +4,17 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 enum Tags {
-    NR,
-    OA,
-    I,
-    R,
-    O;
+    NR("No Reply"),
+    OA("Online Assessment"),
+    I("Interview"),
+    R("Reject"),
+    O("Offer");
+
+    public final String descriptiveName;
+
+    Tags(String descriptiveName) {
+        this.descriptiveName = descriptiveName;
+    }
 
     // Method to check if a given string is a valid enum value
     public static boolean isValidTag(String input) {
@@ -19,6 +25,16 @@ enum Tags {
         }
         return false;
     }
+
+    // Method to find a tag by string
+    public static Tags fromString(String input) {
+        for (Tags tag : Tags.values()) {
+            if (tag.name().equalsIgnoreCase(input) || tag.descriptiveName.equalsIgnoreCase(input)) {
+                return tag;
+            }
+        }
+        throw new IllegalArgumentException("Invalid tag: " + input);
+    }
 }
 
 /**
@@ -27,7 +43,7 @@ enum Tags {
  */
 public class Tag {
     public static final String MESSAGE_CONSTRAINTS = "Tags should only contain NR, OA, I, R and O";
-    public final String value;
+    public final Tags value;
 
     /**
      * Constructs a {@code Tag}.
@@ -36,31 +52,27 @@ public class Tag {
      */
     public Tag(String tag) {
         requireNonNull(tag);
+        Tags enumTag = Tags.fromString(tag);
         checkArgument(Tags.isValidTag(tag), MESSAGE_CONSTRAINTS);
-        value = tag;
+        this.value = enumTag;
     }
 
     @Override
     public String toString() {
-        return '[' + value + ']';
+        return '[' + value.descriptiveName + ']';
     }
 
     /*
      * Indicates whether some other object is "equal to" this one.
-     * <p>
-     * The {@code equals} method implements an equivalence relation
-     * on non-null object references
-     * </p>
      *
      * @param other the reference object with which to compare
-     * @return boolean true or false
      */
+    @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;
         }
 
-        // instanceof handles nulls
         if (!(other instanceof Phone)) {
             return false;
         }
@@ -80,9 +92,13 @@ public class Tag {
      * Function overloading - isValidTag(String) & isValidTag(Tag)
      */
     public static boolean isValidTag(Tag tag) {
-        return Tags.isValidTag(tag.value);
+        return Tags.isValidTag(tag.getTagName());
     }
 
+    public String getTagName() {
+        return this.value.descriptiveName;
+    }
+    @Override
     public int hashCode() {
         return value.hashCode();
     }

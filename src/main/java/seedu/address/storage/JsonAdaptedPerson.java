@@ -62,7 +62,7 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
-        tag = source.getTag().value;
+        tag = source.getTag().getTagName();
         jobDescription = source.getJobDescription().value;
         interviewDate = source.getInterviewDate().toString();
         internDuration = source.getInternDuration().value;
