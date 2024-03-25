@@ -158,38 +158,24 @@ Examples:
    The above command deletes the contact with name **_Moochie_**, provided **_Moochie_** exists as a name of a contact in Pooch Contact Book
 
 
-### Searching a contact : `search`
+### Searching a person : `search`
 
 Searches through the address book using specified fields and keyword.
 
 Formats:
-```
-/search ; name : [full/partial name]
-/search ; phone : [full/partial phone]
-/search ; address : [full/partial address]
-/search ; email : [full/partial email]
-/search ; product : [full/partial product name]
-/search ; employment : [employment]
-```
 
-* Searches the person by specifying field (i.e. `name`, `phone`, `address`, etc.), followed by the partial or full keyword
-* Current feature does not allow users to search for `commission`, `salary`, and `price`
-* All fields are **case-insensitive**.
-For instance, to check whether a name is unique (case-insensitive)
-  * Eg : `Janna` and `janna` are both equivalent
-* Spaces within each input are considered
-  * Eg: `Tom Tan Er` is different from `Tom Taner`
+- `/search ; [field] : [full/partial query]`
+
+* Searches contact(s) by specifying a valid field (i.e. `name`, `phone`, `email`, `address`, `salary`, `employment`, `price`, `product`, `skill`, `commission`, `tag` or `note`), followed by the partial or full query.
+* All fields and queries are **case-insensitive**.
+  * Eg : `Janna` and `janna` are both equivalent.
+* Spaces within each input are counted as part of the query input.
+  * Eg: `Tom Tan Er` is different from `Tom Taner`.
 
 
 Examples:
-```
-/search ; name : Poochie
-/search ; phone : 98765432
-/search ; address : Poochie Street 21
-/search ; email : ilovecatstoo@gmail.com
-/search ; address : Pooch
-/search ; description : Food
-```
+- `/search ; name : Poochie`
+- `/search ; phone : 98765432`
 
 ### Rating a Contact : `rate`
 
@@ -266,6 +252,24 @@ Format: `/redo`
 * This command unable to be executed when there is no next state.
 * This command only able to be executed when at least one undo command is executed.
 
+### Sorting the address book : `sort`
+
+Sorts the address book by field in ascending order
+
+Formats:
+
+- `/sort ; [field]`
+
+* Sorts the contacts in the address book in ascending lexicographical order (e.g. Alice, Bob, Charlie etc.)
+* Sorts by specifying a valid field (i.e. `name`, `phone`, `email`, `address`, `salary`, `employment`, `price`, `product`, `skill`, `commission`, `tag` or `note`)
+* All fields are **case-insensitive**
+    * Eg : `Name` and `name` are both equivalent
+
+
+Examples:
+
+- `/sort ; name`
+- `/sort ; phone`
 
 ### Exiting the program : `exit`
 
