@@ -11,7 +11,6 @@ import seedu.address.logic.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.predicate.ComponentPredicate;
-import seedu.address.model.person.predicate.ComponentStringPredicate;
 
 /**
  * Finds and lists any contacts whose components pass any of the given predicates.
