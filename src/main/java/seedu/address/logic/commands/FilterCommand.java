@@ -8,9 +8,9 @@ import seedu.address.model.person.PersonContainsTagPredicate;
 import seedu.address.model.tag.Tag;
 
 import java.util.function.Predicate;
-import java.util.logging.Filter;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 public class FilterCommand extends Command {
 
@@ -34,6 +34,10 @@ public class FilterCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        if (this.tag.tagName.trim().isEmpty()) {
+            throw new CommandException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
+        }
 
         model.updateFilteredPersonList(this.predicate);
 
