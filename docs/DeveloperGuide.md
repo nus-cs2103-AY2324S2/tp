@@ -155,11 +155,11 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### Undo/redo feature
 
-#### Proposed Implementation
+#### Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
 * `VersionedAddressBook#commit()` — Saves the current address book state in its history.
 * `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
@@ -228,16 +228,9 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 **Aspect: How undo & redo executes:**
 
-* **Alternative 1 (current choice):** Saves the entire address book.
+* Saves the entire address book.
   * Pros: Easy to implement.
   * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
 
 ### \[Proposed\] Data archiving
 
@@ -273,17 +266,19 @@ The app is optimised for use using Command Line Interface (CLI) while still enco
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority      | <div style="width:50px">As a …​</div>   | I want to …​                                                | So that I can…​                                        |
-|---------------|----------------------------------------|------------------------------------------------------------|-------------------------------------------------------|
-| `* * *`       | well connected user                    | search contacts                                            | save time                                             |
-| `* * *`       | well connected user                    | add contacts                                               | have the address to contact others in the future      |
-| `* * *`       | cafe owner user                        | delete the contacts of people                              | keep my contacts updated and remove outdated contacts |
-| `* * *`       | long-term user                         | edit contacts                                              | update some contact information                       |
-| `* * *`       | first-time user                        | get help about what commands I can use on the contact book | easily know how to navigate the system                |
-| `**`          | frugal user                            | sort my vendors in ascending order of price                | view the vendors selling the cheapest products easily |
-| `**`          | careless user                          | undo my commands                                           | fix mistakes easily                                   |
-| `**`          | forgetful user                         | star contacts that are important                           | remember to contact them easily                       |
-| `**`          | profit-maximising user                 | rate the efficiency/productivity/performance of contacts   | evaluate and justify my business expenses             |
+| Priority      | <div style="width:50px">As a …​</div> | I want to …​                                               | So that I can…​                                       |
+|---------------|---------------------------------------|------------------------------------------------------------|-------------------------------------------------------|
+| `* * *`       | well connected user                   | search contacts                                            | save time                                             |
+| `* * *`       | well connected user                   | add contacts                                               | have the address to contact others in the future      |
+| `* * *`       | cafe owner user                       | delete the contacts of people                              | keep my contacts updated and remove outdated contacts |
+| `* * *`       | long-term user                        | edit contacts                                              | update some contact information                       |
+| `* * *`       | first-time user                       | get help about what commnads I can use on the contact book | easily know how to navigate the system                |
+| `**`          | frugal user                           | sort my vendors in ascending order of price                | view the vendors selling the cheapest products easily |
+| `**`          | careless user                         | undo my commands                                           | fix mistakes easily                                   |
+| `**`          | forgetful user                        | star contacts that are important                           | remember to contact them easily                       |
+| `**`          | careless user                         | undo previous command                                      | fix my mistakes easily                                |
+| `**`          | careless user                         | retrieve state before undo                                 | fix my mistakes easily                                |
+| `**`          | profit-maximising user                 | rate the efficiency/productivity/performance of contacts  | evaluate and justify my business expenses             |
 *{More to be added}*
 
 ### Use cases
@@ -522,6 +517,50 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    * 1a2. User re-enters the command and request to learn about a valid command.
    * Steps 1a1 - 1a2 are repeated until a valid command is inputted by the User.
    * Use case resumes from step 2.
+
+---
+
+**System**: `PoochPlanner`
+
+**Use case**: `UC06 - Undo`
+
+**Actor**: `User`
+
+**MSS**:
+
+1.  User requests to undo previous command.
+2.  PoochPlanner retrieve previous state of address book.
+
+    Use case ends.
+
+**Extensions**:
+
+* 1a. PoochPlanner has no previous state of address book.
+
+    * 1a1. PoochPlanner displays the error message.
+    * Use case ends.
+
+---
+
+**System**: `PoochPlanner`
+
+**Use case**: `UC06 - Redo`
+
+**Actor**: `User`
+
+**MSS**:
+
+1.  User requests to redo.
+2.  PoochPlanner retrieve future state of address book.
+
+    Use case ends.
+
+**Extensions**:
+
+* 1a. PoochPlanner has no next state of address book.
+
+    * 1a1. PoochPlanner displays the error message.
+    * Use case ends.
 
 ---
 *{More to be added}*

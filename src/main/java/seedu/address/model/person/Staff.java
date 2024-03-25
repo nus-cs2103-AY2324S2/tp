@@ -22,7 +22,7 @@ public class Staff extends Person {
      */
     public Staff(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
                  Salary salary, Employment employment) {
-        super(name, phone, email, address, new Note(""), tags);
+        super(name, phone, email, address, new Note("No additional note set"), tags);
         requireAllNonNull(salary, employment);
         this.salary = salary;
         this.employment = employment;

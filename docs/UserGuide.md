@@ -195,6 +195,24 @@ Examples:
 /search ; description : Food
 ```
 
+### Rating a Contact : `rate`
+
+Gives a specified person from the Pooch Planner a performance rating.
+
+Format: `/rate ; name : [name] ; rating : [rating value from 1-5]`
+
+* Gives the contact with the specified `name` a rating between 1 and 5 inclusive. 
+* Note that the specified person must first exist in Pooch Contact Book.
+* `name` and `rating` are compulsory fields that are case-insensitive but space-sensitive.
+* `rating` can only take on integer values between 1 and 5 inclusive.
+* A `rating` of `0` will display `No rating given yet`.
+
+Examples:
+* `/rate ; name : Poochie ; rating : 5`
+
+  The above command rates the contact with the name **_Poochie_** with a rating of `5`.
+  provided **_Poochie_** exists as a name of a contact in Pooch Contact Book
+
 ### Adding a note : `note`
 
 Adds a note to a specified person from the Pooch Planner.
@@ -211,6 +229,28 @@ Examples:
 
   The above command adds the note "meet poochie tonight to get kibble" to 
   the contact with name **_Poochie_**, provided **_Poochie_** exists as a name of a contact in Pooch Contact Book
+
+### Undo a command : `undo`
+
+Undo a previous command which made a change to Pooch Planner history.
+
+Format: `/undo`
+
+* Note that there is no parameter for this command
+* Any unnecessary parameter or value after /undo will simply be ignored.
+* This command unable to be executed when there is no more previous state.
+
+### Redo a command : `redo`
+
+Retrieve next state of Pooch Planner
+
+Format: `/redo`
+
+* Note that there is no parameter for this command
+* Any unnecessary parameter or value after /undo will simply be ignored.
+* This command unable to be executed when there is no next state.
+* This command only able to be executed when at least one undo command is executed.
+
 
 ### Exiting the program : `exit`
 
@@ -257,7 +297,7 @@ Action | Format, Examples
 **Add Staff** | `/pooch-staff ; name : [name] ; phone : [phone] ; address : [address] ; email : [email] ; salary : [salary]  ; employment : [part/full]` <br> e.g., `/pooch-staff ; name : Poochie ; phone : 98765435 ; address : Poochie Street 21 ; email : ilovecatstoo@gmail.com ; salary : $50/h ; employment : part-time`
 **Add Supplier** | `/pooch-supplier ; name : [name] ; phone : [phone] ; address : [address] ; email : [email] ; product : [product] ; price : [price]` <br> e.g., `/pooch-supplier ; name : PetCo ; phone : 98673098 ; address : Meow Street 24 ; email : ilovewombatstoo@gmail.com ; product : kibble ; price : $98/bag`
 **Add Helper** | `/pooch-maintainer ; name : [name] ; phone : [phone] ; address : [address] ; email : [email] ; skill : [skill] ; commission : [commission]` <br> e.g., `/pooch-maintainer ; name : Tom Tan  ; phone : 98765435 ; address : Poochie Street 24 ; email : ihelppooches@gmail.com ; skill : trainer ; commission : $60/hr`
-**Add General Contact** | `/pooch-add ; name : [name] ; phone : [phone] ; address : [address] ; email : [email] ; skill : [skill] ; commission : [commission]` <br> e.g., `/pooch-add ; name : Janna  ; phone : 98765435 ; address : Poochie Street 24 ; email : iamjanna@gmail.com`
+**Add Other Contact** | `/pooch-add ; name : [name] ; phone : [phone] ; address : [address] ; email : [email] ; skill : [skill] ; commission : [commission]` <br> e.g., `/pooch-add ; name : Janna  ; phone : 98765435 ; address : Poochie Street 24 ; email : iamjanna@gmail.com`
 **Delete** | `/delete name : [name] `<br> e.g., `delete ; name : Poochie`
 **Edit** | `/edit ; name : [name] ; field : { field : data ; field : data }`<br> e.g., `/edit ; name : Poochie ; field : { name : Mochi }` <br> e.g.,`/edit ; name : Poochie ; field : { address : Poochie Street 25 ; employment : full-time }`
 **Search** | `/search ; parameter : [value]`<br> e.g., `/search ; name : Poochie`
@@ -269,4 +309,7 @@ Action | Format, Examples
 **Help Delete** | `/help-delete`
 **Help Edit** | `/help-edit`
 **Help Search** | `/help-search`
+**Rate** | `/rate ; name : [name] ; rating : [rating]`<br> e.g., `/rate ; name : Poochie ; rating : 5`
+**Undo Command** | `/undo`
+**Redo Command** | `/redo`
 `
