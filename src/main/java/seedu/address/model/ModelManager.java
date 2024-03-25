@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.exam.Exam;
 import seedu.address.model.person.Person;
 
 /**
@@ -145,6 +146,34 @@ public class ModelManager implements Model {
         return addressBook.equals(otherModelManager.addressBook)
                 && userPrefs.equals(otherModelManager.userPrefs)
                 && filteredPersons.equals(otherModelManager.filteredPersons);
+    }
+
+    @Override
+    public boolean hasExam(Exam exam) {
+        requireNonNull(exam);
+        return addressBook.hasExam(exam);
+    }
+
+    @Override
+    public void deleteExam(Exam target) {
+        addressBook.removeExam(target);
+    }
+
+    @Override
+    public void addExam(Exam exam) {
+        addressBook.addExam(exam);
+    }
+
+    @Override
+    public void setExam(Exam target, Exam editedExam) {
+        requireAllNonNull(target, editedExam);
+
+        addressBook.setExam(target, editedExam);
+    }
+
+    @Override
+    public ObservableList<Exam> getExamList() {
+        return addressBook.getExamList();
     }
 
 }

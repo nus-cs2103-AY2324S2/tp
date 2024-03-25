@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.exam.Exam;
 import seedu.address.model.person.Person;
 
 /**
@@ -84,4 +85,31 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Returns true if an exam with the same identity as {@code exam} exists in the address book.
+     */
+    boolean hasExam(Exam exam);
+
+    /**
+     * Deletes the given exam.
+     * The exam must exist in the address book.
+     */
+    void deleteExam(Exam target);
+
+    /**
+     * Adds the given exam.
+     * {@code exam} must not already exist in the address book.
+     */
+    void addExam(Exam exam);
+
+    /**
+     * Replaces the given exam {@code target} with {@code editedExam}.
+     * {@code target} must exist in the address book.
+     * The exam identity of {@code editedExam} must not be the same as another existing exam in the address book.
+     */
+    void setExam(Exam target, Exam editedExam);
+
+    /** Returns an unmodifiable view of the filtered exam list */
+    ObservableList<Exam> getExamList();
 }
