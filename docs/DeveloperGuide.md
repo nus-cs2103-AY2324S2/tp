@@ -242,6 +242,20 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### \[Proposed\] Student Comments
+
+#### Feature Proposal
+
+This feature is an extension of the 'Stars' feature. When a TA gives a student stars, they can also leave a comment to explain why the student received them. Each instance of a TA giving stars can be stored by student.
+
+![Proposed Class diagram](images\StarCommentModelClassDiagram.png).
+
+#### UI Modifications
+
+Users will be able to view the comments they have left for each student in a separate window. This components of the window will track changes to the student comments in the model.
+
+![Proposed UI](images\StarCommentUiClassDiagram.png).
+
 
 --------------------------------------------------------------------------------------------------------------------
 
