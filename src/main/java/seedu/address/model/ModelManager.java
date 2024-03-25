@@ -25,7 +25,7 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private FilteredList<Person> filteredPersons;
     private final DisplayClient displayClient;
 
     /**
@@ -167,7 +167,8 @@ public class ModelManager implements Model {
     @Override
     public void sortFilteredPersonList(Comparator<Person> comparator) {
         requireNonNull(comparator);
-        filteredPersons.sort(comparator);
+        ObservableList<Person> sortedList = this.addressBook.getPersonList().sorted(comparator);
+        filteredPersons = new FilteredList<>(sortedList);
     }
 
     @Override

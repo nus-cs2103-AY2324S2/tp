@@ -92,34 +92,6 @@ public class PersonComparatorTest {
         assertTrue(birthdayDescComparator.compare(birthday1, birthday2) > 0);
         assertEquals(0, birthdayDescComparator.compare(birthday1, birthday1Copy));
 
-//        // sort by last met
-//        Person lastMet1 = new PersonBuilder().withLastMet("2021-01-01").build();
-//        Person lastMet1Copy = new PersonBuilder().withLastMet("2021-01-01").build();
-//        Person lastMet2 = new PersonBuilder().withLastMet("2021-01-02").build();
-//        // ascending
-//        Comparator<Person> lastMetAscComparator = PersonComparator.getComparator(SortCriteria.LASTMET, SortOrder.ASC);
-//        assertTrue(lastMetAscComparator.compare(lastMet1, lastMet2) < 0);
-//        assertEquals(0, lastMetAscComparator.compare(lastMet1, lastMet1Copy));
-//        // descending
-//        Comparator<Person> lastMetDescComparator = PersonComparator.getComparator(SortCriteria.LASTMET,
-//                SortOrder.DESC);
-//        assertTrue(lastMetDescComparator.compare(lastMet1, lastMet2) > 0);
-//        assertEquals(0, lastMetDescComparator.compare(lastMet1, lastMet1Copy));
-//
-//        // sort by schedule
-//        Person schedule1 = new PersonBuilder().withSchedule("2021-01-01").build();
-//        Person schedule1Copy = new PersonBuilder().withSchedule("2021-01-01").build();
-//        Person schedule2 = new PersonBuilder().withSchedule("2021-01-02").build();
-//        // ascending
-//        Comparator<Person> scheduleAscComparator = PersonComparator.getComparator(SortCriteria.SCHEDULE, SortOrder.ASC);
-//        assertTrue(scheduleAscComparator.compare(schedule1, schedule2) < 0);
-//        assertEquals(0, scheduleAscComparator.compare(schedule1, schedule1Copy));
-//        // descending
-//        Comparator<Person> scheduleDescComparator = PersonComparator.getComparator(SortCriteria.SCHEDULE,
-//                SortOrder.DESC);
-//        assertTrue(scheduleDescComparator.compare(schedule1, schedule2) > 0);
-//        assertEquals(0, scheduleDescComparator.compare(schedule1, schedule1Copy));
-
         // sort by invalid or default criteria
         Comparator<Person> invalidAscComparator = PersonComparator.getComparator(SortCriteria.INVALID, SortOrder.ASC);
         // ascending

@@ -3,6 +3,8 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SORT_ORDER;
 
+import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.PersonComparator;
 import seedu.address.model.person.SortCriteria;
@@ -24,7 +26,7 @@ public class SortCommand extends Command {
             + "priority "
             + PREFIX_SORT_ORDER + "desc";
 
-    public static final String MESSAGE_SUCCESS = "Client list sorted.";
+    private static final String MESSAGE_SUCCESS = "Client list sorted by %s in %s order.";
     private final SortCriteria sortCriteria;
     private final SortOrder sortOrder;
 
@@ -40,9 +42,51 @@ public class SortCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         model.sortFilteredPersonList(PersonComparator.getComparator(sortCriteria, sortOrder));
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(getMessageSuccess(sortCriteria, sortOrder));
+    }
+
+    /**
+     * Returns a success message based on the sort criteria and sort order.
+     *
+     * @param sortCriteria the sort criteria
+     * @param sortOrder the sort order
+     * @return the success message
+     */
+    public static String getMessageSuccess(SortCriteria sortCriteria, SortOrder sortOrder)
+            throws IllegalArgumentException {
+        if (sortCriteria == null || sortOrder == null) {
+            throw new IllegalArgumentException("SortCriteria and SortOrder cannot be null.");
+        }
+        if (sortCriteria == SortCriteria.INVALID || sortOrder == SortOrder.INVALID) {
+            return String.format(MESSAGE_SUCCESS, SortCriteria.NAME, SortOrder.ASC);
+        }
+        return String.format(MESSAGE_SUCCESS, sortCriteria, sortOrder);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof SortCommand)) {
+            return false;
+        }
+
+        SortCommand otherSortCommand = (SortCommand) other;
+        return sortCriteria.equals(otherSortCommand.sortCriteria)
+                && sortOrder.equals(otherSortCommand.sortOrder);
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .add("sortCriteria", sortCriteria)
+                .add("sortOrder", sortOrder)
+                .toString();
     }
 }
