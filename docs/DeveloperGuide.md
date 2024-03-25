@@ -204,7 +204,19 @@ The following activity diagram summarizes what happens when a QR Code is generat
 
 _vCard_ is a data format for contact information. Detailed information can be found in [RFC 6350](https://datatracker.ietf.org/doc/html/rfc6350).
 
-### Adding a Note To An Existing Client
+### Additional user details in FitBook
+On top of what AB3 has to offer, FitBook allows users to add additional details to each client to better track their health status.
+
+This includes:
+* [Height and weight](#height-and-weight-feature-in-fitbook)
+* [Note](#note-feature-in-fitbook)
+
+#### Note feature in FitBook
+The `note` feature allows users to add any relevant health information to each client.
+
+For more details on how the `note` field interacts with the `add` and `edit` command, refer [here](#adding-or-editing-a-client).
+
+##### Interacting with the `note` command
 
 The sequence diagram below shows how the components interact with each other when the user inputs the command `note 1 note/Likes to eat`.
 
@@ -213,6 +225,23 @@ The sequence diagram below shows how the components interact with each other whe
 The diagram highlights the four main components of FitBook, highlighted in their respective colors. For more information regarding the four main components, see [Main components of the architecture](#main-components-of-the-architecture).
 
 > The above sequence diagram also applies to the removal of a note from an existing client when no input string or prefix is entered for the `note` command. (i.e. `note 1`, or `note 1 note/`).
+
+#### Height and weight feature in FitBook
+The height and weight feature allows users to keep track of past height and weight measurements of a client.
+
+We can refer to the sequence diagram [above](#interacting-with-the-note-command) to see how the addition of such fields to clients interact with the components of FitBook.
+
+For more details on how the `height` and `weight` fields interact with the `add` and `edit` command, refer [here](#adding-or-editing-a-client).
+
+#### Viewing height and weight history of a client
+
+
+
+### Adding or editing a client
+
+The following activity diagram summarizes what happens when a client is added or edited in FitBook.
+
+![AddAndEditCommandSequenceDiagram](images/AddAndEditCommandActivityDiagram.png)
 
 ### \[Proposed\] Undo/redo feature
 
@@ -497,6 +526,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Usage instructions**: Documentation detailing FitBook's features and how to navigate about them
 * **User**: The person using FitBook
 * **UI (User Interface)**: Manages user interactions with graphic interface elements
+* **AB3**: [AddressBook-Level3](https://github.com/se-edu/addressbook-level3), a project created by the [SE-EDU initiative](https://se-education.org).
 
 --------------------------------------------------------------------------------------------------------------------
 
