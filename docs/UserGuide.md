@@ -77,7 +77,7 @@ Format: `help`
 
 ### Adding a person: `add`
 
-Adds a person to AA.
+Adds a person.
 
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] [m/MATRICULATION_NUMBER]…​`
@@ -101,13 +101,13 @@ You can refer to the [command format summary](#command-format-summary) for more 
 
 ### Listing all persons : `list`
 
-Shows a list of all persons in AA.
+Shows a list of all persons.
 
 Format: `list`
 
 ### Editing a person : `edit`
 
-Edits an existing person in AA.
+Edits an existing person.
 
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG] [m/MATRICULATION_NUMBER]…​`
@@ -127,14 +127,13 @@ You can refer to the [command format summary](#command-format-summary) for more 
 
 ### Filtering persons: `find`
 
-* Filter persons based on specific criteria within their records.
+Filter persons based on specific criteria within their records.
 
 Format: `find PREFIX/KEYWORD`
 
 * This command searches for persons using a specific aspect of their details, as specified by the prefix.
 * The search will return any result that contains the keyword as a substring under the indicated prefix. e.g. `find e/hans` will find any person that contains `hans` in their email.
 * The search is case-insensitive. e.g. `hans` will match `Hans`.
-* prefixes that are supported includes : n/, p/, e/, a/, m/ and t/.
 * Only one prefix can be used for filtering at a time.
 
 Examples:
@@ -157,7 +156,7 @@ Format: `copy`
 
 ### Deleting a person : `delete`
 
-Deletes the specified person from AA.
+Deletes the specified person.
 
 Format: `delete INDEX`
 
@@ -171,7 +170,7 @@ Examples:
 
 ### Clearing all entries : `clear`
 
-Clears all entries from AA.
+Clears all entries.
 
 Format: `clear`
 
@@ -180,7 +179,7 @@ Format: `clear`
 Exports currently listed persons and their details to a CSV file, avengersassemble.csv, which can be found in addressbookdata.
 
 **Steps:**
-1. Filter out the persons you want to export using the [`find`](#filtering-persons--find) or 
+1. Filter out the persons you want to export using the [`find`](#filtering-persons--find) or
 [`list`](#listing-all-persons--list) command.
 2. Type `export` to export the currently listed persons and their details to a CSV file.
 3. Upon export, a folder named addressbookdata will be created in the same directory where Avengers Assemble is located. Within this folder, you'll find the CSV file named avengersassemble.csv, containing the exported data.
@@ -189,10 +188,10 @@ Format: `export`
 
 <box type="info" seamless>
 
-**Important:** When performing an export, the current information will overwrite the existing CSV file named avengersassemble.csv located within the addressbookdata folder. 
+**Important:** When performing an export, the current information will overwrite the existing CSV file named avengersassemble.csv located within the addressbookdata folder.
 A new CSV file will not be created with each export.
 
-Users have the option to manually move the current CSV file out of the addressbookdata folder if they do not want the information to be overwritten in the next export. 
+Users have the option to manually move the current CSV file out of the addressbookdata folder if they do not want the information to be overwritten in the next export.
 A new CSV file of the same name in the same location will again be created when performing the next export.
 
 </box>
@@ -278,7 +277,7 @@ Some commands require you to include parameters. These parameters are identified
 
 ## Command summary
 
-| Action | Format, Examples                                                                                                                                                                               
+| Action | Format, Examples
 |--------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] [m/MATRICULATION_NUMBER]…​` e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague m/A1234567X` |
 | **Clear**  | `clear`                                                                                                                                                                                        |
