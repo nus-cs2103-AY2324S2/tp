@@ -7,16 +7,13 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.SKILL_DESC_CPP;
-import static seedu.address.logic.commands.CommandTestUtil.SKILL_DESC_JAVA;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_SKILL_CPP;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_SKILL_JAVA;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SKILL;
@@ -80,18 +77,20 @@ public class EditCommandParserTest {
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "#1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_PHONE_AMY,
                 Name.MESSAGE_CONSTRAINTS);
+
+        // edit command no longer supports skill
+        assertParseFailure(parser, "#1" + NAME_DESC_BOB + SKILL_EMPTY, Name.MESSAGE_CONSTRAINTS);
     }
 
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_COURSE_MATE;
 
-        String userInput = "#" + targetIndex.getOneBased() + PHONE_DESC_BOB + SKILL_DESC_JAVA
-                + EMAIL_DESC_AMY + NAME_DESC_AMY + SKILL_DESC_CPP;
+        String userInput = "#" + targetIndex.getOneBased() + PHONE_DESC_BOB
+                + EMAIL_DESC_AMY + NAME_DESC_AMY;
 
         EditCourseMateDescriptor descriptor = new EditCourseMateDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY)
-                .withSkills(VALID_SKILL_JAVA, VALID_SKILL_CPP).build();
+                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY).build();
         EditCommand expectedCommand = new EditCommand(new QueryableCourseMate(targetIndex), descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -129,12 +128,6 @@ public class EditCommandParserTest {
         descriptor = new EditCourseMateDescriptorBuilder().withEmail(VALID_EMAIL_AMY).build();
         expectedCommand = new EditCommand(new QueryableCourseMate(targetIndex), descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
-
-        // skills
-        userInput = "#" + targetIndex.getOneBased() + SKILL_DESC_CPP;
-        descriptor = new EditCourseMateDescriptorBuilder().withSkills(VALID_SKILL_CPP).build();
-        expectedCommand = new EditCommand(new QueryableCourseMate(targetIndex), descriptor);
-        assertParseSuccess(parser, userInput, expectedCommand);
     }
 
     @Test
@@ -155,8 +148,8 @@ public class EditCommandParserTest {
 
         // mulltiple valid fields repeated
         userInput = "#" + targetIndex.getOneBased() + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + SKILL_DESC_CPP + PHONE_DESC_AMY + EMAIL_DESC_AMY + SKILL_DESC_CPP
-                + PHONE_DESC_BOB + EMAIL_DESC_BOB + SKILL_DESC_JAVA;
+                + PHONE_DESC_AMY + EMAIL_DESC_AMY
+                + PHONE_DESC_BOB + EMAIL_DESC_BOB;
 
         assertParseFailure(parser, userInput,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PHONE, PREFIX_EMAIL));
@@ -167,16 +160,5 @@ public class EditCommandParserTest {
 
         assertParseFailure(parser, userInput,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PHONE, PREFIX_EMAIL));
-    }
-
-    @Test
-    public void parse_resetSkills_success() {
-        Index targetIndex = INDEX_THIRD_COURSE_MATE;
-        String userInput = "#" + targetIndex.getOneBased() + SKILL_EMPTY;
-
-        EditCourseMateDescriptor descriptor = new EditCourseMateDescriptorBuilder().withSkills().build();
-        EditCommand expectedCommand = new EditCommand(new QueryableCourseMate(targetIndex), descriptor);
-
-        assertParseSuccess(parser, userInput, expectedCommand);
     }
 }
