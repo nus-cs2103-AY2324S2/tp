@@ -1,19 +1,73 @@
+# Using FriendFolio
+
+***Welcome to FriendFolio!***
+
+Congratulations on joining the FriendFolio community! We're thrilled to have you on board. FriendFolio isn't just your 
+ordinary address book; it's your ultimate companion for staying organized, managing finances between friends, and 
+syncing up with your buddies' school schedules effortlessly.
+
+This user guide is designed to help you navigate every feature of FriendFolio with ease, ensuring you make the most 
+out of your experience. So sit back, relax, and let's dive into the exciting world of FriendFolio!
+
+Happy organizing,
+
+The FriendFolio Dev Team
+
 ---
-layout: page
-title: User Guide
+***Why This User Guide Matters***
+
+While FriendFolio is designed to be intuitive and user-friendly, taking a few moments to familiarize yourself with this 
+guide will significantly enhance your overall experience. Here's why:
+
+**Unlock Hidden Features**: Uncover useful FriendFolio features that go beyond your everyday address book app and leverage 
+FriendFolio to its full potential.
+
+**Streamline Your Experience**: Find useful tips to streamline your FriendFolio experience and navigate the app 
+effortlessly, saving time and frustration.
+
+**Maximize Efficiency**: Gain valuable insights and best practices to ensure FriendFolio maximizes efficiency in your social
+interactions.
+
+In essence, this user guide isn't just a manual – it's your key to unlocking the full potential of FriendFolio and 
+revolutionizing the way you connect with friends. So don't overlook its importance; dive in, explore, and elevate your 
+FriendFolio experience today!
+
 ---
 
-FriendFolio is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still
-having the benefits of a Graphical User Interface (GUI). If you can type fast, FriendFolio can get your contact
-management tasks
-done faster than traditional GUI apps.
+***A Quick Overview***
 
-* Table of Contents
-  {:toc}
+FriendFolio is a **desktop CLI(Command Line Interface)-optimized app with intuitive GUI(Graphical User Interface) 
+elements** for managing contacts which can **track both your finances and your friends’ availabilities**, with a singular 
+focus to **eliminate or minimize the number of times users are left stumped** on splitting a bill between friends.
+
+**Table of Contents:**
+
+1. Getting Started
+2. Useful Features 
+   1. Dashboard (Coming Soon)
+   2. Finding Availabilities (Coming Soon)
+   3. Commands
+      1. `help` command
+      2. `add` command
+      3. `list` command
+      4. `edit` command
+      5. `find` command
+      6. `delete` command
+      7. `clear` command
+      8. `exit` command
+      9. `remark` command
+      10. `filter` command
+   4. Saving Data Files
+   5. Editing Data Files
+   6. Exporting Data (Coming soon)
+3. FAQs
+4. Known Issues
+5. Command Summary
+
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## Getting Started
 
 1. Ensure you have Java `11` or above installed in your Computer.
 2. Download the latest `addressbook.jar` from [here](https://github.com/AY2324S2-CS2103T-T16-2/tp/releases).
