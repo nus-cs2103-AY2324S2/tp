@@ -1,6 +1,7 @@
 package seedu.realodex.logic.parser;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -81,10 +82,12 @@ public class ArgumentMultimap {
         }
     }
 
-    public ArrayList<String> returnListOfMissingPrefixes(Prefix... prefixes) {
-        Prefix[] listOfCompulsoryPrefix = Stream.of(prefixes).distinct()
-                .filter(prefix -> argMultimap.containsKey(prefix) && argMultimap.get(prefix).size() > 1)
+    public String returnMessageOfMissingPrefixes(Prefix[] listOfCompulsoryPrefix) {
+        return Prefix.returnMessageOfMissingPrefixes(argMultimap, listOfCompulsoryPrefix);
+    }
+
+    public Prefix[] returnListOfCompulsoryTags(Prefix... prefixes) {
+        return Stream.of(prefixes).distinct()
                 .toArray(Prefix[]::new);
-        return Prefix.returnListOfMissingPrefixes(argMultimap, listOfCompulsoryPrefix);
     }
 }

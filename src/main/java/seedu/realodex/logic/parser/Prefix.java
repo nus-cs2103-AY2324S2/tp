@@ -3,6 +3,8 @@ package seedu.realodex.logic.parser;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * A prefix that marks the beginning of an argument in an arguments string.
@@ -19,16 +21,18 @@ public class Prefix {
         return prefix;
     }
 
-    public static ArrayList<String> returnListOfMissingPrefixes(Map<Prefix, List<String>> argMultimap,
-                                                          Prefix[] listOfCompulsoryPrefix) {
-        ArrayList<String> listOfMessagesForMissingPrefixes = new ArrayList<>();
-        for (Prefix ofCompulsoryPrefix : listOfCompulsoryPrefix) {
-            if (!argMultimap.containsKey(ofCompulsoryPrefix)) {
-                listOfMessagesForMissingPrefixes.add(ofCompulsoryPrefix.toString());
-            }
-        }
-        return listOfMessagesForMissingPrefixes;
+
+
+    public static String returnMessageOfMissingPrefixes(Map<Prefix, List<String>> argMultimap,
+                                                        Prefix[] listOfCompulsoryPrefix) {
+        List<String> missingPrefixes = Stream.of(listOfCompulsoryPrefix)
+                .filter(prefix -> !argMultimap.containsKey(prefix))
+                .map(Prefix::toString)
+                .collect(Collectors.toList());
+
+        return "Missing Prefixes: " + String.join(", ", missingPrefixes);
     }
+
 
     @Override
     public String toString() {

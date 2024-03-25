@@ -41,16 +41,23 @@ public class AddCommandParser implements Parser<AddCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_INCOME,
                                            PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_FAMILY, PREFIX_TAG, PREFIX_REMARK);
 
-        if (!arePrefixesPresent(argMultimap,
-                                PREFIX_NAME,
-                                PREFIX_ADDRESS,
-                                PREFIX_INCOME,
-                                PREFIX_PHONE,
-                                PREFIX_FAMILY,
-                                PREFIX_EMAIL,
-                                PREFIX_TAG)
-                || !argMultimap.getPreamble().isEmpty()) {
+        Prefix[] listOfCompulsoryPrefixTags = argMultimap.returnListOfCompulsoryTags(PREFIX_NAME,
+                                                                                     PREFIX_ADDRESS,
+                                                                                     PREFIX_INCOME,
+                                                                                     PREFIX_PHONE,
+                                                                                     PREFIX_FAMILY,
+                                                                                     PREFIX_EMAIL,
+                                                                                     PREFIX_TAG);
+        if (!argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+        }
+
+        if (!arePrefixesPresent(argMultimap,
+                                listOfCompulsoryPrefixTags)) {
+            String exceptionMessageForMissingPrefixes =
+                    argMultimap.returnMessageOfMissingPrefixes(listOfCompulsoryPrefixTags) + "\n";
+            throw new ParseException(exceptionMessageForMissingPrefixes + String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                                                                                      AddCommand.MESSAGE_USAGE));
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_INCOME, PREFIX_EMAIL,
@@ -70,10 +77,14 @@ public class AddCommandParser implements Parser<AddCommand> {
     }
 
     /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
+     * Checks if all specified prefixes are present in the given ArgumentMultimap.
+     *
+     * @param argumentMultimap the ArgumentMultimap to check
+     * @param prefixes         the array of prefixes to check for
+     * @return {@code true} if all specified prefixes are present in the ArgumentMultimap,
+     *         {@code false} otherwise
      */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix[] prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }
