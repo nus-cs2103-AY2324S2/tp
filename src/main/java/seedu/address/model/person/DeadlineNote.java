@@ -1,8 +1,11 @@
 package seedu.address.model.person;
 
-import java.time.DateTimeException;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Objects;
 
 /**
@@ -11,8 +14,8 @@ import java.util.Objects;
  */
 public class DeadlineNote extends Note {
 
-    private String deadline;
     public static final String MESSAGE_INVALID_DATE = "Date must be in the format yyyy-mm-dd (e.g., 2019-10-15)";
+    private String deadline;
 
     /**
      * Constructs an {@code Note}.
@@ -20,12 +23,11 @@ public class DeadlineNote extends Note {
      * @param note A valid note.
      * @param note A valid deadline.
      */
-    public DeadlineNote (String note, String deadline) {
+    public DeadlineNote(String note, String deadline) {
         super(note);
-        // should only accept deadline that is already
-        // in correct format
+        requireNonNull(note);
+        checkArgument(isValidNote(note), MESSAGE_CONSTRAINTS);
         this.deadline = convertDate(deadline);
-//        setDeadlineNoteToTrue();
     }
 
     /**
@@ -42,7 +44,7 @@ public class DeadlineNote extends Note {
         try {
             LocalDate.parse(test);
             return true;
-        } catch (DateTimeException e) {
+        } catch (DateTimeParseException e) {
             // don't change the date in this case
             // as it is not a valid date, return false.
         }

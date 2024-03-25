@@ -8,10 +8,8 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import java.util.List;
 
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.messages.DeleteMessages;
 import seedu.address.logic.messages.NoteMessages;
 import seedu.address.model.Model;
-import seedu.address.model.person.DeadlineNote;
 import seedu.address.model.person.Maintainer;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Note;
@@ -89,14 +87,6 @@ public class NoteCommand extends Command {
 
         return new CommandResult(String.format(NoteMessages.MESSAGE_ADD_NOTE_SUCCESS,
                 NoteMessages.format(editedPerson)));
-    }
-
-    /**
-     * Generates a command execution success message
-     * {@code personToEdit}.
-     */
-    private String generateSuccessMessage(Person personToEdit) {
-        return String.format(NoteMessages.MESSAGE_ADD_NOTE_SUCCESS, personToEdit);
     }
 
     /**
