@@ -57,12 +57,31 @@ Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
 
 Person "1" -- "0..*" Meeting
-
 ' AddMeetingCommand Class and its relation to Meeting
 Class AddMeetingCommand {
     +execute(): CommandResult
 }
-AddMeetingCommand ..> Meeting : creates
+
+' ViewMeetingCommand Class and its relation to Meeting
+Class ViewMeetingCommand {
+    +execute(): CommandResult
+}
+
+' EditMeetingCommand Class and its relation to Meeting
+Class EditMeetingCommand {
+    +execute(): CommandResult
+}
+
+' DeleteMeetingCommand Class and its relation to Meeting
+Class DeleteMeetingCommand {
+    +execute(): CommandResult
+}
+
+AddMeetingCommand ..up> Meeting : creates
+ViewMeetingCommand ..up> Meeting : views
+EditMeetingCommand ..up> Meeting : edits
+DeleteMeetingCommand ..up> Meeting : deletes
+
 
 ModelManager --> "~* filtered" Person
 ModelManager --> "~* filtered" Meeting
