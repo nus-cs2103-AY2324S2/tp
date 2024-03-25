@@ -21,6 +21,7 @@ Class Phone
 Class Company
 Class Priority
 Class Tag
+Class Note
 
 Class I #FFFFFF
 }
@@ -46,6 +47,7 @@ Person *--> Address
 Person *--> Company
 Person *--> Priority
 Person *--> "*" Tag
+Person *--> "*" Note
 
 Person -[hidden]up--> I
 UniquePersonList -[hidden]right-> I
