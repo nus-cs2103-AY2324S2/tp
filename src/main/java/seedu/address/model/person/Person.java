@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -139,20 +140,16 @@ public class Person {
      *     Alice Pauline Phone: 12345678 Email: alice@example.com Address: 123, Jurong West Ave 6,
      *     #08-111 Tags: friends family Policies: [SuperSaver] [HealthGuard]
      */
+    @Override
     public String toString() {
-        final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-                .append(" Phone: ")
-                .append(getPhone())
-                .append(" Email: ")
-                .append(getEmail())
-                .append(" Address: ")
-                .append(getAddress())
-                .append(" Remark: ")
-                .append(" Tags: ");
-        getTags().forEach(builder::append);
-        builder.append(" Policies: ");
-        getPolicies().forEach(policy -> builder.append("[").append(policy.policyName).append("]").append(" "));
-        return builder.toString();
+        return new ToStringBuilder(this)
+                .add("name", name)
+                .add("phone", phone)
+                .add("email", email)
+                .add("address", address)
+                .add("meeting", meeting)
+                .add("tags", tags)
+                .add("policies", policies)
+                .toString();
     }
 }

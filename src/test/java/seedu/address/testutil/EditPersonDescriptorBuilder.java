@@ -11,6 +11,7 @@ import seedu.address.model.person.Meeting;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Policy;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -39,6 +40,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setAddress(person.getAddress());
         descriptor.setMeeting(person.getMeeting());
         descriptor.setTags(person.getTags());
+        descriptor.setPolicies(person.getPolicies());
     }
 
 
@@ -89,6 +91,16 @@ public class EditPersonDescriptorBuilder {
     public EditPersonDescriptorBuilder withTags(String... tags) {
         Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
         descriptor.setTags(tagSet);
+        return this;
+    }
+
+    /**
+     * Parses the {@code policies} into a {@code Set<Policies>} and set it to the {@code EditPersonDescriptor}
+     * that we are building.
+     */
+    public EditPersonDescriptorBuilder withPolicies(String... policies) {
+        Set<Policy> policySet = Stream.of(policies).map(Policy::new).collect(Collectors.toSet());
+        descriptor.setPolicies(policySet);
         return this;
     }
 
