@@ -48,10 +48,19 @@ public class ArgumentTokenizer {
         List<PrefixPosition> positions = new ArrayList<>();
 
         int prefixPosition = findPrefixPosition(argsString, prefix.getPrefix(), 0);
+        int prefixPositionOfUpper = findPrefixPosition(argsString, prefix.getPrefix().toUpperCase(), 0);
+        if (prefixPosition == -1 && prefixPositionOfUpper != -1) {
+            prefixPosition = prefixPositionOfUpper;
+        }
         while (prefixPosition != -1) {
             PrefixPosition extendedPrefix = new PrefixPosition(prefix, prefixPosition);
             positions.add(extendedPrefix);
             prefixPosition = findPrefixPosition(argsString, prefix.getPrefix(), prefixPosition);
+            prefixPositionOfUpper = findPrefixPosition(argsString,
+                                                       prefix.getPrefix().toUpperCase(), prefixPositionOfUpper);
+            if (prefixPosition == -1 && prefixPositionOfUpper != -1) {
+                prefixPosition = prefixPositionOfUpper;
+            }
         }
 
         return positions;
