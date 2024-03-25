@@ -18,7 +18,6 @@ public class DeleteOrderCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsDeleteCommand() {
-        final String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteOrderCommand.MESSAGE_USAGE);
         assertParseSuccess(parser, "1", new DeleteOrderCommand(INDEX_FIRST_ORDER));
     }
 

@@ -90,4 +90,11 @@ public class DeleteOrderCommand extends Command {
         return newOrders;
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof DeleteOrderCommand // instanceof handles nulls
+                && targetIndex.equals(((DeleteOrderCommand) other).targetIndex)); // state check
+    }
+
 }
