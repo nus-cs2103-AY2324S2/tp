@@ -8,6 +8,7 @@ import java.util.Set;
 
 import seedu.edulink.logic.commands.FilterCommand;
 import seedu.edulink.logic.parser.exceptions.ParseException;
+import seedu.edulink.model.student.TagsContainQueryTagsPredicate;
 import seedu.edulink.model.tag.Tag;
 
 
@@ -41,7 +42,7 @@ public class FilterCommandParser implements Parser<FilterCommand> {
             }
         }
 
-        return new FilterCommand();
+        return new FilterCommand(new TagsContainQueryTagsPredicate(tagList));
     }
 
 }

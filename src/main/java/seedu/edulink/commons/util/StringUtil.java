@@ -1,6 +1,7 @@
 package seedu.edulink.commons.util;
 
 import static java.util.Objects.requireNonNull;
+import static jdk.internal.org.jline.utils.Colors.s;
 import static seedu.edulink.commons.util.AppUtil.checkArgument;
 
 import java.io.PrintWriter;
@@ -10,6 +11,30 @@ import java.io.StringWriter;
  * Helper functions for handling strings.
  */
 public class StringUtil {
+
+    /**
+     * Returns true if the {@code sentence1} matches the {@code sentence2}.
+     * Ignores case and a full word match is required.
+     * <br>examples:<pre>
+     *       matchesIgnoreCase("abcd", "abc") == false
+     *       matchesIgnoreCase("ABc def", "abc def") == true
+     *       </pre>
+     *
+     * @param sentence1 cannot be null
+     * @param sentence2    cannot be null, cannot be empty
+     * @return {@code true} if the {@code sentence1} contains the {@code sentence2}, {@code false} otherwise.
+     */
+    public static boolean matchesIgnoreCase(String sentence1, String sentence2) {
+        requireNonNull(sentence1);
+        requireNonNull(sentence2);
+
+        final String preppedSentence1 = sentence1.toLowerCase().trim();
+        final String preppedSentence2 = sentence2.toLowerCase().trim();
+
+        checkArgument(!preppedSentence2.isEmpty(), "Sentence parameter cannot be empty");
+
+        return preppedSentence1.equals(preppedSentence2);
+    }
 
     /**
      * Returns true if the {@code sentence} contains the {@code word}.
