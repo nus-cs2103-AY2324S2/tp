@@ -82,6 +82,7 @@ public class LastMet implements Comparable<LastMet> {
      * @param other
      * @return An integer value based on the comparison of the lastMetDate of two LastMet objects.
      */
+    @Override
     public int compareTo(LastMet other) {
         return this.lastMetDate.compareTo(other.lastMetDate);
     }
@@ -109,10 +110,5 @@ public class LastMet implements Comparable<LastMet> {
     @Override
     public int hashCode() {
         return lastMetDate.hashCode();
-    }
-
-    @Override
-    public int compareTo(LastMet other) {
-        return lastMetDate.compareTo(other.lastMetDate);
     }
 }
