@@ -5,6 +5,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.commons.util.DateUtil;
+import seedu.address.commons.util.UiUtil;
 import seedu.address.model.appointment.Appointment;
 
 /**
@@ -51,12 +52,26 @@ public class AppointmentCard extends UiPart<Region> {
         name.setText("StudentId: " + Integer.toString(appointment.getStudentId()));
 
         String formattedDateTime = DateUtil.formatDateTime(appointment.getAppointmentDateTime());
-        appointmentDateTime.setText(formattedDateTime);
+        appointmentDateTime.setText("Appointment Time: " + formattedDateTime);
 
-        hasAttended.setText(Boolean.toString(appointment.getAttendedStatus()));
-        appointmentDescription.setText(appointment.getAppointmentDescription());
+        String attendedString = "Attended: ";
+        if (appointment.getAttendedStatus()) {
+            attendedString += "Y";
+        } else {
+            attendedString += "N";
+        }
+        hasAttended.setText(attendedString);
+
+        if (!appointment.getAppointmentDescription().isEmpty()) {
+            appointmentDescription.setText("Description: " + appointment.getAppointmentDescription());
+        } else {
+            appointmentDescription.setVisible(false);
+        }
+
         if (appointment.getFeedbackScore() != null) {
             feedbackScore.setText("Score: " + appointment.getFeedbackScore().toString());
+        } else {
+            appointmentDescription.setVisible(false);
         }
     }
 }
