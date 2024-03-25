@@ -506,22 +506,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  User enters the exit command.
 2.  FAPro closes the window and its system.
 
-**Use case: Tagging a client as last contacted**
+**Use case: Finding all contacts who were last contacted**
 
 **MSS**
 
-1.  User requests to tag a client with date and time.
-2.  The system tags the client as 'last contacted' with given date and time.
-
-**Extensions**
-* 2a. Client name does not exist.
-    * 2a1. The system shows an error message.
-      Use case resumes at step 1.
-* 2b. The system found more than 1 matching name.
-    * 2b1. The system lists all matching clients' name with their ID code and other details for identification.
-    * 2b2. User enters the ID code shown from the list.
-      Steps 2b1-2b2 are repeated until the data entered are valid.
-      Use case resumes at step 2.
+1.  User requests to see all contacts who were last contacted.
+2.  AddressBook shows a list of contacts who were last contacted.
 
 **Use case: Finding all upcoming contacts with appointments**
 

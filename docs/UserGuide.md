@@ -94,7 +94,7 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​ [lc/DATETIME]
 **Tip:** A person can have any number of tags (including 0)
 </box>
 
-**Note:** t/ and lc/ : tag and lastcontact field is optional.
+**Note:** t/ and lc/ : tag and last contacted field is optional.
 
 
 Examples:
@@ -111,7 +111,7 @@ Format: `list`
 
 Edits an existing person in FAPro.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [lc/DATETIME]`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -119,6 +119,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `t/` without
     specifying any tags after it.
+* Last contacted `lc/` should not have future `DATETIME` and must be valid. 
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
@@ -185,33 +186,27 @@ Examples:
 * `find Betsy` followed by `select 1` shows the detailed profile of the 1st person in the results of the `find` command.
 
 
-### View contacts of all upcoming appointments: `upcoming`
+### View contacts of all upcoming appointments : `upcoming`
 
 View all the contacts of all upcoming appointments ordered by date (earliest to latest).
 
 Format: `upcoming`
 
-- `upcoming` displays all upcoming appointments.
+* `upcoming` displays all upcoming appointments.
 
 Examples:
-- `upcoming` would show the 3 contacts if there are 3 contacts with upcoming appointments.
+* `upcoming` would show the 3 contacts if there are 3 contacts with upcoming appointments.
 
-### Tag a client's profile as last contacted : `lastcontact`
+### View contacts of all last contacted clients : `lastcontact`
 
-Adds a client to the recently contacted list in FAPro.
+View all the contacts that has last contacted date and time ordered by date (oldest to recent).
 
-Format: `lastcontact n/NAME lc/DATETIME`
+Format: `lastcontact`
 
-* The input is case-insensitive. e.g. `JoHn Doe` will match `john doe`.
-* In case of duplicate names, all matching names will be listed with their ID code and other details.
-* User will need to add the respective ID code to existing input in case of duplicate.
+* Displays all clients with last contacted field and sorted in oldest date first.
 
 Example:
-* `lastcontact n/John doe lc/05-09-2024 1955` tags the client with name `john doe` and assigns the date `05 Sep 2024 7:55pm` as last contacted.
-
-Example (For duplicate names):
-* `lastcontact n/John doe#0005 lc/05-09-2024 1955` tags the client with name `john doe#0005` and assigns the date `05 Sep 2024 7:55pm` as last contacted.
-
+* `lastcontact` would filter the contacts and show all contacts that has last contacted date time.
 
 ### Clearing all entries : `clear`
 
@@ -265,7 +260,7 @@ Action     | Format, Examples
 **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.`edit 2 n/James Lee e/jameslee@example.com`
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g. `find James Jake`
 **TagFind**| `tagfind TAG` <br> e.g. `tagfind car`
-**Lastcontact**| `lastcontact NAME [d/DATE] [tm/TIME]` <br> e.g. `lastcontact John doe d/05-09-2024 tm/1955`
+**Lastcontact**| `lastcontact`
 **Upcoming**| `upcoming`
 **List**   | `list`
 **Select** | `select INDEX`<br> e.g. `select 1`
