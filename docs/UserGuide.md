@@ -175,6 +175,15 @@ Format: `cancelApp i/NRIC d/DATE from/STARTTIME to/ENDTIME`
 Examples:
 * `cancelApp i/ S8743880A d/ 2024-02-20 from/ 11:00 to/ 11:30`
 
+### Finding appointments: `findApp`
+
+Finds appointments based on the given parameters.
+
+Format: `findApp [i/NRIC] [d/DATE] [from/TIME]`
+
+* Filters an appointment with specific `NRIC`, `DATE` or `TIME`
+* If invalid parameters, error detailing what went wrong will be displayed.
+
 ### Clearing all entries : `clear`
 
 Clears all entries from CLInic.
@@ -231,6 +240,7 @@ Action     | Format, Examples
 **AddApp** | `addApp i/NRIC d/DATE from/STARTTIME to/ENDTIME t/APPOINTMENTTYPE note/NOTE`<br> e.g., `addApp i/ T0123456A d/ 2024-02-20 from/ 11:00 to/ 11:30 t/ Medical Check-up note/ Routine check-in`
 **CancelApp** | `cancelApp i/NRIC d/DATE from/STARTTIME to/ENDTIME` <br> e.g., `cancelApp i/ S8743880A d/ 2024-02-20 from/ 11:00 to/ 11:30`
 **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**FindApp**| `findApp [i/NRIC] [d/DATE] [from/TIME]` <br> e.g., `findApp i/ T0123456A d/ 2024-02-20 from/ 11:00`
 **FindPerson**   | `findPerson n/ KEYWORD [MORE_KEYWORDS]` OR `findPerson i/ KEYWORD`<br> e.g., `findPerson n/ James Jake`
 **List**   | `list`
 **Help**   | `help`
