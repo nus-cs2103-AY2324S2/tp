@@ -15,7 +15,8 @@ import java.time.format.ResolverStyle;
  */
 public class Upcoming implements Comparable<Upcoming> {
 
-    public static final String MESSAGE_CONSTRAINTS = "Invalid input. Please follow the format: DD-MM-YYYY HHmm";
+    public static final String MESSAGE_CONSTRAINTS = "Invalid input/date. Please follow the date format: "
+            + "DD-MM-YYYY HHmm and ensure that the date is valid.";
     public static final String MESSAGE_EDIT_EMPTY_STRING_EXCEPTION = "Upcoming can only take DD-MM-YYYY HHmm "
             + "dateTime format, and it should not be blank";
     private static final String DATETIME_FORMAT = "dd-MM-uuuu HHmm";
@@ -67,9 +68,11 @@ public class Upcoming implements Comparable<Upcoming> {
     }
 
     /**
-     * Returns true if there are upcoming events or tasks associated with this person.
+     * Returns true if there are upcoming events or tasks associated with this
+     * person.
      *
-     * @return true if there are upcoming events or tasks associated with this person, false otherwise.
+     * @return true if there are upcoming events or tasks associated with this
+     *         person, false otherwise.
      */
     public boolean hasUpcoming() {
         return this.hasUpcoming;
