@@ -39,17 +39,23 @@ public class AddCommandParser implements Parser<AddCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_NOTE,
                         PREFIX_TAG);
 
+        // (add)
         if (args.isEmpty()) {
             throw new ParseException(String.format(MESSAGE_NO_PARAMETERS, AddCommand.MESSAGE_USAGE));
+        // (add John)
         } else if (!argMultimap.contains(PREFIX_NAME) && !argMultimap.contains(PREFIX_PHONE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_PARAMETER_FORMAT, AddCommand.MESSAGE_USAGE));
+        // (add p/99898888)
         } else if (!argMultimap.contains(PREFIX_NAME)) {
             throw new ParseException(String.format(MESSAGE_NAME_PARAMETER_MISSING, AddCommand.MESSAGE_USAGE));
+        // (add n/John)
         } else if (!argMultimap.contains(PREFIX_PHONE)) {
             throw new ParseException(String.format(MESSAGE_PHONE_PARAMETER_MISSING, AddCommand.MESSAGE_USAGE));
+        // (add n/John p/98988898...)
         } else {
-            argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_NOTE, PREFIX_ADDRESS);
+            argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_NOTE,
+                    PREFIX_ADDRESS);
 
             Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
             Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
