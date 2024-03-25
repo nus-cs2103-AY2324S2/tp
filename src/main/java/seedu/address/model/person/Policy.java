@@ -45,7 +45,7 @@ public class Policy {
 
     @Override
     public String toString() {
-        String builder = " Policy Name:" +
+        return " Policy Name:" +
                 policyName +
                 " Policy ID: " +
                 policyNumber +
@@ -55,7 +55,6 @@ public class Policy {
                 premium +
                 " Benefit: " +
                 benefit;
-        return builder;
     }
 
 //    @Override
