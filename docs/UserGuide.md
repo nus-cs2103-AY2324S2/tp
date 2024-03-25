@@ -4,9 +4,9 @@
   pageNav: 3
 ---
 
-# AB-3 User Guide
+# TeamTracker User Guide
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a  Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+TeamTracker is a **desktop app for managing contacts, optimized for use via a  Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -17,7 +17,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `addressbook.jar` from [here](https://github.com/AY2324S2-CS2103T-W13-4/tp/releases/download/TeamTracker_v1.2/TeamTracker_v1.2.jar).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
 
@@ -35,6 +35,8 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
    * `clear` : Deletes all contacts.
+  
+   * `add n/Task 1 d/Do homework` : Add a task named `Task 1`
 
    * `exit` : Exits the app.
 
@@ -150,6 +152,49 @@ Examples:
 Clears all entries from the address book.
 
 Format: `clear`
+
+### Adding a task: `addtask`
+
+Adds a task to the task list.
+
+Format: `add n/NAME d/DESCRIPTION​`
+
+Examples:
+* `add n/Task 1 d/Do homework`
+
+* ### Assigning a task: `assign`
+
+Assign a task to a person
+
+Format: `assign TASK_INDEX to/PERSON_INDEX​`
+
+Examples:
+* `assign 1 to/ 1`
+
+### Adding a person: `marktask`
+
+Marks a task to the task list as done.
+
+Format: `marktask TASK_INDEX`
+
+Examples:
+* `marktask 1`
+
+### Adding a person: `unmarktask`
+
+Marks a task to the task list as not done.
+
+Format: `unmarktask TASK_INDEX`
+
+Examples:
+* `unmarktask 1`
+
+### Adding a person: `deletetask`
+
+Format: `deletetask TASK_INDEX`
+
+Examples:
+* `deletetask 1`
 
 ### Exiting the program : `exit`
 
