@@ -74,8 +74,8 @@ This guide is comprised of 4 main sections:
 ## Quick start
 
 1. Ensure Java 11 is installed in your computer. If it's not, install it [here](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html)
-2. Download the latest ConnectCare.jar 
-3. Copy the jar file to the folder you want to use as the home folder 
+2. Download the latest ConnectCare.jar
+3. Copy the jar file to the folder you want to use as the home folder
 4. Double-click the file to start the application!
 
 ___
@@ -83,19 +83,19 @@ ___
 ## Features
 
 ### Notes about the command format:
--   Words in `UPPER_CASE` are the parameters to be supplied by the user.  
+-   Words in `UPPER_CASE` are the parameters to be supplied by the user.
     e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
--   Items in square brackets are optional.  
+-   Items in square brackets are optional.
     e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
--   Items with `…` after them can be used multiple times including zero times.  
+-   Items with `…` after them can be used multiple times including zero times.
     e.g. `[t/TAG]…` can be used as (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
--   Parameters can be in any order.  
+-   Parameters can be in any order.
     e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
--   Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.  
+-   Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.
     e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 ### Adding a new client: `add`
@@ -143,9 +143,9 @@ Format: `update u/existing user [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] 
 
 Examples:
 
--   `update u/Jane Doe n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-011` updates the information of Jane Doe's information to be  
+-   `update u/Jane Doe n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-011` updates the information of Jane Doe's information to be
     name: John Doe  
-    phone no: 98765432  
+    phone no: 98765432
     email: [johnd@example.com](mailto:johnd@example.com)  
     address: John street, block 123, #01-011
 
@@ -156,17 +156,32 @@ Usage of update command
   _Your browser does not support the video tag._
 </video>
 
-### Locating persons by name: `find`
+### Locating clients by name: `find`
 
-This command allows you to find a specific client in your client list by their **name**
+This command allows you to find a specific client in your client list by their **name**, *and optionally by other fields too*
 
-Format: `find n/NAME`
+Format: `find n/NAME… [a/KEYWORD]… [e/KEYWORD]… [t/KEYWORD]… [k/KEYWORD]… [d/KEYWORD]… [p/KEYWORD]…`
 
-Examples: Lets say your contact list contains the following contacts: **John Doe** **John Lee** **Alex Lee** **Bobby Chan**
+Examples: Lets say your contact list contains the following contacts:
+<img src="images/ExampleClientList.png" />
 
--   `find John` would return `John Doe` as well as `John Lee`
--   `find Alex Lee` would return `Alex Lee`
--   `find Lee` would return `John Lee` as well as `Alex Lee`
+-   `find n/alex` would return `Alex Lee` as well as `Alex Chan`
+-   `find n/alex p/99824412 ` would return `Alex Chan`
+-   `find n/a` would return `Alex Lee` , `Alex Chan`, as well as `Xavier`
+-   `find n/a t/important` would return `Alex Lee` as well as `Xavier`
+
+**Note:** you can search for multiple keywords, for example `find n/name1 n/name2` would search for all clients with names that contain name1 OR name2
+This also applies to the optional keywords, for example `find n/name1 a/address1 a/address2 would search for all clients with names that contain name1 AND
+have an address that contains address1 OR address2, so
+-   `find n/alex n/bobby` would return `Alex Lee`, `Alex Chan`, and `Bobby`
+-   `find n/a p/86151644 p/12355125` would return `Alex Lee` and `Bobby`
+
+<box type="tip" seamless>
+
+**Tip:**
+After searching for clients, you can use the `list`function to view your full list of clients again!
+
+</box>
 
 ### Undoing a command : `undo`
 
@@ -176,9 +191,9 @@ Format: `undo`
 
 <box type="tip" seamless>
 
-**Tip:** 
-The undo command does not undo every single command, only those that change the address-book in a significant way. 
-For a comprehensive deep-dive into the undo command, please refer to the [Implementation section of our Developer Guide](https://ay2324s2-cs2103t-w12-4.github.io/tp/DeveloperGuide.html) 
+**Tip:**
+The undo command does not undo every single command, only those that change the address-book in a significant way.
+For a comprehensive deep-dive into the undo command, please refer to the [Implementation section of our Developer Guide](https://ay2324s2-cs2103t-w12-4.github.io/tp/DeveloperGuide.html)
 
 </box>
 
@@ -217,6 +232,12 @@ This command allows you to exit the application.
 
 Format: `exit`
 
+<box type="tip" seamless>
+
+**Tip:**
+You can simply close the window using the X button too!
+</box>
+
 ### Shortcuts
 _These are a list of helpful actions to facilitate the ease of use of our application_
 
@@ -254,7 +275,7 @@ ___
 |-------------|-----------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------|
 | **Add**     | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… [k/NEXTOFKIN]`              | `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 d/Suffers from anxiety k/Jon Ho t/friend t/colleague`     |
 | **Update**  | `update u/existing user [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…` | `Update u/Jane Doe n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-011`        |
-| **Find**    | `find KEYWORD [MORE_KEYWORDS]`                                                    | `find James Jake`                                                                                      |
+| **Find**    | `find n/NAME… [a/ADD]… [e/EMAIL]… [t/TAG]… [k/KIN]… [d/DESC]… [p/PHONE]…`         | `find n/James a/clementi e/gmail t/important k/charles d/tall p/123`                                                                                      |
 | **Undo**    | `undo`                                                                            |                                                                                                        |
 | **Redo**    | `redo`                                                                            |                                                                                                        |
 | **Display** | TBD                                                                               |                                                                                                        |
@@ -266,7 +287,7 @@ ___
 ## Glossary
 
 ##### CLI
-CLI stands for Command Line Interface, which is a way for you to interact with the application with only textual 
+CLI stands for Command Line Interface, which is a way for you to interact with the application with only textual
 commands, there is no need for a mouse. Once you learn the commands, CLIs can be faster for repetitive tasks than navigating menus with a mouse.
 For more information, see also the [Wikipedia article for CLI](https://en.wikipedia.org/wiki/Command-line_interface)
 
