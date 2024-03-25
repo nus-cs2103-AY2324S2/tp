@@ -17,7 +17,7 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.commands.AddPaymentCommand;
-import seedu.address.logic.commands.MarkPaymentAsPaidCommand;
+import seedu.address.logic.commands.MarkPaymentCommand;
 import seedu.address.logic.commands.ResetPaymentsCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -79,8 +79,8 @@ public class AddressBookParser {
         case AddPaymentCommand.COMMAND_WORD:
             return new AddPaymentCommandParser().parse(arguments);
 
-        case MarkPaymentAsPaidCommand.COMMAND_WORD:
-            return new MarkPaymentAsPaidCommandParser().parse(arguments);
+        case MarkPaymentCommand.COMMAND_WORD:
+            return new MarkPaymentCommandParser().parse(arguments);
 
         case ResetPaymentsCommand.COMMAND_WORD:
             return new ResetPaymentsCommandParser().parse(arguments);

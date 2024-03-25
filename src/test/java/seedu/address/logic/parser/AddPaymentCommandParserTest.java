@@ -1,7 +1,6 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
@@ -23,29 +22,28 @@ public class AddPaymentCommandParserTest {
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
-        
         // missing ID prefix
-        assertParseFailure(parser, " 000001 -payment 100", 
+        assertParseFailure(parser, "000001 -payment 100",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPaymentCommand.MESSAGE_USAGE));
 
         // missing payment prefix
-        assertParseFailure(parser, " -id 000001 100", 
+        assertParseFailure(parser, " -id 000001 100",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPaymentCommand.MESSAGE_USAGE));
 
         // missing ID value
-        assertParseFailure(parser, " -id  -payment 100", 
+        assertParseFailure(parser, " -id -payment 100",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPaymentCommand.MESSAGE_USAGE));
 
         // missing payment value
-        assertParseFailure(parser, " -id 000001 -payment ", 
+        assertParseFailure(parser, " -id 000001 -payment ",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPaymentCommand.MESSAGE_USAGE));
 
         // non-numeric payment amount
-        assertParseFailure(parser, " -id 000002 -payment xyz", 
+        assertParseFailure(parser, " -id 000002 -payment xyz",
                 Payment.MESSAGE_INVALID_PAYMENT);
 
         // invalid ID format
-        assertParseFailure(parser, " -id abc -payment 50", 
+        assertParseFailure(parser, " -id abc -payment 50",
                 Id.MESSAGE_CONSTRAINTS);
     }
 }

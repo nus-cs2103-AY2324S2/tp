@@ -45,7 +45,9 @@ public class AddPaymentCommand extends Command {
         }
 
         Payment newPayment = new Payment(personToUpdate.getPayment().getAmount() + amount);
-        Person updatedPerson = new Person(personToUpdate.getName(), personToUpdate.getPhone(), personToUpdate.getEmail(), personToUpdate.getAddress(), personToUpdate.getTags(), personToUpdate.getSubject(), personToUpdate.getUniqueId(), newPayment);
+        Person updatedPerson = new Person(personToUpdate.getName(), personToUpdate.getPhone(),
+                personToUpdate.getEmail(), personToUpdate.getAddress(), personToUpdate.getTags(),
+                personToUpdate.getSubject(), personToUpdate.getUniqueId(), newPayment);
 
         model.setPerson(personToUpdate, updatedPerson);
         return new CommandResult(String.format(MESSAGE_SUCCESS, uniqueId, amount));

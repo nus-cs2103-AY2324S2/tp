@@ -1,19 +1,17 @@
 package seedu.address.logic.commands;
 
-import seedu.address.logic.commands.exceptions.CommandException;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.Messages;
-
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.person.Id;
+import seedu.address.model.person.Payment;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
@@ -23,22 +21,23 @@ public class AddPaymentCommandTest {
 
     @Test
     public void execute_paymentAcceptedByModel_addSuccessful() throws Exception {
-        Person personToAddPayment = new PersonBuilder(ALICE).build(); // Assuming ALICE is a typical Person object you've predefined
+        Payment initialPaymentAmount = new Payment(0.0);
+        Person personToAddPayment = new PersonBuilder().withPayment(initialPaymentAmount.getAmount()).build();
         model.addPerson(personToAddPayment);
         Id idOfPersonToAddPayment = personToAddPayment.getUniqueId();
 
         double amountToAdd = 100.0;
         AddPaymentCommand addPaymentCommand = new AddPaymentCommand(idOfPersonToAddPayment, amountToAdd);
 
-        // Assuming ALICE's initial payment is $0.00
-        double expectedNewPaymentAmount = ALICE.getPayment().getAmount() + amountToAdd;
-        String expectedMessage = String.format(AddPaymentCommand.MESSAGE_SUCCESS, idOfPersonToAddPayment, expectedNewPaymentAmount);
+        double expectedNewPaymentAmount = initialPaymentAmount.getAmount() + amountToAdd;
+        String expectedMessage = String.format(AddPaymentCommand.MESSAGE_SUCCESS,
+                idOfPersonToAddPayment, expectedNewPaymentAmount);
 
         CommandResult commandResult = addPaymentCommand.execute(model);
 
         assertEquals(expectedMessage, commandResult.getFeedbackToUser());
-        // Verify that ALICE's payment amount has been updated correctly in the model
-        assertEquals(expectedNewPaymentAmount, model.getPersonByUniqueId(idOfPersonToAddPayment.toString()).getPayment().getAmount());
+        assertEquals(expectedNewPaymentAmount,
+                model.getPersonByUniqueId(idOfPersonToAddPayment.toString()).getPayment().getAmount());
     }
 
     @Test
@@ -46,30 +45,31 @@ public class AddPaymentCommandTest {
         Id invalidId = new Id("nonExistentId");
         AddPaymentCommand addPaymentCommand = new AddPaymentCommand(invalidId, 100.0);
 
-        assertThrows(CommandException.class, Messages.MESSAGE_PERSON_NOT_FOUND, () -> addPaymentCommand.execute(model));
+        assertThrows(CommandException.class,
+                Messages.MESSAGE_PERSON_NOT_FOUND, () -> addPaymentCommand.execute(model));
     }
 
     @Test
     public void equals() {
-        Id aliceId = ALICE.getUniqueId();
+        Id idOfPerson = new Id("000001");
         double paymentAmount = 100.0;
-        AddPaymentCommand addPaymentToAliceCommand = new AddPaymentCommand(aliceId, paymentAmount);
+        AddPaymentCommand addPaymentToPersonCommand = new AddPaymentCommand(idOfPerson, paymentAmount);
 
         // same object -> returns true
-        assertEquals(addPaymentToAliceCommand, addPaymentToAliceCommand);
+        assertEquals(addPaymentToPersonCommand, addPaymentToPersonCommand);
 
         // same values -> returns true
-        AddPaymentCommand addPaymentToAliceCommandCopy = new AddPaymentCommand(aliceId, paymentAmount);
-        assertEquals(addPaymentToAliceCommand, addPaymentToAliceCommandCopy);
+        AddPaymentCommand addPaymentToPersonCommandCopy = new AddPaymentCommand(idOfPerson, paymentAmount);
+        assertEquals(addPaymentToPersonCommand, addPaymentToPersonCommandCopy);
 
         // different types -> returns false
-        assertFalse(addPaymentToAliceCommand.equals(1));
+        assertFalse(addPaymentToPersonCommand.equals(1));
 
         // null -> returns false
-        assertFalse(addPaymentToAliceCommand.equals(null));
+        assertFalse(addPaymentToPersonCommand.equals(null));
 
         // different payment amount -> returns false
-        AddPaymentCommand addDifferentPaymentToAliceCommand = new AddPaymentCommand(aliceId, 200.0);
-        assertFalse(addPaymentToAliceCommand.equals(addDifferentPaymentToAliceCommand));
+        AddPaymentCommand addDifferentPaymentToPersonCommand = new AddPaymentCommand(idOfPerson, 200.0);
+        assertFalse(addPaymentToPersonCommand.equals(addDifferentPaymentToPersonCommand));
     }
 }

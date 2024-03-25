@@ -14,8 +14,8 @@ import seedu.address.model.person.Id;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Payment;
 
-public class MarkPaymentAsPaidCommand extends Command {
-    public static final String COMMAND_WORD = "markpaid";
+public class MarkPaymentCommand extends Command {
+    public static final String COMMAND_WORD = "markpayment";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Marks a specified amount as paid for a person's payment. "
             + "Parameters: "
@@ -29,7 +29,7 @@ public class MarkPaymentAsPaidCommand extends Command {
     private final Id uniqueId;
     private final double amount;
 
-    public MarkPaymentAsPaidCommand(Id uniqueId, double amount) {
+    public MarkPaymentCommand(Id uniqueId, double amount) {
         requireNonNull(uniqueId);
         this.uniqueId = uniqueId;
         this.amount = amount;
@@ -45,7 +45,9 @@ public class MarkPaymentAsPaidCommand extends Command {
         }
 
         Payment newPayment = new Payment(Math.max(0, personToUpdate.getPayment().getAmount() - amount));
-        Person updatedPerson = new Person(personToUpdate.getName(), personToUpdate.getPhone(), personToUpdate.getEmail(), personToUpdate.getAddress(), personToUpdate.getTags(), personToUpdate.getSubject(), personToUpdate.getUniqueId(), newPayment);
+        Person updatedPerson = new Person(personToUpdate.getName(), personToUpdate.getPhone(),
+                personToUpdate.getEmail(), personToUpdate.getAddress(), personToUpdate.getTags(),
+                personToUpdate.getSubject(), personToUpdate.getUniqueId(), newPayment);
 
         model.setPerson(personToUpdate, updatedPerson);
         return new CommandResult(String.format(MESSAGE_SUCCESS, uniqueId, amount));
@@ -57,11 +59,11 @@ public class MarkPaymentAsPaidCommand extends Command {
             return true;
         }
 
-        if (!(other instanceof MarkPaymentAsPaidCommand)) {
+        if (!(other instanceof MarkPaymentCommand)) {
             return false;
         }
 
-        MarkPaymentAsPaidCommand otherCommand = (MarkPaymentAsPaidCommand) other;
+        MarkPaymentCommand otherCommand = (MarkPaymentCommand) other;
         return uniqueId.equals(otherCommand.uniqueId)
                 && Double.compare(amount, otherCommand.amount) == 0;
     }

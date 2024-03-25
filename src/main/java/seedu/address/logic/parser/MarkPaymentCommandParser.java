@@ -7,26 +7,26 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PAYMENT;
 
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.MarkPaymentAsPaidCommand;
+import seedu.address.logic.commands.MarkPaymentCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Id;
 
-public class MarkPaymentAsPaidCommandParser implements Parser<MarkPaymentAsPaidCommand> {
+public class MarkPaymentCommandParser implements Parser<MarkPaymentCommand> {
 
     @Override
-    public MarkPaymentAsPaidCommand parse(String args) throws ParseException {
+    public MarkPaymentCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_ID, PREFIX_PAYMENT);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_ID, PREFIX_PAYMENT)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkPaymentAsPaidCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkPaymentCommand.MESSAGE_USAGE));
         }
 
         Id id = ParserUtil.parseId(argMultimap.getValue(PREFIX_ID).get());
         double amount = ParserUtil.parsePayment(argMultimap.getValue(PREFIX_PAYMENT).get());
 
-        return new MarkPaymentAsPaidCommand(id, amount);
+        return new MarkPaymentCommand(id, amount);
     }
 
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {

@@ -1,20 +1,18 @@
 package seedu.address.logic.commands;
 
-import seedu.address.logic.commands.exceptions.CommandException;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.Messages;
-
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.Id;
-
+import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
+
 
 public class ResetPaymentsCommandTest {
 
@@ -34,7 +32,8 @@ public class ResetPaymentsCommandTest {
         CommandResult commandResult = resetPaymentsCommand.execute(model);
 
         assertEquals(expectedMessage, commandResult.getFeedbackToUser());
-        assertEquals(expectedNewPaymentAmount, model.getPersonByUniqueId(idOfPerson.toString()).getPayment().getAmount());
+        assertEquals(expectedNewPaymentAmount,
+                model.getPersonByUniqueId(idOfPerson.toString()).getPayment().getAmount());
     }
 
     @Test
@@ -42,6 +41,7 @@ public class ResetPaymentsCommandTest {
         Id nonExistentId = new Id("nonExistentId");
         ResetPaymentsCommand resetPaymentsCommand = new ResetPaymentsCommand(nonExistentId);
 
-        assertThrows(CommandException.class, Messages.MESSAGE_PERSON_NOT_FOUND, () -> resetPaymentsCommand.execute(model));
+        assertThrows(CommandException.class,
+                Messages.MESSAGE_PERSON_NOT_FOUND, () -> resetPaymentsCommand.execute(model));
     }
 }
