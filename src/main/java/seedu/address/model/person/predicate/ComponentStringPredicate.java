@@ -1,9 +1,8 @@
-package seedu.address.model.person.personpredicate;
+package seedu.address.model.person.predicate;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Arrays;
-import java.util.function.Predicate;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -11,17 +10,10 @@ import java.util.stream.Stream;
 import seedu.address.model.person.Person;
 
 /**
- * A predicate to filter a specific component of a Person class.
- * <p>
- *     The predicate matches when any condition is true. In the case of singular values,
- *     this means that the predicate has to match. However, with aggregate values such as tags, if
- *     only one value matches that counts as a success.
- * </p>
- * <p>
- *     The matching is case insensitive.
- * </p>
+ * A predicate to filter a specific component of a Person class that can be treated like a string.
+ * The matching is case-insensitive.
  */
-public abstract class ComponentPredicate implements Predicate<Person> {
+public abstract class ComponentStringPredicate implements ComponentPredicate {
     private final String input;
     private final Component component;
 
@@ -41,7 +33,7 @@ public abstract class ComponentPredicate implements Predicate<Person> {
      * @param input The input to match with.
      * @param component The component to match on.
      */
-    public ComponentPredicate(String input, Component component) {
+    public ComponentStringPredicate(String input, Component component) {
         requireAllNonNull(input, component);
 
         this.input = input.toLowerCase();
@@ -92,7 +84,7 @@ public abstract class ComponentPredicate implements Predicate<Person> {
     /**
      * A predicate that checks whether the component in Person is exactly equal to given input.
      */
-    public abstract static class Is extends ComponentPredicate {
+    public abstract static class Is extends ComponentStringPredicate {
         public Is(String input, Component component) {
             super(input, component);
         }
@@ -107,7 +99,7 @@ public abstract class ComponentPredicate implements Predicate<Person> {
     /**
      * A predicate that checks whether the component in Person is not equal to the given input.
      */
-    public abstract static class Isnt extends ComponentPredicate {
+    public abstract static class Isnt extends ComponentStringPredicate {
         public Isnt(String input, Component component) {
             super(input, component);
         }
@@ -123,7 +115,7 @@ public abstract class ComponentPredicate implements Predicate<Person> {
      * A predicate that checks whether the component contains the given input.
      * This is basically the same as a substring match.
      */
-    public abstract static class Has extends ComponentPredicate {
+    public abstract static class Has extends ComponentStringPredicate {
         public Has(String input, Component component) {
             super(input, component);
         }
@@ -139,7 +131,7 @@ public abstract class ComponentPredicate implements Predicate<Person> {
     /**
      * A predicate that checks whether the component doesn't contain the given input.
      */
-    public abstract static class Hasnt extends ComponentPredicate {
+    public abstract static class Hasnt extends ComponentStringPredicate {
         public Hasnt(String input, Component component) {
             super(input, component);
         }
@@ -154,7 +146,7 @@ public abstract class ComponentPredicate implements Predicate<Person> {
     /**
      * A predicate that checks whether the component starts with the given input.
      */
-    public abstract static class StartsWith extends ComponentPredicate {
+    public abstract static class StartsWith extends ComponentStringPredicate {
         public StartsWith(String input, Component component) {
             super(input, component);
         }
@@ -169,7 +161,7 @@ public abstract class ComponentPredicate implements Predicate<Person> {
     /**
      * A predicate that checks whether the component ends with the given input.
      */
-    public abstract static class EndsWith extends ComponentPredicate {
+    public abstract static class EndsWith extends ComponentStringPredicate {
         public EndsWith(String input, Component component) {
             super(input, component);
         }
@@ -184,7 +176,7 @@ public abstract class ComponentPredicate implements Predicate<Person> {
     /**
      * A predicate that checks whether the component is non-empty.
      */
-    public abstract static class Some extends ComponentPredicate {
+    public abstract static class Some extends ComponentStringPredicate {
         public Some(String input, Component component) {
             super(input, component);
         }
@@ -198,7 +190,7 @@ public abstract class ComponentPredicate implements Predicate<Person> {
     /**
      * A predicate that checks whether the component is empty.
      */
-    public abstract static class None extends ComponentPredicate {
+    public abstract static class None extends ComponentStringPredicate {
         public None(String input, Component component) {
             super(input, component);
         }
@@ -213,7 +205,7 @@ public abstract class ComponentPredicate implements Predicate<Person> {
      * A predicate that checks whether the given component contains any of the given words.
      * This predicate splits its input into different words by whitespace and checks all the words individually.
      */
-    public abstract static class Word extends ComponentPredicate {
+    public abstract static class Word extends ComponentStringPredicate {
         public Word(String input, Component component) {
             super(input, component);
         }
@@ -229,7 +221,7 @@ public abstract class ComponentPredicate implements Predicate<Person> {
      * A predicate that checks whether the given component doesn't contain any of the given words.
      * This predicate splits its input into different words by whitespace and checks all the words individually.
      */
-    public abstract static class NoWord extends ComponentPredicate {
+    public abstract static class NoWord extends ComponentStringPredicate {
         public NoWord(String input, Component component) {
             super(input, component);
         }
