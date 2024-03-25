@@ -100,7 +100,7 @@ ___
 
 ### Adding a new client: `add`
 
-This command adds a new client to your client list.
+_This command adds a new client to your client list._
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS k/NEXTOFKIN d/DESCRIPTION [t/TAG]…`
 
@@ -131,7 +131,7 @@ Format: `list`
 
 ### Updating a client : `update`
 
-This command helps update existing client's information in the client list in the event that something changes.
+_This command helps update existing client's information in the client list in the event that something changes._
 
 Format: `update u/existing user [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DESCRIPTION] [k/NEXTOFKIN] [t/TAG]…`
 
