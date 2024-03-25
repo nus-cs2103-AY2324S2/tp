@@ -137,12 +137,11 @@ Examples:
 
 * `/edit-staff ; name : Thomas ; field : { address : Poochie Street 25 ; employment : full-time }`
 
-  The above command edits the address of **_Thomas_** to **_Poochie Street 25_**.
-  The above command also edits the employment of **_Thomas_**, which **must** be a **_Pooch Staff_**, to **_full-time_**.
+  The above command edits the **address and employment** field of **_Thomas_** to **_Poochie Street 25_** and **_full-time_** respectively. 
 
-### Deleting a person : `delete`
+### Deleting a contact : `delete`
 
-Deletes the specified person from the Pooch Planner.
+Deletes the specified contact from the Pooch Planner.
 
 Format: `/delete ; name : [name]`
 
@@ -159,38 +158,24 @@ Examples:
    The above command deletes the contact with name **_Moochie_**, provided **_Moochie_** exists as a name of a contact in Pooch Contact Book
 
 
-### Searching a contact : `search`
+### Searching a person : `search`
 
 Searches through the address book using specified fields and keyword.
 
 Formats:
-```
-/search ; name : [full/partial name]
-/search ; phone : [full/partial phone]
-/search ; address : [full/partial address]
-/search ; email : [full/partial email]
-/search ; product : [full/partial product name]
-/search ; employment : [employment]
-```
 
-* Searches the person by specifying field (i.e. `name`, `phone`, `address`, etc.), followed by the partial or full keyword
-* Current feature does not allow users to search for `commission`, `salary`, and `price`
-* All fields are **case-insensitive**.
-For instance, to check whether a name is unique (case-insensitive)
-  * Eg : `Janna` and `janna` are both equivalent
-* Spaces within each input are considered
-  * Eg: `Tom Tan Er` is different from `Tom Taner`
+- `/search ; [field] : [full/partial query]`
+
+* Searches contact(s) by specifying a valid field (i.e. `name`, `phone`, `email`, `address`, `salary`, `employment`, `price`, `product`, `skill`, `commission`, `tag` or `note`), followed by the partial or full query.
+* All fields and queries are **case-insensitive**.
+  * Eg : `Janna` and `janna` are both equivalent.
+* Spaces within each input are counted as part of the query input.
+  * Eg: `Tom Tan Er` is different from `Tom Taner`.
 
 
 Examples:
-```
-/search ; name : Poochie
-/search ; phone : 98765432
-/search ; address : Poochie Street 21
-/search ; email : ilovecatstoo@gmail.com
-/search ; address : Pooch
-/search ; description : Food
-```
+- `/search ; name : Poochie`
+- `/search ; phone : 98765432`
 
 ### Rating a Contact : `rate`
 
@@ -226,6 +211,26 @@ Examples:
   The above command adds the note "meet poochie tonight to get kibble" to 
   the contact with name **_Poochie_**, provided **_Poochie_** exists as a name of a contact in Pooch Contact Book
 
+### Pinning a contact : `pin`
+
+Pins the specified contact on Pooch Planner so that the contact will consistently appear at the top on the contact list.
+
+Format: `/pin ; name : [name]`
+
+* Pins the contact with the specified `name`.
+* Note that the specified contact must first exist in Pooch Contact Book.
+* The name is a compulsory field that is case-insensitive but space-sensitive.
+
+Examples:
+* `/pin ; name : Poochie`
+
+   The above command pins the contact with name **_Poochie_**, provided **_Poochie_** exists as a name of a contact in Pooch Contact Book.
+  
+* `/pin ; name : Moochie`
+
+   The above command pin the contact with name **_Moochie_**, provided **_Moochie_** exists as a name of a contact in Pooch Contact Book.
+
+
 ### Undo a command : `undo`
 
 Undo a previous command which made a change to Pooch Planner history.
@@ -247,6 +252,24 @@ Format: `/redo`
 * This command unable to be executed when there is no next state.
 * This command only able to be executed when at least one undo command is executed.
 
+### Sorting the address book : `sort`
+
+Sorts the address book by field in ascending order
+
+Formats:
+
+- `/sort ; [field]`
+
+* Sorts the contacts in the address book in ascending lexicographical order (e.g. Alice, Bob, Charlie etc.)
+* Sorts by specifying a valid field (i.e. `name`, `phone`, `email`, `address`, `salary`, `employment`, `price`, `product`, `skill`, `commission`, `tag` or `note`)
+* All fields are **case-insensitive**
+    * Eg : `Name` and `name` are both equivalent
+
+
+Examples:
+
+- `/sort ; name`
+- `/sort ; phone`
 
 ### Exiting the program : `exit`
 
@@ -266,6 +289,7 @@ AddressBook data are saved automatically as a JSON file `[JAR file location]/dat
 If your changes to the data file makes its format invalid, PoochPlanner will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
 Furthermore, certain edits can cause the PoochPlanner to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
+
 
 ### Archiving data files `[coming in v2.0]`
 
