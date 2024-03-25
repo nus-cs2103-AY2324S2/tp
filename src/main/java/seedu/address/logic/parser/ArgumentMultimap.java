@@ -82,10 +82,4 @@ public class ArgumentMultimap {
     public boolean contains(Prefix prefix) {
         return argMultimap.containsKey(prefix);
     }
-
-    /**
-     * Checks if any number of the prefixes specified is present in the ArgumentMultimap object
-     * @param prefixes to check
-     * @return true if prefix/s present and false otherwise
-     */
 }
