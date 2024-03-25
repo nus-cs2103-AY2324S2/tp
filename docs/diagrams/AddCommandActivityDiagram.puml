@@ -1,0 +1,16 @@
+@startuml
+skin rose
+skinparam ActivityFontSize 15
+skinparam ArrowFontSize 12
+start
+:User sends an 'add' command;
+:AddCommandParser generates a Person object;
+if () then ([person already exists])
+    :Throw CommandException;
+stop
+else
+:Person is added to the address book;
+stop
+endif
+
+@enduml

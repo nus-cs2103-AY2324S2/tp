@@ -12,9 +12,9 @@ import java.util.logging.Logger;
 
 import com.google.zxing.WriterException;
 
-import seedu.address.QrCodeGenerator;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.logic.QrCodeGenerator;
 import seedu.address.model.person.exceptions.AttributeNotFoundException;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.TagSet;
@@ -25,25 +25,11 @@ import seedu.address.model.tag.TagSet;
  * immutable.
  */
 public class Person {
-    /**
-     * Attributes of a Person
-     */
-    public enum PersonAttribute {
-        NAME,
-        PHONE,
-        EMAIL,
-        ADDRESS,
-        TAGS,
-        NOTE
-    }
-
     private static final Logger logger = LogsCenter.getLogger(Person.class);
-
     // Identity fields
     private final Name name;
     private final Phone phone;
     private final Email email;
-
     // Data fields
     private final Address address;
     private final TagSet tags;
@@ -68,7 +54,6 @@ public class Person {
      * Get the valued of the specified attribute.
      *
      * @param attribute Attribute to retrieve
-     *
      * @return Value of the specified attribute
      */
     public Attribute<? extends Object> getAttribute(PersonAttribute attribute) {
@@ -214,5 +199,46 @@ public class Person {
             logger.warning("Unable to delete QR code for " + this);
             return false;
         }
+    }
+
+    /**
+     * Generates a formatted message for the Person.
+     * Only fields with values are included.
+     */
+    public String getFormattedMessage() {
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("Name: ").append(name);
+        sb.append(" | Phone: ").append(phone);
+
+        if (!email.getValue().isEmpty()) {
+            sb.append(" | Email: ").append(email);
+        }
+
+        if (!address.getValue().isEmpty()) {
+            sb.append("\nAddress: ").append(address);
+        }
+
+        if (!note.getValue().isEmpty()) {
+            sb.append(" | Note: ").append(note);
+        }
+
+        if (!getTags().isEmpty()) {
+            sb.append(" | Tags: ").append(tags);
+        }
+
+        return sb.toString();
+    }
+
+    /**
+     * Attributes of a Person
+     */
+    public enum PersonAttribute {
+        NAME,
+        PHONE,
+        EMAIL,
+        ADDRESS,
+        TAGS,
+        NOTE
     }
 }
