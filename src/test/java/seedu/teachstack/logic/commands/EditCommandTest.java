@@ -3,12 +3,24 @@ package seedu.teachstack.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.teachstack.logic.commands.CommandTestUtil.*;
+import static seedu.teachstack.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.teachstack.logic.commands.CommandTestUtil.DESC_AMY;
+import static seedu.teachstack.logic.commands.CommandTestUtil.DESC_BOB;
+import static seedu.teachstack.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.teachstack.logic.commands.CommandTestUtil.VALID_GRADE_BOB;
+import static seedu.teachstack.logic.commands.CommandTestUtil.VALID_GROUP_GROUP1;
+import static seedu.teachstack.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.teachstack.logic.commands.CommandTestUtil.VALID_STUDENTID_BOB;
+import static seedu.teachstack.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.teachstack.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.teachstack.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.teachstack.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.teachstack.testutil.TypicalStudentIds.ID_FIRST_PERSON;
 import static seedu.teachstack.testutil.TypicalStudentIds.ID_SECOND_PERSON;
+import static seedu.teachstack.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.teachstack.testutil.TypicalPersons.getTypicalAddressBook;
+
+import seedu.teachstack.testutil.EditPersonDescriptorBuilder;
+import seedu.teachstack.testutil.PersonBuilder;
 
 import org.junit.jupiter.api.Test;
 
@@ -21,8 +33,7 @@ import seedu.teachstack.model.ModelManager;
 import seedu.teachstack.model.UserPrefs;
 import seedu.teachstack.model.person.Person;
 import seedu.teachstack.model.person.StudentId;
-import seedu.teachstack.testutil.EditPersonDescriptorBuilder;
-import seedu.teachstack.testutil.PersonBuilder;
+
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditCommand.

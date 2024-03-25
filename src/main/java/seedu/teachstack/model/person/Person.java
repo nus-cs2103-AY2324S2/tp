@@ -119,6 +119,10 @@ public class Person {
                 .toString();
     }
 
+    /**
+     * @param otherPerson to be compared
+     * @return if both have same email
+     */
     public boolean isSameEmail(Person otherPerson) {
         if (otherPerson == null) {
             return false;

@@ -36,7 +36,7 @@ public class PersonTest {
 
         // same student id, all other attributes different -> returns true
         Person editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB)
-                .withEmail(VALID_EMAIL_BOB).withGrade(VALID_GRADE_BOB).withGroups(VALID_GROUP_GROUP1).build();
+                .withGrade(VALID_GRADE_BOB).withGroups(VALID_GROUP_GROUP1).build();
 
         assertTrue(ALICE.isSamePerson(editedAlice));
 
