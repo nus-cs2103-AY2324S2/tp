@@ -246,13 +246,30 @@ _{Explain here how the data archiving feature will be implemented}_
 
 #### Feature Proposal
 
-This feature is an extension of the 'Stars' feature. When a TA gives a student stars, they can also leave a comment to explain why the student received them. Each instance of a TA giving stars can be stored by student.
+This feature is an extension of the 'Stars' feature. When a TA gives a student stars, they can also leave a comment to explain why the Student received them. Each instance of a user giving stars (with optional comments) can be stored by Student.
 
 ![Proposed Class diagram](images\StarCommentModelClassDiagram.png).
 
+#### Command Format
+
+Users will be able to add comments to a student by using the `star` command:
+
+Usage: `star INDEX s/STARS [c/COMMENT]`
+
+the `edit` command will also be extended to allow users to edit the comments.
+
+Usage: `edit ...c/INDEX INDEX2 COMMENT...`
+
+The command will edit the comment at the student with index `INDEX` with comment index `INDEX2`. 
+
 #### UI Modifications
 
-Users will be able to view the comments they have left for each student in a separate window. This components of the window will track changes to the student comments in the model.
+**Alternative 1**
+* Users will be able to view the comments they have left for each student in a separate **window**. The components of the window will track changes to the student comments in the model.
+
+**Alternative 2**
+* Users will be able to view the comments they have left for each student in a separate display in the same window. 
+
 
 ![Proposed UI](images\StarCommentUiClassDiagram.png).
 
