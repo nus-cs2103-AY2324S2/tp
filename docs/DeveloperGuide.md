@@ -41,8 +41,8 @@ Given below is a quick overview of main components and how they interact with ea
 **Main components of the architecture**
 
 **`Main`** (consisting of
-classes [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java)
-and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java)) is
+classes [`Main`](https://github.com/AY2324S2-CS2103T-T16-2/tp/tree/master/src/main/java/seedu/address/Main.java)
+and [`MainApp`](https://github.com/AY2324S2-CS2103T-T16-2/tp/tree/master/src/main/java/seedu/address/MainApp.java)) is
 in charge of the app launch and shut down.
 
 * At app launch, it initializes the other components in the correct sequence, and connects them up with each other.
@@ -82,7 +82,7 @@ The sections below give more details of each component.
 ### UI component
 
 The **API** of this component is specified
-in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+in [`Ui.java`](https://github.com/AY2324S2-CS2103T-T16-2/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
@@ -93,9 +93,9 @@ visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that
 are in the `src/main/resources/view` folder. For example, the layout of
-the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java)
+the [`MainWindow`](https://github.com/AY2324S2-CS2103T-T16-2/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java)
 is specified
-in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+in [`MainWindow.fxml`](https://github.com/AY2324S2-CS2103T-T16-2/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -107,7 +107,7 @@ The `UI` component,
 ### Logic component
 
 **API
-** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+** : [`Logic.java`](https://github.com/AY2324S2-CS2103T-T16-2/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -148,7 +148,7 @@ How the parsing works:
 ### Model component
 
 **API
-** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+** : [`Model.java`](https://github.com/AY2324S2-CS2103T-T16-2/tp/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
@@ -173,7 +173,7 @@ The `Model` component,
 ### Storage component
 
 **API
-** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+** : [`Storage.java`](https://github.com/AY2324S2-CS2103T-T16-2/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -198,9 +198,9 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Filter feature
 
-Current implementation of filter command only filters tags, and has a similar implementation logic-wise to the find 
+Current implementation of filter command only filters tags, and has a similar implementation logic-wise to the find
 command. This arises due to the use of ObservableList to produce a view of the model containing only the persons that
-pass some predicate. The below class diagram represents the current relationship between FindCommand, FilterCommand, 
+pass some predicate. The below class diagram represents the current relationship between FindCommand, FilterCommand,
 Predicate, PersonHasTagPredicate and NameContainsKeywordsPredicate:
 
 <img src="images/FilterClassDiagram.png" width="550" />
@@ -209,6 +209,7 @@ Future implementation of filter commands can abstract out the similarities betwe
 Filter as an Interface, making the code more extensible:
 
 [insert next UML here]
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
