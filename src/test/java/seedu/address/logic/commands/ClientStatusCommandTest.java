@@ -98,7 +98,7 @@ public class ClientStatusCommandTest {
                 new ClientStatusCommand(INDEX_FIRST_PERSON, CLIENT_STATUS_RESET_STUB);
 
         String expectedMessage =
-                String.format(ClientStatusCommand.MESSAGE_STATUS_DOWN_SUCCESS, Messages.format(editedPerson));
+                String.format(ClientStatusCommand.MESSAGE_STATUS_RESET_SUCCESS, Messages.format(editedPerson));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(firstPerson, editedPerson);

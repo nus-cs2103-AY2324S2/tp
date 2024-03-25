@@ -27,9 +27,9 @@ public class ClientStatusCommand extends Command {
 
     public static final String MESSAGE_STATUS_UP_SUCCESS = "Upgraded status of Client: %1$s";
     public static final String MESSAGE_STATUS_DOWN_SUCCESS = "Downgraded status of Client: %1$s";
+    public static final String MESSAGE_STATUS_RESET_SUCCESS = "Reset status of Client: %1$s";
     public static final String MESSAGE_PERSON_NOT_CLIENT_FAILURE =
             "Invalid person. Only clients can be assigned a policy";
-
     public static final String MESSAGE_PERSON_INVALID_DIRECTION_FAILURE =
             "Invalid direction. Direction must be either 'up' to upgrade the status or 'down' to downgrade the status";
 
@@ -97,7 +97,22 @@ public class ClientStatusCommand extends Command {
      * {@code personToEdit}.
      */
     private String generateSuccessMessage(Person personToEdit) {
-        String message = direction.equals(CHANGE_STATUS_UP) ? MESSAGE_STATUS_UP_SUCCESS : MESSAGE_STATUS_DOWN_SUCCESS;
+        String message;
+
+        switch (direction) {
+        case CHANGE_STATUS_UP:
+            message = MESSAGE_STATUS_UP_SUCCESS;
+            break;
+        case CHANGE_STATUS_DOWN:
+            message = MESSAGE_STATUS_DOWN_SUCCESS;
+            break;
+        case CHANGE_STATUS_RESET:
+            message = MESSAGE_STATUS_RESET_SUCCESS;
+            break;
+        default:
+            message = MESSAGE_PERSON_INVALID_DIRECTION_FAILURE;
+        }
+
         return String.format(message, Messages.format(personToEdit));
     }
 
