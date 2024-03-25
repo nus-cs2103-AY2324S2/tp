@@ -160,14 +160,14 @@ public class Person {
         if (getPolicies().isEmpty()) {
             builder.append("None");
         } else {
-            getPolicies().forEach(policy -> builder.append("[").append(policy.policyName)
-                    // Include additional policy details here, if applicable
-                    .append(", Number: ").append(policy.policyNumber) // Example for additional details
+            getPolicies().forEach(policy -> builder.append("[").append(" Policy Name: ")
+                    .append(policy.policyName)
+                    .append(", Number: ").append(policy.policyNumber)
                     .append(", Premium Term: ").append(policy.premiumTerm)
                     .append(", Premium: ").append(policy.premium)
                     .append(", Benefit: ").append(policy.benefit)
                     .append("] "));
         }
-        return builder.toString().trim(); // Trim to remove any trailing spaces
+        return builder.toString().trim(); // Trim to remove any trailing space
     }
 }

@@ -46,14 +46,15 @@ public class Policy {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(policyName)
-                .append(" Phone: ")
+        builder.append(" Policy Name:")
+                .append(policyName)
+                .append(" Policy ID: ")
                 .append(policyNumber)
-                .append(" Email: ")
+                .append(" Premium Term: ")
                 .append(premiumTerm)
-                .append(" Address: ")
+                .append(" Premium: ")
                 .append(premium)
-                .append(" Remark: ")
+                .append(" Benefit: ")
                 .append(benefit);
         return builder.toString();
     }

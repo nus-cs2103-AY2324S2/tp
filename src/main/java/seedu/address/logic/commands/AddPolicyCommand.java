@@ -23,20 +23,20 @@ import seedu.address.model.person.Policy;
  */
 public class AddPolicyCommand extends Command {
     private final Logger logger = LogsCenter.getLogger(AddPolicyCommand.class);
+
     public static final String COMMAND_WORD = "addPolicy";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds a policy to the client identified "
             + "by the index number used in the last person listing\n"
-            + "and the policy name. "
+            + "and relevant fields. "
             + "Parameters: INDEX (must be a positive integer) "
-            + "pn/ [POLICY NAME]\n"
+            + "pol/[POLICY NAME] polnum/[POLICY ID] (POLICY ID must be at least 3 digits)\n"
+            + "pterm/[PREMIUM_TERM] + prem/[POLICY PREMIUM] b/[BENEFIT]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + "pn/ SuperSaver";
+            + "pol/SuperSaver polnum/393 pterm/3months prem/3000 b/100000";
 
-    public static final String MESSAGE_ARGUMENTS = "Index %1$d, Policy Name: %2$s";
     public static final String MESSAGE_ADD_POLICY_SUCCESS = "Added policy to Person: %1$s";
-    public static final String MESSAGE_DELETE_POLICY_SUCCESS = "Removed policy from Person: %1$s";
 
     private final Index index;
     private final String policyName;
@@ -51,7 +51,7 @@ public class AddPolicyCommand extends Command {
      * @param policyName The name of the policy to be added.
      */
     public AddPolicyCommand(Index index, String policyName, String policyNumber, String premiumTerm, String premium, String benefit) {
-        requireAllNonNull(index, policyName);
+        requireAllNonNull(index, policyName, policyNumber, premiumTerm, premium, benefit);
         this.index = index;
         this.policyName = policyName;
         this.policyNumber = policyNumber;
@@ -84,7 +84,6 @@ public class AddPolicyCommand extends Command {
     }
 
     private String generateSuccessMessage(Person editedPerson) {
-        String message = !editedPerson.getPolicies().isEmpty() ? MESSAGE_ADD_POLICY_SUCCESS : MESSAGE_DELETE_POLICY_SUCCESS;
-        return String.format(message, editedPerson);
+        return String.format(MESSAGE_ADD_POLICY_SUCCESS, editedPerson);
     }
 }
