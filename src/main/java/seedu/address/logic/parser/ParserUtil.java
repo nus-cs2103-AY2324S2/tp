@@ -164,6 +164,12 @@ public class ParserUtil {
         return new Week(weekIndex);
     }
 
+    /**
+     * Parses a {@code String indices} into a {@code List<Index>}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code indices} is invalid.
+     */
     public static List<Index> parseIndices(String indices) throws ParseException {
         requireNonNull(indices);
         String[] trimmedIndices = Arrays.stream(indices.trim().split(","))

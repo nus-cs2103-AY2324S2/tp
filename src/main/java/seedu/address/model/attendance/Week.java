@@ -1,14 +1,22 @@
 package seedu.address.model.attendance;
 
-import seedu.address.commons.core.index.Index;
-
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import seedu.address.commons.core.index.Index;
+
+/**
+ * Represents a single week in a 13 Week Semester in TA Toolkit.
+ * Each week is identified by a unique index, between 1 and 13 (inclusive).
+ */
 public class Week {
     public static final String MESSAGE_CONSTRAINTS = "Week number should be between 1 and 13 (inclusive)";
 
     private final Index weekIndex;
 
+    /**
+     * Constructs a {@code Week}.
+     * @param weekIndex A valid week index.
+     */
     public Week(Index weekIndex) { // The parsing into index is done in the parser
         checkArgument(isValidWeek(weekIndex), MESSAGE_CONSTRAINTS);
         this.weekIndex = weekIndex;

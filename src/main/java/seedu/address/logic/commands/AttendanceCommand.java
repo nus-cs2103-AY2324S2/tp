@@ -14,8 +14,8 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
 import seedu.address.model.attendance.Week;
+import seedu.address.model.person.Person;
 
 /**
  * Adds a person to the address book.
@@ -68,9 +68,6 @@ public class AttendanceCommand extends Command {
                 .collect(Collectors.toList());
 
         for (Person student : absentStudents) {
-//            if (student.isUnmarked(week)) {
-//                throw new CommandException(String.format(MESSAGE_ALREADY_MARKED, week));
-//            }
             student.markAbsent(week);
         }
 

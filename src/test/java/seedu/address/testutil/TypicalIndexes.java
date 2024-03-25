@@ -1,8 +1,8 @@
 package seedu.address.testutil;
 
-import seedu.address.commons.core.index.Index;
-
 import java.util.List;
+
+import seedu.address.commons.core.index.Index;
 
 /**
  * A utility class containing a list of {@code Index} objects to be used in tests.

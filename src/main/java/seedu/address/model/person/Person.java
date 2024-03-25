@@ -64,9 +64,13 @@ public class Person {
         return github;
     }
 
-    public Attendance getAttendance() { return attendance; }
+    public Attendance getAttendance() {
+        return attendance;
+    }
 
-    public boolean isAbsent(Week week) { return attendance.isAbsent(week); }
+    public boolean isAbsent(Week week) {
+        return attendance.isAbsent(week);
+    }
 
     public void markPresent(Week week) {
         attendance.changeAttendanceStatus(week, Attendance.Status.PRESENT);

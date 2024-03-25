@@ -1,7 +1,5 @@
 package seedu.address.model.attendance;
 
-import seedu.address.model.attendance.Week;
-
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -11,15 +9,26 @@ import java.util.stream.IntStream;
 public class Attendance {
     private final Status[] attendanceList;
 
+    /**
+     * An enum that represents the status of a week's attendance.
+     */
     public enum Status {
         PRESENT, ABSENT
     }
 
+    /**
+     * Creates an Attendance object with all weeks unmarked.
+     * By default, all weeks are marked as present since attendance is marked negatively.
+     */
     public Attendance() {
         attendanceList = new Status[13];
         resetAttendance();
     }
 
+    /**
+     * Returns true if the student is absent for the specified week.
+     * @param week The week to check the attendance status of
+     */
     public boolean isAbsent(Week week) {
         return attendanceList[week.getWeekIndex().getZeroBased()].equals(Status.ABSENT);
     }
@@ -33,6 +42,10 @@ public class Attendance {
         attendanceList[week.getWeekIndex().getZeroBased()] = status;
     }
 
+    /**
+     * Resets the attendance of the student to all present.
+     * Attendance is marked negatively, hence all weeks are marked as present by default.
+     */
     public void resetAttendance() {
         for (int i = 0; i < 13; i++) {
             attendanceList[i] = Status.PRESENT;
