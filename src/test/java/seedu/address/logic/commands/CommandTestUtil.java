@@ -69,11 +69,9 @@ public class CommandTestUtil {
 
     static {
         DESC_AMY = new EditCourseMateDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY)
-                .withSkills(VALID_SKILL_CPP).build();
+                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).build();
         DESC_BOB = new EditCourseMateDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withSkills(VALID_SKILL_JAVA, VALID_SKILL_CPP).build();
+                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).build();
         DESC_ADDSKILL_JAVA = new AddSkillDescriptorBuilder()
                 .withSkills(VALID_SKILL_JAVA).build();
         DESC_ADDSKILL_CPP_CSHARP = new AddSkillDescriptorBuilder()
