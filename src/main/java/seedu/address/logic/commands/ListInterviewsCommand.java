@@ -1,11 +1,9 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-
-import java.util.List;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_INTERVIEWS;
 
 import seedu.address.model.Model;
-import seedu.address.model.interview.Interview;
 
 /**
  * Lists all persons in the address book to the user.
@@ -19,15 +17,9 @@ public class ListInterviewsCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
+
         requireNonNull(model);
-        List<Interview> interviewList = model.getFilteredInterviewList();
-        System.out.println(interviewList);
-        String result = "";
-        int x = 1;
-        for (Interview i : interviewList) {
-            result = result + "\n" + x + ") " + (i.toString()) + "\n";
-            x++;
-        }
-        return new CommandResult(result);
+        model.updateFilteredInterviewList(PREDICATE_SHOW_ALL_INTERVIEWS);
+        return new CommandResult(MESSAGE_SUCCESS);
     }
 }

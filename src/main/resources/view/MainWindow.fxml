@@ -6,7 +6,7 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
@@ -35,18 +35,30 @@
           </padding>
         </StackPane>
 
-        <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" style="-fx-background-color: #012A4A;" styleClass="pane-with-border" VBox.vgrow="NEVER">
+              <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100.0" minHeight="200.0" minWidth="230.0" prefHeight="200.0" prefWidth="230.0" style="-fx-background-color: #012A4A;" styleClass="pane-with-border" VBox.vgrow="NEVER">
           <padding>
             <Insets bottom="5" left="10" right="10" top="5" />
           </padding>
         </StackPane>
-
-        <VBox fx:id="personList" minWidth="340" prefWidth="340" style="-fx-background-color: #012A4A;" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
-          <padding>
-            <Insets bottom="10" left="10" right="10" top="10" />
-          </padding>
-          <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
-        </VBox>
+            <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="340.0" VBox.vgrow="NEVER">
+               <children>
+      
+              <VBox fx:id="personList" minWidth="340.0" style="-fx-background-color: #012A4A;" styleClass="pane-with-border" HBox.hgrow="NEVER">
+                <padding>
+                  <Insets bottom="10" left="10" right="10" top="10" />
+                </padding>
+                <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="NEVER" />
+              </VBox>
+                  <VBox fx:id="interviewList" minWidth="340.0" prefHeight="22.0" prefWidth="517.0" style="-fx-background-color: #012A4A;" styleClass="pane-with-border" HBox.hgrow="NEVER">
+                     <padding>
+                        <Insets bottom="10" left="10" right="10" top="10" />
+                     </padding>
+                     <children>
+                        <StackPane fx:id="interviewListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
 
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>

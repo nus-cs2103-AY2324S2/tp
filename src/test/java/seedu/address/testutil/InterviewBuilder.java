@@ -21,7 +21,7 @@ import seedu.address.model.tag.Tag;
 /**
  *
  */
-public class InterviewBuilder {
+public class sInterviewBuilder {
     public static final String DEFAULT_DESCRIPTION = "technical interview";
     public static final LocalDate DEFAULT_DATE = LocalDate.of(2024, 01, 01);
     public static final LocalTime DEFAULT_START_TIME = LocalTime.of(10, 00);
