@@ -12,6 +12,7 @@ import static seedu.address.testutil.TypicalAppointments.getTypicalAddressBookWi
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.date.Date;
 import seedu.address.logic.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -39,6 +40,17 @@ public class CancelAppCommandTest {
                 Messages.format(ALICE_APPT));
 
         assertCommandSuccess(cancelAppCommand, model, expectedMessage, model);
+    }
+
+    @Test
+    public void execute_appointmentNotFound_throwsCommandException() {
+        CancelAppCommand cancelAppCommand = new CancelAppCommand(
+                ALICE_APPT.getNric(),
+                new Date("1900-02-02"),
+                ALICE_APPT.getTimePeriod()
+        );
+
+        assertCommandFailure(cancelAppCommand, model, Messages.MESSAGE_APPOINTMENT_NOT_FOUND);
     }
 
     @Test
