@@ -124,7 +124,7 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_showFav() throws Exception {
+    public void parseCommand_showFavourite() throws Exception {
         assertTrue(parser.parseCommand(ShowFavouriteCommand.COMMAND_WORD) instanceof ShowFavouriteCommand);
         assertTrue(parser.parseCommand(ShowFavouriteCommand.COMMAND_WORD + " 3") instanceof ShowFavouriteCommand);
     }

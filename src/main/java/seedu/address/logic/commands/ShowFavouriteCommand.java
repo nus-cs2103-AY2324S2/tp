@@ -21,4 +21,15 @@ public class ShowFavouriteCommand extends Command {
         model.updateFilteredPersonList(PREDICATE_SHOW_FAVOURITES);
         return new CommandResult(MESSAGE_SUCCESS);
     }
+
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        return (other instanceof ShowFavouriteCommand);
+    }
 }
