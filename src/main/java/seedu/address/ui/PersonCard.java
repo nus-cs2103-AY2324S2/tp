@@ -73,7 +73,10 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         note.setText(person.getNote().toString());
-        pin.setText(person.getPin().getIsPinned() ? "📌  Pinned" : "");
+        if (person.getPin().getIsPinned()) {
+            pin.setText("📌   ");
+            pin.setManaged(true);
+        }
         email.setText(person.getEmail().value);
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
