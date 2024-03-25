@@ -37,7 +37,7 @@ public class InterviewBuilder {
     private Set<Tag> tags = new HashSet<>();
 
     private Applicant applicant = new Applicant(applicantName, applicantPhone, applicantEmail, emptyRemark,
-            new ApplicantStatus(ApplicantState.STAGEONE.toString()), tags);
+            new ApplicantStatus(ApplicantState.STAGE_ONE.toString()), tags);
     private Interviewer interviewer = new Interviewer(interviewName,
             interviewerPhone, interviewerEmail, emptyRemark, new InterviewerStatus(InterviewerState.FREE.toString()),
             tags);

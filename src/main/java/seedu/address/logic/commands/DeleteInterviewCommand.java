@@ -41,10 +41,13 @@ public class DeleteInterviewCommand extends Command {
             interview = lastShownList.get(targetInt);
         } catch (IndexOutOfBoundsException e) {
             System.out.println("index wrong");
-            throw new CommandException(Messages.MESSAGE_PERSON_NOT_IN_LIST);
+            throw new CommandException(Messages.MESSAGE_INTERVIEW_NOT_IN_LIST);
         }
 
         model.deleteInterview(interview);
+        interview.getApplicant().revertCurrentStatus(model);
+        interview.getInterviewer().updateCurrentStatusToReflectInterview(model);
+
         return new CommandResult(MESSAGE_DELETE_INTERVIEW_SUCCESS
                 + "\nInformation about delete interview: \n" + Messages.formatInterview(interview));
     }

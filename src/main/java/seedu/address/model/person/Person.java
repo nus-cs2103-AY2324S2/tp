@@ -8,6 +8,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.Model;
 import seedu.address.model.person.enums.Type;
 import seedu.address.model.tag.Tag;
 
@@ -72,7 +73,15 @@ public class Person {
     public void updateCurrentStatus() throws IllegalValueException {
     }
 
-    public String getStatus() {
+    public void updateCurrentStatusToReflectInterview(Model model) {}
+
+    public void updateCurrentStatusToReflectInterview(Model model, Person applicantScheduled) {
+    }
+
+    public void revertCurrentStatus(Model model) {
+    }
+
+    public String getCurrentStatus() {
         return "";
     }
 

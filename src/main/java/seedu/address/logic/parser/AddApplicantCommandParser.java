@@ -45,7 +45,7 @@ public class AddApplicantCommandParser implements Parser<AddApplicantPersonComma
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Remark remark = new Remark(""); // add command does not allow adding remarks straight away
-        ApplicantStatus status = new ApplicantStatus(ApplicantState.STAGEONE.toString());
+        ApplicantStatus status = new ApplicantStatus(ApplicantState.STAGE_ONE.toString());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         Applicant applicant = new Applicant(name, phone, email, remark, status, tagList);
