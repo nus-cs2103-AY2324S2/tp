@@ -173,7 +173,13 @@ Furthermore, certain edits can cause the AddressBook to behave in unexpected way
 </box>
 
 ### Archiving data files `[coming in v2.0]`
+Format: `view`
 
+### Viewing the classes
+
+Format: `Select`
+
+### Select the data
 _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
@@ -202,3 +208,5 @@ Action     | Format, Examples
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List**   | `list`
 **Help**   | `help`
+**View**   | `view`
+**Select**   | `select INDEX`
