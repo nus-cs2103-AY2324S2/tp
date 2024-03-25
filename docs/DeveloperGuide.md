@@ -170,6 +170,33 @@ sequence diagram shows the interactions within `Model` when editing a person.
 
 ![EditSequenceDiagram-Model](images/EditSequenceDiagram-Model.png)
 
+### Meeting Scheduling
+
+`Person` class has an `Optional<Meeting>` field which will hold a `Meeting` object that contains the meeting details if a meeting is scheduled with the person. Otherwise, it will hold an `Optional.empty()` to represent no meeting is scheduled with the person.
+
+The supported meeting details are:
+- Start date time
+- End date time
+- Remarks
+
+#### Schedule Command
+
+The `schedule` command is implemented to allow users to schedule meetings within the application. The command follows a sequence of interactions similar to the other commands. The part to highlight is `ScheduleCommandParser#parse(String)`  creates a `Meeting` object containing the parsed meeting details and it is then passed to `ScheduleCommand`.
+
+The following sequence diagram shows how a schedule meeting operation goes through the `Logic` component:
+![Schedule Meeting Sequence Diagram](images/ScheduleMeetingSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ScheduleCommandParser` and `ScheduleCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline continues till the end of diagram.
+</div>
+
+#### Unschedule Command
+The `unschedule` command is designed to provide users with the capability to remove previously scheduled meetings. The primary action is the removal of the Meeting object from the specified person's record in the Model.
+
+The execution flow of the `unschedule` command is similar to the one shown for `schedule` command (refer to the sequence diagram for `ScheduleCommand` shown above), with the main difference being the `personToEdit` will have their meeting field set to `Optional.empty()`.
+
+#### Design Choice
+The implementation of the `schedule` and `unschedule` command are in this manner to maintain consistency with the existing command structure.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
