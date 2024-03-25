@@ -184,6 +184,11 @@ public class AddInterviewerCommandTest {
         public ObservableList<Interview> getFilteredInterviewList() {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void updateFilteredInterviewList(Predicate<Interview> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
