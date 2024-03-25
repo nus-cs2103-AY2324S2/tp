@@ -19,6 +19,7 @@ public class JsonAdaptedAppointment {
     public final int studentId;
     public final String appointmentDescription;
     private final boolean hasAttended;
+    private final Integer feedbackScore;
 
     /**
      * Constructs a {@code JsonAdaptedAppointment} with the given appointment details.
@@ -28,12 +29,14 @@ public class JsonAdaptedAppointment {
                                   @JsonProperty("appointmentDateTime") LocalDateTime appointmentDateTime,
                                   @JsonProperty("studentId") int studentId,
                                   @JsonProperty("appointmentDescription") String appointmentDescription,
-                                  @JsonProperty("hasAttended") boolean hasAttended) {
+                                  @JsonProperty("hasAttended") boolean hasAttended,
+                                  @JsonProperty("feedbackScore") Integer feedbackScore) {
         this.appointmentId = appointmentId;
         this.appointmentDateTime = appointmentDateTime;
         this.studentId = studentId;
         this.appointmentDescription = appointmentDescription;
         this.hasAttended = hasAttended;
+        this.feedbackScore = feedbackScore;
     }
 
     /**
@@ -45,6 +48,7 @@ public class JsonAdaptedAppointment {
         studentId = source.getStudentId();
         appointmentDescription = source.getAppointmentDescription();
         hasAttended = source.getAttendedStatus();
+        feedbackScore = source.getFeedbackScore();
     }
 
     /**
@@ -65,6 +69,7 @@ public class JsonAdaptedAppointment {
             throw new IllegalValueException("Please only use positive index.");
         }
         // TODO: Dummy value for ID
-        return new Appointment(appointmentId, appointmentDateTime, studentId, appointmentDescription, hasAttended);
+        return new Appointment(appointmentId, appointmentDateTime, studentId, appointmentDescription, hasAttended,
+                               feedbackScore);
     }
 }
