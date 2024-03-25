@@ -1,18 +1,19 @@
 package seedu.address.model.module;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
 import java.time.DayOfWeek;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a ModuleTiming's day in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidDay(String)}
  */
 public class Day {
-    public static final String MESSAGE_CONSTRAINTS = "Day should be in the format like Mon, Tue, Wed, Thu, Fri, Sat, Sun";
+    public static final String MESSAGE_CONSTRAINTS =
+            "Day should be in the format like Mon, Tue, Wed, Thu, Fri, Sat, Sun";
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("E");
     private final DayOfWeek day;
 
