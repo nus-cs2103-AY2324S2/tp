@@ -58,9 +58,6 @@ public class Person {
     public Note getNote() {
         return note;
     }
-    public boolean getHasDeadlineNote() {
-        return hasDeadlineNote;
-    }
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
@@ -86,13 +83,6 @@ public class Person {
 
     public void setNoteContent(String content) {
         this.note.setValue(content);
-    }
-    public boolean hasDeadlineNoteContent() {
-        return this.hasDeadlineNote;
-    }
-
-    public void setHasDeadlineNote(String hasDeadlineNote) {
-        this.hasDeadlineNote = Boolean.valueOf(hasDeadlineNote);
     }
 
     /**
