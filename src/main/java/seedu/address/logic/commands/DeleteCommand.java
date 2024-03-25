@@ -31,18 +31,16 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        String msg = "";
 
-        if (model.hasPersonWithNric(targetNric)) {
-            msg = String.format(MESSAGE_DELETE_PERSON_SUCCESS,
-                    Messages.format(model.getPersonWithNric(targetNric)));
-            model.deleteAppointmentsWithNric(targetNric);
-            model.deletePersonWithNric(targetNric);
-        } else {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_NRIC);
+        if (!model.hasPersonWithNric(targetNric)) {
+            throw new CommandException(Messages.MESSAGE_PERSON_NRIC_NOT_FOUND);
         }
 
-        return new CommandResult(msg);
+        String message = String.format(MESSAGE_DELETE_PERSON_SUCCESS,
+                Messages.format(model.getPersonWithNric(targetNric)));
+        model.deleteAppointmentsWithNric(targetNric);
+        model.deletePersonWithNric(targetNric);
+        return new CommandResult(message);
     }
 
     @Override
