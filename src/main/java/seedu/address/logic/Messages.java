@@ -31,6 +31,8 @@ public class Messages {
     public static final String MESSAGE_DATETIME_IN_THE_PAST =
             "Date and time cannot be in the past";
 
+    public static final String MESSAGE_INVALID_FEEDBACK_SCORE = "Invalid feedback score. "
+            + "Please use a number between 1 and 5 (inclusive)";
     /**
      * Returns an error message indicating the duplicate prefixes.
      */

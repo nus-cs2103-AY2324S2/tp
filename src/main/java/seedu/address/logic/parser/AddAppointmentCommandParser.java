@@ -5,6 +5,7 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_PATIENT_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTEND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FEEDBACK_SCORE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PATIENT_ID;
 
 import java.time.LocalDateTime;
@@ -41,7 +42,7 @@ public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand
     public AddAppointmentCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_PATIENT_ID, PREFIX_DATETIME,
-                        PREFIX_ATTEND, PREFIX_APPOINTMENT_DESCRIPTION);
+                        PREFIX_ATTEND, PREFIX_APPOINTMENT_DESCRIPTION, PREFIX_FEEDBACK_SCORE);
 
         if (!ParserUtil.arePrefixesPresent(argMultimap, PREFIX_PATIENT_ID, PREFIX_DATETIME)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -50,7 +51,8 @@ public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(
-                PREFIX_PATIENT_ID, PREFIX_DATETIME, PREFIX_ATTEND, PREFIX_APPOINTMENT_DESCRIPTION);
+                PREFIX_PATIENT_ID, PREFIX_DATETIME, PREFIX_ATTEND, PREFIX_APPOINTMENT_DESCRIPTION,
+                PREFIX_FEEDBACK_SCORE);
         int studentId = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_PATIENT_ID).get()).getOneBased();
 
         if (!RelationshipUtil.personExists(studentId, patients)) {
@@ -67,8 +69,10 @@ public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand
         //TODO: remove after case log is implemented
         String appointmentDescription = ParserUtil.parseDescription(
                 argMultimap.getValue(PREFIX_APPOINTMENT_DESCRIPTION).orElse(""));
-
-        Appointment appointment = new Appointment(appointmentDateTime, studentId, appointmentDescription, hasAttended);
+        Integer feedbackScore = ParserUtil.parseFeedbackScore(
+                argMultimap.getValue(PREFIX_FEEDBACK_SCORE).orElse(""));
+        Appointment appointment = new Appointment(appointmentDateTime, studentId, appointmentDescription,
+                                                  hasAttended, feedbackScore);
         return new AddAppointmentCommand(appointment);
     }
 }

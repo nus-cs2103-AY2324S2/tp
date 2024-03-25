@@ -183,6 +183,28 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String feedbackScore} into an {@code Integer} and ensures that it is a valid number and is
+     * between 1 and 5 (inclusive).
+     * @param feedbackScore
+     * @return
+     * @throws ParseException
+     */
+    public static Integer parseFeedbackScore(String feedbackScore) throws ParseException {
+        if (feedbackScore.isEmpty()) {
+            return null;
+        }
+        String trimmedFeedbackScore = feedbackScore.trim();
+        if (!StringUtil.isNonZeroUnsignedInteger(trimmedFeedbackScore)) {
+            throw new ParseException(Messages.MESSAGE_INVALID_FEEDBACK_SCORE);
+        }
+        int feedbackScoreInt = Integer.parseInt(trimmedFeedbackScore);
+        if (feedbackScoreInt < 1 || feedbackScoreInt > 5) {
+            throw new ParseException(Messages.MESSAGE_INVALID_FEEDBACK_SCORE);
+        }
+        return Integer.parseInt(trimmedFeedbackScore);
+    }
+
+    /**
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given
      * {@code ArgumentMultimap}.
      */

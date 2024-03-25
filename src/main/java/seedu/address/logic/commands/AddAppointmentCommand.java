@@ -1,10 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTEND;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PATIENT_ID;
+import static seedu.address.logic.parser.CliSyntax.*;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -24,6 +21,7 @@ public class AddAppointmentCommand extends Command {
             + PREFIX_PATIENT_ID + "PATIENT_ID "
             + PREFIX_DATETIME + "DATETIME "
             + PREFIX_ATTEND + "ATTEND "
+            + PREFIX_FEEDBACK_SCORE + "FEEDBACK_SCORE "
             + PREFIX_APPOINTMENT_DESCRIPTION + "APPOINTMENT DESCRIPTION\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_PATIENT_ID + "1 "
