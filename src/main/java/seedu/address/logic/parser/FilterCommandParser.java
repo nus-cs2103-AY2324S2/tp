@@ -22,6 +22,6 @@ public class FilterCommandParser implements Parser<FilterCommand> {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
         }
-        return new FilterCommand(new MatchingTagPredicate(trimmedArgs));
+        return new FilterCommand(new MatchingTagPredicate(trimmedArgs.split(" ")[1]));
     }
 }
