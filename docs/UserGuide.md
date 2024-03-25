@@ -31,6 +31,12 @@ TutorsContactsPro is a **desktop app for tutors teaching Computer Science course
 
   * [Deleting a student: `delete`](#feature-delete)
 
+  * [Adding a group: `addgroup`](#feature-addgroup)
+
+  * [Editing a group: `editgroup`](#feature-editgroup)
+
+  * [Deleting a group: `deletegroup`](#feature-deletegroup)
+
   * [Mail broadcast: `mail`](#feature-mail)
 
   * [Clearing all entries: `clear`](#feature-clear)
@@ -209,16 +215,46 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd student in the major book.
 * `find Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
 
+### <span id='feature-addgroup'> Adding a group: `addgroup` <span>
+
+You can add a new group to TutorsContactsPro.
+
+Format: `addgroup g/GROUP_NAME`
+
+Examples:
+* `addgroup g/TUT01`
+  ![result for 'filter TU'](images/filterFeature.png)
+
+### <span id='feature-editgroup'> Adding a group: `editgroup` <span>
+
+You can edit an existing group in TutorsContactsPro.
+
+Format: `editgroup g/GROUP_NAME tg/TELEGRAM_LINK`
+
+Examples:
+* `editgroup g/TUT01 tg/telegramexample.com`
+  ![result for 'filter TU'](images/filterFeature.png)
+
+### <span id='feature-deletegroup'> Deleting a group: `deletegroup` <span>
+
+You can delete an existing group in TutorsContactsPro.
+
+Format: `deletegroup g/GROUP_NAME`
+
+Examples:
+* `deletegroup g/TUT01`
+  ![result for 'filter TU'](images/filterFeature.png)
+
 ### <span id='feature-mail'> Mail broadcast : `mail` <span>
 
 You can generate a mailto link with email addresses pre-filled based on specific keyword entered.
 
-Format: `mail [KEYWORDS]`
+Format: `mail [KEYWORD]`
 
-* `[KEYWORDS]` are based on student's group name
+* `[KEYWORD]` are based on student's group name
 * It requires a **full match** for the keyword 
-* `[KEYWORDS]` is optional and when no `[KEYWORDS]` is entered, email addresses of all students on the current list will be included
-* If `[KEYWORDS]` is entered, only email addresses of students belonging to the group name that fully matches the `[KEYWORDS]` will be included
+* `[KEYWORD]` is optional and when no `[KEYWORD]` is entered, email addresses of all students on the current list will be included
+* If `[KEYWORD]` is entered, only email addresses of students belonging to the group name that fully matches the `[KEYWORD]` will be included
 
 Examples:
 * `mail` generates a mailto link with email addresses of all students on the current list. 
@@ -273,13 +309,17 @@ _Details coming soon ..._
 
 ## <span id='feature-summary'> Command summary <span>
 
-| Action     | Format, Examples                                                                                                                                                                                                   |
-|------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Help**   | `help`                                                                                                                                                                                                             |
-| **List**   | `list`                                                                                                                                                                                                             |
-| **Add**    | `add n/NAME p/PHONE e/EMAIL y/YEAR m/MAJOR tg/TELEGRAM [r/REMARK] [g/Group]...` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com y/2 m/Computer Science tg/johndoe r/Very quiet student g/TUT04 g/LAB10 ` |
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [y/NUMBER] [m/MAJOR] [tg/TELEGRAM] [r/REMARK] [g/Group]`<br> e.g., `edit 1 n/John e/john01@example.com`                                                                   |
-| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g.,`find john tan`                                                                                                                                                            |
-| **Filter** | `filter KEYWORD [MORE_KEYWORDS]`<br> e.g.,`filter TUT01`                                                                                                                                                           |
-| **Delete** | `delete INDEX`<br> e.g., `delete 1`                                                                                                                                                                                |  
-| **Clear**  | `clear`                                                                                                                                                                                                            |
+| Action          | Format, Examples                                                                                                                                                                                                   |
+|-----------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Help**        | `help`                                                                                                                                                                                                             |
+| **List**        | `list`                                                                                                                                                                                                             |
+| **Add**         | `add n/NAME p/PHONE e/EMAIL y/YEAR m/MAJOR tg/TELEGRAM [r/REMARK] [g/Group]...` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com y/2 m/Computer Science tg/johndoe r/Very quiet student g/TUT04 g/LAB10 ` |
+| **Edit**        | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [y/NUMBER] [m/MAJOR] [tg/TELEGRAM] [r/REMARK] [g/Group]`<br> e.g., `edit 1 n/John e/john01@example.com`                                                                   |
+| **Find**        | `find KEYWORD [MORE_KEYWORDS]`<br> e.g.,`find john tan`                                                                                                                                                            |
+| **Filter**      | `filter KEYWORD [MORE_KEYWORDS]`<br> e.g.,`filter TUT01`                                                                                                                                                           |
+| **Delete**      | `delete INDEX`<br> e.g., `delete 1`                                                                                                                                                                                |  
+| **Addgroup**    | `addgroup g/GROUP_NAME`                                                                                                                                                                                            |
+| **editgroup**   | `editgroup g/GROUP_NAME tg/TELEGRAM_LINK`                                                                                                                                                                          |
+| **deletegroup** | `deletegroup g/GROUPNAME`                                                                                                                                                                                          |
+| **Mail**        | `mail [KEYWORD]`<br> e.g., `mail TUT01`                                                                                                                                                                            |  
+| **Clear**       | `clear`                                                                                                                                                                                                            |

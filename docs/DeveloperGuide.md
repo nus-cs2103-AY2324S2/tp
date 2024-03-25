@@ -720,7 +720,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **TA**: TA (Teaching Assistant) refers to the person who teaches in a single tutorial/recitation/lab group. 
 * **Student**: Student refers to an individual who attends a tutorial class taught by the tutor.
-* **Tutorial**: Smaller classes in university which allow discussion of lecture content and assignment.
+* **Group**: Smaller classes in university which allow discussion of lecture content and assignment. This consists of tutorial, recitation and labs. 
 * **CLI (Command-Line Interface)**: A text-based interface used to interact with the software by entering commands into a terminal or console window, typically preferred by users who prefer efficiency and automation.
 * **GUI (Graphical User Interface)**: A GUI is a user interface that employs graphical elements such as icons, buttons, and menus for user interaction, providing an intuitive and visually appealing way to navigate and use software.
 
