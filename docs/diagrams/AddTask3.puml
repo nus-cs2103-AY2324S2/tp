@@ -1,0 +1,15 @@
+@startuml
+'https://plantuml.com/object-diagram
+
+Package Model as ModelPackage <<Rectangle>>{
+
+object "<u>Project:Task" as TaskProject
+TaskProject : TaskId = 2
+object "<u>:TaskMasterPro" as TaskMasterPro
+object "<u>:TaskList" as TaskList
+
+TaskMasterPro - TaskList
+TaskList -- TaskProject
+}
+
+@enduml
