@@ -511,7 +511,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to see all contacts who were last contacted.
-2.  AddressBook shows a list of contacts who were last contacted.
+2.  AddressBook shows a list of contacts who were last contacted sorted by least to most recent.
 
 **Use case: Finding all upcoming contacts with appointments**
 
