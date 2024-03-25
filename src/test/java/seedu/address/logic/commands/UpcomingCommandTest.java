@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -49,16 +50,18 @@ public class UpcomingCommandTest {
     @Test
     public void equals() {
         UpcomingCommand upcomingFirstCommand = new UpcomingCommand();
-
+        UpcomingCommand upcomingSecondCommand = new UpcomingCommand();
+    
         // same object -> returns true
         assertTrue(upcomingFirstCommand.equals(upcomingFirstCommand));
-
+    
+        // same instance -> returns true
+        assertTrue(upcomingFirstCommand.equals(upcomingSecondCommand));
+    
         // different types -> returns false
-        assertFalse(upcomingFirstCommand.equals(1));
-
+        assertFalse(upcomingFirstCommand.equals(new Object()));
+    
         // null -> returns false
         assertFalse(upcomingFirstCommand.equals(null));
     }
-
-    // Add more tests as needed
 }

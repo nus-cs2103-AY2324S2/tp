@@ -53,6 +53,6 @@ public class UpcomingCommand extends Command {
         }
 
         UpcomingCommand other = (UpcomingCommand) obj;
-        return super.equals(other);
+        return HAS_UPCOMING_PREDICATE.equals(other.HAS_UPCOMING_PREDICATE);
     }
 }
