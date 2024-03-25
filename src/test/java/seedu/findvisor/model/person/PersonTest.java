@@ -17,6 +17,7 @@ import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.findvisor.logic.parser.ParserUtil;
 import seedu.findvisor.testutil.PersonBuilder;
 
 public class PersonTest {
@@ -88,7 +89,7 @@ public class PersonTest {
         assertFalse(ALICE.equals(editedAlice));
 
         // different remarks -> returns false
-        editedAlice = new PersonBuilder(ALICE).withRemark(Remark.createRemark("Wants to be a millionaire")).build();
+        editedAlice = new PersonBuilder(ALICE).withRemark(ParserUtil.parseRemark("Wants to be a millionaire")).build();
         assertFalse(ALICE.equals(editedAlice));
     }
 

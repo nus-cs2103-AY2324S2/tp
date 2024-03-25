@@ -22,20 +22,6 @@ public class Remark {
         value = remark;
     }
 
-    /**
-     * Creates an {@code Optional<Remark>} of given remark if remark is not blank.
-     * Returns {@code Optional.empty()} if given remark is blank otherwise.
-     *
-     * @param remark value of remark.
-     */
-    public static Optional<Remark> createRemark(String remark) {
-        requireNonNull(remark);
-        if (remark.isBlank()) {
-            return Optional.empty();
-        }
-        return Optional.of(new Remark(remark));
-    }
-
     @Override
     public String toString() {
         return value;

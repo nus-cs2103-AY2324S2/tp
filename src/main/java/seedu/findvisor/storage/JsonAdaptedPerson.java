@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.findvisor.commons.exceptions.IllegalValueException;
+import seedu.findvisor.logic.parser.ParserUtil;
 import seedu.findvisor.model.person.Address;
 import seedu.findvisor.model.person.Email;
 import seedu.findvisor.model.person.Meeting;
@@ -121,7 +122,7 @@ class JsonAdaptedPerson {
         if (remark == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Remark.class.getSimpleName()));
         }
-        final Optional<Remark> modelRemark = Remark.createRemark(remark);
+        final Optional<Remark> modelRemark = ParserUtil.parseRemark(remark);
 
         return new Person(modelName, modelPhone, modelEmail, modelAddress,
                 modelTags, meeting.toModelType(), modelRemark);

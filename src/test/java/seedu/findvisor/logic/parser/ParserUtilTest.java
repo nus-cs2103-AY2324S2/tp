@@ -9,6 +9,7 @@ import static seedu.findvisor.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
@@ -235,5 +236,10 @@ public class ParserUtilTest {
         String remarkWithWhitespace = WHITESPACE + REMARK + WHITESPACE;
         Remark expectedRemark = new Remark(REMARK);
         assertEquals(expectedRemark, ParserUtil.parseRemark(remarkWithWhitespace).get());
+    }
+
+    @Test
+    public void parseRemark_emptyValue_returnsOptionalEmpty() {
+        assertEquals(Optional.empty(), ParserUtil.parseRemark(""));
     }
 }

@@ -154,7 +154,7 @@ public class AddressBookParserTest {
         RemarkCommand command = (RemarkCommand) parser.parseCommand(
                 RemarkCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + " "
                         + PREFIX_REMARK + REMARK);
-        assertEquals(new RemarkCommand(INDEX_FIRST_PERSON, Remark.createRemark(REMARK)), command);
+        assertEquals(new RemarkCommand(INDEX_FIRST_PERSON, ParserUtil.parseRemark(REMARK)), command);
     }
 
     @Test

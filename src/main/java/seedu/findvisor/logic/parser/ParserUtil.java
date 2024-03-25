@@ -2,6 +2,7 @@ package seedu.findvisor.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import javax.swing.text.html.Option;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Optional;
@@ -131,6 +132,9 @@ public class ParserUtil {
     public static Optional<Remark> parseRemark(String remark) {
         requireNonNull(remark);
         String trimmedRemark = remark.trim();
-        return Remark.createRemark(trimmedRemark);
+        if (trimmedRemark.isBlank()) {
+            return Optional.empty();
+        }
+        return Optional.of(new Remark(trimmedRemark));
     }
 }
