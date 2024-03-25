@@ -11,6 +11,9 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
@@ -37,7 +40,7 @@ public class PolicyCommandTest {
         Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Person editedPerson = new PersonBuilder(firstPerson).withPolicy(POLICY_STUB).build();
 
-        PolicyCommand policyCommand = new PolicyCommand(INDEX_FIRST_PERSON, new Policy(editedPerson.getPolicy().value));
+        PolicyCommand policyCommand = new PolicyCommand(INDEX_FIRST_PERSON, editedPerson.getPolicies());
 
         String expectedMessage = String.format(PolicyCommand.MESSAGE_ADD_POLICY_SUCCESS, Messages.format(editedPerson));
 
@@ -51,10 +54,9 @@ public class PolicyCommandTest {
     @Test
     public void execute_deletePolicyUnfilteredList_success() {
         Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Person editedPerson = new PersonBuilder(firstPerson).withPolicy("").build();
+        Person editedPerson = new PersonBuilder(firstPerson).withPolicy().build();
 
-        PolicyCommand remarkCommand = new PolicyCommand(INDEX_FIRST_PERSON,
-                new Policy(editedPerson.getPolicy().toString()));
+        PolicyCommand remarkCommand = new PolicyCommand(INDEX_FIRST_PERSON, editedPerson.getPolicies());
 
         String expectedMessage =
                 String.format(PolicyCommand.MESSAGE_DELETE_POLICY_SUCCESS, Messages.format(editedPerson));
@@ -74,7 +76,7 @@ public class PolicyCommandTest {
         Person editedPerson = new PersonBuilder(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()))
                 .withPolicy(POLICY_STUB).build();
 
-        PolicyCommand policyCommand = new PolicyCommand(INDEX_FIRST_PERSON, new Policy(editedPerson.getPolicy().value));
+        PolicyCommand policyCommand = new PolicyCommand(INDEX_FIRST_PERSON, editedPerson.getPolicies());
 
         String expectedMessage = String.format(PolicyCommand.MESSAGE_ADD_POLICY_SUCCESS, Messages.format(editedPerson));
 
@@ -88,7 +90,8 @@ public class PolicyCommandTest {
     @Test
     public void execute_invalidPersonIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
-        PolicyCommand policyCommand = new PolicyCommand(outOfBoundIndex, new Policy(VALID_POLICY_BOB));
+        PolicyCommand policyCommand = new PolicyCommand(outOfBoundIndex,
+                new HashSet<Policy>(Set.of(new Policy(VALID_POLICY_BOB))));
 
         assertCommandFailure(policyCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
@@ -104,16 +107,19 @@ public class PolicyCommandTest {
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
 
-        PolicyCommand policyCommand = new PolicyCommand(outOfBoundIndex, new Policy(VALID_POLICY_BOB));
+        PolicyCommand policyCommand = new PolicyCommand(outOfBoundIndex,
+                new HashSet<Policy>(Set.of(new Policy(VALID_POLICY_BOB))));
         assertCommandFailure(policyCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        final PolicyCommand standardCommand = new PolicyCommand(INDEX_FIRST_PERSON, new Policy(VALID_POLICY_AMY));
+        final PolicyCommand standardCommand = new PolicyCommand(INDEX_FIRST_PERSON,
+                new HashSet<Policy>(Set.of(new Policy(VALID_POLICY_AMY))));
 
         // same values -> returns true
-        PolicyCommand commandWithSameValues = new PolicyCommand(INDEX_FIRST_PERSON, new Policy(VALID_POLICY_AMY));
+        PolicyCommand commandWithSameValues = new PolicyCommand(INDEX_FIRST_PERSON,
+                new HashSet<Policy>(Set.of(new Policy(VALID_POLICY_AMY))));
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true

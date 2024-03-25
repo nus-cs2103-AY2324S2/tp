@@ -9,7 +9,9 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
@@ -107,9 +109,10 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_policy() throws Exception {
         final Policy policy = new Policy("Some policy");
+        final Set<Policy> policies = new HashSet<>(Set.of(policy));
         PolicyCommand command = (PolicyCommand) parser.parseCommand(PolicyCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_PERSON.getOneBased() + " " + PREFIX_POLICY + policy.value);
-        assertEquals(new PolicyCommand(INDEX_FIRST_PERSON, policy), command);
+        assertEquals(new PolicyCommand(INDEX_FIRST_PERSON, policies), command);
     }
 
     @Test

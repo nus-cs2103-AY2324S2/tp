@@ -29,7 +29,6 @@ public class JsonAdaptedPersonTest {
     private static final String VALID_PHONE = BENSON.getPhone().toString();
     private static final String VALID_EMAIL = BENSON.getEmail().toString();
     private static final String VALID_ADDRESS = BENSON.getAddress().toString();
-    private static final String VALID_POLICY = BENSON.getPolicy().toString();
     private static final String VALID_RELATIONSHIP = BENSON.getRelationship().toString();
     private static final String VALID_CLIENTSTATUS = String.valueOf(BENSON.getClientStatus().getStatus());
 
@@ -41,6 +40,10 @@ public class JsonAdaptedPersonTest {
 
     private static final List<JsonAdaptedMeeting> VALID_MEETINGS = BENSON.getMeetings().stream()
             .map(JsonAdaptedMeeting::new)
+            .collect(Collectors.toList());
+
+    private static final List<JsonAdaptedPolicy> VALID_POLICY = BENSON.getPolicies().stream()
+            .map(JsonAdaptedPolicy::new)
             .collect(Collectors.toList());
 
     @Test

@@ -37,9 +37,7 @@ public class EditCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Person editedPerson = new PersonBuilder()
-                .withPolicy(model.getFilteredPersonList().get(0).getPolicy().value)
-                .build();
+        Person editedPerson = new PersonBuilder().withPolicy("Policy 1", "Policy 2").build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedPerson).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
 
