@@ -39,6 +39,23 @@ PoochPlanner is an **address book manager for managing contacts, optimised for u
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Navigating the GUI
+
+PoochPlanner has a Graphical User Interface (GUI) that gives our users a pleasant visual experience.
+Here's a quick look at the different parts of our GUI and some tips on how to use it.
+
+### Basic Orientation
+
+![Quick Orientation](images/ug-images/basicGuiNavigation.png)
+
+### Contact Card
+
+![Employee Card](images/ug-images/personCardGuiNavigation.png)
+
+<div style="page-break-after: always;"></div>
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## Features
 
 <div markdown="block" class="alert alert-info">
