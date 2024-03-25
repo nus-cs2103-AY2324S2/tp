@@ -156,8 +156,11 @@ Format: `delete INDEX`
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Copy paste.
+**Q**: How do I upload records into Rapid Tracer?
+**A**: This feature is currently under development!
+
+**Q**: How do I download all my records from Rapid Tracer?
+**A**: This feature is currently under development!
 
 **Q**: A command is not working, what am I doing wrong?<br>
 **A**: There's a chance that the feature is still under development. We will fix it!
