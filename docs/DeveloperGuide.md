@@ -199,7 +199,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 #### Design Considerations & Alternatives Considered:
 
-**Aspect: How to use add:**
+**Aspect: How to add:**
 
 * **Alternative 1 (current choice):** Requires all the relevant fields (e.g. name, phone, email, ic number, age, sex, address).
     * Pros: 
@@ -223,11 +223,60 @@ The following activity diagram summarizes what happens when a user executes a ne
 * Current choice: Displays the correct error message based on the type of error made (e.g. missing fields, duplicate person, invalid ic format).
   * Rationale: Users will be able to learn of their error quickly and have an idea of what to edit to make the command successful.
 
-### Addnote feature
+### Add/replace note feature
 
 #### Implementation
 
+The add/replace notes mechanism is facilitated by `AddressBook`. It implements `AddressBook#setPerson(Person target, Person editedPerson)` which allow users to add/replace patients’ notes in the addressbook.
+
+These operations are exposed in the `Model` interface as `Model#setPerson(Person target, Person editedPerson)`
+
+Given below is an example usage scenario and how the add/replace note mechanism behaves at each step.
+
+Step 1. The user launches the application. The `AddressBook` will be initialized with the initial address book state.
+
+Step 2. The user executes `addnote T0123456A …` to add a note to the person in the address book with the unique identification number `T0123456A`. The addnote command calls `Model#setPerson(Person target, Person editedPerson)`, causing the modified state of the address book after the `addnote T0123456A …` command executes to be saved.
+
+**Note:** If a command fails its execution, it will not call `Model#setPerson(Person target, Person editedPerson)`, so the address book state will not be saved.
+
+</box>
+
+The following sequence diagram shows how an addnote operation goes through the `Logic` component:
+
+<puml src="diagrams/AddNoteSequenceDiagram.puml" alt="AddNoteSequenceDiagram" />
+
+<box type="info" seamless>
+
+**Note:** The lifeline for `AddNoteCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</box>
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+<puml src="diagrams/AddNoteCommandActivityDiagram.puml" width="250" />
+
 #### Design Considerations & Alternatives Considered
+
+**Aspect: How to add or replace:**
+
+* **Alternative 1 (current choice):** Have a flag (-replace) to allow users to replace the whole note section of specified patient. This is on top of the normal add note command where new notes are appended to the existing note itself.
+    * Pros:
+      * Able to edit/clean up notes section. 
+      * Gives users the freedom to decide how they want to keep notes. 
+    * Cons:
+      * Users might not want to replace all the notes they have (just want to edit a section).
+
+* **Alternative 2:** Allow users to only add notes to patients.
+    * Pros: More structured command to add notes to patient.
+    * Cons: Not able to give users the freedom to ‘edit’ the notes they have.
+
+**Aspect: Display of new note when command is successful:**
+* Current choice: Displays the new note in the correct patient’s section in the addressbook.
+    * Rationale: Users will be able to view the new note added easily.
+
+**Aspect: Display of error message when command is unsuccessful:**
+* Current choice: Displays the correct error message based on the type of error made (e.g. missing fields, invalid ic format).
+    * Rationale: Users will be able to learn of their error quickly and have an idea of what to edit to make the command successful.
 
 ### Find feature
 
