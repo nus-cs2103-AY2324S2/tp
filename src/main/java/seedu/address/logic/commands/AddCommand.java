@@ -11,6 +11,7 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Entry;
+import seedu.address.model.person.EntryList;
 import seedu.address.model.person.Person;
 
 /**
@@ -37,25 +38,27 @@ public class AddCommand extends Command {
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
 
     private final Person toAdd;
-    private final Entry entry;
+    private final EntryList entryList;
 
     /**
      * Creates an AddCommand to add the specified {@code Person}
      */
-    public AddCommand(Person person, Entry entry) {
+    public AddCommand(Person person, EntryList entryList) {
         requireNonNull(person);
         this.toAdd = person;
-        this.entry = entry;
+        this.entryList = entryList;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        if (entry == null) {
+        if (entryList == null) {
             model.addPerson(toAdd);
         } else {
-            Entry e = toAdd.getEntry(entry.getCategory());
-            toAdd.addEntry(entry);
+            for (int i = 0; i < entryList.size(); i++) {
+                Entry entry = entryList.get(i);
+                toAdd.addEntry(entry);
+            }
             model.addPerson(toAdd);
         }
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
