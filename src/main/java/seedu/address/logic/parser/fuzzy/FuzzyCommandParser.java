@@ -7,7 +7,8 @@ import java.util.Arrays;
  */
 public class FuzzyCommandParser {
     private static final BkTreeCommandMatcher<String> commandTree = new BkTreeCommandMatcher<>(Arrays.asList(
-            "add", "edit", "delete", "remove", "clear", "find", "list", "exit", "help", "sort", "addbystep", "filter"));
+            "add", "edit", "delete", "remove", "clear", "find", "list", "exit", "help", "sort", "addbystep", "filter",
+            "duplicate", "overwrite"));
     private static final int MAX_DISTANCE = 1;
 
     /**

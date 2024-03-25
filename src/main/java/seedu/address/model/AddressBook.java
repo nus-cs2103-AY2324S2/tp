@@ -76,6 +76,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Adds a person to the address book.
+     * The person must already exist in the address book.
+     */
+    public void addDuplicatePerson(Person p) {
+        persons.duplicateAdd(p);
+    }
+
+    /**
      * Replaces the given person {@code target} in the list with {@code editedPerson}.
      * {@code target} must exist in the address book.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
@@ -85,6 +93,25 @@ public class AddressBook implements ReadOnlyAddressBook {
 
         persons.setPerson(target, editedPerson);
     }
+
+    /**
+     * Replaces the given person {@code target} in the list with {@code editedPerson}.
+     * {@code target} must exist in the address book.
+     * The person identity of {@code editedPerson} must be the same as another existing person in the address book.
+     */
+    public void setDuplicatePerson(Person target, Person editedPerson) {
+        requireNonNull(editedPerson);
+
+        persons.setDuplicatePerson(target, editedPerson);
+    }
+
+    /**
+     * Returns {@code person}'s name that already exists in the address book.
+     */
+    public Person getPerson(int indexOfTarget) {
+        return persons.getPerson(indexOfTarget);
+    }
+
 
     /**
      * Removes {@code key} from this {@code AddressBook}.
