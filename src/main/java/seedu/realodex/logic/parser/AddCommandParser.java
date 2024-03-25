@@ -36,8 +36,9 @@ public class AddCommandParser implements Parser<AddCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddCommand parse(String args) throws ParseException {
+        String argsToLower = args.toLowerCase();
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_INCOME,
+                ArgumentTokenizer.tokenize(argsToLower, PREFIX_NAME, PREFIX_PHONE, PREFIX_INCOME,
                                            PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_FAMILY, PREFIX_TAG, PREFIX_REMARK);
 
         Prefix[] listOfCompulsoryPrefixTags = argMultimap.returnListOfCompulsoryTags(PREFIX_NAME,
