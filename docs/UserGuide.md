@@ -164,6 +164,28 @@ Examples:
 * `policy 1 po/Policy ABC` Assigns the policy of the 1st person if it is a client to be `Policy ABC`
 * `policy 2 po/` Removes the existing policy of the 2nd person if it is a client.
 
+### Undoing a command: `undo`
+
+Undoes a previous command.
+
+Format: `undo`
+
+* Only undoes commands that made changes to the address book
+  Examples:
+* `delete 1`
+* `undo` Undoes the previous command which adds back the person that is deleted
+### Redoing a command:`redo`
+
+Redoes a previous undid command
+
+Format: `redo`
+
+* Requires a successful prior undo command to redo
+  Examples:
+* `delete 1`
+* `undo`
+* `redo`
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
@@ -222,3 +244,5 @@ Action     | Format, Examples
 **List**   | `list`
 **Help**   | `help`
 **Policy** | `policy INDEX po/POLICY_NAME`
+**Undo**   | `undo`
+**Redo**   | `redo`
