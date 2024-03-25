@@ -158,102 +158,61 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### Find feature
 
-#### Proposed Implementation
+#### Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The find mechanism is facilitated by 3 classes `FindEmailCommand`, `FindNameCommand` and `FindPhoneCommand`. They all extend `FindCommand` with their corresponding `COMMAND_WORD` : `find_email`, `find_name` and `find_phone` respectively, as well as a corresponding `predicate` variable of type `EmailContainsKeywordsPredicate`, `NameContainsKeywordsPredicate` and `PhoneContainsKeywordsPredicate` respectively.
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+`EmailContainsKeywordsPredicate`, `NameContainsKeywordsPredicate` and `PhoneContainsKeywordsPredicate` extend `Predicate` from the `java.util.function` package and override the `test` function to match their respective criteria of matching `Email`, `Name` and `Phone` values respectively. 
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+These `Predicate` objects allow for matching of multiple substrings, facilitating searching for multiple persons in the application simultaneously. This is done by providing multiple keyword arguments after the `find_[email/name/phone]` command word. However, this only applies to keywords for the same criteria. 
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+Example: Keyword arguments after `find_name` will be matched only to the `Name` values of persons in application data, and not theie `Email` or `Phone` values. 
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+* `FindEmailCommand#execute()` — Searches for persons based on the specified email keywords.
+* `FindNameCommand#execute()` — Searches for persons based on the specified name keywords.
+* `FindPhoneCommand#execute()` — Searches for persons based on the specified phone keywords.history.
 
-<puml src="diagrams/UndoRedoState0.puml" alt="UndoRedoState0" />
+These `execute` operations utilise `ModelManager#updateFilteredPersonList()` implemented from the `Model` interface to update the GUI to display the persons that match the criteria provided as arguments to the `FindCommand` variant.
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+The following class diagram summarizes the organisation of the `FindCommand` variant classes.
 
-<puml src="diagrams/UndoRedoState1.puml" alt="UndoRedoState1" />
+<puml src="diagrams/find/FindCommandClass.puml" alt="FindCommandClassDiagram" width="250"/>
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Given below is an example usage scenario and how the find mechanism behaves at each step. All 3 variants behave in the same way, just with their keywords being of different types.
 
-<puml src="diagrams/UndoRedoState2.puml" alt="UndoRedoState2" />
+Step 1. The user launches the application which loads in data from the previous session. Current data in the application include 2 `Applicant` objects, one with `Name = "Ryan"` and the other with `Name = "Wesley"`.
 
-<box type="info" seamless>
-
-**Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</box>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-<puml src="diagrams/UndoRedoState3.puml" alt="UndoRedoState3" />
+Step 2. The user executes `find_name` command to find a person with the name Ryan in the application. The `find_name` command calls `FindNameCommandParser#parse()`, creating a new `FindNameCommand` object initialised with a `NameContainsKeywordsPredicate` object that is created with an array of the keywords passed as arguments with the `find_name` command. When `FindNameCommand#execute()` is called, the list displayed on the GUI will be updated to show only the entry of <u>`Ryan:Applicant`</u>.
 
 
 <box type="info" seamless>
 
-**Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
+**Note:** 
+* The command expects at least 1 argument following the `find_name` command word and will result in an `ParseException` indicating invalid command format otherwise.
+* Use the command `list_persons` to display the original list of all persons on the GUI
+* There is no need to return back to the original list before executing another `find_[email/name/phone]` command
 
 </box>
 
-The following sequence diagram shows how an undo operation goes through the `Logic` component:
+
+The following sequence diagram shows how a find operation, specifically `find_name`, goes through the `Logic` component:
 
 <puml src="diagrams/UndoSequenceDiagram-Logic.puml" alt="UndoSequenceDiagram-Logic" />
 
-<box type="info" seamless>
-
-**Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</box>
-
-Similarly, how an undo operation goes through the `Model` component is shown below:
-
-<puml src="diagrams/UndoSequenceDiagram-Model.puml" alt="UndoSequenceDiagram-Model" />
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<box type="info" seamless>
-
-**Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</box>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-<puml src="diagrams/UndoRedoState4.puml" alt="UndoRedoState4" />
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-<puml src="diagrams/UndoRedoState5.puml" alt="UndoRedoState5" />
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<puml src="diagrams/CommitActivityDiagram.puml" width="250" />
 
 #### Design considerations:
 
-**Aspect: How undo & redo executes:**
+**Aspect: How find executes:**
 
 * **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+    * Pros: Easy and straightforward to implement.
+    * Cons: Uses 3 separate command words resulting in 3 separate CommandParser classes.
 
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
+* **Alternative 2:** Command word remains as `find` and the first argument after will determine the criteria to search for: `email`, `name` or `phone`.
+    * Pros: Less repeating of similar code. Only 1 command word required.
+    * Cons: More changes to parsing is required for identification of criteria and potential errors with mixing up keywords with criteria word.
 
 
 --------------------------------------------------------------------------------------------------------------------
