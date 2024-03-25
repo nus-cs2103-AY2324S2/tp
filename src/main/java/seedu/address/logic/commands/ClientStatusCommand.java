@@ -71,7 +71,7 @@ public class ClientStatusCommand extends Command {
         }
 
         Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), personToEdit.getRelationship(), personToEdit.getPolicy(),
+                personToEdit.getAddress(), personToEdit.getRelationship(), personToEdit.getPolicies(),
                 clientStatus, personToEdit.getTags());
 
         model.setPerson(personToEdit, editedPerson);
