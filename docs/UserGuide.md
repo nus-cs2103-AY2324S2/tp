@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+ModContacts is a desktop app for keeping track of your peers and the modules that they take so that you can keep in contact with them amidst your journey in NUS!
 
 * Table of Contents
 {:toc}
@@ -39,7 +39,58 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+# Terms
+Throughout this guide, we'll be using new terms & concepts to introduce you to the world of ModContacts!
+
+## Friends, what are they?
+A `Friend` is a person that you want to keep contact with in school! This is pretty intuitive as there is no distinction between the term that we use in ModContacts and the term that is used in real life.
+## Modules, what are they?
+A `Module` refers to the modules that you take during a semester in NUS. They have **Module Codes** (e.g **MA2001** Linear Algebra I) to identify them.
+
+
+## So what now?
+Since you know what a `Module` and a `Friend` is, you are one step closer to being a master at using ModContacts to add your `Friend`, and also add a `Module` to your `Friend`!
+
+Let's get down to how we can write commands to add them!
+
+## What is a Command?
+
+A command is what you type into the app to execute your intentions (Adding a `Friend` or a `Module`)!
+
+Here are some examples of commands that you'd be using:
+
+* `add n/Aditya e/e123456@u.nus.edu`
+
+* `add_module i/1 m/MA2001`
+
+* `delete_module i/2 m/CS1231S`
+
+You may notice a pattern here, and here is a rough breakdown of what a command composes of. Let's use the first example!
+```
+add n/Aditya m/e123456@u.nus.edu
+```
+Our command composes of:
+
+1. A Command Word (`add`)
+
+    This is the first word of your command that carries the intention of your action! Examples would be using `add` when you want to add a `Friend`, `add_module` when you want to add a `Module` to your `Friend`, so on and so forth!
+
+2. Prefixes (`n/Aditya m/e123456@u.nus.edu`)
+
+    Prefixes are additional information that you add to your command. For example, when adding a friend you would want to add their **name** and their **email**.
+
+    We can use Prefixes to accomplish this! They are usually marked with an unique identifier (`n/` for **name** and `m/` for **email**). You can then add your values after the identifiers! (`Aditya` is the value supplied for the **name** when you type `n/Aditya`).
+
+    **(P.S)** Different commands have different prefixes! Check out the **[Features](#Features)** section to see what prefixes exist for each command.
+
+
+### Summary
+In summary, what this command (`add n/Aditya e/e123456@u.nus.edu`) does is that it adds a `Friend` whose name is `Aditya` and whose email is `e123456@u.nus.edu`.
+
+
+
+
+
 
 <div markdown="block" class="alert alert-info">
 
@@ -108,6 +159,33 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st student to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd student to be `Betsy Crower` and clears all existing tags.
+
+### Adding a Module: `add_module`
+
+Adds a module to your friend in the address book.
+
+Format: `add_module i/INDEX m/MODULE_CODE`
+
+* The `INDEX` refers to the index number shown in the displayed student list. The index must be a positive integer 1, 2, 3, ...
+* The `MODULE_CODE` refers to the module code of the module you intend to add
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+  If you are unsure of a module code, you can use <a href="https://www.nusmods.com">NUS Mods</a> to find it!
+</div>
+
+### Deleting a Module: `delete_module`
+
+Deletes a module from your friend in the address book.
+
+Format: `delete_module i/INDEX m/MODULE_CODE`
+
+* The `INDEX` refers to the index number shown in the displayed student list. The index must be a positive integer 1, 2, 3, ...
+* The `MODULE_CODE` refers to the module code of the module you intend to delete
+
+
+
+
+
 
 ### Locating students by name: `find`
 
