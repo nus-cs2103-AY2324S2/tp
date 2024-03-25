@@ -76,7 +76,7 @@ public class Tag extends Attribute<String> {
      * Format state as text for viewing.
      */
     public String toString() {
-        return '[' + this.getValue() + ']';
+        return this.getValue();
     }
 
 }
