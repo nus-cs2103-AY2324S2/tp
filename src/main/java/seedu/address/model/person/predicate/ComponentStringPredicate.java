@@ -18,7 +18,7 @@ public abstract class ComponentStringPredicate implements ComponentPredicate {
     private final Component component;
 
     /**
-     * The available components in a {@link Person} class.
+     * The available components in a {@link Person} class that can be searched through like a string.
      */
     public enum Component {
         Name,
