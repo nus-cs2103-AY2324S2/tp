@@ -198,7 +198,7 @@ This section describes some noteworthy details on how certain features are imple
 
 ### QR Code
 
-Each client has a QR code that allows users to save them to their phones easily.
+Each client has a QR code that allows users to save their contact information to their phones easily.
 
 ![QrNewUi](images/QrNewUi.png)
 
