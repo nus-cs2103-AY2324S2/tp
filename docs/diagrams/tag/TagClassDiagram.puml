@@ -1,0 +1,26 @@
+@startuml
+hide circle
+skinparam classAttributeIconSize 0
+
+interface Parser <TagCommand> <<interface>>
+Class TagCommandParser {
+    +parse(): TagCommand
+}
+Class ParserException
+
+
+class TagCommand{
+    - personToEditId: Id
+    - tags: Set<Tag>
+    +execute(model: Model): CommandResult
+}
+
+
+TagCommandParser .up.|> Parser
+Parser .right.> ParserException: throws >
+TagCommandParser .right.> ParserException  : throws >
+
+TagCommandParser .down.> TagCommand: initialize >
+
+
+@enduml
