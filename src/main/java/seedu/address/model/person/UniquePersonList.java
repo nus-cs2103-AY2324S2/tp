@@ -6,7 +6,6 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
@@ -130,9 +129,11 @@ public class UniquePersonList implements Iterable<Person> {
      */
     public void setPersons(List<Person> persons) {
         requireAllNonNull(persons);
-//        if (!personsAreUnique(persons)) {
-//            throw new DuplicatePersonException();
-//        }
+        /*
+            if (!personsAreUnique(persons)) {
+                throw new DuplicatePersonException();
+            }
+        */
 
         internalList.setAll(persons);
     }
