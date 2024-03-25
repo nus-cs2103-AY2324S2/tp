@@ -1,5 +1,13 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.logging.Logger;
+
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
@@ -8,16 +16,10 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Policy;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.logging.Logger;
-
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
-
+/**
+ * Deletes a specific policy linked to a client identified by their index number in the last person listing.
+ */
 public class DeletePolicyCommand extends Command {
-    private final Logger logger = LogsCenter.getLogger(DeletePolicyCommand.class);
 
     public static final String COMMAND_WORD = "delPolicy";
 
@@ -31,9 +33,17 @@ public class DeletePolicyCommand extends Command {
 
     public static final String MESSAGE_DELETE_POLICY_SUCCESS = "Removed policy from Person: %1$s";
 
-    Index index;
-    String policyName;
+    private final Logger logger = LogsCenter.getLogger(DeletePolicyCommand.class);
 
+    private final Index index;
+    private final String policyName;
+
+    /**
+     * Constructs a {@code DeletePolicyCommand}.
+     *
+     * @param index      Index of the client in the filtered person list.
+     * @param policyName Name of the policy to be deleted.
+     */
     public DeletePolicyCommand(Index index, String policyName) {
         requireAllNonNull(index, policyName);
         this.index = index;
@@ -67,6 +77,12 @@ public class DeletePolicyCommand extends Command {
         return new CommandResult(generateSuccessMessage(editedPerson));
     }
 
+    /**
+     * Generates a success message when a policy is deleted from a person.
+     *
+     * @param editedPerson The person from whom the policy was deleted.
+     * @return A success message indicating the deletion of the policy.
+     */
     private String generateSuccessMessage(Person editedPerson) {
         return String.format(MESSAGE_DELETE_POLICY_SUCCESS, editedPerson);
     }

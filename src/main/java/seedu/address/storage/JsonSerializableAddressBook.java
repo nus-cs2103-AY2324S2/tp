@@ -2,12 +2,12 @@ package seedu.address.storage;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.IllegalValueException;
@@ -20,10 +20,9 @@ import seedu.address.model.person.Person;
  */
 @JsonRootName(value = "addressbook")
 class JsonSerializableAddressBook {
-
+    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate client(s).";
     private static final Logger logger = LogsCenter.getLogger(JsonSerializableAddressBook.class);
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate client(s).";
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
 

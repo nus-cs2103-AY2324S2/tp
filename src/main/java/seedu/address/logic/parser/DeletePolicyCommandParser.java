@@ -2,14 +2,25 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_POLICY_NAME;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.DeletePolicyCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
-public class DeletePolicyCommandParser implements  Parser<DeletePolicyCommand> {
+/**
+ * Parses input arguments and creates a new DeletePolicyCommand object.
+ */
+public class DeletePolicyCommandParser implements Parser<DeletePolicyCommand> {
+    /**
+     * Parses the given {@code String} of arguments in the context of the DeletePolicyCommand
+     * and returns a DeletePolicyCommand object for execution.
+     *
+     * @param args The arguments provided by the user.
+     * @return A DeletePolicyCommand object representing the user's command.
+     * @throws ParseException If the user's input does not conform to the expected format.
+     */
     public DeletePolicyCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,

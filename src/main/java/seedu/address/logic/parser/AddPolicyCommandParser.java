@@ -2,11 +2,11 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BENEFIT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_POLICY_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_POLICY_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PREMIUM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PREMIUM_TERM;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_BENEFIT;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
@@ -40,8 +40,11 @@ public class AddPolicyCommandParser implements Parser<AddPolicyCommand> {
 
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
-            if (policyName == null || policyNumber == null ||
-                    premiumTerm == null || premium == null || benefit == null) {
+            if (policyName == null
+                    || policyNumber == null
+                    || premiumTerm == null
+                    || premium == null
+                    || benefit == null) {
                 throw new IllegalValueException(MESSAGE_INVALID_COMMAND_FORMAT);
             }
         } catch (IllegalValueException ive) {

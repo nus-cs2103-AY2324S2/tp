@@ -2,27 +2,25 @@ package seedu.address.logic.commands;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
-import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.Messages;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Policy;
-
 
 /**
  * Adds a policy to the client identified by the index number used in the last person listing
  * and the policy name.
  */
 public class AddPolicyCommand extends Command {
-    private final Logger logger = LogsCenter.getLogger(AddPolicyCommand.class);
 
     public static final String COMMAND_WORD = "addPolicy";
 
@@ -38,19 +36,22 @@ public class AddPolicyCommand extends Command {
 
     public static final String MESSAGE_ADD_POLICY_SUCCESS = "Added policy to Person: %1$s";
 
+    private final Logger logger = LogsCenter.getLogger(AddPolicyCommand.class);
+
     private final Index index;
     private final String policyName;
-    public final String policyNumber;
-    public final String premiumTerm;
-    public final String premium;
-    public final String benefit;
+    private final String policyNumber;
+    private final String premiumTerm;
+    private final String premium;
+    private final String benefit;
     /**
      * Creates an AddPolicyCommand to add the specified {@code Policy} to the client at the specified index.
      *
      * @param index The index of the client in the filtered person list.
      * @param policyName The name of the policy to be added.
      */
-    public AddPolicyCommand(Index index, String policyName, String policyNumber, String premiumTerm, String premium, String benefit) {
+    public AddPolicyCommand(Index index, String policyName,
+                            String policyNumber, String premiumTerm, String premium, String benefit) {
         requireAllNonNull(index, policyName, policyNumber, premiumTerm, premium, benefit);
         this.index = index;
         this.policyName = policyName;

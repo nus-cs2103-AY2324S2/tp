@@ -145,7 +145,7 @@ public class Person {
         if (getTags().isEmpty()) {
             builder.append("None");
         } else {
-            getTags().forEach(tag -> builder.append("[").append(tag.tagName).append("] ")); // Assuming Tag objects have a tagName field
+            getTags().forEach(tag -> builder.append("[").append(tag.tagName).append("] "));
         }
 
         builder.append(" Policies: ");
