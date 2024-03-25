@@ -125,7 +125,7 @@ Examples:
 
 ### Locating clients by keywords: `find`
 
-This command allows you to find a specific client in your client list by their **name**, and optionally by other fields too
+This command allows you to find a specific client in your client list by their **name**, *and optionally by other fields too*
 
 Format: `find n/NAME [a/ADDRESSKEYWORD] [e/EMAILKEYWORD] [t/TAGKEYWORD] [k/KINKEYWORD] [d/DESCKEYWORD] [p/PHONEKEYWORD]`
 
@@ -194,16 +194,16 @@ ___
 
 ## Command summary
 
-| Action | Format | Examples |
-| --- | --- | --- |
-| **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… [k/NEXTOFKIN]`  |`add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Update** | `update u/existing user [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`  | `Update u/Jane Doe n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-011` |
-| **Find** | `find n/NAME [a/ADDRESSKEYWORD] [e/EMAILKEYWORD] [t/TAGKEYWORD] [k/KINKEYWORD] [d/DESCKEYWORD] [p/PHONEKEYWORD]`  | `find n/James n/Bill a/Clementi` |
-| **Undo** | `undo`| |
-| **Redo** | `redo` | |
-| **Display** | TBD | |
-| **Clear** | `clear` | |
-| **Exit** | `exit` | |
+| Action      | Format                                                                            | Examples                                                                                               |
+|-------------|-----------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------|
+| **Add**     | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… [k/NEXTOFKIN]`              | `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`     |
+| **Update**  | `update u/existing user [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…` | `Update u/Jane Doe n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-011`        |
+| **Find**    | `find n/NAME [a/ADDRESSKEYWORD] [e/EMAILKEYWORD] [t/TAGKEYWORD] [k/KINKEYWORD] [d/DESCKEYWORD] [p/PHONEKEYWORD]`                                                    | `find n/James n/Bill a/Clementi e/gmail.com p/8615 t/important k/Charles d/male`                                                                                      |
+| **Undo**    | `undo`                                                                            |                                                                                                        |
+| **Redo**    | `redo`                                                                            |                                                                                                        |
+| **Display** | TBD                                                                               |                                                                                                        |
+| **Clear**   | `clear`                                                                           |                                                                                                        |
+| **Exit**    | `exit`                                                                            |                                                                                                        |
 
 ___
 
