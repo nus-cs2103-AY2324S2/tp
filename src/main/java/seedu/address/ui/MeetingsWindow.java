@@ -1,7 +1,5 @@
 package seedu.address.ui;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.logging.Logger;
@@ -14,7 +12,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
-import seedu.address.model.person.Meeting;
 import seedu.address.model.person.Person;
 
 /**
