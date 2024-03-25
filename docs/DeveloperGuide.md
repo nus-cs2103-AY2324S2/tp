@@ -158,6 +158,148 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+
+## Delete a student 
+
+### About
+
+The delete student feature allows TAs to delete an existing student information from the student contact list
+using the command `delete INDEX`.
+
+### How it is implemented
+
+The `delete` command mechanism is facilitated by the `DeleteCommand` and the `DeleteCommandParser`.
+It allows users to delete a student contact from the student contact list.
+It uses the `AddressBook#removePerson(Person key)` which is exposed in the `Model`
+interface as `Model#deletePerson(Person personToDelete)`. Then, the `remove(Person person)` is called on the `UniquePersonList`
+in `AddressBook` to delete the student contact from the list. <br>
+
+A modification from AB3 delete mechanism is that the `delete` command also involves the facilitation of the `AddressBook#deassignPerson(Person persontToDeassign, Group group)`
+which is exposed in the `Model` interface as `Model#deassignPerson(Person person, Group group)`, which result in the call of `Group#deassign(Person person)` to
+deassign the deleted student contact from all previously assigned groups.
+
+#### Parsing input
+
+1. The TA inputs the `delete` command.
+
+2. The `TutorsContactsPro` then preliminary process the input and creates a new `DeleteCommandParser`.
+
+3. The `DeleteCommandParser` then calls the `ParserUtil#parseIndex()` to check for the validity of the `INDEX`.
+   At this stage, if the `INDEX is invalid or absent`, `ParseException` would be thrown.
+
+4. The `DeleteCommandParser` then creates the `DeleteCommand` based on the processed input.
+
+
+#### Command execution
+
+5. The `LogicManager` executes the `DeleteCommand`.
+
+6. The `DeleteCommand` calls the `Model#getFilteredPersonList()` to get the unmodifiable view of the filtered person list to get the target
+   person to delete based on the provided `INDEX`. <br><br> At this stage, `CommandException` would be thrown if the input `INDEX`
+   is invalid (i.e. `INDEX` exceeds the size of the student contact list).
+
+7. The `DeleteCommand` the calls the `Model#deletePerson(Person personToDelete)` to delete the target student contact from the
+   student contact list.
+
+
+#### Displaying of result
+
+8. Finally, the `DeleteCommand` creates a `CommandResult` with a success message and return it to the `LogicManager` to complete the command execution.
+    The GUI would also be updated on this change in the student contact list accordingly.
+
+The following sequence diagram shows how the `delete` mechanism works:
+
+![](images/DeleteSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+The following activity diagram summarizes what happens when a user executes the `delete` command:
+
+![](images/DeleteActivityDiagram.png)
+
+
+## Filter Students by Group
+
+#### About
+The filter students by group feature allows TAs to filter and list students in the address book whose group name matches the specified keywords. 
+It helps TAs to quickly find students belonging to specific groups.
+
+#### How it is implemented
+The filtering mechanism is facilitated by the `FilterCommand` and the `FilterCommandParser`. 
+It enables TAs to filter students based on the groups they belong to. It utilizes the `Model` interface to interact with the student contact list.
+
+#### Parsing input
+
+1. The TA inputs the `filter` command along with the group keywords.
+
+2. The TutorsContactsPro then preliminarily processes the input and creates a new `FilterCommandParser`.
+
+3. The `FilterCommandParser` then checks for the validity of the provided group keywords. If the keywords are invalid or absent, a `ParseException` is thrown.
+
+4. The `FilterCommandParser` creates the `FilterCommand` based on the processed input, with a `GroupContainsKeywordsPredicate` to filter students based on the specified groups.
+
+#### Command execution
+
+5. The `LogicManager` executes the `FilterCommand`.
+
+6. The `FilterCommand` calls the `Model#updateFilteredPersonList()` method to update the filtered person list according to the specified group keywords.
+
+#### Displaying results
+
+7. Finally, the `FilterCommand` creates a CommandResult with the list of students matching the specified groups, and returns it to the LogicManager to complete the command execution. 
+The GUI would also be updated accordingly to display the filtered list of students.
+
+The following sequence diagram illustrates how the `filter` mechanism works:
+![](images/FilterSequenceDiagram.png)
+
+
+## Mail Command
+
+### About
+
+The Mail Command feature enables TAs to generate a mailto link containing the email addresses of students filtered based on specified keywords. 
+This link can be used to compose emails to these students directly from the TA's default email client.
+
+### How it is Implemented
+
+The Mail Command feature is implemented using the `MailCommand` class and its corresponding parser, `MailCommandParser`.
+
+#### Command Structure
+
+The user inputs the `mail` command followed by optional keywords specifying groups of students they want to include in the email. 
+If no keywords are provided, the mailto link will include all students in the current list.
+
+#### Parsing Input
+
+1. The `MailCommandParser` parses the input arguments to extract the specified keywords.
+
+2. If no keywords are provided, an empty `MailCommand` is created, which results in the generation of a mailto link for all students.
+
+3. If keywords are provided, the parser validates them to ensure they conform to the expected format. If any keyword is invalid, a `ParseException` is thrown.
+
+4. The `MailCommand` with the appropriate predicate is then created using the `GroupContainsKeywordsPredicate`, which filters the students based on the specified keywords.
+
+#### Command Execution
+
+5. When the `MailCommand` is executed, it updates the filtered person list in the model based on the provided predicate.
+
+6. It then extracts the email addresses of the filtered students from the model.
+
+7. Using these email addresses, it generates a mailto link, concatenating them with semicolons to form a single string.
+
+#### Displaying Result
+
+8. Finally, the generated mailto link is encapsulated in a `CommandResult` object and returned to the logic manager for further handling.
+
+### Summary
+
+The Mail Command feature provides an efficient way for TAs to compose emails to specific groups of students directly from the application. By leveraging the power of filtering, it allows for targeted communication while maintaining simplicity and ease of use.
+
+The following activity diagram illustrates how the `mail` mechanism works:
+![](images/MailActivityDiagram.png)
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
