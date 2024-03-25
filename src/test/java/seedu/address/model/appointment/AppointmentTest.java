@@ -19,11 +19,11 @@ public class AppointmentTest {
     public void equals() {
         LocalDateTime appointmentDate = LocalDateTime.now();
         Appointment appointment = new Appointment(TEST_APPOINTMENT_ID, appointmentDate,
-                1, "Test", false);
+                1, "Test", false, 5);
 
         // same values -> returns true
         Appointment appointmentCopy = new Appointment(TEST_APPOINTMENT_ID, appointmentDate,
-                1, "Test", false);
+                1, "Test", false, 5);
         assertEquals(appointment, appointmentCopy);
 
         // same object -> returns true
@@ -37,27 +37,27 @@ public class AppointmentTest {
 
         // different appointmentId -> returns false
         Appointment differentAppointment = new Appointment(TEST_LATER_APPOINTMENT_ID, appointmentDate,
-                1, "Test", false);
+                1, "Test", false, 5);
         assertNotEquals(appointment, differentAppointment);
 
         // different appointmentDate -> returns false
         differentAppointment = new Appointment(TEST_APPOINTMENT_ID, appointmentDate.plusDays(1),
-                1, "Test", false);
+                1, "Test", false, 5);
         assertNotEquals(appointment, differentAppointment);
 
         // different studentId -> returns false
         differentAppointment = new Appointment(TEST_APPOINTMENT_ID, appointmentDate,
-                2, "Test", false);
+                2, "Test", false, 5);
         assertNotEquals(appointment, differentAppointment);
 
         // different appointmentDescription -> returns false
         differentAppointment = new Appointment(TEST_APPOINTMENT_ID, appointmentDate,
-                1, "Different", false);
+                1, "Different", false, 5);
         assertNotEquals(appointment, differentAppointment);
 
         // different hasAttended -> returns false
         differentAppointment = new Appointment(TEST_APPOINTMENT_ID, appointmentDate,
-                1, "Test", true);
+                1, "Test", true, 5);
         assertNotEquals(appointment, differentAppointment);
     }
 
@@ -66,20 +66,24 @@ public class AppointmentTest {
         LocalDateTime appointmentDate = LocalDateTime.now();
 
 
-        Appointment appointment = new Appointment(TEST_APPOINTMENT_ID, appointmentDate, 1, "Test", false);
+        Appointment appointment = new Appointment(TEST_APPOINTMENT_ID, appointmentDate, 1,
+                                                  "Test", false, 5);
 
         // same values -> returns 0
-        Appointment appointmentCopy = new Appointment(TEST_APPOINTMENT_ID, appointmentDate, 1, "Test", false);
+        Appointment appointmentCopy = new Appointment(TEST_APPOINTMENT_ID, appointmentDate, 1,
+                                                      "Test", false, 5);
         assertEquals(0, appointment.compareTo(appointmentCopy));
 
         // another Appointment has larger appointmentId -> returns less than 0;
         Appointment differentAppointment = new Appointment(TEST_LATER_APPOINTMENT_ID, appointmentDate.plusDays(1),
-                1, "Test", false);
+                1, "Test", false, 5);
         assertTrue(appointment.compareTo(differentAppointment) < 0);
 
         // another Appointment has smaller appointmentId -> returns more than 0;
-        differentAppointment = new Appointment(TEST_APPOINTMENT_ID, appointmentDate, 2, "Test", false);
-        appointment = new Appointment(TEST_LATER_APPOINTMENT_ID, appointmentDate.plusDays(1), 1, "Test", false);
+        differentAppointment = new Appointment(TEST_APPOINTMENT_ID, appointmentDate, 2,
+                                               "Test", false, 5);
+        appointment = new Appointment(TEST_LATER_APPOINTMENT_ID, appointmentDate.plusDays(1), 1,
+                                      "Test", false, 5);
         assertTrue(appointment.compareTo(differentAppointment) > 0);
     }
 
@@ -87,10 +91,12 @@ public class AppointmentTest {
     void getAttendedStatus() {
         LocalDateTime appointmentDate = LocalDateTime.now();
 
-        Appointment appointment = new Appointment(TEST_APPOINTMENT_ID, appointmentDate, 1, "Test", false);
+        Appointment appointment = new Appointment(TEST_APPOINTMENT_ID, appointmentDate, 1,
+                                                  "Test", false, 5);
         assertFalse(appointment.getAttendedStatus());
 
-        appointment = new Appointment(TEST_APPOINTMENT_ID, appointmentDate, 1, "Test", true);
+        appointment = new Appointment(TEST_APPOINTMENT_ID, appointmentDate, 1, "Test",
+                                      true, 5);
         assertTrue(appointment.getAttendedStatus());
     }
 
@@ -98,15 +104,18 @@ public class AppointmentTest {
     void setAttendedStatus() {
         LocalDateTime appointmentDate = LocalDateTime.now();
 
-        Appointment appointment = new Appointment(TEST_APPOINTMENT_ID, appointmentDate, 1, "Test", false);
+        Appointment appointment = new Appointment(TEST_APPOINTMENT_ID, appointmentDate, 1,
+                                                  "Test", false, 5);
         appointment.setAttendedStatus(true);
         assertTrue(appointment.getAttendedStatus());
 
-        appointment = new Appointment(TEST_APPOINTMENT_ID, appointmentDate, 1, "Test", true);
+        appointment = new Appointment(TEST_APPOINTMENT_ID, appointmentDate, 1, "Test",
+                                      true, 5);
         appointment.setAttendedStatus(true);
         assertTrue(appointment.getAttendedStatus());
 
-        appointment = new Appointment(TEST_APPOINTMENT_ID, appointmentDate, 1, "Test", true);
+        appointment = new Appointment(TEST_APPOINTMENT_ID, appointmentDate, 1, "Test",
+                                      true, 5);
         appointment.setAttendedStatus(false);
         assertFalse(appointment.getAttendedStatus());
 

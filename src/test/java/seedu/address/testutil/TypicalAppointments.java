@@ -34,19 +34,21 @@ public class TypicalAppointments {
             .withAppointmentDateTime(LocalDateTime.of(2022, 12, 12, 11, 0, 0))
             .withStudentId(3)
             .withAppointmentDescription("Third Appointment")
-            .withHasAttended(false).build();
-
+            .withHasAttended(false)
+            .withFeedbackScore(3).build();
 
     public static final Appointment FORTH_APPOINTMENT = new AppointmentBuilder().withAppointmentId(4)
             .withAppointmentDateTime(LocalDateTime.of(2022, 12, 12, 12, 0, 0))
             .withStudentId(4)
             .withAppointmentDescription("Fourth Appointment")
-            .withHasAttended(false).build();
+            .withHasAttended(false)
+            .withFeedbackScore(4).build();
     public static final Appointment FIFTH_APPOINTMENT = new AppointmentBuilder().withAppointmentId(5)
             .withAppointmentDateTime(LocalDateTime.of(2022, 12, 12, 13, 0, 0))
             .withStudentId(5)
             .withAppointmentDescription("Final Appointment")
-            .withHasAttended(false).build();
+            .withHasAttended(false)
+            .withFeedbackScore(4).build();
 
     /**
      * Returns an {@code AppointmentList} with all the typical persons.
