@@ -6,9 +6,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_POLICY_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.Collections;
 import java.util.Set;
 import java.util.logging.Logger;
 import java.util.stream.Stream;
@@ -40,7 +40,8 @@ public class AddCommandParser implements Parser<AddCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
                         PREFIX_MEETING, PREFIX_TAG);
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME) || !argMultimap.getPreamble().isEmpty()) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
+                PREFIX_MEETING) || !argMultimap.getPreamble().isEmpty()) {
 
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
@@ -54,11 +55,8 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         Meeting meeting = ParserUtil.parseMeeting(argMultimap.getValue(PREFIX_MEETING).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-
-        // Initialize the person with an empty set of policies
-        Set<Policy> emptyPolicies = Collections.emptySet();
-
-        Person person = new Person(name, phone, email, address, meeting, tagList, emptyPolicies);
+        Set<Policy> policyList = ParserUtil.parsePolicies(argMultimap.getAllValues(PREFIX_POLICY_NAME));
+        Person person = new Person(name, phone, email, address, meeting, tagList, policyList);
 
         return new AddCommand(person);
     }

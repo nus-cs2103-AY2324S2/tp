@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -131,35 +132,16 @@ public class Person {
      *     Alice Pauline Phone: 12345678 Email: alice@example.com Address: 123, Jurong West Ave 6,
      *     #08-111 Tags: friends family Policies: [SuperSaver] [HealthGuard]
      */
+    @Override
     public String toString() {
-        final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-                .append(" Phone: ")
-                .append(getPhone())
-                .append(" Email: ")
-                .append(getEmail())
-                .append(" Address: ")
-                .append(getAddress())
-                .append(" Remark: ")
-                .append(" Tags: ");
-        if (getTags().isEmpty()) {
-            builder.append("None");
-        } else {
-            getTags().forEach(tag -> builder.append("[").append(tag.tagName).append("] "));
-        }
-
-        builder.append(" Policies: ");
-        if (getPolicies().isEmpty()) {
-            builder.append("None");
-        } else {
-            getPolicies().forEach(policy -> builder.append("[").append(" Policy Name: ")
-                    .append(policy.policyName)
-                    .append(", Number: ").append(policy.policyNumber)
-                    .append(", Premium Term: ").append(policy.premiumTerm)
-                    .append(", Premium: ").append(policy.premium)
-                    .append(", Benefit: ").append(policy.benefit)
-                    .append("] "));
-        }
-        return builder.toString().trim(); // Trim to remove any trailing space
+        return new ToStringBuilder(this)
+                .add("name", name)
+                .add("phone", phone)
+                .add("email", email)
+                .add("address", address)
+                .add("meeting", meeting)
+                .add("tags", tags)
+                .add("policies", policies)
+                .toString();
     }
 }
