@@ -1,7 +1,6 @@
 package seedu.edulink.commons.util;
 
 import static java.util.Objects.requireNonNull;
-import static jdk.internal.org.jline.utils.Colors.s;
 import static seedu.edulink.commons.util.AppUtil.checkArgument;
 
 import java.io.PrintWriter;
