@@ -77,6 +77,23 @@ public class SetStatusCommand extends Command {
     }
 
     @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof SetStatusCommand)) {
+            return false;
+        }
+
+        SetStatusCommand otherSetStatusCommand = (SetStatusCommand) other;
+        return project.equals(otherSetStatusCommand.project)
+                && task.equals(otherSetStatusCommand.task)
+                && status.equals(otherSetStatusCommand.status);
+    }
+
+    @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .add("set status", status)

@@ -74,6 +74,23 @@ public class SetDeadlineCommand extends Command {
     }
 
     @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof SetDeadlineCommand)) {
+            return false;
+        }
+
+        SetDeadlineCommand otherSetDeadlineCommand = (SetDeadlineCommand) other;
+        return project.equals(otherSetDeadlineCommand.project)
+                && task.equals(otherSetDeadlineCommand.task)
+                && deadline.equals(otherSetDeadlineCommand.deadline);
+    }
+
+    @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .add("setDeadline", deadline)
