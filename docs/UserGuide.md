@@ -150,7 +150,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 
 Examples:
 * `find John` returns `John Doe` and `John Bard`</br>
-  ![result for 'find John'](images/commandPictures/findJohnResult.png)
+  ![result for 'find John'](images/commandsPictures/findJohnResult.png)
 
 [<span style="font-size: small;">Back to Top</span>](#top)
 
