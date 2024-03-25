@@ -1,7 +1,9 @@
 ---
-layout: page
-title: About Us
+  layout: default.md
+  title: "About Us"
 ---
+
+# About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
@@ -9,51 +11,41 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Yeo Shu Heng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/yeoshuheng.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[homepage](https://www.linkedin.com/in/yeoshuheng/)]
+[[github](https://github.com/yeoshuheng)]
+[[portfolio](team/shuheng.md)]
 
-* Role: Project Advisor
+* Role: Developer
 
-### Jane Doe
+### Daniel Wang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/dwangwk.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/dwangwk)]
+[[portfolio](team/danielwang.md)]
 
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Ye Si Fan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/yespiggy.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/yespiggy)] [[portfolio](team/sifan.md)]
 
 * Role: Developer
 * Responsibilities: UI
+
+### Natasya Hadiatullah Buhari
+
+<img src="images/menatahari.png" width="200px">
+
+[[github](http://github.com/menatahari)]
+[[portfolio](team/natasya.md)]
+
+* Role: Developer
+* Responsibilities: Dev Ops

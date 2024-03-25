@@ -1,0 +1,11 @@
+{
+  "startups": [ {
+    "name": "Hans Muster",
+    "phone": "9482424",
+    "industry": "finance",
+    "fundingStage": "A",
+    "email": "invalid@email!3e",
+    "address": "4th street",
+    "note": "Add a note!"
+  } ]
+}
