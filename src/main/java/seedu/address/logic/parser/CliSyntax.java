@@ -10,7 +10,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_PHONE = new Prefix("hp/");
     public static final Prefix PREFIX_EMAIL = new Prefix("e/");
     public static final Prefix PREFIX_ADDRESS = new Prefix("a/");
-    public static final Prefix PREFIX_MEMSHIP = new Prefix("ms/");
+    public static final Prefix PREFIX_MEMSHIP_PTS = new Prefix("mp/");
     public static final Prefix PREFIX_TAG = new Prefix("t/");
     public static final Prefix PREFIX_POINTS = new Prefix("p/");
     public static final Prefix PREFIX_ORDER = new Prefix("o/");

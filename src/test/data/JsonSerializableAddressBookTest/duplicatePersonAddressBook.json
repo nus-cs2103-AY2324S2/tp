@@ -4,7 +4,7 @@
     "phone": "94351253",
     "email": "alice@example.com",
     "address": "123, Jurong West Ave 6, #08-111",
-    "membership": "T1",
+    "membershipPoints": "0",
     "tags": [ "friends" ],
     "points": "30",
     "orders" : [ ]
@@ -13,7 +13,7 @@
     "phone": "94351253",
     "email": "pauline@example.com",
     "address": "4th street",
-    "membership": "T2",
+    "membershipPoints": "10",
     "points": "75",
     "orders" : [ ]
   } ]
