@@ -59,16 +59,69 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_INCOME, PREFIX_EMAIL,
                                                  PREFIX_FAMILY, PREFIX_ADDRESS, PREFIX_REMARK);
-        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-        Income income = ParserUtil.parseIncome(argMultimap.getValue(PREFIX_INCOME).get());
-        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
-        Family family = ParserUtil.parseFamily(argMultimap.getValue(PREFIX_FAMILY).get());
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        Remark remark = ParserUtil.parseRemark(argMultimap.getRemarkValue(PREFIX_REMARK).get());
 
+        StringBuilder errorMessageBuilder = new StringBuilder();
+
+        Name name = null;
+        try {
+            name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).orElseThrow());
+        } catch (ParseException e) {
+            errorMessageBuilder.append("Error parsing name: ").append(e.getMessage()).append("\n");
+        }
+
+        Phone phone = null;
+        try {
+            phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).orElseThrow());
+        } catch (ParseException e) {
+            errorMessageBuilder.append("Error parsing phone: ").append(e.getMessage()).append("\n");
+        }
+
+        Income income = null;
+        try {
+            income = ParserUtil.parseIncome(argMultimap.getValue(PREFIX_INCOME).orElseThrow());
+        } catch (ParseException e) {
+            errorMessageBuilder.append("Error parsing income: ").append(e.getMessage()).append("\n");
+        }
+
+        Email email = null;
+        try {
+            email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).orElseThrow());
+        } catch (ParseException e) {
+            errorMessageBuilder.append("Error parsing email: ").append(e.getMessage()).append("\n");
+        }
+
+        Address address = null;
+        try {
+            address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).orElseThrow());
+        } catch (ParseException e) {
+            errorMessageBuilder.append("Error parsing address: ").append(e.getMessage()).append("\n");
+        }
+
+        Family family = null;
+        try {
+            family = ParserUtil.parseFamily(argMultimap.getValue(PREFIX_FAMILY).orElseThrow());
+        } catch (ParseException e) {
+            errorMessageBuilder.append("Error parsing family: ").append(e.getMessage()).append("\n");
+        }
+
+        Set<Tag> tagList = null;
+        try {
+            tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        } catch (ParseException e) {
+            errorMessageBuilder.append("Error parsing tags: ").append(e.getMessage()).append("\n");
+        }
+
+        Remark remark;
+        remark = ParserUtil.parseRemark(argMultimap.getRemarkValue(PREFIX_REMARK).orElseThrow());
+
+        // If any parsing operation fails, throw a ParseException with the accumulated error messages
+        if (errorMessageBuilder.length() > 0) {
+            throw new ParseException(errorMessageBuilder.toString().trim());
+        }
+
+        // If all parsing operations succeed, create the person object
         Person person = new Person(name, phone, income, email, address, family, tagList, remark);
+
 
         return new AddCommand(person);
     }
