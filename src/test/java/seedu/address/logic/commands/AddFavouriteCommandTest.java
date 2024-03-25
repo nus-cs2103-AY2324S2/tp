@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -25,6 +26,8 @@ import seedu.address.testutil.PersonBuilder;
 public class AddFavouriteCommandTest {
     private static final Set<Index> INDICES_STUB = Set.of(Index.fromOneBased(1),
             Index.fromOneBased(2), Index.fromOneBased(4));
+    private static final String MESSAGE_INVALID_FORMAT = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+            AddFavouriteCommand.MESSAGE_USAGE);
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
@@ -52,6 +55,17 @@ public class AddFavouriteCommandTest {
         Set<Index> indices = Set.of(Index.fromOneBased(model.getFilteredPersonList().size() + 1));
         AddFavouriteCommand addFavouriteCommand = new AddFavouriteCommand(indices);
         assertThrows(CommandException.class, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX, () ->
+                addFavouriteCommand.execute(model));
+    }
+
+    @Test
+    public void execute_favouriteContact_throwsCommandException() {
+        Set<Index> indices = Set.of(Index.fromOneBased(1));
+        Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Person editedPerson = new PersonBuilder(firstPerson).withFavourite(true).build();
+        model.setPerson(firstPerson, editedPerson);
+        AddFavouriteCommand addFavouriteCommand = new AddFavouriteCommand(indices);
+        assertThrows(CommandException.class, MESSAGE_INVALID_FORMAT, () ->
                 addFavouriteCommand.execute(model));
     }
 

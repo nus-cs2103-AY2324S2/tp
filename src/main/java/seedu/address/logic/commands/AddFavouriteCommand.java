@@ -25,7 +25,8 @@ public class AddFavouriteCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds contacts identified by index number "
             + "as favourites.\n"
-            + "Parameters: i/ [INDICES] (must be positive integers separated by commas)\n"
+            + "Parameters: i/ [INDICES] (must be positive integers separated by "
+            + "commas that correspond to non-favourite contacts)\n"
             + "Example: " + COMMAND_WORD + " "
             + "i/ 1,2,5";
 
@@ -46,6 +47,11 @@ public class AddFavouriteCommand extends Command {
         boolean anyGreaterThanSize = this.indices.stream().anyMatch(index -> index.getZeroBased() >= people.size());
         if (anyGreaterThanSize) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        }
+        boolean anyFavourite = this.indices.stream().anyMatch(index ->
+                people.get(index.getZeroBased()).getFavourite());
+        if (anyFavourite) {
+            throw new CommandException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
         }
         for (Index index : this.indices) {
             Person person = people.get(index.getZeroBased());
