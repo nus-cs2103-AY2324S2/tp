@@ -64,8 +64,7 @@ public class PersonDetailsPanel extends UiPart<Region> {
         note.setText(person.getNote().toString());
         qrcode.setImage(new Image(person.getQrCodePath().toUri().toString()));
 
-        // Bind manageability (presence) of node based on presence of value for optional
-        // fields
+        // Bind manageability (presence) of node based on presence of value for optional fields
         address.setVisible(!person.getAddress().getValue().isEmpty());
         email.setVisible(!person.getEmail().getValue().isEmpty());
         note.setVisible(!person.getNote().getValue().isEmpty());
