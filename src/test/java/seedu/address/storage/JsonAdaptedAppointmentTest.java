@@ -42,7 +42,8 @@ public class JsonAdaptedAppointmentTest {
     @Test
     public void toModelType_invalidStudentId_throwsIllegalValueException() {
         JsonAdaptedAppointment appointment = new JsonAdaptedAppointment(VALID_APPOINTMENT_ID,
-                VALID_APPOINTMENT_DATE_TIME, INVALID_STUDENT_ID, VALID_APPOINTMENT_DESCRIPTION, VALID_ATTENDED_STATUS, 5);
+                VALID_APPOINTMENT_DATE_TIME, INVALID_STUDENT_ID, VALID_APPOINTMENT_DESCRIPTION,
+                                                                        VALID_ATTENDED_STATUS, 5);
         String expectedMessage = "Please only use positive index.";
         assertThrows(IllegalValueException.class, expectedMessage, appointment::toModelType);
     }

@@ -1,7 +1,11 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTEND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FEEDBACK_SCORE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PATIENT_ID;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
