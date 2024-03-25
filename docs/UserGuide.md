@@ -17,11 +17,11 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `EventBook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar EventBook.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
@@ -33,10 +33,15 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
    * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
 
    * `delete 3` : Deletes the 3rd contact shown in the current list.
+   * `delete John` : Deletes the person named John from the EventBook.
 
    * `clear` : Deletes all contacts.
 
    * `exit` : Exits the app.
+   * `ctag Friend` : Creates a tag name 'Friend'.
+   * `dtag Friend` : Deletes a tag named 'Friend'.
+   * `import` : Imports contacts from `.\import\import.csv`.
+   * `search Friend` : Displays all contacts with the tag 'Friend'.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -113,6 +118,38 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
+### Creating a tag : `ctag`
+
+Creates a tag in the address book.
+
+Format: `ctag TAGNAME`
+* The provided name has to be a unique tag name that does not already exist in the address book.
+
+Examples:
+* `ctag Friend` Creates a tag named 'Friend'
+
+### Delete a tag : `dtag`
+
+Deletes a tag in the address book.
+
+Format: `dtag TAGNAME`
+* The provided name has to be a unique tag name that does not already exist in the address book.
+* The provided tag has to exist in the EventBook.
+Examples:
+* `dtag Friend` Deletes a tag named 'Friend'
+
+### Searching by tag : `search`
+
+Displays all the people that are tagged with TAGNAME.
+
+Format: `search TAGNAME`
+
+* The search is case-sensitive.
+
+Examples:
+* `search Friend` Displays all people tagged as Friend.
+
+
 ### Locating persons by name: `find`
 
 Finds persons whose names contain any of the given keywords.
@@ -135,9 +172,11 @@ Examples:
 
 Deletes the specified person from the address book.
 
-Format: `delete INDEX`
+Format: `delete INDEX or NAME`
 
-* Deletes the person at the specified `INDEX`.
+* Deletes the person at the specified `INDEX` or `NAME`.
+* The name provided is case-sensitive.
+* The name provided must be the full name of the person.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
@@ -150,6 +189,17 @@ Examples:
 Clears all entries from the address book.
 
 Format: `clear`
+
+### Importing contacts from .csv : `import`
+
+Imports all contacts from ./import/import.csv
+Format: `import`
+* Requires a file named import.csv to be present at `./import`
+* The format of the first line of the csv should be:
+  NAME | NUMBER | EMAIL | ADDRESS | TAG
+  with no spacing. The titles are non-caps sensitive.
+* The format of each subsequent line should follow the appropriate add command format.
+* There should be no blank lines, and no conflicts with contacts in the existing address book
 
 ### Exiting the program : `exit`
 
@@ -202,3 +252,7 @@ Action     | Format, Examples
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List**   | `list`
 **Help**   | `help`
+**Create Tag** | `ctag TAGNAME` <br> e.g., `ctag Friend`
+**Delete Tag** | `dtag TAGNAME` <br> e.g., `dtag Friend`
+**Import** | `import`
+**Search Tag** | `search TAGNAME` <br> e.g., `search Friend`
