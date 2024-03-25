@@ -4,6 +4,7 @@ import java.time.Duration;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Accordion;
 import javafx.scene.control.Label;
@@ -41,7 +42,7 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label relationship;
     @FXML
-    private Label policy;
+    private FlowPane policies;
     @FXML
     private FlowPane tags;
     @FXML
@@ -60,14 +61,34 @@ public class PersonCard extends UiPart<Region> {
         email.setText(person.getEmail().value);
         relationship.setText(person.getRelationship().value);
 
-        policy.setText(person.getPolicy().value.isEmpty() ? "No policy assigned" : "Policy: "
-                + person.getPolicy().value);
-        policy.setStyle(person.getPolicy().value.isEmpty() ? "-fx-background-color: #f54242"
-                : "-fx-background-color: #1fab2f");
-
         if (!person.isClient()) {
-            policy.setVisible(false);
+            policies.setVisible(false);
+        } else if (person.getPolicies().isEmpty()) {
+            Label label = new Label("No policy assigned");
+            label.setStyle(
+                    "-fx-background-color: #d32f2f; "
+                            + "-fx-font-size: 14px; "
+                            + "-fx-padding: 2px 4px; " // Adjust padding to fit the content
+                            + "-fx-background-radius: 2.5; "
+            );
+            policies.getChildren().add(label);
+        } else {
+            person.getPolicies().stream()
+                    .sorted(Comparator.comparing(policy -> policy.value))
+                    .forEach(policy -> {
+                        Label label = new Label("Policy: " + policy.value);
+                        label.setStyle(
+                                "-fx-background-color: #1fab2f; "
+                                        + "-fx-font-size: 14px; "
+                                        + "-fx-padding: 2px 4px; " // Adjust padding to fit the content
+                                        + "-fx-background-radius: 2.5; "
+                        );
+                        policies.getChildren().add(label);
+                        FlowPane.setMargin(label, new Insets(0, 6, 0, 0));
+                    });
         }
+
+
 
         tags.getChildren().clear();
         person.getTags().stream()

@@ -153,7 +153,7 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
-    private final String policy;
+    private final List<JsonAdaptedPolicy> adaptedPolicies = new ArrayList<>();
     private final String relationship;
     private final List<JsonAdaptedTag> adaptedTags = new ArrayList<>();
     private final List<JsonAdaptedMeeting> adaptedMeetings = new ArrayList<>();
@@ -167,14 +167,16 @@ class JsonAdaptedPerson {
                              @JsonProperty("email") String email,
                              @JsonProperty("address") String address,
                              @JsonProperty("relationship") String relationship,
-                             @JsonProperty("policy") String policy,
+                             @JsonProperty("policies") List<JsonAdaptedPolicy> adaptedPolicies,
                              @JsonProperty("tags") List<JsonAdaptedTag> adaptedTags,
                              @JsonProperty("meetings") List<JsonAdaptedMeeting> adaptedMeetings) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.policy = policy;
+        if (adaptedPolicies != null) {
+            this.adaptedPolicies.addAll(adaptedPolicies);
+        }
         this.relationship = relationship;
         if (adaptedTags != null) {
             this.adaptedTags.addAll(adaptedTags);
@@ -192,7 +194,9 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
-        policy = source.getPolicy().value;
+        adaptedPolicies.addAll(source.getPolicies().stream()
+                .map(JsonAdaptedPolicy::new)
+                .collect(Collectors.toList()));
         relationship = source.getRelationship().value;
         adaptedTags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -211,6 +215,11 @@ class JsonAdaptedPerson {
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : adaptedTags) {
             personTags.add(tag.toModelType());
+        }
+
+        final List<Policy> personPolicies = new ArrayList<>();
+        for (JsonAdaptedPolicy policy : adaptedPolicies) {
+            personPolicies.add(policy.toModelType());
         }
 
         final List<Meeting> personMeetings = new ArrayList<>();
@@ -259,14 +268,11 @@ class JsonAdaptedPerson {
         }
         final Relationship modelRelationship = new Relationship(relationship);
 
-        if (policy == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Policy.class.getSimpleName()));
-        }
-        final Policy modelPolicy = new Policy(policy);
+        final Set<Policy> modelPolicies = new HashSet<>(personPolicies);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
         final Person person = new Person(modelName, modelPhone, modelEmail, modelAddress, modelRelationship,
-                modelPolicy, modelTags);
+                modelPolicies, modelTags);
 
         // Add meetings to the person
         for (Meeting meeting : personMeetings) {
