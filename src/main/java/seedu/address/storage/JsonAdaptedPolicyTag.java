@@ -46,7 +46,7 @@ public class JsonAdaptedPolicyTag {
      * @throws IllegalValueException if there were any data constraints violated in the adapted tag.
      */
     public Policy toModelType() throws IllegalValueException {
-        if (!Policy.isValidField(tagName)) {
+        if (!Policy.isValidPolicy(tagName)) {
             throw new IllegalValueException(Policy.MESSAGE_CONSTRAINTS);
         }
         return new Policy(tagName);

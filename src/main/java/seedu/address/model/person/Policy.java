@@ -23,7 +23,7 @@ public class Policy {
      */
     public Policy(String policyName) {
         requireAllNonNull(policyName);
-        checkArgument(isValidField(policyName), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidPolicy(policyName), MESSAGE_CONSTRAINTS);
         this.policyName = policyName;
     }
 
@@ -33,7 +33,7 @@ public class Policy {
      * @param field The policy name to validate.
      * @return True if the policy name is valid, false otherwise.
      */
-    public static boolean isValidField(String field) {
+    public static boolean isValidPolicy(String field) {
         return field.matches(STRING_VALIDATION_REGEX);
     }
 
