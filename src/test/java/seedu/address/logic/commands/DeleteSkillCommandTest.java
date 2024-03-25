@@ -86,7 +86,7 @@ public class DeleteSkillCommandTest {
         showAllCourseMates(model, new Name("a"));
         DeleteSkillCommand deleteSkillCommand = new DeleteSkillCommand(new QueryableCourseMate(new Name("a")),
                 new DeleteSkillDescriptorBuilder().withSkills(VALID_SKILL_JAVA).build());
-        String expectedMessage = String.format(Messages.MESSAGE_SIMILAR_COURSE_MATE_NAME, 4);
+        String expectedMessage = String.format(Messages.MESSAGE_SIMILAR_COURSE_MATE_NAME, 4, "a");
 
         Model expectedModel = new ModelManager(
                 new ContactList(model.getContactList()), new UserPrefs(), new GroupList());
@@ -105,7 +105,7 @@ public class DeleteSkillCommandTest {
         DeleteSkillCommand deleteSkillCommand = new DeleteSkillCommand(
                 new QueryableCourseMate(outOfBoundIndex), descriptor);
 
-        assertCommandFailure(deleteSkillCommand, model, Messages.MESSAGE_INVALID_COURSE_MATE_DISPLAYED_INDEX);
+        assertCommandFailure(deleteSkillCommand, model, Messages.MESSAGE_INVALID_COURSE_MATE_NAME);
         assertRecentlyProcessedCourseMateEdited(model, null);
     }
 
@@ -133,7 +133,7 @@ public class DeleteSkillCommandTest {
         DeleteSkillCommand deleteSkillCommand = new DeleteSkillCommand(new QueryableCourseMate(outOfBoundIndex),
                 new DeleteSkillDescriptorBuilder().withSkills(VALID_SKILL_JAVA).build());
 
-        assertCommandFailure(deleteSkillCommand, model, Messages.MESSAGE_INVALID_COURSE_MATE_DISPLAYED_INDEX);
+        assertCommandFailure(deleteSkillCommand, model, Messages.MESSAGE_INVALID_COURSE_MATE_NAME);
         assertRecentlyProcessedCourseMateEdited(model, null);
     }
 

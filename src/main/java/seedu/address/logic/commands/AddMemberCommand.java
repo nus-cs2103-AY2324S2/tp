@@ -5,6 +5,8 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COURSEMATE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_GROUPS;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -35,7 +37,8 @@ public class AddMemberCommand extends Command {
             + PREFIX_COURSEMATE + " John Doe.";
     public static final String MESSAGE_MEMBERS_ALREADY_IN_GROUP =
             "Some of the specified members are already in the group.";
-    public static final String MESSAGE_SUCCESFULLY_ADDED = "Group successfully modified, Name: %s";
+    public static final String MESSAGE_SUCCESFULLY_ADDED = "Group successfully modified, Name: %1$s\n"
+            + "%2$s new members have been added to the group!";
 
     private final Name groupName;
     private final Set<QueryableCourseMate> queryableCourseMateSet;
@@ -53,12 +56,16 @@ public class AddMemberCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        Set<CourseMate> courseMateList;
+        Set<List<CourseMate>> courseMateSet;
+        List<QueryableCourseMate> queryableCourseMates = new ArrayList<>();
+        for (QueryableCourseMate q : queryableCourseMateSet) {
+            queryableCourseMates.add(q);
+        }
+
         try {
-            courseMateList = queryableCourseMateSet
+            courseMateSet = queryableCourseMateSet
                     .stream()
                     .map(model::findCourseMate)
-                    .map(x -> x.get(0))
                     .collect(Collectors.toSet());
         } catch (CourseMateNotFoundException e) {
             throw new CommandException(Messages.MESSAGE_MEMBERS_DONT_EXIST, e);
@@ -72,6 +79,18 @@ public class AddMemberCommand extends Command {
         }
 
         Group modifiedGroup = new Group(toModify.getName(), toModify.asUnmodifiableObservableList());
+
+        List<CourseMate> courseMateList = new ArrayList<>();
+        int index = 0;
+        for (List<CourseMate> courseMateAddList: courseMateSet) {
+            //If there are more than 1 matching name
+            if (courseMateAddList.size() > 1) {
+                return new SimilarNameCommand(queryableCourseMates.get(index)).execute(model);
+            }
+            courseMateList.add(courseMateAddList.get(0));
+            index += 1;
+        }
+
         try {
             for (CourseMate courseMate: courseMateList) {
                 modifiedGroup.add(courseMate);
@@ -82,8 +101,8 @@ public class AddMemberCommand extends Command {
 
         model.setGroup(toModify, modifiedGroup);
         model.updateFilteredGroupList(PREDICATE_SHOW_ALL_GROUPS);
-        return new CommandResult(String.format(MESSAGE_SUCCESFULLY_ADDED, groupName),
-                false, false, true);
+        return new CommandResult(String.format(MESSAGE_SUCCESFULLY_ADDED, groupName,
+                courseMateList.size()), false, false, true);
     }
 
     @Override
