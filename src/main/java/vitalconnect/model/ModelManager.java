@@ -31,6 +31,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final ObservableList<Appointment> appointments;
+    private Predicate<Person> currentPredicate;
 
 
     /**
@@ -45,6 +46,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.clinic.getPersonList());
         this.appointments = FXCollections.observableArrayList();
+        this.currentPredicate = PREDICATE_SHOW_ALL_PERSONS;
 
         if (loadedAppointments != null) {
             this.appointments.setAll(loadedAppointments);
@@ -223,6 +225,14 @@ public class ModelManager implements Model {
         personToUpdate.setMedicalInformation(medicalInformation);
         setPerson(person, personToUpdate);
 
+    }
+
+    public void setCurrentPredicate(Predicate<Person> predicate) {
+        currentPredicate = predicate;
+    }
+
+    public Predicate<Person> getCurrentPredicate() {
+        return currentPredicate;
     }
 
 

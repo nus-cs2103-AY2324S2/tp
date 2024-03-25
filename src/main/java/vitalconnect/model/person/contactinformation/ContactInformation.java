@@ -55,6 +55,18 @@ public class ContactInformation {
         return address;
     }
 
+    public void updateEmail(Email email) {
+        this.email = email;
+    }
+
+    public void updatePhone(Phone phone) {
+        this.phone = phone;
+    }
+
+    public void updateAddress(Address address) {
+        this.address = address;
+    }
+
     /**
      * Returns true if a given string is a valid contactInformation
      */
@@ -73,13 +85,13 @@ public class ContactInformation {
     @Override
     public String toString() {
         String result = "";
-        if (phone != null) {
+        if (!phone.isEmpty()) {
             result += "phone: " + phone + "\n";
         }
-        if (email != null) {
+        if (!email.isEmpty()) {
             result += "email: " + email + "\n";
         }
-        if (address != null) {
+        if (!address.isEmpty()) {
             result += "address: " + address + "\n";
         }
         return result;
