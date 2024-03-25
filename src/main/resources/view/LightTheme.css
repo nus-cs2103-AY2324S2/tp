@@ -81,8 +81,6 @@
     -fx-border-radius: 1;
     -fx-border-width: 1;
     -fx-background-color: white;
-    /*-fx-background-radius: 15px;*/
-    /*-fx-border-radius: 15px;*/
 }
 
 .list-view {
@@ -133,7 +131,7 @@
 }
 
 .stack-pane {
-    -fx-background-color: #e2e5ef;
+    -fx-background-color: white;
 }
 
 .pane-with-border {
@@ -181,7 +179,7 @@
 }
 
 .grid-pane .stack-pane {
-    -fx-background-color: #e2e5ef;
+    -fx-background-color: white;
 }
 
 .context-menu {
