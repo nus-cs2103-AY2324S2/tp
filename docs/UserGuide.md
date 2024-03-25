@@ -119,10 +119,8 @@ Examples:
 
 Usage of Add command
 
-<video controls>
-  <source src="https://github.com/AY2324S2-CS2103T-W12-4/tp/assets/48405651/684dbfd0-53bc-41aa-bb20-82938f5154f1" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+<img src="images/add-command-images/add-command.png" />
+
 
 ### Listing all persons : `list`
 Shows a list of all persons.
@@ -151,10 +149,8 @@ Examples:
 
 Usage of update command
 
-<video controls>
-  <source src="https://github.com/AY2324S2-CS2103T-W12-4/tp/assets/48405651/ad7cd05f-01bc-4a98-8074-b487e232fa52" type="video/mp4">
-  _Your browser does not support the video tag._
-</video>
+<img src="images/update-command-images/update-command.png" />
+
 
 ### Locating clients by name: `find`
 
