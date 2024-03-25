@@ -60,8 +60,7 @@ public class StudentCard extends UiPart<Region> {
         subject.setText(student.getSubject().value);
         remark.setText(student.getRemark().value);
         student.getLessons().stream()
-                .sorted(Comparator.comparing(Lesson::getLessonValue))
-                .filter(lesson -> lesson.getLessonStatus() == 0)
+                .sorted(Comparator.comparing(Lesson::getLessonValue)).filter(lesson -> lesson.getLessonStatus() == 0)
                 .forEach(lesson -> lessons.getChildren().add(new Label(lesson.toString())));
     }
 }
