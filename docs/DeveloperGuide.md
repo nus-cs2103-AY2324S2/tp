@@ -208,6 +208,16 @@ Predicate, PersonHasTagPredicate and NameContainsKeywordsPredicate:
 Future implementation of filter commands can abstract out the similarities between filter commands by implementing
 Filter as an Interface, making the code more extensible:
 
+### Split Command
+
+After the `AddressBookParser` identifies that the user's input is calling the `split` command word, it creates a
+`SplitCommandParser`. The `SplitCommandParser` then parses the user's input and creates a new `SplitCommand`
+containing at least one `Index`. The `SplitCommand` is then executed by `Logic Manager`, which updates the 
+`MoneyOwed` attribute in `Person`. A `CommandResult` which stores the message of the outcome of split command is
+then returned. Part of the class diagram is shown below.
+
+<img src="images/SplitClassDiagram.png" width="500"/>
+
 [insert next UML here]
 
 ### \[Proposed\] Undo/redo feature
