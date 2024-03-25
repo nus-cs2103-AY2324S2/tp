@@ -47,14 +47,28 @@ public class FilterAppCommandParser implements Parser<FilterAppCommand> {
         Optional<Date> dateFilter = Optional.empty();
         Optional<Time> timeFilter = Optional.empty();
 
-        if (isValidNric(argMultimap.getValue(PREFIX_NRIC).orElse(""))) {
-            nricFilter = Optional.of(new Nric(argMultimap.getValue(PREFIX_NRIC).orElse("")));
+        if (argMultimap.getValue(PREFIX_NRIC).isPresent()) {
+            if (isValidNric(argMultimap.getValue(PREFIX_NRIC).orElse(""))) {
+                nricFilter = Optional.of(new Nric(argMultimap.getValue(PREFIX_NRIC).orElse("")));
+            } else {
+                throw new ParseException(Nric.MESSAGE_CONSTRAINTS);
+            }
         }
-        if (isValidDate(argMultimap.getValue(PREFIX_DATE).orElse(""))) {
-            dateFilter = Optional.of(new Date(argMultimap.getValue(PREFIX_DATE).orElse("")));
+
+        if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
+            if (isValidDate(argMultimap.getValue(PREFIX_DATE).orElse(""))) {
+                dateFilter = Optional.of(new Date(argMultimap.getValue(PREFIX_DATE).orElse("")));
+            } else {
+                throw new ParseException(Date.MESSAGE_CONSTRAINTS);
+            }
         }
-        if (isValidTime(argMultimap.getValue(PREFIX_START_TIME).orElse(""))) {
-            timeFilter = Optional.of(new Time(argMultimap.getValue(PREFIX_START_TIME).orElse("")));
+
+        if (argMultimap.getValue(PREFIX_START_TIME).isPresent()) {
+            if (isValidTime(argMultimap.getValue(PREFIX_START_TIME).orElse(""))) {
+                timeFilter = Optional.of(new Time(argMultimap.getValue(PREFIX_START_TIME).orElse("")));
+            } else {
+                throw new ParseException(Time.MESSAGE_CONSTRAINTS);
+            }
         }
 
         AppointmentContainsKeywordsPredicate predicate = new AppointmentContainsKeywordsPredicate(
