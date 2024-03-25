@@ -63,7 +63,7 @@ public class Person {
     }
 
     public Pin getPin() {
-        return pin;
+        return this.pin;
     }
 
     public void toPin() {
