@@ -1,6 +1,7 @@
 package seedu.address.model.util;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -19,7 +20,7 @@ import seedu.address.model.tag.Tag;
  * Contains utility methods for populating {@code AddressBook} with sample data.
  */
 public class SampleDataUtil {
-    public static final Policy EMPTY_POLICY = new Policy("");
+    public static final Set<Policy> EMPTY_POLICY = new HashSet<>();
     public static Person[] getSamplePersons() {
         return new Person[] {
             new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
@@ -58,6 +59,19 @@ public class SampleDataUtil {
         return Arrays.stream(strings)
                 .map(Tag::new)
                 .collect(Collectors.toSet());
+    }
+
+    /**
+     * Returns a policy set containing the list of strings given.
+     */
+    public static Set<Policy> getPolicySet(String... strings) {
+        if (strings.length == 0) {
+            return new HashSet<>();
+        } else {
+            return Arrays.stream(strings)
+                    .map(Policy::new)
+                    .collect(Collectors.toSet());
+        }
     }
 
 }
