@@ -31,6 +31,7 @@ public class CommandTestUtil {
     public static final String VALID_NAME_AMY_CAPS = "Amy Bee";
 
     public static final String VALID_NAME_AMY_NON_CAPS = "amy bee";
+    public static final String VALID_NAME_AMY_VARYING_CAPS = "aMY bEe";
     public static final String VALID_NAME_BOB_CAPS = "Bob Choo";
     public static final String VALID_PHONE_AMY = "11111111";
     public static final String VALID_PHONE_BOB = "22222222";
@@ -49,6 +50,7 @@ public class CommandTestUtil {
 
     public static final String NAME_DESC_AMY_CAPS = " " + PREFIX_NAME + VALID_NAME_AMY_CAPS;
     public static final String NAME_DESC_AMY_NON_CAPS = " " + PREFIX_NAME + VALID_NAME_AMY_NON_CAPS;
+    public static final String NAME_DESC_AMY_VARYING_CAPS = " " + PREFIX_NAME + VALID_NAME_AMY_VARYING_CAPS;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB_CAPS;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
     public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_PHONE_BOB;

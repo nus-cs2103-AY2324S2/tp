@@ -18,6 +18,7 @@ import static seedu.realodex.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.realodex.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.realodex.logic.commands.CommandTestUtil.NAME_DESC_AMY_CAPS;
 import static seedu.realodex.logic.commands.CommandTestUtil.NAME_DESC_AMY_NON_CAPS;
+import static seedu.realodex.logic.commands.CommandTestUtil.NAME_DESC_AMY_VARYING_CAPS;
 import static seedu.realodex.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 import static seedu.realodex.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.realodex.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
@@ -269,9 +270,15 @@ public class AddCommandParserTest {
     @Test
     public void parse_nonCapitalizedName_success() {
         Person expectedPerson = new PersonBuilder(AMY_NAME_CAPS).build();
-        String validExpectedPersonString = NAME_DESC_AMY_NON_CAPS + PHONE_DESC_AMY + INCOME_DESC_AMY + EMAIL_DESC_AMY
+        String validExpectedNonCapitalizedAmyString =
+                NAME_DESC_AMY_NON_CAPS + PHONE_DESC_AMY + INCOME_DESC_AMY + EMAIL_DESC_AMY
                 + ADDRESS_DESC_AMY + FAMILY_DESC_AMY + TAG_DESC_AMY;
-        assertParseSuccess(parser, validExpectedPersonString, new AddCommand(expectedPerson));
+        assertParseSuccess(parser, validExpectedNonCapitalizedAmyString, new AddCommand(expectedPerson));
+
+        String validExpectedVaryingCapitalizedAmyString =
+                NAME_DESC_AMY_VARYING_CAPS + PHONE_DESC_AMY + INCOME_DESC_AMY + EMAIL_DESC_AMY
+                + ADDRESS_DESC_AMY + FAMILY_DESC_AMY + TAG_DESC_AMY;
+        assertParseSuccess(parser, validExpectedNonCapitalizedAmyString, new AddCommand(expectedPerson));
     }
 
     @Test

@@ -55,6 +55,7 @@ public class ParserUtil {
 
     /**
      * Capitalizes the first letter of each word in the given sentence.
+     * All other parts of the same word will be lower-cased.
      *
      * @param sentence the input sentence
      * @return the sentence with the first letter of each word capitalized
@@ -64,14 +65,14 @@ public class ParserUtil {
         if (sentence.isEmpty()) {
             return sentence;
         }
+        // Split the sentence into words
         String[] words = sentence.split("\\s+");
         StringBuilder sb = new StringBuilder();
         for (String word : words) {
-            if (!word.isEmpty()) {
-                sb.append(Character.toUpperCase(word.charAt(0)))
-                        .append(word.substring(1))
-                        .append(" ");
-            }
+            // Capitalize the first letter and append the rest of the word in lowercase
+            sb.append(Character.toUpperCase(word.charAt(0)))
+                    .append(word.substring(1).toLowerCase())
+                    .append(" ");
         }
         return sb.toString().trim();
     }

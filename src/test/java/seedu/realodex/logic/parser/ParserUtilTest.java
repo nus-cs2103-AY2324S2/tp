@@ -37,6 +37,7 @@ public class ParserUtilTest {
     private static final String VALID_NAME_CAPS = "Denzel Washington Al Pacino";
     private static final String VALID_NAME_NON_CAPS_ALL = "denzel washington al pacino";
     private static final String VALID_NAME_NON_CAPS_FIRST_NAME = "denzel Washington Al Pacino";
+    private static final String VALID_NAME_VARYING_CAPS = "dEnzeL waSHINgToN aL PaCINo";
     private static final String VALID_PHONE = "123456";
     private static final String VALID_INCOME = "10000";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
@@ -77,14 +78,20 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void capitalizeWords_nonCapitalizedFirstName_returnsCapitalizedFirstName() throws Exception {
+    public void capitalizeWords_nonCapitalizedFirstName_returnsNameCapitalizedName() throws Exception {
         Name expectedName = new Name(VALID_NAME_NON_CAPS_FIRST_NAME);
         assertEquals(VALID_NAME_CAPS, ParserUtil.capitalizeWords(VALID_NAME_NON_CAPS_FIRST_NAME));
     }
 
     @Test
-    public void capitalizeWords_nonCapitalizedAllName_returnsCapitalizedAllName() throws Exception {
+    public void capitalizeWords_nonCapitalizedAllName_returnsNameCapitalizedName() throws Exception {
         Name expectedName = new Name(VALID_NAME_NON_CAPS_ALL);
+        assertEquals(VALID_NAME_CAPS, ParserUtil.capitalizeWords(VALID_NAME_NON_CAPS_ALL));
+    }
+
+    @Test
+    public void capitalizeWords_varyingCapitalizedName_returnsNameCapitalizedName() throws Exception {
+        Name expectedName = new Name(VALID_NAME_VARYING_CAPS);
         assertEquals(VALID_NAME_CAPS, ParserUtil.capitalizeWords(VALID_NAME_NON_CAPS_ALL));
     }
 
