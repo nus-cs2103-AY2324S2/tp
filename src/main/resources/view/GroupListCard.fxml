@@ -21,6 +21,12 @@
             <HBox spacing="5" alignment="CENTER_LEFT">
                 <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
             </HBox>
+            <Label styleClass="detail_small_label" text="Skills: " minWidth="180" />
+            <FlowPane fx:id="groupSkills" />
+                <padding>
+                    <Insets top="5" right="5" bottom="50" left="15" />
+                </padding>
+            <Label styleClass="detail_small_label" text="Members: " minWidth="180" />
             <FlowPane fx:id="groupMembers" />
         </VBox>
     </GridPane>
