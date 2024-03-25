@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+Gene-nie is our address book reimagined. It is a desktop app able to not only manage your contacts, but also to help you keep track of your genetic information. Gene-nie acts as your personal autobiographer, providing you with information on your family tree and history.
 
 * Table of Contents
 {:toc}
@@ -14,11 +14,11 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `gene-nie.jar` from [here](https://github.com/AY2324S2-CS2103T-T11-1/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar gene-nie.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
@@ -30,6 +30,10 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
    * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
 
    * `delete 3` : Deletes the 3rd contact shown in the current list.
+   
+   * `addAttribute 12db Pet Dog` : Adds the attribute Pet with the value Dog to the person with the UUID 12db.
+   
+   * `deleteAttribute 12db Pet` : Deletes the attribute Pet from the person with the UUID 12db.
 
    * `clear` : Deletes all contacts.
 
@@ -54,11 +58,12 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+
+* The add attribute command is case-insensitive. The attribute name is case-insensitive for defined attributes like Name or Address, but the attribute name for user defined attributes is case-sensitive.
+
+* The delete attribute command is case-sensitive. It must match the attribute name exactly.
 
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </div>
@@ -127,6 +132,42 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
+### Adding an attribute : `addAttribute`
+
+Adds an attribute to a person in the address book.
+
+Format: `addAttribute UUID ATTRIBUTE_NAME ATTRIBUTE_VALUE`
+
+* Adds the attribute with the specified `ATTRIBUTE_NAME` and `ATTRIBUTE_VALUE` to the person with the specified `UUID`.
+* The `UUID` refers to the unique identifier of the person shown in the displayed person list.
+* The `UUID` **must be a valid UUID**.
+* The `ATTRIBUTE_NAME` is case-insensitive.
+* The `ATTRIBUTE_VALUE` is case-sensitive.
+
+Examples:
+* `addAttribute 12db Pet Dog` adds the attribute Pet with the value Dog to the person with the UUID 12db.
+* `addAttribute 12db Pet Cat` adds the attribute Pet with the value Cat to the person with the UUID 12db.
+* `addAttribute 12db pet Dog` adds the attribute pet with the value Dog to the person with the UUID 12db.
+* `addAttribute 12db Pet dog` adds the attribute Pet with the value dog to the person with the UUID 12db.
+
+### Deleting an attribute : `deleteAttribute`
+
+Deletes an attribute from a person in the address book.
+
+Format: `deleteAttribute UUID ATTRIBUTE_NAME`
+
+* Deletes the attribute with the specified `ATTRIBUTE_NAME` from the person with the specified `UUID`.
+* The `UUID` refers to the unique identifier of the person shown in the displayed person list.
+* The `UUID` **must be a valid UUID**.
+* The `ATTRIBUTE_NAME` is case-sensitive.
+* If the person does not have the specified attribute, the command will not have any effect.
+* If the person does not exist, the command will not have any effect.
+* If the attribute does not exist, the command will not have any effect.
+
+Examples:
+* `deleteAttribute 12db Pet` deletes the attribute Pet from the person with the UUID 12db.
+* `deleteAttribute 12db pet` does not delete the attribute Pet from the person with the UUID 12db but will delete the attribute pet.
+
 ### Deleting a person : `delete`
 
 Deletes the specified person from the address book.
@@ -193,6 +234,8 @@ Action | Format, Examples
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**addAttribute** | `addAttribute UUID ATTRIBUTE_NAME ATTRIBUTE_VALUE`<br> e.g., `addAttribute 12db Pet Dog`
+**deleteAttribute** | `deleteAttribute UUID ATTRIBUTE_NAME`<br> e.g., `deleteAttribute 12db Pet`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
