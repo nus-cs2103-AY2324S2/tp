@@ -46,36 +46,24 @@ PoochPlanner is an **address book manager for managing contacts, optimised for u
 **:information_source: Notes about the command format:**<br>
 
 * Words in `[parameter name]` are the parameters to be supplied by the user.<br>
-  e.g. in `/pooch-staff ; name : [name]`, `[name]` is a parameter which can be used as `/pooch-staff ; name : Poochie`.
+  For example, `/pooch-staff ; name : [name]`, `[name]` is a parameter to be supplied by the user.
+  The actual command that the user inputs can be `/pooch-staff ; name : Poochie`.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `name : [name] ; phone : [phone]`, `phone : [phone] ; name : [name]` is also acceptable.
+  e.g. if the command specifies `address : [address] ; phone : [phone]`, `phone : [phone] ; address : [address]` is also acceptable.
 
-* Extraneous parameters for commands that do not take in parameters (such as `/list`, `/exit`) will be ignored.<br>
-  e.g. if the command specifies `/list 123`, it will be interpreted as `/list`.
+* All command words are case-sensitive.<br>
+  e.g. if the command word specifies `\add`, then `\ADD` is invalid.
 
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </div>
 
-### Viewing help : `/help`
+### Adding a contact: `add`
 
-Shows a message of how to write commands for all commands or a specfic command.
+Adds a **person/ staff / supplier / maintainer** contact to the Pooch Planner.
 
-Format: `/help ; command : [command type]`
-
-Examples:
-* `/help ; command : delete`
-* `/help ; command : add`
-
-Constraints :
-* `Command must be specified`
-* `Help is only given for "delete", "add", "edit", "search"`
-* `For help for all commands, the command is "general"`
-
-
-### Adding a contact: `Add`
-
-Adds a staff / supplier / maintainer / other to the Pooch Planner.
+#### Adds a person
+Format: `/pooch-add ; name : [name] ; phone : [phone] ; address : [address] ; email : [email] ;`
 
 #### Adds a staff
 Format: `/pooch-staff ; name : [name] ; phone : [phone] ; address : [address] ; email : [email] ; salary : [salary/hr]  ; employment : [part/full] ;`
@@ -86,26 +74,22 @@ Format: `/pooch-supplier ; name : [name] ; phone : [phone] ; address : [address]
 #### Adds a maintainer
 Format: `/pooch-maintainer ; name : [name] ; phone : [phone] ; address : [address] ; email : [email] ; skill : [skill] ; commission : [commission/hr] ;`
 
-#### Adds a general contact
-Format: `/pooch-add ; name : [name] ; phone : [phone] ; address : [address] ; email : [email] ;`
-
 Examples:
+* `/pooch-add ; name : Janna  ; phone : 98765435 ; address : Poochie Street 24 ; email : ihelppooches@gmail.com`
 * `/pooch-staff ; name : Poochie ; phone : 98765435 ; address : Poochie Street 21 ; email : ilovecatstoo@gmail.com ; salary : $50/hr ; employment : part-time`
 * `/pooch-supplier ; name : PetCo ; phone : 98673098 ; address : Meow Street 24 ; email : ilovewombatstoo@gmail.com ; product : kibble ; price : $98/bag`
 * `/pooch-maintainer ; name : Tom Tan  ; phone : 98765435 ; address : Poochie Street 24 ; email : ihelppooches@gmail.com ; skill : trainer ; commission : $60/hr`
-* `/pooch-add ; name : Janna  ; phone : 98765435 ; address : Poochie Street 24 ; email : ihelppooches@gmail.com`
 
+<div markdown="span" class="alert alert-primary">:bulb: **Constraints:**<br>
+* Adding uplicate name will not be allowed.
+* Name is case-insensitive but space-sensitive.
+* Salary and commission must be in format ${Number}/hr.
+* Price must be in format ${Number}/{quantity}.
+</div>
 
-Constraints :
-* `Duplicate name will not be allowed`
-* `For instance, to check whether a name is unique (case-insensitive), we parse in the .lower() String method to convert all fields to lowercase.`
-* `Name field is case-insensitive but space-sensitive`
-* `Salary and commission must be in format ${Number}/hr`
-* `Price must be in format ${Number}/{quantity}`
+### Editing a contact : `edit`
 
-### Editing a contact : `Edit`
-
-Edit the fields of the specified **person / staff / supplier / maintainer** in the Pooch Planner.
+Edit a **person / staff / supplier / maintainer** contact in the Pooch Planner.
 
 
 #### Edits a person
@@ -123,93 +107,98 @@ Format: `/edit-supplier ; name : [name] ; field : { phone : [phone] ; address : 
 #### Edits a maintainer
 Format: `/edit-maintainer ; name : [name] ; field : { phone : [phone] ; address : [address] ; email : [email] ; skill : [skill] ; commission : [commission] }`
 
-* Edits the specified `field`(s) of the person with the specified `name`. Note that the specified person must first exist in Pooch Contact Book.
-* The name is a compulsory field that is case-insensitive but space-sensitive.
-* At least one field must be provided.
-* More than one field can be updated at the same time.
-* The field(s) to be edited must be a valid field within their contact type, i.e. Pooch Staff, Pooch Supplier, Pooch Maintenance.
-* **_Caution_** : Editing `name` field is strictly **not** allowed and **will** be ignored.
-
 Examples:
-* `/edit-person ; name : Poochie ; field : { name : Mochie }`
+* `/edit ; name : Mochie ; field : { address : Pooch Street 31}`
 
-  The above command edits the name of the person, from **_Poochie_** to **_Mochie_**, given that there are no other persons with the name, **_Mochie_**, in the Pooch Contact Book.
+  The above command edits the **address** field of **_Mochie_** to **_Pooch Street 31_**.
 
 * `/edit-staff ; name : Thomas ; field : { address : Poochie Street 25 ; employment : full-time }`
 
   The above command edits the **address and employment** field of **_Thomas_** to **_Poochie Street 25_** and **_full-time_** respectively. 
 
+* `/edit-supplier ; name : Supplier1 ; field : { product : kibble ; price : $75/bag}`
+
+  The above command edits the **product and price** field of **_Supplier1_** to **_kibble_** and **_$75/bag_** respectively. 
+
+* `/edit-maintainer ; name : Maintainer1 ; field : { commission : $10/hr}`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Constraints:**<br>
+* Name is a compulsory field that is case-insensitive but space-sensitive.
+* Name must be present in Pooch Planner.
+* Contact type, i.e. Person / Staff / Supplier / Maintainer, must match command used. i.e. `/edit`, `edit-staff`, `edit-supplier` and `edit-maintainer`.
+* The field(s) to be edited must be a valid field within their contact type, i.e. Person / Staff / Supplier / Maintainer.
+* At least one field must be provided.
+* Salary and commission must be in format ${Number}/hr.
+* Price must be in format ${Number}/{quantity}.
+</div>
+
+
+### Searching a contact : `search`
+
+Search for a **person / staff / supplier / maintainer** contact in the Pooch Planner.
+
+Format: `/search ; [field] : [full/partial query]`
+
+Examples:
+* `/search ; name : Poochie`
+* `/search ; phone : 98765432`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Constraints:**<br>
+* Any valid fields, such as `name`, `phone`, `email`, `address`, `salary`, `employment`, `price`, `product`, `skill`, `commission`, `tag` or `note`, can be provided.
+* Only one field can be provided.
+* Query is case-insensitive but space-sensitive.
+</div>
+
+### Sorting the address book : `sort`
+
+Sorts the address book by field in ascending order
+
+Format: `/sort ; [field]`
+
+Examples:
+* `/sort ; name`
+* `/sort ; phone`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Constraints:**<br>
+* This command sorts the contacts in the address book in ascending lexicographical order (e.g. Alice, Bob, Charlie etc.).
+* Sorts by specifying a valid field, such as `name`, `phone`, `email`, `address`, `salary`, `employment`, `price`, `product`, `skill`, `commission`, `tag` or `note`.
+* All field input are case-insensitive.
+</div>
+
 ### Deleting a contact : `delete`
 
-Deletes the specified contact from the Pooch Planner.
+Delete a **person / staff / supplier / maintainer** contact from the Pooch Planner.
 
 Format: `/delete ; name : [name]`
-
-* Deletes the contact with the specified `name`. Note that the specified person must first exist in Pooch Contact Book.
-* The name is a compulsory field that is case-insensitive but space-sensitive.
 
 Examples:
 * `/delete ; name : Poochie`
 
    The above command deletes the contact with name **_Poochie_**, provided **_Poochie_** exists as a name of a contact in Pooch Contact Book
-  
-* `/delete ; name : Moochie`
-
-   The above command deletes the contact with name **_Moochie_**, provided **_Moochie_** exists as a name of a contact in Pooch Contact Book
 
 
-### Searching a person : `search`
-
-Searches through the address book using specified fields and keyword.
-
-Formats:
-
-- `/search ; [field] : [full/partial query]`
-
-* Searches contact(s) by specifying a valid field (i.e. `name`, `phone`, `email`, `address`, `salary`, `employment`, `price`, `product`, `skill`, `commission`, `tag` or `note`), followed by the partial or full query.
-* All fields and queries are **case-insensitive**.
-  * Eg : `Janna` and `janna` are both equivalent.
-* Spaces within each input are counted as part of the query input.
-  * Eg: `Tom Tan Er` is different from `Tom Taner`.
-
-
-Examples:
-- `/search ; name : Poochie`
-- `/search ; phone : 98765432`
+<div markdown="span" class="alert alert-primary">:bulb: **Constraints:**<br>
+* Name is a compulsory field that is case-insensitive but space-sensitive.
+* Name must be present in Pooch Planner.
+</div>
 
 ### Rating a Contact : `rate`
 
-Gives a specified person from the Pooch Planner a performance rating.
+Give a **person / staff / supplier / maintainer** contact from the Pooch Planner a performance rating.
 
 Format: `/rate ; name : [name] ; rating : [rating value from 1-5]`
 
-* Gives the contact with the specified `name` a rating between 1 and 5 inclusive. 
-* Note that the specified person must first exist in Pooch Contact Book.
-* `name` and `rating` are compulsory fields that are case-insensitive but space-sensitive.
-* `rating` can only take on integer values between 1 and 5 inclusive.
-* A `rating` of `0` will display `No rating given yet`.
-
 Examples:
 * `/rate ; name : Poochie ; rating : 5`
+  
+  The above command rates the contact with the name **_Poochie_** with a rating of `5`, provided **_Poochie_** exists as a name of a contact in Pooch Contact Book
 
-  The above command rates the contact with the name **_Poochie_** with a rating of `5`.
-  provided **_Poochie_** exists as a name of a contact in Pooch Contact Book
-
-### Adding a note : `note`
-
-Adds a note to a specified person from the Pooch Planner.
-
-Format: `/note ; name : [name] ; note : [note message]`
-
-* Adds a note to the contact with the specified `name`. 
-* Note that the specified person must first exist in Pooch Contact Book.
-* The name and note is a compulsory field that is case-insensitive but space-sensitive.
-
-Examples:
-* `/note ; name : Poochie ; note : meet poochie tonight to get kibble`
-
-  The above command adds the note "meet poochie tonight to get kibble" to 
-  the contact with name **_Poochie_**, provided **_Poochie_** exists as a name of a contact in Pooch Contact Book
+<div markdown="span" class="alert alert-primary">:bulb: **Constraints:**<br>
+* Rating can only accept integer values from 1 to 5 inclusive.
+* Name must be present in Pooch Planner.
+* Name and Rating is a compulsory field that is case-insensitive but space-sensitive.
+* Rating of 0 will automatically display `No rating given yet`.
+</div>
 
 ### Pinning a contact : `pin`
 
@@ -217,19 +206,51 @@ Pins the specified contact on Pooch Planner so that the contact will consistentl
 
 Format: `/pin ; name : [name]`
 
-* Pins the contact with the specified `name`.
-* Note that the specified contact must first exist in Pooch Contact Book.
-* The name is a compulsory field that is case-insensitive but space-sensitive.
-
 Examples:
 * `/pin ; name : Poochie`
 
-   The above command pins the contact with name **_Poochie_**, provided **_Poochie_** exists as a name of a contact in Pooch Contact Book.
-  
-* `/pin ; name : Moochie`
+   The above command unpins the contact with name **_Poochie_**, provided **_Poochie_** exists as a name of a contact in Pooch Contact Book.
 
-   The above command pin the contact with name **_Moochie_**, provided **_Moochie_** exists as a name of a contact in Pooch Contact Book.
+<div markdown="span" class="alert alert-primary">:bulb: **Constraints:**<br>
+* Name is a compulsory field that is case-insensitive but space-sensitive.
+* Name must be present in Pooch Planner.
+* Using pin command on a contact that has been pinned do not make any changes to Pooch Planner.
+</div>
 
+### Unpinning a contact : `unpin`
+
+Unpins the specified contact on Pooch Planner so that the contact will consistently appear at the top on the contact list.
+
+Format: `/unpin ; name : [name]`
+
+Examples:
+* `/unpin ; name : Moochie`
+
+   The above command unpins the contact with name **_Moochie_**, provided **_Moochie_** exists as a name of a contact in Pooch Contact Book.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Constraints:**<br>
+* Name is a compulsory field that is case-insensitive but space-sensitive.
+* Name must be present in Pooch Planner.
+* Using unpin command on a contact that has been unpinned do not make any changes to Pooch Planner.
+</div> 
+
+### Adding a note : `note`
+
+Adds a note to a specified person from the Pooch Planner.
+
+Format: `/note ; name : [name] ; note : [note message]`
+
+Examples:
+* `/note ; name : Poochie ; note : meet poochie tonight to get kibble`
+
+  The above command adds the note "meet poochie tonight to get kibble" to 
+  the contact with name **_Poochie_**, provided **_Poochie_** exists as a name of a contact in Pooch Contact Book
+
+<div markdown="span" class="alert alert-primary">:bulb: **Constraints:**<br>
+* Name and Note are compulsory fields that are case-insensitive but space-sensitive.
+* Name must be present in Pooch Planner.
+* Note can only be added but not deleted.
+</div>
 
 ### Undo a command : `undo`
 
@@ -237,9 +258,10 @@ Undo a previous command which made a change to Pooch Planner history.
 
 Format: `/undo`
 
-* Note that there is no parameter for this command
+Constraints:
+* There is no field required for this command.
 * Any unnecessary parameter or value after /undo will simply be ignored.
-* This command unable to be executed when there is no more previous state.
+* This command can only be executed when at least one changes have been made.
 
 ### Redo a command : `redo`
 
@@ -247,29 +269,27 @@ Retrieve next state of Pooch Planner
 
 Format: `/redo`
 
-* Note that there is no parameter for this command
-* Any unnecessary parameter or value after /undo will simply be ignored.
-* This command unable to be executed when there is no next state.
-* This command only able to be executed when at least one undo command is executed.
+<div markdown="span" class="alert alert-primary">:bulb: **Constraints:**<br>
+* There is no field required for this command.
+* Any unnecessary parameter or value after /redo will simply be ignored.
+* This command can only be executed when at least one undo command is executed.
+</div>
 
-### Sorting the address book : `sort`
+### Viewing help : `help`
 
-Sorts the address book by field in ascending order
+Shows a message of how to write commands for all commands or a specfic command.
 
-Formats:
-
-- `/sort ; [field]`
-
-* Sorts the contacts in the address book in ascending lexicographical order (e.g. Alice, Bob, Charlie etc.)
-* Sorts by specifying a valid field (i.e. `name`, `phone`, `email`, `address`, `salary`, `employment`, `price`, `product`, `skill`, `commission`, `tag` or `note`)
-* All fields are **case-insensitive**
-    * Eg : `Name` and `name` are both equivalent
-
+Format: `/help ; command : [command type]`
 
 Examples:
+* `/help ; command : delete`
+* `/help ; command : add`
 
-- `/sort ; name`
-- `/sort ; phone`
+<div markdown="span" class="alert alert-primary">:bulb: **Constraints:**<br>
+* Command must be specified.
+* Help is only given for `delete`, `add`, `edit`, `search`.
+* To see help for all commands, the corresponding command field is `general`.
+</div>
 
 ### Exiting the program : `exit`
 
@@ -279,13 +299,13 @@ Format: `/exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+Pooch Planner data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+Pooch Planner data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**<br>
 If your changes to the data file makes its format invalid, PoochPlanner will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
 Furthermore, certain edits can cause the PoochPlanner to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
