@@ -11,15 +11,27 @@ import java.util.stream.Stream;
  */
 public class Prefix {
     private final String prefix;
+    private final String prefixRepresentation;
 
-    public Prefix(String prefix) {
+    /**
+     * Constructs a Prefix object with the given prefix and its representation.
+     *
+     * @param prefix The prefix string.
+     * @param prefixRepresentation The string representation of the prefix.
+     */
+    public Prefix(String prefix, String prefixRepresentation) {
         this.prefix = prefix;
+        this.prefixRepresentation = prefixRepresentation.toUpperCase();
     }
 
+    /**
+     * Retrieves the prefix string.
+     *
+     * @return The prefix string.
+     */
     public String getPrefix() {
         return prefix;
     }
-
 
     /**
      * Generates a message listing the missing prefixes from the provided argument multimap,
@@ -33,21 +45,47 @@ public class Prefix {
                                                         Prefix[] listOfCompulsoryPrefix) {
         List<String> missingPrefixes = Stream.of(listOfCompulsoryPrefix)
                 .filter(prefix -> !argMultimap.containsKey(prefix))
-                .map(Prefix::toString)
+                .map(Prefix::toStringWithRepresentation)
                 .collect(Collectors.toList());
 
         return String.join(", ", missingPrefixes);
     }
+
+    /**
+     * Returns the string representation of the Prefix object.
+     *
+     * @return The prefix string.
+     */
     @Override
     public String toString() {
         return getPrefix();
     }
 
+    /**
+     * Returns the string representation of the Prefix object with its representation.
+     *
+     * @return The prefix string with its representation.
+     */
+    public String toStringWithRepresentation() {
+        return getPrefix() + prefixRepresentation;
+    }
+
+    /**
+     * Computes the hash code for the Prefix object.
+     *
+     * @return The hash code value for the Prefix object.
+     */
     @Override
     public int hashCode() {
         return prefix == null ? 0 : prefix.hashCode();
     }
 
+    /**
+     * Compares the Prefix object with another object for equality.
+     *
+     * @param other The object to compare with.
+     * @return {@code true} if the objects are equal; {@code false} otherwise.
+     */
     @Override
     public boolean equals(Object other) {
         if (other == this) {
