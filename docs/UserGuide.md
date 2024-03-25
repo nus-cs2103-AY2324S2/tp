@@ -3,10 +3,9 @@ layout: page
 title: User Guide
 ---
 
-Introducing Dook: a **cutting-edge desktop application** engineered for the 
-seamless management of consultations and contacts, blending the power of a
-**Command Line Interface (CLI)** with the intuitive accessibility of a **Graphical User
-Interface (GUI)**. Designed specifically for the dynamic needs of the NUS 
+Introducing Dook: a **cutting-edge desktop application** engineered for the seamless management of consultations and 
+contacts, blending the power of a **Command Line Interface (CLI)** with the intuitive accessibility of a 
+**Graphical User Interface (GUI)**. Designed specifically for the dynamic needs of the NUS 
 School of Computing community, Dook centralizes faculty information
 in an innovative manner, standing on the foundation of AddressBook Level 3
 (AB3) as an advanced brownfield project. For the quick typist, Dook elevates
@@ -155,8 +154,8 @@ Adds the specified booking to the address book.
 
 Format: `-n [description] -s [start_time] -e [end_time]`
 
-* Creates a booking with the specified parameters. 
-* Start and end time formats are in yyyy-mm-dd
+* Creates a booking with the specified parameters.
+* Start and end time formats are in yyyy-mm-d.
 
 Examples:
 * `book -n John's Birthday Party -s 2023-12-31 19:00 -e 2023-12-31 23:00`
