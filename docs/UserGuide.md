@@ -119,7 +119,7 @@ Examples:
 
 Usage of Add command
 
-<img src="images/add-command-images/add-command.png" />
+<img src="images/add-command-images/add-command.png" alt="Add command example"/>
 
 
 ### Listing all persons : `list`
@@ -149,7 +149,7 @@ Examples:
 
 Usage of update command
 
-<img src="images/update-command-images/update-command.png" />
+<img src="images/update-command-images/update-command.png" alt="Update command example" />
 
 
 ### Locating clients by name: `find`
