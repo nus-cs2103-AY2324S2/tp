@@ -54,6 +54,26 @@ public class Group extends UniqueCourseMateList {
         return Collections.unmodifiableSet(skills);
     }
 
+    public Set<Skill> completedSkills() {
+        Set<Skill> completed = new HashSet<>();
+        for (Skill skill: skills) {
+            if (isSkillFound(skill)) {
+                completed.add(skill);
+            }
+        }
+        return Collections.unmodifiableSet(completed);
+    }
+
+    public Set<Skill> uncompletedSkills() {
+        Set<Skill> uncompleted = new HashSet<>();
+        for (Skill skill: skills) {
+            if (!isSkillFound(skill)) {
+                uncompleted.add(skill);
+            }
+        }
+        return Collections.unmodifiableSet(uncompleted);
+    }
+
     /**
      * Returns true if both groups have the same name.
      * This defines a weaker notion of equality between two groups.

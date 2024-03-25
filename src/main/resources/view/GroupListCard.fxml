@@ -22,7 +22,8 @@
                 <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
             </HBox>
             <Label styleClass="detail_small_label" text="Skills: " minWidth="180" />
-            <FlowPane fx:id="groupSkills" />
+            <FlowPane fx:id="completedGroupSkills"/>
+            <FlowPane fx:id="uncompletedGroupSkills"/>
                 <padding>
                     <Insets top="5" right="5" bottom="50" left="15" />
                 </padding>
