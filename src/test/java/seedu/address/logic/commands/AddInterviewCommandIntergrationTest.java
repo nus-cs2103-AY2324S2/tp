@@ -42,7 +42,6 @@ public class AddInterviewCommandIntergrationTest {
         Interview validInterview = new InterviewBuilder().buildInterview();
         model.addInterview(validInterview);
         Interview interviewInList = model.getAddressBook().getInterviewList().get(0);
-        System.out.println(interviewInList.equals(validInterview));
         assertCommandFailure(new AddInterviewCommand(interviewInList.getDescription(),
                 interviewInList.getApplicant().getPhone(), interviewInList.getInterviewer().getPhone(),
                 interviewInList.getDate(), interviewInList.getStartTime(), interviewInList.getEndTime()), model,

@@ -14,9 +14,8 @@ import seedu.address.model.person.enums.ApplicantState;
 
 public class FilterPersonsByStatusCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private ApplicantStatus firstTargetStatus = new ApplicantStatus(ApplicantState.STAGE_TWO.toString());
-    private ApplicantStatus secondTargetStatus = new ApplicantStatus(ApplicantState.STAGE_ONE.toString());
+    private ApplicantStatus firstTargetStatus = new ApplicantStatus(ApplicantState.STAGE_ONE.toString());
+    private ApplicantStatus secondTargetStatus = new ApplicantStatus(ApplicantState.OUTCOME_THREE.toString());
 
     @Test
     public void equals() {
@@ -46,16 +45,16 @@ public class FilterPersonsByStatusCommandTest {
     @Test
     public void execute_existingStatus_success() {
         String expectedMessage = CommandResult.class.getCanonicalName() + "{feedbackToUser="
-            + "Listed all persons with status: " + secondTargetStatus + ", showHelp=false, exit=false}";
-        FilterPersonsByStatusCommand command = new FilterPersonsByStatusCommand(secondTargetStatus);
+            + "Listed all persons with status: " + firstTargetStatus + ", showHelp=false, exit=false}";
+        FilterPersonsByStatusCommand command = new FilterPersonsByStatusCommand(firstTargetStatus);
         assertEquals(expectedMessage, command.execute(model).toString());
     }
 
     @Test
     public void execute_nonExistentStatus_noPersonFound() {
         String expectedMessage = CommandResult.class.getCanonicalName() + "{feedbackToUser="
-                + "No persons found with status: " + firstTargetStatus + ", showHelp=false, exit=false}";
-        FilterPersonsByStatusCommand command = new FilterPersonsByStatusCommand(firstTargetStatus);
+                + "No persons found with status: " + secondTargetStatus.toString() + ", showHelp=false, exit=false}";
+        FilterPersonsByStatusCommand command = new FilterPersonsByStatusCommand(secondTargetStatus);
         assertEquals(expectedMessage, command.execute(model).toString());
     }
 
