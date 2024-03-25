@@ -2,8 +2,8 @@
 layout: page
 title: User Guide
 ---
-AddressBook for Ward Nurses (ABWN) is a desktop application tailored for ward nurses, optimizing patient contact management via a Command Line Interface (CLI) while incorporating a Graphical User Interface (GUI) for ease of use. 
-Designed for efficiency, ABWN enables quick access to patient records, streamlined contact management, and simplified logging of care details, proving to be a valuable tool for fast typists and those who prefer the precision of CLI operations.
+Nursing Address Book (NAB) is a desktop application tailored for ward nurses, optimizing patient contact management via a Command Line Interface (CLI) while incorporating a Graphical User Interface (GUI) for ease of use. 
+Designed for efficiency, NAB enables quick access to patient records, streamlined contact management, and simplified logging of care details, proving to be a valuable tool for fast typists and those who prefer the precision of CLI operations.
 
 ## Table of Contents
 * Quick Start
@@ -24,7 +24,7 @@ Designed for efficiency, ABWN enables quick access to patient records, streamlin
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-2. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+2. Download the latest `nab.jar` from [here](https://github.com/AY2324S2-CS2103T-F10-1/tp/releases).
 
 3. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
 
@@ -38,7 +38,7 @@ Designed for efficiency, ABWN enables quick access to patient records, streamlin
 
    * `list` : Lists all patients.
 
-   * `add n\John Doe ic\T1234567P` : Adds a patient named `John Doe` to the Address Book.
+   * `add n\John Doe ic\T1234567P dob\01/01/2000 w\A1 ad\25/03/2024` : Adds a patient named `John Doe` to the Address Book.
 
    * `delete 3` : Deletes the 3rd patient shown in the current list.
 
@@ -101,7 +101,7 @@ IC: T1234567P
 Date of Birth: 21 Mar 2000
 Admission Date: 2 Feb 2022
 Ward: A1
-Tags: Fall Risk, Diabetes
+Tags: FallRisk, Diabetes
 
 You now have 1 patient(s) in your address book.
 ```
@@ -135,7 +135,7 @@ IC: I2103210P
 Date of Birth: 12 Nov 1999
 Admission Date: 3 Mar 2024
 Ward: B3
-Tags: Severe Allergies
+Tags: SevereAllergies
 ```
 
 ### Editing a person : `edit`
@@ -204,7 +204,7 @@ Jane Doe is deleted. Their details were:
 Date of Birth: 12 Nov 1999
 Admission Date: 3 Mar 2024
 Ward: A1
-Tags: Severe Allergies
+Tags: SevereAllergies
 
 You now have 1 patient(s) in your contact book.
 ```
