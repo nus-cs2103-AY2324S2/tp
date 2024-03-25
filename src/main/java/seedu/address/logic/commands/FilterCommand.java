@@ -8,6 +8,7 @@ import seedu.address.model.person.PersonContainsTagPredicate;
 import seedu.address.model.tag.Tag;
 
 import java.util.function.Predicate;
+import java.util.logging.Filter;
 
 import static java.util.Objects.requireNonNull;
 
@@ -42,5 +43,26 @@ public class FilterCommand extends Command {
         }
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, this.tag));
+    }
+
+    /**
+     * Compares this FilterCommand with another object to check for equality.
+     *
+     * @param other the other object to compare with.
+     * @return true if both commands are equal, otherwise false.
+     */
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof FilterCommand)) {
+            return false;
+        }
+
+        FilterCommand otherFilterCommand = (FilterCommand) other;
+        return tag.equals(otherFilterCommand.tag);
     }
 }
