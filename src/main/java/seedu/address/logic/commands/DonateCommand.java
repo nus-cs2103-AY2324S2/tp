@@ -10,7 +10,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.BookList;
+import seedu.address.model.book.Book;
 import seedu.address.model.person.Person;
 
 /**
@@ -31,18 +31,18 @@ public class DonateCommand extends Command {
     public static final String MESSAGE_DONATE_SUCCESS = "Donated book from person: %1$s";
 
     private final Index index;
-    private final BookList bookTitle;
+    private final Book book;
 
     /**
      * @param index     of the person in the filtered person list to edit the
      *                  merit score
-     * @param bookTitle of the person donated to be updated to the database
+     * @param book of the person donated to be updated to the database
      */
-    public DonateCommand(Index index, BookList bookTitle) {
-        requireAllNonNull(index, bookTitle);
+    public DonateCommand(Index index, Book book) {
+        requireAllNonNull(index, book);
 
         this.index = index;
-        this.bookTitle = bookTitle;
+        this.book = book;
     }
 
     @Override
@@ -53,7 +53,7 @@ public class DonateCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        if (bookTitle.equals(new BookList(""))) {
+        if (book.equals(new Book(""))) {
             throw new CommandException(Messages.MESSAGE_EMPTY_BOOK_INPUT_FIELD);
         }
 
@@ -90,6 +90,6 @@ public class DonateCommand extends Command {
 
         DonateCommand e = (DonateCommand) other;
         return index.equals(e.index)
-                && bookTitle.equals(e.bookTitle);
+                && book.equals(e.book);
     }
 }

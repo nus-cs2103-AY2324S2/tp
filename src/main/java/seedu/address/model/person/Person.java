@@ -40,7 +40,7 @@ public class Person {
         this.address = address;
         this.tags.addAll(tags);
         this.meritScore = new MeritScore(0);
-        this.bookList = new BookList("");
+        this.bookList = new BookList();
     }
 
     /**
@@ -91,7 +91,7 @@ public class Person {
     }
 
     /**
-     * @return the book title of the book
+     * @return the book list
      */
     public BookList getBookList() {
         return bookList;

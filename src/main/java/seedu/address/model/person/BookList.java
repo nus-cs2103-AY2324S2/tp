@@ -1,43 +1,71 @@
 package seedu.address.model.person;
 
-import static java.util.Objects.requireNonNull;
+import java.util.ArrayList;
 
+import seedu.address.model.BookCollection;
 import seedu.address.model.book.Book;
 
 /**
  * Represents a borrower's book.
  */
-public class BookList {
-    public final Book value;
+public class BookList extends BookCollection {
+
+    /**
+     * Construct an empty BookCollection.
+     */
+    public BookList() {
+        super();
+    }
 
     /**
      * Constructs an {@code BookList}.
      *
-     * @param bookTitle A valid email address.
+     * @param bookList A valid email address.
      */
-    public BookList(String bookTitle) {
-        requireNonNull(bookTitle);
-        value = new Book(bookTitle);
+    public BookList(ArrayList<Book> bookList) {
+        super(bookList);
+    }
+
+    /**
+     * To check whether the book collection has books
+     */
+    public Boolean hasBooks() {
+        if (bookCollection == null || bookCollection.isEmpty()) {
+            return false;
+        }
+        return true;
     }
 
     @Override
     public String toString() {
-        return value.toString();
+        String result = "";
+        for (int i = 0; i < bookCollection.size(); i++) {
+            result += this.getBook(i).bookTitle.toString();
+            if (i != bookCollection.size() - 1) {
+                result += "\n";
+            }
+        }
+        return result;
     }
+
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof BookList // instanceof handles nulls
-                && value.equals(((BookList) other).value)); // state check
+        if (other == this) {
+            return true;
+        } else if (other instanceof BookList) {
+            BookList otherBookList = (BookList) other;
+            for (int i = 0; i < bookCollection.size(); i++) {
+                if (this.getBook(i).equals(otherBookList.getBook(i))) {
+                    return false;
+                }
+            }
+            return true;
+        }
+        return false;
     }
-
-    public Book getBook() {
-        return value;
-    }
-
     @Override
     public int hashCode() {
-        return value.hashCode();
+        return bookCollection.hashCode();
     }
 }

@@ -1,5 +1,7 @@
 package seedu.address.model;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.ArrayList;
 
 import seedu.address.model.book.Book;
@@ -24,7 +26,12 @@ public class BookCollection {
      * @param bookCollection The list of books to initialize the BookCollection with.
      */
     public BookCollection(ArrayList<Book> bookCollection) {
+        requireNonNull(bookCollection);
         this.bookCollection = bookCollection;
+    }
+
+    public ArrayList<Book> getBookCollection() {
+        return bookCollection;
     }
 
     /**

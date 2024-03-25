@@ -52,9 +52,10 @@ public class ReturnCommand extends Command {
             throw new CommandException(Messages.MESSAGE_EMPTY_BOOKLIST_FIELD);
         }
 
+        // From JinHan, I edited BookList("") --> BookList to allow compilation
         Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
                 personToEdit.getAddress(), personToEdit.getMeritScore().incrementScore(),
-                new BookList(""), personToEdit.getTags());
+                new BookList(), personToEdit.getTags());
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);

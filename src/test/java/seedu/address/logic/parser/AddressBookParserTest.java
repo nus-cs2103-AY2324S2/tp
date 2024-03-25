@@ -25,7 +25,7 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.BookList;
+import seedu.address.model.book.Book;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -98,7 +98,7 @@ public class AddressBookParserTest {
         DonateCommand command = (DonateCommand) parser.parseCommand(
                 DonateCommand.COMMAND_WORD + " " + INDEX_KEPLER.getOneBased() + " "
                         + CliSyntax.PREFIX_BOOKLIST + bookTitle);
-        assertEquals(new DonateCommand(INDEX_KEPLER, new BookList(bookTitle)), command);
+        assertEquals(new DonateCommand(INDEX_KEPLER, new Book(bookTitle)), command);
     }
 
     @Test

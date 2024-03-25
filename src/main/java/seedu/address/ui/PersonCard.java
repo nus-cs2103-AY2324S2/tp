@@ -58,11 +58,11 @@ public class PersonCard extends UiPart<Region> {
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
         meritScore.setText(person.getMeritScore().meritScore);
-        String bookTitle = person.getBookList().value.bookTitle;
-        if (bookTitle == "") {
-            bookTitle = "This user is not borrowing any books at the moment!";
+        String borrowedBookList = person.getBookList().toString();
+        if (!person.getBookList().hasBooks()) {
+            borrowedBookList = "This user is not borrowing any books at the moment!";
         }
-        borrow.setText(bookTitle);
+        borrow.setText(borrowedBookList);
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

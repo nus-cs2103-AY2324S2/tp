@@ -10,7 +10,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.BorrowCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.BookList;
+import seedu.address.model.book.Book;
 
 /**
  * Parses input arguments and creates a new BorrowCommand object
@@ -37,6 +37,6 @@ public class BorrowCommandParser implements Parser<BorrowCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, BorrowCommand.MESSAGE_USAGE), nee);
         }
 
-        return new BorrowCommand(index, new BookList(bookTitle));
+        return new BorrowCommand(index, new Book(bookTitle));
     }
 }
