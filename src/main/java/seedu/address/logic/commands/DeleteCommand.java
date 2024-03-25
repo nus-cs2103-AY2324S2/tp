@@ -3,9 +3,10 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.HashSet;
+
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -79,11 +80,11 @@ public class DeleteCommand extends Command {
                 }
             }
             System.out.println(lastShownList.size());
-            if (peopleToDelete.size() <= 0){
+            if (peopleToDelete.size() <= 0) {
                 throw new CommandException(Messages.MESSAGE_NON_EXISTENT_GROUP);
             }
 
-            for (int i = 0; i < peopleToDelete.size(); i++){
+            for (int i = 0; i < peopleToDelete.size(); i++) {
                 model.deletePerson(peopleToDelete.get(i));
             }
 
