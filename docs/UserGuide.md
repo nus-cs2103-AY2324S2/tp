@@ -50,15 +50,15 @@ So, whether you're a busy professional juggling multiple appointments, vitalConn
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `vitalconnect.jar` from [here](https://github.com/AY2324S2-CS2103T-W08-2/tp/releases).
+2. Download the latest `vitalconnect.jar` from [here](https://github.com/AY2324S2-CS2103T-W08-2/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your vitalConnect.
+3. Copy the file to the folder you want to use as the _home folder_ for your vitalConnect.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar vitalConnect.jar` command to run the application.<br>
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar vitalConnect.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * `list` : Lists all contacts.
@@ -71,7 +71,7 @@ So, whether you're a busy professional juggling multiple appointments, vitalConn
 
    * `exit` : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+Refer to the [Features](#features) below for details of each command.
 
 [<span style="font-size: small;">Back to Top</span>](#top)
 
@@ -91,6 +91,7 @@ So, whether you're a busy professional juggling multiple appointments, vitalConn
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/ALLERGY]…​` can be used as ` ` (i.e. 0 times), `t/Amoxicillin`, `t/insulin t/iodine` etc.
+  e.g. `[t/ALLERGY]…​` can be used as ` ` (i.e. 0 times), `t/Amoxicillin`, `t/insulin t/iodine` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `ic/NRIC p/PHONE_NUMBER`, `p/PHONE_NUMBER ic/NRIC` is also acceptable.
@@ -105,7 +106,7 @@ So, whether you're a busy professional juggling multiple appointments, vitalConn
 
 Shows a message explaning how to access the help page.
 
-![help message](images/helpMessage.png)
+![help message](images/commandsPictures/helpMessage.png)
 
 Format: `help`
 
@@ -114,6 +115,8 @@ Format: `help`
 ### Adding a patient : `add`
 
 Adds a patient to the clinic.
+
+![add command](images/commandsPictures/addCommand.png)
 
 Format: `add n/NAME ic/NRIC`
 
@@ -125,6 +128,8 @@ Examples:
 ### Listing all patients : `list`
 
 Shows a list of all patients in the clinic.
+
+![list command](images/commandsPictures/listCommand.png)
 
 Format: `list`
 
@@ -145,13 +150,15 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 
 Examples:
 * `find John` returns `John Doe` and `John Bard`</br>
-  ![result for 'find John'](images/findJohnResult.png)
+  ![result for 'find John'](images/commandPictures/findJohnResult.png)
 
 [<span style="font-size: small;">Back to Top</span>](#top)
 
 ### Deleting a patient : `delete`
 
 Deletes the specified patient from the clinic.
+
+![delete command](images/commandsPictures/deleteCommand.png)
 
 Format: `delete INDEX`
 
@@ -168,6 +175,8 @@ Examples:
 ### Adding contact information : `addc`
 
 Adds contact information to a patient in the clinic.
+
+![addc command](images/commandsPictures/addcCommand.png)
 
 Format: `addc ic/NRIC [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]`
 
@@ -192,11 +201,15 @@ Examples:
 
 Lists all patients with contact information.
 
+![listc command](images/commandsPictures/listcCommand.png)
+
 [<span style="font-size: small;">Back to Top</span>](#top)
 
 ### Deleting contact information : `deletec`
 
 Deletes contact information from a patient in the clinic.
+
+![deletec command](images/commandsPictures/deletecCommand.png)
 
 Format: `deletec ic/NRIC`
 
@@ -208,6 +221,8 @@ Examples:
 ### Adding medical information : `addm`
 
 Adds medical information to a patient in the clinic.
+
+![addm command](images/commandsPictures/addmCommand.png)
 
 Format: `addm ic/NRIC h/HEIGHT w/WEIGHT [t/ALLERGY]…​`
 
@@ -221,11 +236,15 @@ Examples:
 
 Lists all patients with medical information.
 
+![listm command](images/commandsPictures/listmCommand.png)
+
 [<span style="font-size: small;">Back to Top</span>](#top)
 
 ### Deleting medical information : `deletem`
 
 Deletes medical information from a patient in the clinic.
+
+![deletem command](images/commandsPictures/deletemCommand.png)
 
 Format: `deletem ic/NRIC`
 
@@ -235,6 +254,8 @@ Examples:
 [<span style="font-size: small;">Back to Top</span>](#top)
 
 ### Adding an appointment : `adda`
+
+![adda command](images/commandsPictures/addaCommand.png)
 
 Adds an appointment for a patient to the appointment list.
 
@@ -246,6 +267,8 @@ Examples:
 [<span style="font-size: small;">Back to Top</span>](#top)
 
 ### Deleting an appointment : `deletea`
+
+![deletea command](images/commandsPictures/deleteaCommand.png)
 
 Delete an exist appointment from the appointment list by providing the index of the appointment
 in the list and the name of the patient.
@@ -259,6 +282,8 @@ Examples:
 
 ### List out appointments : `lista`
 
+![lista command](images/commandsPictures/listaCommand.png)
+
 List out all the appointments in the appointment list.
 
 Format: `lista`
@@ -268,6 +293,8 @@ Format: `lista`
 ### Clearing all entries : `clear`
 
 Clears all entries from the clinic.
+
+![clear command](images/commandsPictures/clearCommand.png)
 
 Format: `clear`
 
