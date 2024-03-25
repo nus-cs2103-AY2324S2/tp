@@ -17,14 +17,14 @@ class PersonAttributeCommandParserTest {
 
     @Test
     void parse_validAddCommand_returnsAddAttributeCommand() throws ParseException {
-        String userInput = "addAttribute \\uuid 12345 \\nickname Johnny";
+        String userInput = "addAttribute 12345 nickname Johnny";
         Command command = parser.parse(userInput);
         assertTrue(command instanceof AddAttributeCommand);
     }
 
     @Test
     void parse_validDeleteCommand_returnsDeleteAttributeCommand() throws ParseException {
-        String userInput = "deleteAttribute \\uuid 12345 \\nickname";
+        String userInput = "deleteAttribute 12345 nickname";
         Command command = parser.parse(userInput);
         assertTrue(command instanceof DeleteAttributeCommand);
     }
