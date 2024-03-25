@@ -13,9 +13,9 @@ public class Payment {
 
     public static final String MESSAGE_INVALID_PAYMENT = "Payment amount must be a valid number";
 
+    public final String value;
     private final double amount;
 
-    public final String value;
 
     /**
      * Constructs a {@code Payment}.
@@ -29,6 +29,11 @@ public class Payment {
         this.value = String.format("$%.2f", amount);
     }
 
+    /**
+     * Constructs a {@code Payment}.
+     *
+     * @param paymentValue A valid payment amount.
+     */
     public Payment(String paymentValue) {
         String numericValue = paymentValue.replaceAll("[^\\d.]", "");
         try {

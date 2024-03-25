@@ -10,6 +10,9 @@ import seedu.address.logic.commands.AddPaymentCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Id;
 
+/**
+ * Parses input arguments and creates a new AddPaymentCommand object
+ */
 public class AddPaymentCommandParser implements Parser<AddPaymentCommand> {
 
     @Override
