@@ -1,5 +1,11 @@
 package seedu.address.storage;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -12,13 +18,6 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.person.RoomNumber;
 import seedu.address.model.person.Telegram;
 import seedu.address.model.tag.FreeTimeTag;
-import seedu.address.model.tag.Tag;
-
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -132,7 +131,8 @@ class JsonAdaptedPerson {
 
         final Set<FreeTimeTag> modelFreeTimeTags = new HashSet<>(freeTimeTagList);
 
-        return new Person(modelName, modelPhone, modelEmail, modelRoomNumber, modelTelegram, modelBirthday, modelFreeTimeTags);
+        return new Person(modelName, modelPhone, modelEmail, modelRoomNumber, modelTelegram, modelBirthday,
+                modelFreeTimeTags);
     }
 
 }

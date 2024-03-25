@@ -2,6 +2,9 @@ package seedu.address.model.tag;
 
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents a Free Time Tag in Dormie.
+ */
 public class FreeTimeTag extends Tag {
 
     public static final String MESSAGE_CONSTRAINTS = "Free Time Tag should be Mon-Sun:HHmm-HHmm (24hr format)";
@@ -24,6 +27,8 @@ public class FreeTimeTag extends Tag {
     public static boolean isValidTagName(String test) {
         return test.matches(VALIDATION_REGEX);
     }
+
+    @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;

@@ -2,6 +2,8 @@ package seedu.address.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.Set;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.person.Birthday;
@@ -11,6 +13,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.RoomNumber;
 import seedu.address.model.person.Telegram;
+import seedu.address.model.tag.FreeTimeTag;
 
 public class MessagesTest {
 
@@ -28,8 +31,9 @@ public class MessagesTest {
         RoomNumber roomNumber = new RoomNumber("sw-01-01");
         Telegram telegram = new Telegram("Johnny");
         Birthday birthday = new Birthday("01-01-2000");
+        Set<FreeTimeTag> freeTimeTag = Set.of(new FreeTimeTag("Sun:1000-1400"));
 
-        Person person = new Person(name, phone, email, roomNumber, telegram, birthday);
+        Person person = new Person(name, phone, email, roomNumber, telegram, birthday, freeTimeTag);
         assertMessageSuccess(person, FORMATTED_ALL_FIELDS_MESSAGE);
     }
 
@@ -41,8 +45,9 @@ public class MessagesTest {
         RoomNumber roomNumber = null;
         Telegram telegram = null;
         Birthday birthday = null;
+        Set<FreeTimeTag> freeTimeTag = Set.of(new FreeTimeTag("Sun:1000-1400"));
 
-        Person person = new Person(name, phone, email, roomNumber, telegram, birthday);
+        Person person = new Person(name, phone, email, roomNumber, telegram, birthday, freeTimeTag);
         assertMessageSuccess(person, FORMATTED_ALL_MANDATORY_FIELDS_MESSAGE);
     }
 
@@ -54,8 +59,9 @@ public class MessagesTest {
         RoomNumber roomNumber = new RoomNumber("sw-01-01");
         Telegram telegram = null;
         Birthday birthday = new Birthday("01-01-2000");
+        Set<FreeTimeTag> freeTimeTag = Set.of(new FreeTimeTag("Sun:1000-1400"));
 
-        Person person = new Person(name, phone, email, roomNumber, telegram, birthday);
+        Person person = new Person(name, phone, email, roomNumber, telegram, birthday, freeTimeTag);
         assertMessageSuccess(person, FORMATTED_ALL_MANDATORY_AND_SOME_OPTIONAL_FIELDS_MESSAGE);
     }
 

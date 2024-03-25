@@ -14,6 +14,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ROOMNUMBER_BOB;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalPersons.BOB;
 
+import java.util.Set;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
@@ -24,6 +26,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.RoomNumber;
 import seedu.address.model.person.Telegram;
+import seedu.address.model.tag.FreeTimeTag;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandParserTest {
@@ -46,8 +49,10 @@ public class AddCommandParserTest {
         RoomNumber roomNumber = new RoomNumber(VALID_ROOMNUMBER_BOB);
         Telegram telegram = null;
         Birthday birthday = new Birthday(VALID_BIRTHDAY_BOB);
+        Set<FreeTimeTag> freeTimeTag = Set.of(new FreeTimeTag("Sun:1000-1400"));
 
-        Person expectedPerson = new Person(name, phone, email, roomNumber, telegram, birthday);
+
+        Person expectedPerson = new Person(name, phone, email, roomNumber, telegram, birthday, freeTimeTag);
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB

@@ -9,7 +9,6 @@ import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.tag.FreeTimeTag;
-import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Person in the logbook.
@@ -30,7 +29,8 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, RoomNumber roomNumber, Telegram telegram, Birthday birthday, Set<FreeTimeTag> tags) {
+    public Person(Name name, Phone phone, Email email, RoomNumber roomNumber, Telegram telegram, Birthday birthday,
+                  Set<FreeTimeTag> tags) {
         requireAllNonNull(name, phone);
         this.name = name;
         this.phone = phone;

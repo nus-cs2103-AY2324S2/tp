@@ -1,7 +1,13 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FREETIMETAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOMNUMBER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 
 import java.util.Optional;
 import java.util.Set;
@@ -60,7 +66,8 @@ public class AddCommandParser implements Parser<AddCommand> {
         Birthday birthday = birthdayText.isPresent() ? ParserUtil.parseBirthday(birthdayText.get()) : null;
 
         Optional<String> freeTimeTagText = argMultimap.getValue(PREFIX_FREETIMETAG);
-        Set<FreeTimeTag> freeTimeTags = freeTimeTagText.isPresent() ? ParserUtil.parseFreeTimeTags(argMultimap.getAllValues(PREFIX_FREETIMETAG)) : null;
+        Set<FreeTimeTag> freeTimeTags = freeTimeTagText.isPresent()
+                ? ParserUtil.parseFreeTimeTags(argMultimap.getAllValues(PREFIX_FREETIMETAG)) : null;
 
         Person person = new Person(name, phone, email, roomNumber, telegram, birthday, freeTimeTags);
         return new AddCommand(person);

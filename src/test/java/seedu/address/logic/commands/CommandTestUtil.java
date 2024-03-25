@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FREETIMETAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOMNUMBER;
@@ -39,6 +40,8 @@ public class CommandTestUtil {
     public static final String VALID_TELEGRAM_BOB = "bobChoo";
     public static final String VALID_BIRTHDAY_AMY = "01/01/2000";
     public static final String VALID_BIRTHDAY_BOB = "02/02/2000";
+    public static final String VALID_FREE_TIME_TAG_AMY = "Mon:1000-1200";
+    public static final String VALID_FREE_TIME_TAG_BOB = "Wed:1400-2000";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -52,6 +55,8 @@ public class CommandTestUtil {
     public static final String TELEGRAM_DESC_BOB = " " + PREFIX_TELEGRAM + VALID_TELEGRAM_BOB;
     public static final String BIRTHDAY_DESC_AMY = " " + PREFIX_BIRTHDAY + VALID_BIRTHDAY_AMY;
     public static final String BIRTHDAY_DESC_BOB = " " + PREFIX_BIRTHDAY + VALID_BIRTHDAY_BOB;
+    public static final String FREE_TIME_TAG_DESC_AMY = " " + PREFIX_FREETIMETAG + VALID_FREE_TIME_TAG_AMY;
+    public static final String FREE_TIME_TAG_DESC_BOB = " " + PREFIX_FREETIMETAG + VALID_FREE_TIME_TAG_BOB;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
@@ -59,6 +64,8 @@ public class CommandTestUtil {
     public static final String INVALID_ROOMNUMBER_DESC = " " + PREFIX_ROOMNUMBER; // empty string not allowed for room
     public static final String INVALID_TELEGRAM_DESC = " " + PREFIX_TELEGRAM; // empty string not allowed for telegram
     public static final String INVALID_BIRTHDAY_DESC = " " + PREFIX_BIRTHDAY; // empty string not allowed for birthday
+    public static final String INVALID_FREE_TIME_TAG_DESC = " "
+            + PREFIX_FREETIMETAG; // empty string not allowed for free time tag
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
