@@ -32,7 +32,7 @@ public class DeletePolicyCommand extends Command {
     public static final String MESSAGE_DELETE_POLICY_SUCCESS = "Removed policy from Person: %1$s";
 
     Index index;
-    String policyName;;
+    String policyName;
 
     public DeletePolicyCommand(Index index, String policyName) {
         requireAllNonNull(index, policyName);
