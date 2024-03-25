@@ -42,7 +42,7 @@ public class DeleteCommandTest {
     }
 
     @Test
-    public void execute_invalidNusIdUnfilteredList_throwsCommandException_nusId() {
+    public void execute_invalidNusIdUnfilteredList_throwsCommandExceptionNusId() {
         NusId testNusId = new NusId("E1234567");
         DeleteCommand deleteCommand = new DeleteCommand(testNusId);
 
@@ -50,7 +50,7 @@ public class DeleteCommandTest {
     }
 
     @Test
-    public void execute_invalidNusIdUnfilteredList_throwsCommandException_group() {
+    public void execute_invalidNusIdUnfilteredList_throwsCommandExceptionGroup() {
         Group testGroup = new Group("husband");
         DeleteCommand deleteCommand = new DeleteCommand(testGroup);
 

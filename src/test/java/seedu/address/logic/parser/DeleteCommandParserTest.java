@@ -22,13 +22,13 @@ public class DeleteCommandParserTest {
     private DeleteCommandParser parser = new DeleteCommandParser();
 
     @Test
-    public void parse_validArgs_returnsDeleteCommand_nusId() {
+    public void parse_validArgs_returnsDeleteCommandNusId() {
         NusId testNusId = new NusId("E1234567");
         assertParseSuccess(parser, "delete id/E1234567", new DeleteCommand(testNusId));
     }
 
     @Test
-    public void parse_validArgs_returnsDeleteCommand_group() {
+    public void parse_validArgs_returnsDeleteCommandGroup() {
         Group testGroup = new Group("husband");
         assertParseSuccess(parser, "delete g/husband", new DeleteCommand(testGroup));
     }
