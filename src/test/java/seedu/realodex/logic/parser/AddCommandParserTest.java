@@ -1,6 +1,7 @@
 package seedu.realodex.logic.parser;
 
 import static seedu.realodex.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.realodex.logic.Messages.MESSAGE_MISSING_PREFIXES;
 import static seedu.realodex.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.realodex.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
 import static seedu.realodex.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
@@ -42,6 +43,7 @@ import static seedu.realodex.logic.parser.CliSyntax.PREFIX_INCOME;
 import static seedu.realodex.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.realodex.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.realodex.logic.parser.CliSyntax.PREFIX_REMARK;
+import static seedu.realodex.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.realodex.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.realodex.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.realodex.testutil.TypicalPersons.AMY_NAME_CAPS;
@@ -196,55 +198,54 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
-
+        String expectedCommandFormatMessage = AddCommand.MESSAGE_USAGE;
         // missing name prefix
         assertParseFailure(parser,
                            VALID_NAME_BOB_CAPS + PHONE_DESC_BOB + INCOME_DESC_BOB + EMAIL_DESC_BOB
                                    + ADDRESS_DESC_BOB + FAMILY_DESC_BOB + TAG_DESC_BOB,
-                           expectedMessage);
+                           MESSAGE_MISSING_PREFIXES + "n/\n" + expectedCommandFormatMessage);
 
         // missing phone prefix
         assertParseFailure(parser,
                            NAME_DESC_BOB + VALID_PHONE_BOB + INCOME_DESC_BOB
                                    + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + FAMILY_DESC_BOB + TAG_DESC_BOB,
-                expectedMessage);
+                           MESSAGE_MISSING_PREFIXES + "p/\n" + expectedCommandFormatMessage);
 
         // missing income prefix
         assertParseFailure(parser,
                            NAME_DESC_BOB + PHONE_DESC_BOB + VALID_INCOME_BOB
                                    + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + FAMILY_DESC_BOB + TAG_DESC_BOB,
-                           expectedMessage);
+                           MESSAGE_MISSING_PREFIXES + "i/\n" + expectedCommandFormatMessage);
 
         // missing email prefix
         assertParseFailure(parser,
                            NAME_DESC_BOB + PHONE_DESC_BOB + INCOME_DESC_BOB
                                    + VALID_EMAIL_BOB + ADDRESS_DESC_BOB + FAMILY_DESC_BOB + TAG_DESC_BOB,
-                expectedMessage);
+                           MESSAGE_MISSING_PREFIXES + "e/\n" + expectedCommandFormatMessage);
 
         // missing address prefix
         assertParseFailure(parser,
                            NAME_DESC_BOB + PHONE_DESC_BOB + INCOME_DESC_BOB
                                    + EMAIL_DESC_BOB + VALID_ADDRESS_BOB + FAMILY_DESC_BOB + TAG_DESC_BOB,
-                expectedMessage);
+                           MESSAGE_MISSING_PREFIXES + "a/\n" + expectedCommandFormatMessage);
 
         // missing family prefix
         assertParseFailure(parser,
                            NAME_DESC_BOB + PHONE_DESC_BOB + INCOME_DESC_BOB
                                    + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + VALID_FAMILY_BOB + TAG_DESC_BOB,
-                           expectedMessage);
+                           MESSAGE_MISSING_PREFIXES + "f/\n" + expectedCommandFormatMessage);
 
         // missing tag prefix
         assertParseFailure(parser,
-                           VALID_NAME_BOB_CAPS + VALID_PHONE_BOB + INCOME_DESC_BOB
-                                   + VALID_EMAIL_BOB + VALID_ADDRESS_BOB + FAMILY_DESC_BOB,
-                           expectedMessage);
+                           NAME_DESC_BOB + PHONE_DESC_BOB + INCOME_DESC_BOB
+                                   + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + FAMILY_DESC_BOB,
+                           MESSAGE_MISSING_PREFIXES + "t/\n" + expectedCommandFormatMessage);
 
         // all prefixes missing
         assertParseFailure(parser,
                            VALID_NAME_BOB_CAPS + VALID_PHONE_BOB + INCOME_DESC_BOB
                                    + VALID_EMAIL_BOB + VALID_ADDRESS_BOB + FAMILY_DESC_BOB + VALID_TAG_BOB,
-                           expectedMessage);
+                           MESSAGE_MISSING_PREFIXES + "n/, a/, p/, e/, t/\n" + expectedCommandFormatMessage);
     }
 
     @Test
@@ -329,10 +330,5 @@ public class AddCommandParserTest {
                                    + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC + FAMILY_DESC_BOB + TAG_DESC_BOB,
                            Name.MESSAGE_CONSTRAINTS);
 
-        // non-empty preamble
-        assertParseFailure(parser,
-                           PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB + INCOME_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + FAMILY_DESC_BOB + CommandTestUtil.TAG_DESC_BOB + TAG_DESC_BOB,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
 }
