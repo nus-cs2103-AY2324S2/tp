@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import seedu.address.commons.util.ToStringBuilder;
 
 /**
- * Represents an array of zero-based or one-based indices maintained in descending order.
+ * Represents an array of zero-based or one-based indices.
  * The indices in the array are distinct.
  */
 public class IndexList {

@@ -40,9 +40,9 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code args} into an array of {@code Index} and returns it in ascending order.
+     * Parses {@code args} into an array of {@code Index} and returns it.
      *
-     * @throws ParseException if any of the specified index is invalid or there are duplicate indices.
+     * @throws ParseException if any of the specified index is invalid.
      */
     public static IndexList parseIndices(String args) throws ParseException {
         String[] splitArgs = args.split(",");
