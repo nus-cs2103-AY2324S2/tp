@@ -158,6 +158,52 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Command History
+
+Command history is a feature that aims to improve the user experience for experienced users by allowing them to quickly
+navigate through their history of commands to make minor changes. Many features were inspired from macOS's Bash shell
+
+**Implementation**
+An array list was used to store the history of commands and an index to indicate which command is the history currently 
+at. 
+- The list is initialised to have an empty string as the initial element
+- The current command index defaults to 0
+
+There are a few methods used to interact with the command history
+1. getCurrentCommand()
+   1. Gets the command at the current command index
+2. undo()
+   1. Decrements the current command index by 1
+   2. If the current command index is already 0, it will play a Boop sound to indicate that there is 
+are no more commands left to undo
+3. redo()
+   1. Increments the current command index by 1
+
+Below shows expected behaviour of the command history from a series of actions. 
+- blue underline - denotes where the command index
+is pointing at.
+- initial - the initial state of the command history
+- exec - when any command is executed
+- undo - decrements the index
+- redo - increments the index
+
+![](images/command-history/command-history-illustration.jpeg)
+
+**Rationale for implementation**
+There are a few key features that this module aims to implement
+1. Improved user experience for experienced users
+   1. Allow users to modify their past commands in a predictable way
+   2. Allow users to easily compare past commands in case of mistakes by pressing up and down
+2. Mimicking bash shell features
+   1. Playing a sound to indicate that there are no more commands left to undo
+   2. Empty the input box when there are no more commands left to redo
+3. Default empty string in list
+   1. This aims to model what the command history actually looks like. By doing this, this makes the logic much more straightforward as we don't need to constantly check to return empty string or not
+
+**Alternatives considered**
+1. 2 stacks, one undo and one redo were used at first. However, this had the drawback of not being able to remember commands after undoing and writing a new command.
+2. undo() and redo() both returned the previous and next command respectively - This had a flaw in which the logic of handling the command index became unnecessarily complex as we had to worry about when we incremented/decremented an index. This also made it harder to test the functionality
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -193,7 +239,7 @@ Step 3. The user executes `add n/David …​` to add a new person. The `add` co
 Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
 
 <puml src="diagrams/UndoRedoState3.puml" alt="UndoRedoState3" />
-
+a
 
 <box type="info" seamless>
 
@@ -592,6 +638,53 @@ Priorities: High (must have) - `* * * *`, Medium (nice to have) - `* * *`, Low (
 
   Use case ends.
 
+**Use case: Getting the previous command entered**
+
+**MSS**
+1. User types in and executes any command.
+2. User presses the Up arrow key to view his last command
+3. User modifies his last command
+4. User executes the modified command
+5. User presses the Up arrow key and sees his last modified command 
+
+   Use case ends.
+
+**Extension**
+
+* 3a. User modifies the command, and without executing it, presses the Down arrow key, followed by the Up arrow key
+    * 4a1. The command before modification is shown because the modified command was not executed
+* *a. User presses the Up arrow key when there is no previous command
+    * *a1. A sound is played indicating that there is no previous command
+
+    Use case ends.
+
+**Use case: Getting the next command entered**
+
+**MSS**
+1. User types in and executes any 2 commands.
+2. User presses the Up arrow key twice to view his first command
+3. User presses the Down arrow key to view his second command
+
+   Use case ends.
+
+**Extension**
+
+* *a. User presses the Down arrow key when there is no next command
+    * *b1. An empty string is returned
+
+  Use case ends.
+
+**Use case: Comparing between 2 commands in history**
+
+**MSS**
+1. User types in and executes any 2 commands.
+2. User presses the Up arrow key twice to view his first command
+3. User then presses the Down arrow key to view his second command
+4. User alternates the Up and Down arrow key to compare between both commands
+5. User chooses a command to modify and execute
+6. User presses the Up button and sees his last modified command
+
+   Use case ends.
 
 ### Non-Functional Requirements
 
