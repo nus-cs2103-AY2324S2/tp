@@ -7,6 +7,7 @@
 
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
+<?import javafx.scene.control.TextArea?>
 <VBox id="viewPanel" fx:id="ViewPanel" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" alignment="CENTER" GridPane.columnIndex="0" styleClass="view-panel-cell" prefWidth="450" spacing="15">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -42,6 +43,11 @@
         <HBox>
             <Label text="Salary: " styleClass="cell-content-header"/>
             <Label fx:id="salary" styleClass="cell-content" text="\$salary" />
+        </HBox>
+
+        <HBox>
+            <Label text="Notes: " styleClass="cell-content-header"/>
+            <Label fx:id="note" styleClass="cell-content" text="\$note" wrapText="true" prefWidth="300" />
         </HBox>
 
     </VBox>

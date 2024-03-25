@@ -2,6 +2,7 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 import seedu.address.commons.util.ToStringBuilder;
@@ -25,13 +26,14 @@ public class Person implements Comparable<Person> {
     private final InterviewDate interviewDate;
     private final InternDuration internDuration;
     private final Salary salary;
+    private final Note note;
 
     /**
      * Every field must be present and not null.
      */
     public Person(Name companyName, Phone phone, Email email, Address address, Tag tag,
                   JobDescription jobDescription, InterviewDate interviewDate,
-                  InternDuration internDuration, Salary salary) {
+                  InternDuration internDuration, Salary salary, Note note) {
         requireAllNonNull(companyName, phone, email, tag, jobDescription);
         this.companyName = companyName;
         this.phone = phone;
@@ -42,6 +44,7 @@ public class Person implements Comparable<Person> {
         this.interviewDate = interviewDate;
         this.internDuration = internDuration;
         this.salary = salary;
+        this.note = note;
     }
 
     public Name getCompanyName() {
@@ -78,6 +81,9 @@ public class Person implements Comparable<Person> {
 
     public Salary getSalary() {
         return salary;
+    }
+    public Note getNote() {
+        return note;
     }
 
     /**
@@ -140,15 +146,37 @@ public class Person implements Comparable<Person> {
                 .add("interview date", interviewDate)
                 .add("intern duration", internDuration)
                 .add("salary", salary)
+                .add("note", note)
                 .toString();
+    }
+    /**
+     * Returns int by comparing the 2 LocalDateTime dates with reference to current date.
+     * This defines a notion of precedence between two inputs.
+     */
+    public int compareInterviewDates(LocalDateTime thisInterviewDate, LocalDateTime otherInterviewDate) {
+        LocalDateTime currentDate = LocalDateTime.now();
+        boolean thisIsPast = thisInterviewDate.isBefore(currentDate);
+        boolean otherIsPast = otherInterviewDate.isBefore(currentDate);
+        if (thisIsPast && otherIsPast) {
+            return 0;
+        } else if (thisIsPast && !otherIsPast) {
+            return 1;
+        } else if (!thisIsPast && otherIsPast) {
+            return -1;
+        } else {
+            return thisInterviewDate.compareTo(otherInterviewDate);
+        }
     }
     @Override
     public int compareTo(Person otherPerson) {
-        if (this.interviewDate.value != null && otherPerson.getInterviewDate().value != null) {
-            return this.interviewDate.value.compareTo(otherPerson.getInterviewDate().value);
-        } else if (this.interviewDate.value != null) {
+        LocalDateTime thisInterviewDate = this.interviewDate.value;
+        LocalDateTime otherInterviewDate = otherPerson.getInterviewDate().value;
+
+        if (thisInterviewDate != null && otherInterviewDate != null) {
+            return compareInterviewDates(thisInterviewDate, otherInterviewDate);
+        } else if (thisInterviewDate != null) {
             return -1;
-        } else if (otherPerson.getInterviewDate().value != null) {
+        } else if (otherInterviewDate != null) {
             return 1;
         } else {
             return 0;
