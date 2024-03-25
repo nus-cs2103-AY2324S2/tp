@@ -417,7 +417,46 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 #### Proposed Implementation
 
+The proposed show mechanism is facilitated by `AddressBook`. It implements `AddressBook#displayPerson(Person target)` which allow users to display patient’s details in the side window of the addressbook.
+
+These operations are exposed in the `Model` interface as `Model#displayPerson(Person target)`.
+
+Given below is an example usage scenario and how the show mechanism behaves at each step.
+
+Step 1. The user launches the application. The `AddressBook` will be initialized with the initial address book state.
+
+Step 2. The user executes `show T0123456A` to display the details of the person in the side window of the address book 
+with the unique identification number `T0123456A`. The show command calls `Model#displayPerson(Person target)`, causing the modified state of the address book after the `show T0123456A` command executes to be displayed.
+
+<box type="info" seamless>
+
+**Note:** If a command fails its execution, it will not call `Model#displayPerson(Person target)`, so the address book state will not be displayed.
+
+</box>
+
+The following sequence diagram shows how a show operation goes through the `Logic` component:
+
+// <puml src="diagrams/ShowCommandDiagram.puml" alt="ShowCommandDiagram" />
+
+<box type="info" seamless>
+
+**Note:** The lifeline for `ShowCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</box>
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+<puml src="diagrams/ShowCommandActivityDiagram.puml" width="250" />
+
 #### Design Considerations & Alternatives Considered
+
+**Aspect: Display of patient’s details when command is successful:**
+* Current choice:  Displays the correct patient’s details in the side window of the addressbook.
+    * Rationale: Users will be able to view the patient's details easily.
+
+**Aspect: Display of error message when command is unsuccessful:**
+* Current choice: Displays the correct error message based on the type of error made (e.g. missing fields, invalid ic format).
+    * Rationale: Users will be able to learn of their error quickly and have an idea of what to edit to make the command successful.
 
 --------------------------------------------------------------------------------------------------------------------
 
