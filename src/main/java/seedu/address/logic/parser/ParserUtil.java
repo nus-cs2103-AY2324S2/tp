@@ -81,7 +81,7 @@ public class ParserUtil {
     public static DateOfBirth parseDateOfBirth(String dob) throws ParseException {
         requireNonNull(dob);
         String trimmedDob = dob.trim();
-        if (!Date.isValidDate(trimmedDob)) {
+        if (!DateOfBirth.isValidDateOfBirth(trimmedDob)) {
             throw new ParseException(DateOfBirth.MESSAGE_CONSTRAINTS);
         }
         return new DateOfBirth(trimmedDob);
@@ -184,25 +184,21 @@ public class ParserUtil {
             throws ParseException {
         requireNonNull(apptType);
         String trimmedApptType = apptType.trim();
-        if (!AppointmentType.isValidAppointmentType(apptType)) {
+        if (!AppointmentType.isValidAppointmentType(trimmedApptType)) {
             throw new ParseException(AppointmentType.MESSAGE_CONSTRAINTS);
         }
-        return new AppointmentType(apptType);
+        return new AppointmentType(trimmedApptType);
     }
 
     /**
      * Parses a {@code String note} into a {@code Note}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code note} is invalid.
      */
-    public static Note parseNote(String note) throws ParseException {
+    public static Note parseNote(String note) {
         requireNonNull(note);
         String trimmedNote = note.trim();
-        if (!Note.isValidNote(trimmedNote)) {
-            throw new ParseException(Note.MESSAGE_CONSTRAINTS);
-        }
-        return new Note(note);
+        return new Note(trimmedNote);
     }
 
     /**

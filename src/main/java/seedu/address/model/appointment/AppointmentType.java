@@ -29,7 +29,7 @@ public class AppointmentType {
      * Returns true if a given string is a valid appointment type name.
      */
     public static boolean isValidAppointmentType(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.trim().matches(VALIDATION_REGEX);
     }
 
     @Override

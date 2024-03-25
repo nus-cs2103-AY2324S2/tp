@@ -96,13 +96,13 @@ Shows a list of all persons in the address book.
 
 Format: `list`
 
-### Editing a person : `edit`
+### Editing a person : `editPerson`
 
 Edits an existing person in the address book.
 
-Format: `edit INDEX [i/INDEX] [b/DOB] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `editPerson NRIC [b/DOB] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the person with the specified `NRIC`. The NRIC must be valid and must exist in the system.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
@@ -110,8 +110,8 @@ Format: `edit INDEX [i/INDEX] [b/DOB] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [
     specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `editPerson T0123456A p/91234567 e/johndoe@example.com` Edits the phone number and email address of the person with NRIC:`T0123456A` to be `91234567` and `johndoe@example.com` respectively.
+*  `editPerson S8765432Z n/Betsy Crower t/` Edits the name of the person with NRIC:`S8765432Z` to be `Betsy Crower` and clears all existing tags.
 
 ### Locating persons by name or nric: `findPerson`
 
@@ -153,11 +153,12 @@ Examples:
 
 Adds an appointment to the address book.
 
-Format: `addApp i/NRIC d/DATE from/STARTTIME to/ENDTIME t/APPOINTMENTTYPE note/NOTE`
+Format: `addApp i/NRIC d/DATE from/START_TIME to/END_TIME t/APPOINTMENT_TYPE [note/NOTE]`
 
-* Adds an appointment for the person with specified `NRIC`, on `DATE` from `STARTTIME` to `ENDTIME`
-* Details of `APPOINTMENTTYPE` and `NOTE` will be captured for reference
+* Adds an appointment for the person with specified `NRIC`, on `DATE` from `START_TIME` to `END_TIME`
 * Person with this NRIC **must exist within database**.
+* Details of `APPOINTMENT_TYPE` and `NOTE` will be captured for reference
+* `note/` is an optional field
 
 Examples:
 * `addApp i/ T0123456A d/ 2024-02-20 from/ 11:00 to/ 11:30 t/ Medical Check-up note/ Routine check-in`
@@ -167,9 +168,9 @@ Examples:
 
 Cancels an appointment from the address book.
 
-Format: `cancelApp i/NRIC d/DATE from/STARTTIME to/ENDTIME`
+Format: `cancelApp i/NRIC d/DATE from/START_TIME to/END_TIME`
 
-* Cancels an appointment for the person with specified `NRIC`, on `DATE` from `STARTTIME` to `ENDTIME`
+* Cancels an appointment for the person with specified `NRIC`, on `DATE` from `START_TIME` to `END_TIME`
 * Appointment with the following details **must exist within database**.
 
 Examples:
@@ -241,7 +242,7 @@ Action     | Format, Examples
 **Delete** | `delete NRIC`<br> e.g., `delete T0123456A`
 **AddApp** | `addApp i/NRIC d/DATE from/STARTTIME to/ENDTIME t/APPOINTMENTTYPE note/NOTE`<br> e.g., `addApp i/ T0123456A d/ 2024-02-20 from/ 11:00 to/ 11:30 t/ Medical Check-up note/ Routine check-in`
 **CancelApp** | `cancelApp i/NRIC d/DATE from/STARTTIME to/ENDTIME` <br> e.g., `cancelApp i/ S8743880A d/ 2024-02-20 from/ 11:00 to/ 11:30`
-**Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**EditPerson**   | `editPerson NRIC [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`editPerson T0123456A n/James Lee e/jameslee@example.com`
 **FindApp**| `findApp [i/NRIC] [d/DATE] [from/TIME]` <br> e.g., `findApp i/ T0123456A d/ 2024-02-20 from/ 11:00`
 **FindPerson**   | `findPerson n/ KEYWORD [MORE_KEYWORDS]` OR `findPerson i/ KEYWORD`<br> e.g., `findPerson n/ James Jake`
 **List**   | `list`
