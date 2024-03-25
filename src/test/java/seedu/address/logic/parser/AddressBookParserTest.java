@@ -26,6 +26,7 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListOrderCommand;
+import seedu.address.logic.commands.ShowFavouriteCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.order.Date;
 import seedu.address.model.order.Order;
@@ -120,6 +121,12 @@ public class AddressBookParserTest {
         ListOrderCommand command = (ListOrderCommand) parser.parseCommand(ListOrderCommand.COMMAND_WORD
                 + " " + targetIndex.getOneBased());
         assertEquals(new ListOrderCommand(targetIndex), command);
+    }
+
+    @Test
+    public void parseCommand_showFav() throws Exception {
+        assertTrue(parser.parseCommand(ShowFavouriteCommand.COMMAND_WORD) instanceof ShowFavouriteCommand);
+        assertTrue(parser.parseCommand(ShowFavouriteCommand.COMMAND_WORD + " 3") instanceof ShowFavouriteCommand);
     }
 
     @Test

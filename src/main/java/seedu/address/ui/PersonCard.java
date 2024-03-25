@@ -60,7 +60,7 @@ public class PersonCard extends UiPart<Region> {
         email.setText(person.getEmail().value);
         company.setText(person.getCompany().companyName);
         orders.setText(person.getOrders().size() + " orders");
-        if (person.getFavourite()) {
+        if (person.getIsFavourite()) {
             favourite.setText("Favourite");
         } else {
             // Collapse empty label
