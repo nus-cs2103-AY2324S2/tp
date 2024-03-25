@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalGroups.SAMPLE_GROUP_1;
+import static seedu.address.testutil.TypicalGroups.SAMPLE_GROUP_2;
 import static seedu.address.testutil.TypicalGroups.SAMPLE_GROUP_NAME_1;
 import static seedu.address.testutil.TypicalGroups.SAMPLE_MEMBER_SET_1;
 import static seedu.address.testutil.TypicalGroups.SAMPLE_MEMBER_SET_2;
@@ -45,5 +47,16 @@ public class GroupTest {
     public void toString_validGroup_doesNotThrow() {
         Group group = new Group(SAMPLE_GROUP_NAME_1, SAMPLE_MEMBER_SET_1);
         assertDoesNotThrow(group::toString);
+    }
+
+    @Test
+    public void equalsMethod() {
+        assertEquals(SAMPLE_GROUP_1, SAMPLE_GROUP_1);
+    }
+
+    @Test
+    public void hashCodeMethod() {
+        assertNotEquals(SAMPLE_GROUP_1.hashCode(), SAMPLE_GROUP_2.hashCode());
+        assertEquals(SAMPLE_GROUP_1.hashCode(), SAMPLE_GROUP_1.hashCode());
     }
 }

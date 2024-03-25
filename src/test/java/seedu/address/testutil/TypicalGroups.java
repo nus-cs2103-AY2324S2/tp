@@ -12,6 +12,7 @@ import static seedu.address.testutil.TypicalCourseMates.FIONA;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -20,6 +21,7 @@ import seedu.address.model.coursemate.CourseMate;
 import seedu.address.model.coursemate.Name;
 import seedu.address.model.coursemate.QueryableCourseMate;
 import seedu.address.model.group.Group;
+import seedu.address.model.skill.Skill;
 
 /**
  * A utility class containing a list of {@code Group} objects to be used in tests.
@@ -44,9 +46,15 @@ public class TypicalGroups {
     public static final Name SAMPLE_GROUP_NAME_3 = new Name("Group 3");
     public static final Name SAMPLE_UNINCLUDED_NAME = new Name("Unincluded group");
 
-    public static final Group SAMPLE_GROUP_1 = new Group(SAMPLE_GROUP_NAME_1, SAMPLE_MEMBER_SET_1);
-    public static final Group SAMPLE_GROUP_2 = new Group(SAMPLE_GROUP_NAME_2, SAMPLE_MEMBER_SET_2);
-    public static final Group SAMPLE_GROUP_3 = new Group(SAMPLE_GROUP_NAME_3, SAMPLE_MEMBER_SET_3);
+    public static final List<Skill> SAMPLE_SKILL_LIST_1 =
+            Arrays.asList(new Skill("C++"), new Skill("JavaScript"));
+    public static final List<Skill> SAMPLE_SKILL_LIST_2 = new ArrayList<>();
+    public static final List<Skill> SAMPLE_SKILL_LIST_3 =
+            Arrays.asList(new Skill("Coding"), new Skill("Presentation"));
+
+    public static final Group SAMPLE_GROUP_1 = new Group(SAMPLE_GROUP_NAME_1, SAMPLE_MEMBER_SET_1, SAMPLE_SKILL_LIST_1);
+    public static final Group SAMPLE_GROUP_2 = new Group(SAMPLE_GROUP_NAME_2, SAMPLE_MEMBER_SET_2, SAMPLE_SKILL_LIST_2);
+    public static final Group SAMPLE_GROUP_3 = new Group(SAMPLE_GROUP_NAME_3, SAMPLE_MEMBER_SET_3, SAMPLE_SKILL_LIST_3);
     public static final Group SAMPLE_UNINCLUDED_GROUP =
             new Group(SAMPLE_UNINCLUDED_NAME, SAMPLE_UNINCLUDED_MEMBER_SET);
 
