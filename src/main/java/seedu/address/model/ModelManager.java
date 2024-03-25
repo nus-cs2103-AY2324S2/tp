@@ -26,7 +26,7 @@ public class ModelManager implements Model {
     private FilteredList<Person> filteredPersons;
     private final SortedList<Person> sortedPersons;
     private final FilteredList<Person> initialPersons;
-
+    private Person selectedPerson = null;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -135,6 +135,19 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
+    //=========== Selected Person Accessors =============================================================
+
+    @Override
+    public Person getSelectedPerson() {
+        return selectedPerson;
+    }
+
+    @Override
+    public void updateSelectedPerson(Person person) {
+        requireNonNull(person);
+        selectedPerson = person;
+    }
+
     @Override
     public void sortFilteredPersonList(Comparator<Person> comparator) {
         sortedPersons.setComparator(comparator);
@@ -159,7 +172,10 @@ public class ModelManager implements Model {
         ModelManager otherModelManager = (ModelManager) other;
         return addressBook.equals(otherModelManager.addressBook)
                 && userPrefs.equals(otherModelManager.userPrefs)
-                && filteredPersons.equals(otherModelManager.filteredPersons);
+                && filteredPersons.equals(otherModelManager.filteredPersons)
+                && (selectedPerson == null
+                    ? otherModelManager.selectedPerson == null
+                    : selectedPerson.equals(otherModelManager.selectedPerson));
     }
 
     /**

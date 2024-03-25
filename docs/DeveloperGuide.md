@@ -336,7 +336,7 @@ _{more aspects and alternatives to be added}_
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app and revolutionizes client engagement 
+**Value proposition**: manage contacts faster than a typical mouse/GUI driven app and revolutionizes client engagement
 for financial advisors by facilitating strategic communication and personalized service.
 
 
@@ -527,8 +527,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to find people containing an upcoming appointment. 
-2.  AddressBook retrieves a list of people who have upcoming appointments. 
+1.  User requests to find people containing an upcoming appointment.
+2.  AddressBook retrieves a list of people who have upcoming appointments.
 3.  AddressBook shows the list of people to the user.
 
 **Extensions**

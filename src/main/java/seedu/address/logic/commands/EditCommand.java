@@ -88,9 +88,17 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
+        boolean updateProfile = false;
+        Person selectedPerson = model.getSelectedPerson();
+        if (personToEdit.isSamePerson(model.getSelectedPerson())) {
+            model.updateSelectedPerson(editedPerson);
+            updateProfile = true;
+        }
+
         model.setPerson(personToEdit, editedPerson);
         model.setToInitialList();
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson)));
+        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson)),
+                false, false, updateProfile);
     }
 
     /**

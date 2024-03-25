@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static seedu.address.logic.commands.SelectCommand.MESSAGE_SELECT_PERSON_SUCCESS;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.ALICE;
@@ -36,15 +37,15 @@ public class SelectCommandTest {
         Person personToSelect = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         SelectCommand selectCommand = new SelectCommand(INDEX_FIRST_PERSON);
 
-        String expectedMessage = String.format(SelectCommand.MESSAGE_SELECT_PERSON_SUCCESS,
+        String expectedMessage = String.format(MESSAGE_SELECT_PERSON_SUCCESS,
                 Messages.format(personToSelect));
 
-        IsSamePersonPredicate predicate = preparePredicate(personToSelect);
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedModel.updateSelectedPerson(personToSelect);
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, false, false, true);
 
-        assertCommandSuccess(selectCommand, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(ALICE), model.getFilteredPersonList());
+        assertCommandSuccess(selectCommand, model, expectedCommandResult, expectedModel);
+        assertEquals(ALICE, model.getSelectedPerson());
     }
 
     @Test
@@ -62,14 +63,17 @@ public class SelectCommandTest {
         Person personToSelect = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         SelectCommand selectCommand = new SelectCommand(INDEX_FIRST_PERSON);
 
-        String expectedMessage = String.format(SelectCommand.MESSAGE_SELECT_PERSON_SUCCESS,
+        String expectedMessage = String.format(MESSAGE_SELECT_PERSON_SUCCESS,
                 Messages.format(personToSelect));
+
 
         IsSamePersonPredicate predicate = preparePredicate(personToSelect);
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.updateFilteredPersonList(predicate);
+        showPersonAtIndex(expectedModel, INDEX_FIRST_PERSON);
+        expectedModel.updateSelectedPerson(personToSelect);
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, false, false, true);
 
-        assertCommandSuccess(selectCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(selectCommand, model, expectedCommandResult, expectedModel);
         assertEquals(Arrays.asList(ALICE), model.getFilteredPersonList());
     }
 
