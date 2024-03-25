@@ -48,7 +48,6 @@ public class UniquePersonList implements Iterable<Person> {
             throw new DuplicatePersonException();
         }
         internalList.add(toAdd);
-        sort();
     }
 
     /**
@@ -69,7 +68,6 @@ public class UniquePersonList implements Iterable<Person> {
         }
 
         internalList.set(index, editedPerson);
-        sort();
     }
 
     /**
@@ -86,7 +84,6 @@ public class UniquePersonList implements Iterable<Person> {
     public void setPersons(UniquePersonList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
-        sort();
     }
 
     /**
@@ -100,7 +97,6 @@ public class UniquePersonList implements Iterable<Person> {
         }
 
         internalList.setAll(persons);
-        sort();
     }
 
     /**
@@ -154,17 +150,15 @@ public class UniquePersonList implements Iterable<Person> {
         return true;
     }
 
-    private void sort() {
-        // Convert the ObservableList to a regular List
+    /**
+     * Sort the Observable list.
+     */
+    public void sort() {
         List<Person> list = internalList.stream().collect(Collectors.toList());
 
-        // Sort the list using Collections.sort() method
         Collections.sort(list);
 
-        // Clear the ObservableList
         internalList.clear();
-
-        // Add the sorted elements back to the ObservableList
         internalList.addAll(list);
     }
 }

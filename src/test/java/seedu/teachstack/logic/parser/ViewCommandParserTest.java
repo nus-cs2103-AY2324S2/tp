@@ -15,7 +15,7 @@ class ViewCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsViewCommand() {
-        assertParseSuccess(parser, "A0223456X", new ViewCommand(ID_FIRST_PERSON));
+        assertParseSuccess(parser, "A0128956X", new ViewCommand(ID_FIRST_PERSON));
     }
 
     @Test
