@@ -2,6 +2,7 @@ package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+import static seedu.address.commons.util.StringFormatter.removeCommas;
 
 /**
  * Represents a Person's address in the address book.
@@ -35,6 +36,14 @@ public class Address {
      */
     public static boolean isValidAddress(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns a String representations of the address with its commas removed for csv conversion.
+     * @return String representation of the value of the address with commas removed
+     */
+    public String toNoCommasString() {
+        return removeCommas(this.value);
     }
 
     @Override

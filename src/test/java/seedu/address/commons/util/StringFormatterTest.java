@@ -45,4 +45,19 @@ public class StringFormatterTest {
         assertEquals("JaVa IS GReAt", StringFormatter.capitalizeWords("JaVa iS gReAt"));
     }
 
+    @Test
+    public void removeCommas_nullInput() {
+        assertEquals(null, StringFormatter.removeCommas(null));
+    }
+
+    @Test
+    public void removeCommas_stringWithoutCommas() {
+        assertEquals("String without commas", StringFormatter.removeCommas("String without commas"));
+    }
+
+    @Test
+    public void removeCommas_stringWithCommas() {
+        assertEquals("String with commas", StringFormatter.removeCommas("String, with, commas"));
+    }
+
 }
