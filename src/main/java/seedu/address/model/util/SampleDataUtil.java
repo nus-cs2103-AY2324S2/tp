@@ -12,6 +12,7 @@ import seedu.address.model.person.InternDuration;
 import seedu.address.model.person.InterviewDate;
 import seedu.address.model.person.JobDescription;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Note;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Salary;
@@ -25,7 +26,7 @@ public class SampleDataUtil {
         return new Person[] {
             new Person(new Name("FoodPanda"), new Phone("12345678"), new Email("panda@food.com"),
                 new Address("CBD"), new Tag("F"), new JobDescription("Front End Intern"),
-                new InterviewDate("15-04-2024 0900"), new InternDuration("6 months"), new Salary("500"))
+                new InterviewDate("15-04-2024 0900"), new InternDuration("6 months"), new Salary("500"), new Note(""))
         };
     }
 
