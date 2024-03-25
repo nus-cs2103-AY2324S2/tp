@@ -96,8 +96,7 @@ The sequence diagram below illustrates the interactions within the `Logic` compo
 e1234567")` API 
 call as an example.
 
-<puml src="diagrams/DeleteSequenceDiagram.puml" alt="Interactions Inside the Logic Component for the `delstu e1234567` 
-Command" />
+<puml src="diagrams/DeleteSequenceDiagram.puml" alt="Interactions Inside the Logic Component for the `delstu e1234567` Command" />
 
 <box type="info" seamless>
 
