@@ -183,6 +183,8 @@ Format: `findApp [i/NRIC] [d/DATE] [from/TIME]`
 
 * Filters an appointment with specific `NRIC`, `DATE` or `TIME`
 * If invalid parameters, error detailing what went wrong will be displayed.
+* For argument concerning TIME, all appointments that start at the given time and later than that are returned.
+* Fetching for TIME without DATE will return all appointments whose start time >= that time on any date.
 
 ### Clearing all entries : `clear`
 

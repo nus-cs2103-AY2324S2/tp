@@ -8,7 +8,7 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.person.Nric;
 
 /**
- * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
+ * Tests that a {@code Appointment}'s {@code NRIC}, {@code Date}, {@code Time} matches any of the filters given.
  */
 public class AppointmentContainsKeywordsPredicate implements Predicate<Appointment> {
     private final Optional<Nric> nricFilter;

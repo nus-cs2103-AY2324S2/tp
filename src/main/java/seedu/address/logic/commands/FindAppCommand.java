@@ -8,15 +8,14 @@ import seedu.address.model.Model;
 import seedu.address.model.appointment.AppointmentContainsKeywordsPredicate;
 
 /**
- * Finds and lists all persons in address book whose name contains any of the argument keywords.
- * Keyword matching is case insensitive.
+ * Finds and lists all appointments in address book whose details fit any of the argument keywords.
  */
 public class FindAppCommand extends Command {
 
     public static final String COMMAND_WORD = "findApp";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all appointments whose fields contain any of "
-            + "the specified keywords and displays them as a list with index numbers.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all appointments whose fields fit any of "
+            + "the specified arguments and displays them as a list.\n"
             + "Parameters: KEYWORD [MORE_OPTIONAL_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " i/ T0123456A d/ 2024-03-16 from/ 11:00";
 

@@ -37,7 +37,7 @@ import seedu.address.model.appointment.Time;
 import seedu.address.model.person.Nric;
 
 /**
- * Contains integration tests (interaction with the Model) for {@code FindPersonCommand}.
+ * Contains integration tests (interaction with the Model) for {@code FindAppointmentCommand}.
  */
 public class FindAppCommandTest {
     private Model model = new ModelManager(getTypicalAddressBookWithAppointments(), new UserPrefs());
@@ -74,7 +74,7 @@ public class FindAppCommandTest {
         // null -> returns false
         assertFalse(findFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different appointment -> returns false
         assertFalse(findFirstCommand.equals(findSecondCommand));
     }
 
@@ -117,6 +117,18 @@ public class FindAppCommandTest {
         expectedModel.updateFilteredAppointmentList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(ALICE_APPT, ALICE_APPT_1), model.getFilteredAppointmentList());
+    }
+
+    @Test
+    public void execute_missingNric_zeroAppointmentsFound() throws ParseException {
+        String expectedMessage = String.format(MESSAGE_APPOINTMENTS_LISTED_OVERVIEW, 0);
+        AppointmentContainsKeywordsPredicate predicate = preparePredicate(
+                " i/T6543210A"
+        );
+        FindAppCommand command = new FindAppCommand(predicate);
+        expectedModel.updateFilteredAppointmentList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(), model.getFilteredAppointmentList());
     }
 
     @Test
