@@ -61,19 +61,16 @@ PoochPlanner is an **address book manager for managing contacts, optimised for u
 
 Shows a message of how to write commands for all commands or a specfic command.
 
-### Get help for all commands
-Format: `/help`
-
-### Get help for a specific command
-Format: `/help-[command type]`
+Format: `/help ; command : [command type]`
 
 Examples:
-* `/help-poochstaff`
-* `/help-poochsupplier`
-* `/help-poochmaintenance`
-* `/help-edit`
-* `/help-delete`
-* `/help-search`
+* `/help ; command : delete`
+* `/help ; command : add`
+
+Constraints :
+* `Command must be specified`
+* `Help is only given for "delete", "add", "edit", "search"`
+* `For help for all commands, the command is "general"`
 
 
 ### Adding a contact: `Add`
@@ -112,7 +109,7 @@ Edit the fields of the specified **person / staff / supplier / maintainer** in t
 
 
 #### Edits a person
-Format: `/edit ; name : [name] ; field : { phone : [phone] ; address : [address] ; email : [email] }`
+Format: `/edit-person ; name : [name] ; field : { phone : [phone] ; address : [address] ; email : [email] }`
 
 
 #### Edits a staff
@@ -134,18 +131,17 @@ Format: `/edit-maintainer ; name : [name] ; field : { phone : [phone] ; address 
 * **_Caution_** : Editing `name` field is strictly **not** allowed and **will** be ignored.
 
 Examples:
-* `/edit ; name : Poochie ; field : { name : Mochie }`
+* `/edit-person ; name : Poochie ; field : { name : Mochie }`
 
   The above command edits the name of the person, from **_Poochie_** to **_Mochie_**, given that there are no other persons with the name, **_Mochie_**, in the Pooch Contact Book.
 
 * `/edit-staff ; name : Thomas ; field : { address : Poochie Street 25 ; employment : full-time }`
 
-  The above command edits the address of **_Thomas_** to **_Poochie Street 25_**.
-  The above command also edits the employment of **_Thomas_**, which **must** be a **_Pooch Staff_**, to **_full-time_**.
+  The above command edits the **address and employment** field of **_Thomas_** to **_Poochie Street 25_** and **_full-time_** respectively. 
 
-### Deleting a person : `delete`
+### Deleting a contact : `delete`
 
-Deletes the specified person from the Pooch Planner.
+Deletes the specified contact from the Pooch Planner.
 
 Format: `/delete ; name : [name]`
 
@@ -162,38 +158,42 @@ Examples:
    The above command deletes the contact with name **_Moochie_**, provided **_Moochie_** exists as a name of a contact in Pooch Contact Book
 
 
-### Searching a contact : `search`
+### Searching a person : `search`
 
 Searches through the address book using specified fields and keyword.
 
 Formats:
-```
-/search ; name : [full/partial name]
-/search ; phone : [full/partial phone]
-/search ; address : [full/partial address]
-/search ; email : [full/partial email]
-/search ; product : [full/partial product name]
-/search ; employment : [employment]
-```
 
-* Searches the person by specifying field (i.e. `name`, `phone`, `address`, etc.), followed by the partial or full keyword
-* Current feature does not allow users to search for `commission`, `salary`, and `price`
-* All fields are **case-insensitive**.
-For instance, to check whether a name is unique (case-insensitive)
-  * Eg : `Janna` and `janna` are both equivalent
-* Spaces within each input are considered
-  * Eg: `Tom Tan Er` is different from `Tom Taner`
+- `/search ; [field] : [full/partial query]`
+
+* Searches contact(s) by specifying a valid field (i.e. `name`, `phone`, `email`, `address`, `salary`, `employment`, `price`, `product`, `skill`, `commission`, `tag` or `note`), followed by the partial or full query.
+* All fields and queries are **case-insensitive**.
+  * Eg : `Janna` and `janna` are both equivalent.
+* Spaces within each input are counted as part of the query input.
+  * Eg: `Tom Tan Er` is different from `Tom Taner`.
 
 
 Examples:
-```
-/search ; name : Poochie
-/search ; phone : 98765432
-/search ; address : Poochie Street 21
-/search ; email : ilovecatstoo@gmail.com
-/search ; address : Pooch
-/search ; description : Food
-```
+- `/search ; name : Poochie`
+- `/search ; phone : 98765432`
+
+### Rating a Contact : `rate`
+
+Gives a specified person from the Pooch Planner a performance rating.
+
+Format: `/rate ; name : [name] ; rating : [rating value from 1-5]`
+
+* Gives the contact with the specified `name` a rating between 1 and 5 inclusive. 
+* Note that the specified person must first exist in Pooch Contact Book.
+* `name` and `rating` are compulsory fields that are case-insensitive but space-sensitive.
+* `rating` can only take on integer values between 1 and 5 inclusive.
+* A `rating` of `0` will display `No rating given yet`.
+
+Examples:
+* `/rate ; name : Poochie ; rating : 5`
+
+  The above command rates the contact with the name **_Poochie_** with a rating of `5`.
+  provided **_Poochie_** exists as a name of a contact in Pooch Contact Book
 
 ### Adding a note : `note`
 
@@ -204,13 +204,32 @@ Format: `/note ; name : [name] ; note : [note message]`
 * Adds a note to the contact with the specified `name`. 
 * Note that the specified person must first exist in Pooch Contact Book.
 * The name and note is a compulsory field that is case-insensitive but space-sensitive.
-* Note command can only be done on general persons classes. (eg. not Maintainer, Staff, Supplier)
 
 Examples:
 * `/note ; name : Poochie ; note : meet poochie tonight to get kibble`
 
   The above command adds the note "meet poochie tonight to get kibble" to 
   the contact with name **_Poochie_**, provided **_Poochie_** exists as a name of a contact in Pooch Contact Book
+
+### Pinning a contact : `pin`
+
+Pins the specified contact on Pooch Planner so that the contact will consistently appear at the top on the contact list.
+
+Format: `/pin ; name : [name]`
+
+* Pins the contact with the specified `name`.
+* Note that the specified contact must first exist in Pooch Contact Book.
+* The name is a compulsory field that is case-insensitive but space-sensitive.
+
+Examples:
+* `/pin ; name : Poochie`
+
+   The above command pins the contact with name **_Poochie_**, provided **_Poochie_** exists as a name of a contact in Pooch Contact Book.
+  
+* `/pin ; name : Moochie`
+
+   The above command pin the contact with name **_Moochie_**, provided **_Moochie_** exists as a name of a contact in Pooch Contact Book.
+
 
 ### Undo a command : `undo`
 
@@ -233,6 +252,24 @@ Format: `/redo`
 * This command unable to be executed when there is no next state.
 * This command only able to be executed when at least one undo command is executed.
 
+### Sorting the address book : `sort`
+
+Sorts the address book by field in ascending order
+
+Formats:
+
+- `/sort ; [field]`
+
+* Sorts the contacts in the address book in ascending lexicographical order (e.g. Alice, Bob, Charlie etc.)
+* Sorts by specifying a valid field (i.e. `name`, `phone`, `email`, `address`, `salary`, `employment`, `price`, `product`, `skill`, `commission`, `tag` or `note`)
+* All fields are **case-insensitive**
+    * Eg : `Name` and `name` are both equivalent
+
+
+Examples:
+
+- `/sort ; name`
+- `/sort ; phone`
 
 ### Exiting the program : `exit`
 
@@ -252,6 +289,7 @@ AddressBook data are saved automatically as a JSON file `[JAR file location]/dat
 If your changes to the data file makes its format invalid, PoochPlanner will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
 Furthermore, certain edits can cause the PoochPlanner to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
+
 
 ### Archiving data files `[coming in v2.0]`
 
@@ -279,18 +317,13 @@ Action | Format, Examples
 **Add Staff** | `/pooch-staff ; name : [name] ; phone : [phone] ; address : [address] ; email : [email] ; salary : [salary]  ; employment : [part/full]` <br> e.g., `/pooch-staff ; name : Poochie ; phone : 98765435 ; address : Poochie Street 21 ; email : ilovecatstoo@gmail.com ; salary : $50/h ; employment : part-time`
 **Add Supplier** | `/pooch-supplier ; name : [name] ; phone : [phone] ; address : [address] ; email : [email] ; product : [product] ; price : [price]` <br> e.g., `/pooch-supplier ; name : PetCo ; phone : 98673098 ; address : Meow Street 24 ; email : ilovewombatstoo@gmail.com ; product : kibble ; price : $98/bag`
 **Add Helper** | `/pooch-maintainer ; name : [name] ; phone : [phone] ; address : [address] ; email : [email] ; skill : [skill] ; commission : [commission]` <br> e.g., `/pooch-maintainer ; name : Tom Tan  ; phone : 98765435 ; address : Poochie Street 24 ; email : ihelppooches@gmail.com ; skill : trainer ; commission : $60/hr`
-**Add General Contact** | `/pooch-add ; name : [name] ; phone : [phone] ; address : [address] ; email : [email] ; skill : [skill] ; commission : [commission]` <br> e.g., `/pooch-add ; name : Janna  ; phone : 98765435 ; address : Poochie Street 24 ; email : iamjanna@gmail.com`
+**Add Other Contact** | `/pooch-add ; name : [name] ; phone : [phone] ; address : [address] ; email : [email] ; skill : [skill] ; commission : [commission]` <br> e.g., `/pooch-add ; name : Janna  ; phone : 98765435 ; address : Poochie Street 24 ; email : iamjanna@gmail.com`
 **Delete** | `/delete name : [name] `<br> e.g., `delete ; name : Poochie`
-**Edit** | `/edit ; name : [name] ; field : { field : data ; field : data }`<br> e.g., `/edit ; name : Poochie ; field : { name : Mochi }` <br> e.g.,`/edit ; name : Poochie ; field : { address : Poochie Street 25 ; employment : full-time }`
+**Edit** | `/edit-person ; name : [name] ; field : { field : data ; field : data }`<br> e.g., `/edit-person ; name : Poochie ; field : { name : Mochi }` <br> e.g.,`/edit-person ; name : Poochie ; field : { address : Poochie Street 25 ; employment : full-time }`
 **Search** | `/search ; parameter : [value]`<br> e.g., `/search ; name : Poochie`
 **List** | `/list`
-**Help** | `/help`
-**Help PoochStaff** | `/help-poochstaff`
-**Help PoochSupplier** | `/help-poochsupplier`
-**Help PoochMaintenance** | `/help-poochmaintenance`
-**Help Delete** | `/help-delete`
-**Help Edit** | `/help-edit`
-**Help Search** | `/help-search`
+**Help** | `/help ; command : [command type]`
+**Rate** | `/rate ; name : [name] ; rating : [rating]`<br> e.g., `/rate ; name : Poochie ; rating : 5`
 **Undo Command** | `/undo`
 **Redo Command** | `/redo`
 `
