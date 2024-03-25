@@ -86,7 +86,7 @@ public class Availability {
     /**
      * Returns a standardised Day of the Week.
      *
-     * @param validDay validDay to be translated.
+     * @param validDay a valid Day String to be translated.
      * @return Corresponding Day of Week.
      */
     public static DayOfWeek parseToDayOfWeek(String validDay) {
@@ -110,7 +110,7 @@ public class Availability {
     /**
      * Returns a standardised LocalTime.
      *
-     * @param validTime validTime to be translated.
+     * @param validTime a valid Time String to be translated.
      * @return Corresponding Local Time.
      */
     public static LocalTime parseToLocalTime(String validTime) {
