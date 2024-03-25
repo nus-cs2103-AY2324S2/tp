@@ -17,16 +17,16 @@ import seedu.address.model.person.Policy;
 
 public class PolicyCommandParserTest {
     private PolicyCommandParser parser = new PolicyCommandParser();
-    private String SAMPLE_POLICY = "some policy";
+    private final Policy samplePolicy = new Policy("some policy");
     private final Set<Policy> nonEmptyPolicy = new HashSet<>();
     private final Set<Policy> emptyPolicy = new HashSet<>();
 
     @Test
     public void parse_indexSpecified_success() {
-        nonEmptyPolicy.add(new Policy(SAMPLE_POLICY));
+        nonEmptyPolicy.add(samplePolicy);
         // have policy
         Index targetIndex = INDEX_FIRST_PERSON;
-        String userInput = targetIndex.getOneBased() + " " + PREFIX_POLICY + SAMPLE_POLICY;
+        String userInput = targetIndex.getOneBased() + " " + PREFIX_POLICY + samplePolicy;
         PolicyCommand expectedCommand = new PolicyCommand(INDEX_FIRST_PERSON, nonEmptyPolicy);
         assertParseSuccess(parser, userInput, expectedCommand);
 
