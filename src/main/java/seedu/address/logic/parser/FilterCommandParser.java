@@ -27,7 +27,8 @@ public class FilterCommandParser implements Parser<FilterCommand> {
 
         String[] nameKeywords = trimmedArgs.split("\\s+");
 
-        return new FilterCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        // TODO: fix this code
+        return new FilterCommand(null);
     }
 
 }
