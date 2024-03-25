@@ -77,5 +77,4 @@ public class AddStaffCommandTest {
         String expected = AddStaffCommand.class.getCanonicalName() + "{toAdd=" + ALICESTAFF + "}";
         assertEquals(expected, addCommand.toString());
     }
-
 }

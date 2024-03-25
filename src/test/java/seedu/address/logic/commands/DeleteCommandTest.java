@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonWithName;
@@ -12,7 +13,6 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.messages.DeleteMessages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -47,28 +47,24 @@ public class DeleteCommandTest {
         showPersonWithName(model, ALICE.getName());
 
         Person personToDelete;
-        try {
-            personToDelete = model.findByName(ALICE.getName());
-            DeleteCommand deleteCommand = new DeleteCommand(ALICE.getName());
+        personToDelete = model.findByName(ALICE.getName());
+        DeleteCommand deleteCommand = new DeleteCommand(ALICE.getName());
 
-            String expectedMessage = String.format(DeleteMessages.MESSAGE_DELETE_PERSON_SUCCESS,
-                    DeleteMessages.format(personToDelete));
+        String expectedMessage = String.format(DeleteMessages.MESSAGE_DELETE_PERSON_SUCCESS,
+                DeleteMessages.format(personToDelete));
 
-            Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-            expectedModel.deletePerson(personToDelete);
-            showNoPerson(expectedModel);
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel.deletePerson(personToDelete);
+        showNoPerson(expectedModel);
 
-            assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
-        } catch (CommandException e) {
-            e.printStackTrace();
-        }
+        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidNameFilteredList_throwsCommandException() {
         showPersonWithName(model, ALICE.getName());
 
-        Name invalidName = BENSON.getName();
+        Name invalidName = new Name(INVALID_NAME);
 
         // ensures that the invalid name is not equal to "Alice Pauline"
         assertTrue(!invalidName.equals(ALICE.getName()));
