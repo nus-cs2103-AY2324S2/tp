@@ -155,5 +155,15 @@ public class UpcomingTest {
         assertEquals(expected, upcoming.toString());
     }
 
+    @Test
+    public void hasUpcoming_true() {
+        Upcoming upcoming = new Upcoming("01-01-2022 1200");
+        assertTrue(upcoming.hasUpcoming());
+    }
 
+    @Test
+    public void hasUpcoming_false() {
+        Upcoming upcoming = new Upcoming("");
+        assertFalse(upcoming.hasUpcoming());
+    }
 }

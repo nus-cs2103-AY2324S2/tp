@@ -26,6 +26,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.LastContactCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.SelectCommand;
+import seedu.address.logic.commands.UpcomingCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
@@ -128,8 +129,8 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
-        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
-            -> parser.parseCommand(""));
+        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                HelpCommand.MESSAGE_USAGE), () -> parser.parseCommand(""));
     }
 
     @Test
@@ -141,6 +142,12 @@ public class AddressBookParserTest {
     public void parseCommand_lastContact() throws Exception {
         assertTrue(parser.parseCommand(LastContactCommand.COMMAND_WORD) instanceof LastContactCommand);
         assertTrue(parser.parseCommand(LastContactCommand.COMMAND_WORD + " 3") instanceof LastContactCommand);
+    }
+
+    @Test
+    public void parseCommand_upcoming() throws Exception {
+        assertTrue(parser.parseCommand("upcoming") instanceof UpcomingCommand);
+        assertTrue(parser.parseCommand("upcoming 3") instanceof UpcomingCommand);
     }
 
 }
