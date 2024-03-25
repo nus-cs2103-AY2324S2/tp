@@ -19,7 +19,7 @@ public class FilterCommandParser implements Parser<FilterCommand> {
     public FilterCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
         String tagKeyword = trimmedArgs.substring(trimmedArgs.indexOf(" ") + 1).trim();
-        if (trimmedArgs.isEmpty() || tagKeyword.isEmpty()) {
+        if (trimmedArgs.isEmpty() || tagKeyword.equals("t/")) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
         }

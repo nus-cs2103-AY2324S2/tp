@@ -16,6 +16,8 @@ public class FilterCommandParserTest {
     public void parse_emptyArg_throwsParseException() {
         assertParseFailure(parser, "     ",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "t/     ",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
     }
 
     @Test
