@@ -156,7 +156,8 @@ public class FindCommandParserTest {
 
     @Test
     public void parse_noAttributeSpecified_returnsFindCommand() {
-        CombinedPredicates expectedPredicates = new CombinedPredicates(NAME_PREDICATE);
+        CombinedPredicates expectedPredicates = new CombinedPredicates(NAME_PREDICATE, PHONE_PREDICATE_EMPTY,
+                EMAIL_PREDICATE_EMPTY, ADDRESS_PREDICATE_EMPTY, NOTE_PREDICATE_EMPTY, TAGS_PREDICATE_EMPTY);
         FindCommand expectedCommand = new FindCommand(expectedPredicates);
 
         assertParseSuccess(parser, NAME, expectedCommand);
