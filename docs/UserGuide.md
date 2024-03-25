@@ -180,7 +180,7 @@ Format: `marktask TASK_INDEX`
 Examples:
 * `marktask 1`
 
-### Unmarking a person: `unmarktask`
+### Unmarking a task: `unmarktask`
 
 Marks a task to the task list as not done.
 
