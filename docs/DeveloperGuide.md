@@ -255,6 +255,78 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### Fuzzy Input
+
+#### Implementation
+
+The BK-Tree data structure was employed by the implementation of the fuzzy input to effectively find words that are
+close to the target word in terms of their Levenshtein distance. Each node in the tree-like data structure represents a
+word and its children represent words that are one edit distance away. 
+
+The fuzzy input implementation consists of several components:
+1. BkTreeCommandMatcher: The main BK-Tree data structure for sorting and efficiently search for similar elements
+2. BkTreeNode: Internal node structure used by the Bk-Tree
+3. FuzzyCommandParser: A class demonstrating the usage of BK-tree for command parsing
+4. LevenshteinDistance: An implementation of the DistanceFunction interface using the Levenshtein distance algorithm
+
+Our implementation follows the SOLID principle closely. We have designed interfaces to promote flexibility, especially
+complying with the Open-Close Principle. This design decision makes it easy to extend various `CommandMatchers` or
+`DistanceFunctions` in the future, making it easier to incorporate alternative algorithms if need be.
+
+Given below is an example usage scenario and how the fuzzy input mechanism behaves:
+
+* User misspelled listing command `lust` instead of `list`. 
+  * The `lust` command calls `FuzzyCommandParser#parseCommand())`, causing `BkTreeCommandMatcher#findClosestMatch()` to
+  get called in response.
+  * The `BkTree` would be already initialised with the list of commands before the call.
+    * During the initialisation, `BkTree` calculates the distances between items and constructs the tree accordingly.
+  * When `findCLosestMatch()` is called, it initiates a search within the `BkTree` constructed.
+    * Starting from root node, Bk-Tree traverses through nodes based on the distance between the target item and items
+    stored in each `BkTreeNode`.
+    * The closest match found based on the specified distance metric (1 misspell) will be returned and
+    `AddressBookParser#parseCommand` will proceed on to the respective `commands`.
+    * If no closest match found, `null` command will be returned and `AddressBookParser#parseCommand` will throw
+    `ParseException`.
+  * When calculating the distance between 2 items, `BkTree` calls `DistanceFunction#calculateDistance()` method.
+    * In this case, LevenshteinDistance class will calculate the distance.
+    
+* <insert UML diagrams>
+    
+#### Design considerations:
+
+[Common fuzzy search algorithm for approximate string matching](https://www.baeldung.com/cs/fuzzy-search-algorithm) 
+were compared to determine the optimal algorithm for our AddressBook. 
+
+* **Alternative 1 (current choice)** Bk-Tree with Levenshtein Distance Algorithm 
+* Pros: Tree-like data structure
+  * The hierarchical structure of BK-Tree allows search operations to run in logarithmic time,
+  making them scalable for large datasets
+  * BK-Tree can work with different types of data, not limited to strings
+* Cons: Require more memory, a concern for memory-constrained environment
+
+* **Alternative 2** Hamming Distance
+  * Pros: Straightforward to calculate and understand
+  * Cons: Only designed for comparing strings of equal length
+
+* **Alternative 3** Bitap Algorithm
+  * Pros: Efficient for finding approximate matches of given pattern within a text
+  * Cons: Primarily designed for substring matching within texts
+
+* **Alternative 4** Brute Force Method
+  * Pros: Easily to implement, no pre-processing required, takes no extra space
+  * Cons: Horrible run-time
+
+For our AddressBook implementation, the `BK-Tree with Levenshtein Distance Algorithm` proved to be the optimal choice.
+Its memory usage and complexity of implementation outweighs its potential to extend code and efficiently handle
+misspelled or similar commands. This algorithm guarantees fast runtime performance and robustness in command parsing.
+
+### \[Proposed\] Fuzzy Input with varying distance metric
+
+Currently, the MAX_DISTANCE for the distance metric is set to 1. To enhance user-experience and accommodate longer
+commands with potentially more misspellings, it would be advantageous to dynamically adjust the MAX_DISTANCE according
+to the length of the correct command string. This approach allows a more flexible and adaptable matching process,
+guaranteeing that the misspelling tolerance varies proportionately with command length. By dynamically adjusting the
+MAX_DISTANCE, longer and more complex input command like `addbystep` can be accurately identified. 
 
 --------------------------------------------------------------------------------------------------------------------
 
