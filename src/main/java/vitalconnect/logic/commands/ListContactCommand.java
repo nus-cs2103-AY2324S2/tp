@@ -16,7 +16,8 @@ public class ListContactCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_CONTACT);
+        model.setCurrentPredicate(PREDICATE_SHOW_ALL_CONTACT);
+        model.updateFilteredPersonList(model.getCurrentPredicate());
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

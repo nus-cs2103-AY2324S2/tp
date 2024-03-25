@@ -197,6 +197,27 @@ Examples:
 
 [<span style="font-size: small;">Back to Top</span>](#top)
 
+### Editing contact information : `editc`
+
+Edits contact information of a patient in the clinic. It is also used to add or delete certain field of the contact information.
+
+![editc command](images/commandsPictures/editcCommand.png)
+
+Format: `editc ic/NRIC [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]`
+
+* We call `p/`, `e/`, and `a/` as the `optional fields`.
+* At least one of the `optional fields` must be provided.
+* If want to delete an `optional field`, leave the `optional field` empty.
+* If the `optional field` already exist a value, the value will be updated with the new value.
+* If the `optional field` does not previously hold a value, the new value will be added to the `optional field`.
+
+Examples:
+* `editc ic/S1234567D p/91234567` will result in the phone number of the patient with NRIC `S1234567D` being updated to `91234567`.
+* `editc ic/S1234567D a/` will result in the address of the patient with NRIC `S1234567D` being deleted.
+* Suppose the person now only has a phone number, `editc ic/S1234567D e/email@test.com` will result in the email of the patient with NRIC `S1234567D` being updated to `email@test.com`.
+
+[<span style="font-size: small;">Back to Top</span>](#top)
+
 ### Listing contact information : `listc`
 
 Lists all patients with contact information.
@@ -357,6 +378,7 @@ _Details coming soon ..._
 | **Find**    | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                              |
 | **List**    | `list`                                                                                                                                  |
 | **Addc**    | `addc ic/NRIC [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]` e.g., `addc ic/S1234567D a/123, Clementi Rd, 1234665 e/test@email.com p/91234567` |
+| **Editc**   | `editc ic/NRIC [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]` e.g., `editc ic/S1234567D a/ e/test@email.com p/91234567`                        |
 | **Listc**   | `listc`                                                                                                                                 |
 | **Deletec** | `deletec ic/NRIC` e.g., `deletec ic/S1234567D`                                                                                          |
 | **Addm**    | `addm ic/NRIC h/HEIGHT w/WEIGHT [t/ALLERGY]…​` e.g., `addm ic/S1234567D h/163 w/50 t/insulin t/iodine`                                  |
