@@ -118,4 +118,12 @@ public class Person {
                 .toString();
     }
 
+    public boolean isSameEmail(Person otherPerson) {
+        if (otherPerson == null) {
+            return false;
+        }
+        return this.getEmail().equals(otherPerson.getEmail());
+    }
+
+
 }

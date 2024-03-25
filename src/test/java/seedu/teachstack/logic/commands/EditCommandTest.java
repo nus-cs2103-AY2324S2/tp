@@ -3,15 +3,7 @@ package seedu.teachstack.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.teachstack.logic.commands.CommandTestUtil.DESC_AMY;
-import static seedu.teachstack.logic.commands.CommandTestUtil.DESC_BOB;
-import static seedu.teachstack.logic.commands.CommandTestUtil.VALID_GRADE_BOB;
-import static seedu.teachstack.logic.commands.CommandTestUtil.VALID_GROUP_GROUP1;
-import static seedu.teachstack.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.teachstack.logic.commands.CommandTestUtil.VALID_STUDENTID_BOB;
-import static seedu.teachstack.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.teachstack.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.teachstack.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static seedu.teachstack.logic.commands.CommandTestUtil.*;
 import static seedu.teachstack.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.teachstack.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.teachstack.testutil.TypicalPersons.getTypicalAddressBook;
@@ -62,11 +54,11 @@ public class EditCommandTest {
         PersonBuilder personInList = new PersonBuilder(lastPerson);
 
         Person editedPerson = personInList.withName(VALID_NAME_BOB).withStudentId(VALID_STUDENTID_BOB)
-            .withGrade(VALID_GRADE_BOB).withGroups(VALID_GROUP_GROUP1).build();
+            .withGrade(VALID_GRADE_BOB).withEmail(VALID_EMAIL_BOB).withGroups(VALID_GROUP_GROUP1).build();
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
             .withStudentId(VALID_STUDENTID_BOB).withGrade(VALID_GRADE_BOB)
-            .withGroups(VALID_GROUP_GROUP1).build();
+                .withEmail(VALID_EMAIL_BOB).withGroups(VALID_GROUP_GROUP1).build();
 
         EditCommand editCommand = new EditCommand(id, descriptor);
 
