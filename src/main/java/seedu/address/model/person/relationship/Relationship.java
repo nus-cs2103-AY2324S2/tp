@@ -8,7 +8,7 @@ import java.util.UUID;
  * Represents a relationship between two people.
  */
 public class Relationship {
-    protected static ArrayList<String> validDescriptors = new ArrayList<String>(
+    protected static ArrayList<String> validDescriptors = new ArrayList<>(
             Arrays.asList("family",
                     "friend"));
     protected UUID person1;
@@ -27,7 +27,11 @@ public class Relationship {
         this.person2 = person2;
 
         if (!validDescriptors.contains(relationshipDescriptor)) {
-            throw new IllegalArgumentException("Invalid Relationship type");
+            if(!relationshipDescriptor.matches("[a-zA-Z]+")) {
+                throw new IllegalArgumentException("Invalid Relationship type");
+            } else {
+                validDescriptors.add(relationshipDescriptor);
+            }
         }
         this.relationshipDescriptor = relationshipDescriptor;
     }

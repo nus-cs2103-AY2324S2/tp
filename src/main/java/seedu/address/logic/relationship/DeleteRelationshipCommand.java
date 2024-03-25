@@ -30,7 +30,7 @@ public class DeleteRelationshipCommand extends Command {
     public DeleteRelationshipCommand(String originUuid, String targetUuid, String relationshipDescriptor) {
         this.originUuid = originUuid;
         this.targetUuid = targetUuid;
-        this.relationshipDescriptor = relationshipDescriptor;
+        this.relationshipDescriptor = relationshipDescriptor.toLowerCase();
     }
     @Override
     public CommandResult execute(Model model) throws CommandException {

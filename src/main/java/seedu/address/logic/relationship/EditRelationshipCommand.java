@@ -33,8 +33,8 @@ public class EditRelationshipCommand extends Command {
                                    String oldRelationshipDescriptor, String newRelationshipDescriptor) {
         this.originUuid = originUuid;
         this.targetUuid = targetUuid;
-        this.oldRelationshipDescriptor = oldRelationshipDescriptor;
-        this.newRelationshipDescriptor = newRelationshipDescriptor;
+        this.oldRelationshipDescriptor = oldRelationshipDescriptor.toLowerCase();
+        this.newRelationshipDescriptor = newRelationshipDescriptor.toLowerCase();
     }
 
     /**
