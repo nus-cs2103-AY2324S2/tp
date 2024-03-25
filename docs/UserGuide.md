@@ -1,12 +1,49 @@
 ---
 layout: page
-title: User Guide
+title: SweetRewards User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+### INTRODUCTION
+Welcome to the SweetRewards User Guide! This guide is your comprehensive manual to navigating and maximizing the SweetRewards application. SweetRewards is a dynamic desktop application designed for small bakery owners to manage their loyalty program memberships efficiently. By leveraging the robustness of a Command Line Interface (CLI) while retaining the intuitive nature of a Graphical User Interface (GUI), SweetRewards delivers an optimized experience for fast typers and GUI enthusiasts alike.
 
-* Table of Contents
-{:toc}
+## Target Audience
+This guide is intended for small to medium-sized bakery owners or staff responsible for managing customer relationships and loyalty programs. We assume that users have a basic understanding of command-line interfaces and desktop applications but do not require advanced technical skills. SweetRewards is crafted to simplify your membership tracking, offering a seamless integration into your daily operations.
+
+## Table of Contents
+
+1. Introduction
+2. Getting Started
+    * Installation 
+    * Initial Setup 
+    * Basic Commands
+3. Features 
+    * Adding a Member 
+    * Adding Orders 
+    * Updating Membership Tiers 
+    * Managing Points and Rewards
+4. FAQs
+5. Troubleshooting
+6. Contact Us
+
+## Purpose of this Guide
+The purpose of this User Guide is to assist you in understanding and utilizing the SweetRewards application to its fullest potential. Whether you are looking to onboard new members, track orders, manage reward points or update membership tiers this guide will provide step-by-step instructions to ensure a smooth experience.
+
+## About SweetRewards
+SweetRewards is not just a contact management tool; it's your partner in cultivating customer loyalty and enhancing your bakery's membership program. With SweetRewards, you can:
+
+* Track member information: Keep a detailed record of each member, including their name, phone number, email, address, accumulated points, membership tier, and order history.
+* Manage orders and points: Seamlessly add orders and update points to reflect customer purchases and interactions.
+* Update membership tiers: Elevate members' tiers based on their accumulated points, unlocking new rewards and benefits aligned with each tier.
+
+## Getting Started with SweetRewards
+To begin using SweetRewards, ensure that your device meets the software’s compatibility requirements. Follow the installation instructions provided in the "Getting Started" section. After installation, familiarize yourself with the GUI elements and practice basic CLI commands through the introductory tutorial.
+
+## Navigating this Guide
+This User Guide is structured to help you find information quickly and easily. Use the table of contents to navigate to specific sections. Throughout the guide, you’ll find tips, warnings, and best practices highlighted to draw your attention to important information. If you’re new to CLI, refer to the section on CLI usage for an explanation of commands and syntax.
+
+By following this guide, you’ll learn how to leverage SweetRewards effectively, ensuring that your bakery’s loyalty program runs smoothly and your customers remain happy and engaged. Let’s get started on making the most out of your SweetRewards experience!
+
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -14,20 +51,20 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+2. Download the latest `sweetrewards-v1.2.jar` from [here](https://github.com/AY2324S2-CS2103T-T13-4/tp/releases/tag/v1.2). 
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+3. Copy the file to the folder you want to use as the _home folder_ for SweetRewards.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar sweetrewards-v1.2.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * `add n/John Doe hp/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
 
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
@@ -35,7 +72,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
    * `exit` : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -55,7 +92,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
   e.g. `[t/TAG]…` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `n/NAME hp/PHONE_NUMBER`, `hp/PHONE_NUMBER n/NAME` is also acceptable.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
@@ -113,26 +150,35 @@ Examples:
 * `addorder n/John Doe o/Butter Cake` Adds an order of `Butter Cake` to `John Doe`
 * `addorder n/Betsy o/200g Macadamia Nut Cookies` Adds of order of `200g Macadamia Nut Cookies` to `Besty Crower`
 
-### Deleting orders of a person: `delorder`
+### Adding points: `addpoints`
 
-Adds an order to an existing person in the address book.
+Adds points for a member in the loyalty program.
 
-Format: `delorder n/MEMBER_NAME i/ORDER_INDEX`
+Format: `addpoints n/MEMBER_NAME p/POINTS`
 
-* The order with corresponding `ORDER_INDEX` will be removed from the person with the closest resembling name to `MEMBER_NAME`.
-* If no person with a resembling name is found, no order will be removed from any person.
-* All persons are considered, not just those in the displayed person list.
-* `ORDER_INDEX` **must be a positive integer** 1, 2, 3, ...
+* Adds the corresponding number of points for a memeber based on their name to the current points they have.
+* The points **must be a positive integer** 1, 2, 3, … 200
 
 Examples:
-* `delorder n/John Doe i/1` deletes the first order of `John Doe`
+* `addpoints n/John Doe p/50`
 
+### Updating membership: `addmship`
+
+Updates the membership tier of a member in the loyalty program.
+
+Format: `addmship n/MEMBER_NAME ms/MEMBERSHIP_TEIR`
+
+* Updates the membership tier of a memeber based on their name to the one stated.
+* The membership tier must be one of the following: T1, T2, T3
+
+Examples:
+* `addmship n/John Doe ms/T2`
 
 ### Editing a person : `edit`
 
 Edits an existing person in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [hp/PHONE] [e/EMAIL] [a/ADDRESS] [p/POINTS] [t/TAG]…​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -142,7 +188,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
   specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
+*  `edit 1 hp/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
 ### Locating persons by name : `find`
@@ -188,31 +234,6 @@ Format: `clear`
 * User will be prompted to verify the clear command.
 * To bypass the verification prompt, the user can follow `clear` with `--force`. This will clear the address book without additional prompting.
 
-### Adding points: `addpoints`
-
-Adds points for a member in the loyalty program.
-
-Format: `addpoints n/MEMBER_NAME p/POINTS`
-
-* Adds the corresponding number of points for a memeber based on their name.
-* The points **must be a positive integer** 1, 2, 3, … 200
-
-Examples:
-* `addpoints n/John Doe p/50`
-
-### Subtracting points: `subpoints`
-
-Subtracts points for a member in the loyalty program.
-
-Format: `subpoints n/MEMBER_NAME p/POINTS`
-
-* Subtracts the corresponding number of points for a memeber based on their name.
-* The points **must be a positive integer** 1, 2, 3, … [current number of points the member has currently]
-
-Examples:
-* `subpoints n/John Doe p/50`
-
-
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -255,12 +276,13 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add** | `add n/NAME hp/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho hp/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **Add Order** | `addorder n/MEMBER_NAME o/ORDER_DETAILS` <br> e.g., `addorder n/John Doe o/Butter Cake`
-**Delete Order** | `delorder n/MEMBER_NAME i/ORDER_INDEX` <br> e.g., `delorder n/John Doe i/1`
+**Add Points** | `addpoints n/MEMBER_NAME p/POINTS` <br> e.g., `addpoints n/John Doe p/50`
+**Update Membership** | `addmship n/MEMBER_NAME ms/MEMBERSHIP_TIER` <br> e.g., `addmship n/John Doe ms/T2`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Edit** | `edit INDEX [n/NAME] [hp/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
