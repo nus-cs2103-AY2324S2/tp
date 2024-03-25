@@ -4,9 +4,9 @@
   pageNav: 3
 ---
 
-# Clinic Mate User Guide
+# ClinicMate User Guide
 
-Clinic Mate is a **desktop** app for managing contacts in a clinic, optimized for use via a  **Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Clinic Mate can manage your patients' contact faster than traditional GUI apps.
+ClinicMate is a **desktop** app for managing contacts in a clinic, optimized for use via a  **Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, ClinicMate can manage your patients' contact faster than traditional GUI apps.
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -19,7 +19,7 @@ Clinic Mate is a **desktop** app for managing contacts in a clinic, optimized fo
 
 1. Download the latest `.jar` file from [here](https://github.com/AY2324S2-CS2103T-F14-2/tp/releases/latest)
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your ClinicMate.
 
 1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar clinicmate.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
@@ -30,13 +30,17 @@ Clinic Mate is a **desktop** app for managing contacts in a clinic, optimized fo
 
    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/88888888 e/johndoe@mail.com i/T0123456A ag/12 s/Male a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * `add n/John Doe p/88888888 e/johndoe@mail.com i/T0123456A ag/12 s/Male a/John street, block 123, #01-01` : Adds a contact named `John Doe` to ClinicMate.
 
    * `delete T0123456A` : Deletes the contact with the IC 'T0123456A' shown in the current list.
 
    * `find T0123456A` : Find the contact with the IC 'T0123456A' shown in the current list.
 
-   * `addnote i/T0123456A n/Patient has diabetes` : Add a note: 'Patient has diabetes' for the contact with the IC 'T0123456A' as shown in current list.
+   * `addnote T0123456A n/Patient has diabetes` : Add a note: 'Patient has diabetes' for the contact with the IC 'T0123456A' as shown in current list.
+   
+   * `addnote T0123456A n/Patient has diabetes -replace` : Replace the note of the contact with the IC 'T0123456A' with 'Patient has diabetes'.
+   
+   * `exit` : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -70,7 +74,7 @@ Format: `help`
 
 ### Adding a person: `add`
 
-Adds a person to the address book.
+Adds a person to ClinicMate.
 
 Format: `add n/NAME p/PHONE e/EMAIL i/IC_NUMBER ag/AGE s/SEX a/ADDRESS`
 
@@ -87,23 +91,29 @@ Examples:
 
 ### Adding a note : `addnote`
 
-Add a note to an existing person in the address book
+Add a note to an existing person in CLinicMate.
 
-Format: `addnote i/IC_NUMBER n/NOTE`
+Format: `addnote IC_NUMBER n/NOTE (-replace)`
 
 * Adds a note to the person with the specified `IC_NUMBER`. The IC number refers to the IC number shown in the displayed person list. The IC_NUMBER **must be the FULL IC NUMBER**.
+* IC number must be valid and currently exist in the database.
 * Existing values will be updated to the input values.
-* When adding notes, the new note added will be appended to the current note of the person. i.e. current note is preserved
+* When adding notes, the new note added will be appended to the current note of the person. i.e. current note is preserved.
+* The `-replace` flag can be used to replace the current note with the new note.
 
 Examples:
-*  `addnote i/T0123456A n/Patient has diabetes` Adds a note `Patient has diabetes` to the person with the IC number `T0123456A` in the address book.
+*  `addnote T0123456A n/Patient has diabetes` Adds a note `Patient has diabetes` to the person with the IC number `T0123456A` in CLinicMate.
+* `addnote T0123456A n/Patient has diabetes -replace` Replaces the note of the person with the IC number `T0123456A` with `Patient has diabetes`.
 
 ### Locating persons by ic number: `find`
 
-Find an existing person in the address book using their IC_NUMBER.
+Find an existing person in CinicMate using their IC_NUMBER.
 
 Format: `find IC_NUMBER`
 
+* Deletes the person with the specified `IC_NUMBER`.
+* The IC_NUMBER refers to the IC number shown in the displayed person list.
+* The IC_NUMBER **must be the FULL IC NUMBER**.
 * The search is case-insensitive. e.g `t0123456a` will match `T0123456A`.
 * Only the IC number is searched.
 * Only full IC number will be matched e.g. `T0123456A` will not match `T0123A`.
@@ -113,20 +123,29 @@ Examples:
 
 ### Deleting a person : `delete`
 
-Deletes the specified person from the address book using their IC_NUMBER.
+Deletes the specified person from ClinicMate using their IC_NUMBER.
 
 Format: `delete IC_NUMBER`
 
 * Deletes the person with the specified `IC_NUMBER`.
 * The IC_NUMBER refers to the IC number shown in the displayed person list.
 * The IC_NUMBER **must be the FULL IC NUMBER**.
+* The search is case-insensitive. e.g `t0123456a` will match `T0123456A`.
+* Only the IC number is searched.
+* Only full IC number will be matched e.g. `T0123456A` will not match `T0123A`.
 
 Examples:
-* `delete T0123456A` deletes `John Doe` from the address book.
+* `delete T0123456A` deletes `John Doe` who has `IC_NUMBER` of `T0123456A` from ClinicMate.
+
+### Listing all entries : `list`
+
+Lists all entries from the ClinicMate.
+
+Format: `list`
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all entries from the ClinicMate.
 
 Format: `clear`
 
@@ -138,17 +157,17 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+ClinicMate data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved automatically as a JSON file `[JAR file location]/data/clinicmate.json`. Advanced users are welcome to update data directly by editing that data file.
+ClinicMate data are saved automatically as a JSON file `[JAR file location]/data/clinicmate.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <box type="warning" seamless>
 
 **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
-Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
+If your changes to the data file makes its format invalid, ClinicMate will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
+Furthermore, certain edits can cause the ClinicMate to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
 
 ### Archiving data files `[coming in v2.0]`
@@ -160,7 +179,7 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous CLinicMate home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -174,9 +193,11 @@ _Details coming soon ..._
 
 Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**    | `add n/NAME p/PHONE e/EMAIL i/IC_NUMBER ag/AGE s/SEX a/ADDRESS` <br> e.g., `add n/John Doe p/88888888 e/johndoe@mail.com i/T0123456A ag/12 s/Male a/John street, block 123, #01-01`
-**Clear**  | `clear`
-**Delete** | `delete IC_NUMBER`<br> e.g., `delete T0123456A`
-**AddNote**   | `addnote i/IC_NUMBER n/NOTE`<br> e.g., `addnote i/T0123456A n/Patient has diabetes`
-**Find**   | `find IC_NUMBER`<br> e.g., `find T0123456A`
-**Help**   | `help`
+**[Add](#adding-a-person-add)**    | `add n/NAME p/PHONE e/EMAIL i/IC_NUMBER ag/AGE s/SEX a/ADDRESS` <br> e.g., `add n/John Doe p/88888888 e/johndoe@mail.com i/T0123456A ag/12 s/Male a/John street, block 123, #01-01`
+**[Clear](#clearing-all-entries--clear)**  | `clear`
+**[Delete](#deleting-a-person--delete)** | `delete IC_NUMBER`<br> e.g., `delete T0123456A`
+**[Add Note](#adding-a-note--addnote)** | `addnote IC_NUMBER n/NOTE (-replace)`<br> e.g., `addnote T0123456A n/Patient has diabetes`<br> e.g., `addnote T0123456A n/Patient has diabetes -replace`
+**[Find](#locating-persons-by-ic-number-find)**   | `find IC_NUMBER`<br> e.g., `find T0123456A`
+**[Help](#viewing-help--help)**   | `help`
+**[List](#listing-all-entries--list)**   | `list`
+**[Exit](#exiting-the-program--exit)**   | `exit`
