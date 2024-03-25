@@ -1,6 +1,8 @@
 package seedu.address.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static seedu.address.logic.Messages.MESSAGE_CHANGED_DATA_SOURCE;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_STUDENT_ID;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
@@ -57,6 +59,13 @@ public class LogicManagerTest {
     public void execute_invalidCommandFormat_throwsParseException() {
         String invalidCommand = "uicfhmowqewca";
         assertParseException(invalidCommand, MESSAGE_UNKNOWN_COMMAND);
+    }
+
+    @Test
+    public void execute_cdCommand() throws CommandException, ParseException {
+        String cdCommand = "cd data/newab.json";
+        CommandResult result = logic.execute(cdCommand);
+        assertFalse(result.equals(MESSAGE_CHANGED_DATA_SOURCE));
     }
 
     @Test
