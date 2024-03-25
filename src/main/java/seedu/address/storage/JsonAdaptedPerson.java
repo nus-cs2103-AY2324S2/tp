@@ -22,8 +22,8 @@ import seedu.address.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Person}.
- * Note: This class does not handle the {@link Payment} field of {@link Person}, 
- * as payment modifications are intended to be managed exclusively through 
+ * Note: This class does not handle the {@link Payment} field of {@link Person},
+ * as payment modifications are intended to be managed exclusively through
  * dedicated payment commands to ensure controlled updates.
  */
 class JsonAdaptedPerson {
