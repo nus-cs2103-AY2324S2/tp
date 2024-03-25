@@ -7,7 +7,6 @@ import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_SKILL_JAVA;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.assertRecentlyProcessedCourseMateEdited;
@@ -51,10 +50,19 @@ public class EditCommandTest {
 
         Model expectedModel = new ModelManager(
                 new ContactList(model.getContactList()), new UserPrefs(), new GroupList());
-        expectedModel.setCourseMate(model.getFilteredCourseMateList().get(0), editedCourseMate);
+
+        Index indexLastCourseMate = Index.fromOneBased(1);
+        CourseMate currentCourseMate = model.getFilteredCourseMateList().get(indexLastCourseMate.getZeroBased());
+        CourseMate newEditedCourseMate = new CourseMateBuilder(currentCourseMate)
+                .withName(editedCourseMate.getName().toString())
+                .withPhone(editedCourseMate.getPhone().toString())
+                .withEmail(editedCourseMate.getEmail().toString())
+                .build();
+
+        expectedModel.setCourseMate(model.getFilteredCourseMateList().get(0), newEditedCourseMate);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel, true);
-        assertRecentlyProcessedCourseMateEdited(model, editedCourseMate);
+        assertRecentlyProcessedCourseMateEdited(model, newEditedCourseMate);
     }
 
     @Test
@@ -63,11 +71,10 @@ public class EditCommandTest {
         CourseMate lastCourseMate = model.getFilteredCourseMateList().get(indexLastCourseMate.getZeroBased());
 
         CourseMateBuilder courseMateInList = new CourseMateBuilder(lastCourseMate);
-        CourseMate editedCourseMate = courseMateInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-                .withSkills(VALID_SKILL_JAVA).build();
+        CourseMate editedCourseMate = courseMateInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB).build();
 
         EditCourseMateDescriptor descriptor = new EditCourseMateDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withSkills(VALID_SKILL_JAVA).build();
+                .withPhone(VALID_PHONE_BOB).build();
         EditCommand editCommand = new EditCommand(new QueryableCourseMate(indexLastCourseMate), descriptor);
 
         String expectedMessage = EditCommand.MESSAGE_EDIT_COURSE_MATE_SUCCESS;

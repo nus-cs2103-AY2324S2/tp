@@ -6,8 +6,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_COURSE_MATES;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -113,7 +111,7 @@ public class EditCommand extends Command {
         Name updatedName = editCourseMateDescriptor.getName().orElse(courseMateToEdit.getName());
         Phone updatedPhone = editCourseMateDescriptor.getPhone().orElse(courseMateToEdit.getPhone());
         Email updatedEmail = editCourseMateDescriptor.getEmail().orElse(courseMateToEdit.getEmail());
-        Set<Skill> updatedSkills = editCourseMateDescriptor.getSkills().orElse(courseMateToEdit.getSkills());
+        Set<Skill> updatedSkills = courseMateToEdit.getSkills();
 
         return new CourseMate(updatedName, updatedPhone, updatedEmail, updatedSkills);
     }
@@ -150,7 +148,6 @@ public class EditCommand extends Command {
         private Name name;
         private Phone phone;
         private Email email;
-        private Set<Skill> skills;
 
         public EditCourseMateDescriptor() {}
 
@@ -162,14 +159,13 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
-            setSkills(toCopy.skills);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, skills);
+            return CollectionUtil.isAnyNonNull(name, phone, email);
         }
 
         public void setName(Name name) {
@@ -196,23 +192,6 @@ public class EditCommand extends Command {
             return Optional.ofNullable(email);
         }
 
-        /**
-         * Sets {@code skills} to this object's {@code skills}.
-         * A defensive copy of {@code skills} is used internally.
-         */
-        public void setSkills(Set<Skill> skills) {
-            this.skills = (skills != null) ? new HashSet<>(skills) : null;
-        }
-
-        /**
-         * Returns an unmodifiable skill set, which throws {@code UnsupportedOperationException}
-         * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code skills} is null.
-         */
-        public Optional<Set<Skill>> getSkills() {
-            return (skills != null) ? Optional.of(Collections.unmodifiableSet(skills)) : Optional.empty();
-        }
-
         @Override
         public boolean equals(Object other) {
             if (other == this) {
@@ -227,8 +206,7 @@ public class EditCommand extends Command {
             EditCourseMateDescriptor otherEditCourseMateDescriptor = (EditCourseMateDescriptor) other;
             return Objects.equals(name, otherEditCourseMateDescriptor.name)
                     && Objects.equals(phone, otherEditCourseMateDescriptor.phone)
-                    && Objects.equals(email, otherEditCourseMateDescriptor.email)
-                    && Objects.equals(skills, otherEditCourseMateDescriptor.skills);
+                    && Objects.equals(email, otherEditCourseMateDescriptor.email);
         }
 
         @Override
@@ -237,7 +215,6 @@ public class EditCommand extends Command {
                     .add("name", name)
                     .add("phone", phone)
                     .add("email", email)
-                    .add("skills", skills)
                     .toString();
         }
     }
