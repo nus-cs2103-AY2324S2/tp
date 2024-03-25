@@ -27,6 +27,7 @@ public class ModelManager implements Model {
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<ModuleCode> filteredModules;
 
+
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
@@ -125,7 +126,8 @@ public class ModelManager implements Model {
 
     @Override
     public void addModule(ModuleCode module) {
-        addressBook.addModule(module);
+        addressBook.addModule(module,
+            module.getDescription());
     }
 
     @Override
