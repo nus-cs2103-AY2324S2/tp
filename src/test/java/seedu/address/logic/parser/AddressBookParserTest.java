@@ -34,6 +34,7 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.NoteCommand;
+import seedu.address.logic.commands.RemindCommand;
 import seedu.address.logic.commands.SearchCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.KeywordPredicate;
@@ -185,6 +186,12 @@ public class AddressBookParserTest {
     public void parseCommand_note() throws Exception {
         NoteCommand command = (NoteCommand) parser.parseCommand("/note ; name : Bob Choo ; note : get kibble");
         assertTrue(command instanceof NoteCommand);
+    }
+
+    @Test
+    public void parseCommand_remind() throws Exception {
+        RemindCommand command = (RemindCommand) parser.parseCommand("/remind");
+        assertTrue(command instanceof RemindCommand);
     }
 
 

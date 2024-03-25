@@ -15,6 +15,19 @@ public class DeadlineNoteTest {
         assertThrows(NullPointerException.class, () -> new DeadlineNote(validNote, null));
     }
 
+
+    @Test
+    public void isValidDate() {
+        // null deadlineNotes
+        assertThrows(NullPointerException.class, () -> DeadlineNote.isValidDate(null));
+
+        // invalid deadlineNotes
+        assertFalse(DeadlineNote.isValidDate("")); // empty string
+        assertFalse(DeadlineNote.isValidDate(" ")); // spaces only
+
+        // valid deadlineNotes
+        assertTrue(DeadlineNote.isValidDate("2019-10-10"));
+    }
     @Test
     public void equals() {
         Note deadlineNote = new DeadlineNote("kind cats", "2025-10-10");
