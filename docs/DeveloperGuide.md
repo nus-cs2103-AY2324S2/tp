@@ -699,29 +699,83 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+### Adding a person
+
+1. Adding a person while all persons are being shown
+
+   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+
+   1. Test case: `add n/John Doe p/12345678 e/JohnDoe@mail.com i/T0123456A ag/12 s/M a/311, Clementi Ave 2, #02-25`<br>
+      Expected: New contact with the unique identification number `T0123456A` is added to the list. Details of the new contact shown in the status message.
+
+   1. Test case: `add T0123A`<br>
+      Expected: No person is added. Error details shown in the status message. Status bar remains the same.
+
+   1. Other incorrect add commands to try: `add`, `add n/`, `...` <br>
+      Expected: Similar to previous.
 
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-   1. Test case: `delete T0123456A`<br>
-      Expected: The contact with the unique identification number `T0123456A` is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+    1. Test case: `delete T0123456A`<br>
+       Expected: The contact with the unique identification number `T0123456A` is deleted from the list. Details of the deleted contact shown in the status message.
 
-   1. Test case: `delete T0123A`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+    1. Test case: `delete T0123A`<br>
+       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is the identification number which does not exist in the list)<br>
-      Expected: Similar to previous.
+    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is the identification number which does not exist in the list)<br>
+       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+### Adding note to a person
+
+1. Adding a note to a person while all persons are being shown
+
+    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+
+    1. Test case: `addnote T0123456A n/ Diabetes`<br>
+       Expected: The note `Diabetes` will be added to contact with the unique identification number `T0123456A`. Successful note update message will be shown in the status message.
+
+    1. Test case: `addnote T0123A`<br>
+       Expected: No note is added. Error details shown in the status message. Status bar remains the same.
+
+    1. Other incorrect addnote commands to try: `addnote`, `addnote x`, `...` (where x is the identification number which does not exist in the list)<br>
+       Expected: Similar to previous.
+
+### Finding a person
+
+1. Finding a person while all persons are being shown
+
+    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+
+    1. Test case: `find T0123456A`<br>
+       Expected: The contact with the unique identification number `T0123456A` will be displayed in the list. Details of person found will be shown in the status message.
+
+    1. Test case: `find T0123A`<br>
+       Expected: No contact is found. Error details shown in the status message. Status bar remains the same.
+
+    1. Other incorrect find commands to try: `find`, `find x`, `...` (where x is the identification number which does not exist in the list)<br>
+       Expected: Similar to previous.
+
+### Editing a person
+
+1. Editing a person while all persons are being shown
+
+    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+
+    1. Test case: `edit T0123456A p/91234567 e/johndoe@example.com`<br>
+       Expected: The contact with the unique identification number `T0123456A` will be edited in the list. Updated details of person found will be shown in the status message.
+
+    1. Test case: `edit T0123A`<br>
+       Expected: No contact is edited. Error details shown in the status message. Status bar remains the same.
+
+    1. Other incorrect find commands to try: `edit`, `edit x`, `...` (where x is the identification number which does not exist in the list)<br>
+       Expected: Similar to previous.
 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
