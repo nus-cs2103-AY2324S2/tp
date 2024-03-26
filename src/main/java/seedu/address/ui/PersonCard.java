@@ -44,6 +44,8 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private FlowPane policies;
     @FXML
+    private Label clientStatus;
+    @FXML
     private FlowPane tags;
     @FXML
     private Accordion meetingsAccordion;
@@ -63,6 +65,7 @@ public class PersonCard extends UiPart<Region> {
 
         if (!person.isClient()) {
             policies.setVisible(false);
+            clientStatus.setManaged(false);
         } else if (person.getPolicies().isEmpty()) {
             Label label = new Label("No policy assigned");
             label.setStyle(
@@ -88,7 +91,7 @@ public class PersonCard extends UiPart<Region> {
                     });
         }
 
-
+        clientStatus.setText(person.getClientStatus().toString());
 
         tags.getChildren().clear();
         person.getTags().stream()
