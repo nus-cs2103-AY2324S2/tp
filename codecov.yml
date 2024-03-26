@@ -19,7 +19,7 @@ coverage:
 # --------------
 # which folders/files to ignore
 ignore:
-  - "seedu/address/ui"
+  - "src/main/java/seedu/address/ui"
 
 
 
