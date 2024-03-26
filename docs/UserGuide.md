@@ -118,7 +118,7 @@ It will help you [install](#installation-instructions) and [start](#startup-inst
 
 <div class="image-container" align="middle" style="display:flex">
     <pic src="images/quickstart/latest-release.png" alt="jar_file">
-        <markdown> Find the latest release </markdown>
+        <markdown> Find the latest release with the 'Latest tag' </markdown>
     </pic>
     <pic src="images/quickstart/jar-file.png" alt="jar_file">
         <markdown> Click on the `.jar` file at the bottom of the page to download it </markdown>
