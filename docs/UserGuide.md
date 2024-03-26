@@ -225,7 +225,20 @@ Examples:
 
 Clears all entries from the application.
 
-Format: `clear`
+**Format:** `clear`
+
+<div markdown="span" class="alert alert-success">
+
+💡 **Try It Out:**<br>
+
+1. Input:<br>
+   `clear`<br>
+   ![Before clearing](./images/clear/clear-before.png)<br><br>
+
+2. Successful Output after clearing entries:<br>
+   ![After successfully clearing](./images/clear/clear-after.png)
+There are no more internships in the list.
+</div>
 
 ### Exiting the program: `exit`
 
