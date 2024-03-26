@@ -93,12 +93,10 @@ public class Policy {
 
         Policy otherPolicy = (Policy) other;
 
-        if (!value.equals(otherPolicy.value)) {
+        if (!value.equals(otherPolicy.value) || premium != otherPolicy.premium) {
             return false;
         }
-        if (Double.compare(otherPolicy.premium, premium) != 0) {
-            return false;
-        }
+
         return expiryDate != null ? expiryDate.equals(otherPolicy.expiryDate) : otherPolicy.expiryDate == null;
     }
 

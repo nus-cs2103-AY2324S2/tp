@@ -20,23 +20,24 @@ public class PolicyTest {
         assertFalse(Policy.isValidExpiryDate(" ")); // spaces only
         assertFalse(Policy.isValidExpiryDate("2020-10-10"));
         assertFalse(Policy.isValidExpiryDate("10/10/2020"));
+        assertFalse(Policy.isValidExpiryDate("01-01-2020")); // past date
 
-        // valid addresses
+        // valid expiry date
         assertTrue(Policy.isValidExpiryDate("01-01-2040"));
         assertTrue(Policy.isValidExpiryDate("31-12-2028"));
     }
     @Test
     public void isValidPremium() {
-        // null address
+        // null premium
         assertThrows(NullPointerException.class, () -> Policy.isValidPremium(null));
 
-        // invalid addresses
+        // invalid premium
         assertFalse(Policy.isValidPremium("")); // empty string
         assertFalse(Policy.isValidPremium(" ")); // spaces only
         assertFalse(Policy.isValidPremium("-1"));
         assertFalse(Policy.isValidPremium("invalid"));
 
-        // valid addresses
+        // valid premium
         assertTrue(Policy.isValidPremium("1.0"));
         assertTrue(Policy.isValidPremium("1"));
         assertTrue(Policy.isValidPremium("1.1")); // uppercase
