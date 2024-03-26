@@ -15,7 +15,6 @@ import seedu.address.model.person.Person;
  */
 public class PersonListPanel extends UiPart<Region> {
     private static final String FXML = "PersonListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
     private int selectedIndex = -1;
     private boolean isFullView = false;
 
@@ -36,7 +35,6 @@ public class PersonListPanel extends UiPart<Region> {
             } else {
                 isFullView = true;
             }
-            System.out.println(isFullView);
             selectedIndex = personListView.getSelectionModel().getSelectedIndex();
             personListView.refresh();
         });
