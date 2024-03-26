@@ -3,9 +3,9 @@ package staffconnect.model.meeting;
 import static java.util.Objects.requireNonNull;
 import static staffconnect.commons.util.AppUtil.checkArgument;
 
-import java.time.DateTimeException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 /**
  * Represents a Meeting's starting time in the staff book.
@@ -17,10 +17,10 @@ public class MeetDateTime {
             + "HH:mm";
     public static final String VALIDATION_REGEX = "\\d{2}/\\d{2}/\\d{4} \\d{2}:\\d{2}";
 
-    private static final DateTimeFormatter PROCESS_FORMAT = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+    private static final DateTimeFormatter PROCESS_FORMAT =
+            DateTimeFormatter.ofPattern("dd/MM/uuuu HH:mm").withResolverStyle(java.time.format.ResolverStyle.STRICT);
 
     private final LocalDateTime value;
-
 
     /**
      * Constructs a {@code MeetDateTime}.
@@ -44,7 +44,7 @@ public class MeetDateTime {
     private static boolean isParsable(String test) {
         try {
             LocalDateTime.parse(test, PROCESS_FORMAT);
-        } catch (DateTimeException e) {
+        } catch (DateTimeParseException e) {
             return false;
         }
         return true;
