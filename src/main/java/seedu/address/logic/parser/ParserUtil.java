@@ -1,7 +1,6 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -11,7 +10,6 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Messages;
-import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -25,6 +23,8 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_MALFORMED_ATTRIBUTE_PAIR = "Attributes must be of the format: "
+            + "/attributeName value";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -175,17 +175,18 @@ public class ParserUtil {
         return newParts;
     }
 
-    private static String[] separateAttributeNamesAndValues(String parts) {
+    private static String[] separateAttributeNamesAndValues(String parts) throws ParseException {
         String[] result = parts.trim().split(" ", 2);
+        if (result.length != 2) {
+            throw new ParseException(String.format(MESSAGE_MALFORMED_ATTRIBUTE_PAIR));
+        }
         result[0] = result[0].trim();
         result[1] = result[1].trim();
         return result;
     }
     private static void requireValidParts(String[] parts) throws ParseException {
         for (int i = 0; i < parts.length; i++) {
-            if (separateAttributeNamesAndValues(parts[i]).length != 2) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
-            }
+            separateAttributeNamesAndValues(parts[i]);
         }
     }
 }
