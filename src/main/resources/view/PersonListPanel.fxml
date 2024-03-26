@@ -1,8 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
 
-<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<VBox xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+  <VBox alignment="CENTER_LEFT" spacing="5">
+    <padding>
+      <Insets bottom="5" />
+    </padding>
+    <Label fx:id="clientList" styleClass="title_label" text="Clients" textFill="WHITE" />
+    <Line endX="125.0" endY="0.0" startX="0.0" startY="0.0" stroke="WHITE" strokeType="OUTSIDE" styleClass="separation_line">
+    </Line>
+  </VBox>
   <ListView fx:id="personListView" VBox.vgrow="ALWAYS" />
 </VBox>

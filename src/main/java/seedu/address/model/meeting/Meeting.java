@@ -35,7 +35,7 @@ public class Meeting {
 
     private final String description;
     private final LocalDateTime dateTime;
-    private final Person client;
+    private Person client;
 
     /**
      * Constructor for Meeting instance
@@ -49,10 +49,10 @@ public class Meeting {
         checkArgument(isValidDateTime(dateTime.format(formatter)), MESSAGE_INVALID_DATE_TIME);
         this.description = description;
         this.dateTime = dateTime;
-        this.client = client.addMeeting(this);
+        this.client = client;
     }
     /**
-     * Constructor for Meeting instance
+     * Overloaded constructor for Meeting instance
      * @param description Description of the meeting
      * @param dateTime Time and Date of the meeting
      */
@@ -62,7 +62,6 @@ public class Meeting {
         checkArgument(isValidDateTime(dateTime.format(formatter)), MESSAGE_INVALID_DATE_TIME);
         this.description = description;
         this.dateTime = dateTime;
-        this.client = null;
     }
 
     /**
@@ -138,6 +137,11 @@ public class Meeting {
      */
     public Person getClient() {
         return this.client;
+    }
+
+    public Meeting setClient(Person client) {
+        this.client = client;
+        return this;
     }
 
     public Name getClientName() {

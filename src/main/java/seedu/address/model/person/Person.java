@@ -94,6 +94,7 @@ public class Person {
      */
     public Person addMeeting(Meeting meeting) {
         this.meetings.add(meeting);
+        meeting.setClient(this);
         return this;
     }
     /**

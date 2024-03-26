@@ -69,7 +69,6 @@
           </VBox>
         </HBox>
 
-
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>
     </Scene>

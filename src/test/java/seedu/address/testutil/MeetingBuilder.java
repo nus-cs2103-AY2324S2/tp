@@ -74,11 +74,11 @@ public class MeetingBuilder {
     }
 
     /**
-     * Builds and returns a {@code Meeting} object with the specified details.
+     * Builds and returns a {@code Person} object with the specified details.
      */
     public Person build() {
         Meeting meeting = new Meeting(description, dateTime, client);
-        return client;
+        return client.addMeeting(meeting);
     }
 
     /**
