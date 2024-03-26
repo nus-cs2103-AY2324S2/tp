@@ -9,7 +9,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERVIEWTIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
 
+import seedu.address.model.person.PersonCompanyNameComparator;
+import seedu.address.model.person.PersonInterviewTimeComparator;
+import seedu.address.model.person.PersonNameComparator;
 import seedu.address.model.person.PersonPriorityComparator;
+import seedu.address.model.person.PersonSalaryComparator;
 
 public class SortCommand extends Command {
 
@@ -36,7 +40,20 @@ public class SortCommand extends Command {
         switch (info) {
         case 0:
             model.updateSortedPersonList(new PersonPriorityComparator());
+            break;
+        case 1:
+            model.updateSortedPersonList(new PersonCompanyNameComparator());
+            break;
+        case 2:
+            model.updateSortedPersonList(new PersonNameComparator());
+            break;
+        case 3:
+            model.updateSortedPersonList(new PersonInterviewTimeComparator());
+            break;
+        case 4:
+            model.updateSortedPersonList(new PersonSalaryComparator());
+            break;
         }
-        return new CommandResult("SORRRRTEEEDDDD TEEHEEE GG EZ");
+        return new CommandResult("List Sorted");
     }
 }
