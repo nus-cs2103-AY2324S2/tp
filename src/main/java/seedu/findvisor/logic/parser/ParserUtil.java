@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.findvisor.commons.core.index.Index;
@@ -13,6 +14,7 @@ import seedu.findvisor.model.person.Address;
 import seedu.findvisor.model.person.Email;
 import seedu.findvisor.model.person.Name;
 import seedu.findvisor.model.person.Phone;
+import seedu.findvisor.model.person.Remark;
 import seedu.findvisor.model.tag.Tag;
 
 /**
@@ -120,5 +122,18 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String remark} into a {@code Optional<Remark>}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static Optional<Remark> parseRemark(String remark) {
+        requireNonNull(remark);
+        String trimmedRemark = remark.trim();
+        if (trimmedRemark.isBlank()) {
+            return Optional.empty();
+        }
+        return Optional.of(new Remark(trimmedRemark));
     }
 }

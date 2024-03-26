@@ -17,6 +17,7 @@ import seedu.findvisor.model.person.Email;
 import seedu.findvisor.model.person.Name;
 import seedu.findvisor.model.person.Person;
 import seedu.findvisor.model.person.Phone;
+import seedu.findvisor.model.person.Remark;
 import seedu.findvisor.model.tag.Tag;
 
 /**
@@ -74,8 +75,9 @@ public class UnscheduleCommand extends Command {
         Email email = personToEdit.getEmail();
         Address address = personToEdit.getAddress();
         Set<Tag> tags = personToEdit.getTags();
+        Optional<Remark> remark = personToEdit.getRemark();
 
-        return new Person(name, phone, email, address, tags, Optional.empty());
+        return new Person(name, phone, email, address, tags, Optional.empty(), remark);
     }
 
     @Override

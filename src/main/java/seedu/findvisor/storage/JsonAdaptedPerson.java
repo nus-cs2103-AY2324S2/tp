@@ -3,6 +3,7 @@ package seedu.findvisor.storage;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -10,12 +11,14 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.findvisor.commons.exceptions.IllegalValueException;
+import seedu.findvisor.logic.parser.ParserUtil;
 import seedu.findvisor.model.person.Address;
 import seedu.findvisor.model.person.Email;
 import seedu.findvisor.model.person.Meeting;
 import seedu.findvisor.model.person.Name;
 import seedu.findvisor.model.person.Person;
 import seedu.findvisor.model.person.Phone;
+import seedu.findvisor.model.person.Remark;
 import seedu.findvisor.model.tag.Tag;
 
 /**
@@ -30,6 +33,7 @@ class JsonAdaptedPerson {
     private final String email;
     private final String address;
     private final JsonAdaptedMeeting meeting;
+    private final String remark;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
     /**
@@ -38,12 +42,14 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("meeting") JsonAdaptedMeeting meeting, @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+            @JsonProperty("meeting") JsonAdaptedMeeting meeting, @JsonProperty("remark") String remark,
+            @JsonProperty("tags") List<JsonAdaptedTag> tags) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.meeting = meeting;
+        this.remark = remark;
         if (tags != null) {
             this.tags.addAll(tags);
         }
@@ -58,6 +64,7 @@ class JsonAdaptedPerson {
         email = source.getEmail().value;
         address = source.getAddress().value;
         meeting = new JsonAdaptedMeeting(source.getMeeting());
+        remark = source.getRemark().map(remark -> remark.value).orElse("");
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -112,7 +119,13 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Meeting.class.getSimpleName()));
         }
 
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, meeting.toModelType());
+        if (remark == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Remark.class.getSimpleName()));
+        }
+        final Optional<Remark> modelRemark = ParserUtil.parseRemark(remark);
+
+        return new Person(modelName, modelPhone, modelEmail, modelAddress,
+                modelTags, meeting.toModelType(), modelRemark);
     }
 
 }

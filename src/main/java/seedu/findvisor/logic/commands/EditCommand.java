@@ -27,6 +27,7 @@ import seedu.findvisor.model.person.Meeting;
 import seedu.findvisor.model.person.Name;
 import seedu.findvisor.model.person.Person;
 import seedu.findvisor.model.person.Phone;
+import seedu.findvisor.model.person.Remark;
 import seedu.findvisor.model.tag.Tag;
 
 /**
@@ -101,10 +102,11 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-        // EditCommand does not edit meeting so we keep the original meeting
+        // Fields that EditCommand does not change should remain
         Optional<Meeting> meeting = personToEdit.getMeeting();
+        Optional<Remark> remark = personToEdit.getRemark();
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, meeting);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, meeting, remark);
     }
 
     @Override
