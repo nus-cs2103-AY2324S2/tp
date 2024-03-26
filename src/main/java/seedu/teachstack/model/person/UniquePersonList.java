@@ -3,8 +3,10 @@ package seedu.teachstack.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.teachstack.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -158,6 +160,15 @@ public class UniquePersonList implements Iterable<Person> {
         return true;
     }
 
+    /**
+     * Sort the Observable list.
+     */
+    public void sort() {
+        List<Person> list = internalList.stream().collect(Collectors.toList());
 
+        Collections.sort(list);
 
+        internalList.clear();
+        internalList.addAll(list);
+    }
 }

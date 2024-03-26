@@ -23,6 +23,7 @@ import seedu.teachstack.model.Model;
 import seedu.teachstack.model.ReadOnlyAddressBook;
 import seedu.teachstack.model.ReadOnlyUserPrefs;
 import seedu.teachstack.model.person.Person;
+import seedu.teachstack.model.person.StudentId;
 import seedu.teachstack.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -155,6 +156,11 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Person getPerson(StudentId id) {
             throw new AssertionError("This method should not be called.");
         }
     }
