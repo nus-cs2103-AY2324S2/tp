@@ -20,6 +20,7 @@ import seedu.findvisor.model.person.Meeting;
 import seedu.findvisor.model.person.Name;
 import seedu.findvisor.model.person.Person;
 import seedu.findvisor.model.person.Phone;
+import seedu.findvisor.model.person.Remark;
 import seedu.findvisor.model.tag.Tag;
 
 public class AddtagCommand extends Command{
@@ -88,12 +89,13 @@ public class AddtagCommand extends Command{
         Address address = personToAddTagTo.getAddress();
         Set<Tag> tags = personToAddTagTo.getTags();
         Optional<Meeting> meeting = personToAddTagTo.getMeeting();
+        Optional<Remark> remark = personToAddTagTo.getRemark();
 
         Set<Tag> updatedTags = new HashSet<Tag>();
         updatedTags.addAll(tags);
         updatedTags.addAll(newTags);
 
-        return new Person(name, phone, email, address, updatedTags, meeting);
+        return new Person(name, phone, email, address, updatedTags, meeting, remark);
     }
 
     @Override
