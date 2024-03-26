@@ -8,6 +8,8 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.reservation.Reservation;
+import seedu.address.model.reservation.UniqueReservationList;
 
 /**
  * Wraps all data at the address-book level
@@ -16,19 +18,15 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    private final UniqueReservationList reservations;
 
-    /*
-     * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
-     * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
-     *
-     * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
-     *   among constructors.
+    /**
+     * Creates an empty AddressBook with no persons.
      */
-    {
-        persons = new UniquePersonList();
+    public AddressBook() {
+        this.persons = new UniquePersonList();
+        this.reservations = new UniqueReservationList();
     }
-
-    public AddressBook() {}
 
     /**
      * Creates an AddressBook using the Persons in the {@code toBeCopied}
@@ -49,12 +47,21 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the contents of the person list with {@code persons}.
+     * {@code persons} must not contain duplicate persons.
+     */
+    public void setReservations(List<Reservation> reservations) {
+        this.reservations.setReservations(reservations);
+    }
+
+    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
+        setReservations(newData.getReservationList());
     }
 
     //// person-level operations
@@ -94,6 +101,33 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    //// reservation-level operations
+
+    /**
+     * Returns true if a reservation by the same person and has same date and time as {@code reservation}
+     * exists in the address book.
+     */
+    public boolean hasReservation(Reservation reservation) {
+        requireNonNull(reservation);
+        return reservations.contains(reservation);
+    }
+
+    /**
+     * Adds a reservation to the address book.
+     * The reservation must not already exist in the address book.
+     */
+    public void addReservation(Reservation r) {
+        reservations.add(r);
+    }
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeReservation(Reservation key) {
+        reservations.remove(key);
+    }
+
     //// util methods
 
     @Override
@@ -109,6 +143,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
+    public ObservableList<Reservation> getReservationList() {
+        return reservations.asUnmodifiableObservableList();
+    }
+
+    @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;
@@ -120,7 +159,8 @@ public class AddressBook implements ReadOnlyAddressBook {
         }
 
         AddressBook otherAddressBook = (AddressBook) other;
-        return persons.equals(otherAddressBook.persons);
+        return persons.equals(otherAddressBook.persons)
+                && reservations.equals(otherAddressBook.reservations);
     }
 
     @Override
