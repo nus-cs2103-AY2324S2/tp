@@ -171,7 +171,24 @@ where `cat1` corresponds to `d1` and `cat2` corresponds to `d2` and so on. Users
 The sequence diagram below illustrates how the add function can be used. 
 <puml src="docs/diagrams/AddSequenceDiagram.puml" alt="Add Command Sequence Diagram" />
 
-### Edit function
+### AddCategory function
+The new addCategory function allows user to be able to add any category to a person <br>
+he sequence diagram below illustrates the interaction within the `Logic` component, taking `execute("edit 1 c/Clan d/rainbow")` API call as an example.
+
+<puml src="diagrams/AddCategorySequenceDiagram.puml" alt="Interactions Inside the Logic Component for the `addCategory 1 c/class d/warrior` Command" />
+
+#### 1. How the feature is implemented
+Upon specification of a string for category and description, an entry object is created , which is then added to the person
+specified by the index given by the user. If a duplicate category or invalid index is provided, an error will be thrown
+
+#### 2. Why it is implemented that way.
+Entry requiring only two Strings meant that the type of entries that can be created by the user is limitless, suitable for an application that inputs potential characteristics
+from games. However, due to deleteCategory requiring the category name, it was decided that categories be unique per person. It was required that index be specified as Name can be non unique in addressbook.
+
+#### 3. Alternatives considered.
+Given our initial vision of a customisable field option for the addressbook persons, there wasnt really much of an alternative as gaming contacts can vary quite widely. It would not make sense to have compulsory fields 
+except for name since many things like phone, address and email may be unknown to the user for online or gaming contacts otherwise. This way, things like gaming information can be captured with no restrictions.
+
 ### Edit function
 The new edit function allows user to be able to edit any category based they want.<br>
 The sequence diagram below illustrates the interaction within the `Logic` component, taking `execute("edit 1 c/Clan d/rainbow")` API call as an example.
