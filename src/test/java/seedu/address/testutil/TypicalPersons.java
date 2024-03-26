@@ -22,7 +22,9 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.exam.Exam;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Score;
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
@@ -83,6 +85,10 @@ public class TypicalPersons {
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
+    public static final Exam MIDTERM = new Exam("Midterm", new Score(100));
+    public static final Exam FINAL = new Exam("Final", new Score(100));
+    public static final Exam QUIZ = new Exam("Quiz", new Score(100));
+
     private TypicalPersons() {} // prevents instantiation
 
     /**
@@ -92,6 +98,9 @@ public class TypicalPersons {
         AddressBook ab = new AddressBook();
         for (Person person : getTypicalPersons()) {
             ab.addPerson(person);
+        }
+        for (Exam exam : Arrays.asList(MIDTERM, FINAL, QUIZ)) {
+            ab.addExam(exam);
         }
         return ab;
     }
