@@ -335,7 +335,7 @@ Use case ends.
 **Extensions**
 
 2a. System detects user input is invalid. <br>
-&emsp;2a1. System displays and error message. <br>
+&emsp;2a1. System displays an error message. <br>
 &emsp;2a2. User enters new input. <br>
 &emsp;Steps 2a1-2a2 are repeated until user input is valid. <br>
 &emsp;Use case resumes from step 2.
@@ -362,7 +362,7 @@ Use case ends.
 **Extensions**
 
 2a. System detects user input is invalid. <br>
-&emsp;2a1. System displays and error message. <br>
+&emsp;2a1. System displays an error message. <br>
 &emsp;2a2. User enters new input. <br>
 &emsp;Steps 2a1-2a2 are repeated until user input is valid. <br>
 &emsp;Use case resumes from step 2. 
@@ -383,7 +383,7 @@ Use case ends.
 1a. System displays no contacts. <br>
 &emsp;Use case ends. <br>
 3a. System detects user input is invalid. <br>
-&emsp;3a1. System displays and error message. <br>
+&emsp;3a1. System displays an error message. <br>
 &emsp;3a2. User enters new input. <br>
 &emsp;Steps 3a1-3a2 are repeated until user input is valid. <br>
 &emsp;Use case resumes from step 3. <br>
@@ -402,10 +402,26 @@ Use case ends.
 **Extensions**
 
 3a. System detects user input is invalid. <br>
-&emsp;3a1. System displays and error message. <br>
+&emsp;3a1. System displays an error message. <br>
 &emsp;3a2. User enters new input. <br>
 &emsp;Steps 3a1-3a2 are repeated until user input is valid. <br>
 &emsp;Use case resumes from step 3. <br>
+
+--- {.dotted}
+
+**Use case: UC6 - Add person to json file directly**
+**MSS**
+1. User adds a new person to the json file.
+2. User runs the application.
+3. System reads the json file and shows the updated contact list.
+
+Use case ends.
+
+**Extensions**
+
+2a. System detects that the json file is invalid. <br>
+&emsp;2a1. System displays an error message. <br>
+&emsp;Use case ends. <br>
 
 ---
 
