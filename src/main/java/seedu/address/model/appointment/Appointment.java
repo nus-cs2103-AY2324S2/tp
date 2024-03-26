@@ -7,6 +7,7 @@ import java.time.LocalDate;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.person.Nric;
+import seedu.address.model.person.Person;
 
 /**
  * Appointment class that describes an appointment
@@ -115,6 +116,11 @@ public class Appointment {
                 && appt.getDoctorNric().equals(this.getDoctorNric())
                 && appt.getPatientNric().equals(this.getPatientNric())
                 && appt.getAppointmentDate().equals(this.getAppointmentDate());
+    }
+
+    public boolean appointmentContainsPerson(Person person) {
+        return person.getNric().equals(this.doctorNric)
+                || person.getNric().equals(this.patientNric);
     }
 
     @Override

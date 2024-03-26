@@ -24,7 +24,7 @@ public class UniqueAppointmentListTest {
 
     @Test
     public void contains_nullAppointment_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueAppointmentList.contains(null));
+        assertThrows(NullPointerException.class, () -> uniqueAppointmentList.contains((Appointment) null));
     }
 
     @Test

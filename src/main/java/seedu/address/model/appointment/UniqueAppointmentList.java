@@ -5,11 +5,13 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.appointment.exceptions.AppointmentNotFoundException;
 import seedu.address.model.appointment.exceptions.DuplicateAppointmentException;
+import seedu.address.model.person.Person;
 
 /**
  * A list of appointments that enforces uniqueness between its elements and does not allow nulls.
@@ -29,7 +31,7 @@ public class UniqueAppointmentList implements Iterable<Appointment> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent person as the given argument.
+     * Returns true if the list contains an equivalent appointment as the given argument.
      */
     public boolean contains(Appointment toCheck) {
         requireNonNull(toCheck);
@@ -37,8 +39,20 @@ public class UniqueAppointmentList implements Iterable<Appointment> {
     }
 
     /**
-     * Adds a person to the list.
-     * The person must not already exist in the list.
+     * Returns a list of appointments if the appointment contains the person. Checked via person's NRIC
+     * @param person target person
+     * @return list of appointments
+     */
+    public List<Appointment> contains(Person person) {
+        requireNonNull(person);
+        return internalList.stream()
+                .filter(appointment -> appointment.appointmentContainsPerson(person))
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * Adds an appointment to the list.
+     * The appointment must not already exist in the list.
      */
     public void add(Appointment toAdd) {
         requireNonNull(toAdd);
@@ -49,9 +63,10 @@ public class UniqueAppointmentList implements Iterable<Appointment> {
     }
 
     /**
-     * Replaces the person {@code target} in the list with {@code editedPerson}.
+     * Replaces the appointment {@code target} in the list with {@code editedAppointment}.
      * {@code target} must exist in the list.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the list.
+     * The appointment details of {@code editedAppointment} must not be the same as another
+     * existing appointment in the list.
      */
     public void setAppointment(Appointment target, Appointment editedAppointment) {
         requireAllNonNull(target, editedAppointment);
@@ -69,8 +84,8 @@ public class UniqueAppointmentList implements Iterable<Appointment> {
     }
 
     /**
-     * Removes the equivalent person from the list.
-     * The person must exist in the list.
+     * Removes the equivalent appointment from the list.
+     * The appointment must exist in the list.
      */
     public void remove(Appointment toRemove) {
         requireNonNull(toRemove);
@@ -85,8 +100,8 @@ public class UniqueAppointmentList implements Iterable<Appointment> {
     }
 
     /**
-     * Replaces the contents of this list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of this list with {@code appointments}.
+     * {@code appointments} must not contain duplicate appointments.
      */
     public void setAppointments(List<Appointment> appointments) {
         requireAllNonNull(appointments);
@@ -135,7 +150,7 @@ public class UniqueAppointmentList implements Iterable<Appointment> {
     }
 
     /**
-     * Returns true if {@code persons} contains only unique persons.
+     * Returns true if {@code appointments} contains only unique appointments.
      */
     private boolean appointmentsAreUnique(List<Appointment> appointments) {
         for (int i = 0; i < appointments.size() - 1; i++) {
