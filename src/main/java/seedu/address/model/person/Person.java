@@ -75,14 +75,6 @@ public class Person {
     }
 
     /**
-     * Adds a policy to the set of policies.
-     * @param policy The policy to be added.
-     */
-    public void addPolicy(Policy policy) {
-        this.policies.add(policy);
-    }
-
-    /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */

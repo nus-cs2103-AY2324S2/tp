@@ -9,22 +9,33 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
  */
 public class Policy {
 
+    public static final String MESSAGE_CONSTRAINTS = "Policy Name must be alphanumeric";
     public static final String STRING_VALIDATION_REGEX = "[^\\s].*";
     public static final String NUMBER_VALIDATION_REGEX = "\\d{3,}";
 
-    public static final String MESSAGE_CONSTRAINTS = "Policy Name must be alphanumeric";
-
     public final String policyName;
+    public final String policyNumber;
+    public final String premiumTerm;
+    public final String premium;
+    public final String benefit;
 
     /**
-     * Constructs a {@code Policy}.
+     * Constructs a Policy object with the given parameters.
      *
-     * @param policyName A valid policy name.
+     * @param policyName   The name of the policy.
+     * @param policyNumber The policy number.
+     * @param premiumTerm  The premium term.
+     * @param premium      The premium amount.
+     * @param benefit      The benefits associated with the policy.
      */
-    public Policy(String policyName) {
+    public Policy(String policyName, String policyNumber, String premiumTerm, String premium, String benefit) {
         requireAllNonNull(policyName);
         checkArgument(isValidPolicy(policyName), MESSAGE_CONSTRAINTS);
         this.policyName = policyName;
+        this.policyNumber = policyNumber;
+        this.premiumTerm = premiumTerm;
+        this.premium = premium;
+        this.benefit = benefit;
     }
 
     /**
@@ -37,8 +48,28 @@ public class Policy {
         return field.matches(STRING_VALIDATION_REGEX);
     }
 
+    /**
+     * Checks if a given string is a valid policy number.
+     *
+     * @param field The policy number to validate.
+     * @return True if the policy number is valid, false otherwise.
+     */
     public static boolean isValidNumber(String field) {
         return field.matches(NUMBER_VALIDATION_REGEX);
+    }
+
+    @Override
+    public String toString() {
+        return " Policy Name:"
+                + policyName
+                + " Policy ID: "
+                + policyNumber
+                + " Premium Term: "
+                + premiumTerm
+                + " Premium: "
+                + premium
+                + " Benefit: "
+                + benefit;
     }
 
 }
