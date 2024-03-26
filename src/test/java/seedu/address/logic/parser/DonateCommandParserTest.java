@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.DonateCommand;
-import seedu.address.model.person.BookList;
 import seedu.address.testutil.TypicalIndexes;
 
 

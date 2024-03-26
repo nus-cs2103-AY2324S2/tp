@@ -19,23 +19,26 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.book.Book;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
 public class ReturnCommandTest {
-    private static final String BOOKLIST_STUB = "";
+    private static final String BOOK_STUB = "How To Grow Taller";
+    private static final String EMPTY_BOOK_STUB = "";
+
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void execute_returnUnfilteredList_success() {
-        Person editedPerson = new PersonBuilder(JACKER).withBook(BOOKLIST_STUB).withMeritScore(0).build();
+        Person editedPerson = new PersonBuilder(JACKER).withBook(BOOK_STUB).withMeritScore(0).build();
 
-        ReturnCommand returnCommand = new ReturnCommand(INDEX_JACKER);
+        ReturnCommand returnCommand = new ReturnCommand(INDEX_JACKER, new Book(BOOK_STUB));
 
-        String expectedMessage = String.format(ReturnCommand.MESSAGE_RETURN_BOOK_SUCCESS, editedPerson);
+        String expectedMessage = String.format(ReturnCommand.MESSAGE_RETURN_BOOK_SUCCESS, JACKER);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(JACKER, editedPerson);
+        expectedModel.setPerson(editedPerson, JACKER);
 
         assertCommandSuccess(returnCommand, model, expectedMessage, expectedModel);
     }
@@ -48,7 +51,7 @@ public class ReturnCommandTest {
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
 
-        ReturnCommand returnCommand = new ReturnCommand(outOfBoundIndex);
+        ReturnCommand returnCommand = new ReturnCommand(outOfBoundIndex, new Book(BOOK_STUB));
 
         assertCommandFailure(returnCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
@@ -57,21 +60,21 @@ public class ReturnCommandTest {
     public void execute_invalidBookListFilteredList_throwsCommandException() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
-        ReturnCommand returnCommand = new ReturnCommand(INDEX_FIRST_PERSON);
+        ReturnCommand returnCommand = new ReturnCommand(INDEX_FIRST_PERSON, new Book(EMPTY_BOOK_STUB));
 
         assertCommandFailure(returnCommand, model, Messages.MESSAGE_EMPTY_BOOKLIST_FIELD);
     }
 
     @Test
     public void equals() {
-        ReturnCommand returnFirstCommand = new ReturnCommand(INDEX_FIRST_PERSON);
-        ReturnCommand returnSecondCommand = new ReturnCommand(INDEX_SECOND_PERSON);
+        ReturnCommand returnFirstCommand = new ReturnCommand(INDEX_FIRST_PERSON, new Book(EMPTY_BOOK_STUB));
+        ReturnCommand returnSecondCommand = new ReturnCommand(INDEX_SECOND_PERSON, new Book(EMPTY_BOOK_STUB));
 
         // same object -> returns true
         assertTrue(returnFirstCommand.equals(returnFirstCommand));
 
         // same values -> returns true
-        ReturnCommand returnFirstCommandCopy = new ReturnCommand(INDEX_FIRST_PERSON);
+        ReturnCommand returnFirstCommandCopy = new ReturnCommand(INDEX_FIRST_PERSON, new Book(EMPTY_BOOK_STUB));
         assertTrue(returnFirstCommand.equals(returnFirstCommandCopy));
 
         // different types -> returns false
