@@ -80,14 +80,17 @@ public class SortCommandTest {
                         .withBirthday(LocalDate.now().withYear(2000).plusDays(-2)
                                 .format(DateTimeFormatter.ofPattern(Birthday.BIRTHDAY_FORMAT))).build(),
                 new PersonBuilder(ELLE)
+                        .withBirthday("").build(),
+                new PersonBuilder(GEORGE)
                         .withBirthday("").build()
         };
 
         // Add to address book in random order
         AddressBook addressBook = new AddressBook();
-        addressBook.addPerson(persons[4]);
+        addressBook.addPerson(persons[5]);
         addressBook.addPerson(persons[2]);
         addressBook.addPerson(persons[3]);
+        addressBook.addPerson(persons[4]);
         addressBook.addPerson(persons[0]);
         addressBook.addPerson(persons[1]);
 
