@@ -63,7 +63,7 @@ public class AppointmentCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         nric.setText(appt.getNric().toString() + " - ");
         date.setText(appt.getDate().value.toString());
-        timePeriod.setText(appt.getTimePeriod().getStartTime() + " - " + appt.getTimePeriod().getEndTime());
+        timePeriod.setText(appt.getStartTime() + " - " + appt.getEndTime());
         appointmentType.setText(appt.getAppointmentType().toString());
         note.setText("Notes: " + appt.getNote().toString());
         Timeline timeline = getTimeline();
@@ -90,7 +90,7 @@ public class AppointmentCard extends UiPart<Region> {
 
     private BooleanBinding isBeforeCurrentTime(Appointment appt) {
         return Bindings.createBooleanBinding(() ->
-            appt.getTimePeriod().getStartTime().value.isBefore(LocalTime.now())
+            appt.getStartTime().value.isBefore(LocalTime.now())
         );
     }
 }
