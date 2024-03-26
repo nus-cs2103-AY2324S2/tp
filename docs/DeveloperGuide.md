@@ -10,8 +10,7 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the
-  original source as well}
+* Idea of filter syntax from [taskwarrior](https://github.com/GothenburgBitFactory/taskwarrior/blob/0c8edfc50e422b69abb4b78af70fc2243e227e9d/doc/man/task.1.in#L809)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -121,6 +120,11 @@ call as an example.
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline continues till the end of diagram.
 </div>
 
+Another sequence diagram below illustrates the interactions within the `Logic` component, taking
+`execute("tag 1 tag: example")` API call as an example.
+
+![](C:\Repos\TeamProject\docs\images\TagCommand.png)
+
 How the `Logic` component works:
 
 1. When `Logic` is called upon to execute a command, it is passed to an `AddressBookParser` object which in turn creates
@@ -188,13 +192,56 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.addressbook.commons` package. Each component comes from one of the
+three packages: `core`, `exceptions` and `util`. `DataLoadingException` for example is a components from the exception
+package, which `AddressBookStorage` and `UserPrefsSroage` throws and `MainApp` catches.
+
+<img src="images/DataLoadingExceptionObjectDiagram.png" width="450" />
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Filter
+
+The general outline of the filter commands architecture is as follows.
+![FilterCommand Architecture Diagram](images/ComponentPredicateClassDiagram.png)
+
+The `FilterCommand` takes a nonempty list of `ComponentPredicate` which is an interface
+implementing `Predicate<Person>`. It filters all the `Person`s in the `Model` with these predicates and keeps a specific
+person when any of the predicates match.
+
+`ComponentPredicate` extracts the values of a specific component and runs its test on those values. The specific values
+it can extract and manipulate on its implementation.
+- `ComponentStringPredicate` can extract all values that can be treated as a string and run string matching operations.
+- `ComponentExistencePredicate` can extract all values that can be empty and check for existence (empty or not).
+
+#### Implementation of specific predicates
+As an example of implementation here's the `Is` class.
+
+![Is class diagram](images/ComponentIs.png)
+
+The `Is.test` method extracts the values of the component specified by the command with
+`ComponentStringPredicate`'s `extract` method and runs an equality test between the strings with the input
+and returns `true` when any of the values match the input.
+
+In the case of singular values, `extract` returns a single element stream. In case of
+aggregate values like `tag` it extracts all the values out and returns them all in the stream.
+
+#### Design Considerations
+
+The filter command matches the `Person`s in `Model`'s currently filtered list according to the list of predicates given
+to it. A person passes if it matches any of the predicates. The predicates themselves also have to be disjunctive.
+
+By making all operations `or` by default, and providing `not` variations like `has` and `hasnt`, we can rely on
+the fact that subsequent `FilterCommand` operations is the same as an `and`. Therefore, we have full access to boolean
+logic.
+
+This is done because making the parser support boolean operations and parenthesizing would take more time than possible.
+This does make the user interface a bit more confusing to use, but our time limitations don't allow for a better
+implementation.
 
 ### \[Proposed\] Undo/redo feature
 
@@ -332,14 +379,15 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                          | So that I can…​                            |
-|----------|--------------------------------------------|---------------------------------------|--------------------------------------------|
-| `* * *`  | secretary                                  | view the added contact list           | I can see the details of the added contact |
-| `* * *`  | secretary                                  | add contacts to a list                | I can record contact details               |
-| `* * *`  | secretary                                  | remove contacts from a list           | I can clean up old/unused records          |
-| `* *`    | secretary                                  | tag individual contacts               | I can organize the contact based on tags   |
-| `* *`    | secretary                                  | delete a tag of an individual contact | the tag only is for the necessary users    |
-
+| Priority | As a …​   | I want to …​                          | So that I can…​                                        |
+|----------|-----------|---------------------------------------|--------------------------------------------------------|
+| `* * *`  | secretary | view the added contact list           | see the details of the added contact                   |
+| `* * *`  | secretary | add contacts to a list                | record contact details                                 |
+| `* * *`  | secretary | remove contacts from a list           | clean up old/unused records                            |
+| `* *`    | secretary | tag individual contacts               | organize the contact based on tags                     |
+| `* *`    | secretary | delete a tag of an individual contact | make sure that the tag only is for the necessary users |
+| `*`      | user      | undo my command                       | save time on undoing the effects of a wrong command    |
+| `*`      | user      | redo my undo                          | save time on undoing the effects of a wrong undo       |
 *{More to be added}*
 
 ### Use cases
