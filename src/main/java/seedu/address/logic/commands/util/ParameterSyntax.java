@@ -62,4 +62,10 @@ public class ParameterSyntax {
             "WEEK",
             "1"
     );
+
+    public static final Parameter PARAMETER_NUSNET_NOPREFIX = new Parameter(
+            "NUSNET",
+            null,
+            "e0123456"
+    );
 }

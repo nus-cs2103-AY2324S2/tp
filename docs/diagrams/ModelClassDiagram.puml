@@ -22,7 +22,8 @@ Class Email
 Class Name
 Class Phone
 Class Tag
-Class Course
+Class WeekNumber
+
 
 Class I #FFFFFF
 }
@@ -48,6 +49,7 @@ Person *--> Phone
 Person *--> Email
 Person *--> Address
 Person *--> "*" Tag
+Person *--> "*" WeekNumber
 
 Person -[hidden]up--> I
 UniquePersonList -[hidden]right-> I
