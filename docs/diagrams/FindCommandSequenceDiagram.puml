@@ -1,0 +1,70 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":FindCommandParser" as FindCommandParser LOGIC_COLOR
+participant "f:FindOrderCommand" as FindOrderCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "m:Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("find o/1")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("find o/1")
+activate AddressBookParser
+
+create FindCommandParser
+AddressBookParser -> FindCommandParser
+activate FindCommandParser
+
+FindCommandParser --> AddressBookParser
+deactivate FindCommandParser
+
+AddressBookParser -> FindCommandParser : parse("o/1")
+activate FindCommandParser
+
+create FindOrderCommand
+FindCommandParser -> FindOrderCommand
+activate FindOrderCommand
+
+FindOrderCommand --> FindCommandParser :
+deactivate FindOrderCommand
+
+FindCommandParser --> AddressBookParser : f
+deactivate FindCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+FindCommandParser -[hidden]-> AddressBookParser
+destroy FindCommandParser
+
+AddressBookParser --> LogicManager : f
+deactivate AddressBookParser
+
+LogicManager -> FindOrderCommand : execute(m)
+activate FindOrderCommand
+
+FindOrderCommand -> Model : updateFilteredOrderList(predicate)
+activate Model
+
+Model --> FindOrderCommand
+deactivate Model
+
+create CommandResult
+FindOrderCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> FindOrderCommand
+deactivate CommandResult
+
+FindOrderCommand --> LogicManager : r
+deactivate FindOrderCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

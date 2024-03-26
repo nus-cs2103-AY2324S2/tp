@@ -1,0 +1,33 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":AddressBook" as AddressBook MODEL_COLOR
+end box
+
+box Order
+participant ":Order" as Order
+end box
+
+[-> Model : deleteOrder(id)
+activate Model
+
+Model -> AddressBook : deleteOrder(id)
+activate AddressBook
+
+AddressBook -> Order :removeOrder(id)
+activate Order
+
+Order -> Order :removeOrder(id)
+Order -> AddressBook
+deactivate Order
+
+AddressBook --> Model :
+deactivate AddressBook
+
+[<-- Model
+deactivate Model
+
+@enduml
