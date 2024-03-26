@@ -30,6 +30,9 @@ public class RateCommand extends Command {
     private final Name targetName;
     private final Rating rating;
 
+    /**
+     * Creates a RateCommand to rate the specified contact specified by {@code Name}
+     */
     public RateCommand(Name name, Rating rating) {
         this.targetName = name;
         this.rating = rating;

@@ -20,9 +20,9 @@ public class Staff extends Person {
     /**
      * Every field must be present and not null.
      */
-    public Staff(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
+    public Staff(Name name, Phone phone, Email email, Address address, Note note, Set<Tag> tags,
                  Salary salary, Employment employment, Rating rating) {
-        super(name, phone, email, address, new Note(""), tags, rating);
+        super(name, phone, email, address, note, tags, rating);
         requireAllNonNull(salary, employment);
         this.salary = salary;
         this.employment = employment;
@@ -37,12 +37,22 @@ public class Staff extends Person {
     }
 
     /**
-     * Returns a new instantiation of the current person, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
+     * Returns a new instantiation of the current {@code Staff} with the updated note,
+     * which throws {@code UnsupportedOperationException} if modification is attempted.
+     */
+    @Override
+    public Staff updateNote(Note note) {
+        return new Staff(this.getName(), this.getPhone(), this.getEmail(), this.getAddress(), note,
+                this.getTags(), this.salary, this.employment, this.getRating());
+    }
+
+    /**
+     * Returns a new instantiation of the current {@code Staff} with the updated rating,
+     * which throws {@code UnsupportedOperationException} if modification is attempted.
      */
     @Override
     public Staff updateRating(Rating rating) {
-        return new Staff(this.getName(), this.getPhone(), this.getEmail(), this.getAddress(),
+        return new Staff(this.getName(), this.getPhone(), this.getEmail(), this.getAddress(), this.getNote(),
                 this.getTags(), this.salary, this.employment, rating);
     }
 

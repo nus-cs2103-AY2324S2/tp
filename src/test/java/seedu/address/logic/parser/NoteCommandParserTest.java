@@ -16,8 +16,8 @@ import seedu.address.model.person.Note;
 
 public class NoteCommandParserTest {
 
-    private NoteCommandParser parser = new NoteCommandParser();
-    private Note validNote = new Note("get kibble");
+    private final NoteCommandParser parser = new NoteCommandParser();
+    private final Note validNote = new Note("Cancel shipment with bob");
 
     @Test
     public void parse_validArgs_returnsNoteCommand() {

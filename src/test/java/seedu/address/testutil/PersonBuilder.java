@@ -61,6 +61,7 @@ public class PersonBuilder {
         rating = personToCopy.getRating();
         tags = new HashSet<>(personToCopy.getTags());
         tag = new Tag(DEFAULT_TAG);
+        rating = personToCopy.getRating();
         tags.add(tag);
     }
 

@@ -10,7 +10,22 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.*;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Commission;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Employment;
+import seedu.address.model.person.Maintainer;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Note;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.Price;
+import seedu.address.model.person.Product;
+import seedu.address.model.person.Rating;
+import seedu.address.model.person.Salary;
+import seedu.address.model.person.Skill;
+import seedu.address.model.person.Staff;
+import seedu.address.model.person.Supplier;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -147,6 +162,8 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
+        final Note modelNote = new Note(note);
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
         final Rating modelRating = new Rating("0");
@@ -160,7 +177,7 @@ class JsonAdaptedPerson {
             }
             final Salary modelSalary = new Salary(salary);
             final Employment modelEmployment = new Employment(employment);
-            Staff currStaff = new Staff(modelName, modelPhone, modelEmail, modelAddress,
+            Staff currStaff = new Staff(modelName, modelPhone, modelEmail, modelAddress, modelNote,
                     modelTags, modelSalary, modelEmployment, modelRating);
             currStaff.setNoteContent(note);
             return currStaff;
@@ -175,7 +192,7 @@ class JsonAdaptedPerson {
             }
             final Product modelProduct = new Product(product);
             final Price modelPrice = new Price(price);
-            Supplier currSupplier = new Supplier(modelName, modelPhone, modelEmail, modelAddress, modelTags,
+            Supplier currSupplier = new Supplier(modelName, modelPhone, modelEmail, modelAddress, modelNote, modelTags,
                     modelProduct, modelPrice, modelRating);
             currSupplier.setNoteContent(note);
             return currSupplier;
@@ -190,8 +207,8 @@ class JsonAdaptedPerson {
             }
             final Skill modelSkill = new Skill(skill);
             final Commission modelCommission = new Commission(commission);
-            Maintainer currMaintainer = new Maintainer(modelName, modelPhone, modelEmail, modelAddress, modelTags,
-                    modelSkill, modelCommission, modelRating);
+            Maintainer currMaintainer = new Maintainer(modelName, modelPhone, modelEmail, modelAddress, modelNote,
+                    modelTags, modelSkill, modelCommission, modelRating);
             currMaintainer.setNoteContent(note);
             return currMaintainer;
         }
@@ -202,7 +219,6 @@ class JsonAdaptedPerson {
         if (!Note.isValidNote(note)) {
             throw new IllegalValueException(Note.MESSAGE_CONSTRAINTS);
         }
-        final Note modelNote = new Note(note);
 
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelNote, modelTags, modelRating);
     }

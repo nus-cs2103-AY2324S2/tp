@@ -53,12 +53,13 @@ public class NoteCommandTest {
         Person toAddNotePerson = ALICE;
         Person expectedPerson = new Person(toAddNotePerson.getName(), toAddNotePerson.getPhone(),
                 toAddNotePerson.getEmail(), toAddNotePerson.getAddress(),
-                validNote1, toAddNotePerson.getTags());
+                validNote1, toAddNotePerson.getTags(), toAddNotePerson.getRating());
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), expectedPerson);
 
         NoteCommand noteCommand = new NoteCommand(toAddNotePerson.getName(), validNote1);
-        String expectedMessage = String.format(NoteMessages.MESSAGE_ADD_NOTE_SUCCESS, expectedPerson);
+        String expectedMessage = String.format(NoteMessages.MESSAGE_ADD_NOTE_SUCCESS,
+                NoteMessages.format(expectedPerson));
 
         assertCommandSuccess(noteCommand, model, expectedMessage, expectedModel);
     }
@@ -71,14 +72,16 @@ public class NoteCommandTest {
 
         Staff toAddNotePerson = georgiaStaff;
         Staff expectedPerson = new Staff(toAddNotePerson.getName(), toAddNotePerson.getPhone(),
-                toAddNotePerson.getEmail(), toAddNotePerson.getAddress(),
-                toAddNotePerson.getTags(), toAddNotePerson.getSalary(), toAddNotePerson.getEmployment());
+                toAddNotePerson.getEmail(), toAddNotePerson.getAddress(), toAddNotePerson.getNote(),
+                toAddNotePerson.getTags(), toAddNotePerson.getSalary(), toAddNotePerson.getEmployment(),
+                toAddNotePerson.getRating());
         expectedPerson.setNoteContent(validNote1.toString());
         expectedModel.addPerson(expectedPerson);
 
 
         NoteCommand noteCommand = new NoteCommand(toAddNotePerson.getName(), validNote1);
-        String expectedMessage = String.format(NoteMessages.MESSAGE_ADD_NOTE_SUCCESS, expectedPerson);
+        String expectedMessage = String.format(NoteMessages.MESSAGE_ADD_NOTE_SUCCESS,
+                NoteMessages.format(expectedPerson));
 
         assertCommandSuccess(noteCommand, model, expectedMessage, expectedModel);
     }
@@ -91,14 +94,16 @@ public class NoteCommandTest {
 
         Supplier toAddNotePerson = georgiaSupplier;
         Supplier expectedPerson = new Supplier(toAddNotePerson.getName(), toAddNotePerson.getPhone(),
-                toAddNotePerson.getEmail(), toAddNotePerson.getAddress(),
-                toAddNotePerson.getTags(), toAddNotePerson.getProduct(), toAddNotePerson.getPrice());
+                toAddNotePerson.getEmail(), toAddNotePerson.getAddress(), toAddNotePerson.getNote(),
+                toAddNotePerson.getTags(), toAddNotePerson.getProduct(), toAddNotePerson.getPrice(),
+                toAddNotePerson.getRating());
         expectedPerson.setNoteContent(validNote1.toString());
         expectedModel.addPerson(expectedPerson);
 
 
         NoteCommand noteCommand = new NoteCommand(toAddNotePerson.getName(), validNote1);
-        String expectedMessage = String.format(NoteMessages.MESSAGE_ADD_NOTE_SUCCESS, expectedPerson);
+        String expectedMessage = String.format(NoteMessages.MESSAGE_ADD_NOTE_SUCCESS,
+                NoteMessages.format(expectedPerson));
 
         assertCommandSuccess(noteCommand, model, expectedMessage, expectedModel);
     }
@@ -111,14 +116,16 @@ public class NoteCommandTest {
 
         Maintainer toAddNotePerson = georgiaMaintainer;
         Maintainer expectedPerson = new Maintainer(toAddNotePerson.getName(), toAddNotePerson.getPhone(),
-                toAddNotePerson.getEmail(), toAddNotePerson.getAddress(),
-                toAddNotePerson.getTags(), toAddNotePerson.getSkill(), toAddNotePerson.getCommission());
+                toAddNotePerson.getEmail(), toAddNotePerson.getAddress(), toAddNotePerson.getNote(),
+                toAddNotePerson.getTags(), toAddNotePerson.getSkill(), toAddNotePerson.getCommission(),
+                toAddNotePerson.getRating());
         expectedPerson.setNoteContent(validNote1.toString());
         expectedModel.addPerson(expectedPerson);
 
 
         NoteCommand noteCommand = new NoteCommand(toAddNotePerson.getName(), validNote1);
-        String expectedMessage = String.format(NoteMessages.MESSAGE_ADD_NOTE_SUCCESS, expectedPerson);
+        String expectedMessage = String.format(NoteMessages.MESSAGE_ADD_NOTE_SUCCESS,
+                NoteMessages.format(expectedPerson));
 
         assertCommandSuccess(noteCommand, model, expectedMessage, expectedModel);
     }

@@ -77,7 +77,8 @@ public class PersonCard extends UiPart<Region> {
         if ("0".equals(currentRating)) {
             rating.setText("No rating given yet");
         } else {
-            rating.setText(currentRating);
+            int intValue = Integer.parseInt(currentRating);
+            rating.setText("⭐".repeat(Math.max(0, intValue)));
         }
         email.setText(person.getEmail().value);
         person.getTags().stream()

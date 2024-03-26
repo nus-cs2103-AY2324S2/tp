@@ -20,9 +20,9 @@ public class Supplier extends Person {
     /**
      * Every field must be present and not null.
      */
-    public Supplier(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
+    public Supplier(Name name, Phone phone, Email email, Address address, Note note, Set<Tag> tags,
                     Product product, Price price, Rating rating) {
-        super(name, phone, email, address, new Note(""), tags, rating);
+        super(name, phone, email, address, note, tags, rating);
         requireAllNonNull(product, price);
         this.product = product;
         this.price = price;
@@ -37,12 +37,22 @@ public class Supplier extends Person {
     }
 
     /**
-     * Returns a new instantiation of the current person, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
+     * Returns a new instantiation of the current {@code Supplier} with the updated note,
+     * which throws {@code UnsupportedOperationException} if modification is attempted.
+     */
+    @Override
+    public Supplier updateNote(Note note) {
+        return new Supplier(this.getName(), this.getPhone(), this.getEmail(), this.getAddress(), note,
+                this.getTags(), this.product, this.price, this.getRating());
+    }
+
+    /**
+     * Returns a new instantiation of the current {@code Supplier} with the updated rating,
+     * which throws {@code UnsupportedOperationException} if modification is attempted.
      */
     @Override
     public Supplier updateRating(Rating rating) {
-        return new Supplier(this.getName(), this.getPhone(), this.getEmail(), this.getAddress(),
+        return new Supplier(this.getName(), this.getPhone(), this.getEmail(), this.getAddress(), this.getNote(),
                 this.getTags(), this.product, this.price, rating);
     }
 

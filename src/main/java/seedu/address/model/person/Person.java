@@ -59,11 +59,21 @@ public class Person {
     public Note getNote() {
         return note;
     }
-    public Rating getRating() { return rating; }
+    public Rating getRating() {
+        return rating;
+    }
 
     /**
-     * Returns a new instantiation of the current person, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
+     * Returns a new instantiation of the current {@code Person} with the updated note,
+     * which throws {@code UnsupportedOperationException} if modification is attempted.
+     */
+    public Person updateNote(Note note) {
+        return new Person(this.name, this.phone, this.email, this.address, note, this.tags, rating);
+    }
+
+    /**
+     * Returns a new instantiation of the current {@code Person} with the updated rating,
+     * which throws {@code UnsupportedOperationException} if modification is attempted.
      */
     public Person updateRating(Rating rating) {
         return new Person(this.name, this.phone, this.email, this.address, this.note, this.tags, rating);
@@ -111,13 +121,11 @@ public class Person {
         }
 
         Person otherPerson = (Person) other;
-        // does not have to have the same note to be equal
         return name.equals(otherPerson.name)
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
-                && tags.equals(otherPerson.tags)
-                && rating.equals(otherPerson.rating);
+                && tags.equals(otherPerson.tags);
     }
 
     @Override
