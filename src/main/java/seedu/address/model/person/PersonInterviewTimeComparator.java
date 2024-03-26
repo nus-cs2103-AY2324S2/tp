@@ -2,6 +2,9 @@ package seedu.address.model.person;
 
 import java.util.Comparator;
 
+/**
+ * Compares two persons based on their interview time.
+ */
 public class PersonInterviewTimeComparator implements Comparator<Person> {
     @Override
     public int compare(Person p1, Person p2) {
