@@ -59,7 +59,7 @@ public class AddOrderCommand extends Command {
         Person personToEdit = lastShownList.get(index.getZeroBased());
         Person editedPerson = getEditedPerson(personToEdit);
 
-        model.setPersonAdd(personToEdit, editedPerson, this.order);
+        model.setPersonAndAddOrder(personToEdit, editedPerson, this.order);
         model.updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS);
         return new CommandResult(generateSuccessMessage(editedPerson));
     }

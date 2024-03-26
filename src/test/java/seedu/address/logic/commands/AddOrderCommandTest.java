@@ -120,12 +120,12 @@ public class AddOrderCommandTest {
         }
 
         @Override
-        public void setPersonAdd(Person target, Person editedPerson, Order order) {
+        public void setPersonAndAddOrder(Person target, Person editedPerson, Order order) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setPersonDelete(Person target, Person editedPerson, Order order) {
+        public void setPersonAndDeleteOrder(Person target, Person editedPerson, Order order) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -171,7 +171,7 @@ public class AddOrderCommandTest {
         }
 
         @Override
-        public void setPersonAdd(Person target, Person editedPerson, Order order) {
+        public void setPersonAndAddOrder(Person target, Person editedPerson, Order order) {
             requireAllNonNull(target, editedPerson);
             this.person = editedPerson;
         }
