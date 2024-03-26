@@ -32,7 +32,7 @@ class JsonAdaptedPerson {
     private final String address;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
-    private String image = "/images/default_image.png";
+    private String image = "/images/default_image_2.png";
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
