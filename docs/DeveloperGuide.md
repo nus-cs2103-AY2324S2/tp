@@ -243,7 +243,7 @@ _{more aspects and alternatives to be added}_
 
 #### Implementation
 
-Removes an `Order` from the `OrderList` by its index. Example: `cancel 19`.  
+Removes an `Order` from the `OrderList` by its index. Example: `cancel 19`. 
 The sequence of events is illustrated by the diagram below, starting with parsing of the command.
 ![CancelSequenceDiagram-Logic](images/CancelSequenceDiagram-Logic.png)
 ![CancelSequenceDiagram-Model](images/CancelSequenceDiagram-Model.png)
@@ -259,7 +259,7 @@ Have another `fulfil` command which removes an order and logs the completed orde
 #### Implementation
 ![FindCommandClassDiagram](images/FindCommandClassDiagram.png)
 
-`FindOrderCommand` and `FindPersonCommand` extends the `FindCommand` abstract class. The `PREFIX_ORDER` after the `find` command will create a `FindOrderCommand` while any other valid prefixes will create a `FindPersonCommand`.  
+`FindOrderCommand` and `FindPersonCommand` extends the `FindCommand` abstract class. The `PREFIX_ORDER` after the `find` command will create a `FindOrderCommand` while any other valid prefixes will create a `FindPersonCommand`.
 
 ![FindCommandSequenceDiagram](images/FindCommandSequenceDiagram.png)
 
@@ -272,9 +272,10 @@ Have another `fulfil` command which removes an order and logs the completed orde
 
 The `Predicate` will then be used to filter the list using `stream()`. The updated `FilteredOrderList` will then be reflected in the GUI.
 ### Known Limitations
-1. As `StringUtil#containsWordIgnoreCase` searches by entire word, searching for `945` in `94567122` for `Phone` will result in false. This is also consistent in `Email`.  
+1. As `StringUtil#containsWordIgnoreCase` searches by entire word, searching for `945` in `94567122` for `Phone` will result in false. This is also consistent in `Email`.
 
-2. Only one `PREFIX` can be chosen to filter by. Future improvements may include searching from more than one `PREFIX`. Example: `find o/19 n/John a/Lorong`. 
+2. Only one `PREFIX` can be chosen to filter by. Future improvements may include searching from more than one `PREFIX`. Example: `find o/19 n/John a/Lorong`.
+
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
@@ -482,7 +483,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 
 **Extensions**
-* 2a. The list of matching orders is empty.  
+* 2a. The list of matching orders is empty.
+
 Use case ends.
 
 
