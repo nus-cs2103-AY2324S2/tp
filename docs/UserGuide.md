@@ -95,29 +95,41 @@ Important warnings that you should keep in mind while using this User Guide.
 <IMPROVE BY ADDING SCREENSHOTS AND LINKS>
 
 This section allows you to start caring for your clients as soon as possible!
+It will help you [install](#installation-instructions) and [start](#startup-instructions) using the application as fast as possible.
 
-### Installation and Startup Instructions
-1. To use ConnectCare you will require Java 11 to be installed in your computer. 
-   1. If you do not have Java 11, install it [here](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html)
-   2. If you have Java installed, check that it is the correct version:
-   
-       Windows or macOS users might find [this guide](https://blog.hubspot.com/website/check-java-verison) useful.
+### Installation instructions
+1. To use ConnectCare you will require Java 11 to be installed in your computer.
 
-2. Download the latest release of `addressbook.jar` [here](https://github.com/AY2324S2-CS2103T-W12-4/tp/releases).
+**If you have Java 11 installed**
+
+2. Check that it is the correct version
+    - Windows or macOS users might find [this guide](https://blog.hubspot.com/website/check-java-verison) useful.
+    - Linux users might find [this guide](https://phoenixnap.com/kb/check-java-version-linux) useful.
+    - If you have the correct version skip ahead to step 4, otherwise, follow step 3 to install Java 11.
+
+**If you do _not_ have Java 11 installed**
+
+3. Install Java 11 based on your Operating System
+   - **Windows** users should use [this guide](https://docs.oracle.com/en/java/javase/11/install/installation-jdk-microsoft-windows-platforms.html#GUID-A7E27B90-A28D-4237-9383-A58B416071CA). 
+   - **MacOS** users should use [this guide](https://docs.oracle.com/en/java/javase/11/install/installation-jdk-macos.html#GUID-2FE451B0-9572-4E38-A1A5-568B77B146DE).
+   - **Linux** users should use [this guide](https://docs.oracle.com/en/java/javase/11/install/installation-jdk-linux-platforms.html#GUID-737A84E4-2EFF-4D38-8E60-3E29D1B884B8).
+
+4. Download the latest release of `addressbook.jar` [here](https://github.com/AY2324S2-CS2103T-W12-4/tp/releases).
 
 <div class="image-container" align="middle" style="display:flex">
     <pic src="images/quickstart/latest-release.png" alt="jar_file">
-        <markdown> Look out for the latest release </markdown>
+        <markdown> Find the latest release </markdown>
     </pic>
     <pic src="images/quickstart/jar-file.png" alt="jar_file">
-        <markdown> The JAR file can be found at the bottom of the page </markdown>
+        <markdown> Click on the `.jar` file at the bottom of the page to download it </markdown>
     </pic>
 </div>
 
-3. Copy the jar file to the folder you want to use as the home folder.
-4. Double-click the file to start the application! Alternatively, use [this guide](https://www.baeldung.com/java-run-jar-with-arguments) to run the `.jar` file and start the application.
+5. Copy the jar file to the folder you want to use as the home folder.
 
-You should now be able to manage your clients with ease!
+### Startup instructions
+6. Double-click on the `addressbook.jar` file to start the application. If you are facing issues, you can consult [this guide](https://www.wikihow.com/Run-a-.Jar-Java-File).
+7. Go to the [command summary](#command-summary) for a list of commands to try out!
 
 ___
 
