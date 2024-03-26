@@ -4,15 +4,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalAppointments.ALICE_APPT;
-import static seedu.address.testutil.TypicalAppointments.BOB_APPT;
 import static seedu.address.testutil.TypicalAppointmentViews.ALICE_APPT_VIEW;
 import static seedu.address.testutil.TypicalAppointmentViews.ALICE_APPT_VIEW_1;
 import static seedu.address.testutil.TypicalAppointmentViews.BOB_APPT_VIEW;
+import static seedu.address.testutil.TypicalAppointments.ALICE_APPT;
+import static seedu.address.testutil.TypicalAppointments.BOB_APPT;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -25,7 +23,6 @@ import seedu.address.model.person.UniquePersonList;
 public class AppointmentViewListTest {
 
     private final AppointmentViewList appointmentListView = new AppointmentViewList();
-    
 
     @Test
     public void contains_nullAppointment_throwsNullPointerException() {
@@ -118,7 +115,7 @@ public class AppointmentViewListTest {
     @Test
     public void setAppointmentViews_nullAppointmentList_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () ->
-            appointmentListView.setAppointmentViews(null,(AppointmentList) null));
+            appointmentListView.setAppointmentViews(null, (AppointmentList) null));
     }
 
     @Test

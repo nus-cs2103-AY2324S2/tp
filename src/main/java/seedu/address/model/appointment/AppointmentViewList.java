@@ -13,8 +13,8 @@ import seedu.address.model.appointment.exceptions.AppointmentNotFoundException;
 import seedu.address.model.appointment.exceptions.DuplicateAppointmentException;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
-import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.UniquePersonList;
 
 
 /**

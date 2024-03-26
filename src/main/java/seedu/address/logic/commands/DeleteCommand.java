@@ -38,7 +38,7 @@ public class DeleteCommand extends Command {
 
         String message = String.format(MESSAGE_DELETE_PERSON_SUCCESS,
                 Messages.format(model.getPersonWithNric(targetNric)));
-                
+
         model.deleteAppointmentsWithNric(targetNric);
         model.deletePersonWithNric(targetNric);
         return new CommandResult(message);

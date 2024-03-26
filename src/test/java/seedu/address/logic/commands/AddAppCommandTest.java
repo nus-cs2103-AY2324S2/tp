@@ -203,7 +203,7 @@ public class AddAppCommandTest {
         }
 
         @Override
-        public void cancelAppointment(Appointment key) {
+        public void cancelAppointment(Appointment appointment) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -218,13 +218,7 @@ public class AddAppCommandTest {
         }
 
         @Override
-        public ObservableList<Appointment> getFilteredAppointmentList() {
-            return null;
-        }
-
-        @Override
-        public void updateFilteredAppointmentList(Predicate<Appointment> predicate,
-            Predicate<AppointmentView> predicateView) {
+        public void updateFilteredAppointmentList(Predicate<AppointmentView> predicateView) {
         }
 
         @Override

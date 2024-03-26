@@ -5,7 +5,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_END_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_START_TIME;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_APPOINTMENTS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_APPOINTMENTS_VIEW;
 
 import seedu.address.commons.core.date.Date;
@@ -18,7 +17,6 @@ import seedu.address.model.appointment.AppointmentType;
 import seedu.address.model.appointment.Mark;
 import seedu.address.model.appointment.Note;
 import seedu.address.model.appointment.TimePeriod;
-import seedu.address.model.appointment.exceptions.AppointmentNotFoundException;
 import seedu.address.model.person.Nric;
 
 /**
@@ -66,7 +64,7 @@ public class MarkCommand extends Command {
         if (!model.hasAppointment(mockAppointmentToMatch)) {
             throw new CommandException(Messages.MESSAGE_APPOINTMENT_NOT_FOUND);
         }
-        
+
         Appointment appt = model.getMatchingAppointment(nric, date, timePeriod);
 
         Appointment newAppt = new Appointment(appt.getNric(), appt.getDate(), appt.getTimePeriod(),
@@ -74,7 +72,7 @@ public class MarkCommand extends Command {
 
         model.setAppointment(appt, newAppt);
 
-        model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS, PREDICATE_SHOW_ALL_APPOINTMENTS_VIEW);
+        model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS_VIEW);
         return new CommandResult(String.format(MESSAGE_MARK_PERSON_SUCCESS, Messages.format(newAppt)));
     }
 

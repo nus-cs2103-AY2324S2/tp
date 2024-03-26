@@ -70,7 +70,7 @@ public class DeleteCommandTest {
         expectedModel.deletePerson(personToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
-        assertTrue(model.getFilteredAppointmentList().isEmpty());
+        assertTrue(model.getFilteredAppointmentViewList().isEmpty());
     }
 
     @Test

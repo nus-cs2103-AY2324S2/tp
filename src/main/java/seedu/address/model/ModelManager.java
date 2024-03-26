@@ -28,7 +28,6 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
-    private final FilteredList<Appointment> filteredAppointments;
     private final FilteredList<AppointmentView> filteredAppointmentsView;
 
     /**
@@ -42,7 +41,6 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        filteredAppointments = new FilteredList<>(this.addressBook.getAppointmentList());
         filteredAppointmentsView = new FilteredList<>(this.addressBook.getAppointmentViewList());
     }
 
@@ -153,7 +151,7 @@ public class ModelManager implements Model {
     @Override
     public void addAppointment(Appointment appointment) {
         addressBook.addAppointment(appointment);
-        updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS, PREDICATE_SHOW_ALL_APPOINTMENTS_VIEW);
+        updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS_VIEW);
     }
 
     @Override
@@ -201,10 +199,6 @@ public class ModelManager implements Model {
      * Returns an unmodifiable view of the list of {@code Appointment} backed by the internal list of
      * {@code versionedAddressBook}
      */
-    @Override
-    public ObservableList<Appointment> getFilteredAppointmentList() {
-        return filteredAppointments;
-    }
 
     @Override
     public ObservableList<AppointmentView> getFilteredAppointmentViewList() {
@@ -212,10 +206,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredAppointmentList(Predicate<Appointment> predicate,
-        Predicate<AppointmentView> predicateView) {
-        requireNonNull(predicate);
-        filteredAppointments.setPredicate(predicate);
+    public void updateFilteredAppointmentList(Predicate<AppointmentView> predicateView) {
+        requireNonNull(predicateView);
         filteredAppointmentsView.setPredicate(predicateView);
     }
 

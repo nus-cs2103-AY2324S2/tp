@@ -176,6 +176,19 @@ Format: `cancelApp i/NRIC d/DATE from/START_TIME to/END_TIME`
 Examples:
 * `cancelApp i/ S8743880A d/ 2024-02-20 from/ 11:00 to/ 11:30`
 
+### Marking an Appointment: `mark`
+
+Marks an appointment from the address book.
+
+Format: `mark i/ NRIC d/ DATE /from START_TIME /to END_TIME`
+
+* Marks an appointment for the person with specified `NRIC`, on `DATE` from `START_TIME` to `END_TIME`
+* Appointment with the following details **must exist within database**.
+
+Examples:
+* `mark i/ T0123456A d/ 2024-02-20 from/ 11:00 to/ 11:30`
+
+
 ### Clearing all entries : `clear`
 
 Clears all entries from CLInic.
@@ -231,6 +244,7 @@ Action     | Format, Examples
 **Delete** | `delete NRIC`<br> e.g., `delete T0123456A`
 **AddApp** | `addApp i/NRIC d/DATE from/START_TIME to/END_TIME t/APPOINTMENT_TYPE [note/NOTE]`<br> e.g., `addApp i/ T0123456A d/ 2024-02-20 from/ 11:00 to/ 11:30 t/ Medical Check-up note/ Routine check-in`
 **CancelApp** | `cancelApp i/NRIC d/DATE from/START_TIME to/END_TIME` <br> e.g., `cancelApp i/ S8743880A d/ 2024-02-20 from/ 11:00 to/ 11:30`
+**Mark** | `mark i/NRIC d/DATE from/START_TIME to/END_TIME` <br> e.g., `mark i/ T0123456A d/ 2024-02-20 from/ 11:00 to/ 11:30`
 **EditPerson**   | `editPerson NRIC [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`editPerson T0123456A n/James Lee e/jameslee@example.com`
 **FindPerson**   | `findPerson n/ KEYWORD [MORE_KEYWORDS]` OR `findPerson i/ KEYWORD`<br> e.g., `findPerson n/ James Jake`
 **List**   | `list`
