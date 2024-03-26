@@ -6,6 +6,7 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.employee.Employee;
+import seedu.address.model.task.Task;
 
 /**
  * Unassigns a task from an employee.
@@ -43,8 +44,10 @@ public class UnassignTaskCommand extends Command {
      */
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        List<Task> taskList = model.getFilteredTaskList();
         List<Employee> employeeList = model.getFilteredEmployeeList();
 
+        boolean checkTaskID = false;
         boolean checkEmployeeID = false;
 
         for (Employee employee : employeeList) {
@@ -52,9 +55,21 @@ public class UnassignTaskCommand extends Command {
 
             if (id == employeeID) {
                 checkEmployeeID = true;
-                Employee updatedEmployee = employee.removeTask(taskID);
-                model.setEmployee(employee, updatedEmployee);
+                for (Task t : taskList) {
+                    if (t.getTaskId().taskId == taskID) {
+                        checkTaskID = true;
+                        Employee updatedEmployee = employee.removeTask(t.getTaskId());
+                        model.setEmployee(employee, updatedEmployee);
+
+                        Task updatedTask = t.removeEmployee(employee.getEmployeeId());
+                        model.setTask(t, updatedTask);
+                    }
+                }
             }
+        }
+
+        if (!checkTaskID) {
+            throw new CommandException(Messages.MESSAGE_INVALID_TASKID);
         }
 
         if (!checkEmployeeID) {

@@ -40,6 +40,7 @@ public class DeleteCommand extends Command {
         for (Employee e : lastShownList) {
             if (e.getEmployeeId().employeeId == targetIndex) {
                 employeeToDelete = e;
+                employeeToDelete.removeAssignments();
                 model.deleteEmployee(employeeToDelete);
                 return new CommandResult(String.format(MESSAGE_DELETE_EMPLOYEE_SUCCESS,
                         Messages.format(employeeToDelete)));

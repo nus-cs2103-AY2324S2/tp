@@ -8,6 +8,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.employee.Employee;
+import seedu.address.model.task.AssignedEmployees;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskId;
 import seedu.address.model.task.TaskName;
@@ -18,7 +19,8 @@ public class AssignTaskCommandTest {
     @Test
     public void test() throws CommandException {
         Employee validEmployee = new EmployeeBuilder().build();
-        Task task = new Task(new TaskName("play game"), new TaskId(5), new TaskStatus(false));
+        Task task = new Task(new TaskName("play game"), new TaskId(5), new TaskStatus(false),
+                new AssignedEmployees(""));
 
         Model model = new ModelManager();
 

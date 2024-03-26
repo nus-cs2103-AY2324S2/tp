@@ -64,7 +64,6 @@ class JsonSerializableTaskMasterPro {
             }
             taskMasterPro.addEmployee(employee);
         }
-
         Employee.setUniversalEmployeeId(employeeId);
 
         for (JsonAdaptedTask jsonAdaptedTask : tasks) {
@@ -72,8 +71,19 @@ class JsonSerializableTaskMasterPro {
 
             taskMasterPro.addTask(task);
         }
-
         Task.setUniversalTaskId(taskId);
+
+        List<Task> taskList = taskMasterPro.getTaskList();
+        List<Employee> employeeList = taskMasterPro.getEmployeeList();
+
+        for (Employee e : employeeList) {
+            e.getTasks().initiateHashTable(taskList);
+        }
+
+        for (Task t : taskList) {
+            t.getEmployees().initiateHashTable(employeeList);
+        }
+
         return taskMasterPro;
     }
 

@@ -33,6 +33,10 @@ public class TaskCard extends UiPart<Region> {
 
     @FXML
     private Label status;
+
+    @FXML
+    private Label employees;
+
     /**
      * Creates a {@code TaskCode} with the given {@code Task} and index to display.
      */
@@ -43,5 +47,6 @@ public class TaskCard extends UiPart<Region> {
         name.setText(task.getName().taskName);
         taskId.setText("Task ID: " + task.getTaskId().taskId);
         status.setText(task.getTaskStatus().toString());
+        employees.setText("Employees Assigned: \n" + task.getEmployees().toString());
     }
 }
