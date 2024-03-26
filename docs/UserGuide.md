@@ -4,7 +4,9 @@
   pageNav: 3
 ---
 
-# RapidTracer
+<h1 id="top">
+  RapidTracer
+</h1>
 
 RapidTracer offers a fast-paced user interface (UI) for clinic managers to handle contacts and appointments. It combines:
 - a simple and intuitive UI;
@@ -264,14 +266,14 @@ To properly exit RapidTracer, click the `File` option in the top left corner and
 
 ## Command summary
 
-Action     | Format, Examples
------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Add contacts | `add n/NAME p/PHONE_NUMBER [a/ADDRESS] [t/TAG]`
-Add appointments | `addappt INDEX d/DATE_TIME`
-Find contacts | `find KEYWORD [MORE_KEYWORDS]`
-Find appointments | `findappt KEYWORD [MORE_KEYWORDS]`
-List all contacts | `list`
-List all appointments | `listappt`
-Editing contacts | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [t/TAG]`
-Editing appointments | `editappt INDEX d/DATE_TIME`
-Help | `help`
+Action     | Format | Examples
+-----------|-----------------------------------------|-----------------------------------------------------------------------------------------------------------------------------
+Add contacts | `add n/NAME p/PHONE_NUMBER [a/ADDRESS] [t/TAG]` | `add n/Min Rei p/86615076`,<br> `add n/Min Rei p/86615076 a/UTown RC4`,<br> `add n/Min Rei p/86615076 d/27/03/2024 2pm-3pm`
+Add appointments | `addappt INDEX d/DATE_TIME` | `addappt 1 d/27/03/2024 9am-10am`,<br> `addappt 1 d/today 9am-10am`,<br> `addappt 1 d/tdy 9am-10am`
+Find contacts | `find KEYWORD [MORE_KEYWORDS]` | `find min`,<br> `find rc4`
+Find appointments | `findappt KEYWORD [MORE_KEYWORDS]` | `findappt min`
+List all contacts | `list` |
+List all appointments | `listappt` |
+Editing contacts | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [t/TAG]` | `edit 1 n/Seah Min Rei`
+Editing appointments | `editappt INDEX d/DATE_TIME` | `editappt 1 30/12/2024 8am-9am`
+Help | `help` |
