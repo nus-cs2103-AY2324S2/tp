@@ -65,7 +65,7 @@ public class RelationshipUtil {
      * @param descriptor The descriptor to find.
      * @return true if the relationship exists, false otherwise.
      */
-    public static boolean descriptorExists(String descriptor) {
+    public boolean descriptorExists(String descriptor) {
         for (Relationship relationship : relationshipsTracker) {
             if (relationship.getRelationshipDescriptor().equals(descriptor)) {
                 return true;
