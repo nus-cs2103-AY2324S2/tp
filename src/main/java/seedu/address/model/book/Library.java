@@ -7,7 +7,6 @@ import java.util.Comparator;
  * Represents a collection of books in a library.
  */
 public class Library {
-    private ArrayList<Book> library;
 
     /**
      * Comparator for comparing books alphabetically by title.
@@ -18,6 +17,8 @@ public class Library {
             return book1.bookTitle.compareTo(book2.bookTitle);
         }
     };
+
+    private ArrayList<Book> library;
 
     /**
      * Construct an empty library.
