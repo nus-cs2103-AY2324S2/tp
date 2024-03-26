@@ -1,7 +1,6 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_INDEX;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_INDEX;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
@@ -21,16 +20,15 @@ public class DeleteOrderCommandParser implements Parser<DeleteOrderCommand> {
     @Override
     public DeleteOrderCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_PERSON_INDEX, PREFIX_ORDER_INDEX);
+                ArgumentTokenizer.tokenize(args, PREFIX_ORDER_INDEX);
 
-        if (!argMultimap.arePrefixesPresent(PREFIX_PERSON_INDEX, PREFIX_ORDER_INDEX)
-                || !argMultimap.getPreamble().isEmpty()) {
+        if (!argMultimap.arePrefixesPresent(PREFIX_ORDER_INDEX) || argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
                     DeleteOrderCommand.MESSAGE_USAGE));
         }
 
         try {
-            Index personIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_PERSON_INDEX).get());
+            Index personIndex = ParserUtil.parseIndex(argMultimap.getPreamble());
             Index orderIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_ORDER_INDEX).get());
             return new DeleteOrderCommand(personIndex, orderIndex);
         } catch (ParseException pe) {

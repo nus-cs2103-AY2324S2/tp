@@ -41,6 +41,16 @@ public class Order {
         this.status = status;
     }
 
+    /**
+     * Copy constructor for creating a copy of an existing Order.
+     * @param order The order to copy.
+     */
+    public Order(Order order) {
+        this.arrivalDate = order.arrivalDate;
+        this.remark = order.remark;
+        this.status = order.status;
+    }
+
     public Date getDate() {
         return arrivalDate;
     }

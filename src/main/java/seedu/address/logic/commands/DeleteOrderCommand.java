@@ -18,7 +18,7 @@ public class DeleteOrderCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the order identified by the index number from the specified person.\n"
-            + "Parameters: i/PERSON_INDEX (must be a positive integer) o/ORDER_INDEX (must be a positive integer)\n"
+            + "Parameters: PERSON_INDEX (must be a positive integer) o/ORDER_INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1 o/2";
 
     public static final String MESSAGE_DELETE_ORDER_SUCCESS = "Deleted Order: %1$s from Person: %2$s";
@@ -47,6 +47,8 @@ public class DeleteOrderCommand extends Command {
         }
 
         Person personToDeleteOrderFrom = lastShownList.get(personIndex.getZeroBased());
+        Person originalPerson = new Person(personToDeleteOrderFrom);
+
         List<Order> sortedOrders = model.getSortedOrders(personToDeleteOrderFrom);
 
         if (orderIndex.getZeroBased() >= sortedOrders.size()) {
@@ -56,7 +58,7 @@ public class DeleteOrderCommand extends Command {
         Order orderToDelete = sortedOrders.get(orderIndex.getZeroBased());
         model.deleteOrder(personToDeleteOrderFrom, orderToDelete);
 
-        return new CommandResult(String.format(MESSAGE_DELETE_ORDER_SUCCESS, orderToDelete, personToDeleteOrderFrom));
+        return new CommandResult(String.format(MESSAGE_DELETE_ORDER_SUCCESS, orderToDelete, originalPerson));
     }
 
 
