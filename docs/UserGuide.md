@@ -125,10 +125,10 @@ Examples:
 * `/pooch-maintainer ; name : Tom Tan  ; phone : 98765435 ; address : Poochie Street 24 ; email : ihelppooches@gmail.com ; skill : trainer ; commission : $60/hr`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Constraints:**<br>
-* Adding uplicate name will not be allowed.
-* Name is case-insensitive but space-sensitive.
-* Salary and commission must be in format ${Number}/hr.
-* Price must be in format ${Number}/{quantity}.
+* Adding uplicate name will not be allowed.<br>
+* Name is case-insensitive but space-sensitive.<br>
+* Salary and commission must be in format ${Number}/hr.<br>
+* Price must be in format ${Number}/{quantity}.<br>
 </div>
 
 ### Editing a contact : `edit`
@@ -167,13 +167,13 @@ Examples:
 * `/edit-maintainer ; name : Maintainer1 ; field : { commission : $10/hr}`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Constraints:**<br>
-* Name is a compulsory field that is case-insensitive but space-sensitive.
-* Name must be present in Pooch Planner.
-* Contact type, i.e. Person / Staff / Supplier / Maintainer, must match command used. i.e. `/edit`, `edit-staff`, `edit-supplier` and `edit-maintainer`.
-* The field(s) to be edited must be a valid field within their contact type, i.e. Person / Staff / Supplier / Maintainer.
-* At least one field must be provided.
-* Salary and commission must be in format ${Number}/hr.
-* Price must be in format ${Number}/{quantity}.
+* Name is a compulsory field that is case-insensitive but space-sensitive.<br>
+* Name must be present in Pooch Planner.<br>
+* Contact type, i.e. Person / Staff / Supplier / Maintainer, must match command used. i.e. `/edit`, `edit-staff`, `edit-supplier` and `edit-maintainer`.<br>
+* The field(s) to be edited must be a valid field within their contact type, i.e. Person / Staff / Supplier / Maintainer.<br>
+* At least one field must be provided.<br>
+* Salary and commission must be in format ${Number}/hr.<br>
+* Price must be in format ${Number}/{quantity}.<br>
 </div>
 
 ### Searching a contact : `search`
@@ -187,9 +187,9 @@ Examples:
 * `/search ; phone : 98765432`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Constraints:**<br>
-* Any valid fields, such as `name`, `phone`, `email`, `address`, `salary`, `employment`, `price`, `product`, `skill`, `commission`, `tag` or `note`, can be provided.
-* Only one field can be provided.
-* Query is case-insensitive but space-sensitive.
+* Any valid fields, such as `name`, `phone`, `email`, `address`, `salary`, `employment`, `price`, `product`, `skill`, `commission`, `tag` or `note`, can be provided.<br>
+* Only one field can be provided.<br>
+* Query is case-insensitive but space-sensitive.<br>
 </div>
 
 ### Sorting the address book : `sort`
@@ -203,9 +203,9 @@ Examples:
 * `/sort ; phone`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Constraints:**<br>
-* This command sorts the contacts in the address book in ascending lexicographical order (e.g. Alice, Bob, Charlie etc.).
-* Sorts by specifying a valid field, such as `name`, `phone`, `email`, `address`, `salary`, `employment`, `price`, `product`, `skill`, `commission`, `tag` or `note`.
-* All field input are case-insensitive.
+* This command sorts the contacts in the address book in ascending lexicographical order (e.g. Alice, Bob, Charlie etc.).<br>
+* Sorts by specifying a valid field, such as `name`, `phone`, `email`, `address`, `salary`, `employment`, `price`, `product`, `skill`, `commission`, `tag` or `note`.<br>
+* All field input are case-insensitive.<br>
 </div>
 
 ### Deleting a contact : `delete`
@@ -221,8 +221,8 @@ Examples:
    The above command deletes the contact with name **_Poochie_**, provided **_Poochie_** exists as a name of a contact in Pooch Contact Book
 
 <div markdown="span" class="alert alert-primary">:bulb: **Constraints:**<br>
-* Name is a compulsory field that is case-insensitive but space-sensitive.
-* Name must be present in Pooch Planner.
+* Name is a compulsory field that is case-insensitive but space-sensitive.<br>
+* Name must be present in Pooch Planner.<br>
 </div>
 
 ### Rating a Contact : `rate`
@@ -237,10 +237,10 @@ Examples:
   The above command rates the contact with the name **_Poochie_** with a rating of `5`, provided **_Poochie_** exists as a name of a contact in Pooch Contact Book
 
 <div markdown="span" class="alert alert-primary">:bulb: **Constraints:**<br>
-* Rating can only accept integer values from 1 to 5 inclusive.
-* Name must be present in Pooch Planner.
-* Name and Rating is a compulsory field that is case-insensitive but space-sensitive.
-* Rating of 0 will automatically display `No rating given yet`.
+* Rating can only accept integer values from 1 to 5 inclusive.<br>
+* Name must be present in Pooch Planner.<br>
+* Name and Rating is a compulsory field that is case-insensitive but space-sensitive.<br>
+* Rating of 0 will automatically display `No rating given yet`.<br>
 </div>
 
 ### Pinning a contact : `pin`
@@ -255,9 +255,9 @@ Examples:
    The above command unpins the contact with name **_Poochie_**, provided **_Poochie_** exists as a name of a contact in Pooch Contact Book.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Constraints:**<br>
-* Name is a compulsory field that is case-insensitive but space-sensitive.
-* Name must be present in Pooch Planner.
-* Using pin command on a contact that has been pinned do not make any changes to Pooch Planner.
+* Name is a compulsory field that is case-insensitive but space-sensitive.<br>
+* Name must be present in Pooch Planner.<br>
+* Using pin command on a contact that has been pinned do not make any changes to Pooch Planner.<br>
 </div>
 
 ### Unpinning a contact : `unpin`
@@ -272,9 +272,9 @@ Examples:
    The above command unpins the contact with name **_Moochie_**, provided **_Moochie_** exists as a name of a contact in Pooch Contact Book.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Constraints:**<br>
-* Name is a compulsory field that is case-insensitive but space-sensitive.
-* Name must be present in Pooch Planner.
-* Using unpin command on a contact that has been unpinned do not make any changes to Pooch Planner.
+* Name is a compulsory field that is case-insensitive but space-sensitive.<br>
+* Name must be present in Pooch Planner.<br>
+* Using unpin command on a contact that has been unpinned do not make any changes to Pooch Planner.<br>
 </div> 
 
 ### Adding a note : `note`
@@ -290,9 +290,9 @@ Examples:
   the contact with name **_Poochie_**, provided **_Poochie_** exists as a name of a contact in Pooch Contact Book
 
 <div markdown="span" class="alert alert-primary">:bulb: **Constraints:**<br>
-* Name and Note are compulsory fields that are case-insensitive but space-sensitive.
-* Name must be present in Pooch Planner.
-* Note can only be added but not deleted.
+* Name and Note are compulsory fields that are case-insensitive but space-sensitive.<br>
+* Name must be present in Pooch Planner.<br>
+* Note can only be added but not deleted.<br>
 </div>
 
 ### Undo a command : `undo`
@@ -301,10 +301,10 @@ Undo a previous command which made a change to Pooch Planner history.
 
 Format: `/undo`
 
-Constraints:
-* There is no field required for this command.
-* Any unnecessary parameter or value after /undo will simply be ignored.
-* This command can only be executed when at least one changes have been made.
+<div markdown="span" class="alert alert-primary">:bulb: **Constraints:**<br>
+* There is no field required for this command.<br>
+* Any unnecessary parameter or value after /undo will simply be ignored.<br>
+* This command can only be executed when at least one changes have been made.<br>
 
 ### Redo a command : `redo`
 
@@ -313,9 +313,9 @@ Retrieve next state of Pooch Planner
 Format: `/redo`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Constraints:**<br>
-* There is no field required for this command.
-* Any unnecessary parameter or value after /redo will simply be ignored.
-* This command can only be executed when at least one undo command is executed.
+* There is no field required for this command.<br>
+* Any unnecessary parameter or value after /redo will simply be ignored.<br>
+* This command can only be executed when at least one undo command is executed.<br>
 </div>
 
 ### Viewing help : `help`
@@ -329,9 +329,9 @@ Examples:
 * `/help ; command : add`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Constraints:**<br>
-* Command must be specified.
-* Help is only given for `delete`, `add`, `edit`, `search`.
-* To see help for all commands, the corresponding command field is `general`.
+* Command must be specified.<br>
+* Help is only given for `delete`, `add`, `edit`, `search`.<br>
+* To see help for all commands, the corresponding command field is `general`.<br>
 </div>
 
 ### Exiting the program : `exit`
