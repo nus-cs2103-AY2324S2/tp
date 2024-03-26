@@ -62,11 +62,11 @@ public class PolicyCommandParser implements Parser<PolicyCommand> {
             double premium = 0.0;
 
             if (expiryDateStr != null && !expiryDateStr.isEmpty()) {
-                expiryDate = ParserUtil.parseExpiryDate(expiryDateStr); // Implement ParserUtil method accordingly
+                expiryDate = ParserUtil.parseExpiryDate(expiryDateStr);
             }
 
             if (premiumStr != null && !premiumStr.isEmpty()) {
-                premium = ParserUtil.parsePremium(premiumStr); // Implement ParserUtil method accordingly
+                premium = ParserUtil.parsePremium(premiumStr);
             }
 
             Policy newPolicy = new Policy(policy, expiryDate, premium);

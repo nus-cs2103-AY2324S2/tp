@@ -90,6 +90,14 @@ public class PolicyCommand extends Command {
         return String.format(message, Messages.format(personToEdit));
     }
 
+    public Index getIndex() {
+        return this.index;
+    }
+
+    public Set<Policy> getPolicies() {
+        return this.policies;
+    }
+
     @Override
     public boolean equals(Object other) {
         // short circuit if same object
