@@ -11,7 +11,8 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Person;
+import seedu.address.model.employee.Employee;
+import seedu.address.model.task.Task;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -19,25 +20,30 @@ import seedu.address.model.person.Person;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final TaskMasterPro taskMasterPro;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Employee> filteredEmployees;
+
+    private final FilteredList<Task> taskList;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given taskMasterPro and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
+    public ModelManager(ReadOnlyTaskMasterPro taskMasterPro, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(taskMasterPro, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with task master pro: " + taskMasterPro + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.taskMasterPro = new TaskMasterPro(taskMasterPro);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        ObservableList<Employee> employeeList = this.taskMasterPro.getEmployeeList();
+        ObservableList<Task> taskList = this.taskMasterPro.getTaskList();
+        filteredEmployees = new FilteredList<>(employeeList);
+        this.taskList = new FilteredList<>(taskList);
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new TaskMasterPro(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -65,68 +71,96 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getTaskMasterProFilePath() {
+        return userPrefs.getTaskMasterProFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setTaskMasterProFilePath(Path taskMasterProFilePath) {
+        requireNonNull(taskMasterProFilePath);
+        userPrefs.setTaskMasterProFilePath(taskMasterProFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== TaskMasterPro ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
-    }
-
-    @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public void setTaskMasterPro(ReadOnlyTaskMasterPro taskMasterPro) {
+        this.taskMasterPro.resetData(taskMasterPro);
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
+    public ReadOnlyTaskMasterPro getTaskMasterPro() {
+        return taskMasterPro;
     }
 
     @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+    public boolean hasEmployee(Employee employee) {
+        requireNonNull(employee);
+        return taskMasterPro.hasEmployee(employee);
     }
 
     @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void deleteEmployee(Employee target) {
+        taskMasterPro.removeEmployee(target);
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
-
-        addressBook.setPerson(target, editedPerson);
+    public void addEmployee(Employee employee) {
+        taskMasterPro.addEmployee(employee);
+        updateFilteredEmployeeList(PREDICATE_SHOW_ALL_EMPLOYEES);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+
+
+    @Override
+    public void setEmployee(Employee target, Employee editedEmployee) {
+        requireAllNonNull(target, editedEmployee);
+
+        taskMasterPro.setEmployee(target, editedEmployee);
+    }
+
+    //=========== Filtered Employee List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
+     * Returns an unmodifiable view of the list of {@code Employee} backed by the internal list of
+     * {@code versionedTaskMasterPro}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Employee> getFilteredEmployeeList() {
+        return filteredEmployees;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredEmployeeList(Predicate<Employee> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredEmployees.setPredicate(predicate);
     }
+
+
+    //=========== Task List Accessors =============================================================
+
+    @Override
+    public void addTask(Task task) {
+        taskMasterPro.addTask(task);
+        updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+    }
+
+    @Override
+    public void updateFilteredTaskList(Predicate<Task> predicate) {
+        requireNonNull(predicate);
+        taskList.setPredicate(predicate);
+    }
+
+    @Override
+    public void deleteTask(Task target) {
+        taskMasterPro.removeTask(target);
+    }
+
+    @Override
+    public ObservableList<Task> getFilteredTaskList() {
+        return taskList;
+    }
+
 
     @Override
     public boolean equals(Object other) {
@@ -140,9 +174,9 @@ public class ModelManager implements Model {
         }
 
         ModelManager otherModelManager = (ModelManager) other;
-        return addressBook.equals(otherModelManager.addressBook)
+        return taskMasterPro.equals(otherModelManager.taskMasterPro)
                 && userPrefs.equals(otherModelManager.userPrefs)
-                && filteredPersons.equals(otherModelManager.filteredPersons);
+                && filteredEmployees.equals(otherModelManager.filteredEmployees);
     }
 
 }
