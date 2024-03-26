@@ -28,8 +28,18 @@
                 </Label>
                 <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
             </HBox>
+<<<<<<< HEAD
             <FlowPane fx:id="tags" />
             <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
+=======
+            <FlowPane fx:id="tags"/>
+            <Label fx:id="phone" styleClass="cell_small_label" text="\$phone"/>
+            <Label fx:id="sex" styleClass="cell_small_label" text="\$sex"/>
+            <Label fx:id="payRate" styleClass="cell_small_label" text="\$payRate"/>
+            <Label fx:id="address" styleClass="cell_small_label" text="\$address"/>
+            <Label fx:id="bankDetails" styleClass="cell_small_label" text="\$address"/>
+            <Label fx:id="hoursWorked" styleClass="cell_small_label" text="\$hoursWorked"/>
+>>>>>>> master
         </VBox>
         <rowConstraints>
             <RowConstraints />

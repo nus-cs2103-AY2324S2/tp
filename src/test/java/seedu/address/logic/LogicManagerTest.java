@@ -4,9 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.BANKDETAILS_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.EMPLOYMENTTYPE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.FIRSTNAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.LASTNAME_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.PAYRATE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.SEX_DESC_AMY;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -173,7 +173,7 @@ public class LogicManagerTest {
         // Triggers the saveAddressBook method by executing an add command
         String addCommand =
             AddCommand.COMMAND_WORD + FIRSTNAME_DESC_AMY + LASTNAME_DESC_AMY + PHONE_DESC_AMY
-                + SEX_DESC_AMY + EMPLOYMENTTYPE_DESC_AMY + BANKDETAILS_DESC_AMY + ADDRESS_DESC_AMY;
+                + SEX_DESC_AMY + PAYRATE_DESC_AMY + BANKDETAILS_DESC_AMY + ADDRESS_DESC_AMY;
         Person expectedPerson = new PersonBuilder(AMY).withTags().build();
         System.out.println(expectedPerson.toString());
         System.out.println(addCommand);

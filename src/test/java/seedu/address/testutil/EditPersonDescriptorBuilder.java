@@ -7,8 +7,8 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.BankDetails;
-import seedu.address.model.person.EmploymentType;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.PayRate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Sex;
@@ -38,7 +38,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setLastName(person.getLastName());
         descriptor.setPhone(person.getPhone());
         descriptor.setSex(person.getSex());
-        descriptor.setEmploymentType(person.getEmploymentType());
+        descriptor.setPayRate(person.getPayRate());
         descriptor.setAddress(person.getAddress());
         descriptor.setTags(person.getTags());
         descriptor.setBankDetails(person.getBankDetails());
@@ -81,8 +81,8 @@ public class EditPersonDescriptorBuilder {
     /**
      * Sets the {@code EmploymentType} of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withEmploymentType(String employmentType) {
-        descriptor.setEmploymentType(new EmploymentType(employmentType));
+    public EditPersonDescriptorBuilder withPayRate(double payRate) {
+        descriptor.setPayRate(new PayRate(payRate));
         return this;
     }
 

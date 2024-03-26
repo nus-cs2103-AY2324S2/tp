@@ -94,7 +94,7 @@ public class PersonTest {
                 + ", lastName=" + ALICE.getLastName()
                 + ", phone=" + ALICE.getPhone()
                 + ", sex=" + ALICE.getSex()
-                + ", employmentType=" + ALICE.getEmploymentType()
+                + ", payRate=" + ALICE.getPayRate()
                 + ", address=" + ALICE.getAddress()
                 + ", bankDetails=" + ALICE.getBankDetails()
                 + ", tags=" + ALICE.getTags() + "}";

@@ -56,24 +56,12 @@ public class PersonCard extends UiPart<Region> {
 
         if (isFullView) {
             Label sex = new Label(getFullSexString(person.getSex().value));
-            Label employmentType = new Label(getFullEmploymentTypeString(person.getEmploymentType().value));
+            Label payRate = new Label(person.getPayRate().toString());
             Label address = new Label(person.getAddress().value);
             Label bankDetails = new Label(person.getBankDetails().value);
             Label hoursWorked = new Label(person.getWorkHours().toString());
-            vBox.getChildren().addAll(new Label[]{sex, employmentType, address, bankDetails, hoursWorked});
+            vBox.getChildren().addAll(new Label[]{sex, payRate, address, bankDetails, hoursWorked});
         }
-    }
-
-    /**
-     * Returns the full employment type string based on the short form string returned from EmploymentType.
-     */
-    private String getFullEmploymentTypeString(String shortFormString) {
-        if (shortFormString.equals("ft")) {
-            return "Full-Time";
-        } else if (shortFormString.equals("pt")) {
-            return "Part-Time";
-        }
-        return "Invalid Employment Type"; // should not reach here
     }
 
     /**

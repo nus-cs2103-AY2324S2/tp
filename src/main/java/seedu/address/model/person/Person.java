@@ -23,7 +23,7 @@ public class Person {
 
     // Data fields
     private final Sex sex;
-    private final EmploymentType employmentType;
+    private final PayRate payRate;
     private final Address address;
     private final BankDetails bankDetails;
     private final Set<Tag> tags = new HashSet<>();
@@ -33,14 +33,14 @@ public class Person {
      * Every field must be present and not null.
      */
     public Person(Name firstName, Name lastName, Phone phone, Sex sex,
-                  EmploymentType employmentType, Address address,
+                  PayRate payRate, Address address,
                   BankDetails bankDetails, WorkHours hoursWorked, Set<Tag> tags) {
         requireAllNonNull(firstName, lastName, phone, address, bankDetails, tags);
         this.firstName = firstName;
         this.lastName = lastName;
         this.phone = phone;
         this.sex = sex;
-        this.employmentType = employmentType;
+        this.payRate = payRate;
         this.address = address;
         this.bankDetails = bankDetails;
         this.tags.addAll(tags);
@@ -67,8 +67,8 @@ public class Person {
         return sex;
     }
 
-    public EmploymentType getEmploymentType() {
-        return employmentType;
+    public PayRate getPayRate() {
+        return payRate;
     }
 
     public Address getAddress() {
@@ -125,24 +125,39 @@ public class Person {
 
         Person otherPerson = (Person) other;
         return getName().equals(otherPerson.getName())
+<<<<<<< HEAD
             && phone.equals(otherPerson.phone)
             && sex.equals(otherPerson.sex)
             && employmentType.equals(otherPerson.employmentType)
             && address.equals(otherPerson.address)
             && bankDetails.equals(otherPerson.bankDetails)
             && tags.equals(otherPerson.tags);
+=======
+                && phone.equals(otherPerson.phone)
+                && sex.equals(otherPerson.sex)
+                && payRate.equals(otherPerson.payRate)
+                && address.equals(otherPerson.address)
+                && bankDetails.equals(otherPerson.bankDetails)
+                && tags.equals(otherPerson.tags);
+>>>>>>> master
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
+<<<<<<< HEAD
         return Objects.hash(firstName, lastName, phone, sex, employmentType, address, bankDetails,
             tags);
+=======
+        return Objects.hash(firstName, lastName, phone, sex, payRate, address, bankDetails,
+                tags);
+>>>>>>> master
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
+<<<<<<< HEAD
             .add("firstName", firstName)
             .add("lastName", lastName)
             .add("phone", phone)
@@ -152,6 +167,17 @@ public class Person {
             .add("bankDetails", bankDetails)
             .add("tags", tags)
             .toString();
+=======
+                .add("firstName", firstName)
+                .add("lastName", lastName)
+                .add("phone", phone)
+                .add("sex", sex)
+                .add("payRate", payRate)
+                .add("address", address)
+                .add("bankDetails", bankDetails)
+                .add("tags", tags)
+                .toString();
+>>>>>>> master
     }
 
 }

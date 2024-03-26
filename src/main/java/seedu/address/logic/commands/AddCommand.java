@@ -3,9 +3,9 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BANKDETAILS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMPLOYMENTTYPE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FIRSTNAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LASTNAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PAYRATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SEX;
 
@@ -24,6 +24,7 @@ public class AddCommand extends Command {
     public static final String COMMAND_WORD = "add";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
+<<<<<<< HEAD
         + "Parameters: "
         + PREFIX_FIRSTNAME + "FIRST NAME "
         + PREFIX_LASTNAME + "LAST NAME "
@@ -41,6 +42,25 @@ public class AddCommand extends Command {
         + PREFIX_EMPLOYMENTTYPE + "ft "
         + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
         + PREFIX_BANKDETAILS + "0495858505";
+=======
+            + "Parameters: "
+            + PREFIX_FIRSTNAME + "FIRST NAME "
+            + PREFIX_LASTNAME + "LAST NAME "
+            + PREFIX_PHONE + "PHONE "
+            + PREFIX_SEX + "SEX "
+            + PREFIX_PAYRATE + "PAY RATE "
+            + PREFIX_ADDRESS + "ADDRESS "
+            + PREFIX_BANKDETAILS + "BANK DETAILS \n"
+            //  + PREFIX_TAG + "TAG...\n"
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_FIRSTNAME + "John "
+            + PREFIX_LASTNAME + "Doe "
+            + PREFIX_PHONE + "98765432 "
+            + PREFIX_SEX + "m "
+            + PREFIX_PAYRATE + "14 "
+            + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
+            + PREFIX_BANKDETAILS + "0495858505";
+>>>>>>> master
     //  + PREFIX_TAG + "owesMoney";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";

@@ -4,12 +4,12 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_BANKDETAILS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_BANKDETAILS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMPLOYMENTTYPE_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMPLOYMENTTYPE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_FIRSTNAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_FIRSTNAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LASTNAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LASTNAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PAYRATE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PAYRATE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SEX_AMY;
@@ -35,7 +35,7 @@ public class TypicalPersons {
         .withFirstName("Alice")
         .withLastName("Pauline")
         .withSex("f")
-        .withEmploymentType("ft")
+        .withPayRate(14.5)
         .withAddress("123, Jurong West Ave 6, #08-111")
         .withPhone("94351253")
         .withTags("friends")
@@ -44,7 +44,7 @@ public class TypicalPersons {
         .withFirstName("Benson")
         .withLastName("Meier")
         .withSex("m")
-        .withEmploymentType("pt")
+        .withPayRate(14.5)
         .withAddress("311, Clementi Ave 2, #02-25")
         .withPhone("98765432")
         .withTags("owesMoney", "friends")
@@ -54,7 +54,7 @@ public class TypicalPersons {
         .withLastName("Kurz")
         .withPhone("95352563")
         .withSex("m")
-        .withEmploymentType("ft")
+        .withPayRate(14.5)
         .withAddress("wall street")
         .build();
     public static final Person DANIEL = new PersonBuilder()
@@ -62,7 +62,7 @@ public class TypicalPersons {
         .withLastName("Meier")
         .withPhone("87652533")
         .withSex("m")
-        .withEmploymentType("ft")
+        .withPayRate(14.5)
         .withAddress("10th street")
         .withTags("friends")
         .build();
@@ -71,7 +71,7 @@ public class TypicalPersons {
         .withLastName("Meyer")
         .withPhone("94823224")
         .withSex("f")
-        .withEmploymentType("ft")
+        .withPayRate(14.5)
         .withAddress("michegan ave")
         .build();
     public static final Person FIONA = new PersonBuilder()
@@ -79,7 +79,7 @@ public class TypicalPersons {
         .withLastName("Kunz")
         .withPhone("94823427")
         .withSex("f")
-        .withEmploymentType("ft")
+        .withPayRate(14.5)
         .withAddress("little tokyo")
         .build();
     public static final Person GEORGE = new PersonBuilder()
@@ -87,7 +87,7 @@ public class TypicalPersons {
         .withLastName("Best")
         .withPhone("93482442")
         .withSex("m")
-        .withEmploymentType("ft")
+        .withPayRate(14.5)
         .withAddress("4th street")
         .build();
 
@@ -97,7 +97,7 @@ public class TypicalPersons {
         .withLastName("Meier")
         .withPhone("84832424")
         .withSex("m")
-        .withEmploymentType("ft")
+        .withPayRate(14.5)
         .withAddress("little india")
         .build();
     public static final Person IDA = new PersonBuilder()
@@ -105,7 +105,7 @@ public class TypicalPersons {
         .withLastName("Mueller")
         .withPhone("84821331")
         .withSex("f")
-        .withEmploymentType("ft")
+        .withPayRate(14.5)
         .withAddress("chicago ave")
         .build();
 
@@ -115,7 +115,7 @@ public class TypicalPersons {
         .withLastName(VALID_LASTNAME_AMY)
         .withPhone(VALID_PHONE_AMY)
         .withSex(VALID_SEX_AMY)
-        .withEmploymentType(VALID_EMPLOYMENTTYPE_AMY)
+        .withPayRate(VALID_PAYRATE_AMY)
         .withAddress(VALID_ADDRESS_AMY)
         .withBankDetails(VALID_BANKDETAILS_AMY).withWorkedHours(VALID_WORK_HOURS_AMY)
         .withTags(VALID_TAG_COOK).build();
@@ -124,7 +124,7 @@ public class TypicalPersons {
         .withLastName(VALID_LASTNAME_BOB)
         .withPhone(VALID_PHONE_BOB)
         .withSex(VALID_SEX_BOB)
-        .withEmploymentType(VALID_EMPLOYMENTTYPE_BOB)
+        .withPayRate(VALID_PAYRATE_BOB)
         .withAddress(VALID_ADDRESS_BOB)
         .withBankDetails(VALID_BANKDETAILS_BOB).withWorkedHours(VALID_WORK_HOURS_BOB)
         .withTags(VALID_TAG_WAITER, VALID_TAG_COOK)
