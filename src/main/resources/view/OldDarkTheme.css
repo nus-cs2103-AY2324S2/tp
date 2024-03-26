@@ -5,34 +5,32 @@
 
 .label {
     -fx-font-size: 11pt;
-    -fx-font-family: "Roboto";
+    -fx-font-family: "Segoe UI Semibold";
     -fx-text-fill: #555555;
     -fx-opacity: 0.9;
 }
 
 .label-bright {
     -fx-font-size: 11pt;
-    -fx-font-family: "Roboto";
+    -fx-font-family: "Segoe UI Semibold";
     -fx-text-fill: white;
     -fx-opacity: 1;
 }
 
 .label-header {
     -fx-font-size: 32pt;
-    -fx-font-family: "Roboto";
+    -fx-font-family: "Segoe UI Light";
     -fx-text-fill: white;
     -fx-opacity: 1;
 }
 
 .text-field {
     -fx-font-size: 12pt;
-    -fx-font-family: "Roboto";
-    -fx-background-radius: 20px;
+    -fx-font-family: "Segoe UI Semibold";
 }
 
 .tab-pane {
     -fx-padding: 0 0 0 1;
-    -fx-background-radius: 20px;
 }
 
 .tab-pane .tab-header-area {
@@ -43,12 +41,11 @@
 
 .table-view {
     -fx-base: #1d1d1d;
-    -fx-control-inner-background: transparent;
+    -fx-control-inner-background: #1d1d1d;
     -fx-background-color: #1d1d1d;
     -fx-table-cell-border-color: transparent;
     -fx-table-header-border-color: transparent;
     -fx-padding: 5;
-    -fx-background-radius: 20px;
 }
 
 .table-view .column-header-background {
@@ -69,7 +66,7 @@
 
 .table-view .column-header .label {
     -fx-font-size: 20pt;
-    -fx-font-family: "Roboto";
+    -fx-font-family: "Segoe UI Light";
     -fx-text-fill: white;
     -fx-alignment: center-left;
     -fx-opacity: 1;
@@ -80,50 +77,42 @@
 }
 
 .split-pane:horizontal .split-pane-divider {
-    -fx-background-color: transparent;
+    -fx-background-color: derive(#1d1d1d, 20%);
     -fx-border-color: transparent transparent transparent #4d4d4d;
 }
 
 .split-pane {
     -fx-border-radius: 1;
     -fx-border-width: 1;
-    -fx-background-color: transparent;
+    -fx-background-color: derive(#1d1d1d, 20%);
 }
 
 .list-view {
     -fx-background-insets: 0;
     -fx-padding: 0;
-    -fx-background-color: transparent;
-    -fx-background-radius: 0;
+    -fx-background-color: derive(#1d1d1d, 20%);
 }
 
 .list-cell {
-    -fx-label-padding: 0 0 10 0; /* Increase padding between each contact */
-    -fx-graphic-text-gap: 0;
-    -fx-padding: 0 0 10 0; /* Increase padding between each contact */
-    -fx-background-insets: 0 0 10px 0; /* Increase space below each contact */
-    -fx-background-radius: 20px;
-    -fx-background-color: transparent;
-    -fx-margin: 0 0 20px 0; /* Increase margin below each contact */
+    -fx-label-padding: 0 0 0 0;
+    -fx-graphic-text-gap : 0;
+    -fx-padding: 0 0 0 0;
 }
 
 .list-cell:filled:even {
-    -fx-background-color: rgba(60, 62, 63, 0.6);
-    -fx-background-radius: 20px;
+    -fx-background-color: #3c3e3f;
 }
 
 .list-cell:filled:odd {
-    -fx-background-color: rgba(81, 86, 88, 0.6);
-    -fx-background-radius: 20px;
+    -fx-background-color: #515658;
 }
 
 .list-cell:filled:selected {
     -fx-background-color: #424d5f;
-    -fx-background-radius: 20px;
 }
 
 .list-cell:filled:selected #cardPane {
-    -fx-border-color: transparent;
+    -fx-border-color: #3e7b91;
     -fx-border-width: 1;
 }
 
@@ -132,23 +121,25 @@
 }
 
 .cell_big_label {
-    -fx-font-family: "Roboto";
-    -fx-font-size: 17px;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 16px;
     -fx-text-fill: #010504;
 }
 
 .cell_small_label {
-    -fx-font-family: "Roboto";
+    -fx-font-family: "Segoe UI";
     -fx-font-size: 13px;
     -fx-text-fill: #010504;
 }
 
 .stack-pane {
-     -fx-background-color: transparent;
+     -fx-background-color: derive(#1d1d1d, 20%);
 }
 
 .pane-with-border {
-     -fx-background-color: rgba(92, 64, 51, 0.6);
+     -fx-background-color: derive(#1d1d1d, 20%);
+     -fx-border-color: derive(#1d1d1d, 10%);
+     -fx-border-top-width: 1px;
 }
 
 .status-bar {
@@ -157,7 +148,7 @@
 
 .result-display {
     -fx-background-color: transparent;
-    -fx-font-family: "Roboto";
+    -fx-font-family: "Segoe UI Light";
     -fx-font-size: 13pt;
     -fx-text-fill: white;
 }
@@ -167,7 +158,7 @@
 }
 
 .status-bar .label {
-    -fx-font-family: "Roboto";
+    -fx-font-family: "Segoe UI Light";
     -fx-text-fill: white;
     -fx-padding: 4px;
     -fx-pref-height: 30px;
@@ -184,17 +175,17 @@
 }
 
 .grid-pane {
-    -fx-background-color: rgba(29, 29, 29, 80%);
-    -fx-border-color: transparent;
+    -fx-background-color: derive(#1d1d1d, 30%);
+    -fx-border-color: derive(#1d1d1d, 30%);
     -fx-border-width: 1px;
 }
 
 .grid-pane .stack-pane {
-    -fx-background-color: transparent;
+    -fx-background-color: derive(#1d1d1d, 30%);
 }
 
 .context-menu {
-    -fx-background-color: transparent;
+    -fx-background-color: derive(#1d1d1d, 50%);
 }
 
 .context-menu .label {
@@ -202,12 +193,12 @@
 }
 
 .menu-bar {
-    -fx-background-color: rgba(92, 64, 51, 0.6);
+    -fx-background-color: derive(#1d1d1d, 20%);
 }
 
 .menu-bar .label {
     -fx-font-size: 14pt;
-    -fx-font-family: "Roboto";
+    -fx-font-family: "Segoe UI Light";
     -fx-text-fill: white;
     -fx-opacity: 0.9;
 }
@@ -225,9 +216,9 @@
     -fx-padding: 5 22 5 22;
     -fx-border-color: #e2e2e2;
     -fx-border-width: 2;
-    -fx-background-radius: 20px;
+    -fx-background-radius: 0;
     -fx-background-color: #1d1d1d;
-    -fx-font-family: "Roboto", Helvetica, Arial, sans-serif;
+    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
     -fx-font-size: 11pt;
     -fx-text-fill: #d8d8d8;
     -fx-background-insets: 0 0 0 0, 0, 1, 2;
@@ -291,11 +282,11 @@
 }
 
 .scroll-bar {
-    -fx-background-color: transparent;
+    -fx-background-color: derive(#1d1d1d, 20%);
 }
 
 .scroll-bar .thumb {
-    -fx-background-color: rgba(92, 64, 51, 0.6);
+    -fx-background-color: derive(#1d1d1d, 50%);
     -fx-background-insets: 3;
 }
 
@@ -332,7 +323,7 @@
     -fx-border-color: #383838 #383838 #ffffff #383838;
     -fx-border-insets: 0;
     -fx-border-width: 1;
-    -fx-font-family: "Roboto";
+    -fx-font-family: "Segoe UI Light";
     -fx-font-size: 13pt;
     -fx-text-fill: white;
 }
@@ -342,7 +333,7 @@
 }
 
 #resultDisplay .content {
-    -fx-background-color: rgba(92, 64, 51, 0.6);
+    -fx-background-color: transparent, #383838, transparent, #383838;
     -fx-background-radius: 0;
 }
 
@@ -355,7 +346,7 @@
     -fx-text-fill: white;
     -fx-background-color: #3e7b91;
     -fx-padding: 1 3 1 3;
-    -fx-border-radius: 5;
-    -fx-background-radius: 5;
-    -fx-font-size: 13;
+    -fx-border-radius: 2;
+    -fx-background-radius: 2;
+    -fx-font-size: 11;
 }
