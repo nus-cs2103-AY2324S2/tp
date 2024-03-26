@@ -64,8 +64,7 @@ public class BorrowCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INSUFFICIENT_MERIT_SCORE);
         }
 
-        personToEdit.getBookList().add(book);
-        ArrayList<Book> updatedBookList = personToEdit.getBookList();
+        ArrayList<Book> updatedBookList = personToEdit.getBookListWithNewBook(book);
 
         Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
             personToEdit.getAddress(), personToEdit.getMeritScore().decrementScore(), updatedBookList,
