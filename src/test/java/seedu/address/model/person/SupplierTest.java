@@ -98,6 +98,7 @@ public class SupplierTest {
                 + ", email=" + ALICESUPPLIER.getEmail() + ", address="
                 + ALICESUPPLIER.getAddress()
                 + ", tags=" + ALICESUPPLIER.getTags()
+                + ", rating=" + ALICESUPPLIER.getRating()
                 + ", product=" + ALICESUPPLIER.getProduct()
                 + ", price=" + ALICESUPPLIER.getPrice()
                 + "}";

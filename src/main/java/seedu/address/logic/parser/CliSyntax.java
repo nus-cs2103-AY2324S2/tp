@@ -21,6 +21,7 @@ public class CliSyntax {
 
     public static final Prefix PREFIX_FIELD = new Prefix("; field : ");
     public static final Prefix PREFIX_NOTE = new Prefix("; note : ");
+    public static final Prefix PREFIX_RATING = new Prefix("; rating : ");
     public static final Prefix PREFIX_HELP = new Prefix("; command : ");
     public static final Prefix PREFIX_DEADLINE = new Prefix("; deadline : ");
 
@@ -37,6 +38,7 @@ public class CliSyntax {
         PREFIX_SKILL,
         PREFIX_COMMISSION,
         PREFIX_NOTE,
+        PREFIX_RATING,
         PREFIX_DEADLINE,
         PREFIX_HELP
     };

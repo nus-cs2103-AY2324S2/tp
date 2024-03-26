@@ -21,7 +21,6 @@
       <HBox spacing="5" alignment="CENTER_LEFT">
         <Label fx:id="id" styleClass="cell_big_label">
           <minWidth>
-            <!-- Ensures that the label text is never truncated -->
             <Region fx:constant="USE_PREF_SIZE" />
           </minWidth>
         </Label>
@@ -38,6 +37,12 @@
       <Label fx:id="skill" styleClass="cell_small_label" text="\$skill" managed="false"/>
       <Label fx:id="commission" styleClass="cell_small_label" text="\$commission" managed="false"/>
       <Label fx:id="note" styleClass="cell_small_label" text="\$note" />
+      <Label fx:id="rating" styleClass="cell_small_label" text="\$rating" />
     </VBox>
+    <HBox alignment="TOP_RIGHT">
+      <Region HBox.hgrow="ALWAYS" />
+      <Label fx:id="pin" styleClass="cell_big_label" text="\$pin" managed="false" />
+    </HBox>
   </GridPane>
 </HBox>
+

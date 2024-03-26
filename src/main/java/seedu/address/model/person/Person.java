@@ -24,20 +24,24 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
-    private Note note;
+    private final Note note;
+    private final Rating rating;
+    private Pin pin;
     private boolean hasDeadlineNote;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Note note, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, note, tags);
+    public Person(Name name, Phone phone, Email email, Address address, Note note, Set<Tag> tags, Rating rating) {
+        requireAllNonNull(name, phone, email, address, note, tags, rating);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.note = note;
+        this.pin = new Pin();
         this.tags.addAll(tags);
+        this.rating = rating;
     }
 
     public Name getName() {
@@ -55,8 +59,44 @@ public class Person {
     public Address getAddress() {
         return address;
     }
+
     public Note getNote() {
         return note;
+    }
+    public Rating getRating() {
+        return rating;
+    }
+
+    /**
+     * Returns a new instantiation of the current {@code Person} with the updated note,
+     * which throws {@code UnsupportedOperationException} if modification is attempted.
+     */
+    public Person updateNote(Note note) {
+        return new Person(this.name, this.phone, this.email, this.address, note, this.tags, rating);
+    }
+
+    /**
+     * Returns a new instantiation of the current {@code Person} with the updated rating,
+     * which throws {@code UnsupportedOperationException} if modification is attempted.
+     */
+    public Person updateRating(Rating rating) {
+        return new Person(this.name, this.phone, this.email, this.address, this.note, this.tags, rating);
+    }
+
+    public Pin getPin() {
+        return this.pin;
+    }
+
+    public void toPin() {
+        pin.setPin();
+    }
+
+    public void toUnpin() {
+        pin.setUnpin();
+    }
+
+    public boolean isPinned() {
+        return pin.getIsPinned();
     }
 
     /**
@@ -101,7 +141,6 @@ public class Person {
         }
 
         Person otherPerson = (Person) other;
-        // does not have to have the same note to be equal
         return name.equals(otherPerson.name)
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
@@ -112,7 +151,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, note, tags);
+        return Objects.hash(name, phone, email, address, note, tags, rating);
     }
 
     @Override
@@ -124,6 +163,7 @@ public class Person {
                 .add("address", address)
                 .add("note", note)
                 .add("tags", tags)
+                .add("rating", rating)
                 .toString();
     }
 
