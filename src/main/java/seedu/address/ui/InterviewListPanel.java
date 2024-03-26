@@ -36,7 +36,6 @@ public class InterviewListPanel extends UiPart<Region> {
         @Override
         protected void updateItem(Interview interview, boolean empty) {
             super.updateItem(interview, empty);
-            System.out.println("Yes");
             if (empty || interview == null) {
                 setGraphic(null);
                 setText(null);
