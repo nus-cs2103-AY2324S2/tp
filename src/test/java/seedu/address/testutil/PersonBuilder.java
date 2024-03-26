@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 import seedu.address.model.person.Address;
+import seedu.address.model.person.ClientStatus;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Meeting;
 import seedu.address.model.person.Name;
@@ -34,6 +35,7 @@ public class PersonBuilder {
     private Address address;
     private Set<Policy> policy;
     private Relationship relationship;
+    private ClientStatus clientStatus;
     private Set<Tag> tags;
 
     private List<Meeting> meetings;
@@ -48,6 +50,7 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         policy = new HashSet<>();
+        clientStatus = ClientStatus.initClientStatus();
         relationship = new Relationship(DEFAULT_RELATIONSHIP);
         tags = new HashSet<>();
         meetings = new ArrayList<>();
@@ -63,6 +66,7 @@ public class PersonBuilder {
         address = personToCopy.getAddress();
         policy = new HashSet<>(personToCopy.getPolicies());
         relationship = personToCopy.getRelationship();
+        clientStatus = personToCopy.getClientStatus();
         tags = new HashSet<>(personToCopy.getTags());
         meetings = new ArrayList<>(personToCopy.getMeetings());
     }
@@ -124,6 +128,14 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code ClientStatus} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withClientStatus(String clientStatus) {
+        this.clientStatus = new ClientStatus(Integer.parseInt(clientStatus));
+        return this;
+    }
+
+    /**
      * Adds a {@code Meeting} to the {@code Person} that we are building.
      */
     public PersonBuilder withMeeting(Meeting meeting) {
@@ -137,7 +149,7 @@ public class PersonBuilder {
      * @return A new Person object with the specified details.
      */
     public Person build() {
-        Person p = new Person(name, phone, email, address, relationship, policy, tags);
+        Person p = new Person(name, phone, email, address, relationship, policy, clientStatus, tags);
 
         p.setMeetings(this.meetings);
 
