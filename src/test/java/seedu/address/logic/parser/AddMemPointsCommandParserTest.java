@@ -30,7 +30,7 @@ public class AddMemPointsCommandParserTest {
     @Test
     public void parse_missingMembershipPoints_failure() {
         String expectedMessage = AddMemPointsCommand.INVALID_COMMAND_FORMAT + "\n" + AddMemPointsCommand.MESSAGE_USAGE;
-        assertParseFailure(parser, " Alice", expectedMessage);
+        assertParseFailure(parser, " n/Alice", expectedMessage);
     }
 
     @Test
@@ -49,13 +49,13 @@ public class AddMemPointsCommandParserTest {
     @Test
     public void parse_invalidPrefix_failure() {
         String expectedMessage = AddMemPointsCommand.INVALID_COMMAND_FORMAT + "\n" + AddMemPointsCommand.MESSAGE_USAGE;
-        assertParseFailure(parser, " Alice p/10", expectedMessage);
+        assertParseFailure(parser, " n/Alice p/10", expectedMessage);
     }
 
     @Test
     public void parse_pointsNoPrefix_failure() {
         String expectedMessage = AddMemPointsCommand.INVALID_COMMAND_FORMAT + "\n" + AddMemPointsCommand.MESSAGE_USAGE;
-        assertParseFailure(parser, " Alice 10", expectedMessage);
+        assertParseFailure(parser, " n/Alice 10", expectedMessage);
     }
 
     @Test
