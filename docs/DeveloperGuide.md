@@ -189,6 +189,49 @@ Appointment List are saved under a separate file `appointments.json` in the data
 
 
 #### Design Considerations
+**Aspect: Patient ID**
+- In any system that manages individual records, it is critical to ensure that we are able to distinguish between entities (which are patients) in our case.
+
+
+- **Alternative 1: Using Integer ID as the primary key (Current Approach)**
+  - We needed some method to ensure that the patient was unique. The primary solution implemented involves a running integer identifier - and is saved together with each patient. The identifier serves as the primary key for the patient object, similar to how a unique ID in a database ensure each record's uniqueness.
+  - This was different to how the AB3 application was originally designed - where the ID followed the natural ordering of the elements in the list.
+  - Pros
+    - Extremely user-friendly for counsellor as ID is never changed. 
+      - Potentially patient can even be issued a member card starting that patient ID.
+  - Cons
+    - Difficult to implement.
+    - There will be "holes" in the sequential ID when records are deleted.
+
+- **Alternative 2: Using Name as the primary key**
+  - This approach was quickly deemed unsuitable due to the high probability of name duplication. While names are an important identifier, there is a great risk of collision (i.e. Jack Tan vs Jack Tan Ah Kou). While this method is sufficient for a non-mission critical address book, our CogniCare application must try to reduce the likeliness of errors occurring.
+  - Pros
+    - Extremely user friendly
+  - Cons
+    - Commands will be extremely long; and difficult to type.
+    - Counsellor will need to remember exactly how the full name is spelt.
+    - May select the wrong patient (i.e. Jack Tan vs Jack Tan Ah Kou).
+    
+- **Alternative 3: Using Natural Ordering of the names in CogniCare application (AB3 approach)**
+  - As we initially strived for a design where the patientId was used like a Foreign Key in the Appointments object, the ID changing would mean that the data integrity for Appointments class would be compromised
+  - Pros
+    - Easy to implement
+  - Cons
+    - Data Integrity of Appointments will be compromised
+    - Every time a patient is deleted, the subsequent IDs will be coalesced.
+
+
+**Aspect: Search query with AND constraint**
+In enhancing the search functionality within CogniCare, the implementation of an AND constraint for search queries was paramount. This feature allows counsellors to refine search criteria, leading to more precise and relevant search results. For example, counsellors can search for a patient using a combination of (partial name AND partial phone number AND partial email address). Only parameter is required, the others are optional.
+
+This enhancement was driven for the need of:
+1. Improved Search Accuracy: By allowing multiple criteria to be specified, counsellors can narrow down search results to the most relevant patients (as the SoC cohort is quite large).
+2. Efficiency: Enables quicker access to patient records by reducing the time spent sifting through irrelevant patient information.
+
+**Single Criterion Search (AB3 Approach)**: The original AB3 approach of allowing search based on a single criterion was found to be too limiting for the different needs of patient management in CogniCare.
+
+**Search Query with OR Constraint:** While also considered, this approach was determined to potentially yield too broad of a search result, undermining the efficiency desired in retrieving patient record.
+
 **Aspect: Appointment ID**
 - **Alternative 1 (current choice):** Generate auto-increasing fixed appointment ID when creating a new appointment. Fail commands that attempt to set the appointment ID still increase the appointment ID.
   - Pros: 
@@ -465,7 +508,42 @@ Priorities: High (must have) - `* * * *`, Medium (nice to have) - `* * *`, Low (
 
 (For all use cases below, the **System** is the `CogniCare` application and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Search a student**
+**Use case: Add a Patient**
+1. User enters command to add a patient with all mandatory information (Name, Email, Phone Number). Associated with is optional.
+2. CogniCare validates the information are valid.
+3. CogniCare saves the new patient information.
+4. CogniCare displays a success message confirming that the new patient has been added.
+
+**Extensions**
+
+* 1a. Required fields are left blank, or fields do not meet the specified format.
+  * 1ai. CogniCare displays error message associated with the relevant missing field (i.e. Phone number error message for missing phone number field)
+    Use case ends
+
+* 2a. Required fields are invalid (i.e. Phone Number does not meet SG format)
+  * 2ai. CogniCare displays error message associated with the relevant erroneous field (i.e. Phone number error message for invalid phone number field)
+    Use case ends
+  
+* 2b. Patient with the same name (regardless of case sensitivity and whitespace) already exists.
+  * 2bi. CogniCare alerts the user about the duplicate name and prevents the addition.
+  Use case ends.
+
+**Use Case: Edit a Patient**
+1. User enters command to add a patient with required index and data field to be edited.
+2. CogniCare displays a success message confirming the patient's details have been updated.
+Use case ends.
+
+
+**Extensions**
+* 1a. The patient identifier does not match any patient in the system.
+  * 1a1. CogniCare displays an error message that the patient was not found.
+  Use case ends.
+
+* 2a. Required data fields are left blank or data is in the incorrect format.
+  * 2a1. CogniCare displays an error message indicating what needs to be corrected or filled in, including the specific requirements for the phone number and email format.
+  Use case ends.
+
+* **Use case: List all / Search for patients meeting selected criteria / criterion**
 
 **MSS**
 
@@ -476,40 +554,43 @@ Priorities: High (must have) - `* * * *`, Medium (nice to have) - `* * *`, Low (
 
 **Extensions**
 
-* 1a. The query has missing parameters
+* 1a. The query has no parameters specified.
+
+    * 1a2. CogniCare returns all information about all patient (returns the entire AddressBook).
+    
+    Use case ends.
+
+
+* 1b. The query has no parameter value specified.
 
     * 1a1. CogniCare shows an error message.
 
-    * 1a2. CogniCare returns all information about a patient.
-    
-    Use case ends.
+  Use case ends.
 
 * 2a. The list is empty.
 
   Use case ends.
 
 
-**Use case: Delete a student**
+**Use case: Delete a patient**
 
 **MSS**
 
 1.  User requests to delete a patient at the given index.
-2.  CogniCare displays the patient information prior to deletion, and confirms with the user prior to deletion.
-3.  CogniCare deletes the patient.
-
+2.  CogniCare deletes the patient.
+3.  CogniCare displays a successful message stating that the deletion was successful and displays information of deleted patient.
     Use case ends.
 
 **Extensions**
 
-* 1a. The query has missing parameters
-
-    * 1a1. CogniCare shows an error message that the index is invalid.
+* 1a. The query has missing Id parameter.
+    * 1a1. CogniCare displays an error message that the index is invalid. (No deletion is done)
 
     Use case ends.
 
-* 2a. User does not want to delete.
-    * 2a1. CogniCare shows an error message that the user cancelled the delete operation.
-  
+ 1b. The patient index is invalid. 
+    * 1a1. CogniCare displays an error message that the index is invalid. (No deletion is done)
+
   Use case ends.
 
 **Use case: Search for an appointment of a specific student**
