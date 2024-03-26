@@ -159,7 +159,7 @@ These are the platforms we currently support ClientCare on:
 
 #### For Windows
 1. To start ClientCare, simply open up the folder where your downloaded `clientcare.jar`.
-2. Next, click on the Address Bar as shown below. It should turn !!#b#blue##!! upon clicking.
+2. Next, click on the Address Bar as shown below. It should turn !!blue!! upon clicking.
 ![folder](images/ug/windows%20saveDirectory.png =600x)
 
 3. Type 'powershell' into the Address Bar and press ENTER on your keyboard
