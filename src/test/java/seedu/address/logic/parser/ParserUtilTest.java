@@ -210,4 +210,36 @@ public class ParserUtilTest {
         String test = ParserUtil.parseUuid(expected);
         assertEquals(expected, test);
     }
+    @Test
+    public void getAttributeHashMapFromAttributeStrings_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.getAttributeHashMapFromAttributeStrings(null));
+    }
+    @Test
+    public void getAttributeHashMapFromAttributeStrings_emptyArray_emptyHashMap() {
+        String[] parts = {};
+        try {
+            assertTrue(ParserUtil.getAttributeHashMapFromAttributeStrings(parts).isEmpty());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
+    @Test
+    public void getAttributeHashMapFromAttributeStrings_validArray_validHashMap() {
+        String[] parts = {"Name Rachel", " Phone  123456 "};
+        try {
+            assertEquals("Rachel", ParserUtil.getAttributeHashMapFromAttributeStrings(parts).get("Name"));
+            assertEquals("123456", ParserUtil.getAttributeHashMapFromAttributeStrings(parts).get("Phone"));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
+    @Test
+    public void removeFirstItemFromStringList_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.removeFirstItemFromStringList(null));
+    }
+    @Test
+    public void removeFirstItemFromStringList_emptyArray_throwsIllegalArgumentException() {
+        String[] parts = {};
+        assertThrows(IllegalArgumentException.class, () -> ParserUtil.removeFirstItemFromStringList(parts));
+    }
 }

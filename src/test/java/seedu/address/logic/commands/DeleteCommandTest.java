@@ -55,7 +55,7 @@ public class DeleteCommandTest {
     public void execute_nonRealUuidFilteredList_throwsCommandException() {
         DeleteCommand deleteCommand = new DeleteCommand("12345");
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_UUID);
     }
 
     @Test

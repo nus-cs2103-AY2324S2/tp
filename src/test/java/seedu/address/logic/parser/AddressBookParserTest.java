@@ -89,7 +89,7 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_addAttribute() throws Exception {
-        String userInput = "addAttribute \\uuid 4000 \\name John";
+        String userInput = "addAttribute 4000 \\name John";
         Command command = parser.parseCommand(userInput);
 
         assertTrue(command instanceof AddAttributeCommand);
@@ -97,7 +97,7 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_delAttribute() throws Exception {
-        String userInput = "deleteAttribute \\uuid 4000 \\name John";
+        String userInput = "deleteAttribute 4000 /name";
         Command command = parser.parseCommand(userInput);
 
         assertTrue(command instanceof DeleteAttributeCommand);
