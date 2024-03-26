@@ -16,7 +16,7 @@ public class RsvDate {
     public static final String MESSAGE_CONSTRAINTS =
             "Reservation date should be valid, and in yyyy-MM-dd format";
     private static final DateTimeFormatter FORMATTER =
-            DateTimeFormatter.ofPattern("yyyy-MM-dd").withResolverStyle(ResolverStyle.STRICT);
+            DateTimeFormatter.ofPattern("uuuu-MM-dd").withResolverStyle(ResolverStyle.STRICT);
     private final LocalDate value;
 
     /**
@@ -31,13 +31,14 @@ public class RsvDate {
     }
 
     /**
-     * Returns true if a given string is a valid reservation date of format yyyy-MM-dd.
+     * Returns true if a given string is a valid reservation date of format uuuu-MM-dd.
      */
     public static boolean isValidRsvDate(String test) {
         try {
             LocalDate.parse(test, FORMATTER);
             return true;
         } catch (DateTimeException e) {
+            System.out.println(e);
             return false;
         }
     }

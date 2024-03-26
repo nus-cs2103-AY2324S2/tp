@@ -54,8 +54,8 @@ public class Messages {
      */
     public static String format(Reservation reservation) {
         final StringBuilder builder = new StringBuilder();
-        builder.append("; Person: ")
-                .append(reservation.getPerson())
+        builder.append("Person: ")
+                .append(reservation.getPerson().getName())
                 .append("; Date: ")
                 .append(reservation.getDate())
                 .append("; Time: ")
