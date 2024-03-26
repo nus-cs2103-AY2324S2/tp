@@ -60,8 +60,7 @@ public class TypicalPersons {
             .withEmail("jacker@hotmail.com")
             .withPhone("87173548")
             .withTags("friends")
-            .withBook("How To Grow Taller")
-            .withMeritScore(-1).build();
+            .withMeritScore(1).build();
 
     // Manually added
     public static final Person KEPLER = new PersonBuilder().withName("Kepler")

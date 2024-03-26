@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.ReturnCommand;
+import seedu.address.model.book.Book;
 import seedu.address.testutil.TypicalIndexes;
 
 
@@ -42,7 +43,7 @@ public class ReturnCommandParserTest {
     @Test
     public void parse_allFieldsPresent_success() {
         // space after index
-        assertParseSuccess(parser, "9 ",
-                new ReturnCommand(TypicalIndexes.INDEX_KEPLER));
+        assertParseSuccess(parser, "9 b/Some BookTitle",
+                new ReturnCommand(TypicalIndexes.INDEX_KEPLER, new Book("Some BookTitle")));
     }
 }

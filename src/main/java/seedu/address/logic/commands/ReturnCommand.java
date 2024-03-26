@@ -1,15 +1,16 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BOOKLIST;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.book.Book;
 import seedu.address.model.person.Person;
 
 /**
@@ -20,22 +21,26 @@ public class ReturnCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the book list of the person identified "
             + "by the index number used in the last person listing. "
-            + "Existing borrow will be overwritten to an empty string.\n"
+            + "If book exists in the person's book list, it will be removed. \n"
             + "Parameters: INDEX (must be a positive integer) \n"
-            + "Example: " + COMMAND_WORD + " 1 ";
+            + PREFIX_BOOKLIST + "[borrow]\n"
+            + "Example: " + COMMAND_WORD + " 1 "
+            + PREFIX_BOOKLIST + "Likes to swim.";
 
     public static final String MESSAGE_RETURN_BOOK_SUCCESS = "Removed book from Person: %1$s";
 
     private final Index index;
+    private final Book book;
 
     /**
      * Creates a ReturnCommand object.
      *
      * @param index The index of the person returning the book.
      */
-    public ReturnCommand(Index index) {
-        requireAllNonNull(index);
+    public ReturnCommand(Index index, Book book) {
+        requireAllNonNull(index, book);
         this.index = index;
+        this.book = book;
     }
 
     @Override
@@ -46,16 +51,20 @@ public class ReturnCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
+        // Checks whether the borrowed book is an empty field.
+        if (book.equals(new Book(""))) {
+            throw new CommandException(Messages.MESSAGE_EMPTY_BOOK_INPUT_FIELD);
+        }
+
         Person personToEdit = lastShownList.get(index.getZeroBased());
 
         if (personToEdit.getBookList().toString().isEmpty()) {
             throw new CommandException(Messages.MESSAGE_EMPTY_BOOKLIST_FIELD);
         }
 
-        // From JinHan, I edited BookList("") --> BookList to allow compilation
         Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
                 personToEdit.getAddress(), personToEdit.getMeritScore().incrementScore(),
-                new ArrayList<>(), personToEdit.getTags());
+                personToEdit.getBookListWithoutBook(book), personToEdit.getTags());
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
@@ -83,6 +92,7 @@ public class ReturnCommand extends Command {
         }
 
         ReturnCommand e = (ReturnCommand) other;
-        return index.equals(e.index);
+        return index.equals(e.index)
+                && book.equals(e.book);
     }
 }
