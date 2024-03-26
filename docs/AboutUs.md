@@ -17,7 +17,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <!-- [[homepage](http://www.comp.nus.edu.sg/~damithch)] -->
 [[GitHub](https://github.com/HongRay)]
-[[Portfolio](../members/hongRay.md)]
+[[Portfolio](team/members/hongRay.md)]
 
 * Role: Developer
 * Responsibility: UI
@@ -27,7 +27,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/chenxy128.png" width="200px">
 
 [[Github](http://github.com/ChenXy128)]
-[[Portfolio](../members/Xiaoyang.md)]
+[[Portfolio](team/members/Xiaoyang.md)]
 
 * Role: Developer
 * Responsibilities: UI
@@ -37,7 +37,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/xuyan0518.png" width="200px">
 
 [[Github](http://github.com/Xuyan0518)]
-[[Portfolio](../members/Xuyan.md)]
+[[Portfolio](team/members/Xuyan.md)]
 
 * Role: Developer
 * Responsibilities: Data
@@ -47,7 +47,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/cedricaca.png" width="200px">
 
 [[Github](http://github.com/Cedricaca)]
-[[Portfolio](../members/Cedricaca.md)]
+[[Portfolio](team/members/Cedricaca.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
@@ -57,7 +57,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/nusminato.png" width="200px">
 
 [[Github](http://github.com/NusMinato)]
-[[Portfolio](../members/Chengzhen.md)]
+[[Portfolio](team/members/Chengzhen.md)]
 
 * Role: Developer
 * Responsibilities: UI
