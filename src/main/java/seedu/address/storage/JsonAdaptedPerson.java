@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.AddMemPointsCommand;
+import seedu.address.model.allergen.Allergen;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.MembershipPoints;
@@ -19,7 +20,6 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Points;
 import seedu.address.model.person.orders.Order;
-import seedu.address.model.allergen.Allergen;
 
 /**
  * Jackson-friendly version of {@link Person}.
