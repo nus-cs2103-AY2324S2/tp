@@ -23,6 +23,7 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.MailCommand;
 import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.TagCommand;
 import seedu.address.logic.commands.UndoCommand;
@@ -30,6 +31,7 @@ import seedu.address.logic.commands.UntagCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.TagContainsKeywordsPredicate;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
@@ -123,6 +125,14 @@ public class AddressBookParserTest {
                 + " "
                 + INDEX_FIRST_PERSON.getOneBased()
                 + " tag:alpha tag:beta"));
+    }
+
+    @Test
+    public void parseCommand_mail() throws Exception {
+        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        MailCommand command = (MailCommand) parser.parseCommand(
+                MailCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new MailCommand(new TagContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test
