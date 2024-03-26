@@ -1,11 +1,14 @@
 package seedu.address.ui;
 
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Contains the command history of the user.
  */
 public class CommandHistory {
+    private static Logger logger = Logger.getLogger("CommandHistory");
     private static ArrayList<String> commandHistory;
     private static Integer toReturn = 0;
     private static CommandHistory instance = null;
@@ -23,6 +26,7 @@ public class CommandHistory {
      */
     public static CommandHistory getInstance() {
         if (instance == null) {
+            logger.log(Level.INFO, "Creating new CommandHistory instance");
             instance = new CommandHistory();
         }
         return instance;
@@ -36,7 +40,8 @@ public class CommandHistory {
         if (command == null) {
             return;
         }
-        assert (command != null);
+        assert (commandHistory != null);
+        logger.log(Level.INFO, "Appending command to command history: " + command);
         commandHistory.add(command);
         toReturn = commandHistory.size();
     }
@@ -49,11 +54,15 @@ public class CommandHistory {
     public String getCommandHistory(String direction) {
         assert (direction.equals("UP") || direction.equals("DOWN"));
 
+        logger.log(Level.INFO, "Getting command history based on key press: " + direction);
         if (commandHistory.isEmpty()) {
+            logger.log(Level.INFO, "No commands in the command history");
             return "";
         }
 
-        return getAdjacentCommand(direction);
+        String commandRestored = getAdjacentCommand(direction);
+        logger.log(Level.INFO, "Command restored: " + commandRestored);
+        return commandRestored;
     }
 
     /**
@@ -82,6 +91,7 @@ public class CommandHistory {
             }
             return commandHistory.toArray()[toReturn].toString();
         }
+        logger.log(Level.INFO, "No newer commands in the command history");
         return "";
     }
     /**
