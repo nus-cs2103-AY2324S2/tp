@@ -134,6 +134,7 @@
 .cell_big_label {
     -fx-font-family: "Roboto";
     -fx-font-size: 17px;
+    -fx-font-weight: bold;
     -fx-text-fill: #010504;
 }
 
@@ -185,8 +186,6 @@
 
 .grid-pane {
     -fx-background-color: rgba(29, 29, 29, 80%);
-    -fx-border-color: transparent;
-    -fx-border-width: 1px;
 }
 
 .grid-pane .stack-pane {
@@ -194,7 +193,7 @@
 }
 
 .context-menu {
-    -fx-background-color: transparent;
+    -fx-background-color: rgba(92, 64, 51, 0.6);
 }
 
 .context-menu .label {
@@ -327,9 +326,9 @@
 }
 
 #commandTextField {
-    -fx-background-color: transparent #383838 transparent #383838;
+    -fx-background-color: rgba(92, 64, 51, 0.6);
     -fx-background-insets: 0;
-    -fx-border-color: #383838 #383838 #ffffff #383838;
+    -fx-border-color: transparent;
     -fx-border-insets: 0;
     -fx-border-width: 1;
     -fx-font-family: "Roboto";
@@ -339,6 +338,11 @@
 
 #filterField, #personListPanel, #personWebpage {
     -fx-effect: innershadow(gaussian, black, 10, 0, 0, 0);
+}
+
+#resultDisplay {
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
 }
 
 #resultDisplay .content {
