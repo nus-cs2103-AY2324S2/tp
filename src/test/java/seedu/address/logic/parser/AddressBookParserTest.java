@@ -129,7 +129,7 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_mail() throws Exception {
-        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        List<String> keywords = Arrays.asList("friends", "owesMoney");
         MailCommand command = (MailCommand) parser.parseCommand(
                 MailCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new MailCommand(new TagContainsKeywordsPredicate(keywords)), command);
