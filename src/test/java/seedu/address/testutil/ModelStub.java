@@ -3,6 +3,7 @@ package seedu.address.testutil;
 import java.nio.file.Path;
 import java.util.function.Predicate;
 
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.Model;
@@ -149,6 +150,11 @@ public class ModelStub implements Model {
 
     @Override
     public void deletePersonFromSelectedEvent(Person person) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public ObservableValue<Event> getSelectedEvent() {
         throw new AssertionError("This method should not be called.");
     }
 
