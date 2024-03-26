@@ -133,6 +133,9 @@ public class ParserUtil {
     public static Ward parseWard(String ward) throws ParseException {
         requireNonNull(ward);
         String trimmedWard = ward.trim();
+        if (!Ward.isValidWard(trimmedWard)) {
+            throw new ParseException(Ward.MESSAGE_CONSTRAINTS);
+        }
         // For now we assume all strings are valid wards.
         // We can change this to be better in the future.
         return new Ward(trimmedWard);

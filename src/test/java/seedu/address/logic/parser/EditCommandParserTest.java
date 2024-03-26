@@ -11,6 +11,9 @@ import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_DIABETES;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FALL_RISK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DOB_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FALL_RISK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_DIABETES;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_WARD_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.WARD_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.WARD_DESC_BOB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DOB;
@@ -30,6 +33,8 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Ic;
+import seedu.address.model.person.Dob;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
@@ -92,7 +97,7 @@ public class EditCommandParserTest {
                 + NAME_DESC_AMY + TAG_DESC_DIABETES;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withTags(TAG_DESC_FALL_RISK, TAG_DESC_DIABETES).build();
+                .withTags(VALID_TAG_FALL_RISK, VALID_TAG_DIABETES).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -101,9 +106,10 @@ public class EditCommandParserTest {
     @Test
     public void parse_someFieldsSpecified_success() {
         Index targetIndex = INDEX_FIRST_PERSON;
-        String userInput = targetIndex.getOneBased() + "";
+        String userInput = targetIndex.getOneBased() + TAG_DESC_FALL_RISK + NAME_DESC_AMY + WARD_DESC_AMY;
 
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().build();
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
+                .withTags(VALID_TAG_FALL_RISK).withWard(VALID_WARD_AMY).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -120,7 +126,7 @@ public class EditCommandParserTest {
 
         // tags
         userInput = targetIndex.getOneBased() + TAG_DESC_DIABETES;
-        descriptor = new EditPersonDescriptorBuilder().withTags(TAG_DESC_DIABETES).build();
+        descriptor = new EditPersonDescriptorBuilder().withTags(VALID_TAG_DIABETES).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -132,27 +138,25 @@ public class EditCommandParserTest {
 
         // valid followed by invalid
         Index targetIndex = INDEX_FIRST_PERSON;
-        String userInput = targetIndex.getOneBased() + VALID_NAME_AMY + INVALID_IC_DESC;
+        String userInput = targetIndex.getOneBased() + NAME_DESC_AMY + INVALID_IC_DESC;
 
-        assertParseFailure(parser, userInput, Messages.getErrorMessageForDuplicatePrefixes(PREFIX_IC));
+        assertParseFailure(parser, userInput, Ic.MESSAGE_CONSTRAINTS);
 
         // invalid followed by valid
-        userInput = targetIndex.getOneBased() + INVALID_TAG_DESC + VALID_DOB_AMY;
+        userInput = targetIndex.getOneBased() + INVALID_TAG_DESC + DOB_DESC_AMY;
 
-        assertParseFailure(parser, userInput, Messages.getErrorMessageForDuplicatePrefixes(PREFIX_TAG));
+        assertParseFailure(parser, userInput, Tag.MESSAGE_CONSTRAINTS);
 
-        // mulltiple valid fields repeated
-        userInput = targetIndex.getOneBased() + TAG_DESC_DIABETES + TAG_DESC_FALL_RISK
-                + WARD_DESC_AMY + WARD_DESC_BOB + DOB_DESC_AMY + DOB_DESC_BOB;
+        // multiple valid fields repeated
+        userInput = targetIndex.getOneBased() + WARD_DESC_AMY + WARD_DESC_BOB + DOB_DESC_AMY + DOB_DESC_BOB;
 
         assertParseFailure(parser, userInput,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_DOB, PREFIX_WARD, PREFIX_TAG));
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_WARD, PREFIX_DOB));
 
         // multiple invalid values
-        userInput = targetIndex.getOneBased() + INVALID_TAG_DESC;
+        userInput = targetIndex.getOneBased() + INVALID_TAG_DESC + INVALID_TAG_DESC;
 
-        assertParseFailure(parser, userInput,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_TAG));
+        assertParseFailure(parser, userInput, Tag.MESSAGE_CONSTRAINTS);
     }
 
     @Test
