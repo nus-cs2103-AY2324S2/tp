@@ -110,7 +110,7 @@ public class DeleteCommandTest {
         //DeleteCommand deleteCommand = new DeleteCommand(targetIndex);
         NusId testNusId = new NusId("E1234567");
         DeleteCommand deleteCommand = new DeleteCommand(testNusId);
-        String expected = DeleteCommand.class.getCanonicalName() + "{targetnusId=" + testNusId.toString() + "}";
+        String expected = DeleteCommand.class.getCanonicalName() + "{targetNusId=" + testNusId.toString() + "}";
         assertEquals(expected, deleteCommand.toString());
     }
 
