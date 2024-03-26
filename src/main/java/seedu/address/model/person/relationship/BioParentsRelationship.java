@@ -6,6 +6,7 @@ import java.util.UUID;
  * Represents a parent-child relationship between two persons.
  */
 public class BioParentsRelationship extends FamilyRelationship {
+
     /**
      * Creates a new BioParentsRelationship with the given UUIDs of the two persons.
      *
@@ -13,6 +14,6 @@ public class BioParentsRelationship extends FamilyRelationship {
      * @param childUuid The UUID of the child in the relationship.
      */
     public BioParentsRelationship(UUID parentUuid, UUID childUuid) {
-        super(parentUuid, childUuid, "parent", "child");
+        super(parentUuid, childUuid, "bioparents", "parent", "child");
     }
 }

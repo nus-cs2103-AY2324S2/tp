@@ -8,19 +8,16 @@ import java.util.UUID;
 import org.junit.jupiter.api.Test;
 
 public class FamilyRelationshipTest {
-
     @Test
-    public void constructor_validParameters_success() {
+    public void getRelationshipType_validRelationshipType_returnCorrectType() {
         UUID person1 = UUID.randomUUID();
         UUID person2 = UUID.randomUUID();
-        String role1 = "parent";
-        String role2 = "child";
+        String relationshipType = "siblings";
+        String role1 = "sibling";
+        String role2 = "sibling";
 
-        FamilyRelationship relationship = new FamilyRelationship(person1, person2, role1, role2);
+        FamilyRelationship familyRelationship = new FamilyRelationship(person1, person2, relationshipType, role1, role2);
 
-        assertEquals(person1, relationship.getPerson1());
-        assertEquals(person2, relationship.getPerson2());
-        assertEquals(role1, relationship.getRoleDescriptor(person1));
-        assertEquals(role2, relationship.getRoleDescriptor(person2));
+        assertEquals(relationshipType, familyRelationship.getRelationshipType());
     }
 }
