@@ -31,7 +31,7 @@ public class PersonUtil {
         sb.append(PREFIX_NAME + person.getName().fullName + " ");
         sb.append(PREFIX_PHONE + person.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
-        sb.append(PREFIX_ROOMNUMBER + person.getRoomNumber().value + " ");
+        sb.append(PREFIX_ROOMNUMBER + person.getRoomNumber().toString() + " ");
         sb.append(PREFIX_TELEGRAM + person.getTelegram().value + " ");
         sb.append(PREFIX_BIRTHDAY + String.valueOf(person.getBirthday().value) + " ");
         return sb.toString();
@@ -46,7 +46,7 @@ public class PersonUtil {
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getRoomNumber().ifPresent(roomNumber -> sb.append(PREFIX_ROOMNUMBER)
-                .append(roomNumber.value).append(" "));
+                .append(roomNumber.toString()).append(" "));
         descriptor.getTelegram().ifPresent(telegram -> sb.append(PREFIX_TELEGRAM).append(telegram.value).append(" "));
         descriptor.getBirthday().ifPresent(birthday -> sb.append(PREFIX_BIRTHDAY).append(birthday.value).append(" "));
         return sb.toString();
