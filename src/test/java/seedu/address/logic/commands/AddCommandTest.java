@@ -192,6 +192,11 @@ public class AddCommandTest {
         public void setViewingArchivedList(boolean isViewingArchived) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void archivePerson(Person target) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

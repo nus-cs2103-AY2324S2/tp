@@ -146,4 +146,12 @@ public interface Model {
      *                          false to indicate the active persons list is being viewed.
      */
     void setViewingArchivedList(boolean isViewingArchived);
+
+    /**
+     * Archives the specified person by removing them from the active list and adding them to the archived list.
+     * The specified person must exist in the active list.
+     *
+     * @param target The person to be archived.
+     */
+    void archivePerson(Person target);
 }

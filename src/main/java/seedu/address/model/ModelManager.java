@@ -157,6 +157,14 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    @Override
+    public void archivePerson(Person target) {
+        addressBook.removePerson(target);
+        target.setArchived(true);
+        addressBook.addArchivedPerson(target);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
