@@ -16,21 +16,24 @@ interactions, FitBook is the perfect application for you to manage your clients!
 
 1. Ensure you have Java `11` or above installed.
 
-2. Download the latest version of `FitBook.jar` from [here](https://github.com/AY2324S2-CS2103T-T17-3/tp/releases).
+1. Download the latest version of `FitBook.jar` from [here](https://github.com/AY2324S2-CS2103T-T17-3/tp/releases).
 
-3. Copy the file to the folder you want to use as the **home folder** for FitBook.
+1. Copy the file to the folder you want to use as the **home folder** for FitBook.
 
-4. Double-click the FitBook.jar file to launch it
+1. Double-click the FitBook.jar file to launch it
 
-5. If (4) doesn't work, open a command terminal, `cd` into the folder with FitBook.jar, and run the 
-`java -jar FitBook.jar` command to launch the application.<br>
+1. If (4) doesn't work, open a command terminal, `cd` into the folder with FitBook.jar, and run the 
+1java -jar FitBook.jar` command to launch the application.<br>
 
-5. A GUI similar to the one depicted below should appear in a few seconds. 
-The app might contain some sample data.<br><hr>
-   ![Ui](images/Ui.png)
+1. A GUI similar to the one depicted below should appear in a few seconds. The app might contain some sample data.<br>
+
 <hr>
 
-6. Read through `help`, type any command listed into the input box and press `enter` <br>
+![Ui](images/Ui.png)
+
+<hr>
+
+1. Read through `help`, type any command listed into the input box and press `enter` <br>
    These are some example commands you can try!
  
    * `add n/John p/98765432` Adds a client named
