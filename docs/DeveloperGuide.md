@@ -241,7 +241,19 @@ The activity diagram below illustrates what happens when a client is deleted fro
 
 ![DeleteCommandActivityDiagram](images/DeleteCommandActivityDiagram.png)
 
-### Adding a Note To An Existing Client
+### Additional user details in FitBook
+On top of what AB3 has to offer, FitBook allows users to add additional details to each client to better track their health status.
+
+This includes:
+* [Height and weight](#height-and-weight-feature-in-fitbook)
+* [Note](#note-feature-in-fitbook)
+
+#### Note feature in FitBook
+The `note` feature allows users to add any relevant health information to each client.
+
+For more details on how the `note` field interacts with the `add` and `edit` command, refer [here](#adding-or-editing-a-client).
+
+##### Interacting with the `note` command
 
 The sequence diagram below shows how the components interact with each other when the user inputs the command `note 1 note/Likes to eat`.
 
@@ -250,6 +262,15 @@ The sequence diagram below shows how the components interact with each other whe
 The diagram highlights the four main components of FitBook, highlighted in their respective colors. For more information regarding the four main components, see [Main components of the architecture](#main-components-of-the-architecture).
 
 > The above sequence diagram also applies to the removal of a note from an existing client when no input string or prefix is entered for the `note` command. (i.e. `note 1`, or `note 1 note/`).
+
+#### Height and weight feature in FitBook
+The height and weight feature allows users to keep track of past height and weight measurements of a client.
+
+We can refer to the sequence diagram [above](#interacting-with-the-note-command) to see how the addition of such fields to clients interact with the components of FitBook.
+
+For more details on how the `height` and `weight` fields interact with the `add` and `edit` command, refer [here](#adding-or-editing-a-client).
+
+#### Viewing height and weight history of a client
 
 ### Searching Clients
 Search for clients is done using the `find` command. The command has been designed to be extendable, allowing for developers to easily define how new fields (attributes) in the clients can be searched.
@@ -435,10 +456,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to view list
-2. FitBook shows a list of clients
-3. User requests to delete a specific client in the list
-4. FitBook deletes the client from the list
-5. Use case ends
+1. FitBook shows a list of clients
+1. User requests to delete a specific client in the list
+1. FitBook deletes the client from the list
+1. Use case ends
 
 **Extensions**
 
@@ -463,9 +484,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to view usage instructions
-2. FitBook displays the usage instructions such as how to add, edit, delete or search for clients
-3. User reads the instructions to understand how to use the FitBook
-4. Use case ends
+1. FitBook displays the usage instructions such as how to add, edit, delete or search for clients
+1. User reads the instructions to understand how to use the FitBook
+1. Use case ends
 
 <hr>
 
@@ -478,8 +499,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to add a new client
-2. FitBook displays a success message after the new client is successfully added
-3. Use case ends
+1. FitBook displays a success message after the new client is successfully added
+1. Use case ends
 
 **Extensions**
 
@@ -502,9 +523,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to see a list of all clients
-2. FitBook displays a success message followed by the list of clients
-3. User views the list
-4. Use case ends
+1. FitBook displays a success message followed by the list of clients
+1. User views the list
+1. Use case ends
 
 **Extensions**
 
@@ -554,6 +575,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Usage instructions**: Documentation detailing FitBook's features and how to navigate about them
 * **User**: The person using FitBook
 * **UI (User Interface)**: Manages user interactions with graphic interface elements
+* **AB3**: [AddressBook-Level3](https://github.com/se-edu/addressbook-level3), a project created by the [SE-EDU initiative](https://se-education.org).
 * **vCard**: A data format for contact information. Detailed information can be found in [RFC 6350](https://datatracker.ietf.org/doc/html/rfc6350).
 
 --------------------------------------------------------------------------------------------------------------------
