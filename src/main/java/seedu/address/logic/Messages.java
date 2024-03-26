@@ -6,7 +6,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.appointment.Appointment;
-import seedu.address.model.person.Person;
+import seedu.address.model.patient.Patient;
 
 /**
  * Container for user visible messages.
@@ -46,15 +46,15 @@ public class Messages {
     /**
      * Formats the {@code person} for display to the user.
      */
-    public static String format(Person person) {
+    public static String format(Patient patient) {
         final StringBuilder builder = new StringBuilder();
-        builder.append(person.getName())
+        builder.append(patient.getName())
                 .append("; Phone: ")
-                .append(person.getPhone())
+                .append(patient.getPhone())
                 .append("; Email: ")
-                .append(person.getEmail())
+                .append(patient.getEmail())
                 .append("; Tags: ");
-        person.getTags().forEach(builder::append);
+        patient.getTags().forEach(builder::append);
         return builder.toString();
     }
 

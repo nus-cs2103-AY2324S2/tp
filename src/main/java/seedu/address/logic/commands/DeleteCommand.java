@@ -10,7 +10,7 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
+import seedu.address.model.patient.Patient;
 
 /**
  * Deletes a person identified using it's displayed index from the address book.
@@ -35,15 +35,15 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Patient> lastShownList = model.getFilteredPersonList();
 
         //  TODO: We possibly don't have to check for this anymore. It either exists or does not.
-        if (targetIndex.getZeroBased() >= Person.getIdTracker()) {
+        if (targetIndex.getZeroBased() >= Patient.getIdTracker()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
         // We try to find the person based on the given studentId.
-        Optional<Person> personToDelete = lastShownList.stream()
+        Optional<Patient> personToDelete = lastShownList.stream()
                 .filter(person -> person.getSid() == targetIndex.getOneBased())
                 .findFirst();
 

@@ -9,7 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import java.util.function.Predicate;
 
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
+import seedu.address.model.patient.Patient;
 
 /**
  * Lists all persons in the address book to the user.
@@ -34,9 +34,9 @@ public class ListCommand extends Command {
             + PREFIX_ALIAS + "owesMoney";
 
 
-    private final Predicate<Person> predicates;
+    private final Predicate<Patient> predicates;
 
-    public ListCommand(Predicate<Person> predicates) {
+    public ListCommand(Predicate<Patient> predicates) {
         this.predicates = predicates;
     }
 

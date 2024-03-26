@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 import seedu.address.commons.util.StringUtil;
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.person.Person;
+import seedu.address.model.patient.Patient;
 
 
 /**
@@ -14,14 +14,14 @@ import seedu.address.model.person.Person;
  */
 public class AppointmentContainsPatientNamePredicate implements Predicate<Appointment> {
     private final List<String> keywords;
-    private final List<Person> patients;
+    private final List<Patient> patients;
 
     /**
      * Constructor for AppointmentContainsPatientNamePredicate
      * @param keywords
      * @param patients The current observable list of patients
      */
-    public AppointmentContainsPatientNamePredicate(List<String> keywords, List<Person> patients) {
+    public AppointmentContainsPatientNamePredicate(List<String> keywords, List<Patient> patients) {
         this.keywords = keywords;
         this.patients = patients;
     }
