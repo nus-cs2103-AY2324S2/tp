@@ -49,7 +49,7 @@ You can reach us at the email `cs2103t_w11_1[at]comp.nus.edu.sg`
 
 ### Rajendran Ramesh Babu Manoj Narender
 
-<img src="images/jieqiboh.png" width="200px">
+<img src="images/theman-oj10.png" width="200px">
 
 [[github](http://github.com/theman-oj10)]
 [[portfolio](team/theman-oj10.md)]
