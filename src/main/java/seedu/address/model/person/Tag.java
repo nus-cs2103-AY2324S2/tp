@@ -76,7 +76,7 @@ public class Tag {
             return true;
         }
 
-        if (!(other instanceof Phone)) {
+        if (!(other instanceof Tag)) {
             return false;
         }
 

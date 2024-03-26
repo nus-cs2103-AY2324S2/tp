@@ -25,7 +25,7 @@ public class SampleDataUtil {
     public static Person[] getSamplePersons() {
         return new Person[] {
             new Person(new Name("FoodPanda"), new Phone("12345678"), new Email("panda@food.com"),
-                new Address("CBD"), new Tag("F"), new JobDescription("Front End Intern"),
+                new Address("CBD"), new Tag("I"), new JobDescription("Front End Intern"),
                 new InterviewDate("15-04-2024 0900"), new InternDuration("6 months"), new Salary("500"), new Note(""))
         };
     }

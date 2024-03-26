@@ -15,7 +15,7 @@ public class MatchingTagPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
-        return ('[' + tag + ']').equals(person.getTag().toString());
+        return (tag).equals(person.getTag().getTagShort());
     }
 
     @Override

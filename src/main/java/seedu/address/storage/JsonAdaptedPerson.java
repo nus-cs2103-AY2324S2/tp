@@ -27,7 +27,7 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
-    private final String tag;
+    private String tag;
     private final String jobDescription;
     private final String interviewDate;
     private final String internDuration;
@@ -50,6 +50,19 @@ class JsonAdaptedPerson {
         this.email = email;
         this.address = address;
         this.tag = tag;
+
+//        if (tag.equals("No Reply")) {
+//            this.tag = "NR";
+//        } else if (tag.equals("Online Assessment")) {
+//            this.tag = "OA";
+//        } else if (tag.equals("Interview")) {
+//            this.tag = "I";
+//        } else if (tag.equals("Reject")) {
+//            this.tag = "R";
+//        } else if (tag.equals("Offer")) {
+//            this.tag = "O";
+//        }
+
         this.jobDescription = jobDescription;
         this.interviewDate = interviewDate;
         this.internDuration = internDuration;
@@ -65,7 +78,7 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
-        tag = source.getTag().getTagName();
+        tag = source.getTag().getTagShort();
         jobDescription = source.getJobDescription().value;
         interviewDate = source.getInterviewDate().toString();
         internDuration = source.getInternDuration().value;
@@ -115,7 +128,8 @@ class JsonAdaptedPerson {
         if (!Tag.isValidTag(tag)) {
             throw new IllegalValueException(Tag.MESSAGE_CONSTRAINTS);
         }
-        final Tag modelTag = new Tag(tag);
+
+        Tag modelTag = new Tag(tag);
 
         if (jobDescription == null) {
             throw new IllegalValueException(

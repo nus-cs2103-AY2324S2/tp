@@ -38,7 +38,7 @@ public class MatchingTagPredicateTest {
     @Test
     public void test_matchingTags_returnsTrue() {
         MatchingTagPredicate predicate = new MatchingTagPredicate("I");
-        assertTrue(predicate.test(new PersonBuilder().withName("I").build()));
+        assertTrue(predicate.test(new PersonBuilder().withTags("I").build()));
     }
 
     @Test
@@ -48,7 +48,7 @@ public class MatchingTagPredicateTest {
         assertFalse(predicate.test(new PersonBuilder().withTags("I").build()));
 
         // Non-matching keyword
-        predicate = new MatchingTagPredicate("NR");
+        predicate = new MatchingTagPredicate("O");
         assertFalse(predicate.test(new PersonBuilder().withTags("I").build()));
 
         // Keywords match phone, email and address, but does not match name

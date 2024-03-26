@@ -28,13 +28,8 @@
         <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
       </HBox>
       <Label fx:id="tags" />
-      <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
-      <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
-      <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
       <Label fx:id="jobDescription" styleClass="cell_small_label" text="\$job description" />
       <Label fx:id="interviewDate" styleClass="cell_small_label" text="\$interview date" />
-      <Label fx:id="internDuration" styleClass="cell_small_label" text="\$intern duration" />
-      <Label fx:id="salary" styleClass="cell_small_label" text="\$salary" />
     </VBox>
   </GridPane>
 </HBox>
