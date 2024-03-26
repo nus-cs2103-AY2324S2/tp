@@ -24,7 +24,7 @@ Designed for social workers grappling with demanding caseloads, *ConnectCare* em
 ## Who ConnectCare Is For
 
 ConnectCare caters to the needs of social workers juggling high caseloads, providing a solution that streamlines client management processes. This application is ideal for both new and experienced users, offering intuitive features that prioritize efficiency, accuracy, and productivity. 
-Whether you're a seasoned professional or new to social work practice, ConnectCare is designed to enhance your workflow and elevate your client management experience.. It prioritizes keyboard shortcuts, eliminating the need to constantly switch between keyboard and mouse. This focus on keyboard navigation translates to:
+Whether you're a seasoned professional or new to social work practice, ConnectCare is designed to enhance your workflow and elevate your client management experience. Furthermore, ConnectCare boasts a range of benefits that directly address the challenges faced by social workers, including: 
 
 * Increased Efficiency: Spend less time navigating the software and more time directly helping clients.
 * Reduced Errors: Minimize the possibility of errors caused by switching between input methods.
@@ -54,7 +54,7 @@ By streamlining workflows and offering social work-specific features, ConnectCar
 
 ## Who This Guide Is For
 
-This guide does not assume any technical knowledge from users. We just require users to be able to type on a keyboard. As ConnectCare uses a [Command Line Interface (CLI)](#cli), users who are familiar with a CLI would find it easy to transition to this software. However, if you have not used a CLI application before, there would be a step-by-step introduction in this guide for each command.
+This guide caters to users with varying levels of technical proficiency, requiring only basic keyboard typing skills. Whether you're new to ConnectCare or seeking to enhance your skills, this guide provides comprehensive instructions on all functionalities and commands. From basic navigation to advanced features, this guide serves as your definitive resource for optimizing your usage of ConnectCare.
 
 ## How to Use This Guide
 
