@@ -52,7 +52,7 @@ public class Person {
      */
     public Person(Name name, Phone phone, Email email, Address address,
                   Set<Tag> tags, Subject subject, Payment payment) {
-        requireAllNonNull(name, phone, email, address, tags, subject, payment);
+        requireAllNonNull(name, phone, email, address, tags, subject);
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -156,6 +156,7 @@ public class Person {
                 .add("address", address)
                 .add("subject", subject)
                 .add("tags", tags)
+                .add("payment", payment)
                 .toString();
     }
 

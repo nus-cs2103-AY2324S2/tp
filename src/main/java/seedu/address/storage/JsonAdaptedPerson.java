@@ -122,6 +122,14 @@ class JsonAdaptedPerson {
         if (uniqueId == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Id.class.getSimpleName()));
         }
+
+        double paymentValue;
+        try {
+            paymentValue = Double.parseDouble(payment);
+        } catch (NumberFormatException e) {
+            throw new IllegalValueException(Payment.MESSAGE_INVALID_PAYMENT);
+        }
+
         final Id modelId = new Id(uniqueId);
         final Subject modelSubject = new Subject(subject);
         final Address modelAddress = new Address(address);

@@ -1,6 +1,5 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
@@ -21,11 +20,9 @@ public class ResetPaymentsCommandParserTest {
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
-        assertParseFailure(parser, " -id ",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ResetPaymentsCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, " -id ", Id.MESSAGE_CONSTRAINTS);
 
-        assertParseFailure(parser, " -id 000003 extra-arg",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ResetPaymentsCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, " -id 000003 extra-arg", Id.MESSAGE_CONSTRAINTS);
 
         assertParseFailure(parser, " -id abc",
                 Id.MESSAGE_CONSTRAINTS);
