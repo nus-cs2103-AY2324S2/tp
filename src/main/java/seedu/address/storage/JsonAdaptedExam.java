@@ -1,21 +1,21 @@
 package seedu.address.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.exam.Exam;
 import seedu.address.model.person.Score;
-import seedu.address.model.tag.Tag;
 
-public class JsonAdaptedExam {
+class JsonAdaptedExam {
     private final String name;
-    private final Score maxScore;
+    private final String maxScore;
 
     /**
      * Constructs a {@code JsonAdaptedExam} with the given {@code name}.
      */
     @JsonCreator
-    public JsonAdaptedExam(String name, Score maxScore) {
+    public JsonAdaptedExam(@JsonProperty("name") String name, @JsonProperty("score") String maxScore) {
         this.name = name;
         this.maxScore = maxScore;
     }
@@ -24,13 +24,16 @@ public class JsonAdaptedExam {
      * Converts a given {@code Tag} into this class for Jackson use.
      */
     public JsonAdaptedExam(Exam source) {
-        name = source.name;
-        maxScore = source.maxScore;
+        name = source.getName();
+        maxScore = source.getMaxScore().toString();
     }
 
-    @JsonValue
     public String getname() {
         return name;
+    }
+
+    public String getMaxScore() {
+        return maxScore;
     }
 
     /**
@@ -40,8 +43,8 @@ public class JsonAdaptedExam {
      */
     public Exam toModelType() throws IllegalValueException {
         if (!Exam.isValidName(name)) {
-            throw new IllegalValueException(Tag.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Exam.MESSAGE_CONSTRAINTS);
         }
-        return new Exam(name, maxScore);
+        return new Exam(name, new Score(Integer.parseInt(maxScore)));
     }
 }
