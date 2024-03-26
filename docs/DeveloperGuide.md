@@ -165,25 +165,19 @@ The proposed star mechanism is facilitated by `StarCommand`, which is called by 
 
 Given below is an example usage scenario and how the star mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time and enters in command: `star 1 s/2`.
+### INSERT ACTIVITY DIAGRAM
 
-#### insert diagram
+Step 1. The user launches the application for the first time and enters in command: `star 1 s/2`.
 
 Step 2. The `LogicManager` calls on `AddressBookParser` to parse the String.
 
-#### insert diagram
-
 Step 3. The `AddressBookParser` calls `StarCommandParser.parse()`, which returns a `StarCommand`.
-
-#### insert diagram
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the number of stars is negative (i.e. < 0), then it will raise a parse error.
 
 </div>
 
 Step 4. `LogicManager` calls on `StarCommand.execute()`, which updates the addressbook with the new number of stars.
-
-#### insert diagram
 
 The following sequence diagram shows how an star operation goes through the `Logic`, `Model` and `Storage` components.
 ![StarSequenceDiagram](images/StarCommandSequenceDiagram.png)
