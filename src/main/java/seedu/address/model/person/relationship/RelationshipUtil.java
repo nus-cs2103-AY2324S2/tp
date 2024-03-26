@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * Allows for adding, deleting, and checking for existing relationships.
  */
 public class RelationshipUtil {
-    private ArrayList<Relationship> relationshipsTracker = new ArrayList<>();
+    private static ArrayList<Relationship> relationshipsTracker = new ArrayList<>();
 
     /**
      * Adds a new relationship to the tracker.
@@ -46,6 +46,20 @@ public class RelationshipUtil {
                     || (relationship.getPerson1().equals(toFind.getPerson2()) && relationship.getPerson2()
                             .equals(toFind.getPerson1()))) && relationship.getRoleDescriptor(
                             toFind.getPerson1()).equals(toFind.getRoleDescriptor(toFind.getPerson2()))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Checks if a relationship with a specific descriptor exists in the tracker.
+     * @param descriptor The descriptor to find.
+     * @return true if the relationship exists, false otherwise.
+     */
+    public static boolean descriptorExists(String descriptor) {
+        for (Relationship relationship : relationshipsTracker) {
+            if (relationship.getRelationshipDescriptor().equals(descriptor)) {
                 return true;
             }
         }

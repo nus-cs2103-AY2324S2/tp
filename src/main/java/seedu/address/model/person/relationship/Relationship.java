@@ -35,6 +35,7 @@ public class Relationship {
         }
         this.relationshipDescriptor = relationshipDescriptor;
     }
+
     // Getters for person UUIDs
     public UUID getPerson1() {
         return person1;
@@ -72,5 +73,18 @@ public class Relationship {
 
     public static String showRelationshipTypes() {
         return String.format("Valid relationship types are: %s", validDescriptors.toString());
+    }
+
+    public static void deleteRelationType(String relationType) {
+        if (!validDescriptors.contains(relationType)) {
+            throw new IllegalArgumentException("Relationship type does not exist yet");
+        }
+        if (relationType.equals("family") || relationType.equals("friend")) {
+            throw new IllegalArgumentException("Cannot delete default relationship type");
+        }
+        if (RelationshipUtil.descriptorExists(relationType)) {
+            throw new IllegalArgumentException("There are relationships under this relation type. Please delete them first.");
+        }
+        validDescriptors.remove(relationType);
     }
 }

@@ -20,6 +20,9 @@ public class Messages {
                 "Multiple values specified for the following single-valued field(s): ";
     public static final String MESSAGE_INVALID_PERSON_UUID = "The UUID provided is invalid.";
 
+    public static final String MESSAGE_INVALID_PREDEFINED_RELATIONSHIP_DESCRIPTOR = "You cannot delete this relationship type.";
+    public static final String MESSAGE_INVALID_RELATIONSHIP_DESCRIPTOR = "There are relationships currently under this relation type. Please delete them first.";
+
     /**
      * Returns an error message indicating the duplicate prefixes.
      */

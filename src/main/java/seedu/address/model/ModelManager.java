@@ -134,6 +134,10 @@ public class ModelManager implements Model {
         return Relationship.showRelationshipTypes();
     }
 
+    public void deleteRelationType(String relationType) {
+        Relationship.deleteRelationType(relationType);
+    }
+
     public String getExistingRelationship(Relationship toGet) {
         return addressBook.getExistingRelationship(toGet);
     }
