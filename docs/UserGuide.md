@@ -4,8 +4,8 @@
   pageNav: 3
 ---
 
-<p align="center">
-  <img src="images/Logo.jpeg" />
+<p align="left">
+  <img src="images/Logo.jpeg" width="200"/>
 </p>
 
 # ConnectCare User Guide
