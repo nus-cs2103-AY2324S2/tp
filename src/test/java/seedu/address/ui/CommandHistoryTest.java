@@ -1,40 +1,47 @@
 package seedu.address.ui;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class CommandHistoryTest {
 
     @BeforeEach
     public void setUp() {
-        CommandHistory.clearCommandHistory();
+        CommandHistory commandHistory = CommandHistory.getInstance();
+        commandHistory.clearCommandHistory();
     }
 
     @Test
     void appendCommand_success() {
         String initialCommand = "addstu nn/e0123456 n/John Doe p/98765432";
-        CommandHistory.appendCommand(initialCommand);
+        CommandHistory commandHistory = CommandHistory.getInstance();
+        commandHistory.clearCommandHistory();
+        commandHistory.appendCommand(initialCommand);
     }
 
     @Test
     void getCommandHistory_success() {
         String initialCommand = "addstu nn/e0123456 n/John Doe p/98765432";
-        CommandHistory.appendCommand(initialCommand);
-        assertEquals(initialCommand, CommandHistory.getCommandHistory("up"));
-        assertEquals("", CommandHistory.getCommandHistory("down"));
-        assertEquals(initialCommand, CommandHistory.getCommandHistory("up"));
+        CommandHistory commandHistory = CommandHistory.getInstance();
+        commandHistory.clearCommandHistory();
+        commandHistory.appendCommand(initialCommand);
+        assertEquals(initialCommand, commandHistory.getCommandHistory("UP"));
+        assertEquals("", commandHistory.getCommandHistory("DOWN"));
+        assertEquals(initialCommand, commandHistory.getCommandHistory("UP"));
     }
 
     @Test
     void getCommandHistory_rigorous_success() {
         String initialCommand = "addstu nn/e0123456 n/John Doe p/98765432";
-        CommandHistory.appendCommand(initialCommand);
-        assertEquals(initialCommand, CommandHistory.getCommandHistory("up"));
-        assertEquals(initialCommand, CommandHistory.getCommandHistory("up"));
-        assertEquals("", CommandHistory.getCommandHistory("down"));
-        assertEquals("", CommandHistory.getCommandHistory("down"));
+        CommandHistory commandHistory = CommandHistory.getInstance();
+        commandHistory.clearCommandHistory();
+        commandHistory.appendCommand(initialCommand);
+        assertEquals(initialCommand, commandHistory.getCommandHistory("UP"));
+        assertEquals(initialCommand, commandHistory.getCommandHistory("UP"));
+        assertEquals("", commandHistory.getCommandHistory("DOWN"));
+        assertEquals("", commandHistory.getCommandHistory("DOWN"));
     }
 
     @Test
@@ -42,22 +49,26 @@ class CommandHistoryTest {
         String initialCommand = "addstu nn/e0123456 n/John Doe p/98765432";
         String secondCommand = "delstu e0123457";
         String thirdCommand = "list";
-        CommandHistory.appendCommand(initialCommand);
-        CommandHistory.appendCommand(secondCommand);
-        CommandHistory.appendCommand(thirdCommand);
-        assertEquals(thirdCommand, CommandHistory.getCommandHistory("up"));
-        assertEquals(secondCommand, CommandHistory.getCommandHistory("up"));
-        assertEquals(thirdCommand, CommandHistory.getCommandHistory("down"));
-        assertEquals(secondCommand, CommandHistory.getCommandHistory("up"));
-        assertEquals(initialCommand, CommandHistory.getCommandHistory("up"));
-        assertEquals(initialCommand, CommandHistory.getCommandHistory("up"));
-        assertEquals(secondCommand, CommandHistory.getCommandHistory("down"));
+        CommandHistory commandHistory = CommandHistory.getInstance();
+        commandHistory.clearCommandHistory();
+        commandHistory.appendCommand(initialCommand);
+        commandHistory.appendCommand(secondCommand);
+        commandHistory.appendCommand(thirdCommand);
+        assertEquals(thirdCommand, commandHistory.getCommandHistory("UP"));
+        assertEquals(secondCommand, commandHistory.getCommandHistory("UP"));
+        assertEquals(thirdCommand, commandHistory.getCommandHistory("DOWN"));
+        assertEquals(secondCommand, commandHistory.getCommandHistory("UP"));
+        assertEquals(initialCommand, commandHistory.getCommandHistory("UP"));
+        assertEquals(initialCommand, commandHistory.getCommandHistory("UP"));
+        assertEquals(secondCommand, commandHistory.getCommandHistory("DOWN"));
     }
 
     @Test
     void getCommandHistory_noPreviousCommands_success() {
-        assertEquals("", CommandHistory.getCommandHistory("up"));
-        assertEquals("", CommandHistory.getCommandHistory("down"));
+        CommandHistory commandHistory = CommandHistory.getInstance();
+        commandHistory.clearCommandHistory();
+        assertEquals("", commandHistory.getCommandHistory("UP"));
+        assertEquals("", commandHistory.getCommandHistory("DOWN"));
     }
 
 }
