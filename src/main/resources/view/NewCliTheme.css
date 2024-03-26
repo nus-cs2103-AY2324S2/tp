@@ -1,0 +1,69 @@
+#cli-section {
+    width: 480px;
+    padding: 0 30px;
+    font-family: 'Courier Prime Bold', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    color: #F8F6E3; /* Light creamy color for text */
+}
+
+#cli-screen-outer-container {
+    padding: 20px 0;
+    border-radius: 20px;
+    background-color: #7AA2E3; /* Calm, muted blue for backgrounds */
+}
+
+#cli-screen-scroll-container {
+    height: auto; /* Equivalent to fx-fit-to-height: true; */
+    overflow-y: scroll;
+}
+
+#cli-screen-scroll-container::-webkit-scrollbar {
+    width: 15px;
+}
+
+#cli-screen-scroll-container::-webkit-scrollbar-thumb {
+    background-color: #515658; /* A dark color for the scrollbar thumb */
+}
+
+#cli-screen {
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#cli-screen-welcome-dialog {
+    display: flex;
+    flex-direction: column;
+    gap: 75px;
+}
+
+#cli-screen-welcome-message,
+#cli-screen-contributors-section,
+#cli-screen-contributors {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#cli-screen-contributors-section-deco {
+    height: 3px;
+    max-width: 75px;
+    border-radius: 10px;
+    background-color: #97E7E1; /* Soft turquoise for decorative elements */
+}
+
+#cli-input-container {
+    padding: 15px 60px;
+    opacity: 1;
+}
+
+#cli-input {
+    padding: 15px 20px;
+    border-radius: 20px;
+    background-color: #97E7E1; /* Soft turquoise for input background */
+    opacity: 1;
+    color: #F8F6E3; /* Light creamy color for text */
+
+}
