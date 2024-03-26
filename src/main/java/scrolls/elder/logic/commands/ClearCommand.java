@@ -2,7 +2,7 @@ package scrolls.elder.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import scrolls.elder.model.AddressBook;
+import scrolls.elder.model.Datastore;
 import scrolls.elder.model.Model;
 
 /**
@@ -17,7 +17,7 @@ public class ClearCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.setAddressBook(new AddressBook(0));
+        model.setDatastore(new Datastore());
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

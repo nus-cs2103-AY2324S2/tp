@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import scrolls.elder.commons.util.ToStringBuilder;
 import scrolls.elder.logic.Messages;
 import scrolls.elder.model.Model;
+import scrolls.elder.model.PersonStore;
 import scrolls.elder.model.person.NameContainsKeywordsPredicate;
 
 /**
@@ -29,9 +30,11 @@ public class FindCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredPersonList(predicate);
+
+        PersonStore store = model.getMutableDatastore().getMutablePersonStore();
+        store.updateFilteredPersonList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, store.getFilteredPersonList().size()));
     }
 
     @Override

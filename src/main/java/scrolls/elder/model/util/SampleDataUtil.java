@@ -5,8 +5,9 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import scrolls.elder.model.AddressBook;
-import scrolls.elder.model.ReadOnlyAddressBook;
+import scrolls.elder.model.Datastore;
+import scrolls.elder.model.PersonStore;
+import scrolls.elder.model.ReadOnlyDatastore;
 import scrolls.elder.model.person.Address;
 import scrolls.elder.model.person.Befriendee;
 import scrolls.elder.model.person.Email;
@@ -23,8 +24,9 @@ public class SampleDataUtil {
 
     private static final Optional<Name> pairedWithNone = Optional.empty();
     private static final Optional<Integer> pairedWithNoID = Optional.empty();
+
     public static Person[] getSamplePersons() {
-        return new Person[] {
+        return new Person[]{
             new Volunteer(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                 new Address("Blk 30 Geylang Street 29, #06-40"),
                 getTagSet("friends"), pairedWithNone, pairedWithNoID),
@@ -46,13 +48,13 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook(0);
+    public static ReadOnlyDatastore getSampleDatastore() {
+        Datastore sampleDs = new Datastore();
+        PersonStore sampleAb = sampleDs.getMutablePersonStore();
         for (Person samplePerson : getSamplePersons()) {
-            samplePerson.setId(sampleAb.getGlobalId());
             sampleAb.addPerson(samplePerson);
         }
-        return sampleAb;
+        return sampleDs;
     }
 
     /**
@@ -60,8 +62,8 @@ public class SampleDataUtil {
      */
     public static Set<Tag> getTagSet(String... strings) {
         return Arrays.stream(strings)
-                .map(Tag::new)
-                .collect(Collectors.toSet());
+            .map(Tag::new)
+            .collect(Collectors.toSet());
     }
 
 }

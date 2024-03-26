@@ -12,13 +12,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import scrolls.elder.commons.exceptions.IllegalValueException;
 import scrolls.elder.model.person.Address;
-import scrolls.elder.model.person.Befriendee;
 import scrolls.elder.model.person.Email;
 import scrolls.elder.model.person.Name;
 import scrolls.elder.model.person.Person;
+import scrolls.elder.model.person.PersonFactory;
 import scrolls.elder.model.person.Phone;
 import scrolls.elder.model.person.Role;
-import scrolls.elder.model.person.Volunteer;
 import scrolls.elder.model.tag.Tag;
 
 /**
@@ -70,7 +69,7 @@ class JsonAdaptedPerson {
      * Converts a given {@code Person} into this class for Jackson use.
      */
     public JsonAdaptedPerson(Person source) {
-        id = String.valueOf(source.getId());
+        id = String.valueOf(source.getPersonId());
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
@@ -147,18 +146,8 @@ class JsonAdaptedPerson {
         }
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
-        Person p;
-        if (modelRole.isVolunteer()) {
-            p = new Volunteer(modelName, modelPhone, modelEmail, modelAddress, modelTags,
-                    modelPairedWithName, modelPairedWithID);
-        } else {
-            assert modelRole.isBefriendee();
-            p = new Befriendee(modelName, modelPhone, modelEmail, modelAddress, modelTags,
-                    modelPairedWithName, modelPairedWithID);
-        }
-        p.setId(modelId);
-
-        return p;
+        return PersonFactory.withIdFromParams(modelId, modelName, modelPhone, modelEmail, modelAddress, modelRole,
+                modelTags, modelPairedWithName, modelPairedWithID);
     }
 
 }

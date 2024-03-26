@@ -12,41 +12,41 @@ import scrolls.elder.commons.exceptions.DataLoadingException;
 import scrolls.elder.commons.exceptions.IllegalValueException;
 import scrolls.elder.commons.util.FileUtil;
 import scrolls.elder.commons.util.JsonUtil;
-import scrolls.elder.model.ReadOnlyAddressBook;
+import scrolls.elder.model.ReadOnlyDatastore;
 
 /**
  * A class to access AddressBook data stored as a json file on the hard disk.
  */
-public class JsonAddressBookStorage implements AddressBookStorage {
+public class JsonDatastoreStorage implements DatastoreStorage {
 
-    private static final Logger logger = LogsCenter.getLogger(JsonAddressBookStorage.class);
+    private static final Logger logger = LogsCenter.getLogger(JsonDatastoreStorage.class);
 
-    private Path filePath;
+    private final Path filePath;
 
-    public JsonAddressBookStorage(Path filePath) {
+    public JsonDatastoreStorage(Path filePath) {
         this.filePath = filePath;
     }
 
-    public Path getAddressBookFilePath() {
+    public Path getDatastoreFilePath() {
         return filePath;
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook() throws DataLoadingException {
-        return readAddressBook(filePath);
+    public Optional<ReadOnlyDatastore> readDatastore() throws DataLoadingException {
+        return readDatastore(filePath);
     }
 
     /**
-     * Similar to {@link #readAddressBook()}.
+     * Similar to {@link DatastoreStorage#readDatastore()}.
      *
      * @param filePath location of the data. Cannot be null.
      * @throws DataLoadingException if loading the data from storage failed.
      */
-    public Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataLoadingException {
+    public Optional<ReadOnlyDatastore> readDatastore(Path filePath) throws DataLoadingException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableAddressBook> jsonAddressBook = JsonUtil.readJsonFile(
-                filePath, JsonSerializableAddressBook.class);
+        Optional<JsonSerializableDatastore> jsonAddressBook = JsonUtil.readJsonFile(
+                filePath, JsonSerializableDatastore.class);
         if (jsonAddressBook.isEmpty()) {
             return Optional.empty();
         }
@@ -60,21 +60,22 @@ public class JsonAddressBookStorage implements AddressBookStorage {
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException {
-        saveAddressBook(addressBook, filePath);
+    public void saveDatastore(ReadOnlyDatastore datastore) throws IOException {
+        saveDatastore(datastore, filePath);
     }
 
     /**
-     * Similar to {@link #saveAddressBook(ReadOnlyAddressBook)}.
+     * Similar to {@link DatastoreStorage#saveDatastore(ReadOnlyDatastore)}.
      *
-     * @param filePath location of the data. Cannot be null.
+     * @param datastore
+     * @param filePath  location of the data. Cannot be null.
      */
-    public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
-        requireNonNull(addressBook);
+    public void saveDatastore(ReadOnlyDatastore datastore, Path filePath) throws IOException {
+        requireNonNull(datastore);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableAddressBook(addressBook), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableDatastore(datastore), filePath);
     }
 
 }

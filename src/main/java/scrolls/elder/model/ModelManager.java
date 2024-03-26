@@ -19,8 +19,8 @@ import scrolls.elder.model.person.Person;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
     private final UserPrefs userPrefs;
+    private final Datastore datastore;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Person> filteredVolunteers;
     private final FilteredList<Person> filteredBefriendees;
@@ -28,35 +28,40 @@ public class ModelManager implements Model {
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
-        CollectionUtil.requireAllNonNull(addressBook, userPrefs);
+    public ModelManager(ReadOnlyDatastore datastore, ReadOnlyUserPrefs userPrefs) {
+        CollectionUtil.requireAllNonNull(datastore, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with datastore: " + datastore + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.datastore = new Datastore(datastore);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
 
-        filteredVolunteers = new FilteredList<>(this.addressBook.getPersonList(), person -> person.isVolunteer());
+        PersonStore personStore = this.datastore.getMutablePersonStore();
+        filteredPersons = new FilteredList<>(personStore.getPersonList());
 
-        filteredBefriendees = new FilteredList<>(this.addressBook.getPersonList(), person -> !(person.isVolunteer()));
+        filteredVolunteers = new FilteredList<>(personStore.getPersonList(), person -> person.isVolunteer());
+
+        filteredBefriendees = new FilteredList<>(personStore.getPersonList(), person -> !(person.isVolunteer()));
     }
 
+    /**
+     * Initializes a ModelManager with the default datastore and user preferences.
+     */
     public ModelManager() {
-        this(new AddressBook(0), new UserPrefs());
+        this(new Datastore(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
 
     @Override
-    public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
-        requireNonNull(userPrefs);
-        this.userPrefs.resetData(userPrefs);
+    public ReadOnlyUserPrefs getUserPrefs() {
+        return userPrefs;
     }
 
     @Override
-    public ReadOnlyUserPrefs getUserPrefs() {
-        return userPrefs;
+    public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
+        requireNonNull(userPrefs);
+        this.userPrefs.resetData(userPrefs);
     }
 
     @Override
@@ -71,58 +76,34 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
+    public Path getDatastoreFilePath() {
         return userPrefs.getAddressBookFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setDatastoreFilePath(Path datastoreFilePath) {
+        requireNonNull(datastoreFilePath);
+        userPrefs.setAddressBookFilePath(datastoreFilePath);
     }
 
-    //=========== AddressBook ================================================================================
-
+    //=========== Datastore ================================================================================
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
-    }
-
-    @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public ReadOnlyDatastore getDatastore() {
+        return datastore;
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
+    public Datastore getMutableDatastore() {
+        return datastore;
     }
 
     @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
-    }
-
-    @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-    }
-
-    @Override
-    public void setPerson(Person target, Person editedPerson) {
-        CollectionUtil.requireAllNonNull(target, editedPerson);
-
-        addressBook.setPerson(target, editedPerson);
+    public void setDatastore(ReadOnlyDatastore d) {
+        datastore.resetData(d);
     }
 
     //=========== Filtered Person List Accessors =============================================================
 
-    /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
-     */
     @Override
     public ObservableList<Person> getFilteredPersonList() {
         return filteredPersons;
@@ -136,10 +117,6 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Person> getFilteredBefriendeeList() {
         return filteredBefriendees;
-    }
-    @Override
-    public Person getPersonFromID(int i) {
-        return addressBook.getPersonFromID(i);
     }
 
     @Override
@@ -156,13 +133,12 @@ public class ModelManager implements Model {
             return true;
         }
 
-        // instanceof handles nulls
         if (!(other instanceof ModelManager)) {
             return false;
         }
 
         ModelManager otherModelManager = (ModelManager) other;
-        return addressBook.equals(otherModelManager.addressBook)
+        return datastore.equals(otherModelManager.datastore)
                 && userPrefs.equals(otherModelManager.userPrefs)
                 && filteredPersons.equals(otherModelManager.filteredPersons);
     }

@@ -1,4 +1,5 @@
 package scrolls.elder.model.person;
+
 import java.util.Optional;
 import java.util.Set;
 
@@ -13,6 +14,13 @@ public class Befriendee extends Person {
     public Befriendee(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
                       Optional<Name> pairedWithName, Optional<Integer> pairedWithId) {
         super(name, phone, email, address, tags, new Role("befriendee"), pairedWithName, pairedWithId);
+    }
+
+    /**
+     * Creates a befriendee with the data of {@code p} and corresponding ID.
+     */
+    public Befriendee(int id, Person p) {
+        super(id, p);
     }
 
     @Override
