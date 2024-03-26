@@ -166,10 +166,10 @@ public class MainWindow extends UiPart<Stage> {
         try {
             commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult);
-            resultDisplay.setFeedbackToUser(commandResult);
+            showMessage(commandResult);
         } catch (CommandException | ParseException | StorageException e) {
             logger.info("An error occurred while executing command: " + commandText);
-            resultDisplay.setFeedbackToUser(e.getMessage());
+            showMessage(e.getMessage());
             throw e;
         }
 
