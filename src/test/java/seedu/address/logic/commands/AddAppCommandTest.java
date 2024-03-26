@@ -65,7 +65,7 @@ public class AddAppCommandTest {
         AddAppCommand addAppCommand = new AddAppCommand(validAppointment);
         ModelStub modelStub = new ModelStubWithPerson(ALICE);
 
-        assertThrows(CommandException.class, AddAppCommand.MESSAGE_PATIENT_NOT_FOUND, () -> addAppCommand
+        assertThrows(CommandException.class, Messages.MESSAGE_PERSON_NRIC_NOT_FOUND, () -> addAppCommand
                 .execute(modelStub));
     }
 
@@ -222,7 +222,7 @@ public class AddAppCommandTest {
         }
 
         @Override
-        public void updateFilteredAppointmentList(Predicate<Appointment> predicate) {
+        public void updateFilteredAppointmentList(Predicate<AppointmentView> predicate) {
         }
 
         @Override

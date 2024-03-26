@@ -12,6 +12,8 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.AppointmentType;
+import seedu.address.model.appointment.Note;
 import seedu.address.model.appointment.TimePeriod;
 import seedu.address.model.person.Nric;
 
@@ -37,8 +39,6 @@ public class CancelAppCommand extends Command {
 
     public static final String MESSAGE_CANCEL_APPOINTMENT_SUCCESS = "Cancelled Appointment: %1$s";
 
-    public static final String MESSAGE_PATIENT_NOT_FOUND = "Patient of given Nric is not found";
-
     private Appointment apptToCancel;
     private final Nric nricToMatch;
     private final Date dateToMatch;
@@ -59,7 +59,13 @@ public class CancelAppCommand extends Command {
         requireNonNull(model);
 
         if (!model.hasPersonWithNric(nricToMatch)) {
-            throw new CommandException(MESSAGE_PATIENT_NOT_FOUND);
+            throw new CommandException(Messages.MESSAGE_PERSON_NRIC_NOT_FOUND);
+        }
+
+        Appointment mockAppointmentToMatch = new Appointment(nricToMatch, dateToMatch, timePeriodToMatch,
+            new AppointmentType("Anything"), new Note("Anything"));
+        if (!model.hasAppointment(mockAppointmentToMatch)) {
+            throw new CommandException(Messages.MESSAGE_APPOINTMENT_NOT_FOUND);
         }
 
         this.apptToCancel = model.getMatchingAppointment(nricToMatch, dateToMatch, timePeriodToMatch);
