@@ -2,7 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_IMPORT_EXAM;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_IMPORT;
 
 import java.nio.file.Path;
 
@@ -23,14 +23,14 @@ public class ImportExamCommandParser implements Parser<ImportExamCommand> {
      */
     public ImportExamCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_IMPORT_EXAM);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_IMPORT);
         if (!isPrefixPresent(
                 argMultimap)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ImportExamCommand.MESSAGE_USAGE));
         }
 
-        Path path = ParserUtil.parseFilePath(argMultimap.getValue(PREFIX_IMPORT_EXAM).orElse(""));
+        Path path = ParserUtil.parseFilePath(argMultimap.getValue(PREFIX_IMPORT).orElse(""));
         if (!isCsvFile(path)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ImportCommand.MESSAGE_USAGE));
         }
@@ -47,6 +47,6 @@ public class ImportExamCommandParser implements Parser<ImportExamCommand> {
     }
 
     private static boolean isPrefixPresent(ArgumentMultimap argumentMultimap) {
-        return argumentMultimap.getValue(CliSyntax.PREFIX_IMPORT_EXAM).isPresent();
+        return argumentMultimap.getValue(CliSyntax.PREFIX_IMPORT).isPresent();
     }
 }

@@ -19,6 +19,4 @@ public class CliSyntax {
     public static final Prefix PREFIX_IMPORT = new Prefix("i/");
 
     public static final Prefix PREFIX_SCORE = new Prefix("s/");
-    public static final Prefix PREFIX_IMPORT_EXAM = new Prefix("ie/");
-
 }

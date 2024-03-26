@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_IMPORT_EXAM;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_IMPORT;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -32,8 +32,8 @@ public class ImportExamCommand extends Command {
     public static final String COMMAND_WORD = "importExam";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Imports exams from specified filepath."
             + " Must be an absolute CSV file path\n"
-            + "[" + PREFIX_IMPORT_EXAM + "FILEPATH]\n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_IMPORT_EXAM + "C:usr/lib/text.csv";
+            + "[" + PREFIX_IMPORT + "FILEPATH]\n"
+            + "Example: " + COMMAND_WORD + " " + PREFIX_IMPORT + "C:usr/lib/text.csv";
     public static final String MESSAGE_ERROR_READING_FILE = "Error reading file: ";
     public static final String MESSAGE_SCORE_NOT_NUMBER = "Score for %s is not a number";
     public static final String MESSAGE_PERSON_DOES_NOT_EXIST = "Person does not exist";
