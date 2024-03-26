@@ -33,21 +33,7 @@ but its use cases can be extended to Head Tutors of other courses.
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
 
-   * `list` : Lists all persons.
-
-   * ```
-     add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 m/A1234567Z
-     ``` 
-     Adds a person named `John Doe` to our app.
-
-   * `delete 3` : Deletes the 3rd person shown in the current list.
-
-   * `clear` : Deletes all persons.
-
-   * `exit` : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -90,7 +76,7 @@ Format: `help`
 
 Adds a person.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] [m/MATRICULATION_NUMBER]…​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] [m/MATRICULATION_NUMBER] [s/STUDIO] [r/REFLECTION]…​`
 
 <box type="info" seamless>
 
@@ -104,8 +90,8 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] [m/MATRICULATION_NU
 </box>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 m/A1234567Z`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Jurong East p/1234567 m/A1234567Z`
+* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 m/A1234567Z s/S1 r/R2`
+* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Jurong East p/1234567 m/A1234567Z s/S1 r/R2`
 
 For more details on each parameter, [click here](#command-format-summary).
 
@@ -120,7 +106,7 @@ Format: `list`
 Edits an existing person.
 
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG] [m/MATRICULATION_NUMBER]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG] [m/MATRICULATION_NUMBER] [s/STUDIO] [r/REFLECTION] …​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -289,7 +275,7 @@ Some commands require you to include parameters. These parameters are identified
 | **Clear**  | `clear`                                                                                                                                                                                               |
 | **Delete** | `delete INDEX` e.g., `delete 3`                                                                                                                                                                       |
 | **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG] [m/MATRICULATION_NUMBER]…​` e.g.,`edit 2 n/James Lee e/jameslee@example.com m/A1234567X`                                          |
-| **Find**   | `find PREFIX/PARAMETER KEYWORD` e.g., `find n/James`                                                                                                                                                  |
+| **Find**   | `find PREFIX/KEYWORD` e.g., `find n/James`                                                                                                                                                  |
 | **Copy**   | `copy`                                                                                                                                                                                                |
 | **List**   | `list`                                                                                                                                                                                                |
 | **Help**   | `help`                                                                                                                                                                                                |
