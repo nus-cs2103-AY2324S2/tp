@@ -155,6 +155,34 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### \[Developed\] Applicant class OOP modeling
+#### Why it is implemented that way
+By extending `Person`, the `ModelManager` and `AddressBook` classes can remain the same handling person
+(as observed in the diagram in Model component). Since `Applicant` is also a person with additional fields, it makes
+sense for the model to have `Applicant` class extend `Person` and composing of classes like `Role` and `Stage` which are
+the new details we are tracking.
+Similarly, a `JsonAdaptedApplicant` extends `JsonAdaptedPerson` to achieve
+the same effect in `Storage` component.
+
+[//]: # (#### Alternatives considered)
+
+
+### \[Developed\] Add_Applicant feature
+The add applicant feature allows users to add applicants with the following details: `Name`, `Phone`, `Email`,
+`Address`, `Role`, `Tag`, `Note` and `Date`. 
+
+#### How the feature is implemented
+* The add applicant is designed in mind with how the `Applicant` class extends `Person` class 
+to maximize the benefits of inheritance.
+* In the add applicant related command and parser, there will be a check to cast if the `Person` object handled is
+an applicant or a normal person.
+* In the `JsonAdaptedPerson` class, subtype declarators are used to declare the inheritance relationship between person 
+and applicant, hence it can store and differentiate applicants from person when retrieved.   
+* There is also an input checker reminding users to not declare `/stage` (if they did) as newly added applicants are 
+assumed to be at the `'initial_application'` stage.
+
+
+
 ### \[Developed\] Edit_Applicant feature
 The edit_applicant functionality allows users to edit applicants' details. The details that can be edited include `Name`, `Phone`, `Email`, `Address`, `Stage`, `Role` and `Tag`.
 
@@ -279,11 +307,11 @@ _{Explain here how the data archiving feature will be implemented}_
 Priorities: Essential (needed for basic functionality) - `Essential`, Typical (common needs) - `Typical`, Novel (good to have but not a need) - `Novel`, Out of Scope (not needed) - `Out of Scope`
 
 | As a/an ...                      | I can ...                                                                                                                                                                | So that ...                                                                                          | Priority (Essential, Typical, Novel, Out of Scope) |
-| -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------- |----------------------------------------------------|
+| -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |------------------------------------------------------------------------------------------------------|----------------------------------------------------|
 | User                             | add new contacts                                                                                                                                                         |                                                                                                      | Essential                                          |
 | User                             | delete existing contacts                                                                                                                                                 |                                                                                                      | Essential                                          |
 | User                             | view existing contacts                                                                                                                                                   |                                                                                                      | Essential                                          |
-| HR professional                  | manage all my work contacts in one place,                                                                                                                                | I can efficiently communicate with recruitment agencies, candidates and other stakeholders           | Essential                                          |
+| HR professional                  | manage all my work contacts in one place,                                                                                                                                | I can efficiently communicate with applicants                                                        | Essential                                          |
 | User                             | update existing contacts                                                                                                                                                 |                                                                                                      | Typical                                            |
 | User                             | purge all curent data                                                                                                                                                    | I can get rid of sample/experimental data I while exploring the app                                  | Typical                                            |
 | HR Recruiter                     | filter through my contact list based on what stage of the hiring process the applicants are in                                                                           | I can contact those who are shortlisted                                                              | Typical                                            |
@@ -321,7 +349,7 @@ Priorities: Essential (needed for basic functionality) - `Essential`, Typical (c
 
 (For all use cases below, the **System** is the `HRConnect` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Add a contact**
+**Use case: Add an applicant**
 
 **MSS**
 
@@ -339,8 +367,14 @@ Priorities: Essential (needed for basic functionality) - `Essential`, Typical (c
     * 3a1. HRConnect shows an error message.
 
       Use case resumes at step 2.
+  
+* 3b. The unnecessary fields given.
 
-* 3b. The contact details have been added before.
+    * 3a1. HRConnect shows an error message.
+
+      Use case resumes at step 2.
+  
+* 3c. The contact details have been added before.
 
     * 3b1. HRConnect shows an error message.
 
