@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-<span style="color: #f66a0a;">CareerSync</span> is a **desktop app for managing internships, optimized for use via a Command Line Interface** (CLI).
+<span style="color: #f66a0a;">CareerSync</span> is a **desktop app for managing internships, optimized for use via a Command Line Interface** ([CLI](#Glossary)).
 
 <span style="color: #f66a0a;">CareerSync</span> is an **internship application tracker** that helps you keep track of all your internship applications in one place.
 <br>Record all the relevant information, such as contact details, application status, and tasks to-do for **all your internships** in one place.
@@ -170,7 +170,7 @@ Click the back button to return to the previous view of internship entries.
 
 Shows the full details of an internship entry. This replaces the current view of internship entries.
 
-CLI input will be implemented in a future release.
+[CLI](#glossary)input will be implemented in a future release.
 
 ### Editing an internship: `edit`
 
@@ -272,7 +272,7 @@ Users are **NOT** recommended to modify their data file directly, since wrong fo
 Only do so if you are an experienced user! <br>
 </div>
 
-CareerSync data is saved in the hard disk, as a JSON file at the path `[JAR file location]/data/internship.json`.
+CareerSync data is saved in the hard disk, as a [JSON](#glossary) file at the path `[JAR file location]/data/internship.json`.
 After every command that changes the data, CareerSync performs a save automatically. There is no need to save manually.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -315,3 +315,11 @@ After every command that changes the data, CareerSync performs a save automatica
 | /phone  | Contact Number of Person of Contact| At least 3 numbers                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | /loc    | Location of Internship             | remote, local, overseas                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 | /role   | Role for the Internship            | Any Text, Numbers or Spaces                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+
+## Glossary
+| Term      | Meaning                                                                             |
+|-----------|-------------------------------------------------------------------------------------|
+| CLI       | [Command Line Interface](#https://en.wikipedia.org/wiki/Command-line_interface)     |
+| GUI       | [Graphical User Interface](#https://en.wikipedia.org/wiki/Graphical_user_interface) |
+| JSON      | [JavaScript Object Notation](#https://www.json.org/json-en.html)                    |
+| File Path | [The location of a file in the computer's file system](#https://www.w3schools.com/html/html_filepaths.asp)                           |
