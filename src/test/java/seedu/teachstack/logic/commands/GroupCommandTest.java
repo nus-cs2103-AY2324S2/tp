@@ -36,7 +36,7 @@ public class GroupCommandTest {
         String expectedMessage = String.format(GroupCommand.MESSAGE_GROUP_SUCCESS, Messages.format(editedPerson));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
+        expectedModel.setPerson(model.getPerson(editedPerson.getStudentId()), editedPerson);
 
         assertCommandSuccess(groupCommand, model, expectedMessage, expectedModel);
     }

@@ -10,7 +10,6 @@ import static seedu.teachstack.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
@@ -69,17 +68,11 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getAddressBook().getPersonList();
-
-        Optional<Person> personOptional = lastShownList.stream()
-                .filter(p -> p.getStudentId().equals(id))
-                .findFirst();
-
-        if (!personOptional.isPresent()) {
+        Person personToEdit = model.getPerson(id);
+        if (personToEdit == null) {
             throw new CommandException(Messages.MESSAGE_INVALID_DISPLAYED_STUDENT_ID);
         }
 
-        Person personToEdit = personOptional.get();
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {

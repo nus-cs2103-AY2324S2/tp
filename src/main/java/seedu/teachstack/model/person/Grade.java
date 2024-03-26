@@ -3,12 +3,13 @@ package seedu.teachstack.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.teachstack.commons.util.AppUtil.checkArgument;
 
+
 /**
  * Represents a Student's grade in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidGrade(String)}
  */
 
-public class Grade {
+public class Grade implements Comparable<Grade> {
 
     private static final String VALID_GRADES = "[A+, A, A-, B+, B, B-, C+, C, D+, D, F]";
     private static final String VALIDATION_REGEX = "A[+-]?|B[+-]?|C[+]?|D[+]?|F";
@@ -39,6 +40,35 @@ public class Grade {
         return test.matches(VALIDATION_REGEX);
     }
 
+    private int gradeToInt() {
+        switch (value) {
+        case ("A+"):
+            return 11;
+        case ("A"):
+            return 10;
+        case ("A-"):
+            return 9;
+        case ("B+"):
+            return 8;
+        case ("B"):
+            return 7;
+        case ("B-"):
+            return 6;
+        case ("C+"):
+            return 5;
+        case ("C"):
+            return 4;
+        case ("D+"):
+            return 3;
+        case ("D"):
+            return 2;
+        case ("F"):
+            return 1;
+        default:
+            return -1;
+        }
+    }
+
     @Override
     public String toString() {
         return value;
@@ -64,4 +94,8 @@ public class Grade {
         return value.hashCode();
     }
 
+    @Override
+    public int compareTo(Grade o) {
+        return this.gradeToInt() - o.gradeToInt();
+    }
 }

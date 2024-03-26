@@ -127,4 +127,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     public int hashCode() {
         return persons.hashCode();
     }
+
+    /**
+     * Sort the Persons in UniquePersonList.
+     */
+    public void sort() {
+        persons.sort();
+    }
 }
