@@ -49,18 +49,23 @@ Start keeping track of your internships easily with <span style="color: #f66a0a;
 
 ### Installation
 
-1. Ensure that you have [Java 11 or above](https://www.java.com/en/download/) installed on your computer.
-    - If you are a MacOS, follow the instructions [here](https://nus-cs2103-ay2324s2.github.io/website/admin/programmingLanguages.html) instead.
+1. Ensure that you have **Java 11 or above** installed on your computer.
+    - For MacOS, follow the instructions [here](https://nus-cs2103-ay2324s2.github.io/website/admin/programmingLanguages.html).
+    - For Windows or Linux, follow the instructions [here](https://www.java.com/en/download/). 
 2. Download the latest `CareerSync.jar` file [here](https://github.com/AY2324S2-CS2103T-W11-1/tp/releases/tag/v1.2).
 3. Make sure your jar file is located in an empty folder.
 4. Start <span style="color: #f66a0a;">CareerSync</span>.
-    - For MacOS:
-        - Open up your Terminal by typing <kbd>Command</kbd> + <kbd>Space</kbd>, then type <kbd>Enter</kbd>.<br>
+    - For **MacOS**:
+        - Open up your Terminal by typing <kbd>Command</kbd> + <kbd>Space</kbd>, then type `Terminal` and <kbd>Enter</kbd>.<br>
         - Navigate to the folder containing your jar file using `cd`. If you are not sure how to use `cd`, refer to [this link](https://www.ibm.com/docs/en/aix/7.2?topic=directories-changing-another-directory-cd-command)!<br>
         - Enter `java -jar CareerSync.jar` and type <kbd>Enter</kbd>.
-   - For Windows:
+   - For **Windows**:
        - Open the folder containing `CareerSync.jar`.
        - Double-click on `CareerSync.jar` to start up our application!
+   - For **Linux**:
+       - Open up your Terminal by typing <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>T</kbd>, then <kbd>Enter</kbd>.<br>
+       - Navigate to the folder containing your jar file using `cd`.
+       - Enter `java -jar CareerSync.jar` and type <kbd>Enter</kbd>.
 5. The **Graphical User Interace** similar to the image below should pop up on your screen.
 
    ![Ui](images/Ui.png)
@@ -71,7 +76,8 @@ Start keeping track of your internships easily with <span style="color: #f66a0a;
     * `list` : Lists all contacts.
 
    * `add /com Tiktok /desc create new recommendation engine /status ongoing /poc jane yeo /email hr@tiktok.com
-      /phone 90890301 /loc remote /role Software Intern` : Adds this internship entry to the CareerSync application.
+      /phone 90890301 /loc remote /role Software Intern` : Adds this internship entry to the <span style="color:
+     #f66a0a;">CareerSync</span> application.
 
    * `delete 2` : Deletes the 2nd internship entry shown in the current displayed list.
 
@@ -81,6 +87,20 @@ Start keeping track of your internships easily with <span style="color: #f66a0a;
 
 7. Refer to the [Features](#features) below for more details, and have fun using <span style="color:
 #f66a0a;">CareerSync!</span>
+
+--------------------------------------------------------------------------------------------------------------------
+## Command summary
+
+| Action                                        | Description                              |
+|-----------------------------------------------|------------------------------------------|
+| [add](#adding-an-entry-add)                   | Adds an Internship.                      |
+| [delete](#deleting-an-internship-delete)      | Removes a Internship.                    |
+| [list](#listing-all-internships-list)         | Removes a Internship.                    |
+| [edit](#editing-an-internship-edit)           | Modifies an existing Internship.         |
+| [addremark](#adding-a-remark-addremark)       | Adds a remark to an existing Internship. |
+| [clear](#clearing-all-internships-clear)      | Removes all Internships from the deck.   |
+| [find](#finding-internships-by-keywords-find) | Finds an Internship by keywords.         |
+| [exit](#exiting-the-program-exit)             | Exits and closes the application.        |
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -169,15 +189,27 @@ Examples:
 
 ### Adding a remark: `addremark`
 
-Adds a remark to an existing internship in the application.
+Adds a remark or modifies the existing one, of an to an existing internship at the specified `INDEX`.
 
-Format: `addremark INDEX [/remark REMARK]`
+<span style="color: #f66a0a;">Format:</span> `addremark INDEX [/remark REMARK]`
 
-* Adds a remark or modifies the existing one, of an existing internship at the specified `INDEX`. The index refers to the index number shown in the displayed internship list. The index **must be a positive integer** 1, 2, 3, …​
-* Existing remarks will be updated to the input values.
+* The index refers to the index number shown in the displayed internship list. The index **must be a positive integer** 1, 2, 3, …
+* The remark cannot be blank.
 
-Examples:
-*  `addremark 1 /remark This internship has a behavioural interview!` Adds or modifies the remark of the internship at index 1 to be `This internship has a behavioural interview!`.
+<span style="color: #f66a0a;">Examples:</span>
+*  `addremark 1 /remark This internship has a behavioural interview!` <br> Adds or modifies the remark of the internship at index 1 to be `This internship has a behavioural interview!`.
+ 
+<div markdown="span" class="alert alert-success">
+
+💡 **Try It Out:**<br>
+
+1. Input:<br>
+   `addremark 1 /remark This internship has a behavioural interview!`<br>
+   ![Before adding a remark](./images/add-remark/addremark-before.png)<br><br>
+
+2. Successful Output after adding a remark:<br>
+   ![After successfully adding a remark](./images/add-remark/addremark-after.png)
+</div>
 
 ### Finding internships by keywords: `find`
 
