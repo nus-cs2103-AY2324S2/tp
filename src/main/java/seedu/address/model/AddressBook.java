@@ -101,8 +101,12 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
-
-        persons.setPerson(target, editedPerson);
+        if (persons.contains(target)) {
+            persons.setPerson(target, editedPerson);
+        } else {
+            editedPerson.setArchived(true);
+            archivedPersons.setPerson(target, editedPerson);
+        }
     }
 
     /**
@@ -110,10 +114,9 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code key} must exist in the address book.
      */
     public void removePerson(Person key) {
-        try {
-            // Attempt to remove from the active persons list
+        if (persons.contains(key)) {
             persons.remove(key);
-        } catch (PersonNotFoundException e) {
+        } else {
             archivedPersons.remove(key);
         }
     }
