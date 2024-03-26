@@ -382,7 +382,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User add a new client by providing the necessary information including the person's name, phone number, email, address, and optional tags.
+1.  User add a new client by providing the necessary information including the person's name, phone number, email, address, optional tags, optional upcoming and optional upcoming.
 2.  FAPro validates the provided information and adds the person to the address book.
 3.  FAPro shows the client information in the list.
     Use case ends.
@@ -512,8 +512,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to find people containing an upcoming appointment.
-2.  AddressBook retrieves a list of people who have upcoming appointments.
-3.  AddressBook shows the list of people to the user.
+2.  AddressBook shows the list of people, ordering them from the nearest to the farthest upcoming appointment based on date.
 
 **Extensions**
 * 2a. Client name does not exist.
