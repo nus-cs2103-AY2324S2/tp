@@ -82,9 +82,11 @@ This section allows you to start caring for your clients as soon as possible!
    
        Windows or macOS users might find [this guide](https://blog.hubspot.com/website/check-java-verison) useful.
 
-2. Download the latest release of `ConnectCare.jar` [here](https://github.com/AY2324S2-CS2103T-W12-4/tp/releases/tag/v1.2).
+2. Download the latest release of `ConnectCare.jar` [here](https://github.com/AY2324S2-CS2103T-W12-4/tp/releases).
 3. Copy the jar file to the folder you want to use as the home folder.
 4. Double-click the file to start the application! Alternatively, use [this guide](https://www.baeldung.com/java-run-jar-with-arguments) to run the `.jar` file and start the application.
+
+You should now be able to manage your clients with ease!
 
 ___
 
