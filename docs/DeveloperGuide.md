@@ -68,7 +68,7 @@ Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
 * implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding
-  API `interface` mentioned in the previous point.
+  API `interface` mentioned in the previous point).
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using
 the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component
@@ -124,15 +124,17 @@ call as an example.
 How the Logic component works:
 
 1. When Logic is invoked to execute a command, it delegates the command to an AddressBookParser object. This object then
-   creates a parser corresponding to the command type (e.g., DeleteCommandParser) and utilizes it to interpret the command.
+   creates a parser corresponding to the command type (e.g., DeleteCommandParser) and utilizes it to interpret the
+   command.
 2. This process generates a Command object (to be more specific, an instance of one of its subclasses, e.g.,
    DeleteCommand) which is then executed by the LogicManager.
 3. During execution, the command can interact with the Model (e.g., to delete a Client or manage Order details).<br>
    While this interaction is depicted as a singular step in the above diagram for the sake of simplicity, the actual
-   implementation may involve multiple interactions (between the command object and the Model) to accomplish the intended
-   task.
+   implementation may involve multiple interactions (between the command object and the Model) to accomplish the
+   intended task.
 4. The outcome of the command's execution is encapsulated within a CommandResult object, which is then returned from
-   Logic. Additional classes in Logic (not shown in the class diagram above) that are utilized for parsing a user command:
+   Logic. Additional classes in Logic (not shown in the class diagram above) that are utilized for parsing a user
+   command:
 
 <img src="images/ParserClasses.png" width="600"/>
 
@@ -140,30 +142,42 @@ How the Logic component works:
 
 To implement the new Order Logic, a new package has to be created within the commands package to cater to the order type
 commands. The key changes would be:
+
 - Creation of new parser class:
     - Created a `AddOrderCommandParser` class to create the respective `Command` object by parsing the user input. This
-       flow is as intended, and will allow us to get the required parameters typed by the user.
+      flow is as intended, and will allow us to get the required parameters typed by the user.
     - Created a `DeleteOrderCommandParser` class to create the respective `Command` object by parsing the user input.
-       This flow is as intended, and will allow us to get index of the Order object in the `ObservableList`.
+      This flow is as intended, and will allow us to get index of the Order object in the `ObservableList`.
 - Creation of new classes:
     - Created a `AddOrderCommand` class to cater to order creation inputs by the user. This will have the required logic
-       to return the appropriate Command to be executed in the main logic.
-    - Created a `DeleteOrderCommand` class to cater to delete orders by their index in their ObservedList class. This
-       will allow the users to delete by index instead of the UUID. 
-- Update `Model` to provide methods to support the new classes. such as creating the new `ObservableList` object to
-   update the JavaFX element in the UI.
+      to return the appropriate `Command` to be executed in the main logic.
+    - Created a `DeleteOrderCommand` class to cater to delete orders by their index in their `ObservableList` class.
+      This will allow the users to delete by index instead of the UUID. The `DeleteOrderCommand` first checks
+      the `ObservableList` by index to determine if the index is valid, then checks which `Person` the order belongs to.
+      This allows the modification of both `Person`s and `Order`s at the same time.
+    - Created a `EditOrderCommand` class to cater to allow editing inputs by the user. The logic is similar to that used
+      by `DeleteOrderCommand`.
+- Update `Model` and `ModelManager` to provide methods to support the new classes. such as creating the
+  new `ObservableList` object to
+  update the JavaFX element in the UI.
 - JUnit Test: To verify that the classes and methods behave as expected throughout the development phases, and to
-   ensure that future updates do not alter their behavior.
+  ensure that future updates do not alter their behavior.
 
 #### Why is it implemented this way:
 
-It was done in this manner so as to:
-- Separation of Concerns: By delegating specific responsibilities to specialized classes (like AddressBookParser,
-   AddOrderCommandParser, etc.), the design adheres to the principle of separation of concerns. This means each part of the
-   system has a clear responsibility, reducing complexity and making the codebase easier to understand and maintain.
-- Provide Extendibility: With a modular structure, adding new functionality (like future order implementations)
-   involves creating new classes and modifying existing ones minimally. This approach makes the system more extendible, as
-   seen with the introduction of new parser and command classes for handling orders.
+It was done in this manner to adhere to the following design principles:
+
+- Separation of Concerns: By delegating specific responsibilities to specialized classes (like `AddressBookParser`,
+  AddOrderCommandParser, etc.), the design adheres to the principle of separation of concerns. This means each part of
+  the
+  system has a clear responsibility, reducing complexity and making the codebase easier to understand and maintain.
+- Provide Extensibility: With a modular structure, adding new functionality (like future order implementations)
+  involves creating new classes and modifying existing ones minimally. This approach makes the system more extendable,
+  as seen with the introduction of new parser and command classes for handling orders.
+- Enhances Frontend Integration:  By redefining how the `ObservableList` is managed within the `ModelManager` for
+  Orders, we enhance our capability to directly manipulate the `OrderList` view in JavaFX. This adjustment in the
+  ModelManager class creates a seamless and responsive interaction between the backend data structures and the frontend
+  user interface.
 
 By doing so, I am able to emphasize on the clear separation of duties among components and allowing flexibility to add
 new features with minimal disruption This strategy not only facilitates easier maintenance and scalability but also
@@ -401,9 +415,10 @@ displays the `MESSAGE_SUCCESS` message, which is "Here are all your orders: ".
     * Cons: More complex implementation of storage and memory access.
 
 **Why is it implemented that way**
+
 * This approach is chosen for its simplicity. By utilising the filtered order list maintained by the model, the
-`viewOrders` command provides a straightforward way to display all orders to the user. It also makes it easier to
-maintain.
+  `viewOrders` command provides a straightforward way to display all orders to the user. It also makes it easier to
+  maintain.
 
 ### \[Proposed\] Data archiving
 
