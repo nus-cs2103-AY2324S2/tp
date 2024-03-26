@@ -21,6 +21,7 @@ import seedu.address.logic.commands.ExportCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ImportCommand;
+import seedu.address.logic.commands.ImportExamCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Person;
@@ -103,7 +104,12 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_import() throws Exception {
-        assertTrue(parser.parseCommand("import i/src") instanceof ImportCommand);
+        assertTrue(parser.parseCommand("import i/src.csv") instanceof ImportCommand);
+    }
+
+    @Test
+    public void parseCommand_importExam() throws Exception {
+        assertTrue(parser.parseCommand("importExam ie/src.csv") instanceof ImportExamCommand);
     }
 
     @Test
