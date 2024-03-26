@@ -12,8 +12,10 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.logging.Logger;
 import java.util.stream.Stream;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.AddInterviewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Phone;
@@ -23,6 +25,8 @@ import seedu.address.model.person.Phone;
  * Parses input arguments and creates a new AddInterviewCommand object
  */
 public class AddInterviewCommandParser implements Parser<AddInterviewCommand> {
+
+    private final Logger logger = LogsCenter.getLogger(getClass());
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddInterviewCommand
@@ -37,6 +41,7 @@ public class AddInterviewCommandParser implements Parser<AddInterviewCommand> {
         if (!arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION, PREFIX_DATE, PREFIX_START_TIME, PREFIX_END_TIME,
                 PREFIX_APPLICANT, PREFIX_INTERVIEWER)
                 || !argMultimap.getPreamble().isEmpty()) {
+            logger.info("An error has occurred while parsing AddInterviewCommand: " + MESSAGE_INVALID_COMMAND_FORMAT);
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddInterviewCommand.MESSAGE_USAGE));
         }
 
