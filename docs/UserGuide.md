@@ -3,10 +3,19 @@ layout: page
 title: User Guide
 ---
 
-TeachStack is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, TeachStack can get your contact management tasks done faster than traditional GUI apps.
+TeachStack is a **desktop app for managing students, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, TeachStack can get your student management tasks done faster than traditional GUI apps.
 
 ## Table of contents
   {:toc}
+
+--------------------------------------------------------------------------------------------------------------------
+## Target user/audience
+
+The growing population of computer science students worldwide presents a novel set of problems administratively for computer science instructors which TeachStack aims to address. Therefore, TeachStack is tailored for computer science instructors, not limited to those within NUS.
+
+## Assumptions
+1. We assume that users are passionate educators who wish to see their students succeed. This is important as TeachStack mainly allows instructors to track the performance of weaker students, so the application can only demonstrate its full potential in the hands of instructors who care.
+2. We also assume that users are somewhat familiar with computers and have used computer applications in the past, which will help them follow this guide and use TeachStack effectively. Since most instructors will have used similar applications (e.g. Canvas), this is a reasonable assumption to make.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -26,15 +35,10 @@ TeachStack is a **desktop app for managing contacts, optimized for use via a Com
    Some example commands you can try:
 
     * `list` : Lists all contacts.
-
-
-* `add id/A01234567H n/John Doe e/e0123456@u.nus.edu` : Adds a student named `John Doe` to the list.
-
-* `delete A0123456X` : Deletes the student with student id A0123456X from the list.
-
-* `clear` : Deletes all students.
-
-* `exit` : Exits the app.
+    * `add id/A01234567H n/John Doe e/e0123456@u.nus.edu` : Adds a student named `John Doe` to the list.
+    * `delete A0123456X` : Deletes the student with student id A0123456X from the list.
+    * `clear` : Deletes all students.
+    * `exit` : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
 
