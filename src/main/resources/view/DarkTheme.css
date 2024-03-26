@@ -333,6 +333,36 @@
     -fx-font-size: 14;
 }
 
+
+#uncompletedGroupSkills {
+    -fx-hgap: 8;
+    -fx-vgap: 4;
+}
+
+#uncompletedGroupSkills .label {
+    -fx-text-fill: black;
+    -fx-background-color: #FF0000;
+    -fx-padding: 1 3 1 3;
+    -fx-border-radius: 1;
+    -fx-background-radius: 2;
+    -fx-font-size: 14;
+}
+
+#completedGroupSkills {
+    -fx-hgap: 8;
+    -fx-vgap: 4;
+}
+
+#completedGroupSkills .label {
+    -fx-text-fill: black;
+    -fx-background-color: #00FF00;
+    -fx-padding: 1 3 1 3;
+    -fx-border-radius: 1;
+    -fx-background-radius: 2;
+    -fx-font-size: 14;
+}
+
+=======
 #copyButton {
     -fx-text-fill: white;
 }
@@ -348,3 +378,4 @@
 #copyButton:armed {
     -fx-background-color: darkgray;
 }
+

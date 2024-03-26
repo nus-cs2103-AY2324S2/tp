@@ -72,6 +72,35 @@ public class Group extends UniqueCourseMateList {
     }
 
     /**
+     * Returns a set containing all the skills that have been fulfilled.
+     * Fulfilled means that any one of the group member has a corresponding skill
+     * that matches with a specific group skill
+     */
+    public Set<Skill> completedSkills() {
+        Set<Skill> completed = new HashSet<>();
+        for (Skill skill: skills) {
+            if (isSkillFound(skill)) {
+                completed.add(skill);
+            }
+        }
+        return Collections.unmodifiableSet(completed);
+    }
+
+    /**
+     * Returns a set containing all the skills that have are still unfulfilled.
+     * Unfulfilled means that all the group members do not have a skill
+     * that matches with a corresponding group skill
+     */
+    public Set<Skill> uncompletedSkills() {
+        Set<Skill> uncompleted = new HashSet<>();
+        for (Skill skill: skills) {
+            if (!isSkillFound(skill)) {
+                uncompleted.add(skill);
+            }
+        }
+        return Collections.unmodifiableSet(uncompleted);
+    }
+    /**
      * Returns the {@code TelegramChat} of the group.
      * No guarantees on nullability.
      * @return

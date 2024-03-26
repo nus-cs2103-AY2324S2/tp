@@ -31,6 +31,14 @@ public class GroupListCard extends UiPart<Region> {
     @FXML
     private FlowPane groupMembers;
 
+    @FXML
+    private FlowPane completedGroupSkills;
+
+    @FXML
+    private FlowPane uncompletedGroupSkills;
+
+
+
     /**
      * Creates a {@code GroupCard} with the given {@code Group}.
      */
@@ -47,6 +55,14 @@ public class GroupListCard extends UiPart<Region> {
         group.asUnmodifiableObservableList().stream()
                 .sorted(Comparator.comparing(courseMate -> courseMate.getName().fullName))
                 .forEach(courseMate -> groupMembers.getChildren().add(new Label(courseMate.getName().fullName)));
+
+        group.completedSkills().stream()
+                .sorted(Comparator.comparing(skill -> skill.skillName))
+                .forEach(skill -> completedGroupSkills.getChildren().add(new Label(skill.skillName)));
+
+        group.uncompletedSkills().stream()
+                .sorted(Comparator.comparing(skill -> skill.skillName))
+                .forEach(skill -> uncompletedGroupSkills.getChildren().add(new Label(skill.skillName)));
     }
 
     /**
