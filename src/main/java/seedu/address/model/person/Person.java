@@ -102,6 +102,7 @@ public class Person {
      */
     public boolean hasExistingMeeting(Meeting meeting) {
         for (Meeting m : this.meetings) {
+            // prevents same time and same description
             if (m.equals(meeting)) {
                 return true;
             }

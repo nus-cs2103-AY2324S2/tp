@@ -33,8 +33,8 @@ public class AddMeetingCommand extends Command {
 
 
     public static final String MESSAGE_SUCCESS = "New meeting added: %1$s";
-    public static final String MESSAGE_DUPLICATE_MEETING = "This meeting already exists in the address book";
-
+    public static final String MESSAGE_DUPLICATE_MEETING = "This meeting either already exists "
+            + "in the address book or you are already booked for this timing";
     private final Index clientIndex;
     private final LocalDateTime dateTime;
     private final String description;

@@ -155,7 +155,6 @@ public class Meeting {
         if (otherMeeting == this) {
             return true;
         }
-
         return otherMeeting != null
                 && otherMeeting.getClient().equals(getClient())
                 && otherMeeting.getDescription().equals(getDescription())
