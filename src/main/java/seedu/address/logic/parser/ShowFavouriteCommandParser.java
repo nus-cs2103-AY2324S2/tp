@@ -1,6 +1,6 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.logic.Messages.MESSAGE_INVALID_NO_ARGUMENTS_COMMAND;
+import static seedu.address.logic.parser.ParserUtil.parseNoArgs;
 
 import seedu.address.logic.commands.ShowFavouriteCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -16,10 +16,8 @@ public class ShowFavouriteCommandParser implements Parser<ShowFavouriteCommand> 
      * @throws ParseException if the user input has any text after the command word
      */
     public ShowFavouriteCommand parse(String args) throws ParseException {
-        if (args.isEmpty() || args.isBlank()) {
-            return new ShowFavouriteCommand();
-        }
-        throw new ParseException(MESSAGE_INVALID_NO_ARGUMENTS_COMMAND);
+        parseNoArgs(args);
+        return new ShowFavouriteCommand();
     }
 
 }
