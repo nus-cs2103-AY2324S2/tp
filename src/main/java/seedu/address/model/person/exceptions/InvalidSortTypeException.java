@@ -1,5 +1,7 @@
 package seedu.address.model.person.exceptions;
 
+import static seedu.address.logic.Messages.MESSAGE_INVALID_SORT_TYPE;
+
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -7,6 +9,6 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class InvalidSortTypeException extends ParseException {
     public InvalidSortTypeException(String type) {
-        super(type + " is not a valid sort type!");
+        super(String.format(MESSAGE_INVALID_SORT_TYPE, type));
     }
 }

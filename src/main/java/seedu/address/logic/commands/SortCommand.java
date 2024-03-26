@@ -91,11 +91,6 @@ public class SortCommand extends Command {
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(sortType, personComparator);
-    }
-
-    @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .add("sortType", sortType)

@@ -21,6 +21,7 @@ public class Messages {
     public static final String MESSAGE_SORTED_OVERVIEW = "List has been sorted by %s.";
 
     public static final String MESSAGE_SORT_CLEARED = "List has been sorted by default order.";
+    public static final String MESSAGE_INVALID_SORT_TYPE = "%s is not a valid sort type!";
 
     /**
      * Returns an error message indicating the duplicate prefixes.

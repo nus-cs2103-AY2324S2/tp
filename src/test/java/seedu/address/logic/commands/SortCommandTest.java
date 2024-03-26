@@ -3,12 +3,15 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.SortCommand.NAME_SORT_TYPE;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
 import static seedu.address.testutil.TypicalPersons.CARL;
 import static seedu.address.testutil.TypicalPersons.DANIEL;
 import static seedu.address.testutil.TypicalPersons.ELLE;
+import static seedu.address.testutil.TypicalPersons.GEORGE;
+import static seedu.address.testutil.TypicalPersons.HOON;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -45,7 +48,7 @@ public class SortCommandTest {
     public void equals() throws InvalidSortTypeException {
         SortCommand sortByBirthday = new SortCommand(SortCommand.BIRTHDAY_SORT_TYPE);
         SortCommand sortByBirthdayCopy = new SortCommand(SortCommand.BIRTHDAY_SORT_TYPE);
-        SortCommand sortByName = new SortCommand(SortCommand.NAME_SORT_TYPE);
+        SortCommand sortByName = new SortCommand(NAME_SORT_TYPE);
 
         // same object -> returns true
         assertEquals(sortByBirthday, sortByBirthday);
@@ -108,9 +111,9 @@ public class SortCommandTest {
 
         final Model model = new ModelManager(addressBook, new UserPrefs());
         final Model expectedModel = new ModelManager(addressBook, new UserPrefs());
-        final String expectedMessage = String.format(Messages.MESSAGE_SORTED_OVERVIEW, SortCommand.NAME_SORT_TYPE);
+        final String expectedMessage = String.format(Messages.MESSAGE_SORTED_OVERVIEW, NAME_SORT_TYPE);
         expectedModel.updatePersonComparator(Name.NAME_COMPARATOR);
-        SortCommand command = new SortCommand(SortCommand.NAME_SORT_TYPE);
+        SortCommand command = new SortCommand(NAME_SORT_TYPE);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(ALICE, BOB, CARL, DANIEL, ELLE), model.getFilteredPersonList());
     }
@@ -122,8 +125,10 @@ public class SortCommandTest {
                 new PersonBuilder(ALICE).withMoneyOwed("-2").build(),
                 new PersonBuilder(BOB).withMoneyOwed("-1.5").build(),
                 new PersonBuilder(CARL).withMoneyOwed("4").build(),
+                new PersonBuilder(HOON).withMoneyOwed("4").build(),
                 new PersonBuilder(DANIEL).withMoneyOwed("3").build(),
-                new PersonBuilder(ELLE).withMoneyOwed("0").build()
+                new PersonBuilder(ELLE).withMoneyOwed("0").build(),
+                new PersonBuilder(GEORGE).withMoneyOwed("0").build()
         };
 
         // Add to address book in random order
@@ -131,7 +136,9 @@ public class SortCommandTest {
         addressBook.addPerson(persons[4]);
         addressBook.addPerson(persons[2]);
         addressBook.addPerson(persons[3]);
+        addressBook.addPerson(persons[5]);
         addressBook.addPerson(persons[0]);
+        addressBook.addPerson(persons[6]);
         addressBook.addPerson(persons[1]);
 
         final Model model = new ModelManager(addressBook, new UserPrefs());
@@ -154,11 +161,11 @@ public class SortCommandTest {
 
         final Model model = new ModelManager(addressBook, new UserPrefs());
         final Model expectedModel = new ModelManager(addressBook, new UserPrefs());
-        final String expectedSortMessage = String.format(Messages.MESSAGE_SORTED_OVERVIEW, SortCommand.NAME_SORT_TYPE);
+        final String expectedSortMessage = String.format(Messages.MESSAGE_SORTED_OVERVIEW, NAME_SORT_TYPE);
         final String expectedClearMessage = Messages.MESSAGE_SORT_CLEARED;
 
         expectedModel.updatePersonComparator(Name.NAME_COMPARATOR);
-        SortCommand sortByNameCommand = new SortCommand(SortCommand.NAME_SORT_TYPE);
+        SortCommand sortByNameCommand = new SortCommand(NAME_SORT_TYPE);
         assertCommandSuccess(sortByNameCommand, model, expectedSortMessage, expectedModel);
         assertEquals(Arrays.asList(ALICE, BOB, CARL, DANIEL, ELLE), model.getFilteredPersonList());
 
@@ -166,5 +173,12 @@ public class SortCommandTest {
         SortCommand clearSortCommand = new SortCommand(SortCommand.CLEAR_SORT_TYPE);
         assertCommandSuccess(clearSortCommand, model, expectedClearMessage, expectedModel);
         assertEquals(Arrays.asList(BOB, ELLE, ALICE, CARL, DANIEL), model.getFilteredPersonList());
+    }
+
+    @Test
+    public void toStringMethod() throws ParseException {
+        SortCommand command = new SortCommand(NAME_SORT_TYPE);
+        String expected = SortCommand.class.getCanonicalName() + "{sortType=" + NAME_SORT_TYPE + "}";
+        assertEquals(expected, command.toString());
     }
 }
