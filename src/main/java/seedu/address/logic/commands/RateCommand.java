@@ -4,8 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RATING;
 
-import java.util.List;
-
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.messages.RateMessages;
@@ -36,24 +34,6 @@ public class RateCommand extends Command {
     public RateCommand(Name name, Rating rating) {
         this.targetName = name;
         this.rating = rating;
-    }
-
-    /**
-     * Finds a person from a List of persons identified by its name.
-     *
-     * @param personList The list of persons to search from.
-     * @param targetName The name of the person to return.
-     *
-     * @return The person object with name equals to {@code targetName}.
-     * */
-    public Person findByName(List<Person> personList, Name targetName) {
-        for (Person person: personList) {
-            Name name = person.getName();
-            if (name.equals(targetName)) {
-                return person;
-            }
-        }
-        return null;
     }
 
     @Override
