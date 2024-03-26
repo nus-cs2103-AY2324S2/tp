@@ -125,4 +125,25 @@ public interface Model {
      * @param isConfirmClear true to set the clear operation as confirmed, false otherwise.
      */
     void setConfirmClear(boolean isConfirmClear);
+
+    /**
+     * Checks if the user is currently viewing the archived list.
+     * This should be used by operations that behave differently depending
+     * on whether the user is viewing the archived list or the active persons list,
+     * allowing them to determine the appropriate list to act upon.
+     *
+     * @return true if the user is viewing the archived list, false if the user is viewing the active persons list.
+     */
+    boolean isViewingArchivedList();
+
+    /**
+     * Sets the view state to indicate whether the user is viewing the archived list.
+     * This should be used to toggle between viewing the active persons list and the archived persons list.
+     * When set to true, operations that depend on the current view state should act on the archived list.
+     * When set to false, operations should act on the active persons list.
+     *
+     * @param isViewingArchived true to indicate that the archived list is being viewed,
+     *                          false to indicate the active persons list is being viewed.
+     */
+    void setViewingArchivedList(boolean isViewingArchived);
 }

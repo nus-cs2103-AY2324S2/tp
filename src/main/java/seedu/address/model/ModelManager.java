@@ -29,6 +29,8 @@ public class ModelManager implements Model {
     private boolean isAwaitingClear;
     private boolean isConfirmClear;
 
+    private boolean isViewingArchivedList;
+
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -62,6 +64,7 @@ public class ModelManager implements Model {
 
         this.isConfirmClear = false;
         this.isAwaitingClear = false;
+        this.isViewingArchivedList = false;
     }
 
     public ModelManager() {
@@ -137,7 +140,6 @@ public class ModelManager implements Model {
     @Override
     public void addPerson(Person person) {
         addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     // For adding straight into the archive list
@@ -209,5 +211,15 @@ public class ModelManager implements Model {
     @Override
     public void setConfirmClear(boolean isConfirmClear) {
         this.isConfirmClear = isConfirmClear;
+    }
+
+    @Override
+    public void setViewingArchivedList(boolean isViewingArchived) {
+        this.isViewingArchivedList = isViewingArchived;
+    }
+
+    @Override
+    public boolean isViewingArchivedList() {
+        return this.isViewingArchivedList;
     }
 }

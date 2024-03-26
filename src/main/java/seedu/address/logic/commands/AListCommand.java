@@ -17,6 +17,7 @@ public class AListCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
+        model.setViewingArchivedList(true);
         model.updateFilteredPersonList(PREDICATE_SHOW_ARCHIVED_PERSONS);
         return new CommandResult(MESSAGE_SUCCESS);
     }
