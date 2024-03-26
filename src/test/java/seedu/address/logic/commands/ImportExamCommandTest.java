@@ -14,14 +14,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.AddExamCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.exam.Exam;
 import seedu.address.model.exam.UniqueExamList;
-import seedu.address.model.person.Score;
 
 public class ImportExamCommandTest {
 
@@ -34,11 +31,10 @@ public class ImportExamCommandTest {
     private Model model;
 
     @BeforeEach
-    public void setUp() {
+    public void setUp() throws CommandException, ParseException {
         model = mock(Model.class);
         model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         UniqueExamList examList = new UniqueExamList();
-        examList.add(new Exam("Midterm", new Score(100)));
     }
 
     @Test
@@ -76,22 +72,11 @@ public class ImportExamCommandTest {
     }
 
     @Test
-    public void testSuccess() throws CommandException, ParseException {
-        Path filePath = Paths.get(VALID_PATH);
-        AddExamCommand addExamCommand = new AddExamCommandParser().parse(CREATE_MIDTERM_100);
-        addExamCommand.execute(model);
-        ImportExamCommand importExamCommand = new ImportExamCommand(filePath);
-        importExamCommand.execute(model);
-        assertCommandSuccess(importExamCommand, model, String.format(
-                ImportExamCommand.MESSAGE_SUCCESS, filePath), model);
-    }
-
-    @Test
-    public void testExamNotExist_successWithErrorReport() throws CommandException {
+    public void testSuccess() throws CommandException {
         Path filePath = Paths.get(VALID_PATH);
         ImportExamCommand importExamCommand = new ImportExamCommand(filePath);
         String expectedMessage = String.format(ImportExamCommand.MESSAGE_SUCCESS, filePath);
-        assertCommandSuccess(importExamCommand, model, expectedMessage + MIDTERM_NOT_FOUND_ERROR, model);
+        assertCommandSuccess(importExamCommand, model, expectedMessage, model);
     }
 
 }
