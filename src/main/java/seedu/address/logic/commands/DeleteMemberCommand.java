@@ -77,7 +77,8 @@ public class DeleteMemberCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_GROUP_NAME);
         }
 
-        Group modifiedGroup = new Group(toModify.getName(), toModify.asUnmodifiableObservableList());
+        Group modifiedGroup = new Group(toModify.getName(), toModify.asUnmodifiableObservableList(),
+                toModify.getSkills(), toModify.getTelegramChat());
 
         List<CourseMate> courseMateList = new ArrayList<>();
         int index = 0;
