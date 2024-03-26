@@ -1,12 +1,33 @@
----
-layout: page
-title: User Guide
----
+<h1 align="center"><i>GENE-NIE USER GUIDE</i></h1>
+<p align="center">
+Gene-nie is our address book reimagined. It is a desktop app able to not only manage your contacts, but also to help you 
+keep track of your genetic information. Gene-nie acts as your personal autobiographer, providing you with information on 
+your family tree and history.
+</p>
 
-Gene-nie is our address book reimagined. It is a desktop app able to not only manage your contacts, but also to help you keep track of your genetic information. Gene-nie acts as your personal autobiographer, providing you with information on your family tree and history.
+<details>
+<summary>&nbsp TABLE OF CONTENTS </summary>
 
-* Table of Contents
-{:toc}
+- [Quick Start](#quick-start)
+- [Features](#features)
+     - [Viewing Help](#viewing-help--help)
+     - [Adding a person](#adding-a-person--add)
+     - [Listing all Persons](#listing-all-persons--list)
+     - [Editing a person](#editing-a-person--edit)
+     - [Locating persons by name](#locating-persons-by-name--find)
+     - [Adding an Attribute](#adding-an-attribute--addattribute)
+     - [Deleting an Attribute](#deleting-an-attribute--deleteattribute)
+     - [Deleting a Person](#deleting-a-person--delete)
+     - [Editing a Relationship](#editing-a-relationship--editrelation)
+     - [Deleting a Relationship](#deleting-a-relationship--deleterelation)
+     - [Finding Relationship between Entities](#finding-relationship-between-entities--anysearch)
+     - [Clearing all Entries](#clearing-all-entries--clear)
+     - [Exiting the Program](#exiting-the-program--exit)
+- [FAQ](#faq)
+- [Known Issues](#known-issues)
+- [Command Summary](#command-summary)
+</details>
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -222,6 +243,27 @@ Format: `deleteRelation UUID1 UUID2 RELATIONSHIP_TYPE`
 Examples:
 * `deleteRelation 12db 34ab friend` deletes the relation friend between the person with the UUID 12db and the person with the UUID 34ab.
 
+### Finding Relationship between Entities: `anySearch`
+
+Finds the relationship pathway between 2 input entities.
+
+Format: `anySearch [originUUID] [targetUUID]`
+
+> [!IMPORTANT]
+> Valid Input UUIDs only include the last 4 digits of a UUID containing only alphanumeric characters
+
+* The search is case-sensitive, '10cb' and '10CB' are considered different UUID
+* If there exists a relationship between `originUUID` and `targetUUID` the relationship descriptor will be returned, 
+else `No Relationship Found` will be returned
+    - Example: `anySearch 10cb 980c` suppose 980c is the friend of 10cb mother, `anySearch` will then return the descriptor
+`mother -> friend`
+    - Example: `anySearch 10cb 867d` suppose 867d is not related to 10cb at all, then `anySearch` returns `No Relationship Found`
+* The command is order-sensitive `anySearch 10cb 987d` can potentially return a different result from `anySearch 987d 10cb`
+  * Example: 'anySearch 10cb 867d' suppose the search above returns `father -> friend -> mother` then `anySearch 867d 10cb`
+    returns `mother -> friend -> father` since relationship are bidirectional
+    
+    
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
@@ -279,5 +321,6 @@ _Details coming soon ..._
 | **editRelation**    | `editRelation UUID1 UUID2 OLD_RELATION_TYPE NEW_RELATION_TYPE`<br> e.g., `editRelation 12db 3dab family friend`                                                       |
 | **deleteRelation**  | `deleteRelation UUID1 UUID2 RELATION_TYPE`<br> e.g., `deleteRelation 12db 3dab family`                                                                                |
 | **Find**            | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
+| **anySearch**       | `anySearch [originUUID] [targetUUID]`<br> e.g., `anySearch 10cb 987d`                                                                                                 |
 | **List**            | `list`                                                                                                                                                                |
 | **Help**            | `help`                                                                                                                                                                |
