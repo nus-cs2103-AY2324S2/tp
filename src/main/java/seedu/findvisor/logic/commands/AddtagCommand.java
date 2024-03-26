@@ -23,7 +23,10 @@ import seedu.findvisor.model.person.Phone;
 import seedu.findvisor.model.person.Remark;
 import seedu.findvisor.model.tag.Tag;
 
-public class AddtagCommand extends Command{
+/**
+ * Adds tags to an existing person in the address book.
+ */
+public class AddtagCommand extends Command {
 
     public static final String COMMAND_WORD = "addtag";
 

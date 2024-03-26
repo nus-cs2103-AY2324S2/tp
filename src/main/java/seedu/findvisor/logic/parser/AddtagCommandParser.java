@@ -10,6 +10,9 @@ import seedu.findvisor.logic.commands.AddtagCommand;
 import seedu.findvisor.logic.parser.exceptions.ParseException;
 import seedu.findvisor.model.tag.Tag;
 
+/**
+ * Parses input arguments and creates a new AddtagCommand object
+ */
 public class AddtagCommandParser implements Parser<AddtagCommand> {
 
     /**
