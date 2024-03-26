@@ -26,7 +26,7 @@ public class Person {
     private final Set<Tag> tags = new HashSet<>();
     private Note note;
     private Pin pin;
-
+    private boolean hasDeadlineNote;
 
     /**
      * Every field must be present and not null.

@@ -26,6 +26,7 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.NoteCommand;
 import seedu.address.logic.commands.PinCommand;
 import seedu.address.logic.commands.RedoCommand;
+import seedu.address.logic.commands.RemindCommand;
 import seedu.address.logic.commands.SearchCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.commands.UnpinCommand;
@@ -125,6 +126,8 @@ public class AddressBookParser {
         case UnpinCommand.COMMAND_WORD:
             return new UnpinCommandParser().parse(arguments);
 
+        case RemindCommand.COMMAND_WORD:
+            return new RemindCommand();
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);

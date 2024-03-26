@@ -46,6 +46,9 @@ public class NoteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         Person personToEdit = model.findByName(name);
+        if (personToEdit == null) {
+            throw new CommandException(NoteMessages.MESSAGE_NOTE_NAME_NOT_FOUND);
+        }
         Person editedPerson;
 
         if (personToEdit instanceof Maintainer) {
@@ -72,18 +75,12 @@ public class NoteCommand extends Command {
                     personToEdit.getAddress(), note, personToEdit.getTags());
         }
 
+
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
-        return new CommandResult(generateSuccessMessage(editedPerson));
-    }
-
-    /**
-     * Generates a command execution success message
-     * {@code personToEdit}.
-     */
-    private String generateSuccessMessage(Person personToEdit) {
-        return String.format(NoteMessages.MESSAGE_ADD_NOTE_SUCCESS, personToEdit);
+        return new CommandResult(String.format(NoteMessages.MESSAGE_ADD_NOTE_SUCCESS,
+                NoteMessages.format(editedPerson)));
     }
 
     @Override

@@ -1,5 +1,7 @@
 package seedu.address.model.person;
 
+import static java.util.Objects.requireNonNull;
+
 /**
  * Represents a Person's Note in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidNote(String)}
@@ -22,8 +24,11 @@ public class Note {
      * @param note A valid note.
      */
     public Note(String note) {
+        requireNonNull(note);
+        // checkArgument(isValidNote(note), MESSAGE_CONSTRAINTS);
         value = note;
     }
+
 
     /**
      * Returns true if a given string is a valid email.
