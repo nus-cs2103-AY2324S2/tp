@@ -103,7 +103,8 @@ public class PersonTest {
     public void hashCodeMethod() {
         int expected = Objects.hash(
                 ALICE.getName(), ALICE.getPhone(), ALICE.getEmail(),
-                ALICE.getAddress(), ALICE.getTags(), ALICE.getMatric(), ALICE.getReflection(), ALICE.getStudio());
+                ALICE.getAddress(), ALICE.getTags(), ALICE.getMatric(),
+                ALICE.getReflection(), ALICE.getStudio(), ALICE.getScores());
         int actual = ALICE.hashCode();
         assertEquals(expected, actual);
     }
@@ -114,7 +115,8 @@ public class PersonTest {
                 + ", email=" + ALICE.getEmail() + ", address=" + ALICE.getAddress()
                 + ", tags=" + ALICE.getTags() + ", matriculation number=" + ALICE.getMatric()
                 + ", reflection=" + ALICE.getReflection()
-                + ", studio=" + ALICE.getStudio() + "}";
+                + ", studio=" + ALICE.getStudio()
+                + ", scores=" + ALICE.getScores() + "}";
         assertEquals(expected, ALICE.toString());
     }
 }

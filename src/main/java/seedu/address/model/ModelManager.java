@@ -7,10 +7,13 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.exam.Exam;
 import seedu.address.model.person.Person;
 
 /**
@@ -22,6 +25,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final SimpleObjectProperty<Exam> selectedExam;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -34,6 +38,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        selectedExam = new SimpleObjectProperty<>(null);
     }
 
     public ModelManager() {
@@ -146,5 +151,55 @@ public class ModelManager implements Model {
                 && userPrefs.equals(otherModelManager.userPrefs)
                 && filteredPersons.equals(otherModelManager.filteredPersons);
     }
+
+    //=========== Exam ================================================================================
+
+    @Override
+    public boolean hasExam(Exam exam) {
+        requireNonNull(exam);
+        return addressBook.hasExam(exam);
+    }
+
+    @Override
+    public void deleteExam(Exam target) {
+        addressBook.removeExam(target);
+    }
+
+    @Override
+    public void addExam(Exam exam) {
+        addressBook.addExam(exam);
+    }
+
+    @Override
+    public void setExam(Exam target, Exam editedExam) {
+        requireAllNonNull(target, editedExam);
+
+        addressBook.setExam(target, editedExam);
+    }
+
+    @Override
+    public ObservableList<Exam> getExamList() {
+        return addressBook.getExamList();
+    }
+
+    @Override
+    public void selectExam(Exam target) {
+        requireNonNull(target);
+        selectedExam.set(target);
+    }
+
+    @Override
+    public void deselectExam() {
+        selectedExam.set(null);
+    }
+
+    /**
+     * Returns the a view of the selected exam. (For updating UI purposes)
+     */
+    @Override
+    public ObservableValue<Exam> getSelectedExam() {
+        return selectedExam;
+    }
+
 
 }
