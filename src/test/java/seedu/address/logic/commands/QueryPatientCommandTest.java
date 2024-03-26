@@ -19,7 +19,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.PatientNameContainsKeywordsPredicate;
+import seedu.address.model.person.PatientContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
@@ -30,10 +30,10 @@ public class QueryPatientCommandTest {
 
     @Test
     public void equals() {
-        PatientNameContainsKeywordsPredicate firstPredicate =
-                new PatientNameContainsKeywordsPredicate((Collections.singletonList("first")));
-        PatientNameContainsKeywordsPredicate secondPredicate =
-                new PatientNameContainsKeywordsPredicate(Collections.singletonList("second"));
+        PatientContainsKeywordsPredicate firstPredicate =
+                new PatientContainsKeywordsPredicate((Collections.singletonList("first")));
+        PatientContainsKeywordsPredicate secondPredicate =
+                new PatientContainsKeywordsPredicate(Collections.singletonList("second"));
 
         QueryPatientCommand findFirstCommand = new QueryPatientCommand(firstPredicate);
         QueryPatientCommand findSecondCommand = new QueryPatientCommand(secondPredicate);
@@ -58,7 +58,7 @@ public class QueryPatientCommandTest {
     @Test
     public void execute_zeroKeywords_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
-        PatientNameContainsKeywordsPredicate predicate = preparePredicate(" ");
+        PatientContainsKeywordsPredicate predicate = preparePredicate(" ");
         QueryPatientCommand command = new QueryPatientCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -68,7 +68,7 @@ public class QueryPatientCommandTest {
     @Test
     public void execute_multipleKeywords_multiplePersonsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
-        PatientNameContainsKeywordsPredicate predicate = preparePredicate("Alice Benson");
+        PatientContainsKeywordsPredicate predicate = preparePredicate("Alice Benson");
         QueryPatientCommand command = new QueryPatientCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -78,7 +78,7 @@ public class QueryPatientCommandTest {
     @Test
     public void execute_singleKeyword_multiplePatientsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
-        PatientNameContainsKeywordsPredicate predicate = preparePredicate("Carl");
+        PatientContainsKeywordsPredicate predicate = preparePredicate("Carl");
         QueryPatientCommand command = new QueryPatientCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -88,7 +88,7 @@ public class QueryPatientCommandTest {
     @Test
     public void execute_noMatch_noPatientFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
-        PatientNameContainsKeywordsPredicate predicate = preparePredicate("Zorro");
+        PatientContainsKeywordsPredicate predicate = preparePredicate("Zorro");
         QueryPatientCommand command = new QueryPatientCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -97,8 +97,8 @@ public class QueryPatientCommandTest {
 
     @Test
     public void toStringMethod() {
-        PatientNameContainsKeywordsPredicate predicate =
-                new PatientNameContainsKeywordsPredicate(Arrays.asList("keyword"));
+        PatientContainsKeywordsPredicate predicate =
+                new PatientContainsKeywordsPredicate(Arrays.asList("keyword"));
         QueryPatientCommand findCommand = new QueryPatientCommand(predicate);
         String expected = QueryPatientCommand.class.getCanonicalName() + "{predicate=" + predicate + "}";
         assertEquals(expected, findCommand.toString());
@@ -107,7 +107,7 @@ public class QueryPatientCommandTest {
     /**
      * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
      */
-    private PatientNameContainsKeywordsPredicate preparePredicate(String userInput) {
-        return new PatientNameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    private PatientContainsKeywordsPredicate preparePredicate(String userInput) {
+        return new PatientContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
     }
 }
