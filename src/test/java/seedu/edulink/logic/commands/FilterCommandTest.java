@@ -72,7 +72,7 @@ public class FilterCommandTest {
     public void execute_nonExistentTags_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
 
-        Tag testTag1 = new Tag("TA");
+        Tag testTag1 = new Tag("Intelligent");
         Tag testTag2 = new Tag("Smart");
         Set<Tag> queryTags = new HashSet<>();
         queryTags.add(testTag1);

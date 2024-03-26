@@ -4,23 +4,37 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.edulink.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.edulink.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.edulink.logic.parser.CliSyntax.*;
+import static seedu.edulink.logic.parser.CliSyntax.PREFIX_ID;
+import static seedu.edulink.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.edulink.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.edulink.testutil.Assert.assertThrows;
 import static seedu.edulink.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.junit.jupiter.api.Test;
 
-import seedu.edulink.logic.commands.*;
+import seedu.edulink.logic.commands.AddCommand;
+import seedu.edulink.logic.commands.ClearCommand;
+import seedu.edulink.logic.commands.DeleteCommand;
+import seedu.edulink.logic.commands.EditCommand;
 import seedu.edulink.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.edulink.logic.commands.ExitCommand;
+import seedu.edulink.logic.commands.FilterCommand;
+import seedu.edulink.logic.commands.FindCommand;
+import seedu.edulink.logic.commands.HelpCommand;
+import seedu.edulink.logic.commands.ListCommand;
 import seedu.edulink.logic.parser.exceptions.ParseException;
-import seedu.edulink.model.student.*;
+import seedu.edulink.model.student.IdAndNameContainsQueryIdAndNamePredicate;
+import seedu.edulink.model.student.IdContainsQueryIdPredicate;
+import seedu.edulink.model.student.NameContainsQueryNamePredicate;
+import seedu.edulink.model.student.Student;
+import seedu.edulink.model.student.TagsContainQueryTagsPredicate;
 import seedu.edulink.model.tag.Tag;
 import seedu.edulink.testutil.EditPersonDescriptorBuilder;
 import seedu.edulink.testutil.PersonBuilder;
 import seedu.edulink.testutil.PersonUtil;
-
-import java.util.HashSet;
-import java.util.Set;
 
 public class AddressBookParserTest {
 
