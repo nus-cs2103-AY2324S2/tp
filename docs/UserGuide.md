@@ -28,7 +28,7 @@ Action     | Format, Examples
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `dormie.jar` from [here](https://github.com/se-edu/dormie-level3/releases).
+1. Download the latest `dormie.jar` from [here](https://github.com/AY2324S2-CS2103T-F11-4/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your Dormie.
 
