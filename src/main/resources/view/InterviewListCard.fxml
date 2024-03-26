@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <VBox prefHeight="140.0" prefWidth="66.0">
+      <children>
+             <Label fx:id="id" prefHeight="106.0" prefWidth="93.0" styleClass="cell_big_label" text="\$id" translateX="10.0">
+                 <minWidth>
+                     <!-- Ensures that the label text is never truncated -->
+                     <Region fx:constant="USE_PREF_SIZE" />
+                 </minWidth>
+             </Label>
+      </children>
+   </VBox>
+    <GridPane prefHeight="140.0" prefWidth="372.0" HBox.hgrow="ALWAYS">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150" />
+        </columnConstraints>
+        <VBox alignment="CENTER_LEFT" minHeight="105" prefHeight="105.0" prefWidth="203.0" GridPane.columnIndex="0">
+            <padding>
+                <Insets bottom="5" left="15" right="5" top="5" />
+            </padding>
+            <HBox alignment="CENTER_LEFT" spacing="5">
+                <Label fx:id="applicantNamePhone" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="352.0" styleClass="cell_big_label" text="\$applicantNamePhone" wrapText="true" />
+            </HBox>
+         <HBox alignment="CENTER_LEFT" layoutX="25.0" layoutY="15.0" spacing="5">
+            <children>
+               <Label fx:id="interviewerNamePhone" layoutX="15.0" layoutY="10.0" prefHeight="17.0" prefWidth="357.0" styleClass="cell_big_label" text="\$interviewerNamePhone" wrapText="true" />
+            </children>
+         </HBox>
+            <Label fx:id="date" prefHeight="17.0" prefWidth="306.0" styleClass="cell_small_label" text="\$date" />
+            <Label fx:id="startEndTime" prefHeight="17.0" prefWidth="307.0" styleClass="cell_small_label" text="\$startEndTime" />
+         <Label fx:id="description" layoutX="25.0" layoutY="80.0" prefHeight="17.0" prefWidth="346.0" styleClass="cell_small_label" text="description" />
+        </VBox>
+      <rowConstraints>
+         <RowConstraints />
+      </rowConstraints>
+    </GridPane>
+</HBox>

@@ -158,6 +158,60 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Find feature
+
+#### Implementation
+
+The find mechanism is facilitated by 3 classes `FindEmailCommand`, `FindNameCommand` and `FindPhoneCommand`. They all extend `FindCommand` with their corresponding `COMMAND_WORD` : `find_email`, `find_name` and `find_phone` respectively, as well as a corresponding `predicate` variable of type `EmailContainsKeywordsPredicate`, `NameContainsKeywordsPredicate` and `PhoneContainsKeywordsPredicate` respectively.
+`EmailContainsKeywordsPredicate`, `NameContainsKeywordsPredicate` and `PhoneContainsKeywordsPredicate` extend `Predicate` from the `java.util.function` package and override the `test` function to match their respective criteria of matching `Email`, `Name` and `Phone` values respectively.
+
+These `Predicate` objects allow for matching of multiple substrings, facilitating searching for multiple persons in the application simultaneously. This is done by providing multiple keyword arguments after the `find_[email/name/phone]` command word. However, this only applies to keywords for the same criteria.
+
+Example: Keyword arguments after `find_name` will be matched only to the `Name` values of persons in application data, and not theie `Email` or `Phone` values.
+* `FindEmailCommand#execute()` — Searches for persons based on the specified email keywords.
+* `FindNameCommand#execute()` — Searches for persons based on the specified name keywords.
+* `FindPhoneCommand#execute()` — Searches for persons based on the specified phone keywords.history.
+
+These `execute` operations utilise `ModelManager#updateFilteredPersonList()` implemented from the `Model` interface to update the GUI to display the persons that match the criteria provided as arguments to the `FindCommand` variant.
+
+The following class diagram summarizes the organisation of the `FindCommand` variant classes.
+
+<puml src="diagrams/find/FindCommandClass.puml" alt="FindCommandClassDiagram" width="250"/>
+
+Given below is an example usage scenario and how the find mechanism behaves at each step. All 3 variants behave in the same way, just with their keywords being of different types.
+
+Step 1. The user launches the application which loads in data from the previous session. Current data in the application include 2 `Applicant` objects, one with `Name = "Ryan"` and the other with `Name = "Wesley"`.
+
+Step 2. The user executes `find_name` command to find a person with the name Ryan in the application. The `find_name` command calls `FindNameCommandParser#parse()`, creating a new `FindNameCommand` object initialised with a `NameContainsKeywordsPredicate` object that is created with an array of the keywords passed as arguments with the `find_name` command. When `FindNameCommand#execute()` is called, the list displayed on the GUI will be updated to show only the entry of <u>`Ryan:Applicant`</u>.
+
+
+<box type="info" seamless>
+
+**Note:** 
+* The command expects at least 1 argument following the `find_name` command word and will result in an `ParseException` indicating invalid command format otherwise.
+* Use the command `list_persons` to display the original list of all persons on the GUI
+* There is no need to return back to the original list before executing another `find_[email/name/phone]` command
+
+</box>
+
+
+The following sequence diagram shows how a find operation, specifically `find_name`, goes through the `Logic` component:
+
+<puml src="diagrams/UndoSequenceDiagram-Logic.puml" alt="UndoSequenceDiagram-Logic" />
+
+
+#### Design considerations:
+
+**Aspect: How find executes:**
+
+* **Alternative 1 (current choice):** Saves the entire address book.
+    * Pros: Easy and straightforward to implement.
+    * Cons: Uses 3 separate command words resulting in 3 separate CommandParser classes.
+
+* **Alternative 2:** Command word remains as `find` and the first argument after will determine the criteria to search for: `email`, `name` or `phone`.
+    * Pros: Less repeating of similar code. Only 1 command word required.
+    * Cons: More changes to parsing is required for identification of criteria and potential errors with mixing up keywords with criteria word.
+
 ### Applicant/Interviewer status feature
 
 #### Implementation
@@ -218,7 +272,6 @@ The following sequence diagram illustrates step 4:
     * Cons: Possible performance issues when updating multi-statuses, as well as graphical design overhead when choosing how to sort and render multiple statuses.
 
 _{more aspects and alternatives to be added}_
-
 
 --------------------------------------------------------------------------------------------------------------------
 

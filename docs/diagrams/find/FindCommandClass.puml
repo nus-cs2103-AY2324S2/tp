@@ -1,0 +1,32 @@
+@startuml
+hide circle
+skinparam classAttributeIconSize 0
+
+Class "{abstract}\nCommand" as Command {
+  +execute(Model): CommandResult
+}
+Class FindCommand {
+  +MESSAGE_USAGE: String
+}
+Class FindEmailCommand {
+  +{static}COMMAND_WORD: String
+  -predicate:EmailContainsKeywordsPredicate
+  +execute(Model): CommandResult
+}
+Class FindNameCommand {
+  +{static}COMMAND_WORD: String
+  -predicate:EmailContainsKeywordsPredicate
+  +execute(Model): CommandResult
+}
+Class FindPhoneCommand {
+  +{static}COMMAND_WORD: String
+  -predicate:EmailContainsKeywordsPredicate
+  +execute(Model): CommandResult
+}
+
+FindCommand -up-|> Command
+FindEmailCommand -up-|> FindCommand
+FindNameCommand -up-|> FindCommand
+FindPhoneCommand -up-|> FindCommand
+Command ..> CommandException: throws >
+@enduml
