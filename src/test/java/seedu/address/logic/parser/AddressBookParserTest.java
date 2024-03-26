@@ -109,7 +109,7 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_importExam() throws Exception {
-        assertTrue(parser.parseCommand("importExam ie/src.csv") instanceof ImportExamCommand);
+        assertTrue(parser.parseCommand("importExam i/src.csv") instanceof ImportExamCommand);
     }
 
     @Test
