@@ -17,7 +17,6 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.meeting.Meeting;
-import seedu.address.testutil.EditMeetingDescriptorBuilder;
 import seedu.address.testutil.MeetingBuilder;
 
 public class EditMeetingCommandParserTest {
@@ -31,7 +30,6 @@ public class EditMeetingCommandParserTest {
     @Test
     public void parse_missingClientIndex_failure() {
         Meeting editedMeeting = new MeetingBuilder().withClient(JAMAL).buildMeeting();
-        EditMeetingCommand.EditMeetingDescriptor descriptor = new EditMeetingDescriptorBuilder(editedMeeting).build();
 
         // no clientIndex specified
         String testInputClientIndex = MEETING_INDEX + VALID_NAME_AMY + DATETIME;
@@ -49,7 +47,6 @@ public class EditMeetingCommandParserTest {
     @Test
     public void parse_missingMeetingIndex_failure() {
         Meeting editedMeeting = new MeetingBuilder().withClient(JAMAL).buildMeeting();
-        EditMeetingCommand.EditMeetingDescriptor descriptor = new EditMeetingDescriptorBuilder(editedMeeting).build();
 
         // no meetingIndex specified
         String testInputMeetingIndex = CLIENT_INDEX + VALID_NAME_AMY + DATETIME;
@@ -59,7 +56,6 @@ public class EditMeetingCommandParserTest {
     @Test
     public void parse_missingDateTime_failure() {
         Meeting editedMeeting = new MeetingBuilder().withClient(JAMAL).buildMeeting();
-        EditMeetingCommand.EditMeetingDescriptor descriptor = new EditMeetingDescriptorBuilder(editedMeeting).build();
 
         // no datetime specified
         String testInputDateTime = CLIENT_INDEX + MEETING_INDEX + VALID_NAME_AMY;

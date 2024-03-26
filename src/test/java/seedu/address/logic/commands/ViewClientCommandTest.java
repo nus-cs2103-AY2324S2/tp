@@ -4,7 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static seedu.address.logic.commands.ViewClientCommand.MESSAGE_SUCCESS;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
@@ -18,21 +20,21 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 
 
-public class ViewCommandTest {
+public class ViewClientCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void equals() {
 
-        ViewCommand firstViewCommand = new ViewCommand(INDEX_FIRST_PERSON);
-        ViewCommand secondViewCommand = new ViewCommand(INDEX_SECOND_PERSON);
+        ViewClientCommand firstViewCommand = new ViewClientCommand(INDEX_FIRST_PERSON);
+        ViewClientCommand secondViewCommand = new ViewClientCommand(INDEX_SECOND_PERSON);
 
         // same object -> returns true
         assertTrue(firstViewCommand.equals(firstViewCommand));
 
         // same values -> returns true
-        ViewCommand firstViewCommandCopy = new ViewCommand(INDEX_FIRST_PERSON);
+        ViewClientCommand firstViewCommandCopy = new ViewClientCommand(INDEX_FIRST_PERSON);
         assertTrue(firstViewCommand.equals(firstViewCommandCopy));
 
         // different types -> returns false
@@ -44,25 +46,42 @@ public class ViewCommandTest {
         // different person -> returns false
         assertFalse(firstViewCommand.equals(secondViewCommand));
     }
+    @Test
+    public void execute_viewClient_success() {
+        CommandResult expectedCommandResult = new CommandResult(MESSAGE_SUCCESS + INDEX_FIRST_PERSON.getOneBased());
+        assertCommandSuccess(new ViewClientCommand(INDEX_FIRST_PERSON), model, expectedCommandResult, model);
+    }
 
     @Test
-    public void execute_invalidIndexFilteredList_throwsCommandException() {
+    public void execute_viewOtherClientWhenAlreadyViewing_throwsCommandException() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
 
-        ViewCommand viewCommand = new ViewCommand(outOfBoundIndex);
+        ViewClientCommand viewCommand = new ViewClientCommand(outOfBoundIndex);
 
-        assertCommandFailure(viewCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(viewCommand, model, Messages.MESSAGE_RETURN_HOME);
+    }
+
+    @Test
+    public void execute_viewInvalidIndex_throwsCommandException() {
+        Index outOfBoundIndex = Index.fromOneBased(model.getAddressBook().getPersonList().size() + 1);
+
+        assertTrue(outOfBoundIndex.getOneBased() >= model.getAddressBook().getPersonList().size());
+
+        ViewClientCommand viewCommand = new ViewClientCommand(outOfBoundIndex);
+
+        assertCommandFailure(viewCommand, model, String.format(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX,
+                outOfBoundIndex.getOneBased()));
     }
 
     @Test
     public void toStringMethod() {
         Index targetIndex = Index.fromOneBased(1);
-        ViewCommand viewCommand = new ViewCommand(targetIndex);
-        String expected = ViewCommand.class.getCanonicalName() + "{targetIndex=" + targetIndex + "}";
+        ViewClientCommand viewCommand = new ViewClientCommand(targetIndex);
+        String expected = ViewClientCommand.class.getCanonicalName() + "{targetIndex=" + targetIndex + "}";
         assertEquals(expected, viewCommand.toString());
     }
 }

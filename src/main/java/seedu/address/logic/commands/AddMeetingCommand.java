@@ -25,7 +25,7 @@ public class AddMeetingCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a meeting to the "
             + "client identified by the index number. \n"
-            + "Parameters: client/ CLIENT_INDEX dt/ DATE_TIME /d DESCRIPTION \n"
+            + "Parameters: clientIndex/ CLIENT_INDEX dt/ DATE_TIME /d DESCRIPTION \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_CLIENT_INDEX + "1 "
             + PREFIX_DATETIME + "02-01-2024 12:00 "
@@ -33,8 +33,8 @@ public class AddMeetingCommand extends Command {
 
 
     public static final String MESSAGE_SUCCESS = "New meeting added: %1$s";
-    public static final String MESSAGE_DUPLICATE_MEETING = "This meeting already exists in the address book";
-
+    public static final String MESSAGE_DUPLICATE_MEETING = "This meeting either already exists "
+            + "in the address book or you are already booked for this timing";
     private final Index clientIndex;
     private final LocalDateTime dateTime;
     private final String description;
@@ -84,6 +84,7 @@ public class AddMeetingCommand extends Command {
         if (model.hasMeeting(meetingToAdd) && client.hasExistingMeeting(meetingToAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_MEETING);
         }
+        client.addMeeting(meetingToAdd);
         model.addMeeting(meetingToAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(meetingToAdd)));
     }

@@ -25,15 +25,15 @@ FinCliQ is a **desktop app for financial advisors to manage contacts and meeting
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   - `list` : Lists all clients.
+    - `list` : Lists all clients.
 
-   - `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+    - `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
 
-   - `delete 3` : Deletes the 3rd clients shown in the current list.
+    - `delete 3` : Deletes the 3rd clients shown in the current list.
 
-   - `clear` : Deletes all clients.
+    - `clear` : Deletes all clients.
 
-   - `exit` : Exits the app.
+    - `exit` : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -146,44 +146,54 @@ Examples:
 - `list` followed by `delete 2` deletes the 2nd client in the address book.
 - `find Betsy` followed by `delete 1` deletes the 1st client in the results of the `find` command.
 
+### Filter client by tag : `filter`
+Filter through clients by a specific tag provided.
+
+Format: `filter TAG_NAME`
+
+- `TAG_NAME` refers to the tag given to clients
+- Displays all clients with the specified tag
+- There should only be one tag provided else an error would be shown
+
+Examples:
+- `filter friends` Displays all clients with the tag `friends`
+
 ## Meeting Functions
 
 ### Adding a Meeting: `add`
 
 Adds a meeting for a specific client in the address book.
 
-Format: `add CLIENT_INDEX n/NAME dt/DATE_TIME v/VENUE [d/DESCRIPTION]…​`
+Format: `addMeeting clientIndex/CLIENT_INDEX dt/DATE_TIME d/DESCRIPTION`
 
 - `CLIENT_INDEX` refers to the index number shown in the displayed client list. The index **must be a positive integer** 1, 2, 3, …​.
-- `DATE_TIME` format should be `YYYY-MM-DD HH:MM`, e.g., `2023-01-01 14:00`.
-- A meeting can have an optional description(s).
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A meeting can have any number of descriptions (including 0).
-</div>
+- `DATE_TIME` format should be `YYYY-MM-DD HH:MM`, e.g., `02-01-2025 12:00`.
+- `DESCRIPTION` refers to what the meeting is about. Format should be a single string.
 
 Examples:
 
-- `add 1 n/Project Kickoff dt/2023-03-15 09:00 v/Conference Room d/Initial meeting to discuss project scope`
-- `add 2 n/Quarterly Review dt/2023-04-22 11:00 v/Office d/Review last quarter's performance d/Set next quarter's objectives`
+- `addMeeting clientIndex/1 dt/02-01-2025 12:00 d/Sign life plan` Adds a meeting with description "Sign life plan" and meeting date 02-01-2025 12:00 to client with index 1.
+- `addMeeting clientIndex/2 dt/06-01-2025 15:00 d/Meeting to discuss finances` Adds a meeting with description "Meeting to discuss finances" and meeting date 06-01-2025 15:00 to client with index 2.<br>
+  ![result for second add](images/resultImages/addMeetingResult.png)
 
-### Listing all Meetings for a Client: `list`
+### Listing all Meetings for a Client: `view`
 
 Shows a list of all meetings for a specific client.
 
-Format: `list CLIENT_INDEX`
+Format: `view c CLIENT_INDEX`
 
-- `CLIENT_INDEX` refers to the index number shown in the displayed client list.
+- `CLIENT_INDEX` refers to the index number shown in the displayed client list. The index **must be a positive integer** 1, 2, 3, …​.
 
 Example:
 
-- `list 1` Lists all meetings for the first client.
+- `view c 2` Lists all meetings of the first client.<br>
+  ![result for 'view c 2'](images/resultImages/viewClientResult.png)
 
 ### Editing a Meeting: `edit`
 
 Edits an existing meeting for a client.
 
-Format: `edit CLIENT_INDEX MEETING_INDEX [n/NAME] [dt/DATE_TIME] [v/VENUE] [d/DESCRIPTION]…​`
+Format: `editMeeting clientIndex/CLIENT_INDEX meetingIndex/MEETING_INDEX n/DESCRIPTION dt/DATE_TIME`
 
 - Edits the meeting specified by `MEETING_INDEX` for the client specified by `CLIENT_INDEX`. Both indexes must be positive integers 1, 2, 3, …​.
 - At least one of the optional fields must be provided.
@@ -193,20 +203,21 @@ Format: `edit CLIENT_INDEX MEETING_INDEX [n/NAME] [dt/DATE_TIME] [v/VENUE] [d/DE
 
 Examples:
 
-- `edit 1 2 n/Annual Review dt/2023-12-01 10:00 v/Main Office` Edits the name, date/time, and venue of the 2nd meeting for the 1st client.
-- `edit 2 1 n/Budget Meeting d/` Edits the name of the 1st meeting for the 2nd client and clears all existing descriptions.
+- `editMeeting clientIndex/1 meetingIndex/2 n/starbucks meeting dt/01-01-2024 12:00` Edits the description and date/time of the 1st meeting of the 1st client.<br>
+  ![edit meeting result](images/resultImages/editMeetingResult.png)
 
 ### Deleting a Meeting: `delete`
 
 Deletes a specific meeting for a client.
 
-Format: `delete CLIENT_INDEX MEETING_INDEX`
+Format: `deleteMeeting clientIndex/CLIENT_INDEX meetingIndex/MEETING_INDEX`
 
 - Deletes the meeting specified by `MEETING_INDEX` for the client specified by `CLIENT_INDEX`. Both indexes must be positive integers 1, 2, 3, …​.
 
 Example:
 
-- `delete 3 1` Deletes the first meeting for the third client.
+- `deleteMeeting clientIndex/2 meetingIndex/1` Deletes the first meeting for the first client.<br>
+  ![delete meeting result](images/resultImages/deleteMeetingResult.png)
 
 ### Clearing all entries : `clear`
 
@@ -226,10 +237,10 @@ AddressBook data are saved in the hard disk automatically after any command that
 
 ### Editing the data file
 
-AddressBook data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+FinCliq data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
+If your changes to the data file makes its format invalid, FinCliq will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
 Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
 
@@ -243,7 +254,7 @@ _Details coming soon ..._
 
 **Q**: How do I use the app?<br>
 **A**: This app is designed to help you keep track of your clients and meetings with them. <br>
-        To keep track of your clients/meetings, you can follow the various commands in the user guide and enter the commands according to the specified format.
+To keep track of your clients/meetings, you can follow the various commands in the user guide and enter the commands according to the specified format.
 
 **Q**: Is there a limit to the number of clients/meetings I can store in the app<br>
 **A**: No, there is no limit to the number.
@@ -263,25 +274,27 @@ _Details coming soon ..._
 ### Client Functions
 
 | Action     | Format, Examples                                                                                                                                                     |
-| ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
 | **List**   | `list`<br> e.g., `list`                                                                                                                                              |
 | **Edit**   | `edit CLIENT_INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                    |
 | **Delete** | `delete CLIENT_INDEX`<br> e.g., `delete 3` <br/>                                                                                                                     |
 | **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                           |
+| **Filter** | `filter TAG_NAME`<br> e.g., `filter friends`                                                                                                                         |
 
 ### Meeting Functions
 
-| Action     | Format, Examples                                                |
-| ---------- | --------------------------------------------------------------- |
-| **Add**    | `add CLIENT_INDEX n/NAME`<br>e.g., `add 1 n/James Ho`           |
-| **List**   | `list CLIENT_INDEX`<br>e.g., `list 2`                           |
-| **Edit**   | `edit CLIENT_INDEX MEETING_INDEX`<br>e.g.,`edit 1 2 n/Jamal Ho` |
-| **Delete** | `delete CLIENT_INDEX MEETING_INDEX`<br>e.g., `delete 3 1`       |
+| Action     | Format, Examples                                                                                                                                                                       |
+|------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `addMeeting clientIndex/CLIENT_INDEX dt/DATE_TIME d/DESCRIPTION`<br>e.g., `addMeeting clientIndex/1 dt/02-01-2025 12:00 d/Sign life plan`                                              |
+| **List**   | `view c CLIENT_INDEX`<br>e.g., `view c 2`                                                                                                                                              |
+| **Edit**   | `editMeeting clientIndex/CLIENT_INDEX meetingIndex/MEETING_INDEX n/DESCRIPTION d/DATE_TIME`<br>e.g.,`editMeeting clientIndex/1 meetingIndex/2 n/starbucks meeting dt/01-01-2024 12:00` |
+| **Delete** | `deleteMeeting clientIndex/CLIENT_INDEX meetingIndex/MEETING_INDEX`<br>e.g., `deleteMeeting clientIndex/2 meetingIndex/1`                                                              |
+
 
 ### General Functions
 
 | Action    | Format, Examples |
-| --------- | ---------------- |
+|-----------|------------------|
 | **Clear** | `clear`          |
 | **Help**  | `help`           |

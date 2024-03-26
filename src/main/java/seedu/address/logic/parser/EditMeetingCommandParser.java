@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
@@ -53,22 +54,13 @@ public class EditMeetingCommandParser implements Parser<EditMeetingCommand> {
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_DATETIME, PREFIX_CLIENT);
 
-        EditMeetingCommand.EditMeetingDescriptor editMeetingDescriptor = new EditMeetingCommand.EditMeetingDescriptor();
+        LocalDateTime dateTime = ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_DATETIME).get());
+        String description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_NAME).get());
+        clientIndex = ParserUtil.parseClientIndex(argMultimap.getValue(PREFIX_CLIENT_INDEX).get());
+        meetingIndex = ParserUtil.parseMeetingIndex(argMultimap.getValue(PREFIX_MEETING_INDEX).get());
 
-        if (argMultimap.getValue(PREFIX_CLIENT_INDEX).isPresent()) {
-            clientIndex = ParserUtil.parseClientIndex(argMultimap.getValue(PREFIX_CLIENT_INDEX).get());
-        }
-        if (argMultimap.getValue(PREFIX_MEETING_INDEX).isPresent()) {
-            meetingIndex = ParserUtil.parseMeetingIndex(argMultimap.getValue(PREFIX_MEETING_INDEX).get());
-        }
-        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            editMeetingDescriptor.setDescription(ParserUtil.parseDescription(argMultimap.getValue(PREFIX_NAME).get()));
-        }
-        if (argMultimap.getValue(PREFIX_DATETIME).isPresent()) {
-            editMeetingDescriptor.setDateTime(ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_DATETIME).get()));
-        }
-        EditMeetingCommand test = new EditMeetingCommand(clientIndex, editMeetingDescriptor, meetingIndex);
-        return new EditMeetingCommand(clientIndex, editMeetingDescriptor, meetingIndex);
+        EditMeetingCommand test = new EditMeetingCommand(clientIndex, meetingIndex, description, dateTime);
+        return new EditMeetingCommand(clientIndex, meetingIndex, description, dateTime);
     }
 
 }

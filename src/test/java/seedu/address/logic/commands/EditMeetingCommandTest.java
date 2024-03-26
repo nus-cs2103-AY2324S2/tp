@@ -10,21 +10,23 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_MEETING;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_MEETING;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalMeetings.JAMAL_WITH_MEETING;
 import static seedu.address.testutil.TypicalPersons.JAMAL;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
+import seedu.address.logic.parser.EditMeetingCommandParser;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.meeting.Meeting;
-import seedu.address.testutil.EditMeetingDescriptorBuilder;
 import seedu.address.testutil.MeetingBuilder;
 
 /**
@@ -34,6 +36,8 @@ public class EditMeetingCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
+    private EditMeetingCommandParser parser = new EditMeetingCommandParser();
+
     @Test
     public void getClientIndex_success() {
         Meeting editedMeeting = new MeetingBuilder().withClient(JAMAL).withDateTime(VALID_DATETIME)
@@ -42,9 +46,9 @@ public class EditMeetingCommandTest {
         model.addMeeting(JAMAL_WITH_MEETING.getMeetings().get(0));
         int clientIndex = model.getAddressBook().getPersonList().indexOf(JAMAL_WITH_MEETING);
         Index targetClientIndex = Index.fromZeroBased(clientIndex);
-        EditMeetingCommand.EditMeetingDescriptor descriptor = new EditMeetingDescriptorBuilder(editedMeeting).build();
-        EditMeetingCommand editMeetingCommand = new EditMeetingCommand(targetClientIndex, descriptor,
-                INDEX_FIRST_MEETING);
+        EditMeetingCommand editMeetingCommand = new EditMeetingCommand(targetClientIndex, INDEX_FIRST_MEETING,
+                editedMeeting.getDescription(),
+                editedMeeting.getDateTime());
         assertEquals(editMeetingCommand.getClientIndex(), Index.fromOneBased(8));
     }
 
@@ -56,10 +60,22 @@ public class EditMeetingCommandTest {
         model.addMeeting(JAMAL_WITH_MEETING.getMeetings().get(0));
         int clientIndex = model.getAddressBook().getPersonList().indexOf(JAMAL_WITH_MEETING);
         Index targetClientIndex = Index.fromZeroBased(clientIndex);
-        EditMeetingCommand.EditMeetingDescriptor descriptor = new EditMeetingDescriptorBuilder(editedMeeting).build();
-        EditMeetingCommand editMeetingCommand = new EditMeetingCommand(targetClientIndex, descriptor,
-                INDEX_FIRST_MEETING);
+        EditMeetingCommand editMeetingCommand = new EditMeetingCommand(targetClientIndex, INDEX_FIRST_MEETING,
+                editedMeeting.getDescription(), editedMeeting.getDateTime());
         assertEquals(editMeetingCommand.getMeetingIndex(), Index.fromOneBased(1));
+    }
+
+    @Test
+    public void getDescription_success() {
+        Meeting editedMeeting = new MeetingBuilder().withClient(JAMAL).withDateTime(VALID_DATETIME)
+                .withDescription(VALID_DESCRIPTION).buildMeeting();
+        model.addPerson(JAMAL_WITH_MEETING);
+        model.addMeeting(JAMAL_WITH_MEETING.getMeetings().get(0));
+        int clientIndex = model.getAddressBook().getPersonList().indexOf(JAMAL_WITH_MEETING);
+        Index targetClientIndex = Index.fromZeroBased(clientIndex);
+        EditMeetingCommand editMeetingCommand = new EditMeetingCommand(targetClientIndex, INDEX_FIRST_MEETING,
+                editedMeeting.getDescription(), editedMeeting.getDateTime());
+        assertEquals(editMeetingCommand.getDescription(), editedMeeting.getDescription());
     }
 
     @Test
@@ -70,9 +86,8 @@ public class EditMeetingCommandTest {
         model.addMeeting(JAMAL_WITH_MEETING.getMeetings().get(0));
         int clientIndex = model.getAddressBook().getPersonList().indexOf(JAMAL_WITH_MEETING);
         Index targetClientIndex = Index.fromZeroBased(clientIndex);
-        EditMeetingCommand.EditMeetingDescriptor descriptor = new EditMeetingDescriptorBuilder(editedMeeting).build();
-        EditMeetingCommand editMeetingCommand = new EditMeetingCommand(targetClientIndex, descriptor,
-                INDEX_FIRST_MEETING);
+        EditMeetingCommand editMeetingCommand = new EditMeetingCommand(targetClientIndex, INDEX_FIRST_MEETING,
+                editedMeeting.getDescription(), editedMeeting.getDateTime());
 
         String expectedMessage = String.format(EditMeetingCommand.MESSAGE_EDIT_MEETING_SUCCESS,
                 Messages.formatMeeting(editedMeeting));
@@ -84,37 +99,15 @@ public class EditMeetingCommandTest {
     }
 
     @Test
-    public void execute_someMeetingFieldsSpecified_success() {
-        Meeting editedMeeting = new MeetingBuilder().withClient(JAMAL).buildMeeting();
+    public void execute_allMeetingFieldsSpecified_success() {
+        Meeting editedMeeting = new MeetingBuilder().withClient(JAMAL).withDateTime("01-01-2026 12:00")
+                .withDescription("test").buildMeeting();
         model.addPerson(JAMAL_WITH_MEETING);
         model.addMeeting(JAMAL_WITH_MEETING.getMeetings().get(0));
         int clientIndex = model.getAddressBook().getPersonList().indexOf(JAMAL_WITH_MEETING);
         Index targetClientIndex = Index.fromZeroBased(clientIndex);
-        EditMeetingCommand.EditMeetingDescriptor descriptor = new EditMeetingDescriptorBuilder(editedMeeting).build();
-        EditMeetingCommand editMeetingCommand = new EditMeetingCommand(targetClientIndex, descriptor,
-                INDEX_FIRST_MEETING);
-
-        String expectedMessage = String.format(EditMeetingCommand.MESSAGE_EDIT_MEETING_SUCCESS,
-                Messages.formatMeeting(editedMeeting));
-
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setMeeting(model.getFilteredMeetingList().get(0), editedMeeting);
-
-        assertCommandSuccess(editMeetingCommand, model, expectedMessage, expectedModel);
-    }
-
-    @Test
-    public void execute_noMeetingFieldSpecified_success() {
-        Meeting targetMeeting = new MeetingBuilder().withClient(JAMAL).buildMeeting();
-        JAMAL_WITH_MEETING.getMeetings().add(targetMeeting);
-        model.addPerson(JAMAL_WITH_MEETING);
-        model.addMeeting(JAMAL_WITH_MEETING.getMeetings().get(0));
-        Meeting editedMeeting = new MeetingBuilder().withClient(JAMAL).withDescription("test").buildMeeting();
-        int clientIndex = model.getAddressBook().getPersonList().indexOf(JAMAL_WITH_MEETING);
-        Index targetClientIndex = Index.fromZeroBased(clientIndex);
-        EditMeetingCommand.EditMeetingDescriptor descriptor = new EditMeetingDescriptorBuilder(editedMeeting).build();
-        EditMeetingCommand editMeetingCommand = new EditMeetingCommand(targetClientIndex, descriptor,
-                INDEX_FIRST_MEETING);
+        EditMeetingCommand editMeetingCommand = new EditMeetingCommand(targetClientIndex, INDEX_FIRST_MEETING,
+                editedMeeting.getDescription(), editedMeeting.getDateTime());
 
         String expectedMessage = String.format(EditMeetingCommand.MESSAGE_EDIT_MEETING_SUCCESS,
                 Messages.formatMeeting(editedMeeting));
@@ -127,16 +120,18 @@ public class EditMeetingCommandTest {
 
     @Test
     public void execute_invalidClientIndexValidMeetingIndex_throwsCommandException() {
-        Meeting testMeeting = new MeetingBuilder().withClient(JAMAL).buildMeeting();
-        JAMAL_WITH_MEETING.getMeetings().add(testMeeting);
+        Meeting editedMeeting = new MeetingBuilder().withClient(JAMAL).buildMeeting();
+        JAMAL_WITH_MEETING.getMeetings().add(editedMeeting);
         model.addPerson(JAMAL_WITH_MEETING);
         int invalidClientIndex = model.getAddressBook().getPersonList().size();
+        int clientIndex = model.getAddressBook().getPersonList().indexOf(JAMAL_WITH_MEETING);
+        Index targetClientIndex = Index.fromZeroBased(clientIndex);
 
         Index testClientIndex = Index.fromOneBased(Index.fromZeroBased(invalidClientIndex).getOneBased());
         Index testMeetingIndex = Index.fromOneBased(INDEX_FIRST_MEETING.getOneBased());
-        EditMeetingCommand.EditMeetingDescriptor descriptor = new EditMeetingDescriptorBuilder(testMeeting).build();
 
-        EditMeetingCommand editMeetingCommand = new EditMeetingCommand(testClientIndex, descriptor, testMeetingIndex);
+        EditMeetingCommand editMeetingCommand = new EditMeetingCommand(testClientIndex, INDEX_FIRST_MEETING,
+                editedMeeting.getDescription(), editedMeeting.getDateTime());
 
         String expectedMessage = Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
         assertCommandFailure(editMeetingCommand, model, expectedMessage);
@@ -153,9 +148,9 @@ public class EditMeetingCommandTest {
 
         Index testClientIndex = Index.fromOneBased(Index.fromZeroBased(validClientIndex).getOneBased());
         Index testMeetingIndex = Index.fromOneBased(Index.fromZeroBased(invalidMeetingIndex).getOneBased());
-        EditMeetingCommand.EditMeetingDescriptor descriptor = new EditMeetingDescriptorBuilder(testMeeting).build();
 
-        EditMeetingCommand editMeetingCommand = new EditMeetingCommand(testClientIndex, descriptor, testMeetingIndex);
+        EditMeetingCommand editMeetingCommand = new EditMeetingCommand(testClientIndex, testMeetingIndex,
+                testMeeting.getDescription(), testMeeting.getDateTime());
 
         String expectedMessage = Messages.MESSAGE_INVALID_MEETING_DISPLAYED_INDEX;
         assertCommandFailure(editMeetingCommand, model, expectedMessage);
@@ -172,9 +167,9 @@ public class EditMeetingCommandTest {
 
         Index testClientIndex = Index.fromOneBased(Index.fromZeroBased(validClientIndex).getOneBased());
         Index testMeetingIndex = Index.fromOneBased(Index.fromZeroBased(invalidMeetingIndex).getOneBased());
-        EditMeetingCommand.EditMeetingDescriptor descriptor = new EditMeetingDescriptorBuilder(testMeeting).build();
 
-        EditMeetingCommand editMeetingCommand = new EditMeetingCommand(testClientIndex, descriptor, testMeetingIndex);
+        EditMeetingCommand editMeetingCommand = new EditMeetingCommand(testClientIndex, testMeetingIndex,
+                testMeeting.getDescription(), testMeeting.getDateTime());
 
         String expectedMessage = Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
         assertCommandFailure(editMeetingCommand, model, expectedMessage);
@@ -191,9 +186,8 @@ public class EditMeetingCommandTest {
         int meetingIndex = JAMAL_WITH_MEETING.getMeetings().indexOf(testMeeting);
         Index targetClientIndex = Index.fromZeroBased(clientIndex);
         Index targetMeetingIndex = Index.fromZeroBased(meetingIndex);
-        EditMeetingCommand.EditMeetingDescriptor descriptor = new EditMeetingDescriptorBuilder(testMeeting).build();
-        EditMeetingCommand editMeetingCommand = new EditMeetingCommand(targetClientIndex, descriptor,
-                targetMeetingIndex);
+        EditMeetingCommand editMeetingCommand = new EditMeetingCommand(targetClientIndex, targetMeetingIndex,
+                testMeeting.getDescription(), testMeeting.getDateTime());
 
         System.out.println(JAMAL_WITH_MEETING.getMeetings());
         System.out.println(meetingIndex);
@@ -206,13 +200,14 @@ public class EditMeetingCommandTest {
 
     @Test
     public void equals() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+        LocalDateTime parsedDateTime = LocalDateTime.parse(VALID_DATETIME, formatter);
         final EditMeetingCommand standardCommand = new EditMeetingCommand(INDEX_FIRST_PERSON,
-                new EditMeetingCommand.EditMeetingDescriptor(), INDEX_FIRST_MEETING);
+                INDEX_FIRST_MEETING, VALID_DESCRIPTION, parsedDateTime);
 
         // same values -> returns true
-        EditMeetingCommand.EditMeetingDescriptor copyDescriptor = new EditMeetingCommand.EditMeetingDescriptor();
         EditMeetingCommand commandWithSameValues = new EditMeetingCommand(INDEX_FIRST_PERSON,
-                copyDescriptor, INDEX_FIRST_MEETING);
+                INDEX_FIRST_MEETING, VALID_DESCRIPTION, parsedDateTime);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true
@@ -225,25 +220,28 @@ public class EditMeetingCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new EditMeetingCommand(INDEX_SECOND_PERSON,
-                new EditMeetingCommand.EditMeetingDescriptor(), INDEX_FIRST_MEETING)));
+        assertFalse(standardCommand.equals(new EditMeetingCommand(INDEX_FIRST_PERSON,
+                INDEX_SECOND_MEETING, VALID_DESCRIPTION, parsedDateTime)));
 
         // different descriptor -> returns false
         assertFalse(standardCommand.equals(new EditMeetingCommand(INDEX_FIRST_PERSON,
-                new EditMeetingCommand.EditMeetingDescriptor(), INDEX_SECOND_MEETING)));
+                INDEX_FIRST_MEETING, "different description", parsedDateTime)));
     }
 
     @Test
     public void toStringMethod() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+        LocalDateTime parsedDateTime = LocalDateTime.parse(VALID_DATETIME, formatter);
+
         Index clientIndex = Index.fromOneBased(1);
         Index meetingIndex = Index.fromOneBased(2);
-        EditMeetingCommand.EditMeetingDescriptor editMeetingDescriptor = new EditMeetingCommand.EditMeetingDescriptor();
         EditMeetingCommand editMeetingCommand = new EditMeetingCommand(clientIndex,
-                editMeetingDescriptor, meetingIndex);
+                meetingIndex, VALID_DESCRIPTION, parsedDateTime);
         String expected = EditMeetingCommand.class.getCanonicalName() + "{clientIndex="
-                + clientIndex + ", editMeetingDescriptor="
-                + editMeetingDescriptor + ", meetingIndex="
-                + meetingIndex + "}";
+                + clientIndex + ", meetingIndex="
+                + meetingIndex + ", description="
+                + VALID_DESCRIPTION + ", dateTime="
+                + "2030-01-01T17:00" + "}";
         assertEquals(expected, editMeetingCommand.toString());
     }
 
