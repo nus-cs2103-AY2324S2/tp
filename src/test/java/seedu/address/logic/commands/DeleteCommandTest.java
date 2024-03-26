@@ -23,6 +23,8 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.person.Person;
+import seedu.address.testutil.PersonBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -111,6 +113,43 @@ public class DeleteCommandTest {
         String expected = DeleteCommand.class.getSimpleName() + "{targetIndices=" + indices + "}";
         assertEquals(expected, deleteCommand.toString());
     }
+
+    @Test
+    public void getSuccessMessage_validDeletedPersons_success() {
+        // Create a list of deleted persons
+        List<Person> deletedPersons = new ArrayList<>();
+        Person person1 = new PersonBuilder().withName("Alice Pauline").withPhone("94351253")
+                .withEmail("alice@example.com").withAddress("123, Jurong West Ave 6, #08-111")
+                .withTags("friends").build();
+        Person person2 = new PersonBuilder().withName("Benson Meier").withPhone("98765432")
+                .withEmail("johnd@example.com").withAddress("311, Clementi Ave 2, #02-25")
+                .withTags("owesMoney", "friends").build();
+        deletedPersons.add(person1);
+        deletedPersons.add(person2);
+
+        // Create a list of corresponding indices
+        List<Index> indices = new ArrayList<>();
+        for (int i = 0; i < deletedPersons.size(); i++) {
+            indices.add(Index.fromZeroBased(i));
+        }
+
+        // Create DeleteCommand instance
+        DeleteCommand deleteCommand = new DeleteCommand(indices);
+
+        // Call getSuccessMessage() method
+        String successMessage = deleteCommand.getSuccessMessage(deletedPersons);
+
+        // Define the expected message
+        String expectedMessage = "Deleted 2 People\n" +
+                "Deleted Person: Alice Pauline\n" +
+                "Alice Pauline Phone: 94351253 Email: alice@example.com Address: 123, Jurong West Ave 6, #08-111 Tags: [friends]\n" +
+                "Deleted Person: Benson Meier\n" +
+                "Benson Meier Phone: 98765432 Email: johnd@example.com Address: 311, Clementi Ave 2, #02-25 Tags: [owesMoney][friends]";
+
+        // Assert that the generated message matches the expected message
+        assertEquals(expectedMessage, successMessage);
+    }
+
 
 
     /**

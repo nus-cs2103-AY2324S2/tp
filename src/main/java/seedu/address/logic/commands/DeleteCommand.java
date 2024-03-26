@@ -52,7 +52,7 @@ public class DeleteCommand extends Command {
         return new CommandResult(getSuccessMessage(personsToDelete));
     }
 
-    private String getSuccessMessage(List<Person> deletedPersons) {
+    public String getSuccessMessage(List<Person> deletedPersons) {
         StringBuilder message = new StringBuilder(String.format(MESSAGE_DELETE_PERSON_SUCCESS, deletedPersons.size()));
         for (Person person : deletedPersons) {
             message.append("\nDeleted Person: ").append(person.getName()).append("\n").append(person);
