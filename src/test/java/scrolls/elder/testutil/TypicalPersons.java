@@ -27,6 +27,7 @@ import scrolls.elder.model.person.Person;
  */
 public class TypicalPersons {
 
+    // VOLUNTEERs (ALICE, BENSON, CARL, DANIEL)
     public static final Person ALICE = new PersonBuilder().withId(0).withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253").withRole("volunteer")
@@ -41,6 +42,8 @@ public class TypicalPersons {
     public static final Person DANIEL = new PersonBuilder().withId(3).withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withAddress("10th street").withTags("friends")
             .withRole("volunteer").build();
+
+    // BEFRIENDEEs (ELLE, FIONA, GEORGE)
     public static final Person ELLE = new PersonBuilder().withId(4).withName("Elle Meyer").withPhone("9482224")
             .withEmail("werner@example.com").withAddress("michegan ave").withRole("befriendee")
             .withPairedWithName(Optional.of(ALICE.getName())).withPairedWithID(Optional.of(0)).build();
@@ -56,6 +59,7 @@ public class TypicalPersons {
     public static final Person IDA = new PersonBuilder().withId(8).withName("Ida Mueller").withPhone("8482131")
             .withEmail("hans@example.com").withAddress("chicago ave").withRole("befriendee")
             .withPairedWithName(Optional.of(HOON.getName())).withPairedWithID(Optional.of(7)).build();
+
     // Manually added - Person's details found in {@code CommandTestUtil}
     // AMY has role VOLUNTEER
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)

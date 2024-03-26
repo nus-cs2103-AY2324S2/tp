@@ -17,6 +17,7 @@ import java.util.Set;
 import scrolls.elder.commons.core.index.Index;
 import scrolls.elder.logic.commands.EditCommand;
 import scrolls.elder.logic.parser.exceptions.ParseException;
+import scrolls.elder.model.person.Role;
 import scrolls.elder.model.tag.Tag;
 
 /**
@@ -36,14 +37,21 @@ public class EditCommandParser implements Parser<EditCommand> {
                         PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_ROLE);
 
         Index index;
+        Role role;
 
+        // Check for Index
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
+        // Check for Role for Indexing
+        if (argMultimap.getValue(PREFIX_ROLE).isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
+        }
+
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_ROLE);
 
         EditCommand.EditPersonDescriptor editPersonDescriptor = new EditCommand.EditPersonDescriptor();
 

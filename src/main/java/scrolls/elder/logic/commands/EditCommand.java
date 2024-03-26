@@ -5,6 +5,7 @@ import static scrolls.elder.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static scrolls.elder.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static scrolls.elder.logic.parser.CliSyntax.PREFIX_NAME;
 import static scrolls.elder.logic.parser.CliSyntax.PREFIX_PHONE;
+import static scrolls.elder.logic.parser.CliSyntax.PREFIX_ROLE;
 import static scrolls.elder.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Collections;
@@ -42,19 +43,21 @@ public class EditCommand extends Command {
             + "by the index number used in the displayed person list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
+            + PREFIX_ROLE + "ROLE "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
+            + PREFIX_ROLE + "volunteer "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
-    public static final String MESSAGE_NO_ROLE = "Role must be specified when editing a person.";
+    public static final String MESSAGE_NO_ROLE = "Role must be specified for indexing when editing a person.";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
