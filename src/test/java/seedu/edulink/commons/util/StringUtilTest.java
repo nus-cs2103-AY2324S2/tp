@@ -45,6 +45,42 @@ public class StringUtilTest {
         assertTrue(StringUtil.isNonZeroUnsignedInteger("10"));
     }
 
+    //---------------- Tests for matchesIgnoreCase -------------------------------------
+    @Test
+    public void matchesIgnoreCase_nullSentence_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> StringUtil
+                .matchesIgnoreCase("sentence", null));
+
+        assertThrows(NullPointerException.class, () -> StringUtil
+                .matchesIgnoreCase(null, "sentence"));
+    }
+
+    @Test
+    public void matchesIgnoreCase_emptyWord_throwsIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, "Sentence parameter cannot be empty", ()
+                -> StringUtil.matchesIgnoreCase("sentence", "  "));
+    }
+
+    @Test
+    public void matchesIgnoreCase_partialMatch_returnsTrue() {
+        assertFalse(StringUtil.matchesIgnoreCase("Smart", "t"));
+        assertFalse(StringUtil.matchesIgnoreCase("Smart", "Smar"));
+        assertFalse(StringUtil.matchesIgnoreCase("Smart", "mart"));
+        assertFalse(StringUtil.matchesIgnoreCase("Smart", "mar"));
+    }
+
+    @Test
+    public void matchesIgnoreCase_fullMatch_returnsTrue() {
+        assertTrue(StringUtil.matchesIgnoreCase("Smart", "Smart"));
+    }
+
+    @Test
+    public void matchesIgnoreCase_noMatch_returnsFalse() {
+        assertFalse(StringUtil.matchesIgnoreCase("Smart", "B"));
+        assertFalse(StringUtil.matchesIgnoreCase("Smart", "Smarter"));
+    }
+
+
     //---------------- Tests for containsIgnoreCase -------------------------------------
     @Test
     public void containsIgnoreCase_nullWord_throwsNullPointerException() {
