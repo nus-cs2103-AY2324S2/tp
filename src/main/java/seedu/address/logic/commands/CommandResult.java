@@ -102,11 +102,7 @@ public class CommandResult {
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && showHelp == otherCommandResult.showHelp
-                && exit == otherCommandResult.exit
-                && changeDataSource == otherCommandResult.changeDataSource
-                && addCommand == otherCommandResult.addCommand
-                && deleteCommand == otherCommandResult.deleteCommand
-                && themeCommand == otherCommandResult.themeCommand;
+                && exit == otherCommandResult.exit;
     }
 
     @Override
