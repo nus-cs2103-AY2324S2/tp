@@ -442,7 +442,42 @@ Priorities: High (must have) - `* * * *`, Medium (nice to have) - `* * *`, Low (
 
 (For all use cases below, the **System** is the `CogniCare` application and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Search a student**
+**Use case: Add a Patient**
+1. User enters command to add a patient with all mandatory information (Name, Email, Phone Number). Associated with is optional.
+2. CogniCare validates the information are valid.
+3. CogniCare saves the new patient information.
+4. CogniCare displays a success message confirming that the new patient has been added.
+
+**Extensions**
+
+* 1a. Required fields are left blank, or fields do not meet the specified format.
+  * 1ai. CogniCare displays error message associated with the relevant missing field (i.e. Phone number error message for missing phone number field)
+    Use case ends
+
+* 2a. Required fields are invalid (i.e. Phone Number does not meet SG format)
+  * 2ai. CogniCare displays error message associated with the relevant erroneous field (i.e. Phone number error message for invalid phone number field)
+    Use case ends
+  
+* 2b. Patient with the same name (regardless of case sensitivity and whitespace) already exists.
+  * 2bi. CogniCare alerts the user about the duplicate name and prevents the addition.
+  Use case ends.
+
+**Use Case: Edit a Patient**
+1. User enters command to add a patient with required index and data field to be edited.
+2. CogniCare displays a success message confirming the patient's details have been updated.
+Use case ends.
+
+
+**Extensions**
+* 1a. The patient identifier does not match any patient in the system.
+  * 1a1. CogniCare displays an error message that the patient was not found.
+  Use case ends.
+
+* 2a. Required data fields are left blank or data is in the incorrect format.
+  * 2a1. CogniCare displays an error message indicating what needs to be corrected or filled in, including the specific requirements for the phone number and email format.
+  Use case ends.
+
+* **Use case: List all / Search for patients meeting selected criteria / criterion**
 
 **MSS**
 
@@ -453,20 +488,25 @@ Priorities: High (must have) - `* * * *`, Medium (nice to have) - `* * *`, Low (
 
 **Extensions**
 
-* 1a. The query has missing parameters
+* 1a. The query has no parameters specified.
+
+    * 1a2. CogniCare returns all information about all patient (returns the entire AddressBook).
+    
+    Use case ends.
+
+
+* 1b. The query has no parameter value specified.
 
     * 1a1. CogniCare shows an error message.
 
-    * 1a2. CogniCare returns all information about a patient.
-    
-    Use case ends.
+  Use case ends.
 
 * 2a. The list is empty.
 
   Use case ends.
 
 
-**Use case: Delete a student**
+**Use case: Delete a patient**
 
 **MSS**
 
