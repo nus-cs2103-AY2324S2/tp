@@ -177,7 +177,7 @@ Examples:
 
 * `/edit-staff ; name : Thomas ; field : { address : Poochie Street 25 ; employment : full-time }`
 
-  The above command edits the **address and employment** field of **_Thomas_** to **_Poochie Street 25_** and **_full-time_** respectively. 
+  The above command edits the **address and employment** field of **_Thomas_** to **_Poochie Street 25_** and **_full-time_** respectively.
 
 ### Deleting a contact : `delete`
 
@@ -192,7 +192,7 @@ Examples:
 * `/delete ; name : Poochie`
 
    The above command deletes the contact with name **_Poochie_**, provided **_Poochie_** exists as a name of a contact in Pooch Contact Book
-  
+
 * `/delete ; name : Moochie`
 
    The above command deletes the contact with name **_Moochie_**, provided **_Moochie_** exists as a name of a contact in Pooch Contact Book
@@ -223,7 +223,7 @@ Gives a specified person from the Pooch Planner a performance rating.
 
 Format: `/rate ; name : [name] ; rating : [rating value from 1-5]`
 
-* Gives the contact with the specified `name` a rating between 1 and 5 inclusive. 
+* Gives the contact with the specified `name` a rating between 1 and 5 inclusive.
 * Note that the specified person must first exist in Pooch Contact Book.
 * `name` and `rating` are compulsory fields that are case-insensitive but space-sensitive.
 * `rating` can only take on integer values between 1 and 5 inclusive.
@@ -241,14 +241,14 @@ Adds a note to a specified person from the Pooch Planner.
 
 Format: `/note ; name : [name] ; note : [note message]`
 
-* Adds a note to the contact with the specified `name`. 
+* Adds a note to the contact with the specified `name`.
 * Note that the specified person must first exist in Pooch Contact Book.
 * The name and note is a compulsory field that is case-insensitive but space-sensitive.
 
 Examples:
 * `/note ; name : Poochie ; note : meet poochie tonight to get kibble`
 
-  The above command adds the note "meet poochie tonight to get kibble" to 
+  The above command adds the note "meet poochie tonight to get kibble" to
   the contact with name **_Poochie_**, provided **_Poochie_** exists as a name of a contact in Pooch Contact Book
 
 ### Pinning a contact : `pin`
@@ -265,7 +265,7 @@ Examples:
 * `/pin ; name : Poochie`
 
    The above command pins the contact with name **_Poochie_**, provided **_Poochie_** exists as a name of a contact in Pooch Contact Book.
-  
+
 * `/pin ; name : Moochie`
 
    The above command pin the contact with name **_Moochie_**, provided **_Moochie_** exists as a name of a contact in Pooch Contact Book.
@@ -352,18 +352,20 @@ _Details coming soon ..._
 
 ## Command Summary
 
-Action | Format, Examples
---------|------------------
-**Add Staff** | `/pooch-staff ; name : [name] ; phone : [phone] ; address : [address] ; email : [email] ; salary : [salary]  ; employment : [part/full]` <br> e.g., `/pooch-staff ; name : Poochie ; phone : 98765435 ; address : Poochie Street 21 ; email : ilovecatstoo@gmail.com ; salary : $50/h ; employment : part-time`
-**Add Supplier** | `/pooch-supplier ; name : [name] ; phone : [phone] ; address : [address] ; email : [email] ; product : [product] ; price : [price]` <br> e.g., `/pooch-supplier ; name : PetCo ; phone : 98673098 ; address : Meow Street 24 ; email : ilovewombatstoo@gmail.com ; product : kibble ; price : $98/bag`
-**Add Helper** | `/pooch-maintainer ; name : [name] ; phone : [phone] ; address : [address] ; email : [email] ; skill : [skill] ; commission : [commission]` <br> e.g., `/pooch-maintainer ; name : Tom Tan  ; phone : 98765435 ; address : Poochie Street 24 ; email : ihelppooches@gmail.com ; skill : trainer ; commission : $60/hr`
-**Add Other Contact** | `/pooch-add ; name : [name] ; phone : [phone] ; address : [address] ; email : [email] ; skill : [skill] ; commission : [commission]` <br> e.g., `/pooch-add ; name : Janna  ; phone : 98765435 ; address : Poochie Street 24 ; email : iamjanna@gmail.com`
-**Delete** | `/delete name : [name] `<br> e.g., `delete ; name : Poochie`
-**Edit** | `/edit-person ; name : [name] ; field : { field : data ; field : data }`<br> e.g., `/edit-person ; name : Poochie ; field : { name : Mochi }` <br> e.g.,`/edit-person ; name : Poochie ; field : { address : Poochie Street 25 ; employment : full-time }`
-**Search** | `/search ; parameter : [value]`<br> e.g., `/search ; name : Poochie`
-**List** | `/list`
-**Help** | `/help ; command : [command type]`
-**Rate** | `/rate ; name : [name] ; rating : [rating]`<br> e.g., `/rate ; name : Poochie ; rating : 5`
-**Undo Command** | `/undo`
-**Redo Command** | `/redo`
-`
+| Action                | Format                                                                                                                                      | Examples                                                                                                                                                        |
+|-----------------------|---------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add Staff**         | `/pooch-staff ; name : [name] ; phone : [phone] ; address : [address] ; email : [email] ; salary : [salary]  ; employment : [part/full]`    | `/pooch-staff ; name : Poochie ; phone : 98765435 ; address : Poochie Street 21 ; email : ilovecatstoo@gmail.com ; salary : $50/hr ; employment : part-time`    |
+| **Add Supplier**      | `/pooch-supplier ; name : [name] ; phone : [phone] ; address : [address] ; email : [email] ; product : [product] ; price : [price]`         | `/pooch-supplier ; name : PetCo ; phone : 98673098 ; address : Meow Street 24 ; email : ilovewombatstoo@gmail.com ; product : kibble ; price : $98/bag`         |
+| **Add Maintainer**    | `/pooch-maintainer ; name : [name] ; phone : [phone] ; address : [address] ; email : [email] ; skill : [skill] ; commission : [commission]` | `/pooch-maintainer ; name : Tom Tan  ; phone : 98765435 ; address : Poochie Street 24 ; email : ihelppooches@gmail.com ; skill : trainer ; commission : $60/hr` |
+| **Add Other Contact** | `/pooch-add ; name : [name] ; phone : [phone] ; address : [address] ; email : [email] ; skill : [skill] ; commission : [commission]`        | `/pooch-add ; name : Janna  ; phone : 98765435 ; address : Poochie Street 24 ; email : iamjanna@gmail.com`                                                      |
+| **Delete**            | `/delete name : [name] `                                                                                                                    | `/delete ; name : Poochie`                                                                                                                                      |
+| **Edit**              | `/edit-person ; name : [name] ; field : { field : data ; field : data }`                                                                    | `/edit-person ; name : Poochie ; field : { address : Poochie Street 25 ; employment : full-time }`                                                              |
+| **Search**            | `/search ; parameter : [value]`                                                                                                             | `/search ; name : Poochie`                                                                                                                                      |
+| **List**              | `/list`                                                                                                                                     | `/list`                                                                                                                                                         |
+| **Help**              | `/help ; command : [command type]`                                                                                                          | `/help ; command : delete`                                                                                                                                      |
+| **Rate**              | `/rate ; name : [name] ; rating : [rating]`                                                                                                 | `/rate ; name : Poochie ; rating : 5`                                                                                                                           |
+| **Undo Command**      | `/undo`                                                                                                                                     | `/undo`                                                                                                                                                         |        
+| **Redo Command**      | `/redo`                                                                                                                                     | `/redo`                                                                                                                                                         |
+| **Pin**               | `/pin ; name : [name]`                                                                                                                      | `/pin ; name : Poochie`                                                                                                                                         |
+| **Sort**              | `/sort ; [field]`                                                                                                                           | `/sort ; name`                                                                                                                                                  |
+| **Exit**              | `exit`                                                                                                                                      | `exit`                                                                                                                                                          |
