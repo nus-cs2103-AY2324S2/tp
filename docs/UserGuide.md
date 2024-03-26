@@ -15,25 +15,27 @@ interactions, FitBook is the perfect application for you to manage your clients!
 ## Quick Start
 
 1. Ensure you have Java `11` or above installed.
+    * Need help? Check out the [installation guide](https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html).
 
 1. Download the latest version of `FitBook.jar` from [here](https://github.com/AY2324S2-CS2103T-T17-3/tp/releases).
 
 1. Copy the file to the folder you want to use as the **home folder** for FitBook.
 
-1. Double-click the FitBook.jar file to launch it
+1. Double-click the FitBook.jar file to launch it.
+    * If that doesn't work, try the following steps:
 
-1. If (4) doesn't work, open a command terminal, `cd` into the folder with FitBook.jar, and run the 
-1java -jar FitBook.jar` command to launch the application.<br>
+        1. Open a command prompt (cmd for Windows, Terminal for Mac)
 
-1. A GUI similar to the one depicted below should appear in a few seconds. The app might contain some sample data.<br>
+        1. Use `cd` to navigate to the folder containing FitBook.jar
+            * e.g. `cd ~/Downloads/FitBook/`
 
-<hr>
+        1. Run `java -jar FitBook.jar` to launch FitBook.
+
+1. A GUI similar to the one depicted below should appear in a few seconds. The app  contains some sample data for you to familiarize yourself with the UI.<br>
 
 ![Ui](images/Ui.png)
 
-<hr>
-
-1. Read through `help`, type any command listed into the input box and press `enter` <br>
+6. Read through `help`, type any command listed into the input box and press `enter` <br>
    These are some example commands you can try!
  
    * `add n/John p/98765432` Adds a client named
@@ -47,7 +49,7 @@ interactions, FitBook is the perfect application for you to manage your clients!
 
    * `list` : Lists all clients.
 
-7. Refer to the [Features](#features) below for details of each command.
+1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
