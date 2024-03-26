@@ -24,6 +24,7 @@ import scrolls.elder.testutil.TypicalPersons;
  */
 public class EditCommandTest {
 
+    // TODO: Change to use correct filtered List and indexing.
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -35,6 +36,8 @@ public class EditCommandTest {
 
         Model model = new ModelManager(TypicalPersons.getTypicalAddressBook(), new UserPrefs());
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+
+        // TODO: Update getFilteredPersonList.
         expectedModel.setPerson(expectedModel.getFilteredPersonList().get(1), editedPerson);
 
         CommandTestUtil.assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
