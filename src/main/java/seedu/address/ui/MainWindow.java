@@ -120,7 +120,7 @@ public class MainWindow extends UiPart<Stage> {
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         MeetingListPanel meetingListPanel = new MeetingListPanel(
-            logic.getFilteredPersonList()); // Adjust as necessary for meetings
+            logic.getMeetingList()); // Adjust as necessary for meetings
         meetingListPanelPlaceholder.getChildren().add(meetingListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();

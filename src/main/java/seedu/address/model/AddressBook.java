@@ -5,17 +5,23 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.person.Meeting;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.UniqueMeetingList;
 import seedu.address.model.person.UniquePersonList;
+import java.util.logging.Logger;
 
 /**
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
 public class AddressBook implements ReadOnlyAddressBook {
+     private static final Logger logger = LogsCenter.getLogger(AddressBook.class);
 
     private final UniquePersonList persons;
+    private final UniqueMeetingList meetings;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -26,6 +32,8 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
+        meetings = new UniqueMeetingList();
+        
     }
 
     public AddressBook() {}
@@ -48,12 +56,17 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.persons.setPersons(persons);
     }
 
+    public void setMeetings(List<Meeting> meetings) {
+        this.meetings.setMeetings(meetings);
+    }
+
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
         setPersons(newData.getPersonList());
+        setMeetings(newData.getMeetingList());
     }
 
     //// person-level operations
@@ -93,6 +106,29 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+     //// meeting-level operations
+
+    public boolean hasMeeting(Meeting meeting) {
+        requireNonNull(meeting);
+        return meetings.contains(meeting);
+    }
+
+    public void addMeeting(Meeting m) {
+        meetings.add(m);
+    }
+
+    public void setMeeting(Meeting target, Meeting editedMeeting) {
+        requireNonNull(editedMeeting);
+
+        meetings.setMeeting(target, editedMeeting);
+    }
+
+    public void removeMeeting(Meeting key) {
+        logger.fine("WE ARE CHECKING AFTER DELETION: " + meetings);
+        meetings.remove(key);
+    }
+
+
     //// util methods
 
     @Override
@@ -106,6 +142,12 @@ public class AddressBook implements ReadOnlyAddressBook {
     public ObservableList<Person> getPersonList() {
         return persons.asUnmodifiableObservableList();
     }
+
+    @Override
+    public ObservableList<Meeting> getMeetingList() {
+        return meetings.asUnmodifiableObservableList(); // Ensure this method exists in ReadOnlyAddressBook
+    }
+
 
     @Override
     public boolean equals(Object other) {

@@ -5,6 +5,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Meeting;
 
 /**
  * An UI component that displays information of a {@code Person}'s meeting.
@@ -14,12 +15,10 @@ import seedu.address.model.person.Person;
 public class MeetingCard extends UiPart<Region> {
     private static final String FXML = "MeetingListCard.fxml";
 
-    public final Person person;
+    public final Meeting meeting;
 
     @FXML
     private HBox cardPane;
-    @FXML
-    private Label name;
     @FXML
     private Label id;
     @FXML
@@ -32,11 +31,10 @@ public class MeetingCard extends UiPart<Region> {
      * @param person The person whose meeting information is to be displayed.
      * @param displayedIndex The index number of the meeting in the list.
      */
-    public MeetingCard(Person person, int displayedIndex) {
+    public MeetingCard(Meeting meeting, int displayedIndex) {
         super(FXML);
-        this.person = person;
+        this.meeting = meeting;
         id.setText(displayedIndex + ". ");
-        name.setText(person.getName().fullName); // Assuming Meeting has a method to get the related Person's name
-        meetingText.setText(person.getMeeting().value); // Assuming Meeting has a getText() method
+        meetingText.setText(meeting.toString()); // Assuming Meeting has a getText() method
     }
 }

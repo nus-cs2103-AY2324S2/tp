@@ -58,7 +58,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Set<Policy> policyList = ParserUtil.parsePolicies(argMultimap.getAllValues(PREFIX_POLICY_NAME));
         Person person = new Person(name, phone, email, address, meeting, tagList, policyList);
 
-        return new AddCommand(person);
+        return new AddCommand(person, meeting);
     }
 
     /**
