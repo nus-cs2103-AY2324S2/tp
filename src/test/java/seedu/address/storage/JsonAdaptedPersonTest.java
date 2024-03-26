@@ -5,6 +5,7 @@ import static seedu.address.storage.JsonAdaptedPerson.MISSING_FIELD_MESSAGE_FORM
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.BENSON;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,6 +18,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.RoomNumber;
 import seedu.address.model.person.Telegram;
+import seedu.address.model.tag.FreeTimeTag;
 
 public class JsonAdaptedPersonTest {
     private static final String INVALID_NAME = "R@chel";
@@ -144,4 +146,15 @@ public class JsonAdaptedPersonTest {
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Birthday.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
+
+    @Test
+    public void toModelType_invalidFreeTimeTags_throwsIllegalValueException() {
+        List<JsonAdaptedFreeTimeTag> invalidTags = new ArrayList<>(VALID_FREETIMETAGS);
+        invalidTags.add(new JsonAdaptedFreeTimeTag(INVALID_FREETIMETAGS));
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ROOMNUMBER,
+                VALID_TELEGRAM, VALID_BIRTHDAY, invalidTags);
+        String expectedMessage = FreeTimeTag.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
+
 }
