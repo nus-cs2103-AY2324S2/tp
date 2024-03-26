@@ -26,7 +26,7 @@ public class Payment {
         requireNonNull(amount);
         checkArgument(isValidPayment(amount), MESSAGE_CONSTRAINTS);
         this.amount = amount;
-        this.value = String.format("$%.2f", amount);
+        this.value = String.valueOf(amount);
     }
 
     /**
@@ -41,7 +41,7 @@ public class Payment {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("Invalid payment amount: " + paymentValue);
         }
-        this.value = String.format("$%.2f", amount);
+        this.value = String.valueOf(amount);
     }
 
     /**

@@ -71,6 +71,7 @@ class JsonAdaptedPerson {
                 .collect(Collectors.toList()));
         subject = source.getSubject().value;
         uniqueId = source.getUniqueId().id;
+        System.out.println("Payment: " + source.getPayment().value);
         payment = source.getPayment().value;
 
     }
@@ -122,12 +123,11 @@ class JsonAdaptedPerson {
         if (uniqueId == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Id.class.getSimpleName()));
         }
-
-        if (payment == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Payment.class.getSimpleName()));
-        }
         if (!Payment.isValidPayment(payment)) {
             throw new IllegalValueException(Payment.MESSAGE_CONSTRAINTS);
+        }
+        if (payment == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Payment.class.getSimpleName()));
         }
 
         final Id modelId = new Id(uniqueId);
