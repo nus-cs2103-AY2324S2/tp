@@ -19,8 +19,8 @@ public class Birthday {
     private static final String[] VALID_FORMATS_REGEX = {"\\d{2}/\\d{2}/\\d{4}", "\\d{2}-\\d{2}-\\d{4}",
         "\\d{4}-\\d{2}-\\d{2}", "\\d{4}/\\d{2}/\\d{2}"};
     public static final String MESSAGE_CONSTRAINTS =
-            "Birthday should not be blank and has to be in one of the given format: "
-            + String.join(" ", VALID_FORMATS);
+            "Birthday should not be blank and has to be in one of the given format: ["
+            + String.join("] [", VALID_FORMATS) + ']';
 
 
     public final LocalDate value;
