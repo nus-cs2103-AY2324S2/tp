@@ -105,7 +105,7 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] [m/MATRICULATION_NU
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 m/A1234567Z`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal m/A1234567Z`
+* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Jurong East p/1234567 m/A1234567Z`
 
 For more details on each parameter, [click here](#command-format-summary).
 
