@@ -20,7 +20,6 @@ import seedu.address.model.InternshipModelManager;
 import seedu.address.model.InternshipUserPrefs;
 import seedu.address.model.internship.Deadline;
 import seedu.address.model.internship.Internship;
-import seedu.address.testutil.InternshipBuilder;
 
 /**
  * Contains integration tests (interaction with the InternshipModel) and unit tests for InternshipAddDeadlineCommand.
