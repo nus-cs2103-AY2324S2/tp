@@ -12,7 +12,6 @@ import static seedu.address.testutil.TypicalPersonsUuid.getTypicalAddressBook;
 
 import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
 import java.util.UUID;
 
 import org.junit.jupiter.api.Test;
@@ -120,7 +119,7 @@ public class AddressBookTest {
      */
     private static class AddressBookStub implements ReadOnlyAddressBook {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
-        private final List<Relationship> relationships = Collections.emptyList();
+        private final ObservableList<Relationship> relationships = FXCollections.observableArrayList();
 
         AddressBookStub(Collection<Person> persons) {
             this.persons.setAll(persons);
@@ -132,7 +131,7 @@ public class AddressBookTest {
         }
 
         @Override
-        public List<Relationship> getRelationshipList() {
+        public ObservableList<Relationship> getRelationshipList() {
             return relationships;
         }
     }

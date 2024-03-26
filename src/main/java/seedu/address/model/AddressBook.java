@@ -2,7 +2,6 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -57,13 +56,20 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the contents of the relationship list with {@code relationships}.
+     * {@code relationships} must not contain duplicate relationships.
+     */
+    public void setRelationships(List<Relationship> relationships) {
+        this.relationships.setRelationships(relationships);
+    }
+
+    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
         setPersons(newData.getPersonList());
-        relationships.getRelationshipsTracker().clear();
-        relationships.getRelationshipsTracker().addAll(newData.getRelationshipList());
+        setRelationships(newData.getRelationshipList());
     }
 
     //// person-level operations
@@ -119,8 +125,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
-    public ArrayList<Relationship> getRelationshipList() {
-        return relationships.getRelationshipsTracker();
+    public ObservableList<Relationship> getRelationshipList() {
+        return relationships.asUnmodifiableObservableList();
     }
 
     public void addRelationship(Relationship toAdd) {
