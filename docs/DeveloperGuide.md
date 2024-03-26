@@ -417,7 +417,7 @@ Responsibility Principle.
   * Reduce complexity and potential dependencies.
   * Clear outline has been established that the only data structure present is the `AddressBook` containing
   `UniquePersonList`.
-    * There is not a need to apply sorting strategies to another different data strcuture.
+    * There is not a need to apply sorting strategies to another different data structure.
 
 --------------------------------------------------------------------------------------------------------------------
 
