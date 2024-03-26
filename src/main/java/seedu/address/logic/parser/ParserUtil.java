@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -8,6 +9,7 @@ import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.commands.MarkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -41,11 +43,17 @@ public class ParserUtil {
      * @throws ParseException if any of the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index[] parseIndexes(String oneBasedIndexes) throws ParseException {
-        String trimmedIndexes = oneBasedIndexes.replaceAll("\\s+", "");
+        String[] indexArray = oneBasedIndexes.trim().split(" ");
         Index[] indexes = new Index[2];
 
-        String personIndex = trimmedIndexes.substring(0, 1);
-        String weekNumber = trimmedIndexes.substring(1, 3);
+        System.out.println(indexArray.length);
+        if (indexArray.length != 2) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkCommand.MESSAGE_USAGE));
+        }
+
+        String personIndex = indexArray[0];
+        String weekNumber = indexArray[1];
+
         if (!StringUtil.isNonZeroUnsignedInteger(personIndex) | !StringUtil.isNonZeroUnsignedInteger(weekNumber)) {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
