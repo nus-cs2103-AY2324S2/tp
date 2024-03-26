@@ -234,7 +234,7 @@ public class EditCommand extends Command {
          * Returns {@code Optional#empty()} if {@code tags} is null.
          */
         public Optional<Set<FreeTimeTag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+            return Optional.ofNullable(tags).map(Collections::unmodifiableSet);
         }
 
         @Override

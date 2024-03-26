@@ -26,7 +26,19 @@ public class SampleDataUtil {
                     getTagSet("Mon:1300-1400")),
             new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@gmail"),
                 new RoomNumber("21-06-40"), new Telegram("berniceYu"), new Birthday("03/02/2000"),
-                    getTagSet("Tue:0700-2100"))
+                    getTagSet("Tue:0700-2100")),
+            new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
+                    new RoomNumber("21-11-04"), new Telegram("charlotteOliveiro"), new Birthday("02/04/2000"),
+                        getTagSet("Wed:0900-1300")),
+            new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
+                    new RoomNumber("21-16-43"), new Telegram("davidLi"), new Birthday("21/04/1998"),
+                        getTagSet("Thu:0100-0500")),
+            new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
+                    new RoomNumber("21-17-35"), new Telegram("irfanIbrahim"), new Birthday("16/04/1993"),
+                        getTagSet("Fri:1800-2100")),
+            new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
+                    new RoomNumber("21-11-31"), new Telegram("royBalakrishnan"), new Birthday("18/09/1992"),
+                    getTagSet("Sat:1930-2330"))
         };
     }
 
