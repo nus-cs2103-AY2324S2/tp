@@ -16,7 +16,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.exceptions.AddressBookUndoException;
+import seedu.address.model.exceptions.AddressBookException;
 import seedu.address.model.person.PersonMatchesKeywordsPredicate;
 import seedu.address.testutil.AddressBookBuilder;
 
@@ -93,7 +93,7 @@ public class ModelManagerTest {
 
     @Test
     public void undo_noUndoRemaining_throwsAddressBookUndoException() {
-        assertThrows(AddressBookUndoException.class, () -> modelManager.undo());
+        assertThrows(AddressBookException.class, () -> modelManager.undo());
     }
 
     @Test

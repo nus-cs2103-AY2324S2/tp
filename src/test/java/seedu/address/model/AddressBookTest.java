@@ -19,7 +19,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.exceptions.AddressBookUndoException;
+import seedu.address.model.exceptions.AddressBookException;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.testutil.PersonBuilder;
@@ -41,7 +41,7 @@ public class AddressBookTest {
 
     @Test
     public void undo_noUndoRemaining_throwsAddressBookUndoException() {
-        assertThrows(AddressBookUndoException.class, addressBook::undo);
+        assertThrows(AddressBookException.class, addressBook::undo);
     }
 
     @Test
