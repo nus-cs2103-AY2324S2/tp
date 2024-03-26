@@ -1,8 +1,6 @@
 package seedu.edulink.logic.commands;
 
 import static seedu.edulink.logic.parser.CliSyntax.PREFIX_FILENAME;
-import static seedu.edulink.logic.parser.CliSyntax.PREFIX_ID;
-import static seedu.edulink.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.io.IOException;
 import java.util.List;
@@ -31,7 +29,7 @@ public class ExportCommand extends Command{
         model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
         List<Student> studentsList= model.getFilteredPersonList();
         try {
-            CsvUtil.convertToCSV(studentsList, this.fileName + EXPORT_FORMAT);
+            CsvUtil.convertToCsv(studentsList, this.fileName + EXPORT_FORMAT);
         } catch (IOException e) {
             throw new CommandException(e.toString());
         }
