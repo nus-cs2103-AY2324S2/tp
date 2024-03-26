@@ -2,17 +2,14 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Predicate;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
@@ -25,70 +22,78 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.exam.Exam;
 import seedu.address.model.person.Person;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.model.person.Score;
 
-public class AddCommandTest {
+public class AddExamCommandTest {
 
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null));
+    public void constructor_nullExam_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new AddExamCommand(null));
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Person validPerson = new PersonBuilder().build();
+    public void execute_examAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingExamAdded modelStub = new ModelStubAcceptingExamAdded();
+        Exam validExam = new Exam("Math Final", new Score(100));
+        CommandResult commandResult = new AddExamCommand(validExam).execute(modelStub);
 
-        CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
-
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, Messages.format(validPerson)),
+        assertEquals(String.format(AddExamCommand.MESSAGE_SUCCESS, Messages.format(validExam)),
                 commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
+        assertEquals(Arrays.asList(validExam), modelStub.examsAdded);
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Person validPerson = new PersonBuilder().build();
-        AddCommand addCommand = new AddCommand(validPerson);
-        ModelStub modelStub = new ModelStubWithPerson(validPerson);
+    public void execute_duplicateExam_throwsCommandException() {
+        Exam validExam = new Exam("Math Final", new Score(100));
+        AddExamCommand addCommand = new AddExamCommand(validExam);
+        ModelStub modelStub = new ModelStubAcceptingExamAdded();
+        modelStub.addExam(validExam);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_EMAIL, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class,
+                    AddExamCommand.MESSAGE_DUPLICATE_EXAM, () -> addCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Person alice = new PersonBuilder().withName("Alice").build();
-        Person bob = new PersonBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        Exam mathFinal = new Exam("Math Final", new Score(100));
+        Exam scienceFinal = new Exam("Science Final", new Score(100));
+        AddExamCommand addMathFinalCommand = new AddExamCommand(mathFinal);
+        AddExamCommand addScienceFinalCommand = new AddExamCommand(scienceFinal);
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertEquals(addMathFinalCommand, addMathFinalCommand);
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        AddExamCommand addMathFinalCommandCopy = new AddExamCommand(mathFinal);
+        assertEquals(addMathFinalCommand, addMathFinalCommandCopy);
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertEquals(addMathFinalCommand.equals(1), false);
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertEquals(addMathFinalCommand.equals(null), false);
 
-        // different person -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        // different exam -> returns false
+        assertEquals(addMathFinalCommand.equals(addScienceFinalCommand), false);
+    }
+
+    @Test
+    public void execute_nullModel_throwsNullPointerException() {
+        Exam validExam = new Exam("Math Final", new Score(100));
+        AddExamCommand addCommand = new AddExamCommand(validExam);
+
+        assertThrows(NullPointerException.class, () -> addCommand.execute(null));
     }
 
     @Test
     public void toStringMethod() {
-        AddCommand addCommand = new AddCommand(ALICE);
-        String expected = AddCommand.class.getCanonicalName() + "{toAdd=" + ALICE + "}";
-        assertEquals(expected, addCommand.toString());
+        Exam mathFinal = new Exam("Math Final", new Score(100));
+        AddExamCommand addMathFinalCommand = new AddExamCommand(mathFinal);
+
+        assertEquals(addMathFinalCommand.toString(),
+              "seedu.address.logic.commands.AddExamCommand{toAdd=Math Final: 100}");
     }
 
-    /**
-     * A default model stub that have all of the methods failing.
-     */
     private class ModelStub implements Model {
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
@@ -199,43 +204,21 @@ public class AddCommandTest {
         public ObservableList<Exam> getExamList() {
             throw new AssertionError("This method should not be called.");
         }
-
     }
 
-    /**
-     * A Model stub that contains a single person.
-     */
-    private class ModelStubWithPerson extends ModelStub {
-        private final Person person;
+    private class ModelStubAcceptingExamAdded extends ModelStub {
+        final ArrayList<Exam> examsAdded = new ArrayList<>();
 
-        ModelStubWithPerson(Person person) {
-            requireNonNull(person);
-            this.person = person;
+        @Override
+        public boolean hasExam(Exam exam) {
+            requireNonNull(exam);
+            return examsAdded.contains(exam);
         }
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return this.person.isSamePerson(person);
-        }
-    }
-
-    /**
-     * A Model stub that always accept the person being added.
-     */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Person> personsAdded = new ArrayList<>();
-
-        @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePerson);
-        }
-
-        @Override
-        public void addPerson(Person person) {
-            requireNonNull(person);
-            personsAdded.add(person);
+        public void addExam(Exam exam) {
+            requireNonNull(exam);
+            examsAdded.add(exam);
         }
 
         @Override

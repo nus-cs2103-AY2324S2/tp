@@ -43,6 +43,8 @@ public class EditPersonDescriptorBuilder {
         descriptor.setMatric(person.getMatric());
         descriptor.setReflection(person.getReflection());
         descriptor.setStudio(person.getStudio());
+        // Scores should always be null in EditPersonDescriptor
+        descriptor.setScores(null);
     }
 
     /**

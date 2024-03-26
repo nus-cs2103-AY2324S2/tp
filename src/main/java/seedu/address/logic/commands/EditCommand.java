@@ -12,8 +12,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
@@ -24,11 +26,13 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.exam.Exam;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Score;
 import seedu.address.model.student.Matric;
 import seedu.address.model.student.Reflection;
 import seedu.address.model.student.Studio;
@@ -112,9 +116,12 @@ public class EditCommand extends Command {
         Matric updatedMatric = editPersonDescriptor.getMatric().orElse(personToEdit.getMatric());
         Reflection updatedReflection = editPersonDescriptor.getReflection().orElse(personToEdit.getReflection());
         Studio updatedStudio = editPersonDescriptor.getStudio().orElse(personToEdit.getStudio());
+        // Scores are not edited
+        Map<Exam, Score> scores = personToEdit.getScores();
 
         return new Person(updatedName, updatedPhone, updatedEmail,
-                          updatedAddress, updatedTags, updatedMatric, updatedReflection, updatedStudio);
+                          updatedAddress, updatedTags, updatedMatric,
+                          updatedReflection, updatedStudio, scores);
     }
 
     @Override
@@ -156,6 +163,8 @@ public class EditCommand extends Command {
         private Reflection reflection;
         private Studio studio;
 
+        private Map<Exam, Score> scores;
+
         public EditPersonDescriptor() {}
 
         /**
@@ -171,6 +180,7 @@ public class EditCommand extends Command {
             setMatric(toCopy.matric);
             setReflection(toCopy.reflection);
             setStudio(toCopy.studio);
+            setScores(toCopy.scores);
         }
 
         /**
@@ -229,6 +239,14 @@ public class EditCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
+        public void setScores(Map<Exam, Score> scores) {
+            this.scores = (scores != null) ? new HashMap<>(scores) : null;
+        }
+
+        public Optional<Map<Exam, Score>> getScores() {
+            return (scores != null) ? Optional.of(Collections.unmodifiableMap(scores)) : Optional.empty();
+        }
+
         public void setMatric(Matric matric) {
             this.matric = matric;
         }
@@ -272,7 +290,8 @@ public class EditCommand extends Command {
                     && Objects.equals(tags, otherEditPersonDescriptor.tags)
                     && Objects.equals(matric, otherEditPersonDescriptor.matric)
                     && Objects.equals(reflection, otherEditPersonDescriptor.reflection)
-                    && Objects.equals(studio, otherEditPersonDescriptor.studio);
+                    && Objects.equals(studio, otherEditPersonDescriptor.studio)
+                    && Objects.equals(scores, otherEditPersonDescriptor.scores);
         }
 
         @Override
@@ -286,6 +305,7 @@ public class EditCommand extends Command {
                     .add("matriculation number", matric)
                     .add("reflection", reflection)
                     .add("studio", studio)
+                    .add("scores", scores)
                     .toString();
         }
 
