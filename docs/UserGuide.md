@@ -215,11 +215,28 @@ Format: `find MODE [/com COMPANY_NAME_KEYWORDS] [/poc CONTACT_NAME_KEYWORDS] [/l
 * Internship matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hewlett Song` will return `Hewlett Packard`, `Song Fa`
 
-Examples:
-* `find withall /status accepted /loc local` returns Internships with both status `accepted` and location `local`
-  ![result for 'find withall /status accepted /loc local'](images/findWithallStatusAcceptedLocLocalResult.png)
-* `find withany /status rejected /loc remote` returns Internships with either status `rejected` or location `remote`
-  ![result for 'find withany /status rejected /loc remote'](images/findWithanyStatusRejectedLocRemoteResult.png)
+<div markdown="span" class="alert alert-success">
+
+💡 **Try It Out:**<br>
+
+1. Input:<br>
+   `find withall /status to_apply /loc remote`<br>
+   ![Before filtering by all toapply and remote](./images/find/find-before.png)<br><br>
+This will filter the list of internships to show only those with both status `TO_APPLY` and location `REMOTE`.
+
+2. Successful Output after filtering:<br>
+   ![After successfully filtering by all toapply and remote](./images/find/findToApplyRemote-after.png)<br><br>
+
+3. Other examples:<br>
+   i.`find withany /com Google /loc local` returns Internships with either company name (case-insensitive) `Google` or location `LOCAL`<br>
+   ii.`find withall /poc John /desc paperwork` returns Internships with both contact name (case-insensitive) `John` and description containing `paperwork`
+</div>
+
+**Common errors:**
+1. If no field prefixes are specified to search by, the command will be rejected with error message:<br>
+`At least one field prefix and keyword must be specified to be searched.`
+2. MODE must be present, and be either `withall` or `withany`. If not, the command will be rejected with error message:<br>
+`Invalid mode specified. Please specify either 'withall' or 'withany'.`
 
 ### Clearing all internships: `clear`
 
