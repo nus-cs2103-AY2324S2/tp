@@ -5,8 +5,8 @@ pageNav: 3
 ---
 
 # Internhub User Guide
-
-Intern Hub is a **desktop app for managing contacts, optimized for use via a  Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, InternHub can get your contact management tasks done faster than traditional GUI apps.
+Intern Hub is a desktop app for managing contacts, optimized for use via a Command Line Interface (CLI) while still offering the benefits of a Graphical User Interface (GUI). If you can type fast, InternHub can help you complete your contact management tasks more efficiently than traditional GUI apps.
+Target Audience: Intern Hub is designed for undergraduates, professors, and carreer guidance officers seeking a streamlined approach to managing internship contacts.Intern Hub simplifies the process of organizing and accessing contact information, making it ideal for users who value efficiency and productivity.
 
 <!-- * Table of Contents -->
 <page-nav-print />
