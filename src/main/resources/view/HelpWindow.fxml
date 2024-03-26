@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.stage.Stage?>
 
+<?import javafx.scene.image.ImageView?>
 <fx:root resizable="false" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/help_icon.png" />
@@ -19,7 +20,7 @@
         <URL value="@HelpWindow.css" />
       </stylesheets>
 
-      <HBox alignment="CENTER" fx:id="helpMessageContainer">
+      <HBox alignment="CENTER" fx:id="helpMessageContainer" spacing="10"> <!-- Added spacing attribute -->
         <children>
           <Label fx:id="helpMessage" text="Label">
             <HBox.margin>
@@ -28,7 +29,17 @@
           </Label>
           <Button fx:id="copyButton" mnemonicParsing="false" onAction="#copyUrl" text="Copy URL">
             <HBox.margin>
-              <Insets left="5.0" />
+              <Insets left="5.0" right="5.0" top="2.0" /> <!-- Adjusted margin to shift button up by 5.0 units -->
+            </HBox.margin>
+          </Button>
+          <Button fx:id="openInBrowserButton" onAction="#openUrlInBrowser" text="">
+            <graphic>
+              <ImageView fitWidth="22" fitHeight="22">
+                <Image url="@/images/opentab.png" />
+              </ImageView>
+            </graphic>
+            <HBox.margin>
+              <Insets left="5.0" /> <!-- Adjusted margin to add space between buttons -->
             </HBox.margin>
           </Button>
         </children>
@@ -36,7 +47,7 @@
           <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
         </opaqueInsets>
         <padding>
-          <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
+          <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" /> <!-- Adjusted padding to add space between buttons -->
         </padding>
       </HBox>
     </Scene>

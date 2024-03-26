@@ -1,5 +1,9 @@
 package seedu.address.ui;
 
+import java.awt.*;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
@@ -98,5 +102,18 @@ public class HelpWindow extends UiPart<Stage> {
         final ClipboardContent url = new ClipboardContent();
         url.putString(USERGUIDE_URL);
         clipboard.setContent(url);
+    }
+
+    @FXML
+    private void openUrlInBrowser() {
+        if (Desktop.isDesktopSupported()) {
+            try {
+                Desktop.getDesktop().browse(new URI(USERGUIDE_URL));
+            } catch (IOException | URISyntaxException e) {
+                logger.warning("An error occurred when trying to open the URL: " + USERGUIDE_URL + " " + e.getMessage());
+            }
+        } else {
+            logger.warning("Desktop is not supported on this platform. Unable to open the URL in browser.");
+        }
     }
 }
