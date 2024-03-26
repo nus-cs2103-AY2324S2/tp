@@ -190,8 +190,47 @@ Appointment List are saved under a separate file `appointments.json` in the data
 
 #### Design Considerations
 **Aspect: Patient ID**
-- We needed some method to ensure that the patient was unique, therefore a running Id was required for the patient that could act like the primary key of the patient object.
+- In any system that manages individual records, it is critical to ensure that we are able to distinguish between entities (which are patients) in our case.
 
+
+- **Alternative 1: Using Integer ID as the primary key (Current Approach)**
+  - We needed some method to ensure that the patient was unique. The primary solution implemented involves a running integer identifier - and is saved together with each patient. The identifier serves as the primary key for the patient object, similar to how a unique ID in a database ensure each record's uniqueness.
+  - This was different to how the AB3 application was originally designed - where the ID followed the natural ordering of the elements in the list.
+  - Pros
+    - Extremely user-friendly for counsellor as ID is never changed. 
+      - Potentially patient can even be issued a member card starting that patient ID.
+  - Cons
+    - Difficult to implement.
+    - There will be "holes" in the sequential ID when records are deleted.
+
+- **Alternative 2: Using Name as the primary key**
+  - This approach was quickly deemed unsuitable due to the high probability of name duplication. While names are an important identifier, there is a great risk of collision (i.e. Jack Tan vs Jack Tan Ah Kou). While this method is sufficient for a non-mission critical address book, our CogniCare application must try to reduce the likeliness of errors occurring.
+  - Pros
+    - Extremely user friendly
+  - Cons
+    - Commands will be extremely long; and difficult to type.
+    - Counsellor will need to remember exactly how the full name is spelt.
+    - May select the wrong patient (i.e. Jack Tan vs Jack Tan Ah Kou).
+    
+- **Alternative 3: Using Natural Ordering of the names in CogniCare application (AB3 approach)**
+  - As we initially strived for a design where the patientId was used like a Foreign Key in the Appointments object, the ID changing would mean that the data integrity for Appointments class would be compromised
+  - Pros
+    - Easy to implement
+  - Cons
+    - Data Integrity of Appointments will be compromised
+    - Every time a patient is deleted, the subsequent IDs will be coalesced.
+
+
+**Aspect: Search query with AND constraint**
+In enhancing the search functionality within CogniCare, the implementation of an AND constraint for search queries was paramount. This feature allows counsellors to refine search criteria, leading to more precise and relevant search results. For example, counsellors can search for a patient using a combination of (partial name AND partial phone number AND partial email address). Only parameter is required, the others are optional.
+
+This enhancement was driven for the need of:
+1. Improved Search Accuracy: By allowing multiple criteria to be specified, counsellors can narrow down search results to the most relevant patients (as the SoC cohort is quite large).
+2. Efficiency: Enables quicker access to patient records by reducing the time spent sifting through irrelevant patient information.
+
+**Single Criterion Search (AB3 Approach)**: The original AB3 approach of allowing search based on a single criterion was found to be too limiting for the different needs of patient management in CogniCare.
+
+**Search Query with OR Constraint:** While also considered, this approach was determined to potentially yield too broad of a search result, undermining the efficiency desired in retrieving patient record.
 
 **Aspect: Appointment ID**
 - **Alternative 1 (current choice):** Generate auto-increasing fixed appointment ID when creating a new appointment. Fail commands that attempt to set the appointment ID still increase the appointment ID.
