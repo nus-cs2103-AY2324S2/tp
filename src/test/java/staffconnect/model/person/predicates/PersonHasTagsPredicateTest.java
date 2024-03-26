@@ -1,4 +1,4 @@
-package staffconnect.model.person;
+package staffconnect.model.person.predicates;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -10,7 +10,6 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
-import staffconnect.model.person.predicates.PersonHasTagsPredicate;
 import staffconnect.model.tag.Tag;
 import staffconnect.testutil.PersonBuilder;
 

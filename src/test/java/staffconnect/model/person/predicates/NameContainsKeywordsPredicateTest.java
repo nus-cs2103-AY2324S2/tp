@@ -1,4 +1,4 @@
-package staffconnect.model.person;
+package staffconnect.model.person.predicates;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -10,7 +10,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import staffconnect.model.person.predicates.NameContainsKeywordsPredicate;
 import staffconnect.testutil.PersonBuilder;
 
 public class NameContainsKeywordsPredicateTest {
