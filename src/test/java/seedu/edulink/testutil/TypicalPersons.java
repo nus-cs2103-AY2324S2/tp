@@ -33,7 +33,7 @@ public class TypicalPersons {
         .withMajor("Computer Science").withIntake("2023")
         .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
         .withPhone("94351253")
-        .withTags("friends").build();
+        .withTags("friends", "TA", "Smart").build();
     public static final Student BENSON = new PersonBuilder().withName("Benson Meier").withId("A0265901E")
         .withMajor("Physics").withIntake("2023")
         .withAddress("311, Clementi Ave 2, #02-25")
