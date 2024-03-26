@@ -42,8 +42,8 @@ public class Supplier extends Person {
      */
     @Override
     public Supplier updateNote(Note note) {
-        Supplier supplierToReturn = new Supplier(this.getName(), this.getPhone(), this.getEmail(), this.getAddress(), note,
-                this.getTags(), this.product, this.price, this.getRating());
+        Supplier supplierToReturn = new Supplier(this.getName(), this.getPhone(), this.getEmail(),
+                this.getAddress(), note, this.getTags(), this.product, this.price, this.getRating());
         supplierToReturn.setPinIfPinned(this);
         return supplierToReturn;
     }
@@ -54,8 +54,8 @@ public class Supplier extends Person {
      */
     @Override
     public Supplier updateRating(Rating rating) {
-        Supplier supplierToReturn = new Supplier(this.getName(), this.getPhone(), this.getEmail(), this.getAddress(), this.getNote(),
-                this.getTags(), this.product, this.price, rating);
+        Supplier supplierToReturn = new Supplier(this.getName(), this.getPhone(), this.getEmail(), this.getAddress(),
+                this.getNote(), this.getTags(), this.product, this.price, rating);
         supplierToReturn.setPinIfPinned(this);
         return supplierToReturn;
     }
