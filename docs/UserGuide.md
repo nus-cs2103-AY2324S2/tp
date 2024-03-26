@@ -172,17 +172,17 @@ Examples:
 * `addAppt i/ T0123456A d/ 2024-02-20 from/ 11:00 to/ 11:30 t/ Medical Check-up note/ Routine check-in`
 * `addAppt i/ S1234567A d/ 2024-02-20 from/ 15:00 to/ 15:30 t/ Blood Test note/ Follow-up from last consultation`
 
-### Cancelling an Appointment: `cancelAppt`
+### Deleting an Appointment: `deleteAppt`
 
-Cancels an appointment from CLInic.
+Deleting an appointment from CLInic.
 
-Format: `cancelAppt i/NRIC d/DATE from/START_TIME to/END_TIME`
+Format: `deleteAppt i/NRIC d/DATE from/START_TIME to/END_TIME`
 
-* Cancels an appointment for the patient with specified `NRIC`, on `DATE` from `START_TIME` to `END_TIME`
+* Deletes an appointment for the patient with specified `NRIC`, on `DATE` from `START_TIME` to `END_TIME`
 * Appointment with the following details **must exist within database**.
 
 Examples:
-* `cancelAppt i/ S8743880A d/ 2024-02-20 from/ 11:00 to/ 11:30`
+* `deleteAppt i/ S8743880A d/ 2024-02-20 from/ 11:00 to/ 11:30`
 
 ### Finding appointments: `findAppt`
 
@@ -193,7 +193,11 @@ Format: `findAppt [i/NRIC] [d/DATE] [from/START_TIME]`
 * Filters an appointment with specific `NRIC`, `DATE` or `START_TIME` (any combination of the 3)
 * If invalid parameters, error detailing what went wrong will be displayed.
 * For argument concerning TIME, all appointments that start at the given time and later than that are returned.
-* Fetching for TIME without DATE will return all appointments whose start time >= that time on any date.
+* Fetching for TIME without DATE will return all appointments whose start from that time or later than that on any date.
+
+Examples:
+* `findAppt d/ 2024-02-20 from/ 11:00`
+*  returns you all appointments on `2024-02-20` starting from `11:00` and later. 
 
 ### Clearing all entries : `clear`
 
@@ -264,7 +268,7 @@ _Details coming soon ..._
 | **FindPatient**   | `findPatient n/ KEYWORD [MORE_KEYWORDS]` OR `findPatient i/ KEYWORD`<br> e.g., `findPatient n/ James Jake`                                                                                       |
 | **List**          | `list`                                                                                                                                                                                           |
 | **AddAppt**       | `addAppt i/NRIC d/DATE from/START_TIME to/END_TIME t/APPOINTMENT_TYPE note/NOTE`<br> e.g., `addAppt i/ T0123456A d/ 2024-02-20 from/ 11:00 to/ 11:30 t/ Medical Check-up note/ Routine check-in` |
-| **CancelAppt**    | `cancelAppt i/NRIC d/DATE from/START_TIME to/END_TIME` <br> e.g., `cancelAppt i/ S8743880A d/ 2024-02-20 from/ 11:00 to/ 11:30`                                                                  |
+| **DeleteAppt**    | `deleteAppt i/NRIC d/DATE from/START_TIME to/END_TIME` <br> e.g., `deleteAppt i/ S8743880A d/ 2024-02-20 from/ 11:00 to/ 11:30`                                                                  |
 | **FindAppt**      | `findAppt [i/NRIC] [d/DATE] [from/START_TIME]` <br> e.g., `findAppt i/ T0123456A d/ 2024-02-20 from/ 11:00`                                                                                      |
 | **Clear**         | `clear`                                                                                                                                                                                          |
 | **Exit**          | `exit`                                                                                                                                                                                           |
