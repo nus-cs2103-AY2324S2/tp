@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -94,6 +95,13 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void addOrder(Order order) {
         int orderCounter = orders.getOrderIdCounter();
         order.setID(orderCounter);
+
+        Person editedCustomer = order.getCustomer();
+        ArrayList<Order> listToEdit = editedCustomer.getOrders();
+        listToEdit.add(order);
+        editedCustomer.setOrders(listToEdit);
+        this.setPerson(order.getCustomer(), editedCustomer);
+
         orders.addOrder(order);
     }
 
@@ -152,11 +160,13 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removeOrder(int id) {
         Order orderToDelete = this.findOrderByIndex(id);
-        Person personToEdit = orderToDelete.getCustomer();
-        ArrayList<Order> listToEdit = personToEdit.getOrders();
+
+        Person editedCustomer = orderToDelete.getCustomer();
+        ArrayList<Order> listToEdit = editedCustomer.getOrders();
         listToEdit.remove(orderToDelete);
-        personToEdit.setOrders(listToEdit);
-        this.setPerson(orderToDelete.getCustomer(), personToEdit);
+        editedCustomer.setOrders(listToEdit);
+        this.setPerson(orderToDelete.getCustomer(), editedCustomer);
+
         orders.deleteOrder(id);
     }
 

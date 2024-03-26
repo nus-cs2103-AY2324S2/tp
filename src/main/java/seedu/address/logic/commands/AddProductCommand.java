@@ -3,8 +3,6 @@ package seedu.address.logic.commands;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRODUCT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRODUCT_QUANTITY;
 
-import java.util.ArrayList;
-
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -87,11 +85,6 @@ public class AddProductCommand extends Command {
 
         Person customer = lastOrder.getCustomer();
         model.addOrder(lastOrder, customer);
-        ArrayList<Order> currentOrders = customer.getOrders();
-        currentOrders.add(lastOrder);
-        customer.setOrders(currentOrders);
-        model.setPerson(personToEdit, customer);
-
 
         return new CommandResult(generateSuccessMessage());
     }
