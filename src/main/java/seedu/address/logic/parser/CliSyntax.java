@@ -38,8 +38,7 @@ public class CliSyntax {
         PREFIX_SKILL,
         PREFIX_COMMISSION,
         PREFIX_NOTE,
-        PREFIX_RATING
-    ,
+        PREFIX_RATING,
         PREFIX_DEADLINE,
         PREFIX_HELP
     };

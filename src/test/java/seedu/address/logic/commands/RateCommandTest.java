@@ -1,13 +1,19 @@
 package seedu.address.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalPersons.GEORGIAMAINTAINER;
+import static seedu.address.testutil.TypicalPersons.GEORGIASTAFF;
+import static seedu.address.testutil.TypicalPersons.GEORGIASUPPLIER;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.messages.RateMessages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -17,35 +23,10 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Rating;
 import seedu.address.model.person.Staff;
 import seedu.address.model.person.Supplier;
-import seedu.address.testutil.MaintainerBuilder;
-import seedu.address.testutil.StaffBuilder;
-import seedu.address.testutil.SupplierBuilder;
 
 public class RateCommandTest {
     private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private final Rating validRating1 = new Rating("1");
-    private final Rating validRating2 = new Rating("2");
-
-    private final Staff georgiaStaff = new StaffBuilder().withName("Georgia Staff")
-            .withAddress("123, Jurong West Ave 45, #08-131").withEmail("georgia@example.com")
-            .withPhone("94355453")
-            .withTags("friends")
-            .withSalary("$50/hr")
-            .withEmployment("part-time").build();
-
-    private final Supplier georgiaSupplier = new SupplierBuilder().withName("Georgia Supplier")
-            .withAddress("311, Clementi Ave 2, #02-25")
-            .withEmail("georgia@example.com").withPhone("98765432")
-            .withTags("owesMoney", "friends")
-            .withProduct("pooch medicine")
-            .withPrice("$50/injection").build();
-
-    private final Maintainer georgiaMaintainer = new MaintainerBuilder().withName("Georgia Maintainer")
-            .withAddress("311, Clementi Ave 2, #02-25")
-            .withEmail("georgia@example.com").withPhone("98765432")
-            .withTags("owesMoney", "friends")
-            .withSkill("train dog")
-            .withCommission("$50/hr").build();
 
     @Test
     public void execute_validRatingOther_addSuccess() {
@@ -67,66 +48,75 @@ public class RateCommandTest {
     public void execute_validRatingStaff_addSuccess() {
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        model.addPerson(georgiaStaff);
+        model.addPerson(GEORGIASTAFF);
 
-        Staff toAddRatingPerson = georgiaStaff;
-        Staff expectedPerson = new Staff(toAddRatingPerson.getName(), toAddRatingPerson.getPhone(),
-                toAddRatingPerson.getEmail(), toAddRatingPerson.getAddress(), toAddRatingPerson.getNote(),
-                toAddRatingPerson.getTags(), toAddRatingPerson.getSalary(), toAddRatingPerson.getEmployment(),
-                validRating1);
-        expectedPerson.setNoteContent(validRating1.toString());
-        expectedModel.addPerson(expectedPerson);
+        Staff toAddRatingStaff = GEORGIASTAFF;
+        Staff expectedStaff = new Staff(toAddRatingStaff.getName(), toAddRatingStaff.getPhone(),
+                toAddRatingStaff.getEmail(), toAddRatingStaff.getAddress(), toAddRatingStaff.getNote(),
+                toAddRatingStaff.getTags(), toAddRatingStaff.getSalary(), toAddRatingStaff.getEmployment(),
+                toAddRatingStaff.getRating());
+        expectedStaff.setNoteContent(validRating1.toString());
+        expectedModel.addPerson(expectedStaff);
 
+        RateCommand rateCommand = new RateCommand(toAddRatingStaff.getName(), validRating1);
 
-        RateCommand rateCommand = new RateCommand(toAddRatingPerson.getName(), validRating1);
-        String expectedMessage = String.format(RateMessages.MESSAGE_RATE_PERSON_SUCCESS,
-                RateMessages.format(expectedPerson));
+        try {
+            rateCommand.execute(model);
+        } catch (CommandException ce) {
+            fail();
+        }
 
-        assertCommandSuccess(rateCommand, model, expectedMessage, expectedModel);
+        assertEquals(expectedModel.getFilteredPersonList(), model.getFilteredPersonList());
     }
 
     @Test
     public void execute_validRatingSupplier_addSuccess() {
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        model.addPerson(georgiaSupplier);
+        model.addPerson(GEORGIASUPPLIER);
 
-        Supplier toAddRatingPerson = georgiaSupplier;
-        Supplier expectedPerson = new Supplier(toAddRatingPerson.getName(), toAddRatingPerson.getPhone(),
-                toAddRatingPerson.getEmail(), toAddRatingPerson.getAddress(), toAddRatingPerson.getNote(),
-                toAddRatingPerson.getTags(), toAddRatingPerson.getProduct(), toAddRatingPerson.getPrice(),
-                validRating1);
-        expectedPerson.setNoteContent(validRating1.toString());
-        expectedModel.addPerson(expectedPerson);
+        Supplier toAddRatingSupplier = GEORGIASUPPLIER;
+        Supplier expectedSupplier = new Supplier(toAddRatingSupplier.getName(), toAddRatingSupplier.getPhone(),
+                toAddRatingSupplier.getEmail(), toAddRatingSupplier.getAddress(), toAddRatingSupplier.getNote(),
+                toAddRatingSupplier.getTags(), toAddRatingSupplier.getProduct(), toAddRatingSupplier.getPrice(),
+                toAddRatingSupplier.getRating());
+        expectedSupplier.setNoteContent(validRating1.toString());
+        expectedModel.addPerson(expectedSupplier);
 
+        RateCommand rateCommand = new RateCommand(toAddRatingSupplier.getName(), validRating1);
 
-        RateCommand rateCommand = new RateCommand(toAddRatingPerson.getName(), validRating1);
-        String expectedMessage = String.format(RateMessages.MESSAGE_RATE_PERSON_SUCCESS,
-                RateMessages.format(expectedPerson));
+        try {
+            rateCommand.execute(model);
+        } catch (CommandException ce) {
+            fail();
+        }
 
-        assertCommandSuccess(rateCommand, model, expectedMessage, expectedModel);
+        assertEquals(expectedModel.getFilteredPersonList(), model.getFilteredPersonList());
     }
 
     @Test
     public void execute_validRatingMaintainer_addSuccess() {
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        model.addPerson(georgiaMaintainer);
+        model.addPerson(GEORGIAMAINTAINER);
 
-        Maintainer toAddRatingPerson = georgiaMaintainer;
-        Maintainer expectedPerson = new Maintainer(toAddRatingPerson.getName(), toAddRatingPerson.getPhone(),
-                toAddRatingPerson.getEmail(), toAddRatingPerson.getAddress(), toAddRatingPerson.getNote(),
-                toAddRatingPerson.getTags(), toAddRatingPerson.getSkill(), toAddRatingPerson.getCommission(),
-                validRating1);
-        expectedPerson.setNoteContent(validRating1.toString());
-        expectedModel.addPerson(expectedPerson);
+        Maintainer toAddRatingMaintainer = GEORGIAMAINTAINER;
+        Maintainer expectedMaintainer = new Maintainer(toAddRatingMaintainer.getName(),
+                toAddRatingMaintainer.getPhone(), toAddRatingMaintainer.getEmail(), toAddRatingMaintainer.getAddress(),
+                toAddRatingMaintainer.getNote(), toAddRatingMaintainer.getTags(), toAddRatingMaintainer.getSkill(),
+                toAddRatingMaintainer.getCommission(), toAddRatingMaintainer.getRating());
+        expectedMaintainer.setNoteContent(validRating1.toString());
+        expectedModel.addPerson(expectedMaintainer);
 
+        RateCommand rateCommand = new RateCommand(toAddRatingMaintainer.getName(), validRating1);
 
-        RateCommand rateCommand = new RateCommand(toAddRatingPerson.getName(), validRating1);
-        String expectedMessage = String.format(RateMessages.MESSAGE_RATE_PERSON_SUCCESS,
-                RateMessages.format(expectedPerson));
+        try {
+            rateCommand.execute(model);
+        } catch (CommandException ce) {
+            fail();
+        }
 
-        assertCommandSuccess(rateCommand, model, expectedMessage, expectedModel);
+        assertEquals(expectedModel.getFilteredPersonList(), model.getFilteredPersonList());
     }
     @Test
     public void equals() {

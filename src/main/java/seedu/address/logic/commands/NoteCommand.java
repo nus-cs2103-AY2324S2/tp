@@ -7,7 +7,6 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.messages.NoteMessages;
-import seedu.address.logic.messages.RateMessages;
 import seedu.address.model.Model;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Note;
@@ -44,35 +43,12 @@ public class NoteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         Person personToEdit = model.findByName(name);
+
         if (personToEdit == null) {
             throw new CommandException(NoteMessages.MESSAGE_NOTE_NAME_NOT_FOUND);
         }
-        Person editedPerson;
 
-        if (personToEdit instanceof Maintainer) {
-            editedPerson = new Maintainer(
-                    personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                    personToEdit.getAddress(), personToEdit.getTags(), ((Maintainer) personToEdit).getSkill(), (
-                            (Maintainer) personToEdit).getCommission());
-            editedPerson.setNoteContent(note.toString());
-        } else if (personToEdit instanceof Staff) {
-            editedPerson = new Staff(
-                    personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                    personToEdit.getAddress(), personToEdit.getTags(), ((Staff) personToEdit).getSalary(), (
-                            (Staff) personToEdit).getEmployment());
-            editedPerson.setNoteContent(note.toString());
-        } else if (personToEdit instanceof Supplier) {
-            editedPerson = new Supplier(
-                    personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                    personToEdit.getAddress(), personToEdit.getTags(), ((Supplier) personToEdit).getProduct(), (
-                            (Supplier) personToEdit).getPrice());
-            editedPerson.setNoteContent(note.toString());
-        } else {
-            editedPerson = new Person(
-                    personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                    personToEdit.getAddress(), note, personToEdit.getTags());
-        }
-
+        Person editedPerson = personToEdit.updateNote(note);
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);

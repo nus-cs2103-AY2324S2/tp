@@ -238,7 +238,8 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(Note.MESSAGE_CONSTRAINTS);
         }
 
-        Person personToAdd = new Person(modelName, modelPhone, modelEmail, modelAddress, modelNote, modelTags, modelRating);
+        Person personToAdd = new Person(modelName, modelPhone, modelEmail, modelAddress, modelNote, modelTags,
+                modelRating);
         if (pin.equals("true")) {
             personToAdd.toPin();
         }

@@ -59,9 +59,8 @@ public class RateCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
 
-        Person personToRate = findByName(lastShownList, targetName);
+        Person personToRate = model.findByName(targetName);
 
         if (personToRate == null) {
             throw new CommandException(RateMessages.MESSAGE_RATE_NAME_NOT_FOUND);

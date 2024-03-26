@@ -37,7 +37,7 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         String unknownPrefix = ArgumentTokenizer.checkUnknownPrefix(args,
-                PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
+                PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_NOTE, PREFIX_RATING);
 
         if (unknownPrefix != null) {
             String exception = String.format(MESSAGE_INVALID_FIELD_FORMAT, unknownPrefix);

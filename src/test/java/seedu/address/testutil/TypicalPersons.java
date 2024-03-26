@@ -135,6 +135,29 @@ public class TypicalPersons {
             .withPhone(VALID_PHONE_BOB)
             .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withNote(VALID_NOTE_BOB)
             .withSkill(VALID_SKILL_BOB).withCommission(VALID_COMMISSION_BOB).withRating("0").build();
+
+    // Manually added - used for tests in NoteCommandTest and RateCommandTest
+    public static final Staff GEORGIASTAFF = new StaffBuilder().withName("Georgia Staff")
+            .withAddress("123, Jurong West Ave 45, #08-131").withEmail("georgia@example.com")
+            .withPhone("94355453")
+            .withTags("friends")
+            .withSalary("$50/hr")
+            .withEmployment("part-time").build();
+
+    public static final Supplier GEORGIASUPPLIER = new SupplierBuilder().withName("Georgia Supplier")
+            .withAddress("311, Clementi Ave 2, #02-25")
+            .withEmail("georgia@example.com").withPhone("98765432")
+            .withTags("owesMoney", "friends")
+            .withProduct("pooch medicine")
+            .withPrice("$50/injection").build();
+
+    public static final Maintainer GEORGIAMAINTAINER = new MaintainerBuilder().withName("Georgia Maintainer")
+            .withAddress("311, Clementi Ave 2, #02-25")
+            .withEmail("georgia@example.com").withPhone("98765432")
+            .withTags("owesMoney", "friends")
+            .withSkill("train dog")
+            .withCommission("$50/hr").build();
+
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
     private TypicalPersons() {} // prevents instantiation
