@@ -16,16 +16,18 @@ We are a team based in the [School of Computing, National University of Singapor
 
 * Role: Team Lead
 * Responsibilities: Scheduling and tracking, Deliverables and deadlines
+* In charge of: Storage
 
 ### Joel Wang
 
-<img src="images/joelwang22.png.jpg" width="200px">
+<img src="images/joelwang22.png" width="200px">
 
 [[github](http://github.com/joelwang22)]
 [[portfolio](team/joel.md)]
 
 * Role: Developer
 * Responsibilities: Documentation
+* In charge of: Orders
 
 ### Isaac Chong
 
@@ -35,6 +37,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 * Role: Developer
 * Responsibilities: Testing
+* In charge of: GUI
 
 ### Yang Yibai
 
@@ -45,6 +48,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 * Role: Developer
 * Responsibilities: Integration
+* In charge of: Logic
 
 ### Bertrand Ong
 
@@ -55,3 +59,4 @@ We are a team based in the [School of Computing, National University of Singapor
 
 * Role: Developer
 * Responsibilities: Code Quality
+* In charge of: Model
