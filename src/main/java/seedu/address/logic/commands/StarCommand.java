@@ -10,8 +10,8 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.student.Student;
 import seedu.address.model.student.Star;
+import seedu.address.model.student.Student;
 
 /**
  * Adds a star to a student in the address book.
