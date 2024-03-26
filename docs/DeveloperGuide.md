@@ -379,7 +379,39 @@ When user `add` contacts in the `AddressBook`, contacts will be sorted based on 
   * Since there is no condition stated, a `ParseException` will be thrown and a statement will be displayed to provide 
   the correct input and conditions to be stated. 
 
-###
+### Design consideration:
+`SolidStrategy` interface was implemented for sorting functionality to adhere to SOLID principles, particularly the
+Single Responsibility Principle, Interface Segregation Principle and Open/Close Principle.
+* Single Responsibility Principle
+  * The interface maintains single responsibility by defining methods for sorting strategies without burdening
+  implementations with unrelated methods
+* Open/Closed Principle
+  * The interface provides an abstraction that allows for extension. New sorting strategies can be introduced by
+  implementing `SortStrategy` interface without altering existing code.
+* Interface Segregation Principle
+  * Segregates behavior for sorting into distinct methods `sort` and `getCategory`, thus, allowing different sorting
+  strategies to implement only the methods they need, rather than being forced to implement monolithic interface with
+  unnecessary methods.
+
+* **Alternative 1 (current choice)** `sort` method of the `SortStrategy` to take in `AddressBook` as its parameter.
+  * Pros: Straightforward design and easy to implement.
+    * Sorting logic interacts directly with data structure being sorted.
+  * Cons: May be challenging to apply sorting strategies to different data structures without modification.
+
+* **Alternative 2** `sort` method of the `SortStrategy` to take in `model` as its parameter.
+  * Pros: Sorting strategies can be applied to different data structures without modification
+    * Promoting code reuse and scalability.
+  * Cons: Requires access to `AddressBook` eventually, introducing unnecessary complexity.
+
+Alternative 1 is chosen for the following reasons:
+* Simplicity: keeps sorting logic simple and focused by directly interacting with the data structure being sorted.
+* Clear Responsibility: Sorting logic is closely tied to the data structure it operates on, adhering to the Single
+Responsibility Principle.
+* Ease of implementation: No need to pass unnecessary parameters to the sorting method.
+  * Reduce complexity and potential dependencies.
+  * Clear outline has been established that the only data structure present is the `AddressBook` containing
+  `UniquePersonList`.
+    * There is not a need to apply sorting strategies to another different data strcuture.
 
 --------------------------------------------------------------------------------------------------------------------
 
