@@ -46,7 +46,7 @@
         </StackPane>
             <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                <children>
-                  <VBox fx:id="examList" minWidth="300.0" prefWidth="300.0" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
+                  <VBox fx:id="examList" minWidth="250.0" prefHeight="100.0" prefWidth="250.0" styleClass="pane-with-border" HBox.hgrow="NEVER">
                      <children>
                         <StackPane fx:id="examListPanelPlaceholder" VBox.vgrow="ALWAYS" />
                      </children>
