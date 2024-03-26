@@ -55,6 +55,7 @@ public class UnpinCommand extends Command {
             return false;
         }
 
-        return true;
+        UnpinCommand otherCommand = (UnpinCommand) other;
+        return this.name.equals(otherCommand.name);
     }
 }

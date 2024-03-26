@@ -56,6 +56,7 @@ public class PinCommand extends Command {
             return false;
         }
 
-        return true;
+        PinCommand otherCommand = (PinCommand) other;
+        return this.name.equals(otherCommand.name);
     }
 }
