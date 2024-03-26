@@ -53,7 +53,7 @@ public class Github {
     }
 
     /**
-     * Returns true is the Github ID is empty.
+     * Returns true if the Github ID is empty.
      */
     public boolean isEmpty() {
         return githubId.isEmpty();

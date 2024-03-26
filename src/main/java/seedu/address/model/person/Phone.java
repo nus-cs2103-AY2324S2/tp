@@ -12,6 +12,7 @@ public class Phone {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Phone numbers should only contain numbers, and it should be at least 3 digits long";
+    public static final Phone EMPTY = new Phone("", true);
     public static final String VALIDATION_REGEX = "\\d{3,}";
     public final String value;
 
@@ -27,10 +28,29 @@ public class Phone {
     }
 
     /**
+     * Constructs a {@code Phone}.
+     *
+     * @param phone An empty string.
+     */
+    private Phone(String phone, boolean isSentinel) {
+        if (!isSentinel) {
+            throw new IllegalArgumentException("This constructor is only for creating the EMPTY object");
+        }
+        this.value = phone;
+    }
+
+    /**
      * Returns true if a given string is a valid phone number.
      */
     public static boolean isValidPhone(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns true if Phone is empty.
+     */
+    public boolean isEmpty() {
+        return value.isEmpty();
     }
 
     @Override

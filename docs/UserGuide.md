@@ -52,10 +52,7 @@ TA Toolkit  is a **desktop app for managing students, optimized for use via a Li
   e.g. in `ac n/NAME`, `NAME` is a parameter which can be used as `ac n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g `n/NAME [t/TELEGRAM]` can be used as `n/John Doe t/@johndoe` or as `n/John Doe`.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -79,7 +76,7 @@ Format: `help`
 
 Adds a person to the TA Toolkit.
 
-Format: `ac n/NAME c/CLASS_GROUP e/EMAIL p/PHONE_NUMBER [t/TELEGRAM] [g/GITHUB]`
+Format: `ac n/NAME c/CLASS_GROUP e/EMAIL [p/PHONE_NUMBER] [t/TELEGRAM] [g/GITHUB]`
 
 Examples:
 * `ac n/John Doe c/F14-3 p/98765432 e/johnd@example.com t/@johndoe g/johnDoeGithub`
@@ -87,9 +84,16 @@ Examples:
 
 ### Listing all persons : `ls`
 
-Shows a list of all persons in the TA Toolkit.
+Shows a list of all persons in the TA Toolkit based for a CLASS_GROUP.
 
-Format: `ls`
+Format: `ls [CLASS_GROUP]`
+
+* If no parameters are provided, all persons in the TA Toolkit will be displayed.
+* For a given parameter, all persons with a CLASS_GROUP beginning with the parameter will be displayed.
+
+Examples:
+* `ls` Displays all persons in the TA Toolkit.
+* `ls F14` Displays all person with a CLASS_GROUP beginning with F14, e.g. F14, F14-3, etc.
 
 ### Updating a person : `uc`
 
@@ -207,6 +211,6 @@ Action     | Format, Examples
 **Delete** | `dc INDEX`<br> e.g., `dc 3`
 **Edit**   | `uc INDEX [n/NAME] [c/CLASS_GROUP] [e/EMAIL] [p/PHONE] [t/TELEGRAM] [g/GITHUB]…​`<br> e.g.,`uc 2 n/James Lee e/jameslee@example.com`
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List**   | `ls`
+**List**   | `ls [CLASS_GROUP]` <br> e.g., `ls F14`
 **Help**   | `help`
 **View**   | `view INDEX`

@@ -31,7 +31,8 @@ public class PersonUtil {
         sb.append(PREFIX_NAME + person.getName().fullName + " ");
         sb.append(PREFIX_CLASS_GROUP + person.getClassGroup().classGroup + " ");
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
-        sb.append(PREFIX_PHONE + person.getPhone().value + " ");
+        sb.append(PREFIX_PHONE + (person.getPhone().isPresent()
+                ? person.getPhone().get().value : "") + " ");
         sb.append(PREFIX_TELEGRAM + (person.getTelegram().isPresent()
                 ? person.getTelegram().get().telegramId : "") + " ");
         sb.append(PREFIX_GITHUB + (person.getGithub().isPresent()

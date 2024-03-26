@@ -11,7 +11,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.ToStringBuilder;
@@ -53,6 +56,8 @@ public class EditCommand extends Command {
     public static final String MESSAGE_DUPLICATE_FIELD = "The updated person contains duplicate fields"
             + "(Email, Phone, Telegram, or Github) with another person.";
 
+    private static final Logger logger = LogsCenter.getLogger(EditCommand.class);
+
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
 
@@ -66,6 +71,9 @@ public class EditCommand extends Command {
 
         this.index = index;
         this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        String message = "EditCommand created to update person at index: " + index.getOneBased()
+                + ", with editPersonDescriptor: " + editPersonDescriptor;
+        logger.log(Level.INFO, message);
     }
 
     @Override
@@ -112,7 +120,8 @@ public class EditCommand extends Command {
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         ClassGroup updatedClassGroup = editPersonDescriptor.getClassGroup().orElse(personToEdit.getClassGroup());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
+        Optional<Phone> updatedPhone = editPersonDescriptor.getPhone().isPresent()
+                ? editPersonDescriptor.getPhone() : personToEdit.getPhone();
         Optional<Telegram> updatedTelegram = editPersonDescriptor.getTelegram().isPresent()
                 ? editPersonDescriptor.getTelegram() : personToEdit.getTelegram();
         Optional<Github> updatedGithub = editPersonDescriptor.getGithub().isPresent()
@@ -153,7 +162,7 @@ public class EditCommand extends Command {
         private Name name;
         private ClassGroup classGroup;
         private Email email;
-        private Phone phone;
+        private Optional<Phone> phone;
         private Optional<Telegram> telegram;
         private Optional<Github> github;
 
@@ -161,6 +170,7 @@ public class EditCommand extends Command {
          * Creates a new EditPersonDescriptor with empty fields.
          */
         public EditPersonDescriptor() {
+            phone = Optional.empty();
             telegram = Optional.empty();
             github = Optional.empty();
         }
@@ -182,8 +192,8 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, classGroup)
-                    || (github.isPresent() || telegram.isPresent());
+            return CollectionUtil.isAnyNonNull(name, email, classGroup)
+                    || (phone.isPresent() || github.isPresent() || telegram.isPresent());
         }
 
         public void setName(Name name) {
@@ -210,12 +220,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(email);
         }
 
-        public void setPhone(Phone phone) {
+        public void setPhone(Optional<Phone> phone) {
             this.phone = phone;
         }
 
         public Optional<Phone> getPhone() {
-            return Optional.ofNullable(phone);
+            return phone;
         }
 
         public void setTelegram(Optional<Telegram> telegram) {
