@@ -53,7 +53,7 @@ public class EditRelationshipCommandParser {
                         newRelationshipDescriptor);
             }
         } catch (ParseException pe) {
-            throw new ParseException(Messages.MESSAGE_INVALID_PERSON_UUID);
+            throw pe;
         }
     }
 }

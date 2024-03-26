@@ -16,7 +16,7 @@ public class ListRelationshipTypesCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        String SuccessMessage = model.showRelationshipTypes();
-        return new CommandResult(SuccessMessage);
+        String successMessage = model.showRelationshipTypes();
+        return new CommandResult(successMessage);
     }
 }

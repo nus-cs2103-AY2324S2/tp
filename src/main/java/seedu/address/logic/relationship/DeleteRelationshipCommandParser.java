@@ -45,7 +45,7 @@ public class DeleteRelationshipCommandParser implements Parser<DeleteRelationshi
                 }
                 return new DeleteRelationshipCommand(originUuid, targetUuid, relationshipDescriptor);
             } catch (ParseException pe) {
-                throw new ParseException(Messages.MESSAGE_INVALID_PERSON_UUID);
+                throw pe;
             }
         }
     }

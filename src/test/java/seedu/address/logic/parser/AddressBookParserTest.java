@@ -124,7 +124,7 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_deleteRelationship() throws Exception {
-        String userInput = "deleteRelation 1234 5678 family";
+        String userInput = "deleteRelation 1234 5678 siblings";
         Command command = parser.parseCommand(userInput);
         assertTrue(command instanceof DeleteRelationshipCommand);
     }
