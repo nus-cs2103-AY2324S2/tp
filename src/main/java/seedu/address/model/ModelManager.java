@@ -123,16 +123,21 @@ public class ModelManager implements Model {
     @Override
     public void commitAddressBook() {
         addressBook.commit();
+        logger.fine("New commit on address book: " + addressBook + " and user prefs " + userPrefs);
     }
 
     @Override
     public void undoAddressBook() {
         addressBook.undo();
+        logger.fine("Previous commit is retrieved to address book: "
+                + addressBook + " and user prefs " + userPrefs);
     }
 
     @Override
     public void redoAddressBook() {
         addressBook.redo();
+        logger.fine("Recent commit is retrieved to address book: "
+                + addressBook + " and user prefs " + userPrefs);
     }
 
     @Override
