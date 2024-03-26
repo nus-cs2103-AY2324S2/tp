@@ -1,14 +1,16 @@
 package seedu.address.model.meeting;
 
-import org.junit.jupiter.api.Test;
-
-import seedu.address.testutil.TypicalMeetings;
-import seedu.address.testutil.MeetingBuilder;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+
+import seedu.address.testutil.MeetingBuilder;
+import seedu.address.testutil.TypicalMeetings;
 
 public class MeetingTest {
 
@@ -28,8 +30,8 @@ public class MeetingTest {
         assertFalse(TypicalMeetings.ALICE_WITH_MEETING.hasExistingMeeting(editedMeeting));
 
         // dateTime has trailing spaces, all other attributes same -> throws DateTimeParseException
-        assertThrows(DateTimeParseException.class,
-                () -> new MeetingBuilder(TypicalMeetings.ALICE_WITH_MEETING.getMeetings().get(0))
+        assertThrows(DateTimeParseException.class, () ->
+                new MeetingBuilder(TypicalMeetings.ALICE_WITH_MEETING.getMeetings().get(0))
                 .withDateTime("2030-01-01T12:00 ").build().getMeetings().get(0));
 
         // different meeting -> returns false
