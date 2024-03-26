@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import seedu.address.model.person.Person;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
 
 
 /**

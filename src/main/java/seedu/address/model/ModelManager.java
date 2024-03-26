@@ -3,9 +3,9 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-
 import java.util.function.Predicate;
 import java.util.logging.Logger;
+import java.nio.file.Path;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -13,7 +13,6 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
 
-import java.nio.file.Path;
 
 /**
  * Represents the in-memory model of the address book data.

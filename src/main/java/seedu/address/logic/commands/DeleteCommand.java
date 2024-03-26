@@ -17,13 +17,14 @@ import seedu.address.model.person.Person;
  */
 public class DeleteCommand extends Command {
 
+    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted %1$s People";
+    public static final String COMMAND_WORD = "delete";
+
     public static final Object MESSAGE_USAGE = "delete <index> <index>...\n"
             + ": Deletes the person identified by the index number used in the displayed person list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + "delete" + " 1";
     private final List<Index> targetIndices;
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted %1$s People";
-    public static final String COMMAND_WORD = "delete";
 
     public DeleteCommand(List<Index> targetIndices) {
         this.targetIndices = targetIndices;
