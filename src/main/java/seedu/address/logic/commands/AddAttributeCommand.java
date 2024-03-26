@@ -1,4 +1,4 @@
-package seedu.address.logic.attributes;
+package seedu.address.logic.commands;
 
 import java.time.LocalDate;
 import java.util.UUID;

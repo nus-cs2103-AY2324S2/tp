@@ -9,9 +9,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.attributes.AddAttributeCommand;
-import seedu.address.logic.attributes.DeleteAttributeCommand;
-import seedu.address.logic.attributes.PersonAttributeCommandParser;
+import seedu.address.logic.commands.AddAttributeCommand;
+import seedu.address.logic.commands.DeleteAttributeCommand;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
