@@ -11,17 +11,17 @@ import java.util.stream.Stream;
  */
 public class Prefix {
     private final String prefix;
-    private final String prefixRepresentation;
+    private final String prefixDescription;
 
     /**
      * Constructs a Prefix object with the given prefix and its representation.
      *
      * @param prefix The prefix string.
-     * @param prefixRepresentation The string representation of the prefix.
+     * @param prefixDescription The string representation of the prefix.
      */
-    public Prefix(String prefix, String prefixRepresentation) {
+    public Prefix(String prefix, String prefixDescription) {
         this.prefix = prefix;
-        this.prefixRepresentation = prefixRepresentation.toUpperCase();
+        this.prefixDescription = prefixDescription.toUpperCase();
     }
 
     /**
@@ -67,7 +67,7 @@ public class Prefix {
      * @return The prefix string with its representation.
      */
     public String toStringWithRepresentation() {
-        return getPrefix() + prefixRepresentation;
+        return getPrefix() + prefixDescription;
     }
 
     /**

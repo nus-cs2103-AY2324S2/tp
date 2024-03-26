@@ -31,7 +31,7 @@ import static seedu.realodex.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.realodex.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.realodex.logic.commands.CommandTestUtil.VALID_FAMILY_BOB;
 import static seedu.realodex.logic.commands.CommandTestUtil.VALID_INCOME_BOB;
-import static seedu.realodex.logic.commands.CommandTestUtil.VALID_NAME_BOB_CAPS;
+import static seedu.realodex.logic.commands.CommandTestUtil.VALID_NAME_BOB_FIRST_LETTER_CAPS;
 import static seedu.realodex.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.realodex.logic.commands.CommandTestUtil.VALID_TAG_AMY;
 import static seedu.realodex.logic.commands.CommandTestUtil.VALID_TAG_BOB;
@@ -199,7 +199,7 @@ public class AddCommandParserTest {
         String expectedCommandFormatMessage = AddCommand.MESSAGE_USAGE;
         // missing name prefix
         assertParseFailure(parser,
-                           VALID_NAME_BOB_CAPS + PHONE_DESC_BOB + INCOME_DESC_BOB + EMAIL_DESC_BOB
+                           VALID_NAME_BOB_FIRST_LETTER_CAPS + PHONE_DESC_BOB + INCOME_DESC_BOB + EMAIL_DESC_BOB
                                    + ADDRESS_DESC_BOB + FAMILY_DESC_BOB + TAG_DESC_BOB,
                            MESSAGE_MISSING_PREFIXES + "n/NAME\n" + expectedCommandFormatMessage);
 
@@ -241,7 +241,7 @@ public class AddCommandParserTest {
 
         // all prefixes missing
         assertParseFailure(parser,
-                           VALID_NAME_BOB_CAPS + VALID_PHONE_BOB + INCOME_DESC_BOB
+                           VALID_NAME_BOB_FIRST_LETTER_CAPS + VALID_PHONE_BOB + INCOME_DESC_BOB
                                    + VALID_EMAIL_BOB + VALID_ADDRESS_BOB + FAMILY_DESC_BOB + VALID_TAG_BOB,
                            MESSAGE_MISSING_PREFIXES
                                    + "n/NAME, a/ADDRESS, p/PHONE, e/EMAIL, t/TAG\n" + expectedCommandFormatMessage);

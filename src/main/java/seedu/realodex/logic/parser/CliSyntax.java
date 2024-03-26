@@ -11,11 +11,9 @@ public class CliSyntax {
     public static final Prefix PREFIX_INCOME = new Prefix("i/", "income");
     public static final Prefix PREFIX_ADDRESS = new Prefix("a/", "address");
 
-    //To remove EMAIl field soon
     public static final Prefix PREFIX_EMAIL = new Prefix("e/", "email");
     public static final Prefix PREFIX_FAMILY = new Prefix("f/", "family");
 
-    //Possible rename to additional notes to fit feature spec
     public static final Prefix PREFIX_TAG = new Prefix("t/", "tag");
     public static final Prefix PREFIX_REMARK = new Prefix("r/", "remark");
 
