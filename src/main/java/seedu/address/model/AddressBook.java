@@ -87,7 +87,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Adds a person to the archive list in the address book.
-     * The person must not already exist in the archived list.
+     * The person must not already exist in the address book.
      */
     public void addArchivedPerson(Person p) {
         archivedPersons.add(p);

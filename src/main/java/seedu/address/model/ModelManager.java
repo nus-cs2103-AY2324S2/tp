@@ -112,6 +112,13 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void addArchivedPerson(Person person) {
+        requireNonNull(person);
+        person.setArchived(true);
+        addressBook.addArchivedPerson(person);
+    }
+
+    @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
 
