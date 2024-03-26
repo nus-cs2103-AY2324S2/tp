@@ -33,7 +33,7 @@ public class AddExamCommandParser implements Parser<AddExamCommand> {
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_SCORE);
 
         String name = ParserUtil.parseExamName(argMultimap.getValue(PREFIX_NAME).get());
-        Score maxScore = ParserUtil.parseScore(argMultimap.getValue(PREFIX_SCORE).get());
+        Score maxScore = ParserUtil.parseExamScore(argMultimap.getValue(PREFIX_SCORE).get());
 
         Exam exam = new Exam(name, maxScore);
 

@@ -1,5 +1,6 @@
 package seedu.address.model;
 
+import static org.junit.Assert.assertNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -15,7 +16,9 @@ import java.nio.file.Paths;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.exam.Exam;
 import seedu.address.model.person.PersonDetailContainsKeywordPredicate;
+import seedu.address.model.person.Score;
 import seedu.address.testutil.AddressBookBuilder;
 
 public class ModelManagerTest {
@@ -78,8 +81,18 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void hasExam_nullExam_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasExam(null));
+    }
+
+    @Test
     public void hasPerson_personNotInAddressBook_returnsFalse() {
         assertFalse(modelManager.hasPerson(ALICE));
+    }
+
+    @Test
+    public void hasExam_examNotInAddressBook_returnsFalse() {
+        assertFalse(modelManager.hasExam(new Exam("Midterm", new Score(100))));
     }
 
     @Test
@@ -89,8 +102,36 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void hasExam_examInAddressBook_returnsTrue() {
+        Exam midterm = new Exam("Midterm", new Score(100));
+        modelManager.addExam(midterm);
+        assertTrue(modelManager.hasExam(midterm));
+    }
+
+    @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
+    }
+
+    @Test
+    public void getFilteredExamList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getExamList().remove(0));
+    }
+
+    @Test
+    public void selectExam_deselectExam_getSelectedExam() {
+        Exam exam = new Exam("Midterm", new Score(100));
+
+        // initially, no exam is selected
+        assertNull(modelManager.getSelectedExam().getValue());
+
+        // select an exam
+        modelManager.selectExam(exam);
+        assertEquals(exam, modelManager.getSelectedExam().getValue());
+
+        // deselect the exam
+        modelManager.deselectExam();
+        assertNull(modelManager.getSelectedExam().getValue());
     }
 
     @Test

@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.HashMap;
@@ -58,5 +59,33 @@ public class AddScoreCommandTest {
         addCommand.execute(model);
 
         assertThrows(CommandException.class, AddScoreCommand.MESSAGE_SCORE_EXISTS, () -> addCommand.execute(model));
+    }
+
+    @Test
+    public void equals() {
+        Score score = new Score(85);
+        Index index = Index.fromZeroBased(0);
+        AddScoreCommand addScoreFirstCommand = new AddScoreCommand(index, score);
+        AddScoreCommand addScoreSecondCommand = new AddScoreCommand(index, score);
+
+        // same object -> returns true
+        assertEquals(addScoreFirstCommand, addScoreFirstCommand);
+
+        // same values -> returns true
+        assertEquals(addScoreFirstCommand, addScoreSecondCommand);
+
+        // different types -> returns false
+        assertFalse(addScoreFirstCommand.equals(new Object()));
+
+        // null -> returns false
+        assertFalse(addScoreFirstCommand.equals(null));
+
+        // different score -> returns false
+        AddScoreCommand addScoreDifferentScoreCommand = new AddScoreCommand(index, new Score(100));
+        assertFalse(addScoreFirstCommand.equals(addScoreDifferentScoreCommand));
+
+        // different index -> returns false
+        AddScoreCommand addScoreDifferentIndexCommand = new AddScoreCommand(Index.fromZeroBased(1), score);
+        assertFalse(addScoreFirstCommand.equals(addScoreDifferentIndexCommand));
     }
 }
