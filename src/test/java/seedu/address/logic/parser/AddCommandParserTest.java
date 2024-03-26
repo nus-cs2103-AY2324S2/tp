@@ -285,7 +285,10 @@ public class AddCommandParserTest {
 
     @Disabled
     @Test
-    public void parse_roleIsProfessor() {
-        // PREFIX_ADDRESS is present, input
+    public void parse_address_failure() {
+        // role is professor, but address is not provided
+
+        // role is
+
     }
 }
