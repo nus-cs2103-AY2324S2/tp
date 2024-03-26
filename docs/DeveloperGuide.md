@@ -40,11 +40,13 @@ Given below is a quick overview of main components and how they interact with ea
 * At app launch, it initializes the other components in the correct sequence, and connects them up with each other.
 * At shut down, it shuts down the other components and invokes cleanup methods where necessary.
 
-The bulk of the app's work is done by the following four components:
+The bulk of the app's work is done by the following six components:
 
 * [**`UI`**](#ui-component): The UI of the App.
 * [**`Logic`**](#logic-component): The command executor.
 * [**`Model`**](#model-component): Holds the data of the App in memory.
+* [**'Attribute'**](#attribute-component): Holds the attributes of the App in memory.
+* [**'Relationship'**](#relationship-component): Holds the relationships of the App in memory.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
@@ -132,6 +134,25 @@ The `Model` component,
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
 </div>
+
+### Attribute component
+
+**API** : [`Attribute.java`](https://github.com/AY2324S2-CS2103T-T11-1/tp/tree/master/src/main/java/seedu/address/model/person/attribute)
+
+<img src="images/AttributeClassDiagram.png" width="550" />
+
+The `Attribute` component,
+
+* stores the attribute data i.e., all `Attribute` objects (which are contained in a `UniqueAttributeList` object).
+* stores the `Attribute` objects in the `Person` object in the hash map.
+* stores the currently 'selected' `Attribute` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Attribute>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* does not depend on any of the other three components (as the `Attribute` represents data entities of the domain, they should make sense on their own without depending on other components)
+* depends on some classes in the `Model` component (because the `Attribute` component's job is to save/retrieve objects that belong to the `Model`)
+* depends on some classes in the `Storage` component (because the `Attribute` component's job is to save/retrieve objects that belong to the `Storage`)
+* depends on some classes in the `UI` component (because the `Attribute` component's job is to save/retrieve objects that belong to the `UI`)
+* depends on some classes in the `Logic` component (because the `Attribute` component's job is to save/retrieve objects that belong to the `Logic`)
+* depends on some classes in the `Commons` component (because the `Attribute` component's job is to save/retrieve objects that belong to the `Commons`)
+
 
 
 ### Storage component
