@@ -25,9 +25,10 @@ import scrolls.elder.testutil.TypicalPersons;
 public class EditCommandTest {
 
     // TODO: Change to use correct filtered List and indexing.
+    // TODO: Update getFilteredPersonList.
 
     @Test
-    public void execute_allFieldsSpecifiedUnfilteredList_success() {
+    public void execute_allFieldsSpecifiedUnfilteredVolunteerList_success() {
         Person editedPerson = new PersonBuilder(TypicalPersons.BENSON).build();
         EditCommand.EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedPerson).build();
         EditCommand editCommand = new EditCommand(TypicalIndexes.INDEX_SECOND_PERSON, descriptor);
@@ -37,11 +38,30 @@ public class EditCommandTest {
         Model model = new ModelManager(TypicalPersons.getTypicalAddressBook(), new UserPrefs());
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
 
-        // TODO: Update getFilteredPersonList.
-        expectedModel.setPerson(expectedModel.getFilteredPersonList().get(1), editedPerson);
+        expectedModel.setPerson(
+                expectedModel.getFilteredVolunteerList().get(1), editedPerson);
 
         CommandTestUtil.assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
+
+    @Test
+    public void execute_allFieldsSpecifiedUnfilteredBefriendeeList_success() {
+        Person editedPerson = new PersonBuilder(TypicalPersons.ELLE).build();
+        EditCommand.EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedPerson).build();
+        EditCommand editCommand = new EditCommand(TypicalIndexes.INDEX_FIRST_PERSON, descriptor);
+
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson));
+
+        Model model = new ModelManager(TypicalPersons.getTypicalAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+
+        expectedModel.setPerson(
+                expectedModel.getFilteredBefriendeeList().get(0), editedPerson);
+
+        CommandTestUtil.assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+    }
+
+
 
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
@@ -71,14 +91,14 @@ public class EditCommandTest {
     }
 
     @Test
-    public void execute_noFieldSpecifiedUnfilteredList_success() {
+    public void execute_noFieldSpecifiedUnfilteredVolunteerList_success() {
         Model model = new ModelManager(TypicalPersons.getTypicalAddressBook(), new UserPrefs());
 
         EditCommand.EditPersonDescriptor epd = new EditCommand.EditPersonDescriptor();
-        epd.setRole(new Role("volunteer"));
-        EditCommand editCommand =
-                new EditCommand(TypicalIndexes.INDEX_FIRST_PERSON, epd);
-        Person editedPerson = model.getFilteredPersonList().get(TypicalIndexes.INDEX_FIRST_PERSON.getZeroBased());
+        epd.setRole(new Role(CommandTestUtil.VALID_ROLE_VOLUNTEER));
+        EditCommand editCommand = new EditCommand(TypicalIndexes.INDEX_FIRST_PERSON, epd);
+        Person editedPerson = model.getFilteredVolunteerList()
+                                    .get(TypicalIndexes.INDEX_FIRST_PERSON.getZeroBased());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson));
 
@@ -87,34 +107,80 @@ public class EditCommandTest {
     }
 
     @Test
-    public void execute_filteredList_success() {
+    public void execute_filteredVolunteerList_success() {
         Model model = new ModelManager(TypicalPersons.getTypicalAddressBook(), new UserPrefs());
 
-        CommandTestUtil.showPersonAtIndex(model, TypicalIndexes.INDEX_SECOND_PERSON);
+        CommandTestUtil.showVolunteerAtIndex(model, TypicalIndexes.INDEX_SECOND_PERSON);
+        Person personInFilteredVolunteerList =
+                model.getFilteredVolunteerList().get(TypicalIndexes.INDEX_FIRST_PERSON.getZeroBased());
 
-        Person personInFilteredList =
-                model.getFilteredPersonList().get(TypicalIndexes.INDEX_FIRST_PERSON.getZeroBased());
-        Person editedPerson = new PersonBuilder(personInFilteredList).withName(CommandTestUtil.VALID_NAME_BOB).build();
+        Person editedPerson = new PersonBuilder(personInFilteredVolunteerList)
+                .withName(CommandTestUtil.VALID_NAME_BOB)
+                .build();
+
         EditCommand editCommand = new EditCommand(TypicalIndexes.INDEX_FIRST_PERSON,
                 new EditPersonDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_BOB)
-                        .withRole("volunteer").build());
+                        .withRole(CommandTestUtil.VALID_ROLE_VOLUNTEER).build());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(expectedModel.getFilteredPersonList().get(1), editedPerson);
+        expectedModel.setPerson(expectedModel.getFilteredVolunteerList().get(1), editedPerson);
 
         CommandTestUtil.assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
-    public void execute_invalidPersonIndexUnfilteredList_failure() {
+    public void execute_filteredBefriendeeList_success() {
         Model model = new ModelManager(TypicalPersons.getTypicalAddressBook(), new UserPrefs());
 
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
+        CommandTestUtil.showBefriendeeAtIndex(model, TypicalIndexes.INDEX_SECOND_PERSON);
+        Person personInFilteredBefriendeeList =
+                model.getFilteredBefriendeeList().get(TypicalIndexes.INDEX_FIRST_PERSON.getZeroBased());
+
+        Person editedPerson = new PersonBuilder(personInFilteredBefriendeeList)
+                .withName(CommandTestUtil.VALID_NAME_AMY)
+                .build();
+
+        EditCommand editCommand = new EditCommand(TypicalIndexes.INDEX_FIRST_PERSON,
+                new EditPersonDescriptorBuilder()
+                        .withName(CommandTestUtil.VALID_NAME_AMY)
+                        .withRole(CommandTestUtil.VALID_ROLE_BEFRIENDEE)
+                        .build());
+
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson));
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        expectedModel.setPerson(expectedModel.getFilteredBefriendeeList().get(1), editedPerson);
+
+        CommandTestUtil.assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_invalidPersonIndexUnfilteredVolunteerList_failure() {
+        Model model = new ModelManager(TypicalPersons.getTypicalAddressBook(), new UserPrefs());
+
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredVolunteerList().size() + 1);
         EditCommand.EditPersonDescriptor descriptor =
-                new EditPersonDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_BOB)
-                        .withRole("befriendee").build();
+                new EditPersonDescriptorBuilder()
+                        .withName(CommandTestUtil.VALID_NAME_BOB)
+                        .withRole(CommandTestUtil.VALID_ROLE_VOLUNTEER)
+                        .build();
+        EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
+
+        CommandTestUtil.assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_invalidPersonIndexUnfilteredBefriendeeList_failure() {
+        Model model = new ModelManager(TypicalPersons.getTypicalAddressBook(), new UserPrefs());
+
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredBefriendeeList().size() + 1);
+        EditCommand.EditPersonDescriptor descriptor =
+                new EditPersonDescriptorBuilder()
+                        .withName(CommandTestUtil.VALID_NAME_BOB)
+                        .withRole(CommandTestUtil.VALID_ROLE_BEFRIENDEE)
+                        .build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
         CommandTestUtil.assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
@@ -125,17 +191,35 @@ public class EditCommandTest {
      * but smaller than size of address book
      */
     @Test
-    public void execute_invalidPersonIndexFilteredList_failure() {
+    public void execute_invalidPersonIndexFilteredVolunteerList_failure() {
         Model model = new ModelManager(TypicalPersons.getTypicalAddressBook(), new UserPrefs());
 
-        CommandTestUtil.showPersonAtIndex(model, TypicalIndexes.INDEX_FIRST_PERSON);
+        CommandTestUtil.showVolunteerAtIndex(model, TypicalIndexes.INDEX_FIRST_PERSON);
         Index outOfBoundIndex = TypicalIndexes.INDEX_SECOND_PERSON;
+
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
                 new EditPersonDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_BOB)
-                        .withRole("volunteer").build());
+                        .withRole(CommandTestUtil.VALID_ROLE_VOLUNTEER).build());
+
+        CommandTestUtil.assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_invalidPersonIndexFilteredBefriendeeList_failure() {
+        Model model = new ModelManager(TypicalPersons.getTypicalAddressBook(), new UserPrefs());
+
+        CommandTestUtil.showBefriendeeAtIndex(model, TypicalIndexes.INDEX_FIRST_PERSON);
+        Index outOfBoundIndex = TypicalIndexes.INDEX_SECOND_PERSON;
+
+        // ensures that outOfBoundIndex is still in bounds of address book list
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
+
+        EditCommand editCommand = new EditCommand(outOfBoundIndex,
+                new EditPersonDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_BOB)
+                        .withRole(CommandTestUtil.VALID_ROLE_BEFRIENDEE).build());
 
         CommandTestUtil.assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
@@ -169,6 +253,7 @@ public class EditCommandTest {
         assertFalse(
                 standardCommand.equals(new EditCommand(TypicalIndexes.INDEX_FIRST_PERSON,
                         CommandTestUtil.DESC_BOB_BEFRIENDEE)));
+
     }
 
     @Test
