@@ -31,6 +31,23 @@ If you plan to use Intellij IDEA (highly recommended):
    1. Run the `seedu.address.Main` and try a few commands.
    1. [Run the tests](Testing.md) to ensure they all pass.
 
+---
+
+## Setting up a local documentation website
+
+This will generate a website from the MarkBind source files in the `docs` directory, start a web server, and open a live preview of your site in your default browser.
+
+1. Ensure that you have [Node.js](https://nodejs.org/en) installed, otherwise install it from [here](https://nodejs.org/en).
+1. Run `npm install` to install dependencies.
+1. Run `npm run serve` to serve the MarkBind documentation site locally.
+1. Visit the site on your browser at `http://127.0.0.1:8080/`.
+
+<box type="tip" seamless>
+
+**Tip:** 
+By setting up this documentation website, you can immediately view your documentation modifications locally and fix any formatting issues that appear.
+</box>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Before writing code
