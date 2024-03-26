@@ -54,7 +54,13 @@
                 <!-- Right side -->
                 <VBox fx:id="rightSideContent" minWidth="200">
                   <StackPane style="-fx-background-color: #52E0FF;" VBox.vgrow="ALWAYS">
-                  </StackPane>
+                  <children>
+                     <GridPane prefHeight="30.0" prefWidth="54.0">
+                       <rowConstraints>
+                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                       </rowConstraints>
+                     </GridPane>
+                  </children></StackPane>
                   <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
                 </VBox>
             </SplitPane>
