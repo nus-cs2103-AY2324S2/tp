@@ -1,0 +1,25 @@
+@startuml
+skin rose
+skinparam ActivityFontSize 15
+skinparam ArrowFontSize 12
+start
+:User executes delete command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([command successful])
+    :Remove contact from
+    addressbook;
+else ([command unsuccessful])
+    :Error messages;
+    :Edit command
+    accordingly;
+    :Successfully removes
+    contact;
+endif
+:Save updated person
+list to
+addressbook;
+stop
+@enduml
