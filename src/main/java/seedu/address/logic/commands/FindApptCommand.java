@@ -1,6 +1,10 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_START_TIME;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -14,10 +18,16 @@ public class FindApptCommand extends Command {
 
     public static final String COMMAND_WORD = "findAppt";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all appointments whose fields fit any of "
-            + "the specified arguments and displays them as a list.\n"
-            + "Parameters: KEYWORD [MORE_OPTIONAL_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " i/ T0123456A d/ 2024-03-16 from/ 11:00";
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Finds the details of the appointment identified either by patient's NRIC, Date, or Start time.\n"
+            + "Parameters: "
+            + "[" + PREFIX_NRIC + " NRIC] "
+            + "[" + PREFIX_NAME + "DATE] "
+            + "[" + PREFIX_START_TIME + "START_TIME]\n"
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_NRIC + " T0123456A "
+            + PREFIX_DATE + " 2024-02-03 "
+            + PREFIX_START_TIME + " 11:00";
 
     private final AppointmentContainsKeywordsPredicate predicate;
 
