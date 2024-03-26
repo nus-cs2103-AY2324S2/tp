@@ -40,8 +40,20 @@ public class AddressBookTest {
     }
 
     @Test
-    public void undo_noUndoRemaining_throwsAddressBookUndoException() {
-        assertThrows(AddressBookException.class, addressBook::undo);
+    public void undo_noUndoRemaining_throwsAddressBookException() {
+        assertThrows(AddressBookException.class, AddressBook.MESSAGE_UNDO_STACK_EMPTY, addressBook::undo);
+    }
+
+    @Test
+    public void redo_redoRemaining_success() {
+        addressBook.addPerson(ALICE);
+        addressBook.undo();
+        assertDoesNotThrow(addressBook::redo);
+    }
+
+    @Test
+    public void redo_noRedoRemaining_throwsAddressBookException() {
+        assertThrows(AddressBookException.class, AddressBook.MESSAGE_REDO_STACK_EMPTY, addressBook::redo);
     }
 
     @Test

@@ -20,14 +20,15 @@ import seedu.address.model.person.UniquePersonList;
  */
 public class AddressBook implements ReadOnlyAddressBook {
     @JsonIgnore
-    private static final String MESSAGE_UNDO_STACK_EMPTY = "There are no previous AddressBook states to return to.";
+    public static final String MESSAGE_UNDO_STACK_EMPTY = "There are no previous AddressBook states to return to.";
     @JsonIgnore
-    private static final String MESSAGE_REDO_STACK_EMPTY = "There are no previous undo commands to reverse.";
-    private final UniquePersonList persons = new UniquePersonList();
+    public static final String MESSAGE_REDO_STACK_EMPTY = "There are no previous undo commands to reverse.";
     @JsonIgnore
     private final Stack<UniquePersonList> undoList = new Stack<>();
     @JsonIgnore
     private final Stack<UniquePersonList> redoList = new Stack<>();
+
+    private final UniquePersonList persons = new UniquePersonList();
 
     public AddressBook() {
     }
