@@ -197,6 +197,11 @@ public class AddCommandTest {
         public void archivePerson(Person target) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void unarchivePerson(Person target) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

@@ -165,6 +165,13 @@ public class ModelManager implements Model {
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
+    @Override
+    public void unarchivePerson(Person target) {
+        addressBook.unarchivePerson(target);
+        target.setArchived(false);
+        updateFilteredPersonList(PREDICATE_SHOW_ARCHIVED_PERSONS);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**

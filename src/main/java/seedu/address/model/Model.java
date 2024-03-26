@@ -154,4 +154,13 @@ public interface Model {
      * @param target The person to be archived.
      */
     void archivePerson(Person target);
+
+    /**
+     * Unarchives the specified person by removing them from the archived list and adding them to the
+     * active contacts list.
+     * The specified person must exist in the archived list.
+     *
+     * @param target The person to be archived.
+     */
+    void unarchivePerson(Person target);
 }

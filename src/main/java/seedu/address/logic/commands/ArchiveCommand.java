@@ -20,7 +20,11 @@ public class ArchiveCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_ARCHIVE_PERSON_SUCCESS = "Archived Person: %1$s";
+    public static final String MESSAGE_ARCHIVE_PERSON_SUCCESS = "%1$s has been archived. Type “alist” to "
+            + "view all the contacts that have been archived.";
+
+    public static final String MESSAGE_NOT_VIEWING_ACTIVE_CONTACTS = "This command can only be used while "
+            + "viewing the active contacts list.";
 
     private final Index targetIndex;
 
@@ -31,7 +35,7 @@ public class ArchiveCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         if (model.isViewingArchivedList()) {
-            throw new CommandException("Archiving is not allowed while viewing the archived list.");
+            throw new CommandException(MESSAGE_NOT_VIEWING_ACTIVE_CONTACTS);
         }
 
         List<Person> lastShownList = model.getFilteredPersonList();
