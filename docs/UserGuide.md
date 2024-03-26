@@ -25,15 +25,15 @@ FinCliQ is a **desktop app for financial advisors to manage contacts and meeting
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   - `list` : Lists all clients.
+    - `list` : Lists all clients.
 
-   - `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+    - `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
 
-   - `delete 3` : Deletes the 3rd clients shown in the current list.
+    - `delete 3` : Deletes the 3rd clients shown in the current list.
 
-   - `clear` : Deletes all clients.
+    - `clear` : Deletes all clients.
 
-   - `exit` : Exits the app.
+    - `exit` : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -152,11 +152,11 @@ Examples:
 
 Adds a meeting for a specific client in the address book.
 
-Format: `add CLIENT_INDEX n/NAME dt/DATE_TIME v/VENUE [d/DESCRIPTION]…​`
+Format: `addMeeting clientIndex/CLIENT_INDEX dt/DATE_TIME d/DESCRIPTION`
 
 - `CLIENT_INDEX` refers to the index number shown in the displayed client list. The index **must be a positive integer** 1, 2, 3, …​.
-- `DATE_TIME` format should be `YYYY-MM-DD HH:MM`, e.g., `2023-01-01 14:00`.
-- A meeting can have an optional description(s).
+- `DATE_TIME` format should be `YYYY-MM-DD HH:MM`, e.g., `02-01-2025 12:00`.
+- `DESCRIPTION` refers to what the meeting is about. Format should be a string.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A meeting can have any number of descriptions (including 0).
@@ -164,20 +164,20 @@ A meeting can have any number of descriptions (including 0).
 
 Examples:
 
-- `add 1 n/Project Kickoff dt/2023-03-15 09:00 v/Conference Room d/Initial meeting to discuss project scope`
-- `add 2 n/Quarterly Review dt/2023-04-22 11:00 v/Office d/Review last quarter's performance d/Set next quarter's objectives`
+- `addMeeting client/1 dt/02-01-2025 12:00 d/Sign life plan`
+- `addMeeting client/2 dt/06-01-2025 15:00 d/Meeting to discuss finances`
 
-### Listing all Meetings for a Client: `list`
+### Listing all Meetings for a Client: `view`
 
 Shows a list of all meetings for a specific client.
 
-Format: `list CLIENT_INDEX`
+Format: `view c CLIENT_INDEX`
 
 - `CLIENT_INDEX` refers to the index number shown in the displayed client list.
 
 Example:
 
-- `list 1` Lists all meetings for the first client.
+- `view c 1` Lists all meetings for the first client.
 
 ### Editing a Meeting: `edit`
 
@@ -200,13 +200,13 @@ Examples:
 
 Deletes a specific meeting for a client.
 
-Format: `delete CLIENT_INDEX MEETING_INDEX`
+Format: `deleteMeeting client/ CLIENT_INDEX meeting/ MEETING_INDEX`
 
 - Deletes the meeting specified by `MEETING_INDEX` for the client specified by `CLIENT_INDEX`. Both indexes must be positive integers 1, 2, 3, …​.
 
 Example:
 
-- `delete 3 1` Deletes the first meeting for the third client.
+- `deleteMeeting client/ 1 meeting/ 1` Deletes the first meeting for the third client.
 
 ### Clearing all entries : `clear`
 
@@ -226,10 +226,10 @@ AddressBook data are saved in the hard disk automatically after any command that
 
 ### Editing the data file
 
-AddressBook data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+FinCliq data are saved automatically as a JSON file `[JAR file location]/data/fincliq.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
+If your changes to the data file makes its format invalid, FinCliq will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
 Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
 
@@ -243,7 +243,7 @@ _Details coming soon ..._
 
 **Q**: How do I use the app?<br>
 **A**: This app is designed to help you keep track of your clients and meetings with them. <br>
-        To keep track of your clients/meetings, you can follow the various commands in the user guide and enter the commands according to the specified format.
+To keep track of your clients/meetings, you can follow the various commands in the user guide and enter the commands according to the specified format.
 
 **Q**: Is there a limit to the number of clients/meetings I can store in the app<br>
 **A**: No, there is no limit to the number.
@@ -273,9 +273,9 @@ _Details coming soon ..._
 ### Meeting Functions
 
 | Action     | Format, Examples                                                |
-| ---------- | --------------------------------------------------------------- |
+| ---------- |-----------------------------------------------------------------|
 | **Add**    | `add CLIENT_INDEX n/NAME`<br>e.g., `add 1 n/James Ho`           |
-| **List**   | `list CLIENT_INDEX`<br>e.g., `list 2`                           |
+| **List**   | `view c CLIENT_INDEX`<br>e.g., `view c 2`                       |
 | **Edit**   | `edit CLIENT_INDEX MEETING_INDEX`<br>e.g.,`edit 1 2 n/Jamal Ho` |
 | **Delete** | `delete CLIENT_INDEX MEETING_INDEX`<br>e.g., `delete 3 1`       |
 
