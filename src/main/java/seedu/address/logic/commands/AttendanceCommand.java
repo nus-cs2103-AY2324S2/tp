@@ -70,6 +70,8 @@ public class AttendanceCommand extends Command {
             student.markAbsent(week);
         }
 
+        model.getLastViewedPerson().ifPresent(model::updateLastViewedPerson);
+
         return new CommandResult(String.format(MESSAGE_SUCCESS, week));
     }
 
