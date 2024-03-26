@@ -57,7 +57,7 @@ This guide does not assume any technical knowledge from users. We just require u
 
 There is no wrong way to read this guide: if you want to skip ahead, go for it! Each section is contained in itself, and you can find what you are looking for without needing to read the previous sections. However, we recommend that you read through the entire guide at least once before utilizing the application, so that you would have a more thorough understanding of the all necessary features.
 
-This guide is comprised of 4 main sections:
+This guide comprises 4 main sections:
 1. The [**Quick Start**](#quick-start) section, we will walk through you in how to get started installing as well as running the ConnectCare on your own desktop
 
 2. The [**Features Section**](#features) will provide a comprehensive, easy-to-understand guide on how to fully make use of all of ConnectCare's functionalities and commands.
@@ -73,10 +73,18 @@ This guide is comprised of 4 main sections:
 
 ## Quick start
 
-1. Ensure Java 11 is installed in your computer. If it's not, install it [here](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html)
-2. Download the latest ConnectCare.jar
-3. Copy the jar file to the folder you want to use as the home folder
-4. Double-click the file to start the application!
+This section allows you to start caring for your clients as soon as possible!
+
+### Installation and Startup Instructions
+1. To use ConnectCare you will require Java 11 to be installed in your computer. 
+   1. If you do not have Java 11, install it [here](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html)
+   2. If you have Java installed, check that it is the correct version:
+   
+       Windows or macOS users might find [this guide](https://blog.hubspot.com/website/check-java-verison) useful.
+
+2. Download the latest release of `ConnectCare.jar` [here](https://github.com/AY2324S2-CS2103T-W12-4/tp/releases/tag/v1.2).
+3. Copy the jar file to the folder you want to use as the home folder.
+4. Double-click the file to start the application! Alternatively, use [this guide](https://www.baeldung.com/java-run-jar-with-arguments) to run the `.jar` file and start the application.
 
 ___
 
