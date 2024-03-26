@@ -108,7 +108,10 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS k/NEXTOFKIN d/DESCRIPTION [
 - All parameters _except tag_ are compulsory
 
 <box type="tip" seamless>
-**Tip:** A person can have any number of tags (or even 0)
+
+**Tip:** 
+A person can have any number of tags (or even 0)
+
 </box>
 
 Examples:
@@ -119,7 +122,7 @@ Examples:
 
 Usage of Add command
 
-<img src="images/add-command-images/add-command.png" alt="Add command example"/>
+<img src="images/add-command-images/add-command.png" alt="Add command example" width="750" />
 
 
 ### Listing all persons : `list`
@@ -149,7 +152,7 @@ Examples:
 
 Usage of update command
 
-<img src="images/update-command-images/update-command.png" alt="Update command example" />
+<img src="images/update-command-images/update-command.png" alt="Update command example" width="750" />
 
 
 ### Locating clients by name: `find`
