@@ -1,6 +1,7 @@
 package seedu.address.ui;
 
 import java.util.Comparator;
+import java.util.Objects;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -56,8 +57,8 @@ public class PersonCard extends UiPart<Region> {
         name.setText(person.getName().fullName);
         final Circle clip = new Circle(45, 45, 39);
         displayPicture.setClip(clip);
-        displayPicture.setImage(new Image(this.getClass()
-               .getResourceAsStream(person.getImage().getFilePath().toString())));
+        displayPicture.setImage(new Image(Objects.requireNonNull(this.getClass()
+                .getResourceAsStream(person.getImage().getFilePath().toString()))));
         phone.setText(person.getPhone() == null ? "" : person.getPhone().value);
         address.setText(person.getAddress() == null ? "" : person.getAddress().value);
         email.setText(person.getEmail() == null ? "" : person.getEmail().value);

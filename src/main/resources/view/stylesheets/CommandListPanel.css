@@ -1,0 +1,21 @@
+.command-container {
+    -fx-background-color: #6b6a6a; /* Light grey background */
+    -fx-padding: 5 8 5 8;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+}
+
+.command-label {
+    -fx-font-family: "Hack";
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+}
+
+.description-label {
+    -fx-font-size: 12px;
+    -fx-padding: 5 0 5 5;
+}
+
+.container {
+    -fx-spacing: 0;
+}

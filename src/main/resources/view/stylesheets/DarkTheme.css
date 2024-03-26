@@ -88,7 +88,7 @@
 .split-pane {
     -fx-border-radius: 1;
     -fx-border-width: 1;
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: derive(#151515, 20%);
 }
 
 /* Person List Panel UI */
@@ -130,22 +130,20 @@
     -fx-background-color: white;
 }
 
-/* Person Card UI */
 .list-cell .label {
     -fx-text-fill: white;
 }
 
 .cell_big_label {
-    -fx-font-family: "Futura";
+    -fx-font-family: "Segoe UI Bold";
     -fx-font-size: 20px;
     -fx-font-weight: bold;
-    -fx-text-fill: #010504;
+    -fx-text-fill: white;
 }
 
 .cell_small_label {
     -fx-font-family: "Segoe UI";
-    -fx-font-size: 13px;
-    -fx-text-fill: #010504;
+    -fx-font-size: 12px;
 }
 
 .stack-pane {
@@ -153,15 +151,16 @@
 }
 
 .pane-without-border {
-    -fx-background-color: #0B0B0B;
-    -fx-border-color: #191919;
+    -fx-background-color: #151515;
+    -fx-border-color: #272727;
     -fx-border-width: 2px;
     -fx-border-radius: 12px;
+    -fx-background-radius: 12px;
 }
 
 /* Result Box Display */
 .result-display {
-    -fx-background-color: transparent;
+    -fx-background-color: #151515;
     -fx-font-family: "Hack";
     -fx-font-size: 12pt;
     -fx-text-fill: white;
@@ -275,40 +274,17 @@
     -fx-background-color: derive(-fx-focus-color, 30%);
 }
 
-/* Button style */
-.hbox-button {
-     /* Removes borders */
-    -fx-background-radius: 15px;
-    -fx-padding: 5 18 5 18;
-    -fx-background-color: transparent; /* Default background color */
-    -fx-text-fill: #fff; /* Text color */
-    -fx-font-family: Inter;
+/* Title Bar */
+.title-bar {
+    -fx-background-color: transparent;
+    -fx-padding: 5 5 20 20;
+}
+
+.title-label {
+    -fx-text-fill: white;
+    -fx-font-family: "Hack";
+    -fx-font-size: 25px;
     -fx-font-weight: bold;
-    -fx-border-color: transparent;
-    -fx-border-radius: 15px;
-    -fx-font-size: 16px;
-}
-
-/* Button hover effect */
-.hbox-button:hover {
-    -fx-border-width: 1;
-    -fx-border-color: #555;
-    -fx-border-radius: 15px;
-    -fx-background-color: #555; /* Background color on hover */
-}
-
-.hbox-button:selected {
-    -fx-background-color: #f6870c;
-}
-/* Active button style */
-.hbox-button.active {
-    -fx-background-color: #f6870c; /* Background color for the active button */
-    -fx-font-weight: bold; /* Optional: makes the text of the active button bold */
-}
-
-/* Ensures the text is always fully visible */
-.hbox-button .text {
-    -fx-text-overrun: clip; /* Prevents text from truncating */
 }
 
 .dialog-pane {
@@ -339,28 +315,41 @@
 /* Scroll Bar UI */
 .scroll-bar {
     -fx-background-color: transparent;
+    -fx-background-insets: 0, 0, 0, 2;
 }
 
 .scroll-bar .thumb {
-    -fx-background-color: transparent;
-    -fx-background-insets: 3;
+    -fx-background-color: #f0f0f0;
+    -fx-background-insets: 2, 2, 2, 2;
+    -fx-background-radius: 5em;
+}
+
+.scroll-bar .track {
+    -fx-background-color: rgba(166, 166, 166, 0.5);
+    -fx-background-insets: 2, 2, 2, 2;
+    -fx-background-radius: 5em;
 }
 
 .scroll-bar .increment-button, .scroll-bar .decrement-button {
     -fx-background-color: transparent;
-    -fx-padding: 0 0 0 0;
-}
-
-.scroll-bar .increment-arrow, .scroll-bar .decrement-arrow {
-    -fx-shape: " ";
-}
-
-.scroll-bar:vertical .increment-arrow, .scroll-bar:vertical .decrement-arrow {
     -fx-padding: 0;
 }
 
+.scroll-bar .increment-arrow, .scroll-bar .decrement-arrow {
+    -fx-shape: " "; /* Empty shape */
+}
+
 .scroll-bar:horizontal .increment-arrow, .scroll-bar:horizontal .decrement-arrow {
-    -fx-padding: 8 1 8 1;
+    -fx-padding: 0;
+}
+
+.success {
+    -fx-text-fill: rgba(105, 239, 50, 0.92) !important; /* Text color for successful commands */
+}
+
+.error {
+    -fx-text-fill: rgba(234, 46, 10, 0.92) !important; /*  Text color for unsuccessful commands */
+    -fx-font-weight: bold !important;
 }
 
 #cardPane {
@@ -375,16 +364,15 @@
 }
 
 #commandTextField {
-    -fx-background-color: #0B0B0B;
+    -fx-background-color: #151515;
     -fx-background-insets: 0;
-    -fx-border-color: #0B0B0B;
+    -fx-border-color: transparent;
     -fx-border-insets: 0;
     -fx-border-width: 1;
     -fx-font-family: "Hack";
     -fx-font-size: 12pt;
     -fx-font-weight: normal;
-    -fx-font-style: normal;
-    -fx-text-fill: #e3e3e3;
+    -fx-text-fill: white;
 }
 
 #filterField, #personListPanel, #personWebpage {
@@ -392,7 +380,7 @@
 }
 
 #resultDisplay .content {
-    -fx-background-color: transparent, #0B0B0B, transparent, #0B0B0B;
+    -fx-background-color: transparent, #151515, transparent, #151515;
     -fx-background-radius: 0;
 }
 
