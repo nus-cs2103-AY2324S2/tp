@@ -1,22 +1,67 @@
+# Using FriendFolio
+
+***Welcome to FriendFolio!***
+
+Congratulations on joining the FriendFolio community! We're thrilled to have you on board. FriendFolio isn't just your
+ordinary address book; it's your ultimate companion for staying organized, managing finances between friends, and
+syncing up with your buddies' school schedules effortlessly.
+
+This user guide is designed to help you navigate every feature of FriendFolio with ease, ensuring you make the most
+out of your experience. So sit back, relax, and let's dive into the exciting world of FriendFolio!
+
+Happy organizing,
+
+The FriendFolio Dev Team
+
 ---
-layout: page
-title: User Guide
+***Why This User Guide Matters***
+
+While FriendFolio is designed to be intuitive and user-friendly, taking a few moments to familiarize yourself with this guide will significantly enhance your overall experience. Here's why:
+
+**Unlock Hidden Features**: Uncover useful FriendFolio features that go beyond your everyday address book app and leverage FriendFolio to its full potential.
+
+**Streamline Your Experience**: Find useful tips to streamline your FriendFolio experience and navigate the app effortlessly, saving time and frustration.
+
+**Maximize Efficiency**: Gain valuable insights and best practices to ensure FriendFolio maximizes efficiency in your social interactions.
+
+In essence, this user guide isn't just a manual – it's your key to unlocking the full potential of FriendFolio and revolutionizing the way you connect with friends. So don't overlook its importance; dive in, explore, and elevate your FriendFolio experience today!
+
 ---
 
-FriendFolio is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still
-having the benefits of a Graphical User Interface (GUI). If you can type fast, FriendFolio can get your contact
-management tasks
-done faster than traditional GUI apps.
+***A Quick Overview***
 
-* Table of Contents
-  {:toc}
+FriendFolio is a **desktop CLI(Command Line Interface)-optimized app with intuitive GUI(Graphical User Interface) elements** for managing contacts which can **track both your finances and your friends’ availabilities**, with a singular focus to **eliminate or minimize the number of times users are left stumped** on splitting a bill between friends.
+
+**Table of Contents:**
+
+1. Getting Started
+2. Useful Features
+    1. Dashboard (Coming Soon)
+    2. Finding Availabilities (Coming Soon)
+    3. Commands
+        1. `help` command
+        2. `add` command
+        3. `list` command
+        4. `edit` command
+        5. `find` command
+        6. `delete` command
+        7. `clear` command
+        8. `exit` command
+        9. `remark` command
+        10. `filter` command
+    4. Saving Data Files
+    5. Editing Data Files
+    6. Exporting Data (Coming soon)
+3. FAQs
+4. Known Issues
+5. Command Summary
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## Getting Started
 
 1. Ensure you have Java `11` or above installed in your Computer.
-2. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+2. Download the latest `addressbook.jar` from [here](https://github.com/AY2324S2-CS2103T-T16-2/tp/releases).
 3. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar`
    command to run the application.<br>
@@ -38,6 +83,17 @@ done faster than traditional GUI apps.
     * `exit` : Exits the app.
 
 6. Refer to the [Features](#features) below for details of each command.
+
+- [Help Command](#viewing-help-help)
+- [Add Command](#adding-a-person-add)
+- [List Command](#listing-all-persons-list)
+- [Edit Command](#editing-a-person-edit)
+- [Find Command](#locating-persons-by-name-find)
+- [Delete Command](#deleting-a-person-delete)
+- [Split Command](#splitting-an-amount-owed-split)
+- [Sort Command](#sorting-contacts-sort)
+- [Clear Command](#clearing-all-entries-clear)
+- [Exit Command](#exiting-the-program-exit)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -68,7 +124,7 @@ done faster than traditional GUI apps.
 
 </div>
 
-### Viewing help : `help`
+### Viewing help: `help`
 
 Shows a message explaining how to access the help page.
 
@@ -80,7 +136,7 @@ Format: `help`
 
 Adds a person to the address book. Note that birthdays follow the following format: `dd/mm/yyyy`
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] [b/BIRTHDAY]…​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… [b/BIRTHDAY] [$/MONEYOWED]​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
@@ -91,17 +147,17 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 b/15/02/1999`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-### Listing all persons : `list`
+### Listing all persons: `list`
 
 Shows a list of all persons in the address book.
 
 Format: `list`
 
-### Editing a person : `edit`
+### Editing a person: `edit`
 
 Edits an existing person in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]… [b/BIRTHDAY] [$/MONEYOWED]​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list.
   The index **must be a positive integer** 1, 2, 3, …​
@@ -136,7 +192,7 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+### Deleting a person: `delete`
 
 Deletes the specified person from the address book.
 
@@ -151,13 +207,46 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-### Clearing all entries : `clear`
+### Splitting an amount owed: `split`
+
+Splits the sum of money owed among a group of person using the displayed
+index from the address book.
+
+Format: `split INDEX [INDEX]... $/MONEYOWED`
+
+* MONEYOWED should have at most 2 decimal places.
+* There must be at least 1 index.
+* The amount will be evenly distributed among the people with index mentioned and added on to their current amount of money owed.
+* The index refers to the index number shown in the displayed person list.
+
+Examples:
+
+* `split 1 2 $/5.60` will split $5.60 evenly among two people which is adding $2.80 to the amount owed of the person at index 1 and 2.
+
+### Sorting contacts: `sort`
+
+Sorts your contacts in one of three sorting methods:
+
+1. Name (`name`)
+2. Birthday (`birthday`)
+3. Money Owed (`money`)
+4. Default (`clear`)
+
+Format: `sort SORT_METHOD`
+
+* `SORT_METHOD` should be one of four keywords listed above.
+* Sorting by name sorts contacts by alphabetical order.
+* Sorting by birthday arranges contacts based on their closest birthdays, with those having upcoming birthdays appearing first. Contacts without saved birthday information are placed at the end of the sorted list.
+* Sorting by money owed will prioritize contacts based on the amount owed, with those owed the most money appearing first, followed by those who owe you the most. Contacts with no money owed to or by them will be placed at the end of the list.
+* The default sorting method lists your contacts in order of when you added them into FriendFolio.
+
+### Clearing all entries: `clear`
 
 Clears all entries from the address book.
 
 Format: `clear`
 
-### Exiting the program : `exit`
+### Exiting the program: `exit`
 
 Exits the program.
 
@@ -208,6 +297,8 @@ the data of your previous AddressBook home folder.
 | **Clear**  | `clear`                                                                                                                                                                            |
 | **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                |
 | **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                        |
-| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                         |
+| **Find**   | `find KEYWORD [MORE_KEYWORDS]…`<br> e.g., `find James Jake`                                                                                                                        |
+| **Sort**   | `sort SORT_METHOD`<br> e.g., `sort birthday`                                                                                                                                       |
+| **Split**  | `split INDEX [INDEX]… $/MONEY_OWED` <br> e.g., `split 1 2 $/20.10`                                                                                                                 |
 | **List**   | `list`                                                                                                                                                                             |
 | **Help**   | `help`                                                                                                                                                                             |
