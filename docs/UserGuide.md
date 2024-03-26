@@ -17,15 +17,15 @@ Intern Hub is a **desktop app for managing contacts, optimized for use via a  Li
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `internhub.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+2. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+3. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar internhub.jar` command to run the application.<br>
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * `list` : Lists all contacts.
@@ -39,7 +39,7 @@ Intern Hub is a **desktop app for managing contacts, optimized for use via a  Li
 
    * `exit` : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -75,11 +75,14 @@ Format: `help`
 
 ### Adding a contact: `add`
 
-Adds a contact to the address book.
+To add a internship contact to your address book, follow these simple steps:
+
+1. Type `add` followed by the details of the contact you want to add.
+2. Use `c/` for the company name, `p/` for the phone number, `e/` for the email, `a/` for the address, `t/` for tags, `jd/` for job description, `d/` for interview date, `id/` for intern duration, and `s/` for salary.
 
 Format: `add c/COMPANY_NAME p/PHONE_NUMBER e/EMAIL a/[ADDRESS] t/TAG jd/JOB_DESCRIPTION d/[INTERVIEW_DATE] id/INTERN_DURATION s/salary`
 
-<box type="tip" seamless>
+<box type="tip" seamless> heheh
 
 </box>
 
@@ -108,7 +111,7 @@ Example:
 
 Edits an existing contact detail in the address book.
 
-Format: `Edit INDEX c/[COMPANY_NAME] p/[PHONE_NUMBER] e/[EMAIL] a/[ADDRESS] t/[TAG] jd/[JOB_DESCRIPTION] d/[INTERVIEW_DATE] id/[INTERN_DURATION] s/[salary]`
+Format: `Edit INDEX c/[COMPANY_NAME] p/[PHONE_NUMBER] e/[EMAIL] a/[ADDRESS] t/[TAG] jd/[JOB_DESCRIPTION] d/[INTERVIEW_DATE] id/[INTERN_DURATION] s/[SALARY]`
 
 * Edits the contact at the specified `INDEX`. The index refers to the index number shown in the displayed contact list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -179,16 +182,45 @@ Furthermore, certain edits can cause the AddressBook to behave in unexpected way
 
 </box>
 
-### Archiving data files `[coming in v2.0]`
+### Finding the data
 
-_Details coming soon ..._
+To find specific data entries, use the `find` command followed by keywords related to the data you're looking for. This command will help you quickly locate the information you need within your address book.
+
+Format: `find Grab`
+
+### Filtering the data (by tags)
+
+Filtering data allows you to narrow down your search results to focus on specific criteria. Use the `filter t/` command to filter by tag and find exactly the internships that have an interview.
+
+
+Format: `filter t/ I`
+
+### Sending reminders
+
+Sending reminders is a great way to stay organized and on top of important tasks. While our application currently doesn't have a built-in reminder feature, you can manually retrieve reminders using this command. It will show the interviews you have within the next 3 days.
+
+Format: `reminder`
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous InternHub home folder.
+
+**Q**: How do I check my Java version?<br>
+**A**: You can check your Java version by opening a command terminal and typing `java -version`.
+
+**Q**: How do I download Java 11?<br>
+**A**: You can download Java 11 from the official Oracle website or adoptopenjdk.net. Choose the appropriate installer for your operating system and follow the installation instructions provided.
+
+**Q**: What is a home folder?<br>
+**A**: The home folder is the main directory associated with a user account on a computer. It typically contains user-specific settings, documents, downloads, and other personal files.
+
+**Q**: Does the user know how to open the command terminal/how to change directory (cd) into a folder?<br>
+**A**: Users should refer to the documentation or help resources specific to their operating system for instructions on opening a command terminal and navigating to a directory using the `cd` command.
+
+**Q**: How do I run addressbook.jar?<br>
+**A**: You can run addressbook.jar by opening a command terminal, navigating to the directory containing the jar file using the `cd` command, and then typing `java -jar addressbook.jar` and pressing Enter.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -200,13 +232,16 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action     | Format, Examples                                                                                                                                                                                                                                           |
-|------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add c/COMPANY_NAME p/PHONE_NUMBER e/EMAIL a/[ADDRESS] t/TAG jd/JOB_DESCRIPTION d/[INTERVIEW_DATE] id/INTERN_DURATION s/salary` <br> e.g., `add c/FoodPanda p/12345678 e/panda@food.com a/CBD t/F jd/Front End Intern d/15-04-2024 0900 id/6 months s/500` |
-| **Clear**  | `clear`                                                                                                                                                                                                                                                    |
-| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                        |
-| **Edit**   | `Edit INDEX c/[COMPANY_NAME] p/[PHONE_NUMBER] e/[EMAIL] a/[ADDRESS] t/[TAG] jd/[JOB_DESCRIPTION] d/[INTERVIEW_DATE] id/[INTERN_DURATION] s/[salary]`<br> e.g.,`Edit 2 p/9998765`                                                                           |
-| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find foodpanda`                                                                                                                                                                                                  |
-| **List**   | `list`                                                                                                                                                                                                                                                     |
-| **View**   | `view INDEX`<br> e.g., `view 3`                                                                                                                                                                                                                            |
-| **Help**   | `help`                                                                                                                                                                                                                                                     |
+| Action       | Format, Examples                                                                                                                                                                                                                                           |
+|--------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**      | `add c/COMPANY_NAME p/PHONE_NUMBER e/EMAIL a/[ADDRESS] t/TAG jd/JOB_DESCRIPTION d/[INTERVIEW_DATE] id/INTERN_DURATION s/salary` <br> e.g., `add c/FoodPanda p/12345678 e/panda@food.com a/CBD t/F jd/Front End Intern d/15-04-2024 0900 id/6 months s/500` |
+| **Clear**    | `clear`                                                                                                                                                                                                                                                    |
+| **Delete**   | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                        |
+| **Edit**     | `Edit INDEX c/[COMPANY_NAME] p/[PHONE_NUMBER] e/[EMAIL] a/[ADDRESS] t/[TAG] jd/[JOB_DESCRIPTION] d/[INTERVIEW_DATE] id/[INTERN_DURATION] s/[salary]`<br> e.g.,`Edit 2 p/9998765`                                                                           |
+| **Find**     | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find foodpanda`                                                                                                                                                                                                  |
+| **List**     | `list`                                                                                                                                                                                                                                                     |
+| **View**     | `view INDEX`<br> e.g., `view 3`                                                                                                                                                                                                                            |
+| **Help**     | `help`                                                                                                                                                                                                                                                     |
+| **Find**     | `find STRING`<br> e.g., `find Grab`                                                                                                                                                                                                                        |
+| **Filter**   | `filter t/ I`                                                                                                                                                                                                                                              |
+| **Reminder** | `reminder`                                                                                                                                                                                                                                                 |
