@@ -2,34 +2,34 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_STAR;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BOLT;
 
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.StarCommand;
+import seedu.address.logic.commands.BoltCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.student.Star;
+import seedu.address.model.student.Bolt;
 
 /**
  * Parses input arguments and creates a new EditCommand object
  */
-public class StarCommandParser implements Parser<StarCommand> {
+public class BoltCommandParser implements Parser<BoltCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the StarCommand
-     * and returns an StarCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the BoltCommand
+     * and returns an BoltCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public StarCommand parse(String args) throws ParseException {
+    public BoltCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_STAR); // tokenize args by PREFIX_STAR
+                ArgumentTokenizer.tokenize(args, PREFIX_BOLT); // tokenize args by PREFIX_BOLT
 
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_STAR)
+        if (!arePrefixesPresent(argMultimap, PREFIX_BOLT)
                 || argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, StarCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, BoltCommand.MESSAGE_USAGE));
         } // if no PREFIX used, or if the Preamble is empty, we throw a ParseException
 
         Index index;
@@ -37,11 +37,11 @@ public class StarCommandParser implements Parser<StarCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, StarCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, BoltCommand.MESSAGE_USAGE), pe);
         }
 
-        Star star = ParserUtil.parseStar(argMultimap.getValue(PREFIX_STAR).get());
-        return new StarCommand(index, star);
+        Bolt bolt = ParserUtil.parseBolt(argMultimap.getValue(PREFIX_BOLT).get());
+        return new BoltCommand(index, bolt);
     }
 
     /**

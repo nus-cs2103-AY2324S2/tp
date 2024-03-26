@@ -59,7 +59,7 @@ public class StarCommand extends Command {
 
         Student editedStudent = new Student(
                 studentToEdit.getName(), studentToEdit.getPhone(), studentToEdit.getEmail(),
-                studentToEdit.getMajor(), edittedStar, studentToEdit.getTags());
+                studentToEdit.getMajor(), edittedStar, studentToEdit.getBolt(), studentToEdit.getTags());
 
         model.setStudent(studentToEdit, editedStudent);
         model.updateFilteredStudentList(Model.PREDICATE_SHOW_ALL_STUDENTS);

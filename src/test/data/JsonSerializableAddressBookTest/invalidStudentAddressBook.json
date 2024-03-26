@@ -3,6 +3,9 @@
     "name": "Hans Muster",
     "phone": "9482424",
     "email": "invalid@email!3e",
-    "major" : "Computer Science"
+    "major" : "Computer Science",
+    "star" : 5,
+    "bolt" : 5,
+    "tags": [ "friends" ]
   } ]
 }

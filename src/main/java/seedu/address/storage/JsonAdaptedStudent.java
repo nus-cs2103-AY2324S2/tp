@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.student.Bolt;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Major;
 import seedu.address.model.student.Name;
@@ -30,6 +31,7 @@ class JsonAdaptedStudent {
     private final String email;
     private final String major;
     private final Integer star;
+    private final Integer bolt;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
     /**
@@ -38,12 +40,14 @@ class JsonAdaptedStudent {
     @JsonCreator
     public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                               @JsonProperty("email") String email, @JsonProperty("major") String major,
-                              @JsonProperty("star") Integer star, @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+                              @JsonProperty("star") Integer star, @JsonProperty("bolt") Integer bolt,
+                              @JsonProperty("tags") List<JsonAdaptedTag> tags) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.major = major;
         this.star = star;
+        this.bolt = bolt;
         if (tags != null) {
             this.tags.addAll(tags);
         }
@@ -58,6 +62,7 @@ class JsonAdaptedStudent {
         email = source.getEmail().value;
         major = source.getMajor().value;
         star = source.getStar().numOfStars;
+        bolt = source.getBolt().numOfBolts;
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -114,8 +119,16 @@ class JsonAdaptedStudent {
         }
         final Star modelStar = new Star(star);
 
+        if (bolt == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Bolt.class.getSimpleName()));
+        }
+        if (!Bolt.isValidBolt(bolt)) {
+            throw new IllegalValueException(Bolt.MESSAGE_CONSTRAINTS);
+        }
+        final Bolt modelBolt = new Bolt(bolt);
+
         final Set<Tag> modelTags = new HashSet<>(studentTags);
-        return new Student(modelName, modelPhone, modelEmail, modelMajor, modelStar, modelTags);
+        return new Student(modelName, modelPhone, modelEmail, modelMajor, modelStar, modelBolt, modelTags);
     }
 
 }

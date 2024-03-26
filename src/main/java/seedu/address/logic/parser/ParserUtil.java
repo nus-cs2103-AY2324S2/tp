@@ -9,6 +9,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.student.Bolt;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Major;
 import seedu.address.model.student.Name;
@@ -23,6 +24,7 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MESSAGE_INVALID_STAR = "Star is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_BOLT = "Bolt is not a non-zero unsigned integer.";
 
 
     /**
@@ -115,6 +117,25 @@ public class ParserUtil {
             throw new ParseException(Star.MESSAGE_CONSTRAINTS);
         }
         return new Star(starCount);
+    }
+
+    /**
+     * Parses a {@code String bolt} into a {@code Bolt}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code Bolt} is invalid.
+     */
+    public static Bolt parseBolt(String bolt) throws ParseException {
+        requireNonNull(bolt);
+        String trimmedBolt = bolt.trim(); // trim the string to only get the number
+        if (!StringUtil.isUnsignedInteger(trimmedBolt)) {
+            throw new ParseException(MESSAGE_INVALID_BOLT);
+        } // checks if Bolt is in fact an Integer
+        Integer boltCount = Integer.parseInt(trimmedBolt);
+        if (!Bolt.isValidBolt(boltCount)) { // check whether bolt is a valid Integer >= 0
+            throw new ParseException(Bolt.MESSAGE_CONSTRAINTS);
+        }
+        return new Bolt(boltCount);
     }
 
     /**

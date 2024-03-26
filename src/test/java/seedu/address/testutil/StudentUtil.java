@@ -1,5 +1,6 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BOLT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MAJOR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -51,6 +52,7 @@ public class StudentUtil {
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getMajor().ifPresent(address -> sb.append(PREFIX_MAJOR).append(address.value).append(" "));
         descriptor.getStar().ifPresent(star -> sb.append(PREFIX_STAR).append(star.numOfStars).append(" "));
+        descriptor.getBolt().ifPresent(bolt -> sb.append(PREFIX_BOLT).append(bolt.numOfBolts).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {

@@ -24,6 +24,7 @@ public class Student {
     // Data fields
     private final Major major;
     private final Star star;
+    private final Bolt bolt;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
@@ -36,19 +37,22 @@ public class Student {
         this.email = email;
         this.major = major;
         this.star = Star.NO_STAR;
+        this.bolt = Bolt.NO_BOLT;
         this.tags.addAll(tags);
     }
 
     /**
-     * Every field must be present and not null. Alternative constructor to instantiate a Student with an existing star.
+     * Every field must be present and not null. Alternative constructor to instantiate a Student
+     * with an existing star and bolt.
      */
-    public Student(Name name, Phone phone, Email email, Major major, Star star, Set<Tag> tags) {
+    public Student(Name name, Phone phone, Email email, Major major, Star star, Bolt bolt, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, major, star, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.major = major;
         this.star = star;
+        this.bolt = bolt;
         this.tags.addAll(tags);
     }
 
@@ -71,6 +75,10 @@ public class Student {
     public Star getStar() {
         return star;
     } // get the stars
+
+    public Bolt getBolt() {
+        return bolt;
+    } // get the bolts
 
     public int getStarCount() {
         return star.numOfStars;
@@ -118,13 +126,14 @@ public class Student {
                 && email.equals(otherStudent.email)
                 && major.equals(otherStudent.major)
                 && star.equals(otherStudent.star)
+                && bolt.equals(otherStudent.bolt)
                 && tags.equals(otherStudent.tags);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, major, star, tags);
+        return Objects.hash(name, phone, email, major, star, bolt, tags);
     }
 
     @Override
@@ -135,6 +144,7 @@ public class Student {
                 .add("email", email)
                 .add("major", major)
                 .add("star", star)
+                .add("bolt", bolt)
                 .add("tags", tags)
                 .toString();
     }

@@ -41,6 +41,8 @@ public class StudentCard extends UiPart<Region> {
     @FXML
     private Label star;
     @FXML
+    private Label bolt;
+    @FXML
     private FlowPane tags;
 
     /**
@@ -55,6 +57,7 @@ public class StudentCard extends UiPart<Region> {
         major.setText(student.getMajor().value);
         email.setText(student.getEmail().value);
         star.setText(student.getStar().toString()); // need String representation
+        bolt.setText(student.getBolt().toString());
         student.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
