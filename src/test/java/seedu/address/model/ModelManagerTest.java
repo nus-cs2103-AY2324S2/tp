@@ -1,8 +1,6 @@
 package seedu.address.model;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
@@ -16,6 +14,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.Note;
+import seedu.address.model.person.Person;
 import seedu.address.testutil.AddressBookBuilder;
 
 public class ModelManagerTest {
@@ -86,6 +86,40 @@ public class ModelManagerTest {
     public void hasPerson_personInAddressBook_returnsTrue() {
         modelManager.addPerson(ALICE);
         assertTrue(modelManager.hasPerson(ALICE));
+    }
+
+    @Test
+    public void setDisplayedNote_validPerson_setsDisplayedNote() {
+        modelManager.setDisplayNote(ALICE);
+        assertEquals(ALICE.getNote(), modelManager.getDisplayNote());
+    }
+
+    @Test
+    public void setDisplayedNote_firstPerson_setsDisplayedNote() {
+        modelManager.addPerson(ALICE);
+        modelManager.addPerson(BENSON);
+        modelManager.setDisplayNoteAsFirstFilteredPerson();
+        assertEquals(ALICE.getNote(), modelManager.getDisplayNote());
+    }
+
+    @Test
+    public void setDisplayedNote_validNote_setsDisplayedNote() {
+        Note note = Note.DEFAULT;
+        modelManager.setDisplayNote(note);
+        assertEquals(note, modelManager.getDisplayNote());
+    }
+
+    @Test
+    public void setDisplayedNote_nullNote_throwsNullPointerException() {
+        Note note = null;
+        assertThrows(NullPointerException.class, () -> modelManager.setDisplayNote(note));
+    }
+
+    @Test
+    public void clearDisplayedNote_validNote_clearsDisplayedNote() {
+        modelManager.setDisplayNote(ALICE);
+        modelManager.clearDisplayNote();
+        assertEquals(Note.DEFAULT, modelManager.getDisplayNote());
     }
 
     @Test
