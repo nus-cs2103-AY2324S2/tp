@@ -54,7 +54,13 @@ public class ParserUtil {
         return new Name(capitalizeWords(trimmedName));
     }
 
-
+    /**
+     * Parses a {@code String name} into a {@code Name} and returns it along with any parsing exception message.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @param name The name string to parse.
+     * @return A ParserResult containing the parsed Name or an exception message.
+     */
     public static ParserResult<Name> parseNameReturnStored(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
@@ -105,6 +111,13 @@ public class ParserUtil {
         return new Phone(trimmedPhone);
     }
 
+    /**
+     * Parses a {@code String phone} into a {@code Phone} and returns it along with any parsing exception message.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @param phone The phone string to parse.
+     * @return A ParserResult containing the parsed Phone or an exception message.
+     */
     public static ParserResult<Phone> parsePhoneReturnStored(String phone) throws ParseException {
         requireNonNull(phone);
         String trimmedPhone = phone.trim();
@@ -129,6 +142,13 @@ public class ParserUtil {
         return new Income(trimmedIncome);
     }
 
+    /**
+     * Parses a {@code String income} into a {@code Income} and returns it along with any parsing exception message.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @param income The income string to parse.
+     * @return A ParserResult containing the parsed Income or an exception message.
+     */
     public static ParserResult<Income> parseIncomeReturnStored(String income) throws ParseException {
         requireNonNull(income);
         String trimmedIncome = income.trim();
@@ -153,6 +173,14 @@ public class ParserUtil {
         return new Address(trimmedAddress);
     }
 
+    /**
+     * Parses a {@code String address} into an {@code Address}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @param address The address string to parse.
+     * @return A ParserResult containing the parsed Address or an exception message.
+     * @throws ParseException if the given {@code address} is invalid.
+     */
     public static ParserResult<Address> parseAddressReturnStored(String address) throws ParseException {
         requireNonNull(address);
         String trimmedAddress = address.trim();
@@ -177,6 +205,15 @@ public class ParserUtil {
         return new Email(trimmedEmail);
     }
 
+
+    /**
+     * Parses a {@code String email} into an {@code Email}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @param email The email string to parse.
+     * @return A ParserResult containing the parsed Email or an exception message.
+     * @throws ParseException if the given {@code email} is invalid.
+     */
     public static ParserResult<Email> parseEmailReturnStored(String email) throws ParseException {
         requireNonNull(email);
         String trimmedEmail = email.trim();
@@ -202,6 +239,14 @@ public class ParserUtil {
         return new Family(trimmedFamily);
     }
 
+    /**
+     * Parses a {@code String family} into a {@code Family}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @param family The family string to parse.
+     * @return A ParserResult containing the parsed Family or an exception message.
+     * @throws ParseException if the given {@code family} is invalid.
+     */
     public static ParserResult<Family> parseFamilyReturnStored(String family) throws ParseException {
         requireNonNull(family);
         String trimmedFamily = family.trim();

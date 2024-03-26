@@ -63,29 +63,30 @@ public class AddCommandParser implements Parser<AddCommand> {
         StringBuilder errorMessageBuilder = new StringBuilder();
         ParserResult<Name> nameStored =
                 ParserUtil.parseNameReturnStored(argMultimap.getValue(PREFIX_NAME).orElseThrow());
-        nameStored.buildErrorMessage(errorMessageBuilder, "Name");
+        nameStored.buildErrorMessage(errorMessageBuilder, "name");
 
-        ParserResult<Phone> phoneStored = ParserUtil.parsePhoneReturnStored(argMultimap.getValue(PREFIX_PHONE).orElseThrow());
+        ParserResult<Phone> phoneStored = ParserUtil.parsePhoneReturnStored(argMultimap.getValue(PREFIX_PHONE)
+                                                                                    .orElseThrow());
 
-        phoneStored.buildErrorMessage(errorMessageBuilder, "Phone");
+        phoneStored.buildErrorMessage(errorMessageBuilder, "phone");
 
         ParserResult<Income> incomeStored =
                 ParserUtil.parseIncomeReturnStored(argMultimap.getValue(PREFIX_INCOME).orElseThrow());
 
-        incomeStored.buildErrorMessage(errorMessageBuilder, "Income");
+        incomeStored.buildErrorMessage(errorMessageBuilder, "income");
 
         ParserResult<Email> emailStored =
                 ParserUtil.parseEmailReturnStored(argMultimap.getValue(PREFIX_EMAIL).orElseThrow());
 
-        emailStored.buildErrorMessage(errorMessageBuilder, "Email");
+        emailStored.buildErrorMessage(errorMessageBuilder, "email");
 
         ParserResult<Address> addressStored =
                 ParserUtil.parseAddressReturnStored(argMultimap.getValue(PREFIX_ADDRESS).orElseThrow());
-        addressStored.buildErrorMessage(errorMessageBuilder, "Address");
+        addressStored.buildErrorMessage(errorMessageBuilder, "address");
 
         ParserResult<Family> familyStored =
                 ParserUtil.parseFamilyReturnStored(argMultimap.getValue(PREFIX_FAMILY).orElseThrow());
-        familyStored.buildErrorMessage(errorMessageBuilder, "Family");
+        familyStored.buildErrorMessage(errorMessageBuilder, "family");
 
         Set<Tag> tagList = null;
         try {
