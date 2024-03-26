@@ -81,7 +81,7 @@ class AddRelationshipCommandTest {
     void testExecuteAddInvalidRelationshipDescriptorThrowsException() {
         String testOriginUuid = "0001";
         String testTargetUuid = "0002";
-        String relationshipDescriptor = "spouse";
+        String relationshipDescriptor = "123";
         AddRelationshipCommand addRelationshipCommand =
                 new AddRelationshipCommand(testOriginUuid, testTargetUuid, relationshipDescriptor);
         assertCommandFailure(addRelationshipCommand, model, "Invalid Relationship type");

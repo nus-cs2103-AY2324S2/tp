@@ -18,10 +18,11 @@ class AddRelationshipCommandParserTest {
     void setUp() {
         model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     }
+
     @Test
     void parse_validInput_success() throws Exception {
-        String userInput = "0001 0003 family";
-        AddRelationshipCommand expected = new AddRelationshipCommand("0001", "0003", "family");
+        String userInput = "0001 0003 siblings"; // Using "siblings" as the relationship descriptor
+        AddRelationshipCommand expected = new AddRelationshipCommand("0001", "0003", "siblings");
         assertParseSuccess(parser, userInput, expected);
     }
 

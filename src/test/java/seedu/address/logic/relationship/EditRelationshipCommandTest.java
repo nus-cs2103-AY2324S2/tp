@@ -24,8 +24,6 @@ import seedu.address.testutil.TypicalPersonsUuid;
 public class EditRelationshipCommandTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableAddressBookTest");
 
-    private static final Path TYPICAL_PERSONS_FILE = TEST_DATA_FOLDER.resolve("typicalPersonsAddressBook.json");
-
     @Test
     public void execute_editNonExistentRelationship_throwsCommandException() {
         Model model = new ModelManager();
@@ -49,11 +47,10 @@ public class EditRelationshipCommandTest {
     public void execute_originUuidIsNull_throwsCommandException() {
         // Setup
         Model model = new ModelManager();
-        String originUuid = null;
         String targetUuid = "target123";
         String oldRelationshipDescriptor = "family";
         String newRelationshipDescriptor = "friend";
-        EditRelationshipCommand editCommand = new EditRelationshipCommand(originUuid, targetUuid,
+        EditRelationshipCommand editCommand = new EditRelationshipCommand(null, targetUuid,
                 oldRelationshipDescriptor, newRelationshipDescriptor);
 
         // Verify
@@ -65,10 +62,9 @@ public class EditRelationshipCommandTest {
     public void execute_invalidTargetUuid_throwsCommandException() {
         Model model = new ModelManager();
         String originUuid = "1234";
-        String targetUuid = null;
         String oldDescriptor = "family";
         String newDescriptor = "friend";
-        EditRelationshipCommand editCommand = new EditRelationshipCommand(originUuid, targetUuid,
+        EditRelationshipCommand editCommand = new EditRelationshipCommand(originUuid, null,
                 oldDescriptor, newDescriptor);
         assertThrows(CommandException.class, () -> editCommand.execute(model),
                 Messages.MESSAGE_INVALID_PERSON_UUID);
@@ -180,8 +176,8 @@ public class EditRelationshipCommandTest {
         model.setAddressBook(typicalPersonsAddressBook);
         String originUuid = "0001";
         String targetUuid = "0006";
-        String oldRelationshipDescriptor = "family";
-        String newRelationshipDescriptor = "invalid";
+        String oldRelationshipDescriptor = "bioparents";
+        String newRelationshipDescriptor = "1234";
         EditRelationshipCommand editCommand = new EditRelationshipCommand(originUuid, targetUuid,
                 oldRelationshipDescriptor, newRelationshipDescriptor);
 
@@ -189,7 +185,7 @@ public class EditRelationshipCommandTest {
         CommandException exception = assertThrows(CommandException.class, () -> editCommand.execute(model),
                 "Invalid Relationship type");
         // Check the exception message
-        assertEquals(String.format("Invalid Relationship type"),
+        assertEquals("Invalid Relationship type",
                 exception.getMessage());
     }
 
