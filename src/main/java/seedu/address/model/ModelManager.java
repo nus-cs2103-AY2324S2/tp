@@ -144,9 +144,6 @@ public class ModelManager implements Model {
         taskMasterPro.addTask(task);
         updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
     }
-
-    //TODO: We have to use a filtered tasklists instead of tasklist. Right now,
-    //TODO: if i do findtasks successfully, the listtasks will only show the filtered list from findtasks.
     @Override
     public void updateFilteredTaskList(Predicate<Task> predicate) {
         requireNonNull(predicate);
