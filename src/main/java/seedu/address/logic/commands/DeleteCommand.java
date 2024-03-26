@@ -43,7 +43,9 @@ public class DeleteCommand extends Command {
                 // If the person with the target student ID is found, delete it
                 model.deletePerson(candidate);
                 found = true;
-                return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(candidate)));
+                CommandResult result = new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(candidate)));
+                result.setDeleteCommand();
+                return result;
             }
         }
 

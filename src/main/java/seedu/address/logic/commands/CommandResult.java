@@ -22,6 +22,12 @@ public class CommandResult {
     /** The application should change the status bar. */
     private boolean changeDataSource = false;
 
+    private boolean addCommand = false;
+
+    private boolean deleteCommand = false;
+
+    private boolean themeCommand = false;
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
@@ -57,6 +63,30 @@ public class CommandResult {
 
     public void setChangeDataSource() {
         this.changeDataSource = true;
+    }
+
+    public boolean isAddCommand() {
+        return addCommand;
+    }
+
+    public void setAddCommand() {
+        this.addCommand = true;
+    }
+
+    public boolean isDeleteCommand() {
+        return deleteCommand;
+    }
+
+    public boolean isThemeCommand() {
+        return themeCommand;
+    }
+
+    public void setThemeCommand() {
+        this.themeCommand = true;
+    }
+
+    public void setDeleteCommand() {
+        this.deleteCommand = true;
     }
     @Override
     public boolean equals(Object other) {
