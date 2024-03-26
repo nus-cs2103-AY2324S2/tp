@@ -19,7 +19,7 @@ public class SortCommand extends PersonCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": sorts people according to an attribute and displays the sorted person list.\n"
-            + "Parameters: PREFIX (corresponds to each person's attribute e.g. /n for Name)\n"
+            + "Parameters: PREFIX (corresponds to each person's attribute e.g. n/ for Name)\n"
             + "Example: " + COMMAND_WORD + " n/";
 
     private final String prefix;

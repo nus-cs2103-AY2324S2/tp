@@ -72,7 +72,7 @@ public class TypicalPersons {
     }
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons in randomized order.
+     * Returns an {@code AddressBook} with all the typical persons in reversed order.
      */
     public static AddressBook getTypicalReversedAddressBook() {
         AddressBook ab = new AddressBook();
