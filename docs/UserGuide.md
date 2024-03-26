@@ -52,7 +52,7 @@ Start keeping track of your internships easily with <span style="color: #f66a0a;
 1. Ensure that you have [Java 11 or above](https://www.java.com/en/download/) installed on your computer.
     - If you are a MacOS, follow the instructions [here](https://nus-cs2103-ay2324s2.github.io/website/admin/programmingLanguages.html) instead.
 2. Download the latest `CareerSync.jar` file [here](https://github.com/AY2324S2-CS2103T-W11-1/tp/releases/tag/v1.2).
-3. Make sure your jar file is located in an empty folder.
+3. Make sure your [jar](#glossary) file is located in an empty folder.
 4. Start <span style="color: #f66a0a;">CareerSync</span>.
     - For MacOS:
         - Open up your Terminal by typing <kbd>Command</kbd> + <kbd>Space</kbd>, then type <kbd>Enter</kbd>.<br>
@@ -280,7 +280,7 @@ After every command that changes the data, CareerSync performs a save automatica
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous CareerSync home folder.
+**A**: Do the following steps: <br> 1. Navigate to the folder where CareerSync.jar is stored. <br> 2. Copy your data file from data/internshipdata.json. <br> 3. Install the app in the other computer and overwrite the empty data file (data/internshipdata.json) it creates with the file that contains the data (JSON file) of your previous CareerSync home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -317,9 +317,10 @@ After every command that changes the data, CareerSync performs a save automatica
 | /role   | Role for the Internship            | Any Text, Numbers or Spaces                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
 
 ## Glossary
-| Term      | Meaning                                                                             |
-|-----------|-------------------------------------------------------------------------------------|
-| CLI       | [Command Line Interface](#https://en.wikipedia.org/wiki/Command-line_interface)     |
-| GUI       | [Graphical User Interface](#https://en.wikipedia.org/wiki/Graphical_user_interface) |
-| JSON      | [JavaScript Object Notation](#https://www.json.org/json-en.html)                    |
-| File Path | [The location of a file in the computer's file system](#https://www.w3schools.com/html/html_filepaths.asp)                           |
+| Term      | Meaning                                                                                                                   |
+|-----------|---------------------------------------------------------------------------------------------------------------------------|
+| CLI       | [Command Line Interface](#https://en.wikipedia.org/wiki/Command-line_interface)                                           |
+| GUI       | [Graphical User Interface](#https://en.wikipedia.org/wiki/Graphical_user_interface)                                       |
+| JSON      | [JavaScript Object Notation](#https://www.json.org/json-en.html)                                                          |
+| JAR       | [Java Archive: A file format to store and distribute Java Applications](#https://en.wikipedia.org/wiki/JAR_(file_format)) |
+| File Path | [The location of a file in the computer's file system](#https://www.w3schools.com/html/html_filepaths.asp)                |
