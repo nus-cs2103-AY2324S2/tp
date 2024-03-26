@@ -511,7 +511,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**:
 
-* 1a. User requests to learn about a in valid command(a command not offered by PoochPlanner).
+* 1a. User requests to learn about an invalid command(a command not offered by PoochPlanner).
 
    * 1a1. PoochPlanner displays the error message.
    * 1a2. User re-enters the command and request to learn about a valid command.
