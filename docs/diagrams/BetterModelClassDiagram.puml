@@ -6,6 +6,7 @@ skinparam classBackgroundColor MODEL_COLOR
 
 AddressBook *-right-> "1" UniquePersonList
 AddressBook *-right-> "1" UniqueTagList
+
 UniqueTagList -[hidden]down- UniquePersonList
 UniqueTagList -[hidden]down- UniquePersonList
 
@@ -18,4 +19,15 @@ Person *--> Name
 Person *--> Phone
 Person *--> Email
 Person *--> Address
+Person *--> "0..1" Matric
+Person *--> "0..1" Studio
+Person *--> "0..1" Reflection
+
+Name -[hidden]right-> Phone
+Phone -[hidden]right-> Address
+Address -[hidden]right-> Email
+Email -[hidden]down-> Matric
+Matric -[hidden]right-> Studio
+Studio -[hidden]right-> Reflection
+
 @enduml

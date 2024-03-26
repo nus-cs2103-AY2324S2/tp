@@ -10,6 +10,9 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.student.Matric;
+import seedu.address.model.student.Reflection;
+import seedu.address.model.student.Studio;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -37,6 +40,11 @@ public class EditPersonDescriptorBuilder {
         descriptor.setEmail(person.getEmail());
         descriptor.setAddress(person.getAddress());
         descriptor.setTags(person.getTags());
+        descriptor.setMatric(person.getMatric());
+        descriptor.setReflection(person.getReflection());
+        descriptor.setStudio(person.getStudio());
+        // Scores should always be null in EditPersonDescriptor
+        descriptor.setScores(null);
     }
 
     /**
@@ -78,6 +86,36 @@ public class EditPersonDescriptorBuilder {
     public EditPersonDescriptorBuilder withTags(String... tags) {
         Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
         descriptor.setTags(tagSet);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Matric} of the {@code Person} that we are building.
+     * @param matric matric number of the person
+     * @return EditPersonDescriptorBuilder object
+     */
+    public EditPersonDescriptorBuilder withMatric(String matric) {
+        descriptor.setMatric(new Matric(matric));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Reflection} of the {@code Person} that we are building.
+     * @param reflection reflection of the person
+     * @return EditPersonDescriptorBuilder object
+     */
+    public EditPersonDescriptorBuilder withReflection(String reflection) {
+        descriptor.setReflection(new Reflection(reflection));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Studio} of the {@code Person} that we are building.
+     * @param studio studio of the person
+     * @return EditPersonDescriptorBuilder object
+     */
+    public EditPersonDescriptorBuilder withStudio(String studio) {
+        descriptor.setStudio(new Studio(studio));
         return this;
     }
 

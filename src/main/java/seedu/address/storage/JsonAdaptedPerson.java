@@ -1,8 +1,10 @@
 package seedu.address.storage;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -10,11 +12,16 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.exam.Exam;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Score;
+import seedu.address.model.student.Matric;
+import seedu.address.model.student.Reflection;
+import seedu.address.model.student.Studio;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -29,6 +36,9 @@ class JsonAdaptedPerson {
     private final String email;
     private final String address;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
+    private final String matric;
+    private final String reflection;
+    private final String studio;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -36,7 +46,9 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+            @JsonProperty("tags") List<JsonAdaptedTag> tags, @JsonProperty("matric") String matric,
+            @JsonProperty("reflection") String reflection,
+            @JsonProperty("studio") String studio) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -44,6 +56,9 @@ class JsonAdaptedPerson {
         if (tags != null) {
             this.tags.addAll(tags);
         }
+        this.matric = matric;
+        this.reflection = reflection;
+        this.studio = studio;
     }
 
     /**
@@ -57,6 +72,9 @@ class JsonAdaptedPerson {
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        matric = source.getMatric().matricNumber;
+        reflection = source.getReflection().reflection;
+        studio = source.getStudio().studio;
     }
 
     /**
@@ -100,10 +118,30 @@ class JsonAdaptedPerson {
         if (!Address.isValidAddress(address)) {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
+        if (!Matric.isValidConstructorParam(matric)) {
+            throw new IllegalValueException(Matric.MESSAGE_CONSTRAINTS);
+        }
+        if (!Reflection.isValidConstructorParam(reflection)) {
+            throw new IllegalValueException(Reflection.MESSAGE_CONSTRAINTS);
+        }
+        if (!Studio.isValidConstructorParam(studio)) {
+            throw new IllegalValueException(Studio.MESSAGE_CONSTRAINTS);
+        }
+
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+
+        final Matric modelMatric = new Matric(matric);
+
+        final Reflection modelReflection = new Reflection(reflection);
+
+        final Studio modelStudio = new Studio(studio);
+
+        final Map<Exam, Score> scores = new HashMap<>();
+
+        return new Person(modelName, modelPhone, modelEmail, modelAddress,
+                          modelTags, modelMatric, modelReflection, modelStudio, scores);
     }
 
 }
