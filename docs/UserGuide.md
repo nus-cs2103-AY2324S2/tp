@@ -168,7 +168,7 @@ Format: `addMeeting clientIndex/CLIENT_INDEX dt/DATE_TIME d/DESCRIPTION`
 
 - `CLIENT_INDEX` refers to the index number shown in the displayed client list. The index **must be a positive integer** 1, 2, 3, …​.
 - `DATE_TIME` format should be `YYYY-MM-DD HH:MM`, e.g., `02-01-2025 12:00`.
-- `DESCRIPTION` refers to what the meeting is about. Format should be a string.
+- `DESCRIPTION` refers to what the meeting is about. Format should be a single string.
 
 Examples:
 
@@ -237,7 +237,7 @@ AddressBook data are saved in the hard disk automatically after any command that
 
 ### Editing the data file
 
-FinCliq data are saved automatically as a JSON file `[JAR file location]/data/fincliq.json`. Advanced users are welcome to update data directly by editing that data file.
+FinCliq data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, FinCliq will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
