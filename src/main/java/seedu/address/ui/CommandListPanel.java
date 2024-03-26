@@ -45,7 +45,8 @@ public class CommandListPanel extends UiPart<Region> {
                 new CommandInfo("view", "Views all consultations"),
                 new CommandInfo("update", "Updates a consultation"),
                 new CommandInfo("cancel", "Cancels a consultation"),
-                new CommandInfo("search", "Search a consultation")
+                new CommandInfo("search", "Search a consultation"),
+                new CommandInfo("theme", "Changes the current theme")
         );
 
         commandListView.setItems(commandList);
