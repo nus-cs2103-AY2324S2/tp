@@ -8,7 +8,6 @@ import static seedu.findvisor.logic.commands.CommandTestUtil.TAG_DESC_SET;
 import static seedu.findvisor.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.findvisor.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.findvisor.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.findvisor.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.findvisor.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 
 import org.junit.jupiter.api.Test;

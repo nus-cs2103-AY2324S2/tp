@@ -13,7 +13,6 @@ import static seedu.findvisor.logic.commands.CommandTestUtil.assertCommandSucces
 import static seedu.findvisor.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.findvisor.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.findvisor.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-
 import static seedu.findvisor.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
 import static seedu.findvisor.testutil.TypicalPersons.getTypicalAddressBook;
 
