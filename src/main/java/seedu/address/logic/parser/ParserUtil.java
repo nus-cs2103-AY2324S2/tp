@@ -46,7 +46,6 @@ public class ParserUtil {
         String[] indexArray = oneBasedIndexes.trim().split(" ");
         Index[] indexes = new Index[2];
 
-        System.out.println(indexArray.length);
         if (indexArray.length != 2) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkCommand.MESSAGE_USAGE));
         }
