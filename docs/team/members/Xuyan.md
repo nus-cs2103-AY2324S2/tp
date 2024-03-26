@@ -7,3 +7,4 @@ Sometimes the tasks were overdue or were not deliverable by the deadline.
 3. Another big challenge we faced was ineffective communication. When a new idea was brainstormed, it was not adequately articulated to other team members, 
 leading to unclear instructions and misunderstandings. 
 
+

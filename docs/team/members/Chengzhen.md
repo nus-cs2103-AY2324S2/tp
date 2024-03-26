@@ -7,3 +7,4 @@ Despite the complexity of this task, we tried to sift through the existing test 
 3. Moving forward, the focus shifted to incorporating new JUnit test cases for the additional functionalities introduced in version 1.2 of the Rainbow Dragon. 
 These test cases were meticulously crafted to validate the integrity and performance of the newly implemented features, thereby fortifying the overall quality of our product.
 
+
