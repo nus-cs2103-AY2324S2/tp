@@ -5,14 +5,27 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK;
 import static seedu.address.model.InternshipModel.PREDICATE_SHOW_ALL_INTERNSHIPS;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.InternshipMessages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.InternshipModel;
+import seedu.address.model.internship.ApplicationStatus;
+import seedu.address.model.internship.CompanyName;
+import seedu.address.model.internship.ContactEmail;
+import seedu.address.model.internship.ContactName;
+import seedu.address.model.internship.ContactNumber;
+import seedu.address.model.internship.Description;
 import seedu.address.model.internship.Internship;
+import seedu.address.model.internship.Location;
+import seedu.address.model.internship.Remark;
+import seedu.address.model.internship.Role;
 import seedu.address.model.internship.Task;
+import seedu.address.model.internship.TaskList;
 
 /**
  * Edits the details of an existing internship in the internship data.
@@ -58,9 +71,10 @@ public class InternshipAddTaskCommand extends InternshipCommand {
         }
 
         Internship internshipToAddTask = lastShownList.get(index.getZeroBased());
-        internshipToAddTask.addTask(task);
+        Internship internshipWithTask = createInternshipWithTask(internshipToAddTask, task);
 
-        model.setInternship(internshipToAddTask, internshipToAddTask);
+        model.setInternship(internshipToAddTask, internshipWithTask);
+        model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);
 
         return new CommandResult(String.format(MESSAGE_ADD_TASK_SUCCESS,
                 this.task));
@@ -88,5 +102,22 @@ public class InternshipAddTaskCommand extends InternshipCommand {
                 .add("index", index)
                 .add("task", task)
                 .toString();
+    }
+
+    /**
+     * Creates and returns a {@code Internship} with the details of {@code internshipToAddTask}
+     * edited with {@code internshipWithTaskDescriptor}.
+     */
+    private static Internship createInternshipWithTask(Internship internshipToAddTask, Task task) {
+        assert internshipToAddTask != null;
+        TaskList newTaskList = internshipToAddTask.getTaskList().copy();
+        newTaskList.addTask(task);
+
+        return new Internship(internshipToAddTask.getCompanyName(), internshipToAddTask.getContactName(),
+                internshipToAddTask.getContactEmail(), internshipToAddTask.getContactNumber(),
+                internshipToAddTask.getLocation(), internshipToAddTask.getApplicationStatus(),
+                internshipToAddTask.getDescription(), internshipToAddTask.getRole(),
+                internshipToAddTask.getRemark(),
+                newTaskList);
     }
 }

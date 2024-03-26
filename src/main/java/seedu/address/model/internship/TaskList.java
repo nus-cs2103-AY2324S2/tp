@@ -66,8 +66,22 @@ public class TaskList {
         return taskList.get(index - 1);
     }
 
+    /**
+     * Returns the size of the task list.
+     */
     public int getTaskListSize() {
         return taskList.size();
+    }
+
+    /**
+     * Returns a copy of the task list.
+     */
+    public TaskList copy() {
+        ArrayList<Task> copiedTaskList = new ArrayList<>();
+        for (Task task : taskList) {
+            copiedTaskList.add(task);
+        }
+        return new TaskList(copiedTaskList);
     }
 
     @Override
