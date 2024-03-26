@@ -55,4 +55,10 @@ public class ParameterSyntax {
             "must be a positive integer",
             "1"
     );
+
+    public static final Parameter PARAMETER_NUSNET_NOPREFIX = new Parameter(
+            "NUSNET",
+            null,
+            "e0123456"
+    );
 }
