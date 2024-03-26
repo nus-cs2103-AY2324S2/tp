@@ -11,7 +11,8 @@ import seedu.address.model.person.Score;
  */
 public class Exam {
 
-    public static final String MESSAGE_CONSTRAINTS = "Names should only contain alphanumeric characters and spaces, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Names should only contain alphanumeric characters and spaces, "
+                                                      + "and it should not be blank";
 
     /*
      * The first character of the name must not be a whitespace,
@@ -43,6 +44,10 @@ public class Exam {
         return maxScore;
     }
 
+    /**
+     * Returns true if both exams have the same name.
+     * This defines a weaker notion of equality between two exams.
+     */
     public boolean isSameExam(Exam otherExam) {
         if (otherExam == this) {
             return true;

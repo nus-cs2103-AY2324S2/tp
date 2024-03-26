@@ -2,7 +2,6 @@ package seedu.address.model;
 
 import java.nio.file.Path;
 import java.util.function.Predicate;
-import java.util.Optional;
 
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;

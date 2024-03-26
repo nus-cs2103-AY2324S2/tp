@@ -1,19 +1,24 @@
 package seedu.address.logic.commands;
 
-import seedu.address.logic.Messages;
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Model;
-import seedu.address.model.exam.Exam;
-import seedu.address.model.person.Score;
-import seedu.address.model.person.Person;
-
 import static seedu.address.commons.util.CollectionUtil.isAnyNonNull;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.Messages;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
+import seedu.address.model.exam.Exam;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Score;
+
+
+
+/**
+ * Adds a score to a person in the address book.
+ */
 public class AddScoreCommand extends Command {
 
     public static final String COMMAND_WORD = "addScore";
@@ -33,6 +38,9 @@ public class AddScoreCommand extends Command {
     private final Index targetIndex;
     private final Score score;
 
+    /**
+     * Creates an AddScoreCommand to add the specified {@code Score} to the person at the specified {@code Index}.
+     */
     public AddScoreCommand(Index targetIndex, Score score) {
         this.targetIndex = targetIndex;
         this.score = score;

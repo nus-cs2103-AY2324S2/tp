@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.nio.file.AccessDeniedException;
 import java.nio.file.Path;
 import java.util.logging.Logger;
-import java.util.Optional;
 
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;

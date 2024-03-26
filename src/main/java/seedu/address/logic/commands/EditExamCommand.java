@@ -105,7 +105,10 @@ public class EditExamCommand extends Command {
                 .toString();
     }
 
-
+    /**
+     * Stores the details to edit the exam with. Each non-empty field value will replace the
+     * corresponding field value of the exam.
+     */
     public static class EditExamDescriptor {
         private String name;
         private Score maxScore;

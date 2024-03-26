@@ -1,12 +1,13 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+
+import java.util.List;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.exam.Exam;
 
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-
-import java.util.List;
 
 /**
  * Selects an exam from the address book.
@@ -19,9 +20,10 @@ public class SelectExamCommand extends Command {
         + "Parameters: " + PREFIX_NAME + " NAME\n"
         + "Example: selectExam " + PREFIX_NAME + "Midterm";
 
+    private static final String MESSAGE_SUCCESS = "Exam selected: %1$s";
+    private static final String MESSAGE_EXAM_NOT_FOUND = "Exam not found";
+
     private final String targetExamName;
-    private final String MESSAGE_SUCCESS = "Exam selected: %1$s";
-    private final String MESSAGE_EXAM_NOT_FOUND = "Exam not found";
 
     /**
      * Creates a SelectExamCommand to select the specified {@code Exam}

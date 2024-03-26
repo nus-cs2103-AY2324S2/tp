@@ -1,9 +1,6 @@
 package seedu.address.ui;
 
 import java.util.Comparator;
-import java.util.Optional;
-
-import com.fasterxml.jackson.databind.deser.std.ObjectArrayDeserializer;
 
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
@@ -97,11 +94,11 @@ public class PersonCard extends UiPart<Region> {
         // Update exam score whenever updated
         Exam selectedExamValue = selectedExam.getValue();
         if (selectedExamValue != null) {
-             Score score = person.getScores().get(selectedExamValue);
-             if (score != null) {
-                 examScore.getChildren().add(new Label("Score: \n" + String.valueOf(score.getScore())));
-             }
-         }
+            Score score = person.getScores().get(selectedExamValue);
+            if (score != null) {
+                examScore.getChildren().add(new Label("Score: \n" + String.valueOf(score.getScore())));
+            }
+        }
 
 
         // Add a listener to the selectedExam observable to swtich scores whenever the selected exam changes

@@ -11,17 +11,27 @@ import javafx.collections.ObservableList;
 import seedu.address.model.exam.exceptions.DuplicateExamException;
 import seedu.address.model.exam.exceptions.ExamNotFoundException;
 
+/**
+ * A list of exams that enforces uniqueness between its elements and does not allow nulls.
+ */
 public class UniqueExamList implements Iterable<Exam> {
 
     private final ObservableList<Exam> internalList = FXCollections.observableArrayList();
     private final ObservableList<Exam> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
+    /**
+     * Returns true if the list contains an equivalent exam as the given argument.
+     */
     public boolean contains(Exam toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::equals);
     }
 
+    /**
+     * Adds an exam to the list.
+     * The exam must not already exist in the list.
+     */
     public void add(Exam toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
@@ -30,6 +40,9 @@ public class UniqueExamList implements Iterable<Exam> {
         internalList.add(toAdd);
     }
 
+    /**
+     * Replaces the exam {@code target} in the list with {@code editedExam}.
+     */
     public void setExam(Exam target, Exam editedExam) {
         requireAllNonNull(target, editedExam);
 
@@ -45,6 +58,10 @@ public class UniqueExamList implements Iterable<Exam> {
         internalList.set(index, editedExam);
     }
 
+    /**
+     * Removes the equivalent exam from the list.
+     * The exam must exist in the list.
+     */
     public void remove(Exam toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
@@ -52,6 +69,9 @@ public class UniqueExamList implements Iterable<Exam> {
         }
     }
 
+    /**
+     * Replaces the contents of this list with {@code exams}.
+     */
     public void setExams(UniqueExamList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
@@ -66,6 +86,9 @@ public class UniqueExamList implements Iterable<Exam> {
         internalList.setAll(exams);
     }
 
+    /**
+     * Returns the backing list as an unmodifiable {@code ObservableList}.
+     */
     public ObservableList<Exam> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
     }
@@ -99,6 +122,9 @@ public class UniqueExamList implements Iterable<Exam> {
         return internalList.toString();
     }
 
+    /**
+     * Returns true if the list contains only unique exams.
+     */
     private boolean examsAreUnique(List<Exam> exams) {
         for (int i = 0; i < exams.size() - 1; i++) {
             for (int j = i + 1; j < exams.size(); j++) {

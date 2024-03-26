@@ -8,6 +8,9 @@ import seedu.address.logic.commands.AddScoreCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Score;
 
+/**
+ * Parses input arguments and creates a new AddScoreCommand object
+ */
 public class AddScoreCommandParser implements Parser<AddScoreCommand> {
 
     /**
