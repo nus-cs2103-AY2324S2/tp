@@ -123,18 +123,24 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Id.class.getSimpleName()));
         }
 
-        double paymentValue;
-        try {
-            paymentValue = Double.parseDouble(payment);
-        } catch (NumberFormatException e) {
-            throw new IllegalValueException(Payment.MESSAGE_INVALID_PAYMENT);
+        if (payment == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Payment.class.getSimpleName()));
+        }
+
+        double paymentValue = 0.0;
+        if (payment != null) {
+            try {
+                paymentValue = Double.parseDouble(payment);
+            } catch (NumberFormatException e) {
+                throw new IllegalValueException(Payment.MESSAGE_INVALID_PAYMENT);
+            }
         }
 
         final Id modelId = new Id(uniqueId);
         final Subject modelSubject = new Subject(subject);
         final Address modelAddress = new Address(address);
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        final Payment modelPayment = new Payment(payment);
+        final Payment modelPayment = new Payment(paymentValue);
         return new Person(modelName, modelPhone, modelEmail, modelAddress,
                 modelTags, modelSubject, modelId, modelPayment);
     }

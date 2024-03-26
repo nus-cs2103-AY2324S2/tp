@@ -48,6 +48,7 @@ public class TypicalPersons {
             .withSubject(VALID_SUBJECT_AMY)
             .withUniqueId(getNextUniqueId())
             .withPayment(VALID_PAYMENT_AMY)
+            .withTags("friends")
             .build();
 
     public static final Person BENSON = new PersonBuilder()
@@ -59,6 +60,7 @@ public class TypicalPersons {
             .withSubject("Math")
             .withUniqueId(getNextUniqueId())
             .withPayment("0.0")
+            .withTags("friends")
             .build();
 
     public static final Person BOB = new PersonBuilder()
@@ -70,6 +72,7 @@ public class TypicalPersons {
             .withSubject(VALID_SUBJECT_BOB)
             .withUniqueId(getNextUniqueId())
             .withPayment(VALID_PAYMENT_BOB)
+            .withTags("friends")
             .build();
 
     public static final Person CARL = new PersonBuilder()
@@ -80,6 +83,7 @@ public class TypicalPersons {
             .withSubject("Science")
             .withUniqueId(getNextUniqueId())
             .withPayment("0.0")
+            .withTags("friends")
             .build();
 
     public static final Person DANIEL = new PersonBuilder()
@@ -91,6 +95,7 @@ public class TypicalPersons {
             .withSubject("History")
             .withUniqueId(getNextUniqueId())
             .withPayment("0.0")
+            .withTags("friends")
             .build();
 
     public static final Person ELLE = new PersonBuilder()
@@ -101,6 +106,7 @@ public class TypicalPersons {
             .withSubject("Geography")
             .withUniqueId(getNextUniqueId())
             .withPayment("0.0")
+            .withTags("friends")
             .build();
 
     public static final Person FIONA = new PersonBuilder()
@@ -111,6 +117,7 @@ public class TypicalPersons {
             .withSubject("Art")
             .withUniqueId(getNextUniqueId())
             .withPayment("0.0")
+            .withTags("friends")
             .build();
 
     public static final Person GEORGE = new PersonBuilder()
@@ -121,6 +128,7 @@ public class TypicalPersons {
             .withSubject("Physics")
             .withUniqueId(getNextUniqueId())
             .withPayment("0.0")
+            .withTags("friends")
             .build();
 
     // Manually added
@@ -132,6 +140,7 @@ public class TypicalPersons {
             .withSubject("Chemistry")
             .withUniqueId(getNextUniqueId())
             .withPayment("0.0")
+            .withTags("friends")
             .build();
 
     public static final Person IDA = new PersonBuilder()
@@ -142,6 +151,7 @@ public class TypicalPersons {
             .withSubject("Biology")
             .withUniqueId(getNextUniqueId())
             .withPayment("0.0")
+            .withTags("friends")
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
