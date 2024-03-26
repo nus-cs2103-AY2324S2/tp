@@ -19,6 +19,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Id;
 import seedu.address.model.person.Person;
+import seedu.address.ui.FakeConfirmationBox;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -29,7 +30,8 @@ public class DeleteCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
-    public void execute_validIdDeletion_success() {
+    public void execute_validIdDeletion_confirmed() {
+        FakeConfirmationBox confirmedBox = new FakeConfirmationBox(true);
         List<Person> lastShownList = model.getFilteredPersonList();
         Person personToDelete = null;
         for (Person person : lastShownList) {
@@ -37,7 +39,7 @@ public class DeleteCommandTest {
                 personToDelete = person;
             }
         }
-        DeleteCommand deleteCommand = new DeleteCommand(ID_FIRST_PERSON);
+        DeleteCommand deleteCommand = new DeleteCommand(ID_FIRST_PERSON, confirmedBox);
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
                 Messages.format(personToDelete));
@@ -46,6 +48,17 @@ public class DeleteCommandTest {
         expectedModel.deletePerson(personToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_validIdDeletion_cancelled() {
+        FakeConfirmationBox confirmedBox = new FakeConfirmationBox(false);
+
+        DeleteCommand deleteCommand = new DeleteCommand(ID_SECOND_PERSON, confirmedBox);
+
+        String expectedMessage = DeleteCommand.MESSAGE_DELETION_CANCELLED;
+
+        assertCommandFailure(deleteCommand, model, expectedMessage);
     }
 
     @Test
