@@ -4,17 +4,17 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-AddressBook *-right-> "1" UniqueCompanyList
-AddressBook *-right-> "1" UniqueTagList
+InternBook *-right-> "1" UniqueCompanyList
+InternBook *-right-> "1" UniqueTagList
 UniqueTagList -[hidden]down- UniqueCompanyList
 UniqueTagList -[hidden]down- UniqueCompanyList
 
 UniqueTagList -right-> "1.." Tag
 UniqueCompanyList -right-> Company
 
-Company -up-> Tag
+Company *-up-> Tag
 
 Company *--> Name
-Company *--> "0..1"Phone
+Company --> "0..1"Phone
 Company *--> Email
 @enduml
