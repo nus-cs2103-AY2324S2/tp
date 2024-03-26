@@ -16,6 +16,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Commission;
+import seedu.address.model.person.DeadlineNote;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Employment;
 import seedu.address.model.person.Name;
@@ -50,6 +51,11 @@ public class ParserUtilTest {
     private static final String VALID_COMMISSION = "$20/hr";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
+    private static final String INVALID_NOTE = "";
+    private static final String VALID_DEADLINE = "2019-10-10";
+    private static final String VALID_NOTE = "kind doggos";
+    private static final String INVALID_DEADLINE = "2019";
+
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -347,5 +353,29 @@ public class ParserUtilTest {
         Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    @Test
+    public void parseDeadline_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil
+                .parseDeadlineNote("valid", null));
+    }
+
+    @Test
+    public void parseDeadline_invalidNote_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDeadlineNote(INVALID_NOTE,
+                VALID_DEADLINE));
+    }
+
+    @Test
+    public void parseDeadline_invalidDeadline_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDeadlineNote(VALID_NOTE,
+                INVALID_DEADLINE));
+    }
+
+    @Test
+    public void parseDeadline_validValueWithoutWhitespace_returnsDeadline() throws Exception {
+        DeadlineNote expectedDeadlineNote = new DeadlineNote(VALID_NOTE, VALID_DEADLINE);
+        assertEquals(expectedDeadlineNote, ParserUtil.parseDeadlineNote(VALID_NOTE, VALID_DEADLINE));
     }
 }
