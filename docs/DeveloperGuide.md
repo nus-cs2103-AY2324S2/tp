@@ -212,16 +212,51 @@ The `Model` component,
 **API
 ** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
+Below is an updated UML class diagram illustrating the relationships and interactions among the various storage-related
+classes:
+
 <img src="images/StorageClassDiagram.png" width="550" />
 
-The `Storage` component,
+The `Storage` component of our application is responsible for handling the reading and writing of data to and from
+external storage sources.
+This includes functionalities such as saving and retrieving addressbook data and user preferences.
+In this section, we will delve into the recent enhancements made to the `Storage` component, focusing on the
+implementation of storing clients and order details.
 
-* can save both address book data and user preference data in JSON format, and read them back into corresponding
-  objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only
-  the functionality of only one is needed).
-* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects
-  that belong to the `Model`)
+In this enhancement, the `Storage` component has been extended to support the storage and retrieval of both client and
+order details.
+Previously, the `Storage` component was primarily designed to handle address book data and user preferences. However,
+with the growing requirements of our application, it becomes necessary to accommodate the storage of clients and orders.
+
+#### Implementation Details:
+
+To implement this feature, several modifications were made across different classes within the `Storage` package. The
+key changes include:
+
+1. New Classes: The introduction of `JsonAdaptedClient` and `JsonAdaptedOrder` classes to facilitate the conversion
+   between JSON format and the corresponding model objects (`Client` and `Order`).
+
+2. Updated Interfaces: The `AddressBookStorage` interface was extended to included methods for reading and writing
+   orders. Similarly, the `Storage` interface, which serves as an umbrella for all storage-related functionalities,
+   was update to incorporate these changes.
+
+3. Storage Manager: The `StorageManager` class, which orchestrates the storage operations, was modified to delegate the
+   handling of client and order data to the appropriate storage classes.
+
+4. Unit Tests: Unit tests were added or updated to ensure the correctness and robustness of the new functionalities.
+
+#### Why it is implemented that way:
+
+With the implementation of storing clients and orders details, the `Storage` component of our application has been
+enhanced to better meet the evolving needs of our users. These changes not only improve the functionality of our
+application but also lay the groundwork for future enhancements and features.
+
+Future plans may involve further optimizing the storage mechanisms, exploring alternative storage formats, or
+integrating additional data validation checks to ensure data integrity. Overall, the recent enhancements to
+the `Storage` component
+mark a significant step forward in enhancing the robustness and flexibility of our application.
+
+--------------------------------------------------------------------------------------------------------------------
 
 ### Common classes
 
