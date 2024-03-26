@@ -305,6 +305,7 @@ Format: `/undo`
 * There is no field required for this command.<br>
 * Any unnecessary parameter or value after /undo will simply be ignored.<br>
 * This command can only be executed when at least one changes have been made.<br>
+</div> 
 
 ### Redo a command : `redo`
 
