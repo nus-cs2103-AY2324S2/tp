@@ -1,0 +1,15 @@
+# For more configuration details:
+# https://docs.codecov.io/docs/codecov-yaml
+
+# Coverage Config
+# ----------------------
+coverage:
+  range: 70..90
+  round: down
+  precision: 4
+
+# Ignoring Paths and Files
+# --------------
+ignore:
+  - "src/main/java/seedu/address/ui"
+  - "src/main/java/seedu/address/MainApp.java"
