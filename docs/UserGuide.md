@@ -17,15 +17,15 @@ Eventy is a contact management application, tailored specifically for student ev
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `eventy.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+2. Download the latest `eventy.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your Eventy.
+3. Copy the file to the folder you want to use as the _home folder_ for your Eventy.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar eventy.jar` command to run the application.<br>
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar eventy.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Refer to the [Features](#features) below for details of each command.
+5. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -33,7 +33,7 @@ Eventy is a contact management application, tailored specifically for student ev
 
 ### Creating an event: `addev`
 
-**Format:** `addev ev/<event name>`
+**Format:** `addev ev/ <event name>`
 
 **Description:**
 
@@ -49,7 +49,8 @@ Adds a new event with the specified name for the Event List.
 
 **Examples:**
 
-- `addev ev/Orientation camp` adds a new event with the name `Orientation camp`.
+- `addev ev/ Orientation camp` adds a new event with the name `Orientation camp`.
+
 
 ### Deleting an event: `delev`
 
@@ -72,7 +73,7 @@ Deletes an event and all its relevant information with its index in the event li
 
 ### Adding participant and their information to the global participant list: `addp`
 
-**Format:** `addp n/<participant name> p/<phone number> e/<email>`
+**Format:** `addp n/ <participant name> p/ <phone number> e/ <email> a/ <address> t/ <tags>`
 
 **Description:**
 
@@ -86,47 +87,8 @@ Adds a new participant to the app, allowing them to be added to an event later.
 
 **Examples:**
 
-- `addp n/David p/98987676 e/david@example.com` adds a participant named `David`
+- `addp n/David p/98987676 e/david@example.com a/ NUS t/ student` adds a participant named `David`
   with the phone number `98987676` and email of `david@example.com` to the displayed contacts list.
-
-### Invite person to selected event: `inv`
-
-**Format:** `inv <participant index>`
-
-**Description:**
-
-Invite participants from the global participant list to the selected event.
-
-**Caution:**
-
-* `<participant index>` should be within valid range of global participants
-* Duplicate participants is **not allowed.**
-
-**Examples:**
-
-- `inv 5` Adds participant indexed 5 to selected event.
-
-### Clearing all entries : `clear`
-
-Clears all entries from the address book.
-
-Format: `clear`
-
-### Edit existing participant: `editp`
-
-**Format:** `editp <participant index> n/<participant name> p/<phone number> e/<email>`
-
-**Description:**
-
-Updates the contact information of a participant in the app.
-
-**Caution:**
-
-* `<participant index>` should be within valid range of global participants
-
-**Examples:**
-
-- `editp 5 n/Max p/00000000 e/test@gmail.com` Edits contact details of participant indexed 5.
 
 ### Selecting an event: `sel`
 
@@ -185,13 +147,52 @@ Deselects the selected event and returns to the global participant list.
 - When no event is selected, `delp 9` deletes the 9th participant completely.
 - `delp 9` after `sel 3` removes the 9th participant from the 3rd event's participant list.
 
+### Edit existing participant: `editp`
+
+**Format:** `editp <participant index> n/ <participant name> p/ <phone number> e/ <email>`
+
+**Description:**
+
+Updates the contact information of a participant in the app.
+
+**Caution:**
+
+* `<participant index>` should be within valid range of global participants
+
+**Examples:**
+
+- `editp 5 n/ Max p/ 00000000 e/ test@gmail.com` Edits contact details of participant indexed 5.
+  
+### Invite person to selected event: `inv`
+
+**Format:** `inv <participant index>`
+
+**Description:**
+
+Invite participants from the global participant list to the selected event.
+
+**Caution:**
+
+* `<participant index>` should be within valid range of global participants
+* Duplicate participants is **not allowed.**
+
+**Examples:**
+
+- `inv 5` Adds participant indexed 5 to selected event.
+  
+### Clearing all entries : `clear`
+
+Clears all entries from the address book.
+
+Format: `clear`
+
 ### Locating persons by name: `find`
 
 Finds persons whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
+* The search is case-insensitive. e.g. `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
@@ -203,12 +204,6 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Listing all persons : `list`
-
-Shows a list of all persons in the address book.
-
-Format: `list`
-
 ### Viewing help : `help`
 
 Shows a message explaining how to access the help page.
@@ -217,31 +212,17 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
+### Listing all persons : `list`
+
+Shows a list of all persons in the address book.
+
+Format: `list`
+
 ### Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
-
-### Saving the data
-
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
-### Editing the data file
-
-AddressBook data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
-
-
-
-**Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
-Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
-</box>
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -259,12 +240,19 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action     | Format, Examples
------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add Event**    | `addev ev/<event name>` <br> e.g., `addev ev/Orientation camp`
-**Delete Event**    | `delev <index>` <br> e.g., `delev 1`
-**Add Participant**    | `addp n/<participant name> p/<phone number> e/<email>` <br> e.g., `addp n/David p/98987676 e/david@example.com`
-**Invite to Event**    | `inv INDEX` <br> e.g., `invite 5`
-**Edit Participant**    | `editp <participant index> n/<participant name> p/<phone number> e/<email>` <br> e.g., `editp 5 n/Max p/00000000 e/test@gmail.com`
-**Select Event**    | `sel <event index>` <br> e.g., `sel 3`
-**Delete Participant**    | `delp <index>` <br> e.g., `delp 2`
+| Action                                      | Format, Examples                                                                                                      |
+|---------------------------------------------|-----------------------------------------------------------------------------------------------------------------------|
+| **Add Event**                               | `addev ev/ <event name>` <br> e.g., `addev ev/ Orientation camp`                                                      |
+| **Delete Event**                            | `delev <index>` <br> e.g., `delev 1`                                                                                  |
+| **Add Participant**                         | `addp n/ <participant name> p/ <phone number> e/ <email>` <br> e.g., `addp n/ David p/ 98987676 e/ david@example.com` |
+| **Selecting Event**                         | `sel <event index>` <br> e.g., `sel                                                                                   |
+| **Deselecting Event**                       | `desel` deselect the current selected event                                                                           |
+| **Deleting a participant from global list** | `del 3` delete the 3rd participant from the global participant list                                                   |
+| **Deleting a participant from an event**    | `del 3` delete the 3rd participant from event list of selected event                                                  |
+| **Edit existing participant**               | `editp 5 n/ Max p/ 00000000 e/ test@gmail.com` Edits contact details of participant indexed 5                         |
+| **Invite person to selected event**         | `inv 5` Adds participant indexed 5 to selected event                                                                  |
+| **Locating persons by name**                | `find John` returns `john` and `John Doe`                                                                             |
+| **Clear all entries**                       | `clear` clear all entries from eventy                                                                                 |
+| **Viewing help**                            | `help` Shows a message explaining how to access the help page                                                         |
+| **Listing all persons**                     | `list` Shows a list of all persons in the address book.                                                               |
+| **Exiting the program**                     | `exit` Exits the program                                                                                              |
