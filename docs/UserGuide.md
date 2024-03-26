@@ -345,12 +345,21 @@ Edit the medical information of an existing person.
 
 Format: `editm ic/NRIC h/HEIGHT w/WEIGHT [ot/ALLERGY] [at/ALLERGY]…​`
 
-Prefix explanation: 
+* All fields are optional field but at least one should be present.
+* There should only be one field `ot`.
 
-- `ot/` overwrite all existing tag with this tag, only one can be present in each command.
-- `at/` append this tag to existing tag.
+Prefix explanation:
+- `ot/ALLERGY` overwrite all existing tag with this tag.
+- `at/ALLERGY` append this tag to existing tag.
 
-hint: user may use `ot/sampleTag` followed by wanted numbers of `at/newTag` 
+Example:
+* `editm ic/G1234567J w/100, ot/peanut at/milk at/egg`
+
+This will change the weight of person with ic G1234567J to 100 and
+overwrite allergy tag to peanut, milk and egg.
+
+**Hint:**
+User may use `ot/FirstTag` followed by wanted numbers of `at/moreTag` 
 to overwrite current tag with a series of new tag. 
 
 > [!CAUTION]
