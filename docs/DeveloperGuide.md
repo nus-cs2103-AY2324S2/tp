@@ -361,6 +361,8 @@ The `DeleteLoanCommandParser` class does not contain any fields.
 
 Sequence diagram for the deletion of a loan:
 
+![DeleteLoanSequenceDiagram](images/DeleteLoanSequenceDiagram.png)
+
 #### Design considerations:
 ##### Aspect: How the command is executed:
 * **Alternative 1 (current choice):** The `DeleteLoanCommand` class is responsible for executing the command only.
