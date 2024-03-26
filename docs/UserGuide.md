@@ -54,8 +54,8 @@ This guide explains how you can use TeachStack to manage weaker students. It wil
 ## Terminologies / Symbols
 
 Extra information are given in boxes:
-* :information_source: denotes additional information
-* :exclamation: denotes warning that can cause error
+* <div markdown="block" class="alert alert-info">:information_source: denotes additional information</div>
+* <div markdown="block" class="alert alert-info">:exclamation: denotes warning that can cause error</div>
 
 The explanation of each command will be formatted in the following convention
 1. What the command does
