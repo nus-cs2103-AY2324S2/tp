@@ -25,10 +25,6 @@ public class InternshipAddTaskCommandParser implements InternshipParser<Internsh
 
         Index index;
 
-        if (argMultimap.getValue(PREFIX_TASK).isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    InternshipAddTaskCommand.MESSAGE_EMPTY_TASK));
-        }
 
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
@@ -36,6 +32,12 @@ public class InternshipAddTaskCommandParser implements InternshipParser<Internsh
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     InternshipAddTaskCommand.MESSAGE_USAGE), pe);
         }
+
+        if (argMultimap.getValue(PREFIX_TASK).isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    InternshipAddTaskCommand.MESSAGE_EMPTY_TASK));
+        }
+
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_TASK);
 

@@ -10,6 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -46,6 +47,7 @@ public class InternshipCommandTestUtil {
     public static final String VALID_APPLICATION_STATUS_BOB = "Pending";
     public static final String VALID_REMARK_AMY = "3 Leetcode questions";
     public static final String VALID_REMARK_BOB = "Has a behavioural interview";
+    public static final String VALID_TASK_AMY = "Sample task";
 
     public static final String COMPANY_NAME_DESC_AMY = " " + PREFIX_COMPANY + VALID_COMPANY_NAME_AMY;
     public static final String COMPANY_NAME_DESC_BOB = " " + PREFIX_COMPANY + VALID_COMPANY_NAME_BOB;
@@ -64,6 +66,7 @@ public class InternshipCommandTestUtil {
     public static final String APPLICATION_STATUS_DESC_AMY = " " + PREFIX_STATUS + VALID_APPLICATION_STATUS_AMY;
     public static final String APPLICATION_STATUS_DESC_BOB = " " + PREFIX_STATUS + VALID_APPLICATION_STATUS_BOB;
 
+    public static final String TASK_DESC_AMY = " " + PREFIX_TASK + VALID_TASK_AMY;
     public static final String INVALID_COMPANY_NAME_DESC = " " + PREFIX_COMPANY + "Google&";
     // '&' not allowed in names
     public static final String INVALID_LOCATION_DESC = " " + PREFIX_LOCATION + "Mountain View";
