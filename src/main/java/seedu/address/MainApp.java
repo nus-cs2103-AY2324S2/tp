@@ -149,18 +149,22 @@ public class MainApp extends Application {
         return initializedPrefs;
     }
 
-    @Override
-    public void start(Stage primaryStage) {
-        logger.info("Starting AddressBook " + MainApp.VERSION);
-        ui.start(primaryStage);
+    private void showWarningMsgIfLoadNotSuccessful() {
         if (!isStorageLoadSuccessful) {
             final String dataLoadingWarning =
                     "Data file at " + storage.getAddressBookFilePath() + " could not be loaded.\n"
                     + "Will be starting with an empty AddressBook.\n"
-                    + "Entering a command will override the old data file.";
+                    + "Entering a command may override the old data file.";
             logger.warning(dataLoadingWarning);
             ui.showMessage("WARNING: " + dataLoadingWarning);
         }
+    }
+
+    @Override
+    public void start(Stage primaryStage) {
+        logger.info("Starting AddressBook " + MainApp.VERSION);
+        ui.start(primaryStage);
+        showWarningMsgIfLoadNotSuccessful();
     }
 
     @Override
