@@ -37,9 +37,9 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
 
-        filteredVolunteers = new FilteredList<>(this.addressBook.getPersonList(), person -> person.isVolunteer());
+        filteredVolunteers = new FilteredList<>(this.addressBook.getPersonList(), Person::isVolunteer);
 
-        filteredBefriendees = new FilteredList<>(this.addressBook.getPersonList(), person -> !(person.isVolunteer()));
+        filteredBefriendees = new FilteredList<>(this.addressBook.getPersonList(), Person::isBefriendee);
     }
 
     public ModelManager() {
@@ -147,7 +147,25 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
         filteredVolunteers.setPredicate(person -> predicate.test(person) && person.isVolunteer());
-        filteredBefriendees.setPredicate(person -> predicate.test(person) && !(person.isVolunteer()));
+        filteredBefriendees.setPredicate(person -> predicate.test(person) && person.isBefriendee());
+    }
+
+    @Override
+    public void updateFilteredVolunteerList(Predicate<Person> predicate) {
+        requireNonNull(predicate);
+
+        // Only apply predicate to volunteers
+        filteredPersons.setPredicate(person -> person.isBefriendee() || predicate.test(person));
+        filteredVolunteers.setPredicate(person -> predicate.test(person) && person.isVolunteer());
+    }
+
+    @Override
+    public void updateFilteredBefriendeeList(Predicate<Person> predicate) {
+        requireNonNull(predicate);
+
+        // Only apply predicate to befriendees
+        filteredPersons.setPredicate(person -> predicate.test(person) || person.isVolunteer());
+        filteredBefriendees.setPredicate(person -> predicate.test(person) && person.isBefriendee());
     }
 
     @Override

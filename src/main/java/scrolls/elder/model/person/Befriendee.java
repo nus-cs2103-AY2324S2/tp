@@ -21,6 +21,12 @@ public class Befriendee extends Person {
     }
 
     @Override
+    public boolean isBefriendee() {
+        return true;
+    }
+
+
+    @Override
     public Role getRole() {
         return this.role;
     }

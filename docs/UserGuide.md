@@ -140,19 +140,25 @@ Examples:
 
 #### Locating persons by name: `find`
 
-Finds persons whose names contain any of the given keywords.
+Find all persons whose names contain any of the given keywords. The find command also supports searches in the two
+separate Volunteer and Befriendee lists, if the role is specified. The order where the role is specified does not matter.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find [r/ROLE] KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* The search is case-insensitive. The order of the keywords also does not matter. e.g. `hans bo` will match `Bo Hans`
+* If the role is specified, the search will be limited to the specified respective List. The other list remains unaffected.
 * Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
+<div markdown="span" class="alert alert-primary">:bulb: **Pro-Tip:**
+Use the `list` command to reset your view after using the `find` command.
+</div>
+
 Examples:
 * `find John` returns `john` and `John Doe`
+* `find r/volunteer John` returns only the `John Doe` present in the volunteer list. 
 * `find alex david` returns: <br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
