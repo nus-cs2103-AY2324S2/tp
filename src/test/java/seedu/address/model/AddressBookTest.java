@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -229,6 +230,31 @@ public class AddressBookTest {
 
         // Check if invoking getExistingRelationship with the non-existing relationship throws an exception
         assertThrows(IllegalArgumentException.class, () -> addressBook.getExistingRelationship(testRelationship));
+    }
+
+    @Test
+    public void hashCode_sameObject_equals() {
+        AddressBook addressBook1 = new AddressBook();
+        addressBook1.addPerson(ALICE);
+        addressBook1.addPerson(HOON);
+
+        AddressBook addressBook2 = new AddressBook();
+        addressBook2.addPerson(ALICE);
+        addressBook2.addPerson(HOON);
+
+        assertEquals(addressBook1.hashCode(), addressBook2.hashCode());
+    }
+
+    @Test
+    public void hashCode_differentObject_notEquals() {
+        AddressBook addressBook1 = new AddressBook();
+        addressBook1.addPerson(ALICE);
+        addressBook1.addPerson(HOON);
+
+        AddressBook addressBook2 = new AddressBook();
+        addressBook2.addPerson(CAT);
+
+        assertNotEquals(addressBook1.hashCode(), addressBook2.hashCode());
     }
 
     @Test
