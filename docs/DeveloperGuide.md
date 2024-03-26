@@ -219,6 +219,34 @@ How a `view` command is executed.
    3. The `LogicManager` executes the command and generates a `CommandResult`.
 4. `MainWindow` creates a `CommandBox` with the resulting command output, allowing the user to view a contact's information.
 
+### Delete command
+
+This section describes how the delete command works and is implemented.
+
+The Sequence and Activity UML diagrams belows shows the objects created as well as their interactions (e.g. method calls) when the delete command is activated.
+
+#### Sequence Diagram
+
+<img src="images/DeleteSequenceDiagram.png" width="550"/>
+
+#### Activity Diagram
+
+<img src="images/DeleteActivityDiagram.png" width="550"/>
+
+How a `delete` command is executed.
+1. User Input Parsing
+   1. When the user enters a command, it is first parsed by the `AddressBookParser`.
+   2. The `parseCommand(String userInput)` method in `AddressBookParser` splits the user input into the command word and arguments using a regular expression.
+   3. If the command word matches "del", the parsing is delegated to the `DeleteCommandParser`.
+2. Delete Command Parsing:
+   1. The `DeleteCommandParser` expects the arguments to contain an index, which represents the position of the client to delete in the list.
+   2. The `parse(String args)` method in `DeleteCommandParser` parses the index from the arguments using `ParserUtil.parseIndex(args)`.
+3. Command Execution
+   1. Once the index is parsed successfully, a new `DeleteCommand` object is created with the parsed index.
+   2. The `DeleteCommand` Object is returned to the `AddressBookParser` and then to the `LogicManager`.
+   3. The `LogicManager` executes the command and generates a `CommandResult`.
+4. `MainWindow` creates a `CommandBox` with the resulting command output, deleting the client at the specified index from the Address Book.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
