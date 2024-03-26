@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.person.Note;
 import seedu.address.model.person.Person;
 
 /**
@@ -126,6 +127,48 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    //=========== Note Panel ================================================================================
+
+    @Override
+    public Note getDisplayNote() {
+        return addressBook.getDisplayNote();
+    }
+
+    @Override
+    public void setDisplayNote(Note note) {
+        requireNonNull(note);
+        addressBook.setDisplayNote(note);
+    }
+
+    @Override
+    public void setDisplayNote(Person person) {
+        requireNonNull(person);
+        Note displayNote = person.getNote();
+        setDisplayNote(displayNote);
+    }
+
+    /**
+     * Sets the display note to the first filtered person.
+     * If there is no filtered person, displayed note is unchanged.
+     */
+    @Override
+    public void setDisplayNoteAsFirstFilteredPerson() {
+        if (filteredPersons.isEmpty()) {
+            logger.warning("No person to display note for.");
+            return;
+        }
+        Person person = filteredPersons.get(0);
+        setDisplayNote(person);
+    }
+
+    /**
+     * Clears the note panel display.
+     */
+    @Override
+    public void clearDisplayNote() {
+        addressBook.clearDisplayNote();
     }
 
     @Override

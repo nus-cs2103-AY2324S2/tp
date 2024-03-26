@@ -56,8 +56,9 @@
           </VBox>
 
           <StackPane fx:id="patientDetails" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
-            <VBox alignment="CENTER">
-            </VBox>
+<!--            <VBox alignment="CENTER">-->
+<!--            </VBox>-->
+            <StackPane fx:id="patientDetailsPlaceholder" VBox.vgrow="ALWAYS"/>
           </StackPane>
         </SplitPane>
 

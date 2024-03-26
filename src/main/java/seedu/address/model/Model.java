@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.person.Note;
 import seedu.address.model.person.Person;
 
 /**
@@ -84,4 +85,24 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    Note getDisplayNote();
+
+    void setDisplayNote(Person person);
+
+    /**
+     * Replaces the note that is displayed in the note panel.
+     */
+    void setDisplayNote(Note note);
+
+    /**
+     * Sets the display note to the first filtered person.
+     * If there is no filtered person, displayed note is unchanged.
+     */
+    void setDisplayNoteAsFirstFilteredPerson();
+
+    /**
+     * Clears the note panel display.
+     */
+    void clearDisplayNote();
 }
