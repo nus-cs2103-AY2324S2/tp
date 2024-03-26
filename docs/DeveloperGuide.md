@@ -295,9 +295,11 @@ The following activity diagram summarizes what happens when a user executes a ne
     * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
     * Cons: We must ensure that the implementation of each individual command are correct.
 
-_{more aspects and alternatives to be added}_
+_{more aspects and alternatives to be added}
 
-### Loan Analytics
+## Enhancements Added
+
+### Loan Analytics - Joseph
 
 #### Implementation
 The `Analytics` class handles the analysis of a `LoanRecords` object. This class can only be instantiated by calling the
@@ -334,6 +336,49 @@ It contains the following fields that can prove to be useful for the user:
 * **Alternative 2:** Include only raw data (e.g. total number of loans, total value of all loans).
     * Pros: No redundant information.
     * Cons: GUI developer has to calculate the analytics themselves, violating 'ask, don't tell' principle.
+
+
+### Delete Loan - Xiaorui
+
+#### Implementation
+
+The `DeleteLoanCommand` class handles the deletion of a loan from a contact, and executes the command after the input is parsed and transformed into an appropriate format.
+The parsing of the command is done by the `DeleteLoanCommandParser` class, which is responsible for parsing the user 
+input. 
+
+The `DeleteLoanCommand` class is instantiated in the `DeleteLoanCommandParser` class, while the 
+`DeleteLoanCommandParser` is instantiated in the `AddressBookParser` class. Both classes are instantiated when the user
+enters a `deleteloan` command, which needs to be of the format `deleteloan INDEX l/LOAN_INDEX`
+where INDEX is the index of the person and LOAN_INDEX is the index of the loan to be deleted, both of
+which are positive whole numbers.
+
+The `DeleteLoanCommand` class contains the following fields which can prove to be useful for the user:
+* `personIndex`: the index of the person whose loan is to be deleted
+* `loanIndex`: the index of the loan to be deleted
+* Several string fields that are displayed to the user under different scenarios.
+
+The `DeleteLoanCommandParser` class does not contain any fields.
+
+Sequence diagram for the deletion of a loan:
+
+#### Design considerations:
+##### Aspect: How the command is executed:
+* **Alternative 1 (current choice):** The `DeleteLoanCommand` class is responsible for executing the command only.
+    * Pros: Follows the Single Responsibility Principle. Simpler to debug.
+    * Cons: May result in more classes.
+* **Alternative 2:** The `LogicManager` class is responsible for executing the command.
+    * Pros: More centralized command execution.
+    * Cons: May result in the `LogicManager` class becoming too large. This also goes against various SWE principles, 
+  and makes the code harder to maintain.
+
+##### Aspect: How the command is parsed:
+* **Alternative 1 (current choice):** The `DeleteLoanCommandParser` class is responsible for parsing the command.
+    * Pros: Follows the Single Responsibility Principle. Simpler to debug.
+    * Cons: May result in more classes.
+* **Alternative 2:** The `AddressBookParser` class is responsible for parsing the command.
+    * Pros: More centralized command parsing.
+    * Cons: May result in the `AddressBookParser` class becoming too large. This also goes against various SWE principles,
+      and makes the code harder to maintain.
 
 --------------------------------------------------------------------------------------------------------------------
 
