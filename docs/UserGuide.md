@@ -193,7 +193,7 @@ Example:
 
 Edits an existing meeting for a client.
 
-Format: `editMeeting clientIndex/CLIENT_INDEX meetingIndex/MEETING_INDEX n/DESCRIPTION d/DATE_TIME`
+Format: `editMeeting clientIndex/CLIENT_INDEX meetingIndex/MEETING_INDEX n/DESCRIPTION dt/DATE_TIME`
 
 - Edits the meeting specified by `MEETING_INDEX` for the client specified by `CLIENT_INDEX`. Both indexes must be positive integers 1, 2, 3, …​.
 - At least one of the optional fields must be provided.
@@ -286,7 +286,7 @@ To keep track of your clients/meetings, you can follow the various commands in t
 
 | Action     | Format, Examples                                                                                                                                                                       |
 |------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `addMeeting clientIndex/CLIENT_INDEX dt/DATE_TIME d/DESCRIPTION`<br>e.g., `addMeeting client/1 dt/02-01-2025 12:00 d/Sign life plan`                                                   |
+| **Add**    | `addMeeting clientIndex/CLIENT_INDEX dt/DATE_TIME d/DESCRIPTION`<br>e.g., `addMeeting clientIndex/1 dt/02-01-2025 12:00 d/Sign life plan`                                              |
 | **List**   | `view c CLIENT_INDEX`<br>e.g., `view c 2`                                                                                                                                              |
 | **Edit**   | `editMeeting clientIndex/CLIENT_INDEX meetingIndex/MEETING_INDEX n/DESCRIPTION d/DATE_TIME`<br>e.g.,`editMeeting clientIndex/1 meetingIndex/2 n/starbucks meeting dt/01-01-2024 12:00` |
 | **Delete** | `deleteMeeting clientIndex/CLIENT_INDEX meetingIndex/MEETING_INDEX`<br>e.g., `deleteMeeting clientIndex/2 meetingIndex/1`                                                              |
