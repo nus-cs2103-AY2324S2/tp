@@ -16,6 +16,8 @@ import seedu.address.model.person.Person;
 public class PersonListPanel extends UiPart<Region> {
     private static final String FXML = "PersonListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
+    private int selectedIndex = -1;
+    private boolean isFullView = false;
 
     @FXML
     private ListView<Person> personListView;
@@ -27,6 +29,17 @@ public class PersonListPanel extends UiPart<Region> {
         super(FXML);
         personListView.setItems(personList);
         personListView.setCellFactory(listView -> new PersonListViewCell());
+        personListView.setOnMousePressed(event -> {
+            // If the same person is selected, toggle between full view and normal view
+            if (selectedIndex == personListView.getSelectionModel().getSelectedIndex()) {
+                isFullView = !isFullView;
+            } else {
+                isFullView = true;
+            }
+            System.out.println(isFullView);
+            selectedIndex = personListView.getSelectionModel().getSelectedIndex();
+            personListView.refresh();
+        });
     }
 
     /**
@@ -41,7 +54,8 @@ public class PersonListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new PersonCard(person, getIndex() + 1).getRoot());
+                setGraphic(new PersonCard(person, getIndex() + 1,
+                    getIndex() == selectedIndex && isFullView).getRoot());
             }
         }
     }

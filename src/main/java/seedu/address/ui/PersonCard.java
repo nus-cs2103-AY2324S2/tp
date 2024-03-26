@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import seedu.address.model.person.Person;
 
 
@@ -30,42 +31,37 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
+    private VBox vBox;
+    @FXML
     private Label name;
     @FXML
     private Label id;
     @FXML
-    private Label phone;
-    @FXML
-    private Label address;
-    @FXML
-    private Label sex;
-    @FXML
-    private Label employmentType;
-    @FXML
-    private Label hoursWorked;
-    @FXML
-    private Label bankDetails;
-    @FXML
     private FlowPane tags;
-
+    @FXML
+    private Label phone;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public PersonCard(Person person, int displayedIndex) {
+    public PersonCard(Person person, int displayedIndex, boolean isFullView) {
         super(FXML);
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().value);
         phone.setText(person.getPhone().value);
-        sex.setText(getFullSexString(person.getSex().value));
-        employmentType.setText(getFullEmploymentTypeString(person.getEmploymentType().value));
-        address.setText(person.getAddress().value);
-        bankDetails.setText(person.getBankDetails().value);
-        hoursWorked.setText(person.getWorkHours().toString());
         person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+            .sorted(Comparator.comparing(tag -> tag.tagName))
+            .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+
+        if (isFullView) {
+            Label sex = new Label(getFullSexString(person.getSex().value));
+            Label employmentType = new Label(getFullEmploymentTypeString(person.getEmploymentType().value));
+            Label address = new Label(person.getAddress().value);
+            Label bankDetails = new Label(person.getBankDetails().value);
+            Label hoursWorked = new Label(person.getWorkHours().toString());
+            vBox.getChildren().addAll(new Label[]{sex, employmentType, address, bankDetails, hoursWorked});
+        }
     }
 
     /**
