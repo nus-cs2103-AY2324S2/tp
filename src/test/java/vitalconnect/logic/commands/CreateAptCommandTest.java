@@ -1,8 +1,10 @@
 package vitalconnect.logic.commands;
 
+import static vitalconnect.logic.Messages.MESSAGE_PERSON_NOT_FOUND;
 import static vitalconnect.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
@@ -12,6 +14,8 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import vitalconnect.commons.core.GuiSettings;
 import vitalconnect.logic.commands.exceptions.CommandException;
+import vitalconnect.logic.parser.ParserUtil;
+import vitalconnect.logic.parser.exceptions.ParseException;
 import vitalconnect.model.Appointment;
 import vitalconnect.model.Model;
 import vitalconnect.model.ReadOnlyClinic;
@@ -31,16 +35,14 @@ import vitalconnect.model.person.medicalinformation.MedicalInformation;
 public class CreateAptCommandTest {
 
     @Test
-    public void execute_icNotExist_throwsCommandException() {
+    public void execute_icNotExist_throwsCommandException() throws ParseException {
         ModelStub modelStub = new ModelStubWithoutPerson();
-        String patientIc = "S1222222D";
-        String dateTimeStr = "02/02/2024 1330";
+        Nric patientIc = new Nric("S4848058F");
+        LocalDateTime dateTimeStr = ParserUtil.parseTime("02/02/2024 1330");
         CreateAptCommand createAptCommand = new CreateAptCommand(patientIc, dateTimeStr);
 
         assertThrows(CommandException.class,
-                "OOPS! The appointment cannot be created as the NRIC does not exist.", (
-
-                ) -> createAptCommand.execute(modelStub));
+            MESSAGE_PERSON_NOT_FOUND, () -> createAptCommand.execute(modelStub));
     }
 
 

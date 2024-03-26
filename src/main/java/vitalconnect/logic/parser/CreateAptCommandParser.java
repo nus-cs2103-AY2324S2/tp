@@ -1,8 +1,15 @@
 package vitalconnect.logic.parser;
 
+import static vitalconnect.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static vitalconnect.logic.parser.CliSyntax.PREFIX_NRIC;
+import static vitalconnect.logic.parser.CliSyntax.PREFIX_TIME;
+
+import java.time.LocalDateTime;
+import java.util.stream.Stream;
+
 import vitalconnect.logic.commands.CreateAptCommand;
 import vitalconnect.logic.parser.exceptions.ParseException;
-
+import vitalconnect.model.person.identificationinformation.Nric;
 
 /**
  * Parses input arguments and creates a new CreateAptCommand object.
@@ -20,24 +27,40 @@ public class CreateAptCommandParser {
      * the '/time' keyword and the appointment datetime in 'dd/MM/yyyy HHmm' format.
      * If the arguments do not conform to this expected format, a ParseException is thrown.
      *
-     * @param args The input arguments to be parsed, including the patient's NRIC and
+     * @param userInput The input arguments to be parsed, including the patient's NRIC and
      *             the appointment datetime.
      * @return A new CreateAptCommand object encapsulating the parsed patient NRIC
      *         and appointment datetime.
      * @throws ParseException If the provided arguments do not conform to the expected
      *                        format or if other parsing errors occur.
      */
-    public CreateAptCommand parse(String args) throws ParseException {
-        final String[] nameAndDateTime = args.trim().split("/time", 2);
+    public CreateAptCommand parse(String userInput) throws ParseException {
+        ArgumentMultimap argMultimap =
+            ArgumentTokenizer.tokenize(userInput, PREFIX_NRIC, PREFIX_TIME);
 
-        if (nameAndDateTime.length < 2) {
-            throw new ParseException(CreateAptCommand.MESSAGE_USAGE);
+        if (!arePrefixesPresent(argMultimap, PREFIX_NRIC)
+            || !arePrefixesPresent(argMultimap, PREFIX_TIME)
+            || !argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CreateAptCommand.MESSAGE_USAGE));
         }
 
-        String ic = nameAndDateTime[0].trim();
-        String dateTimeStr = nameAndDateTime[1].trim();
-
+        Nric ic = ParserUtil.parseNric(argMultimap.getValue(PREFIX_NRIC).get());
+        LocalDateTime dateTimeStr = null;
+        if (argMultimap.getValue(PREFIX_TIME).isPresent()) {
+            dateTimeStr = ParserUtil.parseTime(argMultimap.getValue(PREFIX_TIME).get());
+        }
+        if (dateTimeStr == null) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CreateAptCommand.MESSAGE_USAGE));
+        }
 
         return new CreateAptCommand(ic, dateTimeStr);
+    }
+
+    /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }

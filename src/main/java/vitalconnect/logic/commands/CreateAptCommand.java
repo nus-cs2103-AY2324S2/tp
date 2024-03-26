@@ -1,7 +1,9 @@
 package vitalconnect.logic.commands;
+
+import static vitalconnect.logic.Messages.MESSAGE_PERSON_NOT_FOUND;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 
 import vitalconnect.logic.commands.exceptions.CommandException;
 import vitalconnect.model.Appointment;
@@ -9,7 +11,6 @@ import vitalconnect.model.Model;
 import vitalconnect.model.person.Person;
 import vitalconnect.model.person.identificationinformation.Name;
 import vitalconnect.model.person.identificationinformation.Nric;
-
 
 /**
  * Represents a command to create an appointment for a patient in the address book.
@@ -21,24 +22,24 @@ public class CreateAptCommand extends Command {
     public static final String COMMAND_WORD = "adda";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds an appointment for a person in the address book. "
-            + "Parameters: NRIC /time DATE TIME\n"
+            + "Parameters: ic/ NRIC time/ DATE TIME\n"
             + "Example: " + COMMAND_WORD + " "
-            + "S1234567D /time 02/02/2024 1330\n"
-            + "Note: Ensure the date and time are in DD/MM/YYYY HHMM format.";
+            + "ic/S1234567D time/ 02/02/2024 1330\n"
+            + "Note: Ensure the date and time are in dd/MM/yyyy HHmm format.";
 
-    private final String patientIc;
-    private final String dateTimeStr;
+    private final Nric nric;
+    private final LocalDateTime dateTime;
     private String patientName = null;
 
     /**
      * Constructs a {@code CreateAptCommand} to schedule an appointment.
      *
-     * @param patientIc The NRIC of the patient for whom the appointment is being created.
-     * @param dateTimeStr The date and time of the appointment, in DD/MM/YYYY HHMM format.
+     * @param nric The NRIC of the patient for whom the appointment is being created.
+     * @param dateTime The date and time of the appointment, in DD/MM/YYYY HHMM format.
      */
-    public CreateAptCommand(String patientIc, String dateTimeStr) {
-        this.patientIc = patientIc;
-        this.dateTimeStr = dateTimeStr;
+    public CreateAptCommand(Nric nric, LocalDateTime dateTime) {
+        this.nric = nric;
+        this.dateTime = dateTime;
     }
 
 
@@ -58,29 +59,22 @@ public class CreateAptCommand extends Command {
      */
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        try {
-            // Check if a person with the exact name exists
-            if (!model.doesIcExist(patientIc)) {
-                throw new CommandException("OOPS! The appointment cannot be created as the NRIC does not exist.");
-            }
-            // Parse and validate date time
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
-            LocalDateTime dateTime = LocalDateTime.parse(dateTimeStr, formatter);
-            Nric nric = new Nric(patientIc);
-            Person person = model.findPersonByNric(nric);
-            Name name = person.getIdentificationInformation().getName();
-            this.patientName = name.toString();
-            Appointment appointment = new Appointment(patientName, patientIc, dateTime);
-            model.addAppointment(appointment);
-
-            return new CommandResult(String.format("Created an appointment successfully!\nName: %s\nNRIC: %s\nTime: %s",
-                    patientName, patientIc, dateTime.format(DateTimeFormatter.ofPattern("d MMM yyyy HH:mm"))),
-                    false, false, CommandResult.Type.SHOW_APPOINTMENTS);
-
-        } catch (DateTimeParseException e) {
-            throw new CommandException("OOPS! The appointment cannot be created "
-                    + "as the time is empty or not in the correct format.");
+        // Check if a person with the exact name exists
+        // if person not exist, throw error
+        Person person = model.findPersonByNric(nric);
+        if (person == null) {
+            throw new CommandException(MESSAGE_PERSON_NOT_FOUND);
         }
+
+        Name name = person.getIdentificationInformation().getName();
+        this.patientName = name.toString();
+        String patientIc = nric.toString();
+        Appointment appointment = new Appointment(patientName, patientIc, dateTime);
+        model.addAppointment(appointment);
+
+        return new CommandResult(String.format("Created an appointment successfully!\nName: %s\nNRIC: %s\nTime: %s",
+          patientName, patientIc, dateTime.format(DateTimeFormatter.ofPattern("d MMM yyyy HH:mm"))),
+          false, false, CommandResult.Type.SHOW_APPOINTMENTS);
     }
 
     /**
@@ -88,8 +82,8 @@ public class CreateAptCommand extends Command {
      *
      * @return The patient's NRIC as a {@code String}.
      */
-    public String getPatientIc() {
-        return patientIc;
+    public Nric getPatientIc() {
+        return nric;
     }
 
     /**
@@ -105,7 +99,7 @@ public class CreateAptCommand extends Command {
      *
      * @return The date and time of the appointment in "dd/MM/yyyy HHmm" format.
      */
-    public String getDateTimeStr() {
-        return dateTimeStr;
+    public LocalDateTime getDateTimeStr() {
+        return dateTime;
     }
 }

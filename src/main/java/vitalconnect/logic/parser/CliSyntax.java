@@ -14,5 +14,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_ALLERGYTAG = new Prefix("t/");
     public static final Prefix PREFIX_HEIGHT = new Prefix("h/");
     public static final Prefix PREFIX_WEIGHT = new Prefix("w/");
+    public static final Prefix PREFIX_TIME = new Prefix("time/");
 
 }

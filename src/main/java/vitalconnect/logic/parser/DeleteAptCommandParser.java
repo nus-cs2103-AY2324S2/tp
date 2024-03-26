@@ -1,5 +1,8 @@
 package vitalconnect.logic.parser;
 
+import static vitalconnect.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
+import vitalconnect.commons.core.index.Index;
 import vitalconnect.logic.commands.DeleteAptCommand;
 import vitalconnect.logic.parser.exceptions.ParseException;
 
@@ -28,26 +31,11 @@ public class DeleteAptCommandParser implements Parser<DeleteAptCommand> {
      */
     public DeleteAptCommand parse(String args) throws ParseException {
         try {
-            String trimmedArgs = args.trim();
-            if (!trimmedArgs.matches("\\d+ /name .+")) {
-                throw new ParseException(DeleteAptCommand.MESSAGE_USAGE);
-            }
-
-            String[] parts = trimmedArgs.split("/name");
-            if (parts.length != 2) {
-                throw new ParseException(DeleteAptCommand.MESSAGE_USAGE);
-            }
-
-            int index = Integer.parseInt(parts[0].trim());
-            String patientName = parts[1].trim();
-
-            if (index <= 0) {
-                throw new ParseException("Index must be a positive integer.");
-            }
-
-            return new DeleteAptCommand(index, patientName);
-        } catch (NumberFormatException e) {
-            throw new ParseException("The index provided is not a valid integer.");
+            Index index = ParserUtil.parseIndex(args);
+            return new DeleteAptCommand(index);
+        } catch (ParseException pe) {
+            throw new ParseException(
+              String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteAptCommand.MESSAGE_USAGE), pe);
         }
     }
 }
