@@ -10,7 +10,7 @@ import seedu.address.model.person.Note;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Salary;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.Tag;
 
 /**
  * A utility class to help with building Person objects.
@@ -21,7 +21,7 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "";
-    public static final String DEFAULT_TAG = "I";
+    public static final String DEFAULT_TAG = "NR";
     public static final String DEFAULT_JOB_DESCRIPTION = "Software Developer Intern";
     public static final String DEFAULT_INTERVIEW_DATE = null;
     public static final String DEFAULT_INTERN_DURATION = "6 months";

@@ -17,7 +17,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Salary;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.Tag;
 
 public class JsonAdaptedPersonTest {
     private static final String INVALID_NAME = "R@chel";
@@ -34,7 +34,7 @@ public class JsonAdaptedPersonTest {
     private static final String VALID_PHONE = BENSON.getPhone().toString();
     private static final String VALID_EMAIL = BENSON.getEmail().toString();
     private static final String VALID_ADDRESS = BENSON.getAddress().toString();
-    private static final String VALID_TAGS = BENSON.getTag().tagName;
+    private static final String VALID_TAGS = BENSON.getTag().getTagShort();
     private static final String VALID_JOB_DESCRIPTION = BENSON.getJobDescription().toString();
     private static final String VALID_INTERVIEW_DATE = BENSON.getInterviewDate().toString();
     private static final String VALID_INTERN_DURATION = BENSON.getInternDuration().toString();

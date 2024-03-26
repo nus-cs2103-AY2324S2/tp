@@ -34,7 +34,7 @@ public class PersonUtil {
         sb.append(PREFIX_PHONE + person.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
         sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
-        sb.append(PREFIX_TAG + person.getTag().tagName + " ");
+        sb.append(PREFIX_TAG + person.getTag().getTagName() + " ");
         sb.append(PREFIX_JOB_DESCRIPTION + person.getJobDescription().value + " ");
         sb.append(PREFIX_INTERVIEW_DATE + person.getInterviewDate().toString() + " ");
         sb.append(PREFIX_INTERN_DURATION + person.getInternDuration().value + " ");

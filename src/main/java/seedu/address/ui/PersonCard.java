@@ -57,7 +57,7 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
-        tags.setText(person.getTag().tagName);
+        tags.setText(person.getTag().getTagName());
         jobDescription.setText(person.getJobDescription().value);
         interviewDate.setText(person.getInterviewDate().toString());
         internDuration.setText(person.getInternDuration().value);

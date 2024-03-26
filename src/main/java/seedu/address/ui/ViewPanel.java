@@ -49,7 +49,7 @@ public class ViewPanel extends UiPart<Region> {
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
         interviewDate.setText("Interview : " + person.getInterviewDate().toString());
-        tag.setText(person.getTag().tagName);
+        tag.setText(person.getTag().getTagName());
         internDuration.setText(person.getInternDuration().value);
         salary.setText("$" + person.getSalary().value);
         note.setText(person.getNote().value);
