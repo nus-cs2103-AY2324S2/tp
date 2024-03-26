@@ -26,7 +26,7 @@ activate Ui UI_COLOR
 Ui -[UI_COLOR]> LogicManager : execute(...)
 activate LogicManager LOGIC_COLOR
 
-LogicManager -[LOGIC_COLOR]> AddressBookParser : parseCommand("note 1 note/Hi")
+LogicManager -[LOGIC_COLOR]> AddressBookParser : parseCommand(...)
 activate AddressBookParser LOGIC_COLOR
 
 create NoteCommandParser
