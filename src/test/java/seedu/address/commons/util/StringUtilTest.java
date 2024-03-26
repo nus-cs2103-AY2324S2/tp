@@ -1,7 +1,6 @@
 package seedu.address.commons.util;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.io.FileNotFoundException;
@@ -172,6 +171,14 @@ public class StringUtilTest {
 
         // Matches multiple substrings in sentence
         assertTrue(StringUtil.containsSubstringIgnoreCase("AAA bBb ccc  bbb", "bbB"));
+    }
+
+    @Test
+    public void containsSubstringIgnoreCase_emptySubstring_throwsIllegalArgumentException() {
+        // Test empty substring
+        assertThrows(IllegalArgumentException.class, "Substring parameter cannot be empty", () -> {
+            StringUtil.containsSubstringIgnoreCase("example sentence", "");
+        });
     }
 
     //---------------- Tests for getDetails --------------------------------------
