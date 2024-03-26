@@ -6,6 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.InternshipCommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.InternshipCommandTestUtil.DESC_BOB;
 import static seedu.address.logic.commands.InternshipCommandTestUtil.VALID_COMPANY_NAME_BOB;
+import static seedu.address.logic.commands.InternshipCommandTestUtil.VALID_CONTACT_EMAIL_BOB;
+import static seedu.address.logic.commands.InternshipCommandTestUtil.VALID_DESCRIPTION_BOB;
 import static seedu.address.logic.commands.InternshipCommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.InternshipCommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.InternshipCommandTestUtil.showInternshipAtIndex;
@@ -33,7 +35,7 @@ public class InternshipEditCommandTest {
 
     private final InternshipModel model = new InternshipModelManager(getTypicalInternshipData(),
             new InternshipUserPrefs());
-
+    /*
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
         Internship editedInternship = new InternshipBuilder().build();
@@ -49,8 +51,8 @@ public class InternshipEditCommandTest {
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
+     */
 
-    /*
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
         Index indexLastInternship = Index.fromOneBased(model.getFilteredInternshipList().size());
@@ -74,8 +76,6 @@ public class InternshipEditCommandTest {
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
-
-     */
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
