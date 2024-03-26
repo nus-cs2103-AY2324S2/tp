@@ -9,6 +9,7 @@ import static seedu.address.testutil.TypicalCourseMates.getTypicalContactList;
 import static seedu.address.testutil.TypicalGroups.SAMPLE_GROUP_1;
 import static seedu.address.testutil.TypicalGroups.SAMPLE_GROUP_2;
 import static seedu.address.testutil.TypicalGroups.SAMPLE_GROUP_3;
+import static seedu.address.testutil.TypicalGroups.SAMPLE_GROUP_4;
 import static seedu.address.testutil.TypicalGroups.getTypicalGroupList;
 
 import java.util.Arrays;
@@ -67,12 +68,13 @@ public class FindGroupCommandTest {
 
     @Test
     public void execute_commonSubstring_multipleGroupsFound() {
-        String expectedMessage = String.format(MESSAGE_GROUPS_LISTED_OVERVIEW, 3);
+        String expectedMessage = String.format(MESSAGE_GROUPS_LISTED_OVERVIEW, 4);
         ContainsGroupKeywordPredicate predicate = preparePredicate("Group");
         FindGroupCommand command = new FindGroupCommand(predicate);
         expectedModel.updateFilteredGroupList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel, false);
-        assertEquals(Arrays.asList(SAMPLE_GROUP_1, SAMPLE_GROUP_2, SAMPLE_GROUP_3), model.getFilteredGroupList());
+        assertEquals(Arrays.asList(SAMPLE_GROUP_1, SAMPLE_GROUP_2, SAMPLE_GROUP_3, SAMPLE_GROUP_4),
+                model.getFilteredGroupList());
     }
 
     @Test
