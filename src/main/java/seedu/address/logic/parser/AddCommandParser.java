@@ -10,16 +10,20 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_REFLECTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDIO;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.exam.Exam;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Score;
 import seedu.address.model.student.Matric;
 import seedu.address.model.student.Reflection;
 import seedu.address.model.student.Studio;
@@ -58,8 +62,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         Matric matric = handleOptionalMatric(argMultimap);
         Reflection reflection = handleOptionalReflection(argMultimap);
         Studio studio = handleOptionalStudio(argMultimap);
+        Map<Exam, Score> scores = new HashMap<>();
 
-        Person person = new Person(name, phone, email, address, tagList, matric, reflection, studio);
+        Person person = new Person(name, phone, email, address, tagList, matric, reflection, studio, scores);
 
         return new AddCommand(person);
     }

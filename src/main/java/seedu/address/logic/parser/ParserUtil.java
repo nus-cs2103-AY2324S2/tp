@@ -11,10 +11,12 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.exam.Exam;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Score;
 import seedu.address.model.student.Matric;
 import seedu.address.model.student.Reflection;
 import seedu.address.model.student.Studio;
@@ -183,5 +185,41 @@ public class ParserUtil {
         String trimmedTag = filePath.trim();
         // add error handling for what to do when invalid input is passed
         return Paths.get(filePath);
+    }
+
+    /**
+     * Parses a {@code String score} into an {@code int}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code score} is invalid.
+     */
+    public static Score parseScore(String score) throws ParseException {
+        requireNonNull(score);
+        String trimmedScore = score.trim();
+        if (!StringUtil.isNonZeroUnsignedInteger(trimmedScore)) {
+            throw new ParseException(MESSAGE_INVALID_INDEX);
+        }
+
+        int parsedScore = Integer.parseInt(trimmedScore);
+        if (!Exam.isValidScore(parsedScore)) {
+            throw new ParseException(Exam.MESSAGE_CONSTRAINTS);
+        }
+
+        return new Score(parsedScore);
+    }
+
+    /**
+     * Parses a {@code String examName} into a {@code String}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code examName} is invalid.
+     */
+    public static String parseExamName(String examName) throws ParseException {
+        requireNonNull(examName);
+        String trimmedExamName = examName.trim();
+        if (!Exam.isValidName(trimmedExamName)) {
+            throw new ParseException(Exam.MESSAGE_CONSTRAINTS);
+        }
+        return trimmedExamName;
     }
 }
