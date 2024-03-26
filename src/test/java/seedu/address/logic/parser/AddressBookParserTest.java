@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.autocomplete.AutoComplete;
 import seedu.address.logic.autocomplete.AutoCompleteCommand;
 import seedu.address.logic.commands.AddPersonCommand;
 import seedu.address.logic.commands.ClearCommand;
@@ -140,12 +141,20 @@ public class AddressBookParserTest {
                 parser.parseCommand("unknownCommand"));
     }
 
+    /**
+     * Tests that the parser returns the correct AutoComplete object.
+     */
     @Test
     void parseAutoComplete() {
-        // Test for empty input
-        assertEquals(null, parser.parseAutoComplete(""));
+        // No input
+        AutoComplete ac = parser.parseAutoComplete("");
+        assertEquals(ac.getAutoComplete("arbitrary_input"), "");
 
-        // Test for input with no matching command
-        assert(parser.parseAutoComplete("x") instanceof AutoCompleteCommand);
+        // Test for input that contains only command word and no arguments
+        assert(parser.parseAutoComplete("arbitrary_command") instanceof AutoCompleteCommand);
+
+        // Test for input that contains command word and arguments
+        ac = parser.parseAutoComplete("arbitrary_command arbitrary_arguments");
+        assertEquals(ac.getAutoComplete("arbitrary_input"), "");
     }
 }

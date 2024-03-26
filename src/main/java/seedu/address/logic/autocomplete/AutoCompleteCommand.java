@@ -11,6 +11,7 @@ public class AutoCompleteCommand implements AutoComplete {
     /**
      * Initializes the command trie with the given commands. This method should be called once at
      * the start of the initialization of LogicManager.
+     *
      * @param commands the commands to initialize the trie with
      * @see seedu.address.logic.LogicManager
      */
@@ -23,7 +24,8 @@ public class AutoCompleteCommand implements AutoComplete {
         assert commandTrie != null;
         String fullCommand = commandTrie.findFirstWordWithPrefix(input);
 
-        if (fullCommand == null || fullCommand.isEmpty()) {
+        assert fullCommand != null;
+        if (fullCommand.isEmpty()) {
             return "";
         }
 

@@ -27,6 +27,7 @@ public interface Logic {
 
     /**
      * Returns the autocomplete text based on the input.
+     *
      * @param commandText The input as entered by the user.
      * @return the autocomplete text to be appended to the input.
      * @see seedu.address.logic.autocomplete.AutoComplete#getAutoComplete(String)

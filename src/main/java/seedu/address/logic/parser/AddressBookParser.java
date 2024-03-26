@@ -34,6 +34,8 @@ public class AddressBookParser {
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
     private static final Logger logger = LogsCenter.getLogger(AddressBookParser.class);
+    private static final String COMMAND_WORD_GROUP = "commandWord";
+    private static final String ARGUMENTS_GROUP = "arguments";
 
     /**
      * Parses user input into command for execution.
@@ -48,8 +50,8 @@ public class AddressBookParser {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
 
-        final String commandWord = matcher.group("commandWord");
-        final String arguments = matcher.group("arguments");
+        final String commandWord = matcher.group(COMMAND_WORD_GROUP);
+        final String arguments = matcher.group(ARGUMENTS_GROUP);
 
         // Note to developers: Change the log level in config.json to enable lower level (i.e., FINE, FINER and lower)
         // log messages such as the one below.
@@ -97,23 +99,22 @@ public class AddressBookParser {
     }
 
     /**
-     * Parses the full input text and dispatches the appropriate autocomplete.
+     * Parses the full input text and returns the appropriate autocomplete object.
      */
     public AutoComplete parseAutoComplete(String userInput) {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
             logger.finer("Unable to parse user input for autocomplete: " + userInput);
-            return null;
+            return input -> "";
         }
 
-        final String commandWord = matcher.group("commandWord");
-        final String arguments = matcher.group("arguments");
+        final String arguments = matcher.group(ARGUMENTS_GROUP);
 
         // no arguments, return autocomplete for command word
         if (arguments.isEmpty()) {
             return new AutoCompleteCommand();
         }
 
-        return null;
+        return input -> "";
     }
 }

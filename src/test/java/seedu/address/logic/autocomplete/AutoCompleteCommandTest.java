@@ -5,7 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 class AutoCompleteCommandTest {
-
+    /**
+     * Test that the getAutoComplete method returns the correct autocomplete text.
+     */
     @Test
     void getAutoComplete() {
         // Initialize the command trie with some random commands

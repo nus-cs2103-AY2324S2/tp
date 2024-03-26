@@ -79,16 +79,12 @@ public class LogicManager implements Logic {
     @Override
     public String autoComplete(String commandText) {
         AutoComplete ac = addressBookParser.parseAutoComplete(commandText);
-
-        if (ac == null) {
-            return "";
-        }
-
+        assert ac != null;
         return ac.getAutoComplete(commandText);
     }
 
     /**
-     * Various miscellaneous initializations for the logic manager.
+     * Initializes various miscellaneous initializations for the logic manager.
      */
     private void initialize() {
         // Initialize the autocomplete for the commands

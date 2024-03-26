@@ -3,7 +3,6 @@ package seedu.address.ui;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
 import seedu.address.logic.autocomplete.AutoComplete;
@@ -35,7 +34,7 @@ public class CommandBox extends UiPart<Region> {
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
 
-        commandTextField.setOnKeyPressed(this:: autoComplete);
+        commandTextField.setOnKeyPressed(this::handleKeyPressEvent);
     }
 
     /**
@@ -63,11 +62,17 @@ public class CommandBox extends UiPart<Region> {
         commandTextField.getStyleClass().remove(ERROR_STYLE_CLASS);
     }
 
-    private void autoComplete(KeyEvent e) {
-        if (e.getCode() != KeyCode.TAB) {
-            return;
+    private void handleKeyPressEvent(KeyEvent e) {
+        switch (e.getCode()) {
+        case TAB:
+            handleTabKeyPressEvent(e);
+            break;
+        default:
+            break;
         }
+    }
 
+    private void handleTabKeyPressEvent(KeyEvent e) {
         // Prevent the default Tab behavior
         e.consume();
 

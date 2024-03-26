@@ -2,7 +2,6 @@ package seedu.address.commons.util;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
@@ -106,7 +105,7 @@ class TrieTest {
         assertEquals("word", trie.findFirstWordWithPrefix("wor"));
         assertEquals("world", trie.findFirstWordWithPrefix("world"));
         assertEquals("wording", trie.findFirstWordWithPrefix("wording"));
-        assertNull(trie.findFirstWordWithPrefix("a"));
-        assertNull(trie.findFirstWordWithPrefix("ab"));
+        assertEquals("", trie.findFirstWordWithPrefix("a"));
+        assertEquals("", trie.findFirstWordWithPrefix("ab"));
     }
 }

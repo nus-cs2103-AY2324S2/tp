@@ -6,6 +6,7 @@ package seedu.address.logic.autocomplete;
 public interface AutoComplete {
     /**
      * Returns the autocomplete text based on the input.
+     *
      * @param input The input as entered by the user.
      * @return the autocomplete text to be appended to the input.
      */
