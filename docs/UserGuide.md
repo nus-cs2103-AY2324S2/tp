@@ -1,19 +1,76 @@
 ---
   layout: default.md
   title: "User Guide"
-  pageNav: 3
 ---
 
 # CodeConnect User Guide
+Hello fellow student developers! Welcome to your one-stop shop for managing developers' contacts!
 
-CodeConnect (CC) is a **desktop app for managing student contacts, optimized for use via a Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, CC can get your contact management tasks done faster than traditional GUI apps.
+Codeconnect is a **developer-first networking app** for student developers to keep track of and reach out easily to other student developers, so they form teams for hackathons. 
 
-<!-- * Table of Contents -->
-<page-nav-print />
+We are **optimized for use via a Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, CC can get your contact management tasks done faster than traditional GUI apps.
 
+### What can CodeConnect do for you?
+- **Add, Edit, Update, Delete** a student developer's contact details
+- Record **Tech Stack** and **GitHub Usernames** for each developer
+- **Find** developers by their name, tags, or tech stack
+- **Email** developers directly from the app
+- Manage your hackathon teams by adding your team members to CodeConnect
+- **Export** your team details for easy signing up for hackathons
+
+# Table of Contents
+- [Introduction](#introduction)
+- [Usage of User Guide](#usage-of-user-guide)
+- [Installation Guide](#installation-guide)
+- [GUI Interface](#gui-interface)
+- [Tutorial](#tutorial)
+- [Features](#features)
+- [Planned Enhancements](#planned-enhancements)
+- [Glossary](#glossary)
+- [FAQ](#faq)
+    - [General Questions](#general-questions)
+    - [Contact-Related Questions](#task-related-questions)
+- [Known Issues](#known-issues)
+- [Command Summary](#command-summary)
 ---
 
-## Quick start
+## Introduction
+Hey there, aspiring student innovators! 🚀 Welcome to Codeconnect, your passport to a vibrant world of collaboration and innovation! 🌟
+
+Imagine a place where you can manage the details of like-minded student developers as effortlessly as a tap on your screen. A world where forming dream teams for hackathons is not just a possibility, but a seamless reality.
+
+Well, look no further! Codeconnect is your developer-first networking app, designed by student developers for student developers. Whether you're a coding wizard in Python, a design maestro in UI/UX, or a tech enthusiast exploring new horizons, Codeconnect is your ultimate ally.
+
+So, get ready to explore, connect, and create with Codeconnect! 🎉 Let's turn those tech dreams into reality, one collaboration at a time! 💻✨
+
+---
+## Usage of User Guide
+This guide is designed to help you learn how to use CodeConnect effectively and explore its various features. If you are unfamiliar with programming, don't worry - we have intentionally made it beginner-friendly so that even non-developers will be able to use our guide with ease.
+
+If you're already familiar with CodeConnect, you can skip ahead to the summary of features [here](#features), or to the command summary [here](#command-summary).
+If you're new to CodeConnect, simply follow along step-by-step to discover how to gather and form your next champion team!
+
+Should you encounter any problems along your journey, please take a look at our [FAQ](#faq) for more information.
+
+### Key Notes:
+Throughout this guide, you'll notice colored blocks of information. These are used to highlight different types of information for easier understanding.
+
+<div class="alert alert-info" markdown="1">
+:information_source: The blue block highlights additional information that might be useful in clearing some confusion.
+</div>
+
+<div class="alert alert-warning" markdown="1">
+:warning: The yellow block draws attention to crucial information that requires careful consideration to mitigate potential risks or challenges.
+</div>
+
+<div class="alert alert-danger" markdown="1">
+:bangbang: The red block highlights information that requires immediate attention due to potential irreversible risks.
+</div>
+
+Without further ado, let's dive in and uncover the power of CodeConnect! 🚀
+
+---
+## Installation Guide
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -236,13 +293,13 @@ _Details coming soon ..._
 
 ---
 
-## Known issues
+## Known Issues
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
 
 ---
 
-## Command summary
+## Command Summary
 
 
 | Action              | Format, Examples                                                                                                                                                                                                                                                                                                                      |
