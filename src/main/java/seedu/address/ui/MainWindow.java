@@ -2,6 +2,8 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -16,6 +18,8 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.order.Order;
+import seedu.address.model.person.Person;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -32,6 +36,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
+    private OrderListPanel orderListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -45,10 +50,15 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane personListPanelPlaceholder;
 
     @FXML
+    private StackPane orderListPanelPlaceholder;
+
+    @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    private ObservableList<Order> allOrders;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -66,6 +76,8 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+
+        allOrders = logic.getFilteredOrderList();
     }
 
     public Stage getPrimaryStage() {
@@ -112,6 +124,11 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+
+        personListPanel.setOnPersonSelectedCallback(this::showPersonOrders);
+
+        orderListPanel = new OrderListPanel(logic.getFilteredOrderList());
+        orderListPanelPlaceholder.getChildren().add(orderListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -163,9 +180,6 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
-    }
 
     /**
      * Executes the command and returns the result.
@@ -173,6 +187,7 @@ public class MainWindow extends UiPart<Stage> {
      * @see seedu.address.logic.Logic#execute(String)
      */
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
+        showAllOrders();
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
@@ -191,6 +206,42 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("An error occurred while executing command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
+        }
+    }
+
+    /**
+     * Displays the orders associated with a selected person in the OrderListPanel.
+     * If the person has no orders, the OrderListPanel will be cleared.
+     * If the person has orders, those orders will be displayed in the OrderListPanel.
+     *
+     * @param person The {@link Person} whose orders are to be displayed. This object must not be {@code null}.
+     */
+    public void showPersonOrders(Person person) {
+        logic.clearOrderFilter();
+        if (person == null || person.getOrders().isEmpty()) {
+            // Handle the case where there are no orders.
+            orderListPanel.updateDisplayedOrders(FXCollections.observableArrayList());
+
+        } else {
+            // The person has orders; display them.
+            ObservableList<Order> filteredOrders = FXCollections.observableArrayList();
+            for (Order order : allOrders) {
+                if (person.getOrders().contains(order)) {
+                    filteredOrders.add(order);
+                }
+            }
+            orderListPanel.updateDisplayedOrders(filteredOrders);
+        }
+    }
+
+    /**
+     * Displays all orders in the order list panel.
+     * This method checks if the list of all orders is not empty before attempting to update the
+     * displayed orders in the order list panel. If the list is empty, no action is taken.
+     */
+    public void showAllOrders() {
+        if (!allOrders.isEmpty()) {
+            orderListPanel.updateDisplayedOrders(allOrders);
         }
     }
 }

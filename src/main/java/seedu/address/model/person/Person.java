@@ -2,12 +2,15 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.exceptions.OrderNotFoundException;
+import seedu.address.model.order.Order;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -25,6 +28,8 @@ public class Person {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
 
+    private ArrayList<Order> orders = new ArrayList<>();
+
     /**
      * Every field must be present and not null.
      */
@@ -35,6 +40,19 @@ public class Person {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, ArrayList<Order> orders) {
+        requireAllNonNull(name, phone, email, address, tags, orders);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.orders = orders;
     }
 
     public Name getName() {
@@ -51,6 +69,51 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+
+    public ArrayList<Order> getOrders() {
+        return orders;
+    }
+
+    public void addOrder(Order order) {
+        this.orders.add(order);
+    }
+
+    /**
+     * Deletes an order from the customer's order list.
+     * @param orderId the id of the order to be deleted.
+     */
+    public void deleteOrder(int orderId) {
+        for (int i = 0; i < orders.size(); i++) {
+            if (orders.get(i).getId() == orderId) {
+                this.orders.remove(i);
+                return;
+            }
+        }
+        throw new OrderNotFoundException();
+    }
+
+    /**
+     * Sets the list of orders for the customer.
+     * @param orders the list of the customer's orders.
+     */
+    public void setOrders(ArrayList<Order> orders) {
+        this.orders = orders;
+    }
+
+    /**
+     * Edits an order from the customer's order list.
+     * @param orderId the id of the order to be edited.
+     * @param toEdit the new order that is used to replace the old order.
+     */
+    public void editOrder(int orderId, Order toEdit) {
+        for (int i = 0; i < orders.size(); i++) {
+            if (orders.get(i).getId() == orderId) {
+                this.orders.set(i, toEdit);
+                return;
+            }
+        }
+        throw new OrderNotFoundException();
     }
 
     /**

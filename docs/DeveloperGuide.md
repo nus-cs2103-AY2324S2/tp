@@ -239,6 +239,43 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
+### Removing order feature
+
+#### Implementation
+
+Removes an `Order` from the `OrderList` by its index. Example: `cancel 19`. 
+The sequence of events is illustrated by the diagram below, starting with parsing of the command.
+![CancelSequenceDiagram-Logic](images/CancelSequenceDiagram-Logic.png)
+![CancelSequenceDiagram-Model](images/CancelSequenceDiagram-Model.png)
+
+After parsing the `cancel` command, the `LogicManager` will call the `Model#deleteOrder(id)` which calls
+`AddressBook#deleteOrder(id)`. The `Order` instance will then call its own `removeOrder(id)` which will remove this order from the customer's `ArrayList<Order>`.
+
+#### Future Changes
+Have another `fulfil` command which removes an order and logs the completed order in a file. `cancel` instead is used when an order is cancelled without being completed, and will not be logged.
+
+### Find customer or order feature
+
+#### Implementation
+![FindCommandClassDiagram](images/FindCommandClassDiagram.png)
+
+`FindOrderCommand` and `FindPersonCommand` extends the `FindCommand` abstract class. The `PREFIX_ORDER` after the `find` command will create a `FindOrderCommand` while any other valid prefixes will create a `FindPersonCommand`.
+
+![FindCommandSequenceDiagram](images/FindCommandSequenceDiagram.png)
+
+`FindCommandParser` will construct the respective command with the relevant predicates.
+1. If `PREFIX_ORDER`, a `FindOrderCommand` with a `MatchingOrderIndexPredicate` will be created.
+2. If `PREFIX_NAME`, a `FindPersonCommand` with a `NameContainsKeywordsPredicate` will be created.
+3. If `PREFIX_EMAIL`, a `FindPersonCommand` with a `MatchingEmailPredicate` will be created.
+4. If `PREFIX_PHONE`, a `FindPersonCommand` with a `MatchingPhonePredicate` will be created.
+5. If `PREFIX_ADDRESS`, a `FindPersonCommand` with a `AddressContainsKeywordsPredicate` will be created.
+
+The `Predicate` will then be used to filter the list using `stream()`. The updated `FilteredOrderList` will then be reflected in the GUI.
+### Known Limitations
+1. As `StringUtil#containsWordIgnoreCase` searches by entire word, searching for `945` in `94567122` for `Phone` will result in false. This is also consistent in `Email`.
+
+2. Only one `PREFIX` can be chosen to filter by. Future improvements may include searching from more than one `PREFIX`. Example: `find o/19 n/John a/Lorong`.
+
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
@@ -262,42 +299,86 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* Home-Based Food Business Owners who sell their products online
+* has a need to manage a significant number of customer contacts
+* has a need to track the food order to the contact
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: The address book can help homemade food sellers organize customer information and orders
+so that they know what to bake, how much to bake and where to deliver the order to. This information management
+tool aims to be more efficient to use than paper-work or general-purpose excel sheets. We also aim to reduce
+chances of mistakes such as wrong delivery address, forgetting an order or sending repeated orders.
+
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                    | I want to …​                                                                | So that I can…​                                                                                            |
+|----------|----------------------------|-----------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------|
+| `* * *`  | new user                   | see a list of all main functionalities                                      | know what I can do with the app                                                                            |
+| `* * *`  | new user                   | check the explanation of all functions                                      | know what the commands mean                                                                                |
+| `* * *`  | second time user           | retrieve data I entered last time                                           |                                                                                                            |
+| `* * *`  | forgetful user             | see usage instructions                                                      | refer to instructions when I forget how to use the App                                                     |
+| `* * *`  | seller                     | add new contacts into the program                                           | keep information of customers                                                                              |
+| `* * *`  | seller                     | remove contacts from the program                                            | remove information of customers that I no longer do business with                                          |
+| `* * *`  | seller                     | find a customer by name                                                     | locate details of persons without having to go through the entire list                                     |
+| `* * *`  | seller                     | create orders for contacts                                                  | know what customers have purchased                                                                         |
+| `* * *`  | seller                     | mark an order as done                                                       | distinguish between orders done and not done yet                                                           |
+| `* *`    | new user                   | see sample data                                                             | see what the app looks like when it is in use and try out the functions hands-on                           |
+| `* *`    | seller                     | edit orders                                                                 | update orders when customers change them                                                                   |
+| `* *`    | seller                     | update the contact information                                              | correct mistakes made by me and users when keying in information, and update when users change information |
+| `* *`    | seller                     | archive completed orders                                                    | track past orders for accounting purposes                                                                  |
+| `* *`    | seller                     | mark the stage of an order                                                  | track the status of each order precisely                                                                   |
+| `* *`    | busy seller                | type the commands fast using shortcuts                                      | save time and improve work efficiency                                                                      |
+| `* *`    | seller with many customers | search for users who have existing orders                                   | better fulfill the orders                                                                                  |
+| `*`      | seller                     | track the number of orders each address has                                 | double check for any discrepancies                                                                         |
+| `*`      | seller                     | track which deliveries are handed by which postman                          | know who to approach if there is any issue                                                                 |
+| `*`      | seller                     | mark select a bunch of orders as to be delivered together in the next round |                                                                                                            |
+| `*`      | seller                     | hide private contact details                                                | minimize chance of leakage of customer information by accident                                             |
+| `*`      | busy seller                | get auto-suggestions as I type                                              | type fast and work efficiently                                                                             |
+| `*`      | seller with many customers | sort customer by name                                                       | locate a person easily                                                                                     |
+| `*`      | careless user              | undo delete commands                                                        | recover information I accidentally deleted by mistake                                                      |
+| `*`      | careless user              | get a double confirmation warning before I delete anything                  | reduce chance of deleting information by mistake                                                           |
 
-*{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Strack.io` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC1 - Adding a contact**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User chooses to add a new customer and specifies the required details.
+2.  Strack.io displays the added customer contact.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. Strack.io detects an error in the entered data.
+    * 1a1. Strack.io shows the missing/incorrect field.
+    * 1a2. User enters new data.
+
+        Steps 1a1-1a2 are repeated until the data entered are correct.
+
+        Use case resumes from step 2.
+
+**Use case: UC2 - Delete a contact**
+
+**MSS**
+
+1.  User requests to list persons.
+2.  Strack.io shows a list of persons.
+3.  User requests to delete a specific person in the list.
+4.  Strack.io requests for confirmation.
+5.  User confirms.
+6.  Strack.io deletes the contact, displaying the deleted contact.
 
     Use case ends.
 
@@ -309,25 +390,121 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. Strack.io shows an error message.
 
       Use case resumes at step 2.
 
-*{More to be added}*
+**Use case: UC3 - Edit a contact**
+
+**MSS**
+
+1.  User requests to list persons.
+2.  Strack.io shows a list of persons.
+3.  User requests to edit the details of a specific person in the list.
+4.  Strack.io edits the details of the person and displays the new contact.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. Strack.io shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. Strack.io detects an error in the entered data.
+    * 3b1. Strack.io shows the missing/incorrect field.
+    * 3b2. User enters new data.
+
+        Steps 3b1-3b2 are repeated until the data entered are correct.
+
+        Use case resumes from step 4.
+
+**Use case: UC4 - Searching for a contact**
+
+**MSS**
+
+1.  User requests to search for contact based on keyword.
+2.  Strack.io shows a list of matching persons.
+
+    Use case ends.
+
+**Extensions**
+* 2a. The list of matching persons is empty.
+
+  Use case ends.
+
+**Use case: UC5 - Creating an order**
+
+**MSS**
+
+1.  User chooses to create an order for an existing person and specifies the required details.
+2.  Strack.io displays the added order.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. Strack.io detects an error in the entered data.
+    * 1a1. Strack.io shows the missing/incorrect field.
+    * 1a2. User enters new data.
+
+      Steps 1a1-1a2 are repeated until the data entered are correct.
+
+      Use case resumes from step 2.
+
+**Use case: UC6 - Cancelling an order**
+
+**MSS**
+1. User requests to cancel a specific order by index.
+2. Strack.io cancels the order.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given index is invalid.
+
+    * 1a1. Strack.io shows an error message.
+
+      Use case ends.
+
+**Use case: UC7 - Searching for an order**
+
+**MSS**
+1. User searches for orders by indexes
+2. Strack.io shows orders with corresponding indexes
+
+    Use case ends.
+
+**Extensions**
+* 2a. The list of matching orders is empty.
+
+Use case ends.
+
+
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 10000 contacts and 500 active orders without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+4.  Even when the app quits unexpectedly in run time, most information updated in the current session should not be lost when the app re-launches.
+5.  Should protect sensitive customer information so that they are not leaked to possible malware on the same device.
+6.  The user interface should look clean and organised even when it is populated with a lot of information.
+7.  The response time to any action other than fetching archived order history should be within 1 second.
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Private contact detail**: A contact detail that is not meant to be shared with others
-
+* **Sensitive customer information**: Customer's name, email, phone number, address and any other personal information which is saved locally in this app
+* **Stage of an order**: Under preparation, Ready for delivery, Sent for delivery, Received by customer(Completed)
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
