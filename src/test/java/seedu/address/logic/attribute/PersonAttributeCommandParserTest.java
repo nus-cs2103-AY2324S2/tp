@@ -5,10 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.attributes.AddAttributeCommand;
-import seedu.address.logic.attributes.DeleteAttributeCommand;
-import seedu.address.logic.attributes.PersonAttributeCommandParser;
+import seedu.address.logic.commands.AddAttributeCommand;
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.DeleteAttributeCommand;
+import seedu.address.logic.parser.PersonAttributeCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 class PersonAttributeCommandParserTest {

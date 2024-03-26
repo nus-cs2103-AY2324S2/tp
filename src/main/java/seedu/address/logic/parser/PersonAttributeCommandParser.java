@@ -1,6 +1,8 @@
-package seedu.address.logic.attributes;
+package seedu.address.logic.parser;
 
+import seedu.address.logic.commands.AddAttributeCommand;
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.DeleteAttributeCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
