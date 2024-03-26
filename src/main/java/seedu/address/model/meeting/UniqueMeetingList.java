@@ -43,7 +43,32 @@ public class UniqueMeetingList implements Iterable<Meeting> {
      */
     public boolean contains(Meeting meeting) {
         requireNonNull(meeting);
-        return internalList.stream().anyMatch(meeting::isSameMeeting);
+        return internalList.stream().anyMatch(exisitingMeeting -> {
+            if (exisitingMeeting.isSameMeeting(meeting)) {
+                return true;
+            }
+
+            // check for time clash
+            boolean timeClash = exisitingMeeting.getDateTime().equals(meeting.getDateTime());
+            boolean isSameDescription = exisitingMeeting.getDescription().equals(meeting.getDescription());
+            boolean isSamePerson = exisitingMeeting.getPerson().equals(meeting.getPerson());
+            // if different client
+            if (!isSamePerson) {
+                // Different client, same description, same timing can
+                // Different client, different description, different timing can
+                // Different client, same description, different timing can
+                // These are allowed by default, so we specifically look for disallowed cases
+                if (timeClash && !isSameDescription) {
+                    return true;
+                }
+            } else {
+                if (timeClash) {
+                    // Same client, same/different description, same timing cannot
+                    return true;
+                }
+            }
+            return false;
+        });
     }
 
     /**

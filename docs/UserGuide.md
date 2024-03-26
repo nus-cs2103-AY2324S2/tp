@@ -273,8 +273,8 @@ _Details coming soon ..._
 ### Meeting Functions
 
 | Action     | Format, Examples                                                |
-| ---------- | --------------------------------------------------------------- |
-| **Add**    | `add CLIENT_INDEX n/NAME`<br>e.g., `add 1 n/James Ho`           |
+| ---------- |-----------------------------------------------------------------|
+| **Add**    | `addMeeting CLIENT_INDEX n/NAME`<br>e.g., `add 1 n/James Ho`    |
 | **List**   | `list CLIENT_INDEX`<br>e.g., `list 2`                           |
 | **Edit**   | `edit CLIENT_INDEX MEETING_INDEX`<br>e.g.,`edit 1 2 n/Jamal Ho` |
 | **Delete** | `delete CLIENT_INDEX MEETING_INDEX`<br>e.g., `delete 3 1`       |
