@@ -118,6 +118,13 @@ public class Appointment {
                 && appt.getAppointmentDate().equals(this.getAppointmentDate());
     }
 
+    /**
+     * Checks if the given {@code Person} is associated with this appointment either as a doctor or a patient.
+     *
+     * @param person The {@code Person} to check if associated with this appointment.
+     * @return {@code true} if the person's NRIC matches either the doctor's NRIC or the patient's NRIC,
+     *         {@code false} otherwise.
+     */
     public boolean appointmentContainsPerson(Person person) {
         return person.getNric().equals(this.doctorNric)
                 || person.getNric().equals(this.patientNric);
