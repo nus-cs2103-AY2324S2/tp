@@ -60,7 +60,6 @@ public class TypicalPersons {
             .withSubject("Math")
             .withUniqueId(getNextUniqueId())
             .withPayment("0.0")
-            .withTags("friends")
             .build();
 
     public static final Person BOB = new PersonBuilder()
@@ -83,7 +82,6 @@ public class TypicalPersons {
             .withSubject("Science")
             .withUniqueId(getNextUniqueId())
             .withPayment("0.0")
-            .withTags("friends")
             .build();
 
     public static final Person DANIEL = new PersonBuilder()
@@ -95,7 +93,6 @@ public class TypicalPersons {
             .withSubject("History")
             .withUniqueId(getNextUniqueId())
             .withPayment("0.0")
-            .withTags("friends")
             .build();
 
     public static final Person ELLE = new PersonBuilder()
@@ -106,7 +103,6 @@ public class TypicalPersons {
             .withSubject("Geography")
             .withUniqueId(getNextUniqueId())
             .withPayment("0.0")
-            .withTags("friends")
             .build();
 
     public static final Person FIONA = new PersonBuilder()
@@ -117,7 +113,6 @@ public class TypicalPersons {
             .withSubject("Art")
             .withUniqueId(getNextUniqueId())
             .withPayment("0.0")
-            .withTags("friends")
             .build();
 
     public static final Person GEORGE = new PersonBuilder()
@@ -128,7 +123,6 @@ public class TypicalPersons {
             .withSubject("Physics")
             .withUniqueId(getNextUniqueId())
             .withPayment("0.0")
-            .withTags("friends")
             .build();
 
     // Manually added
