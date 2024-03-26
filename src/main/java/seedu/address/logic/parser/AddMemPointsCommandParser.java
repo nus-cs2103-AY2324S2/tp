@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEMSHIP_PTS;
 
 import java.util.stream.Stream;
@@ -21,16 +22,17 @@ public class AddMemPointsCommandParser implements Parser<AddMemPointsCommand> {
      */
     public AddMemPointsCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_MEMSHIP_PTS);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_MEMSHIP_PTS);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_MEMSHIP_PTS)) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_MEMSHIP_PTS)) {
             throw new ParseException(String.format(AddMemPointsCommand.INVALID_COMMAND_FORMAT
                     + "\n" + AddMemPointsCommand.MESSAGE_USAGE));
         }
 
         Name name;
         try {
-            name = ParserUtil.parseName(argMultimap.getPreamble());
+            name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).orElse(""));
+            new ParseException(Name.MESSAGE_CONSTRAINTS + "\n" + AddMemPointsCommand.MESSAGE_USAGE);
         } catch (ParseException pe) {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS + "\n" + AddMemPointsCommand.MESSAGE_USAGE);
         }
