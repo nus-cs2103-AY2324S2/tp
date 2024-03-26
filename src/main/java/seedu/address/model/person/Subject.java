@@ -9,7 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Subject {
     public static final String MESSAGE_CONSTRAINTS =
-            "Subject should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Subject should only contain alphanumeric characters and spaces, and it should not be blank.";
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
     public final String value;
 

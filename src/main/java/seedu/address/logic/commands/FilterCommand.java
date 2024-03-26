@@ -20,7 +20,7 @@ public class FilterCommand extends Command {
             + "Parameters: <GRADE|SUBJECT>\n"
             + "Example: " + COMMAND_WORD + " g/A s/Maths";
 
-    public static final String MESSAGE_FILTER_ADDRESS_BOOK_SUCCESS = "Filtered address book by %1$s";
+    public static final String MESSAGE_FILTER_ADDRESS_BOOK_SUCCESS = "Filtered address book by %2$s!\n";
 
     private final GradeSubjectFilterPredicate predicate;
 
@@ -33,8 +33,8 @@ public class FilterCommand extends Command {
         requireNonNull(model);
         model.updateFilteredPersonList(predicate);
         return new CommandResult(
-                String.format(MESSAGE_FILTER_ADDRESS_BOOK_SUCCESS + "\n" + Messages.MESSAGE_PERSONS_LISTED_OVERVIEW,
-                        predicate, model.getFilteredPersonList().size()));
+                String.format(MESSAGE_FILTER_ADDRESS_BOOK_SUCCESS + Messages.MESSAGE_PERSONS_LISTED_OVERVIEW,
+                        model.getFilteredPersonList().size(), predicate));
     }
 
     @Override
@@ -44,7 +44,7 @@ public class FilterCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof DeleteCommand)) {
+        if (!(other instanceof FilterCommand)) {
             return false;
         }
 

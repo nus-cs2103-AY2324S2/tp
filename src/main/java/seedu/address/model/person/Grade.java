@@ -10,8 +10,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Grade {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Grade should contain one from this grading system:" +
-                    "[A+, A, A-, B+, B, B-, C+, C, D+, D, F, -], and it should not be blank.";
+            "Grade should contain one from this grading system:\n"
+                    + "[A+, A, A-, B+, B, B-, C+, C, D+, D, F, -], and it should not be blank.";
     public static final String VALIDATION_REGEX = "[A-B][+-]?|[C-D][+]?|F|-";
     public final String value;
 

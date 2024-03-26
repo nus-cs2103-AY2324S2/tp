@@ -43,17 +43,18 @@ public class GradeSubjectFilterPredicate implements Predicate<Person> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof NameContainsKeywordsPredicate)) {
+        if (!(other instanceof GradeSubjectFilterPredicate)) {
             return false;
         }
 
         GradeSubjectFilterPredicate otherGradeSubjectFilterPredicate = (GradeSubjectFilterPredicate) other;
-        return otherGradeSubjectFilterPredicate.equals(this);
+        return filteredGrade.equals(otherGradeSubjectFilterPredicate.filteredGrade)
+                && filteredSubject.equals(otherGradeSubjectFilterPredicate.filteredSubject);
     }
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this)
+        return new ToStringBuilder(this.getClass().getSimpleName())
                 .add("grade", filteredGrade)
                 .add("subject", filteredSubject)
                 .toString();
