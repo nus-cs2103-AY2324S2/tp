@@ -93,6 +93,11 @@
     -fx-padding: 5px;
 }
 
+#tags {
+    -fx-hgap: 7;
+    -fx-vgap: 3;
+}
+
 #tags .label {
     -fx-text-fill: white;
     -fx-background-color: #8A9A5B; /* green background for tags */
