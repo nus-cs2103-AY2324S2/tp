@@ -96,6 +96,11 @@ public interface Model {
 
     boolean hasRelationshipWithDescriptor(Relationship target);
 
+    /**
+     * Returns an unmodifiable view of the filtered relationship list
+     */
+    ObservableList<Relationship> getFilteredRelationshipList();
+
     void deleteAttribute(String uuid, String attributeName);
 
     UUID getFullUuid(String digits);
@@ -103,4 +108,6 @@ public interface Model {
     Person getPersonByUuid(UUID id);
 
     boolean hasAttribute(String uuidString, String attributeName);
+
+    void deleteRelationshipsOfPerson(UUID personUuid);
 }

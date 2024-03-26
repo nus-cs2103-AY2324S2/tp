@@ -190,6 +190,16 @@ public class AddCommandTest {
         }
 
         @Override
+        public void deleteRelationshipsOfPerson(UUID personUuid) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Relationship> getFilteredRelationshipList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public Person getPersonByUuid(UUID id) {
             throw new AssertionError("this method should not be called");
         }

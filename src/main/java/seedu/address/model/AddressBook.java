@@ -144,6 +144,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     public String getExistingRelationship(Relationship toGet) {
         return relationships.getExistingRelationship(toGet);
     }
+
+    public void deleteRelationshipsOfPerson(UUID personUuid) {
+        relationships.deleteRelationshipsOfPerson(personUuid);
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
