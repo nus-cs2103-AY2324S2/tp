@@ -24,9 +24,11 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Note;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Price;
 import seedu.address.model.person.Product;
+import seedu.address.model.person.Rating;
 import seedu.address.model.person.Supplier;
 import seedu.address.model.tag.Tag;
 
@@ -100,12 +102,14 @@ public class EditSupplierCommand extends Command {
         Phone updatedPhone = editSupplierDescriptor.getPhone().orElse(supplierToEdit.getPhone());
         Email updatedEmail = editSupplierDescriptor.getEmail().orElse(supplierToEdit.getEmail());
         Address updatedAddress = editSupplierDescriptor.getAddress().orElse(supplierToEdit.getAddress());
+        Note presentNote = supplierToEdit.getNote(); //edit cannot change note
+        Rating presentRating = supplierToEdit.getRating(); //edit cannot change rating
         Set<Tag> updatedTags = editSupplierDescriptor.getTags().orElse(supplierToEdit.getTags());
         Product updatedProduct = editSupplierDescriptor.getProduct().orElse(supplierToEdit.getProduct());
         Price updatedPrice = editSupplierDescriptor.getPrice().orElse(supplierToEdit.getPrice());
 
-        return new Supplier(updatedName, updatedPhone, updatedEmail, updatedAddress,
-                updatedTags, updatedProduct, updatedPrice);
+        return new Supplier(updatedName, updatedPhone, updatedEmail, updatedAddress, presentNote,
+                updatedTags, updatedProduct, updatedPrice, presentRating);
     }
 
     @Override

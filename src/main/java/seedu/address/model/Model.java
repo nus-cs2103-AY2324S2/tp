@@ -91,6 +91,11 @@ public interface Model {
     void updateFilteredPersonList(Predicate<Person> predicate);
 
     /**
+     * Update the person list to display pinned contacts first.
+     */
+    void updatePinnedPersonList();
+
+    /**
      * Find a contact by their name.
      * @param targetName Refers to the name identifier.
      * @return Person that matches the name.

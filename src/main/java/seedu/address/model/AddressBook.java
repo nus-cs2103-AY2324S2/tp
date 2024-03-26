@@ -94,6 +94,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    public void updatePinnedList() {
+        persons.sortByPinnedStatus();
+    }
+
     //// util methods
 
     @Override

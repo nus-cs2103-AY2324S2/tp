@@ -84,6 +84,15 @@ public class AddressBookTest {
     }
 
     @Test
+    public void getUpdatePinnedList_returnsSorted() {
+        Person personToPin = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
+        personToPin.toPin();
+        addressBook.addPerson(personToPin);
+        addressBook.updatePinnedList();
+        assertTrue(addressBook.getPersonList().get(0).getPin().toString().equals("true"));
+    }
+
+    @Test
     public void toStringMethod() {
         String expected = AddressBook.class.getCanonicalName() + "{persons=" + addressBook.getPersonList() + "}";
         assertEquals(expected, addressBook.toString());

@@ -100,6 +100,7 @@ public class MaintainerTest {
                 + ", email=" + ALICEMAINTAINER.getEmail() + ", address="
                 + ALICEMAINTAINER.getAddress()
                 + ", tags=" + ALICEMAINTAINER.getTags()
+                + ", rating=" + ALICEMAINTAINER.getRating()
                 + ", skill=" + ALICEMAINTAINER.getSkill()
                 + ", commission=" + ALICEMAINTAINER.getCommission()
                 + "}";
