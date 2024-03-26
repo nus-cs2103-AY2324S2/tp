@@ -239,6 +239,43 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
+### Removing order feature
+
+#### Implementation
+
+Removes an `Order` from the `OrderList` by its index. Example: `cancel 19`. 
+The sequence of events is illustrated by the diagram below, starting with parsing of the command.
+![CancelSequenceDiagram-Logic](images/CancelSequenceDiagram-Logic.png)
+![CancelSequenceDiagram-Model](images/CancelSequenceDiagram-Model.png)
+
+After parsing the `cancel` command, the `LogicManager` will call the `Model#deleteOrder(id)` which calls
+`AddressBook#deleteOrder(id)`. The `Order` instance will then call its own `removeOrder(id)` which will remove this order from the customer's `ArrayList<Order>`.
+
+#### Future Changes
+Have another `fulfil` command which removes an order and logs the completed order in a file. `cancel` instead is used when an order is cancelled without being completed, and will not be logged.
+
+### Find customer or order feature
+
+#### Implementation
+![FindCommandClassDiagram](images/FindCommandClassDiagram.png)
+
+`FindOrderCommand` and `FindPersonCommand` extends the `FindCommand` abstract class. The `PREFIX_ORDER` after the `find` command will create a `FindOrderCommand` while any other valid prefixes will create a `FindPersonCommand`.
+
+![FindCommandSequenceDiagram](images/FindCommandSequenceDiagram.png)
+
+`FindCommandParser` will construct the respective command with the relevant predicates.
+1. If `PREFIX_ORDER`, a `FindOrderCommand` with a `MatchingOrderIndexPredicate` will be created.
+2. If `PREFIX_NAME`, a `FindPersonCommand` with a `NameContainsKeywordsPredicate` will be created.
+3. If `PREFIX_EMAIL`, a `FindPersonCommand` with a `MatchingEmailPredicate` will be created.
+4. If `PREFIX_PHONE`, a `FindPersonCommand` with a `MatchingPhonePredicate` will be created.
+5. If `PREFIX_ADDRESS`, a `FindPersonCommand` with a `AddressContainsKeywordsPredicate` will be created.
+
+The `Predicate` will then be used to filter the list using `stream()`. The updated `FilteredOrderList` will then be reflected in the GUI.
+### Known Limitations
+1. As `StringUtil#containsWordIgnoreCase` searches by entire word, searching for `945` in `94567122` for `Phone` will result in false. This is also consistent in `Email`.
+
+2. Only one `PREFIX` can be chosen to filter by. Future improvements may include searching from more than one `PREFIX`. Example: `find o/19 n/John a/Lorong`.
+
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
@@ -421,32 +458,36 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes from step 2.
 
-**Use case: UC6 - Delete an order**
+**Use case: UC6 - Cancelling an order**
 
 **MSS**
-
-1.  User requests to list orders.
-2.  Strack.io shows a list of orders.
-3.  User requests to delete a specific order in the list.
-4.  Strack.io requests for confirmation.
-5.  User confirms.
-6.  Strack.io deletes the order, displaying the deleted order.
+1. User requests to cancel a specific order by index.
+2. Strack.io cancels the order.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The given index is invalid.
 
-  Use case ends.
+    * 1a1. Strack.io shows an error message.
 
-* 3a. The given index is invalid.
+      Use case ends.
 
-    * 3a1. Strack.io shows an error message.
+**Use case: UC7 - Searching for an order**
 
-      Use case resumes at step 2.
+**MSS**
+1. User searches for orders by indexes
+2. Strack.io shows orders with corresponding indexes
 
-*{More to be added}*
+    Use case ends.
+
+**Extensions**
+* 2a. The list of matching orders is empty.
+
+Use case ends.
+
+
 
 ### Non-Functional Requirements
 
