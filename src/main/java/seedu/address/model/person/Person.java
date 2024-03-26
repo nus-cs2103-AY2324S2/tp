@@ -25,6 +25,7 @@ public class Person {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
     private Note note;
+    private Pin pin;
     private boolean hasDeadlineNote;
 
     /**
@@ -37,6 +38,7 @@ public class Person {
         this.email = email;
         this.address = address;
         this.note = note;
+        this.pin = new Pin();
         this.tags.addAll(tags);
     }
 
@@ -55,8 +57,25 @@ public class Person {
     public Address getAddress() {
         return address;
     }
+
     public Note getNote() {
         return note;
+    }
+
+    public Pin getPin() {
+        return this.pin;
+    }
+
+    public void toPin() {
+        pin.setPin();
+    }
+
+    public void toUnpin() {
+        pin.setUnpin();
+    }
+
+    public boolean isPinned() {
+        return pin.getIsPinned();
     }
 
     /**

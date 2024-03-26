@@ -9,6 +9,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Note;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Pin;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -30,6 +31,7 @@ public class PersonBuilder {
     private Note note;
     private Set<Tag> tags;
     private Tag tag;
+    private Pin pin;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -42,6 +44,7 @@ public class PersonBuilder {
         note = new Note(DEFAULT_NOTE);
         tags = new HashSet<>();
         tag = new Tag(DEFAULT_TAG);
+        pin = new Pin();
         tags.add(tag);
     }
 
@@ -56,6 +59,7 @@ public class PersonBuilder {
         note = personToCopy.getNote();
         tags = new HashSet<>(personToCopy.getTags());
         tag = new Tag(DEFAULT_TAG);
+        pin = personToCopy.getPin();
         tags.add(tag);
     }
 
@@ -90,6 +94,14 @@ public class PersonBuilder {
      */
     public PersonBuilder withNote(String note) {
         this.note = new Note(note);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Note} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withPin() {
+        this.pin = new Pin();
         return this;
     }
 

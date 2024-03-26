@@ -12,6 +12,8 @@ import seedu.address.logic.messages.AddMessages;
 import seedu.address.logic.messages.DeleteMessages;
 import seedu.address.logic.messages.EditMessages;
 import seedu.address.logic.messages.Messages;
+import seedu.address.logic.messages.PinMessages;
+import seedu.address.logic.messages.UnpinMessages;
 
 /**
  * Contains unit tests for {@code Messages}.
@@ -120,6 +122,52 @@ public class MessagesTest {
 
         // Supplier
         String testSupplierString = EditMessages.format(ALICESUPPLIER);
+        String expectedSupplierString = "Supplier Alice Pauline";
+        assertEquals(testSupplierString, expectedSupplierString);
+    }
+
+    @Test
+    public void pinFormat() {
+        // Normal Person
+        String testNormalString = PinMessages.format(ALICE);
+        String expectedNormalString = "Other Contact Alice Pauline";
+        assertEquals(testNormalString, expectedNormalString);
+
+        // Staff
+        String testStaffString = PinMessages.format(ALICESTAFF);
+        String expectedStaffString = "Pooch Staff Alice Pauline";
+        assertEquals(testStaffString, expectedStaffString);
+
+        // Maintainer
+        String testMaintainerString = PinMessages.format(ALICEMAINTAINER);
+        String expectedMaintainerString = "Maintainer Alice Pauline";
+        assertEquals(testMaintainerString, expectedMaintainerString);
+
+        // Supplier
+        String testSupplierString = PinMessages.format(ALICESUPPLIER);
+        String expectedSupplierString = "Supplier Alice Pauline";
+        assertEquals(testSupplierString, expectedSupplierString);
+    }
+
+    @Test
+    public void unpinFormat() {
+        // Normal Person
+        String testNormalString = UnpinMessages.format(ALICE);
+        String expectedNormalString = "Other Contact Alice Pauline";
+        assertEquals(testNormalString, expectedNormalString);
+
+        // Staff
+        String testStaffString = UnpinMessages.format(ALICESTAFF);
+        String expectedStaffString = "Pooch Staff Alice Pauline";
+        assertEquals(testStaffString, expectedStaffString);
+
+        // Maintainer
+        String testMaintainerString = UnpinMessages.format(ALICEMAINTAINER);
+        String expectedMaintainerString = "Maintainer Alice Pauline";
+        assertEquals(testMaintainerString, expectedMaintainerString);
+
+        // Supplier
+        String testSupplierString = UnpinMessages.format(ALICESUPPLIER);
         String expectedSupplierString = "Supplier Alice Pauline";
         assertEquals(testSupplierString, expectedSupplierString);
     }

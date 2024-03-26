@@ -59,6 +59,8 @@ public class PersonCard extends UiPart<Region> {
     private FlowPane tags;
     @FXML
     private Label note;
+    @FXML
+    private Label pin;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -71,6 +73,10 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         note.setText(person.getNote().toString());
+        if (person.getPin().getIsPinned()) {
+            pin.setText("📌   ");
+            pin.setManaged(true);
+        }
         email.setText(person.getEmail().value);
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))

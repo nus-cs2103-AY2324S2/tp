@@ -180,6 +180,13 @@ public class ModelManager implements Model {
     }
 
     /**
+     * Update the person list to display pinned contacts first.
+     */
+    public void updatePinnedPersonList() {
+        addressBook.updatePinnedList();
+    }
+
+    /**
      * Find the person by their name.
      * @param targetName Refers to the name identifier.
      * @return Person that matches the name.
