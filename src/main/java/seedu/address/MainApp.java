@@ -1,7 +1,9 @@
 package seedu.address;
 
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -23,6 +25,7 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
+import seedu.address.storage.ImportUserPrefs;
 import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
@@ -65,6 +68,8 @@ public class MainApp extends Application {
         logic = new LogicManager(model, storage);
 
         ui = new UiManager(logic);
+
+        initializeImportDirectory(ImportUserPrefs.IMPORTS_DIRECTORY);
     }
 
     /**
@@ -167,6 +172,20 @@ public class MainApp extends Application {
 
         return initializedPrefs;
     }
+
+    /**
+     * Initializes an import directory.
+     * @param directoryPath String representation of the path to initialize the import directory at.
+     */
+    private void initializeImportDirectory(String directoryPath) {
+        try {
+            Path path = Paths.get(directoryPath);
+            Files.createDirectories(path);
+        } catch (IOException e) {
+            logger.warning("Could not initialize directory at " + directoryPath + ": " + e.getMessage());
+        }
+    }
+
 
     @Override
     public void start(Stage primaryStage) {
