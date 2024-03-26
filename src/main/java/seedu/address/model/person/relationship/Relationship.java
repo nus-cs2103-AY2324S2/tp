@@ -90,7 +90,7 @@ public class Relationship {
             throw new IllegalArgumentException("Cannot delete default relationship type");
         }
         RelationshipUtil relationshipUtil = new RelationshipUtil();
-        if (RelationshipUtil.descriptorExists(relationType)) {
+        if (relationshipUtil.descriptorExists(relationType)) {
             throw new IllegalArgumentException("There are relationships under this relation type. Please delete them first.");
         }
         validDescriptors.remove(relationType);
