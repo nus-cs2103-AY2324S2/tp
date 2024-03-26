@@ -7,6 +7,7 @@ import static seedu.findvisor.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.findvisor.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.findvisor.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.findvisor.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.findvisor.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.findvisor.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.findvisor.testutil.Assert.assertThrows;
 
@@ -48,6 +49,7 @@ public class CommandTestUtil {
     public static final String VALID_MEETING_REMARK = "Meeting with someone";
     public static final String VALID_MEETING_START_STR = "12-02-2024T12:00";
     public static final String VALID_MEETING_END_STR = "12-02-2024T13:00";
+    public static final String REMARK = "Wants to migrate to England";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -61,6 +63,7 @@ public class CommandTestUtil {
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
     public static final String TAG_DESC_SET = " " + PREFIX_TAG + VALID_TAG_FRIEND + " "
             + PREFIX_TAG + VALID_TAG_FINANCIAL_PLAN;
+    public static final String REMARK_DESC = " " + PREFIX_REMARK + REMARK;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones

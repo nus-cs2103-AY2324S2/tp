@@ -17,6 +17,7 @@ import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.findvisor.logic.parser.ParserUtil;
 import seedu.findvisor.testutil.PersonBuilder;
 
 public class PersonTest {
@@ -86,13 +87,17 @@ public class PersonTest {
         // different meetings -> returns false
         editedAlice = new PersonBuilder(ALICE).withMeeting(Optional.of(createValidMeeting())).build();
         assertFalse(ALICE.equals(editedAlice));
+
+        // different remarks -> returns false
+        editedAlice = new PersonBuilder(ALICE).withRemark(ParserUtil.parseRemark("Wants to be a millionaire")).build();
+        assertFalse(ALICE.equals(editedAlice));
     }
 
     @Test
     public void toStringMethod() {
         String expected = Person.class.getCanonicalName() + "{name=" + ALICE.getName() + ", phone=" + ALICE.getPhone()
                 + ", email=" + ALICE.getEmail() + ", address=" + ALICE.getAddress() + ", meeting=" + ALICE.getMeeting()
-                + ", tags=" + ALICE.getTags() + "}";
+                + ", remark=" + ALICE.getRemark() + ", tags=" + ALICE.getTags() + "}";
         assertEquals(expected, ALICE.toString());
     }
 }

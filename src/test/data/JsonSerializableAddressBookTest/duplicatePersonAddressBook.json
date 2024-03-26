@@ -9,6 +9,7 @@
       "end" : "",
       "remark" : ""
     },
+    "remark": "",
     "tags": [ "friends" ]
   }, {
     "name": "Alice Pauline",
@@ -19,6 +20,7 @@
       "start" : "",
       "end" : "",
       "remark" : ""
-    }
+    },
+    "remark": ""
   } ]
 }
