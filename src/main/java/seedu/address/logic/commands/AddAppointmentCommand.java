@@ -31,7 +31,9 @@ public class AddAppointmentCommand extends Command {
             + PREFIX_PATIENT_ID + "1 "
             + PREFIX_DATETIME + "2024-03-18 09:00 "
             + PREFIX_ATTEND + "false "
-            + PREFIX_APPOINTMENT_DESCRIPTION + "This is a new appointment"; //TODO: remove after case log is implemented
+            + PREFIX_FEEDBACK_SCORE + "5 "
+            + PREFIX_APPOINTMENT_DESCRIPTION + "This is a new appointment";
+
 
     public static final String MESSAGE_SUCCESS = "New appointment added: %1$s";
     public static final String MESSAGE_DUPLICATE_APPOINTMENT =
