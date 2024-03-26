@@ -23,12 +23,17 @@ class JsonSerializableAddressBook {
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
 
+    private final List<JsonAdaptedPerson> archivedPersons = new ArrayList<>();
+
+
     /**
      * Constructs a {@code JsonSerializableAddressBook} with the given persons.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
+    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
+                                       @JsonProperty("archivedPersons") List<JsonAdaptedPerson> archivedPersons) {
         this.persons.addAll(persons);
+        this.archivedPersons.addAll(archivedPersons);
     }
 
     /**
@@ -38,6 +43,8 @@ class JsonSerializableAddressBook {
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        archivedPersons.addAll(source.getArchivedPersonList().stream().map(JsonAdaptedPerson::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -53,6 +60,13 @@ class JsonSerializableAddressBook {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
             addressBook.addPerson(person);
+        }
+        for (JsonAdaptedPerson jsonAdaptedArchivedPerson : archivedPersons) {
+            Person archivedPerson = jsonAdaptedArchivedPerson.toModelType();
+            if (addressBook.hasPerson(archivedPerson)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+            }
+            addressBook.addArchivedPerson(archivedPerson);
         }
         return addressBook;
     }

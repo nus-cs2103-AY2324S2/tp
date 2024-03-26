@@ -16,6 +16,7 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    private final UniquePersonList archivedPersons;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -26,6 +27,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
+        archivedPersons = new UniquePersonList();
     }
 
     public AddressBook() {}
@@ -49,12 +51,20 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the contents of the archivedPerons list with {@code persons}.
+     * {@code persons} must not contain duplicate persons.
+     */
+    public void setArchivedPersons(List<Person> archivedPersons) {
+        this.archivedPersons.setPersons(archivedPersons);
+    }
+
+    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
-
         setPersons(newData.getPersonList());
+        setArchivedPersons(newData.getArchivedPersonList());
     }
 
     //// person-level operations
@@ -76,6 +86,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Adds a person to the archive list in the address book.
+     * The person must not already exist in the archived list.
+     */
+    public void addArchivedPerson(Person p) {
+        archivedPersons.add(p);
+    }
+
+    /**
      * Replaces the given person {@code target} in the list with {@code editedPerson}.
      * {@code target} must exist in the address book.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
@@ -94,18 +112,46 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    /**
+     * Archives a person by removing them from the main list of persons and adding them to the archive list.
+     * The person must exist in the address book's main list but not in the archived list before this operation.
+     *
+     * @param person The person to be archived. This person must exist in the address book.
+     */
+    public void archivePerson(Person person) {
+        persons.remove(person);
+        archivedPersons.add(person);
+    }
+
+    /**
+     * Unarchives a person by removing them from the archive list and adding them back to the main list of persons.
+     * The person must exist in the address book's archived list but not in the main list before this operation.
+     *
+     * @param person The person to be unarchived. This person must exist in the archive list of the address book.
+     */
+    public void unarchivePerson(Person person) {
+        archivedPersons.remove(person);
+        persons.add(person);
+    }
+
     //// util methods
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .add("persons", persons)
+                .add("archivedPersons", archivedPersons)
                 .toString();
     }
 
     @Override
     public ObservableList<Person> getPersonList() {
         return persons.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Person> getArchivedPersonList() {
+        return archivedPersons.asUnmodifiableObservableList();
     }
 
     @Override
@@ -120,11 +166,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         }
 
         AddressBook otherAddressBook = (AddressBook) other;
-        return persons.equals(otherAddressBook.persons);
+        return persons.equals(otherAddressBook.persons)
+                && archivedPersons.equals(otherAddressBook.archivedPersons);
     }
 
     @Override
     public int hashCode() {
-        return persons.hashCode();
+        return persons.hashCode() + archivedPersons.hashCode();
     }
 }
