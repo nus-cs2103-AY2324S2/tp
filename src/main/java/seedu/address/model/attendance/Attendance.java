@@ -57,6 +57,7 @@ public class Attendance {
         StringBuilder sb = new StringBuilder("Weeks Absent: ");
         String absentWeeks = IntStream.rangeClosed(0, 12)
                 .filter(i -> attendanceList[i] == Status.ABSENT)
+                .map(i -> i + 1)
                 .mapToObj(String::valueOf)
                 .collect(Collectors.joining(", "));
         sb.append(absentWeeks.isEmpty() ? "0" : absentWeeks);
