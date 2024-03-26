@@ -127,7 +127,7 @@ public class EditCommandTest {
         showAllCourseMates(model, new Name("a"));
         EditCommand editCommand = new EditCommand(new QueryableCourseMate(new Name("a")),
                 new EditCourseMateDescriptorBuilder().withName(VALID_NAME_BOB).build());
-        String expectedMessage = String.format(Messages.MESSAGE_SIMILAR_COURSE_MATE_NAME, 4);
+        String expectedMessage = String.format(Messages.MESSAGE_SIMILAR_COURSE_MATE_NAME, 4, "a");
 
         Model expectedModel = new ModelManager(
                 new ContactList(model.getContactList()), new UserPrefs(), new GroupList());

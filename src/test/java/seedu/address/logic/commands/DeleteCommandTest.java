@@ -52,7 +52,7 @@ public class DeleteCommandTest {
     public void execute_similarCourseMates() {
         showAllCourseMates(model, new Name("a"));
         DeleteCommand deleteCommand = new DeleteCommand(new QueryableCourseMate(new Name("a")));
-        String expectedMessage = String.format(Messages.MESSAGE_SIMILAR_COURSE_MATE_NAME, 4);
+        String expectedMessage = String.format(Messages.MESSAGE_SIMILAR_COURSE_MATE_NAME, 4, "a");
 
         Model expectedModel = new ModelManager(
                 new ContactList(model.getContactList()), new UserPrefs(), new GroupList());
