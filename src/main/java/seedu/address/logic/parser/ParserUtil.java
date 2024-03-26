@@ -3,7 +3,9 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Collection;
 import java.util.HashSet;
@@ -222,6 +224,46 @@ public class ParserUtil {
 
         try {
             return LocalDateTime.parse(trimmedDate + " " + trimmedTime, formatter);
+        } catch (Exception e) {
+            throw new ParseException(MESSAGE_INVALID_DATE_TIME);
+        }
+    }
+
+    /**
+     * Parses {@code String date} into a {@code LocalDate}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code date} is invalid.
+     */
+    public static LocalDate parseLocalDate(String date) throws ParseException {
+        requireAllNonNull(date);
+
+        String trimmedDate = date.trim();
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+
+        try {
+            return LocalDate.parse(trimmedDate, formatter);
+        } catch (Exception e) {
+            throw new ParseException(MESSAGE_INVALID_DATE_TIME);
+        }
+    }
+
+    /**
+     * Parses {@code String time} into a {@code LocalTime}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code time} is invalid.
+     */
+    public static LocalTime parseLocalTime(String time) throws ParseException {
+        requireAllNonNull(time);
+
+        String trimmedTime = time.trim();
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HHmm");
+
+        try {
+            return LocalTime.parse(trimmedTime, formatter);
         } catch (Exception e) {
             throw new ParseException(MESSAGE_INVALID_DATE_TIME);
         }

@@ -6,7 +6,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_NOTES;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -108,8 +110,11 @@ public class EditNoteCommand extends Command {
     private static Note createEditedNote(Note noteToEdit, EditNoteDescriptor editNoteDescriptor) {
         assert noteToEdit != null;
 
-        LocalDateTime updatedDateTime = editNoteDescriptor.getDateTime().orElse(noteToEdit.getDateTime());
+        LocalDate updatedDate = editNoteDescriptor.getDate().orElse(noteToEdit.getDateTime().toLocalDate());
+        LocalTime updatedTime = editNoteDescriptor.getTime().orElse(noteToEdit.getDateTime().toLocalTime());
         Description updatedDescription = editNoteDescriptor.getDescription().orElse(noteToEdit.getDescription());
+
+        LocalDateTime updatedDateTime = updatedDate.atTime(updatedTime);
 
         return new Note(updatedDateTime, updatedDescription);
     }
@@ -145,7 +150,8 @@ public class EditNoteCommand extends Command {
      * corresponding field value of the person.
      */
     public static class EditNoteDescriptor {
-        private LocalDateTime dateTime;
+        private LocalDate date;
+        private LocalTime time;
         private Description description;
 
         public EditNoteDescriptor() {
@@ -153,10 +159,10 @@ public class EditNoteCommand extends Command {
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
          */
         public EditNoteDescriptor(EditNoteDescriptor toCopy) {
-            setDateTime(toCopy.dateTime);
+            setDate(toCopy.date);
+            setTime(toCopy.time);
             setDescription(toCopy.description);
         }
 
@@ -164,15 +170,22 @@ public class EditNoteCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(dateTime, description);
+            return CollectionUtil.isAnyNonNull(date, time, description);
         }
 
-        public void setDateTime(LocalDateTime dateTime) {
-            this.dateTime = dateTime;
+        public void setDate(LocalDate date) {
+            this.date = date;
         }
 
-        public Optional<LocalDateTime> getDateTime() {
-            return Optional.ofNullable(dateTime);
+        public Optional<LocalDate> getDate() {
+            return Optional.ofNullable(date);
+        }
+
+        public void setTime(LocalTime time) {
+            this.time = time;
+        }
+        public Optional<LocalTime> getTime() {
+            return Optional.ofNullable(time);
         }
 
         public void setDescription(Description description) {
@@ -196,14 +209,16 @@ public class EditNoteCommand extends Command {
             }
 
             EditNoteDescriptor otherEditNoteDescriptor = (EditNoteDescriptor) other;
-            return Objects.equals(dateTime, otherEditNoteDescriptor.dateTime)
+            return Objects.equals(date, otherEditNoteDescriptor.date)
+                    && Objects.equals(time, otherEditNoteDescriptor.time)
                     && Objects.equals(description, otherEditNoteDescriptor.description);
         }
 
         @Override
         public String toString() {
             return new ToStringBuilder(this)
-                    .add("dateTime", dateTime)
+                    .add("date", date)
+                    .add("time", time)
                     .add("description", description)
                     .toString();
         }

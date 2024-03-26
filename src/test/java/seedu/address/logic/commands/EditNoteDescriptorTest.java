@@ -6,7 +6,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_NOTE1;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_NOTE2;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Optional;
 
 import org.junit.jupiter.api.Nested;
@@ -22,12 +24,20 @@ public class EditNoteDescriptorTest {
     @Nested
     class FieldTests {
         @Test
-        void setAndGetDateTime() {
-            LocalDateTime testDateTime = LocalDateTime.of(2023, 10, 5, 12, 0);
+        void setAndGetDate() {
+            LocalDate testDate = LocalDate.of(2023, 10, 5);
             EditNoteDescriptor descriptor = new EditNoteDescriptor();
-            descriptor.setDateTime(testDateTime);
+            descriptor.setDate(testDate);
 
-            assertEquals(Optional.of(testDateTime), descriptor.getDateTime());
+            assertEquals(Optional.of(testDate), descriptor.getDate());
+        }
+        @Test
+        void setAndGetTime() {
+            LocalTime testTime = LocalTime.of(12, 0);
+            EditNoteDescriptor descriptor = new EditNoteDescriptor();
+            descriptor.setTime(testTime);
+
+            assertEquals(Optional.of(testTime), descriptor.getTime());
         }
 
         @Test
@@ -68,7 +78,7 @@ public class EditNoteDescriptorTest {
         Note note = new Note(dateTime, new Description("General Flu"));
         EditNoteDescriptor descriptor = new EditNoteDescriptorBuilder(note).build();
 
-        String expected = EditNoteDescriptor.class.getCanonicalName() + "{dateTime=2024-02-19T11:30,"
+        String expected = EditNoteDescriptor.class.getCanonicalName() + "{date=2024-02-19, time=11:30,"
                 + " description=General Flu}";
         assertEquals(expected, descriptor.toString());
     }

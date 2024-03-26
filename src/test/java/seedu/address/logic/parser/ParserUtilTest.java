@@ -8,7 +8,9 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_NOTE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Collections;
@@ -321,6 +323,45 @@ public class ParserUtilTest {
         @Test
         public void parseLocalDateTime_null_throwsNullPointerException() {
             assertThrows(NullPointerException.class, () -> ParserUtil.parseLocalDateTime(null, null));
+        }
+    }
+
+    @Nested
+    public class ParseLocalDateTests {
+        @Test
+        public void parseLocalDate_success() throws Exception {
+            LocalDate expectedDate =
+                    LocalDate.parse(VALID_DATE, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+            assertEquals(expectedDate, ParserUtil.parseLocalDate(VALID_DATE));
+        }
+
+        @Test
+        public void parseLocalDate_invalidDate_throwsParseException() {
+            assertThrows(ParseException.class, () -> ParserUtil.parseLocalDate(INVALID_DATE));
+        }
+
+        @Test
+        public void parseLocalDate_null_throwsNullPointerException() {
+            assertThrows(NullPointerException.class, () -> ParserUtil.parseLocalDate(null));
+        }
+    }
+    @Nested
+    public class ParseLocalTimeTests {
+        @Test
+        public void parseLocalTime_success() throws Exception {
+            LocalTime expectedTime =
+                    LocalTime.parse(VALID_TIME, DateTimeFormatter.ofPattern("HHmm"));
+            assertEquals(expectedTime, ParserUtil.parseLocalTime(VALID_TIME));
+        }
+
+        @Test
+        public void parseLocalTime_invalidDate_throwsParseException() {
+            assertThrows(ParseException.class, () -> ParserUtil.parseLocalTime(INVALID_TIME));
+        }
+
+        @Test
+        public void parseLocalTime_null_throwsNullPointerException() {
+            assertThrows(NullPointerException.class, () -> ParserUtil.parseLocalTime(null));
         }
     }
 

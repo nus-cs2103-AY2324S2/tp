@@ -51,14 +51,18 @@ public class EditNoteCommandParser implements Parser<EditNoteCommand> {
     private EditNoteDescriptor createEditNoteDescriptor(ArgumentMultimap argMultimap) throws ParseException {
         EditNoteDescriptor editNoteDescriptor = new EditNoteDescriptor();
 
-        if (argMultimap.getValue(PREFIX_DATE).isPresent() && argMultimap.getValue(PREFIX_TIME).isPresent()) {
-            editNoteDescriptor.setDateTime(ParserUtil.parseLocalDateTime(argMultimap.getValue(PREFIX_DATE).get(),
-                    argMultimap.getValue(PREFIX_TIME).get()));
+        if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
+            editNoteDescriptor.setDate(ParserUtil.parseLocalDate(argMultimap.getValue(PREFIX_DATE).get()));
+        }
+
+        if (argMultimap.getValue(PREFIX_TIME).isPresent()) {
+            editNoteDescriptor.setTime(ParserUtil.parseLocalTime(argMultimap.getValue(PREFIX_TIME).get()));
         }
 
         if (argMultimap.getValue(PREFIX_NOTE).isPresent()) {
             editNoteDescriptor.setDescription(ParserUtil.parseDescription(argMultimap.getValue(PREFIX_NOTE).get()));
         }
+
         return editNoteDescriptor;
     }
 }

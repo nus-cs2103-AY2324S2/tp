@@ -1,6 +1,8 @@
 package seedu.address.testutil;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 import seedu.address.logic.commands.EditNoteCommand.EditNoteDescriptor;
 import seedu.address.model.person.note.Description;
@@ -22,7 +24,8 @@ public class EditNoteDescriptorBuilder {
      */
     public EditNoteDescriptorBuilder(Note note) {
         descriptor = new EditNoteDescriptor();
-        descriptor.setDateTime(note.getDateTime());
+        descriptor.setDate(note.getDateTime().toLocalDate());
+        descriptor.setTime(note.getDateTime().toLocalTime());
         descriptor.setDescription(note.getDescription());
     }
 
@@ -30,7 +33,24 @@ public class EditNoteDescriptorBuilder {
      * Sets the {@code date time} of the {@code EditNoteDescriptor} that we are building.
      */
     public EditNoteDescriptorBuilder withDateTime(LocalDateTime dateTime) {
-        descriptor.setDateTime(dateTime);
+        descriptor.setDate(dateTime.toLocalDate());
+        descriptor.setTime(dateTime.toLocalTime());
+        return this;
+    }
+
+    /**
+     * Sets the {@code date} of the {@code EditNoteDescriptor} that we are building.
+     */
+    public EditNoteDescriptorBuilder withDate(LocalDate date) {
+        descriptor.setDate(date);
+        return this;
+    }
+
+    /**
+     * Sets the {@code time} of the {@code EditNoteDescriptor} that we are building.
+     */
+    public EditNoteDescriptorBuilder withTime(LocalTime time) {
+        descriptor.setTime(time);
         return this;
     }
 

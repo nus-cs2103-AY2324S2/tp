@@ -8,12 +8,19 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_NOTE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TIME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NOTE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.TIME_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NOTE1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TIME;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_DATE_TIME;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_NOTE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -21,17 +28,44 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.EditNoteCommand;
 import seedu.address.logic.commands.EditNoteCommand.EditNoteDescriptor;
 import seedu.address.model.person.note.Description;
+import seedu.address.testutil.EditNoteDescriptorBuilder;
 
 public class EditNoteCommandParserTest {
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditNoteCommand.MESSAGE_USAGE);
     private final EditNoteCommandParser parser = new EditNoteCommandParser();
 
-    @Test
-    public void parse_allFieldsPresent_success() {
-        String command = " 1 1 d/19-02-2024 t/2130 n/General Flu";
-        assertParseSuccess(parser, command, new EditNoteCommand(INDEX_FIRST_PERSON, INDEX_FIRST_NOTE,
-                new EditNoteDescriptor(DESC_NOTE1)));
+    @Nested
+    class ParseFieldsTests {
+
+        @Test
+        public void parse_allFieldsPresent_success() {
+            String command = " 1 1 d/19-02-2024 t/2130 n/General Flu";
+            assertParseSuccess(parser, command, new EditNoteCommand(INDEX_FIRST_PERSON, INDEX_FIRST_NOTE,
+                    new EditNoteDescriptor(DESC_NOTE1)));
+        }
+        @Test
+        public void parse_onlyDateFieldPresent_success() {
+            String command = " 1 1 d/19-02-2024";
+            LocalDate expectedDate = LocalDate.parse(VALID_DATE, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+            EditNoteDescriptor descriptor = new EditNoteDescriptorBuilder().withDate(expectedDate).build();
+            assertParseSuccess(parser, command, new EditNoteCommand(INDEX_FIRST_PERSON, INDEX_FIRST_NOTE, descriptor));
+        }
+
+        @Test
+        public void parse_onlyTimeFieldPresent_success() {
+            String command = " 1 1 t/2130";
+            LocalTime expectedTime = LocalTime.parse(VALID_TIME, DateTimeFormatter.ofPattern("HHmm"));
+            EditNoteDescriptor descriptor = new EditNoteDescriptorBuilder().withTime(expectedTime).build();
+            assertParseSuccess(parser, command, new EditNoteCommand(INDEX_FIRST_PERSON, INDEX_FIRST_NOTE, descriptor));
+        }
+
+        @Test
+        public void parse_onlyDescriptionFieldPresent_success() {
+            String command = " 1 1 n/General Flu";
+            EditNoteDescriptor descriptor = new EditNoteDescriptorBuilder().withDescription(VALID_NOTE1).build();
+            assertParseSuccess(parser, command, new EditNoteCommand(INDEX_FIRST_PERSON, INDEX_FIRST_NOTE, descriptor));
+        }
     }
     @Test
     public void parse_missingParts_failure() {
