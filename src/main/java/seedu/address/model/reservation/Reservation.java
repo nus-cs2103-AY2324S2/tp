@@ -58,8 +58,7 @@ public class Reservation {
         return otherReservation != null
                 && otherReservation.getPerson().equals(getPerson())
                 && otherReservation.getDate().equals(getDate())
-                && otherReservation.getTime().equals(getTime())
-                && otherReservation.getPax().equals(getPax());
+                && otherReservation.getTime().equals(getTime());
     }
 
     /**

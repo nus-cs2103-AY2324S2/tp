@@ -3,6 +3,7 @@ package seedu.address.model.reservation;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.ResolverStyle;
@@ -36,7 +37,7 @@ public class RsvDate {
         try {
             LocalDate.parse(test, FORMATTER);
             return true;
-        } catch (Exception e) {
+        } catch (DateTimeException e) {
             return false;
         }
     }
@@ -51,7 +52,7 @@ public class RsvDate {
         if (this == other) {
             return true;
         }
-        if (other == null || getClass() != other.getClass()) {
+        if (!(other instanceof RsvDate)) {
             return false;
         }
         RsvDate rsvDate = (RsvDate) other;

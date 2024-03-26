@@ -10,7 +10,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Pax {
 
     public static final String MESSAGE_CONSTRAINTS = "Pax should only be a positive number";
-    public static final String VALIDATION_REGEX = "\\d+";
+    public static final String VALIDATION_REGEX = "[1-9]\\d*";
     public final String value;
 
     /**
