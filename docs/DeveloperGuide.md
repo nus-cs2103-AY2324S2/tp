@@ -346,22 +346,20 @@ Priorities: High (must have) - `* * * *`, Medium (nice to have) - `* * *`, Low (
 **MSS**
 
 1.  User requests to delete a patient at the given index.
-2.  CogniCare displays the patient information prior to deletion, and confirms with the user prior to deletion.
-3.  CogniCare deletes the patient.
-
+2.  CogniCare deletes the patient.
+3.  CogniCare displays a successful message stating that the deletion was successful and displays information of deleted patient.
     Use case ends.
 
 **Extensions**
 
-* 1a. The query has missing parameters.
-
-    * 1a1. CogniCare displays an error message that the index is invalid.
+* 1a. The query has missing Id parameter.
+    * 1a1. CogniCare displays an error message that the index is invalid. (No deletion is done)
 
     Use case ends.
 
-* 2a. User does not want to delete.
-    * 2a1. CogniCare shows an error message that the user cancelled the delete operation.
-  
+ 1b. The patient index is invalid. 
+    * 1a1. CogniCare displays an error message that the index is invalid. (No deletion is done)
+
   Use case ends.
 
 **Use case: Search for an appointment of a specific student**
