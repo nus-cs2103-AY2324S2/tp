@@ -39,8 +39,8 @@ public class AddRelationshipCommandParser implements Parser<AddRelationshipComma
                 originUuid = ParserUtil.parseUuid(parts[0]);
                 targetUuid = ParserUtil.parseUuid(parts[1]);
                 relationshipDescriptor = parts[2];
+                return new AddRelationshipCommand(originUuid, targetUuid, relationshipDescriptor);
             }
-            return new AddRelationshipCommand(originUuid, targetUuid, relationshipDescriptor, null, null);
         } catch (ParseException pe) {
             throw new ParseException(Messages.MESSAGE_INVALID_PERSON_UUID);
         }

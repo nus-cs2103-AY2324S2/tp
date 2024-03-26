@@ -50,8 +50,8 @@ public class AddRelationshipCommand extends Command {
         this.originUuid = originUuid;
         this.targetUuid = targetUuid;
         this.relationshipDescriptor = relationshipDescriptor.toLowerCase();
-        this.rolePerson1 = role1;
-        this.rolePerson2 = role2;
+        this.rolePerson1 = role1.toLowerCase();
+        this.rolePerson2 = role2.toLowerCase();
     }
 
     @Override
