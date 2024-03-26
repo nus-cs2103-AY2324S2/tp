@@ -92,7 +92,7 @@ Adds a client to the FitBook.
 Format: `add n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [note/NOTE] [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A client can 0 or more tags.
+A client can have 0 or more tags.
 </div>
 
 Examples:
