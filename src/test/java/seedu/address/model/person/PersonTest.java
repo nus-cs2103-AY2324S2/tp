@@ -4,7 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_FIRSTNAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_FIRSTNAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_LASTNAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LASTNAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_WAITER;
@@ -32,23 +34,18 @@ public class PersonTest {
         // null -> returns false
         assertFalse(ALICE.isSamePerson(null));
 
-        // same name, all other attributes different -> returns true
-        Person editedAlice = new PersonBuilder(ALICE)
+        // same name, all other attributes different -> returns false
+        Person editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB)
             .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_WAITER).build();
-        assertTrue(ALICE.isSamePerson(editedAlice));
-
-        // different first name, all other attributes same -> returns false
-        editedAlice = new PersonBuilder(ALICE).withFirstName(VALID_FIRSTNAME_BOB).build();
         assertFalse(ALICE.isSamePerson(editedAlice));
 
-        // name differs in case, all other attributes same -> returns false
-        Person editedBob = new PersonBuilder(BOB).withFirstName(VALID_FIRSTNAME_BOB.toLowerCase()).build();
-        assertFalse(BOB.isSamePerson(editedBob));
+        // different first name, same phone number -> returns true
+        Person editedBob = new PersonBuilder(BOB).withFirstName(VALID_FIRSTNAME_AMY).build();
+        assertTrue(BOB.isSamePerson(editedBob));
 
-        // name has trailing spaces, all other attributes same -> returns false
-        String nameWithTrailingSpaces = VALID_FIRSTNAME_BOB + " ";
-        editedBob = new PersonBuilder(BOB).withFirstName(nameWithTrailingSpaces).build();
-        assertFalse(BOB.isSamePerson(editedBob));
+        // different first name, same phone number -> returns true
+        editedBob = new PersonBuilder(BOB).withFirstName(VALID_FIRSTNAME_BOB).withLastName(VALID_LASTNAME_AMY).build();
+        assertTrue(BOB.isSamePerson(editedBob));
     }
 
     @Test

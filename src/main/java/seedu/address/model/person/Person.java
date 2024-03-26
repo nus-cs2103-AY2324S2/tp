@@ -105,9 +105,7 @@ public class Person {
         }
 
         return otherPerson != null
-                && otherPerson.firstName.equals(firstName)
-                && otherPerson.lastName.equals(lastName)
-                && otherPerson.phone.equals(phone);
+            && otherPerson.phone.equals(phone);
     }
 
     /**
@@ -127,33 +125,33 @@ public class Person {
 
         Person otherPerson = (Person) other;
         return getName().equals(otherPerson.getName())
-                && phone.equals(otherPerson.phone)
-                && sex.equals(otherPerson.sex)
-                && payRate.equals(otherPerson.payRate)
-                && address.equals(otherPerson.address)
-                && bankDetails.equals(otherPerson.bankDetails)
-                && tags.equals(otherPerson.tags);
+            && phone.equals(otherPerson.phone)
+            && sex.equals(otherPerson.sex)
+            && payRate.equals(otherPerson.payRate)
+            && address.equals(otherPerson.address)
+            && bankDetails.equals(otherPerson.bankDetails)
+            && tags.equals(otherPerson.tags);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(firstName, lastName, phone, sex, payRate, address, bankDetails,
-                tags);
+            tags);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("firstName", firstName)
-                .add("lastName", lastName)
-                .add("phone", phone)
-                .add("sex", sex)
-                .add("payRate", payRate)
-                .add("address", address)
-                .add("bankDetails", bankDetails)
-                .add("tags", tags)
-                .toString();
+            .add("firstName", firstName)
+            .add("lastName", lastName)
+            .add("phone", phone)
+            .add("sex", sex)
+            .add("payRate", payRate)
+            .add("address", address)
+            .add("bankDetails", bankDetails)
+            .add("tags", tags)
+            .toString();
     }
 
 }
