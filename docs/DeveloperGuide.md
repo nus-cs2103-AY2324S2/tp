@@ -297,10 +297,43 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
+### Loan Analytics
 
-_{Explain here how the data archiving feature will be implemented}_
+#### Implementation
+The `Analytics` class handles the analysis of a `LoanRecords` object. This class can only be instantiated by calling the
+static method `getAnalytics(LoanRecords loanRecords)`. 
 
+It contains the following fields that can prove to be useful for the user:
+* `propOverdueLoans`: proportion of loans that are overdue over active loans
+* `propActiveLoans`: proportion of loans that are active over total loans
+* `averageLoanValue`: average loan value of all loans
+* `averageOverdueValue`: average loan value of all overdue loans
+* `averageActiveValue`: average loan value of all active loans
+* `earliestLoanDate`: earliest loan date of all loans
+* `earliestReturnDate`: earliest return date of active loans
+* `latestLoanDate`: latest loan date of all loans
+* `latestReturnDate`: latest return date of active loans
+
+![AnalyticsSequenceDiagram](images/AnalyticsSequenceDiagram.png)
+
+#### Design considerations:
+##### Aspect: Initialization of the Analytics object:
+* **Alternative 1 (current choice):** Initialize the Analytics class using a factory method.
+    * Pros: Hide the constructor from the user, ensure that fields are initialized correctly, more defensive.
+    * Cons: Slightly more complex than a public constructor.
+
+* **Alternative 2:** Initialize the Analytics class using a public constructor.
+    * Pros: More straightforward to use.
+    * Cons: User may not initialize the fields correctly, less defensive.
+
+##### Aspect: What fields to include in the analytics:
+* **Alternative 1 (current choice):** Include all fields.
+    * Pros: Satisfy 'ask, don't tell' principle.
+    * Cons: Possibly result in redundant information for the GUI developer.
+
+* **Alternative 2:** Include only raw data (e.g. total number of loans, total value of all loans).
+    * Pros: No redundant information.
+    * Cons: GUI developer has to calculate the analytics themselves, violating 'ask, don't tell' principle.
 
 --------------------------------------------------------------------------------------------------------------------
 
