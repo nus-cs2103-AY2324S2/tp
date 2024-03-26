@@ -8,10 +8,12 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-
 import seedu.address.model.person.Birthday;
 import seedu.address.model.person.Person;
 
+/**
+ * Displays a person's information
+ */
 public class DisplayCard extends UiPart<Region> {
 
     private static final String FXML = "DisplayCard.fxml";
@@ -58,6 +60,9 @@ public class DisplayCard extends UiPart<Region> {
     @FXML
     private Label moneyLabel;
 
+    /**
+     * @param person Person information to be displayed on the card
+     */
     public DisplayCard(Person person) {
         super(FXML);
 
