@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -134,6 +135,12 @@ public class ModelManager implements Model {
     public void addOrder(Person target, Order order) {
         addressBook.addOrder(target, order);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
+    public ArrayList<Order> getOrders(Person target) {
+        addressBook.getOrders(target);
+        return target.getOrders();
     }
 
     @Override

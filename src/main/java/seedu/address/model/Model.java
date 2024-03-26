@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -90,5 +91,10 @@ public interface Model {
      * Adds an order to the person.
      */
     void addOrder(Person person, Order order);
+
+    /**
+     * Returns the orders for a person.
+     */
+    ArrayList<Order> getOrders(Person person);
 
 }

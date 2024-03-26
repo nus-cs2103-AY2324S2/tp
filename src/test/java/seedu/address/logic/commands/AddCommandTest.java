@@ -163,6 +163,11 @@ public class AddCommandTest {
         public void addOrder(Person target, Order order) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public ArrayList<Order> getOrders(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
