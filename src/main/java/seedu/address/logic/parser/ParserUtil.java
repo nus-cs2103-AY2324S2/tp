@@ -2,9 +2,9 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.List;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
@@ -76,7 +76,13 @@ public class ParserUtil {
         return tagSet;
     }
 
-    public static EntryList parseEntries(List<String> categories, List<String> descriptions) throws ParseException {
+    /**
+     * converts a list of string categories and list of string descriptions into an entrylist
+     * @param categories
+     * @param descriptions
+     * @return the entrylist
+     */
+    public static EntryList parseEntries(List<String> categories, List<String> descriptions) {
         requireNonNull(categories);
         requireNonNull(descriptions);
         EntryList e = new EntryList();

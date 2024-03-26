@@ -34,7 +34,8 @@ public class AddCategoryCommand extends Command {
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Added all entries to Person %1$s";
     public static final String ENTRY_NOT_ADDED = "Both fields to add must be provided.";
     public static final String MESSAGE_DUPLICATE_CATEGORY = "This category already exists for this person.";
-    public static final String DIFFERENT_NUMBER_CATEGORIES_DESCRIPTIONS = "Number of specified categories and descriptions must be the same.";
+    public static final String DIFFERENT_NUMBER_CATEGORIES_DESCRIPTIONS =
+            "Number of specified categories and descriptions must be the same.";
     private final Index index;
 
     private final EntryList entrylist;
