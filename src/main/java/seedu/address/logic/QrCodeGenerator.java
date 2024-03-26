@@ -68,10 +68,13 @@ public class QrCodeGenerator {
      */
     private static String createVCardString(Person person) {
         return "BEGIN:VCARD\n"
-                + "VERSION:3.0\n"
+                + "VERSION:4.0\n"
                 + "N:" + person.getName() + ";;;\n"
                 + "FN:" + person.getName() + "\n"
                 + "TEL;TYPE=CELL:" + person.getPhone() + "\n"
+                + "EMAIL:" + person.getEmail() + "\n"
+                + "ADR;TYPE=HOME:;;" + person.getAddress() + "\n"
+                + "NOTE:" + person.getNote() + "\n"
                 + "END:VCARD";
     }
 
