@@ -22,14 +22,14 @@ import seedu.address.logic.parser.exceptions.ParseException;
  * a menu bar and space where other JavaFX elements can be placed.
  */
 public class MainWindow extends UiPart<Stage> {
-    private String LightUrl = getClass().getResource("/view/LightTheme.css").toExternalForm();
-    private String DarkUrl = getClass().getResource("/view/DarkTheme.css").toExternalForm();
-    private String currentTheme = "light";
 
     private static final String FXML = "MainWindow.fxml";
 
+    private final String lightUrl = getClass().getResource("/view/LightTheme.css").toExternalForm();
+    private final String darkUrl = getClass().getResource("/view/DarkTheme.css").toExternalForm();
     private final Logger logger = LogsCenter.getLogger(getClass());
 
+    private String currentTheme = "light";
     private Stage primaryStage;
     private Logic logic;
 
@@ -169,10 +169,10 @@ public class MainWindow extends UiPart<Stage> {
     private void handleTheme() {
         primaryStage.getScene().getStylesheets().clear();
         if (currentTheme.equals("light")) {
-            primaryStage.getScene().getStylesheets().add(DarkUrl);
+            primaryStage.getScene().getStylesheets().add(darkUrl);
             currentTheme = "dark";
         } else {
-            primaryStage.getScene().getStylesheets().add(LightUrl);
+            primaryStage.getScene().getStylesheets().add(lightUrl);
             currentTheme = "light";
         }
     }

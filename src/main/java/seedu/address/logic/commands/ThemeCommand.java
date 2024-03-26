@@ -4,7 +4,10 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.model.Model;
 
-public class ThemeCommand extends Command{
+/**
+ * Command for changing theme.
+ */
+public class ThemeCommand extends Command {
     public static final String COMMAND_WORD = "theme";
 
     public static final String MESSAGE_SUCCESS = "Successfully changed the theme";

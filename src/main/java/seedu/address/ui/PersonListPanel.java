@@ -24,7 +24,7 @@ public class PersonListPanel extends UiPart<Region> {
         super(FXML);
         personListView.setItems(personList);
         personListView.setCellFactory(listView -> new PersonListViewCell());
-        personListView.setStyle( "-fx-padding: 2;");
+        personListView.setStyle("-fx-padding: 2;");
     }
 
     public void toNormal() {
