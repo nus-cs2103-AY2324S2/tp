@@ -6,7 +6,11 @@
 
 # ClinicMate User Guide
 
+Welcome to ClinicMate, your efficient companion for managing contacts in a clinic! This user guide is designed to help you navigate ClinicMate effortlessly, whether you're a seasoned user or just getting started.
+
 ClinicMate is a **desktop** app for managing contacts in a clinic, optimized for use via a  **Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, ClinicMate can manage your patients' contact faster than traditional GUI apps.
+
+Our target audience includes healthcare professionals and clinic staff who need a streamlined way to manage patient contacts. We assume that users have basic computer literacy and are familiar with using desktop applications.
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -15,17 +19,34 @@ ClinicMate is a **desktop** app for managing contacts in a clinic, optimized for
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+### Prerequisites
 
-1. Download the latest `.jar` file from [here](https://github.com/AY2324S2-CS2103T-F14-2/tp/releases/latest)
+1. Open Command Prompt (for Windows) or Terminal (for MacOS and Linux) on your desktop.
+2. Run the command `java -version` to check if you have Java 11 or above installed in your computer.
+* Assuming that you have Java installed in your computer,
+  * If you have a Windows, in this case the Java version is 19.0.2.
+       ![javaWindows](images/javaWindows.png)
+  * If you have a Mac,  in this case the Java version is 11.0.19.
+     ![javaMac](images/javaMac.png)
+3. If you do not have Java 11 or above installed in your computer, download it from [here](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your ClinicMate.
+### Setting up
+1. Download the latest `.jar` file [here](https://github.com/AY2324S2-CS2103T-F14-2/tp/releases/latest)
+2. Copy the file to the folder you want to use as the _home folder_ for your ClinicMate.
+   * e.g. if you want to use the `Documents` folder as the _home folder_ for your ClinicMate, create a new folder named `clinicmate` in the `Documents` folder.
+   * You can then copy the `.jar` file to a folder named `clinicmate` in your `Documents` folder.
+   
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar clinicmate.jar` command to run the application.<br>
+### Running the application
+1. Open Command Prompt (for Windows) or Terminal (for MacOS and Linux) on your desktop.
+2. Run the `cd` command into the folder you put the jar file in.
+   * `cd` is the command to change directory.
+   * e.g. `cd Documents/clinicmate`
+3. Run the `java -jar clinicmate.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/updatedUI.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+4. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * `list` : Lists all contacts.
@@ -42,7 +63,7 @@ ClinicMate is a **desktop** app for managing contacts in a clinic, optimized for
    
    * `exit` : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+5. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -111,7 +132,7 @@ Find an existing person in CinicMate using their IC_NUMBER.
 
 Format: `find IC_NUMBER`
 
-* Deletes the person with the specified `IC_NUMBER`.
+* Finds the person with the specified `IC_NUMBER`.
 * The IC_NUMBER refers to the IC number shown in the displayed person list.
 * The IC_NUMBER **must be the FULL IC NUMBER**.
 * The search is case-insensitive. e.g `t0123456a` will match `T0123456A`.
