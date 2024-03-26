@@ -38,9 +38,7 @@ public class RemoveFavouriteCommandParser implements Parser<RemoveFavouriteComma
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     RemoveFavouriteCommand.MESSAGE_USAGE));
         }
-        // The regex ,(?=\\d|\\s) uses the lookahead operator to only split by commas that are followed by
-        // numbers or whitespace to handle invalid indices like ,,,,, and 1,,,,,,
-        String[] indexKeywordsArray = listIndices.get(0).split(",(?=\\d|\\s)");
+        String[] indexKeywordsArray = ParserUtil.parseCsv(listIndices.get(0));
         List<Index> indices = new ArrayList<>();
         for (String index : indexKeywordsArray) {
             try {
