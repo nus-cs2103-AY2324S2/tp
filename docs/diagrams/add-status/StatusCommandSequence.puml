@@ -1,0 +1,77 @@
+@startuml
+!include ../style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":AddApplicantStatusCommandParser" as AddApplicantStatusCommandParser LOGIC_COLOR
+participant "a:AddApplicantCommand" as AddApplicantCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "m:Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("applicant_status 98362254 s/pending interview")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("applicant_status 98362254 s/pending interview")
+activate AddressBookParser
+
+create AddApplicantStatusCommandParser
+AddressBookParser -> AddApplicantStatusCommandParser
+activate AddApplicantStatusCommandParser
+
+AddApplicantStatusCommandParser --> AddressBookParser
+deactivate AddApplicantStatusCommandParser
+
+AddressBookParser -> AddApplicantStatusCommandParser : parse("98362254")
+activate AddApplicantStatusCommandParser
+
+create AddApplicantCommand
+AddApplicantStatusCommandParser -> AddApplicantCommand
+activate AddApplicantCommand
+
+AddApplicantCommand --> AddApplicantStatusCommandParser :
+deactivate AddApplicantCommand
+
+AddApplicantStatusCommandParser --> AddressBookParser : a
+deactivate AddApplicantStatusCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddApplicantStatusCommandParser -[hidden]-> AddressBookParser
+destroy AddApplicantStatusCommandParser
+
+AddressBookParser --> LogicManager : a
+deactivate AddressBookParser
+
+LogicManager -> AddApplicantCommand : execute(m)
+activate AddApplicantCommand
+
+AddApplicantCommand -> Model : setPerson(p)
+activate Model
+
+Model --> AddApplicantCommand
+deactivate Model
+
+AddApplicantCommand -> Model : updateFilteredList(PREDICATE_SHOW_ALL_PERSONS)
+activate Model
+
+Model --> AddApplicantCommand
+deactivate Model
+
+create CommandResult
+AddApplicantCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddApplicantCommand
+deactivate CommandResult
+
+AddApplicantCommand --> LogicManager : r
+deactivate AddApplicantCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
+

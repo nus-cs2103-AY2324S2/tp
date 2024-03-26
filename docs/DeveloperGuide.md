@@ -212,6 +212,66 @@ The following sequence diagram shows how a find operation, specifically `find_na
     * Pros: Less repeating of similar code. Only 1 command word required.
     * Cons: More changes to parsing is required for identification of criteria and potential errors with mixing up keywords with criteria word.
 
+### Applicant/Interviewer status feature
+
+#### Implementation
+
+The applicant/interviewer status mechanism is facilitated by `AddApplicantStatusCommand` and `AddInterviewerStatusCommand`. They extend `Command` with their own `status` field, stored internally as `ApplicantStatus` and `InterviewerStatus` respectively. 
+`ApplicantStatus` and `InterviewerStatus` encapsulate statuses (enumerated in `ApplicantState` and `InterviewerState`) in a `value` field.
+`AddApplicantStatusCommand` and `AddInterviewerStatusCommand` implement the following operations:
+
+* `AddApplicantStatusCommand#execute()` — Adds on the encapsulated `currentStatus` to the applicant in question.
+* `AddInterviewerStatusCommand#execute()` — Adds on the encapsulated `currentStatus` to the interviewer in question.
+
+`ApplicantStatus` and `InterviewerStatus` also enable the following functionality in `Applicant` and `Interviewer`:
+
+* `Applicant#updateCurrentStatus()` — Updates the `currentStatus` of the applicant to "pending interview".
+* `Applicant#revertCurrentStatus()` — Reverts the `currentStatus` of the applicant to `previousStatus`.
+* `Interviewer#updateCurrentStatus()` — Updates the `currentStatus` of the interviewer to "interview with [applicant name]" if the `currentStatus` is "free", and vice versa.
+
+The following class diagram shows the structure of `AddApplicantStatusCommand`, `AddInterviewerStatusCommand`, `ApplicantStatus`, `InterviewerStatus`:
+
+<puml src="diagrams/add-status/StatusCommandClasses.puml" width="250"/>
+
+Given below is an example usage scenario and how the applicant/interviewer status mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time and executes `add_applicant n/Yash p/98362254 e/yashwit@u.nus.edu`. An applicant `Yash` is initialised with default `currentStatus` "resume review".
+
+Step 2. The user executes `add_interviewer n/Ryan p/12345678 e/ryan@u.nus.edu`. An interviewer `Ryan` is initialised with default `currentStatus` "free".
+
+Step 3. The user executes `add_interview....a/98362254 i/12345678` to create an interview between `Yash` and `Ryan`. The `add_interview` command makes a call to `updateCurrentStatus` in `Yash`, which updates `Yash`'s `currentStatus` to "pending interview" and `previousStatus` to "resume review". Similarly, a call is made to `updateCurrentStatus` in `Ryan` and `Ryan`'s `currentStatus` is updated to "interview with Yash". The `updateCurrentStatus` methods in `Ryan` and `Yash` in-turn call the `setPerson` list of the current `Model` for the status change to be reflected immediately.
+
+<box type="info" seamless>
+
+**Note:** If the `add_interview` command fails its execution, it will not call `updateCurrentStatus`, so the address book state will not be modified.
+
+</box>
+
+Step 4. The user now decides that she wants to edit `Yash`'s status to "completed interview" manually, and executes the `applicant_status 98362254 s/completed interview` command. The `applicant_status` command will call `AddApplicantStatusCommandParser#parse()`, which will verify the validity of the status through `ApplicantStatus#isValidStatus()` before creating an `ApplicantStatus` and then an `AddApplicantStatusCommand`. A similar flow is true for `interviewer_status...`
+
+<box type="info" seamless>
+
+**Note:** If the status passed by the user matches with none of the statuses enumerated in `ApplicantState` or `InterviewerState`, a new `ApplicantStatus` or `InterviewerStatus` is not created and consequently so aren't `AddApplicantStatusCommand` or `AddInterviewerStatusCommand`.
+
+</box>
+
+The following sequence diagram illustrates step 4:
+
+<puml src="diagrams/add-status/StatusCommandSequence.puml" width="250"/>
+
+#### Design considerations:
+
+**Aspect: How statuses are stored:**
+
+* **Alternative 1 (current choice):** One status at a time instead of a `Set` (like for `Tags`).
+    * Pros: Easy to implement.
+    * Cons: Doesn't allow for interviewers to encapsulate multiple scheduled interviews or for applicants to be in multiple hiring pipelines.
+
+* **Alternative 2:** Multiple statuses (proposed: an unmodifiable `Set`).
+    * Pros: Greater flexibility in setting statuses.
+    * Cons: Possible performance issues when updating multi-statuses, as well as graphical design overhead when choosing how to sort and render multiple statuses.
+
+_{more aspects and alternatives to be added}_
 
 --------------------------------------------------------------------------------------------------------------------
 
