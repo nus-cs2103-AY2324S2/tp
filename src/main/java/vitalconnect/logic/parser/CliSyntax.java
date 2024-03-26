@@ -15,5 +15,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_HEIGHT = new Prefix("h/");
     public static final Prefix PREFIX_WEIGHT = new Prefix("w/");
     public static final Prefix PREFIX_TIME = new Prefix("time/");
-
+    public static final Prefix PREFIX_OVERWRITETAG = new Prefix("ot/");
+    public static final Prefix PREFIX_APPENDTAG = new Prefix("at/");
 }

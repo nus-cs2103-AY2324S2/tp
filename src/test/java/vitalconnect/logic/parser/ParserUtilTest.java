@@ -14,7 +14,7 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import vitalconnect.logic.parser.exceptions.ParseException;
-import vitalconnect.model.allergytag.AllergyTag;
+import vitalconnect.model.person.medicalinformation.AllergyTag;
 import vitalconnect.model.person.contactinformation.Address;
 import vitalconnect.model.person.contactinformation.Email;
 import vitalconnect.model.person.contactinformation.Phone;

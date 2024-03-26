@@ -4,8 +4,6 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-import vitalconnect.model.allergytag.AllergyTag;
-
 /**
  * Represents the medical information of a person, including height, weight, and allergies.
  */
@@ -80,6 +78,21 @@ public class MedicalInformation {
         return Collections.unmodifiableSet(allergyTag);
     }
 
+    public void setHeight(Height height) {
+        this.height = height;
+    }
+
+    public void setWeight(Weight weight) {
+        this.weight = weight;
+    }
+
+    public void setAllergyTag(Set<AllergyTag> allergyTag) {
+        this.allergyTag = allergyTag;
+    }
+
+    public void appendAllergyTag(AllergyTag allergyTag) {
+        this.allergyTag.add(allergyTag);
+    }
 
     /**
      * Returns a string representation of the MedicalInformation object.

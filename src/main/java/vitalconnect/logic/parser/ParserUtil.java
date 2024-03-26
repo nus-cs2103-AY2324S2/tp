@@ -11,7 +11,7 @@ import java.util.Set;
 import vitalconnect.commons.core.index.Index;
 import vitalconnect.commons.util.StringUtil;
 import vitalconnect.logic.parser.exceptions.ParseException;
-import vitalconnect.model.allergytag.AllergyTag;
+import vitalconnect.model.person.medicalinformation.AllergyTag;
 import vitalconnect.model.person.contactinformation.Address;
 import vitalconnect.model.person.contactinformation.Email;
 import vitalconnect.model.person.contactinformation.Phone;

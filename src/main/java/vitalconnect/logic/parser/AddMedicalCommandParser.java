@@ -11,7 +11,7 @@ import java.util.stream.Stream;
 
 import vitalconnect.logic.commands.AddMedInfoCommand;
 import vitalconnect.logic.parser.exceptions.ParseException;
-import vitalconnect.model.allergytag.AllergyTag;
+import vitalconnect.model.person.medicalinformation.AllergyTag;
 import vitalconnect.model.person.identificationinformation.Nric;
 import vitalconnect.model.person.medicalinformation.Height;
 import vitalconnect.model.person.medicalinformation.MedicalInformation;
@@ -20,7 +20,7 @@ import vitalconnect.model.person.medicalinformation.Weight;
 /**
  * Parses input arguments and creates a new AddMedInfoCommand object
  */
-public class AddMedInfoCommandParser implements Parser<AddMedInfoCommand> {
+public class AddMedicalCommandParser implements Parser<AddMedInfoCommand> {
     @Override
     public AddMedInfoCommand parse(String userInput) throws ParseException {
         ArgumentMultimap argMultimap =
