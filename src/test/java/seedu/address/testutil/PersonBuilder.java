@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.person.Address;
+import seedu.address.model.allergen.Allergen;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.MembershipPoints;
 import seedu.address.model.person.Name;
@@ -12,7 +13,6 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Points;
 import seedu.address.model.person.orders.Order;
-import seedu.address.model.allergen.Allergen;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
@@ -135,8 +135,8 @@ public class PersonBuilder {
      *
      * This method provides a way to construct a new {@code Person} instance using the builder pattern. Attributes set
      * in the builder are used to instantiate the {@code Person}. This includes the person's name, phone number, email,
-     * address, membership status, set of allergens, and points. If an attribute has not been explicitly set in the builder,
-     * the default value for that attribute is used.
+     * address, membership status, set of allergens, and points. If an attribute has not been explicitly set in the
+     * builder, the default value for that attribute is used.
      *
      * @return A new {@code Person} instance with attributes specified in the {@code PersonBuilder}.
      */

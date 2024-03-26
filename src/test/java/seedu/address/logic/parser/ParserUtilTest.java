@@ -14,11 +14,11 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.allergen.Allergen;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.model.allergen.Allergen;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
@@ -193,7 +193,8 @@ public class ParserUtilTest {
     @Test
     public void parseTags_collectionWithValidTags_returnsTagSet() throws Exception {
         Set<Allergen> actualAllergenSet = ParserUtil.parseAllergens(Arrays.asList(VALID_TAG_1, VALID_TAG_2));
-        Set<Allergen> expectedAllergenSet = new HashSet<Allergen>(Arrays.asList(new Allergen(VALID_TAG_1), new Allergen(VALID_TAG_2)));
+        Set<Allergen> expectedAllergenSet = new HashSet<Allergen>(Arrays.asList(new Allergen(VALID_TAG_1),
+                new Allergen(VALID_TAG_2)));
 
         assertEquals(expectedAllergenSet, actualAllergenSet);
     }
