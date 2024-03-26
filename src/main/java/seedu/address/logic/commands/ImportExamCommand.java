@@ -33,7 +33,7 @@ public class ImportExamCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Imports exams from specified filepath."
             + " Must be an absolute CSV file path\n"
             + "[" + PREFIX_IMPORT_EXAM + "FILEPATH]\n"
-            + "Example: " + COMMAND_WORD + PREFIX_IMPORT_EXAM + "C:usr/lib/text.csv";
+            + "Example: " + COMMAND_WORD + " " + PREFIX_IMPORT_EXAM + "C:usr/lib/text.csv";
     public static final String MESSAGE_ERROR_READING_FILE = "Error reading file: ";
     public static final String MESSAGE_SCORE_NOT_NUMBER = "Score for %s is not a number";
     public static final String MESSAGE_PERSON_DOES_NOT_EXIST = "Person does not exist";
