@@ -264,10 +264,10 @@ close to the target word in terms of their Levenshtein distance. Each node in th
 word and its children represent words that are one edit distance away. 
 
 The fuzzy input implementation consists of several components:
-1. BkTreeCommandMatcher: The main BK-Tree data structure for sorting and efficiently search for similar elements
-2. BkTreeNode: Internal node structure used by the Bk-Tree
-3. FuzzyCommandParser: A class demonstrating the usage of BK-tree for command parsing
-4. LevenshteinDistance: An implementation of the DistanceFunction interface using the Levenshtein distance algorithm
+1. `BkTreeCommandMatcher`: The main BK-Tree data structure for sorting and efficiently search for similar elements
+2. `BkTreeNode`: Internal node structure used by the Bk-Tree
+3. `FuzzyCommandParser`: A class demonstrating the usage of BK-tree for command parsing
+4. `LevenshteinDistance`: An implementation of the DistanceFunction interface using the Levenshtein distance algorithm
 
 Our implementation follows the SOLID principle closely. We have designed interfaces to promote flexibility, especially
 complying with the Open-Close Principle. This design decision makes it easy to extend various `CommandMatchers` or
@@ -328,13 +328,58 @@ For our AddressBook implementation, the `BK-Tree with Levenshtein Distance Algor
 Its memory usage and complexity of implementation outweighs its potential to extend code and efficiently handle
 misspelled or similar commands. This algorithm guarantees fast runtime performance and robustness in command parsing.
 
-### \[Proposed\] Fuzzy Input with varying distance metric
+### \[Future Development\] Fuzzy Input with varying distance metric
 
 Currently, the MAX_DISTANCE for the distance metric is set to 1. To enhance user-experience and accommodate longer
 commands with potentially more misspellings, it would be advantageous to dynamically adjust the MAX_DISTANCE according
 to the length of the correct command string. This approach allows a more flexible and adaptable matching process,
 guaranteeing that the misspelling tolerance varies proportionately with command length. By dynamically adjusting the
 MAX_DISTANCE, longer and more complex input command like `addbystep` can be accurately identified. 
+
+### Sort feature
+
+#### Implementation
+
+The sorting mechanism is facilitated by `SortCommand`. It implements the following operations:
+* `SortCommand#`: Constructor class which is instantiated and stores the necessary `SortStrategy` based on user input.
+* `SortCommand#Executes`: Executes the necessary `SortStrategy` and update the model. 
+
+The sorting mechanism consists of several components:
+1. `SortStrategy`: An interface that requires implementations to define methods for sorting the address book and getting
+the category associated with the sorting strategy.
+2. `SortByTag` and `SortByName`: These classes implement `SortStrategy` interface to provide the specific strategies
+of the AddressBook based on tags and names respectively. 
+3. `SortCommand`: Initiates the sorting by parsing user input to determine the sorting criteria and calls the appropriate
+sorting class based on the input. After sorting, it then updates the list of persons in the model. 
+
+Given below is an example usage scenario and how the sorting mechanism behaves at each step.
+
+* <Insert UML diagrams>
+
+* Step 1: The user launches the application for the first time, no contacts will be present in the `AddressBook`.
+When user `add` contacts in the `AddressBook`, contacts will be sorted based on their timestamp.
+
+* Step 2: The user executes `sort name` command.
+  * The `sortCommand#` constructor will initialise with the `sortByName` strategy stored as `SortStrategy`.
+  * `sortCommand#execute` will pass the current model's `AddressBook` to `sortStrategy#sort`, where `UniquePersonsList` 
+  will be obtained and sorted lexicographically by name 
+  * After sorting, the model will be updated to reflect the newly sorted contacts list, alongside a return statement
+  to provide confirmation to the user. 
+
+* Step 3: The user executes `sort tag` command.
+    * The `sortCommand#` constructor will initialise with the `sortByTag` strategy stored as `SortStrategy`.
+    * `sortCommand#execute` will pass the current model's `AddressBook` to `sortStrategy#sort`, where `UniquePersonsList`
+      will be obtained and sorted lexicographically by tags
+    * After sorting, the model will be updated to reflect the newly sorted contacts list, alongside a return statement
+      to provide confirmation to the user.
+
+* Step 4: The user executes `sort` command.
+  * The `sortCommand#` constructor will first verify the presence of `condition input` before proceeding with 
+  initialisation.
+  * Since there is no condition stated, a `ParseException` will be thrown and a statement will be displayed to provide 
+  the correct input and conditions to be stated. 
+
+###
 
 --------------------------------------------------------------------------------------------------------------------
 
