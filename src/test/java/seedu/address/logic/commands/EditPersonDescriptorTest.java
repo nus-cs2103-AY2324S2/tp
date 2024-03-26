@@ -83,7 +83,8 @@ public class EditPersonDescriptorTest {
                 + editPersonDescriptor.getMatric().orElse(null) + ", matriculation number="
                 + editPersonDescriptor.getReflection().orElse(null) + ", reflection="
                 + editPersonDescriptor.getStudio().orElse(null) + ", studio="
-                + editPersonDescriptor.getTags().orElse(null) + "}";
+                + editPersonDescriptor.getTags().orElse(null) + ", scores="
+                + editPersonDescriptor.getScores().orElse(null) + "}";
         assertEquals(expected, editPersonDescriptor.toString());
     }
 }
