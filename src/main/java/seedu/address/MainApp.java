@@ -44,6 +44,8 @@ public class MainApp extends Application {
     protected Model model;
     protected Config config;
 
+    private boolean isStorageLoadSuccessful;
+
     @Override
     public void init() throws Exception {
         logger.info("=============================[ Initializing AddressBook ]===========================");
@@ -61,19 +63,14 @@ public class MainApp extends Application {
         ReadOnlyAddressBook initialAddressBook;
         try {
             initialAddressBook = storage.readInitialAddressBook();
+            isStorageLoadSuccessful = true;
         } catch (DataLoadingException e) {
-            final String dataLoadingWarning =
-                    "WARNING: Data file at " + storage.getAddressBookFilePath() + " could not be loaded."
-                    + "Will be starting with an empty AddressBook. Entering a command will override the old data file.";
-            logger.warning(dataLoadingWarning);
-            ui.showMessage(dataLoadingWarning);
             initialAddressBook = new AddressBook();
+            isStorageLoadSuccessful = false;
         }
 
         model = new ModelManager(initialAddressBook, userPrefs);
-
         logic = new LogicManager(model, storage);
-
         ui = new UiManager(logic);
     }
 
@@ -156,6 +153,14 @@ public class MainApp extends Application {
     public void start(Stage primaryStage) {
         logger.info("Starting AddressBook " + MainApp.VERSION);
         ui.start(primaryStage);
+        if (!isStorageLoadSuccessful) {
+            final String dataLoadingWarning =
+                    "Data file at " + storage.getAddressBookFilePath() + " could not be loaded.\n"
+                    + "Will be starting with an empty AddressBook.\n"
+                    + "Entering a command will override the old data file.";
+            logger.warning(dataLoadingWarning);
+            ui.showMessage("WARNING: " + dataLoadingWarning);
+        }
     }
 
     @Override
