@@ -20,8 +20,8 @@ public class SelectExamCommand extends Command {
         + "Parameters: " + PREFIX_NAME + " NAME\n"
         + "Example: selectExam " + PREFIX_NAME + "Midterm";
 
-    private static final String MESSAGE_SUCCESS = "Exam selected: %1$s";
-    private static final String MESSAGE_EXAM_NOT_FOUND = "Exam not found";
+    public static final String MESSAGE_SUCCESS = "Exam selected: %1$s";
+    public static final String MESSAGE_EXAM_NOT_FOUND = "Exam not found";
 
     private final String targetExamName;
 

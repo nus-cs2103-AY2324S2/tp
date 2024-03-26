@@ -31,7 +31,10 @@ public class EditExamCommandParser implements Parser<EditExamCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditExamCommand.MESSAGE_USAGE), pe);
         }
 
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_SCORE);
+
         EditExamDescriptor editExamDescriptor = new EditExamDescriptor();
+
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editExamDescriptor.setName(ParserUtil.parseExamName(argMultimap.getValue(PREFIX_NAME).get()));
         }
