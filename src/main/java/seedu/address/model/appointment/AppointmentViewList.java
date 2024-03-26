@@ -13,6 +13,8 @@ import seedu.address.model.appointment.exceptions.AppointmentNotFoundException;
 import seedu.address.model.appointment.exceptions.DuplicateAppointmentException;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
+import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.person.Person;
 
 
 /**
@@ -88,23 +90,44 @@ public class AppointmentViewList implements Iterable<AppointmentView> {
         }
     }
 
-    public void setAppointmentViews(AppointmentViewList replacement) {
-        requireNonNull(replacement);
-        internalList.setAll(replacement.internalList);
+    public void setAppointmentViews(UniquePersonList personList, List<Appointment> appointmentList) {
+        requireAllNonNull(personList, appointmentList);
+        internalList.clear();
+
+        for (Person person : personList) {
+            Nric personNric = person.getNric();
+
+            for (Appointment appointment : appointmentList) {
+                Nric appointmentNric = appointment.getNric();
+
+                // Check if the NRICs match
+                if (personNric.equals(appointmentNric)) {
+                    AppointmentView appointmentView = new AppointmentView(person.getName(), appointment);
+                    internalList.add(appointmentView);
+                }
+            }
+        }
         sortList();
     }
 
-    /**
-     * Replaces the contents of this list with {@code appointmentViews}.
-     * {@code appointmentViews} must not contain duplicate appointmentViews.
-     */
-    public void setAppointmentViews(List<AppointmentView> appointments) {
-        requireAllNonNull(appointments);
-        if (!appointmentViewsAreUnique(appointments)) {
-            throw new DuplicateAppointmentException();
-        }
 
-        internalList.setAll(appointments);
+    public void setAppointmentViews(UniquePersonList personList, AppointmentList appointmentList) {
+        requireAllNonNull(personList, appointmentList);
+        internalList.clear();
+
+        for (Person person : personList) {
+            Nric personNric = person.getNric();
+
+            for (Appointment appointment : appointmentList) {
+                Nric appointmentNric = appointment.getNric();
+
+                // Check if the NRICs match
+                if (personNric.equals(appointmentNric)) {
+                    AppointmentView appointmentView = new AppointmentView(person.getName(), appointment);
+                    internalList.add(appointmentView);
+                }
+            }
+        }
         sortList();
     }
 
@@ -185,11 +208,5 @@ public class AppointmentViewList implements Iterable<AppointmentView> {
         internalList.sort(
             Comparator.comparing((AppointmentView appointmentView) -> appointmentView.getAppointment().getDate())
                 .thenComparing((AppointmentView appointmentView) -> appointmentView.getAppointment().getTimePeriod()));
-    }
-
-    /** Delete all appointments with given Nric if such appointments exist without exceptions **/
-    public void deleteAppointmentsWithNric(Nric nric) {
-        requireNonNull(nric);
-        internalList.removeIf(appointmentView -> appointmentView.getAppointment().getNric().equals(nric));
     }
 }

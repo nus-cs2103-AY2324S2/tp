@@ -140,12 +140,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setAppointments(List<Appointment> appointments) {
         this.appointments.setAppointments(appointments);
-        List<AppointmentView> apptListView = new ArrayList<AppointmentView>();
-        for (Appointment appointment : appointments) {
-            AppointmentView apptView = createAppointmentView(appointment);
-            apptListView.add(apptView);
-        }
-        this.appointmentView.setAppointmentViews(apptListView);
+        this.appointmentView.setAppointmentViews(persons, appointments);
     }
 
 
@@ -188,16 +183,15 @@ public class AddressBook implements ReadOnlyAddressBook {
         AppointmentView targetApptView = createAppointmentView(target);
         AppointmentView editedApptView = createAppointmentView(editedAppointment);
         appointmentView.setAppointmentView(targetApptView, editedApptView);
-
     }
 
     /**
      * Cancels {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
-    public void cancelAppointment(Appointment key, AppointmentView apptViewKey) {
+    public void cancelAppointment(Appointment key) {
         appointments.remove(key);
-        appointmentView.remove(apptViewKey);
+        this.appointmentView.setAppointmentViews(persons, appointments);
     }
 
     //// util methods
@@ -235,6 +229,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     /** delete appointments when person is deleted */
     public void deleteAppointmentsWithNric(Nric targetNric) {
         appointments.deleteAppointmentsWithNric(targetNric);
+        this.appointmentView.setAppointmentViews(persons, appointments);
     }
 
     /**

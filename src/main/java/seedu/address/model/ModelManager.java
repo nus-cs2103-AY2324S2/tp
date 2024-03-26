@@ -146,8 +146,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void cancelAppointment(Appointment appointment, AppointmentView apptView) {
-        addressBook.cancelAppointment(appointment, apptView);
+    public void cancelAppointment(Appointment appointment) {
+        addressBook.cancelAppointment(appointment);
     }
 
     @Override

@@ -185,7 +185,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void cancelAppointment(Appointment appointment, AppointmentView apptView) {
+        public void cancelAppointment(Appointment key) {
             throw new AssertionError("This method should not be called.");
         }
 

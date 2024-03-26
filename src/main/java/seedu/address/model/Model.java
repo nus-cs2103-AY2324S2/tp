@@ -117,7 +117,7 @@ public interface Model {
      * Cancels the given appointment.
      * The appointment must exist in the address book.
      */
-    void cancelAppointment(Appointment key, AppointmentView apptViewKey);
+    void cancelAppointment(Appointment key);
 
     /**
      * Adds the given appointment.
