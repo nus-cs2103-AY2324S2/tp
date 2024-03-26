@@ -131,7 +131,7 @@ public class Person {
         this.bookList.sort(Comparator.comparing(book -> book.bookTitle));
         String result = "";
         for (int i = 0; i < bookList.size(); i++) {
-            result += (i+1) + ". " + this.bookList.get(i).bookTitle.toString();
+            result += (i + 1) + ". " + this.bookList.get(i).bookTitle.toString();
             if (i != bookList.size() - 1) {
                 result += "\n";
             }
