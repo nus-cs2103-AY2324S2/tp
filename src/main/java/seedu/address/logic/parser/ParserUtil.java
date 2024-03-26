@@ -10,6 +10,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.commands.AddMemPointsCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.allergen.Allergen;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.MembershipPoints;
@@ -17,7 +18,6 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Points;
 import seedu.address.model.person.orders.Order;
-import seedu.address.model.allergen.Allergen;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.

@@ -9,8 +9,8 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.person.orders.Order;
 import seedu.address.model.allergen.Allergen;
+import seedu.address.model.person.orders.Order;
 
 /**
  * Represents a Person in the address book.

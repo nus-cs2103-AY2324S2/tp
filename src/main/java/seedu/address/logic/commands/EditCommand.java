@@ -2,11 +2,11 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ALLERGENS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_POINTS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ALLERGENS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.ArrayList;
@@ -22,6 +22,7 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.allergen.Allergen;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -31,7 +32,6 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Points;
 import seedu.address.model.person.orders.Order;
-import seedu.address.model.allergen.Allergen;
 
 /**
  * Edits the details of an existing person in the address book.
@@ -112,8 +112,8 @@ public class EditCommand extends Command {
         Points updatedPoints = editPersonDescriptor.getPoints().orElse(personToEdit.getPoints());
         ArrayList<Order> updatedOrders = editPersonDescriptor.getOrders().orElse(personToEdit.getOrders());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedMembershipPoints, updatedAllergens,
-                updatedPoints, updatedOrders);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedMembershipPoints,
+                updatedAllergens, updatedPoints, updatedOrders);
     }
 
     @Override
