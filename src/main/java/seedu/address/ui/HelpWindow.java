@@ -31,7 +31,7 @@ public class HelpWindow extends UiPart<Stage> {
                     + "       Usage: 'find KEYWORD [MORE_KEYWORDS]'\n\n"
                     + "    - Deleting a person : 'delete'\n"
                     + "       Usage: 'delete INDEX'\n\n"
-                    + "    - Filter by Grade / Subject: 'filter <g/GRADE|s/SUBJECT>'\n"
+                    + "    - Filter by Grade / Subject: 'filter <g/GRADE | s/SUBJECT>'\n"
                     + "       Usage: 'filter g/A s/Maths'\n\n"
                     + "    - Clearing all entries : 'clear'\n\n"
                     + "    - Exiting the program : 'exit'\n\n"
