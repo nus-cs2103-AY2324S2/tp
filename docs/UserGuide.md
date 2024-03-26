@@ -4,51 +4,61 @@
   pageNav: 3
 ---
 
-# Rapid Tracer
+<h1 id="top">
+  RapidTracer
+</h1>
 
-RapidTracer offers a fast-paced GUI for clinic managers to handle contacts and appointments. It combines:
-- Simple and intuitive GUI
-- Quick to use for fast typers
-- Swiftly navigation through complex patient data and contact histories.
-- A keyboard-driven interface that mirrors the efficiency of Vim
-- The ability to load and store large datasets
+RapidTracer offers a fast-paced user interface (UI) for clinic managers to handle contacts and appointments. It combines:
+- a simple and intuitive UI;
+- swift navigation through complex patient data and contact histories;
+- the ability to load and store large datasets; and is
+- quick to use for fast typers!
 
-This guide provides a quick summary of Rapid Tracer's features; click the links on the right for quick navigation!
+This guide provides a walkthrough on how to use RapidTracer to assist you in your clinical workflows, starting from patient in-processing. For experienced users, click the links on the right for quick navigation!
 
 <!-- * Table of Contents -->
 <page-nav-print />
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start 
+## Quick start and installation
 
-1. Ensure you have Java `11` or above installed in your Computer.
-2. For detailed instructions, refer to the [CS2103T](https://nus-cs2103-ay2324s2.github.io/website/admin/programmingLanguages.html) website guidelines.
+This section covers the download and installation process for RapidTracer.
+
+1. Ensure you have Java `11` or above installed on your computer.
+2. Download the latest version of `RapidTracer.jar` [here](https://github.com/AY2324S2-CS2103T-T10-2/tp/releases/tag/v1.2).
+3. Copy the file to the folder you want to store all RapidTracer data in.
+4. Open a command terminal and navigate to the folder where `RapidTracer.jar` is located using the `cd FOLDER_NAME` command. Use the `java -jar RapidTracer.jar` command to start running RapidTracer.
+   <img src="images/userguide/rapidtracerquickstart.png" style="width: 100%;">
+
+If you encounter any issues running RapidTracer, you may refer to the detailed bug fixing [here](https://nus-cs2103-ay2324s2.github.io/website/admin/programmingLanguages.html).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Using Rapid Tracer
+## Using RapidTracer
 
-The clinical workflow is separated into three steps with Rapid Tracer:
-1. [In-processing patients](#patient-in-processing)
+The clinical workflow is separated into three steps with RapidTracer:
+1. [Registering patients and appointments](#patient-in-processing)
 2. [Searching existing records](#searching-records)
-3. [Updating existing records](#editing-records)
+3. [Editing and deleting records](#editing-records)
 
-For features which don't fall into the above categories, refer [here](#general-help)
+For features which don't fall into the above categories, refer [here](#general-help).
 
-<h3 id="patient-in-processing">
+<h3 id="patient-in-processing" style="color: #088F8F">
   Registering patients and appointments
 </h3>
 
-There are three ways we can register new patients and schedule new appointments.
+There are three ways you can register new patients and schedule new appointments.
 
 1. Use the `add` command to register a new patient.
 2. Use the `addappt` command to schedule a new appointment for an existing patient.
 3. Use the `add` command to register a new patient and schedule an appointment immediately.
 
-#### Registering new patients: `add`
+<h4 id="add" style="color: #7393B3">
+  Registering new patients: `add`
+</h4>
 
-We can add new patients to our database with the `add` command. Each patient must minimally have a name and a phone number for administrative purposes.
+You can add new patients to our database with the `add` command. Each patient must minimally have a name and a phone number for administrative purposes.
 
 Format: `add n/NAME p/PHONE_NUMBER [a/ADDRESS] [t/TAG]`
 
@@ -56,9 +66,11 @@ Format: `add n/NAME p/PHONE_NUMBER [a/ADDRESS] [t/TAG]`
 - The name to be added “NAME” can only contain alphanumeric characters.
 - Parameters may be typed in any order.
 
-#### Scheduling new appointments: `addappt`
+<h4 id="addappt" style="color: #7393B3">
+  Scheduling new appointments: `addappt`
+</h4>
 
-We can schedule appointments for existing patients using the `addappt` command.
+You can schedule appointments for existing patients using the `addappt` command.
 
 Format: `addappt INDEX d/DATE`
 
@@ -71,11 +83,17 @@ Format: `addappt INDEX d/DATE`
   - `today 10am-2pm` (this will create an appointment from 10am to 2pm with today's date)
   - `tdy 10am-2pm` (this will create an appointment from 10am to 2pm with today's date)
 
-#### Managing walk-ins: `add`
+<h4 id="add-with-appt" style="color: #7393B3">
+  Managing walk-ins: `add`
+</h4>
 
-For walk-in appointments, we can also create a new contact and add an appointment with a single command. This command automatically creates an appointment linked to the patient which is being added.
+For walk-in appointments, you can also create a new contact and add an appointment with a single command. This command automatically creates an appointment linked to the patient which is being added.
 
 Format: `add n/NAME p/PHONE_NUMBER d/DATE_TIME [a/ADDRESS] [t/TAG]`
+
+<box type="info" seamless>
+  <b>Remark:</b> This `add` command is the same as the one above, but with an extra field (the `DATE_TIME`).
+</box>
 
 - Commands in [brackets] are optional parameters.
 - The name to be added “NAME” can only contain alphanumeric characters.
@@ -87,13 +105,15 @@ Format: `add n/NAME p/PHONE_NUMBER d/DATE_TIME [a/ADDRESS] [t/TAG]`
   - `today 10am-2pm` (this will create an appointment from 10am to 2pm with today's date)
   - `tdy 10am-2pm` (this will create an appointment from 10am to 2pm with today's date)
 
-<h3 id="searching-records">
+<h3 id="searching-records" style="color: #088F8F">
   Searching existing records
 </h3>
 
-Rapid Tracer offers search functions for both patient and appointment data. Beyond searching for specific patients and appointments, Rapid Tracer offers a list view to see all patient and appointment records.
+RapidTracer offers search functions for both patient and appointment data. Beyond searching for specific patients and appointments, RapidTracer offers a list view to see all patient and appointment records.
 
-#### Searching for contacts: `find`
+<h4 id="find" style="color: #7393B3">
+  Searching for contacts: `find`
+</h4>
 
 Shows a list of contacts in RapidTracer matching the keywords provided. The contact only needs to partially match any of the keywords provided.
 
@@ -106,7 +126,9 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
   - PHONE_NUMBER
   - ADDRESS
 
-#### Finding appointment: `findappt`
+<h4 id="findappt" style="color: #7393B3">
+  Finding appointment: `findappt`
+</h4>
 
 Shows a list of appointments in RapidTracer matching the keywords provided. The appointment only needs to partially match any of the keywords provided.
 
@@ -117,29 +139,35 @@ Format: `findappt KEYWORD [MORE_KEYWORDS]`
 - Possible keyword types:
   - NAME
 
-<img src="images/userguide/findexample.png" width="200px">
+<img src="images/userguide/findexample.png" style="width: 100%;">
 
-#### Listing contacts: `list`
+<h4 id="list" style="color: #7393B3">
+  Listing contacts: `list`
+</h4>
 
 Shows a list of all contacts in RapidTracer.
 
 Format: `list`
 
-#### Listing appointments: `listappt`
+<h4 id="listappt" style="color: #7393B3">
+  Listing appointments: `listappt`
+</h4>
 
 Shows a list of all appointments in RapidTracer.
 
 Format: `listappt`
 
-<h3 id="editing-records">
+<h3 id="editing-records" style="color: #088F8F">
   Editing and deleting records
 </h3>
 
-In the event that patients update their contact details or reschedule an appointment, their details can be updated accordingly. We can also cancel appointments and delete patient records.
+In the event that patients update their contact details or reschedule an appointment, their details can be updated accordingly. RapidTracer also allows you to cancel appointments and delete patient records.
 
-#### Editing contact: `edit`
+<h4 id="edit" style="color: #7393B3">
+  Editing contacts: `edit`
+</h4>
 
-An existing patient's details can be updated in Rapid Tracer using the `edit` command. This does not deal with user appointments.
+An existing patient's details can be updated in RapidTracer using the `edit` command. This does not deal with user appointments.
 
 Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [t/TAG]`
 
@@ -149,7 +177,9 @@ Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [t/TAG]`
 - At least one of the optional fields must be provided.
 - Existing values will be updated to the input values.
 
-#### Editing appointment: `editappt`
+<h4 id="editappt" style="color: #7393B3">
+  Editing appointment: `editappt`
+</h4>
 
 An appointment can be rescheduled with the `editappt` command to change the date and time of the appointment.
 
@@ -166,9 +196,11 @@ Format: `editappt INDEX d/DATE_TIME`
   - `today 10am-2pm` (this will create an appointment from 10am to 2pm with today's date)
   - `tdy 10am-2pm` (this will create an appointment from 10am to 2pm with today's date)
 
-#### Deleting contacts: `delete`
+<h4 id="delete" style="color: #7393B3">
+  Deleting contacts: `delete`
+</h4>
 
-In the event that a patient requests for their data to be deleted, we can use the `delete` command to remove their contact information.
+In the event that a patient requests for their data to be deleted, you can use the `delete` command to remove their contact information.
 
 Format: `delete INDEX`
 
@@ -176,9 +208,11 @@ Format: `delete INDEX`
 - INDEX is a positive integer that is currently displayed on the screen.
 - Only one INDEX can be deleted at a time.
 
-#### Deleting appointment: `deleteappt`
+<h4 id="deleteappt" style="color: #7393B3">
+  Deleting appointments: `deleteappt`
+</h4>
 
-In the event that an appointment is cancelled, we can delete it using the `deleteappt` command.
+In the event that an appointment is cancelled, you can delete it using the `deleteappt` command.
 
 Format: `deleteappt INDEX`
 
@@ -186,53 +220,60 @@ Format: `deleteappt INDEX`
 - INDEX is a positive integer that is currently displayed on the screen.
 - Only one INDEX can be deleted at a time.
 
-<h3 id="general-help">
+<h3 id="general-help" style="color: #088F8F">
   General help
 </h3>
 
-#### Viewing help: `help`
+<h4 id="help" style="color: #7393B3">
+  Viewing help: `help`
+</h4>
 
-For general help, type `help` to open the help window. The `help` window will redirect you [here](https://se-education.org/addressbook-level3/UserGuide.html).
+For general help, type `help` to open the help window. The `help` window will redirect you [here](https://ay2324s2-cs2103t-t10-2.github.io/tp/UserGuide.html).
 
 Format: `help`
 
-#### Exiting/closing Rapid Tracer
+<h4 id="exit" style="color: #7393B3">
+  Exiting/closing RapidTracer
+</h4>
 
-To properly exit Rapid Tracer, click the `File` option in the top left corner and click `Exit`. This will ensure that the data is saved properly. 
+To properly exit RapidTracer, click the `File` option in the top left corner and click `Exit`. This will ensure that the data is saved properly. 
 
-<img src="images/userguide/exitingrapidtracer.png" width="200px">
+<img src="images/userguide/exitingrapidtracer.png" style="width: 100%;">
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
-**Q**: How do I upload records into Rapid Tracer?<br>
+**Q**: How do I upload records into RapidTracer?<br>
 **A**: This feature is currently under development!
 
-**Q**: How do I download all my records from Rapid Tracer?<br>
+**Q**: How do I download all my records from RapidTracer?<br>
 **A**: This feature is currently under development!
 
 **Q**: A command is not working, what am I doing wrong?<br>
 **A**: There's a chance that the feature is still under development. We will fix it!
 
+**Q**: I still have an unanswered question!<br>
+**A**: Please drop us an email at minrei.seah@u.nus.edu
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Known issues
 
-1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
+1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the app will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
 
-Action     | Format, Examples
------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Add contacts | `add n/NAME p/PHONE_NUMBER [a/ADDRESS] [t/TAG]`
-Add appointments | `addappt INDEX d/DATE_TIME`
-Find contacts | `find KEYWORD [MORE_KEYWORDS]`
-Find appointments | `findappt KEYWORD [MORE_KEYWORDS]`
-List all contacts | `list`
-List all appointments | `listappt`
-Editing contacts | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [t/TAG]`
-Editing appointments | `editappt INDEX d/DATE_TIME`
-Help | `help`
+Action     | Format | Examples
+-----------|-----------------------------------------|-----------------------------------------------------------------------------------------------------------------------------
+Add contacts | `add n/NAME p/PHONE_NUMBER [a/ADDRESS] [t/TAG]` | `add n/Min Rei p/86615076`,<br> `add n/Min Rei p/86615076 a/UTown RC4`,<br> `add n/Min Rei p/86615076 d/27/03/2024 2pm-3pm`
+Add appointments | `addappt INDEX d/DATE_TIME` | `addappt 1 d/27/03/2024 9am-10am`,<br> `addappt 1 d/today 9am-10am`,<br> `addappt 1 d/tdy 9am-10am`
+Find contacts | `find KEYWORD [MORE_KEYWORDS]` | `find min`,<br> `find rc4`
+Find appointments | `findappt KEYWORD [MORE_KEYWORDS]` | `findappt min`
+List all contacts | `list` |
+List all appointments | `listappt` |
+Editing contacts | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [t/TAG]` | `edit 1 n/Seah Min Rei`
+Editing appointments | `editappt INDEX d/DATE_TIME` | `editappt 1 30/12/2024 8am-9am`
+Help | `help` |
