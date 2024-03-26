@@ -25,7 +25,7 @@ public class AddMeetingCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a meeting to the "
             + "client identified by the index number. \n"
-            + "Parameters: client/ CLIENT_INDEX dt/ DATE_TIME /d DESCRIPTION \n"
+            + "Parameters: clientIndex/ CLIENT_INDEX dt/ DATE_TIME /d DESCRIPTION \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_CLIENT_INDEX + "1 "
             + PREFIX_DATETIME + "02-01-2024 12:00 "

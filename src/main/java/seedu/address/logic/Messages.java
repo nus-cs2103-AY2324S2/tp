@@ -16,8 +16,10 @@ public class Messages {
 
     public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
+    public static final String MESSAGE_MULTIPLE_TAGS = "Please only input one tag";
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "Error: The person index %1$d "
             + "provided is invalid!";
+    public static final String MESSAGE_INVALID_FILTER_TAG = "Error: The tag %s provided does not belong to any client!";
     public static final String MESSAGE_RETURN_HOME = "If you wish to view another client please return home by "
             + "entering 'list' before viewing another client.";
     public static final String MESSAGE_INVALID_MEETING_DISPLAYED_INDEX = "Error: Meeting %1$d not found";
