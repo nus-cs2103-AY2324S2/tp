@@ -1,7 +1,10 @@
 package seedu.address.ui;
 
 import java.time.Duration;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
+import java.util.Locale;
 
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
@@ -79,7 +82,10 @@ public class PersonCard extends UiPart<Region> {
             person.getPolicies().stream()
                     .sorted(Comparator.comparing(policy -> policy.value))
                     .forEach(policy -> {
-                        Label label = new Label("Policy: " + policy.value);
+                        Label label = new Label("Policy: " + policy.value + "\n"
+                                + (policy.expiryDate != null
+                                ? "(" + formatLocalDate(policy.expiryDate) + ")" + " " : "") + "\n"
+                                + (policy.premium != 0.0 ? policy.premium + "$" + " " : ""));
                         label.setStyle(
                                 "-fx-background-color: #1fab2f; "
                                         + "-fx-font-size: 14px; "
@@ -186,5 +192,16 @@ public class PersonCard extends UiPart<Region> {
 
         node.addEventHandler(MouseEvent.MOUSE_ENTERED, e -> node.setEffect(hoverShadow));
         node.addEventHandler(MouseEvent.MOUSE_EXITED, e -> node.setEffect(null));
+    }
+
+    /**
+     * Formats a {@code LocalDate} object into a string representation in the format "01 March 2020".
+     *
+     * @param date The {@code LocalDate} object to format.
+     * @return A string representation of the date in the format "01 March 2020".
+     */
+    public static String formatLocalDate(LocalDate date) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy", Locale.ENGLISH);
+        return date.format(formatter);
     }
 }

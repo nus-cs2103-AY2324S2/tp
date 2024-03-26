@@ -1,9 +1,11 @@
 package seedu.address.testutil;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import seedu.address.model.person.Address;
 import seedu.address.model.person.ClientStatus;
@@ -26,14 +28,14 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-    public static final String DEFAULT_POLICY = "";
+
     public static final String DEFAULT_RELATIONSHIP = "client";
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
-    private Set<Policy> policy;
+    private Set<Policy> policies;
     private Relationship relationship;
     private ClientStatus clientStatus;
     private Set<Tag> tags;
@@ -49,7 +51,7 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
-        policy = new HashSet<>();
+        policies = new HashSet<>();
         clientStatus = ClientStatus.initClientStatus();
         relationship = new Relationship(DEFAULT_RELATIONSHIP);
         tags = new HashSet<>();
@@ -64,7 +66,7 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
-        policy = new HashSet<>(personToCopy.getPolicies());
+        policies = new HashSet<>(personToCopy.getPolicies());
         relationship = personToCopy.getRelationship();
         clientStatus = personToCopy.getClientStatus();
         tags = new HashSet<>(personToCopy.getTags());
@@ -114,8 +116,16 @@ public class PersonBuilder {
     /**
      * Sets the {@code Policy} of the {@code Person} that we are building.
      */
-    public PersonBuilder withPolicy(String... policies) {
-        this.policy = SampleDataUtil.getPolicySet(policies);
+    public PersonBuilder withPolicy(String... policy) {
+        if (policy.length == 0) {
+            this.policies = new HashSet<>();
+            return this;
+        }
+
+        Set<Policy> newPolicies = Arrays.stream(policy)
+                .map(SampleDataUtil::parsePolicy) // Call parsePolicy from SampleDataUtil
+                .collect(Collectors.toSet());
+        this.policies.addAll(newPolicies);
         return this;
     }
 
@@ -149,7 +159,7 @@ public class PersonBuilder {
      * @return A new Person object with the specified details.
      */
     public Person build() {
-        Person p = new Person(name, phone, email, address, relationship, policy, clientStatus, tags);
+        Person p = new Person(name, phone, email, address, relationship, policies, clientStatus, tags);
 
         p.setMeetings(this.meetings);
 

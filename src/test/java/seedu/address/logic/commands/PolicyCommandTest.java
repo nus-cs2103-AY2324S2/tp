@@ -7,6 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_POLICY_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIFTH_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
@@ -32,6 +33,7 @@ import seedu.address.testutil.PersonBuilder;
 public class PolicyCommandTest {
 
     private static final String POLICY_STUB = "Some policy";
+    private static final HashSet<Policy> POLICY_HASH_SET_STUB = new HashSet<>(Set.of(new Policy(POLICY_STUB)));
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
@@ -96,10 +98,13 @@ public class PolicyCommandTest {
         assertCommandFailure(policyCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
-    /**
-     * Edit filtered list where index is larger than size of filtered list,
-     * but smaller than size of address book
-     */
+    @Test
+    public void execute_invalidRelationshipFilteredList_failure() {
+        PolicyCommand policyCommand = new PolicyCommand(INDEX_FIFTH_PERSON, POLICY_HASH_SET_STUB);
+
+        assertCommandFailure(policyCommand, model, PolicyCommand.MESSAGE_PERSON_NOT_CLIENT_FAILURE);
+    }
+
     @Test
     public void execute_invalidPersonIndexFilteredList_failure() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
