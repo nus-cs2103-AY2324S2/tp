@@ -59,7 +59,7 @@ public class ParserUtil {
         requireNonNull(name);
         String trimmedName = name.trim();
         if (!Name.isValidName(trimmedName)) {
-            return new ParserResult<>(Name.MESSAGE_CONSTRAINTS, new Name(capitalizeWords("")));
+            return new ParserResult<>(Name.MESSAGE_CONSTRAINTS, new Name(capitalizeWords("Ud")));
         }
         return new ParserResult<>("", new Name(capitalizeWords(trimmedName)));
     }

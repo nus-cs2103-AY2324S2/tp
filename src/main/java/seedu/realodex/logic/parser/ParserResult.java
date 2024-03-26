@@ -17,5 +17,13 @@ public class ParserResult<T> {
         return this.exceptionMessage;
     }
 
+    public void buildErrorMessage(StringBuilder errorMessageBuilder, String nameOfClass) {
+        if (exceptionMessage.isEmpty()) {
+            return;
+        }
+        errorMessageBuilder.append("Error parsing ").append(nameOfClass).append(
+                ": ").append(exceptionMessage).append("\n");
+    }
+
 
 }

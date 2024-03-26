@@ -61,48 +61,31 @@ public class AddCommandParser implements Parser<AddCommand> {
                                                  PREFIX_FAMILY, PREFIX_ADDRESS, PREFIX_REMARK);
 
         StringBuilder errorMessageBuilder = new StringBuilder();
+        ParserResult<Name> nameStored =
+                ParserUtil.parseNameReturnStored(argMultimap.getValue(PREFIX_NAME).orElseThrow());
+        nameStored.buildErrorMessage(errorMessageBuilder, "Name");
 
-        Name name = null;
-        try {
-            name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).orElseThrow());
-        } catch (ParseException e) {
-            errorMessageBuilder.append("Error parsing name: ").append(e.getMessage()).append("\n");
-        }
+        ParserResult<Phone> phoneStored = ParserUtil.parsePhoneReturnStored(argMultimap.getValue(PREFIX_PHONE).orElseThrow());
 
-        Phone phone = null;
-        try {
-            phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).orElseThrow());
-        } catch (ParseException e) {
-            errorMessageBuilder.append("Error parsing phone: ").append(e.getMessage()).append("\n");
-        }
+        phoneStored.buildErrorMessage(errorMessageBuilder, "Phone");
 
-        Income income = null;
-        try {
-            income = ParserUtil.parseIncome(argMultimap.getValue(PREFIX_INCOME).orElseThrow());
-        } catch (ParseException e) {
-            errorMessageBuilder.append("Error parsing income: ").append(e.getMessage()).append("\n");
-        }
+        ParserResult<Income> incomeStored =
+                ParserUtil.parseIncomeReturnStored(argMultimap.getValue(PREFIX_INCOME).orElseThrow());
 
-        Email email = null;
-        try {
-            email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).orElseThrow());
-        } catch (ParseException e) {
-            errorMessageBuilder.append("Error parsing email: ").append(e.getMessage()).append("\n");
-        }
+        incomeStored.buildErrorMessage(errorMessageBuilder, "Income");
 
-        Address address = null;
-        try {
-            address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).orElseThrow());
-        } catch (ParseException e) {
-            errorMessageBuilder.append("Error parsing address: ").append(e.getMessage()).append("\n");
-        }
+        ParserResult<Email> emailStored =
+                ParserUtil.parseEmailReturnStored(argMultimap.getValue(PREFIX_EMAIL).orElseThrow());
 
-        Family family = null;
-        try {
-            family = ParserUtil.parseFamily(argMultimap.getValue(PREFIX_FAMILY).orElseThrow());
-        } catch (ParseException e) {
-            errorMessageBuilder.append("Error parsing family: ").append(e.getMessage()).append("\n");
-        }
+        emailStored.buildErrorMessage(errorMessageBuilder, "Email");
+
+        ParserResult<Address> addressStored =
+                ParserUtil.parseAddressReturnStored(argMultimap.getValue(PREFIX_ADDRESS).orElseThrow());
+        addressStored.buildErrorMessage(errorMessageBuilder, "Address");
+
+        ParserResult<Family> familyStored =
+                ParserUtil.parseFamilyReturnStored(argMultimap.getValue(PREFIX_FAMILY).orElseThrow());
+        familyStored.buildErrorMessage(errorMessageBuilder, "Family");
 
         Set<Tag> tagList = null;
         try {
@@ -120,6 +103,12 @@ public class AddCommandParser implements Parser<AddCommand> {
         }
 
         // If all parsing operations succeed, create the person object
+        Name name = nameStored.returnStoredResult();
+        Phone phone = phoneStored.returnStoredResult();
+        Income income = incomeStored.returnStoredResult();
+        Email email = emailStored.returnStoredResult();
+        Address address = addressStored.returnStoredResult();
+        Family family = familyStored.returnStoredResult();
         Person person = new Person(name, phone, income, email, address, family, tagList, remark);
 
 
