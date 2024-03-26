@@ -36,12 +36,7 @@ public class InternshipAddDeadlineCommandTest {
     public void execute_internshipWithSpecifiedTaskAndDeadline_success() {
         //this is ALICE_MICROSOFT, cannot add deadline to it directly because the change will persist and affect
         //other tests
-        Internship internshipWithAddedDeadline = new InternshipBuilder().withCompanyName("Microsoft")
-                .withContactName("Alice Pauline").withContactEmail("alice@example.com").withContactNumber("94351253")
-                .withApplicationStatus("ongoing").withLocation("remote")
-                .withDescription("Use Figma to design User-friendly web interfaces").withRole("Frontend Engineer")
-                .withRemark("Has a behavioural interview!")
-                .withTaskList("Submit Documents, Submit Resume").build();
+        Internship internshipWithAddedDeadline = getTypicalInternshipData().getInternshipList().get(0);
         internshipWithAddedDeadline.getTaskList().getTask(0).addDeadline(DEFAULT_DEADLINE);
 
         InternshipAddDeadlineCommand addDeadlineCommand = new InternshipAddDeadlineCommand(INDEX_FIRST_INTERNSHIP,
@@ -50,8 +45,9 @@ public class InternshipAddDeadlineCommandTest {
         String expectedMessage = String.format(InternshipAddDeadlineCommand.MESSAGE_ADD_DEADLINE_SUCCESS,
                 InternshipMessages.format(internshipWithAddedDeadline));
 
-        InternshipModel expectedModel = new InternshipModelManager(new InternshipData(model.getInternshipData()),
+        InternshipModel expectedModel = new InternshipModelManager(new InternshipData(getTypicalInternshipData()),
                 new InternshipUserPrefs());
+        expectedModel.setInternship(expectedModel.getFilteredInternshipList().get(0), internshipWithAddedDeadline);
 
         assertCommandSuccess(addDeadlineCommand, model, expectedMessage, expectedModel);
     }
