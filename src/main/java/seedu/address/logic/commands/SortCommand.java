@@ -40,14 +40,19 @@ public class SortCommand extends Command {
         switch (info) {
         case 0:
             model.updateSortedPersonList(new PersonPriorityComparator());
+            break;
         case 1:
             model.updateSortedPersonList(new PersonCompanyNameComparator());
+            break;
         case 2:
             model.updateSortedPersonList(new PersonNameComparator());
+            break;
         case 3:
             model.updateSortedPersonList(new PersonInterviewTimeComparator());
+            break;
         case 4:
             model.updateSortedPersonList(new PersonSalaryComparator());
+            break;
         }
         return new CommandResult("List Sorted");
     }
