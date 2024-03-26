@@ -29,6 +29,8 @@ public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
     private static final Double PERSON_LIST_RATIO = 0.25;
+    private static final Integer MINIMUM_HEIGHT = 700;
+    private static final Integer MINIMUM_WIDTH = 700;
     private Image logo = new Image(this.getClass().getResourceAsStream("/images/logo.png"));
 
     private final Logger logger = LogsCenter.getLogger(getClass());
@@ -122,14 +124,12 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanel.getPersonListView().prefWidthProperty().bind(Bindings.createDoubleBinding(
-                () -> personListPanelPlaceholder.getScene().getWidth() * PERSON_LIST_RATIO,
+
+        personListPanel.getPersonListView().prefWidthProperty().bind(Bindings.createDoubleBinding(()
+                        -> personListPanelPlaceholder.getScene().getWidth() * PERSON_LIST_RATIO,
                 personListPanelPlaceholder.getScene().widthProperty()));
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
-/*        personListPanelPlaceholder.prefWidthProperty().bind(Bindings.createDoubleBinding(
-                () -> personListPanelPlaceholder.getScene().getWidth() * PERSON_LIST_RATIO,
-                personListPanelPlaceholder.getScene().widthProperty()));*/
         logoImage.setImage(logo);
 
         resultDisplay = new ResultDisplay();
@@ -152,6 +152,8 @@ public class MainWindow extends UiPart<Stage> {
             primaryStage.setX(guiSettings.getWindowCoordinates().getX());
             primaryStage.setY(guiSettings.getWindowCoordinates().getY());
         }
+        primaryStage.setMinHeight(MINIMUM_HEIGHT);
+        primaryStage.setMinWidth(MINIMUM_WIDTH);
     }
 
     /**

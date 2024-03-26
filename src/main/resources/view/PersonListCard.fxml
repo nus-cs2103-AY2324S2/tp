@@ -10,7 +10,6 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-
 <HBox alignment="CENTER" fillHeight="false" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox id="cardPane" fx:id="cardPane" minWidth="260.0">
@@ -30,17 +29,19 @@
                 </minWidth>
               </Label>
               <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
+                  <VBox.margin>
+                     <Insets bottom="10.0" />
+                  </VBox.margin>
             </HBox>
             <FlowPane fx:id="tags">
                   <VBox.margin>
-                     <Insets />
+                     <Insets bottom="5.0" />
                   </VBox.margin>
                </FlowPane>
-            <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
-            <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
-            <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
-            <Label fx:id="birthday" styleClass="cell_small_label" text="\$birthday" />
-            <Label fx:id="moneyOwed" styleClass="cell_small_label" text="\$moneyOwed" />
+            <Label fx:id="moneyOwed" styleClass="cell_small_label" text="\$moneyOwed">
+                  <VBox.margin>
+                     <Insets bottom="5.0" />
+                  </VBox.margin></Label>
             <Label fx:id="remark" styleClass="cell_small_label" text="\$remark" />
           </VBox>
             <rowConstraints>

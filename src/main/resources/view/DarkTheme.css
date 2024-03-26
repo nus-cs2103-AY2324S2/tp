@@ -119,7 +119,7 @@
     -fx-border-color: #2daddc;
     -fx-border-width: 2;
     -fx-background-color: #edfaff;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 5, 0, 0, 3);
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0, 0, 3);
 }
 
 .list-cell:filled:hover #cardPane {
@@ -128,6 +128,26 @@
 
 .list-cell .label {
     -fx-text-fill: black;
+}
+
+.display_big_label{
+    -fx-font-family: "SF Pro";
+    -fx-font-size: 30px;
+    -fx-text-fill: #010504;
+}
+
+.display_small_bold_label {
+
+    -fx-font-family: "SF Pro";
+    -fx-font-size: 16px;
+    -fx-text-fill: #010504;
+    -fx-font-weight:bold;
+}
+
+.display_small_label {
+    -fx-font-family: "SF Pro";
+    -fx-font-size: 16px;
+    -fx-text-fill: #010504;
 }
 
 .cell_big_label {
@@ -142,10 +162,11 @@
     -fx-text-fill: #010504;
 }
 
+/*this is for the command text background*/
 .stack-pane {
-     -fx-background-color: rgb(184, 184, 184);
-     -fx-border-radius: 20;
-     -fx-background-radius: 20;
+     -fx-background-color: rgba(118, 118, 118, 0.5);
+     -fx-border-radius: 15;
+     -fx-background-radius: 15;
 }
 
 .pane-with-border {
@@ -155,7 +176,7 @@
 }
 
 .status-bar {
-    -fx-background-color: rgb(184, 184, 184);
+    -fx-background-color:  linear-gradient(to bottom right, #7BD7E5, #1B96C0 50%, #7BE5D2);
 }
 
 .result-display {
@@ -186,7 +207,7 @@
 }
 
 .status-bar-with-border {
-    -fx-background-color: rgb(128, 128, 128);
+    -fx-background-color:  linear-gradient(to bottom right, #7BD7E5, #1B96C0 50%, #7BE5D2);
     -fx-border-width: 1px;
 }
 
@@ -339,6 +360,15 @@
     -fx-border-radius: 10;
 }
 
+#displayPane {
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+    -fx-border-width: 1;
+    -fx-border-color:rgb(201, 201, 201);
+    -fx-border-radius: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0, 0, 3);
+}
+
 #commandTypeLabel {
     -fx-font-size: 11px;
     /*-fx-text-fill: #F70D1A;*/
@@ -358,8 +388,10 @@
     -fx-effect: innershadow(gaussian, black, 10, 0, 0, 0);
 }
 
+/*this is for the result display block*/
 #resultDisplay .content {
-    -fx-background-color: transparent;
+    -fx-background-color: rgba(116, 51, 163, 0.371);
+    -fx-background-radius:10;
     -fx-background-insets: 0;
 }
 
