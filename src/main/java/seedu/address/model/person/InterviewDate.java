@@ -2,6 +2,7 @@ package seedu.address.model.person;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 
 /**
  * Represents a Person's interview date in the address book.
@@ -59,6 +60,22 @@ public class InterviewDate {
     @Override
     public int hashCode() {
         return value.hashCode();
+    }
+
+    public boolean isWithin3Days() {
+        // Get the current date and time
+        LocalDateTime currentDate = LocalDateTime.now();
+
+        // Calculate the difference in days between the interview date and the current date
+        long daysDifference = ChronoUnit.DAYS.between(currentDate, value);
+
+        // Check if the difference is less than or equal to 3
+        return daysDifference >= 0 && daysDifference <= 3;
+    }
+
+    public int compareTo(InterviewDate otherInterviewDate) {
+        // Assuming you want to compare interview dates directly
+        return value.compareTo(otherInterviewDate.value);
     }
 
 }

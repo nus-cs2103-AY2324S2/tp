@@ -9,7 +9,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 /**
  * Parses input arguments and creates a new NoteCommand object
  */
-public class NoteCommandParser {
+public class NoteCommandParser implements Parser<NoteCommand>{
     /**
      * Parses the given {@code String} of arguments in the context of the NoteCommand
      * and returns a NoteCommand object for execution.
