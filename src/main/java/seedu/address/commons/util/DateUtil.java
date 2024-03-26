@@ -17,6 +17,9 @@ public class DateUtil {
      */
     public static LocalDateTime parseDateTime(String dateTime) {
         try {
+            if (dateTime == null) {
+                return null;
+            }
             return LocalDateTime.parse(dateTime, DateTimeFormatter.ofPattern(DATETIME_INPUT_FORMAT));
         } catch (DateTimeException ex) {
             return null;
@@ -29,6 +32,9 @@ public class DateUtil {
      */
     public static String formatDateTime(LocalDateTime dateTime) {
         try {
+            if (dateTime == null) {
+                return null;
+            }
             return dateTime.format(DateTimeFormatter.ofPattern(DATETIME_DISPLAY_FORMAT));
         } catch (DateTimeException ex) {
             return null;
