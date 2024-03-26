@@ -171,7 +171,13 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        if (isViewingArchivedList) {
+            // Apply the predicate only to archived persons if viewing archived list
+            filteredPersons.setPredicate(person -> predicate.test(person) && person.isArchived());
+        } else {
+            // Apply the predicate only to non-archived persons if not viewing archived list
+            filteredPersons.setPredicate(person -> predicate.test(person) && !person.isArchived());
+        }
     }
 
     @Override
