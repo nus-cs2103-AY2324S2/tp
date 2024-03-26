@@ -14,6 +14,16 @@ class CommandHistoryTest {
     }
 
     @Test
+    void clearCommandHistory_success() {
+        String initialCommand = "addstu nn/e0123456 n/John Doe p/98765432";
+        CommandHistory commandHistory = CommandHistory.getInstance();
+        commandHistory.appendCommand(initialCommand);
+        commandHistory.clearCommandHistory();
+        assertEquals("", commandHistory.getCommandHistory("UP"));
+        assertEquals("", commandHistory.getCommandHistory("DOWN"));
+    }
+
+    @Test
     void appendCommand_success() {
         String initialCommand = "addstu nn/e0123456 n/John Doe p/98765432";
         CommandHistory commandHistory = CommandHistory.getInstance();
@@ -69,6 +79,13 @@ class CommandHistoryTest {
         commandHistory.clearCommandHistory();
         assertEquals("", commandHistory.getCommandHistory("UP"));
         assertEquals("", commandHistory.getCommandHistory("DOWN"));
+    }
+
+    @Test
+    void appendCommand_nullCommand_success() {
+        CommandHistory commandHistory = CommandHistory.getInstance();
+        commandHistory.clearCommandHistory();
+        commandHistory.appendCommand(null);
     }
 
 }

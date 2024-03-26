@@ -53,21 +53,46 @@ public class CommandHistory {
             return "";
         }
 
+        return getAdjacentCommand(direction);
+    }
+
+    /**
+     * Returns the adjacent command based on the direction.
+     * @param direction the direction of the keystrone
+     * @return the adjacent command based on the direction
+     */
+    private String getAdjacentCommand(String direction) {
         if (direction.equals("UP")) {
-            if (toReturn > 0) {
-                toReturn--;
-            }
-            return commandHistory.toArray()[toReturn].toString();
+            return getPreviousCommand();
         } else if (direction.equals("DOWN")) {
-            if (toReturn < commandHistory.size()) {
-                toReturn++;
-                if (toReturn == commandHistory.size()) {
-                    return "";
-                }
-                return commandHistory.toArray()[toReturn].toString();
-            }
+            return getFollowingCommand();
         }
         return "";
+    }
+
+    /**
+     * Returns the following command in the command history.
+     * @return the following command in the command history
+     */
+    private String getFollowingCommand() {
+        if (toReturn < commandHistory.size()) {
+            toReturn++;
+            if (toReturn == commandHistory.size()) {
+                return "";
+            }
+            return commandHistory.toArray()[toReturn].toString();
+        }
+        return "";
+    }
+    /**
+     * Returns the previous command in the command history.
+     * @return the previous command in the command history
+     */
+    private String getPreviousCommand() {
+        if (toReturn > 0) {
+            toReturn--;
+        }
+        return commandHistory.toArray()[toReturn].toString();
     }
 
     /**
