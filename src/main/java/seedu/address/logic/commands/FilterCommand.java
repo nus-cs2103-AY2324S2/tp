@@ -17,8 +17,8 @@ public class FilterCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Filters the address book based on the Grade or Subject.\n"
-            + "Parameters: SUBJECT\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + "Parameters: <GRADE|SUBJECT>\n"
+            + "Example: " + COMMAND_WORD + " g/A s/Maths";
 
     public static final String MESSAGE_FILTER_ADDRESS_BOOK_SUCCESS = "Filtered address book by %1$s";
 
@@ -33,7 +33,8 @@ public class FilterCommand extends Command {
         requireNonNull(model);
         model.updateFilteredPersonList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+                String.format(MESSAGE_FILTER_ADDRESS_BOOK_SUCCESS + "\n" + Messages.MESSAGE_PERSONS_LISTED_OVERVIEW,
+                        predicate, model.getFilteredPersonList().size()));
     }
 
     @Override

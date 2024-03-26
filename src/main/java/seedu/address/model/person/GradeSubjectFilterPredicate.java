@@ -27,10 +27,10 @@ public class GradeSubjectFilterPredicate implements Predicate<Person> {
     public boolean test(Person person) {
         boolean isGradeFiltered = true;
         boolean isSubjectFiltered = true;
-        if (!filteredGrade.equals(new Grade())) {
+        if (!filteredGrade.isEmpty()) {
             isGradeFiltered = person.getGrade().equals(filteredGrade);
         }
-        if (!filteredSubject.equals(new Subject())) {
+        if (!filteredSubject.isEmpty()) {
             isSubjectFiltered = person.getSubject().equals(filteredSubject);
         }
         return isGradeFiltered && isSubjectFiltered;

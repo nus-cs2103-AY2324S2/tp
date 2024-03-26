@@ -35,6 +35,10 @@ public class Subject {
         return test.matches(VALIDATION_REGEX);
     }
 
+    public boolean isEmpty() {
+        return this.equals(new Subject());
+    }
+
     @Override
     public String toString() {
         return value;
