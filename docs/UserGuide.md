@@ -4,7 +4,33 @@ title: User Guide
 ---
 
 <span style="color: #f66a0a;">CareerSync</span> is a **desktop app for managing internships, optimized for use via a Command Line Interface** (CLI).
-<br> It lets you effortlessly manage, search, and sift through your various internship applications!
+
+<span style="color: #f66a0a;">CareerSync</span> is an **internship application tracker** that helps you keep track of all your internship applications in one place.
+<br>Record all the relevant information, such as contact details, application status, and tasks to-do for **all your internships** in one place.
+
+If you are:
+1. someone who is applying for many internships
+2. someone who is looking for a way to keep track of all your internship applications
+3. a Computer Science student
+4. a fast typist
+
+Then <span style="color: #f66a0a;">CareerSync</span> is perfect just for you!
+
+
+It lets you effortlessly manage, search, and sift through your various internship applications!
+
+Primary features include:
+- Add your internship applications in this app to keep track of them easily!
+- See all the important details of your internship applications at a glance!
+- Edit your application details to keep them up-to-date!
+- Search for your internship applications by keywords easily!
+- Keep track of your status for each individual internship application!
+- Add remarks to your internship applications to remember important details!
+- Add tasks to your internship applications to keep track of your progress! (to be added in v1.3)
+
+![Ui](images/Ui.png)
+
+If you are interested in using CareerSync, head over to the [Quick Start](#quick-start) section to get started!
 
 ### Table Of Contents
 

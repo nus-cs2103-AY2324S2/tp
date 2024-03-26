@@ -6,9 +6,9 @@
 
 Package " "<<Rectangle>>{
     Class UI UI_COLOR
-    Class Logic LOGIC_COLOR
+    Class InternshipLogic LOGIC_COLOR
     Class Storage STORAGE_COLOR
-    Class Model MODEL_COLOR
+    Class InternshipModel MODEL_COLOR
     Class Main #grey
     Class Commons LOGIC_COLOR_T2
 }
@@ -17,17 +17,17 @@ Class "<$user>" as User MODEL_COLOR_T2
 Class "<$documents>" as File UI_COLOR_T1
 
 
-UI -[#green]> Logic
-UI -right[#green]-> Model
-Logic -[#blue]-> Storage
-Logic -down[#blue]-> Model
+UI -[#green]> InternshipLogic
+UI -right[#green]-> InternshipModel
+InternshipLogic -[#blue]-> Storage
+InternshipLogic -down[#blue]-> InternshipModel
 Main -[#grey]-> UI
-Main -[#grey]-> Logic
+Main -[#grey]-> InternshipLogic
 Main -[#grey]-> Storage
-Main -up[#grey]-> Model
+Main -up[#grey]-> InternshipModel
 Main -down[hidden]-> Commons
 
-Storage -up[STORAGE_COLOR].> Model
+Storage -up[STORAGE_COLOR].> InternshipModel
 Storage .right[STORAGE_COLOR].>File
 User ..> UI
 @enduml
