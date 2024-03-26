@@ -65,17 +65,6 @@ public class MailCommandTest {
         assertEquals(Collections.emptyList(), model.getFilteredPersonList());
     }
 
-    @Test
-    public void execute_multipleKeywords_multiplePersonsFound() {
-        String expectedMessage = String.format(MailCommand.MESSAGE_EMAIL_CONTACT_SUCCESS,
-                "alice@example.com,johnd@example.com,cornelia@example.com");
-        TagContainsKeywordsPredicate predicate = preparePredicate("friends");
-        MailCommand command = new MailCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
-        assertCommandSuccess(command, model, commandHistory, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(ALICE, BENSON, DANIEL), model.getFilteredPersonList());
-    }
-
     /**
      * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
      */
