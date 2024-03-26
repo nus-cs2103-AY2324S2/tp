@@ -125,9 +125,13 @@ Examples:
 * `/pooch-maintainer ; name : Tom Tan  ; phone : 98765435 ; address : Poochie Street 24 ; email : ihelppooches@gmail.com ; skill : trainer ; commission : $60/hr`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Constraints:**<br>
-* Adding uplicate name will not be allowed.<br>
+
+* Adding duplicate name will not be allowed.<br>
+
 * Name is case-insensitive but space-sensitive.<br>
+
 * Salary and commission must be in format ${Number}/hr.<br>
+
 * Price must be in format ${Number}/{quantity}.<br>
 </div>
 
@@ -167,12 +171,19 @@ Examples:
 * `/edit-maintainer ; name : Maintainer1 ; field : { commission : $10/hr}`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Constraints:**<br>
+
 * Name is a compulsory field that is case-insensitive but space-sensitive.<br>
+
 * Name must be present in Pooch Planner.<br>
+
 * Contact type, i.e. Person / Staff / Supplier / Maintainer, must match command used. i.e. `/edit`, `edit-staff`, `edit-supplier` and `edit-maintainer`.<br>
+
 * The field(s) to be edited must be a valid field within their contact type, i.e. Person / Staff / Supplier / Maintainer.<br>
+
 * At least one field must be provided.<br>
+
 * Salary and commission must be in format ${Number}/hr.<br>
+
 * Price must be in format ${Number}/{quantity}.<br>
 </div>
 
@@ -187,8 +198,11 @@ Examples:
 * `/search ; phone : 98765432`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Constraints:**<br>
+
 * Any valid fields, such as `name`, `phone`, `email`, `address`, `salary`, `employment`, `price`, `product`, `skill`, `commission`, `tag` or `note`, can be provided.<br>
+
 * Only one field can be provided.<br>
+
 * Query is case-insensitive but space-sensitive.<br>
 </div>
 
@@ -203,8 +217,11 @@ Examples:
 * `/sort ; phone`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Constraints:**<br>
+
 * This command sorts the contacts in the address book in ascending lexicographical order (e.g. Alice, Bob, Charlie etc.).<br>
+
 * Sorts by specifying a valid field, such as `name`, `phone`, `email`, `address`, `salary`, `employment`, `price`, `product`, `skill`, `commission`, `tag` or `note`.<br>
+
 * All field input are case-insensitive.<br>
 </div>
 
@@ -221,7 +238,9 @@ Examples:
    The above command deletes the contact with name **_Poochie_**, provided **_Poochie_** exists as a name of a contact in Pooch Contact Book
 
 <div markdown="span" class="alert alert-primary">:bulb: **Constraints:**<br>
+
 * Name is a compulsory field that is case-insensitive but space-sensitive.<br>
+
 * Name must be present in Pooch Planner.<br>
 </div>
 
@@ -237,10 +256,15 @@ Examples:
   The above command rates the contact with the name **_Poochie_** with a rating of `5`, provided **_Poochie_** exists as a name of a contact in Pooch Contact Book
 
 <div markdown="span" class="alert alert-primary">:bulb: **Constraints:**<br>
-* Rating can only accept integer values from 1 to 5 inclusive.<br>
+
+* Rating can only accept whole number values from 1 to 5 inclusive.<br>
+
 * Name must be present in Pooch Planner.<br>
+
 * Name and Rating is a compulsory field that is case-insensitive but space-sensitive.<br>
+
 * Rating of 0 will automatically display `No rating given yet`.<br>
+
 </div>
 
 ### Pinning a contact : `pin`
@@ -255,8 +279,11 @@ Examples:
    The above command unpins the contact with name **_Poochie_**, provided **_Poochie_** exists as a name of a contact in Pooch Contact Book.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Constraints:**<br>
+
 * Name is a compulsory field that is case-insensitive but space-sensitive.<br>
+
 * Name must be present in Pooch Planner.<br>
+
 * Using pin command on a contact that has been pinned do not make any changes to Pooch Planner.<br>
 </div>
 
@@ -272,8 +299,11 @@ Examples:
    The above command unpins the contact with name **_Moochie_**, provided **_Moochie_** exists as a name of a contact in Pooch Contact Book.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Constraints:**<br>
+
 * Name is a compulsory field that is case-insensitive but space-sensitive.<br>
+
 * Name must be present in Pooch Planner.<br>
+
 * Using unpin command on a contact that has been unpinned do not make any changes to Pooch Planner.<br>
 </div> 
 
@@ -291,8 +321,11 @@ Examples:
 
 <div markdown="span" class="alert alert-primary">:bulb: **Constraints:**<br>
 * Name and Note are compulsory fields that are case-insensitive but space-sensitive.<br>
+
 * Name must be present in Pooch Planner.<br>
+
 * Note can only be added but not deleted.<br>
+
 </div>
 
 ### Undo a command : `undo`
@@ -302,8 +335,11 @@ Undo a previous command which made a change to Pooch Planner history.
 Format: `/undo`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Constraints:**<br>
+
 * There is no field required for this command.<br>
+
 * Any unnecessary parameter or value after /undo will simply be ignored.<br>
+
 * This command can only be executed when at least one changes have been made.<br>
 </div> 
 
@@ -314,9 +350,13 @@ Retrieve next state of Pooch Planner
 Format: `/redo`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Constraints:**<br>
+
 * There is no field required for this command.<br>
+
 * Any unnecessary parameter or value after /redo will simply be ignored.<br>
+
 * This command can only be executed when at least one undo command is executed.<br>
+
 </div>
 
 ### Viewing help : `help`
@@ -330,8 +370,11 @@ Examples:
 * `/help ; command : add`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Constraints:**<br>
+
 * Command must be specified.<br>
+
 * Help is only given for `delete`, `add`, `edit`, `search`.<br>
+
 * To see help for all commands, the corresponding command field is `general`.<br>
 </div>
 
@@ -350,6 +393,7 @@ Pooch Planner data are saved in the hard disk automatically after any command th
 Pooch Planner data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**<br>
+
 If your changes to the data file makes its format invalid, PoochPlanner will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
 Furthermore, certain edits can cause the PoochPlanner to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
@@ -391,5 +435,6 @@ _Details coming soon ..._
 | **Undo Command**      | `/undo`                                                                                                                                     | `/undo`                                                                                                                                                         |        
 | **Redo Command**      | `/redo`                                                                                                                                     | `/redo`                                                                                                                                                         |
 | **Pin**               | `/pin ; name : [name]`                                                                                                                      | `/pin ; name : Poochie`                                                                                                                                         |
+| **Unpin**             | `/unpin ; name : [name]`                                                                                                                    | `/unpin ; name : Poochie`                                                                                                                                       |
 | **Sort**              | `/sort ; [field]`                                                                                                                           | `/sort ; name`                                                                                                                                                  |
 | **Exit**              | `exit`                                                                                                                                      | `exit`                                                                                                                                                          |
