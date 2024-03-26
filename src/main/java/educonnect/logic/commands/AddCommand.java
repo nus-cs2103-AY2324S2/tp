@@ -1,6 +1,11 @@
 package educonnect.logic.commands;
 
-import static educonnect.logic.parser.CliSyntax.*;
+import static educonnect.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static educonnect.logic.parser.CliSyntax.PREFIX_LINK;
+import static educonnect.logic.parser.CliSyntax.PREFIX_NAME;
+import static educonnect.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
+import static educonnect.logic.parser.CliSyntax.PREFIX_TAG;
+import static educonnect.logic.parser.CliSyntax.PREFIX_TELEGRAM_HANDLE;
 import static java.util.Objects.requireNonNull;
 
 import educonnect.commons.util.ToStringBuilder;
