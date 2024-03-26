@@ -1,13 +1,17 @@
 package seedu.address.testutil;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
+import seedu.address.model.exam.Exam;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Score;
 import seedu.address.model.student.Matric;
 import seedu.address.model.student.Reflection;
 import seedu.address.model.student.Studio;
@@ -35,6 +39,7 @@ public class PersonBuilder {
     private Matric matric;
     private Reflection reflection;
     private Studio studio;
+    private Map<Exam, Score> scores;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -48,6 +53,7 @@ public class PersonBuilder {
         matric = new Matric(DEFAULT_MATRIC);
         reflection = new Reflection(DEFAULT_REFLECTION);
         studio = new Studio(DEFAULT_STUDIO);
+        scores = new HashMap<>();
     }
 
     /**
@@ -62,6 +68,7 @@ public class PersonBuilder {
         matric = personToCopy.getMatric();
         reflection = personToCopy.getReflection();
         studio = personToCopy.getStudio();
+        scores = personToCopy.getScores();
     }
 
     /**
@@ -135,11 +142,21 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code Exam} and {@code Score} of the {@code Person} that we are building.
+     * @param scores exam scores
+     * @return PersonBuilder
+     */
+    public PersonBuilder withScores(Map<Exam, Score> scores) {
+        this.scores = scores;
+        return this;
+    }
+
+    /**
      * Builds the person object.
      * @return Person
      */
     public Person build() {
-        return new Person(name, phone, email, address, tags, matric, reflection, studio);
+        return new Person(name, phone, email, address, tags, matric, reflection, studio, scores);
     }
 
 }

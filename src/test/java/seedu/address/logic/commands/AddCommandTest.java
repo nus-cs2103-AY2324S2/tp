@@ -14,6 +14,7 @@ import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.Messages;
@@ -22,6 +23,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.exam.Exam;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
@@ -157,6 +159,47 @@ public class AddCommandTest {
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public boolean hasExam(Exam exam) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteExam(Exam target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addExam(Exam exam) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setExam(Exam target, Exam editedExam) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void selectExam(Exam target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deselectExam() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableValue<Exam> getSelectedExam() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Exam> getExamList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
     }
 
     /**
