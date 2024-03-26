@@ -35,7 +35,16 @@ public class UniquePersonList implements Iterable<Person> {
      */
     public boolean contains(Person toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSamePerson);
+        return internalList.stream().anyMatch(toCheck::isSamePerson) || containsByEmail(toCheck);
+    }
+
+    /**
+     * Checks if the list contains a person with the same email as the given argument.
+     * Returns true if found, false otherwise.
+     */
+    public boolean containsByEmail(Person toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().anyMatch(person -> person.isSameEmail(toCheck));
     }
 
     /**
@@ -47,6 +56,7 @@ public class UniquePersonList implements Iterable<Person> {
         if (contains(toAdd)) {
             throw new DuplicatePersonException();
         }
+
         internalList.add(toAdd);
     }
 
