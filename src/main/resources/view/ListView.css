@@ -1,0 +1,15 @@
+.list-view .list-cell {
+    -fx-border-width: 0;
+    -fx-padding: 5px;
+}
+
+.list-view .list-cell:filled:selected,
+.list-view .list-cell:filled:selected:focused {
+    -fx-background-color: #b38486;
+    -fx-background-insets: 0;
+}
+
+.list-header {
+    -fx-font-size: 20px;
+    -fx-text-fill: white;
+}

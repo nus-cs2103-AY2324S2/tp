@@ -1,198 +1,279 @@
 ---
-layout: page
-title: User Guide
+  layout: default.md
+  title: "User Guide"
+  pageNav: 3
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+<h1 id="top">
+  RapidTracer
+</h1>
 
-* Table of Contents
-{:toc}
+RapidTracer offers a fast-paced user interface (UI) for clinic managers to handle contacts and appointments. It combines:
+- a simple and intuitive UI;
+- swift navigation through complex patient data and contact histories;
+- the ability to load and store large datasets; and is
+- quick to use for fast typers!
 
---------------------------------------------------------------------------------------------------------------------
+This guide provides a walkthrough on how to use RapidTracer to assist you in your clinical workflows, starting from patient in-processing. For experienced users, click the links on the right for quick navigation!
 
-## Quick start
-
-1. Ensure you have Java `11` or above installed in your Computer.
-
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
-
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
-
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
-
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
-
-   * `list` : Lists all contacts.
-
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
-
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
-
-   * `clear` : Deletes all contacts.
-
-   * `exit` : Exits the app.
-
-1. Refer to the [Features](#features) below for details of each command.
+<!-- * Table of Contents -->
+<page-nav-print />
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+## Quick start and installation
 
-<div markdown="block" class="alert alert-info">
+This section covers the download and installation process for RapidTracer.
 
-**:information_source: Notes about the command format:**<br>
+1. Ensure you have Java `11` or above installed on your computer.
+2. Download the latest version of `RapidTracer.jar` [here](https://github.com/AY2324S2-CS2103T-T10-2/tp/releases/tag/v1.2).
+3. Copy the file to the folder you want to store all RapidTracer data in.
+4. Open a command terminal and navigate to the folder where `RapidTracer.jar` is located using the `cd FOLDER_NAME` command. Use the `java -jar RapidTracer.jar` command to start running RapidTracer.
+   <img src="images/userguide/rapidtracerquickstart.png" style="width: 100%;">
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+If you encounter any issues running RapidTracer, you may refer to the detailed bug fixing [here](https://nus-cs2103-ay2324s2.github.io/website/admin/programmingLanguages.html).
 
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+--------------------------------------------------------------------------------------------------------------------
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+## Using RapidTracer
 
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+The clinical workflow is separated into three steps with RapidTracer:
+1. [Registering patients and appointments](#patient-in-processing)
+2. [Searching existing records](#searching-records)
+3. [Editing and deleting records](#editing-records)
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+For features which don't fall into the above categories, refer [here](#general-help).
 
-* If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
-</div>
+<h3 id="patient-in-processing" style="color: #088F8F">
+  Registering patients and appointments
+</h3>
 
-### Viewing help : `help`
+There are three ways you can register new patients and schedule new appointments.
 
-Shows a message explaning how to access the help page.
+1. Use the `add` command to register a new patient.
+2. Use the `addappt` command to schedule a new appointment for an existing patient.
+3. Use the `add` command to register a new patient and schedule an appointment immediately.
 
-![help message](images/helpMessage.png)
+<h4 id="add" style="color: #7393B3">
+  Registering new patients: `add`
+</h4>
 
-Format: `help`
+You can add new patients to our database with the `add` command. Each patient must minimally have a name and a phone number for administrative purposes.
 
+Format: `add n/NAME p/PHONE_NUMBER [a/ADDRESS] [t/TAG]`
 
-### Adding a person: `add`
+- Commands in [brackets] are optional parameters.
+- The name to be added “NAME” can only contain alphanumeric characters.
+- Parameters may be typed in any order.
 
-Adds a person to the address book.
+<h4 id="addappt" style="color: #7393B3">
+  Scheduling new appointments: `addappt`
+</h4>
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+You can schedule appointments for existing patients using the `addappt` command.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+Format: `addappt INDEX d/DATE`
 
-Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+- Adds an appointment to the contact at the specified INDEX.
+- INDEX is a positive integer displayed on the screen.
+- The format of "DATE_TIME" is `dd/mm/yyyy [x]am-[y]pm`. Examples of accepted "DATE_TIME":
+  - `24/03/2024 10am-2pm`
+  - `24/03/2024 10AM-2PM`
+  - `24/03/2024 10am - 2pm`
+  - `today 10am-2pm` (this will create an appointment from 10am to 2pm with today's date)
+  - `tdy 10am-2pm` (this will create an appointment from 10am to 2pm with today's date)
 
-### Listing all persons : `list`
+<h4 id="add-with-appt" style="color: #7393B3">
+  Managing walk-ins: `add`
+</h4>
 
-Shows a list of all persons in the address book.
+For walk-in appointments, you can also create a new contact and add an appointment with a single command. This command automatically creates an appointment linked to the patient which is being added.
 
-Format: `list`
+Format: `add n/NAME p/PHONE_NUMBER d/DATE_TIME [a/ADDRESS] [t/TAG]`
 
-### Editing a person : `edit`
+<box type="info" seamless>
+  <b>Remark:</b> This `add` command is the same as the one above, but with an extra field (the `DATE_TIME`).
+</box>
 
-Edits an existing person in the address book.
+- Commands in [brackets] are optional parameters.
+- The name to be added “NAME” can only contain alphanumeric characters.
+- Parameters may be typed in any order.
+- The format of "DATE_TIME" is `dd/mm/yyyy [x]am-[y]pm`. Examples of accepted "DATE_TIME":
+  - `24/03/2024 10am-2pm`
+  - `24/03/2024 10AM-2PM`
+  - `24/03/2024 10am - 2pm`
+  - `today 10am-2pm` (this will create an appointment from 10am to 2pm with today's date)
+  - `tdy 10am-2pm` (this will create an appointment from 10am to 2pm with today's date)
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+<h3 id="searching-records" style="color: #088F8F">
+  Searching existing records
+</h3>
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+RapidTracer offers search functions for both patient and appointment data. Beyond searching for specific patients and appointments, RapidTracer offers a list view to see all patient and appointment records.
 
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+<h4 id="find" style="color: #7393B3">
+  Searching for contacts: `find`
+</h4>
 
-### Locating persons by name: `find`
-
-Finds persons whose names contain any of the given keywords.
+Shows a list of contacts in RapidTracer matching the keywords provided. The contact only needs to partially match any of the keywords provided.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+- The KEYWORD searched is case-insensitive.
+- Order of keywords does not matter.
+- Possible keyword types:
+  - NAME
+  - PHONE_NUMBER
+  - ADDRESS
 
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+<h4 id="findappt" style="color: #7393B3">
+  Finding appointment: `findappt`
+</h4>
 
-### Deleting a person : `delete`
+Shows a list of appointments in RapidTracer matching the keywords provided. The appointment only needs to partially match any of the keywords provided.
 
-Deletes the specified person from the address book.
+Format: `findappt KEYWORD [MORE_KEYWORDS]`
+
+- The KEYWORD searched is case-insensitive.
+- Order of keywords does not matter.
+- Possible keyword types:
+  - NAME
+
+<img src="images/userguide/findexample.png" style="width: 100%;">
+
+<h4 id="list" style="color: #7393B3">
+  Listing contacts: `list`
+</h4>
+
+Shows a list of all contacts in RapidTracer.
+
+Format: `list`
+
+<h4 id="listappt" style="color: #7393B3">
+  Listing appointments: `listappt`
+</h4>
+
+Shows a list of all appointments in RapidTracer.
+
+Format: `listappt`
+
+<h3 id="editing-records" style="color: #088F8F">
+  Editing and deleting records
+</h3>
+
+In the event that patients update their contact details or reschedule an appointment, their details can be updated accordingly. RapidTracer also allows you to cancel appointments and delete patient records.
+
+<h4 id="edit" style="color: #7393B3">
+  Editing contacts: `edit`
+</h4>
+
+An existing patient's details can be updated in RapidTracer using the `edit` command. This does not deal with user appointments.
+
+Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [t/TAG]`
+
+- Edits the contact at the specified INDEX.
+- INDEX is a positive integer that is currently displayed on the screen.
+- Only one INDEX can be edited at a time.
+- At least one of the optional fields must be provided.
+- Existing values will be updated to the input values.
+
+<h4 id="editappt" style="color: #7393B3">
+  Editing appointment: `editappt`
+</h4>
+
+An appointment can be rescheduled with the `editappt` command to change the date and time of the appointment.
+
+Format: `editappt INDEX d/DATE_TIME`
+
+- INDEX is a positive integer that is currently displayed on the screen.
+- Only one INDEX can be edited at a time.
+- At least one of the optional fields must be provided.
+- Existing values will be updated to the input values.
+- The format of "DATE_TIME" is `dd/mm/yyyy [x]am-[y]pm`. Examples of accepted "DATE_TIME":
+  - `24/03/2024 10am-2pm`
+  - `24/03/2024 10AM-2PM`
+  - `24/03/2024 10am - 2pm`
+  - `today 10am-2pm` (this will create an appointment from 10am to 2pm with today's date)
+  - `tdy 10am-2pm` (this will create an appointment from 10am to 2pm with today's date)
+
+<h4 id="delete" style="color: #7393B3">
+  Deleting contacts: `delete`
+</h4>
+
+In the event that a patient requests for their data to be deleted, you can use the `delete` command to remove their contact information.
 
 Format: `delete INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+- Deletes the contact at the specified INDEX.
+- INDEX is a positive integer that is currently displayed on the screen.
+- Only one INDEX can be deleted at a time.
 
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+<h4 id="deleteappt" style="color: #7393B3">
+  Deleting appointments: `deleteappt`
+</h4>
 
-### Clearing all entries : `clear`
+In the event that an appointment is cancelled, you can delete it using the `deleteappt` command.
 
-Clears all entries from the address book.
+Format: `deleteappt INDEX`
 
-Format: `clear`
+- Deletes the appointment at the specified INDEX.
+- INDEX is a positive integer that is currently displayed on the screen.
+- Only one INDEX can be deleted at a time.
 
-### Exiting the program : `exit`
+<h3 id="general-help" style="color: #088F8F">
+  General help
+</h3>
 
-Exits the program.
+<h4 id="help" style="color: #7393B3">
+  Viewing help: `help`
+</h4>
 
-Format: `exit`
+For general help, type `help` to open the help window. The `help` window will redirect you [here](https://ay2324s2-cs2103t-t10-2.github.io/tp/UserGuide.html).
 
-### Saving the data
+Format: `help`
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+<h4 id="exit" style="color: #7393B3">
+  Exiting/closing RapidTracer
+</h4>
 
-### Editing the data file
+To properly exit RapidTracer, click the `File` option in the top left corner and click `Exit`. This will ensure that the data is saved properly. 
 
-AddressBook data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
-Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
-</div>
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
+<img src="images/userguide/exitingrapidtracer.png" style="width: 100%;">
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**Q**: How do I upload records into RapidTracer?<br>
+**A**: This feature is currently under development!
+
+**Q**: How do I download all my records from RapidTracer?<br>
+**A**: This feature is currently under development!
+
+**Q**: A command is not working, what am I doing wrong?<br>
+**A**: There's a chance that the feature is still under development. We will fix it!
+
+**Q**: I still have an unanswered question!<br>
+**A**: Please drop us an email at minrei.seah@u.nus.edu
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Known issues
 
-1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
+1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the app will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+Action     | Format | Examples
+-----------|-----------------------------------------|-----------------------------------------------------------------------------------------------------------------------------
+Add contacts | `add n/NAME p/PHONE_NUMBER [a/ADDRESS] [t/TAG]` | `add n/Min Rei p/86615076`,<br> `add n/Min Rei p/86615076 a/UTown RC4`,<br> `add n/Min Rei p/86615076 d/27/03/2024 2pm-3pm`
+Add appointments | `addappt INDEX d/DATE_TIME` | `addappt 1 d/27/03/2024 9am-10am`,<br> `addappt 1 d/today 9am-10am`,<br> `addappt 1 d/tdy 9am-10am`
+Find contacts | `find KEYWORD [MORE_KEYWORDS]` | `find min`,<br> `find rc4`
+Find appointments | `findappt KEYWORD [MORE_KEYWORDS]` | `findappt min`
+List all contacts | `list` |
+List all appointments | `listappt` |
+Editing contacts | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [t/TAG]` | `edit 1 n/Seah Min Rei`
+Editing appointments | `editappt INDEX d/DATE_TIME` | `editappt 1 30/12/2024 8am-9am`
+Help | `help` |

@@ -1,59 +1,63 @@
 ---
-layout: page
-title: About Us
+  layout: default.md
+  title: "About Us"
 ---
 
-We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
+# About Us
+
+We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg). To learn good software engineering practies, we have different team leads each week. This week's team lead is Shuyuan.
 
 You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Boan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/qinboan.png" width="200px">
 
 [[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
+[[github](https://github.com/qinboan)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Project Advisor
+* Role: Algorithms & Data Structures
+* Responsibilities: Algorithms & Data Structures
 
-### Jane Doe
+### Jun Yuan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/chengjunyuan.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/chengjunyuan)] [[linkedin](https://www.linkedin.com/in/jun-yuan-cheng-2867931a9/)] [[portfolio](team/chengjunyuan.md)]
+
+Interested in computational biology and bioinformatics!
 
 * Role: Team Lead
 * Responsibilities: UI
 
-### Johnny Doe
+### Min Rei
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/minreiseah.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/minreiseah)] [[portfolio](team/minrei.md)]
 
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Sampson
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/sampsonye1999.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/SampsonYe1999)]
+[[portfolio](team/sampsonye.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Shuyuan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/legionlegion.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/legionlegion)]
+[[portfolio](team/legionlegion.md)]
 
 * Role: Developer
 * Responsibilities: UI
