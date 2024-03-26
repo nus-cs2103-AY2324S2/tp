@@ -143,8 +143,7 @@ public class DeleteCommandTest {
         String expectedMessage = "Deleted 2 People\n" +
                 "Deleted Person: Alice Pauline\n" +
                 "Alice Pauline Phone: 94351253 Email: alice@example.com Address: 123, Jurong West Ave 6, #08-111 Tags:"
-                + " [friends]\n" +
-                "Deleted Person: Benson Meier\n" +
+                + " [friends]\n" + "Deleted Person: Benson Meier\n" +
                 "Benson Meier Phone: 98765432 Email: johnd@example.com Address: 311, Clementi Ave 2, #02-25 Tags:" +
                 " [owesMoney][friends]";
 
