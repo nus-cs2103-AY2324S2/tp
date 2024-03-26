@@ -8,9 +8,9 @@ import java.util.UUID;
  * Represents a relationship between two people.
  */
 public class Relationship {
+    protected boolean isFamilyRelationship;
     protected static ArrayList<String> validDescriptors = new ArrayList<>(
-            Arrays.asList("family",
-                    "friend"));
+            Arrays.asList("friend", "siblings", "spouses", "bioparents"));
     protected UUID person1;
     protected UUID person2;
     protected String relationshipDescriptor;
@@ -33,6 +33,7 @@ public class Relationship {
                 validDescriptors.add(relationshipDescriptor);
             }
         }
+        isFamilyRelationship = relationshipDescriptor.equalsIgnoreCase("family");
         this.relationshipDescriptor = relationshipDescriptor;
     }
 

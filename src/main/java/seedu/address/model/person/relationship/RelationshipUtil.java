@@ -42,11 +42,12 @@ public class RelationshipUtil {
     public boolean hasRelationshipWithDescriptor(Relationship toFind) {
         for (Relationship relationship : relationshipsTracker) {
             if ((relationship.getPerson1().equals(toFind.getPerson1()) && relationship.getPerson2()
-                    .equals(toFind.getPerson2())
+                    .equals(toFind.getPerson2()))
                     || (relationship.getPerson1().equals(toFind.getPerson2()) && relationship.getPerson2()
-                            .equals(toFind.getPerson1()))) && relationship.getRoleDescriptor(
-                            toFind.getPerson1()).equals(toFind.getRoleDescriptor(toFind.getPerson2()))) {
-                return true;
+                    .equals(toFind.getPerson1()))) {
+                if (relationship.getRelationshipDescriptor().equalsIgnoreCase(toFind.getRelationshipDescriptor())) {
+                    return true;
+                }
             }
         }
         return false;

@@ -34,15 +34,23 @@ public class AddRelationshipCommandParser implements Parser<AddRelationshipComma
                 originUuid = ParserUtil.parseUuid(parts[1]);
                 targetUuid = ParserUtil.parseUuid(parts[3]);
                 relationshipDescriptor = parts[4];
+                if (relationshipDescriptor.equalsIgnoreCase("family")) {
+                    throw new ParseException("Please specify the type of familial relationship instead of 'Family'. \n" +
+                            " Valid familial relations are: [bioParents, siblings, spouses]");
+                }
                 return new AddRelationshipCommand(originUuid, targetUuid, relationshipDescriptor, role1, role2);
             } else {
                 originUuid = ParserUtil.parseUuid(parts[0]);
                 targetUuid = ParserUtil.parseUuid(parts[1]);
                 relationshipDescriptor = parts[2];
+                if (relationshipDescriptor.equalsIgnoreCase("family")) {
+                    throw new ParseException("Please specify the type of familial relationship. \n" +
+                            " Valid familial relations are: [bioParents, siblings, spouses]");
+                }
                 return new AddRelationshipCommand(originUuid, targetUuid, relationshipDescriptor);
             }
         } catch (ParseException pe) {
-            throw new ParseException(Messages.MESSAGE_INVALID_PERSON_UUID);
+            throw pe;
         }
     }
 }

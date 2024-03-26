@@ -7,8 +7,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.relationship.Relationship;
-import seedu.address.model.person.relationship.RoleBasedRelationship;
+import seedu.address.model.person.relationship.*;
 
 /**
  * This class is responsible for parsing and executing commands to add relationships between persons.
@@ -54,6 +53,12 @@ public class AddRelationshipCommand extends Command {
         this.rolePerson2 = role2.toLowerCase();
     }
 
+    /**
+     * Executes the command to add a relationship between two persons
+     * @param model
+     * @return CommandResult
+     * @throws CommandException
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         boolean isRoleBased = (rolePerson1 != null) && (rolePerson2 != null);
@@ -67,8 +72,17 @@ public class AddRelationshipCommand extends Command {
         }
         try {
             if (isRoleBased) {
-                RoleBasedRelationship toAdd = new RoleBasedRelationship(fullOriginUuid, fullTargetUuid,
-                        relationshipDescriptor, rolePerson1, rolePerson2);
+                RoleBasedRelationship toAdd;
+                if (relationshipDescriptor.equalsIgnoreCase("Bioparents")) {
+                    toAdd = new BioParentsRelationship(fullOriginUuid, fullTargetUuid);
+                } else if (relationshipDescriptor.equalsIgnoreCase("Siblings")) {
+                    toAdd = new SiblingRelationship(fullOriginUuid, fullTargetUuid);
+                } else if (relationshipDescriptor.equalsIgnoreCase("Spouses")) {
+                    toAdd = new SpousesRelationship(fullOriginUuid, fullTargetUuid);
+                } else {
+                    toAdd = new RoleBasedRelationship(fullOriginUuid, fullTargetUuid,
+                            relationshipDescriptor, rolePerson1, rolePerson2);
+                }
                 if (model.hasRelationshipWithDescriptor(toAdd)) {
                     String existing = model.getExistingRelationship(toAdd);
                     throw new CommandException(String.format("Sorry, %s", existing));

@@ -5,14 +5,8 @@ import java.util.UUID;
 /**
  * Represents a parent-child relationship between two persons.
  */
-public class BioParentsRelationship extends RoleBasedRelationship {
-    private static final String ROLE_PARENT = "parent";
-    private static final String ROLE_CHILD = "child";
-
-    /**
-     * Creates a new BioParentsRelationship between two persons.
-     */
+public class BioParentsRelationship extends FamilyRelationship {
     public BioParentsRelationship(UUID parentUuid, UUID childUuid) {
-        super(parentUuid, childUuid, "family", ROLE_PARENT, ROLE_CHILD);
+        super(parentUuid, childUuid, "parent", "child");
     }
 }
