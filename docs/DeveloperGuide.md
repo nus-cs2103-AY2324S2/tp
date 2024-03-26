@@ -167,16 +167,18 @@ The find mechanism is facilitated by 3 classes `FindEmailCommand`, `FindNameComm
 
 These `Predicate` objects allow for matching of multiple substrings, facilitating searching for multiple persons in the application simultaneously. This is done by providing multiple keyword arguments after the `find_[email/name/phone]` command word. However, this only applies to keywords for the same criteria.
 
+<br> 
+
 Example: Keyword arguments after `find_name` will be matched only to the `Name` values of persons in application data, and not theie `Email` or `Phone` values.
 * `FindEmailCommand#execute()` — Searches for persons based on the specified email keywords.
 * `FindNameCommand#execute()` — Searches for persons based on the specified name keywords.
 * `FindPhoneCommand#execute()` — Searches for persons based on the specified phone keywords.history.
 
-These `execute` operations utilise `ModelManager#updateFilteredPersonList()` implemented from the `Model` interface to update the GUI to display the persons that match the criteria provided as arguments to the `FindCommand` variant.
+The above `execute` operations utilise `ModelManager#updateFilteredPersonList()` implemented from the `Model` interface to update the GUI to display the persons that match the criteria provided as arguments to the `FindCommand` variant.
 
 The following class diagram summarizes the organisation of the `FindCommand` variant classes.
 
-<puml src="diagrams/find/FindCommandClass.puml" alt="FindCommandClassDiagram" width="250"/>
+<puml src="diagrams/find/FindCommandClass.puml" alt="FindCommandClassDiagram" width="550"/>
 
 Given below is an example usage scenario and how the find mechanism behaves at each step. All 3 variants behave in the same way, just with their keywords being of different types.
 
@@ -194,10 +196,10 @@ Step 2. The user executes `find_name` command to find a person with the name Rya
 
 </box>
 
+<br>
+The following sequence diagram shows how a find operation, specifically `find_name`, goes through the `Logic` component. `find_phone` and `find_email` also behave in a similar way.
 
-The following sequence diagram shows how a find operation, specifically `find_name`, goes through the `Logic` component:
-
-<puml src="diagrams/UndoSequenceDiagram-Logic.puml" alt="UndoSequenceDiagram-Logic" />
+<puml src="diagrams/FindSequenceDiagram-Logic.puml" alt="FindSequenceDiagram-Logic" width="550"/>
 
 
 #### Design considerations:
