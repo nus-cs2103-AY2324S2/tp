@@ -1,13 +1,14 @@
 package seedu.address.model.util;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.book.Book;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.BookList;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.MeritScore;
 import seedu.address.model.person.Name;
@@ -19,7 +20,7 @@ import seedu.address.model.tag.Tag;
  * Contains utility methods for populating {@code AddressBook} with sample data.
  */
 public class SampleDataUtil {
-    public static final BookList EMPTY_BORROW = new BookList();
+    public static final ArrayList<Book> EMPTY_BORROW = new ArrayList<>();
     public static final MeritScore EMPTY_SCORE = new MeritScore(0);
 
     public static Person[] getSamplePersons() {
