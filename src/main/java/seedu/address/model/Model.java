@@ -86,5 +86,9 @@ public interface Model {
     void updateFilteredPersonList(Predicate<Person> predicate);
 
 
+    /**
+     * Pins the given person.
+     * The person must exist in the address book.
+     */
     void pinPerson(Person person);
 }

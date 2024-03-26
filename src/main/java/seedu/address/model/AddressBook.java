@@ -75,6 +75,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.add(p);
     }
 
+    /**
+     * Pins a person to the top of the address book.
+     * The person must already exist in the address book.
+     */
     public void pinPerson(Person person) {
         requireNonNull(person);
         persons.pin(person);

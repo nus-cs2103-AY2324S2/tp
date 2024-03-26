@@ -13,15 +13,17 @@ import seedu.address.model.person.NusId;
 import seedu.address.model.person.Person;
 
 
-
+/**
+ * Pins a person to the address book.
+ */
 public class PinCommand extends Command {
     public static final String COMMAND_WORD = "pin";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Pin a student to the top of the address book. "
-            + "Parameters: "
-            + PREFIX_NUSID + "NUSID ";
+            + "Parameters: NusId (8 digits long, starting with an 'E'). \n"
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_NUSID + "E1234567 ";
 
     public static final String MESSAGE_PIN_PERSON_SUCCESS = "Student has been pinned: %1$s";
-
 
     private final NusId nusId;
 
@@ -42,7 +44,6 @@ public class PinCommand extends Command {
 
         model.pinPerson(personToPin);
         return new CommandResult(String.format(MESSAGE_PIN_PERSON_SUCCESS, Messages.format(personToPin)));
-
     }
 
     @Override

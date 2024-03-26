@@ -48,6 +48,10 @@ public class UniquePersonList implements Iterable<Person> {
         internalList.add(toAdd);
     }
 
+    /**
+     * Pins a person to the front of the list.
+     * The person must already exist in the list.
+     */
     public void pin(Person person) {
         requireAllNonNull(person);
         if (contains(person)) {
