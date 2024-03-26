@@ -146,6 +146,18 @@ Examples:
 - `list` followed by `delete 2` deletes the 2nd client in the address book.
 - `find Betsy` followed by `delete 1` deletes the 1st client in the results of the `find` command.
 
+### Filter client by tag : `filter`
+Filter through clients by a specific tag provided.
+
+Format: `filter TAG_NAME`
+
+- `TAG_NAME` refers to the tag given to clients
+- Displays all clients with the specified tag
+- There should only be one tag provided else an error would be shown
+
+Examples:
+- `filter friends` Displays all clients with the tag `friends`
+
 ## Meeting Functions
 
 ### Adding a Meeting: `add`
@@ -164,8 +176,8 @@ A meeting can have any number of descriptions (including 0).
 
 Examples:
 
-- `addMeeting client/1 dt/02-01-2025 12:00 d/Sign life plan` Adds a meeting with description "Sign life plan" and meeting date 02-01-2025 12:00 to client with index 1.
-- `addMeeting client/2 dt/06-01-2025 15:00 d/Meeting to discuss finances` Adds a meeting with description "Meeting to discuss finances" and meeting date 06-01-2025 15:00 to client with index 2.
+- `addMeeting clientIndex/1 dt/02-01-2025 12:00 d/Sign life plan` Adds a meeting with description "Sign life plan" and meeting date 02-01-2025 12:00 to client with index 1.
+- `addMeeting clientIndex/2 dt/06-01-2025 15:00 d/Meeting to discuss finances` Adds a meeting with description "Meeting to discuss finances" and meeting date 06-01-2025 15:00 to client with index 2.
 
 ### Listing all Meetings for a Client: `view`
 
@@ -262,12 +274,13 @@ To keep track of your clients/meetings, you can follow the various commands in t
 ### Client Functions
 
 | Action     | Format, Examples                                                                                                                                                     |
-| ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
 | **List**   | `list`<br> e.g., `list`                                                                                                                                              |
 | **Edit**   | `edit CLIENT_INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                    |
 | **Delete** | `delete CLIENT_INDEX`<br> e.g., `delete 3` <br/>                                                                                                                     |
 | **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                           |
+| **Filter** | `filter TAG_NAME`<br> e.g., `filter friends`                                                                                                                         |
 
 ### Meeting Functions
 
@@ -281,6 +294,6 @@ To keep track of your clients/meetings, you can follow the various commands in t
 ### General Functions
 
 | Action    | Format, Examples |
-| --------- | ---------------- |
+|-----------|------------------|
 | **Clear** | `clear`          |
 | **Help**  | `help`           |
