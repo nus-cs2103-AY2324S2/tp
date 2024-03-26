@@ -13,6 +13,7 @@ import static seedu.address.testutil.TypicalClients.AMY;
 import java.io.IOException;
 import java.nio.file.AccessDeniedException;
 import java.nio.file.Path;
+import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -62,8 +63,15 @@ public class LogicManagerTest {
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
         String deleteCommand = "del 9";
-        assertCommandException(deleteCommand,
-            String.format(DeleteCommand.MESSAGE_DELETE_CLIENT_FAIL, MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX));
+        List<Client> lastShownList = model.getFilteredClientList();
+        if (lastShownList.isEmpty()) {
+            assertCommandException(deleteCommand,
+                String.format(DeleteCommand.MESSAGE_DELETE_CLIENT_FAIL, Messages.MESSAGE_EMPTY_LIST));
+        } else {
+            assertCommandException(deleteCommand,
+                            String.format(DeleteCommand.MESSAGE_DELETE_CLIENT_FAIL,
+                            MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX));
+        }
     }
 
     @Test
