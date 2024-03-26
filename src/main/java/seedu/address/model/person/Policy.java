@@ -11,7 +11,8 @@ import java.time.format.DateTimeParseException;
  * Guarantees: immutable; is always valid
  */
 public class Policy {
-    public static final String EXPIRY_DATE_MESSAGE_CONSTRAINTS = "Expiry date format should be dd/mm/yyyy.";
+    public static final String EXPIRY_DATE_MESSAGE_CONSTRAINTS = "Expiry date format should be in the format dd/mm/yyyy"
+            + " and cannot be in the past";
     public static final String PREMIUM_MESSAGE_CONSTRAINTS = "Premium value should be a floating number which is "
             + "larger than or equal 0.0.";
 
