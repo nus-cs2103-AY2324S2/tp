@@ -283,8 +283,3 @@ class JsonAdaptedPerson {
     }
 
 }
-
-
-
-
-

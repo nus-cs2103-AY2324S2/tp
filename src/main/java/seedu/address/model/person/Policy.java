@@ -52,7 +52,7 @@ public class Policy {
 
     @Override
     public String toString() {
-        return value;
+        return value + "_" + expiryDate + "_" + premium;
     }
 
     @Override
