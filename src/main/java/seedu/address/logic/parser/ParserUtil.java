@@ -152,4 +152,14 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
+    /**
+     * Parses {@code String csv} into a {@code String[]}
+     */
+    public static String[] parseCsv(String csv) {
+        requireNonNull(csv);
+        // The regex ,(?=\\d|\\s) uses the lookahead operator to only split by commas that are followed by
+        // numbers or whitespace to handle invalid indices like ,,,,, and 1,,,,,,
+        return csv.split(",(?=\\d|\\s)");
+    }
 }

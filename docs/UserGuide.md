@@ -163,7 +163,6 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [c/COMPANY] [t/TAG]
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, existing tags other than the Favourite tag of the person will be removed i.e adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `t/` without
   specifying any tags after it.
 
@@ -172,12 +171,16 @@ Examples:
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
 
-### Add Contacts as Favourites `addfav`
+### Add contacts as favourites `addfav`
 
 - Adds the contacts specified by index as favourites
 
 Format: `addfav [i/INDICES]`
-- Adds the contacts at the specified `INDICES` as favourites. The indices refer to comma-separated index numbers (i.e. index, index, index) shown in the displayed person list. Each index **must be a positive integer** 1,2,3, ...
+- Adds the contacts at the specified `INDICES` as favourites. The indices refer to comma-separated index numbers (i.e. index, index, index) shown in the displayed person list. Each index **must be a positive integer** 1,2,3, ... 
+<box type="tip" seamless>
+
+**Note:** Indices corresponding to existing favourite contacts are deemed as invalid indices for `addfav`
+</box>
 
 Examples:
 - `addfav i/ 1` Sets the contact at index `1` as favourite
@@ -188,6 +191,28 @@ Examples:
 - `addfav i/` returns an error message as the 'INDICES' field cannot be empty
 - `addfav` returns an error message as it must be accompanied by the 'INDICES' field
 - `addfav 1 i/ 2, 5` returns an error message as there should not be prefixes before the 'INDICES' field
+
+### Remove contacts from favourites `removefav`
+
+- Remove the contacts specified by index as favourites
+
+Format: `removefav [i/INDICES]`
+- Removes the contacts at the specified `INDICES` from favourites. The indices refer to comma-separated index numbers (i.e. index, index, index) shown in the displayed person list. Each index **must be a positive integer** 1,2,3, ... 
+
+<box type="tip" seamless>
+
+**Note:** Indices corresponding to non-favourite contacts are deemed as invalid indices for `removefav`
+</box>
+
+Examples:
+- `removefav i/ 1` Removes the contact at index `1` from favourites
+- `removefav i/ 1, 1, 1` Removes the contact at index `1` as favourite once
+- `removefav i/ 1, 2, 5` Removes the contacts at the indices `1, 2, 5` as favourites
+- `removefav i/ -10, 0, -100`, `addfav i/ abc` and `addfav i/////` return an error message as the 'INDICES' field must consist of comma-separated positive integers
+- `removefav i/ 10, 1` returns an error message as the 'INDICES' field must consist of valid index values which are positive integers from 1 to the total number of contacts in the address book
+- `removefav i/` returns an error message as the 'INDICES' field cannot be empty
+- `removefav` returns an error message as it must be accompanied by the 'INDICES' field
+- `removefav 1 i/ 2, 5` returns an error message as there should not be prefixes before the 'INDICES' field
 
 ### Search Contact `find`
 
