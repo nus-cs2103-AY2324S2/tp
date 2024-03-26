@@ -2,6 +2,7 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -112,6 +113,19 @@ public class Person {
     public ArrayList<Book> getBookListWithoutBook(Book book) {
         ArrayList<Book> mutableCopy = new ArrayList<>(this.getBookList());
         mutableCopy.remove(book);
+        return new ArrayList<>(Collections.unmodifiableList(mutableCopy));
+    }
+
+    /**
+     * Returns an immutable book list, consisting of books in the person's book list
+     * with an additional book, which is the book passed in.
+     *
+     * @param book The book to be added.
+     * @return An immutable copy of the person's book list with the new book.
+     */
+    public ArrayList<Book> getBookListWithNewBook(Book book) {
+        ArrayList<Book> mutableCopy = new ArrayList<>(this.getBookList());
+        mutableCopy.add(book);
         return new ArrayList<>(Collections.unmodifiableList(mutableCopy));
     }
 
