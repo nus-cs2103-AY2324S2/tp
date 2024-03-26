@@ -9,6 +9,7 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.MarkPaymentCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Id;
+import seedu.address.model.person.Payment;
 
 /**
  * Parses input arguments and creates a new MarkPaymentCommand object
@@ -26,9 +27,9 @@ public class MarkPaymentCommandParser implements Parser<MarkPaymentCommand> {
         }
 
         Id id = ParserUtil.parseId(argMultimap.getValue(PREFIX_ID).get());
-        double amount = ParserUtil.parsePayment(argMultimap.getValue(PREFIX_PAYMENT).get());
+        Payment paymentAmount = ParserUtil.parsePayment(argMultimap.getValue(PREFIX_PAYMENT).get());
 
-        return new MarkPaymentCommand(id, amount);
+        return new MarkPaymentCommand(id, paymentAmount.getAmount());
     }
 
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
