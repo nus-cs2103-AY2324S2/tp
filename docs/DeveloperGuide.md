@@ -144,6 +144,7 @@ The `Model` component,
 The `Attribute` component,
 
 * stores the attribute data i.e., all `Attribute` objects (which are contained in a `UniqueAttributeList` object).
+* stores the `Attribute` objects in the `Person` object in the hash map.
 * stores the currently 'selected' `Attribute` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Attribute>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components (as the `Attribute` represents data entities of the domain, they should make sense on their own without depending on other components)
 * depends on some classes in the `Model` component (because the `Attribute` component's job is to save/retrieve objects that belong to the `Model`)
