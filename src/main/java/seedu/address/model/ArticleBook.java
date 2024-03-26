@@ -88,6 +88,13 @@ public class ArticleBook implements ReadOnlyArticleBook {
         articles.remove(key);
     }
 
+    /**
+     * Sorts the article book by the attribute represented by the given prefix.
+     */
+    public void sortArticleBook(String prefix) {
+        articles.sortArticles(prefix);
+    }
+
     //// util methods
 
     @Override

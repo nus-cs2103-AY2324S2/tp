@@ -133,9 +133,13 @@ public interface Model {
     void deleteArticle(Article target);
 
     /**
+     * Sorts the article book by the attribute represented by the given prefix.
+     */
+    void sortArticleBook(String prefix);
+
+    /**
      * Updates the filter of the filtered article list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredArticleList(Predicate<Article> predicate);
-
 }

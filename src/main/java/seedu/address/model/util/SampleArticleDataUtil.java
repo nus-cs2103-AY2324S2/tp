@@ -26,4 +26,19 @@ public class SampleArticleDataUtil {
         }
         return sampleAb;
     }
+
+    // Run this to generate sample article data stored in articlebook.json before running PressPlaanner.
+
+    /*public static void main(String[] args) {
+        ReadOnlyArticleBook initialArticleData;
+        initialArticleData = SampleArticleDataUtil.getSampleArticleBook();
+        Storage storage = new StorageManager(new JsonAddressBookStorage(Path.of("data/addressbook.json")),
+                new JsonUserPrefsStorage(Path.of("data/userprefs.json")),
+                new JsonArticleBookStorage(Path.of("data/articlebook.json")));
+        try {
+            storage.saveArticleBook(initialArticleData);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }*/
 }
