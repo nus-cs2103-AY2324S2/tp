@@ -38,7 +38,7 @@ public class AddCommand extends Command {
             + PREFIX_ROOMNUMBER + "sw-01-01 "
             + PREFIX_TELEGRAM + "johnDoe "
             + PREFIX_BIRTHDAY + "12/12/2000 "
-            + PREFIX_FREETIMETAG + "Mon:1pm-2pm";
+            + PREFIX_FREETIMETAG + "Mon:1300-1400";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";

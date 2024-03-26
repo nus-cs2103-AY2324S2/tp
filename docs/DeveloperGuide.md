@@ -158,6 +158,29 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### **Free TIme Tag Feature**
+#### Implementation
+The implementation consists of two main classes: `Tag` and `FreeTimeTag`.
+
+1. #### Tag Class
+
+- `Tag` is an abstract class representing a general tag in Dormie.
+- It contains the common properties and behaviors shared by all types of tags.
+- The `tagName` field represents the name of the tag.
+- Methods such as `equals`, `hashCode`, and `toString` are declared abstract to be implemented by subclasses.
+
+2. #### FreeTimeTag Class:
+
+- `FreeTimeTag` is a subclass of `Tag` specifically designed for free time tags.
+- It adds additional constraints and validation specific to free time tags.
+- The `MESSAGE_CONSTRAINTS` constant defines the validation message for free time tags.
+- The `VALIDATION_REGEX` constant specifies the regex pattern for valid free time tag format.
+- The constructor ensures that the provided tag name meets the required format.
+- Additional methods such as `isValidTagName` validate the tag name against the defined regex pattern.
+
+#### Operations
+[TBC]
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
