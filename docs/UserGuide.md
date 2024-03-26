@@ -18,14 +18,11 @@ The FriendFolio Dev Team
 
 While FriendFolio is designed to be intuitive and user-friendly, taking a few moments to familiarize yourself with this guide will significantly enhance your overall experience. Here's why:
 
-**Unlock Hidden Features
-**: Uncover useful FriendFolio features that go beyond your everyday address book app and leverage FriendFolio to its full potential.
+**Unlock Hidden Features**: Uncover useful FriendFolio features that go beyond your everyday address book app and leverage FriendFolio to its full potential.
 
-**Streamline Your Experience
-**: Find useful tips to streamline your FriendFolio experience and navigate the app effortlessly, saving time and frustration.
+**Streamline Your Experience**: Find useful tips to streamline your FriendFolio experience and navigate the app effortlessly, saving time and frustration.
 
-**Maximize Efficiency
-**: Gain valuable insights and best practices to ensure FriendFolio maximizes efficiency in your social interactions.
+**Maximize Efficiency**: Gain valuable insights and best practices to ensure FriendFolio maximizes efficiency in your social interactions.
 
 In essence, this user guide isn't just a manual – it's your key to unlocking the full potential of FriendFolio and revolutionizing the way you connect with friends. So don't overlook its importance; dive in, explore, and elevate your FriendFolio experience today!
 
