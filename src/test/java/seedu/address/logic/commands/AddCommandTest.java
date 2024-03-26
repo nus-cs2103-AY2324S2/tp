@@ -23,21 +23,23 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Meeting;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
 
     @Test
     public void constructor_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null));
+        assertThrows(NullPointerException.class, () -> new AddCommand(null, null));
     }
 
     @Test
     public void execute_personAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
         Person validPerson = new PersonBuilder().build();
+        Meeting validMeeting = validPerson.getMeeting();
 
-        CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
+        CommandResult commandResult = new AddCommand(validPerson, validMeeting).execute(modelStub);
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, Messages.format(validPerson)),
                 commandResult.getFeedbackToUser());
@@ -47,7 +49,8 @@ public class AddCommandTest {
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
         Person validPerson = new PersonBuilder().build();
-        AddCommand addCommand = new AddCommand(validPerson);
+        Meeting validMeeting = validPerson.getMeeting();
+        AddCommand addCommand = new AddCommand(validPerson, validMeeting);
         ModelStub modelStub = new ModelStubWithPerson(validPerson);
 
         assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
@@ -57,14 +60,16 @@ public class AddCommandTest {
     public void equals() {
         Person alice = new PersonBuilder().withName("Alice").build();
         Person bob = new PersonBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        Meeting aliceMeeting = alice.getMeeting();
+        Meeting bobMeeting = bob.getMeeting();
+        AddCommand addAliceCommand = new AddCommand(alice, aliceMeeting);
+        AddCommand addBobCommand = new AddCommand(bob, bobMeeting);
 
         // same object -> returns true
         assertTrue(addAliceCommand.equals(addAliceCommand));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
+        AddCommand addAliceCommandCopy = new AddCommand(alice, aliceMeeting);
         assertTrue(addAliceCommand.equals(addAliceCommandCopy));
 
         // different types -> returns false
@@ -79,7 +84,7 @@ public class AddCommandTest {
 
     @Test
     public void toStringMethod() {
-        AddCommand addCommand = new AddCommand(ALICE);
+        AddCommand addCommand = new AddCommand(ALICE, ALICE.getMeeting());
         String expected = AddCommand.class.getCanonicalName() + "{toAdd=" + ALICE + "}";
         assertEquals(expected, addCommand.toString());
     }
@@ -88,6 +93,32 @@ public class AddCommandTest {
      * A default model stub that have all of the methods failing.
      */
     private class ModelStub implements Model {
+        
+        @Override
+        public boolean hasMeeting(Meeting meeting) {
+            throw new AssertionError("This method should not be called.");
+        }
+        
+        @Override
+        public void addMeeting(Meeting meeting) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredMeetingList(Predicate<Meeting> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Meeting> getMeetingList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteMeeting(Meeting meeting) {
+            throw new AssertionError("This method should not be called.");
+        }
+        
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");

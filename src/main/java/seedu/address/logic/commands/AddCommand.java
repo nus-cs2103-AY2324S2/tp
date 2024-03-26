@@ -13,6 +13,7 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Meeting;
 
 /**
  * Adds a client to the address book.
@@ -40,15 +41,18 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New client added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This client already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_MEETING = "This meeting already exists in the address book";
 
     private final Person toAdd;
+    private final Meeting toAddMeeting;
 
     /**
      * Creates an AddCommand to add the specified {@code Person}
      */
-    public AddCommand(Person person) {
+    public AddCommand(Person person, Meeting meeting) {
         requireNonNull(person);
         toAdd = person;
+        toAddMeeting = meeting;
     }
 
     @Override
@@ -58,8 +62,13 @@ public class AddCommand extends Command {
         if (model.hasPerson(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
+        
+        if (model.hasMeeting(toAddMeeting)) {
+            throw new CommandException(MESSAGE_DUPLICATE_MEETING);
+        }
 
         model.addPerson(toAdd);
+        model.addMeeting(toAddMeeting);
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
     }
 

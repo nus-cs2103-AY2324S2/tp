@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -12,6 +13,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Meeting;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -22,6 +24,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Meeting> meetingList;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -34,6 +37,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        meetingList = new FilteredList<>(this.addressBook.getMeetingList());
     }
 
     public ModelManager() {
@@ -111,6 +115,23 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    @Override
+    public boolean hasMeeting(Meeting meeting) {
+        requireNonNull(meeting);
+        return addressBook.hasMeeting(meeting);
+    }
+
+    @Override
+    public void addMeeting(Meeting meeting) {
+        addressBook.addMeeting(meeting);
+        updateFilteredMeetingList(PREDICATE_SHOW_ALL_MEETINGS);
+    }
+
+    @Override
+    public void deleteMeeting(Meeting meeting) {
+        addressBook.removeMeeting(meeting);
+    }
+ 
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -122,10 +143,21 @@ public class ModelManager implements Model {
         return filteredPersons;
     }
 
+    @Override 
+    public ObservableList<Meeting> getMeetingList() {
+        return meetingList;
+    }
+
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredMeetingList(Predicate<Meeting> predicate) {
+        requireNonNull(predicate);
+        meetingList.setPredicate(predicate);
     }
 
     @Override
@@ -138,7 +170,7 @@ public class ModelManager implements Model {
         if (!(other instanceof ModelManager)) {
             return false;
         }
-
+        //helloooo need to fix this :D
         ModelManager otherModelManager = (ModelManager) other;
         return addressBook.equals(otherModelManager.addressBook)
                 && userPrefs.equals(otherModelManager.userPrefs)

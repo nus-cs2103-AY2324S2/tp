@@ -45,6 +45,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Meeting;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.PersonBuilder;
 
@@ -54,20 +55,22 @@ public class AddCommandParserTest {
     @Test
     public void parse_allFieldsPresent_success() {
         Person expectedPerson = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
+        Meeting expectedMeeting = expectedPerson.getMeeting();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + MEETING_DESC_BOB + TAG_DESC_FRIEND,
-                new AddCommand(expectedPerson));
+                new AddCommand(expectedPerson, expectedMeeting));
 
 
         // multiple tags - all accepted
         Person expectedPersonMultipleTags = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
+        Meeting expectedMeetingMultipleTags = expectedPersonMultipleTags.getMeeting();
         assertParseSuccess(parser,
                 NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                         + MEETING_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
-                new AddCommand(expectedPersonMultipleTags));
+                new AddCommand(expectedPersonMultipleTags, expectedMeetingMultipleTags));
     }
 
     @Test
@@ -140,9 +143,10 @@ public class AddCommandParserTest {
     public void parse_optionalFieldsMissing_success() {
         // zero tags
         Person expectedPerson = new PersonBuilder(AMY).withTags().build();
+        Meeting expectedMeeting = expectedPerson.getMeeting();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY
                         + MEETING_DESC_AMY,
-                new AddCommand(expectedPerson));
+                new AddCommand(expectedPerson, expectedMeeting));
     }
 
     @Test
