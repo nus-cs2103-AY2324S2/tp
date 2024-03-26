@@ -108,13 +108,8 @@ public class OrderList implements Iterable<Order> {
         if (oldOrder == null) {
             throw new OrderNotFoundException();
         }
-        Person respectiveCustomer = oldOrder.getCustomer();
-        //if (respectiveCustomer == null) {
-        //    throw new PersonNotFoundException();
-        //}
         orderList.remove(toDelete);
         internalList.remove(oldOrder);
-        //respectiveCustomer.deleteOrder(oldOrder.getId());
     }
 
     /**
