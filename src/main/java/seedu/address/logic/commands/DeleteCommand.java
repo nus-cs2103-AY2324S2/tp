@@ -2,10 +2,10 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.commons.core.index.IndexList;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -26,20 +26,20 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person(s): \n%1$s";
 
-    private final IndexList targetIndexList;
+    private final List<Index> targetIndexList;
 
     /**
      * Creates a DeleteCommand to delete a person at the specified {@code Index}.
      */
     public DeleteCommand(Index targetIndex) {
-        this.targetIndexList = IndexList.emptyList();
+        this.targetIndexList = new ArrayList<>();
         this.targetIndexList.add(targetIndex);
     }
 
     /**
      * Creates a DeleteCommand to delete people from multiple specified {@code IndexList}.
      */
-    public DeleteCommand(IndexList targetIndexList) {
+    public DeleteCommand(List<Index> targetIndexList) {
         this.targetIndexList = targetIndexList;
     }
 
@@ -49,9 +49,9 @@ public class DeleteCommand extends Command {
         List<Person> lastShownList = model.getFilteredPersonList();
         Person[] peopleToDelete = new Person[targetIndexList.size()];
 
-        // Get a list of people to be deleted
+        // Get a list of people to be deleted.
         for (int i = 0; i < targetIndexList.size(); i++) {
-            Index index = targetIndexList.getIndex(i);
+            Index index = targetIndexList.get(i);
             if (index.getZeroBased() >= lastShownList.size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
             }
@@ -62,13 +62,13 @@ public class DeleteCommand extends Command {
 
         String resultMessage = "";
 
-        // Delete the people from model
+        // Delete the people from model.
         for (Person personToDelete: peopleToDelete) {
             model.deletePerson(personToDelete);
             resultMessage += Messages.format(personToDelete) + "\n";
         }
 
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, resultMessage));
+        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, resultMessage.trim()));
     }
 
     @Override

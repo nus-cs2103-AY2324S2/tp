@@ -9,10 +9,12 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -54,6 +56,48 @@ public class ParserUtilTest {
 
         // Leading and trailing whitespaces
         assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("  1  "));
+    }
+
+    @Test
+    public void parseIndices_invalidArgs_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseIndices("1, 2, c", ","));
+    }
+
+    @Test
+    public void parseIndices_validArgsWhiteSpaceSep_success() throws Exception {
+        List<Index> actualList = ParserUtil.parseIndices("1 5 3", " ");
+        List<Index> expectedList = Arrays.asList(
+            Index.fromOneBased(1),
+            Index.fromOneBased(5),
+            Index.fromOneBased(3)
+        );
+
+        assertEquals(expectedList, actualList);
+    }
+
+    @Test
+    public void parseIndices_validArgsCommaSep_success() throws Exception {
+        List<Index> actualList = ParserUtil.parseIndices("10,3 , 2 ", ",");
+        List<Index> expectedList = Arrays.asList(
+            Index.fromOneBased(10),
+            Index.fromOneBased(3),
+            Index.fromOneBased(2)
+        );
+
+        assertEquals(expectedList, actualList);
+    }
+
+    @Test
+    public void parseIndices_duplicateIndex_distinctList() throws Exception {
+        String args = "1, 1, 4, 6, 4, 1, 6";
+        List<Index> actualList = ParserUtil.parseIndices(args, ",");
+        List<Index> expectedList = Arrays.asList(
+            Index.fromOneBased(1),
+            Index.fromOneBased(4),
+            Index.fromOneBased(6)
+        );
+
+        assertEquals(expectedList, actualList);
     }
 
     @Test
