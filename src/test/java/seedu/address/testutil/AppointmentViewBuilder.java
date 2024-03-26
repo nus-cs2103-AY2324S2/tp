@@ -2,7 +2,7 @@ package seedu.address.testutil;
 
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentView;
-import seedu.address.model.person.Name;
+import seedu.address.model.patient.Name;
 
 /**
  * A utility class to help with building Appointment objects.

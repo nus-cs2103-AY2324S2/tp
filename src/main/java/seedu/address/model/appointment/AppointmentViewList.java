@@ -11,7 +11,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.appointment.exceptions.AppointmentNotFoundException;
 import seedu.address.model.appointment.exceptions.DuplicateAppointmentException;
-import seedu.address.model.person.Name;
+import seedu.address.model.patient.Name;
 
 
 /**
@@ -20,7 +20,7 @@ import seedu.address.model.person.Name;
  * {@code AppointmentView#isSameAppointment(AppointmentView)}.
  * As such, adding and updating of appointments uses AppointmentView#isSameAppointment(AppointmentView) for equality
  * to ensure that the appointmentView being added or updated is unique and not duplicated.
- * However, the removal of an appointmentView uses Person#equals(Object) to ensure that the
+ * However, the removal of an appointmentView uses Patient#equals(Object) to ensure that the
  * appointmentView with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.

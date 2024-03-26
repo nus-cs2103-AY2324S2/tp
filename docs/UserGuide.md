@@ -75,106 +75,105 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-### Adding a person: `add`
+### Adding a patient: `addPatient`
 
-Adds a person to the address book.
+Adds a patient to the address book.
 
-Format: `add n/NAME i/NRIC b/DOB p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `addPatient n/NAME i/NRIC b/DOB p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
 <box type="tip" seamless>
 
-**Tip:** A person can have any number of tags (including 0)
+**Tip:** A patient can have any number of tags (including 0)
 </box>
 
 Examples:
-* `add n/John Doe i/T0123456A b/2001-05-02 p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe i/S1234567A b/2001-02-03 t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `addPatient n/John Doe i/T0123456A b/2001-05-02 p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
+* `addPatient n/Betsy Crowe i/S1234567A b/2001-02-03 t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-### Listing all persons : `list`
+### Listing all patients : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all patients in the address book.
 
 Format: `list`
 
-### Editing a person : `editPerson`
+### Editing a patient : `editPatient`
 
-Edits an existing person in the address book.
+Edits an existing patient in the address book.
 
-Format: `editPerson NRIC [b/DOB] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `editPatient NRIC [b/DOB] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
-* Edits the person with the specified `NRIC`. The NRIC must be valid and must exist in the system.
+* Edits the patient with the specified `NRIC`. The NRIC must be valid and must exist in the system.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
+* When editing tags, the existing tags of the patient will be removed i.e adding of tags is not cumulative.
+* You can remove all the patient’s tags by typing `t/` without
     specifying any tags after it.
 
 Examples:
-*  `editPerson T0123456A p/91234567 e/johndoe@example.com` Edits the phone number and email address of the person with NRIC:`T0123456A` to be `91234567` and `johndoe@example.com` respectively.
-*  `editPerson S8765432Z n/Betsy Crower t/` Edits the name of the person with NRIC:`S8765432Z` to be `Betsy Crower` and clears all existing tags.
+*  `editPatient T0123456A p/91234567 e/johndoe@example.com` Edits the phone number and email address of the patient with NRIC:`T0123456A` to be `91234567` and `johndoe@example.com` respectively.
+*  `editPatient S8765432Z n/Betsy Crower t/` Edits the name of the patient with NRIC:`S8765432Z` to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name or nric: `findPerson`
+### Locating patients by name or nric: `findPatient`
 
-Finds persons whose names contain any of the given keywords OR nric contain the given keyword.
+Finds patients whose names contain any of the given keywords OR nric contain the given keyword.
 
-Format: `findPerson n/ KEYWORD [MORE_KEYWORDS]` OR `findPerson i/ KEYWORD`
+Format: `findPatient n/ KEYWORD [MORE_KEYWORDS]` OR `findPatient i/ KEYWORD`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name OR nric is searched at once. e.g. `n/ Bob i/ T0123456A` is illegal
 * Partial words will be matched only if the start of the word is the same e.g. `Han` will match `Hans`
-* For name search: persons matching at least one keyword will be returned (i.e. `OR` search).
+* For name search: patients matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `n/ Hans Bo` will return `Hans Gruber`, `Bo Yang`
-* For nric search: persons matching the given keyword will be returned.
+* For nric search: patients matching the given keyword will be returned.
   e.g. `n/ T0` will return `T0123456A`, `T0234567B`
   e.g. `n/ T01 T012` will NOT return `T0123456A` as the given keyword is `T01 T012`
 
 Examples:
-* `findPerson i/ S9` returns persons with Nrics `S9876543A` and `S9765432A`
-* `findPerson n/ John` returns persons with names `john` and `John Doe`
-* `findPerson n/ alex david` returns persons with names `Alex Yeoh`, `David Li`<br>
+* `findPatient i/ S9` returns patients with Nrics `S9876543A` and `S9765432A`
+* `findPatient n/ John` returns patients with names `john` and `John Doe`
+* `findPatient n/ alex david` returns patients with names `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+### Deleting a patient : `deletePatient`
 
-Deletes the specified person (identified by NRIC) from the address book.
-Corresponding appointments for the specified person will be deleted too.
+Deletes the specified patient (identified by NRIC) from the address book.
+Corresponding appointments for the specified patient will be deleted too.
 
-Format: `delete NRIC`
+Format: `deletePatient NRIC`
 
-* Deletes the person with specified `NRIC`.
+* Deletes the patient with specified `NRIC`.
 * The NRIC **must exist within database**.
 
 Examples:
-* `list` followed by `delete S1234567A` deletes the person with NRIC S1234567A in the address book.
-* `find Betsy` followed by `delete S1234567A` deletes the person with NRIC S1234567A in the results of the `find` command.
+* `delete S1234567A` deletes the patient with NRIC S1234567A in CLInic.
 
-### Adding an Appointment: `addApp`
+### Adding an Appointment: `addAppt`
 
 Adds an appointment to the address book.
 
-Format: `addApp i/NRIC d/DATE from/START_TIME to/END_TIME t/APPOINTMENT_TYPE [note/NOTE]`
+Format: `addAppt i/NRIC d/DATE from/START_TIME to/END_TIME t/APPOINTMENT_TYPE [note/NOTE]`
 
-* Adds an appointment for the person with specified `NRIC`, on `DATE` from `START_TIME` to `END_TIME`
-* Person with this NRIC **must exist within database**.
+* Adds an appointment for the patient with specified `NRIC`, on `DATE` from `START_TIME` to `END_TIME`
+* Patient with this NRIC **must exist within database**.
 * Details of `APPOINTMENT_TYPE` and `NOTE` will be captured for reference
 * `note/` is an optional field
 
 Examples:
-* `addApp i/ T0123456A d/ 2024-02-20 from/ 11:00 to/ 11:30 t/ Medical Check-up note/ Routine check-in`
-* `addApp i/ S1234567A d/ 2024-02-20 from/ 15:00 to/ 15:30 t/ Blood Test note/ Follow-up from last consultation`
+* `addAppt i/ T0123456A d/ 2024-02-20 from/ 11:00 to/ 11:30 t/ Medical Check-up note/ Routine check-in`
+* `addAppt i/ S1234567A d/ 2024-02-20 from/ 15:00 to/ 15:30 t/ Blood Test note/ Follow-up from last consultation`
 
-### Cancelling an Appointment: `cancelApp`
+### Deleting an Appointment: `deleteAppt`
 
 Cancels an appointment from the address book.
 
-Format: `cancelApp i/NRIC d/DATE from/START_TIME to/END_TIME`
+Format: `deleteAppt i/NRIC d/DATE from/START_TIME to/END_TIME`
 
-* Cancels an appointment for the person with specified `NRIC`, on `DATE` from `START_TIME` to `END_TIME`
+* Deletes an appointment for the patient with specified `NRIC`, on `DATE` from `START_TIME` to `END_TIME`
 * Appointment with the following details **must exist within database**.
 
 Examples:
-* `cancelApp i/ S8743880A d/ 2024-02-20 from/ 11:00 to/ 11:30`
+* `deleteAppt i/ S8743880A d/ 2024-02-20 from/ 11:00 to/ 11:30`
 
 ### Finding appointments: `findAppt`
 
@@ -237,13 +236,13 @@ _Details coming soon ..._
 
 Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**    | `add n/NAME i/NRIC b/DOB p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/John Doe i/T0123456A b/2001-05-02 p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
+**AddPatient**    | `addPatient n/NAME i/NRIC b/DOB p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `addPatient n/John Doe i/T0123456A b/2001-05-02 p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 **Clear**  | `clear`
-**Delete** | `delete NRIC`<br> e.g., `delete T0123456A`
-**AddApp** | `addApp i/NRIC d/DATE from/START_TIME to/END_TIME t/APPOINTMENT_TYPE note/NOTE`<br> e.g., `addApp i/ T0123456A d/ 2024-02-20 from/ 11:00 to/ 11:30 t/ Medical Check-up note/ Routine check-in`
-**CancelApp** | `cancelApp i/NRIC d/DATE from/START_TIME to/END_TIME` <br> e.g., `cancelApp i/ S8743880A d/ 2024-02-20 from/ 11:00 to/ 11:30`
-**EditPerson**   | `editPerson NRIC [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`editPerson T0123456A n/James Lee e/jameslee@example.com`
-**FindAppt**| `findApp [i/NRIC] [d/DATE] [from/START_TIME]` <br> e.g., `findApp i/ T0123456A d/ 2024-02-20 from/ 11:00`
-**FindPerson**   | `findPerson n/ KEYWORD [MORE_KEYWORDS]` OR `findPerson i/ KEYWORD`<br> e.g., `findPerson n/ James Jake`
+**DeletePatient** | `deletePatient NRIC`<br> e.g., `deletePatient T0123456A`
+**AddAppt** | `addAppt i/NRIC d/DATE from/START_TIME to/END_TIME t/APPOINTMENT_TYPE note/NOTE`<br> e.g., `addAppt i/ T0123456A d/ 2024-02-20 from/ 11:00 to/ 11:30 t/ Medical Check-up note/ Routine check-in`
+**DeleteAppt** | `deleteAppt i/NRIC d/DATE from/START_TIME to/END_TIME` <br> e.g., `deleteAppt i/ S8743880A d/ 2024-02-20 from/ 11:00 to/ 11:30`
+**EditPatient**   | `editPatient NRIC [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`editPatient T0123456A n/James Lee e/jameslee@example.com`
+**FindAppt**| `findAppt [i/NRIC] [d/DATE] [from/START_TIME]` <br> e.g., `findAppt i/ T0123456A d/ 2024-02-20 from/ 11:00`
+**FindPatient**   | `findPatient n/ KEYWORD [MORE_KEYWORDS]` OR `findPatient i/ KEYWORD`<br> e.g., `findPatient n/ James Jake`
 **List**   | `list`
 **Help**   | `help`

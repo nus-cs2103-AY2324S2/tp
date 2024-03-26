@@ -4,26 +4,26 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-AddressBook *-right-> "1" UniquePersonList
+AddressBook *-right-> "1" UniquePatientList
 AddressBook *-right-> "1" UniqueTagList
 AddressBook *-down-> "1" UniqueAppointmentList
 AddressBook *-down-> "1" UniqueAppointmentViewList
-UniqueTagList -[hidden]down- UniquePersonList
-UniqueTagList -[hidden]down- UniquePersonList
+UniqueTagList -[hidden]down- UniquePatientList
+UniqueTagList -[hidden]down- UniquePatientList
 
 UniqueTagList -right-> "*" Tag
-UniquePersonList -right-> Person
+UniquePatientList -right-> Patient
 UniqueAppointmentList -down-> Appointment
 UniqueAppointmentViewList -down-> AppointmentView
 
-Person -up-> "*" Tag
+Patient -up-> "*" Tag
 
-Person *--> Name
-Person *--> Nric
-Person *--> DateOfBirth
-Person *--> Phone
-Person *--> Email
-Person *--> Address
+Patient *--> Name
+Patient *--> Nric
+Patient *--> DateOfBirth
+Patient *--> Phone
+Patient *--> Email
+Patient *--> Address
 
 Appointment *--> Nric
 Appointment *--> Date

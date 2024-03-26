@@ -39,12 +39,12 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.EditPatientCommand;
 import seedu.address.logic.commands.EditPatientCommand.EditPatientDescriptor;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.DateOfBirth;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Nric;
-import seedu.address.model.person.Phone;
+import seedu.address.model.patient.Address;
+import seedu.address.model.patient.DateOfBirth;
+import seedu.address.model.patient.Email;
+import seedu.address.model.patient.Name;
+import seedu.address.model.patient.Nric;
+import seedu.address.model.patient.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EditPatientDescriptorBuilder;
 
@@ -97,7 +97,7 @@ public class EditPatientCommandParserTest {
         // invalid phone followed by valid email
         assertParseFailure(parser, VALID_NRIC_AMY + INVALID_PHONE_DESC + EMAIL_DESC_AMY, Phone.MESSAGE_CONSTRAINTS);
 
-        // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Person} being edited,
+        // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Patient} being edited,
         // parsing it together with a valid tag results in error
         assertParseFailure(parser, VALID_NRIC_AMY + TAG_DESC_FRIEND
                 + TAG_DESC_HUSBAND + TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);

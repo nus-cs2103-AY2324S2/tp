@@ -44,7 +44,7 @@ import seedu.address.logic.commands.AddApptCommand;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentType;
 import seedu.address.model.appointment.TimePeriod;
-import seedu.address.model.person.Nric;
+import seedu.address.model.patient.Nric;
 import seedu.address.testutil.AppointmentBuilder;
 
 public class AddApptCommandParserTest {

@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAppointments.ALICE_APPT;
 import static seedu.address.testutil.TypicalAppointments.BOB_APPT;
-import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPatients.ALICE;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -27,8 +27,8 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentView;
 import seedu.address.model.appointment.TimePeriod;
-import seedu.address.model.person.Nric;
-import seedu.address.model.person.Person;
+import seedu.address.model.patient.Nric;
+import seedu.address.model.patient.Patient;
 import seedu.address.testutil.AppointmentBuilder;
 
 public class AddApptCommandTest {
@@ -41,7 +41,7 @@ public class AddApptCommandTest {
     @Test
     public void execute_appointmentAcceptedByModel_addSuccessful() throws Exception {
         Appointment validAppointment = new AppointmentBuilder(ALICE_APPT).build();
-        ModelStub modelStub = new ModelStubWithPerson(ALICE);
+        ModelStub modelStub = new ModelStubWithPatient(ALICE);
         CommandResult commandResult = new AddApptCommand(validAppointment).execute(modelStub);
 
         assertEquals(String.format(AddApptCommand.MESSAGE_ADD_APPOINTMENT_SUCCESS, Messages.format(validAppointment)),
@@ -64,7 +64,7 @@ public class AddApptCommandTest {
     public void execute_patientNotFound_throwsCommandException() {
         Appointment validAppointment = new AppointmentBuilder(BOB_APPT).build();
         AddApptCommand addApptCommand = new AddApptCommand(validAppointment);
-        ModelStub modelStub = new ModelStubWithPerson(ALICE);
+        ModelStub modelStub = new ModelStubWithPatient(ALICE);
 
         assertThrows(CommandException.class, Messages.MESSAGE_PATIENT_NRIC_NOT_FOUND, () -> addApptCommand
                 .execute(modelStub));
@@ -143,7 +143,7 @@ public class AddApptCommandTest {
         }
 
         @Override
-        public void addPerson(Person person) {
+        public void addPatient(Patient patient) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -158,42 +158,42 @@ public class AddApptCommandTest {
         }
 
         @Override
-        public boolean hasPersonWithNric(Nric nric) {
+        public boolean hasPatientWithNric(Nric nric) {
             return false;
         }
 
         @Override
-        public Person getPersonWithNric(Nric nric) {
+        public Patient getPatientWithNric(Nric nric) {
             return null;
         }
 
         @Override
-        public void deletePersonWithNric(Nric nric) {
+        public void deletePatientWithNric(Nric nric) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public boolean hasPerson(Person person) {
+        public boolean hasPatient(Patient patient) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deletePerson(Person target) {
+        public void deletePatient(Patient target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setPerson(Person target, Person editedPerson) {
+        public void setPatient(Patient target, Patient editedPatient) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<Person> getFilteredPersonList() {
+        public ObservableList<Patient> getFilteredPatientList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredPersonList(Predicate<Person> predicate) {
+        public void updateFilteredPatientList(Predicate<Patient> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -249,7 +249,7 @@ public class AddApptCommandTest {
         }
 
         @Override
-        public boolean hasPersonWithNric(Nric nric) {
+        public boolean hasPatientWithNric(Nric nric) {
             return true;
         }
 
@@ -261,22 +261,22 @@ public class AddApptCommandTest {
     }
 
     /**
-     * A Model stub that contains a single person.
+     * A Model stub that contains a single patient.
      */
-    private class ModelStubWithPerson extends ModelStub {
+    private class ModelStubWithPatient extends ModelStub {
         final ArrayList<Appointment> appointmentsAdded;
-        private final Person person;
+        private final Patient patient;
 
-        ModelStubWithPerson(Person person) {
-            requireNonNull(person);
-            this.person = person;
+        ModelStubWithPatient(Patient patient) {
+            requireNonNull(patient);
+            this.patient = patient;
             this.appointmentsAdded = new ArrayList<>();
         }
 
         @Override
-        public boolean hasPersonWithNric(Nric nric) {
+        public boolean hasPatientWithNric(Nric nric) {
             requireNonNull(nric);
-            return person.getNric().equals(nric);
+            return patient.getNric().equals(nric);
         }
 
         @Override
@@ -286,10 +286,10 @@ public class AddApptCommandTest {
         }
 
         @Override
-        public Person getPersonWithNric(Nric nric) {
+        public Patient getPatientWithNric(Nric nric) {
             requireNonNull(nric);
-            if (person.getNric().equals(nric)) {
-                return person;
+            if (patient.getNric().equals(nric)) {
+                return patient;
             }
             return null;
         }

@@ -15,7 +15,7 @@ import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentType;
 import seedu.address.model.appointment.Note;
 import seedu.address.model.appointment.TimePeriod;
-import seedu.address.model.person.Nric;
+import seedu.address.model.patient.Nric;
 
 /**
  * Deletes an appointment identified using its NRIC, date, start time and end time.
@@ -58,7 +58,7 @@ public class DeleteApptCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (!model.hasPersonWithNric(nricToMatch)) {
+        if (!model.hasPatientWithNric(nricToMatch)) {
             throw new CommandException(Messages.MESSAGE_PATIENT_NRIC_NOT_FOUND);
         }
 

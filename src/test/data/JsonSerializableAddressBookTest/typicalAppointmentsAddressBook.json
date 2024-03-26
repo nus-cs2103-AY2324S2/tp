@@ -1,6 +1,6 @@
 {
   "_comment": "AddressBook save file which contains the same Appointment values as in TypicalAppointments#getTypicalAddressBookWithAppointments()",
-  "persons" : [ {
+  "patients" : [ {
     "name" : "Alice Pauline",
     "nric" : "T0123456A",
     "dob" : "2001-01-01",

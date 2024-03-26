@@ -12,9 +12,9 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.AMY;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPatients.ALICE;
+import static seedu.address.testutil.TypicalPatients.AMY;
+import static seedu.address.testutil.TypicalPatients.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
@@ -24,10 +24,10 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Nric;
-import seedu.address.model.person.Person;
+import seedu.address.model.patient.Nric;
+import seedu.address.model.patient.Patient;
 import seedu.address.testutil.EditPatientDescriptorBuilder;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.PatientBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditPatientCommand.
@@ -38,7 +38,7 @@ public class EditPatientCommandTest {
 
     @Test
     public void execute_allFieldsSpecified_success() {
-        Person editedPatient = new PersonBuilder().withNric(ALICE.getNric().value).build();
+        Patient editedPatient = new PatientBuilder().withNric(ALICE.getNric().value).build();
         EditPatientCommand.EditPatientDescriptor descriptor = new EditPatientDescriptorBuilder(editedPatient).build();
         EditPatientCommand editPatientCommand = new EditPatientCommand(ALICE.getNric(), descriptor);
 
@@ -46,15 +46,15 @@ public class EditPatientCommandTest {
                 Messages.format(editedPatient));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(ALICE, editedPatient);
+        expectedModel.setPatient(ALICE, editedPatient);
 
         assertCommandSuccess(editPatientCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_someFieldsSpecified_success() {
-        PersonBuilder patientInList = new PersonBuilder(ALICE);
-        Person editedPatient = patientInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
+        PatientBuilder patientInList = new PatientBuilder(ALICE);
+        Patient editedPatient = patientInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
 
         EditPatientDescriptor descriptor = new EditPatientDescriptorBuilder().withName(VALID_NAME_BOB)
@@ -65,7 +65,7 @@ public class EditPatientCommandTest {
                 Messages.format(editedPatient));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(ALICE, editedPatient);
+        expectedModel.setPatient(ALICE, editedPatient);
 
         assertCommandSuccess(editPatientCommand, model, expectedMessage, expectedModel);
     }
@@ -74,7 +74,7 @@ public class EditPatientCommandTest {
     public void execute_noFieldSpecified_success() {
         EditPatientCommand editPatientCommand =
                 new EditPatientCommand(AMY.getNric(), new EditPatientCommand.EditPatientDescriptor());
-        Person editedPatient = model.getPersonWithNric(AMY.getNric());
+        Patient editedPatient = model.getPatientWithNric(AMY.getNric());
 
         String expectedMessage = String.format(EditPatientCommand.MESSAGE_EDIT_PATIENT_SUCCESS,
                 Messages.format(editedPatient));

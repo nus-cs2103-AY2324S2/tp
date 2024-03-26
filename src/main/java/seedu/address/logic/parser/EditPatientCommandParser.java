@@ -16,7 +16,7 @@ import java.util.Set;
 
 import seedu.address.logic.commands.EditPatientCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Nric;
+import seedu.address.model.patient.Nric;
 import seedu.address.model.tag.Tag;
 
 /**

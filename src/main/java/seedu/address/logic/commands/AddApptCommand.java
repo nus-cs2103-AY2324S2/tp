@@ -13,7 +13,7 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
-import seedu.address.model.person.Nric;
+import seedu.address.model.patient.Nric;
 
 
 /**
@@ -61,7 +61,7 @@ public class AddApptCommand extends Command {
         requireNonNull(model);
         Nric targetNric = apptToAdd.getNric();
 
-        if (!model.hasPersonWithNric(targetNric)) {
+        if (!model.hasPatientWithNric(targetNric)) {
             throw new CommandException(Messages.MESSAGE_PATIENT_NRIC_NOT_FOUND);
         }
 

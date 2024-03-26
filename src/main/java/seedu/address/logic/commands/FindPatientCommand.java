@@ -9,7 +9,7 @@ import java.util.function.Predicate;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
+import seedu.address.model.patient.Patient;
 
 /**
  * Finds and lists all patients in address book whose name OR NRIC contains the argument keywords.
@@ -30,18 +30,18 @@ public class FindPatientCommand extends Command {
 
     public static final String MESSAGE_MULTIPLE_FIELDS_FAILURE = "Find by either NRIC or name, not both!";
 
-    private final Predicate<Person> predicate;
+    private final Predicate<Patient> predicate;
 
-    public FindPatientCommand(Predicate<Person> predicate) {
+    public FindPatientCommand(Predicate<Patient> predicate) {
         this.predicate = predicate;
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredPersonList(predicate);
+        model.updateFilteredPatientList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_PATIENTS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+                String.format(Messages.MESSAGE_PATIENTS_LISTED_OVERVIEW, model.getFilteredPatientList().size()));
     }
 
     @Override

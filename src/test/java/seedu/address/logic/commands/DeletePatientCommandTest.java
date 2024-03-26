@@ -7,10 +7,10 @@ import static seedu.address.logic.commands.CommandTestUtil.MISSING_NRIC;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalAppointments.ALICE_APPT;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PATIENT;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PATIENT;
+import static seedu.address.testutil.TypicalPatients.ALICE;
+import static seedu.address.testutil.TypicalPatients.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
@@ -18,8 +18,8 @@ import seedu.address.logic.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Nric;
-import seedu.address.model.person.Person;
+import seedu.address.model.patient.Nric;
+import seedu.address.model.patient.Patient;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -31,35 +31,35 @@ public class DeletePatientCommandTest {
 
     @Test
     public void execute_validNric_success() {
-        Person personToDelete = model.getPersonWithNric(ALICE.getNric());
-        DeletePatientCommand deletePatientCommand = new DeletePatientCommand(personToDelete.getNric());
+        Patient patientToDelete = model.getPatientWithNric(ALICE.getNric());
+        DeletePatientCommand deletePatientCommand = new DeletePatientCommand(patientToDelete.getNric());
 
         String expectedMessage = String.format(DeletePatientCommand.MESSAGE_DELETE_PATIENT_SUCCESS,
-                Messages.format(personToDelete));
+                Messages.format(patientToDelete));
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.deletePerson(personToDelete);
+        expectedModel.deletePatient(patientToDelete);
 
         assertCommandSuccess(deletePatientCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_validNricNoAppointments_success() {
-        Person personToDelete = model.getPersonWithNric(ALICE.getNric());
-        DeletePatientCommand deletePatientCommand = new DeletePatientCommand(personToDelete.getNric());
+        Patient patientToDelete = model.getPatientWithNric(ALICE.getNric());
+        DeletePatientCommand deletePatientCommand = new DeletePatientCommand(patientToDelete.getNric());
 
         String expectedMessage = String.format(DeletePatientCommand.MESSAGE_DELETE_PATIENT_SUCCESS,
-                Messages.format(personToDelete));
+                Messages.format(patientToDelete));
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.deletePerson(personToDelete);
+        expectedModel.deletePatient(patientToDelete);
 
         assertCommandSuccess(deletePatientCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_validNricWithAppointments_success() {
-        Person patientToDelete = ALICE;
+        Patient patientToDelete = ALICE;
         model.addAppointment(ALICE_APPT);
         DeletePatientCommand deletePatientCommand = new DeletePatientCommand(patientToDelete.getNric());
 
@@ -67,7 +67,7 @@ public class DeletePatientCommandTest {
                 Messages.format(patientToDelete));
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.deletePersonWithNric(patientToDelete.getNric());
+        expectedModel.deletePatientWithNric(patientToDelete.getNric());
 
         assertCommandSuccess(deletePatientCommand, model, expectedMessage, expectedModel);
         assertTrue(model.getFilteredAppointmentList().isEmpty());
@@ -83,16 +83,16 @@ public class DeletePatientCommandTest {
 
     @Test
     public void equals() {
-        Person patientToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Patient patientToDelete = model.getFilteredPatientList().get(INDEX_FIRST_PATIENT.getZeroBased());
         DeletePatientCommand deleteFirstCommand = new DeletePatientCommand(patientToDelete.getNric());
-        Person patientToDelete2 = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
+        Patient patientToDelete2 = model.getFilteredPatientList().get(INDEX_SECOND_PATIENT.getZeroBased());
         DeletePatientCommand deleteSecondCommand = new DeletePatientCommand(patientToDelete2.getNric());
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        Person patientToDeleteCopy = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Patient patientToDeleteCopy = model.getFilteredPatientList().get(INDEX_FIRST_PATIENT.getZeroBased());
         DeletePatientCommand deleteFirstCommandCopy = new DeletePatientCommand(patientToDeleteCopy.getNric());
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
@@ -102,13 +102,13 @@ public class DeletePatientCommandTest {
         // null -> returns false
         assertFalse(deleteFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different patient -> returns false
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
     }
 
     @Test
     public void toStringMethod() {
-        Person patientToDelete = model.getFilteredPersonList().get(1);
+        Patient patientToDelete = model.getFilteredPatientList().get(1);
         Nric targetNric = patientToDelete.getNric();
         DeletePatientCommand deletePatientCommand = new DeletePatientCommand(targetNric);
         String expected = DeletePatientCommand.class.getCanonicalName() + "{targetNric=" + targetNric + "}";
@@ -118,9 +118,9 @@ public class DeletePatientCommandTest {
     /**
      * Updates {@code model}'s filtered list to show no one.
      */
-    private void showNoPerson(Model model) {
-        model.updateFilteredPersonList(p -> false);
+    private void showNoPatient(Model model) {
+        model.updateFilteredPatientList(p -> false);
 
-        assertTrue(model.getFilteredPersonList().isEmpty());
+        assertTrue(model.getFilteredPatientList().isEmpty());
     }
 }

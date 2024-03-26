@@ -13,7 +13,7 @@ import seedu.address.model.appointment.AppointmentType;
 import seedu.address.model.appointment.Note;
 import seedu.address.model.appointment.Time;
 import seedu.address.model.appointment.TimePeriod;
-import seedu.address.model.person.Nric;
+import seedu.address.model.patient.Nric;
 
 public class JsonAdaptedAppointmentTest {
     private static final String INVALID_NRIC = "t01234567A";

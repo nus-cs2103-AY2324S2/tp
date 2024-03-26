@@ -18,7 +18,7 @@ import seedu.address.model.appointment.AppointmentView;
 
 /**
  * A utility class containing a list of {@code Appointment} objects to be used in tests.
- * Appointment NRICs match those in {@code TypicalPersons}.
+ * Appointment NRICs match those in {@code TypicalPatients}.
  */
 public class TypicalAppointmentViews {
     //set up appointmentViews
@@ -44,7 +44,7 @@ public class TypicalAppointmentViews {
 
     /**
      * Returns an {@code AddressBook} with all the typical
-     * persons and appointments
+     * patients and appointments
      */
     public static AddressBook getTypicalAddressBookWithAppointmentViews() {
         AddressBook ab = getTypicalAddressBookWithAppointments();

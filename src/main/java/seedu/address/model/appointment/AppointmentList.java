@@ -11,7 +11,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.date.Date;
 import seedu.address.model.appointment.exceptions.AppointmentNotFoundException;
 import seedu.address.model.appointment.exceptions.DuplicateAppointmentException;
-import seedu.address.model.person.Nric;
+import seedu.address.model.patient.Nric;
 
 
 

@@ -6,7 +6,7 @@ import seedu.address.model.appointment.AppointmentType;
 import seedu.address.model.appointment.Note;
 import seedu.address.model.appointment.Time;
 import seedu.address.model.appointment.TimePeriod;
-import seedu.address.model.person.Nric;
+import seedu.address.model.patient.Nric;
 
 /**
  * A utility class to help with building Appointment objects.

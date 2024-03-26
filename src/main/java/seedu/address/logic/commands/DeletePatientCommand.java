@@ -6,7 +6,7 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Nric;
+import seedu.address.model.patient.Nric;
 
 /**
  * Deletes a patient identified by their NRIC.
@@ -32,13 +32,13 @@ public class DeletePatientCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (!model.hasPersonWithNric(targetNric)) {
+        if (!model.hasPatientWithNric(targetNric)) {
             throw new CommandException(Messages.MESSAGE_PATIENT_NRIC_NOT_FOUND);
         }
 
         String message = String.format(MESSAGE_DELETE_PATIENT_SUCCESS,
-                Messages.format(model.getPersonWithNric(targetNric)));
-        model.deletePersonWithNric(targetNric);
+                Messages.format(model.getPatientWithNric(targetNric)));
+        model.deletePatientWithNric(targetNric);
         return new CommandResult(message);
     }
 

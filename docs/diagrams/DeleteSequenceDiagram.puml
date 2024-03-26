@@ -52,7 +52,7 @@ activate DeleteCommand
 DeleteCommand -> Model : deleteAppointmentsWithNric(Nric: S1234567A)
 activate Model
 
-DeleteCommand -> Model : deletePersonWithNric(Nric: S1234567A)
+DeleteCommand -> Model : deletePatientWithNric(Nric: S1234567A)
 
 Model --> DeleteCommand
 deactivate Model

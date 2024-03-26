@@ -5,12 +5,12 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditPatientCommand.EditPatientDescriptor;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.DateOfBirth;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
+import seedu.address.model.patient.Address;
+import seedu.address.model.patient.DateOfBirth;
+import seedu.address.model.patient.Email;
+import seedu.address.model.patient.Name;
+import seedu.address.model.patient.Patient;
+import seedu.address.model.patient.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -29,16 +29,16 @@ public class EditPatientDescriptorBuilder {
     }
 
     /**
-     * Returns an {@code EditPatientDescriptor} with fields containing {@code person}'s details
+     * Returns an {@code EditPatientDescriptor} with fields containing {@code patient}'s details
      */
-    public EditPatientDescriptorBuilder(Person person) {
+    public EditPatientDescriptorBuilder(Patient patient) {
         descriptor = new EditPatientDescriptor();
-        descriptor.setName(person.getName());
-        descriptor.setDateOfBirth(person.getDob());
-        descriptor.setPhone(person.getPhone());
-        descriptor.setEmail(person.getEmail());
-        descriptor.setAddress(person.getAddress());
-        descriptor.setTags(person.getTags());
+        descriptor.setName(patient.getName());
+        descriptor.setDateOfBirth(patient.getDob());
+        descriptor.setPhone(patient.getPhone());
+        descriptor.setEmail(patient.getEmail());
+        descriptor.setAddress(patient.getAddress());
+        descriptor.setTags(patient.getTags());
     }
 
     /**

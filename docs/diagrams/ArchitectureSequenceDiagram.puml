@@ -17,7 +17,7 @@ activate logic LOGIC_COLOR
 logic -[LOGIC_COLOR]> model : deleteAppointmentsWithNric(Nric: T0123456A)
 activate model MODEL_COLOR
 
-logic -[LOGIC_COLOR]> model : deletePersonWithNric(Nric: T0123456A)
+logic -[LOGIC_COLOR]> model : deletePatientWithNric(Nric: T0123456A)
 
 model -[MODEL_COLOR]-> logic
 deactivate model

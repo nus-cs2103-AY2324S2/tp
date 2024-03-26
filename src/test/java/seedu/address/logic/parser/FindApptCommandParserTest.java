@@ -21,7 +21,7 @@ import seedu.address.logic.commands.FindApptCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.AppointmentContainsKeywordsPredicate;
 import seedu.address.model.appointment.Time;
-import seedu.address.model.person.Nric;
+import seedu.address.model.patient.Nric;
 
 public class FindApptCommandParserTest {
 

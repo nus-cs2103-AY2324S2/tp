@@ -23,14 +23,14 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.Appointment;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.person.NricContainsMatchPredicate;
-import seedu.address.model.person.Person;
+import seedu.address.model.patient.NameContainsKeywordsPredicate;
+import seedu.address.model.patient.NricContainsMatchPredicate;
+import seedu.address.model.patient.Patient;
 import seedu.address.testutil.AppointmentBuilder;
 import seedu.address.testutil.AppointmentUtil;
 import seedu.address.testutil.EditPatientDescriptorBuilder;
-import seedu.address.testutil.PersonBuilder;
-import seedu.address.testutil.PersonUtil;
+import seedu.address.testutil.PatientBuilder;
+import seedu.address.testutil.PatientUtil;
 
 public class AddressBookParserTest {
 
@@ -38,8 +38,8 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        Person patient = new PersonBuilder().build();
-        AddPatientCommand command = (AddPatientCommand) parser.parseCommand(PersonUtil.getAddCommand(patient));
+        Patient patient = new PatientBuilder().build();
+        AddPatientCommand command = (AddPatientCommand) parser.parseCommand(PatientUtil.getAddCommand(patient));
         assertEquals(new AddPatientCommand(patient), command);
     }
 
@@ -58,7 +58,7 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_delete() throws Exception {
-        Person patient = new PersonBuilder().build();
+        Patient patient = new PatientBuilder().build();
         DeletePatientCommand command = (DeletePatientCommand) parser.parseCommand(
                 DeletePatientCommand.COMMAND_WORD + " " + patient.getNric());
 
@@ -67,10 +67,10 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_edit() throws Exception {
-        Person patient = new PersonBuilder().build();
+        Patient patient = new PatientBuilder().build();
         EditPatientCommand.EditPatientDescriptor descriptor = new EditPatientDescriptorBuilder(patient).build();
         EditPatientCommand command = (EditPatientCommand) parser.parseCommand(EditPatientCommand.COMMAND_WORD + " "
-                + patient.getNric() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
+                + patient.getNric() + " " + PatientUtil.getEditPatientDescriptorDetails(descriptor));
         assertEquals(new EditPatientCommand(patient.getNric(), descriptor), command);
     }
 

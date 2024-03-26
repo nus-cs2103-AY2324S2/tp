@@ -20,13 +20,13 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.DateOfBirth;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Nric;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
+import seedu.address.model.patient.Address;
+import seedu.address.model.patient.DateOfBirth;
+import seedu.address.model.patient.Email;
+import seedu.address.model.patient.Name;
+import seedu.address.model.patient.Nric;
+import seedu.address.model.patient.Patient;
+import seedu.address.model.patient.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -73,22 +73,22 @@ public class EditPatientCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (!model.hasPersonWithNric(targetNric)) {
+        if (!model.hasPatientWithNric(targetNric)) {
             throw new CommandException(Messages.MESSAGE_PATIENT_NRIC_NOT_FOUND);
         }
 
-        Person patientToEdit = model.getPersonWithNric(targetNric);
-        Person editedPatient = createEditedPatient(patientToEdit, editPatientDescriptor);
-        model.setPerson(patientToEdit, editedPatient);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PATIENTS);
+        Patient patientToEdit = model.getPatientWithNric(targetNric);
+        Patient editedPatient = createEditedPatient(patientToEdit, editPatientDescriptor);
+        model.setPatient(patientToEdit, editedPatient);
+        model.updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
         return new CommandResult(String.format(MESSAGE_EDIT_PATIENT_SUCCESS, Messages.format(editedPatient)));
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code patientToEdit}
+     * Creates and returns a {@code Patient} with the details of {@code patientToEdit}
      * edited with {@code editPatientDescriptor}.
      */
-    private static Person createEditedPatient(Person patientToEdit, EditPatientDescriptor editPatientDescriptor) {
+    private static Patient createEditedPatient(Patient patientToEdit, EditPatientDescriptor editPatientDescriptor) {
         assert patientToEdit != null;
 
         Name updatedName = editPatientDescriptor.getName().orElse(patientToEdit.getName());
@@ -98,7 +98,7 @@ public class EditPatientCommand extends Command {
         Address updatedAddress = editPatientDescriptor.getAddress().orElse(patientToEdit.getAddress());
         Set<Tag> updatedTags = editPatientDescriptor.getTags().orElse(patientToEdit.getTags());
 
-        return new Person(updatedName, patientToEdit.getNric(), updatedDob, updatedPhone,
+        return new Patient(updatedName, patientToEdit.getNric(), updatedDob, updatedPhone,
                 updatedEmail, updatedAddress, updatedTags);
     }
 

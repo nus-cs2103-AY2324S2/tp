@@ -13,7 +13,7 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
+import seedu.address.model.patient.Patient;
 
 /**
  * Adds a patient to CLInic.
@@ -45,25 +45,25 @@ public class AddPatientCommand extends Command {
     public static final String MESSAGE_ADD_DUPLICATE_PATIENT_FAILURE =
             "This patient already exists in the CLInic";
 
-    private final Person patientToAdd;
+    private final Patient patientToAdd;
 
     /**
-     * Creates an AddPatientCommand to add the specified {@code Person}
+     * Creates an AddPatientCommand to add the specified {@code Patient}
      */
-    public AddPatientCommand(Person person) {
-        requireNonNull(person);
-        patientToAdd = person;
+    public AddPatientCommand(Patient patient) {
+        requireNonNull(patient);
+        patientToAdd = patient;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasPerson(patientToAdd)) {
+        if (model.hasPatient(patientToAdd)) {
             throw new CommandException(MESSAGE_ADD_DUPLICATE_PATIENT_FAILURE);
         }
 
-        model.addPerson(patientToAdd);
+        model.addPatient(patientToAdd);
         return new CommandResult(String.format(MESSAGE_ADD_PATIENT_SUCCESS, Messages.format(patientToAdd)));
     }
 

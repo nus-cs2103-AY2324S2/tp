@@ -9,8 +9,8 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.FindPatientCommand;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.person.NricContainsMatchPredicate;
+import seedu.address.model.patient.NameContainsKeywordsPredicate;
+import seedu.address.model.patient.NricContainsMatchPredicate;
 
 public class FindPatientCommandParserTest {
 

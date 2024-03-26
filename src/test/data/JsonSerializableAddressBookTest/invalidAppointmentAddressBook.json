@@ -1,5 +1,5 @@
 {
-  "persons" : [ {
+  "patients" : [ {
     "name" : "Alice Pauline",
     "nric" : "T0123456A",
     "dob" : "2001-01-01",
