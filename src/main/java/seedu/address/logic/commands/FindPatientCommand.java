@@ -41,7 +41,7 @@ public class FindPatientCommand extends Command {
         requireNonNull(model);
         model.updateFilteredPersonList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_PATIENT_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+                String.format(Messages.MESSAGE_PATIENTS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
     }
 
     @Override

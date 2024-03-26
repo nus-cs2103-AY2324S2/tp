@@ -55,8 +55,9 @@ public class AddApptCommandTest {
         AddApptCommand addApptCommand = new AddApptCommand(validAppointment);
         ModelStub modelStub = new ModelStubWithAppointment(validAppointment);
 
-        assertThrows(CommandException.class, AddApptCommand.MESSAGE_ADD_DUPLICATE_APPOINTMENT_FAILURE, () -> addApptCommand
-                .execute(modelStub));
+        assertThrows(CommandException.class,
+                AddApptCommand.MESSAGE_ADD_DUPLICATE_APPOINTMENT_FAILURE, () -> addApptCommand
+                        .execute(modelStub));
     }
 
     @Test
@@ -222,7 +223,7 @@ public class AddApptCommandTest {
         }
 
         @Override
-        public void updateFilteredAppointmentList(Predicate<Appointment> predicate) {
+        public void updateFilteredAppointmentList(Predicate<AppointmentView> predicate) {
         }
 
         @Override
