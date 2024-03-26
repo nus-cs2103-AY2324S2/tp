@@ -32,6 +32,10 @@ public class Tag {
         return test.matches(VALIDATION_REGEX);
     }
 
+    public String getTagName() {
+        return tagName;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
