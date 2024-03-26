@@ -1,0 +1,46 @@
+@startuml
+!include ../style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant "f:FindNameCommand" as FindNameCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+[-> LogicManager : execute(find_name)
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand(find_name)
+activate AddressBookParser
+
+create FindNameCommand
+AddressBookParser -> FindNameCommand
+activate FindNameCommand
+
+FindNameCommand --> AddressBookParser
+deactivate FindNameCommand
+
+AddressBookParser --> LogicManager : u
+deactivate AddressBookParser
+
+LogicManager -> FindNameCommand : execute(m)
+activate FindNameCommand
+
+FindNameCommand -> Model : updateFilteredPersonList(predicate)
+activate Model
+
+Model --> FindNameCommand
+deactivate Model
+
+FindNameCommand --> LogicManager : result
+deactivate FindNameCommand
+FindNameCommand -[hidden]-> LogicManager : result
+destroy FindNameCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
