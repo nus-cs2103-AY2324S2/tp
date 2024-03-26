@@ -1,13 +1,11 @@
 package seedu.realodex.logic.parser;
 
+import static seedu.realodex.logic.parser.CommandParserTestUtil.assertParseSuccess;
+
 import org.junit.jupiter.api.Test;
-import seedu.realodex.logic.commands.Command;
-import seedu.realodex.logic.commands.FilterCommand;
+
 import seedu.realodex.logic.commands.HelpCommand;
 import seedu.realodex.logic.parser.exceptions.ParseException;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.realodex.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 public class HelpCommandParserTest {
     private HelpCommandParser parser = new HelpCommandParser();
