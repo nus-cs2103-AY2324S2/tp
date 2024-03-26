@@ -142,4 +142,29 @@ public class SortCommandTest {
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(persons), model.getFilteredPersonList());
     }
+
+    @Test
+    public void execute_clearSort() throws ParseException {
+        AddressBook addressBook = new AddressBook();
+        addressBook.addPerson(BOB);
+        addressBook.addPerson(ELLE);
+        addressBook.addPerson(ALICE);
+        addressBook.addPerson(CARL);
+        addressBook.addPerson(DANIEL);
+
+        final Model model = new ModelManager(addressBook, new UserPrefs());
+        final Model expectedModel = new ModelManager(addressBook, new UserPrefs());
+        final String expectedSortMessage = String.format(Messages.MESSAGE_SORTED_OVERVIEW, SortCommand.NAME_SORT_TYPE);
+        final String expectedClearMessage = Messages.MESSAGE_SORT_CLEARED;
+
+        expectedModel.updatePersonComparator(Name.NAME_COMPARATOR);
+        SortCommand sortByNameCommand = new SortCommand(SortCommand.NAME_SORT_TYPE);
+        assertCommandSuccess(sortByNameCommand, model, expectedSortMessage, expectedModel);
+        assertEquals(Arrays.asList(ALICE, BOB, CARL, DANIEL, ELLE), model.getFilteredPersonList());
+
+        expectedModel.updatePersonComparator(null);
+        SortCommand clearSortCommand = new SortCommand(SortCommand.CLEAR_SORT_TYPE);
+        assertCommandSuccess(clearSortCommand, model, expectedClearMessage, expectedModel);
+        assertEquals(Arrays.asList(BOB, ELLE, ALICE, CARL, DANIEL), model.getFilteredPersonList());
+    }
 }

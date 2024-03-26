@@ -22,22 +22,16 @@ public class MoneyOwed {
      * the user owes money to.
      */
     public static final Comparator<Person> MONEY_COMPARATOR = (personA, personB) -> {
-        if (personA.getMoneyOwed().equals(personB.getMoneyOwed())) {
-            return 0;
+        // If user owes personA money means personA.getMoneyOwed().moneyOwed < 0. So sort in asc order.
+        if (personA.getMoneyOwed().userOwesMoney()) {
+            return Float.compare(personA.getMoneyOwed().moneyOwed, personB.getMoneyOwed().moneyOwed);
         }
-        if (personA.getMoneyOwed().moneyOwed == 0) {
+        // personB moneyOwed < 0 but personA moneyOwed >= 0. Put personB before personA.
+        if (personB.getMoneyOwed().userOwesMoney()) {
             return 1;
         }
-        if (personB.getMoneyOwed().moneyOwed == 0) {
-            return -1;
-        }
-        if (personA.getMoneyOwed().userOwesMoney() != personB.getMoneyOwed().userOwesMoney()) {
-            return personA.getMoneyOwed().userOwesMoney() ? -1 : 1;
-        }
-        if (Math.abs(personA.getMoneyOwed().moneyOwed) > Math.abs(personB.getMoneyOwed().moneyOwed)) {
-            return -1;
-        }
-        return 1;
+        // Both personA and personB >= 0. Put the larger one first.
+        return Float.compare(personB.getMoneyOwed().moneyOwed, personA.getMoneyOwed().moneyOwed);
     };
 
     public final Float moneyOwed;

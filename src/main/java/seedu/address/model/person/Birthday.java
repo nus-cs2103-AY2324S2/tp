@@ -24,9 +24,6 @@ public class Birthday {
      * Contacts with their next birthday closest to today will be put first.
      */
     public static final Comparator<Person> BIRTHDAY_COMPARATOR = (personA, personB) -> {
-        if (Objects.equals(personA.getBirthday(), personB.getBirthday())) {
-            return 0;
-        }
         if (personA.getBirthday().birthday == null) {
             return 1;
         }
