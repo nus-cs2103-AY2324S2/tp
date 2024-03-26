@@ -2,6 +2,12 @@ package seedu.address.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_NRIC_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.NRIC_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_AMY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_START_TIME;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -58,32 +64,29 @@ public class FindApptCommandParserTest {
     @Test
     public void parse_invalidNric_throwParseException() {
 
-        assertParseFailure(parser, FindApptCommand.COMMAND_WORD + " i/A1234567",
-                String.format(Nric.MESSAGE_CONSTRAINTS));
+        assertParseFailure(parser, INVALID_NRIC_DESC, String.format(Nric.MESSAGE_CONSTRAINTS));
     }
 
     @Test
     public void parse_invalidDate_throwParseException() {
-        assertParseFailure(parser, FindApptCommand.COMMAND_WORD + " d/2024-02",
-                String.format(Date.MESSAGE_CONSTRAINTS));
+        assertParseFailure(parser, INVALID_DATE_DESC, String.format(Date.MESSAGE_CONSTRAINTS));
     }
 
     @Test
     public void parse_invalidTime_throwParseException() {
-        assertParseFailure(parser, FindApptCommand.COMMAND_WORD + " from/24:00",
-                String.format(Time.MESSAGE_CONSTRAINTS));
+        assertParseFailure(parser, " " + PREFIX_START_TIME + " 24:00", String.format(Time.MESSAGE_CONSTRAINTS));
     }
 
     @Test
     public void parse_validNricFilter_returnFindAppCommand() throws ParseException {
         FindApptCommand expectedCommand = new FindApptCommand(
                 new AppointmentContainsKeywordsPredicate(
-                        Optional.of(new Nric("S1234567A")),
+                        Optional.of(new Nric(VALID_NRIC_AMY)),
                         Optional.empty(),
                         Optional.empty()
                 )
         );
-        assertEquals(expectedCommand, parser.parse(FindApptCommand.COMMAND_WORD + " i/S1234567A"));
+        assertEquals(expectedCommand, parser.parse(NRIC_DESC_AMY));
     }
 
     @Test
@@ -95,7 +98,7 @@ public class FindApptCommandParserTest {
                         Optional.empty()
                 )
         );
-        assertEquals(expectedCommand, parser.parse(FindApptCommand.COMMAND_WORD + " d/2024-12-31"));
+        assertEquals(expectedCommand, parser.parse(" " + PREFIX_DATE + " 2024-12-31"));
     }
 
     @Test
@@ -107,7 +110,7 @@ public class FindApptCommandParserTest {
                         Optional.of(new Time("10:00"))
                 )
         );
-        assertEquals(expectedCommand, parser.parse(FindApptCommand.COMMAND_WORD + " from/10:00"));
+        assertEquals(expectedCommand, parser.parse(" " + PREFIX_START_TIME + " 10:00"));
     }
 
 }

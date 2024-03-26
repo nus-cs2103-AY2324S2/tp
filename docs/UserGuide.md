@@ -176,13 +176,13 @@ Format: `cancelApp i/NRIC d/DATE from/START_TIME to/END_TIME`
 Examples:
 * `cancelApp i/ S8743880A d/ 2024-02-20 from/ 11:00 to/ 11:30`
 
-### Finding appointments: `findApp`
+### Finding appointments: `findAppt`
 
 Finds appointments based on the given parameters.
 
-Format: `findApp [i/NRIC] [d/DATE] [from/TIME]`
+Format: `findAppt [i/NRIC] [d/DATE] [from/START_TIME]`
 
-* Filters an appointment with specific `NRIC`, `DATE` or `TIME`
+* Filters an appointment with specific `NRIC`, `DATE` or `START_TIME`
 * If invalid parameters, error detailing what went wrong will be displayed.
 * For argument concerning TIME, all appointments that start at the given time and later than that are returned.
 * Fetching for TIME without DATE will return all appointments whose start time >= that time on any date.
@@ -240,10 +240,10 @@ Action     | Format, Examples
 **Add**    | `add n/NAME i/NRIC b/DOB p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/John Doe i/T0123456A b/2001-05-02 p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 **Clear**  | `clear`
 **Delete** | `delete NRIC`<br> e.g., `delete T0123456A`
-**AddApp** | `addApp i/NRIC d/DATE from/STARTTIME to/ENDTIME t/APPOINTMENTTYPE note/NOTE`<br> e.g., `addApp i/ T0123456A d/ 2024-02-20 from/ 11:00 to/ 11:30 t/ Medical Check-up note/ Routine check-in`
-**CancelApp** | `cancelApp i/NRIC d/DATE from/STARTTIME to/ENDTIME` <br> e.g., `cancelApp i/ S8743880A d/ 2024-02-20 from/ 11:00 to/ 11:30`
+**AddApp** | `addApp i/NRIC d/DATE from/START_TIME to/END_TIME t/APPOINTMENT_TYPE note/NOTE`<br> e.g., `addApp i/ T0123456A d/ 2024-02-20 from/ 11:00 to/ 11:30 t/ Medical Check-up note/ Routine check-in`
+**CancelApp** | `cancelApp i/NRIC d/DATE from/START_TIME to/END_TIME` <br> e.g., `cancelApp i/ S8743880A d/ 2024-02-20 from/ 11:00 to/ 11:30`
 **EditPerson**   | `editPerson NRIC [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`editPerson T0123456A n/James Lee e/jameslee@example.com`
-**FindApp**| `findApp [i/NRIC] [d/DATE] [from/TIME]` <br> e.g., `findApp i/ T0123456A d/ 2024-02-20 from/ 11:00`
+**FindAppt**| `findApp [i/NRIC] [d/DATE] [from/START_TIME]` <br> e.g., `findApp i/ T0123456A d/ 2024-02-20 from/ 11:00`
 **FindPerson**   | `findPerson n/ KEYWORD [MORE_KEYWORDS]` OR `findPerson i/ KEYWORD`<br> e.g., `findPerson n/ James Jake`
 **List**   | `list`
 **Help**   | `help`
