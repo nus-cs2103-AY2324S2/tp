@@ -14,6 +14,6 @@ under unforseen circumstances.
 PR's.
 
 2. To combat the ineffective communication that existed previously, we have decided to include a summary of every meeting that we attend in out 
-person telegram group, on top of the summary in the google docs. Additionally, we would effectively set GitHub issues, with deadline, as a means to remind other
+person telegram group, on top of the summary in the Google Docs. Additionally, we would effectively set GitHub issues, with deadline, as a means to remind other
 members of the tasks at hand.
 
