@@ -20,7 +20,7 @@ public class FilterCommand extends Command {
             + "Parameters: KEYPHRASE (Non-empty String)\n"
             + "Example: " + COMMAND_WORD + " alice tan";
 
-    public static final String MESSAGE_FIND_HELP = "Filter Command: Filters clients whose names contain "
+    public static final String MESSAGE_FILTER_HELP = "Filter Command: Filters clients whose names contain "
             + "the specified keyphrase (case-insensitive) and displays them as a list with index numbers.\n"
             + "Format: filter KEYPHRASE\n"
             + "Example: filter Jus\n";
