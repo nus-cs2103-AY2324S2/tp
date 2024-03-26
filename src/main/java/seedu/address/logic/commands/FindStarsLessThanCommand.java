@@ -5,16 +5,16 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.person.StarsLessThanPredicate;
+import seedu.address.model.student.StarsLessThanPredicate;
 
 /**
- * Finds and lists all persons in address book whose number of stars is less than the argument.
+ * Finds and lists all students in address book whose number of stars is less than the argument.
  * Comparator is strictly less than.
  */
 public class FindStarsLessThanCommand extends Command {
     public static final String COMMAND_WORD = "findStarsLT";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose number of stars is less than "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all students whose number of stars is less than "
             + "the specified number and displays them as a list with index numbers.\n"
             + "Parameters: UPPER_BOUND\n"
             + "Example: " + COMMAND_WORD + " 1";
@@ -30,9 +30,9 @@ public class FindStarsLessThanCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredPersonList(predicate);
+        model.updateFilteredStudentList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+                String.format(Messages.MESSAGE_STUDENTS_LISTED_OVERVIEW, model.getFilteredStudentList().size()));
     }
 
     @Override
@@ -58,4 +58,3 @@ public class FindStarsLessThanCommand extends Command {
     }
 
 }
-
