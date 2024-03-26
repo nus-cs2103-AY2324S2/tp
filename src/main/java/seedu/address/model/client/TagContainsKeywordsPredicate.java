@@ -1,11 +1,14 @@
 package seedu.address.model.client;
-import seedu.address.commons.util.StringUtil;
+
 import java.util.function.Predicate;
 import java.util.List;
 
+import seedu.address.commons.util.StringUtil;
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.tag.Tag;
 
+/**
+ * Tests that a {@code Client}'s {@code Tag} matches any of the keywords given.
+ */
 public class TagContainsKeywordsPredicate implements Predicate<Client> {
     private final List<String> keywords;
 
