@@ -3,7 +3,6 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -50,7 +49,7 @@ public class ListOrderCommand extends Command {
         }
 
         Person personTargeted = lastShownList.get(targetIndex.getZeroBased());
-        ArrayList<Order> orderList = model.getOrders(personTargeted);
+        List<Order> orderList = model.getOrders(personTargeted);
 
         return new CommandResult(createOrderListString(orderList));
     }

@@ -2,7 +2,6 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javafx.collections.ObservableList;
@@ -111,7 +110,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Gets the orders of the person.
      *  The person must exist in the address book.
      */
-    public ArrayList<Order> getOrders(Person target) {
+    public List<Order> getOrders(Person target) {
         return target.getOrders();
     }
 
