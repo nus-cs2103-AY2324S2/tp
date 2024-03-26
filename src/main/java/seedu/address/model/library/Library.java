@@ -1,7 +1,9 @@
-package seedu.address.model.book;
+package seedu.address.model.library;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+
+import seedu.address.model.book.Book;
 
 /**
  * Represents a collection of books in a library.

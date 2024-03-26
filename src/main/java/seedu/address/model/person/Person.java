@@ -94,10 +94,25 @@ public class Person {
     }
 
     /**
-     * @return the book list
+     * Returns an immutable book list, consisting of books in the person's book list.
+     *
+     * @return The book list.
      */
     public ArrayList<Book> getBookList() {
-        return bookList;
+        return new ArrayList<>(Collections.unmodifiableList(this.bookList));
+    }
+
+    /**
+     * Returns an immutable book list, consisting of books in the person's book list
+     * without the book passed in.
+     *
+     * @param book The book to be removed.
+     * @return An immutable copy of the person's book list without the book.
+     */
+    public ArrayList<Book> getBookListWithoutBook(Book book) {
+        ArrayList<Book> mutableCopy = new ArrayList<>(this.getBookList());
+        mutableCopy.remove(book);
+        return new ArrayList<>(Collections.unmodifiableList(mutableCopy));
     }
 
     public String getBookListToString() {
