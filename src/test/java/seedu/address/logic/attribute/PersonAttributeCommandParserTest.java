@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddAttributeCommand;
 import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.DeleteAttributeCommand;
 import seedu.address.logic.parser.PersonAttributeCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -20,13 +19,6 @@ class PersonAttributeCommandParserTest {
         String userInput = "addAttribute 12345 nickname Johnny";
         Command command = parser.parse(userInput);
         assertTrue(command instanceof AddAttributeCommand);
-    }
-
-    @Test
-    void parse_validDeleteCommand_returnsDeleteAttributeCommand() throws ParseException {
-        String userInput = "deleteAttribute 12345 nickname";
-        Command command = parser.parse(userInput);
-        assertTrue(command instanceof DeleteAttributeCommand);
     }
 
     @Test

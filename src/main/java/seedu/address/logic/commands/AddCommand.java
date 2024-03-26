@@ -32,7 +32,7 @@ public class AddCommand extends Command {
             + "/Address 311, Clementi Ave 2, #02-25 ";
 
     public static final String MESSAGE_SUCCESS = "New person added.\n%1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
+
     private final HashMap<String, String> attributeMap;
 
     /**

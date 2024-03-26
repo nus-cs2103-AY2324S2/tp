@@ -94,6 +94,7 @@ public class AddressBookParser {
             return new EditRelationshipCommandParser().parse(arguments.trim());
 
         case DeleteAttributeCommand.COMMAND_WORD:
+            return new DeleteAttributeCommandParser().parse(arguments);
 
         case AddAttributeCommand.COMMAND_WORD:
             return new PersonAttributeCommandParser().parse(userInput);

@@ -36,7 +36,7 @@ public class DeleteCommand extends Command {
         UUID targetUuid = model.getFullUuid(target);
 
         if (targetUuid == null) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_UUID);
         }
 
         Person personToDelete = model.getPersonByUuid(targetUuid);
