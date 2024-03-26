@@ -9,7 +9,7 @@
     <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
     </columnConstraints>
-    <VBox alignment="CENTER_LEFT" minHeight="105" style="-fx-background-color: #ffa28f;" GridPane.columnIndex="0">
+    <VBox alignment="CENTER_LEFT" minHeight="105" style="-fx-background-color: #ffa28f; -fx-border-color: #ffffff; -fx-border-width: 2;" GridPane.columnIndex="0">
       <padding>
         <Insets bottom="5" left="15" right="5" top="5" />
       </padding>
