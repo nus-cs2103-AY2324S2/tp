@@ -61,10 +61,11 @@ public class ImportManager implements Import {
         String existingJsonString = FileUtil.readFromFile(pathToImportTo).trim();
         Set<String> existingIds = extractStudentIds(existingJsonString);
 
+        //Ensuring that the new json content is legitimate and throws an exception if there are duplicate student IDs.
         String newJsonContent = convertCsvContentsToJsonContents();
-        ensureNoDuplicateIds(newJsonContent, existingIds); // Throws exception if duplicates are found
+        ensureNoDuplicateIds(newJsonContent, existingIds);
+        ensureNoInternalDuplicates(newJsonContent);
 
-        // Correctly modify JSON strings for concatenation
         String modifiedExistingJson = existingJsonString.substring(0, existingJsonString.lastIndexOf("]")).trim();
         String modifiedNewJsonContent = newJsonContent.substring(
                 newJsonContent.indexOf("[") + 1, newJsonContent.lastIndexOf("]")).trim();
@@ -77,6 +78,11 @@ public class ImportManager implements Import {
         FileUtil.writeToFile(pathToImportTo, combinedJson);
     }
 
+    /**
+     * Helper method to compile the existing student IDs in a json file currently open in the application.
+     * @param jsonString String representation of the json file currently open in the application.
+     * @return Set of student IDs in the json file currently open in the application.
+     */
     private Set<String> extractStudentIds(String jsonString) {
         Set<String> ids = new HashSet<>();
         Pattern pattern = Pattern.compile("\"studentId\"\\s*:\\s*\"(\\d+)\"");
@@ -88,6 +94,13 @@ public class ImportManager implements Import {
         return ids;
     }
 
+    /**
+     * Checks the student IDs in the String representation of new json content that is being migrated over against
+     * the existing student IDs to ensure that there are no duplicates.
+     * @param newJsonContent String representation of the json content that is being migrated over.
+     * @param existingIds Set of student IDs in the json file currently open in the application.
+     * @throws IOException If there are duplicate student IDs
+     */
     private void ensureNoDuplicateIds(String newJsonContent, Set<String> existingIds) throws IOException {
         Pattern pattern = Pattern.compile("\"studentId\": \"(\\d+)\"");
         Matcher matcher = pattern.matcher(newJsonContent);
@@ -95,6 +108,23 @@ public class ImportManager implements Import {
             String newId = matcher.group(1);
             if (existingIds.contains(newId)) {
                 throw new IOException("Duplicate StudentId found: " + newId);
+            }
+        }
+    }
+
+    /**
+     * Checks for duplicate student IDs within the new JSON content.
+     * @param newJsonContent The new JSON content to be merged.
+     * @throws IOException If there are duplicate student IDs.
+     */
+    private void ensureNoInternalDuplicates(String newJsonContent) throws IOException {
+        Set<String> ids = new HashSet<>();
+        Pattern pattern = Pattern.compile("\"studentId\"\\s*:\\s*\"(\\d+)\"");
+        Matcher matcher = pattern.matcher(newJsonContent);
+        while (matcher.find()) {
+            String id = matcher.group(1);
+            if (!ids.add(id)) {
+                throw new IOException("Internal duplicate StudentId found: " + id);
             }
         }
     }
@@ -120,7 +150,9 @@ public class ImportManager implements Import {
         }
 
         jsonStringBuilder.append("\n]}");
-        return jsonStringBuilder.toString();
+        String jsonString = jsonStringBuilder.toString();
+        ensureNoInternalDuplicates(jsonString);
+        return jsonString;
     }
 
     /**

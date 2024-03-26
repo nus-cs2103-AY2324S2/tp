@@ -107,8 +107,10 @@ public class LogicManager implements Logic {
             throw new CommandException(String.format(FILE_OPS_ERROR_FORMAT, ioe.getMessage()), ioe);
         }
         CommandResult commandResult = command.execute(model);
-        ImportCommand importCommand = (ImportCommand) command;
-        execute("cd " + importCommand.getPathToImportTo());
+        if (commandResult.getFeedbackToUser().equals(ImportCommand.MESSAGE_SUCCESS)) {
+            ImportCommand importCommand = (ImportCommand) command;
+            execute("cd " + importCommand.getPathToImportTo());
+        }
         return commandResult;
     }
 
