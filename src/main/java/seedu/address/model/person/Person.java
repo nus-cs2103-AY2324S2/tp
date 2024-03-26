@@ -97,6 +97,7 @@ public class Person {
         meeting.setClient(this);
         return this;
     }
+
     /**
      * Returns true if the person has existing meeting.
      */
