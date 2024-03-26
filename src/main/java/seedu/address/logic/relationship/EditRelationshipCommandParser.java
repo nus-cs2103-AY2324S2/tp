@@ -31,6 +31,10 @@ public class EditRelationshipCommandParser {
                 String targetUuid = ParserUtil.parseUuid(parts[3]);
                 String oldRelationshipDescriptor = parts[4];
                 String newRelationshipDescriptor = parts[5];
+                if (newRelationshipDescriptor.equalsIgnoreCase("family")) {
+                    throw new ParseException("Please specify the type of familial relationship instead of 'Family'.\n"
+                            + " Valid familial relations are: [bioParents, siblings, spouses]");
+                }
                 if (!role1.matches("[a-zA-Z]+") || !role2.matches("[a-zA-Z]+")) {
                     throw new ParseException("Roles must contain only letters");
                 }
@@ -41,6 +45,10 @@ public class EditRelationshipCommandParser {
                 String targetUuid = ParserUtil.parseUuid(parts[1]);
                 String oldRelationshipDescriptor = parts[2];
                 String newRelationshipDescriptor = parts[3];
+                if (newRelationshipDescriptor.equalsIgnoreCase("family")) {
+                    throw new ParseException("Please specify the type of familial relationship instead of 'Family'.\n"
+                            + " Valid familial relations are: [bioParents, siblings, spouses]");
+                }
                 return new EditRelationshipCommand(originUuid, targetUuid, oldRelationshipDescriptor,
                         newRelationshipDescriptor);
             }
