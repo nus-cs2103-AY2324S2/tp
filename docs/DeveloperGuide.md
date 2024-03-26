@@ -173,6 +173,7 @@ The sequence diagram below illustrates how the add function can be used.
 
 
 ### Edit function
+### Edit function
 The new edit function allows user to be able to edit any category based they want.<br>
 The sequence diagram below illustrates the interaction within the `Logic` component, taking `execute("edit 1 c/Clan d/rainbow")` API call as an example.
 
@@ -180,7 +181,44 @@ The sequence diagram below illustrates the interaction within the `Logic` compon
 
 <box type="info" seamless>
 
-**Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline continues till the end of diagram.
+**Note:** The lifeline for `EditCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline continues till the end of diagram.
+</box>
+
+#### 1. How the feature is implemented
+The edit feature in the address book application is implemented through the `EditCommand` and `EditCommandParser` classes.
+The `EditCommand` class handles the logic of editing a person's details, such as category, description, and tags.
+It uses an inner class, `EditPersonDescriptor`, to hold the values to be edited, allowing partial updates to a person's information.
+The execute method in `EditCommand` performs the actual update, ensuring that the edited person does not duplicate existing entries.
+The `EditCommandParser` class parses user input into an `EditCommand` object. It validates the input and extracts the necessary information
+(like index, category, description, and tags) to create an `EditPersonDescriptor`, which is then used to instantiate an `EditCommand`.
+Below is the method used to instantiate the `EditPersonDescriptor` used to "remember" what category and description is being changed.
+```
+editPersonDescriptor.set(category, ParserUtil.parse(category, category));
+editPersonDescriptor.setCategory(category);
+```
+Additionally, in the `EditCommand` class, the method:
+```
+Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+```
+Creates this `EditPersonDescriptor` for it to edit the necessary code implemented by the user.
+
+#### 2. Why it is implemented that way.
+This implementation segregates the parsing of user input from the execution logic, adhering to the single responsibility principle
+and making the code more maintainable and testable. The `EditCommand` class focuses solely on the business logic of editing a person's details,
+while the `EditCommandParser` deals with interpreting the user's input. This separation allows for clearer structure and easier debugging,
+as each class has a distinct responsibility. The use of `EditPersonDescriptor` as a way to encapsulate the editable attributes of a person enables a
+flexible design where only specified fields can be updated, enhancing the user experience by allowing partial edits.
+
+#### 3. Alternatives considered.
+Alternatives that might have been considered include implementing the parsing logic directly within the `EditCommand class`, which would reduce the number
+of classes and potentially simplify the command's initiation process. However, this approach could lead to a more complex `EditCommand` class, making it
+harder to manage and maintain. Another alternative could be the use of reflection to dynamically update fields in the `Person` class based on input,
+which would make adding new fields easier. However, this could increase complexity and decrease code readability and security due to the dynamic nature of reflection.
+Additionally, the `EditPersonDescriptor` could be completely remove as the implementation of the `Entry` class would allow the edit of categories directly.
+
+<box type="info" seamless>
+
+**Note:** The lifeline for `EditCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline continues till the end of diagram.
 </box>
 
 
