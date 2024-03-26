@@ -79,7 +79,7 @@ public class AddMemberCommand extends Command {
         }
 
         Group modifiedGroup = new Group(toModify.getName(), toModify.asUnmodifiableObservableList(),
-                toModify.getSkills());
+                toModify.getSkills(), toModify.getTelegramChat());
 
         List<CourseMate> courseMateList = new ArrayList<>();
         int index = 0;
