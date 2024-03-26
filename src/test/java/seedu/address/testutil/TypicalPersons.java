@@ -23,6 +23,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.VersionedAddressBook;
 import seedu.address.model.person.Maintainer;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Staff;
@@ -70,21 +71,21 @@ public class TypicalPersons {
             .withEmail("johnd@example.com").withPhone("98765432")
             .withTags("owesMoney", "friends").withRating("0").build();
 
-    public static final Staff BENSONSTAFF = new StaffBuilder().withName("Benson Meier")
+    public static final Staff BENSONSTAFF = new StaffBuilder().withName("Benson Meier Staff")
             .withAddress("311, Clementi Ave 2, #02-25").withNote("meet on wednesday")
             .withEmail("johnd@example.com").withPhone("98765432")
             .withTags("staff")
             .withEmployment("part-time")
             .withSalary("$50/hr").withRating("0").build();
 
-    public static final Supplier BENSONSUPPLIER = new SupplierBuilder().withName("Benson Meier")
+    public static final Supplier BENSONSUPPLIER = new SupplierBuilder().withName("Benson Meier Supplier")
             .withAddress("311, Clementi Ave 2, #02-25").withNote("meet on wednesday")
             .withEmail("johnd@example.com").withPhone("98765432")
             .withTags("owesMoney", "friends")
             .withProduct("pooch medicine")
             .withPrice("$50/injection").withRating("0").build();
 
-    public static final Maintainer BENSONMAINTAINER = new MaintainerBuilder().withName("Benson Meier")
+    public static final Maintainer BENSONMAINTAINER = new MaintainerBuilder().withName("Benson Meier Maintainer")
             .withAddress("311, Clementi Ave 2, #02-25").withNote("meet on wednesday")
             .withEmail("johnd@example.com").withPhone("98765432")
             .withTags("owesMoney", "friends")
@@ -146,6 +147,14 @@ public class TypicalPersons {
         for (Person person : getTypicalPersons()) {
             ab.addPerson(person);
         }
+        return ab;
+    }
+
+    /**
+     * Returns an {@code AddressBook} with all the typical persons.
+     */
+    public static AddressBook getTypicalVersionedAddressBook() {
+        AddressBook ab = new VersionedAddressBook(getTypicalAddressBook());
         return ab;
     }
 

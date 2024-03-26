@@ -61,6 +61,8 @@ public class PersonCard extends UiPart<Region> {
     private Label note;
     @FXML
     private Label rating;
+    @FXML
+    private Label pin;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -79,6 +81,10 @@ public class PersonCard extends UiPart<Region> {
         } else {
             int intValue = Integer.parseInt(currentRating);
             rating.setText("⭐".repeat(Math.max(0, intValue)));
+        }
+        if (person.getPin().getIsPinned()) {
+            pin.setText("📌   ");
+            pin.setManaged(true);
         }
         email.setText(person.getEmail().value);
         person.getTags().stream()

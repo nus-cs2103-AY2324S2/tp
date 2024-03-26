@@ -157,6 +157,17 @@ public class UniquePersonListTest {
     }
 
     @Test
+    public void sortInternalListByPin() {
+        Person personToPin = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
+        personToPin.toPin();
+        uniquePersonList.add(personToPin);
+        uniquePersonList.sortByPinnedStatus();
+        UniquePersonList expectedUniquePersonList = new UniquePersonList();
+        expectedUniquePersonList.add(personToPin);
+        assertEquals(expectedUniquePersonList, uniquePersonList);
+    }
+
+    @Test
     public void setPersons_listWithDuplicatePersons_throwsDuplicatePersonException() {
         List<Person> listWithDuplicatePersons = Arrays.asList(ALICE, ALICE);
         assertThrows(DuplicatePersonException.class, () -> uniquePersonList.setPersons(listWithDuplicatePersons));

@@ -26,6 +26,8 @@ public class Person {
     private final Set<Tag> tags = new HashSet<>();
     private final Note note;
     private final Rating rating;
+    private Pin pin;
+    private boolean hasDeadlineNote;
 
     /**
      * Every field must be present and not null.
@@ -37,6 +39,7 @@ public class Person {
         this.email = email;
         this.address = address;
         this.note = note;
+        this.pin = new Pin();
         this.tags.addAll(tags);
         this.rating = rating;
     }
@@ -56,6 +59,7 @@ public class Person {
     public Address getAddress() {
         return address;
     }
+
     public Note getNote() {
         return note;
     }
@@ -77,6 +81,22 @@ public class Person {
      */
     public Person updateRating(Rating rating) {
         return new Person(this.name, this.phone, this.email, this.address, this.note, this.tags, rating);
+    }
+
+    public Pin getPin() {
+        return this.pin;
+    }
+
+    public void toPin() {
+        pin.setPin();
+    }
+
+    public void toUnpin() {
+        pin.setUnpin();
+    }
+
+    public boolean isPinned() {
+        return pin.getIsPinned();
     }
 
     /**

@@ -91,12 +91,24 @@ public interface Model {
     void updateFilteredPersonList(Predicate<Person> predicate);
 
     /**
+     * Update the person list to display pinned contacts first.
+     */
+    void updatePinnedPersonList();
+
+    /**
+     * Find a contact by their name.
+     * @param targetName Refers to the name identifier.
+     * @return Person that matches the name.
+     */
+    Person findByName(Name targetName);
+
+    /**
      * Find the person by their name.
      * @param targetName Refers to the name identifier.
      * @return Person that matches the name.
      * @throws CommandException Handles invalid person message.
      */
-    Person findByName(Name targetName) throws CommandException;
+    Person findPersonByName(Name targetName) throws CommandException;
 
     /**
      * Find the maintainer by their name.
@@ -121,4 +133,31 @@ public interface Model {
      * @throws CommandException Handles invalid supplier message.
      */
     Supplier findSupplierByName(Name targetName) throws CommandException;
+
+    /**
+     * Commits new version of AddressBook into VersionedAddressBook Tracker.
+     */
+    void commitAddressBook();
+
+    /**
+     * Retrieves previous version of AddressBook from VersionedAddressBook Tracker.
+     */
+    void undoAddressBook();
+
+    /**
+     * Retrieves future version of AddressBook due to undo from VerssionedAddressBook Tracker.
+     */
+    void redoAddressBook();
+
+    /**
+     * Returns a boolean value to indicate whether undo command is possible to be carried out.
+     * @return True if possible to undo, else False.
+     */
+    boolean canUndo();
+
+    /**
+     * Returns a boolean value to indicate whether redo command is possible to be carried out.
+     * @return True if possible to redo, else False.
+     */
+    boolean canRedo();
 }

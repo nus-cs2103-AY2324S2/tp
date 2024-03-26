@@ -1,19 +1,24 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.showPersonWithName;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.messages.NoteMessages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Maintainer;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Note;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Staff;
@@ -65,7 +70,7 @@ public class NoteCommandTest {
     }
 
     @Test
-    public void execute_validNoteStaff_addSuccess() {
+    public void execute_validNoteStaff_addSuccess() throws CommandException {
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         model.addPerson(georgiaStaff);
@@ -83,11 +88,12 @@ public class NoteCommandTest {
         String expectedMessage = String.format(NoteMessages.MESSAGE_ADD_NOTE_SUCCESS,
                 NoteMessages.format(expectedPerson));
 
-        assertCommandSuccess(noteCommand, model, expectedMessage, expectedModel);
+        noteCommand.execute(model);
+        assertEquals(expectedModel.getFilteredPersonList(), model.getFilteredPersonList());
     }
 
     @Test
-    public void execute_validNoteSupplier_addSuccess() {
+    public void execute_validNoteSupplier_addSuccess() throws CommandException {
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         model.addPerson(georgiaSupplier);
@@ -105,11 +111,12 @@ public class NoteCommandTest {
         String expectedMessage = String.format(NoteMessages.MESSAGE_ADD_NOTE_SUCCESS,
                 NoteMessages.format(expectedPerson));
 
-        assertCommandSuccess(noteCommand, model, expectedMessage, expectedModel);
+        noteCommand.execute(model);
+        assertEquals(expectedModel.getFilteredPersonList(), model.getFilteredPersonList());
     }
 
     @Test
-    public void execute_validNoteMaintainer_addSuccess() {
+    public void execute_validNoteMaintainer_addSuccess() throws CommandException {
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         model.addPerson(georgiaMaintainer);
@@ -124,11 +131,25 @@ public class NoteCommandTest {
 
 
         NoteCommand noteCommand = new NoteCommand(toAddNotePerson.getName(), validNote1);
-        String expectedMessage = String.format(NoteMessages.MESSAGE_ADD_NOTE_SUCCESS,
-                NoteMessages.format(expectedPerson));
 
-        assertCommandSuccess(noteCommand, model, expectedMessage, expectedModel);
+        noteCommand.execute(model);
+        assertEquals(expectedModel.getFilteredPersonList(), model.getFilteredPersonList());
     }
+
+    @Test
+    public void execute_invalidName_throwsCommandException() {
+        showPersonWithName(model, ALICE.getName());
+
+        Name invalidName = new Name("patty");
+
+        // ensures that the invalid name is not equal to "Alice Pauline"
+        assertTrue(!invalidName.equals(ALICE.getName()));
+
+        NoteCommand noteCommand = new NoteCommand(invalidName, validNote1);
+
+        assertCommandFailure(noteCommand, model, NoteMessages.MESSAGE_NOTE_NAME_NOT_FOUND);
+    }
+
     @Test
     public void equals() {
         NoteCommand noteFirstCommand = new NoteCommand(ALICE.getName(), validNote1);

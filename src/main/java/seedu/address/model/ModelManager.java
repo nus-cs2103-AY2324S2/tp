@@ -25,7 +25,7 @@ import seedu.address.model.person.Supplier;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final VersionedAddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
 
@@ -37,7 +37,7 @@ public class ModelManager implements Model {
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.addressBook = new VersionedAddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
     }
@@ -102,11 +102,13 @@ public class ModelManager implements Model {
     @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
+        commitAddressBook();
     }
 
     @Override
     public void addPerson(Person person) {
         addressBook.addPerson(person);
+        commitAddressBook();
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
@@ -115,6 +117,32 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedPerson);
 
         addressBook.setPerson(target, editedPerson);
+        commitAddressBook();
+    }
+
+    @Override
+    public void commitAddressBook() {
+        addressBook.commit();
+    }
+
+    @Override
+    public void undoAddressBook() {
+        addressBook.undo();
+    }
+
+    @Override
+    public void redoAddressBook() {
+        addressBook.redo();
+    }
+
+    @Override
+    public boolean canUndo() {
+        return addressBook.canUndo();
+    }
+
+    @Override
+    public boolean canRedo() {
+        return addressBook.canRedo();
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -152,14 +180,37 @@ public class ModelManager implements Model {
     }
 
     /**
+     * Update the person list to display pinned contacts first.
+     */
+    public void updatePinnedPersonList() {
+        addressBook.updatePinnedList();
+    }
+
+    /**
+     * Find the person by their name.
+     * @param targetName Refers to the name identifier.
+     * @return Person that matches the name.
+     */
+    @Override
+    public Person findByName(Name targetName) {
+        for (Person person: this.addressBook.getPersonList()) {
+            Name name = person.getName();
+            if (name.equals(targetName)) {
+                return person;
+            }
+        }
+        return null;
+    }
+
+    /**
      * Find the person by their name.
      * @param targetName Refers to the name identifier.
      * @return Person that matches the name.
      * @throws CommandException Handles invalid person message.
      */
     @Override
-    public Person findByName(Name targetName) throws CommandException {
-        for (Person person: filteredPersons) {
+    public Person findPersonByName(Name targetName) throws CommandException {
+        for (Person person: this.addressBook.getPersonList()) {
             Name name = person.getName();
             if (name.equals(targetName)) {
                 if (!(person instanceof Supplier) && !(person instanceof Staff)
@@ -179,7 +230,7 @@ public class ModelManager implements Model {
      */
     @Override
     public Maintainer findMaintainerByName(Name targetName) throws CommandException {
-        for (Person person: filteredPersons) {
+        for (Person person: this.addressBook.getPersonList()) {
             Name name = person.getName();
             if (name.equals(targetName) && person instanceof Maintainer) {
                 return (Maintainer) person;
@@ -196,7 +247,7 @@ public class ModelManager implements Model {
      */
     @Override
     public Staff findStaffByName(Name targetName) throws CommandException {
-        for (Person person: filteredPersons) {
+        for (Person person: this.addressBook.getPersonList()) {
             Name name = person.getName();
             if (name.equals(targetName) && person instanceof Staff) {
                 return (Staff) person;
@@ -213,7 +264,7 @@ public class ModelManager implements Model {
      */
     @Override
     public Supplier findSupplierByName(Name targetName) throws CommandException {
-        for (Person person: filteredPersons) {
+        for (Person person: this.addressBook.getPersonList()) {
             Name name = person.getName();
             if (name.equals(targetName) && person instanceof Supplier) {
                 return (Supplier) person;
