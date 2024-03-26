@@ -29,7 +29,7 @@ public class AddCommand extends Command {
             + PREFIX_LASTNAME + "LAST NAME "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_SEX + "SEX "
-            + PREFIX_PAYRATE + "PAY RATE"
+            + PREFIX_PAYRATE + "PAY RATE "
             + PREFIX_ADDRESS + "ADDRESS "
             + PREFIX_BANKDETAILS + "BANK DETAILS \n"
             //  + PREFIX_TAG + "TAG...\n"
@@ -38,7 +38,7 @@ public class AddCommand extends Command {
             + PREFIX_LASTNAME + "Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_SEX + "m "
-            + PREFIX_PAYRATE + "14"
+            + PREFIX_PAYRATE + "14 "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_BANKDETAILS + "0495858505";
     //  + PREFIX_TAG + "owesMoney";

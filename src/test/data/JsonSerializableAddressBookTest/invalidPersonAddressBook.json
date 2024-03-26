@@ -4,7 +4,7 @@
       "firstName": "Alice",
       "lastName": "Pauline",
       "sex": "invalidsex",
-      "payRate": "14.5",
+      "payRate": 14.5,
       "phone": "94351253",
       "address": "123, Jurong West Ave 6, #08-111",
       "bankDetails": "12345678",
