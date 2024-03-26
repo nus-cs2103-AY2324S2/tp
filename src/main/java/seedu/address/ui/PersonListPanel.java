@@ -2,11 +2,13 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.beans.binding.Bindings;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
+
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
 
@@ -19,6 +21,10 @@ public class PersonListPanel extends UiPart<Region> {
 
     @FXML
     private ListView<Person> personListView;
+
+    public ListView<Person> getPersonListView() {
+        return personListView;
+    }
 
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
@@ -41,7 +47,10 @@ public class PersonListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new PersonCard(person, getIndex() + 1).getRoot());
+                PersonCard personCard = new PersonCard(person, getIndex() + 1);
+                setGraphic(personCard.getRoot());
+                personCard.getCardPane().prefWidthProperty().bind(Bindings.createDoubleBinding(
+                        () -> personListView.getPrefWidth() - 40, personListView.prefWidthProperty()));
             }
         }
     }

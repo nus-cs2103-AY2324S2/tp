@@ -2,14 +2,18 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
@@ -24,6 +28,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
+    private static final Double PERSON_LIST_RATIO = 0.25;
+    private Image logo = new Image(this.getClass().getResourceAsStream("/images/logo.png"));
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -49,6 +55,10 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private ImageView logoImage;
+
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -78,6 +88,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the accelerator of a MenuItem.
+     *
      * @param keyCombination the KeyCombination value of the accelerator
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
@@ -111,7 +122,15 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        personListPanel.getPersonListView().prefWidthProperty().bind(Bindings.createDoubleBinding(
+                () -> personListPanelPlaceholder.getScene().getWidth() * PERSON_LIST_RATIO,
+                personListPanelPlaceholder.getScene().widthProperty()));
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+
+/*        personListPanelPlaceholder.prefWidthProperty().bind(Bindings.createDoubleBinding(
+                () -> personListPanelPlaceholder.getScene().getWidth() * PERSON_LIST_RATIO,
+                personListPanelPlaceholder.getScene().widthProperty()));*/
+        logoImage.setImage(logo);
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -193,4 +212,5 @@ public class MainWindow extends UiPart<Stage> {
             throw e;
         }
     }
+
 }
