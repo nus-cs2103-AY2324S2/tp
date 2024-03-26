@@ -23,7 +23,7 @@ public class HelpCommand extends Command {
     private final String command;
 
     public HelpCommand(String command) {
-        this.command = command;
+        this.command = command.trim();
     }
 
     @Override
@@ -52,5 +52,20 @@ public class HelpCommand extends Command {
         default:
             return new CommandResult(SHOWING_HELP_MESSAGE, true, false);
         }
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof HelpCommand)) {
+            return false;
+        }
+
+        HelpCommand otherHelpCommand = (HelpCommand) other;
+        return command.equals(otherHelpCommand.command);
     }
 }
