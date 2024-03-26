@@ -581,11 +581,6 @@ Furthermore, certain edits can cause the ClientCare to behave in unexpected ways
 <br>
 <br>
 
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
-
-<br>
 --------------------------------------------------------------------------------------------------------------------
 
 <div style="page-break-after: always;"></div>
@@ -623,6 +618,7 @@ _Details coming soon ..._
 | [**Clear**](#clearing-all-entries-clear)             | `clear`                                                                                                                                                                                                         |
 | [**LastMet**](#updating-last-met-met)                | `met INDEX [l/DATE]`<br> e.g. `met 2 l/2023-05-07`                                                                                                                                                              |
 | [**Schedule**](#scheduling-appointments-schedule)    | `schedule INDEX [s/DATETIME]`<br> e.g. `schedule 2 s/2023-05-07 22:00`                                                                                                                                          |                                                                                                                               |
+| [**Mark**](#marking-appointments-mark)               | `mark INDEX`<br> e.g. `mark 2`                                                                                                                                                                                  |                                                                                                                               |
 | [**Add Policy**](#adding-a-policy-addpolicy)         | `addpolicy INDEX n/POLICY_NAME i/POLICY_ID` <br/> e.g. `addpolicy 1 n/Life i/1`                                                                                                                                 |
 | [**Delete Policy**](#deleting-a-policy-deletepolicy) | `deletepolicy INDEX i/POLICY_ID` <br/> e.g. `deletepolicy 1 i/1`                                                                                                                                                |
 | [**Help**](#viewing-help-help)                       | `help`                                                                                                                                                                                                          |
