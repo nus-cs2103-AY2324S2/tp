@@ -11,13 +11,14 @@ import java.time.ZoneId;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.article.Article;
+import seedu.address.model.article.Author;
+import seedu.address.model.article.Source;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -144,21 +145,23 @@ public class ParserUtil {
     /**
      * Parses a {@code String author} into a {@code Author}.
      */
-    public static String parseAuthor(String author) throws ParseException {
+    public static Author parseAuthor(String author) throws ParseException {
         requireNonNull(author);
         String trimmedAuthor = author.trim();
-        //removed the check for author validity
-        return trimmedAuthor;
+        if (!Tag.isValidTagName(trimmedAuthor)) {
+            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+        }
+        return new Author(trimmedAuthor);
     }
 
     /**
      * Parses a {@code List<String> authors} into a {@code String[]}.
      */
-    public static String[] parseAuthors(List<String> authors) throws ParseException {
+    public static Set<Author> parseAuthors(Collection<String> authors) throws ParseException {
         requireNonNull(authors);
-        final String[] authorSet = new String[authors.size()];
-        for (int i = 0; i < authors.size(); i++) {
-            authorSet[i] = parseAuthor(authors.get(i));
+        final Set<Author> authorSet = new HashSet<>();
+        for (String authorName : authors) {
+            authorSet.add(parseAuthor(authorName));
         }
         return authorSet;
     }
@@ -185,21 +188,23 @@ public class ParserUtil {
     /**
      * Parses a {@code String source} into a {@code Source}.
      */
-    public static String parseSource(String source) throws ParseException {
+    public static Source parseSource(String source) throws ParseException {
         requireNonNull(source);
         String trimmedSource = source.trim();
-        //removed the check for Source validity
-        return trimmedSource;
+        if (!Tag.isValidTagName(trimmedSource)) {
+            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+        }
+        return new Source(trimmedSource);
     }
 
     /**
      * Parses a {@code List<String> sources} into a {@code String[]}.
      */
-    public static String[] parseSources(List<String> sources) throws ParseException {
+    public static Set<Source> parseSources(Collection<String> sources) throws ParseException {
         requireNonNull(sources);
-        final String[] sourceSet = new String[sources.size()];
-        for (int i = 0; i < sources.size(); i++) {
-            sourceSet[i] = parseSource(sources.get(i));
+        final Set<Source> sourceSet = new HashSet<>();
+        for (String sourceName : sources) {
+            sourceSet.add(parseSource(sourceName));
         }
         return sourceSet;
     }
