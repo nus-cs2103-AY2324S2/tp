@@ -232,7 +232,7 @@ class JsonAdaptedPerson {
         }
 
         final Note modelNote = new Note(note);
-      
+
         Person personToAdd = new Person(modelName, modelPhone, modelEmail, modelAddress, modelNote, modelTags);
         if (pin.equals("true")) {
             personToAdd.toPin();
