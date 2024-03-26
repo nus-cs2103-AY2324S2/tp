@@ -197,6 +197,8 @@ The execution flow of the `unschedule` command is similar to the one shown for `
 #### Design Choice
 The implementation of the `schedule` and `unschedule` command are in this manner to maintain consistency with the existing command structure.
 
+For the schedule command, in the case where a person already has a meeting scheduled, the schedule command will result in an error, instead of overwriting the existing meeting details. This behavior is chosen over the alternative of overwriting the existing meeting details to guard against accidental data loss.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
