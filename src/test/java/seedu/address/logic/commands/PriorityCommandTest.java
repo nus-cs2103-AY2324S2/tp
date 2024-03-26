@@ -31,7 +31,7 @@ public class PriorityCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
-    public void execute_addPriorityUnfilteredList_success() {
+    public void execute_addHighPriorityUnfilteredList_success() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
@@ -50,6 +50,25 @@ public class PriorityCommandTest {
     }
 
     @Test
+    public void execute_addMedPriorityUnfilteredList_success() {
+        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+
+        Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Person editedPerson = new PersonBuilder(firstPerson).withPriority("med").build();
+
+        PriorityCommand priorityCommand = new PriorityCommand(editedPerson.getName().fullName,
+                new Priority(editedPerson.getPriority().value));
+
+        String expectedMessage = String.format(PriorityCommand.MESSAGE_ADD_PRIORITY_SUCCESS,
+                "medium", "*", editedPerson.getName().fullName, editedPerson.getPhone(), editedPerson.getEmail());
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        expectedModel.setPerson(firstPerson, editedPerson);
+
+        assertCommandSuccess(priorityCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
     public void execute_deletePriorityUnfilteredList_success() {
         Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Person editedPerson = new PersonBuilder(firstPerson).withPriority("").build();
@@ -57,7 +76,7 @@ public class PriorityCommandTest {
         PriorityCommand priorityCommand = new PriorityCommand(firstPerson.getName().fullName,
                 new Priority(""));
         String expectedMessage = String.format(PriorityCommand.MESSAGE_DELETE_PRIORITY_SUCCESS,
-                editedPerson.getName().fullName);
+                firstPerson.getName().fullName, firstPerson.getPhone(), firstPerson.getEmail());
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(firstPerson, editedPerson);
         assertCommandSuccess(priorityCommand, model, expectedMessage, expectedModel);

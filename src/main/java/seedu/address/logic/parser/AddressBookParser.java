@@ -93,6 +93,9 @@ public class AddressBookParser {
         case PriorityCommand.COMMAND_WORD_MED:
             return new PriorityCommandParser("med").parse(arguments);
 
+        case PriorityCommand.COMMAND_WORD_NONE:
+            return new PriorityCommandParser("").parse(arguments);
+
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
 

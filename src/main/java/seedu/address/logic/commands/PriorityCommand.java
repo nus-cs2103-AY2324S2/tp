@@ -18,10 +18,11 @@ public class PriorityCommand extends Command {
 
     public static final String COMMAND_WORD_MED = "pr/med";
     public static final String COMMAND_WORD_HIGH = "pr/high";
+    public static final String COMMAND_WORD_NONE = "pr/none";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD_MED + " or "
+    public static final String MESSAGE_USAGE = COMMAND_WORD_NONE + " or " + COMMAND_WORD_MED + " or "
             + COMMAND_WORD_HIGH + ": Sets the priority of the contact identified "
-            + "by the contact name to medium or high respectively.\n"
+            + "by the contact name to none, medium or high respectively.\n"
             + "Parameters: CONTACT_NAME\n"
             + "Example: " + COMMAND_WORD_MED + " John Doe";
 
@@ -29,7 +30,8 @@ public class PriorityCommand extends Command {
     public static final String MESSAGE_EMPTY_NAME = "Oops, please state the name of the contact.";
     public static final String MESSAGE_ADD_PRIORITY_SUCCESS = "Added this contact with %1$s priority:\n"
             + "%2$s\tName: %3$s | Phone: %4$s | Email: %5$s";
-    public static final String MESSAGE_DELETE_PRIORITY_SUCCESS = "Removed the priority level from %1$s's contact";
+    public static final String MESSAGE_DELETE_PRIORITY_SUCCESS = "Removed priority from this contact: \n"
+            + "\tName: %1$s | Phone: %2$s | Email: %3$s";
 
     private final String name;
     private final Priority priority;
@@ -51,10 +53,12 @@ public class PriorityCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         if (name.isEmpty()) {
-            throw new CommandException(String.format(MESSAGE_EMPTY_NAME, name));
+            throw new CommandException(MESSAGE_EMPTY_NAME);
         }
+
         List<Person> contactList = model.getFilteredPersonList();
         Person personToEdit = null;
+
         for (Person person : contactList) {
             if (person.getName().fullName.equalsIgnoreCase(name)) {
                 personToEdit = person;
@@ -64,6 +68,7 @@ public class PriorityCommand extends Command {
         if (personToEdit == null) {
             throw new CommandException(String.format(MESSAGE_PERSON_NOT_FOUND, name));
         }
+
         Person editedPerson = new Person(
                 personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
                 personToEdit.getAddress(), personToEdit.getCompany(), priority,
@@ -84,7 +89,8 @@ public class PriorityCommand extends Command {
      */
     private String generateSuccessMessage(Person personToEdit) {
         if (priority.value.isEmpty()) {
-            return String.format(MESSAGE_DELETE_PRIORITY_SUCCESS, personToEdit.getName());
+            return String.format(MESSAGE_DELETE_PRIORITY_SUCCESS,
+                    personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail());
         }
 
         String priorityMessage = priority.value.equals("high") ? "high" : "medium";
