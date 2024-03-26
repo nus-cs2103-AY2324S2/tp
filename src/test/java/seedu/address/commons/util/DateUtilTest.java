@@ -9,7 +9,7 @@ class DateUtilTest {
 
     private LocalDateTime validDateTime1 = LocalDateTime.of(2024, 3, 18, 9, 0);
     @Test
-    void parseDateTime_validDateTime_success() {
+    void parseDateTime_validDateTimeString_returnsParsedDateTime() {
         String validDateTimeString1 = validDateTime1.format(
                 DateTimeFormatter.ofPattern(DateUtil.DATETIME_INPUT_FORMAT));
         LocalDateTime parsedDateTime1 = DateUtil.parseDateTime(validDateTimeString1);
@@ -17,7 +17,7 @@ class DateUtilTest {
     }
 
     @Test
-    void parseDateTime_invalidFormat_error() {
+    void parseDateTime_validDateTimeString_returnsNull() {
         String invalidDateTimeString1 = null;
         LocalDateTime parsedDateTime1 = DateUtil.parseDateTime(invalidDateTimeString1);
         Assertions.assertNull(parsedDateTime1);
@@ -28,14 +28,14 @@ class DateUtilTest {
     }
 
     @Test
-    void formatDateTime_valid_success() {
+    void formatDateTime_validDateTimeString_returnsFormattedDateTime() {
         LocalDateTime validDateTime1 = LocalDateTime.of(2024, 3, 18, 9, 0);
         String formattedDateTime1 = DateUtil.formatDateTime(validDateTime1);
         Assertions.assertEquals("18 Mar 2024, 09:00 AM", formattedDateTime1);
     }
 
     @Test
-    void formatDateTime_invalidDateTime_error() {
+    void formatDateTime_invalidDateTime_returnsNull() {
         LocalDateTime invalidDateTime1 = null;
         String formattedDateTime1 = DateUtil.formatDateTime(invalidDateTime1);
         Assertions.assertNull(formattedDateTime1);
