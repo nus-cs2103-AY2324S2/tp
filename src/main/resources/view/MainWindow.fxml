@@ -18,7 +18,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="600" minWidth="650" onCloseRequest="#handleExit" title="Address App" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="600" minWidth="650" maxHeight="960" onCloseRequest="#handleExit" title="Address App" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
@@ -38,12 +38,12 @@
          <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
        </Menu>
      </MenuBar>
-        <HBox>
+        <HBox VBox.vgrow="ALWAYS">
             <VBox>
                <children>
                   <TitledPane animated="false" collapsible="false" text="Filter">
                     <content>
-                      <AnchorPane prefHeight="300.0">
+                         <AnchorPane prefHeight="400">
                               <children>
                                  <VBox>
                                     <children>
@@ -129,7 +129,8 @@
                                        </HBox>
                                     </children>
                                  </VBox>
-                              </children></AnchorPane>
+                              </children>
+                        </AnchorPane>
                     </content>
                         <graphic>
                            <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
@@ -140,7 +141,7 @@
                   </TitledPane>
                   <TitledPane animated="false" collapsible="false" text="Overview">
                     <content>
-                      <AnchorPane prefHeight="300.0">
+                      <AnchorPane prefHeight="400.0">
                               <children>
                                  <VBox>
                                     <children>
@@ -190,7 +191,7 @@
                   </TitledPane>
                </children>
             </VBox>
-            <VBox>
+            <VBox HBox.hgrow="ALWAYS">
                <children>
 
               <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
