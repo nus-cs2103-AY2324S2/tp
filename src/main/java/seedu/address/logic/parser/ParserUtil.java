@@ -12,6 +12,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Commission;
+import seedu.address.model.person.DeadlineNote;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Employment;
 import seedu.address.model.person.Name;
@@ -243,6 +244,26 @@ public class ParserUtil {
             throw new ParseException(Note.MESSAGE_CONSTRAINTS);
         }
         return new Note(trimmedNote);
+    }
+
+    /**
+     * Parses a {@code String note} into a {@code Note}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code note} is invalid.
+     */
+    public static DeadlineNote parseDeadlineNote(String note, String deadline) throws ParseException {
+        requireNonNull(note, deadline);
+        String trimmedNote = note.trim();
+        String trimmedDeadline = deadline.trim();
+        if (!DeadlineNote.isValidNote(trimmedNote)) {
+            throw new ParseException(Note.MESSAGE_CONSTRAINTS);
+        }
+        if (!DeadlineNote.isValidDate(deadline)) {
+            throw new ParseException(DeadlineNote.MESSAGE_INVALID_DATE);
+
+        }
+        return new DeadlineNote(trimmedNote, trimmedDeadline);
     }
 
     /**

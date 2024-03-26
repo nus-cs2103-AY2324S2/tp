@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMMISSION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMPLOYMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -68,6 +69,7 @@ public class CommandTestUtil {
     public static final String VALID_TAG_FRIEND = "friend";
 
     public static final String NOTE_DESC_BOB = " " + PREFIX_NOTE + "get kibble";
+    public static final String DEADLINE_DESC_BOB = " " + PREFIX_DEADLINE + "2019-10-10";
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
@@ -105,6 +107,7 @@ public class CommandTestUtil {
     public static final String INVALID_SKILL_DESC = " " + PREFIX_SKILL;
     public static final String INVALID_COMMISSION_DESC = " " + PREFIX_COMMISSION + "20";
     public static final String INVALID_DESC_BOB = " " + PREFIX_NOTE;
+    public static final String INVALID_DEADLINENOTE_BOB = " " + PREFIX_NOTE + "20";
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 

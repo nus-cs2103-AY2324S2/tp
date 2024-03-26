@@ -25,6 +25,7 @@ public class Person {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
     private Note note;
+    private boolean hasDeadlineNote;
 
     /**
      * Every field must be present and not null.
