@@ -103,7 +103,10 @@ public class CommandResult {
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && showHelp == otherCommandResult.showHelp
                 && exit == otherCommandResult.exit
-                && changeDataSource == otherCommandResult.changeDataSource;
+                && changeDataSource == otherCommandResult.changeDataSource
+                && addCommand == otherCommandResult.addCommand
+                && deleteCommand == otherCommandResult.deleteCommand
+                && themeCommand == otherCommandResult.themeCommand;
     }
 
     @Override
