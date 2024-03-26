@@ -40,7 +40,7 @@ public class LogicManagerTest {
     @TempDir
     public Path temporaryFolder;
 
-    private Model model = new ModelManager();
+    private ModelManager model = new ModelManager();
     private Logic logic;
 
     @BeforeEach
@@ -172,4 +172,6 @@ public class LogicManagerTest {
         expectedModel.addPerson(expectedPerson);
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
     }
+
+
 }
