@@ -13,6 +13,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Id;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Payment;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Subject;
 import seedu.address.model.tag.Tag;
@@ -173,7 +174,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code payment} is invalid.
      */
-    public static double parsePayment(String payment) throws ParseException {
+    public static Payment parsePayment(String payment) throws ParseException {
         requireNonNull(payment);
         String trimmedPayment = payment.trim();
         double paymentAmount;
@@ -186,6 +187,6 @@ public class ParserUtil {
         if (paymentAmount < 0) {
             throw new ParseException("Payment amount must not be negative.");
         }
-        return paymentAmount;
+        return new Payment(paymentAmount);
     }
 }

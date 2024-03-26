@@ -51,6 +51,18 @@ public class Payment {
         return test >= 0;
     }
 
+    /**
+     * Returns true if a given string is a valid payment.
+     */
+    public static boolean isValidPayment(String test) {
+        try {
+            double amount = Double.parseDouble(test);
+            return isValidPayment(amount);
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
     public double getAmount() {
         return amount;
     }

@@ -36,7 +36,7 @@ public class TypicalPersons {
             .withSubject("English")
             .withTags("friends")
             .withUniqueId(getNextUniqueId())
-            .withPayment(0.0)
+            .withPayment("0.0")
             .build();
 
     public static final Person AMY = new PersonBuilder()
