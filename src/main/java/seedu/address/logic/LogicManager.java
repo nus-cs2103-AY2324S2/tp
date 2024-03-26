@@ -36,123 +36,126 @@ import seedu.address.storage.Storage;
  * The main LogicManager of the app.
  */
 public class LogicManager implements Logic {
-  public static final String FILE_OPS_ERROR_FORMAT = "Could not save data due to the following error: %s";
+    public static final String FILE_OPS_ERROR_FORMAT = "Could not save data due to the following error: %s";
 
-  public static final String FILE_OPS_PERMISSION_ERROR_FORMAT = "Could not save data to file %s due to insufficient permissions to write to the file or the folder.";
+    public static final String FILE_OPS_PERMISSION_ERROR_FORMAT = "Could not save data to file %s due to"
+        + "insufficient permissions to write to the file or the folder.";
 
-  private final Logger logger = LogsCenter.getLogger(LogicManager.class);
+    private final Logger logger = LogsCenter.getLogger(LogicManager.class);
 
-  private final Model model;
-  private final Storage storage;
-  private final AddressBookParser addressBookParser;
+    private final Model model;
+    private final Storage storage;
+    private final AddressBookParser addressBookParser;
 
-  /**
-   * Constructs a {@code LogicManager} with the given {@code Model} and
-   * {@code Storage}.
-   */
-  public LogicManager(Model model, Storage storage) {
-    this.model = model;
-    this.storage = storage;
-    addressBookParser = new AddressBookParser();
-    this.initialize();
-  }
-
-  @Override
-  public CommandResult execute(String commandText) throws CommandException, ParseException {
-    logger.info("----------------[USER COMMAND][" + commandText + "]");
-
-    Command command = addressBookParser.parseCommand(commandText);
-    CommandResult commandResult = command.execute(model);
-
-    if (command instanceof AddPersonCommand
-        || command instanceof DeletePersonCommand
-        || command instanceof EditPersonCommand) { // Update the autocomplete for the NUSNET IDs if the command
-                                                   // potentially modifies the NUSNET IDs
-      AutoCompleteNusNetId.update(
-          getAddressBook()
-              .getPersonList()
-              .stream()
-              .map(person -> person.getNusNet().value)
-              .toArray(String[]::new));
+    /**
+     * Constructs a {@code LogicManager} with the given {@code Model} and
+     * {@code Storage}.
+     */
+    public LogicManager(Model model, Storage storage) {
+        this.model = model;
+        this.storage = storage;
+        addressBookParser = new AddressBookParser();
+        this.initialize();
     }
 
-    try {
-      storage.saveAddressBook(model.getAddressBook());
-      storage.saveCourse(model.getCourseName());
-    } catch (AccessDeniedException e) {
-      throw new CommandException(String.format(FILE_OPS_PERMISSION_ERROR_FORMAT, e.getMessage()), e);
-    } catch (IOException ioe) {
-      throw new CommandException(String.format(FILE_OPS_ERROR_FORMAT, ioe.getMessage()), ioe);
+    @Override
+    public CommandResult execute(String commandText) throws CommandException, ParseException {
+        logger.info("----------------[USER COMMAND][" + commandText + "]");
+
+        Command command = addressBookParser.parseCommand(commandText);
+        CommandResult commandResult = command.execute(model);
+
+        // Update the autocomplete for the NUSNET IDs if the command
+        // potentially modifies the NUSNET IDs
+        if (command instanceof AddPersonCommand
+            || command instanceof DeletePersonCommand
+            || command instanceof EditPersonCommand) {
+
+            AutoCompleteNusNetId.update(
+                getAddressBook()
+                    .getPersonList()
+                    .stream()
+                    .map(person -> person.getNusNet().value)
+                    .toArray(String[]::new));
+        }
+
+        try {
+            storage.saveAddressBook(model.getAddressBook());
+            storage.saveCourse(model.getCourseName());
+        } catch (AccessDeniedException e) {
+            throw new CommandException(String.format(FILE_OPS_PERMISSION_ERROR_FORMAT, e.getMessage()), e);
+        } catch (IOException ioe) {
+            throw new CommandException(String.format(FILE_OPS_ERROR_FORMAT, ioe.getMessage()), ioe);
+        }
+
+        return commandResult;
     }
 
-    return commandResult;
-  }
+    @Override
+    public String autoComplete(String commandText) {
+        AutoComplete ac = addressBookParser.parseAutoComplete(commandText);
+        assert ac != null;
+        return ac.getAutoComplete(commandText);
+    }
 
-  @Override
-  public String autoComplete(String commandText) {
-    AutoComplete ac = addressBookParser.parseAutoComplete(commandText);
-    assert ac != null;
-    return ac.getAutoComplete(commandText);
-  }
+    /**
+     * Initializes various miscellaneous initializations for the logic manager.
+     */
+    private void initialize() {
+        // Initialize the autocomplete for the commands
+        AutoCompleteCommand.initialize(
+            AddPersonCommand.COMMAND_WORD,
+            EditPersonCommand.COMMAND_WORD,
+            DeletePersonCommand.COMMAND_WORD,
+            ClearCommand.COMMAND_WORD,
+            FindPersonCommand.COMMAND_WORD,
+            ListPersonCommand.COMMAND_WORD,
+            MarkAttendanceCommand.COMMAND_WORD,
+            UnmarkAttendanceCommand.COMMAND_WORD,
+            ExitCommand.COMMAND_WORD,
+            HelpCommand.COMMAND_WORD);
 
-  /**
-   * Initializes various miscellaneous initializations for the logic manager.
-   */
-  private void initialize() {
-    // Initialize the autocomplete for the commands
-    AutoCompleteCommand.initialize(
-        AddPersonCommand.COMMAND_WORD,
-        EditPersonCommand.COMMAND_WORD,
-        DeletePersonCommand.COMMAND_WORD,
-        ClearCommand.COMMAND_WORD,
-        FindPersonCommand.COMMAND_WORD,
-        ListPersonCommand.COMMAND_WORD,
-        MarkAttendanceCommand.COMMAND_WORD,
-        UnmarkAttendanceCommand.COMMAND_WORD,
-        ExitCommand.COMMAND_WORD,
-        HelpCommand.COMMAND_WORD);
+        // Initialize the autocomplete for the NUSNET IDs
+        AutoCompleteNusNetId.initialize(
+            getAddressBook()
+                .getPersonList()
+                .stream()
+                .map(person -> person.getNusNet().value)
+                .toArray(String[]::new));
+    }
 
-    // Initialize the autocomplete for the NUSNET IDs
-    AutoCompleteNusNetId.initialize(
-        getAddressBook()
-            .getPersonList()
-            .stream()
-            .map(person -> person.getNusNet().value)
-            .toArray(String[]::new));
-  }
+    @Override
+    public ReadOnlyAddressBook getAddressBook() {
+        return model.getAddressBook();
+    }
 
-  @Override
-  public ReadOnlyAddressBook getAddressBook() {
-    return model.getAddressBook();
-  }
+    @Override
+    public ObservableList<Person> getFilteredPersonList() {
+        return model.getFilteredPersonList();
+    }
 
-  @Override
-  public ObservableList<Person> getFilteredPersonList() {
-    return model.getFilteredPersonList();
-  }
+    @Override
+    public Path getAddressBookFilePath() {
+        return model.getAddressBookFilePath();
+    }
 
-  @Override
-  public Path getAddressBookFilePath() {
-    return model.getAddressBookFilePath();
-  }
+    @Override
+    public GuiSettings getGuiSettings() {
+        return model.getGuiSettings();
+    }
 
-  @Override
-  public GuiSettings getGuiSettings() {
-    return model.getGuiSettings();
-  }
+    @Override
+    public void setGuiSettings(GuiSettings guiSettings) {
+        model.setGuiSettings(guiSettings);
+    }
 
-  @Override
-  public void setGuiSettings(GuiSettings guiSettings) {
-    model.setGuiSettings(guiSettings);
-  }
+    @Override
+    public ReadOnlyCourseName getCourseName() {
+        return model.getCourseName();
+    }
 
-  @Override
-  public ReadOnlyCourseName getCourseName() {
-    return model.getCourseName();
-  }
-
-  @Override
-  public Path getCourseNameFilePath() {
-    return model.getCourseNameFilePath();
-  }
+    @Override
+    public Path getCourseNameFilePath() {
+        return model.getCourseNameFilePath();
+    }
 }

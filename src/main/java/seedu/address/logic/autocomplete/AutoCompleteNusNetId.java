@@ -42,7 +42,8 @@ public class AutoCompleteNusNetId implements AutoComplete {
         String partialNusNetId = m.group(1);
         String fullNusNetId = nusNetIdTrie.findFirstWordWithPrefix(partialNusNetId.toUpperCase());
 
-        if (fullNusNetId == null || fullNusNetId.isEmpty()) {
+        assert fullNusNetId != null;
+        if (fullNusNetId.isEmpty()) {
             return "";
         }
 
