@@ -24,9 +24,9 @@ public class CreateGroupCommandParserTest {
         Set<QueryableCourseMate> courseMates =
                 new HashSet<>(List.of(new QueryableCourseMate(new Name("Bob"))));
 
-        CreateGroupCommand targetCommand = new CreateGroupCommand(groupName, courseMates);
+        CreateGroupCommand targetCommand = new CreateGroupCommand(groupName, courseMates, null);
         assertParseSuccess(parser, "group 1 -cm Bob", targetCommand);
 
-        assertParseSuccess(parser, "group 1", new CreateGroupCommand(groupName, new HashSet<>()));
+        assertParseSuccess(parser, "group 1", new CreateGroupCommand(groupName, new HashSet<>(), null));
     }
 }

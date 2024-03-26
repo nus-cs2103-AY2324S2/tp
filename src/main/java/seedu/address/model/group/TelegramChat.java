@@ -9,16 +9,16 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class TelegramChat {
 
-    private static final String TELEGRAM_CHAT_REGEX = "https://t.me/[a-zA-Z0-9_+-]+";
     public static final String MESSAGE_CONSTRAINTS = "Telegram chat links should be of the "
             + "format https://t.me/<chat_link>, where <chat_link> is a string of alphanumeric "
             + "characters and the special characters '+', '_', '-' (without quotes).";
-    
+    private static final String TELEGRAM_CHAT_REGEX = "https://t.me/[a-zA-Z0-9_+-]+";
+
     public final String value;
 
     /**
      * Constructs a {@code TelegramChat}.
-     * 
+     *
      * @param telegramChat A valid telegram chat link.
      */
     public TelegramChat(String telegramChat) {

@@ -26,13 +26,22 @@ public class CreateGroupCommandParser implements Parser<CreateGroupCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultiMap = ArgumentTokenizer.tokenize(args, PREFIX_COURSEMATE, PREFIX_TELEGRAM);
 
-        Name name = ParserUtil.parseName(argMultiMap.getPreamble());
+        Name name;
+        try {
+            name = ParserUtil.parseName(argMultiMap.getPreamble());
+        } catch (ParseException pe) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, CreateGroupCommand.MESSAGE_USAGE), pe);
+        }
+
         Set<QueryableCourseMate> queryableCourseMateSet =
                 ParserUtil.parseQueryableCourseMates(argMultiMap.getAllValues(PREFIX_COURSEMATE));
+
         TelegramChat telegramChat = null;
         if (argMultiMap.getValue(PREFIX_TELEGRAM).isPresent()) {
             telegramChat = ParserUtil.parseTelegramChat(argMultiMap.getValue(PREFIX_TELEGRAM).get());
         }
+
         return new CreateGroupCommand(name, queryableCourseMateSet, telegramChat);
     }
 }

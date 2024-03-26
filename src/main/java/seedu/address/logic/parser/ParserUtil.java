@@ -149,7 +149,7 @@ public class ParserUtil {
     public static TelegramChat parseTelegramChat(String telegramChat) throws ParseException {
         requireNonNull(telegramChat);
         String trimmedTelegramChat = telegramChat.trim();
-        if  (!TelegramChat.isValidTelegramChat(trimmedTelegramChat)) {
+        if (!TelegramChat.isValidTelegramChat(trimmedTelegramChat)) {
             throw new ParseException(TelegramChat.MESSAGE_CONSTRAINTS);
         }
         return new TelegramChat(trimmedTelegramChat);

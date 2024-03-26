@@ -50,7 +50,8 @@ public class CreateGroupCommand extends Command {
      * @param groupName name of the group
      * @param queryableCourseMateSet set containing the queryableCourseMate in the group
      */
-    public CreateGroupCommand(Name groupName, Set<QueryableCourseMate> queryableCourseMateSet, TelegramChat telegramChat) {
+    public CreateGroupCommand(Name groupName, Set<QueryableCourseMate> queryableCourseMateSet,
+            TelegramChat telegramChat) {
         requireAllNonNull(groupName, queryableCourseMateSet);
         this.groupName = groupName;
         this.queryableCourseMateSet = queryableCourseMateSet;
