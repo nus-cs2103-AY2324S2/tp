@@ -498,20 +498,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **System**: `PoochPlanner`
 
-**Use case**: `UC06 - Help Tutorial`
+**Use case**: `UC06 - Help`
 
 **Actor**: `User`
 
 **MSS**:
 
 1.  User requests to learn more about the commands.
-2.  PoochPlanner displays a tutorial information.
+2.  PoochPlanner displays a details relating to this command.
 
     Use case ends.
 
 **Extensions**:
 
-* 1a. User requests to learn about an invalid command.
+* 1a. User requests to learn about a in valid command(a command not offered by PoochPlanner).
 
    * 1a1. PoochPlanner displays the error message.
    * 1a2. User re-enters the command and request to learn about a valid command.
@@ -522,7 +522,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **System**: `PoochPlanner`
 
-**Use case**: `UC06 - Undo`
+**Use case**: `UC07 - Undo`
 
 **Actor**: `User`
 
@@ -544,7 +544,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **System**: `PoochPlanner`
 
-**Use case**: `UC06 - Redo`
+**Use case**: `UC08 - Redo`
 
 **Actor**: `User`
 
@@ -562,6 +562,58 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. PoochPlanner displays the error message.
     * Use case ends.
 
+---
+**System**: `PoochPlanner`
+
+**Use case**: `UC09 - Add note to a Person`
+
+**Actor**: `User`
+
+**MSS**:
+
+1.  User requests to add note to the contact of a person.
+2.  PoochPlanner updates the contact with the specified note.
+3.  PoochPlanner confirms that the note has been successfully added.
+
+    Use case ends.
+
+**Extensions**:
+
+* 1a. PoochPlanner detects a missing/invalid name in the entered input.
+
+    * 1a1. PoochPlanner displays the error message.
+    * 1a2. User re-enters the correct command with a specified name.
+    * Steps 1a1 - 1a2 are repeated until a valid name is inputted by the User.
+    * Use case resumes from step 2.
+
+* 1b. PoochPlanner detects an invalid note in the entered input.
+
+    * 1b1. PoochPlanner displays the error message.
+    * 1b2. User re-enters the correct command with a new note value.
+    * Steps 1b1 - 1b2 are repeated until the rating provided is valid (non-null/non-empty).
+    * Use case resumes from step 2.
+  
+* 1c. PoochPlanner detects an additional deadline field.
+
+    * 1b1. PoochPlanner identifies note as a special note, a deadline note.
+    * 1b2. PoochPlanner updates the contact with the specified deadline note.
+    * Use case resumes from step 3.
+
+---
+**System**: `PoochPlanner`
+
+**Use case**: `UC10 - Remind`
+
+**Actor**: `User`
+
+**MSS**:
+
+1.  User requests to receive a reminder of all the contacts with relevant note deadlines(note
+deadlines are relevant if they are on and after today's current date).
+2.  PoochPlanner displays all relevant contacts.
+3.  PoochPlanner confirms that the note has been successfully added.
+
+    Use case ends.
 ---
 *{More to be added}*
 
