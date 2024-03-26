@@ -3,6 +3,7 @@ package seedu.address.ui;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -29,6 +30,7 @@ public class CommandBox extends UiPart<Region> {
         this.commandExecutor = commandExecutor;
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
+        commandTextField.setOnKeyPressed(this::handleArrowKeyPressed);
     }
 
     /**
@@ -46,6 +48,18 @@ public class CommandBox extends UiPart<Region> {
             commandTextField.setText("");
         } catch (CommandException | ParseException e) {
             setStyleToIndicateCommandFailure();
+        }
+    }
+
+    /**
+     * Handles the Up and Down arrow key pressed event.
+     */
+    @FXML
+    private void handleArrowKeyPressed(KeyEvent event) {
+        if (event.getCode().toString().equals("UP") || event.getCode().toString().equals("DOWN")) {
+            String direction = event.getCode().toString().toLowerCase();
+            String previousCommand = CommandHistory.getCommandHistory(direction);
+            commandTextField.setText(previousCommand);
         }
     }
 
