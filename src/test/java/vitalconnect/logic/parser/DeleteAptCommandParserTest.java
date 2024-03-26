@@ -5,6 +5,7 @@ import static vitalconnect.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+import vitalconnect.commons.core.index.Index;
 import vitalconnect.logic.commands.DeleteAptCommand;
 import vitalconnect.logic.parser.exceptions.ParseException;
 
@@ -15,16 +16,12 @@ public class DeleteAptCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsDeleteAptCommand() throws Exception {
-        String patientName = "John Doe";
-        int validIndex = 1;
-        String userInput = validIndex + " /name " + patientName;
-        DeleteAptCommand expectedCommand = new DeleteAptCommand(validIndex, patientName);
+        Index validIndex = Index.fromOneBased(1);
+        String userInput = "1";
+        DeleteAptCommand expectedCommand = new DeleteAptCommand(validIndex);
 
         assertEquals(validIndex, expectedCommand.getIndex());
-        assertEquals(patientName, expectedCommand.getPatientName());
 
-
-        assertEquals(parser.parse(userInput).getPatientName(), expectedCommand.getPatientName());
         assertEquals(parser.parse(userInput).getIndex(), expectedCommand.getIndex());
     }
 
@@ -35,21 +32,8 @@ public class DeleteAptCommandParserTest {
     }
 
     @Test
-    public void parse_missingName_throwsParseException() {
-        int validIndex = 1;
-        String userInput = validIndex + " /name ";
-        assertThrows(ParseException.class, () -> parser.parse(userInput));
-    }
-
-    @Test
     public void parse_invalidIndexFormat_throwsParseException() {
-        String userInput = "notAnIndex /name John Doe";
-        assertThrows(ParseException.class, () -> parser.parse(userInput));
-    }
-
-    @Test
-    public void parse_invalidArgumentsOrder_throwsParseException() {
-        String userInput = "/name John Doe 1";
+        String userInput = "notAnIndex";
         assertThrows(ParseException.class, () -> parser.parse(userInput));
     }
 }

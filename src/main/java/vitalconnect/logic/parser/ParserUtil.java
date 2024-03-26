@@ -2,6 +2,8 @@ package vitalconnect.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -113,7 +115,22 @@ public class ParserUtil {
         return new Email(trimmedEmail);
     }
 
-
+    /**
+     * Parses a {@code String dateTimeStr} into a {@code Date}.
+     * @param dateTimeStr A string representing the date and time.
+     * @return A {@code Date} object representing the date and time.
+     * @throws ParseException if the given {@code String dateTimeStr} is invalid.
+     */
+    public static LocalDateTime parseTime(String dateTimeStr) throws ParseException {
+        requireNonNull(dateTimeStr);
+        // Parse and validate date time
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
+        try {
+            return LocalDateTime.parse(dateTimeStr, formatter);
+        } catch (Exception e) {
+            throw new ParseException("Invalid date time format. Please enter in the format 'dd/MM/yyyy HHmm'.");
+        }
+    }
 
     /**
      * Parses a {@code String allergytag} into a {@code AllergyTag}.

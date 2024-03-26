@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
+import vitalconnect.commons.core.index.Index;
 import vitalconnect.logic.commands.AddContactCommand;
 import vitalconnect.logic.commands.ClearCommand;
 import vitalconnect.logic.commands.CreateAptCommand;
@@ -29,6 +30,7 @@ import vitalconnect.logic.commands.ListCommand;
 import vitalconnect.logic.parser.exceptions.ParseException;
 import vitalconnect.model.person.Person;
 import vitalconnect.model.person.identificationinformation.NameContainsKeywordsPredicate;
+import vitalconnect.model.person.identificationinformation.Nric;
 import vitalconnect.testutil.EditPersonDescriptorBuilder;
 import vitalconnect.testutil.PersonBuilder;
 import vitalconnect.testutil.PersonUtil;
@@ -108,9 +110,9 @@ public class ClinicParserTest {
     public void parseCommand_createApt() throws Exception {
         String getPatientIc = "S1234567D";
         String dateTimeStr = "02/02/2024 1330";
-        String inputCommand = CreateAptCommand.COMMAND_WORD + " " + getPatientIc + " /time " + dateTimeStr;
-
-        CreateAptCommand expectedCommand = new CreateAptCommand(getPatientIc, dateTimeStr);
+        String inputCommand = CreateAptCommand.COMMAND_WORD + " ic/" + getPatientIc + " time/" + dateTimeStr;
+        CreateAptCommand expectedCommand =
+            new CreateAptCommand(new Nric(getPatientIc), ParserUtil.parseTime(dateTimeStr));
         CreateAptCommand parsedCommand = (CreateAptCommand) parser.parseCommand(inputCommand);
 
         assertEquals(expectedCommand.getPatientIc(), parsedCommand.getPatientIc());
@@ -125,12 +127,10 @@ public class ClinicParserTest {
 
     @Test
     public void parseCommand_deleteApt() throws Exception {
-        String input = DeleteAptCommand.COMMAND_WORD + " 1 /name John Doe";
+        String input = DeleteAptCommand.COMMAND_WORD + " 1";
         DeleteAptCommand command = (DeleteAptCommand) parser.parseCommand(input);
-        int resIndex = command.getIndex();
-        String resName = command.getPatientName();
-        assertEquals(1, resIndex);
-        assertEquals("John Doe", resName);
+        Index resIndex = command.getIndex();
+        assertEquals(1, resIndex.getOneBased());
     }
 
     @Test

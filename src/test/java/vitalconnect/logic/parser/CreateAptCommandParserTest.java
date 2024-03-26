@@ -7,6 +7,9 @@ import org.junit.jupiter.api.Test;
 
 import vitalconnect.logic.commands.CreateAptCommand;
 import vitalconnect.logic.parser.exceptions.ParseException;
+import vitalconnect.model.person.identificationinformation.Nric;
+
+
 
 
 public class CreateAptCommandParserTest {
@@ -18,8 +21,9 @@ public class CreateAptCommandParserTest {
         String getPatientIc = "S1234567D";
         String dateTimeStr = "02/02/2024 1330";
 
-        String userInput = getPatientIc + " /time " + dateTimeStr;
-        CreateAptCommand expectedCommand = new CreateAptCommand(getPatientIc, dateTimeStr);
+        String userInput = " ic/" + getPatientIc + " time/" + dateTimeStr;
+        CreateAptCommand expectedCommand =
+            new CreateAptCommand(new Nric(getPatientIc), ParserUtil.parseTime(dateTimeStr));
 
         assertEquals(parser.parse(userInput).getPatientIc(), expectedCommand.getPatientIc());
         assertEquals(parser.parse(userInput).getDateTimeStr(), expectedCommand.getDateTimeStr());

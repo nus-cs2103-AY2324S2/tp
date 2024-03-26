@@ -16,6 +16,7 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import vitalconnect.commons.core.GuiSettings;
+import vitalconnect.commons.core.index.Index;
 import vitalconnect.logic.commands.exceptions.CommandException;
 import vitalconnect.model.Appointment;
 import vitalconnect.model.Model;
@@ -35,8 +36,8 @@ public class DeleteAptCommandTest {
         Appointment appointment = new Appointment("John Doe", "S1234567D", dateTime);
         modelStub.addAppointment(appointment);
 
-        int appointmentIndex = 1; // Assuming this is the index of the appointment to be deleted
-        DeleteAptCommand deleteAptCommand = new DeleteAptCommand(appointmentIndex, "John Doe");
+        Index appointmentIndex = Index.fromOneBased(1); // Assuming this is the index of the appointment to be deleted
+        DeleteAptCommand deleteAptCommand = new DeleteAptCommand(appointmentIndex);
 
         CommandResult commandResult = deleteAptCommand.execute(modelStub);
 
@@ -52,8 +53,8 @@ public class DeleteAptCommandTest {
         Appointment existingAppointment = new Appointment("John Doe", "S1234567D", dateTime);
         modelStub.addAppointment(existingAppointment);
 
-        int invalidIndex = 999;
-        DeleteAptCommand deleteAptCommand = new DeleteAptCommand(invalidIndex, "John Doe");
+        Index invalidIndex = Index.fromOneBased(999);
+        DeleteAptCommand deleteAptCommand = new DeleteAptCommand(invalidIndex);
 
         assertThrows(CommandException.class, "OOPS! The deletion of the appointment failed "
                 + "as the index of appointment is out of range.", () -> deleteAptCommand.execute(modelStub));
@@ -62,30 +63,12 @@ public class DeleteAptCommandTest {
     @Test
     public void execute_invalidIndex_throwsCommandException() {
         ModelStubWithAppointments modelStub = new ModelStubWithAppointments();
-        int invalidIndex = 999;
-        DeleteAptCommand deleteAptCommand = new DeleteAptCommand(invalidIndex, "John Doe");
+        Index invalidIndex = Index.fromOneBased(999);
+        DeleteAptCommand deleteAptCommand = new DeleteAptCommand(invalidIndex);
 
         assertThrows(CommandException.class, "OOPS! The appointment list is empty.", (
         ) -> deleteAptCommand.execute(modelStub));
     }
-
-    @Test
-    public void execute_nonMatchingName_throwsCommandException() {
-        ModelStubWithAppointments modelStub = new ModelStubWithAppointments();
-        LocalDateTime dateTime = LocalDateTime.now();
-        Appointment existingAppointment = new Appointment("John Doe", "S1234567D", dateTime);
-        modelStub.addAppointment(existingAppointment);
-
-        // Trying to delete an appointment for a patient name that doesn't match
-        // the patient name of the appointment at the specified index
-        int appointmentIndex = 1; // Correct index but incorrect patient name for this index
-        DeleteAptCommand deleteAptCommand = new DeleteAptCommand(appointmentIndex, "Jane Doe");
-
-        assertThrows(CommandException.class, "OOPS! The deletion of the "
-                + "appointment failed as the appointment of Jane Doe does not exist in the "
-                + "appointment list.", () -> deleteAptCommand.execute(modelStub));
-    }
-
 
     /**
      * A Model stub that contains and allows manipulation of appointments.

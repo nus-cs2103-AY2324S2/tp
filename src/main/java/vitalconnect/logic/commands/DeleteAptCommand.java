@@ -3,6 +3,7 @@ package vitalconnect.logic.commands;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+import vitalconnect.commons.core.index.Index;
 import vitalconnect.logic.commands.exceptions.CommandException;
 import vitalconnect.model.Appointment;
 import vitalconnect.model.Model;
@@ -15,23 +16,19 @@ import vitalconnect.model.Model;
  */
 public class DeleteAptCommand extends Command {
     public static final String COMMAND_WORD = "deletea";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes an appointment of a patient by the index "
-            + "in the list and patient name.\n"
-            + "Parameters: INDEX (must be a positive integer) /name NAME\n"
-            + "Example: " + COMMAND_WORD + " 1 /name John Doe";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes an appointment of a patient by the index\n"
+            + "Parameters: INDEX (must be a positive integer)\n"
+            + "Example: " + COMMAND_WORD + " 1";
 
-    private final int index;
-    private final String patientName;
+    private final Index index;
 
     /**
      * Constructs a {@code DeleteAptCommand} with the specified index and patient name.
      *
      * @param index The index of the appointment to be deleted, as displayed to the user.
-     * @param patientName The name of the patient whose appointment is to be deleted.
      */
-    public DeleteAptCommand(int index, String patientName) {
+    public DeleteAptCommand(Index index) {
         this.index = index;
-        this.patientName = patientName;
     }
 
     /**
@@ -55,20 +52,17 @@ public class DeleteAptCommand extends Command {
             throw new CommandException("OOPS! The appointment list is empty.");
         }
 
-        if (index < 1 || index > lastShownList.size()) {
+        if (index.getOneBased() < 1 || index.getOneBased() > lastShownList.size()) {
             throw new CommandException("OOPS! The deletion of the appointment failed as the index of "
                     + "appointment is out of range.");
         }
 
-        Appointment appointmentToDelete = lastShownList.get(index - 1);
-        if (!appointmentToDelete.getPatientName().equals(patientName)) {
-            throw new CommandException("OOPS! The deletion of the appointment failed as the appointment of "
-                    + patientName + " does not exist in the appointment list.");
-        }
+        Appointment appointmentToDelete = lastShownList.get(index.getZeroBased());
+        String name = appointmentToDelete.getPatientName();
 
         model.deleteAppointment(appointmentToDelete);
         return new CommandResult(String.format("Deleted the appointment successfully:\nName: %s\nTime: %s",
-                patientName,
+                name,
                 appointmentToDelete.getDateTime().format(DateTimeFormatter.ofPattern("d MMM uuuu HH:mm"))),
                 false, false, CommandResult.Type.SHOW_APPOINTMENTS);
     }
@@ -81,20 +75,7 @@ public class DeleteAptCommand extends Command {
      *
      * @return The index of the appointment to be deleted.
      */
-    public int getIndex() {
+    public Index getIndex() {
         return index;
-    }
-
-    /**
-     * Gets the name of the patient associated with the appointment to be deleted.
-     * <p>
-     * This name is used to ensure that the correct appointment is deleted, especially
-     * in cases where there may be multiple appointments at the same index across
-     * different instances of lists displayed to the user.
-     *
-     * @return The name of the patient whose appointment is to be deleted.
-     */
-    public String getPatientName() {
-        return patientName;
     }
 }
