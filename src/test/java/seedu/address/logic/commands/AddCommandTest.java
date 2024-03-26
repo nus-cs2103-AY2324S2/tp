@@ -209,6 +209,16 @@ public class AddCommandTest {
         }
 
         @Override
+        public ObservableList<AppointmentView> getFilteredAppointmentDayViewList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredAppointmentDayViewList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public Appointment getMatchingAppointment(Nric nric, Date date, TimePeriod timePeriod) {
             throw new AssertionError("This method should not be called.");
         }

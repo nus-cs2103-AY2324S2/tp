@@ -1,9 +1,19 @@
 package seedu.address.ui;
 
+import java.time.LocalTime;
+
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.BooleanBinding;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.util.Duration;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentView;
 
@@ -53,8 +63,34 @@ public class AppointmentCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         nric.setText(appt.getNric().toString() + " - ");
         date.setText(appt.getDate().value.toString());
-        timePeriod.setText(appt.getTimePeriod().getStartTime() + " - " + appt.getTimePeriod().getEndTime());
+        timePeriod.setText(appt.getStartTime() + " - " + appt.getEndTime());
         appointmentType.setText(appt.getAppointmentType().toString());
         note.setText("Notes: " + appt.getNote().toString());
+        Timeline timeline = getTimeline();
+        timeline.play();
+    }
+
+    private Timeline getTimeline() {
+        EventHandler<ActionEvent> appointmentMissedEventHandler = event -> {
+            bindCardPaneStyle();
+        };
+        KeyFrame keyframe = new KeyFrame(Duration.seconds(1), appointmentMissedEventHandler);
+        Timeline timeline = new Timeline(keyframe);
+        timeline.setCycleCount(Animation.INDEFINITE); // Run indefinitely
+        return timeline;
+    }
+
+    private void bindCardPaneStyle() {
+        cardPane.styleProperty().bind(
+                Bindings.when(isBeforeCurrentTime(appt))
+                        .then("-fx-background-color: #FF7074")
+                        .otherwise("-fx-background-color: defaultColor")
+        );
+    }
+
+    private BooleanBinding isBeforeCurrentTime(Appointment appt) {
+        return Bindings.createBooleanBinding(() ->
+            appt.getStartTime().value.isBefore(LocalTime.now())
+        );
     }
 }

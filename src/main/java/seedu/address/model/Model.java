@@ -143,6 +143,14 @@ public interface Model {
      */
     void updateFilteredAppointmentList(Predicate<AppointmentView> predicate);
 
+    /** Returns an unmodifiable view of the appointment day-view list */
+    ObservableList<AppointmentView> getFilteredAppointmentDayViewList();
+
+    /**
+     * Updates the appointment day-view list, filtering by today's date
+     */
+    void updateFilteredAppointmentDayViewList();
+
     /** Returns an Appointment that matches based on Nric, Date and TimePeriod given **/
     Appointment getMatchingAppointment(Nric nric, Date date, TimePeriod timePeriod);
 
