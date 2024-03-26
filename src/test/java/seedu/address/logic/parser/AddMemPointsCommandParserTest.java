@@ -17,14 +17,14 @@ public class AddMemPointsCommandParserTest {
         Name expectedName = new Name("Alice");
         int expectedMembershipPoints = 10;
 
-        assertParseSuccess(parser, " Alice " + PREFIX_MEMSHIP_PTS + "10",
+        assertParseSuccess(parser, " n/Alice " + PREFIX_MEMSHIP_PTS + "10",
                 new AddMemPointsCommand(expectedName, expectedMembershipPoints));
     }
 
     @Test
     public void parse_missingName_failure() {
         String expectedMessage = Name.MESSAGE_CONSTRAINTS + "\n" + AddMemPointsCommand.MESSAGE_USAGE;
-        assertParseFailure(parser, " " + PREFIX_MEMSHIP_PTS + "10", expectedMessage);
+        assertParseFailure(parser, " n/ " + PREFIX_MEMSHIP_PTS + "10", expectedMessage);
     }
 
     @Test
@@ -36,14 +36,14 @@ public class AddMemPointsCommandParserTest {
     @Test
     public void parse_invalidMembershipPoints_failure() {
         String expectedMessage = AddMemPointsCommand.MESSAGE_CONSTRAINTS + "\n" + AddMemPointsCommand.MESSAGE_USAGE;
-        assertParseFailure(parser, " Alice " + PREFIX_MEMSHIP_PTS + "abc", expectedMessage);
+        assertParseFailure(parser, " n/Alice " + PREFIX_MEMSHIP_PTS + "abc", expectedMessage);
     }
 
     @Test
     public void parse_invalidName_failure() {
         String expectedMessage = Name.MESSAGE_CONSTRAINTS + "\n" + AddMemPointsCommand.MESSAGE_USAGE;
         // name is space only
-        assertParseFailure(parser, "   " + PREFIX_MEMSHIP_PTS + "10", expectedMessage);
+        assertParseFailure(parser, " n/  " + PREFIX_MEMSHIP_PTS + "10", expectedMessage);
     }
 
     @Test
