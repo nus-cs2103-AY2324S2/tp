@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 //import java.awt.print.Book;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -21,9 +22,9 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.book.Book;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.BookList;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.MeritScore;
 import seedu.address.model.person.Name;
@@ -105,7 +106,7 @@ public class EditCommand extends Command {
         // create getMeritScore within edit person desciptor class shall be fine, and then uncomment below
         MeritScore updatedMeritScore = personToEdit.getMeritScore();
 
-        BookList updatedBookList = personToEdit.getBookList();
+        ArrayList<Book> updatedBookList = personToEdit.getBookList();
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
         // return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
@@ -148,7 +149,7 @@ public class EditCommand extends Command {
         private Address address;
         private Set<Tag> tags;
         private MeritScore meritScore;
-        private BookList bookList;
+        private ArrayList<Book> bookList;
 
         public EditPersonDescriptor() {}
 
@@ -205,11 +206,11 @@ public class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
-        public void setBookList(BookList bookList) {
+        public void setBookList(ArrayList<Book> bookList) {
             this.bookList = bookList;
         }
 
-        public Optional<BookList> getBookList() {
+        public Optional<ArrayList<Book>> getBookList() {
             return Optional.ofNullable(bookList);
         }
 

@@ -3,16 +3,11 @@ package seedu.address.model.book;
 import java.util.ArrayList;
 import java.util.Comparator;
 
-import seedu.address.model.BookCollection;
-
 /**
  * Represents a collection of books in a library.
- *
- * This class extends the {@link seedu.address.model.BookCollection} class and provides additional functionality
- * specific to managing a library of books, such as sorting books alphabetically and generating a formatted list
- * of books.
  */
-public class Library extends BookCollection {
+public class Library {
+    private ArrayList<Book> library;
 
     /**
      * Comparator for comparing books alphabetically by title.
@@ -28,23 +23,31 @@ public class Library extends BookCollection {
      * Construct an empty library.
      */
     public Library() {
-        super();
+        this.library = new ArrayList<>();
     }
 
     /**
      * Construct a library with the specified list of books.
      *
-     * @param bookCollection The list of books to initialize the library with.
+     * @param library The list of books to initialize the library with.
      */
-    public Library(ArrayList<Book> bookCollection) {
-        super(bookCollection);
+    public Library(ArrayList<Book> library) {
+        this.library = library;
+    }
+
+    public void addBook(Book book) {
+        this.library.add(book);
+    }
+
+    public void deleteBook(int index) {
+        this.library.remove(index - 1);
     }
 
     /**
      * Sort the books in the library alphabetically by title.
      */
     public void sortAlphabetically() {
-        bookCollection.sort(bookComparator);
+        library.sort(bookComparator);
     }
 
     /**
@@ -54,14 +57,14 @@ public class Library extends BookCollection {
      */
     public ArrayList<Book> list() {
         this.sortAlphabetically();
-        return this.bookCollection;
+        return this.library;
     }
 
     @Override
     public String toString() {
         String result = "";
         for (int i = 1; i < this.list().size() + 1; i++) {
-            result += i + ". " + this.getBook(i - 1).bookTitle.toString();
+            result += i + ". " + this.library.get(i - 1).bookTitle.toString();
             if (i != this.list().size() - 1) {
                 result += "\n";
             }
@@ -74,9 +77,9 @@ public class Library extends BookCollection {
         if (other == this) {
             return true;
         } else if (other instanceof Library) {
-            Library otherBookCollection = (Library) other;
+            Library otherLibrary = (Library) other;
             for (int i = 0; i < this.list().size(); i++) {
-                if (this.getBook(i).equals(otherBookCollection.getBook(i))) {
+                if (this.library.get(i).equals(otherLibrary.library.get(i))) {
                     return false;
                 }
             }

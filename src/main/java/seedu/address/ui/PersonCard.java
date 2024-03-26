@@ -59,10 +59,10 @@ public class PersonCard extends UiPart<Region> {
         email.setText(person.getEmail().value);
         meritScore.setText(person.getMeritScore().meritScore);
         String borrowedBookList = person.getBookList().toString();
-        if (!person.getBookList().hasBooks()) {
+        if (person.getBookList().isEmpty()) {
             borrowedBookList = "This user is not borrowing any books at the moment!";
         }
-        borrow.setText(borrowedBookList);
+        borrow.setText(person.getBookListToString());
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
