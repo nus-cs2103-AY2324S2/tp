@@ -18,6 +18,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Policy;
 import seedu.address.model.person.Relationship;
 import seedu.address.model.tag.Tag;
 
@@ -118,6 +119,39 @@ public class ParserUtil {
         return new Relationship(trimmedRelationship);
     }
 
+    /**
+     * Parses a {@code String expiryDate} into a {@code LocalDateTime}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code expiryDate} is invalid.
+     */
+    public static LocalDate parseExpiryDate(String expiryDate) throws ParseException {
+        requireNonNull(expiryDate);
+
+        try {
+            String trimmedExpiryDate = expiryDate.trim();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+
+            return LocalDate.parse(trimmedExpiryDate, formatter);
+        } catch (DateTimeParseException e) {
+            throw new ParseException(Policy.EXPIRY_DATE_MESSAGE_CONSTRAINTS);
+        }
+    }
+
+    /**
+     * Parses a {@code String tag} into a {@code Tag}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code tag} is invalid.
+     */
+    public static double parsePremium(String premium) throws ParseException {
+        requireNonNull(premium);
+        String trimmedPremium = premium.trim();
+        if (!Policy.isValidPremium(trimmedPremium)) {
+            throw new ParseException(Policy.PREMIUM_MESSAGE_CONSTRAINTS);
+        }
+        return Double.parseDouble(trimmedPremium);
+    }
 
     /**
      * Parses a {@code String tag} into a {@code Tag}.
