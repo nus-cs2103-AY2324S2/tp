@@ -93,12 +93,13 @@ public class AttendanceCommand extends Command {
         Email updatedEmail = personToEdit.getEmail();
         Address updatedAddress = personToEdit.getAddress();
         Birthday updatedBirthday = personToEdit.getBirthday();
+        Instrument updatedInstrument = personToEdit.getInstrument();
         Set<Tag> updatedTags = personToEdit.getTags();
         Set<Attendance> updatedAttendances = new HashSet<>(personToEdit.getAttendances());
         updatedAttendances.add(attendance);
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
-                updatedBirthday, updatedTags, updatedAttendances);
+                updatedBirthday, updatedInstrument, updatedTags, updatedAttendances);
     }
 
     @Override
