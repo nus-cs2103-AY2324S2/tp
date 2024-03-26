@@ -41,6 +41,16 @@ public class EditRelationshipCommand extends Command {
         this.newRelationshipDescriptor = newRelationshipDescriptor.toLowerCase();
     }
 
+    /**
+     * Constructor takes in the string arguments needed to be passed into the relationship constructor and performs
+     * the addition of the relationship
+     * @param originUuid
+     * @param targetUuid
+     * @param oldRelationshipDescriptor
+     * @param newRelationshipDescriptor
+     * @param role1
+     * @param role2
+     */
     public EditRelationshipCommand(String originUuid, String targetUuid,
                                    String oldRelationshipDescriptor, String newRelationshipDescriptor,
                                    String role1, String role2) {

@@ -8,11 +8,12 @@ import java.util.UUID;
  * Represents a relationship between two people.
  */
 public class Relationship {
-    protected boolean isFamilyRelationship;
     protected static ArrayList<String> validDescriptors = new ArrayList<>(
             Arrays.asList("friend", "siblings", "spouses", "bioparents"));
     protected UUID person1;
     protected UUID person2;
+
+    protected boolean isFamilyRelationship;
     protected String relationshipDescriptor;
     protected String type;
 
@@ -27,7 +28,7 @@ public class Relationship {
         this.person2 = person2;
 
         if (!validDescriptors.contains(relationshipDescriptor)) {
-            if(!relationshipDescriptor.matches("[a-zA-Z]+")) {
+            if (!relationshipDescriptor.matches("[a-zA-Z]+")) {
                 throw new IllegalArgumentException("Invalid Relationship type");
             } else {
                 validDescriptors.add(relationshipDescriptor);
@@ -91,7 +92,8 @@ public class Relationship {
         }
         RelationshipUtil relationshipUtil = new RelationshipUtil();
         if (relationshipUtil.descriptorExists(relationType)) {
-            throw new IllegalArgumentException("There are relationships under this relation type. Please delete them first.");
+            throw new IllegalArgumentException("There are relationships under this relation type. "
+                    + "\nPlease delete them first.");
         }
         validDescriptors.remove(relationType);
     }

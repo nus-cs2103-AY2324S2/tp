@@ -34,13 +34,15 @@ public class EditRelationshipCommandParser {
                 if (!role1.matches("[a-zA-Z]+") || !role2.matches("[a-zA-Z]+")) {
                     throw new ParseException("Roles must contain only letters");
                 }
-                return new EditRelationshipCommand(originUuid, targetUuid, oldRelationshipDescriptor, newRelationshipDescriptor, role1, role2);
+                return new EditRelationshipCommand(originUuid, targetUuid, oldRelationshipDescriptor,
+                        newRelationshipDescriptor, role1, role2);
             } else {
                 String originUuid = ParserUtil.parseUuid(parts[0]);
                 String targetUuid = ParserUtil.parseUuid(parts[1]);
                 String oldRelationshipDescriptor = parts[2];
                 String newRelationshipDescriptor = parts[3];
-                return new EditRelationshipCommand(originUuid, targetUuid, oldRelationshipDescriptor, newRelationshipDescriptor);
+                return new EditRelationshipCommand(originUuid, targetUuid, oldRelationshipDescriptor,
+                        newRelationshipDescriptor);
             }
         } catch (ParseException pe) {
             throw new ParseException(Messages.MESSAGE_INVALID_PERSON_UUID);
