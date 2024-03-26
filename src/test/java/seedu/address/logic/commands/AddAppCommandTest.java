@@ -226,6 +226,15 @@ public class AddAppCommandTest {
         }
 
         @Override
+        public ObservableList<AppointmentView> getFilteredAppointmentDayViewList() {
+            return null;
+        }
+
+        @Override
+        public void updateFilteredAppointmentDayViewList() {
+        }
+
+        @Override
         public Appointment getMatchingAppointment(Nric nric, Date date, TimePeriod timePeriod) {
             throw new AssertionError("This method should not be called.");
         }
