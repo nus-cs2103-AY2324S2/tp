@@ -4,10 +4,14 @@
   pageNav: 3
 ---
 
+<p align="center">
+  <img src="images/Logo.jpeg" />
+</p>
 
 # ConnectCare User Guide
 
 <box type="info" seamless>
+
 
 _This page is for ConnectCare users. If you're a developer, see also the
 [Developer guide](https://ay2324s2-cs2103t-w12-4.github.io/tp/DeveloperGuide.html)._
