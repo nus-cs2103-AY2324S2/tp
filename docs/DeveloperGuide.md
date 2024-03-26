@@ -252,7 +252,7 @@ The diagram highlights the four main components of FitBook, highlighted in their
 > The above sequence diagram also applies to the removal of a note from an existing client when no input string or prefix is entered for the `note` command. (i.e. `note 1`, or `note 1 note/`).
 
 ### Searching Clients
-Search for clients are done using the `find` command. The command has been designed to be extendable, allowing for developers to easily define how new fields (attributes) in the clients can be searched.
+Search for clients is done using the `find` command. The command has been designed to be extendable, allowing for developers to easily define how new fields (attributes) in the clients can be searched.
 
 The sequence diagram below shows the logic flow of executing the command `find n/wendy`.
 
