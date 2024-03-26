@@ -36,11 +36,12 @@ public class PersonListPanel extends UiPart<Region> {
         personListView.setCellFactory(listView -> new PersonListViewCell());
 
         personListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue != null) {
-                DisplayCard displayCard = new DisplayCard(newValue);
-                displayView.getChildren().setAll(displayCard.getRoot());
-                VBox.setVgrow(displayCard.getRoot(), Priority.ALWAYS);
+            if (newValue == null) {
+                return;
             }
+            DisplayCard displayCard = new DisplayCard(newValue);
+            displayView.getChildren().setAll(displayCard.getRoot());
+            VBox.setVgrow(displayCard.getRoot(), Priority.ALWAYS);
         });
     }
 
@@ -55,12 +56,12 @@ public class PersonListPanel extends UiPart<Region> {
             if (empty || person == null) {
                 setGraphic(null);
                 setText(null);
-            } else {
-                PersonCard personCard = new PersonCard(person, getIndex() + 1);
-                setGraphic(personCard.getRoot());
-                personCard.getCardPane().prefWidthProperty().bind(Bindings.createDoubleBinding((
-                ) -> personListView.getPrefWidth() - PADDING_SIZE, personListView.prefWidthProperty()));
+                return;
             }
+            PersonCard personCard = new PersonCard(person, getIndex() + 1);
+            setGraphic(personCard.getRoot());
+            personCard.getCardPane().prefWidthProperty().bind(Bindings.createDoubleBinding((
+            ) -> personListView.getPrefWidth() - PADDING_SIZE, personListView.prefWidthProperty()));
         }
     }
 

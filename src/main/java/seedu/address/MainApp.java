@@ -65,7 +65,6 @@ public class MainApp extends Application {
         logic = new LogicManager(model, storage);
 
         ui = new UiManager(logic);
-
         //Font.loadFont(getClass().getResourceAsStream("/fonts/SF-Pro.ttf"), 12);
     }
 
