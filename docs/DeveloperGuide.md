@@ -300,6 +300,37 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
+### View Orders feature
+
+#### Proposed Implementation
+
+The proposed View Orders mechanism is facilitated by `ViewOrdersCommand`. It extends `Command` and implements the
+displaying of all orders that belong to a client.
+
+These operations are exposed in the `AddressBookParser` class as `AddressBookParser#parseCommand()`.
+
+Given below is an example usage scenario and how the view orders mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the
+initial address book state, and the `currentStatePointer` pointing to that single address book state.
+
+Step 2. The user executes `viewOrders` command to view all the orders that they have in BookKeeper. The `viewOrders`
+command calls `Model#updateFilteredOrderList()`, causing the address book to show the list of orders
+that are tracked in the storage of the application. The `viewOrders` command then returns a new `CommandResult`, which
+displays the `MESSAGE_SUCCESS` message, which is "Here are all your orders: ".
+
+#### Design considerations:
+
+**Aspect: How view command executes:**
+
+* **Alternative 1 (current choice):** Retrieves and displays all client orders from the filtered order list.
+    * Pros: Simple and straightforward implementation.
+    * Cons: May result in a slower performance and higher memory usage if the filtered order list is large.
+
+* **Alternative 2:** Implement system for displaying orders and only load a subset of orders at a time.
+    * Pros: Will use less memory (e.g. can use cache mechanisms to store recently accessed orders in memory).
+    * Cons: More complex implementation of storage and memory access.
+
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
