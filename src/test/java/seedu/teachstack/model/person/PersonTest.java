@@ -36,13 +36,20 @@ public class PersonTest {
 
         // same student id, all other attributes different -> returns true
         Person editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB)
-                .withEmail(VALID_EMAIL_BOB).withGrade(VALID_GRADE_BOB).withGroups(VALID_GROUP_GROUP1).build();
+                .withGrade(VALID_GRADE_BOB).withGroups(VALID_GROUP_GROUP1).build();
 
         assertTrue(ALICE.isSamePerson(editedAlice));
+
+        assertFalse(ALICE.isSamePerson(null));
 
         // different name, all other attributes same -> returns false
         editedAlice = new PersonBuilder(ALICE).withStudentId(VALID_STUDENTID_AMY).build();
         assertFalse(ALICE.isSamePerson(editedAlice));
+    }
+
+    @Test
+    public void isSameEmail() {
+        assertFalse(ALICE.isSameEmail(null));
     }
 
     @Test

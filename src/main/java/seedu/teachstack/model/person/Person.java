@@ -73,7 +73,8 @@ public class Person {
         }
 
         return otherPerson != null
-                && otherPerson.getStudentId().equals(getStudentId());
+                && otherPerson.getStudentId().equals(getStudentId())
+                && otherPerson.isSameEmail(this);
     }
 
     /**
@@ -117,5 +118,17 @@ public class Person {
                 .add("groups", groups)
                 .toString();
     }
+
+    /**
+     * @param otherPerson to be compared
+     * @return if both have same email
+     */
+    public boolean isSameEmail(Person otherPerson) {
+        if (otherPerson == null) {
+            return false;
+        }
+        return this.getEmail().equals(otherPerson.getEmail());
+    }
+
 
 }
