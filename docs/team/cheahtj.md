@@ -10,6 +10,13 @@ enabling them to enjoy an organised and vibrant approach to query, and manage an
 contacts via the Command Line Interface (CLI).
 
 My contributions to the project are listed below
+* **Modify delete feature**: Edited to allow the deletion of an existing contact by NusId. (Pull request #63) 
+    * What it does: Allows the user to delete an existing contact via the NusId instead of the index of contact.
+    * Justification: This allows user to delete their student quickly with their NusId rather than having to find the index.
+
+* **Modify edit feature**: Edited to allow the edit of an existing contact in terms of name, phone, email, group and tag. (Pull request #73)
+  * What it does: Allows the user to edit the name, phone, email, group and tag of an existing contact.
+  * Justification: This gives users more flexibility to change their contact information.
 
 * **New Feature**: Added the ability to undo/redo previous commands.
     * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
@@ -17,12 +24,13 @@ My contributions to the project are listed below
     * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
     * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
 
-* **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
-
 * **Code contributed**: [RepoSense link]()
 
 * **Project management**:
-    * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
+    * Managed milestone `v1.1` deliverables on GitHub
+    * Managed milestone `v1.2` deliverables on GitHub
+    * Contributed issues 
+    * Reviewed and merged PRs
 
 * **Enhancements to existing features**:
     * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())

@@ -38,28 +38,24 @@ public class GroupCommandParser implements Parser<GroupCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, GroupCommand.MESSAGE_USAGE));
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NUSID, PREFIX_GROUP, PREFIX_TAG);
-        NusId nusid = ParserUtil.parseNusId(argMultimap.getValue(PREFIX_NUSID).get());
-
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_GROUP, PREFIX_TAG);
 
         GroupCommand.GroupPersonDescriptor groupPersonDescriptor = new GroupCommand.GroupPersonDescriptor();
 
-        if (argMultimap.getValue(PREFIX_NUSID).isPresent()) {
-            groupPersonDescriptor.setNusId(ParserUtil.parseNusId(argMultimap.getValue(PREFIX_NUSID).get()));
-        }
-
+        Set<NusId> nusIds = parseNusIdsForGroup(argMultimap.getAllValues(PREFIX_NUSID)).get();
 
         if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
             groupPersonDescriptor.setTag(ParserUtil.parseTag(argMultimap.getValue(PREFIX_TAG).get()));
         }
 
         parseGroupsForGroup(argMultimap.getAllValues(PREFIX_GROUP)).ifPresent(groupPersonDescriptor::setGroups);
-        return new GroupCommand(nusid, groupPersonDescriptor);
+        return new GroupCommand(nusIds, groupPersonDescriptor);
     }
 
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
+
     /**
      * Parses {@code Collection<String> groups} into a {@code Set<Group>} if {@code groups} is non-empty.
      * If {@code groups} contain only one element which is an empty string, it will be parsed into a
@@ -73,5 +69,21 @@ public class GroupCommandParser implements Parser<GroupCommand> {
         }
         Collection<String> groupSet = groups.size() == 1 && groups.contains("") ? Collections.emptySet() : groups;
         return Optional.of(ParserUtil.parseGroups(groupSet));
+    }
+
+    /**
+     * Parses {@code Collection<String> nusIds} into a {@code Set<NusId>} if {@code nusIds} is non-empty.
+     * If {@code nusIds} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<NusId>} containing zero nusId.
+     */
+    private Optional<Set<NusId>> parseNusIdsForGroup(Collection<String> nusIds) throws ParseException {
+        assert nusIds != null;
+
+        if (nusIds.isEmpty()) {
+            return Optional.empty();
+        }
+
+        Collection<String> nusIdSet = nusIds.size() == 1 && nusIds.contains("") ? Collections.emptySet() : nusIds;
+        return Optional.of(ParserUtil.parseNusIds(nusIdSet));
     }
 }

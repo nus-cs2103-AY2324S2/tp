@@ -1,0 +1,88 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":ScheduleCommandParser" as ScheduleCommandParser LOGIC_COLOR
+participant ":ParserUtil" as ParserUtil LOGIC_COLOR
+participant "s:ScheduleCommand" as ScheduleCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "m:Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("schedule id/E1234567 s/15-10-2024")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("schedule id/E1234567 s/15-10-2024")
+activate AddressBookParser
+
+create ScheduleCommandParser
+AddressBookParser -> ScheduleCommandParser
+activate ScheduleCommandParser
+
+ScheduleCommandParser --> AddressBookParser
+deactivate ScheduleCommandParser
+
+AddressBookParser -> ScheduleCommandParser : parse("id/E1234567 s/15-10-2024")
+activate ScheduleCommandParser
+
+create ParserUtil
+ScheduleCommandParser -> ParserUtil
+
+activate ParserUtil
+ParserUtil ---> ScheduleCommandParser
+deactivate ParserUtil
+
+ScheduleCommandParser -> ParserUtil : parseNusId("E01234567")
+activate ParserUtil
+ParserUtil ---> ScheduleCommandParser
+deactivate ParserUtil
+
+ScheduleCommandParser -> ParserUtil : parseSchedule("15-10-2024")
+activate ParserUtil
+ParserUtil ---> ScheduleCommandParser
+deactivate ParserUtil
+
+create ScheduleCommand
+ScheduleCommandParser -> ScheduleCommand : ScheduleCommand(nusId, schedule, remark)
+activate ScheduleCommand
+
+ScheduleCommand --> ScheduleCommandParser :
+deactivate ScheduleCommand
+
+ScheduleCommandParser --> AddressBookParser : s
+deactivate ScheduleCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+ScheduleCommandParser -[hidden]-> AddressBookParser
+destroy ScheduleCommandParser
+
+AddressBookParser --> LogicManager : s
+deactivate AddressBookParser
+
+LogicManager -> ScheduleCommand : execute(m)
+activate ScheduleCommand
+
+ScheduleCommand -> Model : setPerson(personToEdit, editedPerson)
+activate Model
+
+Model --> ScheduleCommand
+deactivate Model
+
+create CommandResult
+ScheduleCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ScheduleCommand
+deactivate CommandResult
+
+ScheduleCommand --> LogicManager : r
+deactivate ScheduleCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

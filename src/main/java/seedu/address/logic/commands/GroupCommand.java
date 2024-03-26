@@ -6,12 +6,15 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NUSID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -27,14 +30,10 @@ import seedu.address.model.person.Remark;
 import seedu.address.model.person.Schedule;
 import seedu.address.model.person.Tag;
 
-
-
-
 /**
  * assigns a group to an existing person in the address book.
  */
 public class GroupCommand extends Command {
-
     public static final String MESSAGE_GROUP_PERSON_SUCCESS = "Grouped Person: %1$s";
 
     public static final String COMMAND_WORD = "group";
@@ -48,22 +47,17 @@ public class GroupCommand extends Command {
             + PREFIX_GROUP + "Class T15 "
             + PREFIX_TAG + "TA";
 
-    private final NusId toGroup;
+    private final Set<NusId> toGroup;
     private final GroupPersonDescriptor groupPersonDescriptor;
 
-
-
-
     /**
-     * @param nusid of the person in the filtered person list to group
+     * @param nusIds of the person in the filtered person list to group
      * @param groupPersonDescriptor details to group the person with
      */
-    public GroupCommand(NusId nusid, GroupPersonDescriptor groupPersonDescriptor) {
-        requireNonNull(nusid);
-        toGroup = nusid;
+    public GroupCommand(Set<NusId> nusIds, GroupPersonDescriptor groupPersonDescriptor) {
+        requireNonNull(nusIds);
+        toGroup = nusIds;
         this.groupPersonDescriptor = new GroupPersonDescriptor(groupPersonDescriptor);
-
-
     }
 
     @Override
@@ -71,78 +65,98 @@ public class GroupCommand extends Command {
         requireNonNull(model);
 
         List<Person> lastShownList = model.getFilteredPersonList();
-        Person personToGroup = lastShownList.stream().filter(person -> person.getNusId().equals(toGroup))
-                        .findFirst().orElse(null);
+        List<Person> personToGroup = lastShownList.stream()
+                .filter(person -> toGroup.contains(person.getNusId()))
+                .collect(Collectors.toList());
+        List<Person> groupedPerson = createGroupedPerson(personToGroup, groupPersonDescriptor);
 
-
-        if (personToGroup == null) {
+        if (personToGroup.isEmpty() || personToGroup.size() != toGroup.size()) {
             throw new CommandException(MESSAGE_GROUP_PERSON_INVALID);
         }
-        Person groupedPerson = createGroupedPerson(personToGroup, groupPersonDescriptor);
-        model.setPerson(personToGroup, groupedPerson);
+
+        IntStream.range(0, personToGroup.size())
+                .forEach(index -> {
+                    Person original = personToGroup.get(index);
+                    Person modified = groupedPerson.get(index);
+                    model.setPerson(original, modified);
+                });
 
         return new CommandResult(String.format(MESSAGE_GROUP_PERSON_SUCCESS, Messages.format(groupedPerson)));
     }
 
-    private static Person createGroupedPerson(Person personToGroup, GroupPersonDescriptor GroupPersonDescriptor) {
-        assert personToGroup != null;
+    /**
+     * Modify {@code personsToGroup} according to {@code groupPersonDescriptor}
+     *
+     * @param personsToGroup List of Person to be modified
+     * @param groupPersonDescriptor Values to be modified to
+     * @return Modified list of Person
+     */
+    public static List<Person> createGroupedPerson(List<Person> personsToGroup,
+                                                   GroupPersonDescriptor groupPersonDescriptor) {
+        List<Person> groupedPersons = new ArrayList<>();
 
-        NusId nusId = personToGroup.getNusId();
-        Name name = personToGroup.getName();
-        Phone phone = personToGroup.getPhone();
-        Email email = personToGroup.getEmail();
-        Tag updatedTag = GroupPersonDescriptor.getTag().orElse(personToGroup.getTag());
-        Set<Group> updatedGroups = GroupPersonDescriptor.getGroups().orElse(personToGroup.getGroups());
-        Schedule schedule = personToGroup.getSchedule();
-        Remark remark = personToGroup.getRemark();
+        for (Person personToGroup : personsToGroup) {
+            assert personToGroup != null;
 
-        return new Person(nusId, name, phone, email, updatedTag, updatedGroups, schedule, remark);
+            NusId nusId = personToGroup.getNusId();
+            Name name = personToGroup.getName();
+            Phone phone = personToGroup.getPhone();
+            Email email = personToGroup.getEmail();
+            Tag updatedTag = groupPersonDescriptor.getTag().orElse(personToGroup.getTag());
+            Set<Group> updatedGroups = groupPersonDescriptor.getGroups().orElse(personToGroup.getGroups());
+            Schedule schedule = personToGroup.getSchedule();
+            Remark remark = personToGroup.getRemark();
+
+            groupedPersons.add(new Person(nusId, name, phone, email, updatedTag, updatedGroups, schedule, remark));
+        }
+
+        return groupedPersons;
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("nusid", toGroup)
+                .add("nusIds", toGroup)
                 .add("groupPersonDescriptor", groupPersonDescriptor)
                 .toString();
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof GroupCommand)) {
+            return false;
+        }
+
+        GroupCommand otherGroupCommand = (GroupCommand) other;
+        return toGroup.size() == otherGroupCommand.toGroup.size()
+                && toGroup.containsAll(otherGroupCommand.toGroup)
+                && groupPersonDescriptor.equals(otherGroupCommand.groupPersonDescriptor);
+    }
+
     /**
      * Sets {@code group} to this object's {@code groups}.
      * A defensive copy of {@code groups} is used internally.
      */
     public static class GroupPersonDescriptor {
-
-        private NusId nusid;
         private Set<Group> groups;
         private Tag tag;
 
-
         public GroupPersonDescriptor() {}
+
         /**
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
         public GroupPersonDescriptor(GroupPersonDescriptor toCopy) {
-            //setNusId(toCopy.nusid);
-            this.nusid = toCopy.nusid;
             setGroups(toCopy.groups);
             setTag(toCopy.tag);
         }
 
-
-
-        /**
-         * Returns true if at least one field is edited.
-         */
-
-
-        public void setNusId(NusId nusid) {
-            this.nusid = nusid;
-        }
-
-        public Optional<NusId> getNusId() {
-            return Optional.ofNullable(nusid);
-        }
         public void setTag(Tag tag) {
             this.tag = tag;
         }
@@ -180,15 +194,13 @@ public class GroupCommand extends Command {
             }
 
             GroupPersonDescriptor otherGroupPersonDescriptor = (GroupPersonDescriptor) other;
-            return Objects.equals(nusid, otherGroupPersonDescriptor.nusid)
-                    && Objects.equals(groups, otherGroupPersonDescriptor.groups)
+            return Objects.equals(groups, otherGroupPersonDescriptor.groups)
                     && Objects.equals(tag, otherGroupPersonDescriptor.tag);
         }
 
         @Override
         public String toString() {
             return new ToStringBuilder(this)
-                    .add("nusId", nusid)
                     .add("groups", groups)
                     .add("tag", tag)
                     .toString();

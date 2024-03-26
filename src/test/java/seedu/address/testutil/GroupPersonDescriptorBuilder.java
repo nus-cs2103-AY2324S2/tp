@@ -1,5 +1,6 @@
 package seedu.address.testutil;
 
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -7,7 +8,6 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.GroupCommand;
 import seedu.address.logic.commands.GroupCommand.GroupPersonDescriptor;
 import seedu.address.model.group.Group;
-import seedu.address.model.person.NusId;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Tag;
 
@@ -31,20 +31,18 @@ public class GroupPersonDescriptorBuilder {
      */
     public GroupPersonDescriptorBuilder(Person person) {
         descriptor = new GroupPersonDescriptor();
-        descriptor.setNusId(person.getNusId());
         descriptor.setTag(person.getTag());
         descriptor.setGroups(person.getGroups());
     }
 
     /**
-     * Sets the {@code Name} of the {@code GroupPersonDescriptor} that we are building.
+     * Returns an {@code GroupPersonDescriptor} with fields containing {@code persons}'s details
      */
-    public GroupPersonDescriptorBuilder withNusId(String nusId) {
-        descriptor.setNusId(new NusId(nusId));
-        return this;
+    public GroupPersonDescriptorBuilder(List<Person> persons) {
+        descriptor = new GroupPersonDescriptor();
+        descriptor.setTag(persons.get(0).getTag());
+        descriptor.setGroups(persons.get(0).getGroups());
     }
-
-
 
     /**
      * Sets the {@code Tag} of the {@code GroupPersonDescriptor} that we are building.

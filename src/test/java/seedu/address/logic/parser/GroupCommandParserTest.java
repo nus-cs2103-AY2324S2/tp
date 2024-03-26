@@ -7,9 +7,13 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GROUP_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NUSID_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NUSID_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_AMY;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccessGroup;
+
+import java.util.HashSet;
+import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
@@ -28,8 +32,6 @@ class GroupCommandParserTest {
     private GroupCommandParser parser = new GroupCommandParser();
     @Test
     public void parse_invalidPreamble_failure() {
-
-
         // invalid arguments being parsed as preamble
         assertParseFailure(parser, "E0123456 some random string", MESSAGE_INVALID_FORMAT);
 
@@ -40,49 +42,62 @@ class GroupCommandParserTest {
     @Test
     public void parse_allFieldsSpecified_success() {
         //Index targetIndex = INDEX_SECOND_PERSON;
-        NusId nusid = new NusId(VALID_NUSID_AMY);
-        String userInput = " id/" + nusid + GROUP_DESC_HUSBAND
-                + TAG_DESC_AMY;
+        NusId nusId = new NusId(VALID_NUSID_AMY);
+        Set<NusId> nusIdSet = new HashSet<>();
+        nusIdSet.add(nusId);
 
+        String userInput = " id/" + nusId + GROUP_DESC_HUSBAND + TAG_DESC_AMY;
         GroupCommand.GroupPersonDescriptor descriptor = new GroupPersonDescriptorBuilder()
-                .withNusId(VALID_NUSID_AMY)
                 .withGroups(VALID_GROUP_HUSBAND)
                 .withTag(VALID_TAG_AMY)
                 .build();
 
-        GroupCommand expectedCommand = new GroupCommand(nusid, descriptor);
-        //System.out.println(userInput);
+        GroupCommand expectedCommand = new GroupCommand(nusIdSet, descriptor);
+        assertParseSuccessGroup(parser, userInput, expectedCommand);
+    }
 
+    @Test
+    public void parse_allFieldsSpecifiedMultipleValues_success() {
+        Set<NusId> nusIdSet = new HashSet<>();
+        NusId nusIdAmy = new NusId(VALID_NUSID_AMY);
+        NusId nusIdBob = new NusId(VALID_NUSID_BOB);
+        nusIdSet.add(nusIdAmy);
+        nusIdSet.add(nusIdBob);
 
+        String userInput = " id/" + nusIdAmy + " id/" + nusIdBob + GROUP_DESC_HUSBAND + TAG_DESC_AMY;
+        GroupCommand.GroupPersonDescriptor descriptor = new GroupPersonDescriptorBuilder()
+                .withGroups(VALID_GROUP_HUSBAND)
+                .withTag(VALID_TAG_AMY)
+                .build();
+
+        GroupCommand expectedCommand = new GroupCommand(nusIdSet, descriptor);
         assertParseSuccessGroup(parser, userInput, expectedCommand);
     }
 
     @Test
     public void parse_oneFieldSpecified_success() {
-
         String defaultNusId = "E1234567";
-        NusId nusid = new NusId((defaultNusId));
+        NusId nusId = new NusId((defaultNusId));
+        Set<NusId> nusIdSet = new HashSet<>();
+        nusIdSet.add(nusId);
 
         // tag
         String userInput = " id/" + defaultNusId + TAG_DESC_AMY;
         GroupCommand.GroupPersonDescriptor descriptor = new GroupPersonDescriptorBuilder()
-                .withNusId(defaultNusId)
                 .withTag(VALID_TAG_AMY).build();
-        GroupCommand expectedCommand = new GroupCommand(nusid, descriptor);
+        GroupCommand expectedCommand = new GroupCommand(nusIdSet, descriptor);
         assertParseSuccessGroup(parser, userInput, expectedCommand);
 
         // group
         userInput = " id/" + defaultNusId + GROUP_DESC_HUSBAND;
         descriptor = new GroupPersonDescriptorBuilder()
-                .withNusId(defaultNusId)
                 .withGroups(VALID_GROUP_HUSBAND).build();
-        expectedCommand = new GroupCommand(nusid, descriptor);
+        expectedCommand = new GroupCommand(nusIdSet, descriptor);
         assertParseSuccessGroup(parser, userInput, expectedCommand);
     }
 
     @Test
     public void parse_invalidValue_failure() {
-
         assertParseFailure(parser, " id/E0123456" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
         assertParseFailure(parser, " id/E0123456" + INVALID_GROUP_DESC, Group.MESSAGE_CONSTRAINTS); // invalid group
     }
