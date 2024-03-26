@@ -20,7 +20,7 @@ public class DeleteCommand extends Command {
             + ": Deletes the person identified by their name.\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
-            + "Example: " + COMMAND_WORD + " Moochie";
+            + "Example: " + COMMAND_WORD + PREFIX_NAME + "Moochie";
 
     private final Name targetName;
 

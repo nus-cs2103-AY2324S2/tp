@@ -8,7 +8,9 @@ import seedu.address.model.person.Commission;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Maintainer;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Note;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Rating;
 import seedu.address.model.person.Skill;
 import seedu.address.model.tag.Tag;
 
@@ -21,6 +23,8 @@ public class MaintainerBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_NOTE = "Cancel shipment with amy";
+    public static final String DEFAULT_RATING = "0";
     public static final String DEFAULT_TAG = "maintainer";
     public static final String DEFAULT_SKILL = "train dog";
     public static final String DEFAULT_COMMISSION = "$50/hr";
@@ -29,6 +33,8 @@ public class MaintainerBuilder {
     private Phone phone;
     private Email email;
     private Address address;
+    private Note note;
+    private Rating rating;
     private Skill skill;
     private Commission commission;
     private Set<Tag> tags;
@@ -42,6 +48,8 @@ public class MaintainerBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
+        note = new Note(DEFAULT_NOTE);
+        rating = new Rating(DEFAULT_RATING);
         tags = new HashSet<>();
         tag = new Tag(DEFAULT_TAG);
         tags.add(tag);
@@ -57,9 +65,12 @@ public class MaintainerBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
+        note = personToCopy.getNote();
+        note = personToCopy.getNote();
         tags = new HashSet<>(personToCopy.getTags());
         tag = new Tag(DEFAULT_TAG);
         tags.add(tag);
+        rating = personToCopy.getRating();
         skill = personToCopy.getSkill();
         commission = personToCopy.getCommission();
     }
@@ -87,6 +98,22 @@ public class MaintainerBuilder {
      */
     public MaintainerBuilder withAddress(String address) {
         this.address = new Address(address);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Note} of the {@code Maintainer} that we are building.
+     */
+    public MaintainerBuilder withNote(String note) {
+        this.note = new Note(note);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Address} of the {@code Maintainer} that we are building.
+     */
+    public MaintainerBuilder withRating(String rating) {
+        this.rating = new Rating(rating);
         return this;
     }
 
@@ -123,7 +150,7 @@ public class MaintainerBuilder {
     }
 
     public Maintainer build() {
-        return new Maintainer(name, phone, email, address, tags, skill, commission);
+        return new Maintainer(name, phone, email, address, note, tags, skill, commission, rating);
     }
 
 }

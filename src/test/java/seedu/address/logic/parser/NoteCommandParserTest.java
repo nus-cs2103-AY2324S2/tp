@@ -18,14 +18,14 @@ import seedu.address.model.person.Note;
 
 public class NoteCommandParserTest {
 
-    private NoteCommandParser parser = new NoteCommandParser();
-    private Note validNote = new Note("get kibble");
+    private final NoteCommandParser parser = new NoteCommandParser();
+    private final Note validNote = new Note("Cancel shipment with bob");
+    private final DeadlineNote validDeadlineNote = new DeadlineNote("Cancel shipment with bob", "2019-10-10");
 
     @Test
     public void parse_validArgs_returnsDeadlineNoteCommand() {
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + NOTE_DESC_BOB
-                + DEADLINE_DESC_BOB, new NoteCommand(BOB.getName(), new DeadlineNote("get kibble",
-                "2019-10-10")));
+                + DEADLINE_DESC_BOB, new NoteCommand(BOB.getName(), validDeadlineNote));
     }
 
     @Test

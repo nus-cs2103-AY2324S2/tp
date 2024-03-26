@@ -25,7 +25,9 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Employment;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Note;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Rating;
 import seedu.address.model.person.Salary;
 import seedu.address.model.person.Staff;
 import seedu.address.model.tag.Tag;
@@ -99,12 +101,14 @@ public class EditStaffCommand extends Command {
         Phone updatedPhone = editStaffDescriptor.getPhone().orElse(staffToEdit.getPhone());
         Email updatedEmail = editStaffDescriptor.getEmail().orElse(staffToEdit.getEmail());
         Address updatedAddress = editStaffDescriptor.getAddress().orElse(staffToEdit.getAddress());
+        Note presentNote = staffToEdit.getNote(); //edit cannot change note
+        Rating presentRating = staffToEdit.getRating(); //edit cannot change rating
         Set<Tag> updatedTags = editStaffDescriptor.getTags().orElse(staffToEdit.getTags());
         Salary updatedSalary = editStaffDescriptor.getSalary().orElse(staffToEdit.getSalary());
         Employment updatedEmployment = editStaffDescriptor.getEmployment().orElse(staffToEdit.getEmployment());
 
-        return new Staff(updatedName, updatedPhone, updatedEmail, updatedAddress,
-                updatedTags, updatedSalary, updatedEmployment);
+        return new Staff(updatedName, updatedPhone, updatedEmail, updatedAddress, presentNote,
+                updatedTags, updatedSalary, updatedEmployment, presentRating);
     }
 
     @Override
