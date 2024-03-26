@@ -18,6 +18,7 @@ import seedu.realodex.model.person.Phone;
 import seedu.realodex.model.remark.Remark;
 import seedu.realodex.model.tag.Tag;
 
+
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
  */
@@ -51,6 +52,16 @@ public class ParserUtil {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
         return new Name(capitalizeWords(trimmedName));
+    }
+
+
+    public static ParserResult<Name> parseNameReturnStored(String name) throws ParseException {
+        requireNonNull(name);
+        String trimmedName = name.trim();
+        if (!Name.isValidName(trimmedName)) {
+            return new ParserResult<>(Name.MESSAGE_CONSTRAINTS, new Name(capitalizeWords("")));
+        }
+        return new ParserResult<>("", new Name(capitalizeWords(trimmedName)));
     }
 
     /**
@@ -94,6 +105,15 @@ public class ParserUtil {
         return new Phone(trimmedPhone);
     }
 
+    public static ParserResult<Phone> parsePhoneReturnStored(String phone) throws ParseException {
+        requireNonNull(phone);
+        String trimmedPhone = phone.trim();
+        if (!Phone.isValidPhone(trimmedPhone)) {
+            return new ParserResult<>(Phone.MESSAGE_CONSTRAINTS, new Phone());
+        }
+        return new ParserResult<>("", new Phone(trimmedPhone));
+    }
+
     /**
      * Parses a {@code String income} into a {@code Income}.
      * Leading and trailing whitespaces will be trimmed.
@@ -107,6 +127,15 @@ public class ParserUtil {
             throw new ParseException(Income.MESSAGE_CONSTRAINTS);
         }
         return new Income(trimmedIncome);
+    }
+
+    public static ParserResult<Income> parseIncomeReturnStored(String income) throws ParseException {
+        requireNonNull(income);
+        String trimmedIncome = income.trim();
+        if (!Income.isValidIncome(trimmedIncome)) {
+            return new ParserResult<>(Income.MESSAGE_CONSTRAINTS, new Income());
+        }
+        return new ParserResult<>("", new Income(trimmedIncome));
     }
 
     /**
@@ -124,6 +153,15 @@ public class ParserUtil {
         return new Address(trimmedAddress);
     }
 
+    public static ParserResult<Address> parseAddressReturnStored(String address) throws ParseException {
+        requireNonNull(address);
+        String trimmedAddress = address.trim();
+        if (!Address.isValidAddress(trimmedAddress)) {
+            return new ParserResult<>(Address.MESSAGE_CONSTRAINTS, new Address());
+        }
+        return new ParserResult<>("", new Address(trimmedAddress));
+    }
+
     /**
      * Parses a {@code String email} into an {@code Email}.
      * Leading and trailing whitespaces will be trimmed.
@@ -137,6 +175,15 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
+    }
+
+    public static ParserResult<Email> parseEmailReturnStored(String email) throws ParseException {
+        requireNonNull(email);
+        String trimmedEmail = email.trim();
+        if (!Email.isValidEmail(trimmedEmail)) {
+            return new ParserResult<>(Email.MESSAGE_CONSTRAINTS, new Email());
+        }
+        return new ParserResult<>("", new Email(trimmedEmail));
     }
 
     /**
@@ -153,6 +200,16 @@ public class ParserUtil {
         }
         assert Integer.parseInt(trimmedFamily) >= 1;
         return new Family(trimmedFamily);
+    }
+
+    public static ParserResult<Family> parseFamilyReturnStored(String family) throws ParseException {
+        requireNonNull(family);
+        String trimmedFamily = family.trim();
+        if (!Family.isValidFamily(trimmedFamily)) {
+            return new ParserResult<>(Family.MESSAGE_CONSTRAINTS, new Family());
+        }
+        assert Integer.parseInt(trimmedFamily) >= 1;
+        return new ParserResult<>("", new Family(trimmedFamily));
     }
 
     /**

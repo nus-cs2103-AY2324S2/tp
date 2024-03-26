@@ -28,6 +28,10 @@ public class Family {
         this.familySize = familySize;
     }
 
+    public Family() {
+        this.familySize = "1";
+    }
+
     /**
      * Checks if the given family size is a valid value.
      *
