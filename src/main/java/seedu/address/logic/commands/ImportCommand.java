@@ -54,7 +54,7 @@ public class ImportCommand extends Command {
         try {
             this.importManager.importCsvFileAndConvertToJsonFile();
         } catch (IOException e) {
-            return new CommandResult(e.getMessage() + " " + MESSAGE_FAILURE);
+            return new CommandResult(MESSAGE_FAILURE);
         }
         CommandResult result = new CommandResult(MESSAGE_SUCCESS);
         result.setChangeDataSource();

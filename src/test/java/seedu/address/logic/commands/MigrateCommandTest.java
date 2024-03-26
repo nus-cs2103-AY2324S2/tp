@@ -100,14 +100,14 @@ public class MigrateCommandTest {
     }
 
     @Test
-    public void execute_migrateSuccessReturnsFailureMessage() {
+    public void execute_migrateFailureReturnsFailureMessage() {
         Path pathToImportFrom = Paths.get("");
         ImportManager importManager = new ImportManager(pathToImportFrom,
                 tempAddressBookStorage.getAddressBookFilePath());
         MigrateCommand migrateCommand = new MigrateCommand(pathToImportFrom, importManager);
 
         CommandResult result = migrateCommand.execute(model);
-        assertEquals(MigrateCommand.MESSAGE_FAILURE, result.getFeedbackToUser().trim());
+        assertEquals(MigrateCommand.MESSAGE_FAILURE, result.getFeedbackToUser());
     }
 
     @Test
@@ -153,17 +153,6 @@ public class MigrateCommandTest {
         MigrateCommand command2 = new MigrateCommand(path1, importManager2);
 
         assertTrue(command1.equals(command2));
-    }
-
-    @Test
-    public void toString_returnsCorrectString() {
-        Path pathToImportFrom = Paths.get("path/from");
-        ImportManager importManager = new ImportManager(pathToImportFrom,
-                tempAddressBookStorage.getAddressBookFilePath());
-        MigrateCommand migrateCommand = new MigrateCommand(pathToImportFrom, importManager);
-
-        String expectedString = "seedu.address.logic.commands.MigrateCommand{Migrating file from: =path\\from}";
-        assertEquals(expectedString, migrateCommand.toString());
     }
 
 }

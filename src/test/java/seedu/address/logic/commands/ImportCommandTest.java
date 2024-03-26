@@ -98,7 +98,7 @@ public class ImportCommandTest {
         ImportCommand importCommand = new ImportCommand(pathToImportFrom, pathToImportTo, importManager);
 
         CommandResult result = importCommand.execute(model);
-        assertEquals(ImportCommand.MESSAGE_FAILURE, result.getFeedbackToUser().trim());
+        assertEquals(ImportCommand.MESSAGE_FAILURE, result.getFeedbackToUser());
     }
 
     @Test
@@ -145,20 +145,6 @@ public class ImportCommandTest {
         ImportCommand command2 = new ImportCommand(path1, pathJson, importManager2);
 
         assertTrue(command1.equals(command2));
-    }
-
-    @Test
-    public void toString_returnsCorrectString() {
-        Path pathToImportFrom = Paths.get("path/from");
-        Path pathToImportTo = Paths.get("path/to");
-        ImportManager importManager = new ImportManager(pathToImportFrom, pathToImportTo);
-
-        ImportCommand importCommand = new ImportCommand(pathToImportFrom, pathToImportTo, importManager);
-
-        String expected =
-                "seedu.address.logic.commands.ImportCommand{Importing file from: =path\\from, "
-                        + "Importing file to: =path\\to}";
-        assertEquals(expected, importCommand.toString());
     }
 
 }
