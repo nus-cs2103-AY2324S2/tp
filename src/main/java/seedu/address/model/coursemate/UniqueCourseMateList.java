@@ -78,6 +78,9 @@ public class UniqueCourseMateList implements Iterable<CourseMate> {
         throw new CourseMateNotFoundException();
     }
 
+    /**
+     * Returns true if any of the coursemate's skill matches with the skill provided
+     */
     public boolean isSkillFound(Skill skill) {
         for (CourseMate courseMate: internalList) {
             for (Skill courseMateSkill: courseMate.getSkills()) {
