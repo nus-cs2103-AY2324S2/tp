@@ -52,11 +52,11 @@ public class OrderCard extends UiPart<Region> {
         super(FXML);
         this.order = order;
         id.setText(displayedIndex + ". ");
-        orderId.setText(order.getOrderId().toString());
-        orderDate.setText(order.getOrderDate().toString());
-        deadline.setText(order.getDeadline().toString());
-        amount.setText(order.getAmount().toString());
-        remark.setText(order.getRemark().toString());
-        status.setText(order.getStatus().toString());
+        orderId.setText("OrderId: " + order.getOrderId().toString());
+        orderDate.setText("Date: " + order.getOrderDate().toString());
+        deadline.setText("Deadline: " + order.getDeadline().toString());
+        amount.setText("Price: " + order.getAmount().toString());
+        remark.setText("Description: " + order.getRemark().toString());
+        status.setText("Status: " + order.getStatus().toString());
     }
 }

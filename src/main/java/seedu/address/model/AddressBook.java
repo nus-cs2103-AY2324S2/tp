@@ -7,7 +7,6 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.order.Order;
-import seedu.address.model.order.OrderList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -24,11 +23,9 @@ public class AddressBook implements ReadOnlyAddressBook {
      *   among constructors.
      */
     private final UniquePersonList persons;
-    private final OrderList orders;
 
     {
         persons = new UniquePersonList();
-        orders = new OrderList();
     }
 
     public AddressBook() {
@@ -90,10 +87,14 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.setPerson(target, editedPerson);
     }
 
-    public void setPerson(Person target, Person editedPerson, Order order) {
+    public void setPersonAndAddOrder(Person target, Person editedPerson, Order order) {
         requireNonNull(editedPerson);
-        orders.add(order);
-        persons.setPerson(target, editedPerson, order);
+        persons.setPersonAndAddOrder(target, editedPerson, order);
+    }
+
+    public void setPersonAndDeleteOrder(Person target, Person editedPerson, Order order) {
+        requireNonNull(editedPerson);
+        persons.setPersonAndDeleteOrder(target, editedPerson, order);
     }
 
     /**
@@ -142,4 +143,5 @@ public class AddressBook implements ReadOnlyAddressBook {
     public int hashCode() {
         return persons.hashCode();
     }
+
 }

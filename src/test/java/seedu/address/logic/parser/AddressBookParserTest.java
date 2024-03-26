@@ -26,11 +26,9 @@ import seedu.address.logic.commands.orders.AddOrderCommand;
 import seedu.address.logic.commands.orders.DeleteOrderCommand;
 import seedu.address.logic.commands.orders.ViewOrdersCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.order.OrderId;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
-import seedu.address.testutil.OrderBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
 
@@ -104,10 +102,11 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_deleteOrder() throws Exception {
-        OrderBuilder builder = new OrderBuilder();
-        OrderId orderId = builder.build().getOrderId();
-        assertTrue(parser.parseCommand(DeleteOrderCommand.COMMAND_WORD
-                + " id/" + orderId.toString()) instanceof DeleteOrderCommand);
+        // OrderBuilder builder = new OrderBuilder();
+        // OrderId orderId = builder.build().getOrderId();
+        assertTrue(
+                parser.parseCommand(DeleteOrderCommand.COMMAND_WORD + " 1")
+                        instanceof DeleteOrderCommand);
     }
 
     @Test
