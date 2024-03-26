@@ -25,7 +25,7 @@ public class UniqueExamList implements Iterable<Exam> {
      */
     public boolean contains(Exam toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::equals);
+        return internalList.stream().anyMatch(toCheck::isSameExam);
     }
 
     /**
