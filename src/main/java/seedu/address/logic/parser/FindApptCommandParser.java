@@ -13,7 +13,7 @@ import static seedu.address.model.person.Nric.isValidNric;
 import java.util.Optional;
 
 import seedu.address.commons.core.date.Date;
-import seedu.address.logic.commands.FindAppCommand;
+import seedu.address.logic.commands.FindApptCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.AppointmentContainsKeywordsPredicate;
 import seedu.address.model.appointment.Time;
@@ -22,18 +22,18 @@ import seedu.address.model.person.Nric;
 /**
  * Parses input arguments and creates a new FindCommand object
  */
-public class FindAppCommandParser implements Parser<FindAppCommand> {
+public class FindApptCommandParser implements Parser<FindApptCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
      * and returns a FindCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public FindAppCommand parse(String args) throws ParseException {
+    public FindApptCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindAppCommand.MESSAGE_USAGE));
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindApptCommand.MESSAGE_USAGE));
         }
 
         ArgumentMultimap argMultimap =
@@ -74,7 +74,7 @@ public class FindAppCommandParser implements Parser<FindAppCommand> {
         AppointmentContainsKeywordsPredicate predicate = new AppointmentContainsKeywordsPredicate(
                 nricFilter, dateFilter, timeFilter);
 
-        return new FindAppCommand(predicate);
+        return new FindApptCommand(predicate);
     }
 
 }

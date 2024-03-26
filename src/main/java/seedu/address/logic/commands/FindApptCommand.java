@@ -10,9 +10,9 @@ import seedu.address.model.appointment.AppointmentContainsKeywordsPredicate;
 /**
  * Finds and lists all appointments in address book whose details fit any of the argument keywords.
  */
-public class FindAppCommand extends Command {
+public class FindApptCommand extends Command {
 
-    public static final String COMMAND_WORD = "findApp";
+    public static final String COMMAND_WORD = "findAppt";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all appointments whose fields fit any of "
             + "the specified arguments and displays them as a list.\n"
@@ -21,7 +21,7 @@ public class FindAppCommand extends Command {
 
     private final AppointmentContainsKeywordsPredicate predicate;
 
-    public FindAppCommand(AppointmentContainsKeywordsPredicate predicate) {
+    public FindApptCommand(AppointmentContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 
@@ -41,11 +41,11 @@ public class FindAppCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof FindAppCommand)) {
+        if (!(other instanceof FindApptCommand)) {
             return false;
         }
 
-        FindAppCommand otherFindCommand = (FindAppCommand) other;
+        FindApptCommand otherFindCommand = (FindApptCommand) other;
         return predicate.equals(otherFindCommand.predicate);
     }
 
