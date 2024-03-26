@@ -35,8 +35,10 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.NoteCommand;
 import seedu.address.logic.commands.PinCommand;
+import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.RemindCommand;
 import seedu.address.logic.commands.SearchCommand;
+import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.commands.UnpinCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.KeywordPredicate;
@@ -192,6 +194,18 @@ public class AddressBookParserTest {
     }
 
     @Test
+    public void parseCommand_redo() throws Exception {
+        RedoCommand command = (RedoCommand) parser.parseCommand("/redo");
+        assertTrue(command instanceof RedoCommand);
+    }
+
+    @Test
+    public void parseCommand_undo() throws Exception {
+        UndoCommand command = (UndoCommand) parser.parseCommand("/undo");
+        assertTrue(command instanceof UndoCommand);
+    }
+
+    @Test
     public void parseCommand_pin() throws Exception {
         PinCommand command = (PinCommand) parser.parseCommand("/pin ; name : Bob Choo");
         assertEquals(new PinCommand(new Name("Bob Choo")), command);
@@ -203,6 +217,7 @@ public class AddressBookParserTest {
         assertEquals(new UnpinCommand(new Name("Bob Choo")), command);
     }
 
+    @Test
     public void parseCommand_remind() throws Exception {
         RemindCommand command = (RemindCommand) parser.parseCommand("/remind");
         assertTrue(command instanceof RemindCommand);
