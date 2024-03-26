@@ -331,6 +331,11 @@ displays the `MESSAGE_SUCCESS` message, which is "Here are all your orders: ".
     * Pros: Will use less memory (e.g. can use cache mechanisms to store recently accessed orders in memory).
     * Cons: More complex implementation of storage and memory access.
 
+**Why is it implemented that way**
+* This approach is chosen for its simplicity. By utilising the filtered order list maintained by the model, the
+`viewOrders` command provides a straightforward way to display all orders to the user. It also makes it easier to
+maintain.
+
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
