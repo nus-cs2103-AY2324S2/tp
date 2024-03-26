@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.teachstack.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.teachstack.logic.commands.CommandTestUtil.DESC_BOB;
+import static seedu.teachstack.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.teachstack.logic.commands.CommandTestUtil.VALID_GRADE_BOB;
 import static seedu.teachstack.logic.commands.CommandTestUtil.VALID_GROUP_GROUP1;
 import static seedu.teachstack.logic.commands.CommandTestUtil.VALID_NAME_BOB;
@@ -31,6 +32,7 @@ import seedu.teachstack.model.person.Person;
 import seedu.teachstack.model.person.StudentId;
 import seedu.teachstack.testutil.EditPersonDescriptorBuilder;
 import seedu.teachstack.testutil.PersonBuilder;
+
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
@@ -62,11 +64,11 @@ public class EditCommandTest {
         PersonBuilder personInList = new PersonBuilder(lastPerson);
 
         Person editedPerson = personInList.withName(VALID_NAME_BOB).withStudentId(VALID_STUDENTID_BOB)
-            .withGrade(VALID_GRADE_BOB).withGroups(VALID_GROUP_GROUP1).build();
+            .withGrade(VALID_GRADE_BOB).withEmail(VALID_EMAIL_BOB).withGroups(VALID_GROUP_GROUP1).build();
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
             .withStudentId(VALID_STUDENTID_BOB).withGrade(VALID_GRADE_BOB)
-            .withGroups(VALID_GROUP_GROUP1).build();
+                .withEmail(VALID_EMAIL_BOB).withGroups(VALID_GROUP_GROUP1).build();
 
         EditCommand editCommand = new EditCommand(id, descriptor);
 

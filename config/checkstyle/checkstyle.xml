@@ -55,7 +55,7 @@
       3. SPECIAL_IMPORTS: defined as org imports
       4. THIRD_PARTY_PACKAGE: defined as com imports
     -->
-    <module name="CustomImportOrder">
+     <module name="CustomImportOrder">
       <property name="customImportOrderRules"
                 value="STATIC###STANDARD_JAVA_PACKAGE###SPECIAL_IMPORTS###THIRD_PARTY_PACKAGE"/>
       <property name="specialImportsRegExp" value="^org\."/>
