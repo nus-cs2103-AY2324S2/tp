@@ -67,9 +67,9 @@ public class DeleteCommand extends Command {
             return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
         }
         else {
-            List<Person> peopleToDelete = new ArrayList<Person>() {};
+            List<Person> peopleToDelete = new ArrayList<Person>();
             Set<Group> deletedGroup = new HashSet<Group>();
-            deletedGroup.add(this.group);
+            deletedGroup.add(group);
 
 
             for (int i = 0; i < lastShownList.size(); i++) {
@@ -103,10 +103,10 @@ public class DeleteCommand extends Command {
         }
 
         DeleteCommand otherDeleteCommand = (DeleteCommand) other;
-        if (this.nusId != null) {
+        if (nusId != null) {
             return nusId.equals(otherDeleteCommand.nusId);
         }
-        else if (this.group != null) {
+        else if (group != null) {
             return group.equals(otherDeleteCommand.group);
         }
         return false;
@@ -114,14 +114,14 @@ public class DeleteCommand extends Command {
 
     @Override
     public String toString() {
-        if (this.nusId != null) {
+        if (nusId != null) {
             return new ToStringBuilder(this)
-                    .add("targetnusId", nusId.toString())
+                    .add("targetNusId", nusId.toString())
                     .toString();
         }
-        else if (this.group != null) {
+        else if (group != null) {
             return new ToStringBuilder(this)
-                    .add("targetgroup", group.toString())
+                    .add("targetGroup", group.toString())
                     .toString();
         }
         return null;
