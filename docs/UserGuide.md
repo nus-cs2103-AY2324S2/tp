@@ -152,8 +152,19 @@ These are the platforms we currently support ClientCare on:
 <br>
 <div style="page-break-after: always;"></div>
 
-#### For macOS
-1. Our developers are working on it!
+#### For MacOS
+1. To start ClientCare, simply open up the folder where your downloaded `clientcare.jar`.
+2. Next, double left-click on `clientcare.jar` to start the application.
+![Starting up app on macOS](images/ug/startUpAppMacOS.png =600x)
+3. If you see the following prompt, fret not! Simply click on OK and follow steps 4 and 5.
+![Unidentified developer prompt on macOS](images/ug/unidentifiedDeveloperMacOS.png =600x)
+4. To bypass the prompt, right-click on the 'clientcare.jar' app and select 'Open'.
+![Bypassing the prompt on macOS](images/ug/bypassPromptMacOS.png =600x)
+5. Select 'Open' to start the application.
+![Confirmation to open the app on macOS](images/ug/confirmOpenMacOS.png =600x)
+6. There we go! You should see ClientCare running on your computer!
+   <br> If you do not see the app running, do visit the [installation guide](#installation-instructions)
+
 <br>
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -183,6 +194,8 @@ Let's learn the language that ClientCare speaks in.
 
 ### ClientCare Commands
 A ClientCare command has the following parts:
+
+![Command Structure](images/ug/commandStructure.png =600x)
 
 ##### 1)Command Keyword
 This keyword tells ClientCare what you want to do. If you want to add a new client, then `add` will be the keyword.
@@ -277,20 +290,21 @@ Format: `add n/NAME c/PHONE_NUMBER e/EMAIL a/ADDRESS b/BIRTHDAY p/PRIORITY [t/TA
 
 <box type="tip" seamless>
 
-**Tip:** A client can have any number of tags (including 0). All other parameters (with the exception of tags) cannot have duplicate parameters.
+**Tip:** A client can have any number of tags (including 0). For example, `t/owesMoney t/friends` is allowed.<br>
+All other parameters (with the exception of tags) cannot have duplicate parameters. For example, `c/1234567 c/7654321` is **not** allowed.
 </box>
 
 Parameters usage for client details:
 
-| Parameter   | Usage                                                                                   | Example                         |
-|-------------|-----------------------------------------------------------------------------------------|---------------------------------|
-| 'n/NAME'    | All names in the system must be unique                                                  | `n/John Doe`                    |
-| 'c/PHONE_NUMBER' | Phone numbers should only contain numbers, and it should be at least 3 digits long | `c/98765432`                    |
-| 'e/EMAIL'   | Email should be in the format of `local-part@domain`                                    | `e/johndoe@email.com`           |
-| 'a/ADDRESS' | Address can take any text value                                                         | `a/311, Clementi Ave 2, #02-25` |
-| 'b/BIRTHDAY'| Birthday should be in the format of `YYYY-MM-DD`                                        | `b/1990-01-01`                  |
-| 'p/PRIORITY'| Priority can be `low`, `medium`, `high` or `vip`                                        | `p/medium`                      |
-| 't/TAG'     | Tags can be any text value                                                              | `t/friends`                     |
+| Parameter   | Usage                                                                                              | Example                         |
+|-------------|----------------------------------------------------------------------------------------------------|---------------------------------|
+| 'n/NAME'    | All names in the system must be unique                                                             | `n/John Doe`                    |
+| 'c/PHONE_NUMBER' | Phone numbers should only contain numbers, and it should be at least 3 digits long                 | `c/98765432`                    |
+| 'e/EMAIL'   | Email should be in the format of `local-part@domain`                                               | `e/johndoe@email.com`           |
+| 'a/ADDRESS' | Address can take any text value                                                                    | `a/311, Clementi Ave 2, #02-25` |
+| 'b/BIRTHDAY'| Birthday should be in the format of `YYYY-MM-DD`                                                   | `b/1990-01-01`                  |
+| 'p/PRIORITY'| Priority can be `low`, `medium`, `high`, `vip`, or the corresponding shortforms `l`, `m`, `h`, `v` | `p/medium`, `p/h`                 |
+| 't/TAG'     | Tags can be any text value                                                                         | `t/friends`                     |
 
 Examples:
 * `add n/John Doe c/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 b/1990-01-01 p/low t/friends t/owesMoney`
